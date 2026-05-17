@@ -165,14 +165,114 @@ function isClearlySupportOnlyPromotionEntry(entry) {
 function isGraduateOnlyPromotionEntry(entry) {
   const text = `${entry?.label ?? ""} ${entry?.url ?? ""} ${entry?.ownerTitle ?? ""}`;
   const ownerText = `${entry?.ownerTitle ?? ""}`.toLowerCase();
-  if (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(ownerText)) {
+  if (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral|doctor(?:\s+of\s+philosophy)?)\b/i.test(ownerText)) {
     return false;
   }
   return (
-    (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(text) ||
+    (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral|doctor(?:\s+of\s+philosophy)?)\b/i.test(text) ||
       /\/(?:student\/)?(?:applied-masters|masters?|graduate|amp)(?:[-/?#]|$)/i.test(text)) &&
     !/\b(?:undergrad(?:uate)?|bachelor|b\.?\s*s\.?|b\.?\s*a\.?)\b|\/undergrad(?:uate)?(?:[-/?#]|$)/i.test(text)
   );
+}
+
+function isMinorCredentialPromotionForMajorOwner(entry) {
+  if (entry?.ownerType !== "major" || entry?.pathwayId) {
+    return false;
+  }
+  return /#(?:credential|program)-/i.test(String(entry?.url ?? "")) && /\bminor\b/i.test(String(entry?.label ?? ""));
+}
+
+function normalizeCatalogCredentialMajorName(value) {
+  return String(value ?? "")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/&/g, " and ")
+    .replace(/\b(?:bachelor|degree|with|major|minor|option|concentration|track|route|pathway|of|in|the|a|an)\b/gi, " ")
+    .replace(/[^a-z0-9]+/gi, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function getPromotionPlanBaseTitle(entry) {
+  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  return String(planTitle)
+    .split(/\s+-\s+/u)[0]
+    .replace(/\([^)]*\)/g, " ")
+    .split(":")[0]
+    .trim();
+}
+
+function extractCatalogCredentialMajorName(label) {
+  const match = String(label ?? "").match(/\bmajor\s+in\s+([^:()]+?)(?::|$)/i);
+  return match ? match[1].trim() : null;
+}
+
+function hasCatalogCredentialOptionTail(label) {
+  return /\bmajor\s+in\s+[^:()]+:\s*\S/i.test(String(label ?? ""));
+}
+
+function isCatalogCredentialPromotionEntry(entry) {
+  return /#credential-/i.test(String(entry?.url ?? "")) && /\bmajor\s+in\b/i.test(String(entry?.label ?? ""));
+}
+
+function isCatalogCredentialPromotionForDifferentMajor(entry) {
+  if (!isCatalogCredentialPromotionEntry(entry)) {
+    return false;
+  }
+
+  const candidateMajor = normalizeCatalogCredentialMajorName(
+    extractCatalogCredentialMajorName(entry?.label)
+  );
+  const targetMajor = normalizeCatalogCredentialMajorName(getPromotionPlanBaseTitle(entry));
+  return Boolean(candidateMajor && targetMajor && candidateMajor !== targetMajor);
+}
+
+function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
+  if (entry?.ownerType !== "major" || entry?.pathwayId || !isCatalogCredentialPromotionEntry(entry)) {
+    return false;
+  }
+
+  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  if (String(planTitle ?? "").includes(":")) {
+    return false;
+  }
+
+  return hasCatalogCredentialOptionTail(entry?.label);
+}
+
+function hasDocumentUrlWithAppendedPath(entry) {
+  return /\.(?:pdf|docx?)(?:\/|%2f)[^?#]/i.test(String(entry?.url ?? ""));
+}
+
+function isUnsafeAutomaticPromotionEntry(entry) {
+  return (
+    isMinorCredentialPromotionForMajorOwner(entry) ||
+    isCatalogCredentialPromotionForDifferentMajor(entry) ||
+    isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
+    hasDocumentUrlWithAppendedPath(entry)
+  );
+}
+
+function buildPromotionEntryCandidateFromOwner(owner) {
+  const pathwayId = normalizeTransferPlannerPathwayId(owner?.planId, owner?.pathwayId ?? null);
+  const ownerId = buildOwnerId(owner?.planId, pathwayId);
+  return {
+    ownerType: owner?.ownerType,
+    ownerId,
+    ownerKey: ownerId,
+    planId: owner?.planId,
+    pathwayId,
+    ownerTitle: owner?.title,
+    campusId: owner?.campusId,
+    url: owner?.suggestedPrimary?.url,
+    label: normalizeLabel(owner),
+    sourceRole: owner?.suggestedPrimary?.sourceRole ?? null,
+    sourceRoleStatus: owner?.suggestedPrimary?.sourceRoleStatus ?? null,
+    parserType: owner?.suggestedPrimary?.parserType ?? null,
+  };
+}
+
+function suggestedPrimaryIsSafeForAutomaticPromotion(owner) {
+  return !isUnsafeAutomaticPromotionEntry(buildPromotionEntryCandidateFromOwner(owner));
 }
 
 function normalizePromotionUrlForComparison(value) {
@@ -301,6 +401,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
       )
       .filter((entry) => !isClearlySupportOnlyPromotionEntry(entry))
       .filter((entry) => !isGraduateOnlyPromotionEntry(entry))
+      .filter((entry) => !isUnsafeAutomaticPromotionEntry(entry))
       .filter((entry) => previousPromotionMatchesSpecializedPlanSource(entry))
       .filter((entry) => activeOwnerIds.has(entry.ownerId))
       .filter((entry) => discovery.isAutoPromotablePrimaryCandidate(entry))
@@ -317,6 +418,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
+    .filter((owner) => suggestedPrimaryIsSafeForAutomaticPromotion(owner))
     .filter((owner) => {
       const ownerKey = buildOwnerKey(owner);
       const blockedByReviewQueue = reviewOwnerKeys.has(ownerKey);
@@ -359,6 +461,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
+    .filter((owner) => suggestedPrimaryIsSafeForAutomaticPromotion(owner))
     .filter((owner) => {
       const ownerKey = buildOwnerKey(owner);
       const blockedByReviewQueue = reviewOwnerKeys.has(ownerKey);

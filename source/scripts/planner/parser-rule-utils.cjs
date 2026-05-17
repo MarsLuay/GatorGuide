@@ -215,7 +215,7 @@ function detectProgramApprovedCreditBucket(input) {
     return null;
   }
 
-  const hasNaturalScience = /\bnatural sciences?\b/i.test(text);
+  const hasNaturalScience = /\bnatural sciences?\b|\bN\s*Sc\b|\bNSC\b/i.test(text);
   const hasMathScience = /\bmath(?:ematics)?\/science\b|\bmath(?:ematics)?\s*&\s*science\b/i.test(text);
   if (!hasNaturalScience && !hasMathScience) {
     return null;

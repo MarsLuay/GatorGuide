@@ -30,7 +30,7 @@ const COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_GENERATED_FILTER =
 
 export const COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL =
   COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_GENERATED_FILTER?.officialSourceUrl ??
-  "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core";
+  "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science";
 
 export const COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_UW_COURSE_CODES =
   COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_GENERATED_FILTER?.approvedUwCourseCodes ?? [];

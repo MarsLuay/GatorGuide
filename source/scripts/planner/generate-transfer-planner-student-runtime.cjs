@@ -40,7 +40,7 @@ const {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
-  resolveTransferPlannerStudentRuntimeMajorPlan,
+  resolveTransferPlannerMajorPlan,
 } = require("../../constants/transfer-planner-source");
 
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/;
@@ -562,10 +562,69 @@ function omitPlanPathways(plan) {
   return planWithoutPathways;
 }
 
+function appendUniqueRuntimeItems(existingItems = [], addedItems = []) {
+  const items = [...existingItems];
+  const seen = new Set(
+    items.map((item) => item?.id || `${item?.title ?? ""}|${(item?.grcCourses ?? []).join("|")}`)
+  );
+
+  for (const item of addedItems) {
+    const key = item?.id || `${item?.title ?? ""}|${(item?.grcCourses ?? []).join("|")}`;
+    if (!key || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    items.push(item);
+  }
+
+  return items;
+}
+
+function mergeResolvedRuntimePathway(resolvedPlan, pathway, pathways) {
+  if (!pathway) {
+    return resolvedPlan;
+  }
+
+  return {
+    ...resolvedPlan,
+    applicationChecklist: appendUniqueRuntimeItems(
+      resolvedPlan.applicationChecklist,
+      pathway.applicationChecklist
+    ),
+    beforeEnrollmentChecklist: appendUniqueRuntimeItems(
+      resolvedPlan.beforeEnrollmentChecklist,
+      pathway.beforeEnrollmentChecklist
+    ),
+    stayAtGrcChecklist: appendUniqueRuntimeItems(
+      resolvedPlan.stayAtGrcChecklist,
+      pathway.stayAtGrcChecklist
+    ),
+    grcCourseList: uniqueLabels([
+      ...(resolvedPlan.grcCourseList ?? []),
+      ...(pathway.grcCourseList ?? []),
+    ]),
+    requirementGroups: appendUniqueRuntimeItems(
+      resolvedPlan.requirementGroups,
+      pathway.requirementGroups
+    ),
+    requirementReplacements: appendUniqueRuntimeItems(
+      resolvedPlan.requirementReplacements,
+      pathway.requirementReplacements
+    ),
+    supportLists: appendUniqueRuntimeItems(resolvedPlan.supportLists, pathway.supportLists),
+    pathways,
+    selectedPathwayId: pathway.id,
+    selectedPathwayLabel: pathway.label,
+    selectedPathwaySummary: pathway.summary,
+  };
+}
+
 const runtimePathwaysByPlanId = Object.fromEntries(
   runtimeMajorPlans.map((plan) => [
     plan.id,
-    getTransferPlannerStudentRuntimePathwaysForPlan(plan),
+    (plan.pathways ?? []).length
+      ? plan.pathways
+      : getTransferPlannerStudentRuntimePathwaysForPlan(plan),
   ])
 );
 
@@ -574,10 +633,16 @@ const runtimeResolvedMajorPlansByKey = Object.fromEntries(
     const pathways = runtimePathwaysByPlanId[plan.id] ?? [];
     const pathwayIds = pathways.length ? pathways.map((pathway) => pathway.id) : [null];
 
-    return pathwayIds.map((pathwayId) => [
-      `${plan.id}::${pathwayId ?? ""}`,
-      omitPlanPathways(resolveTransferPlannerStudentRuntimeMajorPlan(plan, pathwayId) ?? plan),
-    ]);
+    return pathwayIds.map((pathwayId) => {
+      const pathway = pathways.find((candidate) => candidate.id === pathwayId) ?? null;
+      const resolvedPlan = resolveTransferPlannerMajorPlan(plan, pathwayId) ?? plan;
+      return [
+        `${plan.id}::${pathwayId ?? ""}`,
+        omitPlanPathways(
+          mergeResolvedRuntimePathway(resolvedPlan, pathway, pathways)
+        ),
+      ];
+    });
   })
 );
 

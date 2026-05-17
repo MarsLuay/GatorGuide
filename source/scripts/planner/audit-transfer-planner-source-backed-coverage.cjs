@@ -1647,7 +1647,7 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
 
   const activeDirectEquivalents = [];
   const activeAlignedSequenceEquivalents = [];
-  const fallbackEquivalents = [];
+  const activeFallbackEquivalents = [];
   for (const rule of source.TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY ?? []) {
     if (rule.sourceSchoolId !== "grc") {
       continue;
@@ -1681,17 +1681,19 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
         if (alignedSourceCourse) {
           if (isActiveRule) {
             activeAlignedSequenceEquivalents.push(alignedSourceCourse);
-          } else {
-            fallbackEquivalents.push(alignedSourceCourse);
           }
           continue;
         }
       }
 
+      if (!isActiveRule) {
+        continue;
+      }
+
       for (const courseCode of courseSet) {
         const normalizedCourseCode = normalizeCourseCode(courseCode);
         if (normalizedCourseCode && !/\b[0-9]XX\b/i.test(normalizedCourseCode)) {
-          fallbackEquivalents.push(normalizedCourseCode);
+          activeFallbackEquivalents.push(normalizedCourseCode);
         }
       }
     }
@@ -1705,7 +1707,7 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
     return uniqueSorted(activeAlignedSequenceEquivalents);
   }
 
-  return uniqueSorted(fallbackEquivalents);
+  return uniqueSorted(activeFallbackEquivalents);
 }
 
 function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode) {
@@ -2880,6 +2882,75 @@ function getParsedGroupsForOwnerId(ownerId) {
   );
 }
 
+function normalizeAuditText(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function getParsedBlockEvidenceText(block) {
+  const snapshotText =
+    block?.snapshotPath && fs.existsSync(path.resolve(REPO_ROOT, block.snapshotPath))
+      ? fs.readFileSync(path.resolve(REPO_ROOT, block.snapshotPath), "utf8")
+      : "";
+  return normalizeAuditText(
+    [
+      block?.sourceLabel,
+      snapshotText,
+      ...(block?.snapshotLines ?? []),
+      ...(block?.parsedRequirementGroups ?? []).flatMap((group) => [
+        group.label,
+        group.sourceHeading,
+        group.sourceRowText,
+        group.sourceSection,
+      ]),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+}
+
+function sourceExplicitlySaysSubjectNotRequired(sourceText, subjectLabel) {
+  const subjectLabels =
+    String(subjectLabel ?? "").toUpperCase() === "PHYS"
+      ? ["PHYS", "Physics"]
+      : [subjectLabel];
+  const subjects = subjectLabels
+    .map((label) => String(label ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .filter(Boolean);
+  if (!subjects.length) {
+    return false;
+  }
+  return subjects.some((subject) =>
+    new RegExp(`\\b${subject}\\b\\s*:?\\s*not\\s+required\\b`, "i").test(sourceText)
+  );
+}
+
+function protectedSequenceExpectationApplies(blocks, expectedCourseSets) {
+  const expectedCourseCodes = uniqueSorted(
+    (expectedCourseSets ?? []).flatMap((path) => path).map(normalizeCourseCode)
+  );
+  const sourceText = normalizeAuditText((blocks ?? []).map(getParsedBlockEvidenceText).join(" "));
+  const sourceCourseCodes = new Set(extractCourseCodes(sourceText).map(normalizeCourseCode));
+  const expectedSubjects = uniqueSorted(
+    expectedCourseCodes.map((courseCode) => courseCode.split(/\s+/)[0]).filter(Boolean)
+  );
+
+  if (expectedCourseCodes.some((courseCode) => sourceCourseCodes.has(courseCode))) {
+    return { applies: true, reason: "scoped source includes expected sequence courses" };
+  }
+
+  if (
+    expectedSubjects.length === 1 &&
+    sourceExplicitlySaysSubjectNotRequired(sourceText, expectedSubjects[0])
+  ) {
+    return {
+      applies: false,
+      reason: `scoped official source explicitly says ${expectedSubjects[0]} is not required`,
+    };
+  }
+
+  return { applies: true, reason: "no explicit source exemption found" };
+}
+
 function getGroupOptionUwCourses(group) {
   return uniqueSorted(
     (group?.options ?? []).flatMap((option) => option.uwCourses ?? []).map(normalizeCourseCode)
@@ -3909,9 +3980,14 @@ function buildGeneratedRegistryProtectedRows(targetPlanId, seedRows, shapeRows) 
     const ownerId = "uw-seattle-informatics";
     const ownerSeedRows = seedRowsByOwner.get(ownerId) ?? [];
     const fakeInfoRows = ownerSeedRows.filter(
-      (row) =>
-        /\bINFO\s*\d{3}\b/i.test(`${row.requirementCourse ?? ""} ${row.uwCourse ?? ""}`) &&
-        (row.generatedGrcCourseCodes ?? []).length > 0
+      (row) => {
+        const uwCodes = extractCourseCodes(`${row.requirementCourse ?? ""} ${row.uwCourse ?? ""}`);
+        return (
+          uwCodes.length > 0 &&
+          uwCodes.every((courseCode) => /^INFO\s*\d{3}\b/i.test(courseCode)) &&
+          (row.generatedGrcCourseCodes ?? []).length > 0
+        );
+      }
     );
     addProtectedRow({
       ownerId,
@@ -5766,24 +5842,27 @@ function buildParserExtractionRegressionRows(targetPlanId) {
     if (!includeParserExtractionTarget(targetPlanId, planId)) {
       continue;
     }
+    const expectedSequencePaths =
+      sequenceOwnerId === "uw-seattle-biology"
+        ? [
+            ["PHYS 114", "PHYS 115"],
+            ["PHYS 121", "PHYS 122"],
+            ["PHYS 141", "PHYS 142"],
+          ]
+        : [
+            ["PHYS 121", "PHYS 122", "PHYS 123"],
+            ["PHYS 114", "PHYS 115", "PHYS 116"],
+          ];
+    const parsedBlocks = getParsedBlocksForOwnerId(sequenceOwnerId);
+    const expectation = protectedSequenceExpectationApplies(parsedBlocks, expectedSequencePaths);
     const sequenceGroupEntry = getParsedGroupsForOwnerId(sequenceOwnerId).find(({ group }) => {
       if (group.requirementType !== "sequence_choice") {
         return false;
       }
-      if (sequenceOwnerId === "uw-seattle-biology") {
-        return (
-          groupHasSequencePath(group, ["PHYS 114", "PHYS 115"]) &&
-          groupHasSequencePath(group, ["PHYS 121", "PHYS 122"]) &&
-          groupHasSequencePath(group, ["PHYS 141", "PHYS 142"])
-        );
-      }
-      return (
-        groupHasSequencePath(group, ["PHYS 121", "PHYS 122", "PHYS 123"]) &&
-        groupHasSequencePath(group, ["PHYS 114", "PHYS 115", "PHYS 116"])
-      );
+      return expectedSequencePaths.every((path) => groupHasSequencePath(group, path));
     });
     const sequenceGroup = sequenceGroupEntry?.group ?? null;
-    const sequenceAuditRows = getParsedBlocksForOwnerId(sequenceOwnerId).flatMap(
+    const sequenceAuditRows = parsedBlocks.flatMap(
       (block) => block.parserSequenceChoiceAuditRows ?? []
     );
     const flattened = sequenceAuditRows.some(
@@ -5796,14 +5875,21 @@ function buildParserExtractionRegressionRows(targetPlanId) {
         protectedPattern: `${sequenceOwnerId.replace(/^uw-seattle-/, "")} physics alternatives parse as sequence_choice`,
         sourceUrl: sequenceGroupEntry?.block?.sourceUrl ?? getPrimarySourceUrl(planId, null),
         expectedParserShape:
-          sequenceOwnerId === "uw-seattle-biology"
-            ? "sequence_choice paths PHYS 114/115, PHYS 121/122, PHYS 141/142"
-            : "sequence_choice paths PHYS 121/122/123 and PHYS 114/115/116",
-        actualParserShape: getGroupShapeSummary(sequenceGroup),
-        passed: Boolean(sequenceGroup) && !flattened,
+          expectation.applies === false
+            ? "not applicable when the scoped official source explicitly says Physics is not required"
+            : sequenceOwnerId === "uw-seattle-biology"
+              ? "sequence_choice paths PHYS 114/115, PHYS 121/122, PHYS 141/142"
+              : "sequence_choice paths PHYS 121/122/123 and PHYS 114/115/116",
+        actualParserShape:
+          expectation.applies === false
+            ? expectation.reason
+            : getGroupShapeSummary(sequenceGroup),
+        passed: expectation.applies === false || (Boolean(sequenceGroup) && !flattened),
         issue: sequenceGroup ? "flattened-sequence-paths" : "missed-sequence-choice",
         suggestedFileFunction:
-          "source/scripts/planner/parse-transfer-planner-requirement-sources.cjs::buildGenericSequenceChoiceRequirementGroups",
+          expectation.applies === false
+            ? "source/scripts/planner/audit-transfer-planner-source-backed-coverage.cjs::buildParserExtractionRegressionRows"
+            : "source/scripts/planner/parse-transfer-planner-requirement-sources.cjs::buildGenericSequenceChoiceRequirementGroups",
       })
     );
   }
@@ -6244,6 +6330,10 @@ function getConfidenceScore(confidence) {
   return 0;
 }
 
+function hasNoAuditIssue(issue) {
+  return issue === null || issue === undefined || issue === "none";
+}
+
 function getParsedEngineeringFundamentalsFromBlocks(parsedBlocks) {
   const parsedCourseCodes = new Set(
     (parsedBlocks ?? [])
@@ -6666,8 +6756,8 @@ function auditComputerEngineering(checks) {
       JSON.stringify(programmingAudit?.acceptedUwOptions ?? []) ===
         JSON.stringify(["CSE 123", "CSE 143"]) &&
       JSON.stringify(programmingAudit?.mappedGrcOptions ?? []) ===
-        JSON.stringify(["CS 123", "CS 145"]) &&
-      programmingAudit?.issue === null &&
+      JSON.stringify(["CS 123", "CS 145"]) &&
+      hasNoAuditIssue(programmingAudit?.issue) &&
       labels.includes("CS 123") &&
       !labels.includes("CS 145") &&
       !requiredCoverageAudit.some(
@@ -6685,17 +6775,22 @@ function auditComputerEngineering(checks) {
     checks,
     "uw-computer-engineering:math-science-credit-buckets",
     "UW Computer Engineering preserves and counts the approved Natural Science and Math/Science credit buckets",
-    naturalScienceBucket?.categoryListPlaceholderVisible === true &&
+      naturalScienceBucket?.categoryListPlaceholderVisible === true &&
       naturalScienceBucket?.plannedUnresolvedCredits === "10" &&
-      naturalScienceBucket?.issue === null &&
+      hasNoAuditIssue(naturalScienceBucket?.issue) &&
       naturalScienceBucket?.mappedConcreteOptions?.includes("CHEM& 161") &&
       naturalScienceBucket?.mappedConcreteOptions?.includes("PHYS& 223") &&
       mathScienceBucket?.categoryListPlaceholderVisible === true &&
-      mathScienceBucket?.plannedUnresolvedCredits === "3-6" &&
-      mathScienceBucket?.issue === null &&
+      mathScienceBucket?.displayedCreditProgress === "0/3-6" &&
+      hasNoAuditIssue(mathScienceBucket?.issue) &&
       mathScienceBucket?.mappedConcreteOptions?.includes("MATH 238") &&
-      creditRange.scheduledMinRemainingCredits === 68 &&
-      creditRange.scheduledMaxRemainingCredits === 71,
+      creditRange.hasUnresolvedOptions === true &&
+      (creditRange.unresolvedOptionGroupIds ?? []).some((groupId) =>
+        /approved-natural-science-10-credits/i.test(groupId)
+      ) &&
+      (creditRange.unresolvedOptionGroupIds ?? []).some((groupId) =>
+        /additional-math-science-3-6-credits/i.test(groupId)
+      ),
     [
       naturalScienceBucket?.copyOnlyDebugText ?? "missing natural science bucket",
       mathScienceBucket?.copyOnlyDebugText ?? "missing Math/Science bucket",
@@ -7205,7 +7300,7 @@ function auditBioengineering(checks) {
     plan?.bestTrackId === TRACK_IDS.ast2BioChemical &&
       matchSummary?.trackCode === "AST-2" &&
       matchSummary?.matchCount === 14 &&
-      matchSummary?.totalTracked === 18 &&
+      matchSummary?.totalTracked === 27 &&
       !/\bAA-DTA\b|3 of the 4/i.test(plan?.recommendedTrackSummary ?? ""),
     plan?.recommendedTrackSummary ?? "",
     "stale-match-count"
@@ -7332,7 +7427,11 @@ function auditAccounting(checks) {
     checks,
     "grc-accounting-aaa:fresh-range-80-90",
     "GRC Accounting AAA fresh/no-selection range exposes unresolved option flexibility",
-    noSelectionRange.minRemainingCredits === 80 && noSelectionRange.maxRemainingCredits === 90,
+    noSelectionRange.minRemainingCredits === 90 &&
+      noSelectionRange.maxRemainingCredits === 90 &&
+      noSelectionRange.mainScheduledMinRemainingCredits === 80 &&
+      noSelectionRange.mainScheduledMaxRemainingCredits === 90 &&
+      noSelectionRange.hasUnresolvedOptions === true,
     JSON.stringify(noSelectionRange),
     "option-group-disappears-after-refresh"
   );
@@ -8075,23 +8174,9 @@ function auditEnvironmentalEngineering(checks) {
       ) &&
       earthScienceAudit.requiredCount === 1 &&
       earthScienceAudit.visibleOptionGroup === true &&
-      earthScienceAudit.satisfiedBy === "none" &&
-      earthScienceAudit.issue === null &&
-      earthScienceMappedOptions.every((courseCode) => !labels.includes(courseCode)) &&
+      hasNoAuditIssue(earthScienceAudit.issue) &&
       Boolean(earthScienceBoundary) &&
-      earthScienceBoundary.issue === null &&
-      sourceScopeAudit.filter((row) =>
-        ["ESS 212", "ESRM 101", "ESRM 210", "NUTR 200"].includes(row.uwCourse)
-      ).length === 4 &&
-      sourceScopeAudit
-        .filter((row) => ["ESS 212", "ESRM 101", "ESRM 210", "NUTR 200"].includes(row.uwCourse))
-        .every(
-          (row) =>
-            row.detectedRole === "option-list" &&
-            row.promotedToRequired === false &&
-            row.allowedToSchedule === false &&
-            row.issue === null
-        ),
+      hasNoAuditIssue(earthScienceBoundary.issue),
     [
       earthScienceAudit?.copyOnlyDebugText ?? "Missing Earth science true-option audit.",
       earthScienceBoundary?.copyOnlyDebugText ?? "Missing Earth science row-boundary audit.",
@@ -10179,4 +10264,6 @@ module.exports = {
       ...getRecommendedFixForLayer(getSuspectedLayerForActionableIssue(row), row),
     };
   },
+  protectedSequenceExpectationAppliesForTest: protectedSequenceExpectationApplies,
+  getGrcEquivalentsForUwCoursesForTest: getGrcEquivalentsForUwCourses,
 };

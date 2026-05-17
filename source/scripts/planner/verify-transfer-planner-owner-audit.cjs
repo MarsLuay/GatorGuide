@@ -24,6 +24,9 @@ const {
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } = require("../../constants/transfer-planner-source");
 const {
+  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+} = require("../../constants/transfer-planner-source/source-gaps.generated");
+const {
   normalizeTransferPlannerSemanticPathwayLabel,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
 
@@ -82,6 +85,24 @@ function buildParsedBlockPlanSourceKey(block) {
 
 function buildManifestPlanSourceKey(entry) {
   return `${entry.planId ?? entry.ownerId}::${entry.url}`;
+}
+
+const SOURCE_GAP_OWNER_IDS = new Set(
+  (TRANSFER_PLANNER_SOURCE_GAP_ENTRIES ?? []).map((entry) =>
+    buildParsedBlockOwnerId(entry.planId, entry.pathwayId ?? null)
+  )
+);
+const SOURCE_GAP_PLAN_IDS = new Set(
+  (TRANSFER_PLANNER_SOURCE_GAP_ENTRIES ?? [])
+    .filter((entry) => !entry.pathwayId)
+    .map((entry) => entry.planId)
+);
+
+function isCoveredBySourceGap(owner) {
+  return (
+    SOURCE_GAP_OWNER_IDS.has(owner.ownerId) ||
+    Boolean(owner.pathwayId && SOURCE_GAP_PLAN_IDS.has(owner.planId))
+  );
 }
 
 function normalizePathwayAliasLabel(planTitle, label) {
@@ -190,7 +211,7 @@ function buildCountsByCode(entries) {
   }, {});
 }
 
-function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner) {
+function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner, isKnownSourceGapOwner = false) {
   const rootIssues = [];
   const symptomIssueByCode = buildIssueIndex(symptomIssues);
   const groupedSymptomCodes = new Set();
@@ -206,12 +227,17 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner) {
     }
     addIssue(
       rootIssues,
-      "error",
-      "canonical-source-registry-missing-owner",
-      "Canonical source registry is missing the owner's primary source registration.",
+      isKnownSourceGapOwner || !isAutoPromotedOwner ? "warning" : "error",
+      isKnownSourceGapOwner
+        ? "known-source-gap-unresolved"
+        : "canonical-source-registry-missing-owner",
+      isKnownSourceGapOwner
+        ? "Owner is intentionally hidden behind a generated source-gap entry until a safe primary source is validated."
+        : "Canonical source registry is missing the owner's primary source registration.",
       {
         ownerId,
         autoPromotedPrimarySource: isAutoPromotedOwner,
+        sourceGapRegistered: isKnownSourceGapOwner,
         symptoms: [
           "missing-primary-source",
           "missing-source-manifest-entries",
@@ -226,17 +252,26 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner) {
     if (missingManifestEntries) {
       groupedSymptomCodes.add("missing-source-manifest-entries");
     }
+    if (isKnownSourceGapOwner && missingParsedSourceBlock) {
+      groupedSymptomCodes.add("missing-parsed-source-block");
+    }
     addIssue(
       rootIssues,
-      "error",
-      "canonical-source-registry-drift",
-      "Canonical source registry is internally inconsistent for this owner.",
+      isKnownSourceGapOwner || !isAutoPromotedOwner ? "warning" : "error",
+      isKnownSourceGapOwner
+        ? "known-source-gap-registry-drift"
+        : "canonical-source-registry-drift",
+      isKnownSourceGapOwner
+        ? "Generated source-gap entry covers an owner whose canonical source registry is incomplete."
+        : "Canonical source registry is internally inconsistent for this owner.",
       {
         ownerId,
         autoPromotedPrimarySource: isAutoPromotedOwner,
+        sourceGapRegistered: isKnownSourceGapOwner,
         symptoms: [
           ...(missingPrimarySource ? ["missing-primary-source"] : []),
           ...(missingManifestEntries ? ["missing-source-manifest-entries"] : []),
+          ...(isKnownSourceGapOwner && missingParsedSourceBlock ? ["missing-parsed-source-block"] : []),
         ],
       }
     );
@@ -246,14 +281,19 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner) {
     groupedSymptomCodes.add("missing-parsed-source-block");
     addIssue(
       rootIssues,
-      "error",
-      isAutoPromotedOwner ? "promoted-source-not-parsed" : "registry-parser-drift",
+      isKnownSourceGapOwner || !isAutoPromotedOwner ? "warning" : "error",
+      isKnownSourceGapOwner
+        ? "known-source-gap-parser-drift"
+        : isAutoPromotedOwner ? "promoted-source-not-parsed" : "registry-parser-drift",
       isAutoPromotedOwner
         ? "An auto-promoted primary source exists in the canonical registry but did not produce a parsed requirement block."
-        : "Canonical registry and parsed requirement blocks drifted for this owner.",
+        : isKnownSourceGapOwner
+          ? "Generated source-gap entry covers an owner that does not have a parsed requirement block."
+          : "Canonical registry and parsed requirement blocks drifted for this owner.",
       {
         ownerId,
         autoPromotedPrimarySource: isAutoPromotedOwner,
+        sourceGapRegistered: isKnownSourceGapOwner,
         symptoms: ["missing-parsed-source-block"],
       }
     );
@@ -655,7 +695,8 @@ function main() {
     const rootIssues = collapseOwnerIssues(
       owner.ownerId,
       symptomIssues,
-      isAutoPromotedPrimarySource
+      isAutoPromotedPrimarySource,
+      isCoveredBySourceGap(owner)
     );
 
     return {
@@ -701,7 +742,9 @@ function main() {
     countsByIssueCode: buildCountsByCode(owners.flatMap((owner) => owner.rootIssues)),
     countsBySymptomCode: buildCountsByCode(owners.flatMap((owner) => owner.symptomIssues)),
     promotedOwnerInvariantViolationCount: owners.filter((owner) =>
-      owner.rootIssues.some((issue) => PROMOTED_OWNER_INVARIANT_VIOLATION_CODES.has(issue.code))
+      owner.rootIssues.some(
+        (issue) => issue.severity === "error" && PROMOTED_OWNER_INVARIANT_VIOLATION_CODES.has(issue.code)
+      )
     ).length,
     owners,
   };

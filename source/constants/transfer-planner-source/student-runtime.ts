@@ -900,6 +900,71 @@ function buildRuntimeGrcCourseListFromChecklists(
   );
 }
 
+function getRuntimeChecklistItemMappedCourseCodes(item: TransferPlannerChecklistItem) {
+  return unique(
+    [
+      ...(item.grcCourses ?? []),
+      ...(item.alternatives ?? []).flat(),
+      ...(item.requirementGroup?.options ?? []).flatMap((option) => option.grcMatches ?? []),
+    ]
+      .flatMap((courseLabel) => extractTransferPlannerCourseCodes(courseLabel))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function appendSourceGeneratedRuntimeChecklistItems(
+  normalizedItems: TransferPlannerChecklistItem[],
+  sourceItems: TransferPlannerChecklistItem[] | undefined
+) {
+  const coveredCourseCodes = new Set(
+    normalizedItems.flatMap(getRuntimeChecklistItemMappedCourseCodes)
+  );
+  const seenItemKeys = new Set(
+    normalizedItems.map((item) => `${item.sourceUrl ?? ""}::${item.title ?? ""}`)
+  );
+  const retainedItems: TransferPlannerChecklistItem[] = [];
+
+  for (const item of sourceItems ?? []) {
+    if (
+      item.generatedFromParser !== true ||
+      item.manualOverride === true ||
+      item.canCreateScheduleRow === false
+    ) {
+      continue;
+    }
+
+    const mappedCourseCodes = getRuntimeChecklistItemMappedCourseCodes(item);
+    if (!mappedCourseCodes.some((courseCode) => !coveredCourseCodes.has(courseCode))) {
+      continue;
+    }
+
+    const itemKey = `${item.sourceUrl ?? ""}::${item.title ?? ""}`;
+    if (seenItemKeys.has(itemKey)) {
+      continue;
+    }
+
+    seenItemKeys.add(itemKey);
+    mappedCourseCodes.forEach((courseCode) => coveredCourseCodes.add(courseCode));
+    retainedItems.push(item);
+  }
+
+  return [...normalizedItems, ...retainedItems];
+}
+
+function uniqueRuntimeRequirementGroups(
+  groups: Array<TransferPlannerRequirementGroup | null | undefined>
+) {
+  const byId = new Map<string, TransferPlannerRequirementGroup>();
+  for (const group of groups) {
+    if (!group?.id || byId.has(group.id)) {
+      continue;
+    }
+    byId.set(group.id, group);
+  }
+  return [...byId.values()];
+}
+
 function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
@@ -1298,12 +1363,27 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
     checklist.stayAtGrcChecklist,
     "Manual runtime normalization for source-backed UW Seattle Bioengineering support requirements."
   );
+  const normalizedChecklistItems = [
+    ...applicationChecklist,
+    ...beforeEnrollmentChecklist,
+    ...stayAtGrcChecklist,
+  ];
+  const sourceGeneratedChecklistItems = [
+    ...(plan.applicationChecklist ?? []),
+    ...(plan.beforeEnrollmentChecklist ?? []),
+    ...(plan.stayAtGrcChecklist ?? []),
+  ];
+  const beforeEnrollmentChecklistWithSourceRows = appendSourceGeneratedRuntimeChecklistItems(
+    beforeEnrollmentChecklist,
+    sourceGeneratedChecklistItems
+  );
+  const allChecklistItems = [
+    ...applicationChecklist,
+    ...beforeEnrollmentChecklistWithSourceRows,
+    ...stayAtGrcChecklist,
+  ];
   const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
-    [
-      ...applicationChecklist,
-      ...beforeEnrollmentChecklist,
-      ...stayAtGrcChecklist,
-    ],
+    allChecklistItems,
     { onlyCanonicalGrcCourses: true }
   );
 
@@ -1311,10 +1391,14 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
     ...plan,
     bestTrackId: UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID,
     applicationChecklist,
-    beforeEnrollmentChecklist,
+    beforeEnrollmentChecklist: beforeEnrollmentChecklistWithSourceRows,
     stayAtGrcChecklist,
     grcCourseList,
-    requirementGroups: [],
+    requirementGroups: uniqueRuntimeRequirementGroups([
+      ...(plan.requirementGroups ?? []),
+      ...normalizedChecklistItems.map((item) => item.requirementGroup),
+      ...allChecklistItems.map((item) => item.requirementGroup),
+    ]),
     validationNotes: unique([
       ...(plan.validationNotes ?? []),
       "Runtime Bioengineering transfer checklist normalized to the current UW Bioengineering lower-division, programming, science, math, and general-education requirements.",

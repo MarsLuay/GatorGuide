@@ -10,46 +10,44 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "title": "Business Administration: Accounting (BA)",
     "campusId": "uw-bothell",
     "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
+    "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 127,
+    "candidateCount": 138,
     "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
-      "label": "Curriculum",
-      "score": 82,
-      "confidence": "medium",
+      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+      "label": "Accounting Option",
+      "score": 85,
+      "confidence": "high",
       "reasons": [
-        "curriculum wording",
-        "discovered from an official source page",
-        "explicit degree-requirements wording",
-        "generic campus requirements wording",
+        "already stored as an official source",
+        "department requirements source role",
+        "matches major keyword \"accounting\"",
+        "matches major keyword \"administration\"",
         "matches major keyword \"business\"",
-        "page title fetched successfully",
-        "primary degree requirements source role",
+        "matches multiple major keywords",
+        "official source text matches the selected major",
         "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
+        "undergraduate path segment",
+        "verified against an official source candidate"
       ]
     },
     "sourceDiscoveryAttempts": [
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-        "label": "UW Bothell Accounting option",
-        "score": 86,
+        "label": "Accounting Option",
+        "score": 85,
         "confidence": "high",
         "reasons": [
-          "admissions or preparation source role",
           "already stored as an official source",
-          "curriculum wording",
+          "department requirements source role",
           "matches major keyword \"accounting\"",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "undergraduate path segment",
           "verified against an official source candidate"
@@ -58,36 +56,34 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting#content",
         "label": "Skip To Content",
-        "score": 82,
+        "score": 81,
         "confidence": "high",
         "reasons": [
-          "admissions or preparation source role",
-          "curriculum wording",
+          "department requirements source role",
           "discovered from an official source page",
           "matches major keyword \"accounting\"",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
         ]
       },
       {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
-        "label": "Curriculum",
-        "score": 82,
-        "confidence": "medium",
+        "url": "https://www.uwb.edu/business/undergraduate/business-administration/accounting",
+        "label": "Accounting",
+        "score": 81,
+        "confidence": "high",
         "reasons": [
-          "curriculum wording",
+          "department requirements source role",
           "discovered from an official source page",
-          "explicit degree-requirements wording",
-          "generic campus requirements wording",
+          "matches major keyword \"accounting\"",
+          "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
-          "page title fetched successfully",
-          "primary degree requirements source role",
+          "matches multiple major keywords",
+          "official source path matches the selected major",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
@@ -103,46 +99,44 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "title": "Business Administration: Finance (BA)",
     "campusId": "uw-bothell",
     "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
+    "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 127,
+    "candidateCount": 138,
     "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
-      "label": "Curriculum",
-      "score": 82,
-      "confidence": "medium",
+      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+      "label": "Finance Option and Concentration",
+      "score": 85,
+      "confidence": "high",
       "reasons": [
-        "curriculum wording",
-        "discovered from an official source page",
-        "explicit degree-requirements wording",
-        "generic campus requirements wording",
+        "already stored as an official source",
+        "department requirements source role",
+        "matches major keyword \"administration\"",
         "matches major keyword \"business\"",
-        "page title fetched successfully",
-        "primary degree requirements source role",
+        "matches major keyword \"finance\"",
+        "matches multiple major keywords",
+        "official source text matches the selected major",
         "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
+        "undergraduate path segment",
+        "verified against an official source candidate"
       ]
     },
     "sourceDiscoveryAttempts": [
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-        "label": "Scoped section: Finance Option and Concentration",
-        "score": 90,
+        "label": "Finance Option and Concentration",
+        "score": 85,
         "confidence": "high",
         "reasons": [
           "already stored as an official source",
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches major keyword \"finance\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "undergraduate path segment",
           "verified against an official source candidate"
@@ -151,140 +145,36 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option#content",
         "label": "Skip To Content",
-        "score": 86,
+        "score": 81,
         "confidence": "high",
         "reasons": [
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "discovered from an official source page",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches major keyword \"finance\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
         ]
       },
       {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
-        "label": "Curriculum",
-        "score": 82,
-        "confidence": "medium",
-        "reasons": [
-          "curriculum wording",
-          "discovered from an official source page",
-          "explicit degree-requirements wording",
-          "generic campus requirements wording",
-          "matches major keyword \"business\"",
-          "page title fetched successfully",
-          "primary degree requirements source role",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-bothell-business-administration-finance:pathway:retail-management-concentration",
-    "planId": "uw-bothell-business-administration-finance",
-    "pathwayId": "retail-management-concentration",
-    "title": "Business Administration: Finance (BA) - Retail Management Concentration",
-    "campusId": "uw-bothell",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 1,
-    "candidateCount": 113,
-    "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum#retail-management",
-      "label": "Retail Management Concentration inferred option/concentration requirements",
-      "score": 146,
-      "confidence": "high",
-      "reasons": [
-        "curriculum wording",
-        "explicit degree-requirements wording",
-        "explicitly names the selected pathway or route",
-        "generic campus requirements wording",
-        "inferred from an official option/concentration hub",
-        "matches major keyword \"business\"",
-        "matches major keyword \"concentration\"",
-        "matches major keyword \"management\"",
-        "matches major keyword \"retail\"",
-        "matches multiple major keywords",
-        "official source text matches the selected pathway",
-        "page title fetched successfully",
-        "primary degree requirements source role",
-        "same-program option/concentration child source matches the selected pathway",
-        "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration#content",
-        "label": "Skip To Content",
-        "score": 123,
+        "url": "https://www.uwb.edu/business/undergraduate/business-administration/finance",
+        "label": "Finance",
+        "score": 81,
         "confidence": "high",
         "reasons": [
-          "discovered from an official source page",
-          "explicitly names the selected pathway or route",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option#content",
-        "label": "Skip To Content",
-        "score": 56,
-        "confidence": "high",
-        "reasons": [
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "discovered from an official source page",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
           "matches major keyword \"finance\"",
           "matches multiple major keywords",
-          "page title fetched successfully",
+          "official source path matches the selected major",
           "stays on an official UW domain",
           "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-        "label": "Scoped section: Finance Option and Concentration",
-        "score": 54,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "curriculum map source role",
-          "curriculum wording",
-          "matches major keyword \"administration\"",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"finance\"",
-          "matches multiple major keywords",
-          "page title fetched successfully",
-          "stays on an official UW domain",
           "undergraduate path segment"
         ]
       }
@@ -301,17 +191,17 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 127,
+    "candidateCount": 138,
     "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/business-administration/leadership",
-      "label": "Leadership & Strategic Innovation",
-      "score": 85,
+      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+      "label": "Leadership & Strategic Innovation Option",
+      "score": 89,
       "confidence": "high",
       "reasons": [
+        "already stored as an official source",
         "department requirements source role",
-        "discovered from an official source page",
         "matches major keyword \"administration\"",
         "matches major keyword \"business\"",
         "matches major keyword \"innovation\"",
@@ -320,20 +210,19 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
         "matches multiple major keywords",
         "official source text matches the selected major",
         "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
+        "undergraduate path segment",
+        "verified against an official source candidate"
       ]
     },
     "sourceDiscoveryAttempts": [
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-        "label": "UW Bothell Leadership and Strategic Innovation option",
-        "score": 94,
+        "label": "Leadership & Strategic Innovation Option",
+        "score": 89,
         "confidence": "high",
         "reasons": [
           "already stored as an official source",
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches major keyword \"innovation\"",
@@ -341,32 +230,9 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "matches major keyword \"strategic\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "undergraduate path segment",
           "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership#content",
-        "label": "Skip To Content",
-        "score": 90,
-        "confidence": "high",
-        "reasons": [
-          "curriculum map source role",
-          "curriculum wording",
-          "discovered from an official source page",
-          "matches major keyword \"administration\"",
-          "matches major keyword \"business\"",
-          "matches major keyword \"innovation\"",
-          "matches major keyword \"leadership\"",
-          "matches major keyword \"strategic\"",
-          "matches multiple major keywords",
-          "official source text matches the selected major",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
         ]
       },
       {
@@ -388,100 +254,14 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "stays on the same department or school page",
           "undergraduate path segment"
         ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:retail-management-concentration",
-    "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
-    "pathwayId": "retail-management-concentration",
-    "title": "Business Administration: Leadership & Strategic Innovation (BA) - Retail Management Concentration",
-    "campusId": "uw-bothell",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 1,
-    "candidateCount": 113,
-    "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum#retail-management",
-      "label": "Retail Management Concentration inferred option/concentration requirements",
-      "score": 146,
-      "confidence": "high",
-      "reasons": [
-        "curriculum wording",
-        "explicit degree-requirements wording",
-        "explicitly names the selected pathway or route",
-        "generic campus requirements wording",
-        "inferred from an official option/concentration hub",
-        "matches major keyword \"business\"",
-        "matches major keyword \"concentration\"",
-        "matches major keyword \"management\"",
-        "matches major keyword \"retail\"",
-        "matches multiple major keywords",
-        "official source text matches the selected pathway",
-        "page title fetched successfully",
-        "primary degree requirements source role",
-        "same-program option/concentration child source matches the selected pathway",
-        "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration#content",
-        "label": "Skip To Content",
-        "score": 123,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "explicitly names the selected pathway or route",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration",
-        "label": "Retail Management Concentration inferred option/concentration requirements",
-        "score": 86,
-        "confidence": "high",
-        "reasons": [
-          "explicitly names the selected pathway or route",
-          "inferred from an official option/concentration hub",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "page title fetched successfully",
-          "page-not-found response",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
       },
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership#content",
         "label": "Skip To Content",
-        "score": 58,
+        "score": 66,
         "confidence": "high",
         "reasons": [
-          "curriculum map source role",
+          "admissions or preparation source role",
           "curriculum wording",
           "discovered from an official source page",
           "matches major keyword \"administration\"",
@@ -490,6 +270,8 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "matches major keyword \"leadership\"",
           "matches major keyword \"strategic\"",
           "matches multiple major keywords",
+          "non-degree content wording",
+          "official source text matches the selected major",
           "page title fetched successfully",
           "stays on an official UW domain",
           "stays on the same department or school page",
@@ -506,46 +288,44 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "title": "Business Administration: Marketing (BA)",
     "campusId": "uw-bothell",
     "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
+    "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 127,
+    "candidateCount": 138,
     "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
-      "label": "Curriculum",
-      "score": 82,
-      "confidence": "medium",
+      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+      "label": "Marketing Option and Concentration",
+      "score": 85,
+      "confidence": "high",
       "reasons": [
-        "curriculum wording",
-        "discovered from an official source page",
-        "explicit degree-requirements wording",
-        "generic campus requirements wording",
+        "already stored as an official source",
+        "department requirements source role",
+        "matches major keyword \"administration\"",
         "matches major keyword \"business\"",
-        "page title fetched successfully",
-        "primary degree requirements source role",
+        "matches major keyword \"marketing\"",
+        "matches multiple major keywords",
+        "official source text matches the selected major",
         "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
+        "undergraduate path segment",
+        "verified against an official source candidate"
       ]
     },
     "sourceDiscoveryAttempts": [
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-        "label": "UW Bothell Marketing option and concentration",
-        "score": 90,
+        "label": "Marketing Option and Concentration",
+        "score": 85,
         "confidence": "high",
         "reasons": [
           "already stored as an official source",
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches major keyword \"marketing\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "undergraduate path segment",
           "verified against an official source candidate"
@@ -554,142 +334,34 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing#content",
         "label": "Skip To Content",
-        "score": 86,
+        "score": 81,
         "confidence": "high",
         "reasons": [
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "discovered from an official source page",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches major keyword \"marketing\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
         ]
       },
       {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
-        "label": "Curriculum",
-        "score": 82,
-        "confidence": "medium",
-        "reasons": [
-          "curriculum wording",
-          "discovered from an official source page",
-          "explicit degree-requirements wording",
-          "generic campus requirements wording",
-          "matches major keyword \"business\"",
-          "page title fetched successfully",
-          "primary degree requirements source role",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-bothell-business-administration-marketing:pathway:retail-management-concentration",
-    "planId": "uw-bothell-business-administration-marketing",
-    "pathwayId": "retail-management-concentration",
-    "title": "Business Administration: Marketing (BA) - Retail Management Concentration",
-    "campusId": "uw-bothell",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 1,
-    "candidateCount": 113,
-    "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum#retail-management",
-      "label": "Retail Management Concentration inferred option/concentration requirements",
-      "score": 146,
-      "confidence": "high",
-      "reasons": [
-        "curriculum wording",
-        "explicit degree-requirements wording",
-        "explicitly names the selected pathway or route",
-        "generic campus requirements wording",
-        "inferred from an official option/concentration hub",
-        "matches major keyword \"business\"",
-        "matches major keyword \"concentration\"",
-        "matches major keyword \"management\"",
-        "matches major keyword \"retail\"",
-        "matches multiple major keywords",
-        "official source text matches the selected pathway",
-        "page title fetched successfully",
-        "primary degree requirements source role",
-        "same-program option/concentration child source matches the selected pathway",
-        "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration#content",
-        "label": "Skip To Content",
-        "score": 123,
+        "url": "https://www.uwb.edu/business/undergraduate/business-administration/marketing",
+        "label": "Marketing",
+        "score": 81,
         "confidence": "high",
         "reasons": [
-          "discovered from an official source page",
-          "explicitly names the selected pathway or route",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration",
-        "label": "Retail Management Concentration inferred option/concentration requirements",
-        "score": 86,
-        "confidence": "high",
-        "reasons": [
-          "explicitly names the selected pathway or route",
-          "inferred from an official option/concentration hub",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "page title fetched successfully",
-          "page-not-found response",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing#content",
-        "label": "Skip To Content",
-        "score": 56,
-        "confidence": "high",
-        "reasons": [
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "discovered from an official source page",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
           "matches major keyword \"marketing\"",
           "matches multiple major keywords",
-          "page title fetched successfully",
+          "official source path matches the selected major",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
@@ -708,17 +380,17 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 127,
+    "candidateCount": 138,
     "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/business-administration/supply-chain",
-      "label": "Supply Chain Management",
-      "score": 85,
+      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+      "label": "Supply Chain Management Option",
+      "score": 89,
       "confidence": "high",
       "reasons": [
+        "already stored as an official source",
         "department requirements source role",
-        "discovered from an official source page",
         "matches major keyword \"administration\"",
         "matches major keyword \"business\"",
         "matches major keyword \"chain\"",
@@ -727,20 +399,19 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
         "matches multiple major keywords",
         "official source text matches the selected major",
         "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
+        "undergraduate path segment",
+        "verified against an official source candidate"
       ]
     },
     "sourceDiscoveryAttempts": [
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-        "label": "UW Bothell Supply Chain Management option",
-        "score": 94,
+        "label": "Supply Chain Management Option",
+        "score": 89,
         "confidence": "high",
         "reasons": [
           "already stored as an official source",
-          "curriculum map source role",
-          "curriculum wording",
+          "department requirements source role",
           "matches major keyword \"administration\"",
           "matches major keyword \"business\"",
           "matches major keyword \"chain\"",
@@ -748,32 +419,9 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "matches major keyword \"supply\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "page title fetched successfully",
           "stays on an official UW domain",
           "undergraduate path segment",
           "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain#content",
-        "label": "Skip To Content",
-        "score": 90,
-        "confidence": "high",
-        "reasons": [
-          "curriculum map source role",
-          "curriculum wording",
-          "discovered from an official source page",
-          "matches major keyword \"administration\"",
-          "matches major keyword \"business\"",
-          "matches major keyword \"chain\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"supply\"",
-          "matches multiple major keywords",
-          "official source text matches the selected major",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
         ]
       },
       {
@@ -795,100 +443,14 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "stays on the same department or school page",
           "undergraduate path segment"
         ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-bothell-business-administration-supply-chain-management:pathway:retail-management-concentration",
-    "planId": "uw-bothell-business-administration-supply-chain-management",
-    "pathwayId": "retail-management-concentration",
-    "title": "Business Administration: Supply Chain Management (BA) - Retail Management Concentration",
-    "campusId": "uw-bothell",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 1,
-    "candidateCount": 113,
-    "suggestedPrimary": {
-      "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum#retail-management",
-      "label": "Retail Management Concentration inferred option/concentration requirements",
-      "score": 146,
-      "confidence": "high",
-      "reasons": [
-        "curriculum wording",
-        "explicit degree-requirements wording",
-        "explicitly names the selected pathway or route",
-        "generic campus requirements wording",
-        "inferred from an official option/concentration hub",
-        "matches major keyword \"business\"",
-        "matches major keyword \"concentration\"",
-        "matches major keyword \"management\"",
-        "matches major keyword \"retail\"",
-        "matches multiple major keywords",
-        "official source text matches the selected pathway",
-        "page title fetched successfully",
-        "primary degree requirements source role",
-        "same-program option/concentration child source matches the selected pathway",
-        "stays on an official UW domain",
-        "stays on the same department or school page",
-        "undergraduate path segment"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration#content",
-        "label": "Skip To Content",
-        "score": 123,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "explicitly names the selected pathway or route",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration",
-        "label": "Retail Management Concentration inferred option/concentration requirements",
-        "score": 86,
-        "confidence": "high",
-        "reasons": [
-          "explicitly names the selected pathway or route",
-          "inferred from an official option/concentration hub",
-          "matches major keyword \"business\"",
-          "matches major keyword \"concentration\"",
-          "matches major keyword \"management\"",
-          "matches major keyword \"retail\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "page title fetched successfully",
-          "page-not-found response",
-          "primary degree requirements source role",
-          "same-program option/concentration child source matches the selected pathway",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
       },
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain#content",
         "label": "Skip To Content",
-        "score": 58,
+        "score": 64,
         "confidence": "high",
         "reasons": [
-          "curriculum map source role",
+          "admissions or preparation source role",
           "curriculum wording",
           "discovered from an official source page",
           "matches major keyword \"administration\"",
@@ -897,7 +459,11 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "matches major keyword \"management\"",
           "matches major keyword \"supply\"",
           "matches multiple major keywords",
+          "matches the selected degree route",
+          "non-degree content wording",
+          "official source text matches the selected major",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
@@ -907,20 +473,866 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
   },
   {
     "ownerType": "major",
-    "ownerKey": "uw-bothell-media-and-communications-studies",
-    "planId": "uw-bothell-media-and-communications-studies",
+    "ownerKey": "uw-bothell-chemistry-bs",
+    "planId": "uw-bothell-chemistry-bs",
     "pathwayId": null,
-    "title": "Media & Communications Studies (BA)",
+    "title": "Chemistry (BS)",
     "campusId": "uw-bothell",
-    "sourceCoverageStatus": "source-unfindable",
-    "reviewStatus": "needs-source-automation",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
-    "sourceGapReason": "No official primary degree-requirements source candidate met the minimum discovery threshold.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 0,
-    "candidateCount": 0,
-    "suggestedPrimary": null,
-    "sourceDiscoveryAttempts": []
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 225,
+    "suggestedPrimary": {
+      "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/resources#content",
+      "label": "Skip To Content",
+      "score": 73,
+      "confidence": "high",
+      "reasons": [
+        "department requirements source role",
+        "discovered from an official source page",
+        "matches major keyword \"chemistry\"",
+        "official source path matches the selected major",
+        "stays on an official UW domain",
+        "stays on the same department or school page",
+        "undergraduate path segment"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+        "label": "Scoped section: B.S. in Chemistry (general option) requirements",
+        "score": 79,
+        "confidence": "high",
+        "reasons": [
+          "already stored as an official source",
+          "curriculum map source role",
+          "curriculum wording",
+          "matches major keyword \"chemistry\"",
+          "matches the selected degree route",
+          "official source path matches the selected major",
+          "route-specific page may not cover every pathway in the selected major",
+          "stays on an official UW domain",
+          "undergraduate path segment",
+          "verified against an official source candidate"
+        ]
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#content",
+        "label": "Skip To Content",
+        "score": 77,
+        "confidence": "high",
+        "reasons": [
+          "curriculum map source role",
+          "curriculum wording",
+          "discovered from an official source page",
+          "matches major keyword \"chemistry\"",
+          "official source path matches the selected major",
+          "stays on an official UW domain",
+          "stays on the same department or school page",
+          "undergraduate path segment"
+        ]
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#planning",
+        "label": "Important planning notes",
+        "score": 77,
+        "confidence": "high",
+        "reasons": [
+          "curriculum map source role",
+          "curriculum wording",
+          "discovered from an official source page",
+          "matches major keyword \"chemistry\"",
+          "official source path matches the selected major",
+          "stays on an official UW domain",
+          "stays on the same department or school page",
+          "undergraduate path segment"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-bothell-chemistry-bs:pathway:biochemistry-option",
+    "planId": "uw-bothell-chemistry-bs",
+    "pathwayId": "biochemistry-option",
+    "title": "Chemistry (BS) - Biochemistry Option",
+    "campusId": "uw-bothell",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "high-confidence-needs-review",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 268,
+    "suggestedPrimary": {
+      "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/biochemistry-option#content",
+      "label": "Skip To Content",
+      "score": 117,
+      "confidence": "high",
+      "reasons": [
+        "discovered from an official source page",
+        "explicitly names the selected pathway or route",
+        "matches major keyword \"biochemistry\"",
+        "matches major keyword \"chemistry\"",
+        "matches multiple major keywords",
+        "official source path matches the selected pathway",
+        "pathway-specific official child page matches the selected pathway",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page",
+        "undergraduate path segment"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/biochemistry-option#content",
+        "label": "Skip To Content",
+        "score": 117,
+        "confidence": "high",
+        "reasons": [
+          "discovered from an official source page",
+          "explicitly names the selected pathway or route",
+          "matches major keyword \"biochemistry\"",
+          "matches major keyword \"chemistry\"",
+          "matches multiple major keywords",
+          "official source path matches the selected pathway",
+          "pathway-specific official child page matches the selected pathway",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page",
+          "undergraduate path segment"
+        ]
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/biochemistry-option#content",
+        "label": "Skip To Content",
+        "score": 111,
+        "confidence": "high",
+        "reasons": [
+          "discovered from an official source page",
+          "explicitly names the selected pathway or route",
+          "matches major keyword \"biochemistry\"",
+          "official source path matches the selected pathway",
+          "pathway-specific official child page matches the selected pathway",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page",
+          "undergraduate path segment"
+        ]
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/biochemistry-option#content",
+        "label": "Skip To Content",
+        "score": 111,
+        "confidence": "high",
+        "reasons": [
+          "discovered from an official source page",
+          "explicitly names the selected pathway or route",
+          "matches major keyword \"biochemistry\"",
+          "official source path matches the selected pathway",
+          "pathway-specific official child page matches the selected pathway",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page",
+          "undergraduate path segment"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:bs-option-family:ecology-evolution-and-conservation",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "bs-option-family:ecology-evolution-and-conservation",
+    "title": "Biology - B.S. Ecology, Evolution, and Conservation option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://admit.washington.edu/apply/running-start/",
+      "label": "Running Start",
+      "score": 26,
+      "confidence": "medium",
+      "reasons": [
+        "admissions wording",
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "graduation requirements wording",
+        "page title fetched successfully",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 149,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"conservation\"",
+          "matches major keyword \"ecology\"",
+          "matches major keyword \"evolution\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670406500bcbc98d8a6ea187",
+        "label": "Bachelor of Science degree with a major in Biology: General",
+        "score": 131,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"conservation\"",
+          "matches major keyword \"ecology\"",
+          "matches major keyword \"evolution\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-6704083591c5178a667fb929",
+        "label": "Bachelor of Science degree with a major in Biology: Plant",
+        "score": 131,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"conservation\"",
+          "matches major keyword \"ecology\"",
+          "matches major keyword \"evolution\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:bs-option-family:general-biology",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "bs-option-family:general-biology",
+    "title": "Biology - B.S. General Biology option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://admit.washington.edu/apply/running-start/",
+      "label": "Running Start",
+      "score": 26,
+      "confidence": "medium",
+      "reasons": [
+        "admissions wording",
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "graduation requirements wording",
+        "page title fetched successfully",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 145,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"general\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+        "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+        "score": 127,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"general\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-6704083591c5178a667fb929",
+        "label": "Bachelor of Science degree with a major in Biology: Plant",
+        "score": 127,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"general\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:bs-option-family:molecular-cellular-and-developmental-biology",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "bs-option-family:molecular-cellular-and-developmental-biology",
+    "title": "Biology - B.S. Molecular, Cellular, and Developmental Biology option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://admit.washington.edu/apply/running-start/",
+      "label": "Running Start",
+      "score": 26,
+      "confidence": "medium",
+      "reasons": [
+        "admissions wording",
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "graduation requirements wording",
+        "page title fetched successfully",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 147,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"cellular\"",
+          "matches major keyword \"molecular\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+        "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+        "score": 129,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"cellular\"",
+          "matches major keyword \"molecular\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670406500bcbc98d8a6ea187",
+        "label": "Bachelor of Science degree with a major in Biology: General",
+        "score": 129,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"cellular\"",
+          "matches major keyword \"molecular\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:bs-option-family:physiology",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "bs-option-family:physiology",
+    "title": "Biology - B.S. Physiology option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://admit.washington.edu/apply/running-start/",
+      "label": "Running Start",
+      "score": 26,
+      "confidence": "medium",
+      "reasons": [
+        "admissions wording",
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "graduation requirements wording",
+        "page title fetched successfully",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 145,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"physiology\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+        "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+        "score": 127,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"physiology\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670406500bcbc98d8a6ea187",
+        "label": "Bachelor of Science degree with a major in Biology: General",
+        "score": 127,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"physiology\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:bs-option-family:plant-biology",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "bs-option-family:plant-biology",
+    "title": "Biology - B.S. Plant Biology option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://admit.washington.edu/apply/running-start/",
+      "label": "Running Start",
+      "score": 26,
+      "confidence": "medium",
+      "reasons": [
+        "admissions wording",
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "graduation requirements wording",
+        "page title fetched successfully",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 145,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"plant\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+        "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+        "score": 127,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"plant\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670406500bcbc98d8a6ea187",
+        "label": "Bachelor of Science degree with a major in Biology: General",
+        "score": 127,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"plant\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:ecology-evolution-and-conservation-biology-eec-option",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "ecology-evolution-and-conservation-biology-eec-option",
+    "title": "Biology - Ecology Evolution and Conservation Biology (Eec) Option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "high-confidence-needs-review",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-983a3f63-b310-4811-86d9-31fff47fa670",
+      "label": "Bachelor of Arts degree with a major in Biology",
+      "score": 149,
+      "confidence": "high",
+      "reasons": [
+        "checklist-style wording",
+        "curriculum wording",
+        "discovered from an official source page",
+        "explicit degree-requirements wording",
+        "explicit major-requirements wording",
+        "matches major keyword \"biology\"",
+        "matches major keyword \"conservation\"",
+        "matches major keyword \"ecology\"",
+        "matches major keyword \"evolution\"",
+        "matches multiple major keywords",
+        "official UW General Catalog program page",
+        "specific bachelor route wording",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-983a3f63-b310-4811-86d9-31fff47fa670",
+        "label": "Bachelor of Arts degree with a major in Biology",
+        "score": 149,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"conservation\"",
+          "matches major keyword \"ecology\"",
+          "matches major keyword \"evolution\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 149,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"conservation\"",
+          "matches major keyword \"ecology\"",
+          "matches major keyword \"evolution\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+        "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+        "score": 131,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"conservation\"",
+          "matches major keyword \"ecology\"",
+          "matches major keyword \"evolution\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-seattle-biology:pathway:molecular-cellular-and-developmental-biology-mcd-option",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "molecular-cellular-and-developmental-biology-mcd-option",
+    "title": "Biology - Molecular Cellular and Developmental Biology (Mcd) Option",
+    "campusId": "uw-seattle",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "high-confidence-needs-review",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 2,
+    "candidateCount": 243,
+    "suggestedPrimary": {
+      "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-983a3f63-b310-4811-86d9-31fff47fa670",
+      "label": "Bachelor of Arts degree with a major in Biology",
+      "score": 147,
+      "confidence": "high",
+      "reasons": [
+        "checklist-style wording",
+        "curriculum wording",
+        "discovered from an official source page",
+        "explicit degree-requirements wording",
+        "explicit major-requirements wording",
+        "matches major keyword \"biology\"",
+        "matches major keyword \"cellular\"",
+        "matches major keyword \"molecular\"",
+        "matches multiple major keywords",
+        "official UW General Catalog program page",
+        "specific bachelor route wording",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-983a3f63-b310-4811-86d9-31fff47fa670",
+        "label": "Bachelor of Arts degree with a major in Biology",
+        "score": 147,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"cellular\"",
+          "matches major keyword \"molecular\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-fab6faf9-550a-48ac-aa22-c8b284b5d115",
+        "label": "Minor in Paleobiology",
+        "score": 147,
+        "confidence": "high",
+        "reasons": [
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"cellular\"",
+          "matches major keyword \"molecular\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+        "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+        "score": 129,
+        "confidence": "high",
+        "reasons": [
+          "candidate appears to describe a different degree route",
+          "checklist-style wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"biology\"",
+          "matches major keyword \"cellular\"",
+          "matches major keyword \"molecular\"",
+          "matches multiple major keywords",
+          "official UW General Catalog program page",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
   },
   {
     "ownerType": "major",
@@ -933,9 +1345,9 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 152,
+    "candidateCount": 178,
     "suggestedPrimary": {
       "url": "https://english.washington.edu/english-language-literature-and-culture-option",
       "label": "UW English LLC option requirements",
@@ -972,6 +1384,20 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
         ]
       },
       {
+        "url": "https://english.washington.edu/language-and-literature-option-requirements-summer-2019-spring-2022#reqs",
+        "label": "Major requirements",
+        "score": 69,
+        "confidence": "high",
+        "reasons": [
+          "discovered from an official source page",
+          "explicit major-requirements wording",
+          "matches major keyword \"english\"",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
         "url": "https://english.washington.edu/undergraduate-programs",
         "label": "Undergraduate",
         "score": 42,
@@ -981,20 +1407,6 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "discovered from an official source page",
           "matches major keyword \"english\"",
           "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate path segment"
-        ]
-      },
-      {
-        "url": "https://english.washington.edu/undergraduate-programs#",
-        "label": "Search",
-        "score": 41,
-        "confidence": "high",
-        "reasons": [
-          "department requirements source role",
-          "discovered from an official source page",
-          "matches major keyword \"english\"",
           "stays on an official UW domain",
           "stays on the same department or school page",
           "undergraduate path segment"
@@ -1013,9 +1425,9 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 157,
+    "candidateCount": 183,
     "suggestedPrimary": {
       "url": "https://english.washington.edu/english-major-creative-writing-option",
       "label": "BA in English, Creative Writing Option",
@@ -1077,8 +1489,8 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
         ]
       },
       {
-        "url": "https://english.washington.edu/english-major-creative-writing-option#",
-        "label": "Search",
+        "url": "https://english.washington.edu/english-creative-writing-option",
+        "label": "Creative Writing Majors",
         "score": 101,
         "confidence": "high",
         "reasons": [
@@ -1099,799 +1511,28 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
   },
   {
     "ownerType": "major",
-    "ownerKey": "uw-seattle-geography",
-    "planId": "uw-seattle-geography",
+    "ownerKey": "uw-tacoma-computer-science-and-systems-bs",
+    "planId": "uw-tacoma-computer-science-and-systems-bs",
     "pathwayId": null,
-    "title": "Geography",
-    "campusId": "uw-seattle",
+    "title": "Computer Science and Systems (BS)",
+    "campusId": "uw-tacoma",
     "sourceCoverageStatus": "parser-unsupported",
     "reviewStatus": "high-confidence-needs-review",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/declare-geography-major",
-      "label": "Declare the Geography Major",
-      "score": 74,
-      "confidence": "high",
-      "reasons": [
-        "department requirements source role",
-        "discovered from an official source page",
-        "explicitly names the selected major",
-        "matches major keyword \"geography\"",
-        "official source path matches the selected major",
-        "page title fetched successfully",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/declare-geography-major",
-        "label": "Declare the Geography Major",
-        "score": 74,
-        "confidence": "high",
-        "reasons": [
-          "department requirements source role",
-          "discovered from an official source page",
-          "explicitly names the selected major",
-          "matches major keyword \"geography\"",
-          "official source path matches the selected major",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/declare-geography-major#",
-        "label": "Search",
-        "score": 73,
-        "confidence": "high",
-        "reasons": [
-          "department requirements source role",
-          "discovered from an official source page",
-          "explicitly names the selected major",
-          "matches major keyword \"geography\"",
-          "official source path matches the selected major",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/declare-geography-major#main-content",
-        "label": "Skip to main content",
-        "score": 73,
-        "confidence": "high",
-        "reasons": [
-          "department requirements source role",
-          "discovered from an official source page",
-          "explicitly names the selected major",
-          "matches major keyword \"geography\"",
-          "official source path matches the selected major",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:ba-option-family:data-science",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "ba-option-family:data-science",
-    "title": "Geography - B.A. Data Science option",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/ba-geography-data-science-option",
-      "label": "B.A. in Geography: Data Science Option",
-      "score": 111,
-      "confidence": "high",
-      "reasons": [
-        "already stored as an official source",
-        "matches major keyword \"data\"",
-        "matches major keyword \"geography\"",
-        "matches multiple major keywords",
-        "matches the selected degree route",
-        "official source path matches the selected major",
-        "pathway-specific official child page matches the selected pathway",
-        "primary degree requirements source role",
-        "stays on an official UW domain",
-        "verified against an official source candidate"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/ba-geography-data-science-option",
-        "label": "B.A. in Geography: Data Science Option",
-        "score": 111,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"data\"",
-          "matches major keyword \"geography\"",
-          "matches multiple major keywords",
-          "matches the selected degree route",
-          "official source path matches the selected major",
-          "pathway-specific official child page matches the selected pathway",
-          "primary degree requirements source role",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/ba-geography-data-science-option#main-content",
-        "label": "Skip to main content",
-        "score": 107,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"data\"",
-          "matches major keyword \"geography\"",
-          "matches multiple major keywords",
-          "matches the selected degree route",
-          "official source path matches the selected major",
-          "pathway-specific official child page matches the selected pathway",
-          "primary degree requirements source role",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/ba-geography-data-science-option#",
-        "label": "Search",
-        "score": 107,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"data\"",
-          "matches major keyword \"geography\"",
-          "matches multiple major keywords",
-          "matches the selected degree route",
-          "official source path matches the selected major",
-          "pathway-specific official child page matches the selected pathway",
-          "primary degree requirements source role",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:cities-citizenship-and-migration-track",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "cities-citizenship-and-migration-track",
-    "title": "Geography - Cities, Citizenship, and Migration track",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/major-requirements-tracks",
-      "label": "B.A. in Geography",
-      "score": 27,
-      "confidence": "medium",
-      "reasons": [
-        "broad department page does not name the selected pathway",
-        "department requirements source role",
-        "discovered from an official source page",
-        "matches major keyword \"geography\"",
-        "requirements path segment",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/courses-track",
-        "label": "UW Geography courses by track",
-        "score": 54,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"cities\"",
-          "matches major keyword \"citizenship\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"migration\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#CCM",
-        "label": "Cities, Citizenship and Migration",
-        "score": 50,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"cities\"",
-          "matches major keyword \"citizenship\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"migration\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#GMS",
-        "label": "list of courses by track",
-        "score": 50,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"cities\"",
-          "matches major keyword \"citizenship\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"migration\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:citizenship-and-migration-track",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "citizenship-and-migration-track",
-    "title": "Geography - Citizenship and Migration Track",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/major-requirements-tracks",
-      "label": "B.A. in Geography",
-      "score": 27,
-      "confidence": "medium",
-      "reasons": [
-        "broad department page does not name the selected pathway",
-        "department requirements source role",
-        "discovered from an official source page",
-        "matches major keyword \"geography\"",
-        "requirements path segment",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/courses-track",
-        "label": "UW Geography courses by track",
-        "score": 52,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"citizenship\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"migration\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#CCM",
-        "label": "Cities, Citizenship and Migration",
-        "score": 48,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"citizenship\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"migration\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#GMS",
-        "label": "list of courses by track",
-        "score": 48,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"citizenship\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"migration\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:economy-and-sustainability-track",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "economy-and-sustainability-track",
-    "title": "Geography - Economy and Sustainability Track",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/major-requirements-tracks",
-      "label": "B.A. in Geography",
-      "score": 27,
-      "confidence": "medium",
-      "reasons": [
-        "broad department page does not name the selected pathway",
-        "department requirements source role",
-        "discovered from an official source page",
-        "matches major keyword \"geography\"",
-        "requirements path segment",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/courses-track",
-        "label": "UW Geography courses by track",
-        "score": 52,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"economy\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"sustainability\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#EES",
-        "label": "Environment, Economy and Sustainability",
-        "score": 48,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"economy\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"sustainability\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#GMS",
-        "label": "list of courses by track",
-        "score": 48,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"economy\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"sustainability\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:environment-economy-and-sustainability-track",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "environment-economy-and-sustainability-track",
-    "title": "Geography - Environment, Economy, and Sustainability track",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/major-requirements-tracks",
-      "label": "B.A. in Geography",
-      "score": 27,
-      "confidence": "medium",
-      "reasons": [
-        "broad department page does not name the selected pathway",
-        "department requirements source role",
-        "discovered from an official source page",
-        "matches major keyword \"geography\"",
-        "requirements path segment",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/courses-track",
-        "label": "UW Geography courses by track",
-        "score": 54,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"economy\"",
-          "matches major keyword \"environment\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"sustainability\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#EES",
-        "label": "Environment, Economy and Sustainability",
-        "score": 50,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"economy\"",
-          "matches major keyword \"environment\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"sustainability\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#GMS",
-        "label": "list of courses by track",
-        "score": 50,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"economy\"",
-          "matches major keyword \"environment\"",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"sustainability\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:gis-mapping-and-society-track",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "gis-mapping-and-society-track",
-    "title": "Geography - GIS, Mapping, and Society track",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 101,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/major-requirements-tracks",
-      "label": "B.A. in Geography",
-      "score": 27,
-      "confidence": "medium",
-      "reasons": [
-        "broad department page does not name the selected pathway",
-        "department requirements source role",
-        "discovered from an official source page",
-        "matches major keyword \"geography\"",
-        "requirements path segment",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/courses-track",
-        "label": "UW Geography courses by track",
-        "score": 54,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"gis\"",
-          "matches major keyword \"mapping\"",
-          "matches major keyword \"society\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#GMS",
-        "label": "GIS, Mapping and Society",
-        "score": 50,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"gis\"",
-          "matches major keyword \"mapping\"",
-          "matches major keyword \"society\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/major-requirements-tracks",
-        "label": "B.A. in Geography",
-        "score": 27,
-        "confidence": "medium",
-        "reasons": [
-          "broad department page does not name the selected pathway",
-          "department requirements source role",
-          "discovered from an official source page",
-          "matches major keyword \"geography\"",
-          "requirements path segment",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-geography:pathway:mapping-and-society-track",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "mapping-and-society-track",
-    "title": "Geography - Mapping and Society Track",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 3,
-    "candidateCount": 103,
-    "suggestedPrimary": {
-      "url": "https://geography.washington.edu/ba-geography",
-      "label": "UW Geography B.A. major requirements",
-      "score": 67,
-      "confidence": "medium",
-      "reasons": [
-        "already stored as an official source",
-        "explicit major-requirements wording",
-        "matches major keyword \"geography\"",
-        "primary degree requirements source role",
-        "stays on an official UW domain"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://geography.washington.edu/ba-geography",
-        "label": "UW Geography B.A. major requirements",
-        "score": 67,
-        "confidence": "medium",
-        "reasons": [
-          "already stored as an official source",
-          "explicit major-requirements wording",
-          "matches major keyword \"geography\"",
-          "primary degree requirements source role",
-          "stays on an official UW domain"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track",
-        "label": "UW Geography courses by track",
-        "score": 52,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"mapping\"",
-          "matches major keyword \"society\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://geography.washington.edu/courses-track#GMS",
-        "label": "GIS, Mapping and Society",
-        "score": 48,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"geography\"",
-          "matches major keyword \"mapping\"",
-          "matches major keyword \"society\"",
-          "matches multiple major keywords",
-          "non-schedulable course list source role",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-landscape-architecture:pathway:project-option",
-    "planId": "uw-seattle-landscape-architecture",
-    "pathwayId": "project-option",
-    "title": "Landscape Architecture - Project Option",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "medium-confidence",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
-    "candidateCount": 21,
+    "candidateCount": 231,
     "suggestedPrimary": {
-      "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#program-UG-L%20ARCH-MAJOR",
-      "label": "Program of Study: Major: Landscape Architecture",
-      "score": 77,
-      "confidence": "medium",
-      "reasons": [
-        "checklist-style wording",
-        "discovered from an official source page",
-        "matches major keyword \"architecture\"",
-        "matches major keyword \"landscape\"",
-        "matches multiple major keywords",
-        "official catalog URL includes a major-specific anchor",
-        "official UW General Catalog program page",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
-      {
-        "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#program-UG-L%20ARCH-MAJOR",
-        "label": "Program of Study: Major: Landscape Architecture",
-        "score": 77,
-        "confidence": "medium",
-        "reasons": [
-          "checklist-style wording",
-          "discovered from an official source page",
-          "matches major keyword \"architecture\"",
-          "matches major keyword \"landscape\"",
-          "matches multiple major keywords",
-          "official catalog URL includes a major-specific anchor",
-          "official UW General Catalog program page",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#program-UG-EDS-MAJOR",
-        "label": "Program of Study: Major: Environmental Design and Sustainability",
-        "score": 61,
-        "confidence": "medium",
-        "reasons": [
-          "checklist-style wording",
-          "discovered from an official source page",
-          "graduate-program wording",
-          "matches major keyword \"architecture\"",
-          "matches major keyword \"landscape\"",
-          "matches multiple major keywords",
-          "official catalog URL includes a major-specific anchor",
-          "official UW General Catalog program page",
-          "specific bachelor route wording",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#program-UG-UED-MINOR",
-        "label": "Program of Study: Minor: Urban Ecological Design",
-        "score": 61,
-        "confidence": "medium",
-        "reasons": [
-          "checklist-style wording",
-          "discovered from an official source page",
-          "graduate-program wording",
-          "matches major keyword \"architecture\"",
-          "matches major keyword \"landscape\"",
-          "matches multiple major keywords",
-          "official catalog URL includes a major-specific anchor",
-          "official UW General Catalog program page",
-          "specific bachelor route wording",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      }
-    ]
-  },
-  {
-    "ownerType": "major",
-    "ownerKey": "uw-seattle-materials-science-engineering",
-    "planId": "uw-seattle-materials-science-engineering",
-    "pathwayId": null,
-    "title": "Materials Science & Engineering",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 2,
-    "candidateCount": 156,
-    "suggestedPrimary": {
-      "url": "https://mse.washington.edu/about/abet",
-      "label": "Program Educational Objectives and Student Learning Outcomes",
+      "url": "https://www.tacoma.uw.edu/set/programs/undergrad",
+      "label": "Undergraduate Majors",
       "score": 70,
       "confidence": "high",
       "reasons": [
         "department requirements source role",
         "discovered from an official source page",
-        "matches major keyword \"engineering\"",
-        "matches major keyword \"materials\"",
+        "matches major keyword \"computer\"",
+        "matches major keyword \"systems\"",
         "matches multiple major keywords",
         "official source text matches the selected major",
         "page title fetched successfully",
@@ -1901,36 +1542,15 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     },
     "sourceDiscoveryAttempts": [
       {
-        "url": "https://mse.washington.edu/current/undergrad/courses",
-        "label": "UW Materials Science degree requirements",
-        "score": 90,
-        "confidence": "high",
-        "reasons": [
-          "advising wording",
-          "already stored as an official source",
-          "explicit degree-requirements wording",
-          "graduation requirements wording",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"materials\"",
-          "matches multiple major keywords",
-          "official source text matches the selected major",
-          "official support source role",
-          "page title fetched successfully",
-          "route-specific page may not cover every pathway in the selected major",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://mse.washington.edu/about/abet",
-        "label": "Program Educational Objectives and Student Learning Outcomes",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad",
+        "label": "Undergraduate Majors",
         "score": 70,
         "confidence": "high",
         "reasons": [
           "department requirements source role",
           "discovered from an official source page",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"materials\"",
+          "matches major keyword \"computer\"",
+          "matches major keyword \"systems\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
           "page title fetched successfully",
@@ -1939,127 +1559,54 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
         ]
       },
       {
-        "url": "https://mse.washington.edu/student/cert",
-        "label": "Certificate program students",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+        "label": "CSS Program Details",
         "score": 70,
         "confidence": "high",
         "reasons": [
           "department requirements source role",
           "discovered from an official source page",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"materials\"",
+          "matches major keyword \"computer\"",
+          "matches major keyword \"systems\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
           "page title fetched successfully",
           "stays on an official UW domain",
           "stays on the same department or school page"
         ]
-      }
-    ]
-  },
-  {
-    "ownerType": "pathway",
-    "ownerKey": "uw-seattle-materials-science-engineering:pathway:nme-option",
-    "planId": "uw-seattle-materials-science-engineering",
-    "pathwayId": "nme-option",
-    "title": "Materials Science & Engineering - NME Option",
-    "campusId": "uw-seattle",
-    "sourceCoverageStatus": "parser-unsupported",
-    "reviewStatus": "high-confidence-needs-review",
-    "studentVisibility": "hidden",
-    "sourceGapReason": "Official primary-source candidate is high confidence but still requires human/source-pipeline review before student visibility.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 1,
-    "candidateCount": 146,
-    "suggestedPrimary": {
-      "url": "https://mse.washington.edu/current/undergrad/nmeoption",
-      "label": "Degree Option in Nanoscience and Molecular Engineering (NME)",
-      "score": 67,
-      "confidence": "high",
-      "reasons": [
-        "discovered from an official source page",
-        "matches major keyword \"engineering\"",
-        "matches major keyword \"nme\"",
-        "matches multiple major keywords",
-        "pathway-specific official child page matches the selected pathway",
-        "primary degree requirements source role",
-        "stays on an official UW domain",
-        "stays on the same department or school page"
-      ]
-    },
-    "sourceDiscoveryAttempts": [
+      },
       {
-        "url": "https://mse.washington.edu/current/undergrad/courses",
-        "label": "UW Materials Science degree requirements",
-        "score": 108,
+        "url": "https://www.tacoma.uw.edu/set/computer-science-and-systems",
+        "label": "CSS Program Details",
+        "score": 69,
         "confidence": "high",
         "reasons": [
-          "advising wording",
-          "already stored as an official source",
-          "explicit degree-requirements wording",
-          "explicitly names the selected pathway or route",
-          "graduation requirements wording",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"materials\"",
-          "matches major keyword \"nme\"",
+          "department requirements source role",
+          "discovered from an official source page",
+          "matches major keyword \"computer\"",
+          "matches major keyword \"systems\"",
           "matches multiple major keywords",
           "official source text matches the selected major",
-          "official support source role",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "verified against an official source candidate"
-        ]
-      },
-      {
-        "url": "https://mse.washington.edu/current/undergrad/nmeoption",
-        "label": "Degree Option in Nanoscience and Molecular Engineering (NME)",
-        "score": 67,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"nme\"",
-          "matches multiple major keywords",
-          "pathway-specific official child page matches the selected pathway",
-          "primary degree requirements source role",
           "stays on an official UW domain",
           "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://mse.washington.edu/student/undergraduate",
-        "label": "Undergraduate program",
-        "score": 28,
-        "confidence": "high",
-        "reasons": [
-          "advising wording",
-          "discovered from an official source page",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"materials\"",
-          "matches multiple major keywords",
-          "official support source role",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the same department or school page",
-          "undergraduate-program wording"
         ]
       }
     ]
   },
   {
     "ownerType": "major",
-    "ownerKey": "uw-tacoma-communications",
-    "planId": "uw-tacoma-communications",
+    "ownerKey": "uw-tacoma-environmental-science",
+    "planId": "uw-tacoma-environmental-science",
     "pathwayId": null,
-    "title": "Communications (BA)",
+    "title": "Environmental Science (BS)",
     "campusId": "uw-tacoma",
     "sourceCoverageStatus": "parser-unsupported",
     "reviewStatus": "medium-confidence",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
-    "officialLinkCount": 0,
-    "candidateCount": 187,
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 121,
     "suggestedPrimary": {
       "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
       "label": "graduation requirements",
@@ -2077,43 +1624,67 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     },
     "sourceDiscoveryAttempts": [
       {
-        "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
-        "label": "graduation requirements",
-        "score": 33,
-        "confidence": "medium",
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+        "label": "Scoped section: Electives for the General Environmental Science Option (29 credits)",
+        "score": 60,
+        "confidence": "high",
         "reasons": [
-          "discovered from an official source page",
-          "does not clearly mention the selected major",
+          "admissions wording",
+          "already stored as an official source",
+          "capstone-only wording",
+          "curriculum wording",
+          "elective list support source role",
+          "explicit degree-requirements wording",
           "generic campus requirements wording",
           "graduation requirements wording",
-          "primary degree requirements source role",
+          "matches major keyword \"environmental\"",
+          "matches the selected degree route",
+          "non-degree content wording",
+          "official source text matches the selected major",
+          "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
+          "specific bachelor route wording",
           "stays on an official UW domain",
-          "stays on the same department or school page"
+          "verified against an official source candidate"
         ]
       },
       {
-        "url": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
-        "label": "Interdisciplinary Arts and Sciences (major)",
-        "score": 16,
-        "confidence": "medium",
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science#permalink-211172",
+        "label": "Admission Requirements",
+        "score": 52,
+        "confidence": "high",
         "reasons": [
-          "department requirements source role",
-          "discovered from an official campus major index",
-          "does not clearly mention the selected major",
-          "stays on an official UW domain",
-          "stays on the same department or school page"
-        ]
-      },
-      {
-        "url": "https://www.tacoma.uw.edu/sias/general-education-requirements",
-        "label": "UWT general education",
-        "score": -3,
-        "confidence": "low",
-        "reasons": [
-          "department requirements source role",
+          "admissions wording",
+          "capstone-only wording",
+          "curriculum wording",
           "discovered from an official source page",
-          "does not clearly mention the selected major",
+          "explicit degree-requirements wording",
           "generic campus requirements wording",
+          "graduation requirements wording",
+          "matches major keyword \"environmental\"",
+          "matches the selected degree route",
+          "non-degree content wording",
+          "non-schedulable course list source role",
+          "official source text matches the selected major",
+          "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sciences-capstone-agreement",
+        "label": "Environmental Science Capstone Form",
+        "score": 38,
+        "confidence": "high",
+        "reasons": [
+          "capstone-only wording",
+          "discovered from an official source page",
+          "matches major keyword \"environmental\"",
+          "non-schedulable course list source role",
+          "official source text matches the selected major",
+          "page title fetched successfully",
           "stays on an official UW domain",
           "stays on the same department or school page"
         ]
@@ -2131,60 +1702,265 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
     "reviewStatus": "medium-confidence",
     "studentVisibility": "hidden",
     "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
-    "generatedAt": "2026-05-13T11:33:34.562Z",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
     "officialLinkCount": 1,
     "candidateCount": 120,
     "suggestedPrimary": {
-      "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science#permalink-211172",
-      "label": "Admission Requirements",
-      "score": 64,
+      "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "label": "graduation requirements",
+      "score": 33,
       "confidence": "medium",
       "reasons": [
-        "admissions wording",
         "discovered from an official source page",
-        "explicit degree-requirements wording",
-        "matches major keyword \"environmental\"",
-        "matches the selected degree route",
-        "page title fetched successfully",
+        "does not clearly mention the selected major",
+        "generic campus requirements wording",
+        "graduation requirements wording",
         "primary degree requirements source role",
-        "specific bachelor route wording",
         "stays on an official UW domain",
         "stays on the same department or school page"
       ]
     },
     "sourceDiscoveryAttempts": [
       {
-        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science#permalink-211172",
-        "label": "Admission Requirements",
-        "score": 64,
-        "confidence": "medium",
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+        "label": "Scoped section: Electives for the General Environmental Science Option (29 credits)",
+        "score": 40,
+        "confidence": "high",
         "reasons": [
           "admissions wording",
+          "already stored as an official source",
+          "capstone-only wording",
+          "curriculum wording",
+          "elective list support source role",
+          "explicit degree-requirements wording",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "matches major keyword \"courses\"",
+          "matches major keyword \"environmental\"",
+          "matches major keyword \"for\"",
+          "matches multiple major keywords",
+          "matches the selected degree route",
+          "non-degree content wording",
+          "page title fetched successfully",
+          "specific bachelor route wording",
+          "stays on an official UW domain"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science#permalink-211172",
+        "label": "Admission Requirements",
+        "score": 38,
+        "confidence": "high",
+        "reasons": [
+          "admissions wording",
+          "capstone-only wording",
+          "curriculum wording",
           "discovered from an official source page",
           "explicit degree-requirements wording",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "matches major keyword \"courses\"",
           "matches major keyword \"environmental\"",
+          "matches major keyword \"for\"",
+          "matches multiple major keywords",
           "matches the selected degree route",
+          "non-degree content wording",
+          "non-schedulable course list source role",
           "page title fetched successfully",
-          "primary degree requirements source role",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the same department or school page"
         ]
       },
       {
-        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
-        "label": "UW Tacoma Environmental Science overview",
+        "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+        "label": "graduation requirements",
+        "score": 33,
+        "confidence": "medium",
+        "reasons": [
+          "discovered from an official source page",
+          "does not clearly mention the selected major",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "major",
+    "ownerKey": "uw-tacoma-environmental-sustainability",
+    "planId": "uw-tacoma-environmental-sustainability",
+    "pathwayId": null,
+    "title": "Environmental Sustainability (BA)",
+    "campusId": "uw-tacoma",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 117,
+    "suggestedPrimary": {
+      "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "label": "graduation requirements",
+      "score": 33,
+      "confidence": "medium",
+      "reasons": [
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "generic campus requirements wording",
+        "graduation requirements wording",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+        "label": "Scoped section: Environmental Policy and Law Option (20 credits)",
+        "score": 82,
+        "confidence": "high",
+        "reasons": [
+          "admissions wording",
+          "advising wording",
+          "already stored as an official source",
+          "curriculum wording",
+          "explicit degree-requirements wording",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "matches major keyword \"environmental\"",
+          "matches major keyword \"sustainability\"",
+          "matches multiple major keywords",
+          "matches the selected degree route",
+          "official source text matches the selected major",
+          "official support source role",
+          "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "verified against an official source candidate"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability#permalink-213883",
+        "label": "Admission Requirements",
+        "score": 78,
+        "confidence": "high",
+        "reasons": [
+          "admissions wording",
+          "advising wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "matches major keyword \"environmental\"",
+          "matches major keyword \"sustainability\"",
+          "matches multiple major keywords",
+          "matches the selected degree route",
+          "official source text matches the selected major",
+          "official support source role",
+          "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+        "label": "graduation requirements",
+        "score": 33,
+        "confidence": "medium",
+        "reasons": [
+          "discovered from an official source page",
+          "does not clearly mention the selected major",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option",
+    "planId": "uw-tacoma-environmental-sustainability",
+    "pathwayId": "business-nonprofit-leadership-option",
+    "title": "Environmental Sustainability (BA) - Business and Nonprofit Leadership option",
+    "campusId": "uw-tacoma",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 117,
+    "suggestedPrimary": {
+      "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "label": "graduation requirements",
+      "score": 33,
+      "confidence": "medium",
+      "reasons": [
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "generic campus requirements wording",
+        "graduation requirements wording",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability#permalink-213883",
+        "label": "Admission Requirements",
+        "score": 56,
+        "confidence": "medium",
+        "reasons": [
+          "admissions wording",
+          "advising wording",
+          "curriculum wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "matches major keyword \"environmental\"",
+          "matches major keyword \"sustainability\"",
+          "matches multiple major keywords",
+          "matches the selected degree route",
+          "official support source role",
+          "page title fetched successfully",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+        "label": "Scoped section: Environmental Policy and Law Option (20 credits)",
         "score": 54,
         "confidence": "medium",
         "reasons": [
           "admissions wording",
+          "advising wording",
           "already stored as an official source",
+          "curriculum wording",
           "explicit degree-requirements wording",
+          "generic campus requirements wording",
+          "graduation requirements wording",
           "matches major keyword \"environmental\"",
+          "matches major keyword \"sustainability\"",
+          "matches multiple major keywords",
           "matches the selected degree route",
-          "overview wording",
+          "official support source role",
           "page title fetched successfully",
-          "primary degree requirements source role",
           "specific bachelor route wording",
           "stays on an official UW domain"
         ]
@@ -2202,6 +1978,174 @@ export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[
           "primary degree requirements source role",
           "stays on an official UW domain",
           "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "major",
+    "ownerKey": "uw-tacoma-history",
+    "planId": "uw-tacoma-history",
+    "pathwayId": null,
+    "title": "History (BA)",
+    "campusId": "uw-tacoma",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 112,
+    "suggestedPrimary": {
+      "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+      "label": "graduation requirements",
+      "score": 33,
+      "confidence": "medium",
+      "reasons": [
+        "discovered from an official source page",
+        "does not clearly mention the selected major",
+        "generic campus requirements wording",
+        "graduation requirements wording",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+        "label": "General History Option",
+        "score": 52,
+        "confidence": "high",
+        "reasons": [
+          "advising wording",
+          "already stored as an official source",
+          "elective list support source role",
+          "explicit degree-requirements wording",
+          "matches major keyword \"history\"",
+          "non-degree content wording",
+          "official source path matches the selected major",
+          "page title fetched successfully",
+          "stays on an official UW domain",
+          "verified against an official source candidate"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option#main-content",
+        "label": "Skip to main content",
+        "score": 48,
+        "confidence": "high",
+        "reasons": [
+          "advising wording",
+          "discovered from an official source page",
+          "elective list support source role",
+          "explicit degree-requirements wording",
+          "matches major keyword \"history\"",
+          "non-degree content wording",
+          "official source path matches the selected major",
+          "page title fetched successfully",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/registrar/graduation-requirements",
+        "label": "graduation requirements",
+        "score": 33,
+        "confidence": "medium",
+        "reasons": [
+          "discovered from an official source page",
+          "does not clearly mention the selected major",
+          "generic campus requirements wording",
+          "graduation requirements wording",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      }
+    ]
+  },
+  {
+    "ownerType": "pathway",
+    "ownerKey": "uw-tacoma-history:pathway:general-history-option-department-of-social-sciences-university-of-washington-tacoma",
+    "planId": "uw-tacoma-history",
+    "pathwayId": "general-history-option-department-of-social-sciences-university-of-washington-tacoma",
+    "title": "History (BA) - General History option Department of Social Sciences University of Washington Tacoma",
+    "campusId": "uw-tacoma",
+    "sourceCoverageStatus": "parser-unsupported",
+    "reviewStatus": "medium-confidence",
+    "studentVisibility": "hidden",
+    "sourceGapReason": "Official primary-source candidate is below the auto-promotion threshold; keep hidden until source discovery or parser support verifies it.",
+    "generatedAt": "2026-05-15T23:55:41.821Z",
+    "officialLinkCount": 1,
+    "candidateCount": 113,
+    "suggestedPrimary": {
+      "url": "https://www.tacoma.uw.edu/sias/academic-programs",
+      "label": "major requirements",
+      "score": 69,
+      "confidence": "medium",
+      "reasons": [
+        "discovered from an official source page",
+        "explicit major-requirements wording",
+        "matches major keyword \"tacoma\"",
+        "primary degree requirements source role",
+        "stays on an official UW domain",
+        "stays on the same department or school page"
+      ]
+    },
+    "sourceDiscoveryAttempts": [
+      {
+        "url": "https://www.tacoma.uw.edu/sias/academic-programs",
+        "label": "major requirements",
+        "score": 69,
+        "confidence": "medium",
+        "reasons": [
+          "discovered from an official source page",
+          "explicit major-requirements wording",
+          "matches major keyword \"tacoma\"",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/all-sias-majors-minors",
+        "label": "major requirements",
+        "score": 69,
+        "confidence": "medium",
+        "reasons": [
+          "discovered from an official source page",
+          "explicit major-requirements wording",
+          "matches major keyword \"tacoma\"",
+          "primary degree requirements source role",
+          "stays on an official UW domain",
+          "stays on the same department or school page"
+        ]
+      },
+      {
+        "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+        "label": "General History Option",
+        "score": 68,
+        "confidence": "high",
+        "reasons": [
+          "advising wording",
+          "already stored as an official source",
+          "elective list support source role",
+          "explicit degree-requirements wording",
+          "explicitly names the selected pathway or route",
+          "matches major keyword \"department\"",
+          "matches major keyword \"general\"",
+          "matches major keyword \"history\"",
+          "matches major keyword \"social\"",
+          "matches major keyword \"tacoma\"",
+          "matches major keyword \"university\"",
+          "matches major keyword \"washington\"",
+          "matches multiple major keywords",
+          "non-degree content wording",
+          "official source text matches the selected pathway",
+          "page title fetched successfully",
+          "stays on an official UW domain",
+          "verified against an official source candidate"
         ]
       }
     ]

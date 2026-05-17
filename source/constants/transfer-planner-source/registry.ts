@@ -970,7 +970,7 @@ const SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID = new Map<
     [
       {
         label: "Allen School CE-approved Natural Science course list",
-        url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
+        url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
         note:
           "Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.",
       },

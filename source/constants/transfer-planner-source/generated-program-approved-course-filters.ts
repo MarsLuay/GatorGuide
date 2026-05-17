@@ -186,6 +186,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Engineering are used to meet the electives requirement above.)",
       "Computer Engineering Natural Science Requirement",
       "Chemistry 142/145",
+      "Biology 180",
       "Biology",
       "BIOL 162 (5 credits from Biology AP)",
       "BIOL 180",
@@ -205,8 +206,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
-    "sourceFingerprint": "1d5aff43ae078c2e8dd9121633d9aaa430235c21dcdb36f20413b5746db900f6"
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
     "filterId": "CE_APPROVED_NATURAL_SCIENCE",
@@ -216,8 +217,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "uw-seattle-computer-engineering"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
-    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
+    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
+    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
       "ASTR 301",
@@ -386,6 +387,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceEvidenceLines": [
       "Computer Engineering Natural Science Requirement",
       "Chemistry 142/145",
+      "Biology 180",
       "Biology",
       "BIOL 162 (5 credits from Biology AP)",
       "BIOL 180",
@@ -405,8 +407,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
-    "sourceFingerprint": "63bb19a0f0ae9912e7fb817e7dad76cd3386794d8219b3cba06186f2b48d2934"
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
     "filterId": "CS_APPROVED_SCIENCE",
@@ -470,7 +472,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "generatedAt": "2026-05-16T09:20:50.042Z",
     "sourceFingerprint": "9a1bee58f7ba9b0bce2ce340a1f7d62d36ff989ed42e85ddbf3d48135bd08da0"
   },
   {
@@ -478,7 +480,11 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "filterKey": "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses",
     "label": "Uw Bothell Educational Studies Elementary Education United States Government Or Civics Geography Or Economics Course Approved Courses",
     "ownerIds": [
-      "uw-bothell-educational-studies-elementary-education"
+      "uw-bothell-educational-studies-elementary-education",
+      "uw-bothell-educational-studies-elementary-education:pathway:cecl-concentration",
+      "uw-bothell-educational-studies-elementary-education:pathway:education-studies-elementary-education-option",
+      "uw-bothell-educational-studies-elementary-education:pathway:esol-concentration",
+      "uw-bothell-educational-studies-elementary-education:pathway:lede-concentration"
     ],
     "campusId": "uw-bothell",
     "officialSourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
@@ -504,8 +510,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "B EDUC 300 Research & Educational Knowledge (W)",
       "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
-    "sourceFingerprint": "64e889a7f3e91537a630b58898f6fed74773bec24506209ba57329e32b40ae85"
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "f1726e77420625140ac9d877a350201a7de813a01a566373ecd0f1ec003a080e"
   },
   {
     "filterId": "UW_BOTHELL_PHYSICS_BA_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
@@ -541,7 +547,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "generatedAt": "2026-05-16T09:20:50.042Z",
     "sourceFingerprint": "d43d7b1e131f07e7f0e075f79588a1a43586a404b44f432c0cdfb65fd6d9849b"
   },
   {
@@ -577,8 +583,54 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "generatedAt": "2026-05-16T09:20:50.042Z",
     "sourceFingerprint": "078a630917eda1f0443915840674c95c290594831558cb025b9cb1b7edd9dea9"
+  },
+  {
+    "filterId": "UW_SEATTLE_ART_ART_PREFIX_COURSES",
+    "filterKey": "uw-seattle-art-art-prefix-courses",
+    "label": "Uw Seattle Art Art Prefix Courses",
+    "ownerIds": [
+      "uw-seattle-art"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+    "sourceRole": "official-catalog",
+    "approvedUwCourseCodes": [
+      "ART 101",
+      "ART 140",
+      "ART 190",
+      "ART 191",
+      "ART 233",
+      "ART 240",
+      "ART 245",
+      "ART 246",
+      "ART 253",
+      "ART 260",
+      "ART 272",
+      "ART 280",
+      "ART 285",
+      "ART 290",
+      "ART 292",
+      "ART 440",
+      "ART 453",
+      "ART 494"
+    ],
+    "aliases": [
+      "uw-seattle-art-art-prefix-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Students pursuing a Bachelor of Arts degree may choose courses which progress through a structured curriculum in Painting + Drawing, or choose to gain skills in a variety of media (interdisciplinary Visual Arts), which can then be synthesized into a coherent approach to visual expression. Students develop a deep understanding of historical and contemporary issues related to artistic practice, art history and visual culture, while benefiting from broad study across diverse learning communities at the University of Washington. Bachelor of Arts students are prepared for a range of career paths in the creative arts through experiential learning."
+    ],
+    "sourceEvidenceLines": [
+      "Students pursuing a Bachelor of Arts degree may choose courses which progress through a structured curriculum in Painting + Drawing, or choose to gain skills in a variety of media (interdisciplinary Visual Arts), which can then be synthesized into a coherent approach to visual expression. Students develop a deep understanding of historical and contemporary issues related to artistic practice, art history and visual culture, while benefiting from broad study across diverse learning communities at the University of Washington. Bachelor of Arts students are prepared for a range of career paths in the creative arts through experiential learning.",
+      "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
+      "10 credits from ART 400, ART 440, ART 453, ART 494"
+    ],
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "e0d0515597f35c332c27a4b4c77bd1360f07659ed88a0c6a231e107c5c520afe"
   },
   {
     "filterId": "UW_SEATTLE_ART_HISTORY_ARTH_PREFIX_COURSES",
@@ -644,7 +696,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "generatedAt": "2026-05-16T09:20:50.042Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -676,60 +728,299 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School.",
       "ACCTG 215 (Financial Accounting)"
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "generatedAt": "2026-05-16T09:20:50.042Z",
     "sourceFingerprint": "3c256ef768c1d775596fc2847aed4dfd39c35c0481fd0a20449813e5a4719460"
   },
   {
-    "filterId": "UW_SEATTLE_MECHANICAL_ENGINEERING_FROM_THE_LIST_OF_APPROVED_400_LEVEL_ME_COURSES",
-    "filterKey": "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses",
-    "label": "Uw Seattle Mechanical Engineering From The List Of Approved 400 Level Me Courses",
+    "filterId": "UW_SEATTLE_DESIGN_ARTH_PREFIX_COURSES",
+    "filterKey": "uw-seattle-design-arth-prefix-courses",
+    "label": "Uw Seattle Design Arth Prefix Courses",
     "ownerIds": [
-      "uw-seattle-mechanical-engineering"
+      "uw-seattle-design"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-    "sourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-    "sourceRole": "primary-degree-requirements",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+    "sourceRole": "official-catalog",
     "approvedUwCourseCodes": [
-      "ENGR 321",
-      "ME 402",
-      "ME 406",
-      "ME 410",
-      "ME 411",
-      "ME 412",
-      "ME 419",
-      "ME 425",
-      "ME 426",
-      "ME 430",
-      "ME 431",
-      "ME 440",
-      "ME 442",
-      "ME 445",
-      "ME 450",
-      "ME 460",
-      "ME 461",
-      "ME 469",
-      "ME 470",
-      "ME 471",
-      "ME 473",
-      "ME 477",
-      "ME 478",
-      "ME 480",
-      "ME 498",
-      "ME 499"
+      "ARTH 200",
+      "ARTH 201",
+      "ARTH 202",
+      "ARTH 203",
+      "ARTH 204",
+      "ARTH 206",
+      "ARTH 209",
+      "ARTH 212",
+      "ARTH 214",
+      "ARTH 220",
+      "ARTH 233",
+      "ARTH 270",
+      "ARTH 272",
+      "ARTH 290",
+      "ARTH 309",
+      "ARTH 310",
+      "ARTH 311",
+      "ARTH 312",
+      "ARTH 314",
+      "ARTH 333",
+      "ARTH 361",
+      "ARTH 373",
+      "ARTH 380",
+      "ARTH 381",
+      "ARTH 390",
+      "ARTH 391",
+      "ARTH 400",
+      "ARTH 412",
+      "ARTH 413",
+      "ARTH 414",
+      "ARTH 419",
+      "ARTH 435",
+      "ARTH 471",
+      "ARTH 473",
+      "ARTH 484",
+      "ARTH 488",
+      "ARTH 491",
+      "ARTH 492",
+      "ARTH 494"
     ],
     "aliases": [
-      "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses"
+      "uw-seattle-design-arth-prefix-courses"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "From the list of approved 400-level ME courses"
+      "10 credits of ARTH prefix courses"
     ],
     "sourceEvidenceLines": [
-      "From the list of approved 400-level ME courses",
-      "Parsed approved course codes from https://www.me.washington.edu/students/ug/requirements."
+      "10 credits of ARTH prefix courses",
+      "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-15T02:25:39.502Z",
-    "sourceFingerprint": "0a83dde1955edd1cd8d62e9bfaa10b40c31414509d333f1655a8f63d2c234afe"
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
+  },
+  {
+    "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_300_LEVEL_HUMAN_RIGHTS_OR_LAW_COURSES",
+    "filterKey": "uw-seattle-law-societies-and-justice-lsj-core-300-level-human-rights-or-law-courses",
+    "label": "Uw Seattle Law Societies And Justice Lsj Core 300 Level Human Rights Or Law Courses",
+    "ownerIds": [
+      "uw-seattle-law-societies-and-justice",
+      "uw-seattle-law-societies-and-justice:pathway:honors-option"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 131"
+    ],
+    "petitionOnlyNotes": [
+      "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements."
+    ],
+    "aliases": [
+      "uw-seattle-law-societies-and-justice-lsj-core-300-level-human-rights-or-law-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Programs & Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Programs & Courses",
+      "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
+      "5 credits of English Composition (with a grade of 2.00 or higher)"
+    ],
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "6ffa54c452064001e8bf853bd5f36332d9aefb673e3e989453479b199451825f"
+  },
+  {
+    "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_400_LEVEL_CAPSTONE_SEMINAR",
+    "filterKey": "uw-seattle-law-societies-and-justice-lsj-core-400-level-capstone-seminar",
+    "label": "Uw Seattle Law Societies And Justice Lsj Core 400 Level Capstone Seminar",
+    "ownerIds": [
+      "uw-seattle-law-societies-and-justice",
+      "uw-seattle-law-societies-and-justice:pathway:honors-option"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 131"
+    ],
+    "petitionOnlyNotes": [
+      "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements."
+    ],
+    "aliases": [
+      "uw-seattle-law-societies-and-justice-lsj-core-400-level-capstone-seminar"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Programs & Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Programs & Courses",
+      "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
+      "5 credits of English Composition (with a grade of 2.00 or higher)"
+    ],
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "21cb3f0a2be9a197cdd0fc294ea2452144bac234f83bbe2f2f0f6121d65586fe"
+  },
+  {
+    "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_REQUIRED_LSJ_300_LEVEL_COURSES",
+    "filterKey": "uw-seattle-law-societies-and-justice-required-lsj-300-level-courses",
+    "label": "Uw Seattle Law Societies And Justice Required Lsj 300 Level Courses",
+    "ownerIds": [
+      "uw-seattle-law-societies-and-justice",
+      "uw-seattle-law-societies-and-justice:pathway:honors-option"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 131"
+    ],
+    "petitionOnlyNotes": [
+      "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements."
+    ],
+    "aliases": [
+      "uw-seattle-law-societies-and-justice-required-lsj-300-level-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Programs & Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Programs & Courses",
+      "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
+      "5 credits of English Composition (with a grade of 2.00 or higher)"
+    ],
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "7073be71685fd47974c5e3c8fc9392afb271c9fe8d70978ec4019c7d67183b4f"
+  },
+  {
+    "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_UPPER_DIVISION_300_AND_400_LEVEL_ELECTIVES",
+    "filterKey": "uw-seattle-law-societies-and-justice-upper-division-300-and-400-level-electives",
+    "label": "Uw Seattle Law Societies And Justice Upper Division 300 And 400 Level Electives",
+    "ownerIds": [
+      "uw-seattle-law-societies-and-justice",
+      "uw-seattle-law-societies-and-justice:pathway:honors-option"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ANTH 323",
+      "DISST 346",
+      "JSISA 324",
+      "JSISB 326",
+      "JSISB 346",
+      "JSISB 366",
+      "LSJ 300",
+      "LSJ 320",
+      "LSJ 321",
+      "LSJ 322",
+      "LSJ 323",
+      "LSJ 324",
+      "LSJ 326",
+      "LSJ 327",
+      "LSJ 329",
+      "LSJ 345",
+      "LSJ 360",
+      "LSJ 361",
+      "LSJ 363",
+      "LSJ 366",
+      "LSJ 367",
+      "LSJ 368",
+      "LSJ 372",
+      "LSJ 375",
+      "POLS 327",
+      "POLS 360",
+      "POLS 361",
+      "POLS 363",
+      "POLS 367",
+      "POLS 368",
+      "SOC 372"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "LSJ 320",
+        "LSJ 368",
+        "POLS 368"
+      ],
+      [
+        "ANTH 323",
+        "LSJ 321",
+        "LSJ 323"
+      ],
+      [
+        "JSISA 324",
+        "LSJ 322",
+        "LSJ 324"
+      ],
+      [
+        "JSISB 326",
+        "LSJ 326"
+      ],
+      [
+        "LSJ 327",
+        "POLS 327"
+      ],
+      [
+        "DISST 346",
+        "JSISB 346"
+      ],
+      [
+        "LSJ 360",
+        "POLS 360"
+      ],
+      [
+        "LSJ 361",
+        "POLS 361"
+      ],
+      [
+        "LSJ 363",
+        "POLS 363"
+      ],
+      [
+        "JSISB 366",
+        "LSJ 366"
+      ],
+      [
+        "LSJ 367",
+        "POLS 367"
+      ],
+      [
+        "LSJ 372",
+        "LSJ 375",
+        "SOC 372"
+      ]
+    ],
+    "aliases": [
+      "uw-seattle-law-societies-and-justice-upper-division-300-and-400-level-electives"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Some of these courses can alternatively be used for completion of the 300-level or electives sections, but the student will need to choose whether to use as a core, 300-level, or elective. They cannot work towards multiple requirements simultaneously."
+    ],
+    "sourceEvidenceLines": [
+      "Some of these courses can alternatively be used for completion of the 300-level or electives sections, but the student will need to choose whether to use as a core, 300-level, or elective. They cannot work towards multiple requirements simultaneously.",
+      "LSJ 300 Race, Law, and Justice (5)",
+      "LSJ 320/POL S 368 The Politics and Law of International Human Rights (5)",
+      "LSJ 321/ANTH 323 Human Rights Law in Culture and Practice (5)",
+      "LSJ 322/JSIS A 324 Human Rights in Latin America (5)",
+      "JSIS B/LSJ 326 Migrant Justice (5)",
+      "LSJ/POL S 327 Women’s Rights as Human Rights (5)",
+      "LSJ 329 Immigration, Citizenship, and Rights (5)",
+      "LSJ 345 Environmental Justice in the Americas (5)",
+      "LSJ/JSIS B/DIS ST 346 Disability in Global and Comparative Perspective (5)",
+      "LSJ/POL S 360 Introduction to United States Constitutional Law (5)",
+      "LSJ/POL S 361 United States Courts and Civil Liberty (5)",
+      "LSJ/POL S 363 Law in Society (5)",
+      "LSJ/JSIS B 366 Comparative Law and Legal Cultures (5)",
+      "LSJ/POL S 367 Comparative Law and Courts (5)",
+      "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
+    ],
+    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "sourceFingerprint": "140eb1cbeb98c02dc9d2bc549079a15c152347516c5330f9c6977344fe1db893"
   }
 ] as const;

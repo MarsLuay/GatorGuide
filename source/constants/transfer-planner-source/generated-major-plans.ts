@@ -1386,6 +1386,89 @@ for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGI
   );
 }
 
+function getParsedRequirementAtomGuideCourseCodesForScope(
+  planId: string,
+  pathwayId?: string | null
+) {
+  const parsedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (block) =>
+      block.planId === planId &&
+      (pathwayId ? block.pathwayId === pathwayId : !block.pathwayId) &&
+      canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)
+  );
+  const guideCourseCodes = new Set<string>();
+
+  for (const block of parsedBlocks) {
+    const parsedCourseCodes = uniquePlannerStrings(
+      (block.parsedUwCourseCodes ?? [])
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    const parsedCourseCodeSet = new Set(parsedCourseCodes);
+    const candidatesByCode = new Map<string, TransferPlannerParsedRequirementAtomCandidate[]>();
+
+    for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
+      const normalizedCandidateCode = normalizeCourseCode(candidate.uwCourseCode);
+      if (!normalizedCandidateCode || candidate.sourceSectionSchedulable === false) {
+        continue;
+      }
+
+      const existingCandidates = candidatesByCode.get(normalizedCandidateCode) ?? [];
+      existingCandidates.push(candidate);
+      candidatesByCode.set(normalizedCandidateCode, existingCandidates);
+    }
+
+    for (const parsedCourseCode of parsedCourseCodes) {
+      if (!isLowerDivisionSourceBackedFallbackCode(parsedCourseCode)) {
+        continue;
+      }
+
+      const parsedCandidates = candidatesByCode.get(parsedCourseCode) ?? [];
+      if (!parsedCandidates.length) {
+        continue;
+      }
+
+      const requirementCueLines = uniquePlannerStrings(
+        parsedCandidates.flatMap((candidate) => candidate.sourceLineHints ?? [])
+      );
+      if (
+        !hasStudentFacingSourceBackedRequirementCue({
+          ownerTitle: block.ownerTitle,
+          sourceCourseCode: parsedCourseCode,
+          requirementCueLines,
+          allCandidateCodes: parsedCourseCodeSet,
+        })
+      ) {
+        continue;
+      }
+
+      const candidateRules = [
+        ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(parsedCourseCode) ?? []),
+      ]
+        .filter((rule) =>
+          canUseGuideRuleForSourceBackedRequirement(
+            rule,
+            parsedCourseCode,
+            parsedCourseCodeSet
+          )
+        )
+        .sort(compareGuideRules);
+      const topRule = candidateRules[0];
+      if (!topRule) {
+        continue;
+      }
+
+      for (const sourceCourseSet of topRule.sourceCourseSets ?? []) {
+        for (const courseCode of sourceCourseSet ?? []) {
+          guideCourseCodes.add(normalizeCourseCode(courseCode));
+        }
+      }
+    }
+  }
+
+  return uniquePlannerStrings([...guideCourseCodes]);
+}
+
 const SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
 for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
   if (!shouldIncludeStudentFacingSourceBackedClassification(classification)) {
@@ -4762,7 +4845,12 @@ function getParsedRequirementGroupsFromBlock(
       ? safeParsedRequirementGroups
       : block.planId === "uw-seattle-materials-science-engineering"
       ? parsedRequirementGroups && parsedRequirementGroups.length
-        ? parsedRequirementGroups.filter((group) => knownMaterialsScienceGroupIds.has(group.id))
+        ? uniqueById([
+            ...parsedRequirementGroups.filter((group) =>
+              knownMaterialsScienceGroupIds.has(group.id)
+            ),
+            ...knownMaterialsScienceGroups,
+          ])
         : knownMaterialsScienceGroups
       : parsedRequirementGroups && parsedRequirementGroups.length
         ? parsedRequirementGroups
@@ -7208,6 +7296,10 @@ function getStructuredCourseCodesForPlan(
   const sourceBackedGuideCodes = scopeKeys.flatMap(
     (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
   );
+  const parsedAtomGuideCodes = [
+    ...getParsedRequirementAtomGuideCourseCodesForScope(planId, null),
+    ...(pathwayId ? getParsedRequirementAtomGuideCourseCodesForScope(planId, pathwayId) : []),
+  ];
   const sourceBackedClassificationCodes = scopeKeys.flatMap(
     (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
   );
@@ -7222,6 +7314,7 @@ function getStructuredCourseCodesForPlan(
         ...filteredCodes,
         ...sourceBackedClassificationCodes,
         ...sourceBackedGuideCodes,
+        ...parsedAtomGuideCodes,
         ...degreeMapGuideCodes,
       ]),
       planId
@@ -7737,6 +7830,10 @@ function buildAutomaticCourseList(
         ...(atom.alternativeCourseCodeSets ?? []).flat(),
       ])
     : [];
+  const parsedAtomGuideCodes = [
+    ...getParsedRequirementAtomGuideCourseCodesForScope(planId, null),
+    ...(pathwayId ? getParsedRequirementAtomGuideCourseCodesForScope(planId, pathwayId) : []),
+  ];
 
   const automaticCourseList = orderStringsByBase(
     filterStaleSbseBusinessPolicyEconomicsCourseCodes(
@@ -7751,6 +7848,7 @@ function buildAutomaticCourseList(
         ...scopeKeys.flatMap(
           (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
         ),
+        ...parsedAtomGuideCodes,
       ]),
       planId
     ),
@@ -7843,6 +7941,10 @@ function buildStudentVisibleAutomaticCourseList(scope: {
 
 function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string | null) {
   const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
+  const parsedAtomGuideCodes = [
+    ...getParsedRequirementAtomGuideCourseCodesForScope(planId, null),
+    ...(pathwayId ? getParsedRequirementAtomGuideCourseCodesForScope(planId, pathwayId) : []),
+  ];
 
   const automaticTrackMatchCourseList = orderStringsByBase(
     filterStaleSbseBusinessPolicyEconomicsCourseCodes(
@@ -7856,6 +7958,7 @@ function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string |
         ...scopeKeys.flatMap(
           (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
         ),
+        ...parsedAtomGuideCodes,
       ]),
       planId
     ),
@@ -8830,7 +8933,7 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
       : null;
   }
 
-  const pathways = materializePlanPathways(plan, false);
+  const pathways = (plan.pathways ?? []).length ? plan.pathways ?? [] : materializePlanPathways(plan, false);
   if (!pathways.length) {
     return {
       ...materializePlanReferenceCourses(plan),

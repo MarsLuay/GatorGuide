@@ -798,6 +798,38 @@ test("Graduate-only pages are ignored for undergraduate source discovery", () =>
   assert.ok(graduateCandidate.score < 0);
 });
 
+test("Graduate catalog credential anchors are ignored even on mixed undergraduate pages", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-seattle-biology",
+    planId: "uw-seattle-biology",
+    pathwayId: null,
+    campusId: "uw-seattle",
+    title: "Biology",
+    label: "Biology",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 5,
+  });
+  const graduateCredential = discovery.scoreCandidate(target, {
+    url: "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-5b8ed1a9f3739c2e00e026e6",
+    label: "Doctor Of Philosophy (Biology)",
+    anchorText: "Doctor Of Philosophy (Biology)",
+    pageTitle: "Biology",
+    pageHeadings: [
+      "Bachelor of Science degree with a major in Biology: Physiology",
+      "Doctor Of Philosophy (Biology)",
+    ],
+    sourceKind: "discovered-anchor",
+  });
+
+  assert.equal(graduateCredential.sourceRole, "ignored");
+  assert.equal(graduateCredential.sourceRoleStatus, "ignored");
+  assert.equal(graduateCredential.canCreateSchedulableRows, false);
+  assert.ok(graduateCredential.score < 0);
+});
+
 test("Official support sources are not downgraded to ignored", () => {
   const target = buildSbseTarget({
     ownerKey: "uw-seattle-environmental-engineering",
@@ -2124,6 +2156,160 @@ test("Elective-list source scope emits elective metadata without schedulable row
   );
 });
 
+test("Parser drops non-schedulable course-list options from primary credit buckets", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "department-requirements",
+    url: "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+    label: "Data Visualization Degree Requirements",
+    planId: "uw-bothell-data-visualization-ba",
+    ownerId: "uw-bothell-data-visualization-ba",
+    ownerTitle: "Data Visualization (BA)",
+    courseCodes: ["BDATA 200", "BIS 111", "BIS 312", "BIS 332", "GEOG 236"],
+    headings: [
+      "Data Visualization Degree Requirements",
+      "D. Data Visualization Elective Courses (25 credits)",
+      "Bachelor of Science Elective Courses",
+    ],
+    snapshotLines: [
+      "Data Visualization Degree Requirements",
+      "BDATA 200 Introduction to Data Studies (5 credits)",
+      "D. Data Visualization Elective Courses (25 credits)",
+      "Bachelor of Science Elective Courses",
+      "BIS 111/CSS 101 Digital Thinking (5 credits)",
+      "BIS 312 Approaches to Social Research Methods (5 credits)",
+      "BIS 332 Digital Global Industries (5 credits)",
+      "JSIS A/GEOG 236",
+    ],
+  });
+  const electiveGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    group.label.includes("Data Visualization Elective Courses")
+  );
+  const optionCodes = new Set(
+    (electiveGroup?.options ?? []).flatMap((option) => option.uwCourses ?? [])
+  );
+  const blockedRows = parsedBlock.sourceSectionFilterAuditRows.filter((row) =>
+    ["BIS 312", "BIS 332"].some((courseCode) =>
+      (row.courseCodesExtracted ?? []).includes(courseCode)
+    )
+  );
+
+  assert.ok(electiveGroup, "Expected the credit bucket itself to remain.");
+  assert.equal(optionCodes.has("BIS 111"), true);
+  assert.equal(optionCodes.has("BIS 312"), false);
+  assert.equal(optionCodes.has("BIS 332"), false);
+  assert.equal(optionCodes.has("GEOG 236"), false);
+  assert.ok(blockedRows.every((row) => row.schedulable === false));
+  assert.ok(
+    parsedBlock.sourceScopeAuditLines.some(
+      (line) =>
+        line.includes("Course code: BIS 312") &&
+        line.includes("Emitted as: hidden-support-metadata") &&
+        line.includes("Scheduled: no")
+    )
+  );
+});
+
+test("Parser filters blocked cross-listed aliases while preserving schedulable primary options", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "department-requirements",
+    url: "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+    label: "Asian Studies Requirements",
+    planId: "uw-seattle-asian-studies",
+    ownerId: "uw-seattle-asian-studies",
+    ownerTitle: "Asian Studies",
+    courseCodes: ["JSISA 254", "HSTAS 254"],
+    headings: [
+      "Asian Studies Requirements",
+      "Asia Electives 3-400 level *",
+      "CHINA COURSE LIST",
+    ],
+    snapshotLines: [
+      "Asian Studies Requirements",
+      "Asia Electives 3-400 level * (10 credits)",
+      "JSIS A 254 China in the Twentieth Century (5 credits)",
+      "CHINA COURSE LIST",
+      "JSIS A/HSTAS 254",
+      "China in the Twentieth Century",
+    ],
+  });
+  const group = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /Asia Electives/i.test(candidate.label)
+  );
+  const jsisOption = (group?.options ?? []).find((option) =>
+    (option.uwCourses ?? []).includes("JSISA 254")
+  );
+  const blockedRow = parsedBlock.sourceSectionFilterAuditRows.find(
+    (row) => row.rawLine === "JSIS A/HSTAS 254"
+  );
+
+  assert.ok(group, "Expected the schedulable Asian Studies elective bucket to remain.");
+  assert.ok(jsisOption, "Expected the schedulable JSIS A 254 option to remain.");
+  assert.deepEqual(jsisOption.equivalentUwCourseCodes, []);
+  assert.equal(blockedRow?.schedulable, false);
+  assert.ok(
+    parsedBlock.sourceScopeAuditLines.some(
+      (line) =>
+        line.includes("Course code: HSTAS 254") &&
+        line.includes("Emitted as: hidden-support-metadata") &&
+        line.includes("Scheduled: no")
+    )
+  );
+});
+
+test("Parser ignores prerequisite/application-only section rows as elective options", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    url: "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    label: "Business Administration Curriculum",
+    planId: "uw-seattle-business-administration",
+    pathwayId: "ba-route",
+    ownerId: "uw-seattle-business-administration:pathway:ba-route",
+    ownerTitle: "Business Administration",
+    courseCodes: ["MKTG 305", "MKTG 315", "MKTG 445"],
+    headings: [
+      "Business Administration Curriculum",
+      "Elective Courses",
+      "I BUS 490: Foster Exploration Seminar (*study abroad course by application only)",
+      "Application-only elective courses",
+    ],
+    snapshotLines: [
+      "Business Administration Curriculum",
+      "Elective Courses (5 credits)",
+      "MKTG 315: The Business of Personal Branding and Athletics (4 CR)",
+      "I BUS 490: Foster Exploration Seminar (*study abroad course by application only)",
+      "MKTG 445: Multicultural Marketing and Business Development (4 CR; prerequisite: MKTG 305; during Period 3 of Registration)",
+      "Application-only elective courses",
+      "MKTG 445",
+    ],
+  });
+  const group = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /Elective Courses/i.test(candidate.label)
+  );
+  const optionCodes = new Set(
+    (group?.options ?? []).flatMap((option) => [
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ])
+  );
+  const blockedRows = parsedBlock.sourceSectionFilterAuditRows.filter((row) =>
+    (row.courseCodesExtracted ?? []).includes("MKTG 445")
+  );
+
+  assert.ok(group, "Expected the elective credit bucket itself to remain.");
+  assert.equal(optionCodes.has("MKTG 315"), true);
+  assert.equal(optionCodes.has("MKTG 445"), false);
+  assert.ok(blockedRows.length >= 2);
+  assert.ok(blockedRows.every((row) => row.schedulable === false));
+  assert.ok(
+    parsedBlock.sourceScopeAuditLines.some(
+      (line) =>
+        line.includes("Course code: MKTG 445") &&
+        line.includes("Emitted as: hidden-support-metadata") &&
+        line.includes("Scheduled: no")
+    )
+  );
+});
+
 test("Primary requirement source scope can emit schedulable requirement atoms", () => {
   const parsedBlock = buildParsedSourceScopeFixture({
     sourceRole: "primary-degree-requirements",
@@ -2327,9 +2513,55 @@ test("Parser extracts Biochemistry calculus/algebra physics table as sequence pa
   );
 });
 
+test("Parser ignores lateral chemistry rows in bare-number physics sequence tables", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Chemistry BS Requirements",
+    planId: "uw-seattle-chemistry",
+    courseCodes: ["PHYS 121", "PHYS 122", "PHYS 123", "PHYS 114", "PHYS 115", "PHYS 116"],
+    snapshotLines: [
+      "7) Physical Chemistry (CHEM)",
+      "456 (3)",
+      "2) Physics (PHYS)",
+      "a) Calculus-based or Algebra-based",
+      "457 (3)",
+      "121 (5)",
+      "114 (4)",
+      "461 (3)",
+      "122 (5)",
+      "115 (4)",
+      "123 (5) 116 (4) 8) Biochemistry",
+    ],
+  });
+  const group = parsedBlock.parsedRequirementGroups.find(
+    (candidate) =>
+      candidate.requirementType === "sequence_choice" &&
+      (candidate.sequencePaths ?? []).some((path) => path.uwCourses.includes("PHYS 121"))
+  );
+
+  assert.ok(group, "Expected Chemistry physics alternatives to become a sequence_choice group.");
+  assert.deepEqual(
+    group.sequencePaths.map((path) => path.uwCourses),
+    [
+      ["PHYS 121", "PHYS 122", "PHYS 123"],
+      ["PHYS 114", "PHYS 115", "PHYS 116"],
+    ]
+  );
+  assert.equal(
+    group.sequencePaths.some((path) =>
+      path.uwCourses.some((courseCode) => ["PHYS 457", "PHYS 461"].includes(courseCode))
+    ),
+    false
+  );
+});
+
 test("Generated registry preserves Biochemistry physics sequence-choice paths", () => {
+  const isBiochemistryPhysicsSequenceGroup = (group) =>
+    group?.requirementType === "sequence_choice" &&
+    (group.sequencePaths ?? []).some((path) => path.uwCourses?.includes("PHYS 121")) &&
+    (group.sequencePaths ?? []).some((path) => path.uwCourses?.includes("PHYS 114"));
   const sourceGroup = getSourceGeneratedRequirementGroups("uw-seattle-biochemistry").find(
-    (group) => group.requirementType === "sequence_choice"
+    isBiochemistryPhysicsSequenceGroup
   );
   const runtimeGroup = getCompactRuntimeRequirementGroups("uw-seattle-biochemistry").find(
     (group) => group.id === sourceGroup?.id
@@ -2578,6 +2810,44 @@ test("Parser extracts program-approved credit buckets from source text without a
   assert.equal(bucket.minCredits, 10);
   assert.equal(bucket.programSpecific, true);
   assert.equal(bucket.options[0]?.categoryOption?.category, "EE_NATURAL_SCIENCE");
+});
+
+test("Parser keeps approved-list NSc credit buckets as placeholders when later approved lists are broad", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Electrical and Computer Engineering Degree Requirements",
+    planId: "uw-seattle-electrical-computer-engineering",
+    ownerId: "uw-seattle-electrical-computer-engineering",
+    ownerTitle: "Electrical & Computer Engineering",
+    courseCodes: ["EE 397", "EE 398", "EE 406", "EE 418", "CHEM 152", "CHEM 153", "CHEM 155", "CHEM 220"],
+    snapshotLines: [
+      "Mathematics (15-21 credits), complete one of the following:",
+      "Additional NSc courses from approved list to reach 45 credits: see adviser for list of approved courses (scroll to Other Degree Information on bottom of page and open Department-Approved Lists accordion to review list).",
+      "Department-Approved Lists",
+      "Professional Issues:",
+      "EE 397: Sex and Gender in Engineering",
+      "EE 398: Introduction to Professional Issues",
+      "EE 406: Teaching Engineering",
+      "EE 418: Network Security and Cryptography",
+      "Natural Sciences:",
+      "CHEM 152: General Chemistry, CHEM 153: Accelerated General Chemistry, CHEM 155: Honors General Chemistry, CHEM 220: Principles of Chemistry II",
+    ],
+  });
+  const bucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Additional NSc courses from approved list/i.test(group.sourceRowText ?? group.label ?? "")
+  );
+
+  assert.ok(bucket, "Expected the ECE approved NSc bucket to be retained.");
+  assert.equal(bucket.requirementType, "choose_credits");
+  assert.equal(bucket.minCredits, 45);
+  assert.equal(bucket.maxCredits, 45);
+  assert.equal(bucket.approvedListKey, "electrical-and-computer-engineering-natural-science");
+  assert.equal(bucket.programSpecific, true);
+  assert.equal(bucket.options.length, 1);
+  assert.equal(bucket.options[0]?.optionKind, "category-option");
+  assert.equal(bucket.options[0]?.categoryOption?.category, "ECE_NATURAL_SCIENCE");
+  assert.equal(bucket.options[0]?.categoryOption?.programSpecific, true);
+  assert.deepEqual(bucket.options[0]?.uwCourses, []);
 });
 
 test("Parser extracts option replacement groups from section headings instead of a course-list hardcode", () => {
@@ -3220,6 +3490,23 @@ test("Parser extracts generic category credit buckets without concrete course op
   const diversityBucket = parsedBlock.parsedRequirementGroups.find((group) =>
     /additional diversity credits/i.test(group.sourceRowText ?? "")
   );
+  const socialWelfareDistributionLine =
+    "Please note, students with admission requirement or Social Welfare prerequisite deficiencies must meet with the academic advisor regarding completion of deficiencies. Also, students who have not completed at least 20 credits of Arts and Humanities (A&H) or 20 credits of Natural Sciences (NSc) distribution within their lower-division coursework must meet with the academic advisor regarding selection of appropriate courses within an elective category to complete requirements.";
+  const socialWelfareBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Tacoma Social Welfare distribution note",
+    planId: "uw-tacoma-social-welfare",
+    ownerId: "uw-tacoma-social-welfare",
+    ownerTitle: "Social Welfare (BA)",
+    courseCodes: [],
+    snapshotLines: [socialWelfareDistributionLine],
+  });
+  const socialWelfareDistributionBucket = socialWelfareBlock.parsedRequirementGroups.find(
+    (group) => group.requirementType === "choose_credits" && /Arts and Humanities/i.test(group.sourceRowText ?? "")
+  );
+  const socialWelfareDuplicateChoice = socialWelfareBlock.parsedRequirementGroups.find(
+    (group) => group.requirementType === "choose_one" && /Arts and Humanities/i.test(group.sourceRowText ?? "")
+  );
 
   assert.equal(ahSscBucket?.requirementType, "choose_credits");
   assert.equal(ahSscBucket?.requirementShape, "credit-bucket");
@@ -3256,6 +3543,13 @@ test("Parser extracts generic category credit buckets without concrete course op
   assert.equal(socialBucket?.options[0]?.categoryOption?.sourceCategoryCode, "SSc");
   assert.equal(diversityBucket?.minCredits, 5);
   assert.equal(diversityBucket?.options[0]?.categoryOption?.sourceCategoryCode, "DIV");
+  assert.equal(socialWelfareDistributionBucket?.requirementType, "choose_credits");
+  assert.equal(socialWelfareDistributionBucket?.minCredits, 20);
+  assert.deepEqual(
+    new Set(socialWelfareDistributionBucket?.options.map((option) => option.categoryOption?.category)),
+    new Set(["AH", "NSC"])
+  );
+  assert.equal(socialWelfareDuplicateChoice, undefined);
 });
 
 test("Parser keeps approved-list credit buckets that also name concrete courses", () => {
@@ -4924,9 +5218,9 @@ test("Generated requirement options retain compound component metadata", () => {
     "Expected CE BIOL 180 option to retain BIOL& 211 + BIOL& 212 + BIOL& 213 as one compound path."
   );
 
-  const biologyOptions = getSourceGeneratedRequirementGroups("uw-seattle-biology")
+  const biochemistryOptions = getSourceGeneratedRequirementGroups("uw-seattle-biochemistry")
     .flatMap((group) => group.options ?? []);
-  const phys114 = biologyOptions.find((option) =>
+  const phys114 = biochemistryOptions.find((option) =>
     (option.uwCourses ?? []).map(normalizeTestCourseCode).includes("PHYS 114")
   );
   assert.ok(

@@ -4939,6 +4939,9 @@ function isOnlyStemPrepSuggestedCourse(
   if (!stemPrepCourseCodes.size || !course.explicitCourseCodes.length) {
     return false;
   }
+  if (course.sourceKind === "uw-major-requirement" || course.sourceKind === "uw-major-breadth") {
+    return false;
+  }
 
   const normalizedCourseCodes = course.explicitCourseCodes
     .map((courseCode) => normalizeCourseCode(courseCode))
@@ -4959,9 +4962,21 @@ function filterStemPrepSuggestedCourses(
     return courses;
   }
 
-  return courses.filter(
-    (course) => !isOnlyStemPrepSuggestedCourse(course, stemPrepCourseCodes)
-  );
+  return courses.filter((course) => {
+    if (!isOnlyStemPrepSuggestedCourse(course, stemPrepCourseCodes)) {
+      return true;
+    }
+
+    return Boolean(
+      course.sequenceGroup &&
+        courses.some(
+          (candidate) =>
+            candidate !== course &&
+            candidate.sequenceGroup === course.sequenceGroup &&
+            !isOnlyStemPrepSuggestedCourse(candidate, stemPrepCourseCodes)
+        )
+    );
+  });
 }
 
 function attachOptionalStemPrepMetadata(
@@ -14106,7 +14121,13 @@ function buildSelectedCategoryTranscriptSatisfactionResolutions(input: {
       selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
       plan: input.plan,
     });
-    if (!selectedOptionIds.length) {
+    const auditOptionIds = selectedOptionIds.length
+      ? selectedOptionIds
+      : item.requirementGroup.options
+          .filter((option) => option.optionKind === "category-option" && option.categoryOption)
+          .map((option) => option.id)
+          .filter((optionId): optionId is string => Boolean(optionId));
+    if (!auditOptionIds.length) {
       continue;
     }
 
@@ -14118,7 +14139,7 @@ function buildSelectedCategoryTranscriptSatisfactionResolutions(input: {
       : "default";
     const optionGroup = buildSuggestedQuarterCourseOptionGroup({
       item,
-      selectedOptionIds,
+      selectedOptionIds: auditOptionIds,
       isSelectionPrompt: false,
       selectionSource,
       campusId: input.plan.campusId,
@@ -16399,10 +16420,6 @@ export function buildSuggestedQuarterPlan(input: {
     (!!course.instanceKey && selectedCurrentCourseKeys.has(course.instanceKey)) ||
     selectedCurrentCourseLabels.has(course.label);
   const completedCourseCodes = new Set(input.completedCourses.map((course) => course.code));
-  const planningSatisfiedCourseCodes = new Set([
-    ...completedCourseCodes,
-    ...(!includeStemPrepCourses ? stemPrepCourseCodes : []),
-  ]);
   const checklistCourseCodes = new Set(
     [
       ...applicationStatuses,
@@ -16417,6 +16434,12 @@ export function buildSuggestedQuarterPlan(input: {
       })
     )
   );
+  const planningSatisfiedCourseCodes = new Set([
+    ...completedCourseCodes,
+    ...(!includeStemPrepCourses
+      ? [...stemPrepCourseCodes].filter((courseCode) => !checklistCourseCodes.has(courseCode))
+      : []),
+  ]);
   const trackSupplementalCoveredCourseCodes = new Set([
     ...[
       ...applicationStatuses,
@@ -17479,6 +17502,35 @@ function isCurrentSbseKnownRequirementGroup(
   );
 }
 
+function isCurrentSbsePrimarySourceChecklistItem(item: TransferPlannerChecklistItem) {
+  return (
+    item.requirementGroup?.requirementType === "sequence_choice" &&
+    normalizeSelectedRequirementOptionIds(item.selectedRequirementOptionIds).length > 0 &&
+    /sefs\.uw\.edu\/students\/undergraduate\/sbse-major\/requirements/i.test(
+      String(item.sourceUrl ?? item.requirementGroup?.sourceUrl ?? "")
+    ) &&
+    (item.sourceScope ?? item.requirementGroup?.sourceScope ?? null) === "primary-schedulable" &&
+    (item.canCreateScheduleRow ?? item.requirementGroup?.canCreateScheduleRow ?? true) !== false
+  );
+}
+
+function getCurrentSbseSourceBackedCourseLabels(item: TransferPlannerChecklistItem) {
+  const group = item.requirementGroup ?? null;
+  const selectedIds = new Set(normalizeSelectedRequirementOptionIds(item.selectedRequirementOptionIds));
+  const selectedOptionLabels = selectedIds.size
+    ? getSelectedRequirementOptionsForPlanner(item, [...selectedIds]).flatMap((entry) =>
+        getRequirementOptionCourseLabels(entry.option)
+      )
+    : [];
+
+  return [
+    ...(item.grcCourses ?? []),
+    ...(selectedOptionLabels.length
+      ? selectedOptionLabels
+      : (group?.options ?? []).flatMap((option) => getRequirementOptionCourseLabels(option))),
+  ];
+}
+
 function getCurrentSbseRequiredCourseCodeSet(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -17494,16 +17546,13 @@ function getCurrentSbseRequiredCourseCodeSet(
   for (const item of getTransferPlannerPlanChecklistItems(plan)) {
     const group = item.requirementGroup;
     if (
-      !isCurrentSbseKnownRequirementGroup(group) ||
+      !(isCurrentSbseKnownRequirementGroup(group) || isCurrentSbsePrimarySourceChecklistItem(item)) ||
       isCurrentSbseTrueOptionRequirementGroup(group)
     ) {
       continue;
     }
 
-    for (const label of [
-      ...(item.grcCourses ?? []),
-      ...((group?.options ?? []).flatMap((option) => getRequirementOptionCourseLabels(option))),
-    ]) {
+    for (const label of getCurrentSbseSourceBackedCourseLabels(item)) {
       for (const courseCode of extractCourseCodes(label)) {
         const normalizedCourseCode = normalizeCourseCode(courseCode);
         if (normalizedCourseCode) {
@@ -17838,6 +17887,47 @@ function buildIndependentSchedulingReasonForOptionExtras(input: {
   return reasons.length
     ? `Scheduled independently for source-backed requirement: ${unique(reasons).join("; ")}`
     : "none";
+}
+
+function getIndependentlyScheduledCourseCodes(input: {
+  currentGroupId: string;
+  scheduledCourseCodes: string[];
+  statuses: TransferRequirementStatus[];
+}) {
+  const normalizedScheduledCourseCodes = input.scheduledCourseCodes
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+  if (!normalizedScheduledCourseCodes.length) {
+    return new Set<string>();
+  }
+
+  const independentCourseCodes = new Set<string>();
+  for (const courseCode of normalizedScheduledCourseCodes) {
+    const scheduledIndependently = input.statuses
+      .filter((status) => status.item.requirementGroup?.id !== input.currentGroupId)
+      .some((status) => getRequirementStatusCourseCodeSet(status).has(courseCode));
+    if (scheduledIndependently) {
+      independentCourseCodes.add(courseCode);
+    }
+  }
+
+  return independentCourseCodes;
+}
+
+function getOptionScheduledCourseCodesForOptionIds(input: {
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  optionIds: string[];
+  scheduledCourseCodes: Set<string>;
+}) {
+  return sortCourseCodes(
+    input.optionIds.flatMap((optionId) =>
+      getScheduledClaimCourseCodesForOption({
+        optionGroup: input.optionGroup,
+        optionId,
+        scheduledCourseCodes: input.scheduledCourseCodes,
+      })
+    )
+  );
 }
 
 function getSuggestedQuarterOptionGroupResolvedSelectionCount(
@@ -18437,10 +18527,53 @@ export function auditOptionGroupSatisfaction(input: {
 function getSuggestedCourseOptionIdsScheduledByCourses(input: {
   optionGroup: SuggestedQuarterCourseOptionGroup | null;
   scheduledCourseCodes: Set<string>;
+  scheduledCourses?: SuggestedQuarterCourse[];
+  includeNonSourceBackedScheduledCourses?: boolean;
 }) {
   if (!input.optionGroup) {
     return [] as string[];
   }
+
+  const scheduledCourseCodes =
+    input.scheduledCourses == null
+      ? input.scheduledCourseCodes
+      : new Set(
+          input.scheduledCourses
+            .filter((course) => !course.optionGroup)
+            .filter(
+              (course) =>
+                input.includeNonSourceBackedScheduledCourses ||
+                course.courseRole !== "local_grc_prerequisite"
+            )
+            .filter(
+              (course) =>
+                input.includeNonSourceBackedScheduledCourses ||
+                course.satisfiesSourceBackedUwRequirement !== false
+            )
+            .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+            .map((courseCode) => normalizeCourseCode(courseCode))
+            .filter(Boolean)
+        );
+  const scheduledAtomicPathCourseCodes =
+    input.scheduledCourses == null
+      ? scheduledCourseCodes
+      : new Set(
+          input.scheduledCourses
+            .filter((course) => !course.optionGroup)
+            .filter(
+              (course) =>
+                input.includeNonSourceBackedScheduledCourses ||
+                course.courseRole !== "local_grc_prerequisite"
+            )
+            .filter(
+              (course) =>
+                input.includeNonSourceBackedScheduledCourses ||
+                course.satisfiesSourceBackedUwRequirement !== false
+            )
+            .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+            .map((courseCode) => normalizeCourseCode(courseCode))
+            .filter(Boolean)
+        );
 
   return input.optionGroup.options
     .filter((option) => {
@@ -18451,10 +18584,10 @@ function getSuggestedCourseOptionIdsScheduledByCourses(input: {
         return false;
       }
       if (shouldTreatRequirementOptionAsAtomicCoursePath(option)) {
-        return courseCodes.every((courseCode) => input.scheduledCourseCodes.has(courseCode));
+        return courseCodes.every((courseCode) => scheduledAtomicPathCourseCodes.has(courseCode));
       }
 
-      return courseCodes.some((courseCode) => input.scheduledCourseCodes.has(courseCode));
+      return courseCodes.some((courseCode) => scheduledCourseCodes.has(courseCode));
     })
     .map((option) => option.id);
 }
@@ -18473,6 +18606,17 @@ function getSuggestedPlanScheduledOptionIdsForGroup(input: {
     );
 
   return getSuggestedScheduleUniqueIds(directlyTaggedOptionIds);
+}
+
+function hasUnresolvedCreditBucketRemainderForGroup(input: {
+  groupId: string;
+  scheduledCourses: SuggestedQuarterCourse[];
+}) {
+  return input.scheduledCourses.some(
+    (course) =>
+      course.courseRole === "unresolved-credit-bucket-remainder" &&
+      course.sourceRequirementGroupId === input.groupId
+  );
 }
 
 function getRuntimeOptionResolvedSatisfaction(input: {
@@ -18555,6 +18699,16 @@ function getOptionScheduledCourseCodes(input: {
   return matchedCourseCodes;
 }
 
+function isStandaloneLabComponentCourse(courseCode: string) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const course = getTransferPlannerCanonicalCourse("grc", normalizedCourseCode);
+  const title = String(course?.title ?? "");
+  if (/\b(?:w\/?\s*lab|with\s+lab)\b/i.test(title)) {
+    return false;
+  }
+  return /\b(lab|laboratory)\b/i.test(`${normalizedCourseCode} ${title}`);
+}
+
 function getStandaloneScheduledCompoundComponentCodes(input: {
   option: RequirementGroupOption;
   scheduledCourses: SuggestedQuarterCourse[];
@@ -18564,6 +18718,7 @@ function getStandaloneScheduledCompoundComponentCodes(input: {
       .filter((component) => component.length > 1)
       .flatMap((component) => component.slice(1))
       .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) => isStandaloneLabComponentCourse(courseCode))
       .filter(Boolean)
   );
   if (!trailingCompoundCodes.size) {
@@ -18601,6 +18756,7 @@ export function auditRuntimeOptionResolution(input: {
     ...buildRequirementStatuses(input.plan.beforeEnrollmentChecklist, completedCourses),
     ...buildRequirementStatuses(input.plan.stayAtGrcChecklist, completedCourses),
   ];
+  const scheduledCourses = getScheduledPlannerCourses(input.suggestedPlan);
   const scheduledCourseCodes = getScheduledPlannerCountedCourseCodeSet(input.suggestedPlan);
   const displayedOptionGroupsById = collectSuggestedPlanOptionGroupsById(input.suggestedPlan);
   const rows: RuntimeOptionResolutionAuditEntry[] = [];
@@ -18639,6 +18795,8 @@ export function auditRuntimeOptionResolution(input: {
     )
       ? selectionResolution.requestedOptionIds
       : [];
+    const expectedOptionIds = selectionResolution.selectedOptionIds;
+    const expectedOptionIdSet = new Set(expectedOptionIds);
     const auditOptionGroup =
       displayedOptionGroupsById.get(groupId) ??
       buildSuggestedQuarterCourseOptionGroup({
@@ -18656,38 +18814,82 @@ export function auditRuntimeOptionResolution(input: {
       ...getSuggestedCourseOptionIdsScheduledByCourses({
         optionGroup: auditOptionGroup,
         scheduledCourseCodes,
+        scheduledCourses,
       }),
+      ...getSuggestedCourseOptionIdsScheduledByCourses({
+        optionGroup: auditOptionGroup,
+        scheduledCourseCodes,
+        scheduledCourses,
+        includeNonSourceBackedScheduledCourses: true,
+      }).filter((optionId) => expectedOptionIdSet.has(optionId)),
     ]);
     const visibleOptionGroup = displayedOptionGroupsById.get(groupId) ?? null;
-    const expectedOptionIds = selectionResolution.selectedOptionIds;
-    const expectedOptionIdSet = new Set(expectedOptionIds);
     const scheduledUnselectedOptionIds = scheduledOptionIds.filter(
       (optionId) => !expectedOptionIdSet.has(optionId)
     );
+    const scheduledUnselectedCourseCodes = auditOptionGroup
+      ? getOptionScheduledCourseCodesForOptionIds({
+          optionGroup: auditOptionGroup,
+          optionIds: scheduledUnselectedOptionIds,
+          scheduledCourseCodes,
+        })
+      : [];
+    const independentlyScheduledUnselectedCourseCodes = getIndependentlyScheduledCourseCodes({
+      currentGroupId: groupId,
+      scheduledCourseCodes: scheduledUnselectedCourseCodes,
+      statuses,
+    });
+    const unsuppressedScheduledUnselectedOptionIds = auditOptionGroup
+      ? scheduledUnselectedOptionIds.filter((optionId) => {
+          const optionCourseCodes = getOptionScheduledCourseCodesForOptionIds({
+            optionGroup: auditOptionGroup,
+            optionIds: [optionId],
+            scheduledCourseCodes,
+          });
+          return (
+            !optionCourseCodes.length ||
+            optionCourseCodes.some(
+              (courseCode) => !independentlyScheduledUnselectedCourseCodes.has(courseCode)
+            )
+          );
+        })
+      : scheduledUnselectedOptionIds;
     const falseRequiredSiblingOptionIds =
       expectedOptionIds.length || scheduledOptionIds.length || visibleOptionGroup?.isSelectionPrompt
         ? []
         : getSuggestedCourseOptionIdsScheduledByCourses({
             optionGroup: auditOptionGroup,
             scheduledCourseCodes,
+            scheduledCourses,
           }).filter(
             (optionId) =>
               !expectedOptionIdSet.has(optionId) && !scheduledOptionIds.includes(optionId)
           );
     const unsuppressedSiblingOptionIds = getSuggestedScheduleUniqueIds([
-      ...scheduledUnselectedOptionIds,
+      ...unsuppressedScheduledUnselectedOptionIds,
       ...falseRequiredSiblingOptionIds,
     ]);
     const unselectedSiblingsSuppressed = unsuppressedSiblingOptionIds.length === 0;
+    const resolvedByIndependentlyScheduledSibling =
+      scheduledUnselectedOptionIds.length > 0 &&
+      unsuppressedScheduledUnselectedOptionIds.length === 0;
     const selectedCourseOptionIds = (auditOptionGroup?.options ?? [])
       .filter((option) => expectedOptionIdSet.has(option.id))
       .filter((option) => !isRequirementCategoryOption(option))
       .filter((option) => (option.courseCodes ?? []).length > 0)
       .map((option) => option.id);
+    const hasUnresolvedCreditBucketRemainder =
+      group.requirementType === "choose_credits" &&
+      hasUnresolvedCreditBucketRemainderForGroup({
+        groupId,
+        scheduledCourses,
+      });
     const selectedOptionNotScheduled =
       selectedCourseOptionIds.length > 0 &&
       !selectedCourseOptionIds.every((optionId) => scheduledOptionIds.includes(optionId)) &&
-      !status.matched;
+      !status.matched &&
+      !resolvedByIndependentlyScheduledSibling &&
+      !hasUnresolvedCreditBucketRemainder;
     const resolvedSatisfaction = getRuntimeOptionResolvedSatisfaction({
       status,
       expectedOptionIds,
@@ -18695,7 +18897,7 @@ export function auditRuntimeOptionResolution(input: {
       visibleOptionGroup,
     });
     let issue: RuntimeOptionResolutionAuditEntry["issue"] = "none";
-    if (scheduledUnselectedOptionIds.length > 0) {
+    if (unsuppressedScheduledUnselectedOptionIds.length > 0) {
       issue = "unselected-option-scheduled";
     } else if (falseRequiredSiblingOptionIds.length > 0) {
       issue = "false-required-sibling";
@@ -18787,6 +18989,13 @@ export function auditCompoundSequenceOptionScheduling(input: {
       (group?.options ?? []).find((option, optionIndex) =>
         selectedOptionIdSet.has(getRequirementOptionId(status.item, option, optionIndex))
       ) ?? null;
+    const selectedPathUwCourseCodes = new Set(
+      selectedOption
+        ? [...(selectedOption.uwCourses ?? []), ...(selectedOption.displayCourseCodes ?? [])]
+            .map((courseCode) => normalizeCourseCode(courseCode))
+            .filter(Boolean)
+        : []
+    );
     const nonSelectedOptions = (group?.options ?? []).filter(
       (option, optionIndex) =>
         !selectedOptionIdSet.has(getRequirementOptionId(status.item, option, optionIndex))
@@ -18828,6 +19037,7 @@ export function auditCompoundSequenceOptionScheduling(input: {
           ...(option.displayCourseCodes ?? []),
         ])
         .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter((courseCode) => !selectedPathUwCourseCodes.has(courseCode))
         .filter(Boolean)
     );
     const scheduledPlaceholderAtoms = placeholderAtomCodes.filter((courseCode) =>
@@ -18930,6 +19140,15 @@ export function auditRequiredCoverageSequenceSuppression(input: {
       plan: input.plan,
     });
     const selectedOptionIdSet = new Set(selectionResolution.selectedOptionIds);
+    const selectedPathUwCourseCodes = new Set(
+      (group?.options ?? [])
+        .filter((option, optionIndex) =>
+          selectedOptionIdSet.has(getRequirementOptionId(status.item, option, optionIndex))
+        )
+        .flatMap((option) => [...(option.uwCourses ?? []), ...(option.displayCourseCodes ?? [])])
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
 
     for (const [optionIndex, option] of (group?.options ?? []).entries()) {
       const optionId = getRequirementOptionId(status.item, option, optionIndex);
@@ -18940,13 +19159,13 @@ export function auditRequiredCoverageSequenceSuppression(input: {
           .map((courseCode) => normalizeCourseCode(courseCode))
           .filter(Boolean)
       );
-      const issue: RequiredCoverageSequenceSuppressionAuditEntry["issue"] =
-        !selectedPath &&
-        placeholderUwCourses.some((courseCode) => scheduledCourseCodes.has(courseCode))
-          ? "placeholder-promoted-to-required"
-          : "none";
 
       for (const uwCourse of placeholderUwCourses) {
+        const allowedToSchedule = selectedPath || selectedPathUwCourseCodes.has(uwCourse);
+        const issue: RequiredCoverageSequenceSuppressionAuditEntry["issue"] =
+          !allowedToSchedule && scheduledCourseCodes.has(uwCourse)
+            ? "placeholder-promoted-to-required"
+            : "none";
         rows.push({
           major: input.plan.title,
           planId: input.plan.id,
@@ -18956,7 +19175,7 @@ export function auditRequiredCoverageSequenceSuppression(input: {
           parentChooseOneGroup: group?.label || status.item.title,
           parentCompoundOption,
           selectedPath,
-          allowedToSchedule: selectedPath,
+          allowedToSchedule,
           reason:
             "placeholder child atom suppressed unless selected compound option requires it",
           issue,
@@ -18970,7 +19189,7 @@ export function auditRequiredCoverageSequenceSuppression(input: {
             `Parent choose_one group: ${group?.label || status.item.title}`,
             `Parent compound option: ${parentCompoundOption}`,
             `Selected path: ${selectedPath ? "yes" : "no"}`,
-            `Allowed to schedule: ${selectedPath ? "yes" : "no"}`,
+            `Allowed to schedule: ${allowedToSchedule ? "yes" : "no"}`,
             "Reason: placeholder child atom suppressed unless selected compound option requires it",
             `Issue: ${issue}`,
           ].join(" "),

@@ -1,5 +1,5 @@
 const ALLEN_SCHOOL_CE_NATURAL_SCIENCE_SOURCE_URL =
-  "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core";
+  "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science";
 
 const CE_NATURAL_SCIENCE_SUBJECTS = [
   { labelPattern: /\bbiolog(?:y|ical sciences?)\b/i, code: "BIOL" },

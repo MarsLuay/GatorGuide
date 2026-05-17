@@ -13,6 +13,7 @@ require("ts-node").register({
 
 const {
   TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
 } = require("../../constants/transfer-planner-source");
 const {
   analyzeOwner,
@@ -148,11 +149,170 @@ function isSchedulablePrimarySuggestion(candidate) {
   );
 }
 
+const SOURCE_GENERATED_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
+);
+
+function normalizePromotionUrlForComparison(value) {
+  try {
+    const url = new URL(String(value ?? ""));
+    url.hash = "";
+    url.search = "";
+    url.pathname = url.pathname.replace(/\/+$/u, "");
+    return url.toString().toLowerCase();
+  } catch {
+    return String(value ?? "")
+      .trim()
+      .replace(/[?#].*$/u, "")
+      .replace(/\/+$/u, "")
+      .toLowerCase();
+  }
+}
+
+function getSingleSpecializedPlanOfficialUrl(plan) {
+  if (!plan || !String(plan.title ?? "").includes(":")) {
+    return null;
+  }
+
+  const urls = Array.from(
+    new Set(
+      (plan.officialLinks ?? [])
+        .map((link) => normalizePromotionUrlForComparison(link?.url))
+        .filter(Boolean)
+    )
+  );
+
+  return urls.length === 1 ? urls[0] : null;
+}
+
+function suggestedPrimaryMatchesSpecializedPlanSource(owner) {
+  const officialUrl = getSingleSpecializedPlanOfficialUrl(
+    SOURCE_GENERATED_PLANS_BY_ID.get(owner?.planId)
+  );
+  if (!officialUrl) {
+    return true;
+  }
+
+  const suggestedUrl = normalizePromotionUrlForComparison(owner?.suggestedPrimary?.url);
+  return !suggestedUrl || suggestedUrl === officialUrl;
+}
+
+function normalizeCatalogCredentialMajorName(value) {
+  return String(value ?? "")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/&/g, " and ")
+    .replace(/\b(?:bachelor|degree|with|major|minor|option|concentration|track|route|pathway|of|in|the|a|an)\b/gi, " ")
+    .replace(/[^a-z0-9]+/gi, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function getPromotionPlanBaseTitle(entry) {
+  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  return String(planTitle)
+    .split(/\s+-\s+/u)[0]
+    .replace(/\([^)]*\)/g, " ")
+    .split(":")[0]
+    .trim();
+}
+
+function extractCatalogCredentialMajorName(label) {
+  const match = String(label ?? "").match(/\bmajor\s+in\s+([^:()]+?)(?::|$)/i);
+  return match ? match[1].trim() : null;
+}
+
+function isCatalogCredentialPromotionEntry(entry) {
+  return /#credential-/i.test(String(entry?.url ?? "")) && /\bmajor\s+in\b/i.test(String(entry?.label ?? ""));
+}
+
+function isCatalogCredentialPromotionForDifferentMajor(entry) {
+  if (!isCatalogCredentialPromotionEntry(entry)) {
+    return false;
+  }
+
+  const candidateMajor = normalizeCatalogCredentialMajorName(
+    extractCatalogCredentialMajorName(entry?.label)
+  );
+  const targetMajor = normalizeCatalogCredentialMajorName(getPromotionPlanBaseTitle(entry));
+  return Boolean(candidateMajor && targetMajor && candidateMajor !== targetMajor);
+}
+
+function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
+  if (entry?.ownerType !== "major" || entry?.pathwayId || !isCatalogCredentialPromotionEntry(entry)) {
+    return false;
+  }
+
+  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  return !String(planTitle ?? "").includes(":") && /\bmajor\s+in\s+[^:()]+:\s*\S/i.test(String(entry?.label ?? ""));
+}
+
+function hasDocumentUrlWithAppendedPath(entry) {
+  return /\.(?:pdf|docx?)(?:\/|%2f)[^?#]/i.test(String(entry?.url ?? ""));
+}
+
+function isUnsafeAutomaticPromotionEntry(entry) {
+  return isCatalogCredentialPromotionForDifferentMajor(entry) ||
+    isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
+    hasDocumentUrlWithAppendedPath(entry);
+}
+
+function buildPromotionEntryCandidateFromOwner(owner) {
+  const pathwayId = owner?.pathwayId ?? null;
+  return {
+    ownerType: owner?.ownerType,
+    ownerId: buildOwnerId(owner?.planId, pathwayId),
+    planId: owner?.planId,
+    pathwayId,
+    ownerTitle: owner?.title,
+    campusId: owner?.campusId,
+    url: owner?.suggestedPrimary?.url,
+    label:
+      owner?.suggestedPrimary?.label ||
+      owner?.suggestedPrimary?.anchorText ||
+      owner?.suggestedPrimary?.pageTitle ||
+      `${owner?.title ?? ""} requirements`,
+  };
+}
+
+function suggestedPrimaryIsSafeForAutomaticPromotion(owner) {
+  return !isUnsafeAutomaticPromotionEntry(buildPromotionEntryCandidateFromOwner(owner));
+}
+
+function currentPrimaryCannotCreateSchedulableRows(owner) {
+  const currentPrimary = owner?.currentPrimary ?? null;
+  return Boolean(
+    currentPrimary &&
+      (
+        currentPrimary.sourceRoleStatus !== "primary" ||
+        currentPrimary.canCreateSchedulableRows === false ||
+        currentPrimary.canBePrimary === false
+      )
+  );
+}
+
+function getMissingPrimaryAutoPromotionBlockReason(owner) {
+  if (!isSchedulablePrimarySuggestion(owner?.suggestedPrimary)) {
+    return "suggested primary is not a high-confidence schedulable primary";
+  }
+
+  if (!suggestedPrimaryMatchesSpecializedPlanSource(owner)) {
+    return "suggested primary does not match the specialized plan source";
+  }
+
+  if (!suggestedPrimaryIsSafeForAutomaticPromotion(owner)) {
+    return "suggested primary is catalog-scoped to a different major or child option";
+  }
+
+  return null;
+}
+
 function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue) {
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
+    .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
+    .filter((owner) => suggestedPrimaryIsSafeForAutomaticPromotion(owner))
     .filter((owner) => !reviewOwnerKeys.has(buildOwnerKey(owner)))
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
@@ -162,10 +322,32 @@ function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQue
     }));
 }
 
-function getEligibleWeakExistingReplacementOwners(discoveryReport) {
+function getBlockedMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue) {
+  const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
+  return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
+    .filter((owner) => !owner.existingPrimaryUrl)
+    .filter((owner) => !reviewOwnerKeys.has(buildOwnerKey(owner)))
+    .map((owner) => ({
+      ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
+      ownerKey: buildOwnerKey(owner),
+      title: owner.title,
+      promotedUrl: owner.suggestedPrimary?.url ?? null,
+      blockReason: getMissingPrimaryAutoPromotionBlockReason(owner),
+    }))
+    .filter((owner) => owner.blockReason);
+}
+
+function getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue = null) {
+  const reviewOwnerKeys = reviewQueue ? buildReviewOwnerKeySet(reviewQueue) : new Set();
   return getValidationScopedDiscoveryOwners(discoveryReport, "weakExistingOwners")
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
+    .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
+    .filter((owner) => suggestedPrimaryIsSafeForAutomaticPromotion(owner))
+    .filter((owner) => {
+      const ownerKey = buildOwnerKey(owner);
+      return !reviewOwnerKeys.has(ownerKey) || currentPrimaryCannotCreateSchedulableRows(owner);
+    })
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
       ownerKey: buildOwnerKey(owner),
@@ -176,12 +358,16 @@ function getEligibleWeakExistingReplacementOwners(discoveryReport) {
 }
 
 function getEligibleAutoPromotionOwners(discoveryReport, reviewQueue) {
-  return [
+  return uniqueByOwnerId([
     ...getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue),
-    ...getEligibleWeakExistingReplacementOwners(discoveryReport),
-  ].sort((left, right) =>
+    ...getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue),
+  ]).sort((left, right) =>
     left.ownerId.localeCompare(right.ownerId)
   );
+}
+
+function uniqueByOwnerId(entries) {
+  return Array.from(new Map((entries ?? []).map((entry) => [entry.ownerId, entry])).values());
 }
 
 function buildPrimaryManifestOwnerMap() {
@@ -616,8 +802,12 @@ async function main() {
     discoveryReport,
     reviewQueue
   );
+  const blockedMissingPrimaryAutoPromotionOwners = getBlockedMissingPrimaryAutoPromotionOwners(
+    discoveryReport,
+    reviewQueue
+  );
   const eligibleWeakExistingReplacementOwners =
-    getEligibleWeakExistingReplacementOwners(discoveryReport);
+    getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue);
   const eligibleAutoPromotionOwnerIds = new Set(
     eligibleAutoPromotionOwners.map((owner) => owner.ownerId)
   );
@@ -707,17 +897,19 @@ async function main() {
   const checks = [
     runCheck(
       "discovery-partition",
-      "Missing-primary discovery owners partition cleanly into eligible auto-promotions and review-queue owners",
+      "Missing-primary discovery owners partition cleanly into eligible, review, and blocked buckets",
       () => {
         assert.equal(
           getValidationScopedDiscoveryOwnerCount(discoveryReport),
           eligibleMissingPrimaryAutoPromotionOwners.length +
-            validationScopedMissingPrimaryReviewOwnerKeys.size,
-          "Discovery owner count should equal eligible auto-promotions plus review-queue owners."
+            validationScopedMissingPrimaryReviewOwnerKeys.size +
+            blockedMissingPrimaryAutoPromotionOwners.length,
+          "Discovery owner count should equal eligible auto-promotions plus review-queue owners plus explicitly blocked auto-promotions."
         );
         return [
           `Discovery owners: ${getValidationScopedDiscoveryOwnerCount(discoveryReport)}`,
           `Eligible missing-primary auto-promotions: ${eligibleMissingPrimaryAutoPromotionOwners.length}`,
+          `Blocked missing-primary auto-promotions: ${blockedMissingPrimaryAutoPromotionOwners.length}`,
           `Eligible weak-existing replacements: ${eligibleWeakExistingReplacementOwners.length}`,
           `Review-queue owners: ${validationScopedReviewOwnerCount}`,
           `Missing-primary review owners: ${validationScopedMissingPrimaryReviewOwnerKeys.size}`,
@@ -781,7 +973,16 @@ async function main() {
         );
         const promotionReviewIntersection = uniqueSorted(
           (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? [])
-            .filter((entry) => reviewOwnerKeys.has(entry.ownerKey))
+            .filter((entry) => {
+              if (!reviewOwnerKeys.has(entry.ownerKey)) {
+                return false;
+              }
+              const discoveryOwner = [
+                ...(discoveryReport.weakExistingOwners ?? []),
+                ...(discoveryReport.owners ?? []),
+              ].find((owner) => buildOwnerKey(owner) === entry.ownerKey);
+              return !currentPrimaryCannotCreateSchedulableRows(discoveryOwner);
+            })
             .map((entry) => entry.ownerId)
         );
         const promotionGapIntersection = uniqueSorted(

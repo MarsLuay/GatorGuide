@@ -2426,6 +2426,7 @@ function buildWeakExistingPrimarySignals(params) {
     bestTrackId,
     trackRecommendationId,
     noPublicClassificationCount,
+    ownerType,
   } = params;
   const signals = [];
   const sourceText = buildReevaluationSourceText(primarySource, parsedBlock);
@@ -2471,6 +2472,21 @@ function buildWeakExistingPrimarySignals(params) {
         /\b(worksheet|checklist|degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|degree sheet|requirement sheet)\b/i.test(
           sourceText
         ))
+  );
+  const sourceIdentityText = normalizeWhitespace(
+    [
+      primarySource?.label,
+      parsedBlock?.primarySourceLabel,
+      parsedBlock?.sourceLabel,
+      parsedBlock?.extractedTitle,
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  const majorPrimaryLooksPathwayScoped = Boolean(
+    ownerType === "major" &&
+      /\b(?:option|concentration|track)\b/i.test(sourceIdentityText) &&
+      !/\b(?:options|concentrations|tracks)\b/i.test(sourceIdentityText)
   );
 
   if (safeIntentionalEmpty) {
@@ -2525,6 +2541,14 @@ function buildWeakExistingPrimarySignals(params) {
     });
   }
 
+  if (majorPrimaryLooksPathwayScoped) {
+    signals.push({
+      code: "major-primary-looks-pathway-scoped",
+      reason:
+        "Current major-level primary source appears scoped to one option, concentration, or track.",
+    });
+  }
+
   const downstreamWeak =
     safeIntentionalEmpty || qualityWarningCodes.length > 0 || parsedUwCourseCodeCount === 0;
   const sourceWeak = hasWeakPrimaryUrl || (hasWeakHeadings && !hasStrongRequirementCue) || hasOverviewOnlyCue;
@@ -2534,7 +2558,8 @@ function buildWeakExistingPrimarySignals(params) {
     triggered:
       (downstreamWeak && sourceWeak) ||
       zeroCourseRequirementPrimary ||
-      yearSpecificRequirementSource,
+      yearSpecificRequirementSource ||
+      majorPrimaryLooksPathwayScoped,
     signals,
     context: {
       runtimeGrcCourseCount,
@@ -2547,6 +2572,7 @@ function buildWeakExistingPrimarySignals(params) {
       currentSourceYears,
       currentSourceLatestYear,
       yearSpecificRequirementSource,
+      majorPrimaryLooksPathwayScoped,
     },
   };
 }
@@ -2656,6 +2682,8 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
         bestTrackId,
         trackRecommendationId: trackRecommendation?.trackId ?? null,
         noPublicClassificationCount,
+        ownerType: owner.ownerType,
+        pathwayCount: visiblePathways.length,
       });
       if (!primarySourceMatchesPathwayIdentity(owner, existingPrimary, parsedBlock)) {
         weakSignals.triggered = true;
@@ -2986,7 +3014,7 @@ function getHostnameOrEmpty(url) {
 function isGraduateOnlyCandidateForUndergraduateTarget(target, combinedText) {
   const targetText = `${target?.title ?? ""} ${target?.label ?? ""}`.toLowerCase();
   const targetIsGraduate =
-    /\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(
+    /\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral|doctor(?:\s+of\s+philosophy)?)\b/i.test(
       targetText
     );
   if (targetIsGraduate) {
@@ -2994,7 +3022,7 @@ function isGraduateOnlyCandidateForUndergraduateTarget(target, combinedText) {
   }
 
   const candidateIsGraduate =
-    /\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(
+    /\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral|doctor(?:\s+of\s+philosophy)?)\b/i.test(
       combinedText
     ) || /\/(?:student\/)?(?:applied-masters|masters?|graduate|amp)(?:[-/?#]|$)/i.test(combinedText);
   if (!candidateIsGraduate) {
@@ -3004,6 +3032,16 @@ function isGraduateOnlyCandidateForUndergraduateTarget(target, combinedText) {
   return !/\b(?:undergrad(?:uate)?|bachelor|b\.?\s*s\.?|b\.?\s*a\.?)\b|\/undergrad(?:uate)?(?:[-/?#]|$)/i.test(
     combinedText
   );
+}
+
+function isMinorCatalogCredentialAnchorForMajorTarget(target, candidate) {
+  if (target?.ownerType !== "major" || target?.pathwayId) {
+    return false;
+  }
+  if (!isCatalogCredentialAnchorCandidate(candidate)) {
+    return false;
+  }
+  return /\bminor\b/i.test(getCandidateLocalScoringText(candidate));
 }
 
 function scoreCandidate(target, candidate) {
@@ -3032,7 +3070,10 @@ function scoreCandidate(target, candidate) {
     .join(" \n")
     .toLowerCase();
 
-  if (isGraduateOnlyCandidateForUndergraduateTarget(target, combinedText)) {
+  const graduateOnlyCheckText = isCatalogCredentialAnchorCandidate(candidate)
+    ? getCandidateLocalScoringText(candidate).toLowerCase()
+    : combinedText;
+  if (isGraduateOnlyCandidateForUndergraduateTarget(target, graduateOnlyCheckText)) {
     return {
       score: -100,
       confidence: "low",
@@ -3041,6 +3082,18 @@ function scoreCandidate(target, candidate) {
       parserType: getDiscoveryParserType(candidate, "ignored"),
       canCreateSchedulableRows: false,
       reasons: ["graduate-only source does not match undergraduate owner"],
+    };
+  }
+
+  if (isMinorCatalogCredentialAnchorForMajorTarget(target, candidate)) {
+    return {
+      score: -100,
+      confidence: "low",
+      sourceRole: "ignored",
+      sourceRoleStatus: "ignored",
+      parserType: getDiscoveryParserType(candidate, "ignored"),
+      canCreateSchedulableRows: false,
+      reasons: ["minor catalog credential does not cover the major-level owner"],
     };
   }
 
