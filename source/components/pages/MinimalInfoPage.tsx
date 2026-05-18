@@ -3,9 +3,9 @@ import { Linking, ScrollView, Text, View, useWindowDimensions } from "react-nati
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { AppButton } from "@/components/ui/AppButton";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
+import { PageBackButton, usePageBackArrowColor } from "@/components/ui/PageBackButton";
 import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -49,7 +49,7 @@ export function MinimalInfoPage({
   const pageMaxWidth = width >= 1080 ? 760 : isTablet ? 680 : 560;
   const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : isCompactPhone ? 16 : 20;
   const cardPadding = isTablet ? 28 : 22;
-  const iconColor = isDark ? "#9ae6b4" : "#047857";
+  const iconColor = usePageBackArrowColor();
   const mutedSurfaceColor = isDark ? "rgba(15, 23, 42, 0.72)" : "rgba(240, 253, 244, 0.82)";
   const mutedBorderColor = isDark ? "rgba(52, 211, 153, 0.18)" : "rgba(16, 185, 129, 0.18)";
   const scrollContentPadding = getScrollContentPadding({
@@ -75,15 +75,11 @@ export function MinimalInfoPage({
             gap: 16,
           }}
         >
-          <AnimatedIconPressable
+          <PageBackButton
             onPress={back}
-            accessibilityRole="button"
-            containerClassName="self-start"
-            className="flex-row items-center"
-          >
-            <MaterialIcons name="arrow-back" size={20} color={iconColor} />
-            <Text className={`${theme.secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </AnimatedIconPressable>
+            label={t("general.back")}
+            textClassName={theme.secondaryTextClass}
+          />
 
           <View className={`${theme.cardBgClass} border rounded-3xl`} style={{ padding: cardPadding, gap: 18 }}>
             <View className="items-center" style={{ gap: 14 }}>

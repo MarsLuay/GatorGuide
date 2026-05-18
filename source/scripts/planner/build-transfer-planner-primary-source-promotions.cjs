@@ -20,6 +20,10 @@ const {
   normalizeTransferPlannerOwnerId,
   normalizeTransferPlannerPathwayId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
+const {
+  isSuspiciousStructuralPathwayId,
+  isSuspiciousStructuralPathwayLabel,
+} = require("../../constants/transfer-planner-source/pathway-materialization");
 const discovery = require("./discover-transfer-planner-primary-sources.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
@@ -243,11 +247,24 @@ function hasDocumentUrlWithAppendedPath(entry) {
   return /\.(?:pdf|docx?)(?:\/|%2f)[^?#]/i.test(String(entry?.url ?? ""));
 }
 
+function isSuspiciousStructuralPathwayPromotionEntry(entry) {
+  if (entry?.ownerType !== "pathway") {
+    return false;
+  }
+
+  return (
+    isSuspiciousStructuralPathwayId(entry?.pathwayId) ||
+    isSuspiciousStructuralPathwayLabel(entry?.label) ||
+    isSuspiciousStructuralPathwayLabel(entry?.ownerTitle)
+  );
+}
+
 function isUnsafeAutomaticPromotionEntry(entry) {
   return (
     isMinorCredentialPromotionForMajorOwner(entry) ||
     isCatalogCredentialPromotionForDifferentMajor(entry) ||
     isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
+    isSuspiciousStructuralPathwayPromotionEntry(entry) ||
     hasDocumentUrlWithAppendedPath(entry)
   );
 }

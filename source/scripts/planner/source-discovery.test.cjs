@@ -1293,6 +1293,9 @@ test("Sentence-fragment pathway labels are rejected while real options stay mate
     "Recommended Preparation option",
     "With Honors completion of departmental honors requirements in the major option",
     "Especially those who broaden into the related Control Systems pathway",
+    "Marketing can also be taken as a concentration",
+    "or consulting firms. Learn more about the Finance concentration",
+    "telecommunications and biotechnology. Learn more about the TIM concentration",
   ]) {
     assert.equal(
       isSuspiciousStructuralPathwayLabel(value),

@@ -7,7 +7,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -16,6 +16,7 @@ import {
   AnimatedChipPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import { ROUTES } from "@/constants/routes";
@@ -439,10 +440,7 @@ export default function CollegeSearchToolPage() {
           }}
         >
           <View className="pt-8 pb-6">
-            <AnimatedIconPressable onPress={back} className="flex-row items-center" containerStyle={{ alignSelf: "flex-start", marginBottom: 16 }}>
-              <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-            </AnimatedIconPressable>
+            <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
             <Text className={`text-3xl ${textClass}`}>{t("collegeSearchTool.title")}</Text>
             <Text className={`${secondaryTextClass} mt-2`} style={{ lineHeight: 22 }}>

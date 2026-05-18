@@ -9,6 +9,7 @@ import {
   AnimatedChipPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
@@ -311,10 +312,7 @@ export default function ComparePage() {
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={scrollContentPadding}>
         <View style={{ width: "100%", maxWidth: 1220, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}>
-          <AnimatedIconPressable onPress={back} className="flex-row items-center" containerStyle={{ alignSelf: "flex-start", marginBottom: 16 }}>
-            <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
-            <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </AnimatedIconPressable>
+          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
           <Text className={`text-2xl ${textClass} mb-1`}>{t("compare.title")}</Text>
           <Text className={`${secondaryTextClass} mb-6`}>{t("compare.subtitle")}</Text>

@@ -1,8 +1,9 @@
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { StateCard } from "@/components/ui/StateCard";
 import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import { SuggestedScheduleCard } from "@/components/transfer-planner/SuggestedScheduleCard";
@@ -162,21 +163,7 @@ export default function TransferPlannerPage() {
           }}
         >
           <View className="gap-4">
-            <TouchIconButton
-              onPress={handleGoBack}
-              accessibilityLabel={backLabel}
-              className="flex-row items-center"
-              containerStyle={{ alignSelf: "flex-start" }}
-            >
-              <MaterialIcons
-                name="arrow-back"
-                size={20}
-                color="#1f8a5d"
-              />
-              <Text className={`${secondaryTextClass} ml-2`}>
-                {backLabel}
-              </Text>
-            </TouchIconButton>
+            <PageBackButton onPress={handleGoBack} label={backLabel} textClassName={secondaryTextClass} />
 
             <View className="flex-row items-start">
               <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">

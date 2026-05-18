@@ -642,7 +642,10 @@ function buildTriage(blockers, autoRepairPlan) {
 
 function markdownTable(headers, rows) {
   const safeRows = rows.length ? rows : [headers.map(() => "")];
-  const escapeCell = (cell) => String(cell ?? "").replace(/\|/g, "\\|");
+  const escapeCell = (cell) =>
+    String(cell ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/\|/g, "\\|");
   const lines = [
     `| ${headers.map(escapeCell).join(" | ")} |`,
     `| ${headers.map(() => "---").join(" | ")} |`,

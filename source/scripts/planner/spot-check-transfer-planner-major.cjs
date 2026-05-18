@@ -85,7 +85,7 @@ Examples:
 
 function shellQuote(value) {
   const text = String(value);
-  return /[\s"]/u.test(text) ? `"${text.replace(/"/g, '\\"')}"` : text;
+  return /[\s"\\]/u.test(text) ? `"${text.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"` : text;
 }
 
 function readTopLevelJsonArrayFromGeneratedTs(filePath, exportName) {

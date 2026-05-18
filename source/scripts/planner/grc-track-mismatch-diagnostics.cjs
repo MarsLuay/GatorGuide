@@ -112,13 +112,18 @@ function hasArg(flag) {
 
 function stripHtml(value) {
   return String(value ?? "")
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
     .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;|&#160;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&ndash;|&#8211;/gi, "-")
-    .replace(/&mdash;|&#8212;/gi, "-")
+    .replace(/&(?:#(\d+)|#x([0-9a-f]+)|([a-z]+));/gi, (match, decimal, hex, named) => {
+      if (decimal) return String.fromCodePoint(Number.parseInt(decimal, 10));
+      if (hex) return String.fromCodePoint(Number.parseInt(hex, 16));
+      const entity = String(named).toLowerCase();
+      if (entity === "nbsp") return " ";
+      if (entity === "amp") return "&";
+      if (entity === "ndash" || entity === "mdash") return "-";
+      return match;
+    })
     .replace(/\s+/g, " ")
     .trim();
 }

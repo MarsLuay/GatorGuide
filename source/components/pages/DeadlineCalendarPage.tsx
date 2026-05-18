@@ -20,6 +20,7 @@ import {
   AnimatedChipPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useOpportunities } from "@/hooks/use-opportunities";
@@ -704,10 +705,7 @@ export default function DeadlineCalendarPage() {
             paddingTop: 24,
           }}
         >
-          <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
-            <MaterialIcons name="arrow-back" size={20} color={placeholderColor} />
-            <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </AnimatedIconPressable>
+          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
           <View
             className={`${cardBgClass} border ${borderClass} rounded-[28px] overflow-hidden mb-5`}

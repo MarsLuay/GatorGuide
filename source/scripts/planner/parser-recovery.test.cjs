@@ -1079,6 +1079,157 @@ test("Parser can prefer acronym-matched rich degree checklists over shallow HTML
   );
 });
 
+test("Parser keeps richer focused Bothell curriculum pages over incomplete linked checklists", () => {
+  const entry = buildRecoveryEntryFixture({
+    id: "uw-bothell-electrical-engineering:primary",
+    ownerId: "uw-bothell-electrical-engineering",
+    ownerTitle: "Electrical Engineering (BS)",
+    planId: "uw-bothell-electrical-engineering",
+    campusId: "uw-bothell",
+    parserType: "html-curriculum-page",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
+    label: "UW Bothell Electrical Engineering curriculum",
+    sourceLabel: "UW Bothell Electrical Engineering curriculum",
+  });
+  const baseParsed = {
+    title: "Electrical Engineering Curriculum",
+    headings: [
+      "Major requirements",
+      "Core Courses (55 credits)",
+      "Electrical Engineering Electives (15 credits)",
+      "Foundational Courses (65-66 credits)",
+    ],
+    courseCodes: [
+      "BEE 200",
+      "BEE 215",
+      "BEE 233",
+      "BEE 235",
+      "BEE 271",
+      "BEE 331",
+      "BEE 332",
+      "BEE 341",
+      "BEE 361",
+      "BEE 381",
+      "BEE 417",
+      "BEE 425",
+      "BEE 427",
+      "BEE 433",
+      "BEE 436",
+      "BEE 437",
+      "BEE 440",
+      "BEE 442",
+      "BEE 445",
+      "BEE 447",
+      "BEE 450",
+      "BEE 451",
+      "BEE 454",
+      "BEE 455",
+      "BEE 457",
+      "BEE 477",
+      "BEE 478",
+      "BEE 482",
+      "BEE 484",
+      "BEE 486",
+      "BEE 490",
+      "BEE 498",
+      "BEE 499",
+      "BENGR 494",
+      "BENGR 495",
+      "BENGR 496",
+      "CSS 427",
+      "STMATH 124",
+      "STMATH 125",
+      "STMATH 126",
+      "STMATH 207",
+      "STMATH 208",
+      "STMATH 224",
+      "STMATH 390",
+    ],
+    requirementCueLines: [
+      "Major requirements",
+      "Core Courses (55 credits)",
+      "Electrical Engineering Electives (15 credits)",
+      "Choose three additional courses (15 credits) from the following list",
+      "Foundational Courses (65-66 credits)",
+    ],
+    chooseStatements: ["Choose three additional courses (15 credits) from the following list"],
+    pathwayLabels: [],
+    snapshotLines: [
+      "Electrical Engineering Curriculum",
+      "Major requirements",
+      "Core Courses (55 credits)",
+      "Electrical Engineering Electives (15 credits)",
+      "Choose three additional courses (15 credits) from the following list",
+      "B EE 381",
+      "CSS 427",
+      "Foundational Courses (65-66 credits)",
+    ],
+  };
+  const candidate = {
+    url: "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2024/07/B-EE-Curriculum-AY24_25.pdf",
+    label: "EE degree checklist",
+    parserType: "pdf-degree-sheet",
+    exactTitleMatch: false,
+    titleAcronymMatch: true,
+    titleAcronymMatches: ["ee"],
+    sameProgramRequirementLink: false,
+    historical: false,
+  };
+  const documentParsed = {
+    title: "Electrical Engineering B.S.E.E. Curriculum",
+    headings: [],
+    courseCodes: [
+      "BEE 200",
+      "BEE 215",
+      "BEE 233",
+      "BEE 235",
+      "BEE 271",
+      "BEE 331",
+      "BEE 332",
+      "BEE 341",
+      "BEE 361",
+      "BEE 425",
+      "BENGR 494",
+      "BENGR 495",
+      "BENGR 496",
+      "STMATH 124",
+      "STMATH 125",
+      "STMATH 126",
+      "STMATH 207",
+      "STMATH 208",
+      "STMATH 224",
+      "STMATH 390",
+    ],
+    requirementCueLines: [
+      "Before Applying",
+      "Mathematics & Natural Sciences",
+      "Fundamentals",
+      "Core and Electives",
+    ],
+    chooseStatements: [],
+    pathwayLabels: [],
+    snapshotLines: [
+      "Electrical Engineering B.S.E.E. Curriculum",
+      "Before Applying",
+      "Mathematics & Natural Sciences",
+      "Fundamentals",
+      "Core and Electives",
+      "B EE Electives: 15 credits",
+      "STMATH 124",
+    ],
+  };
+
+  assert.equal(
+    parser.shouldPreferSupplementalDocumentSourceForTest(
+      entry,
+      baseParsed,
+      candidate,
+      documentParsed
+    ),
+    false
+  );
+});
+
 test("Parser recovery finds official child and sibling requirement pages", () => {
   const entry = buildRecoveryEntryFixture();
   const html = `

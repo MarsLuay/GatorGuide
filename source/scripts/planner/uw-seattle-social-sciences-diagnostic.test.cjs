@@ -21,7 +21,6 @@ const studentRuntime = require("../../constants/transfer-planner-source/student-
 
 function normalizeCourseCode(value) {
   return String(value ?? "")
-    .replace(/&/g, "&")
     .replace(/\s+/g, " ")
     .trim()
     .toUpperCase();

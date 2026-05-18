@@ -44,12 +44,10 @@ function formatImportantDate(value: string | null, fallback = "Coming soon") {
 
   try {
     const options: Intl.DateTimeFormatOptions = {
-      month: "short",
+      month: "long",
       day: "numeric",
+      year: "numeric",
     };
-    if (parsed.getFullYear() !== new Date().getFullYear()) {
-      options.year = "numeric";
-    }
     return new Intl.DateTimeFormat(undefined, options).format(parsed);
   } catch {
     return value;

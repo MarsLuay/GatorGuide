@@ -402,7 +402,11 @@ function buildReleaseReadiness(inputs, options = {}) {
 
 function markdownTable(headers, rows) {
   const safeRows = rows.length ? rows : [headers.map(() => "")];
-  const escape = (value) => String(value ?? "").replace(/\|/g, "\\|").replace(/\r?\n/g, "<br>");
+  const escape = (value) =>
+    String(value ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/\|/g, "\\|")
+      .replace(/\r?\n/g, "<br>");
   return [
     `| ${headers.map(escape).join(" | ")} |`,
     `| ${headers.map(() => "---").join(" | ")} |`,

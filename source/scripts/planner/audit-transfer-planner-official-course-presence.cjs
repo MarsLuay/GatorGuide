@@ -23,7 +23,6 @@ function readGeneratedJson(relativePath, constName) {
 function normalizeCourseCode(value) {
   return String(value ?? "")
     .toUpperCase()
-    .replace(/&/g, "&")
     .replace(/[^A-Z0-9&]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();

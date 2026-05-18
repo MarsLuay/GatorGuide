@@ -119,9 +119,25 @@ function wrapLiteralUrls(value: string) {
   });
 }
 
+function wrapLiteralEmails(value: string) {
+  const text = String(value);
+  return text.replace(
+    /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
+    (email, offset) => {
+      const before = text[offset - 1];
+      const after = text[offset + email.length];
+      if (before === "<" && after === ">") {
+        return email;
+      }
+      return `<${email}>`;
+    }
+  );
+}
+
 function escapePlannerDocMarkdown(value: string) {
   return String(value)
     .replace(/\\/g, "\\\\")
+    .replace(/\*/g, "\\*")
     .replace(/\[/g, "\\[")
     .replace(/\]/g, "\\]")
     .replace(/&(?!(?:[a-z]+|#\d+|#x[0-9a-f]+);)/gi, "&amp;");
@@ -146,9 +162,11 @@ function sanitizePlannerDocText(value: string) {
     .replace(/review-needed/gi, "source-unverified-hidden");
 
   return escapePlannerDocMarkdown(
-    wrapLiteralUrls(
-      normalizePlannerDocMojibake(
-        decodeHtmlEntities(repairPlannerDocEncoding(normalized))
+    wrapLiteralEmails(
+      wrapLiteralUrls(
+        normalizePlannerDocMojibake(
+          decodeHtmlEntities(repairPlannerDocEncoding(normalized))
+        )
       )
     )
   );

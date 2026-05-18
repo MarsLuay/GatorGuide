@@ -7,7 +7,8 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { Language } from "@/services/app/translations";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { AnimatedCardPressable } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 
 type LanguageOption = {
   key: Language;
@@ -52,7 +53,6 @@ export default function LanguagePage() {
         ? "bg-white border-emerald-200"
         : "bg-white/90 border-gray-200";
   const itemBorderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
-  const iconColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
   const isPageRTL = language === "Arabic" || language === "Persian";
   const isCompactPhone = width < 390;
   const isTablet = width >= 768;
@@ -91,18 +91,12 @@ export default function LanguagePage() {
           }}
         >
           <View className="pb-6">
-            <AnimatedIconPressable
+            <PageBackButton
               onPress={back}
-              containerClassName="mb-4"
-              className="items-center"
-              style={{
-                flexDirection: isPageRTL ? "row-reverse" : "row",
-              }}
-              containerStyle={{ alignSelf: isPageRTL ? "flex-end" : "flex-start" }}
-            >
-              <MaterialIcons name={isPageRTL ? "arrow-forward" : "arrow-back"} size={20} color={iconColor} />
-              <Text className={`${secondaryTextClass} ${isPageRTL ? "mr-2" : "ml-2"}`}>{t("general.back")}</Text>
-            </AnimatedIconPressable>
+              label={t("general.back")}
+              textClassName={secondaryTextClass}
+              isRTL={isPageRTL}
+            />
 
             <Text className={`text-2xl ${isPageRTL ? "text-right" : ""} ${textClass}`}>{t("settings.language")}</Text>
           </View>

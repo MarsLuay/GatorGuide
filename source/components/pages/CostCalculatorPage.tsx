@@ -5,7 +5,8 @@ import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -563,10 +564,7 @@ export default function CostCalculatorPage() {
             paddingHorizontal: shellHorizontalPadding,
           }}
         >
-          <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
-            <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
-            <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </AnimatedIconPressable>
+          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
           <Text className={`text-2xl ${textClass} mb-1`}>
             {t("cost.title")}

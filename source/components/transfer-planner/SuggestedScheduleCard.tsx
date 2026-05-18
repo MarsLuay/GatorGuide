@@ -6,6 +6,7 @@ import { Text, View } from "react-native";
 import { TouchIconButton, TouchOptionRow } from "@/components/ui/TouchPrimitives";
 import { ROUTES } from "@/constants/routes";
 import {
+  getTransferPlannerPrimaryDegreeRequirementsSource,
   type TransferPlannerCampusId,
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerTrack,
@@ -83,6 +84,7 @@ import type { PlannerCollegeId } from "./transfer-planner-storage";
 
 function SuggestedScheduleOptionsBox({
   optionGroups,
+  plan,
   plannerPathKey,
   optionBoxSummaryText,
   forceNumberedOptionTitles,
@@ -93,6 +95,7 @@ function SuggestedScheduleOptionsBox({
   borderClass,
 }: {
   optionGroups: SuggestedScheduleOptionGroup[];
+  plan: TransferPlannerResolvedMajorPlan | null;
   plannerPathKey: string;
   optionBoxSummaryText?: string | null;
   forceNumberedOptionTitles?: boolean;
@@ -180,6 +183,7 @@ function SuggestedScheduleOptionsBox({
           optionGroup,
           titleFallbackAuditRows: optionTitleFallbackAuditRows,
           visibleOptionIndex: optionGroupIndex + 1,
+          plan,
         });
         const optionGroupStatusVerb =
           getSuggestedScheduleOptionGroupStatusVerb(optionGroup);
@@ -494,13 +498,29 @@ export function SuggestedScheduleCard({
   const scheduleOptionDisplayTitleById = useMemo(
     () =>
       new Map(
-        scheduleOptionTitleFallbackAuditRows.map((entry) => [
-          entry.groupId,
-          entry.displayedTitle,
+        scheduleOptionGroups.map((optionGroup, index) => [
+          optionGroup.id,
+          getSuggestedScheduleOptionGroupDisplayTitle({
+            optionGroup,
+            titleFallbackAuditRows: scheduleOptionTitleFallbackAuditRows,
+            visibleOptionIndex: index + 1,
+            plan,
+          }),
         ])
       ),
-    [scheduleOptionTitleFallbackAuditRows]
+    [plan, scheduleOptionGroups, scheduleOptionTitleFallbackAuditRows]
   );
+  const primaryDegreeSourceUrl = useMemo(() => {
+    if (!plan) return null;
+    return (
+      getTransferPlannerPrimaryDegreeRequirementsSource(
+        plan.id,
+        selectedPathwayId ?? plan.selectedPathwayId ?? null
+      )?.url ??
+      plan.officialLinks[0]?.url ??
+      null
+    );
+  }, [plan, selectedPathwayId]);
   const optionBoxSummaryText = useMemo(
     () =>
       buildSuggestedScheduleCopyOnlyOptionBoxSummaryText({
@@ -813,6 +833,7 @@ export function SuggestedScheduleCard({
         </Text>
         <SuggestedScheduleOptionsBox
           optionGroups={scheduleOptionGroups}
+          plan={plan}
           plannerPathKey={plannerPathKey}
           optionBoxSummaryText={optionBoxSummaryText}
           forceNumberedOptionTitles={forceNumberedOptionTitles}
@@ -932,6 +953,16 @@ export function SuggestedScheduleCard({
                                 getSuggestedScheduleSelectedOptions(optionGroup);
                               const selectedOptionLabels =
                                 getSuggestedScheduleSelectedOptionLabels(optionGroup);
+                              const optionGroupDisplayLabel =
+                                optionGroup.isSelectionPrompt
+                                  ? scheduleOptionDisplayTitleById.get(optionGroup.id) ??
+                                    optionGroup.title
+                                  : courseDisplayLabel;
+                              const optionGroupLinkData =
+                                getSchedulePlaceholderRequirementLinkData(optionGroup.title);
+                              const canOpenMajorSource =
+                                optionGroupLinkData?.kind === "major-source" &&
+                                !!primaryDegreeSourceUrl;
                               const rawOptionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
                                 course.guidanceSummary,
                                 selectedOptions.map((option) => option.guidanceSummary)
@@ -945,11 +976,20 @@ export function SuggestedScheduleCard({
 
                               return (
                                 <View className="gap-1">
-                                  <Text className={courseTextClass}>
-                                    {optionGroup.isSelectionPrompt
-                                      ? scheduleOptionDisplayTitleById.get(optionGroup.id) ??
-                                        optionGroup.title
-                                      : courseDisplayLabel}
+                                  <Text
+                                    className={`${courseTextClass}${
+                                      canOpenMajorSource ? " underline" : ""
+                                    }`}
+                                    onPress={
+                                      canOpenMajorSource
+                                        ? (event) => {
+                                            event.stopPropagation();
+                                            void openExternalLink(primaryDegreeSourceUrl);
+                                          }
+                                        : undefined
+                                    }
+                                  >
+                                    {optionGroupDisplayLabel}
                                   </Text>
                                   <Text className={`${secondaryTextClass} text-xs`}>
                                     {selectedOptionLabels.length
@@ -979,6 +1019,27 @@ export function SuggestedScheduleCard({
                             if (!linkData || !linkCampusId) {
                               return (
                                 <Text className={courseTextClass}>
+                                  {courseDisplayLabel}
+                                </Text>
+                              );
+                            }
+                            if (linkData.kind === "major-source") {
+                              if (!primaryDegreeSourceUrl) {
+                                return (
+                                  <Text className={courseTextClass}>
+                                    {courseDisplayLabel}
+                                  </Text>
+                                );
+                              }
+
+                              return (
+                                <Text
+                                  className={`${courseTextClass} underline`}
+                                  onPress={(event) => {
+                                    event.stopPropagation();
+                                    void openExternalLink(primaryDegreeSourceUrl);
+                                  }}
+                                >
                                   {courseDisplayLabel}
                                 </Text>
                               );

@@ -242,6 +242,8 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^me option courses?\b/i,
   /^master(?:\s+of)?\b/i,
   /^marketing management to declare\b.*\bconcentration\b/i,
+  /^.+\bcan also be taken as (?:an? )?(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^.+\blearn more about\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^may benefit from completing\b.*\btrack\b/i,
   /^minimum \d/i,
   /^listed below are .*coursework pathways?\b/i,
@@ -343,6 +345,8 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^students?-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^you-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^they-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^.+-can-also-be-taken-as-(?:a|an)-(?:option|track|route|pathway|certificate|concentration)$/i,
+  /^.+-learn-more-about-.*-(?:option|track|route|pathway|certificate|concentration)$/i,
   /^and-.*-(?:option|track|route|pathway|certificate|concentration)(?:-|$)/i,
   /^if-you-enrolled-.*-option\b/i,
   /^the-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
@@ -2780,11 +2784,12 @@ export function materializeTransferPlannerPathways(
   basePathways: TransferPlannerMajorPathway[],
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ): TransferPlannerMajorPathway[] {
+  const keepMaterializedPathway = (pathway: TransferPlannerMajorPathway) =>
+    !isPlanExcludedDerivedPathway(plan.id, pathway) &&
+    !isSuspiciousStructuralPathwayId(pathway.id) &&
+    !isSuspiciousStructuralPathwayLabel(pathway.label);
   const canonicalBasePathways = canonicalizeBasePathwaysAgainstAutoPromotions(plan, basePathways).filter(
-    (pathway) =>
-      !isPlanExcludedDerivedPathway(plan.id, pathway) &&
-      !isSuspiciousStructuralPathwayId(pathway.id) &&
-      !isSuspiciousStructuralPathwayLabel(pathway.label)
+    keepMaterializedPathway
   );
   const rawDerivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
     plan,
@@ -2825,10 +2830,12 @@ export function materializeTransferPlannerPathways(
       return [];
     }
 
-    return supportedBasePathways.map((pathway) => ({
-      ...pathway,
-      label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
-    }));
+    return supportedBasePathways
+      .filter(keepMaterializedPathway)
+      .map((pathway) => ({
+        ...pathway,
+        label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
+      }));
   }
 
   if (derivedPathways.length) {
@@ -2837,10 +2844,10 @@ export function materializeTransferPlannerPathways(
       supportedBasePathways,
       derivedPathways,
       parsedSourceBlocks
-    );
+    ).filter(keepMaterializedPathway);
   }
 
-  return supportedBasePathways;
+  return supportedBasePathways.filter(keepMaterializedPathway);
 }
 
 export function countMaterializedTransferPlannerPathways(

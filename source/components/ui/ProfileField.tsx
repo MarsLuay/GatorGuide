@@ -218,12 +218,18 @@ export function ProfileField(props: ProfileFieldProps) {
                   className={`px-4 py-2 rounded-lg border ${
                     isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
                   }`}
-                  style={{ width: "100%" }}
+                  style={{
+                    width: "100%",
+                    minHeight: 44,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
                   <Text
                     className={
                       isSelected ? "text-emerald-500 font-semibold" : secondaryTextClass
                     }
+                    style={{ textAlign: "center" }}
                   >
                     {t(opt.labelKey)}
                   </Text>

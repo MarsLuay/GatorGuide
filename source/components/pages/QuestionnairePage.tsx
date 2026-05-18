@@ -4,7 +4,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AppButton } from "@/components/ui/AppButton";
-import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -208,17 +209,17 @@ export default function QuestionnairePage() {
   });
   const railWidth = width >= 1320 ? 320 : 292;
   const horizontalPadding = isCompactPhone ? 16 : isTablet ? 24 : 20;
-  const headerPadding = isTablet ? 24 : isCompactPhone ? 16 : 20;
-  const cardPadding = isTablet ? 28 : isCompactPhone ? 18 : 22;
-  const textAreaMinHeight = isWideLayout ? 260 : isTablet ? 230 : 200;
+  const headerPadding = isTablet ? 24 : isCompactPhone ? 18 : 20;
+  const cardPadding = isTablet ? 28 : isCompactPhone ? 20 : 22;
+  const textAreaMinHeight = isWideLayout ? 220 : isTablet ? 200 : 170;
   const questionCardMinHeight = isWideLayout
-    ? Math.max(700, Math.min(height * 0.74, 860))
+    ? Math.max(600, Math.min(height * 0.68, 760))
     : isTablet
-      ? Math.max(560, Math.min(height * 0.68, 720))
+      ? Math.max(500, Math.min(height * 0.62, 640))
       : undefined;
-  const questionTitleMinHeight = isWideLayout ? 112 : isTablet ? 96 : 72;
+  const questionTitleMinHeight = isWideLayout ? 88 : isTablet ? 78 : 64;
   const questionBodyMinHeight = typeof questionCardMinHeight === "number"
-    ? Math.max(280, questionCardMinHeight - (isWideLayout ? 280 : 250))
+    ? Math.max(240, questionCardMinHeight - (isWideLayout ? 250 : 220))
     : undefined;
   const questionTitleStyle = {
     fontSize: isTablet ? 26 : 22,
@@ -280,6 +281,23 @@ export default function QuestionnairePage() {
       : "bg-emerald-500/10 border-emerald-500";
   const activeSidebarTextClass = isDark || isGreen ? "text-white" : "text-emerald-500";
   const activeSidebarIconColor = isDark || isGreen ? "#F9FAFB" : "#10b981";
+  const accentTileClass = isDark
+    ? "bg-emerald-500/10 border-emerald-500/20"
+    : isGreen
+      ? "bg-emerald-500/15 border-emerald-300/20"
+      : "bg-emerald-500/10 border-emerald-200";
+  const progressPillClass = isDark
+    ? "bg-gray-800 border-gray-700"
+    : isGreen
+      ? "bg-emerald-950/60 border-emerald-700"
+      : "bg-emerald-50 border-emerald-200";
+  const optionContentStyle = {
+    minHeight: isTablet ? 58 : 54,
+    flexDirection: "row" as const,
+    alignItems: "center" as const,
+    justifyContent: "space-between" as const,
+    gap: 12,
+  };
 
   useEffect(() => {
     questionnaireScrollRef.current?.scrollTo({ y: 0, animated: false });
@@ -452,7 +470,7 @@ export default function QuestionnairePage() {
             {isWideLayout ? (
               <View style={{ width: railWidth, flexShrink: 0 }}>
                 <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
-                  <Text className={`text-xs uppercase ${secondaryTextClass}`} style={{ letterSpacing: 1.8 }}>
+                  <Text className={`text-xs uppercase ${secondaryTextClass}`}>
                     {t("questionnaire.title")}
                   </Text>
                   <Text className={`mt-3 font-semibold ${textClass}`} style={{ fontSize: 24, lineHeight: 32 }}>
@@ -519,31 +537,39 @@ export default function QuestionnairePage() {
             ) : null}
 
             <View style={{ flex: 1, minWidth: 0, width: "100%", maxWidth: isWideLayout ? 820 : undefined, alignSelf: "center" }}>
+              <PageBackButton
+                onPress={() => {
+                  void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  void handleExitQuestionnaire();
+                }}
+                label={t("general.back")}
+                textClassName={secondaryTextClass}
+                disabled={isActionLocked}
+              />
+
               <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: headerPadding }}>
                 <View className="flex-row items-start">
-                  <AnimatedIconPressable
-                    onPress={() => {
-                      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                      void handleExitQuestionnaire();
-                    }}
-                    className={`h-11 w-11 mr-4 items-center justify-center rounded-2xl border ${inputBgClass}`}
-                    disabled={isActionLocked}
-                  >
-                    <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
-                  </AnimatedIconPressable>
-
+                  <View className={`h-11 w-11 mr-4 items-center justify-center rounded-2xl border ${accentTileClass}`}>
+                    <MaterialIcons name="tune" size={22} color="#10b981" />
+                  </View>
                   <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text className={`${textClass} font-semibold`} style={{ fontSize: isTablet ? 28 : 22, lineHeight: isTablet ? 34 : 28 }}>
-                      {t("questionnaire.title")}
-                    </Text>
-                    <Text className={`mt-1 text-sm ${secondaryTextClass}`}>
-                      {t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
-                    </Text>
-                    {!isWideLayout && currentSection ? (
-                      <Text className={`mt-3 ${secondaryTextClass}`} numberOfLines={2} style={{ fontSize: 14, lineHeight: 20 }}>
-                        {currentSection.title}
-                      </Text>
-                    ) : null}
+                    <View className="flex-row items-start justify-between" style={{ gap: 12 }}>
+                      <View style={{ flex: 1, minWidth: 0 }}>
+                        <Text className={`${textClass} font-semibold`} style={{ fontSize: isTablet ? 28 : 22, lineHeight: isTablet ? 34 : 28 }}>
+                          {t("questionnaire.title")}
+                        </Text>
+                        {!isWideLayout && currentSection ? (
+                          <Text className={`mt-2 ${secondaryTextClass}`} numberOfLines={2} style={{ fontSize: 14, lineHeight: 20 }}>
+                            {currentSection.title}
+                          </Text>
+                        ) : null}
+                      </View>
+                      <View className={`${progressPillClass} border rounded-full px-3 py-2`}>
+                        <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
+                          {t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
+                        </Text>
+                      </View>
+                    </View>
                   </View>
                 </View>
 
@@ -556,7 +582,12 @@ export default function QuestionnairePage() {
                 className={`${cardBgClass} border rounded-3xl mt-5`}
                 style={{ padding: cardPadding, minHeight: questionCardMinHeight }}
               >
-                <View style={{ minHeight: questionTitleMinHeight, marginBottom: 24 }}>
+                <View style={{ minHeight: questionTitleMinHeight, marginBottom: 20 }}>
+                  {currentSection ? (
+                    <Text className={`text-xs uppercase ${secondaryTextClass}`} style={{ marginBottom: 10 }}>
+                      {currentSection.title}
+                    </Text>
+                  ) : null}
                   <Text className={`${textClass} font-semibold`} style={questionTitleStyle}>
                     {currentQuestion.question}
                   </Text>
@@ -667,13 +698,13 @@ export default function QuestionnairePage() {
                                 parsedLocation.kind === "other" ? buildOtherLocationPreference(parsedLocation.otherText) : ""
                               );
                             }}
-                            className={`rounded-2xl border px-4 py-4 ${
+                            className={`rounded-2xl border px-4 py-2 ${
                               isSelected ? selectedOptionClass : idleOptionClass
                             }`}
                             containerStyle={{ width: "100%" }}
                           >
-                            <View className="flex-row items-start justify-between">
-                              <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
+                            <View style={optionContentStyle}>
+                              <View style={{ flex: 1, minWidth: 0 }}>
                                 <Text className={isSelected ? selectedOptionTextClass : textClass} style={optionTextStyle}>
                                   {option.label}
                                 </Text>
@@ -733,13 +764,13 @@ export default function QuestionnairePage() {
                                   setLocationModeDraft("specific_region");
                                   handleAnswer(currentQuestion.id, buildRegionLocationPreference(option.key));
                                 }}
-                                className={`rounded-2xl border px-4 py-3 ${
+                                className={`rounded-2xl border px-4 py-2 ${
                                   isSelected ? selectedOptionClass : borderClass
                                 }`}
                                 containerStyle={{ width: "100%" }}
                               >
-                                <View className="flex-row items-start justify-between">
-                                  <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
+                                <View style={optionContentStyle}>
+                                  <View style={{ flex: 1, minWidth: 0 }}>
                                     <Text className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`} style={optionTextStyle}>
                                       {option.label}
                                     </Text>
@@ -780,13 +811,13 @@ export default function QuestionnairePage() {
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                             handleAnswer(currentQuestion.id, option);
                           }}
-                          className={`rounded-2xl border px-4 py-4 ${
+                          className={`rounded-2xl border px-4 py-2 ${
                             isSelected ? selectedOptionClass : idleOptionClass
                           }`}
                           containerStyle={{ width: "100%" }}
                         >
-                          <View className="flex-row items-start justify-between">
-                            <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
+                          <View style={optionContentStyle}>
+                            <View style={{ flex: 1, minWidth: 0 }}>
                               <Text className={isSelected ? selectedOptionTextClass : textClass} style={optionTextStyle}>
                                 {option}
                               </Text>

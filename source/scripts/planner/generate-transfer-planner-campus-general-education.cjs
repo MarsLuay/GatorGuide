@@ -53,7 +53,6 @@ function fetchText(url) {
       .get(
         url,
         {
-          rejectUnauthorized: false,
           headers: {
             "User-Agent": "GatorGuideTransferPlannerCampusGeneralEducationParser/1.0",
             Accept: "text/html,application/xhtml+xml,text/plain;q=0.9,*/*;q=0.5",
@@ -87,28 +86,25 @@ function fetchText(url) {
 }
 
 function decodeHtmlEntities(value) {
-  return String(value ?? "")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/gi, "'")
-    .replace(/&rsquo;/gi, "'")
-    .replace(/&ldquo;|&rdquo;/gi, '"')
-    .replace(/&ndash;|&mdash;/gi, "-")
-    .replace(/&#(\d+);/g, (_, codePoint) =>
-      String.fromCodePoint(Number.parseInt(codePoint, 10))
-    )
-    .replace(/&#x([0-9a-f]+);/gi, (_, codePoint) =>
-      String.fromCodePoint(Number.parseInt(codePoint, 16))
-    )
-    .replace(/\\&/g, "&");
+  return String(value ?? "").replace(/&(?:#(\d+)|#x([0-9a-f]+)|([a-z]+));/gi, (match, decimal, hex, named) => {
+    if (decimal) return String.fromCodePoint(Number.parseInt(decimal, 10));
+    if (hex) return String.fromCodePoint(Number.parseInt(hex, 16));
+    const entity = String(named).toLowerCase();
+    if (entity === "nbsp") return " ";
+    if (entity === "amp") return "&";
+    if (entity === "quot") return '"';
+    if (entity === "apos" || entity === "rsquo") return "'";
+    if (entity === "ldquo" || entity === "rdquo") return '"';
+    if (entity === "ndash" || entity === "mdash") return "-";
+    return match;
+  });
 }
 
 function stripHtml(value) {
   return decodeHtmlEntities(
     String(value ?? "")
-      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
       .replace(/<\/(?:p|li|h[1-6]|div|section|tr)>/gi, "\n")
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<[^>]+>/g, " ")

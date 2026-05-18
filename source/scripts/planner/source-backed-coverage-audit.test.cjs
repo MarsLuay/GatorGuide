@@ -6,6 +6,7 @@ const coverageAudit = require("./audit-transfer-planner-source-backed-coverage.c
 const source = require("../../constants/transfer-planner-source");
 const studentRuntime = require("../../constants/transfer-planner-source/student-runtime");
 const planner = require("../../services/planning/transfer-planner.service");
+const suggestedScheduleFormatter = require("../../components/transfer-planner/transfer-planner-suggested-schedule");
 
 test("Source-backed coverage audit classifies blocking maintainer failures", () => {
   const cases = [
@@ -542,6 +543,50 @@ test("STEM prep filtering preserves official compound equivalency components", (
   assert.ok(labels.includes("PHYS& 114"));
 });
 
+test("STEM prep toggle does not relabel source-backed UW requirements as optional prep", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-data-visualization-ba");
+  assert.ok(plan);
+  const completedCourses = [];
+  const buildRows = (includeStemPrepCourses) =>
+    planner
+      .buildSuggestedQuarterPlan({
+        plan,
+        applicationStatuses: planner.buildRequirementStatuses(
+          plan.applicationChecklist ?? [],
+          completedCourses
+        ),
+        beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+          plan.beforeEnrollmentChecklist ?? [],
+          completedCourses
+        ),
+        stayAtGrcStatuses: planner.buildRequirementStatuses(
+          plan.stayAtGrcChecklist ?? [],
+          completedCourses
+        ),
+        completedCourses,
+        track: studentRuntime.getTransferPlannerTrack(plan.bestTrackId ?? null),
+        plannerCollegeId: "uw",
+        includeStayAtGrcCourses: false,
+        includeStemPrepCourses,
+        includeSummerQuarter: false,
+        referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+        selectedRequirementOptionIdsByGroup: {},
+      })
+      .flatMap((quarter) => quarter.courses);
+
+  const noPrepMath142 = buildRows(false).find((course) => course.label === "MATH& 142");
+  const stemPrepMath142 = buildRows(true).find((course) => course.label === "MATH& 142");
+
+  assert.equal(noPrepMath142?.sourceKind, "uw-major-requirement");
+  assert.equal(noPrepMath142?.visibilityScope, "visible-grc-completable");
+  assert.notEqual(noPrepMath142?.courseRole, "optional_stem_prep");
+  assert.equal(stemPrepMath142?.sourceKind, "uw-major-requirement");
+  assert.equal(stemPrepMath142?.visibilityScope, "visible-grc-completable");
+  assert.notEqual(stemPrepMath142?.courseRole, "optional_stem_prep");
+  assert.notEqual(stemPrepMath142?.canTestOut, true);
+  assert.doesNotMatch(stemPrepMath142?.guidanceSummary ?? "", /Can be tested out/i);
+});
+
 test("Sequence suppression audit allows atoms from the selected compound path", () => {
   const plan = source.getTransferPlannerMajorPlan("uw-seattle-environmental-public-health");
   assert.ok(plan);
@@ -895,7 +940,7 @@ test("Runtime option audit credits expected options scheduled as local support a
   assert.equal(mathRow?.issue, "none");
 });
 
-test("Bothell Electrical Engineering generated output preserves official worksheet course coverage", () => {
+test("Bothell Electrical Engineering generated output preserves official curriculum course coverage", () => {
   const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-electrical-engineering");
   assert.ok(plan);
 
@@ -904,18 +949,25 @@ test("Bothell Electrical Engineering generated output preserves official workshe
     null
   );
   assert.equal(sourceBlocks.length, 1);
-  assert.match(sourceBlocks[0].sourceUrl, /B-EE-Curriculum-AY24_25\.pdf$/);
+  assert.equal(
+    sourceBlocks[0].sourceUrl,
+    "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum"
+  );
 
   const parsedCodes = new Set(sourceBlocks[0].parsedUwCourseCodes ?? []);
   for (const courseCode of [
     "BEE 200",
     "BEE 233",
+    "BEE 381",
+    "BEE 417",
     "BEE 425",
+    "BEE 427",
     "BENGR 494",
     "BENGR 496",
     "BPHYS 123",
     "CSS 132",
     "CSS 142",
+    "CSS 427",
     "STMATH 390",
   ]) {
     assert.ok(parsedCodes.has(courseCode), `Expected parsed source block to include ${courseCode}`);
@@ -934,7 +986,30 @@ test("Bothell Electrical Engineering generated output preserves official workshe
     "BEE 332",
     "BEE 341",
     "BEE 361",
+    "BEE 381",
+    "BEE 417",
     "BEE 425",
+    "BEE 427",
+    "BEE 433",
+    "BEE 436",
+    "BEE 437",
+    "BEE 440",
+    "BEE 442",
+    "BEE 445",
+    "BEE 447",
+    "BEE 450",
+    "BEE 451",
+    "BEE 454",
+    "BEE 455",
+    "BEE 457",
+    "BEE 477",
+    "BEE 478",
+    "BEE 482",
+    "BEE 484",
+    "BEE 486",
+    "BEE 490",
+    "BEE 498",
+    "BEE 499",
     "BENGR 494",
     "BENGR 495",
     "BENGR 496",
@@ -947,6 +1022,7 @@ test("Bothell Electrical Engineering generated output preserves official workshe
     "CSS 142",
     "CSS 143",
     "CSS 301",
+    "CSS 427",
     "STMATH 124",
     "STMATH 125",
     "STMATH 126",
@@ -957,6 +1033,64 @@ test("Bothell Electrical Engineering generated output preserves official workshe
   ]) {
     assert.ok(degreeMapCodes.has(courseCode), `Expected generated degree map to include ${courseCode}`);
   }
+
+  const electiveGroup = plan.requirementGroups?.find((group) =>
+    /Electrical Engineering Electives/i.test(group.label)
+  );
+  assert.ok(electiveGroup, "Expected generated runtime to include the B EE elective credit bucket.");
+  assert.equal(electiveGroup.requirementType, "choose_credits");
+  assert.equal(electiveGroup.minCredits, 15);
+  const electiveOptionCodes = new Set(
+    (electiveGroup.options ?? []).flatMap((option) => option.uwCourses ?? [])
+  );
+  for (const courseCode of ["BEE 381", "BEE 490", "CSS 427"]) {
+    assert.ok(
+      electiveOptionCodes.has(courseCode),
+      `Expected B EE elective bucket to include ${courseCode}`
+    );
+  }
+  assert.equal(
+    electiveOptionCodes.has("STMATH 124"),
+    false,
+    "Expected B EE elective bucket not to absorb foundational math rows."
+  );
+});
+
+test("Bothell Business Administration hides prose-fragment pathways while keeping official options", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-business-administration");
+  assert.ok(plan);
+
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(plan);
+  const pathwayIds = pathways.map((pathway) => pathway.id);
+  assert.deepEqual(
+    pathwayIds.filter((pathwayId) => /learn-more-about|can-also-be-taken/.test(pathwayId)),
+    [],
+    "Expected generated Bothell BBA pathways to exclude prose fragments."
+  );
+  for (const pathwayId of [
+    "accounting-option",
+    "finance-option-and-concentration",
+    "marketing-option-and-concentration",
+    "mis-concentration",
+    "tim-concentration",
+  ]) {
+    assert.ok(pathwayIds.includes(pathwayId), `Expected official BBA pathway ${pathwayId}`);
+  }
+});
+
+test("Tacoma Electrical Engineering does not inherit sibling SET option pathways", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-tacoma-electrical-engineering");
+  assert.ok(plan);
+
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(plan);
+  const pathwayLabels = pathways.map((pathway) => pathway.label);
+  assert.deepEqual(
+    pathwayLabels.filter((label) =>
+      /(?:Bioinformatics|Cybersecurity|Course)\s+Option/i.test(label)
+    ),
+    [],
+    "Expected Tacoma EE not to expose sibling SET option pathways from the broad catalog page."
+  );
 });
 
 function buildRepresentativeSuggestedPlanCourses(planId, pathwayId = null) {
@@ -1045,6 +1179,8 @@ test("UW major plans expose campus general education buckets in actual quarter-p
 });
 
 test("UW Bothell Electrical Engineering keeps major-specific source rows and campus gen-ed placeholders separate", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-electrical-engineering");
+  assert.ok(plan);
   const courses = buildRepresentativeSuggestedPlanCourses("uw-bothell-electrical-engineering");
   const sourceBackedGenEdRows = courses.filter((course) => course.sourceKind === "uw-major-breadth");
   const majorRequirementRows = courses.filter((course) => course.sourceKind === "uw-major-requirement");
@@ -1054,8 +1190,8 @@ test("UW Bothell Electrical Engineering keeps major-specific source rows and cam
     "Expected campus A&H gen-ed placeholder to be visible."
   );
   assert.ok(
-    majorRequirementRows.some((course) => /21 credits of Natural Sciences/i.test(course.label)),
-    "Expected official B-EE Natural Sciences source row to remain visible as a major requirement."
+    plan.requirementGroups?.some((group) => /Electrical Engineering Electives/i.test(group.label)),
+    "Expected official B-EE elective source group to remain present in generated runtime."
   );
   assert.ok(
     sourceBackedGenEdRows.every((course) => !course.sourceRequirementGroupId),
@@ -1064,5 +1200,54 @@ test("UW Bothell Electrical Engineering keeps major-specific source rows and cam
   assert.ok(
     majorRequirementRows.every((course) => course.sourceKind !== "uw-major-breadth"),
     "Expected major-specific rows not to be collapsed into campus gen-ed placeholders."
+  );
+});
+
+test("approved-list placeholders without detected lists do not link to the equivalency guide", () => {
+  const getLinkData = suggestedScheduleFormatter.getSchedulePlaceholderRequirementLinkData;
+
+  assert.equal(getLinkData("Additional NSc courses from approved list"), null);
+  assert.equal(
+    getLinkData("Additional Natural Science courses from department-approved list"),
+    null
+  );
+  assert.equal(
+    getLinkData("Additional science courses from University-approved list"),
+    null
+  );
+});
+
+test("real category and program-approved placeholder links still resolve", () => {
+  const getLinkData = suggestedScheduleFormatter.getSchedulePlaceholderRequirementLinkData;
+
+  assert.deepEqual(getLinkData("5 credits of Natural Sciences"), {
+    kind: "transfer-equivalency",
+    tags: ["NSC"],
+  });
+  assert.deepEqual(getLinkData("45 credits of approved Computer Engineering Natural Science"), {
+    kind: "major-source",
+  });
+});
+
+test("ECE approved Natural Science option prompts point students to the major source", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-electrical-computer-engineering"
+  );
+  assert.ok(plan);
+
+  const optionGroup = {
+    id: "test-ece-approved-natural-science",
+    title: "45 credits of approved Electrical & Computer Engineering Natural Science",
+  };
+  const displayTitle = suggestedScheduleFormatter.getSuggestedScheduleOptionGroupDisplayTitle({
+    optionGroup,
+    titleFallbackAuditRows: [],
+    visibleOptionIndex: 1,
+    plan,
+  });
+
+  assert.equal(
+    displayTitle,
+    "5 credits of Natural Sciences (Check approved list) This covers 40/40 NSc credits needed for Electrical & Computer Engineering (Embedded Systems Pathway)."
   );
 });

@@ -1,10 +1,11 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { ScrollView, Text, TextInput, View } from "react-native";
+import { ScrollView, Text, TextInput, useWindowDimensions, View } from "react-native";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import {
   SearchableSelect,
   type SearchableSelectOption,
@@ -218,6 +219,7 @@ function doesCatalogEntryMatchEligibleSourceCourseCodes(
 export default function TransferEquivalencyCatalogPage() {
   const goBack = useBack(ROUTES.transferPlanner);
   const router = useRouter();
+  const { width } = useWindowDimensions();
   const params = useLocalSearchParams<{
     tag?: string | string[];
     filter?: string | string[];
@@ -692,11 +694,19 @@ export default function TransferEquivalencyCatalogPage() {
     selectedCollegeId === "grc"
       ? "Search by Green River course, title, UW transfer outcome, or category."
       : "Search by Green River course, UW outcome, title, or category.";
+  const isDesktop = width >= 1024;
+  const shellMaxWidth = isDesktop ? 1180 : 760;
+  const shellPadding = isDesktop ? 32 : 20;
+  const panelClassName = `${cardBgClass} border ${borderClass} rounded-3xl`;
 
   return (
     <ScreenBackground includeTopInset includeBottomInset={false}>
       <ScrollView
-        contentContainerStyle={{ padding: 20, paddingBottom: 36 }}
+        contentContainerStyle={{
+          paddingHorizontal: shellPadding,
+          paddingTop: shellPadding,
+          paddingBottom: 36,
+        }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         onScrollBeginDrag={() => {
@@ -704,195 +714,227 @@ export default function TransferEquivalencyCatalogPage() {
           setIsCampusSelectorOpen(false);
         }}
       >
-        <AnimatedIconPressable
-          onPress={goBack}
-          className="flex-row items-center"
-          containerStyle={{ alignSelf: "flex-start" }}
-        >
-          <MaterialIcons name="arrow-back" size={20} color="#1f8a5d" />
-          <Text className={`${secondaryTextClass} ml-2`}>{backLabel}</Text>
-        </AnimatedIconPressable>
+        <View style={{ width: "100%", maxWidth: shellMaxWidth, alignSelf: "center" }}>
+          <PageBackButton onPress={goBack} label={backLabel} textClassName={secondaryTextClass} />
 
-        <View className="mt-4">
-          <Text className={`${textClass} text-2xl font-semibold`}>Transfer Category Equivalencies</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-2`}>
-            {pageDescription}
-          </Text>
-        </View>
-
-        <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5 gap-4`}>
-          <View>
-            <Text className={`${textClass} font-semibold`}>College</Text>
-            <Text className={`${secondaryTextClass} text-xs mt-1`}>
-              Choose whether to browse UW transfer outcomes or Green River source courses.
-            </Text>
-            <View className="mt-3">
-              <SearchableSelect
-                value={selectedCollegeLabel}
-                open={isCollegeSelectorOpen}
-                onToggle={() => {
-                  setIsCampusSelectorOpen(false);
-                  setIsCollegeSelectorOpen((current) => !current);
-                }}
-                onDismiss={() => {
-                  setIsCollegeSelectorOpen(false);
-                }}
-                options={collegeOptions}
-                onSelect={handleCollegeSelect}
-                selectedOptionId={selectedCollegeId}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-                dropdownBackgroundColor={dropdownSurfaceColor}
-                overlayStrategy="modal"
-              />
+          <View className={`${panelClassName} mt-4 px-5 py-5 ${isDesktop ? "flex-row items-center justify-between gap-6" : "gap-4"}`}>
+            <View className={`${isDesktop ? "flex-row items-center flex-1" : ""} gap-4`}>
+              <View className="h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10">
+                <MaterialIcons name="compare-arrows" size={25} color="#10B981" />
+              </View>
+              <View className="flex-1 min-w-0">
+                <Text className={`${textClass} text-2xl font-semibold`}>
+                  Transfer Category Equivalencies
+                </Text>
+                <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                  {pageDescription}
+                </Text>
+              </View>
+            </View>
+            <View className={`rounded-2xl border ${borderClass} px-4 py-3 ${isDesktop ? "min-w-[190px]" : ""}`}>
+              <Text className={`${secondaryTextClass} text-xs`}>Showing</Text>
+              <Text className={`${textClass} text-sm font-semibold mt-1`}>
+                {selectedCampusLabel}
+              </Text>
             </View>
           </View>
 
-          <View className={`border-t ${borderClass} pt-4`}>
-            <Text className={`${textClass} font-semibold`}>Campus</Text>
-            <Text className={`${secondaryTextClass} text-xs mt-1`}>
-              {campusHelperText}
-            </Text>
-            <View className="mt-3">
-              <SearchableSelect
-                value={selectedCampusLabel}
-                open={isCampusSelectorOpen}
-                onToggle={() => {
-                  setIsCollegeSelectorOpen(false);
-                  setIsCampusSelectorOpen((current) => !current);
-                }}
-                onDismiss={() => {
-                  setIsCampusSelectorOpen(false);
-                }}
-                options={campusOptions}
-                onSelect={handleCampusSelect}
-                selectedOptionId={selectedCampusId}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                borderClass={borderClass}
-                dropdownBackgroundColor={dropdownSurfaceColor}
-                overlayStrategy="modal"
-              />
+          <View className={`${panelClassName} px-5 py-5 mt-5 gap-5`}>
+            <View className={`${isDesktop ? "flex-row gap-4" : "gap-4"}`}>
+              <View className={`${isDesktop ? "flex-1" : ""}`}>
+                <Text className={`${textClass} font-semibold`}>College</Text>
+                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                  Choose whether to browse UW transfer outcomes or Green River source courses.
+                </Text>
+                <View className="mt-3">
+                  <SearchableSelect
+                    value={selectedCollegeLabel}
+                    open={isCollegeSelectorOpen}
+                    onToggle={() => {
+                      setIsCampusSelectorOpen(false);
+                      setIsCollegeSelectorOpen((current) => !current);
+                    }}
+                    onDismiss={() => {
+                      setIsCollegeSelectorOpen(false);
+                    }}
+                    options={collegeOptions}
+                    onSelect={handleCollegeSelect}
+                    selectedOptionId={selectedCollegeId}
+                    textClass={textClass}
+                    secondaryTextClass={secondaryTextClass}
+                    borderClass={borderClass}
+                    dropdownBackgroundColor={dropdownSurfaceColor}
+                    overlayStrategy="modal"
+                  />
+                </View>
+              </View>
+
+              <View className={`${isDesktop ? `flex-1 border-l ${borderClass} pl-4` : `border-t ${borderClass} pt-4`}`}>
+                <Text className={`${textClass} font-semibold`}>Campus</Text>
+                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                  {campusHelperText}
+                </Text>
+                <View className="mt-3">
+                  <SearchableSelect
+                    value={selectedCampusLabel}
+                    open={isCampusSelectorOpen}
+                    onToggle={() => {
+                      setIsCollegeSelectorOpen(false);
+                      setIsCampusSelectorOpen((current) => !current);
+                    }}
+                    onDismiss={() => {
+                      setIsCampusSelectorOpen(false);
+                    }}
+                    options={campusOptions}
+                    onSelect={handleCampusSelect}
+                    selectedOptionId={selectedCampusId}
+                    textClass={textClass}
+                    secondaryTextClass={secondaryTextClass}
+                    borderClass={borderClass}
+                    dropdownBackgroundColor={dropdownSurfaceColor}
+                    overlayStrategy="modal"
+                  />
+                </View>
+              </View>
             </View>
-          </View>
-        </View>
 
-        <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
-          <Text className={`${textClass} font-semibold`}>Search equivalencies</Text>
-          <Text className={`${secondaryTextClass} text-xs mt-1`}>
-            {searchHelperText}
-          </Text>
-          <View className={`mt-3 border ${borderClass} rounded-2xl px-4 py-3 flex-row items-center`}>
-            <MaterialIcons name="search" size={20} color="#9CA3AF" />
-            <TextInput
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-              onFocus={() => {
-                setIsCollegeSelectorOpen(false);
-                setIsCampusSelectorOpen(false);
-              }}
-              placeholder="Search courses or categories"
-              placeholderTextColor="#9CA3AF"
-              autoCapitalize="none"
-              autoCorrect={false}
-              returnKeyType="search"
-              className={`${textClass} text-sm flex-1 min-w-0 ml-3`}
-            />
-            {searchQuery ? (
-              <AnimatedIconPressable
-                onPress={() => setSearchQuery("")}
-                className="ml-2"
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel="Clear equivalency search"
-              >
-                <MaterialIcons name="close" size={18} color="#9CA3AF" />
-              </AnimatedIconPressable>
-            ) : null}
-          </View>
-        </View>
-
-        {!visibleTags.length ? (
-          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
-            <Text className={`${textClass} font-semibold`}>No tagged equivalencies found</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-2`}>
-              This campus currently has no source-backed category-tagged transfer rows for the selected filter.
-            </Text>
-          </View>
-        ) : !displayedTags.length ? (
-          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
-            <Text className={`${textClass} font-semibold`}>No matching equivalencies</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-2`}>
-              Try a different course code, title, UW outcome, or category.
-            </Text>
-          </View>
-        ) : (
-          <View className="mt-5 gap-4">
-            {displayedTags.map((tag) => {
-              const rows = filteredEquivalenciesByTag.get(tag) ?? [];
-              const sourceRowCount = equivalenciesByTag.get(tag)?.length ?? rows.length;
-              const isOpen =
-                isSearching || (tagOpenState[tag] ?? (selectedTags.length > 0));
-              return (
-                <View key={tag} className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
+            <View className={`border-t ${borderClass} pt-5`}>
+              <Text className={`${textClass} font-semibold`}>Search equivalencies</Text>
+              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                {searchHelperText}
+              </Text>
+              <View className={`mt-3 border ${borderClass} rounded-2xl px-4 py-3 flex-row items-center`}>
+                <MaterialIcons name="search" size={20} color="#9CA3AF" />
+                <TextInput
+                  value={searchQuery}
+                  onChangeText={setSearchQuery}
+                  onFocus={() => {
+                    setIsCollegeSelectorOpen(false);
+                    setIsCampusSelectorOpen(false);
+                  }}
+                  placeholder="Search courses or categories"
+                  placeholderTextColor="#9CA3AF"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  returnKeyType="search"
+                  className={`${textClass} text-sm flex-1 min-w-0 ml-3`}
+                />
+                {searchQuery ? (
                   <AnimatedIconPressable
-                    onPress={() =>
-                      setTagOpenState((current) => ({
-                        ...current,
-                        [tag]: !(current[tag] ?? (selectedTags.length > 0)),
-                      }))
-                    }
-                    className="flex-row items-start justify-between"
+                    onPress={() => setSearchQuery("")}
+                    className="ml-2"
+                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel="Clear equivalency search"
                   >
-                    <View className="flex-1 min-w-0">
-                      <Text className={`${textClass} font-semibold`}>
-                        {getEligibleTransferHeading(tag)}
-                      </Text>
-                      <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                        {isSearching && rows.length !== sourceRowCount
-                          ? `${rows.length} of ${sourceRowCount} source-backed equivalenc${sourceRowCount === 1 ? "y" : "ies"}`
-                          : `${rows.length} source-backed equivalenc${rows.length === 1 ? "y" : "ies"}`}
-                      </Text>
-                    </View>
-                    <MaterialIcons
-                      name={isOpen ? "expand-less" : "expand-more"}
-                      size={20}
-                      color="#9CA3AF"
-                    />
+                    <MaterialIcons name="close" size={18} color="#9CA3AF" />
                   </AnimatedIconPressable>
+                ) : null}
+              </View>
+            </View>
+          </View>
 
-                  {isOpen ? (
-                    <View className="mt-3 gap-2">
-                      {rows.map((row) => (
-                        <View key={`${tag}-${row.id}`} className={`border ${borderClass} rounded-xl px-3 py-3`}>
-                          <Text className={`${textClass} text-sm font-semibold`}>
-                            {row.sourceCourseTitle
-                              ? `${row.sourceCourseLabel} - ${row.sourceCourseTitle}`
-                              : row.sourceCourseLabel}
+          {!visibleTags.length ? (
+            <View className={`${panelClassName} px-5 py-5 mt-5`}>
+              <Text className={`${textClass} font-semibold`}>No tagged equivalencies found</Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                This campus currently has no source-backed category-tagged transfer rows for the selected filter.
+              </Text>
+            </View>
+          ) : !displayedTags.length ? (
+            <View className={`${panelClassName} px-5 py-5 mt-5`}>
+              <Text className={`${textClass} font-semibold`}>No matching equivalencies</Text>
+              <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                Try a different course code, title, UW outcome, or category.
+              </Text>
+            </View>
+          ) : (
+            <View className="mt-5 gap-4">
+              <View className={`${isDesktop ? "flex-row items-end justify-between" : ""} gap-2`}>
+                <View>
+                  <Text className={`${textClass} text-lg font-semibold`}>Category results</Text>
+                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                    {displayedTags.length} categor{displayedTags.length === 1 ? "y" : "ies"} available for the selected filters.
+                  </Text>
+                </View>
+              </View>
+              {displayedTags.map((tag) => {
+                const rows = filteredEquivalenciesByTag.get(tag) ?? [];
+                const sourceRowCount = equivalenciesByTag.get(tag)?.length ?? rows.length;
+                const isOpen =
+                  isSearching || (tagOpenState[tag] ?? (selectedTags.length > 0));
+                return (
+                  <View key={tag} className={`${panelClassName} px-5 py-5`}>
+                    <AnimatedIconPressable
+                      onPress={() =>
+                        setTagOpenState((current) => ({
+                          ...current,
+                          [tag]: !(current[tag] ?? (selectedTags.length > 0)),
+                        }))
+                      }
+                      className="flex-row items-center justify-between gap-4"
+                    >
+                      <View className="flex-row items-center flex-1 min-w-0 gap-3">
+                        <View className="h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/10">
+                          <MaterialIcons name="label-outline" size={20} color="#10B981" />
+                        </View>
+                        <View className="flex-1 min-w-0">
+                          <Text className={`${textClass} font-semibold`}>
+                            {getEligibleTransferHeading(tag)}
                           </Text>
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                            {selectedCollegeId === "grc"
-                              ? `UW outcome: ${row.targetOutcome}`
-                              : row.targetOutcome}
+                            {isSearching && rows.length !== sourceRowCount
+                              ? `${rows.length} of ${sourceRowCount} source-backed equivalenc${sourceRowCount === 1 ? "y" : "ies"}`
+                              : `${rows.length} source-backed equivalenc${rows.length === 1 ? "y" : "ies"}`}
                           </Text>
-                          {row.ceApprovedReason ? (
-                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                              Allen School CE-approved Natural Science:{" "}
-                              {row.ceApprovedReason === "compound-path"
-                                ? "compound path"
-                                : "approved UW equivalent"}
-                            </Text>
-                          ) : null}
                         </View>
-                      ))}
-                    </View>
-                  ) : null}
-                </View>
-              );
-            })}
-          </View>
-        )}
+                      </View>
+                      <MaterialIcons
+                        name={isOpen ? "expand-less" : "expand-more"}
+                        size={22}
+                        color="#9CA3AF"
+                      />
+                    </AnimatedIconPressable>
+
+                    {isOpen ? (
+                      <View className={`mt-4 ${isDesktop ? "gap-3" : "gap-2"}`}>
+                        {rows.map((row) => (
+                          <View
+                            key={`${tag}-${row.id}`}
+                            className={`border ${borderClass} rounded-2xl px-4 py-3 ${isDesktop ? "flex-row items-center justify-between gap-5" : ""}`}
+                          >
+                            <View className="flex-1 min-w-0">
+                              <Text className={`${textClass} text-sm font-semibold`}>
+                                {row.sourceCourseTitle
+                                  ? `${row.sourceCourseLabel} - ${row.sourceCourseTitle}`
+                                  : row.sourceCourseLabel}
+                              </Text>
+                              {row.ceApprovedReason ? (
+                                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                  Allen School CE-approved Natural Science:{" "}
+                                  {row.ceApprovedReason === "compound-path"
+                                    ? "compound path"
+                                    : "approved UW equivalent"}
+                                </Text>
+                              ) : null}
+                            </View>
+                            <View className={`${isDesktop ? "max-w-[420px] items-end" : "mt-2"}`}>
+                              <Text className={`${secondaryTextClass} text-xs ${isDesktop ? "text-right" : ""}`}>
+                                {selectedCollegeId === "grc"
+                                  ? `UW outcome: ${row.targetOutcome}`
+                                  : row.targetOutcome}
+                              </Text>
+                            </View>
+                          </View>
+                        ))}
+                      </View>
+                    ) : null}
+                  </View>
+                );
+              })}
+            </View>
+          )}
+        </View>
       </ScrollView>
     </ScreenBackground>
   );

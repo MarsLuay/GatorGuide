@@ -1,8 +1,5 @@
 
 import {
-  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID,
-} from "@/constants/transfer-planner-source/computer-engineering-natural-science";
-import {
   getTransferPlannerCanonicalCourse,
   type TransferPlannerCampusId,
   type TransferPlannerResolvedMajorPlan,
@@ -236,8 +233,17 @@ export function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
 
   const lower = normalized.toLowerCase();
   const hasComputerEngineeringNaturalScience =
+    lower.includes("electrical & computer engineering natural science") ||
+    lower.includes("electrical and computer engineering natural science") ||
     lower.includes("computer engineering natural science") ||
     lower.includes("ce-approved natural science");
+  const hasUnresolvedApprovedListCue =
+    /\b(?:approved|department-approved|program-approved|university-approved)\b[\s\S]*\blists?\b/i.test(
+      normalized
+    ) ||
+    /\blists?\b[\s\S]*\b(?:approved|department-approved|program-approved|university-approved)\b/i.test(
+      normalized
+    );
   const hasHumanities =
     lower.includes("humanit") ||
     lower.includes("fine arts") ||
@@ -250,25 +256,58 @@ export function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
     lower.includes("natural science") || /\bnsc\b/i.test(lower) || /\bn\s*\d\b/i.test(normalized);
 
   if (hasComputerEngineeringNaturalScience) {
-    return { tags: [COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID] as const };
+    return { kind: "major-source" as const };
+  }
+  if (hasUnresolvedApprovedListCue) {
+    return null;
   }
   if (hasHumanities && hasSocialScience) {
-    return { tags: ["AH", "SSC"] as const };
+    return { kind: "transfer-equivalency" as const, tags: ["AH", "SSC"] as const };
   }
   if (hasHumanities) {
-    return { tags: ["AH"] as const };
+    return { kind: "transfer-equivalency" as const, tags: ["AH"] as const };
   }
   if (hasSocialScience) {
-    return { tags: ["SSC"] as const };
+    return { kind: "transfer-equivalency" as const, tags: ["SSC"] as const };
   }
   if (hasNaturalScience) {
-    return { tags: ["NSC"] as const };
+    return { kind: "transfer-equivalency" as const, tags: ["NSC"] as const };
   }
   if (lower.includes("elective") || lower.includes("general education") || lower.includes("gen ed")) {
-    return { tags: [] as const };
+    return { kind: "transfer-equivalency" as const, tags: [] as const };
   }
 
-  return { tags: [] as const };
+  return { kind: "transfer-equivalency" as const, tags: [] as const };
+}
+
+function isElectricalComputerEngineeringNaturalScienceText(value: string | null | undefined) {
+  const normalized = String(value ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+  return (
+    normalized.includes("electrical & computer engineering natural science") ||
+    normalized.includes("electrical and computer engineering natural science") ||
+    normalized.includes("ece natural science")
+  );
+}
+
+export function getSuggestedScheduleApprovedListDisplayTitle(input: {
+  optionGroupTitle?: string | null;
+  planId?: string | null;
+  planTitle?: string | null;
+  selectedPathwayLabel?: string | null;
+}) {
+  if (!isElectricalComputerEngineeringNaturalScienceText(input.optionGroupTitle)) {
+    return null;
+  }
+
+  const planTitle = String(input.planTitle ?? "").trim() || "this major";
+  const pathwayLabel =
+    String(input.selectedPathwayLabel ?? "").trim() ||
+    (input.planId === "uw-seattle-electrical-computer-engineering"
+      ? "Embedded Systems Pathway"
+      : "");
+  const planLabel = pathwayLabel ? `${planTitle} (${pathwayLabel})` : planTitle;
+
+  return `5 credits of Natural Sciences (Check approved list) This covers 40/40 NSc credits needed for ${planLabel}.`;
 }
 
 export function getSuggestedScheduleCourseDisplayLabel(courseLabel: string) {
@@ -800,7 +839,18 @@ export function getSuggestedScheduleOptionGroupDisplayTitle(input: {
   optionGroup: SuggestedScheduleOptionGroup;
   titleFallbackAuditRows: ReturnType<typeof auditOptionTitleFallback>;
   visibleOptionIndex: number;
+  plan?: TransferPlannerResolvedMajorPlan | null;
 }) {
+  const approvedListDisplayTitle = getSuggestedScheduleApprovedListDisplayTitle({
+    optionGroupTitle: input.optionGroup.title,
+    planId: input.plan?.id ?? null,
+    planTitle: input.plan?.title ?? null,
+    selectedPathwayLabel: input.plan?.selectedPathwayLabel ?? null,
+  });
+  if (approvedListDisplayTitle) {
+    return approvedListDisplayTitle;
+  }
+
   return (
     input.titleFallbackAuditRows[input.visibleOptionIndex - 1]?.displayedTitle ||
     input.optionGroup.title ||

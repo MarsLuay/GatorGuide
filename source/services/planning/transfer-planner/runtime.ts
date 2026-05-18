@@ -4953,6 +4953,50 @@ function isOnlyStemPrepSuggestedCourse(
   );
 }
 
+function getNormalizedExplicitSuggestedCourseCodes(course: PendingSuggestedCourse) {
+  return course.explicitCourseCodes
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+}
+
+function hasOnlyStemPrepCourseCodes(
+  course: PendingSuggestedCourse,
+  stemPrepCourseCodes: Set<string>
+) {
+  if (!stemPrepCourseCodes.size || !course.explicitCourseCodes.length) {
+    return false;
+  }
+
+  const normalizedCourseCodes = getNormalizedExplicitSuggestedCourseCodes(course);
+
+  return (
+    normalizedCourseCodes.length > 0 &&
+    normalizedCourseCodes.every((courseCode) => stemPrepCourseCodes.has(courseCode))
+  );
+}
+
+function shouldAttachOptionalStemPrepMetadata(input: {
+  course: PendingSuggestedCourse;
+  stemPrepCourseCodes: Set<string>;
+  sourceBackedRequirementCourseCodes: Set<string>;
+}) {
+  if (!hasOnlyStemPrepCourseCodes(input.course, input.stemPrepCourseCodes)) {
+    return false;
+  }
+
+  if (!courseIsDirectUwRequirement(input.course)) {
+    return true;
+  }
+
+  if (input.course.visibilityScope === "visible-grc-completable") {
+    return false;
+  }
+
+  return !getNormalizedExplicitSuggestedCourseCodes(input.course).some((courseCode) =>
+    input.sourceBackedRequirementCourseCodes.has(courseCode)
+  );
+}
+
 function filterStemPrepSuggestedCourses(
   courses: PendingSuggestedCourse[],
   stemPrepCourseCodes: Set<string>,
@@ -4979,16 +5023,63 @@ function filterStemPrepSuggestedCourses(
   });
 }
 
-function attachOptionalStemPrepMetadata(
+function filterRedundantStemPrepSuggestedCourses(
   courses: PendingSuggestedCourse[],
-  stemPrepCourseCodes: Set<string>
+  stemPrepCourseCodes: Set<string>,
+  directRequirementCourses: PendingSuggestedCourse[]
 ) {
   if (!stemPrepCourseCodes.size) {
     return courses;
   }
 
-  return courses.map<PendingSuggestedCourse>((course) => {
+  const directRequirementCourseCodes = new Set(
+    directRequirementCourses
+      .filter(courseIsDirectUwRequirement)
+      .flatMap((course) => course.explicitCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  if (!directRequirementCourseCodes.size) {
+    return courses;
+  }
+
+  return courses.filter((course) => {
     if (!isOnlyStemPrepSuggestedCourse(course, stemPrepCourseCodes)) {
+      return true;
+    }
+
+    const normalizedCourseCodes = getNormalizedExplicitSuggestedCourseCodes(course);
+
+    return !normalizedCourseCodes.every((courseCode) =>
+      directRequirementCourseCodes.has(courseCode)
+    );
+  });
+}
+
+function attachOptionalStemPrepMetadata(
+  courses: PendingSuggestedCourse[],
+  stemPrepCourseCodes: Set<string>,
+  plan?: TransferPlannerMajorPlan | null
+) {
+  if (!stemPrepCourseCodes.size) {
+    return courses;
+  }
+
+  const sourceBackedRequirementCourseCodes = new Set(
+    buildSourceBackedRequiredCourseCodes(plan)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  return courses.map<PendingSuggestedCourse>((course) => {
+    if (
+      !shouldAttachOptionalStemPrepMetadata({
+        course,
+        stemPrepCourseCodes,
+        sourceBackedRequirementCourseCodes,
+      })
+    ) {
       return course;
     }
 
@@ -16572,8 +16663,13 @@ export function buildSuggestedQuarterPlan(input: {
           ...essentialDependencySupportCourses,
           ...trackSupplementalCourses,
         ];
-  const remainingCourses = filterStemPrepSuggestedCourses(
+  const remainingCoursesWithoutRedundantStemPrep = filterRedundantStemPrepSuggestedCourses(
     remainingCoursesWithStemPrep,
+    stemPrepCourseCodes,
+    input.includeStayAtGrcCourses === false ? essentialRemainingCourses : []
+  );
+  const remainingCourses = filterStemPrepSuggestedCourses(
+    remainingCoursesWithoutRedundantStemPrep,
     stemPrepCourseCodes,
     includeStemPrepCourses
   );
@@ -16590,7 +16686,8 @@ export function buildSuggestedQuarterPlan(input: {
         plan: input.plan,
         stemPrepCourseCodes,
       }),
-      stemPrepCourseCodes
+      stemPrepCourseCodes,
+      input.plan
     ),
     "requirement"
   );

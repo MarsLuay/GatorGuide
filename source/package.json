@@ -168,7 +168,7 @@
     "lodash": "4.18.1",
     "node-forge": "1.4.0",
     "postcss": "8.5.10",
-    "protobufjs": "7.5.5",
+    "protobufjs": "7.5.6",
     "uuid": "14.0.0",
     "chokidar": {
       "picomatch": "2.3.2"
@@ -195,7 +195,7 @@
       "brace-expansion": "2.0.3"
     },
     "minimatch@10.2.4": {
-      "brace-expansion": "5.0.5"
+      "brace-expansion": "5.0.6"
     },
     "router@2.2.0": {
       "path-to-regexp": "8.4.2"

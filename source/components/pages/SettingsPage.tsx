@@ -169,6 +169,13 @@ export default function SettingsPage() {
   const accessoryIconColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : "#1f8a5d";
   const dividerColor = isDark ? "#1F2937" : isGreen ? "#166534" : "#A7F3D0";
   const dangerTextClass = isDark || isGreen ? "text-red-400" : "text-red-500";
+  const dangerIconColor = isDark || isGreen ? "#F87171" : "#DC2626";
+  const dangerSurfaceStyle = {
+    backgroundColor: isDark || isGreen ? "rgba(127, 29, 29, 0.22)" : "rgba(254, 242, 242, 0.92)",
+    borderColor: isDark || isGreen ? "rgba(248, 113, 113, 0.28)" : "rgba(248, 113, 113, 0.34)",
+    borderWidth: 1,
+  };
+  const dangerActionClassName = `rounded-2xl px-4 py-5 ${flexDirection} items-center`;
   const nestedPanelClass = isDark
     ? "bg-black/20 border border-gray-800"
     : isGreen
@@ -789,7 +796,7 @@ export default function SettingsPage() {
       };
       const rowContent = (
         <>
-          <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
+          <Ionicons name={item.icon} size={20} color={item.danger ? dangerIconColor : accentColor} />
           <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
             <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
               {item.label}
@@ -1084,10 +1091,11 @@ export default function SettingsPage() {
               onPress={handleLogout}
               disabled={!isHydrated}
               accessibilityLabel={t("settings.logout")}
-              className={`${nestedPanelClass} rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
+              className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
               containerStyle={{ flex: 1 }}
+              style={dangerSurfaceStyle}
             >
-              <Ionicons name="log-out-outline" size={20} color="#EF4444" />
+              <Ionicons name="log-out-outline" size={20} color={dangerIconColor} />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
             </TouchCard>
 
@@ -1095,10 +1103,11 @@ export default function SettingsPage() {
               onPress={() => setShowDeleteConfirm(true)}
               disabled={!isHydrated}
               accessibilityLabel={t("settings.deleteAccount")}
-              className={`${nestedPanelClass} rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
+              className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
               containerStyle={{ flex: 1 }}
+              style={dangerSurfaceStyle}
             >
-              <Ionicons name="trash-outline" size={20} color="#EF4444" />
+              <Ionicons name="trash-outline" size={20} color={dangerIconColor} />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
             </TouchCard>
           </View>
@@ -1205,12 +1214,11 @@ export default function SettingsPage() {
                   onPress={handleLogout}
                   disabled={!isHydrated}
                   accessibilityLabel={t("settings.logout")}
-                  className={`${
-                    isDark ? "bg-gray-900/80 border-gray-800" : isGreen ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200"
-                  } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
+                  className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
                   containerStyle={{ flex: showSectionGrid ? 1 : undefined }}
+                  style={dangerSurfaceStyle}
                 >
-                  <Ionicons name="log-out-outline" size={20} color="#EF4444" />
+                  <Ionicons name="log-out-outline" size={20} color={dangerIconColor} />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
                 </TouchCard>
 
@@ -1218,12 +1226,11 @@ export default function SettingsPage() {
                   onPress={() => setShowDeleteConfirm(true)}
                   disabled={!isHydrated}
                   accessibilityLabel={t("settings.deleteAccount")}
-                  className={`${
-                    isDark ? "bg-gray-900/80 border-gray-800" : isGreen ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200"
-                  } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
+                  className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
                   containerStyle={{ flex: showSectionGrid ? 1 : undefined }}
+                  style={dangerSurfaceStyle}
                 >
-                  <Ionicons name="trash-outline" size={20} color="#EF4444" />
+                  <Ionicons name="trash-outline" size={20} color={dangerIconColor} />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
                 </TouchCard>
               </View>
@@ -1366,8 +1373,9 @@ export default function SettingsPage() {
 
             <AnimatedChipPressable
               onPress={handleDeleteConfirm}
-              className={`bg-emerald-800 rounded-2xl py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+              className={`rounded-2xl py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
               containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
+              style={{ backgroundColor: isDark || isGreen ? "#991B1B" : "#DC2626" }}
               disabled={!isHydrated}
             >
               <Text className="text-white font-semibold">{t("general.delete")}</Text>

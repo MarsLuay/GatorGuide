@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
@@ -85,10 +86,7 @@ export default function SavedCollegesPage() {
         <View
           style={{ width: "100%", maxWidth: 1040, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}
         >
-          <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
-            <MaterialIcons name="arrow-back" size={24} color={placeholderColor} />
-            <Text className={`${secondaryTextClass} ml-2`}>{t("general.back")}</Text>
-          </AnimatedIconPressable>
+          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
           <Text className={`text-2xl ${textClass} mb-1`}>
             {t("savedColleges.title")}

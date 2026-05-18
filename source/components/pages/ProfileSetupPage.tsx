@@ -22,6 +22,7 @@ import { FormInput } from "@/components/ui/FormInput";
 import { AppButton } from "@/components/ui/AppButton";
 import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import {
   documentReaderService,
@@ -448,14 +449,12 @@ export default function ProfileSetupPage() {
               paddingHorizontal: shellHorizontalPadding,
             }}
           >
-            <AnimatedIconPressable
+            <PageBackButton
               onPress={handleBack}
-              className="flex-row items-center"
-              containerStyle={{ alignSelf: "flex-start", marginBottom: 24 }}
-            >
-              <MaterialIcons name="arrow-back" size={20} color={styles.placeholderColor} />
-              <Text className={`ml-2 ${styles.secondaryTextClass}`}>{t("setup.previous")}</Text>
-            </AnimatedIconPressable>
+              label={t("setup.previous")}
+              textClassName={styles.secondaryTextClass}
+              containerStyle={{ marginBottom: 20 }}
+            />
 
             <GlassCard borderRadius={28} noPadding>
               <View style={{ padding: cardPadding }}>

@@ -726,6 +726,38 @@ function buildPathwayLabelFromSupplementalLink(planId, pathwayId) {
   return "";
 }
 
+function buildPathwayEvidenceTokens(value) {
+  return new Set(
+    normalizeSpecializedPlanToken(value).filter(
+      (token) => token.length >= 4 && !["course", "option", "track", "route", "pathway"].includes(token)
+    )
+  );
+}
+
+function pathwayCandidateHasIndependentBlockEvidence(planTitle, block, pathwayCandidate) {
+  const pathwayTokens = buildPathwayEvidenceTokens(
+    normalizePathwayLabelCandidate(planTitle, pathwayCandidate?.label) ||
+      pathwayCandidate?.label ||
+      pathwayCandidate?.id
+  );
+  if (!pathwayTokens.size) {
+    return false;
+  }
+
+  const evidenceText = uniqueStrings([
+    block.sourceLabel,
+    block.primarySourceLabel,
+    block.sourceUrl,
+    block.primarySourceUrl,
+    ...(block.pathwayLabels ?? []),
+    ...(block.requirementCueLines ?? []),
+    ...(block.chooseStatements ?? []),
+  ]).join(" ");
+  const evidenceTokens = buildPathwayEvidenceTokens(evidenceText);
+
+  return [...pathwayTokens].every((token) => evidenceTokens.has(token));
+}
+
 function buildPathwayCandidateFromBlock(planTitle, block) {
   const pathwayId = String(block.pathwayId ?? "").trim();
   const candidates = [];
@@ -745,6 +777,7 @@ function buildPathwayCandidateFromBlock(planTitle, block) {
       id,
       label,
       score: getPathwayCandidateScore(label, sourceKind),
+      sourceKind,
     });
   }
 
@@ -762,13 +795,24 @@ function buildPathwayCandidateFromBlock(planTitle, block) {
     pushCandidate(titleCasePathwayLabel(pathwayId), "fallback");
   }
 
-  return candidates
+  const selectedCandidate = candidates
     .sort(
       (left, right) =>
         right.score - left.score ||
         left.label.length - right.label.length ||
         left.label.localeCompare(right.label)
     )[0] ?? null;
+
+  if (
+    selectedCandidate &&
+    pathwayId &&
+    ["owner", "fallback"].includes(selectedCandidate.sourceKind) &&
+    !pathwayCandidateHasIndependentBlockEvidence(planTitle, block, selectedCandidate)
+  ) {
+    return null;
+  }
+
+  return selectedCandidate;
 }
 
 function buildPrimaryMajorTitlesByPlanId(parsedBlocks) {

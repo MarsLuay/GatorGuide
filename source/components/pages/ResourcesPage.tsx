@@ -371,7 +371,10 @@ export default function ResourcesPage() {
   };
   const getOpportunitySummaryParts = (item: MatchedOpportunity) => {
     if (item.matchReasons.length) {
-      return item.matchReasons;
+      const dueLabel = getOpportunityDueLabel(item);
+      return item.matchReasons.map((reason) =>
+        reason.trim().toLowerCase() === "due soon" ? dueLabel : reason
+      );
     }
 
     return [
@@ -814,22 +817,24 @@ export default function ResourcesPage() {
         onPress={() => {
           void openLink(item.url);
         }}
-        className={`px-4 py-5 flex-row items-start ${
+        className={`px-4 py-4 flex-row items-center ${
           index !== items.length - 1 ? `border-b ${borderClass}` : ""
         }`}
         style={options?.inset ? { paddingLeft: 52 } : undefined}
         accessibilityRole="link"
       >
-        <View className="mt-0.5">
-          <Ionicons name="link-outline" size={18} color={placeholderColor} />
+        <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center">
+          <Ionicons name="link-outline" size={18} color="#008f4e" />
         </View>
 
-        <View className="flex-1 ml-3">
+        <View className="flex-1 ml-3 min-w-0">
           <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
           <Text className={`${secondaryTextClass} text-sm`}>{item.description}</Text>
         </View>
 
-        <MaterialIcons name="open-in-new" size={18} color={placeholderColor} />
+        <View className="w-9 h-9 rounded-2xl bg-emerald-500/10 items-center justify-center ml-3">
+          <MaterialIcons name="open-in-new" size={18} color="#008f4e" />
+        </View>
       </AnimatedCardPressable>
     ));
 
@@ -851,8 +856,10 @@ export default function ResourcesPage() {
           className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
         >
-          <View className="w-2 h-2 rounded-full bg-emerald-500/70 mr-3" />
-          <Text className={`${textClass} flex-1`} numberOfLines={1}>
+          <View className="w-9 h-9 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+            <View className="w-2 h-2 rounded-full bg-emerald-500/80" />
+          </View>
+          <Text className={`${textClass} flex-1 font-medium`} numberOfLines={1}>
             {subsection.title}
           </Text>
           <View className={`${emeraldBadgeClass} mr-3`}>
@@ -882,16 +889,20 @@ export default function ResourcesPage() {
     const sectionItemCount = countResourceSectionItems(section);
 
     return (
-      <View key={section.id} className={`${cardClass} border rounded-2xl overflow-hidden`}>
+      <View key={section.id} className={`${cardClass} border rounded-[28px] overflow-hidden`}>
         <AnimatedCardPressable
           onPress={() => toggleSection(sectionKey)}
-          className="px-4 py-4 flex-row items-center"
+          className="px-5 py-5 flex-row items-center"
           accessibilityRole="button"
         >
-          <MaterialIcons name={section.icon} size={18} color={placeholderColor} />
-          <Text className={`${textClass} ml-2 flex-1`} numberOfLines={1}>
-            {section.title}
-          </Text>
+          <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+            <MaterialIcons name={section.icon} size={20} color="#008f4e" />
+          </View>
+          <View className="flex-1 min-w-0">
+            <Text className={`${textClass} font-semibold`} numberOfLines={1}>
+              {section.title}
+            </Text>
+          </View>
           <View className={`${emeraldBadgeClass} mr-3`}>
             <Text className="text-emerald-500 text-xs font-semibold">{sectionItemCount}</Text>
           </View>
@@ -931,7 +942,7 @@ export default function ResourcesPage() {
           className={
             stackOpportunityActions
               ? "gap-4"
-              : "flex-row items-start justify-between"
+              : "flex-row items-center justify-between"
           }
         >
           <View

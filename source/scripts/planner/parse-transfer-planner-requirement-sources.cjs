@@ -11433,6 +11433,34 @@ function shouldPreferSupplementalDocumentSource(entry, baseParsed, candidate, do
   const baseSignalScore = getParsedDegreeSheetSignalScore(baseParsed);
   const documentSourceRole = classifyRequirementSourceRole(documentEntry);
   const baseCourseCount = baseParsed.courseCodes?.length ?? 0;
+  const baseText = normalizeMatcherText(
+    [
+      baseParsed?.title,
+      ...(baseParsed?.headings ?? []),
+      ...(baseParsed?.requirementCueLines ?? []).slice(0, 20),
+      ...(baseParsed?.snapshotLines ?? []).slice(0, 80),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  const baseHasFocusedCurriculumSections =
+    /\b(?:major|degree|program)?\s*requirements?\b/.test(baseText) &&
+    /\b(?:core|foundational|electives?|choose)\b/.test(baseText);
+  const baseIsFocusedHtmlCurriculum =
+    ["html-curriculum-page", "html-degree-page", "catalog-page"].includes(entry.parserType) &&
+    getSourceRoleScore(entry) >= 3 &&
+    baseHasFocusedCurriculumSections;
+  const baseOnlyCourseCount = (baseParsed.courseCodes ?? []).filter(
+    (courseCode) => !(documentParsed.courseCodes ?? []).includes(courseCode)
+  ).length;
+
+  if (
+    baseIsFocusedHtmlCurriculum &&
+    baseCourseCount >= documentCourseCount + 12 &&
+    baseOnlyCourseCount >= Math.max(8, Math.floor(baseCourseCount * 0.25))
+  ) {
+    return false;
+  }
 
   if (
     hasStrongDocumentIdentity &&

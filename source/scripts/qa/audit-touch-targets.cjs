@@ -225,6 +225,7 @@ function looksIconOnly(originalText, tagName, startIndex, openingTagEnd) {
   if (!hasIcon || /<Text\b/.test(inner)) return false;
 
   const textAfterRemovingMarkup = inner
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, "")
     .replace(/<[^>]*>/g, "")
     .replace(/\{[\s\S]*?\}/g, "")
     .trim();

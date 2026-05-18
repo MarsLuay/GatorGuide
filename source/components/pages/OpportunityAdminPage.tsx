@@ -16,8 +16,8 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import {
   AnimatedCardPressable,
   AnimatedChipPressable,
-  AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
+import { PageBackButton } from "@/components/ui/PageBackButton";
 import { STARTER_OPPORTUNITIES } from "@/constants/starter-opportunities";
 import {
   OPPORTUNITY_DEADLINE_TYPES,
@@ -607,10 +607,7 @@ export default function OpportunityAdminPage() {
       >
         <View style={{ width: "100%", maxWidth: pageMaxWidth, alignSelf: "center" }}>
           <View className="mb-6">
-            <AnimatedIconPressable onPress={back} containerClassName="mb-4 self-start" className="flex-row items-center">
-              <MaterialIcons name="arrow-back" size={24} color={placeholderTextColor} />
-              <Text className={`${secondaryTextClass} ml-2`}>Back</Text>
-            </AnimatedIconPressable>
+            <PageBackButton onPress={back} label="Back" textClassName={secondaryTextClass} />
 
             <Text className={`${textClass} text-3xl font-bold`}>Opportunity Admin</Text>
             <Text className={`${secondaryTextClass} mt-2`}>

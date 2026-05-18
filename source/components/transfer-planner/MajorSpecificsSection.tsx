@@ -50,6 +50,9 @@ export function MajorSpecificsSection({
   const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
   const [isUwClassesOpen, setIsUwClassesOpen] = useState(false);
   const [isUwCoursesConsideredOpen, setIsUwCoursesConsideredOpen] = useState(false);
+  const [openDegreeSpecificSectionIds, setOpenDegreeSpecificSectionIds] = useState<
+    Record<string, boolean>
+  >({});
   const degreeMapSections = plan.degreeMapSections ?? [];
   const grcGeneralEducationCreditLines = useMemo(
     () =>
@@ -159,6 +162,12 @@ export function MajorSpecificsSection({
   const grcTrackDescription = track
     ? `Open this dropdown for all classes needed to complete the ${grcTrackTitle} transfer track at GRC.`
     : "Open this dropdown for the Green River class list currently attached to this major.";
+  const toggleDegreeSpecificSection = (sectionId: string) => {
+    setOpenDegreeSpecificSectionIds((currentValue) => ({
+      ...currentValue,
+      [sectionId]: !currentValue[sectionId],
+    }));
+  };
 
   return (
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
@@ -218,14 +227,38 @@ export function MajorSpecificsSection({
                   ? `These sections summarize the official UW degree structure currently attached to the ${selectedPathwayLabel} route for this major.`
                   : "These sections summarize the official UW degree structure already lifted into the planner for this major."}
               </Text>
-              {degreeMapSections.map((section) => (
+              {degreeMapSections.map((section) => {
+                const isDegreeSpecificSectionOpen =
+                  openDegreeSpecificSectionIds[section.id] ?? false;
+
+                return (
                 <View key={section.id} className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                  <Text className={`${textClass} font-semibold`}>{section.title}</Text>
+                  <TouchOptionRow
+                    onPress={() => toggleDegreeSpecificSection(section.id)}
+                    expanded={isDegreeSpecificSectionOpen}
+                    accessibilityLabel={`${section.title} parsed official source requirements`}
+                  >
+                    <View className="flex-row items-start justify-between gap-3">
+                      <View className="flex-1 min-w-0">
+                        <Text className={`${textClass} font-semibold`}>{section.title}</Text>
+                        <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                          {`${section.items.length} parsed official source requirement${section.items.length === 1 ? "" : "s"}`}
+                        </Text>
                   {section.note ? (
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
                       {section.note}
                     </Text>
                   ) : null}
+                      </View>
+                      <Ionicons
+                        name={isDegreeSpecificSectionOpen ? "chevron-up" : "chevron-down"}
+                        size={18}
+                        color="#9CA3AF"
+                      />
+                    </View>
+                  </TouchOptionRow>
+
+                  {isDegreeSpecificSectionOpen ? (
                   <View className="mt-3 gap-2">
                     {section.items.map((item) => (
                       <View key={`${section.id}-${item}`} className="flex-row items-start gap-2">
@@ -234,8 +267,10 @@ export function MajorSpecificsSection({
                       </View>
                     ))}
                   </View>
+                  ) : null}
                 </View>
-              ))}
+                );
+              })}
             </View>
           ) : null}
 
