@@ -3121,7 +3121,7 @@ test("Parser extracts split either-or course rows as alternatives without a majo
     courseCodes: ["CSE 123", "CSE 143"],
     snapshotLines: [
       "Fundamentals",
-      "* CSE 123 Intro to Computer Programming III (4)",
+      "(5) \uF071 * CSE 123 Intro to Computer Programming III (4)",
       "OR",
       "* CSE 143 Computer Programming II (5)",
     ],
@@ -3141,6 +3141,35 @@ test("Parser extracts split either-or course rows as alternatives without a majo
       ["CSE 123", "CSE 143"].includes(atom.uwCourseCode)
     ),
     false
+  );
+});
+
+test("Parser extracts shorthand programming parenthetical lists as true options", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Engineering Fundamentals",
+    planId: "uw-seattle-pattern-fixture",
+    ownerId: "uw-seattle-pattern-fixture",
+    courseCodes: ["AMATH 301", "CSE 121", "CSE 122", "CSE 123", "CSE 142", "CSE 160"],
+    snapshotLines: [
+      "Engineering Fundamentals (12 credits)",
+      "Technical Electives are CEE 400-level courses that provide",
+      "Computer Programming",
+      "4cr",
+      "students with in-depth knowledge and design experience.",
+      "(AMATH 301, CSE 121, 122, 123, 142 or 160)",
+      "See BSENVE Technical Electives list for details.",
+    ],
+  });
+  const group = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /Computer Programming/i.test(candidate.label ?? "")
+  );
+
+  assert.ok(group, "Expected Computer Programming to emit a true option group.");
+  assert.equal(group.requirementType, "choose_one");
+  assert.deepEqual(
+    new Set(group.options.flatMap((option) => option.uwCourses)),
+    new Set(["AMATH 301", "CSE 121", "CSE 122", "CSE 123", "CSE 142", "CSE 160"])
   );
 });
 

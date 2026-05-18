@@ -18,16 +18,16 @@ const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8 } = require("./
 const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9 } = require("./requirement-source-adapters.generated/blocks-009.generated.ts");
 
 export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-16T09:20:50.042Z",
+  "generatedAt": "2026-05-17T23:49:10.228Z",
   "totalOwners": 389,
   "okCount": 386,
   "failedCount": 3,
   "parsedRequirementSourceBlockCount": 389,
-  "parsedRequirementAtomCandidateCount": 9347,
+  "parsedRequirementAtomCandidateCount": 9353,
   "parsedDegreeMapBlockCandidateCount": 1041,
-  "parsedRequirementGroupCount": 2228,
-  "parsedRequirementCourseCount": 9728,
-  "snapshotFallbackCount": 247,
+  "parsedRequirementGroupCount": 2230,
+  "parsedRequirementCourseCount": 9733,
+  "snapshotFallbackCount": 242,
   "countsByAdapterId": {
     "uw-seattle-html-degree-page": 144,
     "uw-bothell-html-degree-page": 66,
@@ -54,8 +54,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
     "uw-tacoma": 51
   },
   "countsByResolutionStrategy": {
-    "cached-snapshot": 250,
-    "primary-source": 133,
+    "cached-snapshot": 245,
+    "primary-source": 138,
     "alternate-official-source": 6
   },
   "countsBySourceRole": {
@@ -81,16 +81,16 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
   "supportOnlySourceCount": 6,
   "nonSchedulableSourceCount": 2,
   "qualityWarningCount": 188,
-  "qualityNoteCount": 382,
+  "qualityNoteCount": 376,
   "countsByQualitySignalCode": {
-    "snapshot-fallback-used": 247,
+    "snapshot-fallback-used": 242,
     "material-source-structured-drift": 52,
     "alternate-official-source-used": 6,
     "no-parsed-uw-course-codes": 42,
     "low-confidence-parsed-source": 36,
     "large-structured-only-course-gap": 47,
     "high-confidence-low-course-coverage": 10,
-    "snapshot-fallback-heading-context-missing": 129,
+    "snapshot-fallback-heading-context-missing": 128,
     "uw-mse-expected-course-option-missing": 1
   }
 } as TransferPlannerRequirementSourceAdapterSummary;

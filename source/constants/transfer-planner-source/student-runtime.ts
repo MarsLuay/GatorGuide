@@ -990,7 +990,7 @@ function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolv
     ].flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
   ).map((courseCode) => normalizeCourseCode(courseCode));
 
-  return {
+  return refreshRuntimeMatchedTrackCopy({
     ...plan,
     bestTrackId:
       plan.bestTrackId ?? UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID,
@@ -1003,7 +1003,7 @@ function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolv
       ...(plan.validationNotes ?? []),
       "Runtime Mechanical Engineering transfer checklist normalized to the current ME transfer admission and enrollment requirements.",
     ]),
-  };
+  });
 }
 
 function buildUwSeattleCivilRuntimeChecklist() {

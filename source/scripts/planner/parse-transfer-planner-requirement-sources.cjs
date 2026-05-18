@@ -2606,6 +2606,18 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   }
 
   if (
+    looksLikeStandaloneRequirementTitleLine(text) &&
+    !electiveListCue &&
+    !approvedCourseListCue &&
+    !courseListCue
+  ) {
+    return {
+      sectionRole: "primary-requirement-section",
+      reason: "standalone requirement title",
+    };
+  }
+
+  if (
     !explicitChoiceRequirementCue &&
     electiveListCue &&
     /\b\d+\s*(?:-\s*\d+)?\s*credits?\b/i.test(text)
@@ -2755,8 +2767,10 @@ function buildParserPrerequisiteFilterAuditRows(input) {
         hasPrimaryRequirementSectionCue(normalizedLine) ||
         hasAdmissionPrepHeadingCue(normalizedLine) ||
         hasPostAdmissionDegreeCompletionCue(normalizedLine));
+    const lineLooksLikeStandaloneRequirementTitle =
+      courseCodes.length === 0 && looksLikeStandaloneRequirementTitleLine(normalizedLine);
 
-    if (lineLooksLikeHeading) {
+    if (lineLooksLikeHeading || lineLooksLikeStandaloneRequirementTitle) {
       currentSectionTitle = normalizedLine;
       currentRole = explicit.sectionRole;
     }
@@ -3488,6 +3502,7 @@ function stripSnapshotPagePrefix(line) {
 function stripLeadingRequirementGlyphs(line) {
   return normalizeWhitespace(
     String(line ?? "")
+      .replace(/^\(\s*\d+(?:\.\d+)?\s*\)\s*[^A-Za-z0-9(]{1,12}\s*/u, "")
       .replace(/^[^A-Za-z0-9(\[]{1,12}\s*/u, "")
       .replace(/^(?:[•●\-\u2023\u25B8\u1405]+\s*)+/u, "")
   );
@@ -3542,6 +3557,8 @@ const STRONG_CHOICE_REQUIREMENT_CONTEXT_PATTERN = new RegExp(
 );
 const CHOICE_REQUIREMENT_LABEL_PATTERN =
   /\b(?:programming|computing|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus|electives?|options?|approved|course\s+list|list)\b/i;
+const PROGRAMMING_CHOICE_CONTEXT_PATTERN =
+  /^(?:\[[^\]]+\]\s*)?(?:computer\s+)?(?:programming|computing)\b/i;
 const CHOICE_LIST_START_PATTERN = new RegExp(
   `^\\(?\\s*(?:choose(?:\\s+(?:from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|select(?:ed)?(?:\\s+(?:one|from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|one\\s+(?:course\\s+)?from|one\\s+of(?:\\s+the\\s+following)?|either|approved\\s+(?:courses?|electives?|list)|elective\\s+list)\\b`,
   "i"
@@ -3632,24 +3649,30 @@ function findNearbyRequirementChoiceLabel(snapshotLines, choiceLineIndex) {
   for (let index = choiceLineIndex - 1; index >= startIndex; index -= 1) {
     const line = normalizeWhitespace(snapshotLines[index]);
     const lineWithoutPage = stripSnapshotPagePrefix(line);
-    if (/^\d+(?:-\d+)?\s*cr$/i.test(lineWithoutPage)) {
-      creditLine = lineWithoutPage;
+    const labelCandidate = stripLeadingRequirementGlyphs(lineWithoutPage);
+    if (/^\d+(?:-\d+)?\s*cr$/i.test(labelCandidate)) {
+      creditLine = labelCandidate;
       continue;
     }
 
-    if (looksLikeStandaloneRequirementLabelLine(line)) {
-      return stripSnapshotPagePrefix(line);
+    if (extractCourseCodesFromRequirementLine(labelCandidate).length > 0) {
+      return "";
+    }
+
+    if (looksLikeStandaloneRequirementLabelLine(labelCandidate)) {
+      return labelCandidate;
     }
 
     if (
-      looksLikeStandaloneRequirementTitleLine(line) &&
-      hasChoiceRequirementContext(lineWithoutPage)
+      looksLikeStandaloneRequirementTitleLine(labelCandidate) &&
+      (hasChoiceRequirementContext(lineWithoutPage) ||
+        PROGRAMMING_CHOICE_CONTEXT_PATTERN.test(labelCandidate))
     ) {
-      return stripSnapshotPagePrefix(line);
+      return labelCandidate;
     }
 
-    if (looksLikeStandaloneRequirementTitleLine(line) && creditLine) {
-      return normalizeWhitespace(`${stripSnapshotPagePrefix(line)} ${creditLine}`);
+    if (looksLikeStandaloneRequirementTitleLine(labelCandidate) && creditLine) {
+      return normalizeWhitespace(`${labelCandidate} ${creditLine}`);
     }
   }
 
@@ -6050,9 +6073,15 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
     const nearbyHeadingIndicatesStrongChoiceOrElective = hasStrongChoiceRequirementContext(
       choiceSourceLine.nearbyRequirementLabel
     );
-    const hasChoiceContext = hasOwnChoiceContext || nearbyHeadingIndicatesChoiceOrElective;
+    const hasProgrammingChoiceContext =
+      PROGRAMMING_CHOICE_CONTEXT_PATTERN.test(normalizedLine) ||
+      PROGRAMMING_CHOICE_CONTEXT_PATTERN.test(choiceSourceLine.nearbyRequirementLabel);
+    const hasChoiceContext =
+      hasOwnChoiceContext || nearbyHeadingIndicatesChoiceOrElective || hasProgrammingChoiceContext;
     const hasStrongChoiceContext =
-      hasOwnStrongChoiceContext || nearbyHeadingIndicatesStrongChoiceOrElective;
+      hasOwnStrongChoiceContext ||
+      nearbyHeadingIndicatesStrongChoiceOrElective ||
+      hasProgrammingChoiceContext;
     const hasNonChoiceCourseListContext =
       NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN.test(normalizedLine) ||
       SEQUENCE_ALTERNATIVE_CHOICE_LINE_PATTERN.test(normalizedLine);
@@ -6060,6 +6089,7 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
       /\([^)]*\bor\b[^)]*\)/i.test(normalizedLine) &&
       /[,;]\s*[A-Z]{2,8}&?\s*\d{3}/i.test(normalizedLine) &&
       extractedCourseCodes.length >= 4 &&
+      !hasProgrammingChoiceContext &&
       !/\b(?:choose|select|one\s+of|any\s+of)\b/i.test(normalizedLine);
     const hasMultipleCourses = extractedCourseCodes.length >= 2;
     const hasExplicitChooseCount = new RegExp(

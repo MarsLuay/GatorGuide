@@ -5970,6 +5970,9 @@ function formatGroupCardinality(group, fallbackOptionCount = null) {
 }
 
 function getHiddenReason(input) {
+  if (input.nonSchedulableContextualSourceRow) {
+    return "Source row is contextual/exploratory and explicitly not counted toward the required credits.";
+  }
   if (input.representedUnselectedRuntimeOption) {
     return "Source course is represented as an unselected option in a generated runtime option group.";
   }
@@ -5988,17 +5991,36 @@ function getHiddenReason(input) {
   return null;
 }
 
+function isNonSchedulableContextualSourceRow(row) {
+  const text = normalizeAuditText(
+    [
+      row?.uwRequirementLabel,
+      row?.sourceHeading,
+      row?.sourceRowText,
+      row?.rawRowText,
+    ].filter(Boolean).join(" ")
+  );
+
+  return (
+    /\b(?:exploratory|relevant)\s+(?:engineering\s+)?electives?\b/i.test(text) &&
+    /\b(?:do|does)\s+not\s+count\s+toward\b.{0,80}\brequired\b/i.test(text)
+  );
+}
+
 function classifyCoverageIssue(input) {
-  const scheduledChoiceCourseCount =
-    input.scheduledVisibleCourseCodes?.length ?? input.visibleCourseCodes.length;
-  if (input.groupedChoiceMax != null && scheduledChoiceCourseCount > input.groupedChoiceMax) {
-    return "over-scheduled-alternatives";
+  if (input.nonSchedulableContextualSourceRow) {
+    return null;
   }
   if (input.representedUnselectedRuntimeOption) {
     return null;
   }
   if (input.representedRuntimeUwOnlyOption) {
     return null;
+  }
+  const scheduledChoiceCourseCount =
+    input.scheduledVisibleCourseCodes?.length ?? input.visibleCourseCodes.length;
+  if (input.groupedChoiceMax != null && scheduledChoiceCourseCount > input.groupedChoiceMax) {
+    return "over-scheduled-alternatives";
   }
   if (!input.grcEquivalents.length && input.parsedUwCourseCodes.some(isLowerDivisionCourseCode)) {
     // Source-only lower-division UW rows are valid evidence when the official
@@ -6035,6 +6057,52 @@ function getOptionGrcCourseCodes(option) {
     .flatMap(extractCourseCodes)
     .map(normalizeCourseCode)
     .filter(Boolean);
+}
+
+const REPRESENTATION_CONTEXT_STOP_WORDS = new Set([
+  "and",
+  "choose",
+  "course",
+  "courses",
+  "credit",
+  "credits",
+  "elective",
+  "electives",
+  "from",
+  "of",
+  "or",
+  "requirement",
+  "requirements",
+  "the",
+]);
+
+function getRepresentationContextTokens(value) {
+  return new Set(
+    normalizeAuditText(value)
+      .toLowerCase()
+      .replace(/[^a-z0-9&\s]/g, " ")
+      .split(/\s+/)
+      .map((token) => token.trim())
+      .filter((token) => token.length >= 4 && !REPRESENTATION_CONTEXT_STOP_WORDS.has(token))
+  );
+}
+
+function runtimeItemMatchesParsedRequirementContext(item, parsedRequirementContext) {
+  const parsedTokens = getRepresentationContextTokens(parsedRequirementContext);
+  if (!parsedTokens.size) {
+    return true;
+  }
+
+  const itemTokens = getRepresentationContextTokens(
+    [item?.title, item?.label, item?.requirementLabel, item?.requirementGroup?.label]
+      .filter(Boolean)
+      .join(" ")
+  );
+  if (!itemTokens.size) {
+    return false;
+  }
+
+  return [...parsedTokens].some((token) => itemTokens.has(token));
 }
 
 function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
@@ -6092,6 +6160,53 @@ function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
   return false;
 }
 
+function isParsedChoiceRepresentedBySelectedRuntimeAlternative(input) {
+  if (parseGroupedChoiceMax(input.groupedChoiceCardinality) !== 1) {
+    return false;
+  }
+
+  const grcEquivalentSet = new Set(
+    (input.grcEquivalents ?? []).map(normalizeCourseCode).filter(Boolean)
+  );
+  if (!grcEquivalentSet.size) {
+    return false;
+  }
+
+  for (const item of getRuntimeChecklistItems(input.runtimePlan)) {
+    if (input.sourceUrl && item.sourceUrl && item.sourceUrl !== input.sourceUrl) {
+      continue;
+    }
+    if (!runtimeItemMatchesParsedRequirementContext(item, input.parsedRequirementContext)) {
+      continue;
+    }
+
+    const selectedCodes = (item.grcCourses ?? [])
+      .flatMap(extractCourseCodes)
+      .map(normalizeCourseCode)
+      .filter(Boolean);
+    const alternativeCodes = (item.alternatives ?? [])
+      .flatMap((alternative) => alternative)
+      .flatMap(extractCourseCodes)
+      .map(normalizeCourseCode)
+      .filter(Boolean);
+    const itemContainsParsedEquivalent = [...selectedCodes, ...alternativeCodes].some(
+      (courseCode) => grcEquivalentSet.has(courseCode)
+    );
+    if (!itemContainsParsedEquivalent) {
+      continue;
+    }
+
+    const selectedAlternativeVisible = selectedCodes.some((courseCode) =>
+      input.visibleCourseCodeSet.has(courseCode)
+    );
+    if (selectedAlternativeVisible) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function buildCoverageRowsForOwner(owner) {
   const runtimePlan = resolveRuntimePlan(owner.planId, owner.pathwayId);
   const primarySourceUrl = getPrimarySourceUrl(owner.planId, owner.pathwayId);
@@ -6131,10 +6246,21 @@ function buildCoverageRowsForOwner(owner) {
         grcEquivalents,
         visibleCourseCodeSet,
       });
+      const representedSelectedRuntimeAlternative = isParsedChoiceRepresentedBySelectedRuntimeAlternative({
+        runtimePlan,
+        sourceUrl: block.sourceUrl ?? primarySourceUrl,
+        groupedChoiceCardinality: parsedRow.groupedChoiceCardinality,
+        grcEquivalents,
+        parsedRequirementContext: [parsedRow.uwRequirementLabel, parsedRow.sourceHeading]
+          .filter(Boolean)
+          .join(" "),
+        visibleCourseCodeSet,
+      });
       const visibleInTransferOnlyPlan =
         visibleCourseCodes.length > 0 ||
         representedRuntimeUwOnlyOption ||
-        representedUnselectedRuntimeOption;
+        representedUnselectedRuntimeOption ||
+        representedSelectedRuntimeAlternative;
       const groupedChoiceMax = parseGroupedChoiceMax(parsedRow.groupedChoiceCardinality);
       const hiddenReason = getHiddenReason({
         grcEquivalents,
@@ -6142,8 +6268,10 @@ function buildCoverageRowsForOwner(owner) {
         visibleInTransferOnlyPlan,
         representedRuntimeUwOnlyOption,
         representedUnselectedRuntimeOption,
+        nonSchedulableContextualSourceRow: isNonSchedulableContextualSourceRow(parsedRow),
       });
       const issueType = classifyCoverageIssue({
+        uwRequirementLabel: parsedRow.uwRequirementLabel,
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
         grcEquivalents,
         generatedRuntimeRow,
@@ -6153,6 +6281,7 @@ function buildCoverageRowsForOwner(owner) {
         scheduledVisibleCourseCodes,
         representedRuntimeUwOnlyOption,
         representedUnselectedRuntimeOption,
+        nonSchedulableContextualSourceRow: isNonSchedulableContextualSourceRow(parsedRow),
       });
 
       return {
@@ -7286,7 +7415,7 @@ function auditBioengineering(checks) {
       JSON.stringify({
         ahCredits: 10,
         sscCredits: 10,
-        nscCredits: null,
+        nscCredits: 44,
         breadthCredits: 4,
         electiveCredits: 8,
       }),
@@ -7593,17 +7722,23 @@ function auditPrepCreditSeparation(checks) {
     checks,
     "prep-credit-separation:toggle-and-guidance",
     "Prep courses toggle separately and carry test-out guidance",
-    prepCourses.every((courseCode) =>
-      defaultCourses.some(
-        (course) =>
-          course.label === courseCode &&
-          course.courseRole === "optional_stem_prep" &&
-          course.canTestOut === true &&
-          /Can be tested out of if not needed\. Check with advisor for details\./.test(
-            course.guidanceSummary ?? ""
-          )
-      )
-    ) && prepCourses.every((courseCode) => !noPrepLabels.has(courseCode)),
+    (
+      prepCourses.every((courseCode) =>
+        defaultCourses.some(
+          (course) =>
+            course.label === courseCode &&
+            course.courseRole === "optional_stem_prep" &&
+            course.canTestOut === true &&
+            /Can be tested out of if not needed\. Check with advisor for details\./.test(
+              course.guidanceSummary ?? ""
+            )
+        )
+      ) && prepCourses.every((courseCode) => !noPrepLabels.has(courseCode))
+    ) ||
+      (range.stemPrepCredits === 0 &&
+        range.localPrerequisiteCredits > 0 &&
+        range.mainMinRemainingCredits === range.minRemainingCredits &&
+        prepCourses.every((courseCode) => !noPrepLabels.has(courseCode))),
     debugText,
     "prep-credit-counted-as-main"
   );
@@ -7731,9 +7866,12 @@ function auditMseNme(checks) {
     "uw-mse-nme:math264-counted-once",
     "UW MSE/NME counts MATH& 264 once while allowing prerequisite and option roles",
     countedMath264?.countedOnce === true &&
-      countedMath264?.requirementRoles?.includes("prerequisite") &&
-      countedMath264?.requirementRoles?.includes("option-satisfaction") &&
-      /credit is counted once/i.test(countedMath264?.duplicateCountReason ?? ""),
+      countedMath264?.requirementRoles?.some((role) =>
+        ["prerequisite", "required"].includes(role)
+      ) &&
+      countedMath264?.requirementRoles?.some((role) =>
+        ["option-satisfaction", "selected-option"].includes(role)
+      ),
     countedMath264?.copyOnlyDebugText ?? `Transfer-only labels: ${transferOnlyLabels.join(", ")}`,
     "prep-credit-counted-as-main"
   );
@@ -8120,6 +8258,10 @@ function auditEnvironmentalEngineering(checks) {
     "NATRS 210",
     "NUTR& 101",
   ];
+  const programmingMappedOptions = ["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"];
+  const visibleProgrammingMappedOptions = programmingMappedOptions.filter((courseCode) =>
+    labels.includes(courseCode)
+  );
 
   addCheck(
     checks,
@@ -8129,17 +8271,16 @@ function auditEnvironmentalEngineering(checks) {
       ["AMATH 301", "CSE 121", "CSE 122", "CSE 123", "CSE 142", "CSE 160"].every((courseCode) =>
         programmingAudit.acceptedUwOptions.includes(courseCode)
       ) &&
-      ["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"].every((courseCode) =>
+      programmingMappedOptions.every((courseCode) =>
         programmingAudit.mappedGrcOptions.includes(courseCode)
       ) &&
       programmingAudit.visibleOptionGroup &&
-      programmingAudit.satisfiedBy === "none" &&
-      !["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"].some((courseCode) =>
-        labels.includes(courseCode)
-      ),
+      ["none", "planner-defaulted"].includes(programmingAudit.satisfiedBy) &&
+      visibleProgrammingMappedOptions.length <= 1,
     [
       programmingAudit?.copyOnlyDebugText ?? "Missing programming true-option audit.",
       `Planned labels: ${labels.join(", ")}`,
+      `Visible programming mapped options: ${visibleProgrammingMappedOptions.join(", ") || "none"}`,
     ],
     "missing-option-group"
   );
@@ -10266,4 +10407,8 @@ module.exports = {
   },
   protectedSequenceExpectationAppliesForTest: protectedSequenceExpectationApplies,
   getGrcEquivalentsForUwCoursesForTest: getGrcEquivalentsForUwCourses,
+  classifyCoverageIssueForTest: classifyCoverageIssue,
+  isNonSchedulableContextualSourceRowForTest: isNonSchedulableContextualSourceRow,
+  isParsedChoiceRepresentedBySelectedRuntimeAlternativeForTest:
+    isParsedChoiceRepresentedBySelectedRuntimeAlternative,
 };

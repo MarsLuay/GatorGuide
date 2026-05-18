@@ -216,6 +216,119 @@ test("Source-backed coverage ignores legacy-only guide equivalents", () => {
   );
 });
 
+test("Source-backed coverage does not count represented unselected options as over-scheduled", () => {
+  assert.equal(
+    coverageAudit.classifyCoverageIssueForTest({
+      parsedUwCourseCodes: ["CHEM 142", "CHEM 152", "CHEM 220"],
+      grcEquivalents: ["CHEM& 131", "CHEM& 161", "CHEM& 162", "CHEM& 163"],
+      generatedRuntimeRow: true,
+      visibleInTransferOnlyPlan: true,
+      groupedChoiceMax: 1,
+      visibleCourseCodes: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+      scheduledVisibleCourseCodes: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+      representedRuntimeUwOnlyOption: false,
+      representedUnselectedRuntimeOption: true,
+    }),
+    null
+  );
+});
+
+test("Source-backed coverage accepts a visible selected sibling for choose-one alternatives", () => {
+  const sourceUrl = "https://example.test/degree-sheet.pdf";
+  assert.equal(
+    coverageAudit.isParsedChoiceRepresentedBySelectedRuntimeAlternativeForTest({
+      runtimePlan: {
+        applicationChecklist: [],
+        beforeEnrollmentChecklist: [
+          {
+            title: "Basic Science Elective",
+            sourceUrl,
+            grcCourses: ["NATRS 210"],
+            alternatives: [["GEOL& 101"]],
+          },
+        ],
+        stayAtGrcChecklist: [],
+      },
+      sourceUrl,
+      groupedChoiceCardinality: "choose_one: 1 of 10",
+      grcEquivalents: ["BIOL& 211", "GEOL& 101"],
+      parsedRequirementContext: "Basic Science Elective",
+      visibleCourseCodeSet: new Set(["NATRS 210"]),
+    }),
+    true
+  );
+
+  assert.equal(
+    coverageAudit.isParsedChoiceRepresentedBySelectedRuntimeAlternativeForTest({
+      runtimePlan: {
+        applicationChecklist: [],
+        beforeEnrollmentChecklist: [
+          {
+            title: "Statistics Elective",
+            sourceUrl,
+            grcCourses: ["MATH& 146"],
+            alternatives: [["BIOL& 211"]],
+          },
+        ],
+        stayAtGrcChecklist: [],
+      },
+      sourceUrl,
+      groupedChoiceCardinality: "choose_one: 1 of 10",
+      grcEquivalents: ["BIOL& 211", "GEOL& 101"],
+      parsedRequirementContext: "Basic Science Elective",
+      visibleCourseCodeSet: new Set(["MATH& 146"]),
+    }),
+    false
+  );
+});
+
+test("Source-backed coverage treats explicit non-counting exploratory elective lists as contextual", () => {
+  const row = {
+    uwRequirementLabel:
+      "Students should plan to take one exploratory course and relevant engineering electives from the list. While these are helpful for deepening your experience, they do not count toward the 9 credits required.",
+  };
+
+  assert.equal(coverageAudit.isNonSchedulableContextualSourceRowForTest(row), true);
+  assert.equal(
+    coverageAudit.classifyCoverageIssueForTest({
+      ...row,
+      parsedUwCourseCodes: ["ENGR 140"],
+      grcEquivalents: ["ENGR 140"],
+      generatedRuntimeRow: false,
+      visibleInTransferOnlyPlan: false,
+      groupedChoiceMax: null,
+      visibleCourseCodes: [],
+      scheduledVisibleCourseCodes: [],
+      representedRuntimeUwOnlyOption: false,
+      representedUnselectedRuntimeOption: false,
+      nonSchedulableContextualSourceRow: true,
+    }),
+    null
+  );
+
+  const requiredRow = {
+    uwRequirementLabel:
+      "Students must complete one exploratory engineering elective from the list. This required engineering elective counts toward the required credits.",
+  };
+  assert.equal(coverageAudit.isNonSchedulableContextualSourceRowForTest(requiredRow), false);
+  assert.equal(
+    coverageAudit.classifyCoverageIssueForTest({
+      ...requiredRow,
+      parsedUwCourseCodes: ["ENGR 140"],
+      grcEquivalents: ["ENGR 140"],
+      generatedRuntimeRow: false,
+      visibleInTransferOnlyPlan: false,
+      groupedChoiceMax: null,
+      visibleCourseCodes: [],
+      scheduledVisibleCourseCodes: [],
+      representedRuntimeUwOnlyOption: false,
+      representedUnselectedRuntimeOption: false,
+      nonSchedulableContextualSourceRow: false,
+    }),
+    "missing-detected-course"
+  );
+});
+
 test("UWB BBA materializes parser-backed lower-division pathway rows", () => {
   const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
     "uw-bothell-business-administration"

@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
@@ -472,7 +472,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "9a1bee58f7ba9b0bce2ce340a1f7d62d36ff989ed42e85ddbf3d48135bd08da0"
   },
   {
@@ -510,7 +510,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "B EDUC 300 Research & Educational Knowledge (W)",
       "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "f1726e77420625140ac9d877a350201a7de813a01a566373ecd0f1ec003a080e"
   },
   {
@@ -547,7 +547,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "d43d7b1e131f07e7f0e075f79588a1a43586a404b44f432c0cdfb65fd6d9849b"
   },
   {
@@ -583,7 +583,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "078a630917eda1f0443915840674c95c290594831558cb025b9cb1b7edd9dea9"
   },
   {
@@ -629,7 +629,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "e0d0515597f35c332c27a4b4c77bd1360f07659ed88a0c6a231e107c5c520afe"
   },
   {
@@ -696,7 +696,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -728,7 +728,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School.",
       "ACCTG 215 (Financial Accounting)"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "3c256ef768c1d775596fc2847aed4dfd39c35c0481fd0a20449813e5a4719460"
   },
   {
@@ -794,7 +794,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
   },
   {
@@ -827,7 +827,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "6ffa54c452064001e8bf853bd5f36332d9aefb673e3e989453479b199451825f"
   },
   {
@@ -860,7 +860,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "21cb3f0a2be9a197cdd0fc294ea2452144bac234f83bbe2f2f0f6121d65586fe"
   },
   {
@@ -893,7 +893,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "7073be71685fd47974c5e3c8fc9392afb271c9fe8d70978ec4019c7d67183b4f"
   },
   {
@@ -1020,7 +1020,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-16T09:20:50.042Z",
+    "generatedAt": "2026-05-17T23:49:10.228Z",
     "sourceFingerprint": "140eb1cbeb98c02dc9d2bc549079a15c152347516c5330f9c6977344fe1db893"
   }
 ] as const;
