@@ -1003,6 +1003,10 @@ function classifyRequirementSourceRole(entry) {
     return "ignored";
   }
 
+  if (isUnscopedAcsSupplementalSource(entry)) {
+    return "non-schedulable-course-list";
+  }
+
   if (entry?.isPrimaryDegreeRequirementsLink && isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)) {
     return "primary-degree-requirements";
   }
@@ -10886,6 +10890,52 @@ function isHistoricalSupplementalPdfLabel(label) {
   );
 }
 
+function getDegreeRouteTokens(value) {
+  const text = normalizeMatcherText(value);
+  const tokens = new Set();
+  if (/\b(?:ba|b a|bachelor of arts)\b/.test(text)) {
+    tokens.add("ba");
+  }
+  if (/\b(?:bs|b s|bachelor of science)\b/.test(text)) {
+    tokens.add("bs");
+  }
+  if (/\bacs certified\b|\bacs\b/.test(text)) {
+    tokens.add("acs");
+    tokens.add("bs");
+  }
+  return tokens;
+}
+
+function hasConflictingSupplementalDegreeRoute(entry, label, url) {
+  const entryTokens = getDegreeRouteTokens(
+    `${entry?.ownerTitle ?? ""} ${entry?.sourceLabel ?? ""} ${entry?.label ?? ""} ${entry?.url ?? ""}`
+  );
+  const candidateTokens = getDegreeRouteTokens(`${label ?? ""} ${url ?? ""}`);
+
+  if (!entryTokens.size || !candidateTokens.size) {
+    return false;
+  }
+
+  return (
+    (entryTokens.has("ba") && candidateTokens.has("bs")) ||
+    (entryTokens.has("bs") && candidateTokens.has("ba"))
+  );
+}
+
+function isUnscopedAcsSupplementalSource(entry) {
+  const sourceTokens = getDegreeRouteTokens(
+    `${entry?.label ?? ""} ${entry?.sourceLabel ?? ""} ${entry?.url ?? ""}`
+  );
+  if (!sourceTokens.has("acs")) {
+    return false;
+  }
+
+  const ownerScopeTokens = getDegreeRouteTokens(
+    `${entry?.ownerId ?? ""} ${entry?.planId ?? ""} ${entry?.pathwayId ?? ""} ${entry?.ownerTitle ?? ""}`
+  );
+  return !ownerScopeTokens.has("acs");
+}
+
 function extractSupplementalDocumentLinkCandidates(entry, html) {
   const baseUrl = normalizeUrlForComparison(entry.url);
   if (!baseUrl) {
@@ -10921,6 +10971,10 @@ function extractSupplementalDocumentLinkCandidates(entry, html) {
     }
 
     if (!resolvedUrl || !isOfficialLinkedAssetUrl(entry.url, resolvedUrl)) {
+      continue;
+    }
+
+    if (hasConflictingSupplementalDegreeRoute(entry, label, resolvedUrl)) {
       continue;
     }
 

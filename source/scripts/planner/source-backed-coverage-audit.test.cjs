@@ -894,3 +894,175 @@ test("Runtime option audit credits expected options scheduled as local support a
   ]);
   assert.equal(mathRow?.issue, "none");
 });
+
+test("Bothell Electrical Engineering generated output preserves official worksheet course coverage", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-electrical-engineering");
+  assert.ok(plan);
+
+  const sourceBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-electrical-engineering",
+    null
+  );
+  assert.equal(sourceBlocks.length, 1);
+  assert.match(sourceBlocks[0].sourceUrl, /B-EE-Curriculum-AY24_25\.pdf$/);
+
+  const parsedCodes = new Set(sourceBlocks[0].parsedUwCourseCodes ?? []);
+  for (const courseCode of [
+    "BEE 200",
+    "BEE 233",
+    "BEE 425",
+    "BENGR 494",
+    "BENGR 496",
+    "BPHYS 123",
+    "CSS 132",
+    "CSS 142",
+    "STMATH 390",
+  ]) {
+    assert.ok(parsedCodes.has(courseCode), `Expected parsed source block to include ${courseCode}`);
+  }
+
+  const degreeMapCodes = new Set((plan.degreeMapSections ?? []).flatMap((section) => section.items));
+  for (const courseCode of [
+    "BCHEM 143",
+    "BCHEM 144",
+    "BEE 200",
+    "BEE 215",
+    "BEE 233",
+    "BEE 235",
+    "BEE 271",
+    "BEE 331",
+    "BEE 332",
+    "BEE 341",
+    "BEE 361",
+    "BEE 425",
+    "BENGR 494",
+    "BENGR 495",
+    "BENGR 496",
+    "BPHYS 121",
+    "BPHYS 122",
+    "BPHYS 123",
+    "BWRIT 134",
+    "CSS 132",
+    "CSS 133",
+    "CSS 142",
+    "CSS 143",
+    "CSS 301",
+    "STMATH 124",
+    "STMATH 125",
+    "STMATH 126",
+    "STMATH 207",
+    "STMATH 208",
+    "STMATH 224",
+    "STMATH 390",
+  ]) {
+    assert.ok(degreeMapCodes.has(courseCode), `Expected generated degree map to include ${courseCode}`);
+  }
+});
+
+function buildRepresentativeSuggestedPlanCourses(planId, pathwayId = null) {
+  const basePlan = studentRuntime.getTransferPlannerMajorPlan(planId);
+  assert.ok(basePlan, `Expected generated plan ${planId}`);
+  const plan = studentRuntime.resolveTransferPlannerMajorPlan(basePlan, pathwayId);
+  assert.ok(plan, `Expected resolved generated plan ${planId}`);
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    plannerCollegeId: "uw",
+    applicationStatuses: planner.buildRequirementStatuses(plan.applicationChecklist, []),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(plan.beforeEnrollmentChecklist, []),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(plan.stayAtGrcChecklist, []),
+    completedCourses: [],
+    track: null,
+    includeStayAtGrcCourses: true,
+  });
+
+  return suggestedPlan.flatMap((quarter) =>
+    quarter.courses.map((course) => ({
+      ...course,
+      quarterLabel: quarter.label,
+    }))
+  );
+}
+
+function getVisibleSourceBackedGenEdCourses(planId, pathwayId = null) {
+  return buildRepresentativeSuggestedPlanCourses(planId, pathwayId).filter(
+    (course) =>
+      course.sourceKind === "uw-major-breadth" &&
+      course.visibilityScope === "visible-grc-completable" &&
+      course.isVisibleInGrcQuarterPlan === true &&
+      course.isUwOnlyRequirement === false
+  );
+}
+
+test("UW major plans expose campus general education buckets in actual quarter-plan output", () => {
+  const cases = [
+    {
+      planId: "uw-seattle-bioengineering",
+      expectedLabels: [
+        /5 credits of Humanities/i,
+        /5 credits of Social Science/i,
+        /5 credits of Natural Sciences/i,
+      ],
+    },
+    {
+      planId: "uw-tacoma-civil-engineering",
+      expectedLabels: [
+        /5 credits of Humanities/i,
+        /5 credits of Social Science/i,
+        /5 credits of Natural Sciences/i,
+      ],
+    },
+    {
+      planId: "uw-bothell-business-administration",
+      pathwayId: "finance-option-and-concentration",
+      expectedLabels: [
+        /5 credits of Humanities/i,
+        /5 credits of Social Science/i,
+        /5 credits of Natural Sciences/i,
+      ],
+    },
+  ];
+
+  for (const testCase of cases) {
+    const genEdCourses = getVisibleSourceBackedGenEdCourses(
+      testCase.planId,
+      testCase.pathwayId ?? null
+    );
+    assert.ok(
+      genEdCourses.length > 0,
+      `Expected ${testCase.planId} to expose source-backed gen-ed rows in the quarter plan.`
+    );
+    for (const expectedLabel of testCase.expectedLabels) {
+      assert.ok(
+        genEdCourses.some((course) => expectedLabel.test(course.label)),
+        `Expected ${testCase.planId} quarter plan to include ${expectedLabel}.`
+      );
+    }
+    assert.ok(
+      genEdCourses.every((course) => !course.optionGroup && !course.sourceRequirementGroupId),
+      `Expected ${testCase.planId} gen-ed placeholders to stay separate from major-specific requirement groups.`
+    );
+  }
+});
+
+test("UW Bothell Electrical Engineering keeps major-specific source rows and campus gen-ed placeholders separate", () => {
+  const courses = buildRepresentativeSuggestedPlanCourses("uw-bothell-electrical-engineering");
+  const sourceBackedGenEdRows = courses.filter((course) => course.sourceKind === "uw-major-breadth");
+  const majorRequirementRows = courses.filter((course) => course.sourceKind === "uw-major-requirement");
+
+  assert.ok(
+    sourceBackedGenEdRows.some((course) => /5 credits of Humanities/i.test(course.label)),
+    "Expected campus A&H gen-ed placeholder to be visible."
+  );
+  assert.ok(
+    majorRequirementRows.some((course) => /21 credits of Natural Sciences/i.test(course.label)),
+    "Expected official B-EE Natural Sciences source row to remain visible as a major requirement."
+  );
+  assert.ok(
+    sourceBackedGenEdRows.every((course) => !course.sourceRequirementGroupId),
+    "Expected campus gen-ed placeholders not to impersonate major-specific source requirement groups."
+  );
+  assert.ok(
+    majorRequirementRows.every((course) => course.sourceKind !== "uw-major-breadth"),
+    "Expected major-specific rows not to be collapsed into campus gen-ed placeholders."
+  );
+});

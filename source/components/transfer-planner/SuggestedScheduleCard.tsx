@@ -67,7 +67,6 @@ import {
   getSuggestedScheduleOptionGroupSelectionTargetText,
   getSuggestedScheduleOptionGroupStatusVerb,
   getSuggestedScheduleOptionGroupTranscriptSatisfierText,
-  getSuggestedScheduleOptionSatisfiedBy,
   getSuggestedScheduleResolvedOptionIds,
   getSuggestedScheduleSelectedOptionLabels,
   getSuggestedScheduleSelectedOptions,
@@ -287,9 +286,6 @@ function SuggestedScheduleOptionsBox({
                   const optionDisplayLabel = getSuggestedScheduleOptionDisplayLabel(option);
                   const optionCourseDetailText =
                     getSuggestedScheduleOptionCourseDetailText(option);
-                  const optionSelectionSource = isSelected
-                    ? getSuggestedScheduleOptionSatisfiedBy(optionGroup, option.id)
-                    : "none";
                   const optionTranscriptSatisfierText =
                     getSuggestedScheduleOptionCompletedTranscriptSatisfierText(
                       optionGroup,
@@ -344,11 +340,6 @@ function SuggestedScheduleOptionsBox({
                         {option.guidanceSummary ? (
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
                             {option.guidanceSummary}
-                          </Text>
-                        ) : null}
-                        {isSelected && optionSelectionSource !== "none" ? (
-                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                            Selection source: {optionSelectionSource}
                           </Text>
                         ) : null}
                         {isSelected &&

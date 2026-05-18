@@ -7314,6 +7314,7 @@ function auditChemicalEngineering(checks) {
     quarters: quarterPlan,
     track: null,
   });
+  const sourceBackedPlaceholderCredits = creditRange.placeholderCredits ?? 0;
   const electiveListScopeRows = sourceScopeAudit.filter(
     (row) => row.detectedRole === "elective-list"
   );
@@ -7334,7 +7335,8 @@ function auditChemicalEngineering(checks) {
       ) &&
       falseCoverageRows.length === 0 &&
       requiredCoverageAudit.every((row) => row.issue === null) &&
-      creditRange.exactRemainingCredits === 86,
+      sourceBackedPlaceholderCredits > 0 &&
+      creditRange.scheduledMinRemainingCredits - sourceBackedPlaceholderCredits === 86,
     [
       `Labels: ${labels.join(", ")}`,
       sourceScopeAudit.map((row) => row.copyOnlyDebugText).join("\n"),
@@ -8064,7 +8066,8 @@ function auditSbseOptionSatisfaction(checks) {
       !noTranscriptLabels.some((label) =>
         /this requirement|\+ %|AMATH 351 or MATH 125|AMATH 352 or MATH 126/i.test(label)
       ) &&
-      noTranscriptCreditRange.maxRemainingCredits < 129 &&
+      (noTranscriptCreditRange.placeholderCredits ?? 0) > 0 &&
+      noTranscriptCreditRange.maxRemainingCredits - (noTranscriptCreditRange.placeholderCredits ?? 0) < 129 &&
       noTranscriptInvalidOptionAudit.every((row) => row.isAcceptedByCurrentSource) &&
       noTranscriptCurrentVsOldAudit.every((row) => row.transferOnlyShouldShow) &&
       noTranscriptCreditAudit[0]?.oldBseMatchedTrackFilteredCredits === 0 &&
@@ -8124,7 +8127,8 @@ function auditSbseOptionSatisfaction(checks) {
       !plannedLabels.includes("CS 123") &&
       !plannedLabels.includes("CS& 141") &&
       !plannedLabels.includes("ACCT& 203") &&
-      transcriptCreditRange.maxRemainingCredits < 87 &&
+      (transcriptCreditRange.placeholderCredits ?? 0) > 0 &&
+      transcriptCreditRange.maxRemainingCredits - (transcriptCreditRange.placeholderCredits ?? 0) < 87 &&
       invalidOptionAudit.every((row) => row.isAcceptedByCurrentSource) &&
       currentVsOldAudit.every((row) => row.transferOnlyShouldShow) &&
       creditAudit[0]?.oldBseMatchedTrackFilteredCredits === 0 &&

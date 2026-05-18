@@ -10737,16 +10737,10 @@ function isGeneralEducationPlaceholderGrcCompletable(input: {
   );
 }
 
-function shouldExposeSourceBackedMajorGenEdPlaceholdersInGrcPlan(
+function shouldExposeSourceBackedMajorGenEdPlaceholdersInQuarterPlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
   if (!plan) return false;
-
-  // In GRC -> UW mode, source-backed major gen-ed targets are summary/advising data.
-  // Do not let UW graduation buckets become visible Green River quarter-plan rows.
-  if (isUwTransferPlannerPlan(plan)) {
-    return false;
-  }
 
   return true;
 }
@@ -10758,12 +10752,13 @@ function buildGeneralEducationPlaceholders(args: {
   plan?: TransferPlannerMajorPlan | null;
   includePlannerGuidancePlaceholders: boolean;
 }) {
-  const sourceBackedMajorPlaceholders = shouldExposeSourceBackedMajorGenEdPlaceholdersInGrcPlan(args.plan)
+  const sourceBackedMajorPlaceholders = shouldExposeSourceBackedMajorGenEdPlaceholdersInQuarterPlan(args.plan)
     ? buildSourceBackedMajorGeneralEducationPlaceholders({
         plan: args.plan,
         completedCourses: args.completedCourses,
       })
         .filter((placeholder) =>
+          isUwTransferPlannerPlan(args.plan) ||
           isGeneralEducationPlaceholderGrcCompletable({
             placeholder,
             plan: args.plan,
@@ -17756,7 +17751,8 @@ function classifySbseTransferOnlyCourse(input: {
   const transferOnlyShouldShow =
     isCompletedTranscriptCourse ||
     currentSbseSourceBacked ||
-    isPrerequisiteForCurrentSource;
+    isPrerequisiteForCurrentSource ||
+    input.course.sourceKind === "uw-major-breadth";
   const creditRange = getSuggestedQuarterCourseCreditRange(input.course);
   const creditAmount = creditRange.creditMax || creditRange.creditMin || 0;
 
@@ -17780,6 +17776,9 @@ function classifySbseTransferOnlyCourse(input: {
     classification = "prerequisite for a current SBSE source-backed course";
     reason =
       "local prerequisite/corequisite for a visible current SBSE source-backed course.";
+  } else if (input.course.sourceKind === "uw-major-breadth") {
+    classification = "current SBSE source-backed requirement";
+    reason = "campus general education placeholder; visible as a transfer-planner requirement bucket.";
   } else if (staleAlternativeSourceRow) {
     classification = "stale alternative-source row";
     reason = staleOrOldMetadata?.reason ?? "stale alternative-source row.";

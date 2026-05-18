@@ -1,0 +1,260 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+
+const REPO_ROOT = path.resolve(__dirname, "..", "..");
+const TMP_DIR = path.join(REPO_ROOT, ".tmp");
+const OUTPUT_JSON = path.join(TMP_DIR, "transfer-planner-source-block-course-presence-audit.json");
+const OUTPUT_MD = path.join(TMP_DIR, "transfer-planner-source-block-course-presence-audit.md");
+
+const CAMPUS_ORDER = ["uw-seattle", "uw-tacoma", "uw-bothell"];
+
+function readGeneratedJson(relativePath, constName) {
+  const filePath = path.join(REPO_ROOT, relativePath);
+  const text = fs.readFileSync(filePath, "utf8");
+  const match = text.match(new RegExp(`const ${constName} = "([\\s\\S]*?)";`));
+  if (!match) {
+    throw new Error(`Could not find ${constName} in ${relativePath}`);
+  }
+  return JSON.parse(JSON.parse(`"${match[1]}"`));
+}
+
+function normalizeCourseCode(value) {
+  return String(value ?? "")
+    .toUpperCase()
+    .replace(/&/g, "&")
+    .replace(/[^A-Z0-9&]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function uniqueSorted(values) {
+  return Array.from(new Set(values.map(normalizeCourseCode).filter(Boolean))).sort((left, right) =>
+    left.localeCompare(right)
+  );
+}
+
+function uniqueStrings(values) {
+  return Array.from(new Set(values.map((value) => String(value ?? "").trim()).filter(Boolean))).sort(
+    (left, right) => left.localeCompare(right)
+  );
+}
+
+function ownerKey(planId, pathwayId = null) {
+  return `${planId}::${pathwayId ?? ""}`;
+}
+
+function flattenRuntimePlanCourses(plan) {
+  const values = [];
+  const visit = (node) => {
+    if (!node || typeof node !== "object") return;
+    if (typeof node.courseCode === "string") values.push(node.courseCode);
+    if (Array.isArray(node.uwCourses)) values.push(...node.uwCourses);
+    if (Array.isArray(node.equivalentUwCourseCodes)) values.push(...node.equivalentUwCourseCodes);
+    if (Array.isArray(node.displayCourseCodes)) values.push(...node.displayCourseCodes);
+    for (const [key, value] of Object.entries(node)) {
+      if (key === "equivalencyEvidence") continue;
+      if (value && typeof value === "object") visit(value);
+    }
+  };
+  visit(plan);
+  return uniqueSorted(values);
+}
+
+function getDegreeMapCourses(plan) {
+  return uniqueSorted((plan.degreeMapSections ?? []).flatMap((section) => section.items ?? []));
+}
+
+function buildOwners(majorPlans, pathwaysByPlanId) {
+  const owners = [];
+  for (const plan of majorPlans) {
+    if (!CAMPUS_ORDER.includes(plan.campusId)) continue;
+    owners.push({
+      campusId: plan.campusId,
+      planId: plan.id,
+      pathwayId: null,
+      title: plan.title,
+      plan,
+    });
+    for (const pathway of pathwaysByPlanId[plan.id] ?? []) {
+      owners.push({
+        campusId: plan.campusId,
+        planId: plan.id,
+        pathwayId: pathway.id,
+        title: `${plan.title} - ${pathway.label ?? pathway.id}`,
+        plan: pathway,
+      });
+    }
+  }
+  return owners.sort((left, right) => {
+    const campusDelta = CAMPUS_ORDER.indexOf(left.campusId) - CAMPUS_ORDER.indexOf(right.campusId);
+    if (campusDelta) return campusDelta;
+    return ownerKey(left.planId, left.pathwayId).localeCompare(ownerKey(right.planId, right.pathwayId));
+  });
+}
+
+function classifyOwner({ sourceBlocks, parsedCourses, degreeMapCourses, generatedCourses }) {
+  if (!sourceBlocks.length) return "source-unavailable";
+  if (!sourceBlocks.some((block) => isSchedulableSourceBlock(block))) {
+    return "unclear-no-schedulable-source";
+  }
+  if (!parsedCourses.length) return "unclear-no-parsed-courses";
+  const missingFromDegreeMap = parsedCourses.filter((course) => !degreeMapCourses.includes(course));
+  if (missingFromDegreeMap.length) return "issue";
+  return "pass";
+}
+
+function isSchedulableSourceBlock(block) {
+  return (
+    block &&
+    block.supportOnly !== true &&
+    block.nonSchedulable !== true &&
+    block.canCreateRequiredRows !== false &&
+    block.canCreateScheduleRows !== false &&
+    block.sourceScope?.supportOnly !== true &&
+    block.sourceScope?.nonSchedulable !== true &&
+    block.sourceScope?.canCreateRequiredRows !== false &&
+    block.sourceScope?.canCreateScheduleRows !== false
+  );
+}
+
+function main() {
+  fs.mkdirSync(TMP_DIR, { recursive: true });
+  const majorPlans = readGeneratedJson(
+    "constants/transfer-planner-source/student-runtime.generated/major-plans.generated.ts",
+    "TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS_JSON"
+  );
+  const pathwaysByPlanId = readGeneratedJson(
+    "constants/transfer-planner-source/student-runtime.generated/pathways-by-plan-id.generated.ts",
+    "TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID_JSON"
+  );
+  const sourceBlocks = readGeneratedJson(
+    "constants/transfer-planner-source/student-runtime.generated/parsed-requirement-source-block-registry.generated.ts",
+    "TRANSFER_PLANNER_RUNTIME_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY_JSON"
+  );
+  const blocksByOwner = new Map();
+  for (const block of sourceBlocks) {
+    const key = ownerKey(block.planId, block.pathwayId ?? null);
+    const current = blocksByOwner.get(key) ?? [];
+    current.push(block);
+    blocksByOwner.set(key, current);
+  }
+
+  const owners = buildOwners(majorPlans, pathwaysByPlanId);
+  const rows = owners.map((owner) => {
+    const key = ownerKey(owner.planId, owner.pathwayId);
+    const blocks = blocksByOwner.get(key) ?? [];
+    const schedulableBlocks = blocks.filter(isSchedulableSourceBlock);
+    const parsedCourses = uniqueSorted(
+      schedulableBlocks.flatMap((block) => block.parsedUwCourseCodes ?? [])
+    );
+    const degreeMapCourses = getDegreeMapCourses(owner.plan);
+    const generatedCourses = flattenRuntimePlanCourses(owner.plan);
+    const missingFromDegreeMap = parsedCourses.filter((course) => !degreeMapCourses.includes(course));
+    const missingFromGenerated = parsedCourses.filter((course) => !generatedCourses.includes(course));
+    const extraDegreeMapCourses = degreeMapCourses.filter((course) => !parsedCourses.includes(course));
+    return {
+      ownerId: owner.pathwayId
+        ? `${owner.planId}:pathway:${owner.pathwayId}`
+        : owner.planId,
+      campusId: owner.campusId,
+      planId: owner.planId,
+      pathwayId: owner.pathwayId,
+      title: owner.title,
+      status: classifyOwner({ sourceBlocks: blocks, parsedCourses, degreeMapCourses, generatedCourses }),
+      sourceUrls: uniqueStrings(
+        blocks.flatMap((block) => [block.primarySourceUrl, block.sourceUrl, ...(block.coveredSourceUrls ?? [])])
+      ),
+      parsedCourseCount: parsedCourses.length,
+      generatedCourseCount: generatedCourses.length,
+      degreeMapCourseCount: degreeMapCourses.length,
+      missingFromDegreeMap,
+      missingFromGenerated,
+      extraDegreeMapCourses,
+      parsedCourses,
+      degreeMapCourses,
+      generatedCourses,
+    };
+  });
+
+  const campusSummaries = CAMPUS_ORDER.map((campusId) => {
+    const campusRows = rows.filter((row) => row.campusId === campusId);
+    const byStatus = campusRows.reduce((acc, row) => {
+      acc[row.status] = (acc[row.status] ?? 0) + 1;
+      return acc;
+    }, {});
+    return {
+      campusId,
+      owners: campusRows.length,
+      byStatus,
+    };
+  });
+
+  const report = {
+    generatedAt: new Date().toISOString(),
+    methodology:
+      "Compares generated runtime/degree-map course presence against parsed official source blocks already selected by the planner source pipeline. This is a read-only source-block consistency report and does not fetch live official pages.",
+    campusSummaries,
+    rows,
+  };
+  fs.writeFileSync(OUTPUT_JSON, `${JSON.stringify(report, null, 2)}\n`);
+
+  const lines = [
+    "# Transfer Planner Source-Block Course Presence Audit",
+    "",
+    report.methodology,
+    "",
+    "## Campus Summary",
+    "",
+    "| Campus | Owners | Pass | Issue | Unclear/no parsed courses | Source unavailable |",
+    "| --- | ---: | ---: | ---: | ---: | ---: |",
+  ];
+  for (const summary of campusSummaries) {
+    lines.push(
+      `| ${summary.campusId} | ${summary.owners} | ${summary.byStatus.pass ?? 0} | ${summary.byStatus.issue ?? 0} | ${(summary.byStatus["unclear-no-parsed-courses"] ?? 0) + (summary.byStatus["unclear-no-schedulable-source"] ?? 0)} | ${summary.byStatus["source-unavailable"] ?? 0} |`
+    );
+  }
+  lines.push("", "## Non-Passing Owners", "");
+  for (const row of rows.filter((item) => item.status !== "pass")) {
+    lines.push(`### ${row.ownerId}`);
+    lines.push(`- Campus: ${row.campusId}`);
+    lines.push(`- Status: ${row.status}`);
+    lines.push(`- Source URLs: ${row.sourceUrls.length ? row.sourceUrls.join(", ") : "none"}`);
+    lines.push(`- Parsed courses: ${row.parsedCourseCount}`);
+    lines.push(`- Generated runtime traversal courses: ${row.generatedCourseCount}`);
+    lines.push(`- Degree-map courses: ${row.degreeMapCourseCount}`);
+    if (row.missingFromDegreeMap.length) {
+      lines.push(`- Missing from degree map: ${row.missingFromDegreeMap.join(", ")}`);
+    }
+    if (row.missingFromGenerated.length) {
+      lines.push(
+        `- Not found in generated runtime traversal (usually unmapped/degree-map-only evidence): ${row.missingFromGenerated.join(", ")}`
+      );
+    }
+    if (row.extraDegreeMapCourses.length) {
+      lines.push(`- Extra degree-map courses not in parsed source block: ${row.extraDegreeMapCourses.join(", ")}`);
+    }
+    lines.push("");
+  }
+  fs.writeFileSync(OUTPUT_MD, `${lines.join("\n")}\n`);
+
+  console.log("Official course-presence audit complete.");
+  for (const summary of campusSummaries) {
+    const unclearCount =
+      (summary.byStatus["unclear-no-parsed-courses"] ?? 0) +
+      (summary.byStatus["unclear-no-schedulable-source"] ?? 0);
+    console.log(
+      `${summary.campusId}: owners=${summary.owners} pass=${summary.byStatus.pass ?? 0} issues=${summary.byStatus.issue ?? 0} unclear=${unclearCount} source-unavailable=${summary.byStatus["source-unavailable"] ?? 0}`
+    );
+  }
+  console.log(`JSON report: ${OUTPUT_JSON}`);
+  console.log(`Markdown report: ${OUTPUT_MD}`);
+
+  const issueCount = rows.filter((row) => row.status === "issue").length;
+  if (issueCount) {
+    process.exitCode = 1;
+  }
+}
+
+main();

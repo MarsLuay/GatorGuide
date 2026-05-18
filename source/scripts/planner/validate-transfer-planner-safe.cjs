@@ -1,12 +1,42 @@
 #!/usr/bin/env node
 
 const { spawnSync } = require("child_process");
+const fs = require("fs");
 const path = require("path");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const IS_WINDOWS = process.platform === "win32";
-const NPM_BIN = IS_WINDOWS ? "npm.cmd" : "npm";
-const NPX_BIN = IS_WINDOWS ? "npx.cmd" : "npx";
+const NPM_CLI_PATH = process.env.npm_execpath && fs.existsSync(process.env.npm_execpath)
+  ? process.env.npm_execpath
+  : null;
+const NPX_CLI_PATH = NPM_CLI_PATH
+  ? path.join(path.dirname(NPM_CLI_PATH), "npx-cli.js")
+  : null;
+
+function buildNpmInvocation(args) {
+  if (NPM_CLI_PATH) {
+    return {
+      bin: process.execPath,
+      args: [NPM_CLI_PATH, ...args],
+    };
+  }
+  return {
+    bin: process.platform === "win32" ? "npm.cmd" : "npm",
+    args,
+  };
+}
+
+function buildNpxInvocation(args) {
+  if (NPX_CLI_PATH && fs.existsSync(NPX_CLI_PATH)) {
+    return {
+      bin: process.execPath,
+      args: [NPX_CLI_PATH, ...args],
+    };
+  }
+  return {
+    bin: process.platform === "win32" ? "npx.cmd" : "npx",
+    args,
+  };
+}
 
 const STAGES = [
   {
@@ -58,8 +88,7 @@ const STAGES = [
     layer: "parser/source-backed tests",
     group: "tests",
     command: "npm run planner:test:parser",
-    bin: NPM_BIN,
-    args: ["run", "planner:test:parser"],
+    ...buildNpmInvocation(["run", "planner:test:parser"]),
     nextAction: "npm run planner:test:parser",
   },
   {
@@ -67,8 +96,7 @@ const STAGES = [
     layer: "source discovery tests",
     group: "tests",
     command: "npm run planner:test:source-discovery",
-    bin: NPM_BIN,
-    args: ["run", "planner:test:source-discovery"],
+    ...buildNpmInvocation(["run", "planner:test:source-discovery"]),
     nextAction: "npm run planner:test:source-discovery",
   },
   {
@@ -76,8 +104,7 @@ const STAGES = [
     layer: "TypeScript static check",
     group: "static",
     command: "npx tsc --noEmit",
-    bin: NPX_BIN,
-    args: ["tsc", "--noEmit"],
+    ...buildNpxInvocation(["tsc", "--noEmit"]),
     nextAction: "npx tsc --noEmit",
   },
   {
@@ -85,8 +112,7 @@ const STAGES = [
     layer: "lint",
     group: "static",
     command: "npm run lint",
-    bin: NPM_BIN,
-    args: ["run", "lint"],
+    ...buildNpmInvocation(["run", "lint"]),
     nextAction: "npm run lint",
   },
 ].map((stage) => ({

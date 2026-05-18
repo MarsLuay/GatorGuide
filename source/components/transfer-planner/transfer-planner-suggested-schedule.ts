@@ -496,10 +496,6 @@ export function buildSuggestedScheduleCopyOnlyOptionStatusText(input: {
     `Option id: ${input.option.id}`,
     `Option group id: ${input.optionGroup.id}`,
     `Satisfied by: ${satisfiedByText}`,
-    `Selection source: ${getSuggestedScheduleOptionSatisfiedBy(
-      input.optionGroup,
-      input.option.id
-    )}`,
   ].join(" ");
 }
 
@@ -867,7 +863,6 @@ export function buildSuggestedScheduleCopyOnlyOptionGroupVisibilityText(input: {
     "Is visible: yes",
     "Is in option box: yes",
     `Is open: ${input.isOpen ? "yes" : "no"}`,
-    `Selection source: ${input.optionGroup.selectionSource ?? "none"}`,
     `Selected count: ${getSuggestedScheduleOptionGroupSelectedCount(input.optionGroup)}`,
     `Required count: ${getSuggestedScheduleOptionGroupRequiredSelectionCount(input.optionGroup)}`,
     `Resolved satisfied option ids: ${

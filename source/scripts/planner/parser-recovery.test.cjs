@@ -632,6 +632,62 @@ test("Supplemental linked document recovery accepts official Bothell STEM acrony
   assert.deepEqual(eeChecklist.titleAcronymMatches, ["ee"]);
 });
 
+test("Supplemental linked document recovery rejects conflicting degree-route PDFs", () => {
+  const entry = buildRecoveryEntryFixture({
+    id: "uw-seattle-chemistry:primary",
+    ownerId: "uw-seattle-chemistry",
+    ownerTitle: "Chemistry",
+    planId: "uw-seattle-chemistry",
+    campusId: "uw-seattle",
+    parserType: "html-degree-page",
+    url: "https://chem.washington.edu/ba-chemistry",
+    label: "UW BA in Chemistry requirements",
+    sourceLabel: "UW BA in Chemistry requirements",
+  });
+  const html = `
+    <main>
+      <a href="/sites/chem/files/documents/undergrad/acs2018.pdf">
+        BS Chemistry Checklist - ACS Certified (PDF)
+      </a>
+      <a href="/sites/chem/files/documents/undergrad/ba-chemistry-checklist.pdf">
+        BA Chemistry Checklist (PDF)
+      </a>
+    </main>
+  `;
+  const candidates = parser.extractSupplementalDocumentLinkCandidatesForTest(entry, html);
+
+  assert.equal(candidates.some((candidate) => /acs2018\.pdf$/i.test(candidate.url)), false);
+  assert.ok(candidates.some((candidate) => /ba-chemistry-checklist\.pdf$/i.test(candidate.url)));
+});
+
+test("Unscoped ACS-certified supplemental sources cannot create schedulable rows", () => {
+  const unscopedAcsSource = buildRecoveryEntryFixture({
+    id: "uw-seattle-chemistry:source:acs",
+    ownerId: "uw-seattle-chemistry",
+    ownerTitle: "Chemistry",
+    planId: "uw-seattle-chemistry",
+    campusId: "uw-seattle",
+    parserType: "pdf-worksheet",
+    role: "degree-requirements",
+    url: "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
+    label: "BS Chemistry Checklist - ACS Certified (PDF)",
+  });
+  const scopedAcsSource = buildRecoveryEntryFixture({
+    ...unscopedAcsSource,
+    ownerId: "uw-seattle-chemistry:pathway:acs-certified-option",
+    pathwayId: "acs-certified-option",
+    ownerTitle: "Chemistry: ACS Certified Option",
+  });
+
+  assert.equal(parser.classifyRequirementSourceRole(unscopedAcsSource), "non-schedulable-course-list");
+  assert.equal(
+    parser.buildRequirementSourceScope(parser.classifyRequirementSourceRole(unscopedAcsSource))
+      .canCreateScheduleRows,
+    false
+  );
+  assert.equal(parser.classifyRequirementSourceRole(scopedAcsSource), "primary-degree-requirements");
+});
+
 test("Supplemental HTML recovery follows same-program approved elective pages", () => {
   const entry = buildRecoveryEntryFixture({
     id: "uw-bothell-health-studies:primary",
