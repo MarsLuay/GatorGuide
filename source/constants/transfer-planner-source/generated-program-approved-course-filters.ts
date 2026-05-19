@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
+    "generatedAt": "2026-05-19T11:30:14.980Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
+    "generatedAt": "2026-05-19T11:30:14.980Z",
     "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
@@ -472,7 +472,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
+    "generatedAt": "2026-05-19T11:30:14.980Z",
     "sourceFingerprint": "9a1bee58f7ba9b0bce2ce340a1f7d62d36ff989ed42e85ddbf3d48135bd08da0"
   },
   {
@@ -494,7 +494,25 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "BEDUC 205",
       "BEDUC 210",
       "BEDUC 300",
-      "BEDUC 310"
+      "BEDUC 310",
+      "BEDUC 402",
+      "BEDUC 403",
+      "BEDUC 406",
+      "BEDUC 408",
+      "BEDUC 409",
+      "BEDUC 410",
+      "BEDUC 421",
+      "BEDUC 423",
+      "BEDUC 425",
+      "BEDUC 435",
+      "BEDUC 438",
+      "BEDUC 441",
+      "BEDUC 442",
+      "BEDUC 443",
+      "BEDUC 444",
+      "BEDUC 482",
+      "BEDUC 483",
+      "BEDUC 484"
     ],
     "aliases": [
       "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses"
@@ -510,8 +528,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "B EDUC 300 Research & Educational Knowledge (W)",
       "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "f1726e77420625140ac9d877a350201a7de813a01a566373ecd0f1ec003a080e"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "297c24a1f610dc9bfb056c64c557b001698aa5d19beb3b8855df86d7408ae560"
   },
   {
     "filterId": "UW_BOTHELL_PHYSICS_BA_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
@@ -526,6 +544,14 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
+      "BPHYS 311",
+      "BPHYS 312",
+      "BPHYS 314",
+      "BPHYS 321",
+      "BPHYS 322",
+      "BPHYS 323",
+      "BPHYS 324",
+      "BPHYS 325",
       "ENGL 131"
     ],
     "aliases": [
@@ -547,8 +573,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "d43d7b1e131f07e7f0e075f79588a1a43586a404b44f432c0cdfb65fd6d9849b"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "c7095ba2c6abb04915540d4fb3ea4ffbd3cf5e9c47b0c41dbcf98279b2ac2bcd"
   },
   {
     "filterId": "UW_BOTHELL_PHYSICS_BS_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
@@ -562,6 +588,14 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
+      "BPHYS 311",
+      "BPHYS 312",
+      "BPHYS 314",
+      "BPHYS 321",
+      "BPHYS 322",
+      "BPHYS 323",
+      "BPHYS 324",
+      "BPHYS 325",
       "ENGL 131"
     ],
     "aliases": [
@@ -583,8 +617,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "078a630917eda1f0443915840674c95c290594831558cb025b9cb1b7edd9dea9"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "7d1c7832494f9dbf594b0d967b1299acb37b30e2c2c158484c18c74c0ff6c115"
   },
   {
     "filterId": "UW_SEATTLE_ART_ART_PREFIX_COURSES",
@@ -613,9 +647,33 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ART 285",
       "ART 290",
       "ART 292",
+      "ART 300",
+      "ART 301",
+      "ART 302",
+      "ART 303",
+      "ART 333",
+      "ART 345",
+      "ART 350",
+      "ART 353",
+      "ART 355",
+      "ART 358",
+      "ART 360",
+      "ART 365",
+      "ART 372",
+      "ART 390",
+      "ART 392",
+      "ART 393",
+      "ART 395",
+      "ART 400",
       "ART 440",
+      "ART 450",
       "ART 453",
-      "ART 494"
+      "ART 457",
+      "ART 485",
+      "ART 490",
+      "ART 492",
+      "ART 494",
+      "ART 496"
     ],
     "aliases": [
       "uw-seattle-art-art-prefix-courses"
@@ -629,8 +687,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "e0d0515597f35c332c27a4b4c77bd1360f07659ed88a0c6a231e107c5c520afe"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
     "filterId": "UW_SEATTLE_ART_HISTORY_ARTH_PREFIX_COURSES",
@@ -696,7 +754,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
+    "generatedAt": "2026-05-19T11:30:14.980Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -711,7 +769,13 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ACCTG 215"
+      "ACCTG 215",
+      "ACCTG 219",
+      "ACCTG 225",
+      "MGMT 200",
+      "MKTG 301",
+      "MKTG 335",
+      "QMETH 201"
     ],
     "petitionOnlyNotes": [
       "Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School."
@@ -726,10 +790,13 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceEvidenceLines": [
       "Required Courses",
       "Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School.",
-      "ACCTG 215 (Financial Accounting)"
+      "ACCTG 215 (Financial Accounting)",
+      "ACCTG 225 (Managerial Accounting)",
+      "MGMT 200 (Introduction to Law)",
+      "QMETH 201 (Statistical Methods)"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "3c256ef768c1d775596fc2847aed4dfd39c35c0481fd0a20449813e5a4719460"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "872c60d5f1d15da7f5f57132020a2062b7bd46bb009c682c7c79929061440f19"
   },
   {
     "filterId": "UW_SEATTLE_DESIGN_ARTH_PREFIX_COURSES",
@@ -794,8 +861,143 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
+    "generatedAt": "2026-05-19T11:30:14.980Z",
     "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
+  },
+  {
+    "filterId": "UW_SEATTLE_ECONOMICS_ECON_PREFIX_COURSES",
+    "filterKey": "uw-seattle-economics-econ-prefix-courses",
+    "label": "Uw Seattle Economics Econ Prefix Courses",
+    "ownerIds": [
+      "uw-seattle-economics"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "ECON 230",
+      "ECON 235",
+      "ECON 300",
+      "ECON 301",
+      "ECON 382",
+      "ECON 400",
+      "ECON 401",
+      "ECON 402",
+      "ECON 404",
+      "ECON 405",
+      "ECON 406",
+      "ECON 409",
+      "ECON 410",
+      "ECON 411",
+      "ECON 412",
+      "ECON 415",
+      "ECON 422",
+      "ECON 423",
+      "ECON 424",
+      "ECON 426",
+      "ECON 427",
+      "ECON 431",
+      "ECON 432",
+      "ECON 435",
+      "ECON 448",
+      "ECON 450",
+      "ECON 452",
+      "ECON 464",
+      "ECON 471",
+      "ECON 472",
+      "ECON 473",
+      "ECON 475",
+      "ECON 476",
+      "ECON 481",
+      "ECON 482",
+      "ECON 483",
+      "ECON 484",
+      "ECON 485",
+      "ECON 486",
+      "ECON 487",
+      "ECON 488",
+      "ECON 490",
+      "ECON 491",
+      "ECON 492",
+      "ECON 493",
+      "ECON 495",
+      "ECON 496",
+      "ECON 497",
+      "ECON 499",
+      "ECON 500",
+      "ECON 501",
+      "ECON 502",
+      "ECON 503",
+      "ECON 508",
+      "ECON 509",
+      "ECON 511",
+      "ECON 537",
+      "ECON 580",
+      "ECON 581",
+      "ECON 582",
+      "ECON 600",
+      "ECON 601",
+      "ECON 800",
+      "MATH 124",
+      "MATH 311",
+      "STAT 311"
+    ],
+    "aliases": [
+      "uw-seattle-economics-econ-prefix-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Core Courses (35 credits):"
+    ],
+    "sourceEvidenceLines": [
+      "Core Courses (35 credits):",
+      "MATH 124; STAT 311",
+      "ECON 200, ECON 201, ECON 300, ECON 301, ECON 382",
+      "Minimum 2.0 grade in ECON 200, ECON 201, ECON 300, ECON 301",
+      "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
+      "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
+    ],
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "408509e11b8467d5c8eab6ac566d2d259fc8a5932c8a916201e59f26b7b04c47"
+  },
+  {
+    "filterId": "UW_SEATTLE_INTERNATIONAL_STUDIES_SEE_DEPARTMENT_WEBSITE_FOR_LIST_OF_APPROVED_COURSES",
+    "filterKey": "uw-seattle-international-studies-see-department-website-for-list-of-approved-courses",
+    "label": "Uw Seattle International Studies See Department Website For List Of Approved Courses",
+    "ownerIds": [
+      "uw-seattle-international-studies:pathway:ba-option-family:jewish-studies"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+    "sourceRole": "official-catalog",
+    "approvedUwCourseCodes": [
+      "HSTAS 202",
+      "HSTAS 211",
+      "JSISA 301"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "HSTAS 202",
+        "HSTAS 211"
+      ]
+    ],
+    "aliases": [
+      "uw-seattle-international-studies-see-department-website-for-list-of-approved-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "15 credits of electives chosen from an approved list. See department website for approved list of courses."
+    ],
+    "sourceEvidenceLines": [
+      "15 credits of electives chosen from an approved list. See department website for approved list of courses.",
+      "HSTAS 211 and either JSIS C 202 or one additional introductory Asian civilization course (10 credits)*"
+    ],
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "dfab70b22edfb71a128098d86eab4553f706f80a983ffb145d43d85e6512a236"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_300_LEVEL_HUMAN_RIGHTS_OR_LAW_COURSES",
@@ -810,7 +1012,26 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 131"
+      "ANTH 323",
+      "DISST 346",
+      "ENGL 131",
+      "JSISA 324",
+      "JSISB 366",
+      "LSJ 300",
+      "LSJ 320",
+      "LSJ 321",
+      "LSJ 322",
+      "LSJ 326",
+      "LSJ 329",
+      "LSJ 345",
+      "LSJ 375",
+      "POLS 327",
+      "POLS 360",
+      "POLS 361",
+      "POLS 363",
+      "POLS 367",
+      "POLS 368",
+      "SOC 372"
     ],
     "petitionOnlyNotes": [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements."
@@ -827,8 +1048,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "6ffa54c452064001e8bf853bd5f36332d9aefb673e3e989453479b199451825f"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "e2ccb63d4acf3832039d801b9842ee6ee7ca7f542e64b73230d0bfd1ae7b4e78"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_400_LEVEL_CAPSTONE_SEMINAR",
@@ -843,7 +1064,16 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 131"
+      "ANTH 498",
+      "ENGL 131",
+      "LSJ 410",
+      "LSJ 413",
+      "LSJ 421",
+      "LSJ 422",
+      "LSJ 460",
+      "LSJ 490",
+      "LSJ 491",
+      "SOC 476"
     ],
     "petitionOnlyNotes": [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements."
@@ -860,8 +1090,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "21cb3f0a2be9a197cdd0fc294ea2452144bac234f83bbe2f2f0f6121d65586fe"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "7c02d2b529c08adc11905f3014348914f80680a198837e00b16f812b6122a33c"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_REQUIRED_LSJ_300_LEVEL_COURSES",
@@ -876,7 +1106,34 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 131"
+      "ANTH 323",
+      "CHID 332",
+      "DISST 346",
+      "ENGL 131",
+      "JSISA 324",
+      "JSISB 326",
+      "JSISB 366",
+      "JSISB 369",
+      "LSJ 300",
+      "LSJ 320",
+      "LSJ 321",
+      "LSJ 322",
+      "LSJ 329",
+      "LSJ 331",
+      "LSJ 345",
+      "LSJ 375",
+      "LSJ 380",
+      "LSJ 381",
+      "POLS 317",
+      "POLS 327",
+      "POLS 360",
+      "POLS 361",
+      "POLS 363",
+      "POLS 367",
+      "POLS 368",
+      "POLS 370",
+      "SOC 372",
+      "SOC 376"
     ],
     "petitionOnlyNotes": [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements."
@@ -893,8 +1150,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "7073be71685fd47974c5e3c8fc9392afb271c9fe8d70978ec4019c7d67183b4f"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "f5c5cc4d3826702874c743981939ad4a1c889d0cbd7b4323e549de2e7e30663e"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_UPPER_DIVISION_300_AND_400_LEVEL_ELECTIVES",
@@ -909,12 +1166,36 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
+      "AFRAM 437",
+      "AIS 306",
+      "AIS 308",
+      "AIS 330",
+      "AIS 335",
+      "AIS 380",
+      "AIS 385",
       "ANTH 323",
+      "ANTH 498",
+      "CHID 332",
+      "CHID 430",
+      "CHID 433",
+      "CHID 434",
+      "CHID 437",
+      "COM 440",
       "DISST 346",
+      "GEOG 472",
+      "GEOG 479",
+      "GWSS 310",
+      "GWSS 313",
       "JSISA 324",
+      "JSISA 480",
+      "JSISB 310",
       "JSISB 326",
       "JSISB 346",
       "JSISB 366",
+      "JSISB 369",
+      "JSISB 370",
+      "JSISB 424",
+      "JSISB 441",
       "LSJ 300",
       "LSJ 320",
       "LSJ 321",
@@ -924,6 +1205,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ 326",
       "LSJ 327",
       "LSJ 329",
+      "LSJ 331",
       "LSJ 345",
       "LSJ 360",
       "LSJ 361",
@@ -933,13 +1215,45 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ 368",
       "LSJ 372",
       "LSJ 375",
+      "LSJ 380",
+      "LSJ 381",
+      "LSJ 401",
+      "LSJ 410",
+      "LSJ 413",
+      "LSJ 415",
+      "LSJ 416",
+      "LSJ 421",
+      "LSJ 422",
+      "LSJ 428",
+      "LSJ 430",
+      "LSJ 431",
+      "LSJ 438",
+      "LSJ 460",
+      "LSJ 490",
+      "LSJ 491",
+      "PHIL 314",
+      "PHIL 414",
+      "POLS 317",
+      "POLS 320",
       "POLS 327",
+      "POLS 347",
       "POLS 360",
       "POLS 361",
       "POLS 363",
+      "POLS 364",
       "POLS 367",
       "POLS 368",
-      "SOC 372"
+      "POLS 373",
+      "POLS 415",
+      "POLS 430",
+      "POLS 461",
+      "POLS 462",
+      "SOC 371",
+      "SOC 372",
+      "SOC 374",
+      "SOC 376",
+      "SOC 472",
+      "SOC 476"
     ],
     "approvedUwCourseGroups": [
       [
@@ -1020,7 +1334,42 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-18T23:00:09.213Z",
-    "sourceFingerprint": "140eb1cbeb98c02dc9d2bc549079a15c152347516c5330f9c6977344fe1db893"
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "e6692dc66c91b79488b6f7b2f1eeb7ccf9132513a45d655810f85d2d3d2d16d6"
+  },
+  {
+    "filterId": "UW_SEATTLE_MECHANICAL_ENGINEERING_FROM_THE_LIST_OF_APPROVED_400_LEVEL_ME_COURSES",
+    "filterKey": "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses",
+    "label": "Uw Seattle Mechanical Engineering From The List Of Approved 400 Level Me Courses",
+    "ownerIds": [
+      "uw-seattle-mechanical-engineering"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.me.washington.edu/students/ug/requirements",
+    "sourceUrl": "https://www.me.washington.edu/students/ug/requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ME 402",
+      "ME 406",
+      "ME 410",
+      "ME 411",
+      "ME 412",
+      "ME 419",
+      "ME 425"
+    ],
+    "aliases": [
+      "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "From the list of approved 400-level ME courses"
+    ],
+    "sourceEvidenceLines": [
+      "From the list of approved 400-level ME courses",
+      "ME 402",
+      "ME 406"
+    ],
+    "generatedAt": "2026-05-19T11:30:14.980Z",
+    "sourceFingerprint": "a021bd526a4967e010161b6bb09f3d2056f23005d6de590fa72c5935debdd975"
   }
 ] as const;

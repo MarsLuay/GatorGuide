@@ -1720,6 +1720,13 @@ function getApprovedFilterSectionHeadingScore(line, cues) {
   if (!text || extractCourseCodesFromLine(line).length) {
     return 0;
   }
+  if (
+    !cues.phrases.length &&
+    !cues.categoryTokens.length &&
+    !/\b(?:requirement|approved|courses?|list|electives?)\b/.test(text)
+  ) {
+    return 0;
+  }
   if (cues.phrases.some((phrase) => !text.includes(phrase))) {
     return 0;
   }
@@ -2399,6 +2406,13 @@ function hasCourseListSectionCue(text) {
   );
 }
 
+function hasDistributionAreaCourseListSectionCue(text) {
+  const normalized = normalizeWhitespace(text).replace(/[:.]\s*$/g, "");
+  return /^(?:distribution areas?|historical depth(?: courses?)?|power and difference(?: courses?)?|genre,?\s+method,?\s+and language(?: courses?)?|pre-\d{3,4}|post-\d{3,4}|genre|method|language)$/i.test(
+    normalized
+  );
+}
+
 function hasApprovedCourseListSectionCue(text) {
   return /\bapproved\b.{0,80}\b(?:courses?|course list|list)\b|\b(?:courses?|course list|list)\b.{0,80}\bapproved\b/i.test(
     text
@@ -2512,6 +2526,7 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   const approvedCourseListCue = hasApprovedCourseListSectionCue(text);
   const electiveListCue = hasElectiveListSectionCue(text);
   const courseListCue = hasCourseListSectionCue(text);
+  const distributionAreaCourseListCue = hasDistributionAreaCourseListSectionCue(text);
   const headingLike = isLikelySourceSectionHeadingLine(text);
   const admissionCue = hasAdmissionPrepSectionCue(text);
   const primaryCue = hasPrimaryRequirementSectionCue(text);
@@ -2651,10 +2666,16 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
     };
   }
 
-  if (!explicitChoiceRequirementCue && approvedCourseListCue && headingLike) {
+  if (
+    !explicitChoiceRequirementCue &&
+    (approvedCourseListCue || distributionAreaCourseListCue) &&
+    headingLike
+  ) {
     return {
       sectionRole: "approved-course-list",
-      reason: "approved course-list section is support metadata",
+      reason: distributionAreaCourseListCue
+        ? "distribution-area course list is support metadata"
+        : "approved course-list section is support metadata",
     };
   }
 
@@ -2765,7 +2786,8 @@ function buildParserPrerequisiteFilterAuditRows(input) {
         hasPrerequisiteOnlyCue(normalizedLine) ||
         ((hasCourseListSectionCue(normalizedLine) ||
           hasApprovedCourseListSectionCue(normalizedLine) ||
-          hasElectiveListSectionCue(normalizedLine)) &&
+          hasElectiveListSectionCue(normalizedLine) ||
+          hasDistributionAreaCourseListSectionCue(normalizedLine)) &&
           isLikelySourceSectionHeadingLine(normalizedLine)) ||
         parserRules.hasOptionReplacementRequirementCue(normalizedLine) ||
         hasPrimaryRequirementSectionCue(normalizedLine) ||
@@ -2787,6 +2809,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
       hasCourseListSectionCue(normalizedLine) ||
       hasApprovedCourseListSectionCue(normalizedLine) ||
       hasElectiveListSectionCue(normalizedLine) ||
+      hasDistributionAreaCourseListSectionCue(normalizedLine) ||
       hasCreditBucketCue(normalizedLine);
     if (!courseCodes.length && !hasFilterCue) {
       continue;
@@ -3240,6 +3263,17 @@ const WORD_NUMBER_MAP = new Map([
 
 function parseRequirementCreditAmount(value) {
   const text = normalizeWhitespace(String(value ?? ""));
+  const wordParentheticalMatch = text.match(
+    /\b(one|two|three|four|five|six|seven|eight|nine|ten)\s*\(\s*(\d+(?:\.\d+)?)\s*\)\s*(?:credits?|cr)\b/i
+  );
+  if (wordParentheticalMatch) {
+    const numericCredits = Number.parseFloat(wordParentheticalMatch[2]);
+    if (Number.isFinite(numericCredits)) {
+      return numericCredits;
+    }
+    return WORD_NUMBER_MAP.get(wordParentheticalMatch[1].toLowerCase()) ?? null;
+  }
+
   const numericMatch = text.match(/\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i);
   if (numericMatch) {
     const credits = Number.parseFloat(numericMatch[1]);
@@ -3260,6 +3294,20 @@ function parseRequirementCreditRange(value) {
   const text = normalizeWhitespace(String(value ?? ""));
   if (!text) {
     return null;
+  }
+
+  const wordParentheticalMatch = text.match(
+    /\b(one|two|three|four|five|six|seven|eight|nine|ten)\s*\(\s*(\d+(?:\.\d+)?)\s*\)\s*(?:credits?|cr)\b/i
+  );
+  if (wordParentheticalMatch) {
+    const credits = Number.parseFloat(wordParentheticalMatch[2]);
+    if (Number.isFinite(credits) && credits > 0) {
+      return { minCredits: credits, maxCredits: credits };
+    }
+    const wordCredits = WORD_NUMBER_MAP.get(wordParentheticalMatch[1].toLowerCase()) ?? null;
+    if (wordCredits != null && wordCredits > 0) {
+      return { minCredits: wordCredits, maxCredits: wordCredits };
+    }
   }
 
   const rangePatterns = [
@@ -3638,12 +3686,35 @@ function hasStrongChoiceRequirementContext(value) {
 }
 
 function stripNonOptionCourseEvidenceFromChoiceLine(value) {
-  return normalizeWhitespace(
+  let text = normalizeWhitespace(
     String(value ?? "")
       .replace(/\[[^\]]*\b(?:pr|pre-?req|prereq(?:uisite)?)[^\]]*\]/gi, "")
       .replace(/\([^)]*\b(?:pr|pre-?req|prereq(?:uisite)?)[^)]*\)/gi, "")
       .replace(/\b(?:pr|pre-?req|prereq(?:uisite)?):\s*[^.;)\]]+/gi, "")
   );
+  const embeddedOneOfMatch = text.match(
+    /\b(?:one\s+(?:course\s+)?(?:from|of)(?:\s+the\s+following)?|either)\b/i
+  );
+  if (embeddedOneOfMatch?.index && embeddedOneOfMatch.index > 0) {
+    const prefix = text.slice(0, embeddedOneOfMatch.index);
+    const optionTail = text.slice(embeddedOneOfMatch.index);
+    const prefixCourseCodes = extractCourseCodesFromLine(prefix);
+    const prefixLooksLikeRequiredCourseList =
+      /\b(?:including|include|following|courses?|requirements?|complete|minimum|gpa|grade)\b/i.test(
+        prefix
+      ) ||
+      /;\s*$/.test(prefix) ||
+      (prefixCourseCodes.length >= 2 && /[,;]/.test(prefix) && !/\bor\b/i.test(prefix));
+    if (
+      prefixCourseCodes.length > 0 &&
+      prefixLooksLikeRequiredCourseList &&
+      extractCourseCodesFromLine(optionTail).length >= 2
+    ) {
+      text = optionTail;
+    }
+  }
+
+  return normalizeWhitespace(text);
 }
 
 function findNearbyRequirementChoiceLabel(snapshotLines, choiceLineIndex) {
@@ -5357,6 +5428,13 @@ function isNonRequirementSectionedCourseHeading(line) {
     !/\b(?:selected from the following list|courses? listed below|listed below are required|following departments)\b/i.test(
       line
     )
+  ) || (
+    /\b(?:please note|admission deficiencies|prerequisite deficiencies|meet with (?:an?|the) academic advisor|meet with the program advisor)\b/i.test(
+      line
+    ) &&
+    /\b(?:selection of appropriate courses|areas of inquiry|a\s+of\s+i|distribution)\b/i.test(
+      line
+    )
   );
 }
 
@@ -5386,6 +5464,9 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   }
 
   const rawLine = normalizeWhitespace(stripChoiceListLine(snapshotLines?.[index] ?? ""));
+  if (isApprovedListPlaceholderWithoutImmediateCourseList(snapshotLines, index, rawLine)) {
+    return null;
+  }
   const previousMeaningfulLine = (snapshotLines ?? [])
     .slice(Math.max(0, index - 3), index)
     .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
@@ -5394,6 +5475,8 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   if (
     !rawLine ||
     isNonRequirementSectionedCourseHeading(rawLine) ||
+    looksLikeDegreeTotalGeneralElectiveProse(rawLine) ||
+    looksLikeElectiveTimingOrSamplePlanNote(rawLine) ||
     sourceLineStartsWithCourseCode(rawLine) ||
     (previousMeaningfulLine &&
       sourceLineStartsWithCourseCode(previousMeaningfulLine) &&
@@ -5410,7 +5493,12 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   }
 
   const followingCreditLine = normalizeWhitespace(stripChoiceListLine(snapshotLines?.[index + 1] ?? ""));
-  const followingCreditRange = parseSectionHeadingCreditRange(followingCreditLine);
+  const followingCreditRange =
+    followingCreditLine &&
+    !sourceLineStartsWithCourseCode(followingCreditLine) &&
+    !extractCourseCodesFromLine(followingCreditLine).length
+      ? parseSectionHeadingCreditRange(followingCreditLine)
+      : null;
   if (
     followingCreditRange &&
     !/\bprerequisites?\b/i.test(rawLine) &&
@@ -5568,6 +5656,8 @@ function getFallbackSectionedElectiveHeadingDescriptor(owner, snapshotLines, ind
   if (
     !rawLine ||
     isNonRequirementSectionedCourseHeading(rawLine) ||
+    looksLikeDegreeTotalGeneralElectiveProse(rawLine) ||
+    looksLikeElectiveTimingOrSamplePlanNote(rawLine) ||
     sourceLineStartsWithCourseCode(rawLine) ||
     extractCourseCodesFromLine(rawLine).length > 0 ||
     !/\belectives?\b/i.test(rawLine)
@@ -5613,6 +5703,12 @@ function isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollected
     return false;
   }
   if (isSectionedOptionCourseBoundary(line)) {
+    return true;
+  }
+  if (
+    looksLikeDegreeTotalGeneralElectiveProse(line) ||
+    looksLikeElectiveTimingOrSamplePlanNote(line)
+  ) {
     return true;
   }
   if (!hasCollectedCourses || sourceLineStartsWithCourseCode(line)) {
@@ -6347,6 +6443,29 @@ function nextLineLooksLikeCourseListForHeading(snapshotLines, index) {
   return extractCourseCodesFromLine(nextLine).length >= 2 && /[,;]/.test(nextLine);
 }
 
+function isApprovedListPlaceholderWithoutImmediateCourseList(snapshotLines, index, line) {
+  const normalizedLine = normalizeWhitespace(line);
+  if (!/\bapproved\b/i.test(normalizedLine) || !/\blist\b/i.test(normalizedLine)) {
+    return false;
+  }
+  if (!/\b(?:from|approved|department[-\s]approved|see adviser|accordion|website)\b/i.test(normalizedLine)) {
+    return false;
+  }
+  if (nextLineLooksLikeCourseListForHeading(snapshotLines, index)) {
+    return false;
+  }
+
+  const nextMeaningfulLine = (snapshotLines ?? [])
+    .slice(index + 1, index + 4)
+    .map((candidate) => normalizeWhitespace(stripChoiceListLine(candidate)))
+    .find(Boolean);
+  return (
+    /\bfrom\s+(?:the\s+)?approved\s+list\b/i.test(normalizedLine) ||
+    /\bsee adviser\b/i.test(normalizedLine) ||
+    /\bdepartment[-\s]approved\s+lists?\b/i.test(`${normalizedLine} ${nextMeaningfulLine ?? ""}`)
+  );
+}
+
 function startsWithCategoryCreditCue(text) {
   const sourceLine = normalizeWhitespace(text);
   return (
@@ -6359,11 +6478,41 @@ function startsWithCategoryCreditCue(text) {
   );
 }
 
+function looksLikeDegreeTotalGeneralElectiveProse(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return (
+    /\b(?:additional\s+)?(?:general\s+)?electives?\b/i.test(normalizedText) &&
+    (/\b(?:as needed to reach|totaling(?: a)?(?: minimum)?(?: of)?|minimum(?: of)? total(?: of)?|total(?:s|ed)?(?: the)?)\b.{0,80}\b1?80\s+credits?\b/i.test(
+      normalizedText
+    ) ||
+      /\bbring(?:s|ing)?(?: your)? total to\s+1?80\b/i.test(normalizedText) ||
+      /\bgeneral electives?\s+may also be required\b.{0,120}\bdepending\b/i.test(
+        normalizedText
+      ))
+  );
+}
+
+function looksLikeElectiveTimingOrSamplePlanNote(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return (
+    /\belectives?\b/i.test(normalizedText) &&
+    /\bmay be taken\b/i.test(normalizedText) &&
+    /\b(?:designated|schedule permitting|sample plan|suggested)\b/i.test(normalizedText)
+  );
+}
+
 function shouldSkipCreditBucketLine(snapshotLines, index, text) {
   const normalizedText = normalizeWhitespace(text);
   if (
     !normalizedText ||
     (looksLikeCompositeCreditHeading(normalizedText) && !startsWithCategoryCreditCue(normalizedText))
+  ) {
+    return true;
+  }
+
+  if (
+    looksLikeDegreeTotalGeneralElectiveProse(normalizedText) ||
+    looksLikeElectiveTimingOrSamplePlanNote(normalizedText)
   ) {
     return true;
   }
@@ -6553,6 +6702,13 @@ function buildGenericCreditBucketRequirementGroups(owner, snapshotLines) {
   for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
     const rawLine = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
     if (!hasCreditBucketCue(rawLine) || shouldSkipCreditBucketLine(snapshotLines, index, rawLine)) {
+      continue;
+    }
+    if (
+      !isApprovedListPlaceholderWithoutImmediateCourseList(snapshotLines, index, rawLine) &&
+      looksLikeSectionedCourseHeadingLine(rawLine) &&
+      hasUpcomingSectionedCourseRows(snapshotLines, index, 1)
+    ) {
       continue;
     }
 
@@ -8109,10 +8265,10 @@ function findCatalogAnchorTag(html, anchor) {
 
 function getCatalogPeerBoundaryPattern(anchor) {
   if (/^credential-/i.test(String(anchor ?? ""))) {
-    return /<(?:(?:h[3-5]\b[^>]*\bid=(["'])credential-[^"']+\1[^>]*>[\s\S]*?<\/h[3-5]>)|(?:div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\2[^>]*\bdata-expand=(["'])credential-[^"']+\3[^>]*>))/gi;
+    return /<(?:(?:h[23]\b[^>]*\bid=(["'])program-[^"']+\1[^>]*>[\s\S]*?<\/h[23]>)|(?:h[3-5]\b[^>]*\bid=(["'])credential-[^"']+\2[^>]*>[\s\S]*?<\/h[3-5]>)|(?:div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\3[^>]*\bdata-expand=(["'])[^"']*(?:program|credential)-[^"']+\4[^>]*>))/gi;
   }
 
-  return /<(?:(?:h[23]\b[^>]*\bid=(["'])program-[^"']+\1[^>]*>[\s\S]*?<\/h[23]>)|(?:div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\2[^>]*\bdata-expand=(["'])program-[^"']+\3[^>]*>))/gi;
+  return /<(?:(?:h[23]\b[^>]*\bid=(["'])program-[^"']+\1[^>]*>[\s\S]*?<\/h[23]>)|(?:div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\2[^>]*\bdata-expand=(["'])[^"']*program-[^"']+\3[^>]*>))/gi;
 }
 
 function findNextCatalogPeerBoundary(html, searchStartIndex, anchor = null) {
@@ -8144,7 +8300,7 @@ function shouldStopMajorCatalogScopeBeforeCredentialSections(entry, anchor) {
 
 function findNextCatalogCredentialBoundary(html, searchStartIndex, searchEndIndex = html.length) {
   const boundaryPattern =
-    /<div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\1[^>]*\bdata-expand=(["'])credential-[^"']+\2[^>]*>[\s\S]*?<\/div>/gi;
+    /<div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\1[^>]*\bdata-expand=(["'])[^"']*credential-[^"']+\2[^>]*>[\s\S]*?<\/div>/gi;
   boundaryPattern.lastIndex = Math.max(0, searchStartIndex);
   const match = boundaryPattern.exec(html);
 
@@ -8179,6 +8335,131 @@ function collectIgnoredCatalogNeighboringSections(html, searchStartIndex, anchor
   }
 
   return ignored;
+}
+
+function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
+  if (
+    !entry ||
+    entry.pathwayId ||
+    !isLegacyStudentCatalogSource(entry) ||
+    !["catalog-page", "html-degree-page", "html-curriculum-page", "html-overview-page"].includes(
+      entry.parserType
+    )
+  ) {
+    return null;
+  }
+
+  const sourceRole = classifyRequirementSourceRole(entry);
+  const programBoundaryPattern =
+    /<div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\1[^>]*\bdata-expand=(["'])([^"']*program-[^"']+)\2[^>]*>/gi;
+
+  for (const match of html.matchAll(programBoundaryPattern)) {
+    const dataExpand = String(match[3] ?? "");
+    if (!/\bprogram-UG-/i.test(dataExpand)) {
+      continue;
+    }
+
+    const currentProgramHeaderEndIndex = html.indexOf("</div>", (match.index ?? 0) + match[0].length);
+    const stopSearchStart =
+      currentProgramHeaderEndIndex >= 0
+        ? currentProgramHeaderEndIndex + "</div>".length
+        : (match.index ?? 0) + match[0].length;
+    const stopBoundary = findNextCatalogPeerBoundary(
+      html,
+      stopSearchStart,
+      "program"
+    );
+    const sectionHtml = html.slice(match.index ?? 0, stopBoundary.index);
+    const sectionLines = buildHtmlLines(sectionHtml);
+    const sectionHeadings = extractHeadings(sectionHtml);
+    const sectionHeading = sectionHeadings[0] || stripHtml(match[0]) || null;
+    const sectionMatchedSelectedMajor = catalogSectionMatchesSelectedMajor(
+      entry,
+      sectionHeading,
+      sectionLines
+    );
+    if (!sectionMatchedSelectedMajor) {
+      continue;
+    }
+
+    return {
+      scoped: true,
+      lines: sectionLines,
+      headings: sectionHeadings,
+      sectionAudit: buildSourceSectionAudit({
+        majorId: entry.planId,
+        sourceUrl: entry.url,
+        sourceRole,
+        requestedAnchor: null,
+        anchorFound: false,
+        sectionHeading,
+        sectionMatchedSelectedMajor,
+        stopBoundary: stopBoundary.label,
+        ignoredNeighboringSections: collectIgnoredCatalogNeighboringSections(
+          html,
+          stopBoundary.index,
+          "program"
+        ),
+      }),
+    };
+  }
+
+  return null;
+}
+
+function scopeLegacyCatalogHtmlByPathwayCredential(entry, html) {
+  if (
+    !entry?.pathwayId ||
+    !isLegacyStudentCatalogSource(entry) ||
+    !["catalog-page", "html-degree-page", "html-curriculum-page", "html-overview-page"].includes(
+      entry.parserType
+    )
+  ) {
+    return null;
+  }
+
+  const sourceRole = classifyRequirementSourceRole(entry);
+  const credentialHeadingPattern =
+    /<h[3-5]\b[^>]*\bid=(["'])credential-[^"']+\1[^>]*>([\s\S]*?)<\/h[3-5]>/gi;
+
+  for (const match of html.matchAll(credentialHeadingPattern)) {
+    const sectionHeading = stripHtml(match[2]);
+    if (!lineMatchesStrictSelectedPathwayIdentity(entry, sectionHeading)) {
+      continue;
+    }
+
+    const stopBoundary = findNextCatalogPeerBoundary(
+      html,
+      (match.index ?? 0) + match[0].length,
+      "credential-derived"
+    );
+    const sectionHtml = html.slice(match.index ?? 0, stopBoundary.index);
+    const sectionLines = buildHtmlLines(sectionHtml);
+    const sectionHeadings = extractHeadings(sectionHtml);
+
+    return {
+      scoped: true,
+      lines: sectionLines,
+      headings: sectionHeadings,
+      sectionAudit: buildSourceSectionAudit({
+        majorId: entry.planId,
+        sourceUrl: entry.url,
+        sourceRole,
+        requestedAnchor: null,
+        anchorFound: false,
+        sectionHeading,
+        sectionMatchedSelectedMajor: true,
+        stopBoundary: stopBoundary.label,
+        ignoredNeighboringSections: collectIgnoredCatalogNeighboringSections(
+          html,
+        stopBoundary.index,
+          "credential-derived"
+        ),
+      }),
+    };
+  }
+
+  return null;
 }
 
 function catalogSectionMatchesSelectedMajor(entry, sectionHeading, sectionLines) {
@@ -8229,7 +8510,10 @@ function scopeCatalogHtmlByAnchor(entry, html) {
   const sourceRole = classifyRequirementSourceRole(entry);
   const requestedAnchor = getRequestedUrlAnchor(entry.url);
   if (!requestedAnchor) {
-    return null;
+    return (
+      scopeLegacyCatalogHtmlByPathwayCredential(entry, html) ??
+      scopeLegacyCatalogHtmlByOwnerProgram(entry, html)
+    );
   }
 
   const anchorMatch = findCatalogAnchorTag(html, requestedAnchor);
@@ -8462,6 +8746,62 @@ function shouldUseFullFocusedDegreeHtmlScope(entry, title, headings, lines) {
   );
 }
 
+function sourceUrlPathMentionsPathwayId(entry) {
+  const pathwayId = String(entry?.pathwayId ?? "").trim().toLowerCase();
+  const sourceUrl = String(entry?.url ?? entry?.sourceUrl ?? "").trim();
+  if (!pathwayId || !sourceUrl) {
+    return false;
+  }
+
+  try {
+    const pathname = new URL(sourceUrl).pathname.toLowerCase();
+    return pathname === `/${pathwayId}` || pathname.endsWith(`/${pathwayId}`);
+  } catch {
+    return sourceUrl.toLowerCase().includes(`/${pathwayId}`);
+  }
+}
+
+function shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, lines) {
+  if (
+    !entry?.pathwayId ||
+    !["html-degree-page", "html-curriculum-page", "html-overview-page"].includes(entry?.parserType)
+  ) {
+    return false;
+  }
+
+  const sourceIdentityText = normalizeMatcherText(
+    [
+      entry?.label,
+      entry?.sourceLabel,
+      entry?.url,
+      title,
+      ...(headings ?? []).slice(0, 12),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  const sampledText = normalizeMatcherText(
+    [
+      title,
+      ...(headings ?? []).slice(0, 30),
+      ...(lines ?? []).slice(0, 360),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  const fullPageCourseCount = uniqueSorted(
+    (lines ?? []).flatMap((line) => extractCourseCodesFromLine(line))
+  ).length;
+
+  return Boolean(
+    sourceUrlPathMentionsPathwayId(entry) &&
+      lineMatchesStrictSelectedPathwayIdentity(entry, sourceIdentityText) &&
+      /\b(?:degree requirements?|major requirements?|curriculum)\b/.test(sampledText) &&
+      fullPageCourseCount >= 8 &&
+      (lines ?? []).length <= 520
+  );
+}
+
 function findPrecedingAdmissionRequirementStartIndex(entry, lines, scopedStartIndex) {
   if (!entry || !Array.isArray(lines) || scopedStartIndex <= 0) {
     return null;
@@ -8532,6 +8872,10 @@ function scopeHtmlLines(entry, title, headings, lines) {
   }
 
   if (isApprovedElectiveHtmlSource(entry, title, headings, lines)) {
+    return lines;
+  }
+
+  if (shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, lines)) {
     return lines;
   }
 
@@ -15110,6 +15454,12 @@ function buildGeneratedApprovedFilterDefinition({ filterKey, records, evidenceCa
     "uw-seattle";
   const officialSourceUrl = getPreferredOfficialSourceUrlForFilter(records) ?? evidenceCandidate?.owner?.sourceUrl ?? "";
   const evidence = evidenceCandidate.evidence;
+  const sourceBackedSupportListCodes = uniqueSorted(
+    records
+      .flatMap((record) => record.supportList?.acceptedUwCourseCodes ?? [])
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
   const filter = {
     filterId: compatibility.filterId,
     filterKey,
@@ -15119,7 +15469,10 @@ function buildGeneratedApprovedFilterDefinition({ filterKey, records, evidenceCa
     officialSourceUrl,
     sourceUrl: evidenceCandidate.owner?.sourceUrl ?? officialSourceUrl,
     sourceRole: evidenceCandidate.owner?.sourceRole ?? records[0]?.owner?.sourceRole ?? null,
-    approvedUwCourseCodes: uniqueSorted(evidence.approvedUwCourseCodes),
+    approvedUwCourseCodes: uniqueSorted([
+      ...(evidence.approvedUwCourseCodes ?? []),
+      ...sourceBackedSupportListCodes,
+    ]),
     ...(evidence.approvedUwCourseGroups?.length
       ? { approvedUwCourseGroups: evidence.approvedUwCourseGroups }
       : {}),

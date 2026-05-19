@@ -19,6 +19,7 @@ const {
   getTransferPlannerMajorPlan,
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerSourceManifestEntriesForPlan,
+  getTransferPlannerGrcCourseList,
   getTransferPlannerStudentRuntimeMajorPlan,
   resolveTransferPlannerMajorPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
@@ -211,6 +212,31 @@ function buildCountsByCode(entries) {
   }, {});
 }
 
+function getChecklistItems(plan) {
+  return [
+    ...(plan?.applicationChecklist ?? []),
+    ...(plan?.beforeEnrollmentChecklist ?? []),
+    ...(plan?.stayAtGrcChecklist ?? []),
+  ];
+}
+
+function getSchedulableGrcCourseLabelCount(plan) {
+  if (!plan) {
+    return 0;
+  }
+
+  const labels = [
+    ...(getTransferPlannerGrcCourseList(plan) ?? []),
+    ...getChecklistItems(plan).flatMap((item) => [
+      ...(item.grcCourses ?? []),
+      ...(item.alternatives ?? []).flat(),
+      ...(item.requirementGroup?.options ?? []).flatMap((option) => option.grcMatches ?? []),
+    ]),
+  ];
+
+  return new Set(labels.map((label) => String(label ?? "").trim()).filter(Boolean)).size;
+}
+
 function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner, isKnownSourceGapOwner = false) {
   const rootIssues = [];
   const symptomIssueByCode = buildIssueIndex(symptomIssues);
@@ -218,6 +244,9 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner, isKnow
   const missingPrimarySource = symptomIssueByCode.has("missing-primary-source");
   const missingManifestEntries = symptomIssueByCode.has("missing-source-manifest-entries");
   const missingParsedSourceBlock = symptomIssueByCode.has("missing-parsed-source-block");
+  const missingRuntimeBasePlan = symptomIssueByCode.has("missing-runtime-base-plan");
+  const missingRuntimeResolvedPlan = symptomIssueByCode.has("missing-runtime-resolved-plan");
+  const noRuntimeSchedulableGrcRows = symptomIssueByCode.has("no-runtime-schedulable-grc-rows");
 
   if (missingPrimarySource && missingManifestEntries) {
     groupedSymptomCodes.add("missing-primary-source");
@@ -328,6 +357,56 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner, isKnow
   if (symptomIssueByCode.has("no-parsed-uw-course-codes")) {
     groupedSymptomCodes.add("no-parsed-uw-course-codes");
     rootIssues.push(symptomIssueByCode.get("no-parsed-uw-course-codes"));
+  }
+
+  if (isKnownSourceGapOwner && (missingRuntimeBasePlan || missingRuntimeResolvedPlan)) {
+    if (missingRuntimeBasePlan) {
+      groupedSymptomCodes.add("missing-runtime-base-plan");
+    }
+    if (missingRuntimeResolvedPlan) {
+      groupedSymptomCodes.add("missing-runtime-resolved-plan");
+    }
+    addIssue(
+      rootIssues,
+      "warning",
+      "known-source-gap-runtime-hidden",
+      "Owner is intentionally hidden behind a generated source-gap entry, so it is not expected to resolve in the student runtime until promoted.",
+      {
+        ownerId,
+        sourceGapRegistered: true,
+        symptoms: [
+          ...(missingRuntimeBasePlan ? ["missing-runtime-base-plan"] : []),
+          ...(missingRuntimeResolvedPlan ? ["missing-runtime-resolved-plan"] : []),
+        ],
+      }
+    );
+  }
+  if (
+    !isKnownSourceGapOwner &&
+    noRuntimeSchedulableGrcRows &&
+    (missingRuntimeBasePlan || missingRuntimeResolvedPlan)
+  ) {
+    groupedSymptomCodes.add("no-runtime-schedulable-grc-rows");
+    if (missingRuntimeBasePlan) {
+      groupedSymptomCodes.add("missing-runtime-base-plan");
+    }
+    if (missingRuntimeResolvedPlan) {
+      groupedSymptomCodes.add("missing-runtime-resolved-plan");
+    }
+    addIssue(
+      rootIssues,
+      "warning",
+      "source-owner-not-runtime-schedulable",
+      "Source owner has no Green River schedulable course rows, so it is not expected to produce a student runtime plan until schedulable transfer rows exist.",
+      {
+        ownerId,
+        symptoms: [
+          "no-runtime-schedulable-grc-rows",
+          ...(missingRuntimeBasePlan ? ["missing-runtime-base-plan"] : []),
+          ...(missingRuntimeResolvedPlan ? ["missing-runtime-resolved-plan"] : []),
+        ],
+      }
+    );
   }
 
   for (const issue of symptomIssues) {
@@ -535,6 +614,7 @@ function main() {
         "Planner resolved plan could not be built for this owner."
       );
     }
+    const sourceSchedulableGrcCourseLabelCount = getSchedulableGrcCourseLabelCount(resolvedPlan);
 
     const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan(owner.planId);
     if (!runtimeBasePlan) {
@@ -543,6 +623,14 @@ function main() {
         "error",
         "missing-runtime-base-plan",
         "Student runtime base plan could not be resolved."
+      );
+    }
+    if (!runtimeBasePlan && resolvedPlan && sourceSchedulableGrcCourseLabelCount === 0) {
+      addIssue(
+        symptomIssues,
+        "warning",
+        "no-runtime-schedulable-grc-rows",
+        "Source plan resolved, but it has no Green River schedulable course rows to materialize into the student runtime."
       );
     }
 

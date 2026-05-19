@@ -230,6 +230,20 @@ type SupplementalParserOnlyPathwaySource = {
 };
 const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[] = [
   {
+    planId: "uw-seattle-classical-studies",
+    campusId: "uw-seattle",
+    ownerTitle: "Classical Studies",
+    links: [
+      {
+        label: "UW Classical Studies degree requirements",
+        url: "https://classics.washington.edu/ba-classical-studies",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+  {
     planId: "uw-seattle-global-literary-studies",
     campusId: "uw-seattle",
     ownerTitle: "Global Literary Studies (BA)",
@@ -291,6 +305,22 @@ const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySou
   },
   {
     planId: "uw-bothell-business-administration",
+    pathwayId: "leadership-and-strategic-innovation-option",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Leadership & Strategic Innovation Option",
+    links: [
+      {
+        label: "UW Bothell Leadership and Strategic Innovation option major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA option source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-business-administration",
     pathwayId: "management-concentration",
     campusId: "uw-bothell",
     majorTitle: "Business Administration (BA)",
@@ -335,6 +365,22 @@ const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySou
     ],
     validationNotes: [
       "Supplemental parser-backed pathway metadata retained until the canonical BBA concentration source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-business-administration",
+    pathwayId: "supply-chain-management-option",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Supply Chain Management Option",
+    links: [
+      {
+        label: "UW Bothell Supply Chain Management option major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA option source blocks are emitted canonically.",
     ],
   },
   {

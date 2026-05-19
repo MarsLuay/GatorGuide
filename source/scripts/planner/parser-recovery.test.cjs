@@ -186,6 +186,57 @@ test("Parser keeps prerequisite options scoped by owner acronym", () => {
   assert.ok(parsed.courseCodes.includes("TCSS 142"));
 });
 
+test("Parser keeps required prefix courses out of embedded one-of option groups", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-economics",
+    ownerTitle: "Economics",
+    planId: "uw-seattle-economics",
+    campusId: "uw-seattle",
+  });
+  const snapshotLines = [
+    "Minimum 2.50 cumulative GPA for the following four courses: ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134, with a minimum 2.0 grade for each of these courses",
+  ];
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    ["ECON 200", "ECON 201", "STAT 311", "MATH 124", "MATH 134"],
+    snapshotLines
+  );
+  const mathChoice = groups.find((group) =>
+    (group.options ?? []).some((option) => option.uwCourses?.includes("MATH 124")) &&
+    (group.options ?? []).some((option) => option.uwCourses?.includes("MATH 134"))
+  );
+
+  assert.ok(mathChoice);
+  assert.equal(mathChoice.requirementType, "choose_one");
+  assert.deepEqual(
+    mathChoice.options.flatMap((option) => option.uwCourses),
+    ["MATH 124", "MATH 134"]
+  );
+  assert.equal(
+    groups.some((group) =>
+      (group.options ?? []).some((option) => option.uwCourses?.includes("ECON 200")) &&
+      (group.options ?? []).some((option) => option.uwCourses?.includes("MATH 124"))
+    ),
+    false
+  );
+
+  const strategyGroups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    ["ECON 400", "ECON 482", "ECON 404", "ECON 485"],
+    ["ECON 400, ECON 482; one of ECON 404 or ECON 485"]
+  );
+  const strategyChoice = strategyGroups.find((group) =>
+    (group.options ?? []).some((option) => option.uwCourses?.includes("ECON 404")) &&
+    (group.options ?? []).some((option) => option.uwCourses?.includes("ECON 485"))
+  );
+
+  assert.ok(strategyChoice);
+  assert.deepEqual(
+    strategyChoice.options.flatMap((option) => option.uwCourses),
+    ["ECON 404", "ECON 485"]
+  );
+});
+
 test("Course-code parser recovers compact known course subjects from PDF text", () => {
   assert.deepEqual(
     parser.extractCourseCodesFromLineForTest("CSS342: Data Structures, Algorithms, & Discrete Math I"),
@@ -823,6 +874,68 @@ test("Parser does not turn IPR overlap policy text into a sectioned course list"
   );
 });
 
+test("Parser handles word-parenthetical credits and skips degree-total elective prose", () => {
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    {
+      ownerId: "uw-tacoma-social-welfare",
+      ownerTitle: "Social Welfare (BASW)",
+      planId: "uw-tacoma-social-welfare",
+      campusId: "uw-tacoma",
+      sourceUrl: "https://www.tacoma.uw.edu/swcj/basw-curriculum",
+    },
+    [],
+    [
+      "Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.",
+      "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives.",
+      "TSOCWF 350 Biopsychosocial Human Services (5 cr)",
+      "TSOCWF 351 Applied Statistics for Social and Human Services (5 cr)",
+      'The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.',
+      "TSOCWF 301 Social Welfare Practice I",
+      "TSOCWF 300 Human Behavior in the Social Environment",
+      "Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.",
+      "Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements",
+      "TSOCWF 402 Social Welfare Practice II (W)",
+      "TSOCWF 310 Research Methods",
+      "TSOCWF 320 Cultural Diversity and Justice",
+    ]
+  );
+
+  const socialWelfareElectiveGroups = groups.filter((group) =>
+    /Social Welfare Electives/i.test(group.sourceRowText ?? group.label)
+  );
+  assert.equal(socialWelfareElectiveGroups.length, 1);
+  const socialWelfareElectives = socialWelfareElectiveGroups[0];
+  assert.ok(socialWelfareElectives);
+  assert.equal(socialWelfareElectives.requirementType, "choose_credits");
+  assert.equal(socialWelfareElectives.minCredits, 10);
+  assert.equal(socialWelfareElectives.maxCredits, 10);
+  assert.deepEqual(
+    (socialWelfareElectives.options ?? []).map((option) => option.uwCourses?.[0]),
+    ["TSOCWF 350", "TSOCWF 351"]
+  );
+  assert.equal(
+    groups.some(
+      (group) =>
+        group.requirementType === "choose_credits" &&
+        group.minCredits === 180 &&
+        /general electives|58-credit program/i.test(group.sourceRowText ?? group.label)
+    ),
+    false
+  );
+  assert.equal(
+    groups.some((group) => /schedule permitting|sample plan/i.test(group.sourceRowText ?? group.label)),
+    false
+  );
+  const advisingDistributionBucket = groups.find((group) =>
+    /admission deficiencies|Areas of Inquiry/i.test(group.sourceRowText ?? group.label)
+  );
+  assert.equal(
+    advisingDistributionBucket,
+    undefined,
+    "Expected the advising distribution note not to become a sectioned TSOCWF course bucket."
+  );
+});
+
 test("Primary sources expose approved source-section courses as support lists", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-seattle-mechanical-engineering",
@@ -856,6 +969,39 @@ test("Primary sources expose approved source-section courses as support lists", 
   assert.ok(supportList);
   assert.equal(supportList.canCreateScheduleRow, false);
   assert.deepEqual(supportList.acceptedUwCourseCodes, ["ME 402", "ME 406"]);
+
+  const generatedFilters = parser.buildGeneratedProgramApprovedCourseFiltersForTest({
+    generatedAt: "test",
+    owners: [block],
+  });
+  const mechanicalEngineeringFilter = generatedFilters.find((filter) =>
+    /approved-400-level-me-courses/i.test(filter.filterKey)
+  );
+
+  assert.ok(mechanicalEngineeringFilter);
+  assert.deepEqual(mechanicalEngineeringFilter.approvedUwCourseCodes, ["ME 402", "ME 406"]);
+});
+
+test("Parser treats distribution-area course lists as support lists", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-seattle-english-language-literature-and-culture",
+    sourceUrl: "https://english.washington.edu/english-language-literature-and-culture-option",
+    snapshotLines: [
+      "English Majors must also take at least 15 credits in each of the following areas:",
+      "Historical Depth Courses:",
+      "ENGL 210 Medieval and Early Modern Literature, 400 to 1600",
+      "ENGL 211 Literature, 1500-1800",
+      "Power and Difference Courses",
+      "ENGL 257 Introduction to Asian American Literature",
+    ],
+  });
+  const rowsByRawLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  assert.equal(rowsByRawLine.get("Historical Depth Courses:")?.detectedSectionRole, "approved-course-list");
+  assert.equal(rowsByRawLine.get("ENGL 210 Medieval and Early Modern Literature, 400 to 1600")?.schedulable, false);
+  assert.equal(rowsByRawLine.get("ENGL 211 Literature, 1500-1800")?.schedulable, false);
+  assert.equal(rowsByRawLine.get("Power and Difference Courses")?.detectedSectionRole, "approved-course-list");
+  assert.equal(rowsByRawLine.get("ENGL 257 Introduction to Asian American Literature")?.schedulable, false);
 });
 
 test("UW Bothell admissions planning worksheets are admission prerequisite sources", () => {
@@ -1810,6 +1956,50 @@ test("Parser does not re-add sibling courses when scoped Tacoma tracks share a s
   assert.ok(socialChangeParsed.courseCodes.includes("TWRT 211"));
   assert.equal(socialChangeParsed.courseCodes.includes("TWRT 210"), false);
   assert.equal(socialChangeParsed.courseCodes.includes("TWRT 212"), false);
+});
+
+test("Parser keeps full dedicated Tacoma track degree pages instead of tail-scoping by track prose", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-communications:pathway:research-track",
+    ownerTitle: "Communications (BA) - Research Track",
+    planId: "uw-tacoma-communications",
+    pathwayId: "research-track",
+    campusId: "uw-tacoma",
+    ownerType: "pathway",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/sias/cac/research-track",
+    label: "Research Track degree requirements",
+    sourceLabel: "Research Track degree requirements",
+  });
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h1>Research Track</h1>
+        <h2>Degree Requirements</h2>
+        <p>You need to complete 55 credits.</p>
+        <h3>Foundation (10 credits)</h3>
+        <p>TWRT 211 Argument and Research in Writing</p>
+        <p>TCOM 444 Gender, Ethnicity, Class and Media</p>
+        <p>TCOM 453 Critical Approaches to Mass Communication</p>
+        <h3>Core courses (45 credits)</h3>
+        <p>TCOM 101 Critical Media Literacy</p>
+        <p>TCOM 201 Media and Society</p>
+        <p>TCOM 220 Social Media</p>
+        <p>TCOM 230 Media Globalization and Citizenship</p>
+        <p>TCOM 247 Television Studies</p>
+        <p>TCOM 495 Communication Capstone Thesis</p>
+        <p>TLAX 441 Mexican Cinema and Society</p>
+        <h3>Optional Capstone (5 credits)</h3>
+        <p>Research Track students may choose to complete a senior thesis.</p>
+      </main>
+    `
+  );
+
+  for (const courseCode of ["TWRT 211", "TCOM 101", "TCOM 495", "TLAX 441"]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} from full page scope`);
+  }
 });
 
 test("Parser recovery keeps promoted prerequisite pages support-only", () => {

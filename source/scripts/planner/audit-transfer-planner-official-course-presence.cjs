@@ -3,12 +3,27 @@
 const fs = require("fs");
 const path = require("path");
 
+require("ts-node").register({
+  skipProject: true,
+  transpileOnly: true,
+  compilerOptions: {
+    module: "CommonJS",
+    moduleResolution: "node",
+  },
+});
+
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.join(REPO_ROOT, ".tmp");
 const OUTPUT_JSON = path.join(TMP_DIR, "transfer-planner-source-block-course-presence-audit.json");
 const OUTPUT_MD = path.join(TMP_DIR, "transfer-planner-source-block-course-presence-audit.md");
 
 const CAMPUS_ORDER = ["uw-seattle", "uw-tacoma", "uw-bothell"];
+const {
+  normalizeTransferPlannerPathwayId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
+const {
+  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+} = require("../../constants/transfer-planner-source/source-gaps.generated");
 
 function readGeneratedJson(relativePath, constName) {
   const filePath = path.join(REPO_ROOT, relativePath);
@@ -41,8 +56,19 @@ function uniqueStrings(values) {
 }
 
 function ownerKey(planId, pathwayId = null) {
-  return `${planId}::${pathwayId ?? ""}`;
+  const normalizedPathwayId =
+    pathwayId == null ? null : normalizeTransferPlannerPathwayId(planId, pathwayId);
+  return `${planId}::${normalizedPathwayId ?? ""}`;
 }
+
+const HIDDEN_SOURCE_GAP_OWNER_KEYS = new Map(
+  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.filter((entry) => entry.studentVisibility === "hidden").map(
+    (entry) => [
+      ownerKey(entry.planId, entry.pathwayId ?? null),
+      entry,
+    ]
+  )
+);
 
 function flattenRuntimePlanCourses(plan) {
   const values = [];
@@ -74,6 +100,7 @@ function buildOwners(majorPlans, pathwaysByPlanId) {
       planId: plan.id,
       pathwayId: null,
       title: plan.title,
+      parentTitle: plan.title,
       plan,
     });
     for (const pathway of pathwaysByPlanId[plan.id] ?? []) {
@@ -82,6 +109,7 @@ function buildOwners(majorPlans, pathwaysByPlanId) {
         planId: plan.id,
         pathwayId: pathway.id,
         title: `${plan.title} - ${pathway.label ?? pathway.id}`,
+        parentTitle: plan.title,
         plan: pathway,
       });
     }
@@ -93,13 +121,42 @@ function buildOwners(majorPlans, pathwaysByPlanId) {
   });
 }
 
-function classifyOwner({ sourceBlocks, parsedCourses, degreeMapCourses, generatedCourses }) {
+function hasCoursePresenceContent(plan) {
+  return getDegreeMapCourses(plan).length > 0 || flattenRuntimePlanCourses(plan).length > 0;
+}
+
+function classifyOwner({
+  hiddenSourceGap,
+  sourceBlocks,
+  parsedCourses,
+  missingFromDegreeMap,
+  degreeMapCourses,
+  generatedCourses,
+  hasParsedNonCourseRequirement,
+  hasContentBearingPathways,
+}) {
+  if (hiddenSourceGap) return "hidden-source-gap";
+  if (
+    hasContentBearingPathways &&
+    parsedCourses.length === 0 &&
+    degreeMapCourses.length === 0 &&
+    generatedCourses.length === 0
+  ) {
+    return "pass";
+  }
   if (!sourceBlocks.length) return "source-unavailable";
   if (!sourceBlocks.some((block) => isSchedulableSourceBlock(block))) {
     return "unclear-no-schedulable-source";
   }
+  if (
+    hasParsedNonCourseRequirement &&
+    parsedCourses.length === 0 &&
+    degreeMapCourses.length === 0 &&
+    generatedCourses.length === 0
+  ) {
+    return "pass";
+  }
   if (!parsedCourses.length) return "unclear-no-parsed-courses";
-  const missingFromDegreeMap = parsedCourses.filter((course) => !degreeMapCourses.includes(course));
   if (missingFromDegreeMap.length) return "issue";
   return "pass";
 }
@@ -116,6 +173,35 @@ function isSchedulableSourceBlock(block) {
     block.sourceScope?.canCreateRequiredRows !== false &&
     block.sourceScope?.canCreateScheduleRows !== false
   );
+}
+
+function normalizeSemanticText(value) {
+  return String(value ?? "")
+    .replace(/&/g, " and ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function sourceBlockOwnsIndependentCatalogCredential(block, parentTitle) {
+  const label = normalizeSemanticText(
+    block?.primarySourceLabel ?? block?.sourceLabel ?? block?.label ?? ""
+  );
+  const parent = normalizeSemanticText(parentTitle);
+  if (!label || !parent) return false;
+
+  const match = label.match(/\bdegree with a major in\s+(.+)$/i);
+  if (!match) return false;
+
+  return normalizeSemanticText(match[1]).startsWith(`${parent}:`);
+}
+
+function getBlocksForCoursePresence({ owner, ownBlocks, parentBlocks }) {
+  if (!owner.pathwayId) return ownBlocks;
+  const usesIndependentCatalogCredential = ownBlocks.some((block) =>
+    sourceBlockOwnsIndependentCatalogCredential(block, owner.parentTitle)
+  );
+  return usesIndependentCatalogCredential ? ownBlocks : [...parentBlocks, ...ownBlocks];
 }
 
 function main() {
@@ -143,15 +229,37 @@ function main() {
   const owners = buildOwners(majorPlans, pathwaysByPlanId);
   const rows = owners.map((owner) => {
     const key = ownerKey(owner.planId, owner.pathwayId);
-    const blocks = blocksByOwner.get(key) ?? [];
+    const parentKey = ownerKey(owner.planId, null);
+    const hiddenSourceGap = HIDDEN_SOURCE_GAP_OWNER_KEYS.get(key) ?? null;
+    const ownBlocks = blocksByOwner.get(key) ?? [];
+    const parentBlocks = owner.pathwayId ? blocksByOwner.get(parentKey) ?? [] : [];
+    const blocks = getBlocksForCoursePresence({ owner, ownBlocks, parentBlocks });
     const schedulableBlocks = blocks.filter(isSchedulableSourceBlock);
+    const ownSchedulableBlocks = ownBlocks.filter(isSchedulableSourceBlock);
     const parsedCourses = uniqueSorted(
       schedulableBlocks.flatMap((block) => block.parsedUwCourseCodes ?? [])
     );
+    const hasParsedNonCourseRequirement = schedulableBlocks.some(
+      (block) =>
+        (block.parsedRequirementGroups ?? []).length > 0 &&
+        !(block.parsedUwCourseCodes ?? []).length
+    );
+    const pathwayOwnedParsedCourses = uniqueSorted(
+      (owner.pathwayId ? ownSchedulableBlocks : schedulableBlocks).flatMap(
+        (block) => block.parsedUwCourseCodes ?? []
+      )
+    );
     const degreeMapCourses = getDegreeMapCourses(owner.plan);
     const generatedCourses = flattenRuntimePlanCourses(owner.plan);
-    const missingFromDegreeMap = parsedCourses.filter((course) => !degreeMapCourses.includes(course));
-    const missingFromGenerated = parsedCourses.filter((course) => !generatedCourses.includes(course));
+    const hasContentBearingPathways =
+      !owner.pathwayId &&
+      (pathwaysByPlanId[owner.planId] ?? []).some((pathway) => hasCoursePresenceContent(pathway));
+    const missingFromDegreeMap = pathwayOwnedParsedCourses.filter(
+      (course) => !degreeMapCourses.includes(course)
+    );
+    const missingFromGenerated = pathwayOwnedParsedCourses.filter(
+      (course) => !generatedCourses.includes(course)
+    );
     const extraDegreeMapCourses = degreeMapCourses.filter((course) => !parsedCourses.includes(course));
     return {
       ownerId: owner.pathwayId
@@ -161,7 +269,25 @@ function main() {
       planId: owner.planId,
       pathwayId: owner.pathwayId,
       title: owner.title,
-      status: classifyOwner({ sourceBlocks: blocks, parsedCourses, degreeMapCourses, generatedCourses }),
+      status: classifyOwner({
+        hiddenSourceGap,
+        sourceBlocks: blocks,
+        parsedCourses,
+        missingFromDegreeMap,
+        degreeMapCourses,
+        generatedCourses,
+        hasParsedNonCourseRequirement,
+        hasContentBearingPathways,
+      }),
+      hiddenSourceGap: hiddenSourceGap
+        ? {
+            reviewStatus: hiddenSourceGap.reviewStatus,
+            sourceCoverageStatus: hiddenSourceGap.sourceCoverageStatus,
+            reason: hiddenSourceGap.sourceGapReason,
+            suggestedPrimaryUrl: hiddenSourceGap.suggestedPrimary?.url ?? null,
+            suggestedPrimaryLabel: hiddenSourceGap.suggestedPrimary?.label ?? null,
+          }
+        : null,
       sourceUrls: uniqueStrings(
         blocks.flatMap((block) => [block.primarySourceUrl, block.sourceUrl, ...(block.coveredSourceUrls ?? [])])
       ),
@@ -206,12 +332,12 @@ function main() {
     "",
     "## Campus Summary",
     "",
-    "| Campus | Owners | Pass | Issue | Unclear/no parsed courses | Source unavailable |",
-    "| --- | ---: | ---: | ---: | ---: | ---: |",
+    "| Campus | Owners | Pass | Issue | Unclear/no parsed courses | Source unavailable | Hidden source-gap |",
+    "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
   ];
   for (const summary of campusSummaries) {
     lines.push(
-      `| ${summary.campusId} | ${summary.owners} | ${summary.byStatus.pass ?? 0} | ${summary.byStatus.issue ?? 0} | ${(summary.byStatus["unclear-no-parsed-courses"] ?? 0) + (summary.byStatus["unclear-no-schedulable-source"] ?? 0)} | ${summary.byStatus["source-unavailable"] ?? 0} |`
+      `| ${summary.campusId} | ${summary.owners} | ${summary.byStatus.pass ?? 0} | ${summary.byStatus.issue ?? 0} | ${(summary.byStatus["unclear-no-parsed-courses"] ?? 0) + (summary.byStatus["unclear-no-schedulable-source"] ?? 0)} | ${summary.byStatus["source-unavailable"] ?? 0} | ${summary.byStatus["hidden-source-gap"] ?? 0} |`
     );
   }
   lines.push("", "## Non-Passing Owners", "");
@@ -220,6 +346,14 @@ function main() {
     lines.push(`- Campus: ${row.campusId}`);
     lines.push(`- Status: ${row.status}`);
     lines.push(`- Source URLs: ${row.sourceUrls.length ? row.sourceUrls.join(", ") : "none"}`);
+    if (row.hiddenSourceGap) {
+      lines.push(`- Hidden source-gap reason: ${row.hiddenSourceGap.reason}`);
+      if (row.hiddenSourceGap.suggestedPrimaryUrl) {
+        lines.push(
+          `- Suggested primary source candidate: ${row.hiddenSourceGap.suggestedPrimaryLabel ?? "candidate"} (${row.hiddenSourceGap.suggestedPrimaryUrl})`
+        );
+      }
+    }
     lines.push(`- Parsed courses: ${row.parsedCourseCount}`);
     lines.push(`- Generated runtime traversal courses: ${row.generatedCourseCount}`);
     lines.push(`- Degree-map courses: ${row.degreeMapCourseCount}`);
@@ -244,7 +378,7 @@ function main() {
       (summary.byStatus["unclear-no-parsed-courses"] ?? 0) +
       (summary.byStatus["unclear-no-schedulable-source"] ?? 0);
     console.log(
-      `${summary.campusId}: owners=${summary.owners} pass=${summary.byStatus.pass ?? 0} issues=${summary.byStatus.issue ?? 0} unclear=${unclearCount} source-unavailable=${summary.byStatus["source-unavailable"] ?? 0}`
+      `${summary.campusId}: owners=${summary.owners} pass=${summary.byStatus.pass ?? 0} issues=${summary.byStatus.issue ?? 0} unclear=${unclearCount} source-unavailable=${summary.byStatus["source-unavailable"] ?? 0} hidden-source-gap=${summary.byStatus["hidden-source-gap"] ?? 0}`
     );
   }
   console.log(`JSON report: ${OUTPUT_JSON}`);

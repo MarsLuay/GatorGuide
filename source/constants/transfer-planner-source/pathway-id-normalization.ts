@@ -1,4 +1,18 @@
 const TRANSFER_PLANNER_PATHWAY_ID_ALIASES_BY_PLAN: Record<string, Record<string, string>> = {
+  "uw-seattle-cinema-and-media-studies": {
+    "ba-option-family-cinema-studies": "cinema-studies",
+    "ba-option-family:cinema-studies": "cinema-studies",
+  },
+  "uw-seattle-construction-management": {
+    "early-admission-pathway": "early-admission-option",
+    "freshmen-direct-pathway": "freshmen-direct-option",
+    "upper-division-admission-pathway": "upper-division-admission-option",
+  },
+  "uw-seattle-geography": {
+    "ba-option-family-in-geography-data-science": "data-science-option",
+    "ba-option-family:in-geography-data-science": "data-science-option",
+    "geography-major-data-science-option": "data-science-option",
+  },
   "uw-seattle-chemical-engineering": {
     "nanoscience-and-molecular-engineering-nme-option": "nme-option",
     "nanoscience-and-molecular-engineering-option": "nme-option",

@@ -154,7 +154,9 @@ function containsNormalizedPlanTitlePhrase(
   }
 
   const escapedTitle = normalizedTitleVariant.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`(?:^| )${escapedTitle}(?:$| )`, "i").test(normalizedLabel);
+  return new RegExp(`(?:^|[^a-z0-9])${escapedTitle}(?:$|[^a-z0-9])`, "i").test(
+    normalizedLabel
+  );
 }
 
 export function buildTransferPlannerTitleSignatureTokens(value: string | null | undefined) {

@@ -3,6 +3,580 @@
 
 export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[] = [
   {
+    "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-block:uw-seattle-html-degree-page",
+    "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+    "ownerTitle": "Slavic Languages & Literatures - Eastern European Languages, Literature, and Culture",
+    "planId": "uw-seattle-slavic-languages-and-literatures",
+    "pathwayId": "eastern-european-languages-literature-and-culture",
+    "campusId": "uw-seattle",
+    "primaryParserType": "html-overview-page",
+    "primarySourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+    "primarySourceLabel": "UW Slavic Languages & Literatures undergraduate programs",
+    "parserType": "html-overview-page",
+    "adapterId": "uw-seattle-html-degree-page",
+    "adapterFamily": "UW Seattle HTML degree pages",
+    "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+    "coveredSourceUrls": [
+      "https://slavic.washington.edu/undergraduate-programs"
+    ],
+    "sourceLabel": "UW Slavic Languages & Literatures undergraduate programs",
+    "sourceRole": "department-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "sourceScope": {
+      "canCreateRequiredRows": true,
+      "canCreateOptionGroups": true,
+      "canCreateCreditBuckets": true,
+      "canCreateCategoryOptions": true,
+      "canCreateApprovedFilters": false,
+      "canCreateElectiveLists": false,
+      "canCreateSequencingHints": false,
+      "canCreateAdmissionPrepRows": false,
+      "canCreateScheduleRows": true,
+      "supportOnly": false,
+      "nonSchedulable": false
+    },
+    "canCreateRequiredRows": true,
+    "canCreateOptionGroups": true,
+    "canCreateCreditBuckets": true,
+    "canCreateCategoryOptions": true,
+    "canCreateApprovedFilters": false,
+    "canCreateElectiveLists": false,
+    "canCreateSequencingHints": false,
+    "canCreateAdmissionPrepRows": false,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "sourceSectionAudit": null,
+    "sourceSectionFilterAuditRows": [
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "SLAVIC 490: Studies in Slavic Literatures",
+        "courseCodesExtracted": [
+          "SLAVIC 490"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: SLAVIC 490: Studies in Slavic Literatures Course codes extracted: SLAVIC 490 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "SLAVIC 498: Senior Honors Thesis",
+        "courseCodesExtracted": [
+          "SLAVIC 498"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: SLAVIC 498: Senior Honors Thesis Course codes extracted: SLAVIC 498 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "UKR 420: Literature, Film, and Culture of Ukraine",
+        "courseCodesExtracted": [
+          "UKR 420"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: UKR 420: Literature, Film, and Culture of Ukraine Course codes extracted: UKR 420 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "credit-bucket requirement cue",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center . Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900",
+        "courseCodesExtracted": [
+          "HSTEU 444",
+          "JSISA 444"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900 Course codes extracted: HSTEU 444, JSISA 444 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union",
+        "courseCodesExtracted": [
+          "HSTEU 445",
+          "JSISA 445"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union Course codes extracted: HSTEU 445, JSISA 445 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Russian Language, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "credit-bucket requirement cue",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Russian Language, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center . Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "Integrative Experience Course (5 credits): GLITS 450",
+        "courseCodesExtracted": [
+          "GLITS 450"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "credit-bucket requirement cue",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: Integrative Experience Course (5 credits): GLITS 450 Course codes extracted: GLITS 450 Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "source root",
+        "rawLine": "Electives (23-25 credits): any combination of the courses listed in requirement #1 above, second-year or above language courses (maximum 15 credits), or courses from a list of approved elective courses. See adviser or department website for list of approved elective courses* (a course not on the approved list must be approved by the program adviser). Maximum one 200-level course graded as credit/no credit may count toward this requirement.",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "support-metadata",
+        "schedulable": false,
+        "reason": "credit-limit note is support metadata",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: Electives (23-25 credits): any combination of the courses listed in requirement #1 above, second-year or above language courses (maximum 15 credits), or courses from a list of approved elective courses. See adviser or department website for list of approved elective courses* (a course not on the approved list must be approved by the program adviser). Maximum one 200-level course graded as credit/no credit may count toward this requirement. Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: credit-limit note is support metadata Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "List of approved GLITS courses",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "approved course-list section is support metadata",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: List of approved GLITS courses Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: approved course-list section is support metadata Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "See the Humanities First webpage .",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: See the Humanities First webpage . Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "Please contact an advisor at the Humanities Academic Services Center or email Professors Gordana Crnković or Naomi Sokoloff (faculty advisors).",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: Please contact an advisor at the Humanities Academic Services Center or email Professors Gordana Crnković or Naomi Sokoloff (faculty advisors). Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "Mailing List",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: Mailing List Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "If you are a current or prospective GLITS major, please sign up for our major email list !",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: If you are a current or prospective GLITS major, please sign up for our major email list ! Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "GLITS Program Overview",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: GLITS Program Overview Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "GLITS Courses",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: GLITS Courses Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sectionTitle": "List of approved GLITS courses",
+        "rawLine": "GLITS People",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "approved-course-list",
+        "schedulable": false,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: GLITS People Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+      }
+    ],
+    "sourceSectionFilterAuditLines": [
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: SLAVIC 490: Studies in Slavic Literatures Course codes extracted: SLAVIC 490 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: SLAVIC 498: Senior Honors Thesis Course codes extracted: SLAVIC 498 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: UKR 420: Literature, Film, and Culture of Ukraine Course codes extracted: UKR 420 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center . Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900 Course codes extracted: HSTEU 444, JSISA 444 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union Course codes extracted: HSTEU 445, JSISA 445 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Russian Language, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center . Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: Integrative Experience Course (5 credits): GLITS 450 Course codes extracted: GLITS 450 Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: source root Raw line: Electives (23-25 credits): any combination of the courses listed in requirement #1 above, second-year or above language courses (maximum 15 credits), or courses from a list of approved elective courses. See adviser or department website for list of approved elective courses* (a course not on the approved list must be approved by the program adviser). Maximum one 200-level course graded as credit/no credit may count toward this requirement. Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: credit-limit note is support metadata Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: List of approved GLITS courses Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: approved course-list section is support metadata Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: See the Humanities First webpage . Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: Please contact an advisor at the Humanities Academic Services Center or email Professors Gordana Crnković or Naomi Sokoloff (faculty advisors). Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: Mailing List Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: If you are a current or prospective GLITS major, please sign up for our major email list ! Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: GLITS Program Overview Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: GLITS Courses Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Section title: List of approved GLITS courses Raw line: GLITS People Course codes extracted: none Detected section role: approved-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+    ],
+    "parserSequenceChoiceAuditRows": [],
+    "parserSequenceChoiceAuditLines": [],
+    "sourceScopeAuditLines": [
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: GLITS 450 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: HSTEU 444 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: HSTEU 445 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: JSISA 444 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: JSISA 445 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: SLAVIC 490 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: SLAVIC 498 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture Source URL: https://slavic.washington.edu/undergraduate-programs Source role: department-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: UKR 420 Emitted as: required-row Scheduled: yes Issue: none"
+    ],
+    "resolutionStrategy": "cached-snapshot",
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodes": [
+      "GLITS 450",
+      "HSTEU 444",
+      "HSTEU 445",
+      "JSISA 444",
+      "JSISA 445",
+      "SLAVIC 490",
+      "SLAVIC 498",
+      "UKR 420"
+    ],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": [],
+    "supportLists": [],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "requirementCueLines": [
+      "SLAVIC 490: Studies in Slavic Literatures",
+      "SLAVIC 498: Senior Honors Thesis",
+      "UKR 420: Literature, Film, and Culture of Ukraine",
+      "A minimum of 50% of credits applied to the major must be taken at the 300 or 400 level.",
+      "A minimum of 15 graded credits presented for this major must be completed through the UW.",
+      "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+      "HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900",
+      "HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union",
+      "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Russian Language, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+      "Integrative Experience Course (5 credits): GLITS 450",
+      "Electives (23-25 credits): any combination of the courses listed in requirement #1 above, second-year or above language courses (maximum 15 credits), or courses from a list of approved elective courses. See adviser or department website for list of approved elective courses* (a course not on the approved list must be approved by the program adviser). Maximum one 200-level course graded as credit/no credit may count toward this requirement.",
+      "Minimum 30 credits taken in 300/400 level courses"
+    ],
+    "chooseStatements": [
+      "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+      "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Russian Language, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center ."
+    ],
+    "pathwayLabels": [],
+    "qualitySignals": [
+      {
+        "severity": "note",
+        "code": "snapshot-fallback-used",
+        "message": "Parsing relied on a cached snapshot after a live-source failure.",
+        "details": "snapshot-only mode"
+      },
+      {
+        "severity": "note",
+        "code": "snapshot-fallback-heading-context-missing",
+        "message": "Cached snapshot fallback did not include source heading metadata, which limits section-scoped parser validation.",
+        "details": "snapshot=C:\\Users\\marwa\\GatorGuide\\source\\.tmp\\transfer-planner-requirement-source-snapshots\\uw-seattle-slavic-languages-and-literatures-pathway-eastern-european-languages-literature-and-culture-8e09301db7.txt; requirement-cues=12; choose-statements=2"
+      }
+    ],
+    "parsedRequirementAtomCandidates": [
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:glits-450",
+        "title": "GLITS 450",
+        "uwCourseCode": "GLITS 450",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "Integrative Experience Course (5 credits): GLITS 450"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "credit-bucket requirement cue"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:hsteu-444",
+        "title": "HSTEU 444",
+        "uwCourseCode": "HSTEU 444",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:hsteu-445",
+        "title": "HSTEU 445",
+        "uwCourseCode": "HSTEU 445",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:jsisa-444",
+        "title": "JSISA 444",
+        "uwCourseCode": "JSISA 444",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900 (JSISA 444)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:jsisa-445",
+        "title": "JSISA 445",
+        "uwCourseCode": "JSISA 445",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union (JSISA 445)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:slavic-490",
+        "title": "SLAVIC 490",
+        "uwCourseCode": "SLAVIC 490",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "SLAVIC 490: Studies in Slavic Literatures"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:slavic-498",
+        "title": "SLAVIC 498",
+        "uwCourseCode": "SLAVIC 498",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "SLAVIC 498: Senior Honors Thesis"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-atom:ukr-420",
+        "title": "UKR 420",
+        "uwCourseCode": "UKR 420",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "UKR 420: Literature, Film, and Culture of Ukraine"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      }
+    ],
+    "parsedDegreeMapBlockCandidates": [
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:source-degree-map:",
+        "title": "Slavic Languages & Literatures - Eastern European Languages, Literature, and Culture parsed official source requirements",
+        "uwCourseCodes": [
+          "GLITS 450",
+          "HSTEU 444",
+          "HSTEU 445",
+          "JSISA 444",
+          "JSISA 445",
+          "SLAVIC 490",
+          "SLAVIC 498",
+          "UKR 420"
+        ],
+        "sourceLineHints": [
+          "SLAVIC 490: Studies in Slavic Literatures",
+          "SLAVIC 498: Senior Honors Thesis",
+          "UKR 420: Literature, Film, and Culture of Ukraine",
+          "A minimum of 50% of credits applied to the major must be taken at the 300 or 400 level.",
+          "A minimum of 15 graded credits presented for this major must be completed through the UW.",
+          "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+          "HSTEU 444/JSIS A 444: Imperial Russia: 1700-1900",
+          "HSTEU 445/JSIS A 445: The Rise and Fall of the Soviet Union",
+          "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Russian Language, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+          "Integrative Experience Course (5 credits): GLITS 450"
+        ]
+      }
+    ],
+    "parsedRequirementGroups": [
+      {
+        "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:requirement-group:credit-bucket-50-credits-of-arts-and-humanities-50-open",
+        "label": "50 credits of Arts and Humanities",
+        "category": "ah",
+        "subcategory": null,
+        "requirementType": "choose_credits",
+        "requirementShape": "credit-bucket",
+        "minCourses": null,
+        "maxCourses": null,
+        "selectionCount": null,
+        "requiredCount": null,
+        "minCredits": 50,
+        "maxCredits": null,
+        "creditText": "50",
+        "satisfactionMode": "credit-based",
+        "sourceHeading": "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+        "sourceRowText": "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+        "sourceSection": null,
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "detectedOptionCue": "credit bucket",
+        "sourceRole": "department-requirements",
+        "sourceUrl": "https://slavic.washington.edu/undergraduate-programs",
+        "sourceScope": null,
+        "pathwayId": null,
+        "routeId": null,
+        "canCreateScheduleRow": null,
+        "supportOnly": false,
+        "approvedListKey": null,
+        "canCreatePlaceholder": true,
+        "programSpecific": false,
+        "notes": [
+          "Credit bucket placeholder extracted from source text."
+        ],
+        "sequencePaths": [],
+        "options": [
+          {
+            "id": "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture:requirement-option:category-credit-a-h-please-note-the-university-of-washington-requires-a-minimum-of-50-credits-for-all-majors-students-who-test-out-of-slavic-department-language-requirements-must-still-complete-50-credits-appropriate-to-the-eastern-european-languages-literature-and-culture-major-and-should-select-alternate-courses-with-the-assistance-of-an-adviser-in-the-humanities-academic-services-center",
+            "optionKind": "category-option",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [],
+            "uwCourses": [],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 50,
+            "creditMin": 50,
+            "creditMax": 50,
+            "creditText": "50",
+            "maxCredits": null,
+            "title": "50 credits of Arts and Humanities (A&H)",
+            "department": null,
+            "category": "AH",
+            "sourceHeading": "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+            "sourceCategory": "credit-bucket",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": {
+              "category": "AH",
+              "sourceCategoryCode": "A&H",
+              "title": "50 credits of Arts and Humanities (A&H)",
+              "credits": 50,
+              "creditMin": 50,
+              "creditMax": 50,
+              "sourceText": "PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .",
+              "approvedListKey": null,
+              "programSpecific": false
+            },
+            "constraints": [],
+            "notes": [
+              "Category option; no specific Green River course is invented."
+            ],
+            "label": "50 credits of Arts and Humanities (A&H)"
+          }
+        ]
+      }
+    ],
+    "snapshotPath": ".tmp/transfer-planner-requirement-source-snapshots/uw-seattle-slavic-languages-and-literatures-pathway-eastern-european-languages-literature-and-culture-8e09301db7.txt",
+    "usedSnapshotFallback": true,
+    "snapshotFallbackReason": "snapshot-only mode",
+    "error": null
+  },
+  {
     "id": "uw-seattle-social-welfare:source-block:uw-seattle-catalog-page",
     "ownerId": "uw-seattle-social-welfare",
     "ownerTitle": "Social Welfare",
@@ -700,81 +1274,81 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
-        "rawLine": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "rawLine": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "courseCodesExtracted": [],
         "detectedSectionRole": "admission-prep-section",
         "schedulable": true,
         "reason": "admission or preparation requirement heading",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
-        "rawLine": "(2) Minimum grade of 2.0/C required in each course.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "rawLine": "Minimum grade of 2.0/C required in each course.",
         "courseCodesExtracted": [],
         "detectedSectionRole": "admission-prep-section",
         "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (2) Minimum grade of 2.0/C required in each course. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Minimum grade of 2.0/C required in each course. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
-        "rawLine": "(3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "rawLine": "Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)",
         "courseCodesExtracted": [],
         "detectedSectionRole": "admission-prep-section",
         "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses) Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses) Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
-        "rawLine": "(4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "rawLine": "One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.",
         "courseCodesExtracted": [],
         "detectedSectionRole": "admission-prep-section",
         "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "SOCIAL WELFARE ELECTIVES",
         "courseCodesExtracted": [],
         "detectedSectionRole": "admission-prep-section",
         "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: SOCIAL WELFARE ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: SOCIAL WELFARE ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives.",
         "courseCodesExtracted": [
           "TSOCWF 300"
         ],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
-        "reason": "course row without prerequisite-only or course-list section cues",
+        "reason": "credit-bucket requirement cue",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. Course codes extracted: TSOCWF 300 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. Course codes extracted: TSOCWF 300 Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 350 Biopsychosocial Human Services (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 350"
@@ -783,12 +1357,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 350 Biopsychosocial Human Services (5 cr) Course codes extracted: TSOCWF 350 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 350 Biopsychosocial Human Services (5 cr) Course codes extracted: TSOCWF 350 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 351 Applied Statistics for Social and Human Services (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 351"
@@ -797,12 +1371,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 351 Applied Statistics for Social and Human Services (5 cr) Course codes extracted: TSOCWF 351 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 351 Applied Statistics for Social and Human Services (5 cr) Course codes extracted: TSOCWF 351 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 353 Mental Illness and Recovery (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 353"
@@ -811,12 +1385,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 353 Mental Illness and Recovery (5 cr) Course codes extracted: TSOCWF 353 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 353 Mental Illness and Recovery (5 cr) Course codes extracted: TSOCWF 353 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 354 Sexual Orientation and Gender Identity (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 354"
@@ -825,12 +1399,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 354 Sexual Orientation and Gender Identity (5 cr) Course codes extracted: TSOCWF 354 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 354 Sexual Orientation and Gender Identity (5 cr) Course codes extracted: TSOCWF 354 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 355 HIV/AIDS: Global and National Issues (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 355"
@@ -839,12 +1413,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 355 HIV/AIDS: Global and National Issues (5 cr) Course codes extracted: TSOCWF 355 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 355 HIV/AIDS: Global and National Issues (5 cr) Course codes extracted: TSOCWF 355 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 361 Addictions and Mental Illness in Criminal Justice (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 361"
@@ -853,12 +1427,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 361 Addictions and Mental Illness in Criminal Justice (5 cr) Course codes extracted: TSOCWF 361 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 361 Addictions and Mental Illness in Criminal Justice (5 cr) Course codes extracted: TSOCWF 361 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 363 Criminalization of Immigration (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 363"
@@ -867,12 +1441,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 363 Criminalization of Immigration (5 cr) Course codes extracted: TSOCWF 363 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 363 Criminalization of Immigration (5 cr) Course codes extracted: TSOCWF 363 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 374 Human Trafficking (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 374"
@@ -881,12 +1455,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 374 Human Trafficking (5 cr) Course codes extracted: TSOCWF 374 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 374 Human Trafficking (5 cr) Course codes extracted: TSOCWF 374 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 409 Readings in Social Welfare (1-5 cr, max. 15 cr)",
         "courseCodesExtracted": [
           "TSOCWF 409"
@@ -895,12 +1469,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 409 Readings in Social Welfare (1-5 cr, max. 15 cr) Course codes extracted: TSOCWF 409 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 409 Readings in Social Welfare (1-5 cr, max. 15 cr) Course codes extracted: TSOCWF 409 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 420 Interpersonal Violence and Society (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 420"
@@ -909,12 +1483,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 420 Interpersonal Violence and Society (5 cr) Course codes extracted: TSOCWF 420 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 420 Interpersonal Violence and Society (5 cr) Course codes extracted: TSOCWF 420 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 421 Cross-Cultural Grieving (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 421"
@@ -923,12 +1497,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 421 Cross-Cultural Grieving (5 cr) Course codes extracted: TSOCWF 421 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 421 Cross-Cultural Grieving (5 cr) Course codes extracted: TSOCWF 421 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 422 Aging in American Society (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 422"
@@ -937,12 +1511,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 422 Aging in American Society (5 cr) Course codes extracted: TSOCWF 422 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 422 Aging in American Society (5 cr) Course codes extracted: TSOCWF 422 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 425 Comparative Social Policy (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 425"
@@ -951,12 +1525,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 425 Comparative Social Policy (5 cr) Course codes extracted: TSOCWF 425 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 425 Comparative Social Policy (5 cr) Course codes extracted: TSOCWF 425 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 427 Racialized Disproportionality Across Systems (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 427"
@@ -965,12 +1539,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 427 Racialized Disproportionality Across Systems (5 cr) Course codes extracted: TSOCWF 427 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 427 Racialized Disproportionality Across Systems (5 cr) Course codes extracted: TSOCWF 427 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 428 Policy and Practice with Sexual Offenders (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 428"
@@ -979,12 +1553,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 428 Policy and Practice with Sexual Offenders (5 cr) Course codes extracted: TSOCWF 428 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 428 Policy and Practice with Sexual Offenders (5 cr) Course codes extracted: TSOCWF 428 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 430 Children of Incarcerated Parents (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 430"
@@ -993,12 +1567,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 430 Children of Incarcerated Parents (5 cr) Course codes extracted: TSOCWF 430 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 430 Children of Incarcerated Parents (5 cr) Course codes extracted: TSOCWF 430 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 433"
@@ -1007,12 +1581,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr) Course codes extracted: TSOCWF 433 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr) Course codes extracted: TSOCWF 433 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr)",
         "courseCodesExtracted": [
           "TSOCWF 436"
@@ -1021,12 +1595,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr) Course codes extracted: TSOCWF 436 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr) Course codes extracted: TSOCWF 436 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "TSOCWF 490 Research in Social Welfare (1-3 cr, max. 10 cr)",
         "courseCodesExtracted": [
           "TSOCWF 490"
@@ -1035,31 +1609,31 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 490 Research in Social Welfare (1-3 cr, max. 10 cr) Course codes extracted: TSOCWF 490 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 490 Research in Social Welfare (1-3 cr, max. 10 cr) Course codes extracted: TSOCWF 490 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "GENERAL ELECTIVES",
         "courseCodesExtracted": [],
         "detectedSectionRole": "admission-prep-section",
         "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: GENERAL ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: GENERAL ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sectionTitle": "(1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
+        "sectionTitle": "Intermediate algebra requirement must be fulfilled to be considered for admission to the major.",
         "rawLine": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives.",
         "courseCodesExtracted": [],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
         "reason": "credit-bucket requirement cue",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
       },
       {
         "ownerId": "uw-tacoma-social-welfare",
@@ -3706,33 +4280,33 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
       "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: 5 credits; Met with prerequisite course Raw line: Social Sciences [SSc] Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
       "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: 5 credits; Met with prerequisite course Raw line: Introductory/Survey course in Psychology (2) Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
       "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: 20 credits; Two of four courses met (4) with prerequisite courses Raw line: 20 credits; Two of four courses met (4) with prerequisite courses Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (2) Minimum grade of 2.0/C required in each course. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses) Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: SOCIAL WELFARE ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. Course codes extracted: TSOCWF 300 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 350 Biopsychosocial Human Services (5 cr) Course codes extracted: TSOCWF 350 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 351 Applied Statistics for Social and Human Services (5 cr) Course codes extracted: TSOCWF 351 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 353 Mental Illness and Recovery (5 cr) Course codes extracted: TSOCWF 353 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 354 Sexual Orientation and Gender Identity (5 cr) Course codes extracted: TSOCWF 354 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 355 HIV/AIDS: Global and National Issues (5 cr) Course codes extracted: TSOCWF 355 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 361 Addictions and Mental Illness in Criminal Justice (5 cr) Course codes extracted: TSOCWF 361 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 363 Criminalization of Immigration (5 cr) Course codes extracted: TSOCWF 363 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 374 Human Trafficking (5 cr) Course codes extracted: TSOCWF 374 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 409 Readings in Social Welfare (1-5 cr, max. 15 cr) Course codes extracted: TSOCWF 409 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 420 Interpersonal Violence and Society (5 cr) Course codes extracted: TSOCWF 420 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 421 Cross-Cultural Grieving (5 cr) Course codes extracted: TSOCWF 421 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 422 Aging in American Society (5 cr) Course codes extracted: TSOCWF 422 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 425 Comparative Social Policy (5 cr) Course codes extracted: TSOCWF 425 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 427 Racialized Disproportionality Across Systems (5 cr) Course codes extracted: TSOCWF 427 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 428 Policy and Practice with Sexual Offenders (5 cr) Course codes extracted: TSOCWF 428 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 430 Children of Incarcerated Parents (5 cr) Course codes extracted: TSOCWF 430 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr) Course codes extracted: TSOCWF 433 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr) Course codes extracted: TSOCWF 436 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 490 Research in Social Welfare (1-3 cr, max. 10 cr) Course codes extracted: TSOCWF 490 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: GENERAL ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: (1) Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Minimum grade of 2.0/C required in each course. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses) Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: SOCIAL WELFARE ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. Course codes extracted: TSOCWF 300 Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 350 Biopsychosocial Human Services (5 cr) Course codes extracted: TSOCWF 350 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 351 Applied Statistics for Social and Human Services (5 cr) Course codes extracted: TSOCWF 351 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 353 Mental Illness and Recovery (5 cr) Course codes extracted: TSOCWF 353 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 354 Sexual Orientation and Gender Identity (5 cr) Course codes extracted: TSOCWF 354 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 355 HIV/AIDS: Global and National Issues (5 cr) Course codes extracted: TSOCWF 355 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 361 Addictions and Mental Illness in Criminal Justice (5 cr) Course codes extracted: TSOCWF 361 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 363 Criminalization of Immigration (5 cr) Course codes extracted: TSOCWF 363 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 374 Human Trafficking (5 cr) Course codes extracted: TSOCWF 374 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 409 Readings in Social Welfare (1-5 cr, max. 15 cr) Course codes extracted: TSOCWF 409 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 420 Interpersonal Violence and Society (5 cr) Course codes extracted: TSOCWF 420 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 421 Cross-Cultural Grieving (5 cr) Course codes extracted: TSOCWF 421 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 422 Aging in American Society (5 cr) Course codes extracted: TSOCWF 422 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 425 Comparative Social Policy (5 cr) Course codes extracted: TSOCWF 425 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 427 Racialized Disproportionality Across Systems (5 cr) Course codes extracted: TSOCWF 427 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 428 Policy and Practice with Sexual Offenders (5 cr) Course codes extracted: TSOCWF 428 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 430 Children of Incarcerated Parents (5 cr) Course codes extracted: TSOCWF 430 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr) Course codes extracted: TSOCWF 433 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr) Course codes extracted: TSOCWF 436 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: TSOCWF 490 Research in Social Welfare (1-3 cr, max. 10 cr) Course codes extracted: TSOCWF 490 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: GENERAL ELECTIVES Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Intermediate algebra requirement must be fulfilled to be considered for admission to the major. Raw line: The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
       "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements. Raw line: Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
       "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Curriculum overview Raw line: Curriculum overview Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
       "[parser prerequisite filter audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Section title: Curriculum overview Raw line: Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
@@ -3955,12 +4529,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
     "parserSequenceChoiceAuditLines": [],
     "sourceScopeAuditLines": [
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: ENGL 131 Emitted as: required-row Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 300 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 301 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 310 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 300 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 301 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 310 Emitted as: required-row Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 311 Emitted as: required-row Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 312 Emitted as: required-row Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 320 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 320 Emitted as: required-row Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 350 Emitted as: option-group Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 351 Emitted as: option-group Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 353 Emitted as: option-group Scheduled: yes Issue: none",
@@ -3970,7 +4544,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 363 Emitted as: option-group Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 374 Emitted as: option-group Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 390 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 402 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 402 Emitted as: required-row Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 404 Emitted as: required-row Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 405 Emitted as: required-row Scheduled: yes Issue: none",
       "[source scope audit] Owner id: uw-tacoma-social-welfare Source URL: https://www.tacoma.uw.edu/swcj/basw-curriculum Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSOCWF 406 Emitted as: required-row Scheduled: yes Issue: none",
@@ -4096,6 +4670,48 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "sourceSectionReason": "primary requirement cue"
       },
       {
+        "id": "uw-tacoma-social-welfare:source-atom:tsocwf-300",
+        "title": "TSOCWF 300",
+        "uwCourseCode": "TSOCWF 300",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "TSOCWF 300"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "credit-bucket requirement cue"
+      },
+      {
+        "id": "uw-tacoma-social-welfare:source-atom:tsocwf-301",
+        "title": "TSOCWF 301",
+        "uwCourseCode": "TSOCWF 301",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "TSOCWF 301"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-social-welfare:source-atom:tsocwf-310",
+        "title": "TSOCWF 310",
+        "uwCourseCode": "TSOCWF 310",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "TSOCWF 310"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
         "id": "uw-tacoma-social-welfare:source-atom:tsocwf-311",
         "title": "TSOCWF 311",
         "uwCourseCode": "TSOCWF 311",
@@ -4118,6 +4734,34 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "phaseConfidence": null,
         "sourceLineHints": [
           "TSOCWF 312"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-social-welfare:source-atom:tsocwf-320",
+        "title": "TSOCWF 320",
+        "uwCourseCode": "TSOCWF 320",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "TSOCWF 320"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-social-welfare:source-atom:tsocwf-402",
+        "title": "TSOCWF 402",
+        "uwCourseCode": "TSOCWF 402",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "TSOCWF 402 (W)"
         ],
         "sourceSectionRole": "primary-requirement-section",
         "sourceSectionSchedulable": true,
@@ -4249,7 +4893,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
     ],
     "parsedRequirementGroups": [
       {
-        "id": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "id": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "label": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
         "subcategory": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
@@ -4259,16 +4903,16 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "maxCourses": null,
         "selectionCount": null,
         "requiredCount": null,
-        "minCredits": 5,
-        "maxCredits": 5,
-        "creditText": "5",
+        "minCredits": 10,
+        "maxCredits": 10,
+        "creditText": "10",
         "satisfactionMode": "credit-based",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
         "sourceRowText": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
         "sourceSection": null,
         "sourceSectionRole": "primary-requirement-section",
         "sourceSectionSchedulable": true,
-        "detectedOptionCue": "sectioned split-heading credit list",
+        "detectedOptionCue": "sectioned credit list",
         "sourceRole": "primary-degree-requirements",
         "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
         "sourceScope": null,
@@ -4857,194 +5501,6 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         ]
       },
       {
-        "id": "uw-tacoma-social-welfare:requirement-group:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-choose-credits-180-180",
-        "label": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "subcategory": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "requirementType": "choose_credits",
-        "requirementShape": "credit-bucket",
-        "minCourses": null,
-        "maxCourses": null,
-        "selectionCount": null,
-        "requiredCount": null,
-        "minCredits": 180,
-        "maxCredits": 180,
-        "creditText": "180",
-        "satisfactionMode": "credit-based",
-        "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceRowText": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceSection": null,
-        "sourceSectionRole": "primary-requirement-section",
-        "sourceSectionSchedulable": true,
-        "detectedOptionCue": "sectioned credit list",
-        "sourceRole": "primary-degree-requirements",
-        "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sourceScope": null,
-        "pathwayId": null,
-        "routeId": null,
-        "canCreateScheduleRow": null,
-        "supportOnly": false,
-        "approvedListKey": null,
-        "canCreatePlaceholder": true,
-        "programSpecific": null,
-        "notes": [
-          "Parsed from a source section heading and the following course rows."
-        ],
-        "sequencePaths": [],
-        "options": [
-          {
-            "id": "uw-tacoma-social-welfare:requirement-option:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-tsocwf-301",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "TSOCWF 301"
-            ],
-            "uwCourses": [
-              "TSOCWF 301"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 2,
-            "creditMin": 2,
-            "creditMax": 2,
-            "creditText": "2",
-            "maxCredits": null,
-            "title": "Professionalism in Social Work (2)",
-            "department": "TSOCWF",
-            "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-            "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "TSOCWF 301"
-          },
-          {
-            "id": "uw-tacoma-social-welfare:requirement-option:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-tsocwf-300",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "TSOCWF 300"
-            ],
-            "uwCourses": [
-              "TSOCWF 300"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Historical Approaches (5)",
-            "department": "TSOCWF",
-            "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-            "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "TSOCWF 300"
-          },
-          {
-            "id": "uw-tacoma-social-welfare:requirement-option:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-tsocwf-402",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "TSOCWF 402 (W)"
-            ],
-            "uwCourses": [
-              "TSOCWF 402"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Human Behavior & Social Environment I (5)",
-            "department": "TSOCWF",
-            "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-            "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "TSOCWF 402 (W)"
-          },
-          {
-            "id": "uw-tacoma-social-welfare:requirement-option:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-tsocwf-310",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "TSOCWF 310"
-            ],
-            "uwCourses": [
-              "TSOCWF 310"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Practice I - Individuals & Families (5)",
-            "department": "TSOCWF",
-            "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-            "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "TSOCWF 310"
-          },
-          {
-            "id": "uw-tacoma-social-welfare:requirement-option:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-tsocwf-320",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "TSOCWF 320"
-            ],
-            "uwCourses": [
-              "TSOCWF 320"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Contemporary Approaches (5)",
-            "department": "TSOCWF",
-            "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-            "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "TSOCWF 320"
-          }
-        ]
-      },
-      {
         "id": "uw-tacoma-social-welfare:requirement-group:electives-attendance-during-summer-quarter-may-be-optional-but-is-likely-needed-consult-with-an-academic-advisor-choose-credits-12-12",
         "label": "Electives - Attendance during summer quarter may be optional, but is likely needed. Consult with an academic advisor",
         "category": "electives_attendance_during_summer_quarter_may_be_optional_but_is_likely_needed_consult_with_an_academic_advisor",
@@ -5301,43 +5757,6 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "label": "5 credits of Diversity (DIV)"
           }
         ]
-      },
-      {
-        "id": "uw-tacoma-social-welfare:requirement-group:credit-bucket-ten-10-credits-of-approved-social-welfare-electives-and-general-electives-may-be-taken-at-times-other-than-those-designated-above-schedule-permitting-based-upon-sample-plan-enrollment-in-12-credits-during-summer-is-suggested-12-12",
-        "label": "Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.",
-        "category": "approved-credit-bucket",
-        "subcategory": "uw-tacoma-social-welfare-approved-electives",
-        "requirementType": "choose_credits",
-        "requirementShape": "credit-bucket",
-        "minCourses": null,
-        "maxCourses": null,
-        "selectionCount": null,
-        "requiredCount": null,
-        "minCredits": 12,
-        "maxCredits": 12,
-        "creditText": "12",
-        "satisfactionMode": "credit-based",
-        "sourceHeading": "Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.",
-        "sourceRowText": "Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.",
-        "sourceSection": null,
-        "sourceSectionRole": "primary-requirement-section",
-        "sourceSectionSchedulable": true,
-        "detectedOptionCue": "credit bucket",
-        "sourceRole": "primary-degree-requirements",
-        "sourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-        "sourceScope": null,
-        "pathwayId": null,
-        "routeId": null,
-        "canCreateScheduleRow": null,
-        "supportOnly": false,
-        "approvedListKey": "uw-tacoma-social-welfare-approved-electives",
-        "canCreatePlaceholder": true,
-        "programSpecific": false,
-        "notes": [
-          "Credit bucket placeholder extracted from source text."
-        ],
-        "sequencePaths": [],
-        "options": []
       }
     ],
     "parsedRequirementCourses": [
@@ -5350,7 +5769,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5366,7 +5785,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5382,7 +5801,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5398,7 +5817,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5414,7 +5833,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5430,7 +5849,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5446,7 +5865,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5462,7 +5881,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5478,7 +5897,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": null,
         "creditText": null,
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5494,7 +5913,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5510,7 +5929,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5526,7 +5945,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5542,7 +5961,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5558,7 +5977,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5574,7 +5993,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5590,7 +6009,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5606,7 +6025,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5622,7 +6041,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 5,
         "creditText": "5",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
@@ -5638,91 +6057,11 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMax": 180,
         "creditText": "180",
         "category": "ten_10_credits_of_social_welfare_electives_tsocwf_300_and_400_level_non_core_courses_are_and_may_be_taken_any_time_during_the_program_or_during_any_quarter_enrolled_as_a_matriculated_student_including_summer_the_following_courses_are_approved_social_welfare_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-5-5",
+        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:ten-10-credits-of-social-welfare-electives-tsocwf-300-and-400-level-non-core-courses-are-required-and-may-be-taken-any-time-during-the-program-or-during-any-quarter-enrolled-as-a-matriculated-student-including-summer-the-following-courses-are-approved-social-welfare-electives-choose-credits-10-10",
         "requirementType": "choose_credits",
         "optionRole": "option",
         "sourceHeading": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
         "sourceCategory": "Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives",
-        "notes": []
-      },
-      {
-        "courseCode": "TSOCWF 301",
-        "normalizedCourseCode": "TSOCWF 301",
-        "title": "Professionalism in Social Work (2)",
-        "credits": 2,
-        "creditMin": 2,
-        "creditMax": 2,
-        "creditText": "2",
-        "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-choose-credits-180-180",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "notes": []
-      },
-      {
-        "courseCode": "TSOCWF 300",
-        "normalizedCourseCode": "TSOCWF 300",
-        "title": "Historical Approaches (5)",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-choose-credits-180-180",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "notes": []
-      },
-      {
-        "courseCode": "TSOCWF 402 (W)",
-        "normalizedCourseCode": "TSOCWF 402",
-        "title": "Human Behavior & Social Environment I (5)",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-choose-credits-180-180",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "notes": []
-      },
-      {
-        "courseCode": "TSOCWF 310",
-        "normalizedCourseCode": "TSOCWF 310",
-        "title": "Practice I - Individuals & Families (5)",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-choose-credits-180-180",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "notes": []
-      },
-      {
-        "courseCode": "TSOCWF 320",
-        "normalizedCourseCode": "TSOCWF 320",
-        "title": "Contemporary Approaches (5)",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "the_courses_you_take_to_meet_the_for_your_degree_will_not_always_total_the_you_need_to_graduate_the_additional_credits_you_need_to_bring_your_total_to_180_are_called_general_electives_students_may_choose_from_a_variety_of_disciplines_outside_their_major_to_fulfill_general_electives",
-        "requirementGroupId": "uw-tacoma-social-welfare:requirement-group:the-courses-you-take-to-meet-the-requirements-for-your-degree-will-not-always-total-the-180-credits-you-need-to-graduate-the-additional-credits-you-need-to-bring-your-total-to-180-are-called-general-electives-students-may-choose-from-a-variety-of-disciplines-outside-their-major-to-fulfill-general-electives-choose-credits-180-180",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
-        "sourceCategory": "The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called \"general electives.\" Students may choose from a variety of disciplines outside their major to fulfill general electives",
         "notes": []
       },
       {

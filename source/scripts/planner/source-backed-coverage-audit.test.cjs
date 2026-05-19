@@ -415,6 +415,80 @@ test("UW Bioengineering runtime normalization preserves parser-backed source row
   assert.ok(generatedCourseCodes.has("ENGR& 214"));
 });
 
+test("UW Bioengineering excludes graduate navigation labels from undergraduate pathways", () => {
+  const sourcePlan = source.getTransferPlannerMajorPlan("uw-seattle-bioengineering");
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-bioengineering");
+  assert.ok(sourcePlan);
+  assert.ok(runtimePlan);
+
+  const pathwayLabels = [
+    ...(sourcePlan.pathways ?? []).map((pathway) => pathway.label),
+    ...studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)
+      .map((pathway) => pathway.label),
+  ];
+
+  assert.ok(
+    pathwayLabels.some((label) => /^Data Science Option$/i.test(label)),
+    "Expected the undergraduate Bioengineering Data Science option to remain available."
+  );
+  assert.deepEqual(
+    pathwayLabels.filter((label) => /\b(?:ph\.?\s*d\.?|graduate|doctoral)\b/i.test(label)),
+    [],
+    "Expected Bioengineering pathways to exclude PhD/graduate navigation labels."
+  );
+});
+
+test("UW Mechanical Engineering excludes course/elective labels from pathways", () => {
+  const sourcePlan = source.getTransferPlannerMajorPlan("uw-seattle-mechanical-engineering");
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-mechanical-engineering"
+  );
+  assert.ok(sourcePlan);
+  assert.ok(runtimePlan);
+
+  const pathwayLabels = [
+    ...(sourcePlan.pathways ?? []).map((pathway) => pathway.label),
+    ...studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)
+      .map((pathway) => pathway.label),
+  ];
+
+  assert.deepEqual(
+    pathwayLabels.filter((label) => /Special Projects|graded option only/i.test(label)),
+    [],
+    "Expected Mechanical Engineering pathways not to expose course/elective labels."
+  );
+});
+
+test("UW Informatics excludes approved elective bucket labels from pathways", () => {
+  const sourcePlan = source.getTransferPlannerMajorPlan("uw-seattle-informatics");
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-informatics");
+  assert.ok(sourcePlan);
+  assert.ok(runtimePlan);
+
+  const pathwayLabels = [
+    ...(sourcePlan.pathways ?? []).map((pathway) => pathway.label),
+    ...studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)
+      .map((pathway) => pathway.label),
+  ];
+
+  assert.ok(
+    pathwayLabels.some((label) => /^Data Science Option$/i.test(label)),
+    "Expected the official Informatics Data Science option to remain available."
+  );
+  assert.ok(
+    pathwayLabels.some((label) => /^Biomedical and Health Informatics Option$/i.test(label)),
+    "Expected the official Informatics Biomedical and Health Informatics option to remain available."
+  );
+  assert.deepEqual(
+    pathwayLabels.filter((label) => /^other\b.*\belectives?\s+option\b/i.test(label)),
+    [],
+    "Expected Informatics pathways to exclude approved elective bucket labels."
+  );
+});
+
 test("UW MSE NME preserves source-backed known option groups with parsed groups", () => {
   const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
     "uw-seattle-materials-science-engineering"
@@ -768,6 +842,76 @@ test("SBSE current-source filter preserves selected physics sequence atoms", () 
   assert.equal(physicsCompoundRow?.issue, "none");
 });
 
+test("SBSE computation elective remains a choose-one prompt instead of required CSE rows", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-sustainable-bioresource-systems-engineering"
+  );
+  assert.ok(plan);
+
+  const computationGroup = (plan.requirementGroups ?? []).find((group) =>
+    /^Computation and Data Science elective/i.test(group.label ?? "")
+  );
+  assert.ok(computationGroup);
+  assert.equal(computationGroup.requirementType, "choose_one");
+  assert.ok(
+    (computationGroup.options ?? []).some((option) => option.label === "CSE 123"),
+    "Expected CSE 123 to remain an accepted option."
+  );
+  assert.ok(
+    (computationGroup.options ?? []).some((option) => option.label === "CSE 142"),
+    "Expected CSE 142 to remain an accepted option."
+  );
+
+  assert.deepEqual(
+    (plan.applicationChecklist ?? [])
+      .filter((item) => /^auto-cse-(?:123|142)$/.test(item.id ?? ""))
+      .map((item) => item.title),
+    [],
+    "Expected unselected computation elective alternatives not to be auto-promoted into required rows."
+  );
+
+  const completedCourses = [];
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      plan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      plan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      plan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: studentRuntime.getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const suggestedRows = suggestedPlan.flatMap((quarter) => quarter.courses);
+  assert.deepEqual(
+    suggestedRows
+      .filter((course) => ["CS 123", "CS& 141"].includes(course.label))
+      .map((course) => course.label),
+    [],
+    "Expected CSE 123/CSE 142 Green River equivalents not to be scheduled until the student selects that option."
+  );
+  assert.ok(
+    suggestedRows.some(
+      (course) =>
+        course.optionGroup?.id === computationGroup.id &&
+        course.optionGroup?.isSelectionPrompt === true
+    ),
+    "Expected the computation elective to remain visible as a choose-one prompt."
+  );
+});
+
 test("Runtime option audit suppresses options scheduled for other source-backed requirements", () => {
   const plan = source.getTransferPlannerMajorPlan(
     "uw-seattle-sustainable-bioresource-systems-engineering"
@@ -1070,11 +1214,470 @@ test("Bothell Business Administration hides prose-fragment pathways while keepin
   for (const pathwayId of [
     "accounting-option",
     "finance-option-and-concentration",
+    "leadership-and-strategic-innovation-option",
     "marketing-option-and-concentration",
     "mis-concentration",
+    "supply-chain-management-option",
     "tim-concentration",
   ]) {
     assert.ok(pathwayIds.includes(pathwayId), `Expected official BBA pathway ${pathwayId}`);
+  }
+});
+
+test("Student runtime hides source-gap aliases with no schedulable planner content", () => {
+  const bothellMajorIds = studentRuntime
+    .getTransferPlannerStudentRuntimeMajorsForCampus("uw-bothell")
+    .map((plan) => plan.id);
+
+  for (const emptyAliasPlanId of [
+    "uw-bothell-chemistry-ba",
+    "uw-bothell-chemistry-biochemistry",
+  ]) {
+    assert.equal(
+      bothellMajorIds.includes(emptyAliasPlanId),
+      false,
+      `Expected ${emptyAliasPlanId} to stay hidden until source/parser support produces planner content.`
+    );
+    assert.equal(studentRuntime.getTransferPlannerMajorPlan(emptyAliasPlanId), null);
+  }
+
+  assert.ok(
+    bothellMajorIds.includes("uw-bothell-business-administration"),
+    "Expected non-course Bothell BBA parent to remain visible because it owns source-backed pathways."
+  );
+  assert.ok(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(
+        studentRuntime.getTransferPlannerMajorPlan("uw-bothell-business-administration")
+      )
+      .some((pathway) => pathway.degreeMapSections?.some((section) => section.items?.length)),
+    "Expected Bothell BBA pathways to retain generated planner content."
+  );
+  const sourceBackedAuditOwnerIds = new Set(
+    coverageAudit.buildOwnersForTest().map((owner) => owner.ownerId)
+  );
+  for (const hiddenSourceGapOwnerId of [
+    "uw-bothell-business-administration-finance",
+    "uw-bothell-chemistry-bs",
+    "uw-seattle-english-language-literature-and-culture",
+  ]) {
+    assert.equal(
+      sourceBackedAuditOwnerIds.has(hiddenSourceGapOwnerId),
+      false,
+      `Expected hidden source-gap owner ${hiddenSourceGapOwnerId} to stay out of the student-facing source-backed coverage gate.`
+    );
+  }
+  assert.ok(
+    sourceBackedAuditOwnerIds.has(
+      "uw-bothell-business-administration:pathway:finance-option-and-concentration"
+    ),
+    "Expected the visible canonical Bothell BBA finance pathway to remain covered."
+  );
+  assert.ok(
+    bothellMajorIds.includes("uw-bothell-electrical-engineering"),
+    "Expected source-backed Bothell Electrical Engineering to remain visible."
+  );
+});
+
+test("Bothell CSSE IAC stays a parent option rather than an incomplete duplicate major", () => {
+  const bothellMajorIds = studentRuntime
+    .getTransferPlannerStudentRuntimeMajorsForCampus("uw-bothell")
+    .map((plan) => plan.id);
+
+  assert.equal(
+    bothellMajorIds.includes("uw-bothell-csse-information-assurance-and-cybersecurity"),
+    false,
+    "Expected the standalone IAC option alias to stay hidden until it has complete own planner rows."
+  );
+
+  const parentPlan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-csse");
+  assert.ok(parentPlan);
+  const parentPathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(parentPlan);
+  const iacPathway = parentPathways.find((pathway) => pathway.id === "iac-option");
+  assert.ok(iacPathway, "Expected parent CSSE to retain the official IAC option pathway.");
+  assert.ok(
+    (iacPathway.applicationChecklist?.length ?? 0) +
+      (iacPathway.beforeEnrollmentChecklist?.length ?? 0) +
+      (iacPathway.stayAtGrcChecklist?.length ?? 0) >
+      0,
+    "Expected the parent IAC pathway to retain planner content."
+  );
+});
+
+test("Bothell Physics BS does not expose the sibling BA route", () => {
+  const physicsBsPlan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-physics-bs");
+  assert.ok(physicsBsPlan);
+  const physicsBsPathways = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(physicsBsPlan)
+    .map((pathway) => pathway.id);
+  assert.equal(
+    physicsBsPathways.includes("ba-route"),
+    false,
+    "Expected the Physics BS plan not to inherit the separate BA route."
+  );
+
+  const physicsBaPlan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-physics-ba");
+  assert.ok(physicsBaPlan);
+  const physicsBaPathways = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(physicsBaPlan)
+    .map((pathway) => pathway.id);
+  assert.ok(
+    physicsBaPathways.includes("ba-route"),
+    "Expected the Physics BA plan to keep its matching BA route."
+  );
+});
+
+test("UW Physics exposes track pathways without course-title option fragments", () => {
+  const physicsPlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-physics");
+  assert.ok(physicsPlan);
+
+  const pathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(physicsPlan)
+    .map((pathway) => pathway.id);
+
+  assert.ok(
+    pathwayIds.includes("applied-physics-track"),
+    "Expected the official Applied Physics track to remain visible."
+  );
+  assert.ok(
+    pathwayIds.includes("comprehensive-track"),
+    "Expected the official Comprehensive track to remain visible."
+  );
+  assert.deepEqual(
+    pathwayIds.filter((pathwayId) =>
+      /(?:mechanics|calculus|electromagnetism|physics-lab|cognate-electives|topics)-.*option|no-longer-accepting-new-students/i.test(
+        pathwayId
+      )
+    ),
+    [],
+    "Expected course-title and retired Physics pathway fragments to stay hidden."
+  );
+});
+
+test("UW Seattle option-family pathway aliases resolve to parsed source-backed pathways", () => {
+  const cases = [
+    {
+      planId: "uw-seattle-construction-management",
+      aliasPathwayId: "early-admission-pathway",
+    },
+    {
+      planId: "uw-seattle-construction-management",
+      aliasPathwayId: "freshmen-direct-pathway",
+    },
+    {
+      planId: "uw-seattle-construction-management",
+      aliasPathwayId: "upper-division-admission-pathway",
+    },
+    {
+      planId: "uw-seattle-geography",
+      aliasPathwayId: "ba-option-family:in-geography-data-science",
+    },
+  ];
+
+  for (const testCase of cases) {
+    const plan = studentRuntime.getTransferPlannerMajorPlan(testCase.planId);
+    assert.ok(plan, `Expected generated plan ${testCase.planId}`);
+    const resolvedPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+      plan,
+      testCase.aliasPathwayId
+    );
+    assert.equal(
+      resolvedPlan?.selectedPathwayId,
+      testCase.aliasPathwayId,
+      `Expected ${testCase.aliasPathwayId} to select the matching generated pathway instead of falling back.`
+    );
+    assert.ok(
+      resolvedPlan?.beforeEnrollmentChecklist?.length ||
+        resolvedPlan?.applicationChecklist?.length ||
+        resolvedPlan?.requirementGroups?.length ||
+        resolvedPlan?.grcCourseList?.length,
+      `Expected ${testCase.aliasPathwayId} to resolve to planner content.`
+    );
+    assert.ok(
+      studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+        testCase.planId,
+        testCase.aliasPathwayId
+      ).length > 0,
+      `Expected ${testCase.aliasPathwayId} to resolve to parsed source-backed blocks`
+    );
+  }
+});
+
+test("UW Seattle Geography Data Science materializes parsed official source courses into its generated pathway", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-geography");
+  assert.ok(plan);
+
+  const resolvedPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "ba-option-family:in-geography-data-science"
+  );
+  assert.equal(resolvedPlan?.selectedPathwayId, "ba-option-family:in-geography-data-science");
+
+  const parsedBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-geography",
+    "ba-option-family:in-geography-data-science"
+  );
+  assert.equal(parsedBlocks.length, 1);
+  assert.equal(parsedBlocks[0].pathwayId, "geography-major-data-science-option");
+
+  const degreeMapCodes = new Set(
+    (resolvedPlan.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  for (const sourceCourseCode of ["GEOG 245", "GEOG 258", "CSE 122", "INFO 201"]) {
+    assert.ok(
+      degreeMapCodes.has(sourceCourseCode),
+      `Expected Geography Data Science generated pathway to include ${sourceCourseCode}`
+    );
+  }
+});
+
+test("UW Seattle Classical Studies uses its own official source instead of inheriting Classics rows", () => {
+  const sourcePlan = source.getTransferPlannerSourceGeneratedMajorPlan(
+    "uw-seattle-classical-studies"
+  );
+  assert.ok(sourcePlan);
+
+  const sourceUrls = new Set((sourcePlan.officialLinks ?? []).map((link) => link.url));
+  assert.ok(
+    sourceUrls.has("https://classics.washington.edu/ba-classical-studies"),
+    "Expected Classical Studies to expose its own official UW source page."
+  );
+
+  const sourceBlocks = source.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-classical-studies"
+  );
+  assert.equal(sourceBlocks.length, 1);
+  assert.equal(
+    sourceBlocks[0].primarySourceUrl,
+    "https://classics.washington.edu/ba-classical-studies"
+  );
+  assert.deepEqual(sourceBlocks[0].parsedUwCourseCodes, ["CLAS 495"]);
+
+  const degreeMapCodes = new Set(
+    (sourcePlan.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  assert.ok(
+    [...degreeMapCodes].some((item) => /\bCLAS 495\b/.test(item)),
+    "Expected Classical Studies degree-map evidence to include CLAS 495 from its own source."
+  );
+  for (const inheritedClassicsCode of ["LATIN 101", "LATIN 102", "LATIN 103", "LATIN 300", "LATIN 301"]) {
+    assert.equal(
+      degreeMapCodes.has(inheritedClassicsCode),
+      false,
+      `Expected Classical Studies not to inherit ${inheritedClassicsCode} from the separate Classics major.`
+    );
+  }
+});
+
+test("UW catalog sibling-major pathways do not inherit parent major requirements", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-international-studies");
+  assert.ok(plan);
+
+  const asiaPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "ba-option-family:asia"
+  );
+  assert.equal(asiaPlan?.selectedPathwayId, "ba-option-family:asia");
+  const asiaDegreeMapCodes = new Set(
+    (asiaPlan?.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  for (const expectedAsiaCode of ["JSIS 201", "JSIS 203", "JSISA 207", "HSTAS 201"]) {
+    assert.ok(
+      asiaDegreeMapCodes.has(expectedAsiaCode),
+      `Expected International Studies Asia to include ${expectedAsiaCode}.`
+    );
+  }
+  for (const inheritedOrSiblingCode of [
+    "ECON 200",
+    "ECON 201",
+    "JSIS 495",
+    "JSIS 498",
+    "RELIG 201",
+    "RELIG 202",
+  ]) {
+    assert.equal(
+      asiaDegreeMapCodes.has(inheritedOrSiblingCode),
+      false,
+      `Expected International Studies Asia not to inherit ${inheritedOrSiblingCode}.`
+    );
+  }
+  assert.equal(
+    (asiaPlan?.requirementGroups ?? []).some((group) =>
+      /Introductory Courses: 15 credits from JSIS 200.*RELIG 202/i.test(group.label ?? "")
+    ),
+    false,
+    "Expected International Studies Asia not to inherit parent International Studies intro group."
+  );
+
+  const canadaPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "ba-option-family:canada"
+  );
+  assert.equal(canadaPlan?.selectedPathwayId, "ba-option-family:canada");
+  const canadaDegreeMapCodes = new Set(
+    (canadaPlan?.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  for (const expectedCanadaCode of [
+    "ECON 200",
+    "ECON 201",
+    "JSIS 200",
+    "JSIS 201",
+    "JSIS 202",
+    "JSISA 356",
+    "JSISA 498",
+  ]) {
+    assert.ok(
+      canadaDegreeMapCodes.has(expectedCanadaCode),
+      `Expected International Studies Canada to include ${expectedCanadaCode}.`
+    );
+  }
+  for (const inheritedOrSiblingCode of ["JSIS 203", "JSISA 207", "HSTAS 201", "RELIG 201"]) {
+    assert.equal(
+      canadaDegreeMapCodes.has(inheritedOrSiblingCode),
+      false,
+      `Expected International Studies Canada not to inherit ${inheritedOrSiblingCode}.`
+    );
+  }
+  assert.equal(
+    (canadaPlan?.requirementGroups ?? []).some((group) =>
+      /Capstone Experience.*JSIS 495.*JSIS 498/i.test(group.label ?? "")
+    ),
+    false,
+    "Expected International Studies Canada not to inherit parent International Studies capstone group."
+  );
+});
+
+test("UW Comparative Religion materializes every official semicolon-listed track", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-comparative-religion");
+  assert.ok(plan);
+
+  const pathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    .map((pathway) => pathway.id);
+
+  assert.deepEqual(pathwayIds, [
+    "religion-and-society-track",
+    "history-of-religions-eastern-emphasis-track",
+    "history-of-religions-western-emphasis-track",
+    "religion-and-symbolic-expression-track",
+  ]);
+});
+
+test("UW Economics Strategy exposes undergraduate source requirements without graduate courses", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-economics");
+  assert.ok(plan);
+
+  const strategyPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, "strategy");
+  assert.equal(strategyPlan?.selectedPathwayId, "strategy");
+  const degreeMapCodes = new Set(
+    (strategyPlan?.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  for (const expectedCode of ["ECON 400", "ECON 482", "ECON 404", "ECON 485"]) {
+    assert.ok(
+      degreeMapCodes.has(expectedCode),
+      `Expected Economics Strategy to include ${expectedCode}.`
+    );
+  }
+  for (const graduateCode of ["ECON 500", "ECON 501", "ECON 580", "ECON 800"]) {
+    assert.equal(
+      degreeMapCodes.has(graduateCode),
+      false,
+      `Expected Economics Strategy not to include graduate course ${graduateCode}.`
+    );
+  }
+
+  const strategyBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-economics",
+    "strategy"
+  );
+  assert.ok(strategyBlocks.length > 0);
+  const parsedCodes = new Set(strategyBlocks.flatMap((block) => block.parsedUwCourseCodes ?? []));
+  assert.ok(parsedCodes.has("ECON 400"));
+  assert.ok(parsedCodes.has("ECON 482"));
+  assert.equal(parsedCodes.has("ECON 800"), false);
+});
+
+test("UW Cinema and Media Studies does not expose sibling Comparative Literature Cinema Studies pathways", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-cinema-and-media-studies");
+  assert.ok(plan);
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(plan);
+  assert.deepEqual(
+    pathways.map((pathway) => pathway.id),
+    []
+  );
+  assert.ok(
+    (plan.requirementGroups ?? []).some((group) =>
+      /Core courses.*CMS 301.*CMS 480/i.test(group.label ?? "")
+    )
+  );
+});
+
+test("UW Astronomy does not expose recommended capstone guidance as a pathway", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-astronomy");
+  assert.ok(plan);
+
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(plan);
+  assert.deepEqual(
+    pathways.filter((pathway) => /capstone/i.test(`${pathway.id} ${pathway.label}`)),
+    [],
+    "Expected the recommended Astronomy capstone sequence not to materialize as a formal pathway."
+  );
+
+  const sourcePlan = source.getTransferPlannerSourceGeneratedMajorPlan("uw-seattle-astronomy");
+  assert.ok(sourcePlan);
+  const sourcePathways = source.getTransferPlannerStudentVisiblePathwaysForPlan(sourcePlan);
+  assert.deepEqual(
+    sourcePathways.filter((pathway) => /capstone/i.test(`${pathway.id} ${pathway.label}`)),
+    [],
+    "Expected source-generated student-visible pathways to suppress capstone guidance as well."
+  );
+});
+
+test("Tacoma Social Welfare preserves elective credits without scheduling degree-total prose", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-tacoma-social-welfare");
+  assert.ok(plan);
+
+  const socialWelfareElectiveGroups = (plan.requirementGroups ?? []).filter((group) =>
+    /^Ten \(10\) credits of Social Welfare Electives/i.test(group.label ?? "")
+  );
+  assert.equal(socialWelfareElectiveGroups.length, 1);
+  const socialWelfareElectives = socialWelfareElectiveGroups[0];
+  assert.equal(socialWelfareElectives.requirementType, "choose_credits");
+  assert.equal(socialWelfareElectives.minCredits, 10);
+  assert.equal(socialWelfareElectives.maxCredits, 10);
+  assert.equal(
+    (socialWelfareElectives.options ?? []).some((option) => /TSOCWF 350/i.test(option.label ?? "")),
+    true
+  );
+  assert.deepEqual(
+    (plan.requirementGroups ?? [])
+      .filter(
+        (group) =>
+          group.requirementType === "choose_credits" &&
+          (group.minCredits === 180 ||
+            /bring your total to 180|schedule permitting|sample plan/i.test(
+              `${group.label ?? ""} ${group.sourceRowText ?? ""}`
+            ))
+      )
+      .map((group) => group.label),
+    []
+  );
+});
+
+test("Tacoma Communications Research Track keeps its dedicated official source block", () => {
+  const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-tacoma-communications",
+    "research-track"
+  );
+  assert.equal(blocks.length, 1);
+  assert.equal(blocks[0].sourceUrl, "https://www.tacoma.uw.edu/sias/cac/research-track");
+
+  const parsedCodes = new Set(blocks[0].parsedUwCourseCodes ?? []);
+  for (const courseCode of ["TWRT 211", "TCOM 101", "TCOM 495", "TLAX 441"]) {
+    assert.ok(
+      parsedCodes.has(courseCode),
+      `Expected Research Track official source block to include ${courseCode}`
+    );
   }
 });
 

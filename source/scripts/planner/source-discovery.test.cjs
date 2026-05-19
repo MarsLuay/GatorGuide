@@ -1411,6 +1411,17 @@ test("Cross-major title detection blocks Sustainable Urban Development labels fo
     ),
     false
   );
+  assert.equal(
+    labelMentionsDifferentTransferPlannerMajor(
+      "uw-seattle-cinema-and-media-studies",
+      "Bachelor of Arts degree with a major in Comparative Literature: Cinema Studies",
+      {
+        "uw-seattle-cinema-and-media-studies": "Cinema & Media Studies",
+        "uw-seattle-comparative-literature": "Comparative Literature",
+      }
+    ),
+    true
+  );
 });
 
 test("DOCX major planning worksheets are primary parseable document candidates", () => {
@@ -1849,6 +1860,99 @@ test("Catalog program anchor parser stops major scope before child credential se
 
   assert.match(scopedLineText, /Admission Requirements/);
   assert.doesNotMatch(scopedLineText, /Machine Learning/);
+});
+
+test("Unanchored UW catalog major pages stop before graduate program sections", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-ECON-MAJOR">
+      <h3 class="expanded" id="program-UG-ECON-MAJOR">Program of Study: Major: Economics</h3>
+    </div>
+    <div id="program-UG-ECON-MAJOR-block" class="inner-block">
+      <p>This program of study leads to the following credentials:</p>
+      <h4 id="credential-ba">Bachelor of Arts degree with a major in Economics</h4>
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <p>Core Courses: ECON 200, ECON 201, ECON 300, ECON 301; STAT 311; MATH 124.</p>
+      </div>
+      <h4 id="credential-strategy">Bachelor of Science degree with a major in Economics: Strategy</h4>
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <p>Core Courses: ECON 400, ECON 482; one of ECON 404 or ECON 485.</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="program-GR-ECON-41">
+      <h3 class="expanded" id="program-GR-ECON-41">Program of Study: Doctor Of Philosophy (Economics)</h3>
+    </div>
+    <div id="program-GR-ECON-41-block" class="inner-block">
+      <b>Graduate Admissions</b>
+      <p>Required Courses: ECON 500, ECON 501, ECON 580, ECON 800.</p>
+    </div>
+  `;
+  const scope = parser.scopeCatalogHtmlByAnchor(
+    {
+      campusId: "uw-seattle",
+      ownerType: "major",
+      planId: "uw-seattle-economics",
+      ownerTitle: "Economics",
+      label: "Degree requirements",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      url: "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    },
+    html
+  );
+  const scopedText = scope?.lines?.join(" ") ?? "";
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /ECON 200/);
+  assert.match(scopedText, /ECON 482/);
+  assert.doesNotMatch(scopedText, /Graduate Admissions/);
+  assert.doesNotMatch(scopedText, /ECON 800/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /program-GR-ECON-41/);
+});
+
+test("Unanchored UW catalog pathway pages scope to the matching credential", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-ECON-MAJOR">
+      <h3 class="expanded" id="program-UG-ECON-MAJOR">Program of Study: Major: Economics</h3>
+    </div>
+    <div id="program-UG-ECON-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-ba">Bachelor of Arts degree with a major in Economics</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Core Courses: ECON 200, ECON 201, ECON 300, ECON 301.</p>
+      </div>
+      <h4 class="expanded" id="credential-international">Bachelor of Arts degree with a major in Economics: International Economics</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Upper-Division Economics Courses: ECON 471, ECON 472; two courses from ECON 425 or ECON 448.</p>
+      </div>
+      <h4 class="expanded" id="credential-strategy">Bachelor of Science degree with a major in Economics: Strategy</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Upper-Division Economics Courses: ECON 400, ECON 482; one of ECON 404 or ECON 485.</p>
+      </div>
+    </div>
+  `;
+  const scope = parser.scopeCatalogHtmlByAnchor(
+    {
+      campusId: "uw-seattle",
+      ownerType: "pathway",
+      planId: "uw-seattle-economics",
+      pathwayId: "strategy",
+      ownerTitle: "Economics - Strategy",
+      label: "Strategy",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      url: "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    },
+    html
+  );
+  const scopedText = scope?.lines?.join(" ") ?? "";
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /ECON 400/);
+  assert.match(scopedText, /ECON 482/);
+  assert.doesNotMatch(scopedText, /ECON 471/);
+  assert.doesNotMatch(scopedText, /ECON 300/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /end of document|credential/);
 });
 
 test("Pathway hub pages can promote matching child option and concentration sources", async () => {
@@ -4919,6 +5023,65 @@ test("Pathway discovery follows parent track links and chooses the matching chil
   assert.equal(policyCandidate.sourceRole, "support-source");
   assert.equal(policyCandidate.supportOnly, true);
   assert.equal(policyCandidate.canBePrimary, false);
+});
+
+test("Pathway discovery follows parent track links and chooses the research child page", async () => {
+  const parentUrl = "https://www.tacoma.uw.edu/sias/cac/communication";
+  const professionalUrl = "https://www.tacoma.uw.edu/sias/cac/professional-track";
+  const researchUrl = "https://www.tacoma.uw.edu/sias/cac/research-track";
+  const target = buildSbseTarget({
+    ownerType: "pathway",
+    ownerKey: "uw-tacoma-communications:pathway:research-track",
+    planId: "uw-tacoma-communications",
+    pathwayId: "research-track",
+    campusId: "uw-tacoma",
+    title: "Communications (BA)",
+    label: "Research track",
+    officialLinks: [{ label: "Communications major requirements", url: parentUrl }],
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === parentUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Communication major requirements",
+          headings: ["Communication major requirements", "Tracks"],
+          anchors: [
+            { url: professionalUrl, text: "Professional Track", sourceUrl: url },
+            { url: researchUrl, text: "Research Track", sourceUrl: url },
+          ],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: true,
+        status: 200,
+        finalUrl: url,
+        contentType: "text/html",
+        title:
+          url === researchUrl
+            ? "Research Track | Communication"
+            : "Professional Track | Communication",
+        headings: url === researchUrl ? ["Research Track"] : ["Professional Track"],
+        anchors: [],
+        error: null,
+      };
+    },
+  });
+
+  assert.ok(includesExactUrl(inspectedUrls, researchUrl));
+  assert.equal(result.suggestedPrimary.url, researchUrl);
+  assert.equal(result.suggestedPrimary.sourceRole, "primary-degree-requirements");
+  assert.ok(result.suggestedPrimary.score > 0);
 });
 
 test("Matching pathway child pages can replace broad weak pathway primaries", async () => {

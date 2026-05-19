@@ -35,6 +35,7 @@ import type {
 import {
   getTransferPlannerProgramApprovedCourseFilterDefinition,
 } from "./program-approved-course-filters";
+import { normalizeTransferPlannerPathwayId } from "./pathway-id-normalization";
 
 export type {
   TransferPlannerCampus,
@@ -2672,10 +2673,15 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
 ) {
   if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
   const pathways = getTransferPlannerStudentRuntimePathwaysForPlan(plan);
+  const normalizedInputPathwayId = normalizeTransferPlannerPathwayId(plan.id, pathwayId);
+  const matchedPathway = normalizedInputPathwayId
+    ? pathways.find(
+        (pathway) =>
+          normalizeTransferPlannerPathwayId(plan.id, pathway.id) === normalizedInputPathwayId
+      )
+    : null;
   const selectedPathwayId =
-    pathwayId && pathways.some((pathway) => pathway.id === pathwayId)
-      ? pathwayId
-      : pathways[0]?.id ?? null;
+    matchedPathway?.id ?? pathways[0]?.id ?? null;
   const resolvedPlan =
     TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[
       getPlannerPathwayKey(plan.id, selectedPathwayId)
@@ -2717,9 +2723,10 @@ export function getTransferPlannerPrimaryDegreeRequirementsSource(
   planId: string,
   pathwayId?: string | null
 ) {
+  const normalizedPathwayId = normalizeTransferPlannerPathwayId(planId, pathwayId ?? null);
   return (
     TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY[
-      getPlannerPathwayKey(planId, pathwayId ?? null)
+      getPlannerPathwayKey(planId, normalizedPathwayId ?? null)
     ] ??
     TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY[getPlannerPathwayKey(planId, null)] ??
     null
@@ -2730,14 +2737,25 @@ export function getTransferPlannerParsedRequirementSourceBlocks(
   planId: string,
   pathwayId?: string | null
 ) {
+  const normalizedPathwayId =
+    pathwayId === undefined ? undefined : normalizeTransferPlannerPathwayId(planId, pathwayId);
   return TRANSFER_PLANNER_RUNTIME_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
-    (entry) =>
-      entry.planId === planId &&
-      (pathwayId === undefined
-        ? true
-        : pathwayId === null
-          ? !entry.pathwayId
-          : entry.pathwayId === pathwayId)
+    (entry) => {
+      if (entry.planId !== planId) {
+        return false;
+      }
+      if (normalizedPathwayId === undefined) {
+        return true;
+      }
+
+      const normalizedEntryPathwayId = normalizeTransferPlannerPathwayId(
+        planId,
+        entry.pathwayId ?? null
+      );
+      return normalizedPathwayId === null
+        ? !normalizedEntryPathwayId
+        : normalizedEntryPathwayId === normalizedPathwayId;
+    }
   ).map(normalizeRuntimeParsedRequirementSourceBlock);
 }
 

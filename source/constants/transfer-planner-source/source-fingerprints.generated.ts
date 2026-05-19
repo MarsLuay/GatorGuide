@@ -9,23 +9,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog Cinema and Media Studies page"
     ],
     "ownerIds": [
-      "uw-seattle-cinema-and-media-studies",
-      "uw-seattle-cinema-and-media-studies:pathway:ba-route",
-      "uw-seattle-cinema-and-media-studies:pathway:cinema-studies"
+      "uw-seattle-cinema-and-media-studies"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "45179",
-    "etag": "\"b07b-6518f64ee29fe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"b07b-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f98707e0ad0b01e9c572357ecf02aaa8edbb4b73d39cb3a4554d1a68967acffc"
+    "resourceFingerprint": "f35327b5efd459a6ed028ec07c37d563e64a67d1125ad57ba5e9861bbceadfff"
   },
   {
     "url": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
@@ -64,12 +61,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=utf-8",
-    "contentLength": "15950",
+    "contentLength": "15948",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d6613d84e81c6073cf0c82dcbd0ba6841ef969e8987e1bb7a8ad73e395fcc374"
+    "resourceFingerprint": "c69d6b76879a7f6458a8520069c9076ab3bdbdc1f6f4424ef205abaa65d81cf9"
   },
   {
     "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
@@ -80,9 +77,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ownerIds": [
       "uw-bothell-conservation-and-restoration-science",
       "uw-bothell-law-economics-and-public-policy",
+      "uw-bothell-law-economics-and-public-policy:pathway:ba-route",
       "uw-seattle-biology",
       "uw-seattle-chemistry",
       "uw-seattle-economics",
+      "uw-seattle-economics:pathway:ba-option-family:international-economics",
+      "uw-seattle-economics:pathway:strategy",
       "uw-seattle-environmental-public-health",
       "uw-seattle-food-systems-nutrition-and-health",
       "uw-seattle-human-centered-design-engineering",
@@ -92,12 +92,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-seattle-political-science",
       "uw-seattle-psychology",
       "uw-seattle-public-health-global-health",
+      "uw-seattle-public-health-global-health:pathway:health-education-and-promotion-ba-option",
       "uw-seattle-sustainable-bioresource-systems-engineering",
       "uw-tacoma-computer-engineering",
       "uw-tacoma-electrical-engineering"
     ],
     "kinds": [
-      "major"
+      "major",
+      "pathway"
     ],
     "ok": true,
     "status": 200,
@@ -131,11 +133,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51310",
-    "etag": "\"1778633120\"",
-    "lastModified": "Wed, 13 May 2026 00:45:20 GMT",
+    "etag": "\"1779164429\"",
+    "lastModified": "Tue, 19 May 2026 04:20:29 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a59ed3000abb646dacd24a0530ad8f65f52f39cff45686e45c9ee5ca69f95d2d"
+    "resourceFingerprint": "a4cd7a727c4b08d6d974d88a8414c1bd3e8e47b2131efab4283ed430f49deb8b"
   },
   {
     "url": "https://ais.washington.edu/ba-american-indian-studies",
@@ -155,11 +157,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "49425",
-    "etag": "\"1778633120\"",
-    "lastModified": "Wed, 13 May 2026 00:45:20 GMT",
+    "etag": "\"1779164324\"",
+    "lastModified": "Tue, 19 May 2026 04:18:44 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b4d794a491e66a67f3e47ec8bf4a313bdee6c8757f2860cbeff816c1b715d764"
+    "resourceFingerprint": "bedde21a5b87cd36e57880cc1fb10f2cae3b3da629e4dee9ce6d6625f3a3e155"
   },
   {
     "url": "https://ais.washington.edu/sites/ais/files/documents/AIS%20Major%20Requirement%20Sheet%209.24.25.pdf",
@@ -174,14 +176,36 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
+    "status": 200,
+    "contentType": "application/pdf",
     "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "BA IN AMERICAN INDIAN STUDIES",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "d59d8b3f596a4e60e0da88d25e06d40f52eb33ed422ffabba87eb065e6ba6f43"
+    "etag": "W/\"69b04a8a-37552\"",
+    "lastModified": "Tue, 10 Mar 2026 16:44:58 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "e99bce138e8f43958d07cc03c3abdf32e8f2f1c1ff7a0c9a1dffb44f6cd5ca09"
+  },
+  {
+    "url": "https://amath.washington.edu/applied-mathematics-data-science-option",
+    "finalUrl": "https://amath.washington.edu/applied-mathematics-data-science-option",
+    "labels": [
+      "B.S. in Applied Mathematics: Data Science Option"
+    ],
+    "ownerIds": [
+      "uw-seattle-applied-mathematics:pathway:bs-option-family:data-science"
+    ],
+    "kinds": [
+      "pathway"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "47659",
+    "etag": "\"1779163960\"",
+    "lastModified": "Tue, 19 May 2026 04:12:40 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "0a3069921a453e04fbc873aaf72838511926efeccbae84c8166dc40a21a8ced0"
   },
   {
     "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
@@ -203,11 +227,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "47894",
-    "etag": "\"1778632281\"",
-    "lastModified": "Wed, 13 May 2026 00:31:21 GMT",
+    "etag": "\"1779163673\"",
+    "lastModified": "Tue, 19 May 2026 04:07:53 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "40c70ddb9b65419740b6f5bfce42c13ea8e50de773f6140cfc7c51b0a7794bce"
+    "resourceFingerprint": "09bccb80afd24851059ebd630fa89feaa8abefb78e2340ebb6bc6f752e1564c6"
   },
   {
     "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
@@ -217,8 +241,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-architectural-studies",
-      "uw-seattle-architectural-studies:pathway:ba-route",
-      "uw-seattle-architectural-studies:pathway:extent-and-quality-of-relevant-3-area-of-concentration-selective-courses-from"
+      "uw-seattle-architectural-studies:pathway:ba-route"
     ],
     "kinds": [
       "major",
@@ -272,11 +295,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55164",
-    "etag": "\"1778633120\"",
-    "lastModified": "Wed, 13 May 2026 00:45:20 GMT",
+    "etag": "\"1779164500\"",
+    "lastModified": "Tue, 19 May 2026 04:21:40 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bf4053c1eb3c84fe5c2166655edf2cc5a31766726624d1c9c8d59c7504ecf119"
+    "resourceFingerprint": "e8cdb97ec2f740cbfd46700cd36cc0338ad5eace85653dd1d0a2786068a7f024"
   },
   {
     "url": "https://asian.washington.edu/ba-chinese",
@@ -294,11 +317,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "52263",
-    "etag": "\"1778633122\"",
-    "lastModified": "Wed, 13 May 2026 00:45:22 GMT",
+    "etag": "\"1779164154\"",
+    "lastModified": "Tue, 19 May 2026 04:15:54 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a57f9a771f3d6378622e623402d2ae73a050ec3114d0aace1212548c25fca00a"
+    "resourceFingerprint": "9c153e634d2eeb75a2ca3b637886ba65d216dcedaf4062a649b8d97dab266cff"
   },
   {
     "url": "https://asian.washington.edu/ba-japanese",
@@ -316,11 +339,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54266",
-    "etag": "\"1778631080\"",
-    "lastModified": "Wed, 13 May 2026 00:11:20 GMT",
+    "etag": "\"1779166513\"",
+    "lastModified": "Tue, 19 May 2026 04:55:13 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2867ed5cfe3beaec14ea604c72f29276c51406bab885393efe1e1bef48fd9d37"
+    "resourceFingerprint": "2a58a7cb9941adf1f74b13fb8986c0e72ee3201a4474f959ae6ffdcbb8cd1c9a"
   },
   {
     "url": "https://asian.washington.edu/ba-korean",
@@ -338,18 +361,17 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50980",
-    "etag": "\"1778633124\"",
-    "lastModified": "Wed, 13 May 2026 00:45:24 GMT",
+    "etag": "\"1779166515\"",
+    "lastModified": "Tue, 19 May 2026 04:55:15 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4b346df2bec319a88d926b618631b8da9b2ae86c23028be3efbd13fb56659da1"
+    "resourceFingerprint": "fbb09acc1a33e1a933c45107f45770de20287a189d1a646752c0633bd78c88bc"
   },
   {
     "url": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
     "finalUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
     "labels": [
-      "Scoped section: S ASIA 498 Special Topics in Languages and Cultures of South Asia",
-      "UW South Asian Languages and Cultures requirements"
+      "Scoped section: S ASIA 498 Special Topics in Languages and Cultures of South Asia"
     ],
     "ownerIds": [
       "uw-seattle-south-asian-languages-and-cultures"
@@ -361,18 +383,17 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55538",
-    "etag": "\"1778633126\"",
-    "lastModified": "Wed, 13 May 2026 00:45:26 GMT",
+    "etag": "\"1779166516\"",
+    "lastModified": "Tue, 19 May 2026 04:55:16 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "77fa7e45a2794f435b317c264e091f917396f6b490f99da5b4b8068564b05b7d"
+    "resourceFingerprint": "a74edc87adfa1991e17f880c1417d4d173406a56d6d98a5947b807b409a9f637"
   },
   {
     "url": "https://astro.washington.edu/undergraduate-program",
     "finalUrl": "https://astro.washington.edu/undergraduate-program",
     "labels": [
-      "Scoped section: Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and",
-      "degree requirements"
+      "Scoped section: Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and"
     ],
     "ownerIds": [
       "uw-seattle-astronomy",
@@ -386,11 +407,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "53730",
-    "etag": "\"1778633121\"",
-    "lastModified": "Wed, 13 May 2026 00:45:21 GMT",
+    "etag": "\"1779166013\"",
+    "lastModified": "Tue, 19 May 2026 04:46:53 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "7137a83cf2c2cf69cdf9a920500a33a7bb70a90c06978d228340c348746688c2"
+    "resourceFingerprint": "0a6e1b5a2821a9fcb8b8dceee20e4f9df336ee2f88a11ec4b62a7ea0a20d6e37"
   },
   {
     "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
@@ -401,8 +422,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ownerIds": [
       "uw-seattle-bioengineering",
       "uw-seattle-bioengineering:pathway:data-science-option",
-      "uw-seattle-bioengineering:pathway:nme-option",
-      "uw-seattle-bioengineering:pathway:phd-data-science-option"
+      "uw-seattle-bioengineering:pathway:nme-option"
     ],
     "kinds": [
       "major",
@@ -435,10 +455,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Tue, 12 May 2026 23:57:01 GMT",
+    "lastModified": "Tue, 19 May 2026 04:24:37 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "dc7b4f021f2f223c6d5419148594174fa85c02aeb4a2c5f3d90add9d34187a63"
+    "resourceFingerprint": "6fe35947c2ffbc1b947d3baf13b488a70613050ebf986835d0136aa1e3c0fe16"
   },
   {
     "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
@@ -457,10 +477,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Tue, 12 May 2026 23:57:01 GMT",
+    "lastModified": "Tue, 19 May 2026 04:24:37 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ac3960ee5973bf4beab008c08b1889c2d66bec2e789dab6b0a1d7b4b7893374c"
+    "resourceFingerprint": "25e800d1e397241cda4d40b448f0463d7c70d942b9d1987a56bb207926b45169"
   },
   {
     "url": "https://chem.washington.edu/ba-chemistry",
@@ -479,11 +499,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "68999",
-    "etag": "\"1778632104\"",
-    "lastModified": "Wed, 13 May 2026 00:28:24 GMT",
+    "etag": "\"1779166513\"",
+    "lastModified": "Tue, 19 May 2026 04:55:13 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "648bd10d86465dd366228ca79fda1767621c89e6f1a05e8e0952a86b04c8667c"
+    "resourceFingerprint": "aad5b4fb697429f568b24d6649decbfae3bfcb10b013accd760411f84afeebac"
   },
   {
     "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
@@ -545,11 +565,33 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45842",
-    "etag": "\"1778633124\"",
-    "lastModified": "Wed, 13 May 2026 00:45:24 GMT",
+    "etag": "\"1779166514\"",
+    "lastModified": "Tue, 19 May 2026 04:55:14 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ffd2c8a9d9dc1ed5e01cecd09db2a053f3b7f4e772e03cd38063948b7dd3e607"
+    "resourceFingerprint": "b277f472b08369fbba4bc5645f01f4356cd7fd524353c0ac7f835aa14d73662d"
+  },
+  {
+    "url": "https://classics.washington.edu/ba-classical-studies",
+    "finalUrl": "https://classics.washington.edu/ba-classical-studies",
+    "labels": [
+      "UW Classical Studies degree requirements"
+    ],
+    "ownerIds": [
+      "uw-seattle-classical-studies"
+    ],
+    "kinds": [
+      "major"
+    ],
+    "ok": true,
+    "status": null,
+    "contentType": "requirement-source-snapshot",
+    "contentLength": null,
+    "etag": null,
+    "lastModified": null,
+    "title": "B.A. in Classical Studies | Department of Classics | University of Washington",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "fd3619976d400e5dbc3c2b9b6a3ef8d820facc2009b7a87be417a1206aafbfcf"
   },
   {
     "url": "https://classics.washington.edu/ba-classics",
@@ -567,11 +609,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "46041",
-    "etag": "\"1778633124\"",
-    "lastModified": "Wed, 13 May 2026 00:45:24 GMT",
+    "etag": "\"1779164485\"",
+    "lastModified": "Tue, 19 May 2026 04:21:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "278294d0a1b4f16b8108cb2984141b3134827784dc5631b8fcbbad42c1bc0874"
+    "resourceFingerprint": "b241f25ba1bd3a86b9d6bf8889e243846afadb667be99022d0ae4c786a24c299"
   },
   {
     "url": "https://classics.washington.edu/ba-greek",
@@ -589,11 +631,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45812",
-    "etag": "\"1778633125\"",
-    "lastModified": "Wed, 13 May 2026 00:45:25 GMT",
+    "etag": "\"1779166515\"",
+    "lastModified": "Tue, 19 May 2026 04:55:15 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3c967cde728e968cdd906184f56d0bf9c7a8bac36f90a65f743cb2ddf11dc1ae"
+    "resourceFingerprint": "6b487a38229bc6857f0692a3eed09d252b9570805df17c656eea55446fed2d5c"
   },
   {
     "url": "https://classics.washington.edu/ba-latin",
@@ -611,11 +653,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45827",
-    "etag": "\"1778633127\"",
-    "lastModified": "Wed, 13 May 2026 00:45:27 GMT",
+    "etag": "\"1779166517\"",
+    "lastModified": "Tue, 19 May 2026 04:55:17 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1312ed69cc21f9dcad41b6c52791942886db7b46c850d4a91d371fcb680c4204"
+    "resourceFingerprint": "f23b05be48dcb457142565b71f10b437f1502c6b1fb0b88814d881002f6d4e21"
   },
   {
     "url": "https://disabilitystudies.washington.edu/DS_major",
@@ -632,12 +674,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "35851",
-    "etag": "\"1778634006\"",
-    "lastModified": "Wed, 13 May 2026 01:00:06 GMT",
+    "contentLength": "35848",
+    "etag": "\"1779166515\"",
+    "lastModified": "Tue, 19 May 2026 04:55:15 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "dc7190a0dae361dcde39795ab75a0b0cabdfdc723d09388ae0d8f831bacd488a"
+    "resourceFingerprint": "ceae847752b1c4019cabd9f63a4c96311d1fe72f1ec5a0a8121798cc4676a257"
   },
   {
     "url": "https://dlmp.uw.edu/education/mls-requirements",
@@ -656,10 +698,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Wed, 13 May 2026 01:00:07 GMT",
+    "lastModified": "Tue, 19 May 2026 04:55:15 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c987a8f9f4953a101b30f26bceadae9c86aa39695a895a75b5a2146a272dc784"
+    "resourceFingerprint": "0435f95e1713b405f7d4e3c12d7cf40924bc1c7b0f2ce79f245738f37678ee3e"
   },
   {
     "url": "https://education.washington.edu/academics/degree/bachelor-arts-ba",
@@ -706,28 +748,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "resourceFingerprint": "7f81f6aeca9d4e62601e59b75c9e25a2324672824a52c5b607f06106750ae891"
   },
   {
-    "url": "https://english.washington.edu/creative-writing-ba-courses",
-    "finalUrl": "https://english.washington.edu/creative-writing-ba-courses",
-    "labels": [
-      "Creative Writing BA Courses"
-    ],
-    "ownerIds": [
-      "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "60643",
-    "etag": "\"1778633125\"",
-    "lastModified": "Wed, 13 May 2026 00:45:25 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "3d604d15bd2bbfcc65a6dd643322567efb8a8a11df73eb6745aa978aa6bccdde"
-  },
-  {
     "url": "https://english.washington.edu/english-composition-strategies",
     "finalUrl": "https://english.washington.edu/english-composition-strategies",
     "labels": [
@@ -743,11 +763,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "65116",
-    "etag": "\"1778631011\"",
-    "lastModified": "Wed, 13 May 2026 00:10:11 GMT",
+    "etag": "\"1779163504\"",
+    "lastModified": "Tue, 19 May 2026 04:05:04 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c57246ff46d287ddf61b138eb0c5b5f1cbdc541d94aa1e51c70538ea4b424c53"
+    "resourceFingerprint": "5d053e2723d79b8806062d5268790ce0d91be82cbd8a1d07ce4d338949366ddc"
   },
   {
     "url": "https://english.washington.edu/english-language-literature-and-culture-option",
@@ -768,33 +788,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "73407",
-    "etag": "\"1778631003\"",
-    "lastModified": "Wed, 13 May 2026 00:10:03 GMT",
+    "etag": "\"1779166070\"",
+    "lastModified": "Tue, 19 May 2026 04:47:50 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1cbf3fa17778ec84c146d78d1ca9f5f1d79e5eca3d84b2a6f64e06ca3714b6b3"
-  },
-  {
-    "url": "https://english.washington.edu/english-major-creative-writing-option",
-    "finalUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "labels": [
-      "BA in English, Creative Writing Option"
-    ],
-    "ownerIds": [
-      "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "65810",
-    "etag": "\"1778630446\"",
-    "lastModified": "Wed, 13 May 2026 00:00:46 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "53fd01dff113a1db964d9a3a560f8d8925498fb728bcc9194225a8fcd08475b5"
+    "resourceFingerprint": "192e9961e6b3e118b670ba3a4968112b00df506cc2e647420a0e340cd5a4f687"
   },
   {
     "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
@@ -857,14 +855,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": "Curriculum | Foster School of Business",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "a5d8ba33ef6cc10eec16f496423a3c1b3631a5b459ff66021eb9d7d36c3bedc2"
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "373b350e97e62dc06a2d56ef4e7d4244b345e0cec86fa81c45686242dfa86ae5"
   },
   {
     "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
@@ -908,11 +906,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "46489",
-    "etag": "\"1778633126\"",
-    "lastModified": "Wed, 13 May 2026 00:45:26 GMT",
+    "etag": "\"1779166516\"",
+    "lastModified": "Tue, 19 May 2026 04:55:16 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5583f2e341785b658e78755e1f27ef0af484aa3b0aa73f05a8929cc48d530dc5"
+    "resourceFingerprint": "09a486de8e18acdd1235802c0aba7f34f74258a119cd9091f345e0058fe66172"
   },
   {
     "url": "https://frenchitalian.washington.edu/sites/frenchitalian/files/documents/9_6_2018_french-major_reqs.pdf",
@@ -927,14 +925,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
+    "status": 200,
+    "contentType": "application/pdf",
     "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "Department of French & Italian Studies",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "e255138f1c187099ec63301b8cdfde298dacf9ad319e7ad557a43e6ddff25d03"
+    "etag": "W/\"647765cf-26f50\"",
+    "lastModified": "Wed, 31 May 2023 15:20:47 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "fb426600fd65ae87d71b7b9683321fcb5a4139230de87454d6f54a1388046e42"
   },
   {
     "url": "https://frenchitalian.washington.edu/undergraduate-studies-italian",
@@ -952,11 +950,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "46284",
-    "etag": "\"1778633163\"",
-    "lastModified": "Wed, 13 May 2026 00:46:03 GMT",
+    "etag": "\"1779166554\"",
+    "lastModified": "Tue, 19 May 2026 04:55:54 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ce2afc36d87cac43f6724aff2375bd345ec66c8041c14371571231e3a6424ef4"
+    "resourceFingerprint": "d1547355f778e349758d2537f61be23be90a40cedc0323d50f6002e9d14b17c9"
   },
   {
     "url": "https://geography.washington.edu/ba-geography",
@@ -966,7 +964,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-geography",
-      "uw-seattle-geography:pathway:geography-major-data-science-option",
+      "uw-seattle-geography:pathway:data-science-option",
       "uw-seattle-geography:pathway:mapping-and-society-track"
     ],
     "kinds": [
@@ -977,11 +975,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57328",
-    "etag": "\"1778631149\"",
-    "lastModified": "Wed, 13 May 2026 00:12:29 GMT",
+    "etag": "\"1779163786\"",
+    "lastModified": "Tue, 19 May 2026 04:09:46 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ed8028805152ca14c029564824fac2318ff22ee34ed32e816583819a4af4f473"
+    "resourceFingerprint": "c3e2a370a7a34480288674f5a2ca71ac3cdb4f37ca0d785331cb21fcf1743c32"
   },
   {
     "url": "https://geography.washington.edu/ba-geography-data-science-option",
@@ -992,7 +990,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-geography",
-      "uw-seattle-geography:pathway:geography-major-data-science-option"
+      "uw-seattle-geography:pathway:data-science-option"
     ],
     "kinds": [
       "major",
@@ -1002,11 +1000,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54610",
-    "etag": "\"1778631689\"",
-    "lastModified": "Wed, 13 May 2026 00:21:29 GMT",
+    "etag": "\"1779166553\"",
+    "lastModified": "Tue, 19 May 2026 04:55:53 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "254877b93070c9f00062234e6d6444a1f50474ee93e0cd9679fff74579b91f26"
+    "resourceFingerprint": "a7a690f53c6c28a2ad1265f5d509e803b6be5cd529593fecb3802c81f73d1c70"
   },
   {
     "url": "https://geography.washington.edu/courses-track",
@@ -1024,11 +1022,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "58657",
-    "etag": "\"1778631606\"",
-    "lastModified": "Wed, 13 May 2026 00:20:06 GMT",
+    "etag": "\"1779166126\"",
+    "lastModified": "Tue, 19 May 2026 04:48:46 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "299c648428de060f6f3750bfee3fb16f768d5c6b577f295f4525d70462692f10"
+    "resourceFingerprint": "df83492ffd1f00f9b3443a62036aa555b40f8501da9aa08f613afb50e6244594"
   },
   {
     "url": "https://german.washington.edu/german-studies",
@@ -1049,11 +1047,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51343",
-    "etag": "\"1778633128\"",
-    "lastModified": "Wed, 13 May 2026 00:45:28 GMT",
+    "etag": "\"1779163439\"",
+    "lastModified": "Tue, 19 May 2026 04:03:59 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ba70ed6284d828c8310030cdea27910e43e4bc6e8b093b8b68c74f577fca61f1"
+    "resourceFingerprint": "638243632d0595d6024828147b11115316b2f38605ab076378dbc13c95b30db2"
   },
   {
     "url": "https://history.washington.edu/major",
@@ -1071,28 +1069,22 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "53535",
-    "etag": "\"1778633163\"",
-    "lastModified": "Wed, 13 May 2026 00:46:03 GMT",
+    "etag": "\"1779166553\"",
+    "lastModified": "Tue, 19 May 2026 04:55:53 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "dea0e8a21ec23ba211b4e3ee523098d89dc2e551fd07cf2a54dbd741abef9f2c"
+    "resourceFingerprint": "f5b9ff2884792dea427701c6058baa65e10ceb22b9aa461645e6293e99bef082"
   },
   {
     "url": "https://ischool.uw.edu/academics/informatics/curriculum",
     "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
     "labels": [
-      "Academics",
-      "Scoped section: Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different",
-      "Scoped section: Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different ",
-      "Scoped section: Informatics major requirements",
       "UW Informatics curriculum"
     ],
     "ownerIds": [
       "uw-seattle-informatics",
       "uw-seattle-informatics:pathway:biomedical-and-health-informatics-option",
-      "uw-seattle-informatics:pathway:data-science-option",
-      "uw-seattle-informatics:pathway:other-approved-data-science-elective-option",
-      "uw-seattle-informatics:pathway:other-data-science-electives-option"
+      "uw-seattle-informatics:pathway:data-science-option"
     ],
     "kinds": [
       "major",
@@ -1101,58 +1093,37 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69392",
-    "etag": "\"1778634009\"",
-    "lastModified": "Wed, 13 May 2026 01:00:09 GMT",
+    "contentLength": "74441",
+    "etag": "\"1779166519\"",
+    "lastModified": "Tue, 19 May 2026 04:55:19 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5b2f353657e71d916dd38f5a43a8548691e9de9b75ad3144c632d1ae0cb85e6a"
-  },
-  {
-    "url": "https://ischool.uw.edu/academics/informatics/curriculum?audience=current-students",
-    "finalUrl": "https://ischool.uw.edu/academics/informatics/curriculum?audience=current-students",
-    "labels": [
-      "Current Students"
-    ],
-    "ownerIds": [
-      "uw-seattle-informatics:pathway:other-data-science-electives-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "Informatics Curriculum | Information School | University of Washington",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "d37e5300199d8477da2e294723f95c636f50f1b8f2cd3b7928fa3432671326cb"
+    "resourceFingerprint": "f53f23b311c0ae2b3b0fd047d7a0da50db9840fd79b13d53293b521bafa49f89"
   },
   {
     "url": "https://ischool.uw.edu/programs/informatics/curriculum",
     "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
     "labels": [
-      "Academics",
-      "Scoped section: Informatics major requirements"
+      "Scoped section: Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different"
     ],
     "ownerIds": [
-      "uw-seattle-informatics:pathway:data-science-option",
-      "uw-seattle-informatics:pathway:other-data-science-electives-option"
+      "uw-seattle-informatics",
+      "uw-seattle-informatics:pathway:biomedical-and-health-informatics-option",
+      "uw-seattle-informatics:pathway:data-science-option"
     ],
     "kinds": [
+      "major",
       "pathway"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69392",
-    "etag": "\"1778634012\"",
-    "lastModified": "Wed, 13 May 2026 01:00:12 GMT",
+    "contentLength": "74441",
+    "etag": "\"1779166520\"",
+    "lastModified": "Tue, 19 May 2026 04:55:20 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1448fe7338c16d11f864b076bd8d523008f4531643f5d2d8da9c42cfbed5c0fa"
+    "resourceFingerprint": "66cb6b5fcdf6c3975c2e9ad831f8ad1caf92e07e925ae8ce277268f8da495d07"
   },
   {
     "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
@@ -1168,36 +1139,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "Degree Planning | Information School | University of Washington",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "4cd0762851c34592ed91f942016e4cfa0d181b17f1d53ed8b5b6ec1c3c18b5e7"
-  },
-  {
-    "url": "https://ischool.uw.edu/programs/informatics/focus-areas#ds",
-    "finalUrl": "https://ischool.uw.edu/programs/informatics/focus-areas",
-    "labels": [
-      "Data Science"
-    ],
-    "ownerIds": [
-      "uw-seattle-informatics:pathway:data-science-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "78015",
-    "etag": "\"1778634013\"",
-    "lastModified": "Wed, 13 May 2026 01:00:13 GMT",
+    "contentLength": "73481",
+    "etag": "\"1779166521\"",
+    "lastModified": "Tue, 19 May 2026 04:55:21 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b895226c942def0651ab984d5ef505341d3f6a5eb9d3c1aeeab92215c17e4a8a"
+    "resourceFingerprint": "579a00b13af1d30dad45a638e30801e64c765574eb3ea4e760a07e65563d5821"
   },
   {
     "url": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
@@ -1249,11 +1198,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "lastModified": null,
     "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
     "fetchMode": "curl",
-    "resourceFingerprint": "c1ca0929507725f7309f6dee20e07fa34c118277af965210ec0e45db138b995d"
+    "resourceFingerprint": "e8d9e51a9f52a2bf2f7323dfa6fc55fc9fed040cc00693fa251ccf1fd146f6e6"
   },
   {
     "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
-    "finalUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
+    "finalUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies/",
     "labels": [
       "Asian Studies – South Asia Concentration major requirements"
     ],
@@ -1264,14 +1213,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "50813",
     "etag": null,
     "lastModified": null,
     "title": "Asian Studies - South Asia Concentration - The Henry M. Jackson School of International Studies",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "e0fb76b567c9fd823f6645c93541a73fead3cbe75c21b8a9f5a6762a0f798b3b"
+    "fetchMode": "curl",
+    "resourceFingerprint": "6a3632abbd36f50dc7d93fcc7cdc08e7f2394c15a50344cc066bb4f1e3fafe20"
   },
   {
     "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
@@ -1293,7 +1242,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "lastModified": null,
     "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
     "fetchMode": "curl",
-    "resourceFingerprint": "edec5a0a064eeaa6c95ab9f857bb69f62f79509e9da2460657ecbcbe980f7868"
+    "resourceFingerprint": "454b68c1e1f93b60238dc62d20597a585552bdc94e0772b22b9e3baf5bf70b03"
   },
   {
     "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
@@ -1315,29 +1264,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "lastModified": null,
     "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
     "fetchMode": "curl",
-    "resourceFingerprint": "7ddd6185e24ec2ad6c3ab90bf847357af60b428c72b715997a10f1d0517acc57"
-  },
-  {
-    "url": "https://jsis.washington.edu/wordpress/wp-content/uploads/2019/06/Asian-Studies-Courses-Autumn-2019rev.pdf",
-    "finalUrl": "https://jsis.washington.edu/wordpress/wp-content/uploads/2019/06/Asian-Studies-Courses-Autumn-2019rev.pdf",
-    "labels": [
-      "Asian Studies Major Courses Autumn 2019"
-    ],
-    "ownerIds": [
-      "uw-seattle-asian-studies:pathway:japan-concentration"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "application/pdf",
-    "contentLength": "237319",
-    "etag": "\"39f07-5d5bff8cff099\"",
-    "lastModified": "Mon, 17 Jan 2022 04:56:13 GMT",
-    "title": null,
-    "fetchMode": "curl",
-    "resourceFingerprint": "4bf9b400fc472c19e047eaac8475c2d57cd48f94c5e6027e77fe4500f165374b"
+    "resourceFingerprint": "c5365cd093b0327022ecb487970a95e74a47eb5ade4f7d5aae430ac6d8954080"
   },
   {
     "url": "https://linguistics.washington.edu/ba-linguistics",
@@ -1355,11 +1282,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54028",
-    "etag": "\"1778631869\"",
-    "lastModified": "Wed, 13 May 2026 00:24:29 GMT",
+    "etag": "\"1779166560\"",
+    "lastModified": "Tue, 19 May 2026 04:56:00 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "915a98c56d7e0d661b46278e0570d79bc932fd40ac523598694641e59d0c5a0c"
+    "resourceFingerprint": "07aad34e09bee407896b35cc0f50df46d6a6cd6b91bb3b102e7d0f2a6cc998ae"
   },
   {
     "url": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
@@ -1380,11 +1307,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "128529",
-    "etag": "\"1778631455\"",
-    "lastModified": "Wed, 13 May 2026 00:17:35 GMT",
+    "etag": "\"1779163305\"",
+    "lastModified": "Tue, 19 May 2026 04:01:45 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0904fb513ca9ede529f3e63e16b3f009ae5e01e1a657ebaead5ff0d12fc6d3b4"
+    "resourceFingerprint": "c0f6d49bbbdd94ab675e06f3f189d9bbb9d63e17291f6d6cfdc335730607f7d4"
   },
   {
     "url": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
@@ -1446,11 +1373,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56027",
-    "etag": "\"1778631921\"",
-    "lastModified": "Wed, 13 May 2026 00:25:21 GMT",
+    "etag": "\"1779166554\"",
+    "lastModified": "Tue, 19 May 2026 04:55:54 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4e227b2858bffccf7b3b8f0b64cedbbc205b3ef09b7d7699f91af0dbd76740b6"
+    "resourceFingerprint": "2485c086153cc02a0139ff8fc1429ba67ae08d58bde0b8acf5a1ea34bf02b4b2"
   },
   {
     "url": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
@@ -1545,28 +1472,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "resourceFingerprint": "a056332bda105c012ff668dd0d3ce6b8e0416f404e696afa05cdfaaf268db3e5"
   },
   {
-    "url": "https://mse.washington.edu/student/honors",
-    "finalUrl": "https://mse.washington.edu/student/honors",
-    "labels": [
-      "MSE honors program"
-    ],
-    "ownerIds": [
-      "uw-seattle-materials-science-engineering:pathway:nme-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "43b70d4adfa1b1cd7eb683dcc354090d23de6600a78f0310d51683a9baaf42a2"
-  },
-  {
     "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
     "finalUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
     "labels": [
@@ -1582,40 +1487,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55927",
-    "etag": "\"1778633164\"",
-    "lastModified": "Wed, 13 May 2026 00:46:04 GMT",
+    "etag": "\"1779166555\"",
+    "lastModified": "Tue, 19 May 2026 04:55:55 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c71dd482c7345a847b9da7eaf6a23d1520f06569ba0d6c2d259555687a13901f"
-  },
-  {
-    "url": "https://music.washington.edu/bachelor-arts-music-music-history-option",
-    "finalUrl": "https://music.washington.edu/bachelor-arts-music-music-history-option",
-    "labels": [
-      "Music, Music History Option"
-    ],
-    "ownerIds": [
-      "uw-seattle-music-b-a:pathway:music-history-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56040",
-    "etag": "\"1778633166\"",
-    "lastModified": "Wed, 13 May 2026 00:46:06 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "c79813c5d4cec7cbd902235d0e291051c3d86289eb03f481870f35abe2b30834"
+    "resourceFingerprint": "1a87a99ca2aa73c2c758e4f251208f256183770826ed0e300aa5052723f2e08b"
   },
   {
     "url": "https://music.washington.edu/bachelor-arts-music-music-theory-option",
     "finalUrl": "https://music.washington.edu/bachelor-arts-music-music-theory-option",
     "labels": [
-      "Music, Music Theory Option",
-      "Scoped section: Bachelor of Arts - Music, Music Theory Option",
       "Scoped section: Bachelor of Arts - Music, Music Theory Option major requirements"
     ],
     "ownerIds": [
@@ -1628,17 +1509,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56097",
-    "etag": "\"1778633168\"",
-    "lastModified": "Wed, 13 May 2026 00:46:08 GMT",
+    "etag": "\"1779166557\"",
+    "lastModified": "Tue, 19 May 2026 04:55:57 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "caf804bfa2569e2d288135b83a69c3b3b09a1b3d32507dbc9b8e65a295bc5f4f"
+    "resourceFingerprint": "5ded16d91b2d6d98849c73f30c87fdef14d82e72a36fd0142f1270a05becf355"
   },
   {
     "url": "https://music.washington.edu/bachelor-arts-music-voice-option",
     "finalUrl": "https://music.washington.edu/bachelor-arts-music-voice-option",
     "labels": [
-      "Music, Voice Option",
       "Music, Voice Option major requirements"
     ],
     "ownerIds": [
@@ -1651,11 +1531,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56148",
-    "etag": "\"1778633170\"",
-    "lastModified": "Wed, 13 May 2026 00:46:10 GMT",
+    "etag": "\"1779166558\"",
+    "lastModified": "Tue, 19 May 2026 04:55:58 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c77d22b98edc171c76d2b3d6424246d8b31d6533e6aaca10a6536f41076ebd50"
+    "resourceFingerprint": "58489114a2ada7de3fadc5f1c5c3728254ab4a56e74363009c497b82972a335b"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-composition",
@@ -1673,11 +1553,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "59626",
-    "etag": "\"1778631068\"",
-    "lastModified": "Wed, 13 May 2026 00:11:08 GMT",
+    "etag": "\"1779164791\"",
+    "lastModified": "Tue, 19 May 2026 04:26:31 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "57b39200cbf1206aa20d3a64635122772c8660c6c6670fa024442eeaf65421d4"
+    "resourceFingerprint": "d42d04b48d32861b48f81cec7c11b44a16fa88578475fcdafd9b002527725324"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-guitar",
@@ -1695,11 +1575,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56783",
-    "etag": "\"1778633172\"",
-    "lastModified": "Wed, 13 May 2026 00:46:12 GMT",
+    "etag": "\"1779166561\"",
+    "lastModified": "Tue, 19 May 2026 04:56:01 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6748016aff766ee3aa94bc53fcbccc0234b2cba062e42fc092f2c2324241bddb"
+    "resourceFingerprint": "84adb3508e6e0ff5bed2da2db10a85703fa57c0f36d92bdc90521356accf0561"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-jazz-studies",
@@ -1717,11 +1597,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57441",
-    "etag": "\"1778633174\"",
-    "lastModified": "Wed, 13 May 2026 00:46:14 GMT",
+    "etag": "\"1779166564\"",
+    "lastModified": "Tue, 19 May 2026 04:56:04 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f07102ab29771906fed2bc3565e6c5c7d7056c77753ff25bdbf83ca06feb458d"
+    "resourceFingerprint": "071d56bae401539345a9092ba660224b128e41de047f01b22bc0658fbc2a8508"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
@@ -1739,11 +1619,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "60674",
-    "etag": "\"1778631536\"",
-    "lastModified": "Wed, 13 May 2026 00:18:56 GMT",
+    "etag": "\"1779166565\"",
+    "lastModified": "Tue, 19 May 2026 04:56:05 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b200cfb04a0c1be06dcd2cffd7240f2aefd12a1b2bf404bb0218564788eff4a4"
+    "resourceFingerprint": "fd9092fb5356afe5a53cb7ae734dbfa7dde8a11fb2cb4c1d0527c140a98b53a1"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-orchestral-instruments",
@@ -1761,11 +1641,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56983",
-    "etag": "\"1778631593\"",
-    "lastModified": "Wed, 13 May 2026 00:19:53 GMT",
+    "etag": "\"1779166568\"",
+    "lastModified": "Tue, 19 May 2026 04:56:08 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "61f23bf07aa9eeaa333e17545f9c3f175966223e093cfba2e658d1f63fe8c701"
+    "resourceFingerprint": "3eff29c764c5f2d76347cd374858dfe426d6fce3ee7d3597f6358fa7edac7fa8"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-organ",
@@ -1783,11 +1663,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57144",
-    "etag": "\"1778633178\"",
-    "lastModified": "Wed, 13 May 2026 00:46:18 GMT",
+    "etag": "\"1779166570\"",
+    "lastModified": "Tue, 19 May 2026 04:56:10 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bd323163f0cbb3056473d1b46ebabe05dbc40bf31183684b48ddc7e176432067"
+    "resourceFingerprint": "6b54fdec0e519d798877bf985075bb6f5d1ac0d161e856be284476a423255487"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-percussion-performance",
@@ -1805,11 +1685,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56899",
-    "etag": "\"1778633180\"",
-    "lastModified": "Wed, 13 May 2026 00:46:20 GMT",
+    "etag": "\"1779166570\"",
+    "lastModified": "Tue, 19 May 2026 04:56:10 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d8b38e352b71a9a71403646b24a9b04b4a0bfb6e8ced3b9ce5d6d29acac1bcb1"
+    "resourceFingerprint": "6f50a351738716ec43b8a7b5749a19b3f7a2eb64e6a2c2745fbc6ec09acb2200"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-piano",
@@ -1827,11 +1707,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57035",
-    "etag": "\"1778633181\"",
-    "lastModified": "Wed, 13 May 2026 00:46:21 GMT",
+    "etag": "\"1779166573\"",
+    "lastModified": "Tue, 19 May 2026 04:56:13 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "cf1a50294c79632001aa531a0b78adc452c145c901359524ca7f8bb1b6453e63"
+    "resourceFingerprint": "4c4d56c3e6f5126e1cdd26d2370831ca1645451447ab93d6e77963dacad71119"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-voice",
@@ -1849,11 +1729,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57784",
-    "etag": "\"1778633218\"",
-    "lastModified": "Wed, 13 May 2026 00:46:58 GMT",
+    "etag": "\"1779166576\"",
+    "lastModified": "Tue, 19 May 2026 04:56:16 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8eb40334bb811ffff1a8e263011c3a2392d5897f303e39c3bd72d1bc43fa744e"
+    "resourceFingerprint": "9332cef3d0abd3d7e710524d8f971f5f3522733a6152537dafcfcc41696f78d4"
   },
   {
     "url": "https://music.washington.edu/sites/music/files/documents/sample_ba_inst.pdf",
@@ -1863,7 +1743,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-music-b-a",
-      "uw-seattle-music-b-a:pathway:music-history-option",
       "uw-seattle-music-b-a:pathway:music-theory-option",
       "uw-seattle-music-b-a:pathway:voice-option"
     ],
@@ -1895,14 +1774,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "Bachelor of Science in Physics | Department of Physics | University of Washington",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "f9a95ceb150f382ddf91e3d80850c7ad8e676d9e549547ef51d570d188587601"
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "47174",
+    "etag": "\"1779166514\"",
+    "lastModified": "Tue, 19 May 2026 04:55:14 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "bfd8cbe9d55620a0729f4e3bddfb6d65e24bd0fd13182b1331cd24826e57c4c8"
   },
   {
     "url": "https://phys.washington.edu/physics-bs-degree-requirements",
@@ -1910,9 +1789,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "labels": [
       "Physics B.S. Degree Requirements",
       "Requirements",
-      "Scoped section: Applied Physics Track (addl. 34-43 credits)",
-      "Scoped section: Biological Physics Track (addl. 48-56 credits)",
-      "Scoped section: Comprehensive Track (addl. 38-46 credits)"
+      "Scoped section: Applied Physics Track (addl. 34-43 credits)"
     ],
     "ownerIds": [
       "uw-seattle-physics",
@@ -1930,11 +1807,78 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "84544",
-    "etag": "\"1778631600\"",
-    "lastModified": "Wed, 13 May 2026 00:20:00 GMT",
+    "etag": "\"1779166451\"",
+    "lastModified": "Tue, 19 May 2026 04:54:11 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "94f3f19929a3f89e0bae33d49f7bf277d4202d2ee73e7860fc3f32c8c8a5ebbb"
+    "resourceFingerprint": "1e09441f031f3d0b057bc927511c9a49953ecc22438c88ab297f0277d4f8209a"
+  },
+  {
+    "url": "https://phys.washington.edu/physics-bs-degree-requirements#applied",
+    "finalUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
+    "labels": [
+      "Applied physics track major requirements"
+    ],
+    "ownerIds": [
+      "uw-seattle-physics:pathway:applied-physics-track"
+    ],
+    "kinds": [
+      "pathway"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "84544",
+    "etag": "\"1779166451\"",
+    "lastModified": "Tue, 19 May 2026 04:54:11 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "1e09441f031f3d0b057bc927511c9a49953ecc22438c88ab297f0277d4f8209a"
+  },
+  {
+    "url": "https://phys.washington.edu/physics-bs-degree-requirements#comprehensive",
+    "finalUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
+    "labels": [
+      "Comprehensive track major requirements"
+    ],
+    "ownerIds": [
+      "uw-seattle-physics:pathway:comprehensive-physics-track",
+      "uw-seattle-physics:pathway:comprehensive-track"
+    ],
+    "kinds": [
+      "pathway"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "84544",
+    "etag": "\"1779166451\"",
+    "lastModified": "Tue, 19 May 2026 04:54:11 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "1e09441f031f3d0b057bc927511c9a49953ecc22438c88ab297f0277d4f8209a"
+  },
+  {
+    "url": "https://phys.washington.edu/physics-bs-degree-requirements#teaching",
+    "finalUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
+    "labels": [
+      "Teaching physics track major requirements"
+    ],
+    "ownerIds": [
+      "uw-seattle-physics:pathway:teaching-physics-track"
+    ],
+    "kinds": [
+      "pathway"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "84544",
+    "etag": "\"1779166451\"",
+    "lastModified": "Tue, 19 May 2026 04:54:11 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "1e09441f031f3d0b057bc927511c9a49953ecc22438c88ab297f0277d4f8209a"
   },
   {
     "url": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
@@ -1986,7 +1930,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS_DS_degreq_fall23.pdf",
     "finalUrl": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS_DS_degreq_fall23.pdf",
     "labels": [
-      "Computer Science – Data Science Option",
       "Computer Science – Data Science Option major requirements"
     ],
     "ownerIds": [
@@ -2009,8 +1952,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://scandinavian.washington.edu/ba-danish",
     "finalUrl": "https://scandinavian.washington.edu/ba-danish",
     "labels": [
-      "Scoped section: DANISH 310 Topics in Danish Short Prose",
-      "UW B.A. in Danish requirements"
+      "Scoped section: DANISH 310 Topics in Danish Short Prose"
     ],
     "ownerIds": [
       "uw-seattle-danish"
@@ -2022,11 +1964,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "49352",
-    "etag": "\"1778630446\"",
-    "lastModified": "Wed, 13 May 2026 00:00:46 GMT",
+    "etag": "\"1779166572\"",
+    "lastModified": "Tue, 19 May 2026 04:56:12 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "64ac27f3a92acf6f2cc51cd43abeaf3c863a4c4a74b810c80d165d3386f10f9c"
+    "resourceFingerprint": "37efca0e0bdee92e23aeb3f585d096e2a2d00247464ef3cb13eb925f1c2df6ab"
   },
   {
     "url": "https://scandinavian.washington.edu/ba-finnish",
@@ -2044,11 +1986,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50159",
-    "etag": "\"1778633179\"",
-    "lastModified": "Wed, 13 May 2026 00:46:19 GMT",
+    "etag": "\"1779166574\"",
+    "lastModified": "Tue, 19 May 2026 04:56:14 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6d514ffbf90564eb5094c6cf39d93bb5ae397423fdde9d935371edabd9f0c801"
+    "resourceFingerprint": "37e9f1298e01e3b0a4a56d7eb655f04e223cd5eea71eaafa5263d9047f39030c"
   },
   {
     "url": "https://scandinavian.washington.edu/ba-norwegian",
@@ -2066,11 +2008,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "49002",
-    "etag": "\"1778633181\"",
-    "lastModified": "Wed, 13 May 2026 00:46:21 GMT",
+    "etag": "\"1779164246\"",
+    "lastModified": "Tue, 19 May 2026 04:17:26 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a5c61791279e4aa5f2ed643de105efa9520b03014e58b59513cb4735b9234573"
+    "resourceFingerprint": "bde88af7f2129d96cdec68b83b6c1aa39034643eb879a295e26bf1f195a4e368"
   },
   {
     "url": "https://scandinavian.washington.edu/ba-swedish",
@@ -2088,33 +2030,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "48849",
-    "etag": "\"1778631854\"",
-    "lastModified": "Wed, 13 May 2026 00:24:14 GMT",
+    "etag": "\"1779166613\"",
+    "lastModified": "Tue, 19 May 2026 04:56:53 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8deee7b6986533d1deec7aadbba005b8833fb1bcf916bb441c68636795d0a930"
-  },
-  {
-    "url": "https://sefs.uw.edu/students/undergraduate/sbse-major/bse-requirements/upcoming-changes-to-the-bse-major",
-    "finalUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/bse-requirements/upcoming-changes-to-the-bse-major/",
-    "labels": [
-      "BSE Majors Considering the Switch to the SBSE Major"
-    ],
-    "ownerIds": [
-      "uw-seattle-sustainable-bioresource-systems-engineering:pathway:business-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "dbd678c14963a34c5f707903a4f4a24ab69b3fa032df167bcf69a48befad669e"
+    "resourceFingerprint": "77fda2ae8c95650a411f9623b7a485605132591218a3d0b0a5d49beb712d247f"
   },
   {
     "url": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
@@ -2178,11 +2098,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51695",
-    "etag": "\"1778630918\"",
-    "lastModified": "Wed, 13 May 2026 00:08:38 GMT",
+    "etag": "\"1779166575\"",
+    "lastModified": "Tue, 19 May 2026 04:56:15 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a30a2a2863b050db10267d7bbc79e2d835ebc980955fc8ca4f3384745dc6553f"
+    "resourceFingerprint": "94ba850e49ec43081b84b25118bd303cae340051fc0ea7407609986ba4a0bf30"
   },
   {
     "url": "https://slavic.washington.edu/undergraduate-programs",
@@ -2202,11 +2122,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51182",
-    "etag": "\"1778631716\"",
-    "lastModified": "Wed, 13 May 2026 00:21:56 GMT",
+    "etag": "\"1779166612\"",
+    "lastModified": "Tue, 19 May 2026 04:56:52 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "939f5a3af0c2aa2b14f6fb7cbba472f83876503069c6d10e0b96f35ab0d46bff"
+    "resourceFingerprint": "60c6ce6d961e463a726b176414a65f3ec7fedf5af6ec76fe7035818f235c89be"
   },
   {
     "url": "https://spanport.washington.edu/spanish-major-requirements",
@@ -2224,11 +2144,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45088",
-    "etag": "\"1778631735\"",
-    "lastModified": "Wed, 13 May 2026 00:22:15 GMT",
+    "etag": "\"1779166612\"",
+    "lastModified": "Tue, 19 May 2026 04:56:52 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f0d1e35e36feecd5ec406e32ee433d4f5206aa68cf7fe9337b2b6dcd125467f4"
+    "resourceFingerprint": "38dfccaf9adb7fd4990967cb116a2e23918f22763005cf7ea513d8bcb1097e94"
   },
   {
     "url": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -2258,8 +2178,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
     "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
     "labels": [
-      "Scoped section: Any double majors in CSE/Stat (independently of track) can request that 2C credits of ENGR 321 (engineering internship)",
-      "Scoped section: Any double majors in CSE/Stat (independently of track) can request that 2C credits of ENGR 321 (engineering internship) "
+      "Scoped section: Any double majors in CSE/Stat (independently of track) can request that 2C credits of ENGR 321 (engineering internship)"
     ],
     "ownerIds": [
       "uw-seattle-statistics:pathway:applied-statistics-track",
@@ -2273,11 +2192,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "43997",
-    "etag": "\"1778620656\"",
-    "lastModified": "Tue, 12 May 2026 21:17:36 GMT",
+    "etag": "\"1779105635\"",
+    "lastModified": "Mon, 18 May 2026 12:00:35 GMT",
     "title": "Double Major and Double Degree | University of Washington Department of Statistics",
     "fetchMode": "curl",
-    "resourceFingerprint": "b37455cbc4fdb8ffba1068fd2eff63d02062f186d236d45898e42cd7856e449d"
+    "resourceFingerprint": "8769871e1e6748cae2364928b8694b7e6defca9dabc2f3e26daae98ee9978e0a"
   },
   {
     "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
@@ -2300,11 +2219,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "48300",
-    "etag": "\"1778619888\"",
-    "lastModified": "Tue, 12 May 2026 21:04:48 GMT",
+    "etag": "\"1779111113\"",
+    "lastModified": "Mon, 18 May 2026 13:31:53 GMT",
     "title": "Major Requirements | University of Washington Department of Statistics",
     "fetchMode": "curl",
-    "resourceFingerprint": "179ce13c02944b0d0e9f500beb9f7c639c6a659577c57f4d65843c6b28af34b1"
+    "resourceFingerprint": "ead60f9bda924fe9c6aae946bf9589425f22d8041a844ceaeccfd2f604795262"
   },
   {
     "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
@@ -2313,8 +2232,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Statistics B.S. track structure"
     ],
     "ownerIds": [
-      "uw-seattle-statistics:pathway:applied-statistics-track",
-      "uw-seattle-statistics:pathway:data-science-track",
       "uw-seattle-statistics:pathway:mathematical-statistics-track"
     ],
     "kinds": [
@@ -2324,11 +2241,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "38256",
-    "etag": "\"1778618906\"",
-    "lastModified": "Tue, 12 May 2026 20:48:26 GMT",
+    "etag": "\"1779105053\"",
+    "lastModified": "Mon, 18 May 2026 11:50:53 GMT",
     "title": "Statistics B.S. tracks | University of Washington Department of Statistics",
     "fetchMode": "curl",
-    "resourceFingerprint": "701c98b82974914c479a4ee75cd571df2189fb4eb006c48ee91bd1a2658ed59b"
+    "resourceFingerprint": "1ea204d52d758b30bdba61d83ba21e0ea4e86478850de3ab6d8355efd5e65f5e"
   },
   {
     "url": "https://students.nursing.uw.edu/wp-content/uploads/2025/09/BSN-2025-Curriuculum-Grid.pdf",
@@ -2481,7 +2398,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "finalUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum/NME.html",
     "labels": [
       "NME Option",
-      "NME option"
+      "NME Option major requirements"
     ],
     "ownerIds": [
       "uw-seattle-chemical-engineering:pathway:nme-option"
@@ -2507,24 +2424,23 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-chemical-engineering:pathway:beginning-scientific-computing-option",
-      "uw-seattle-chemical-engineering:pathway:div-option",
-      "uw-seattle-chemical-engineering:pathway:nme-option"
+      "uw-seattle-chemical-engineering:pathway:div-option"
     ],
     "kinds": [
       "pathway"
     ],
     "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
+    "status": null,
+    "contentType": "requirement-source-snapshot",
     "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "6ea8b3dbc9a6ce9068b183c89cd94ef64b0a9fe33372522e69c80ff1a0b337cb"
+    "title": "Optional focus areas | UW Chemical Engineering",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "8662e9ecc07969ab41469aa78b3db7e7d321a03c4b4a14738490592dd12ded78"
   },
   {
-    "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
+    "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "finalUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "labels": [
       "Allen School CE-approved Natural Science course list",
@@ -2553,16 +2469,13 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
     "finalUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "labels": [
-      "Scoped section: CSE Core Courses",
-      "Scoped section: Paul G. Allen School of Computer Science & Engineering"
+      "Allen School CE-approved Natural Science course list"
     ],
     "ownerIds": [
-      "uw-seattle-computer-science",
-      "uw-seattle-computer-science:pathway:data-science-option"
+      "uw-seattle-computer-engineering"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
@@ -2573,6 +2486,28 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "title": null,
     "fetchMode": "head",
     "resourceFingerprint": "705efbd59d2c4a5b642799731b407b793b5892246787b5028ac9f54c16befd0a"
+  },
+  {
+    "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/study-abroad/",
+    "finalUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/study-abroad/",
+    "labels": [
+      "Study Abroad"
+    ],
+    "ownerIds": [
+      "uw-seattle-computer-engineering"
+    ],
+    "kinds": [
+      "major"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": null,
+    "etag": null,
+    "lastModified": null,
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "5e5c6e7fd279fb9fd9f061375b75e3332a8f368d5dada1a716e4f91489676d32"
   },
   {
     "url": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
@@ -2612,11 +2547,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
-    "etag": "\"1778630892\"",
-    "lastModified": "Wed, 13 May 2026 00:08:12 GMT",
+    "etag": "\"1779166585\"",
+    "lastModified": "Tue, 19 May 2026 04:56:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "dc7514a8e79ef9e75d137237e1be7c1dbd78a4583ca1fa803076196824c5cb8f"
+    "resourceFingerprint": "31826932850a03d34dc54ad4de72072f5d2c264b1a5305062721fc0743f57635"
   },
   {
     "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
@@ -2631,16 +2566,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:digital-systems-design-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:especially-those-who-broaden-into-the-related-control-systems-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:enriching-your-path-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
       "uw-seattle-electrical-computer-engineering:pathway:quantum-technologies-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:sustainable-energy-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:vlsi-design-digital-systems-design-pathway"
+      "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway"
     ],
     "kinds": [
       "major",
@@ -2655,271 +2588,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "title": null,
     "fetchMode": "head",
     "resourceFingerprint": "590d95e57dc7ef3b9bd139ebe8811adf8764f868c5edf65d2ade55c07d89300b"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/computer-architecture/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/computer-architecture/",
-    "labels": [
-      "Computer Architecture Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "dcd7149a6507f48636a691ff7dc924f7a4cd75e6b36ee18de65cad4faa627f15"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/control-systems/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/control-systems/",
-    "labels": [
-      "Control Systems Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:especially-those-who-broaden-into-the-related-control-systems-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "77b71879f054932c3288acc7299fca34b3c7cb422633eb5c3bafae7c9d869619"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/embedded-systems/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/embedded-systems/",
-    "labels": [
-      "Embedded Systems Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "c0336c634d219e5636d7838ebc8983f0e0f0d5f08fc8fea3173cffe4bfe7d152"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/integrated-systems-pathway/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/integrated-systems-pathway/",
-    "labels": [
-      "Integrated Systems Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "fb06754e74145035cbad6a1cefd8f40572c5b50b9c06feababde92ca02478cbd"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/machine-learning/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/machine-learning/",
-    "labels": [
-      "Machine Learning Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "274fd66787a62c9dce5173c72b6740cf5f7d2bfd969ac2f78eb5d88d6aa8c556"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/microelectronics-and-nanotechnology/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/microelectronics-and-nanotechnology/",
-    "labels": [
-      "Microelectronics and Nanotechnology Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "7ccb5c7f49f84bf81f58f798577fa7dd561a00c9d204ae8cb097271042c9096a"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/neurotechnology/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/neurotechnology/",
-    "labels": [
-      "Neurotechnology Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "83ac28770d2a00fafc50bc690d247212b8d182085b9eff569f49136c246a2f91"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/photonics/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/photonics/",
-    "labels": [
-      "Photonics Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "4c04158e33217e54d462a72aeb81846c594aa205a1192f22d9d87bd95b8240a2"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/sensing-and-communication/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/sensing-and-communication/",
-    "labels": [
-      "Sensing and Communication Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "2c94d0d82bc4d1c24efca769972825e673f930e9f0947dcd374a9c17b7536c81"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/sustainable-energy-systems/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/sustainable-energy-systems/",
-    "labels": [
-      "Sustainable Energy Systems Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:sustainable-energy-systems-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "d83bd15c18656fb55f4948f5e078246fcc93a5ea9b1a5642316bb6f279b3a7e9"
-  },
-  {
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/vlsi-digital-systems-design/",
-    "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/vlsi-digital-systems-design/",
-    "labels": [
-      "VLSI Design / Digital Systems Design Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:vlsi-design-digital-systems-design-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "0f47e650885209e35f88fcfb666a0c76fac1f504b927457257d13ced257f7529"
-  },
-  {
-    "url": "https://www.ece.uw.edu/digital-systems-design-pathway/",
-    "finalUrl": "https://www.ece.uw.edu/digital-systems-design-pathway/",
-    "labels": [
-      "Digital Systems Design Pathway"
-    ],
-    "ownerIds": [
-      "uw-seattle-electrical-computer-engineering:pathway:digital-systems-design-pathway"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "a4c99cf9ad98935345ef8a28ec1b17b1da4b00e613a5254e5a446d0be8e4f148"
   },
   {
     "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/aaa.html",
@@ -6052,12 +5720,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "Degree requirements"
     ],
     "ownerIds": [
-      "uw-seattle-human-centered-design-engineering",
-      "uw-seattle-human-centered-design-engineering:pathway:standard-option"
+      "uw-seattle-human-centered-design-engineering"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
@@ -6092,40 +5758,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "resourceFingerprint": "b6c905dfeb1d68bf5852d7a2d1d151971ee9714970533a9ee5b0fd8352cfbee2"
   },
   {
-    "url": "https://www.hcde.washington.edu/bs/requirements/pre-2024",
-    "finalUrl": "https://www.hcde.washington.edu/bs/requirements/pre-2024",
-    "labels": [
-      "Degree Requirements: Before Autumn 2024"
-    ],
-    "ownerIds": [
-      "uw-seattle-human-centered-design-engineering:pathway:standard-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "e477f0ff32170ec10c25189440318c3dce7175be814c72cdabfd61f7071310da"
-  },
-  {
     "url": "https://www.me.washington.edu/students/ug/requirements",
     "finalUrl": "https://www.me.washington.edu/students/ug/requirements",
     "labels": [
       "UW Mechanical Engineering degree requirements"
     ],
     "ownerIds": [
-      "uw-seattle-mechanical-engineering",
-      "uw-seattle-mechanical-engineering:pathway:special-projects-graded-option-only"
+      "uw-seattle-mechanical-engineering"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
@@ -6166,45 +5808,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Political Science major declaration and requirements"
     ],
     "ownerIds": [
-      "uw-seattle-political-science",
-      "uw-seattle-political-science:pathway:international-security-option",
-      "uw-seattle-political-science:pathway:political-economy-option"
+      "uw-seattle-political-science"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "65643",
-    "etag": "\"1778632753\"",
-    "lastModified": "Wed, 13 May 2026 00:39:13 GMT",
+    "etag": "\"1779166153\"",
+    "lastModified": "Tue, 19 May 2026 04:49:13 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f8dea07b5a6556eeff570f416e2afed9009dcef3071195bae98c22a8f0fa55e2"
-  },
-  {
-    "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/security_option-aut-2024.pdf",
-    "finalUrl": "https://www.polisci.washington.edu/sites/polisci/files/documents/security_option-aut-2024.pdf",
-    "labels": [
-      "International Security Option (PDF)"
-    ],
-    "ownerIds": [
-      "uw-seattle-political-science:pathway:international-security-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "application/pdf",
-    "contentLength": null,
-    "etag": "W/\"67eb35a5-455c2\"",
-    "lastModified": "Tue, 01 Apr 2025 00:39:01 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "a93554da78115da97b49d6b32aa81e4dd42d4b4c944c86d405598a77f0733e41"
+    "resourceFingerprint": "5785155212dc8d7513a791cb4a00130772d1cfb0ac55a2b297da6b2eebde565d"
   },
   {
     "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
@@ -6222,11 +5839,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "88501",
-    "etag": "\"1778619711\"",
-    "lastModified": "Tue, 12 May 2026 21:01:51 GMT",
+    "etag": "\"1779142772\"",
+    "lastModified": "Mon, 18 May 2026 22:19:32 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a146cfe5e89b31a14a86e470a45c108db55bb1f0c38bd84ce27eb61d1bfd94d6"
+    "resourceFingerprint": "7177d6f99b242ae741ead52e51da9f59bd3c3e8bf871335bbb4b04afb526e9eb"
   },
   {
     "url": "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
@@ -6244,11 +5861,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "46972",
-    "etag": "\"1778621969\"",
-    "lastModified": "Tue, 12 May 2026 21:39:29 GMT",
+    "etag": "\"1779142307\"",
+    "lastModified": "Mon, 18 May 2026 22:11:47 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4b7c5d81c8393ff20e228f823b79a1333a1d9998ba23799da84663aba286aed3"
+    "resourceFingerprint": "aa6e0ee138c4ef6e1454ba670f6c5e3b6ce39e02f5184c948736b0635ac80fda"
   },
   {
     "url": "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
@@ -6266,11 +5883,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "49869",
-    "etag": "\"1778621971\"",
-    "lastModified": "Tue, 12 May 2026 21:39:31 GMT",
+    "etag": "\"1779143679\"",
+    "lastModified": "Mon, 18 May 2026 22:34:39 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "730b647d22907708edfd3777aa8a4bcef38488ca2316a7c722b342562a8ef063"
+    "resourceFingerprint": "20521c05ed3163be0e66c6fa6f68b7bae6d00bae93836bc13226fdb18c44691c"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
@@ -6288,11 +5905,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "104707",
-    "etag": "\"1778619614\"",
-    "lastModified": "Tue, 12 May 2026 21:00:14 GMT",
+    "etag": "\"1779142807\"",
+    "lastModified": "Mon, 18 May 2026 22:20:07 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "59b38fce83656a3cf2672873341b6716d513b6864c2057aaa9cb3af7b80273bb"
+    "resourceFingerprint": "6e667417d3a83ff8682c379b405e6941ed437d2ee5d19239035092c2f1fcfe43"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
@@ -6310,18 +5927,17 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "84775",
-    "etag": "\"1778619670\"",
-    "lastModified": "Tue, 12 May 2026 21:01:10 GMT",
+    "etag": "\"1779144139\"",
+    "lastModified": "Mon, 18 May 2026 22:42:19 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d8e6914519376639062495a41e68c2335747c33d3955bcb6c5ed28ab97367b7b"
+    "resourceFingerprint": "d146b2b91435d0bdd0ff9409e9487f503c61936a728c67a2555b2d0b92df1ff5"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
     "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
     "labels": [
-      "Scoped section: The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. W",
-      "UW Tacoma CSS B.S. program details"
+      "Scoped section: The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. W"
     ],
     "ownerIds": [
       "uw-tacoma-computer-science-and-systems-bs",
@@ -6335,11 +5951,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "107367",
-    "etag": "\"1778621974\"",
-    "lastModified": "Tue, 12 May 2026 21:39:34 GMT",
+    "etag": "\"1779144812\"",
+    "lastModified": "Mon, 18 May 2026 22:53:32 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3721fd1295c1291673fb3880c3dd5417de4fe9c887d75da72888b68583ef61cd"
+    "resourceFingerprint": "6ff657db3a8bcc6824f3ec5d389ffa0719070ca2afb866d158e124c6c30798e4"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
@@ -6357,11 +5973,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "104685",
-    "etag": "\"1778619844\"",
-    "lastModified": "Tue, 12 May 2026 21:04:04 GMT",
+    "etag": "\"1779142855\"",
+    "lastModified": "Mon, 18 May 2026 22:20:55 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d55398f21d1269401d42d3485acf3c00da6c9090863f252f8eccf4da22ad0166"
+    "resourceFingerprint": "b1df6662dbac4b65b2ad7190d8fcb2834d36e86f8bf8d13a725c9a89c2031b9b"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
@@ -6379,17 +5995,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "104264",
-    "etag": "\"1778619982\"",
-    "lastModified": "Tue, 12 May 2026 21:06:22 GMT",
+    "etag": "\"1779143042\"",
+    "lastModified": "Mon, 18 May 2026 22:24:02 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5fe96da8b075414a86eebc7f2d2272cf728566f3868bcd4e55cbd4e3d19ce45d"
+    "resourceFingerprint": "b52c6a5465e6aa774a61bf604bf1c0d65d659eb47f61cdf54b0a250664fcc736"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias-new/cac-new/rhetoric-writing-and-social-change-track",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
     "labels": [
-      "RHETORIC, WRITING AND SOCIAL CHANGE TRACK",
       "RHETORIC, WRITING AND SOCIAL CHANGE TRACK major requirements"
     ],
     "ownerIds": [
@@ -6402,17 +6017,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "60209",
-    "etag": "\"1778621302\"",
-    "lastModified": "Tue, 12 May 2026 21:28:22 GMT",
+    "etag": "\"1779154168\"",
+    "lastModified": "Tue, 19 May 2026 01:29:28 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2ea64dcf88df292cb0492634c04d4046359225d6b3b6832bd6734fc40c8008a4"
+    "resourceFingerprint": "460850226c79a53a59089f5b7eaf031360aa0acf3daa690957511cfcb08f3c27"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
     "labels": [
-      "Scoped section: Foundation (5 credits)",
       "Scoped section: Foundation (5 credits) major requirements"
     ],
     "ownerIds": [
@@ -6425,11 +6039,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "95376",
-    "etag": "\"1778621979\"",
-    "lastModified": "Tue, 12 May 2026 21:39:39 GMT",
+    "etag": "\"1779146925\"",
+    "lastModified": "Mon, 18 May 2026 23:28:45 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f410d14b60fd1092ab150ebc3833635da0efc704b7139fe80755ad52ee312111"
+    "resourceFingerprint": "5c15b7cfa819a888870514982c338ba284c630cdb0980008c70a63d61f186aa8"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
@@ -6453,11 +6067,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56469",
-    "etag": "\"1778619604\"",
-    "lastModified": "Tue, 12 May 2026 21:00:04 GMT",
+    "etag": "\"1779144078\"",
+    "lastModified": "Mon, 18 May 2026 22:41:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "363e13776e33f686f854aa5e312c90844999b03bffd9fb1e64917740aaf3561c"
+    "resourceFingerprint": "c6d17ad349f19225c8b77aa8a0d0706dd628437accf1dfa1803857c0443263d8"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/communication",
@@ -6468,8 +6082,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ownerIds": [
       "uw-tacoma-communications",
       "uw-tacoma-communications:pathway:professional-track",
-      "uw-tacoma-communications:pathway:research-track",
-      "uw-tacoma-communications:pathway:you-need-to-complete-60-credits-track"
+      "uw-tacoma-communications:pathway:research-track"
     ],
     "kinds": [
       "major",
@@ -6479,11 +6092,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "52683",
-    "etag": "\"1778619997\"",
-    "lastModified": "Tue, 12 May 2026 21:06:37 GMT",
+    "etag": "\"1779144458\"",
+    "lastModified": "Mon, 18 May 2026 22:47:38 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2e86d8cd58eccd926a3389bf81936a42fd516ff8806b745b81a3a68a2a7c1652"
+    "resourceFingerprint": "60683b94b22887a65ed2e282a94b09e96e035f126da807af47ceee08fe860dff"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
@@ -6501,11 +6114,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "98351",
-    "etag": "\"1778619607\"",
-    "lastModified": "Tue, 12 May 2026 21:00:07 GMT",
+    "etag": "\"1779145656\"",
+    "lastModified": "Mon, 18 May 2026 23:07:36 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9888fc133c192ea7139a486d9c5ba26e4eadb9a09ebfed39a2404625ca89af09"
+    "resourceFingerprint": "c35221d9233b35d95d5fec8c4182753c0a7d291c5c07aa1882910853f7735138"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
@@ -6520,26 +6133,23 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58147",
-    "etag": "\"1778621302\"",
-    "lastModified": "Tue, 12 May 2026 21:28:22 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "951a7df4ade3a9acc46bcd02d4f5b71613a01983a043ae1b1a95a8b7d8fc6685"
+    "status": null,
+    "contentType": "requirement-source-snapshot",
+    "contentLength": null,
+    "etag": null,
+    "lastModified": null,
+    "title": "Creative Writing Track | Culture, Arts & Communication | University of Washington Tacoma",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "71f6ed741ca6c56b50ab00d1736b03b601fd0a87c9dfd43225acc7e581b1e342"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
     "labels": [
-      "FILM AND MEDIA TRACK",
-      "UW Tacoma Arts, Media and Culture - Film and Media Track",
       "UW Tacoma Arts, Media and Culture - Film and Media Track major requirements"
     ],
     "ownerIds": [
-      "uw-tacoma-arts-media-culture:pathway:film-and-media-track",
-      "uw-tacoma-arts-media-culture:pathway:visual-and-performing-arts-track"
+      "uw-tacoma-arts-media-culture:pathway:film-and-media-track"
     ],
     "kinds": [
       "pathway"
@@ -6548,21 +6158,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "95761",
-    "etag": "\"1778621984\"",
-    "lastModified": "Tue, 12 May 2026 21:39:44 GMT",
+    "etag": "\"1779146956\"",
+    "lastModified": "Mon, 18 May 2026 23:29:16 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9e30d6454bc98568c2c05010858ee0ffdd0dbcff2c13521c712bbd364f33a782"
+    "resourceFingerprint": "de551dc84e81274a242e22d922d73d28af1ac09f436e3df15bae7e019fdccded"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/literature-track",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/literature-track",
     "labels": [
-      "LITERATURE TRACK",
+      "LITERATURE TRACK degree requirements",
       "Literature Track degree requirements"
     ],
     "ownerIds": [
-      "uw-tacoma-arts-media-culture:pathway:film-and-media-track",
       "uw-tacoma-arts-media-culture:pathway:literature-track"
     ],
     "kinds": [
@@ -6572,11 +6181,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "97184",
-    "etag": "\"1778621985\"",
-    "lastModified": "Tue, 12 May 2026 21:39:45 GMT",
+    "etag": "\"1779146969\"",
+    "lastModified": "Mon, 18 May 2026 23:29:29 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bc30cd3ff8be1e1e36fca3657adba2f4676224a9fa38201a075ecfe6c141f00b"
+    "resourceFingerprint": "329d52772f78156a9f1ee5e941e65cf3f629ab7bf871c50ae29271d294a5df2e"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/professional-track",
@@ -6594,11 +6203,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "68012",
-    "etag": "\"1778621986\"",
-    "lastModified": "Tue, 12 May 2026 21:39:46 GMT",
+    "etag": "\"1779144078\"",
+    "lastModified": "Mon, 18 May 2026 22:41:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "30fdb65e1ea3aed3c0e28f5af70edb5ff9ad21cede3407f83bd23986ce4575c1"
+    "resourceFingerprint": "4a4ef2069aefd6786427400bb297b69d291a0f6c181ffb277fac44d6425c7bd9"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/research-track",
@@ -6616,11 +6225,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "60416",
-    "etag": "\"1778621988\"",
-    "lastModified": "Tue, 12 May 2026 21:39:48 GMT",
+    "etag": "\"1779146229\"",
+    "lastModified": "Mon, 18 May 2026 23:17:09 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1dbfb9a48fb196ad8369700111d49abc8ceb43a0a3969b54c8947eb8091778fa"
+    "resourceFingerprint": "ada81a728c36d51f866802b6729bcf6e7798719dd919c6820261c95fab8b8816"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
@@ -6638,17 +6247,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55089",
-    "etag": "\"1778621989\"",
-    "lastModified": "Tue, 12 May 2026 21:39:49 GMT",
+    "etag": "\"1779143104\"",
+    "lastModified": "Mon, 18 May 2026 22:25:04 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "277fd35ea6565993ee61a7369532ae76f05c52e236181fa030e6edf8e94d4a53"
+    "resourceFingerprint": "2f5326058b5256a76e668dd8e2fbadbe0dea9613b2a039adda27fc0c7ca876f9"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
     "labels": [
-      "Scoped section: Technical Communication Track",
       "Technical Communication Track degree requirements"
     ],
     "ownerIds": [
@@ -6661,17 +6269,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56656",
-    "etag": "\"1778621302\"",
-    "lastModified": "Tue, 12 May 2026 21:28:22 GMT",
+    "etag": "\"1779166776\"",
+    "lastModified": "Tue, 19 May 2026 04:59:36 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4059e0a53de1a87ac0d0e30a0158b0c800a702cc0f82b9c26c6e1335c7cbd519"
+    "resourceFingerprint": "2c73bff8a2c098ea7079f8a891cd73da44199459562a505eeade3dcdc7ca25ef"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
     "labels": [
-      "Scoped section: Foundation (5 credits)",
       "Scoped section: Foundation (5 credits) major requirements"
     ],
     "ownerIds": [
@@ -6684,11 +6291,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "96310",
-    "etag": "\"1778621991\"",
-    "lastModified": "Tue, 12 May 2026 21:39:51 GMT",
+    "etag": "\"1779146981\"",
+    "lastModified": "Mon, 18 May 2026 23:29:41 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a271f2ebdef6807c9072626cd6fd8b2470407b22c9f2bb0b2f56e7ce428b5b5d"
+    "resourceFingerprint": "3f282a4796dbe9a29209923feea265ed9f36a862aae2e4dcf0e55759c13f2693"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
@@ -6698,7 +6305,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-tacoma-writing-studies",
-      "uw-tacoma-writing-studies:pathway:creative-writing-track",
       "uw-tacoma-writing-studies:pathway:technical-communication-track",
       "uw-tacoma-writing-studies:pathway:writing-and-social-change-track"
     ],
@@ -6710,11 +6316,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "53018",
-    "etag": "\"1778620866\"",
-    "lastModified": "Tue, 12 May 2026 21:21:06 GMT",
+    "etag": "\"1779143498\"",
+    "lastModified": "Mon, 18 May 2026 22:31:38 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "454b7ed689e109959632d8dbd5858c0d43071456b70850509bdf5361b0dff008"
+    "resourceFingerprint": "b89b645601d0d10f8af9eedb87507cdfd460d0004ee50fb0d3bc0180e61985a2"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
@@ -6732,18 +6338,17 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69931",
-    "etag": "\"1778619641\"",
-    "lastModified": "Tue, 12 May 2026 21:00:41 GMT",
+    "contentLength": "70204",
+    "etag": "\"1779144746\"",
+    "lastModified": "Mon, 18 May 2026 22:52:26 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d0a8dba82e6138fe3deb07fc10a3bb976860f80223fc54d21fc7ed6106c62f11"
+    "resourceFingerprint": "a8453bc03ea57282bda44ab030ef308e540179333390d00d005b84d0fa951c57"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
     "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
     "labels": [
-      "Scoped section: Environmental Communication Option",
       "Scoped section: Environmental Communication Option major requirements"
     ],
     "ownerIds": [
@@ -6755,42 +6360,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "51684",
-    "etag": "\"1778621994\"",
-    "lastModified": "Tue, 12 May 2026 21:39:54 GMT",
+    "contentLength": "51957",
+    "etag": "\"1779166780\"",
+    "lastModified": "Tue, 19 May 2026 04:59:40 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "11956e9729bb0407171b5a497db87cdc515d98a6c7d44bdad39b84221b81336b"
-  },
-  {
-    "url": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
-    "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
-    "labels": [
-      "Scoped section: Environmental Policy and Law Option",
-      "UW Tacoma Environmental Policy and Law option"
-    ],
-    "ownerIds": [
-      "uw-tacoma-environmental-sustainability:pathway:policy-law-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "51354",
-    "etag": "\"1778621995\"",
-    "lastModified": "Tue, 12 May 2026 21:39:55 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "6002df49f4f627480a170ff2ff2479e5001d22660b59bb3d6c303228676e1905"
+    "resourceFingerprint": "0f8e59ef0432f177729011c214f97641fd0a7f644b3ebebc1ec0a6ec94917169"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
     "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
     "labels": [
-      "Scoped section: Electives for the General Environmental Science Option (29 credits)",
-      "UW Tacoma Environmental Science overview"
+      "Scoped section: Electives for the General Environmental Science Option (29 credits)"
     ],
     "ownerIds": [
       "uw-tacoma-environmental-science",
@@ -6803,27 +6384,22 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "103091",
-    "etag": "\"1778621997\"",
-    "lastModified": "Tue, 12 May 2026 21:39:57 GMT",
+    "contentLength": "103364",
+    "etag": "\"1779145370\"",
+    "lastModified": "Mon, 18 May 2026 23:02:50 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f4f03276899e2bc722f524aab02cfbcf3a90f421215b35d991a6839f5c612141"
+    "resourceFingerprint": "314372a94ab29b9d0234009e253950882d62f7f2863f3c0733a0d3ca85a7cce6"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
     "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
     "labels": [
       "Scoped section: Environmental Policy and Law Option (20 credits)",
-      "Scoped section: Environmental Policy and Law Option (20 credits) major requirements",
-      "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
-      "UW Tacoma Environmental Sustainability overview"
+      "Scoped section: Environmental Policy and Law Option (20 credits) major requirements"
     ],
     "ownerIds": [
       "uw-tacoma-environmental-sustainability",
-      "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option",
-      "uw-tacoma-environmental-sustainability:pathway:education-option",
-      "uw-tacoma-environmental-sustainability:pathway:environmental-communication-option",
       "uw-tacoma-environmental-sustainability:pathway:policy-law-option"
     ],
     "kinds": [
@@ -6833,12 +6409,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "68270",
-    "etag": "\"1778621942\"",
-    "lastModified": "Tue, 12 May 2026 21:39:02 GMT",
+    "contentLength": "68543",
+    "etag": "\"1779146282\"",
+    "lastModified": "Mon, 18 May 2026 23:18:02 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "51ffc7d81c363d9448dfd6d382cf1bfe2864fb02543418af3cfcd2f1f6cebac2"
+    "resourceFingerprint": "434c924dc436cf0f7fda657993f8f10c6d1b4e0c1b77ccb9d7bcae91798c5115"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/mathematics",
@@ -6855,19 +6431,17 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "68179",
-    "etag": "\"1778619997\"",
-    "lastModified": "Tue, 12 May 2026 21:06:37 GMT",
+    "contentLength": "68452",
+    "etag": "\"1779145896\"",
+    "lastModified": "Mon, 18 May 2026 23:11:36 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c7e836c47ba200d708dede79d5a924bb99f8c10ebba01cec3a4865de6e001498"
+    "resourceFingerprint": "2cd9a12eebd453b055c06ae0bfc18e345c05f8915e0fddf49c6ae2e9d7e044cf"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
     "finalUrl": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
     "labels": [
-      "Scoped section: Pre-Environmental Education Option",
-      "UW Tacoma Environmental Sustainability Education option",
       "UW Tacoma Environmental Sustainability Education option major requirements"
     ],
     "ownerIds": [
@@ -6879,12 +6453,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "50951",
-    "etag": "\"1778622000\"",
-    "lastModified": "Tue, 12 May 2026 21:40:00 GMT",
+    "contentLength": "51224",
+    "etag": "\"1779166784\"",
+    "lastModified": "Tue, 19 May 2026 04:59:44 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "aa6d5bec8a025d53101ba0b5d8ac9def3e9ec06e31044822140157afdddb0f1c"
+    "resourceFingerprint": "25ec18e3d59032efb7312ba8a687fe68f25eb9aaac3a72c075d3175c72a198f8"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
@@ -6893,22 +6467,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Tacoma Economics and Policy Analysis overview"
     ],
     "ownerIds": [
-      "uw-tacoma-economics-and-policy-analysis",
-      "uw-tacoma-economics-and-policy-analysis:pathway:ba-route"
+      "uw-tacoma-economics-and-policy-analysis"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57892",
-    "etag": "\"1778620290\"",
-    "lastModified": "Tue, 12 May 2026 21:11:30 GMT",
+    "contentLength": "58035",
+    "etag": "\"1779143401\"",
+    "lastModified": "Mon, 18 May 2026 22:30:01 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e5fc4eeb918bef60c2903805f6182de1e324031660839d5ca5dd7e812194f13f"
+    "resourceFingerprint": "847215eaaf3aef14c3678a6901d61f2ecf8ba1744fabaa93fd853fe9ee1e38f4"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
@@ -6930,17 +6502,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50794",
-    "etag": "\"1778620736\"",
-    "lastModified": "Tue, 12 May 2026 21:18:56 GMT",
+    "etag": "\"1779143431\"",
+    "lastModified": "Mon, 18 May 2026 22:30:31 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "597647efa0530eecb2e39f942bd21b1e9f261083d20c49ccbbd16fc85de04f50"
+    "resourceFingerprint": "6fd90a153964f28fd3b036199e487f15a1612174453777223d5e841f3ac018ec"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
     "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
     "labels": [
-      "Ethnic Studies Option",
       "Ethnic Studies Option major requirements"
     ],
     "ownerIds": [
@@ -6953,17 +6524,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "67197",
-    "etag": "\"1778622217\"",
-    "lastModified": "Tue, 12 May 2026 21:43:37 GMT",
+    "etag": "\"1779166787\"",
+    "lastModified": "Tue, 19 May 2026 04:59:47 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "07c176db5cf28fa30d7177d458d6ceb82f642e6b4eb8566e0bffcbbbb108fb9f"
+    "resourceFingerprint": "9283b0d76b2906695f8d898e57534a2804aa57eb34717c2af3e76044d4b28000"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/gender-studies-option",
     "finalUrl": "https://www.tacoma.uw.edu/sias/socs/gender-studies-option",
     "labels": [
-      "Gender Studies Option",
       "Gender Studies Option major requirements"
     ],
     "ownerIds": [
@@ -6976,11 +6546,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "67134",
-    "etag": "\"1778622217\"",
-    "lastModified": "Tue, 12 May 2026 21:43:37 GMT",
+    "etag": "\"1779166789\"",
+    "lastModified": "Tue, 19 May 2026 04:59:49 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bfe1ff512f6c227535bef7660e368c8ba860b33e9d0d96be3ee689b5f728a8d7"
+    "resourceFingerprint": "d85ac8815cb16c321644407beff64b3abdbf62b2491d305d0bb67b1eec0b9e75"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option",
@@ -7001,11 +6571,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "47084",
-    "etag": "\"1778622003\"",
-    "lastModified": "Tue, 12 May 2026 21:40:03 GMT",
+    "etag": "\"1779166790\"",
+    "lastModified": "Tue, 19 May 2026 04:59:50 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "71107eda03948506c0cd83fdd3b40e3062b0e731dced157c90c6ad913179a893"
+    "resourceFingerprint": "ff86dac415e2f18c8659ec53dcfa2e09dcf807ee4715a0afb34744058b395a35"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
@@ -7014,28 +6584,25 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Tacoma Interdisciplinary Arts and Sciences overview"
     ],
     "ownerIds": [
-      "uw-tacoma-interdisciplinary-arts-and-sciences",
-      "uw-tacoma-interdisciplinary-arts-and-sciences:pathway:ba-route"
+      "uw-tacoma-interdisciplinary-arts-and-sciences"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "69804",
-    "etag": "\"1778620605\"",
-    "lastModified": "Tue, 12 May 2026 21:16:45 GMT",
+    "etag": "\"1779143463\"",
+    "lastModified": "Mon, 18 May 2026 22:31:03 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "dcf6f3d49fa2457ed5a38b9914419ee66322588e4ec208f423003fa37ff0fb8e"
+    "resourceFingerprint": "2b16b5b2cd011531489b24e0c7c5197d9f6c63e91507456abb17d165b693f22e"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/labor-studies-option",
     "finalUrl": "https://www.tacoma.uw.edu/sias/socs/labor-studies-option",
     "labels": [
-      "Labor Studies Option",
       "Labor Studies Option major requirements"
     ],
     "ownerIds": [
@@ -7048,11 +6615,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "67243",
-    "etag": "\"1778620739\"",
-    "lastModified": "Tue, 12 May 2026 21:18:59 GMT",
+    "etag": "\"1779166792\"",
+    "lastModified": "Tue, 19 May 2026 04:59:52 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3d6bd24593b8ebc169504f25dabce9e32613df44cb201bc9f893a1e4227b0fc6"
+    "resourceFingerprint": "afb9e0bc166156f8de8e687d7c5e5d4a34c3fbe84c423c289904b319f9a8618a"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
@@ -7071,12 +6638,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67994",
-    "etag": "\"1778620249\"",
-    "lastModified": "Tue, 12 May 2026 21:10:49 GMT",
+    "contentLength": "69610",
+    "etag": "\"1779143463\"",
+    "lastModified": "Mon, 18 May 2026 22:31:03 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "cb2dd10cf9ae981e5e405acdb370516a53950fe40114ccefd8d92f62ff391e76"
+    "resourceFingerprint": "2fa31ef76d623c7e0c08f52054c5e989616d1bbd297c08b18967b5876a6ea7a5"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
@@ -7095,12 +6662,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "51857",
-    "etag": "\"1778622007\"",
-    "lastModified": "Tue, 12 May 2026 21:40:07 GMT",
+    "contentLength": "52279",
+    "etag": "\"1779142300\"",
+    "lastModified": "Mon, 18 May 2026 22:11:40 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "820813fdbaf65d5063ce52addb50963798160721b5310cc956585d98a7de49e5"
+    "resourceFingerprint": "0de2474936e4adc0109de3072e9459d05a93eb6a15e266ea7148a8a3c5f120e7"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/psychology",
@@ -7109,44 +6676,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Tacoma Psychology overview"
     ],
     "ownerIds": [
-      "uw-tacoma-psychology",
-      "uw-tacoma-psychology:pathway:ba-route"
+      "uw-tacoma-psychology"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "62888",
-    "etag": "\"1778619925\"",
-    "lastModified": "Tue, 12 May 2026 21:05:25 GMT",
+    "etag": "\"1779143478\"",
+    "lastModified": "Mon, 18 May 2026 22:31:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "654c2c08d2773454138073faf98a9dcf50a9ed55f61821b97d2de4aa72608d0a"
-  },
-  {
-    "url": "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
-    "finalUrl": "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
-    "labels": [
-      "BA in Education - K-8 Elementary Education w/TELL (2026-2027)"
-    ],
-    "ownerIds": [
-      "uw-tacoma-education:pathway:special-education-dual-endorsement"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "application/pdf",
-    "contentLength": "276774",
-    "etag": "\"43926-64b1d960f8977\"",
-    "lastModified": "Wed, 18 Feb 2026 18:45:03 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "edccbecfc563004a70f444d56272456ec915c189ce40b1858d31ce2f2aebb3d1"
+    "resourceFingerprint": "d694d976c0edad465dcd558605c14e1507a2abc01afd6a4e6da862ca584766fa"
   },
   {
     "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
@@ -7155,23 +6698,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Tacoma B.A. in Education overview"
     ],
     "ownerIds": [
-      "uw-tacoma-education",
-      "uw-tacoma-education:pathway:ba-route",
-      "uw-tacoma-education:pathway:special-education-dual-endorsement"
+      "uw-tacoma-education"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "76131",
-    "etag": "\"1778620866\"",
-    "lastModified": "Tue, 12 May 2026 21:21:06 GMT",
+    "contentLength": "76043",
+    "etag": "\"1779143401\"",
+    "lastModified": "Mon, 18 May 2026 22:30:01 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2fa57e5f81e6a305636e3421e7e2051ac5ac19882a4bc1a15715033fd5e5acff"
+    "resourceFingerprint": "1881d1e372e27fc5bb4692fc86f5ee822701e0d7ee9f07f655dc8dd578b113d0"
   },
   {
     "url": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
@@ -7180,22 +6720,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Tacoma BASW curriculum"
     ],
     "ownerIds": [
-      "uw-tacoma-social-welfare",
-      "uw-tacoma-social-welfare:pathway:ba-route"
+      "uw-tacoma-social-welfare"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "92255",
-    "etag": "\"1778620866\"",
-    "lastModified": "Tue, 12 May 2026 21:21:06 GMT",
+    "contentLength": "92259",
+    "etag": "\"1779143991\"",
+    "lastModified": "Mon, 18 May 2026 22:39:51 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ab7ae5c9f3b0a8803fc9bead84b4f85f20580d0f2dfd5dc8a0d9825f8c6e8401"
+    "resourceFingerprint": "6e6f203498f04ad7ea8fa921b0cd7c4a704eacf61ad09d3909bd7b4c019f42ef"
   },
   {
     "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
@@ -7214,25 +6752,22 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "99759",
-    "etag": "\"1778620291\"",
-    "lastModified": "Tue, 12 May 2026 21:11:31 GMT",
+    "contentLength": "99763",
+    "etag": "\"1779142327\"",
+    "lastModified": "Mon, 18 May 2026 22:12:07 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0ed5dd1135d2093e2fcb0e6ef711f7fcdc1bfa817a8cc26dfd3c951596acb9cf"
+    "resourceFingerprint": "2e8f6c629a1fb9c5349f0f30e7c30a7bcd2f84281a7b2c72f1ca2b3f72a265d1"
   },
   {
     "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
     "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
     "labels": [
-      "BA in Sustainable Urban Development",
-      "UW Tacoma Sustainable Urban Development overview"
+      "BA in Sustainable Urban Development"
     ],
     "ownerIds": [
       "uw-tacoma-sustainable-urban-development",
-      "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-      "uw-tacoma-urban-studies:pathway:community-engagement-option",
-      "uw-tacoma-urban-studies:pathway:gis-option"
+      "uw-tacoma-sustainable-urban-development:pathway:gis-option"
     ],
     "kinds": [
       "major",
@@ -7242,11 +6777,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "84945",
-    "etag": "\"1778622014\"",
-    "lastModified": "Tue, 12 May 2026 21:40:14 GMT",
+    "etag": "\"1779143496\"",
+    "lastModified": "Mon, 18 May 2026 22:31:36 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0b47f1424ed955408b5285b275d033889bef4ad8d9061be63c40afc702e3e896"
+    "resourceFingerprint": "c077dbd7880f502446a51d5657ad81a143b9e0dd382337bcc2124f7200280e31"
   },
   {
     "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
@@ -7256,34 +6791,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Tacoma Urban Studies overview"
     ],
     "ownerIds": [
-      "uw-tacoma-sustainable-urban-development:pathway:gis-option",
       "uw-tacoma-urban-studies",
-      "uw-tacoma-urban-studies:pathway:community-engagement-option",
-      "uw-tacoma-urban-studies:pathway:gis-option"
-    ],
-    "kinds": [
-      "major",
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "87686",
-    "etag": "\"1778620805\"",
-    "lastModified": "Tue, 12 May 2026 21:20:05 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "edebcfa3d75339cc23f3cc262c40ccb169216530a73461421e61c7a4200e175c"
-  },
-  {
-    "url": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
-    "finalUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
-    "labels": [
-      "BS in Urban Design",
-      "UW Tacoma Urban Design overview"
-    ],
-    "ownerIds": [
-      "uw-tacoma-urban-design",
       "uw-tacoma-urban-studies:pathway:community-engagement-option"
     ],
     "kinds": [
@@ -7293,12 +6801,34 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "88412",
-    "etag": "\"1778619868\"",
-    "lastModified": "Tue, 12 May 2026 21:04:28 GMT",
+    "contentLength": "87686",
+    "etag": "\"1779142807\"",
+    "lastModified": "Mon, 18 May 2026 22:20:07 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0318d853fddf0fed5f9eaf30174167a42bb1dc701a85742b5c62cb28c0210690"
+    "resourceFingerprint": "caf1d9d76078997a8e8fa373ed1ad6302b2c00010930cc20c11301a4526698f6"
+  },
+  {
+    "url": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
+    "finalUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
+    "labels": [
+      "BS in Urban Design"
+    ],
+    "ownerIds": [
+      "uw-tacoma-urban-design"
+    ],
+    "kinds": [
+      "major"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "contentLength": "88412",
+    "etag": "\"1779143496\"",
+    "lastModified": "Mon, 18 May 2026 22:31:36 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "a008955d9cf21e880d01d8c12424a83ef78d626c665c38b19ae65f38a6bbb258"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
@@ -7306,15 +6836,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "labels": [
       "Accounting Option",
       "Accounting Option major requirements",
-      "UW Bothell Accounting option",
       "UW Bothell Accounting option major requirements"
     ],
     "ownerIds": [
       "uw-bothell-business-administration-accounting",
       "uw-bothell-business-administration-accounting:pathway:accounting-option",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:accounting-option",
-      "uw-bothell-business-administration-marketing:pathway:accounting-option",
-      "uw-bothell-business-administration-supply-chain-management:pathway:accounting-option",
       "uw-bothell-business-administration:pathway:accounting-option"
     ],
     "kinds": [
@@ -7324,12 +6850,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "30952",
+    "contentLength": "30798",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "49d56f502d43e46f4deb171da732de024d86ee5f245e304f11a1b6a5ce05ab2d"
+    "resourceFingerprint": "d269fcb83471051907f20c6048f8db046f1f9111553cf57b1a3f82893fb41bc9"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
@@ -7345,7 +6871,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-bothell-business-administration:pathway:management-concentration",
       "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
       "uw-bothell-business-administration:pathway:mis-concentration",
-      "uw-bothell-business-administration:pathway:retail-management-concentration"
+      "uw-bothell-business-administration:pathway:retail-management-concentration",
+      "uw-bothell-business-administration:pathway:tim-concentration"
     ],
     "kinds": [
       "major",
@@ -7354,12 +6881,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "31442",
+    "contentLength": "31313",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "045d709e273fa10127540effd0302af3cc11f1b77bff050e96a8917c2909b8d4"
+    "resourceFingerprint": "fb05f6c033e70cc87721055809902df74e62b9a54420d44e6dbbe6de782b2748"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
@@ -7375,7 +6902,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-bothell-business-administration:pathway:management-concentration",
       "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
       "uw-bothell-business-administration:pathway:mis-concentration",
-      "uw-bothell-business-administration:pathway:retail-management-concentration"
+      "uw-bothell-business-administration:pathway:retail-management-concentration",
+      "uw-bothell-business-administration:pathway:tim-concentration"
     ],
     "kinds": [
       "major",
@@ -7384,12 +6912,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "30634",
+    "contentLength": "30523",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "cb34906421acf4d83b66ed39baba29516a42b3edce729e56935e5d4159e3cd44"
+    "resourceFingerprint": "97b704d3cff6513d6130b2e851c224e210f62dd90cac209cba2f7a1df94bef6b"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
@@ -7405,7 +6933,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-bothell-business-administration:pathway:management-concentration",
       "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
       "uw-bothell-business-administration:pathway:mis-concentration",
-      "uw-bothell-business-administration:pathway:retail-management-concentration"
+      "uw-bothell-business-administration:pathway:retail-management-concentration",
+      "uw-bothell-business-administration:pathway:tim-concentration"
     ],
     "kinds": [
       "major",
@@ -7414,12 +6943,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "29234",
+    "contentLength": "29102",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0911966774d73f86ecfa2417460684bf898cfa48370efb3a5578e9b2b797d8ec"
+    "resourceFingerprint": "f231dd9d26b66b6f72a0ca5903aac884556b97c8b9276bd5c24ed8adb9ed8538"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
@@ -7436,7 +6965,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
       "uw-bothell-business-administration:pathway:mis-concentration",
       "uw-bothell-business-administration:pathway:retail-management-concentration",
-      "uw-bothell-business-administration:pathway:technology-and-innovation-management-tim-concentration"
+      "uw-bothell-business-administration:pathway:technology-and-innovation-management-tim-concentration",
+      "uw-bothell-business-administration:pathway:tim-concentration"
     ],
     "kinds": [
       "major",
@@ -7445,21 +6975,21 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "30608",
+    "contentLength": "30568",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bf63d900f22675f3b624b7b7cda14ae08c226aca8942b1497581760b6c0bdf0b"
+    "resourceFingerprint": "925378327a63a11d24ded970ab22e141930caee08399cb1930ea1b5fa8c848da"
   },
   {
-    "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum#marketing",
-    "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum#marketing",
+    "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
+    "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
     "labels": [
-      "concentration"
+      "UW Bothell Entrepreneurship concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration:pathway:marketing-can-also-be-taken-as-a-concentration"
+      "uw-bothell-business-administration:pathway:entrepreneurship-concentration"
     ],
     "kinds": [
       "pathway"
@@ -7470,36 +7000,9 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": "Curriculum - School of Business",
+    "title": "Entrepreneurship Concentration - School of Business",
     "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "90b2ff9fbc0f46dcee29e3e247a94adba50519921f6f780f36b8ec160b21035b"
-  },
-  {
-    "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
-    "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
-    "labels": [
-      "Entrepreneurship Concentration",
-      "UW Bothell Entrepreneurship concentration major requirements"
-    ],
-    "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:entrepreneurship-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:entrepreneurship-concentration",
-      "uw-bothell-business-administration-marketing:pathway:entrepreneurship-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:entrepreneurship-concentration",
-      "uw-bothell-business-administration:pathway:entrepreneurship-concentration"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "28998",
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "b9d43556e93209bba0652319322af0b985e78cd304464339f9df8420506049fd"
+    "resourceFingerprint": "1f1bdf515dc3b5ac940ec95588f8b2be0d7d070b88bdaae78b84e11e77f1a5e3"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
@@ -7507,18 +7010,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "labels": [
       "Finance Option and Concentration",
       "Finance Option and Concentration major requirements",
-      "Scoped section: Finance Option and Concentration",
       "UW Bothell Finance option and concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:finance-option-and-concentration",
       "uw-bothell-business-administration-finance",
       "uw-bothell-business-administration-finance:pathway:finance-option-and-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:finance-option-and-concentration",
-      "uw-bothell-business-administration-marketing:pathway:finance-option-and-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:finance-option-and-concentration",
-      "uw-bothell-business-administration:pathway:finance-option-and-concentration",
-      "uw-bothell-business-administration:pathway:or-consulting-firms-learn-more-about-the-finance-concentration"
+      "uw-bothell-business-administration:pathway:finance-option-and-concentration"
     ],
     "kinds": [
       "major",
@@ -7527,12 +7024,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "31529",
+    "contentLength": "30385",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a1168e42b45f9ec1dee2d44d979fd199a1fad1871c11660edad96f90240a07bd"
+    "resourceFingerprint": "6cfac9d0b1cda76a314f124583f25c8ff1f6125f4e08c65261319093d73897bb"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
@@ -7540,12 +7037,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "labels": [
       "Leadership & Strategic Innovation Option",
       "Leadership & Strategic Innovation Option major requirements",
-      "UW Bothell Leadership and Strategic Innovation option"
+      "UW Bothell Leadership and Strategic Innovation option major requirements"
     ],
     "ownerIds": [
       "uw-bothell-business-administration-leadership-and-strategic-innovation",
       "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:leadership-and-strategic-innovation-option",
-      "uw-bothell-business-administration-marketing:pathway:tim-concentration"
+      "uw-bothell-business-administration:pathway:leadership-and-strategic-innovation-option"
     ],
     "kinds": [
       "major",
@@ -7554,38 +7051,34 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "29092",
+    "contentLength": "29054",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "43bed2ed206e7f1f2d4d9dce098c7f5c8d213f740ae1d26db0703950296e0ec7"
+    "resourceFingerprint": "8fc0816df253ef0ba01336ae65940e78d1050e5df535cd0c1d6e84427958f19e"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
     "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
     "labels": [
-      "Management Concentration",
       "UW Bothell Management concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:management-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:management-concentration",
-      "uw-bothell-business-administration-marketing:pathway:management-concentration",
       "uw-bothell-business-administration:pathway:management-concentration"
     ],
     "kinds": [
       "pathway"
     ],
     "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "29412",
+    "status": null,
+    "contentType": "requirement-source-snapshot",
+    "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "a5eb9fdf1dcb1022d32acdea4eb4d5f5decb79735f1346473cf179c5863348ba"
+    "title": "Management Concentration - School of Business",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "b25d657a091c59029f9a6896f3e016d73f483c7e9a14fd838a5b4a087844f255"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
@@ -7593,15 +7086,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "labels": [
       "Marketing Option and Concentration",
       "Marketing Option and Concentration major requirements",
-      "UW Bothell Marketing option and concentration",
       "UW Bothell Marketing option and concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:marketing-option-and-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:marketing-option-and-concentration",
       "uw-bothell-business-administration-marketing",
       "uw-bothell-business-administration-marketing:pathway:marketing-option-and-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:marketing-option-and-concentration",
       "uw-bothell-business-administration:pathway:marketing-option-and-concentration"
     ],
     "kinds": [
@@ -7611,66 +7100,56 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "29472",
+    "contentLength": "29323",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "77fbf9890daf11c081775efeaafbd912eb01f4a5af028b7f426efbd01c1aef19"
+    "resourceFingerprint": "3d9c6f553762960ea443948fcdac53bf69742de1b1b60df07576abb7e08c0b55"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
     "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
     "labels": [
-      "Management Information Systems (MIS) Concentration",
       "UW Bothell MIS concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:mis-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:mis-concentration",
-      "uw-bothell-business-administration-marketing:pathway:mis-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:mis-concentration",
       "uw-bothell-business-administration:pathway:mis-concentration"
     ],
     "kinds": [
       "pathway"
     ],
     "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "29426",
+    "status": null,
+    "contentType": "requirement-source-snapshot",
+    "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "1915a7efba1c683c2bddb84531a9c1ccc909c11a98d179f981e01fab12c92c27"
+    "title": "Management Information Systems (MIS) Concentration - School of Business",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "0dbb168d10774aa5c2f29bd69bfb29d76dc1d17231f8ea4673249b9d0ba56787"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
     "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
     "labels": [
-      "Retail Management Concentration",
       "UW Bothell Retail Management concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:retail-management-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:retail-management-concentration",
-      "uw-bothell-business-administration-marketing:pathway:retail-management-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:retail-management-concentration",
       "uw-bothell-business-administration:pathway:retail-management-concentration"
     ],
     "kinds": [
       "pathway"
     ],
     "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "28851",
+    "status": null,
+    "contentType": "requirement-source-snapshot",
+    "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "677177a4acc9e0fd4372b63d11b29dce75505b6eead047e10372414292b421d3"
+    "title": "Retail Management Concentration - School of Business",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "225897f02fe1643dae5aedec7740a904dd066397d059b4c683377698c26d97cc"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
@@ -7678,15 +7157,13 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "labels": [
       "Supply Chain Management Option",
       "Supply Chain Management Option major requirements",
-      "UW Bothell Supply Chain Management option",
       "UW Bothell Supply Chain Management option major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:retail-management-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:tim-concentration",
       "uw-bothell-business-administration-supply-chain-management",
       "uw-bothell-business-administration-supply-chain-management:pathway:management-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option"
+      "uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option",
+      "uw-bothell-business-administration:pathway:supply-chain-management-option"
     ],
     "kinds": [
       "major",
@@ -7695,40 +7172,34 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "30094",
+    "contentLength": "29971",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "51a9747e38bbbe7d42b8f901b720b27624b0e6a393f121bea1b8127316e774a8"
+    "resourceFingerprint": "52f99f3108379a77b17c07c74e5345749aeb52c92d791353ee173ec129643570"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
     "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
     "labels": [
-      "Technology & Innovation Management (TIM) Concentration",
       "UW Bothell Technology and Innovation Management concentration major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-business-administration-accounting:pathway:tim-concentration",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:tim-concentration",
-      "uw-bothell-business-administration-marketing:pathway:tim-concentration",
-      "uw-bothell-business-administration-supply-chain-management:pathway:tim-concentration",
-      "uw-bothell-business-administration:pathway:telecommunications-and-biotechnology-learn-more-about-the-tim-concentration",
       "uw-bothell-business-administration:pathway:tim-concentration"
     ],
     "kinds": [
       "pathway"
     ],
     "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "29485",
+    "status": null,
+    "contentType": "requirement-source-snapshot",
+    "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "9eeb79779938fb57df8b9b6b38df052cac51977daa18d8d68f8d9e6d908211e6"
+    "title": "Technology & Innovation Management (TIM) Concentration - School of Business",
+    "fetchMode": "requirement-snapshot",
+    "resourceFingerprint": "db51ee17b724e4c9268bfaa0bbf2f341f8ff7fe0104985b7400bda4460f2e66e"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
@@ -7745,12 +7216,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "30117",
+    "contentLength": "29807",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "42884a0759a3ae18915e872c627f365bbee143ef1e021d0d6a7f7ac1c5bfa54a"
+    "resourceFingerprint": "a71e3add90f429391bd0dc27afc5e39c5f98383bd8742a2f6e7fedb4e9d2fc21"
   },
   {
     "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
@@ -7798,12 +7269,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "48714",
+    "contentLength": "48713",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b61698e3871dfde70bc29356ab0b01c7edca6269cc27bbd9f9453df6b054128f"
+    "resourceFingerprint": "0f8d99e97bdedecb323f8543eba9c42fee148a77c1cfba2f2449cbd478a2f991"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
@@ -7822,12 +7293,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39140",
+    "contentLength": "39141",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "951c31dac08cf0057beb74c91202039fe457f01aaf8dc07147271e11db83388f"
+    "resourceFingerprint": "b67edcc5ae31c01473ee08d60e33f461239c3fb6026d0810e4bea4ae9f299d12"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/community-psychology#major%20requirements",
@@ -7866,12 +7337,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39443",
+    "contentLength": "39440",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f1456fa837ee4b58d7191c10a5f352bd53c93187b865a518a99de871a94e6535"
+    "resourceFingerprint": "6fab550b33d46ea7d48c1d4d8d05f4cf3cdddd0f89f2b1a40d6589e348de70af"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
@@ -7888,19 +7359,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "38464",
+    "contentLength": "38466",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9227b930d341f671ff7ec3b97b9b35c167e7c414013094202e7b029aa9317ac7"
+    "resourceFingerprint": "16f47941a9839fd086edff51fe107c01eb3ef252df64e1fc1619dfdd3f1c09d1"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
     "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
     "labels": [
-      "Data Visualization (BA)",
-      "Data Visualization (BS)"
+      "Data Visualization (BA)"
     ],
     "ownerIds": [
       "uw-bothell-data-visualization-ba",
@@ -7912,12 +7382,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37197",
+    "contentLength": "37198",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b5adbb1cf2abe388f09e44ca4814389cecbef01e7a889a351799baebaf7d2e52"
+    "resourceFingerprint": "bcc2666cf77b39fdf499bfbd10b66202b95941a63c8434a63f0426d5c81b2663"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
@@ -7934,12 +7404,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "42467",
+    "contentLength": "42468",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e4dcad959b8aa9518c3732f94dbacc4810773020b03769ae5e779b3d4698f916"
+    "resourceFingerprint": "fda9c71ae60f6d4092c6252d0ed23d3327614819b689f3e899bac83e973be6cc"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
@@ -7956,12 +7426,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37228",
+    "contentLength": "37226",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e9475487d015338503f8ff81767805052fa41729e892eb20cc46a92cc7218df8"
+    "resourceFingerprint": "b3162e1a8db1712a7874db202dd40a4b98c2cf73071133d95dce1a76ac424069"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
@@ -7978,12 +7448,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39636",
+    "contentLength": "39633",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "78dd51292680c7b82413fc816660ce9faa809db28d1eb8e59f137d2a0a9a48d7"
+    "resourceFingerprint": "6f4c11167947e7be298ec2d8bd1cdc89add4e653e17d153e854c2f13ce9a1734"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
@@ -8000,23 +7470,21 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37218",
+    "contentLength": "37216",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6a57cd4e21db9e61b4f903597852bd221fee4854ca545a0016746ff9e16774d4"
+    "resourceFingerprint": "d8f8ae46c7eb80b8f3aca56ac975d6560d4c79e4b1642ccb6eae4bab2f4ffc8c"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
     "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
     "labels": [
-      "Interdisciplinary Arts",
-      "UW Bothell Interdisciplinary Arts requirements"
+      "Interdisciplinary Arts"
     ],
     "ownerIds": [
-      "uw-bothell-interdisciplinary-arts",
-      "uw-bothell-interdisciplinary-studies-individualized-study"
+      "uw-bothell-interdisciplinary-arts"
     ],
     "kinds": [
       "major"
@@ -8024,12 +7492,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "36971",
+    "contentLength": "36969",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "986614f1b02b76f7ef6680223b5b565109109eceaef992111aa649f983aa8230"
+    "resourceFingerprint": "c38dd49b0c52df9e9a0628284454213d68750b7228078e3cc0203bc61831992f"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
@@ -8048,12 +7516,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37467",
+    "contentLength": "37464",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ffff851f32bd14ab9833e8d6994240fe49298efefae3e74ded3f1c13cfd9465c"
+    "resourceFingerprint": "31bb3650b9ce672d9db638d79b368dd55aba0716e4b940accf7dc16bf7083501"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
@@ -8072,12 +7540,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "36143",
+    "contentLength": "36140",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "562945d631856b1aa15c7dad71331c2694dc3cdd3dcfd701ba1a146a401ae147"
+    "resourceFingerprint": "d09bf51df9de8119e9a311773408d86fb69e99b1a3a47e838681433119c9d383"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
@@ -8094,12 +7562,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "36878",
+    "contentLength": "36096",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "765967520676bff53baeb9ec51db867a12a223ff65d5a84951cf2044d02fcc41"
+    "resourceFingerprint": "b39ff8485a0081e85421e98981ea958f271640906670f988f7790bff261c9630"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
@@ -8118,12 +7586,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "41252",
+    "contentLength": "41249",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d7046200c5ed8508b38208387b6b3f237d9a846513e28827bb02e064c5a761bc"
+    "resourceFingerprint": "18bb400b25f951ec11eb92569a6bca20dc572c56063a3e0437eb769ee3c41069"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
@@ -8140,12 +7608,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "40414",
+    "contentLength": "40411",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f0445360c557159815cd651fbe373e86efe738391771ad4d131cb7619fdb0be3"
+    "resourceFingerprint": "38890f0c40a89f05339d43534a5caca33b03e047d87dbf8a281df5d2695f2cb1"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
@@ -8173,8 +7641,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
     "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
     "labels": [
-      "Scoped section: 2025-26 Health Studies (BA) Major Checklist - 90 credits",
-      "UW Bothell Health Studies overview and curriculum"
+      "Scoped section: 2025-26 Health Studies (BA) Major Checklist - 90 credits"
     ],
     "ownerIds": [
       "uw-bothell-health-studies"
@@ -8185,12 +7652,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "30551",
+    "contentLength": "30553",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "26dbb131ed732c50dfd1dfe059fc653a5a229e318b6c669637e1fb355301bac6"
+    "resourceFingerprint": "73c3e0e396de7b4c190af1a55169d5ba549c0031a01fb2307c31df58ec6b2e95"
   },
   {
     "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
@@ -8232,12 +7699,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "32609",
+    "contentLength": "32607",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b6d8e344f2379e4a3505b80b511afdb6ec466df6f62d85cff831b2eaca3441dc"
+    "resourceFingerprint": "2a07f925b7a864b141375945d2219e197552c9f9be1546abd1f50775ae2c4cdf"
   },
   {
     "url": "https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf",
@@ -8298,12 +7765,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "40261",
+    "contentLength": "40260",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f000734d299ce34e418a03ffaba20c5962b280f5135986071fac303e7d480d97"
+    "resourceFingerprint": "9416dec6b6a92ba69ef3ef4e3dd1f6062d2e16da8af950fb73a32d77fb6b877d"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/fhl",
@@ -8320,12 +7787,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37013",
+    "contentLength": "37014",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ec52ce72ce23c453ab17a223ab0b0c9f626e924415d360b4d181dba63b83cc84"
+    "resourceFingerprint": "be4e259844a4b14d0c4837fe864089fc793cc92e555dd1231c0b3018504db2c6"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
@@ -8353,8 +7820,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
     "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
     "labels": [
-      "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (",
-      "UW Bothell CSSE curriculum"
+      "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering ("
     ],
     "ownerIds": [
       "uw-bothell-csse",
@@ -8380,13 +7846,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum#iac-option",
     "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
     "labels": [
-      "B.S. in Computer Science & Software Engineering",
       "IAC Option inferred option/concentration requirements major requirements",
-      "Information Assurance and Cybersecurity (IAC) option",
       "Information Assurance and Cybersecurity (IAC) option inferred option/concentration requirements major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:iac-option",
       "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:information-assurance-and-cybersecurity-iac-option",
       "uw-bothell-csse:pathway:iac-option"
     ],
@@ -8408,21 +7871,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
     "labels": [
       "Scoped section: B.S. in Chemistry (general option) requirements",
-      "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
-      "UW Bothell Chemistry curriculum"
+      "Scoped section: B.S. in Chemistry (general option) requirements major requirements"
     ],
     "ownerIds": [
-      "uw-bothell-chemistry-ba",
-      "uw-bothell-chemistry-ba:pathway:b-s-in-chemistry-general-option",
-      "uw-bothell-chemistry-ba:pathway:biochemistry-option",
-      "uw-bothell-chemistry-ba:pathway:general-option",
-      "uw-bothell-chemistry-biochemistry",
-      "uw-bothell-chemistry-biochemistry:pathway:b-s-in-chemistry-general-option",
-      "uw-bothell-chemistry-biochemistry:pathway:biochemistry-option",
       "uw-bothell-chemistry-bs",
-      "uw-bothell-chemistry-bs:pathway:b-s-in-chemistry-general-option",
-      "uw-bothell-chemistry-bs:pathway:biochemistry-option",
-      "uw-bothell-chemistry-bs:pathway:general-option"
+      "uw-bothell-chemistry-bs:pathway:b-s-in-chemistry-general-option"
     ],
     "kinds": [
       "major",
@@ -8431,80 +7884,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39764",
+    "contentLength": "39765",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0de22e3bbf56c514cb6294817e4fcd59108e0dad501c4db7be4df7c3f428c21c"
-  },
-  {
-    "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#bs-biochem",
-    "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-    "labels": [
-      "B.S. in Chemistry (biochemistry option) requirements"
-    ],
-    "ownerIds": [
-      "uw-bothell-chemistry-biochemistry:pathway:biochemistry-option",
-      "uw-bothell-chemistry-bs:pathway:biochemistry-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39764",
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "0de22e3bbf56c514cb6294817e4fcd59108e0dad501c4db7be4df7c3f428c21c"
-  },
-  {
-    "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#bs-general",
-    "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-    "labels": [
-      "B.S. in Chemistry (general option) requirements"
-    ],
-    "ownerIds": [
-      "uw-bothell-chemistry-ba:pathway:b-s-in-chemistry-general-option",
-      "uw-bothell-chemistry-bs:pathway:b-s-in-chemistry-general-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39764",
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "0de22e3bbf56c514cb6294817e4fcd59108e0dad501c4db7be4df7c3f428c21c"
-  },
-  {
-    "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#general",
-    "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-    "labels": [
-      "General education requirements"
-    ],
-    "ownerIds": [
-      "uw-bothell-chemistry-ba:pathway:general-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "39764",
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "0de22e3bbf56c514cb6294817e4fcd59108e0dad501c4db7be4df7c3f428c21c"
+    "resourceFingerprint": "e292ffccd989616ac6a3edf56d85ea013b8849f5eee055b69db5fc57fe244656"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
@@ -8522,12 +7907,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37139",
+    "contentLength": "37136",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d2761c7d4ae7577897a69f5322fa06588cb294c8f910b61fab3f2e1f4ea221fd"
+    "resourceFingerprint": "258027f00af67707b93d988ec72766d476b657c4c1183d904b88b133e1fdd2ed"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
@@ -8544,12 +7929,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37589",
+    "contentLength": "37588",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6f761cc93b0137b8e72e73bcebabbaa805378d9c511eabb73b6eb927205677be"
+    "resourceFingerprint": "32238b5839150b1f02548c23da5cd0126c2b8a7773f0806245fb32db77823bb8"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
@@ -8569,12 +7954,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "37432",
+    "contentLength": "37433",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f34b65737b4a62acee1e2d91665c5363b7cb96a8cee25ba470b2649b126d576c"
+    "resourceFingerprint": "cac9941d57c33aca5c7e19ad8f777779e0bb8c57002b45d44da346934072a576"
   },
   {
     "url": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf",
@@ -8621,31 +8006,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "resourceFingerprint": "7fff1f01dccf3e1f52363bf56a76130474539648979718cf9ec1f535b3d7a319"
   },
   {
-    "url": "https://www.washington.edu/students/gencat/academic/sefs.html",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
-    "labels": [
-      "UW General Catalog ESRM degree requirements"
-    ],
-    "ownerIds": [
-      "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:restoration-ecology-and-environmental-horticulture",
-      "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:sustainable-forest-management"
-    ],
-    "kinds": [
-      "major",
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html",
-    "contentLength": "64091",
-    "etag": "\"fa5b-6518f64ee02ee\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "181094eab77d25615e15d2c48dd255df6f832385c904030f388374011130dffc"
-  },
-  {
     "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
     "labels": [
@@ -8653,26 +8013,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-anthropology",
-      "uw-seattle-anthropology:pathway:archy-option",
-      "uw-seattle-anthropology:pathway:as-shown-above-option",
       "uw-seattle-anthropology:pathway:ba-option-family:anthropology-of-globalization",
       "uw-seattle-anthropology:pathway:ba-option-family:archaeological-sciences",
       "uw-seattle-anthropology:pathway:ba-option-family:human-evolutionary-biology",
       "uw-seattle-anthropology:pathway:ba-option-family:indigenous-archaeology",
       "uw-seattle-anthropology:pathway:ba-option-family:medical-anthropology-and-global-health",
-      "uw-seattle-anthropology:pathway:bio-a-101-or-bio-a-348-option",
-      "uw-seattle-anthropology:pathway:bio-a-351-or-bio-a-355-option",
-      "uw-seattle-anthropology:pathway:bio-a-approved-for-the-anthropology-of-globalization-option",
-      "uw-seattle-anthropology:pathway:biological-option",
       "uw-seattle-anthropology:pathway:bs-option-family:archaeological-sciences",
       "uw-seattle-anthropology:pathway:bs-option-family:human-evolutionary-biology",
-      "uw-seattle-anthropology:pathway:bs-option-family:medical-anthropology-and-global-health",
-      "uw-seattle-anthropology:pathway:completion-of-ma-requirements-in-archaeology-option",
-      "uw-seattle-anthropology:pathway:either-bio-a-101-or-bio-a-348-option",
-      "uw-seattle-anthropology:pathway:requirements-option",
-      "uw-seattle-anthropology:pathway:three-courses-from-the-approved-indigenous-archaeology-ia-core-list-option",
-      "uw-seattle-anthropology:pathway:to-include-20-credits-from-courses-in-anth-option",
-      "uw-seattle-anthropology:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-anthropology:pathway:bs-option-family:medical-anthropology-and-global-health"
     ],
     "kinds": [
       "major",
@@ -8682,30 +8030,24 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "70810",
-    "etag": "\"1149a-6518f64effebe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"1149a-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a019b966f0747677559ee253be06c15bb4bf9647c4b9b4bac4685582239dbc7e"
+    "resourceFingerprint": "39d1777598ee684f9d1d113a4ab1264b3bb8807af89b749eca46a8201d9f4081"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
     "labels": [
-      "Degree requirements",
-      "Scoped section: Bachelor of Science degree with a major in Applied and Computational Math Sciences: Data Science and Statistics",
-      "Scoped section: Option Breadth (minimum 30 credits): at least ten courses from the following:"
+      "Degree requirements"
     ],
     "ownerIds": [
       "uw-seattle-applied-and-computational-mathematical-sciences",
       "uw-seattle-applied-and-computational-mathematical-sciences:pathway:bs-option-family:data-science-and-statistics",
       "uw-seattle-applied-and-computational-mathematical-sciences:pathway:bs-option-family:discrete-mathematics-and-algorithms",
-      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:bs-option-family:scientific-computing-and-numerical-analysis",
-      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:data-science-and-statistics",
-      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:discrete-mathematical-algorithms",
-      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:mathematical-economics-and-quantitative-finance",
-      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:scientific-computing-and-numerical-analysis",
-      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:bs-option-family:mathematical-economics-and-quantitative-finance",
+      "uw-seattle-applied-and-computational-mathematical-sciences:pathway:bs-option-family:scientific-computing-and-numerical-analysis"
     ],
     "kinds": [
       "major",
@@ -8715,15 +8057,15 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "39929",
-    "etag": "\"9bf9-6518f64ecf17d\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"9bf9-6520815c3b5f9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "109f8843dfc7c0320b8b847fa847f670c739254c21214057bae4a391485f2ee5"
+    "resourceFingerprint": "755145d1d7a712e34027ba95e588be73eb0c9a6ced2874cb9959c940b5330da2"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html#credential-67e1c5c0de6651d3985542d2",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html#credential-67e1c5c0de6651d3985542d2",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
     "labels": [
       "Bachelor of Science degree with a major in Applied and Computational Math Sciences: Mathematical Economics and Quantitative Finance"
     ],
@@ -8734,31 +8076,24 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "dcfd8eb41f6fd3f8b8bcd8eb6a4b084d68c2d64719fba50b4b4e52dc89060e5f"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "39929",
+    "etag": "\"9bf9-6520815c3b5f9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "755145d1d7a712e34027ba95e588be73eb0c9a6ced2874cb9959c940b5330da2"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
     "labels": [
-      "Scoped section: Data Science continues to be a growing area of study within Computational Finance and the sciences in general. It incorp",
-      "UW General Catalog Computational Finance and Risk Management requirements"
+      "Scoped section: Data Science continues to be a growing area of study within Computational Finance and the sciences in general. It incorp"
     ],
     "ownerIds": [
       "uw-seattle-computational-finance-and-risk-management",
-      "uw-seattle-computational-finance-and-risk-management:pathway:advanced-data-science-option",
-      "uw-seattle-computational-finance-and-risk-management:pathway:and-risk-management-concentration-54-credits",
-      "uw-seattle-computational-finance-and-risk-management:pathway:computing-option",
-      "uw-seattle-computational-finance-and-risk-management:pathway:data-science",
-      "uw-seattle-computational-finance-and-risk-management:pathway:general-option",
-      "uw-seattle-computational-finance-and-risk-management:pathway:general-program-option",
-      "uw-seattle-computational-finance-and-risk-management:pathway:risk-management-concentration"
+      "uw-seattle-computational-finance-and-risk-management:pathway:general-option"
     ],
     "kinds": [
       "major",
@@ -8768,74 +8103,61 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "74977",
-    "etag": "\"124e1-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"124e1-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "edba28a6c0f591f90943052d101b60e92623db4e06ed3895238e58eb6a76d30f"
+    "resourceFingerprint": "1b5cd9de1451405a9db71dea3b4eddfd4bb53875ca72372ae9309b2c129a0549"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
     "labels": [
-      "Scoped section: Completion Requirements",
-      "UW General Catalog Art History requirements",
-      "UW General Catalog Art and Art History page",
-      "UW General Catalog Design requirements"
+      "Scoped section: Completion Requirements"
     ],
     "ownerIds": [
       "uw-seattle-art",
       "uw-seattle-art-history",
-      "uw-seattle-art-history:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
-      "uw-seattle-art:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
-      "uw-seattle-design",
-      "uw-seattle-design:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-design"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "48158",
-    "etag": "\"bc1e-6518f64effebe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"bc1e-6520815c626f6\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "11b85d00c13c2ac31506fa730e860b3b6dba8411d5ad7cb20b873e418eaae236"
+    "resourceFingerprint": "2ee44d417fdfaa97a4e55ad8e927b8d3164ad4217e2be02eb9c95b6decbfb3da"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
     "labels": [
-      "Scoped section: The Data Science Option provides students with a strong foundation in data science skills with specific applications to ",
-      "UW General Catalog Atmospheric and Climate Science page"
+      "Scoped section: The Data Science Option provides students with a strong foundation in data science skills with specific applications to"
     ],
     "ownerIds": [
-      "uw-seattle-atmospheric-and-climate-science",
-      "uw-seattle-atmospheric-and-climate-science:pathway:advanced-data-science-option",
-      "uw-seattle-atmospheric-and-climate-science:pathway:lists-maintained-by-the-program-option",
-      "uw-seattle-atmospheric-and-climate-science:pathway:one-course-from-three-of-the-four-areas-below-option",
-      "uw-seattle-atmospheric-and-climate-science:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-atmospheric-and-climate-science"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "43627",
-    "etag": "\"aa6b-6518f64ee02ee\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"aa6b-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bd2f40d44bdb11bfacfdb88313d2d84a8a30a369f396a798a1aebfd740ae1187"
+    "resourceFingerprint": "40756105885a11193e1d537cc1cb7d777b875dec16873961edeb56cf4aef44ca"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb4e06c6df17f51df9a3ee",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb4e06c6df17f51df9a3ee",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
     "labels": [
       "Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry"
     ],
@@ -8846,23 +8168,24 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "931e36fe14eb1516247b8fa89e7d6181c8544ef70765f7b6ad256cf1236072c9"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "43627",
+    "etag": "\"aa6b-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "40756105885a11193e1d537cc1cb7d777b875dec16873961edeb56cf4aef44ca"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
     "labels": [
       "Program of Study: Major: Atmospheric and Climate Science"
     ],
     "ownerIds": [
       "uw-seattle-atmospheric-and-climate-science",
+      "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:chemistry",
       "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:climate",
       "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:data-science",
       "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:meteorology"
@@ -8872,56 +8195,73 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "b8df8add76c36d6b50a3d5c6a108e39816d4f2ed5bc1ed9a684a39a2f92a17f2"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "43627",
+    "etag": "\"aa6b-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "40756105885a11193e1d537cc1cb7d777b875dec16873961edeb56cf4aef44ca"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
     "labels": [
-      "Scoped section: The Plant Biology option provides students with strong and broad training in plant biology, ranging from the cellular, p",
-      "UW General Catalog Biology page"
+      "Scoped section: The Plant Biology option provides students with strong and broad training in plant biology, ranging from the cellular, p"
     ],
     "ownerIds": [
-      "uw-seattle-biology",
-      "uw-seattle-biology:pathway:ecology-evolution-and-conservation-biology-eec-option",
-      "uw-seattle-biology:pathway:general-biology-option",
-      "uw-seattle-biology:pathway:molecular-cellular-and-developmental-biology-mcd-option",
-      "uw-seattle-biology:pathway:physiology-option",
-      "uw-seattle-biology:pathway:plant-biology-option",
-      "uw-seattle-biology:pathway:recommended-preparation-option",
-      "uw-seattle-biology:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-biology"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "53651",
-    "etag": "\"d193-6518f64ecf17d\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"d193-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5b1446e406f4f8b11715b74bdffdf1d7834876d4f576dfe1690ea462e3a6186c"
+    "resourceFingerprint": "93c4231324d8f00ace1d3c46ffd49ba1014936b8e934b448a453412b568d69e4"
+  },
+  {
+    "url": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+    "labels": [
+      "UW General Catalog Cinema and Media Studies page"
+    ],
+    "ownerIds": [
+      "uw-seattle-cinema-and-media-studies"
+    ],
+    "kinds": [
+      "major"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "45179",
+    "etag": "\"b07b-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "f35327b5efd459a6ed028ec07c37d563e64a67d1125ad57ba5e9861bbceadfff"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
-      "Degree requirements",
-      "Scoped section: Credentials in the overarching Curriculum and Instruction program range between 45-48 credits. All credentials feature c"
+      "Degree requirements"
     ],
     "ownerIds": [
       "uw-seattle-education-studies",
-      "uw-seattle-education-studies:pathway:social-studies"
+      "uw-seattle-education-studies:pathway:ba-option-family:early-childhood-studies",
+      "uw-seattle-education-studies:pathway:ba-option-family:education-research-and-policy",
+      "uw-seattle-education-studies:pathway:ba-option-family:foundations-of-teaching",
+      "uw-seattle-education-studies:pathway:ba-option-family:multilingual-language-in-education",
+      "uw-seattle-education-studies:pathway:ba-option-family:sports-and-education",
+      "uw-seattle-education-studies:pathway:ba-option-family:wellness-and-social-emotional-learning"
     ],
     "kinds": [
       "major",
@@ -8931,15 +8271,15 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "175163",
-    "etag": "\"2ac3b-6518f64ecca6d\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "43fef663d18bf2969d2e8a528d9714b5547136b788e3b7133945ee77164f9b4a"
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-623a53651b598458bf7a4bce",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-623a53651b598458bf7a4bce",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
       "Bachelor of Arts degree with a major in Education Studies: Foundations of Teaching"
     ],
@@ -8950,18 +8290,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "483a097fab9fe9f956af5c54f2e8467a1e463363fb8c30d9e92aa8b407293195"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "175163",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-623a54100f967190043404a7",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-623a54100f967190043404a7",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
       "Bachelor of Arts degree with a major in Education Studies: Multilingual/Language in Education"
     ],
@@ -8972,18 +8312,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "58f23489ca312cb3b87ee4083986426a11a38353e4505f630668a87036398ad2"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "175163",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-64d254efdd5ce4dd309ca01f",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-64d254efdd5ce4dd309ca01f",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
       "Bachelor of Arts degree with a major in Education Studies: Education Research and Policy"
     ],
@@ -8994,18 +8334,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "17efaddc511db992522a2ed88f81a89c763145b7ca8237d7672734584823a7ba"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "175163",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-6529875c06990865c8238b32",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-6529875c06990865c8238b32",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
       "Bachelor of Arts degree with a major in Education Studies: Early Childhood Studies"
     ],
@@ -9016,18 +8356,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "9c1f7f482d2918f4a57ff0c23661f03076c7cd4210d2da413b4eb8864a7203e4"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "175163",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-655d38b3a167835aa1be5527",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-655d38b3a167835aa1be5527",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
       "Bachelor of Arts degree with a major in Education Studies: Wellness and Social Emotional Learning"
     ],
@@ -9038,18 +8378,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "9ccfcd48cefb47c9f4b1e45463c5bfc2ceb0c71ddd9a9532e4a977d170b8ecc0"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "175163",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-661d68dddac3fe4223a46980",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-661d68dddac3fe4223a46980",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
     "labels": [
       "Bachelor of Arts degree with a major in Education Studies: Sports and Education"
     ],
@@ -9060,26 +8400,24 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "51e04c9e4123d6d8ab7a5a41ea038010b42b26b9137619a31e27ca3c37367cd4"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "175163",
+    "etag": "\"2ac3b-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "705da443c193aa991e9473751b4ae81ac593708efe685839270f164a76a79a52"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
     "labels": [
-      "Scoped section: Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors; With Honors",
-      "UW General Catalog Communication requirements"
+      "Scoped section: Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors; With Honors"
     ],
     "ownerIds": [
       "uw-seattle-communication",
-      "uw-seattle-communication:pathway:ba-option-family:journalism-and-public-interest-communication",
-      "uw-seattle-communication:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-communication:pathway:ba-option-family:journalism-and-public-interest-communication"
     ],
     "kinds": [
       "major",
@@ -9089,11 +8427,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "41708",
-    "etag": "\"a2ec-6518f64efd7ae\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"a2ec-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6ddfd9eaaf94c89e7a8b285d702a014ff479e5b0475ca0a761493d0891fe7652"
+    "resourceFingerprint": "222f643d662f939715d0b786dbca5eb98574c57ad9d0de0fc5e15e9954f5fd0e"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
@@ -9104,8 +8442,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ownerIds": [
       "uw-seattle-comparative-history-of-ideas",
       "uw-seattle-comparative-history-of-ideas:pathway:chid-study-abroad-program-option",
-      "uw-seattle-comparative-history-of-ideas:pathway:local-global-engagements-option",
-      "uw-seattle-comparative-history-of-ideas:pathway:or-encounters-across-cultures-option"
+      "uw-seattle-comparative-history-of-ideas:pathway:local-global-engagements-option"
     ],
     "kinds": [
       "major",
@@ -9115,11 +8452,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "24993",
-    "etag": "\"61a1-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"61a1-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d3aff14ac9343ca1a48c645231c7765c6bc7f9c9e7e3458a25f5ac2af3862665"
+    "resourceFingerprint": "a87369a7849f0df6150123f327c8a483d8c4383174d14189b52d65c014b72ff2"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
@@ -9132,8 +8469,6 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-seattle-construction-management",
       "uw-seattle-construction-management:pathway:early-admission-option",
       "uw-seattle-construction-management:pathway:freshmen-direct-option",
-      "uw-seattle-construction-management:pathway:project-option",
-      "uw-seattle-construction-management:pathway:thesis-option",
       "uw-seattle-construction-management:pathway:upper-division-admission-option"
     ],
     "kinds": [
@@ -9143,46 +8478,24 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html",
-    "contentLength": "37424",
-    "etag": "\"9230-6518f64ef898e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "contentLength": "39148",
+    "etag": "\"98ec-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4bc15a829e964a5129966a120d2b8d228ad38cf8141ef1bf649ec19b90cfb6aa"
+    "resourceFingerprint": "77ba76b2a5ad2eb7a36630f39588d69b6899adcaa1364051e331613080fac84a"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
     "labels": [
       "Bachelor of Science in Construction Management degree"
     ],
     "ownerIds": [
-      "uw-seattle-construction-management"
-    ],
-    "kinds": [
-      "major"
-    ],
-    "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "c1532692333866ece792d9e42ca7f94582d60410ed48e1554d4d3539e316ca8e"
-  },
-  {
-    "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
-    "labels": [
-      "UW General Catalog Dance requirements"
-    ],
-    "ownerIds": [
-      "uw-seattle-dance",
-      "uw-seattle-dance:pathway:1-general-core-track",
-      "uw-seattle-dance:pathway:2-creative-studies-track",
-      "uw-seattle-dance:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-track"
+      "uw-seattle-construction-management",
+      "uw-seattle-construction-management:pathway:early-admission-option",
+      "uw-seattle-construction-management:pathway:freshmen-direct-option",
+      "uw-seattle-construction-management:pathway:upper-division-admission-option"
     ],
     "kinds": [
       "major",
@@ -9191,16 +8504,38 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html",
-    "contentLength": "26452",
-    "etag": "\"6754-6518f64ee29fe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "contentLength": "39148",
+    "etag": "\"98ec-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c539b29e5775d7e6d2479e96dfe79cc337bfc58585ad85ef099426f01c74c90c"
+    "resourceFingerprint": "77ba76b2a5ad2eb7a36630f39588d69b6899adcaa1364051e331613080fac84a"
+  },
+  {
+    "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
+    "labels": [
+      "UW General Catalog Dance requirements"
+    ],
+    "ownerIds": [
+      "uw-seattle-dance"
+    ],
+    "kinds": [
+      "major"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "26452",
+    "etag": "\"6754-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "20930786f93a072c239c808ec938398645bef8223f8580368e6a355159759ba0"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html#credential-60b927e9bcc770338fb5ecab",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html#credential-60b927e9bcc770338fb5ecab",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
     "labels": [
       "Bachelor of Arts degree with a major in Dance"
     ],
@@ -9211,62 +8546,46 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "major"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "86831c60dea8145c0e968df39e587b5007529fcea2887ecf464ed31fbf2488a6"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "26452",
+    "etag": "\"6754-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "20930786f93a072c239c808ec938398645bef8223f8580368e6a355159759ba0"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
     "labels": [
-      "Scoped section: Completion Requirements",
-      "UW General Catalog Drama requirements"
+      "Scoped section: Completion Requirements"
     ],
     "ownerIds": [
-      "uw-seattle-drama",
-      "uw-seattle-drama:pathway:ba-option-family:design",
-      "uw-seattle-drama:pathway:ba-option-family:performance",
-      "uw-seattle-drama:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-drama"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "45618",
-    "etag": "\"b232-6518f64ee29fe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"b232-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "21a4ed198d99cf4fb1dcde6ea4fc00384735626259e08920c91b49b1b88a94a9"
+    "resourceFingerprint": "f0a18f3dc97ac0a7590d7baf32e9a60acf767dd63ff5775220f7c4e49954431a"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
     "labels": [
-      "Degree requirements",
-      "Scoped section: Completion Requirements"
+      "Degree requirements"
     ],
     "ownerIds": [
       "uw-seattle-earth-and-space-sciences",
-      "uw-seattle-earth-and-space-sciences:pathway:biology-option",
-      "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:geology",
-      "uw-seattle-earth-and-space-sciences:pathway:credential-overview-option",
-      "uw-seattle-earth-and-space-sciences:pathway:environmental-earth-sciences-option",
-      "uw-seattle-earth-and-space-sciences:pathway:environmental-option",
-      "uw-seattle-earth-and-space-sciences:pathway:geo-biology-option",
-      "uw-seattle-earth-and-space-sciences:pathway:geo-physics-option",
-      "uw-seattle-earth-and-space-sciences:pathway:geology-option",
-      "uw-seattle-earth-and-space-sciences:pathway:physics-option",
-      "uw-seattle-earth-and-space-sciences:pathway:recommended-preparation-option",
-      "uw-seattle-earth-and-space-sciences:pathway:with-honors-completion-of-departmental-honors-in-the-major-option"
+      "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:geology"
     ],
     "kinds": [
       "major",
@@ -9276,24 +8595,24 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "44019",
-    "etag": "\"abf3-6518f64ee02ee\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"abf3-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2e674ec83590a4b334358f6c18a9edff9afa83300b2cebbb9cff70b91c1b954b"
+    "resourceFingerprint": "efd7465d7cbb9c83ce1d022ccd9181106d7d74e9a2c0d2db44dbce00c50aace9"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
     "labels": [
-      "Degree requirements",
-      "Scoped section: The Bachelor of Science requires a more intensive background in math and statistics, reflecting the distinctive quantita"
+      "Degree requirements"
     ],
     "ownerIds": [
       "uw-seattle-economics",
       "uw-seattle-economics:pathway:ba-option-family:international-economics",
-      "uw-seattle-economics:pathway:data-science",
-      "uw-seattle-economics:pathway:financial-economics",
+      "uw-seattle-economics:pathway:bs-option-family:data-science",
+      "uw-seattle-economics:pathway:bs-option-family:financial-economics",
+      "uw-seattle-economics:pathway:bs-option-family:strategy",
       "uw-seattle-economics:pathway:strategy"
     ],
     "kinds": [
@@ -9304,15 +8623,15 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "51933",
-    "etag": "\"cadd-6518f64ee510e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"cadd-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2546d5b05af70f897987996e569515b6ed271a62fbff81ea2045de5690c73eff"
+    "resourceFingerprint": "53dfc112eac6c97e24dec0ad7c49d065ebd733ade18a82d0a3790bb7e18d17a2"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
     "labels": [
       "Bachelor of Science degree with a major in Economics: Strategy major requirements"
     ],
@@ -9323,14 +8642,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "770bc023294fd5d5c02126da954deb5a1d55d5d2267002a9abc6e27dd7b6b563"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "51933",
+    "etag": "\"cadd-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "53dfc112eac6c97e24dec0ad7c49d065ebd733ade18a82d0a3790bb7e18d17a2"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/English-136.html",
@@ -9340,8 +8659,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-english-creative-writing",
-      "uw-seattle-english-creative-writing:pathway:ba-option-family:creative-writing",
-      "uw-seattle-english-creative-writing:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-english-creative-writing:pathway:ba-option-family:creative-writing"
     ],
     "kinds": [
       "major",
@@ -9351,15 +8669,15 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "45690",
-    "etag": "\"b27a-6518f64ee510e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"b27a-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6f9a0bc7fdd1772f656f4986d752922163a130365c490a1263e883626e19e4c2"
+    "resourceFingerprint": "f38241f2dce8ad29433f29db5d657ed0d58de35a664893a9982b7b203b26de21"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/English-136.html#credential-60da334718f1462104c572bb",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html#credential-60da334718f1462104c572bb",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
     "labels": [
       "Bachelor of Arts degree with a major in English: Creative Writing"
     ],
@@ -9370,14 +8688,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "45690",
+    "etag": "\"b27a-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "b8e6414169bfd417545d118f0c76b5edbfd9e2eb02ce39c38ad79ca8bb46a54f"
+    "fetchMode": "head",
+    "resourceFingerprint": "f38241f2dce8ad29433f29db5d657ed0d58de35a664893a9982b7b203b26de21"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
@@ -9386,22 +8704,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog GWSS requirements"
     ],
     "ownerIds": [
-      "uw-seattle-gender-women-and-sexuality-studies",
-      "uw-seattle-gender-women-and-sexuality-studies:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-gender-women-and-sexuality-studies"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "33631",
-    "etag": "\"835f-6518f64efd7ae\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"835f-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9453412757a6161b37d941e4bf434bcf973c2eed4764834187e02b270a29a6a7"
+    "resourceFingerprint": "45725f8cb9e5787711db0da6fa7000ab9bec3383fa121153b8aacfd206fad9cc"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/GeneralStudies-185.html",
@@ -9410,51 +8726,38 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Studies Individualized Studies requirements"
     ],
     "ownerIds": [
-      "uw-seattle-individualized-studies",
-      "uw-seattle-individualized-studies:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-individualized-studies"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "35815",
-    "etag": "\"8be7-6518f64efd7ae\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"8be7-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c5a4249005da6d1e4ce20fb94db12a227cc0b71d1792f280b333918abd9576fa"
+    "resourceFingerprint": "10bb48e8c5bc8d7f53b05309ba7ce4d500c5727280b8f55bdacc44dce147206b"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
     "labels": [
       "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
-      "UW General Catalog Comparative Religion requirements",
-      "UW General Catalog European Studies requirements",
-      "UW General Catalog International Studies overview"
+      "UW General Catalog Comparative Religion requirements"
     ],
     "ownerIds": [
       "uw-seattle-comparative-religion",
-      "uw-seattle-comparative-religion:pathway:a-general-and-cross-regional-course-of-study-track",
       "uw-seattle-comparative-religion:pathway:history-of-religions-eastern-emphasis-track",
       "uw-seattle-comparative-religion:pathway:history-of-religions-western-emphasis-track",
       "uw-seattle-comparative-religion:pathway:religion-and-society-track",
-      "uw-seattle-comparative-religion:pathway:they-can-concentrate-in-one-of-five-countries-regions-track",
       "uw-seattle-european-studies",
       "uw-seattle-international-studies",
-      "uw-seattle-international-studies:pathway:a-general-and-cross-regional-course-of-study-track",
       "uw-seattle-international-studies:pathway:ba-option-family:asia",
       "uw-seattle-international-studies:pathway:ba-option-family:canada",
-      "uw-seattle-international-studies:pathway:ba-option-family:europe",
-      "uw-seattle-international-studies:pathway:ba-option-family:jewish-studies",
-      "uw-seattle-international-studies:pathway:ba-option-family:latin-america-and-caribbean",
-      "uw-seattle-international-studies:pathway:history-of-religions-eastern-emphasis-track",
-      "uw-seattle-international-studies:pathway:history-of-religions-western-emphasis-track",
-      "uw-seattle-international-studies:pathway:religion-and-society-track",
-      "uw-seattle-international-studies:pathway:they-can-concentrate-in-one-of-five-countries-regions-track"
+      "uw-seattle-international-studies:pathway:ba-option-family:jewish-studies"
     ],
     "kinds": [
       "major",
@@ -9464,15 +8767,15 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "122925",
-    "etag": "\"1e02d-6518f64ecca6d\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"1e02d-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a6b0515d1afac86703fe76da3d7ab9f000c38a7c7f349415748855a48694432c"
+    "resourceFingerprint": "11ba31821f8cb932c0acbdd25eea8a6e10e3a3fea3abd7294748c8f1e6abcffb"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-3de9e354-feff-4386-b164-15ad1dc4664d",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-3de9e354-feff-4386-b164-15ad1dc4664d",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
     "labels": [
       "Bachelor of Arts degree with a major in International Studies: Asia"
     ],
@@ -9483,18 +8786,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "71a74b155aa1c09decd463a0ac49db09aa92bd8e276af63966acb1710d639f31"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "122925",
+    "etag": "\"1e02d-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "11ba31821f8cb932c0acbdd25eea8a6e10e3a3fea3abd7294748c8f1e6abcffb"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-aee18906-122b-4160-8007-a1d7a61c0eb1",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-aee18906-122b-4160-8007-a1d7a61c0eb1",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
     "labels": [
       "Bachelor of Arts degree with a major in International Studies: Canada"
     ],
@@ -9505,18 +8808,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "4d3ecf88e67a899f83725935dd0b518b6c5378049d3e6b537df2e9a8bea8c8e7"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "122925",
+    "etag": "\"1e02d-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "11ba31821f8cb932c0acbdd25eea8a6e10e3a3fea3abd7294748c8f1e6abcffb"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-f6f02d1c-b6f8-4565-ba26-e90c57f72ced",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-f6f02d1c-b6f8-4565-ba26-e90c57f72ced",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
     "labels": [
       "Bachelor of Arts degree with a major in International Studies: Jewish Studies"
     ],
@@ -9527,30 +8830,26 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "99f7ecdcd250d60e01b9c7576e87d0e77c87a671f1edf5754e0785c5fc9759a0"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "122925",
+    "etag": "\"1e02d-6520815c38ee9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "11ba31821f8cb932c0acbdd25eea8a6e10e3a3fea3abd7294748c8f1e6abcffb"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
     "labels": [
       "Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See",
-      "Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See ",
-      "Scoped section: Project Option (12 credits): Choose from the following:",
-      "UW General Catalog Environmental Design and Sustainability requirements",
-      "UW General Catalog Landscape Architecture requirements"
+      "UW General Catalog Environmental Design and Sustainability requirements"
     ],
     "ownerIds": [
       "uw-seattle-environmental-design-and-sustainability",
       "uw-seattle-environmental-design-and-sustainability:pathway:project-option",
-      "uw-seattle-landscape-architecture",
-      "uw-seattle-landscape-architecture:pathway:project-option"
+      "uw-seattle-landscape-architecture"
     ],
     "kinds": [
       "major",
@@ -9560,15 +8859,15 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "40805",
-    "etag": "\"9f65-6518f64ef898e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"9f65-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "725b2e27c351622fb2ee125fe8d369dbc47ec3e6bfe64a6ec31ae0315f6fe827"
+    "resourceFingerprint": "735a17bd8fffa1294543e6794fd9196b1aed3869c0d1f991e96600c57e6aee2b"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6078dddbe5ffc09fa25582d4",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6078dddbe5ffc09fa25582d4",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
     "labels": [
       "Bachelor of Landscape Architecture degree"
     ],
@@ -9579,36 +8878,38 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "major"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "b85c94836a57d286ac281bfcd23e69543de7ab1e3bdf99b741fb2de389091823"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "40805",
+    "etag": "\"9f65-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "735a17bd8fffa1294543e6794fd9196b1aed3869c0d1f991e96600c57e6aee2b"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
     "labels": [
       "Bachelor of Arts degree with a major in Environmental Design and Sustainability"
     ],
     "ownerIds": [
-      "uw-seattle-environmental-design-and-sustainability"
+      "uw-seattle-environmental-design-and-sustainability",
+      "uw-seattle-environmental-design-and-sustainability:pathway:project-option"
     ],
     "kinds": [
-      "major"
+      "major",
+      "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "64bc769a159b986d6687bd6e155c243c7c9e0b8e6ef58ae2a9c621ced20fd7ff"
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "40805",
+    "etag": "\"9f65-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "735a17bd8fffa1294543e6794fd9196b1aed3869c0d1f991e96600c57e6aee2b"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
@@ -9618,10 +8919,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-seattle-middle-eastern-languages-and-cultures",
-      "uw-seattle-middle-eastern-languages-and-cultures:pathway:ba-option-family:biblical-and-ancient-near-eastern-studies",
       "uw-seattle-middle-eastern-languages-and-cultures:pathway:ba-option-family:comparative-cultures",
-      "uw-seattle-middle-eastern-languages-and-cultures:pathway:ba-option-family:languages-and-literatures",
-      "uw-seattle-middle-eastern-languages-and-cultures:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-middle-eastern-languages-and-cultures:pathway:ba-option-family:languages-and-literatures"
     ],
     "kinds": [
       "major",
@@ -9631,27 +8930,23 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "47550",
-    "etag": "\"b9be-6518f64ee02ee\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"b9be-6520815c3b5f9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "350c8164a7cac36720ccbc249f4378b19e12582e09925a31f2583acb47cffff4"
+    "resourceFingerprint": "495c1011413ea8f9981f0fe8de62feb1c4792ff4ae0fcd37e5ccaa617df97481"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
     "finalUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
     "labels": [
       "Scoped section: Completion Requirements",
-      "UW General Catalog History and Philosophy of Science requirements",
-      "UW General Catalog Philosophy requirements"
+      "UW General Catalog History and Philosophy of Science requirements"
     ],
     "ownerIds": [
       "uw-seattle-history-and-philosophy-of-science",
       "uw-seattle-history-and-philosophy-of-science:pathway:ba-option-family:ethics",
-      "uw-seattle-history-and-philosophy-of-science:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
-      "uw-seattle-philosophy",
-      "uw-seattle-philosophy:pathway:ba-option-family:ethics",
-      "uw-seattle-philosophy:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-philosophy"
     ],
     "kinds": [
       "major",
@@ -9661,11 +8956,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "47868",
-    "etag": "\"bafc-6518f64effebe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"bafc-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e4b93bc9111d5d667e9dfb30906d5705629350483b9d8782e248b85ab9fd92b2"
+    "resourceFingerprint": "86444551ee44570c783d8a26c375ba4c754550c0a03443a8f8a03267852d84f0"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
@@ -9674,22 +8969,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog Environmental Studies requirements"
     ],
     "ownerIds": [
-      "uw-seattle-environmental-studies",
-      "uw-seattle-environmental-studies:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-environmental-studies"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "30634",
-    "etag": "\"77aa-6518f64eddbde\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"77aa-6520815c3b5f9\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "db48fe346b55c1bb405a160fd1ccf6182a0ddbcb411b46562141b8fd80ab2ef8"
+    "resourceFingerprint": "32aa47f14362157d918bc5f42ac6890f82306083da8a0f1fdcf76ababb80c204"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
@@ -9707,11 +9000,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "44265",
-    "etag": "\"ace9-6518f64ee29fe\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"ace9-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "649810c612bee3e2026e1fab31d70920c74d52200f85a4ff202b559af1dc8da5"
+    "resourceFingerprint": "a354de37daa552bc73548fa1518d8483a722c5d6e4f7e5eeccf2bdaf2a769e7e"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
@@ -9729,15 +9022,42 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "32548",
-    "etag": "\"7f24-6518f64ef898e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"7f24-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d20920d7ecc66dc04916f90d04f77fa2586bbd891cd3bae94484aed9aef342db"
+    "resourceFingerprint": "8aa8d5880472a4b2396e5402c87d92af6c0f57c717a8944552f5f36f859c1694"
+  },
+  {
+    "url": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
+    "labels": [
+      "UW General Catalog ESRM degree requirements"
+    ],
+    "ownerIds": [
+      "uw-seattle-environmental-science-and-terrestrial-resource-management",
+      "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:natural-resource-and-environmental-management",
+      "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:restoration-ecology-and-environmental-horticulture",
+      "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:sustainable-forest-management",
+      "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:wildlife-conservation"
+    ],
+    "kinds": [
+      "major",
+      "pathway"
+    ],
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "64092",
+    "etag": "\"fa5c-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "0db0adf2fafb2b731ba0b19f6b4c4c8454dcec5be337eb8d6a1d689e81e5afe6"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#credential-67a55df399e12e33bd4d9122",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#credential-67a55df399e12e33bd4d9122",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
     "labels": [
       "Bachelor of Science degree with a major in Environmental Science and Terrestrial Resource Management: Natural Resource and Environmental Management"
     ],
@@ -9748,18 +9068,18 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "64092",
+    "etag": "\"fa5c-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "13d704ddd246955de92eafcddb6bb5b02b65666a9b4f933c1f1da151879dffdd"
+    "fetchMode": "head",
+    "resourceFingerprint": "0db0adf2fafb2b731ba0b19f6b4c4c8454dcec5be337eb8d6a1d689e81e5afe6"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#credential-67a55e3e3cafd1c671693b30",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#credential-67a55e3e3cafd1c671693b30",
+    "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
     "labels": [
       "Bachelor of Science degree with a major in Environmental Science and Terrestrial Resource Management: Wildlife Conservation"
     ],
@@ -9770,14 +9090,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "pathway"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
+    "status": 200,
+    "contentType": "text/html",
+    "contentLength": "64092",
+    "etag": "\"fa5c-6520815c4a058\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "c148c6473c28f68c1e4e9a5b4047efafe2763b4af3262a0c4468b8b5c676e3b6"
+    "fetchMode": "head",
+    "resourceFingerprint": "0db0adf2fafb2b731ba0b19f6b4c4c8454dcec5be337eb8d6a1d689e81e5afe6"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
@@ -9786,22 +9106,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog Social Welfare requirements"
     ],
     "ownerIds": [
-      "uw-seattle-social-welfare",
-      "uw-seattle-social-welfare:pathway:a-two-year-full-time-program-option"
+      "uw-seattle-social-welfare"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "47516",
-    "etag": "\"b99c-6518f64ee510e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"b99c-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "040098fe19398c4be1b9bc0b064a8161149a3c7037f75fa6418f4fad6cddba96"
+    "resourceFingerprint": "f49a91c961a43b8e7820c29c5ed6baf3e27604d3a7ed9c75fd714d88844c3e51"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
@@ -9810,22 +9128,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog Sociology requirements"
     ],
     "ownerIds": [
-      "uw-seattle-sociology",
-      "uw-seattle-sociology:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-option"
+      "uw-seattle-sociology"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "25916",
-    "etag": "\"653c-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"653c-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4cf4478742e61321a417bc28d02dd8224a980fa66cad0709a459a3382d0cc181"
+    "resourceFingerprint": "419034ba53eb27a714d6ef22ba80f9c3ab68b342151ce4c0fa3d203ec77192dd"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
@@ -9834,22 +9150,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog Speech and Hearing Sciences requirements"
     ],
     "ownerIds": [
-      "uw-seattle-speech-and-hearing-sciences",
-      "uw-seattle-speech-and-hearing-sciences:pathway:with-honors-completion-of-departmental-honors-requirements-in-the-major-track"
+      "uw-seattle-speech-and-hearing-sciences"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "49109",
-    "etag": "\"bfd5-6518f64efd7ae\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"bfd5-6520815c563a7\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "01d6e68b34eb25778fd20d57739f86cb39b1c86a6f093a79c5a33388a5504787"
+    "resourceFingerprint": "678d799878133eabf4a785ac7f1805bfaa8ee3333f769680389fa67a0b2609d8"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html",
@@ -9867,11 +9181,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "40016",
-    "etag": "\"9c50-6518f64ef898e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"9c50-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5174628d292d1590a2cb2edca22242654389f0f512ba8a4678296016aa040ced"
+    "resourceFingerprint": "79afb2b1c09a13cfa54bbb7f993125725bce35d20837c2509eebb22b19121fc0"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
@@ -9881,94 +9195,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ownerIds": [
       "uw-tacoma-computer-engineering",
-      "uw-tacoma-computer-engineering:pathway:bioinformatics-option",
-      "uw-tacoma-computer-engineering:pathway:course-option",
-      "uw-tacoma-computer-engineering:pathway:cybersecurity-option",
-      "uw-tacoma-electrical-engineering",
-      "uw-tacoma-electrical-engineering:pathway:bioinformatics-option",
-      "uw-tacoma-electrical-engineering:pathway:course-option",
-      "uw-tacoma-electrical-engineering:pathway:cybersecurity-option"
+      "uw-tacoma-electrical-engineering"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "158280",
-    "etag": "\"26a48-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"26a48-6520815c53c97\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d002abff9d38a498934e11a5d741635facea21fcc2c8279a5181a21add36eb79"
-  },
-  {
-    "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-T%20CIVE-MAJOR",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-    "labels": [
-      "Program of Study: Major: Civil Engineering"
-    ],
-    "ownerIds": [
-      "uw-tacoma-computer-engineering:pathway:cybersecurity-option",
-      "uw-tacoma-electrical-engineering:pathway:cybersecurity-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html",
-    "contentLength": "158280",
-    "etag": "\"26a48-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "d002abff9d38a498934e11a5d741635facea21fcc2c8279a5181a21add36eb79"
-  },
-  {
-    "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TCENGR-MAJOR",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-    "labels": [
-      "Program of Study: Major: Computer Engineering"
-    ],
-    "ownerIds": [
-      "uw-tacoma-computer-engineering:pathway:bioinformatics-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html",
-    "contentLength": "158280",
-    "etag": "\"26a48-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "d002abff9d38a498934e11a5d741635facea21fcc2c8279a5181a21add36eb79"
-  },
-  {
-    "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TEE-MAJOR",
-    "finalUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-    "labels": [
-      "Program of Study: Major: Electrical Engineering"
-    ],
-    "ownerIds": [
-      "uw-tacoma-electrical-engineering:pathway:bioinformatics-option"
-    ],
-    "kinds": [
-      "pathway"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html",
-    "contentLength": "158280",
-    "etag": "\"26a48-6518f64efb09e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "d002abff9d38a498934e11a5d741635facea21fcc2c8279a5181a21add36eb79"
+    "resourceFingerprint": "a908b44c7440943dcbc29a5d9e95f48d2cbdb21c8b7052634715c1be71adf030"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
@@ -9977,25 +9217,20 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW General Catalog Interdisciplinary Arts and Sciences individually designed major"
     ],
     "ownerIds": [
-      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:culture-and-society-option",
-      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:global-history-option",
-      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:labor-and-social-movements-option",
-      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:to-fulfill-this-option"
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
     ],
     "kinds": [
-      "major",
-      "pathway"
+      "major"
     ],
     "ok": true,
     "status": 200,
     "contentType": "text/html",
     "contentLength": "143194",
-    "etag": "\"22f5a-6518f64ee781e\"",
-    "lastModified": "Mon, 11 May 2026 19:02:55 GMT",
+    "etag": "\"22f5a-6520815c4c768\"",
+    "lastModified": "Sun, 17 May 2026 19:02:18 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f74610e38cfd236549e12e3fa5a39772039dfb4dcbff48765259118dad8e5ce4"
+    "resourceFingerprint": "80f9824d6533ea32554608efbba86abe16fed024e442bc7f8d61356775365145"
   }
 ];
 
@@ -12805,7 +12040,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
+    "parseConfidence": "medium",
     "parsedUwCourseCodeCount": 0,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
@@ -12814,16 +12049,14 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
     "extractedHeadingCount": 18,
-    "requirementCueLineCount": 1,
-    "chooseStatementCount": 0,
+    "requirementCueLineCount": 10,
+    "chooseStatementCount": 1,
     "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-used"
+      "no-parsed-uw-course-codes"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "04a426c1d69b54213c896b9fb71d37f516d2ee066973cd265fdbf5ce9a6b3312",
+    "qualityWarningCount": 1,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "edfc05dcecd2d53421618056b1864347ee9ee27a6f359eed686d74b95a52d924",
     "parsedUwCourseCodes": [],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
@@ -12851,8 +12084,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "nonSchedulable": false,
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 28,
-    "sourceOnlyUwCourseCodeCount": 0,
+    "parsedUwCourseCodeCount": 29,
+    "sourceOnlyUwCourseCodeCount": 1,
     "structuredOnlyUwCourseCodeCount": 4,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
@@ -12861,12 +12094,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 12,
     "requirementCueLineCount": 60,
     "chooseStatementCount": 1,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "3dbf91d639af95239cca7f234023c39c0bb14704412837467d0da52dca4c27c0",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "35095f11e5001d508376c15ea645995b5685a95801cebdf38a85d95448922820",
     "parsedUwCourseCodes": [
       "TAMST 120",
       "TAMST 210",
@@ -12874,6 +12105,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "TAMST 250",
       "TARTS 151",
       "TARTS 200",
+      "TARTS 251",
       "TARTS 367",
       "TARTS 402",
       "TCOM 221",
@@ -12897,13 +12129,98 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "TPHIL 362",
       "TWRT 280"
     ],
-    "sourceOnlyUwCourseCodes": [],
+    "sourceOnlyUwCourseCodes": [
+      "TARTS 251"
+    ],
     "structuredOnlyUwCourseCodes": [
       "TFILM 220",
       "THIST 200",
       "THIST 201",
       "TLIT 220"
     ],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-tacoma-arts-media-culture:pathway:comparative-arts-track",
+    "ownerTitle": "Arts, Media and Culture (BA) - Comparative Arts Track",
+    "planId": "uw-tacoma-arts-media-culture",
+    "pathwayId": "comparative-arts-track",
+    "campusId": "uw-tacoma",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
+    "sourceLabel": "Comparative Arts Track degree requirements",
+    "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
+    "primarySourceLabel": "Comparative Arts Track degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 20,
+    "sourceOnlyUwCourseCodeCount": 20,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 12,
+    "requirementCueLineCount": 73,
+    "chooseStatementCount": 0,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "22c1fdf9621a084a2c8fb0532cbf584f3d6e439626f20e9fa605a533afe8b28f",
+    "parsedUwCourseCodes": [
+      "TAMST 210",
+      "TARTS 151",
+      "TARTS 200",
+      "TARTS 251",
+      "TARTS 367",
+      "TARTS 402",
+      "TCOM 221",
+      "TCOM 340",
+      "TEGL 340",
+      "TFILM 380",
+      "TFILM 381",
+      "TFILM 450",
+      "THIST 150",
+      "THIST 151",
+      "THIST 470",
+      "TLIT 476",
+      "TPHIL 358",
+      "TPHIL 360",
+      "TPHIL 362",
+      "TWRT 280"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "TAMST 210",
+      "TARTS 151",
+      "TARTS 200",
+      "TARTS 251",
+      "TARTS 367",
+      "TARTS 402",
+      "TCOM 221",
+      "TCOM 340",
+      "TEGL 340",
+      "TFILM 380",
+      "TFILM 381",
+      "TFILM 450",
+      "THIST 150",
+      "THIST 151",
+      "THIST 470",
+      "TLIT 476",
+      "TPHIL 358",
+      "TPHIL 360",
+      "TPHIL 362",
+      "TWRT 280"
+    ],
+    "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": []
@@ -12938,12 +12255,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 12,
     "requirementCueLineCount": 9,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "a872ae9c9238eac5d53cad38ce9d733976eecc51b6ccb94f3a6881bc3db48f80",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "2950bc6b871608e9f15fcc834b303af4ce40e9fd1d7e5a7e367510d74c838c64",
     "parsedUwCourseCodes": [
       "TAMST 410",
       "TAMST 450",
@@ -13026,12 +12341,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 12,
     "requirementCueLineCount": 17,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "aca376c7c8a85765f81586bb019f2cccd16af639a6d948aa49cbf3df27c69339",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "e684792c2b6975e2d6d86c2b5930344a2b81fad7b7f313b753169514c1081043",
     "parsedUwCourseCodes": [
       "TLAX 267",
       "TLAX 277",
@@ -13103,12 +12416,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 12,
     "requirementCueLineCount": 9,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "937e50e66e81575a36505516cb87bfec9c11c249755e1ef87e6a05eb835ebdda",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "b09051489758e41349010442977842c2b076758522aa3cf4f298a9c69f66050b",
     "parsedUwCourseCodes": [
       "TARTS 150",
       "TARTS 160",
@@ -14922,12 +14233,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 19,
     "requirementCueLineCount": 62,
     "chooseStatementCount": 3,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "441e0c378b5dac32f2e15918ffd6314292c48cade055d81fe1f62a261ffb08b5",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "f4a439b34ac106bb9d5574e1544479f2b761046f71661de1e5b5a07044ec7ef8",
     "parsedUwCourseCodes": [
       "AA 210",
       "AMATH 301",
@@ -15105,12 +14414,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 19,
     "requirementCueLineCount": 62,
     "chooseStatementCount": 3,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "441e0c378b5dac32f2e15918ffd6314292c48cade055d81fe1f62a261ffb08b5",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "f4a439b34ac106bb9d5574e1544479f2b761046f71661de1e5b5a07044ec7ef8",
     "parsedUwCourseCodes": [
       "AA 210",
       "AMATH 301",
@@ -15288,195 +14595,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 19,
     "requirementCueLineCount": 62,
     "chooseStatementCount": 3,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "441e0c378b5dac32f2e15918ffd6314292c48cade055d81fe1f62a261ffb08b5",
-    "parsedUwCourseCodes": [
-      "AA 210",
-      "AMATH 301",
-      "AMATH 351",
-      "AMATH 352",
-      "AMATH 422",
-      "AMATH 423",
-      "AMATH 424",
-      "AMATH 481",
-      "AMATH 482",
-      "AMATH 483",
-      "BIOEN 215",
-      "BIOEN 315",
-      "BIOEN 316",
-      "BIOEN 317",
-      "BIOEN 325",
-      "BIOEN 326",
-      "BIOEN 327",
-      "BIOEN 335",
-      "BIOEN 336",
-      "BIOEN 337",
-      "BIOEN 345",
-      "BIOEN 400",
-      "BIOEN 401",
-      "BIOEN 402",
-      "BIOEN 404",
-      "BIOEN 405",
-      "BIOEN 407",
-      "BIOEN 415",
-      "BIOEN 420",
-      "BIOEN 423",
-      "BIOEN 424",
-      "BIOEN 425",
-      "BIOEN 436",
-      "BIOEN 437",
-      "BIOEN 440",
-      "BIOEN 445",
-      "BIOEN 448",
-      "BIOEN 449",
-      "BIOEN 450",
-      "BIOEN 451",
-      "BIOEN 454",
-      "BIOEN 455",
-      "BIOEN 457",
-      "BIOEN 460",
-      "BIOEN 461",
-      "BIOEN 463",
-      "BIOEN 466",
-      "BIOEN 468",
-      "BIOEN 470",
-      "BIOEN 472",
-      "BIOEN 474",
-      "BIOEN 475",
-      "BIOEN 481",
-      "BIOEN 482",
-      "BIOEN 483",
-      "BIOEN 484",
-      "BIOEN 485",
-      "BIOEN 486",
-      "BIOEN 487",
-      "BIOEN 488",
-      "BIOEN 489",
-      "BIOEN 490",
-      "BIOEN 491",
-      "BIOEN 494",
-      "BIOEN 498",
-      "BIOEN 546",
-      "BIOEN 573",
-      "BIOEN 576",
-      "BIOEN 579",
-      "BIOEN 599",
-      "BIOL 180",
-      "BIOL 200",
-      "BIOL 220",
-      "CEE 220",
-      "CEE 350",
-      "CEE 357",
-      "CEE 480",
-      "CEE 495",
-      "CHEM 142",
-      "CHEM 152",
-      "CHEM 162",
-      "CHEM 223",
-      "CHEM 237",
-      "CHEME 310",
-      "CHEME 326",
-      "CHEME 375",
-      "CHEME 445",
-      "CHEME 457",
-      "CHEME 465",
-      "CSE 121",
-      "CSE 122",
-      "CSE 123",
-      "CSE 154",
-      "CSE 160",
-      "CSE 373",
-      "CSE 410",
-      "CSE 427",
-      "EE 215",
-      "EE 233",
-      "EE 235",
-      "EE 242",
-      "EE 271",
-      "EE 341",
-      "EE 401",
-      "EE 484",
-      "EE 485",
-      "ENGR 115",
-      "INDE 250",
-      "INDE 315",
-      "INDE 337",
-      "INDE 351",
-      "INDE 426",
-      "INDE 470",
-      "MATH 124",
-      "MATH 125",
-      "MATH 126",
-      "MATH 207",
-      "MATH 208",
-      "ME 123",
-      "ME 230",
-      "ME 410",
-      "ME 414",
-      "ME 461",
-      "ME 478",
-      "ME 498",
-      "ME 598",
-      "MSE 170",
-      "MSE 273",
-      "MSE 450",
-      "MSE 471",
-      "MSE 481",
-      "MSE 482",
-      "MSE 483",
-      "NME 220",
-      "PHYS 121",
-      "PHYS 122",
-      "QSCI 381",
-      "STAT 311",
-      "STAT 390"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-seattle-bioengineering:pathway:phd-data-science-option",
-    "ownerTitle": "Bioengineering - Phd Data Science Option",
-    "planId": "uw-seattle-bioengineering",
-    "pathwayId": "phd-data-science-option",
-    "campusId": "uw-seattle",
-    "parserType": "html-degree-page",
-    "sourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-    "sourceLabel": "UW Bioengineering degree requirements",
-    "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-    "primarySourceLabel": "UW Bioengineering degree requirements",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 139,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 19,
-    "requirementCueLineCount": 62,
-    "chooseStatementCount": 3,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "441e0c378b5dac32f2e15918ffd6314292c48cade055d81fe1f62a261ffb08b5",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "f4a439b34ac106bb9d5574e1544479f2b761046f71661de1e5b5a07044ec7ef8",
     "parsedUwCourseCodes": [
       "AA 210",
       "AMATH 301",
@@ -16563,6 +15685,189 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnlyUwCourseCodes": []
   },
   {
+    "ownerId": "uw-bothell-business-administration:pathway:leadership-and-strategic-innovation-option",
+    "ownerTitle": "Business Administration (BA) - Leadership & Strategic Innovation Option",
+    "planId": "uw-bothell-business-administration",
+    "pathwayId": "leadership-and-strategic-innovation-option",
+    "campusId": "uw-bothell",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+    "sourceLabel": "UW Bothell Leadership and Strategic Innovation option major requirements",
+    "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+    "primarySourceLabel": "UW Bothell Leadership and Strategic Innovation option major requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 70,
+    "sourceOnlyUwCourseCodeCount": 70,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 12,
+    "requirementCueLineCount": 40,
+    "chooseStatementCount": 2,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "9a226ae379403fe9db46346429a95aa63ec67c01ffb826ed0868a522b3efdb99",
+    "parsedUwCourseCodes": [
+      "BBUS 300",
+      "BBUS 307",
+      "BBUS 310",
+      "BBUS 320",
+      "BBUS 330",
+      "BBUS 340",
+      "BBUS 350",
+      "BBUS 361",
+      "BBUS 362",
+      "BBUS 363",
+      "BBUS 373",
+      "BBUS 402",
+      "BBUS 411",
+      "BBUS 412",
+      "BBUS 421",
+      "BBUS 423",
+      "BBUS 426",
+      "BBUS 427",
+      "BBUS 429",
+      "BBUS 431",
+      "BBUS 435",
+      "BBUS 438",
+      "BBUS 441",
+      "BBUS 443",
+      "BBUS 444",
+      "BBUS 445",
+      "BBUS 446",
+      "BBUS 447",
+      "BBUS 449",
+      "BBUS 450",
+      "BBUS 451",
+      "BBUS 453",
+      "BBUS 454",
+      "BBUS 455",
+      "BBUS 456",
+      "BBUS 457",
+      "BBUS 458",
+      "BBUS 459",
+      "BBUS 460",
+      "BBUS 461",
+      "BBUS 462",
+      "BBUS 463",
+      "BBUS 464",
+      "BBUS 465",
+      "BBUS 466",
+      "BBUS 467",
+      "BBUS 468",
+      "BBUS 470",
+      "BBUS 471",
+      "BBUS 472",
+      "BBUS 473",
+      "BBUS 475",
+      "BBUS 476",
+      "BBUS 477",
+      "BBUS 479",
+      "BBUS 480",
+      "BBUS 482",
+      "BBUS 483",
+      "BBUS 486",
+      "BBUS 487",
+      "BBUS 490",
+      "BBUS 491",
+      "BBUS 492",
+      "BBUS 497",
+      "BBUS 499",
+      "BMATH 144",
+      "ELCBUS 350",
+      "ELCBUS 463",
+      "MATH 112",
+      "STMATH 124"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "BBUS 300",
+      "BBUS 307",
+      "BBUS 310",
+      "BBUS 320",
+      "BBUS 330",
+      "BBUS 340",
+      "BBUS 350",
+      "BBUS 361",
+      "BBUS 362",
+      "BBUS 363",
+      "BBUS 373",
+      "BBUS 402",
+      "BBUS 411",
+      "BBUS 412",
+      "BBUS 421",
+      "BBUS 423",
+      "BBUS 426",
+      "BBUS 427",
+      "BBUS 429",
+      "BBUS 431",
+      "BBUS 435",
+      "BBUS 438",
+      "BBUS 441",
+      "BBUS 443",
+      "BBUS 444",
+      "BBUS 445",
+      "BBUS 446",
+      "BBUS 447",
+      "BBUS 449",
+      "BBUS 450",
+      "BBUS 451",
+      "BBUS 453",
+      "BBUS 454",
+      "BBUS 455",
+      "BBUS 456",
+      "BBUS 457",
+      "BBUS 458",
+      "BBUS 459",
+      "BBUS 460",
+      "BBUS 461",
+      "BBUS 462",
+      "BBUS 463",
+      "BBUS 464",
+      "BBUS 465",
+      "BBUS 466",
+      "BBUS 467",
+      "BBUS 468",
+      "BBUS 470",
+      "BBUS 471",
+      "BBUS 472",
+      "BBUS 473",
+      "BBUS 475",
+      "BBUS 476",
+      "BBUS 477",
+      "BBUS 479",
+      "BBUS 480",
+      "BBUS 482",
+      "BBUS 483",
+      "BBUS 486",
+      "BBUS 487",
+      "BBUS 490",
+      "BBUS 491",
+      "BBUS 492",
+      "BBUS 497",
+      "BBUS 499",
+      "BMATH 144",
+      "ELCBUS 350",
+      "ELCBUS 463",
+      "MATH 112",
+      "STMATH 124"
+    ],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
     "ownerId": "uw-bothell-business-administration:pathway:management-concentration",
     "ownerTitle": "Business Administration (BA) - Management Concentration",
     "planId": "uw-bothell-business-administration",
@@ -16790,117 +16095,6 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnlyUwCourseCodes": []
   },
   {
-    "ownerId": "uw-bothell-business-administration:pathway:marketing-can-also-be-taken-as-a-concentration",
-    "ownerTitle": "Business Administration (BA) - Marketing can also be taken as a concentration",
-    "planId": "uw-bothell-business-administration",
-    "pathwayId": "marketing-can-also-be-taken-as-a-concentration",
-    "campusId": "uw-bothell",
-    "parserType": "html-curriculum-page",
-    "sourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum#marketing",
-    "sourceLabel": "concentration",
-    "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum#marketing",
-    "primarySourceLabel": "concentration",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 69,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 19,
-    "requirementCueLineCount": 40,
-    "chooseStatementCount": 4,
-    "qualitySignalCodes": [],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "f69a4d1ddb86a7cae00db2ac8196aa03a8853cf9cb246a107ec671e3ad059c4b",
-    "parsedUwCourseCodes": [
-      "BBUS 300",
-      "BBUS 307",
-      "BBUS 310",
-      "BBUS 320",
-      "BBUS 330",
-      "BBUS 340",
-      "BBUS 350",
-      "BBUS 361",
-      "BBUS 362",
-      "BBUS 363",
-      "BBUS 373",
-      "BBUS 401",
-      "BBUS 402",
-      "BBUS 421",
-      "BBUS 423",
-      "BBUS 426",
-      "BBUS 427",
-      "BBUS 429",
-      "BBUS 431",
-      "BBUS 438",
-      "BBUS 441",
-      "BBUS 443",
-      "BBUS 444",
-      "BBUS 445",
-      "BBUS 446",
-      "BBUS 447",
-      "BBUS 448",
-      "BBUS 454",
-      "BBUS 455",
-      "BBUS 456",
-      "BBUS 457",
-      "BBUS 459",
-      "BBUS 460",
-      "BBUS 461",
-      "BBUS 462",
-      "BBUS 463",
-      "BBUS 464",
-      "BBUS 465",
-      "BBUS 468",
-      "BBUS 470",
-      "BBUS 471",
-      "BBUS 473",
-      "BBUS 475",
-      "BBUS 476",
-      "BBUS 477",
-      "BBUS 478",
-      "BBUS 479",
-      "BBUS 480",
-      "BBUS 489",
-      "BBUS 490",
-      "BBUS 491",
-      "BBUS 497",
-      "BBUS 499",
-      "BMATH 144",
-      "CSE 122",
-      "CSE 142",
-      "CSE 143",
-      "CSS 133",
-      "CSS 142",
-      "CSS 143",
-      "CSS 162",
-      "CSS 173",
-      "CSS 360",
-      "ELCBUS 320",
-      "ELCBUS 340",
-      "ELCBUS 350",
-      "ELCBUS 463",
-      "MATH 112",
-      "STMATH 124"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
     "ownerId": "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
     "ownerTitle": "Business Administration (BA) - Marketing Option and Concentration",
     "planId": "uw-bothell-business-administration",
@@ -17026,117 +16220,6 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnlyUwCourseCodes": []
   },
   {
-    "ownerId": "uw-bothell-business-administration:pathway:or-consulting-firms-learn-more-about-the-finance-concentration",
-    "ownerTitle": "Business Administration (BA) - or consulting firms. Learn more about the Finance concentration",
-    "planId": "uw-bothell-business-administration",
-    "pathwayId": "or-consulting-firms-learn-more-about-the-finance-concentration",
-    "campusId": "uw-bothell",
-    "parserType": "html-degree-page",
-    "sourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-    "sourceLabel": "Finance Option and Concentration",
-    "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-    "primarySourceLabel": "Finance Option and Concentration",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 69,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 11,
-    "requirementCueLineCount": 40,
-    "chooseStatementCount": 2,
-    "qualitySignalCodes": [],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "35936e60cf85375c5af5431e2adbe162215ba4ee403283de8e62c644179a1ab9",
-    "parsedUwCourseCodes": [
-      "BBUS 300",
-      "BBUS 307",
-      "BBUS 310",
-      "BBUS 320",
-      "BBUS 330",
-      "BBUS 340",
-      "BBUS 350",
-      "BBUS 361",
-      "BBUS 362",
-      "BBUS 363",
-      "BBUS 373",
-      "BBUS 401",
-      "BBUS 402",
-      "BBUS 421",
-      "BBUS 423",
-      "BBUS 426",
-      "BBUS 427",
-      "BBUS 429",
-      "BBUS 431",
-      "BBUS 438",
-      "BBUS 441",
-      "BBUS 443",
-      "BBUS 444",
-      "BBUS 445",
-      "BBUS 446",
-      "BBUS 447",
-      "BBUS 448",
-      "BBUS 454",
-      "BBUS 455",
-      "BBUS 456",
-      "BBUS 457",
-      "BBUS 459",
-      "BBUS 460",
-      "BBUS 461",
-      "BBUS 462",
-      "BBUS 463",
-      "BBUS 464",
-      "BBUS 465",
-      "BBUS 468",
-      "BBUS 470",
-      "BBUS 471",
-      "BBUS 473",
-      "BBUS 475",
-      "BBUS 476",
-      "BBUS 477",
-      "BBUS 478",
-      "BBUS 479",
-      "BBUS 480",
-      "BBUS 489",
-      "BBUS 490",
-      "BBUS 491",
-      "BBUS 497",
-      "BBUS 499",
-      "BMATH 144",
-      "CSE 122",
-      "CSE 142",
-      "CSE 143",
-      "CSS 133",
-      "CSS 142",
-      "CSS 143",
-      "CSS 162",
-      "CSS 173",
-      "CSS 360",
-      "ELCBUS 320",
-      "ELCBUS 340",
-      "ELCBUS 350",
-      "ELCBUS 463",
-      "MATH 112",
-      "STMATH 124"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
     "ownerId": "uw-bothell-business-administration:pathway:retail-management-concentration",
     "ownerTitle": "Business Administration (BA) - Retail Management Concentration",
     "planId": "uw-bothell-business-administration",
@@ -17242,6 +16325,213 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "STMATH 124"
     ],
     "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-bothell-business-administration:pathway:supply-chain-management-option",
+    "ownerTitle": "Business Administration (BA) - Supply Chain Management Option",
+    "planId": "uw-bothell-business-administration",
+    "pathwayId": "supply-chain-management-option",
+    "campusId": "uw-bothell",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+    "sourceLabel": "UW Bothell Supply Chain Management option major requirements",
+    "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+    "primarySourceLabel": "UW Bothell Supply Chain Management option major requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 82,
+    "sourceOnlyUwCourseCodeCount": 82,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 12,
+    "requirementCueLineCount": 40,
+    "chooseStatementCount": 2,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "7bb0f6641222272f8b4c1b20d258b0be171af922705877ce5803d7c6fdb70c89",
+    "parsedUwCourseCodes": [
+      "BBUS 300",
+      "BBUS 307",
+      "BBUS 310",
+      "BBUS 320",
+      "BBUS 330",
+      "BBUS 340",
+      "BBUS 350",
+      "BBUS 361",
+      "BBUS 362",
+      "BBUS 363",
+      "BBUS 373",
+      "BBUS 401",
+      "BBUS 402",
+      "BBUS 411",
+      "BBUS 412",
+      "BBUS 421",
+      "BBUS 423",
+      "BBUS 426",
+      "BBUS 427",
+      "BBUS 429",
+      "BBUS 431",
+      "BBUS 435",
+      "BBUS 438",
+      "BBUS 441",
+      "BBUS 443",
+      "BBUS 444",
+      "BBUS 445",
+      "BBUS 446",
+      "BBUS 447",
+      "BBUS 449",
+      "BBUS 450",
+      "BBUS 451",
+      "BBUS 453",
+      "BBUS 454",
+      "BBUS 455",
+      "BBUS 456",
+      "BBUS 457",
+      "BBUS 458",
+      "BBUS 459",
+      "BBUS 460",
+      "BBUS 461",
+      "BBUS 462",
+      "BBUS 463",
+      "BBUS 464",
+      "BBUS 465",
+      "BBUS 466",
+      "BBUS 467",
+      "BBUS 468",
+      "BBUS 470",
+      "BBUS 471",
+      "BBUS 472",
+      "BBUS 473",
+      "BBUS 475",
+      "BBUS 476",
+      "BBUS 477",
+      "BBUS 479",
+      "BBUS 480",
+      "BBUS 482",
+      "BBUS 483",
+      "BBUS 486",
+      "BBUS 487",
+      "BBUS 489",
+      "BBUS 490",
+      "BBUS 491",
+      "BBUS 492",
+      "BBUS 497",
+      "BBUS 499",
+      "BIMD 351",
+      "BMATH 144",
+      "CSS 143",
+      "CSS 173",
+      "CSS 360",
+      "CSS 371",
+      "CSS 475",
+      "CSS 478",
+      "CSS 480",
+      "ELCBUS 320",
+      "ELCBUS 340",
+      "ELCBUS 350",
+      "ELCBUS 463",
+      "MATH 112",
+      "STMATH 124"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "BBUS 300",
+      "BBUS 307",
+      "BBUS 310",
+      "BBUS 320",
+      "BBUS 330",
+      "BBUS 340",
+      "BBUS 350",
+      "BBUS 361",
+      "BBUS 362",
+      "BBUS 363",
+      "BBUS 373",
+      "BBUS 401",
+      "BBUS 402",
+      "BBUS 411",
+      "BBUS 412",
+      "BBUS 421",
+      "BBUS 423",
+      "BBUS 426",
+      "BBUS 427",
+      "BBUS 429",
+      "BBUS 431",
+      "BBUS 435",
+      "BBUS 438",
+      "BBUS 441",
+      "BBUS 443",
+      "BBUS 444",
+      "BBUS 445",
+      "BBUS 446",
+      "BBUS 447",
+      "BBUS 449",
+      "BBUS 450",
+      "BBUS 451",
+      "BBUS 453",
+      "BBUS 454",
+      "BBUS 455",
+      "BBUS 456",
+      "BBUS 457",
+      "BBUS 458",
+      "BBUS 459",
+      "BBUS 460",
+      "BBUS 461",
+      "BBUS 462",
+      "BBUS 463",
+      "BBUS 464",
+      "BBUS 465",
+      "BBUS 466",
+      "BBUS 467",
+      "BBUS 468",
+      "BBUS 470",
+      "BBUS 471",
+      "BBUS 472",
+      "BBUS 473",
+      "BBUS 475",
+      "BBUS 476",
+      "BBUS 477",
+      "BBUS 479",
+      "BBUS 480",
+      "BBUS 482",
+      "BBUS 483",
+      "BBUS 486",
+      "BBUS 487",
+      "BBUS 489",
+      "BBUS 490",
+      "BBUS 491",
+      "BBUS 492",
+      "BBUS 497",
+      "BBUS 499",
+      "BIMD 351",
+      "BMATH 144",
+      "CSS 143",
+      "CSS 173",
+      "CSS 360",
+      "CSS 371",
+      "CSS 475",
+      "CSS 478",
+      "CSS 480",
+      "ELCBUS 320",
+      "ELCBUS 340",
+      "ELCBUS 350",
+      "ELCBUS 463",
+      "MATH 112",
+      "STMATH 124"
+    ],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -17436,117 +16726,6 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "BBUS 489",
       "BBUS 490",
       "BBUS 491",
-      "BMATH 144",
-      "CSE 122",
-      "CSE 142",
-      "CSE 143",
-      "CSS 133",
-      "CSS 142",
-      "CSS 143",
-      "CSS 162",
-      "CSS 173",
-      "CSS 360",
-      "ELCBUS 320",
-      "ELCBUS 340",
-      "ELCBUS 350",
-      "ELCBUS 463",
-      "MATH 112",
-      "STMATH 124"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-bothell-business-administration:pathway:telecommunications-and-biotechnology-learn-more-about-the-tim-concentration",
-    "ownerTitle": "Business Administration (BA) - telecommunications and biotechnology. Learn more about the TIM concentration",
-    "planId": "uw-bothell-business-administration",
-    "pathwayId": "telecommunications-and-biotechnology-learn-more-about-the-tim-concentration",
-    "campusId": "uw-bothell",
-    "parserType": "html-degree-page",
-    "sourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
-    "sourceLabel": "Technology & Innovation Management (TIM) Concentration",
-    "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
-    "primarySourceLabel": "Technology & Innovation Management (TIM) Concentration",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 69,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 9,
-    "requirementCueLineCount": 40,
-    "chooseStatementCount": 2,
-    "qualitySignalCodes": [],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "a24feedcb26b54a6cec90d9d5ba9d5669b559ad50dd03daee641c4061dc0635e",
-    "parsedUwCourseCodes": [
-      "BBUS 300",
-      "BBUS 307",
-      "BBUS 310",
-      "BBUS 320",
-      "BBUS 330",
-      "BBUS 340",
-      "BBUS 350",
-      "BBUS 361",
-      "BBUS 362",
-      "BBUS 363",
-      "BBUS 373",
-      "BBUS 401",
-      "BBUS 402",
-      "BBUS 421",
-      "BBUS 423",
-      "BBUS 426",
-      "BBUS 427",
-      "BBUS 429",
-      "BBUS 431",
-      "BBUS 438",
-      "BBUS 441",
-      "BBUS 443",
-      "BBUS 444",
-      "BBUS 445",
-      "BBUS 446",
-      "BBUS 447",
-      "BBUS 448",
-      "BBUS 454",
-      "BBUS 455",
-      "BBUS 456",
-      "BBUS 457",
-      "BBUS 459",
-      "BBUS 460",
-      "BBUS 461",
-      "BBUS 462",
-      "BBUS 463",
-      "BBUS 464",
-      "BBUS 465",
-      "BBUS 468",
-      "BBUS 470",
-      "BBUS 471",
-      "BBUS 473",
-      "BBUS 475",
-      "BBUS 476",
-      "BBUS 477",
-      "BBUS 478",
-      "BBUS 479",
-      "BBUS 480",
-      "BBUS 489",
-      "BBUS 490",
-      "BBUS 491",
-      "BBUS 497",
-      "BBUS 499",
       "BMATH 144",
       "CSE 122",
       "CSE 142",
@@ -27326,8 +26505,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 43,
-    "sourceOnlyUwCourseCodeCount": 17,
-    "structuredOnlyUwCourseCodeCount": 23,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 21,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
@@ -27341,7 +26520,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     ],
     "qualityWarningCount": 2,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "e16af30377e397775f6efc65fbbb1e43abd52911c6c18fc8bd63dac46d6e551d",
+    "requirementFingerprint": "5cc70da761c13ecee7798bea84d1b38ac2ae1f1b8039683426a65c8f3b865964",
     "parsedUwCourseCodes": [
       "CHEM 142",
       "CHEM 143",
@@ -27387,25 +26566,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "PHYS 122",
       "PHYS 123"
     ],
-    "sourceOnlyUwCourseCodes": [
-      "CHEM 312",
-      "CHEM 317",
-      "CHEM 416",
-      "CHEM 452",
-      "CHEM 453",
-      "CHEM 456",
-      "CHEM 457",
-      "CHEM 461",
-      "MATH 117",
-      "MATH 118",
-      "MATH 119",
-      "MATH 124",
-      "MATH 125",
-      "MATH 126",
-      "MATH 134",
-      "MATH 135",
-      "MATH 136"
-    ],
+    "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [
       "AMATH 351",
       "AMATH 352",
@@ -27421,15 +26582,13 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "CHEM 351",
       "CHEM 352",
       "CHEM 399",
+      "CHEM 400",
       "CHEM 426",
       "CHEM 428",
       "CHEM 432",
       "CHEM 436",
       "CHEM 499",
-      "PHYS 119",
-      "PHYS 456",
-      "PHYS 457",
-      "PHYS 461"
+      "PHYS 119"
     ],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -27446,21 +26605,21 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "sourceLabel": "BS Chemistry Checklist - ACS Certified (PDF)",
     "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
     "primarySourceLabel": "BS Chemistry Checklist - ACS Certified (PDF)",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
+    "sourceRole": "non-schedulable-course-list",
+    "sourceRoleStatus": "non-schedulable",
+    "canCreateSchedulableRows": false,
+    "canCreateRequiredRows": false,
+    "canCreateScheduleRows": false,
     "supportOnly": false,
-    "nonSchedulable": false,
+    "nonSchedulable": true,
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 49,
-    "sourceOnlyUwCourseCodeCount": 3,
-    "structuredOnlyUwCourseCodeCount": 3,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 15,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 49,
     "supportListCount": 0,
     "extractedHeadingCount": 0,
     "requirementCueLineCount": 9,
@@ -27468,7 +26627,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "77ba2552ea07f6194be0439b644e34cb07dd0ef395995b04690024b3d07ee9ad",
+    "requirementFingerprint": "0980cdaffd3f3c6253f2d41c098fdea68220386a834585443a25526f9ee89917",
     "parsedUwCourseCodes": [
       "AMATH 351",
       "AMATH 352",
@@ -27520,19 +26679,77 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "PHYS 122",
       "PHYS 123"
     ],
-    "sourceOnlyUwCourseCodes": [
-      "CHEM 456",
-      "CHEM 457",
-      "CHEM 461"
-    ],
+    "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [
-      "PHYS 456",
-      "PHYS 457",
-      "PHYS 461"
+      "CHEM 312",
+      "CHEM 317",
+      "CHEM 400",
+      "CHEM 416",
+      "CHEM 452",
+      "CHEM 453",
+      "MATH 117",
+      "MATH 118",
+      "MATH 119",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136"
     ],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
+    "supportOnlyUwCourseCodes": [
+      "AMATH 351",
+      "AMATH 352",
+      "BIOC 405",
+      "CHEM 124",
+      "CHEM 125",
+      "CHEM 126",
+      "CHEM 134",
+      "CHEM 135",
+      "CHEM 136",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 162",
+      "CHEM 165",
+      "CHEM 237",
+      "CHEM 238",
+      "CHEM 239",
+      "CHEM 241",
+      "CHEM 242",
+      "CHEM 307",
+      "CHEM 308",
+      "CHEM 321",
+      "CHEM 335",
+      "CHEM 336",
+      "CHEM 337",
+      "CHEM 346",
+      "CHEM 347",
+      "CHEM 351",
+      "CHEM 352",
+      "CHEM 399",
+      "CHEM 426",
+      "CHEM 428",
+      "CHEM 432",
+      "CHEM 436",
+      "CHEM 455",
+      "CHEM 456",
+      "CHEM 457",
+      "CHEM 461",
+      "CHEM 499",
+      "PHYS 114",
+      "PHYS 115",
+      "PHYS 116",
+      "PHYS 119",
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123"
+    ]
   },
   {
     "ownerId": "uw-bothell-chemistry-bs:pathway:b-s-in-chemistry-general-option",
@@ -27674,8 +26891,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 21,
-    "sourceOnlyUwCourseCodeCount": 15,
-    "structuredOnlyUwCourseCodeCount": 11,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
@@ -27683,14 +26900,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 20,
     "requirementCueLineCount": 16,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "high-confidence-low-course-coverage",
-      "large-structured-only-course-gap",
-      "material-source-structured-drift"
-    ],
-    "qualityWarningCount": 3,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "1e6a71957d46ff7c4268ac810a061bf0d66c9077a0764fda426dc5d66c6865a1",
+    "requirementFingerprint": "505643e639434bc6e96f8b69fc7dbe268e7aa197a27eff5aa5f588227f8ad137",
     "parsedUwCourseCodes": [
       "CMS 271",
       "CMS 272",
@@ -27714,36 +26927,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "CMS 490",
       "CMS 491"
     ],
-    "sourceOnlyUwCourseCodes": [
-      "CMS 271",
-      "CMS 272",
-      "CMS 273",
-      "CMS 274",
-      "CMS 275",
-      "CMS 301",
-      "CMS 302",
-      "CMS 303",
-      "CMS 304",
-      "CMS 314",
-      "CMS 315",
-      "CMS 322",
-      "CMS 480",
-      "CMS 490",
-      "CMS 491"
-    ],
-    "structuredOnlyUwCourseCodes": [
-      "CLIT 250",
-      "CLIT 251",
-      "CLIT 252",
-      "CLIT 320",
-      "CLIT 321",
-      "CLIT 322",
-      "CLIT 323",
-      "CLIT 360",
-      "CLIT 361",
-      "CLIT 362",
-      "CLIT 400"
-    ],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": []
@@ -27769,8 +26954,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 21,
-    "sourceOnlyUwCourseCodeCount": 15,
-    "structuredOnlyUwCourseCodeCount": 11,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
@@ -27778,14 +26963,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 20,
     "requirementCueLineCount": 16,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "high-confidence-low-course-coverage",
-      "large-structured-only-course-gap",
-      "material-source-structured-drift"
-    ],
-    "qualityWarningCount": 3,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "1e6a71957d46ff7c4268ac810a061bf0d66c9077a0764fda426dc5d66c6865a1",
+    "requirementFingerprint": "505643e639434bc6e96f8b69fc7dbe268e7aa197a27eff5aa5f588227f8ad137",
     "parsedUwCourseCodes": [
       "CMS 271",
       "CMS 272",
@@ -27809,36 +26990,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "CMS 490",
       "CMS 491"
     ],
-    "sourceOnlyUwCourseCodes": [
-      "CMS 271",
-      "CMS 272",
-      "CMS 273",
-      "CMS 274",
-      "CMS 275",
-      "CMS 301",
-      "CMS 302",
-      "CMS 303",
-      "CMS 304",
-      "CMS 314",
-      "CMS 315",
-      "CMS 322",
-      "CMS 480",
-      "CMS 490",
-      "CMS 491"
-    ],
-    "structuredOnlyUwCourseCodes": [
-      "CLIT 250",
-      "CLIT 251",
-      "CLIT 252",
-      "CLIT 320",
-      "CLIT 321",
-      "CLIT 322",
-      "CLIT 323",
-      "CLIT 360",
-      "CLIT 361",
-      "CLIT 362",
-      "CLIT 400"
-    ],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": []
@@ -28024,6 +27177,51 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "TPHYS 123"
     ],
     "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-seattle-classical-studies",
+    "ownerTitle": "Classical Studies",
+    "planId": "uw-seattle-classical-studies",
+    "pathwayId": null,
+    "campusId": "uw-seattle",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://classics.washington.edu/ba-classical-studies",
+    "sourceLabel": "UW Classical Studies degree requirements",
+    "primarySourceUrl": "https://classics.washington.edu/ba-classical-studies",
+    "primarySourceLabel": "UW Classical Studies degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "medium",
+    "parsedUwCourseCodeCount": 1,
+    "sourceOnlyUwCourseCodeCount": 1,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 9,
+    "requirementCueLineCount": 9,
+    "chooseStatementCount": 0,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "e6b978a3a92cc00fc1c2b397d32ffc781437eff3c00bea8704fd07f4fc393d2c",
+    "parsedUwCourseCodes": [
+      "CLAS 495"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "CLAS 495"
+    ],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -28223,31 +27421,26 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "nonSchedulable": false,
     "ok": true,
     "parseConfidence": "medium",
-    "parsedUwCourseCodeCount": 3,
+    "parsedUwCourseCodeCount": 2,
     "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 1,
+    "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 2,
-    "requirementCueLineCount": 5,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "extractedHeadingCount": 13,
+    "requirementCueLineCount": 12,
+    "chooseStatementCount": 1,
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "6bd268c7d8ea532b839b15bcc60a319bc129cae20c6467fb6ed46ea9b82995f4",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "5c6a6e730f1ecc44e7ad2f765988418b55266a3db3f6427ee8d9143eceddd7c8",
     "parsedUwCourseCodes": [
       "TCOM 201",
-      "TCOM 230",
-      "TCOM 420"
+      "TCOM 230"
     ],
     "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [
-      "TCOM 320"
-    ],
+    "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": []
@@ -28271,28 +27464,203 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 47,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 1,
+    "extractedHeadingCount": 6,
+    "requirementCueLineCount": 60,
     "chooseStatementCount": 1,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "ecb2f0bb0b5a3e41e1c9fed42e936550e445bf63fd51d40c5ee34c99280cb324",
+    "parsedUwCourseCodes": [
+      "TCOM 101",
+      "TCOM 201",
+      "TCOM 220",
+      "TCOM 230",
+      "TCOM 247",
+      "TCOM 250",
+      "TCOM 254",
+      "TCOM 257",
+      "TCOM 258",
+      "TCOM 310",
+      "TCOM 312",
+      "TCOM 340",
+      "TCOM 343",
+      "TCOM 380",
+      "TCOM 440",
+      "TCOM 444",
+      "TCOM 453",
+      "TCOM 454",
+      "TCOM 460",
+      "TCOM 461",
+      "TCOM 465",
+      "TCOM 470",
+      "TCOM 480",
+      "TCOM 495",
+      "TCOM 499",
+      "TFILM 201",
+      "TFILM 220",
+      "TFILM 377",
+      "TFILM 380",
+      "TFILM 381",
+      "TFILM 386",
+      "TFILM 387",
+      "TFILM 388",
+      "TFILM 434",
+      "TFILM 436",
+      "TFILM 438",
+      "TFILM 444",
+      "TFILM 450",
+      "TFILM 481",
+      "TFILM 483",
+      "TFILM 485",
+      "TFILM 489",
+      "TFILM 499",
+      "TGH 302",
+      "TLAX 250",
+      "TLAX 355",
+      "TLAX 376"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "5f0eecd4b8bdd9d2c47928901168d533931067b5b5c66c0a185965eb00fa7de7",
-    "parsedUwCourseCodes": [],
     "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-tacoma-communications:pathway:research-track",
+    "ownerTitle": "Communications (BA) - Research Track",
+    "planId": "uw-tacoma-communications",
+    "pathwayId": "research-track",
+    "campusId": "uw-tacoma",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.tacoma.uw.edu/sias/cac/research-track",
+    "sourceLabel": "Research Track degree requirements",
+    "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/research-track",
+    "primarySourceLabel": "Research Track degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 47,
+    "sourceOnlyUwCourseCodeCount": 42,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 6,
+    "requirementCueLineCount": 44,
+    "chooseStatementCount": 2,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "f7f236379541cd8784fab06725087e6c756f4f4c053b950c79c8e2bba0f65470",
+    "parsedUwCourseCodes": [
+      "TCOM 101",
+      "TCOM 201",
+      "TCOM 220",
+      "TCOM 230",
+      "TCOM 247",
+      "TCOM 250",
+      "TCOM 254",
+      "TCOM 257",
+      "TCOM 258",
+      "TCOM 310",
+      "TCOM 312",
+      "TCOM 340",
+      "TCOM 343",
+      "TCOM 380",
+      "TCOM 440",
+      "TCOM 444",
+      "TCOM 453",
+      "TCOM 454",
+      "TCOM 460",
+      "TCOM 461",
+      "TCOM 465",
+      "TCOM 470",
+      "TCOM 480",
+      "TCOM 495",
+      "TCOM 499",
+      "TFILM 201",
+      "TFILM 220",
+      "TFILM 377",
+      "TFILM 380",
+      "TFILM 381",
+      "TFILM 386",
+      "TFILM 387",
+      "TFILM 388",
+      "TFILM 434",
+      "TFILM 436",
+      "TFILM 438",
+      "TFILM 444",
+      "TFILM 481",
+      "TFILM 483",
+      "TFILM 485",
+      "TFILM 499",
+      "TGH 302",
+      "TLAX 250",
+      "TLAX 355",
+      "TLAX 376",
+      "TLAX 441",
+      "TWRT 211"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "TCOM 101",
+      "TCOM 201",
+      "TCOM 220",
+      "TCOM 230",
+      "TCOM 247",
+      "TCOM 250",
+      "TCOM 254",
+      "TCOM 257",
+      "TCOM 258",
+      "TCOM 310",
+      "TCOM 312",
+      "TCOM 340",
+      "TCOM 343",
+      "TCOM 380",
+      "TCOM 440",
+      "TCOM 444",
+      "TCOM 453",
+      "TCOM 454",
+      "TCOM 460",
+      "TCOM 461",
+      "TCOM 465",
+      "TCOM 470",
+      "TCOM 480",
+      "TCOM 495",
+      "TCOM 499",
+      "TFILM 201",
+      "TFILM 220",
+      "TFILM 377",
+      "TFILM 380",
+      "TFILM 381",
+      "TFILM 386",
+      "TFILM 387",
+      "TFILM 388",
+      "TFILM 434",
+      "TFILM 436",
+      "TFILM 438",
+      "TFILM 444",
+      "TFILM 481",
+      "TFILM 483",
+      "TFILM 485",
+      "TFILM 499",
+      "TWRT 211"
+    ],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -29686,12 +29054,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 0,
     "requirementCueLineCount": 35,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "e5aa3fb57e6f51a4f26316994c45268a0aa48877624262fadf792d32127e3d98",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "a261bb55981ab892a92e86d5f637aa4b3a2f55e66ced70582947c94f47c5448b",
     "parsedUwCourseCodes": [
       "CSE 123",
       "CSE 143",
@@ -29745,12 +29111,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 20,
     "requirementCueLineCount": 35,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "88db02336dbb7d5cbfecf7c1ec2f39bd14eaf9e75a4fc7f6ad14c0b8d4aa77b5",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "c00fa05bc9c09f2ea17d11e8a44e3bb1c3e2254d5da1d842876e57d39ac3788d",
     "parsedUwCourseCodes": [
       "ASTR 301",
       "ASTR 321",
@@ -30318,12 +29682,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 0,
     "requirementCueLineCount": 42,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "912f75ae17260ebff99f0cd1703856544068fe2d4bb45a620b898001977879ba",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "57d2ba1431f0c1a36a80b198ab81fefe0f745535b09cc52eb453f2276fddc489",
     "parsedUwCourseCodes": [
       "CSE 123",
       "CSE 143",
@@ -30382,12 +29744,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 20,
     "requirementCueLineCount": 7,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "06c380a4892abf22ff1b60745c75b651d77835a3cb044ebdd00c181cbd051793",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "f7595e5cb5be89a6870e3468eabcb9d8ceea86e6cf444125a763535ea0762e0d",
     "parsedUwCourseCodes": [
       "BIOL 162",
       "BIOL 180",
@@ -32839,46 +32199,79 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "nonSchedulable": false,
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 22,
+    "parsedUwCourseCodeCount": 58,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 13,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
-    ],
+    "supportListCount": 1,
+    "extractedHeadingCount": 9,
+    "requirementCueLineCount": 63,
+    "chooseStatementCount": 4,
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "3784efd98b5d7b7927c7817b447468d6bea59b8ea3411cfe51f07781344edfe8",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "c484dc1a4a75e6803e5ae9f93ff3335019eb96f54141bf45164176cd266bfc33",
     "parsedUwCourseCodes": [
+      "AMATH 352",
+      "CSE 160",
+      "CSE 163",
       "ECON 200",
       "ECON 201",
       "ECON 300",
       "ECON 301",
+      "ECON 382",
       "ECON 400",
+      "ECON 401",
       "ECON 404",
+      "ECON 405",
+      "ECON 406",
+      "ECON 410",
       "ECON 411",
+      "ECON 415",
+      "ECON 422",
+      "ECON 423",
+      "ECON 424",
+      "ECON 426",
+      "ECON 427",
       "ECON 432",
+      "ECON 448",
+      "ECON 464",
+      "ECON 471",
+      "ECON 472",
+      "ECON 473",
+      "ECON 475",
+      "ECON 476",
+      "ECON 481",
       "ECON 482",
+      "ECON 483",
+      "ECON 484",
       "ECON 485",
       "ECON 486",
       "ECON 487",
+      "ECON 488",
+      "ECON 490",
+      "ECON 491",
+      "ECON 492",
+      "ECON 493",
+      "ECON 495",
       "ECON 496",
       "ECON 497",
       "ECON 499",
+      "GEOG 258",
+      "INFO 351",
+      "MATH 120",
       "MATH 124",
       "MATH 125",
       "MATH 126",
       "MATH 134",
       "MATH 135",
       "MATH 136",
-      "STAT 311"
+      "MATH 208",
+      "STAT 311",
+      "STAT 341",
+      "STAT 390"
     ],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
@@ -32905,27 +32298,248 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 24,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 1,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
+    "extractedHeadingCount": 1,
+    "requirementCueLineCount": 18,
+    "chooseStatementCount": 2,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "b43cebcc76e58947510f8f414f301d65c33b1b2a51659f5f85dd953a368f8432",
+    "parsedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "ECON 300",
+      "ECON 301",
+      "ECON 382",
+      "ECON 406",
+      "ECON 415",
+      "ECON 448",
+      "ECON 471",
+      "ECON 472",
+      "ECON 473",
+      "ECON 475",
+      "ECON 476",
+      "ECON 490",
+      "ECON 491",
+      "ECON 492",
+      "ECON 493",
+      "ECON 495",
+      "ECON 496",
+      "ECON 497",
+      "ECON 499",
+      "MATH 124",
+      "MATH 134",
+      "STAT 311"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "17b80f2975ba10381a0ccc3fa07513fd9775b71451b14df20d7fc66ad326a46b",
-    "parsedUwCourseCodes": [],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-seattle-economics:pathway:bs-option-family:data-science",
+    "ownerTitle": "Economics - B.S. Data Science option",
+    "planId": "uw-seattle-economics",
+    "pathwayId": "bs-option-family:data-science",
+    "campusId": "uw-seattle",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceLabel": "Degree requirements",
+    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "primarySourceLabel": "Degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 27,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 1,
+    "requirementCueLineCount": 23,
+    "chooseStatementCount": 0,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "b753f802f34ef6aa23688228fcf2d9a012f942f0501949b5c37db824a6c76062",
+    "parsedUwCourseCodes": [
+      "AMATH 352",
+      "CSE 160",
+      "CSE 163",
+      "ECON 200",
+      "ECON 201",
+      "ECON 300",
+      "ECON 301",
+      "ECON 400",
+      "ECON 401",
+      "ECON 481",
+      "ECON 482",
+      "ECON 483",
+      "ECON 484",
+      "ECON 487",
+      "ECON 488",
+      "GEOG 258",
+      "INFO 351",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "MATH 208",
+      "STAT 311",
+      "STAT 341",
+      "STAT 390"
+    ],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-seattle-economics:pathway:bs-option-family:financial-economics",
+    "ownerTitle": "Economics - B.S. Financial Economics option",
+    "planId": "uw-seattle-economics",
+    "pathwayId": "bs-option-family:financial-economics",
+    "campusId": "uw-seattle",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceLabel": "Degree requirements",
+    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "primarySourceLabel": "Degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 24,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 1,
+    "requirementCueLineCount": 18,
+    "chooseStatementCount": 0,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "57a6fddb9c2c2eda390a9c0327e8b933bd3824b74016dc264a5870cdc3cb1563",
+    "parsedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "ECON 300",
+      "ECON 301",
+      "ECON 400",
+      "ECON 422",
+      "ECON 423",
+      "ECON 424",
+      "ECON 426",
+      "ECON 427",
+      "ECON 464",
+      "ECON 482",
+      "ECON 496",
+      "ECON 497",
+      "ECON 499",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "STAT 311",
+      "STAT 341",
+      "STAT 390"
+    ],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-seattle-economics:pathway:bs-option-family:strategy",
+    "ownerTitle": "Economics - B.S. Strategy option",
+    "planId": "uw-seattle-economics",
+    "pathwayId": "bs-option-family:strategy",
+    "campusId": "uw-seattle",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceLabel": "Degree requirements",
+    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "primarySourceLabel": "Degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 24,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 3,
+    "requirementCueLineCount": 24,
+    "chooseStatementCount": 0,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "de5e63826ebc586eaece2934484206a68882ddf84dafe10bee607c2709b7d313",
+    "parsedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "ECON 300",
+      "ECON 301",
+      "ECON 400",
+      "ECON 404",
+      "ECON 411",
+      "ECON 432",
+      "ECON 482",
+      "ECON 485",
+      "ECON 486",
+      "ECON 487",
+      "ECON 496",
+      "ECON 497",
+      "ECON 499",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "STAT 311",
+      "STAT 341",
+      "STAT 390"
+    ],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
@@ -32951,27 +32565,47 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 24,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 3,
+    "extractedHeadingCount": 3,
+    "requirementCueLineCount": 24,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "c57f1ab79397c18fcd38126b7ba8d92525d1ceffd95831b29146f8b3c53de81a",
+    "parsedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "ECON 300",
+      "ECON 301",
+      "ECON 400",
+      "ECON 404",
+      "ECON 411",
+      "ECON 432",
+      "ECON 482",
+      "ECON 485",
+      "ECON 486",
+      "ECON 487",
+      "ECON 496",
+      "ECON 497",
+      "ECON 499",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "STAT 311",
+      "STAT 341",
+      "STAT 390"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "fc2a51c656933a29993f045a867b038a41fa4e83ee93d513d5f7abf57530fa6f",
-    "parsedUwCourseCodes": [],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
@@ -37241,6 +36875,259 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnlyUwCourseCodes": []
   },
   {
+    "ownerId": "uw-seattle-electrical-computer-engineering:pathway:enriching-your-path-pathway",
+    "ownerTitle": "Electrical & Computer Engineering - Enriching Your Path pathway",
+    "planId": "uw-seattle-electrical-computer-engineering",
+    "pathwayId": "enriching-your-path-pathway",
+    "campusId": "uw-seattle",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+    "sourceLabel": "UW ECE degree requirements",
+    "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+    "primarySourceLabel": "UW ECE degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 105,
+    "sourceOnlyUwCourseCodeCount": 105,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 0,
+    "extractedHeadingCount": 20,
+    "requirementCueLineCount": 40,
+    "chooseStatementCount": 2,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "ad4ddf9bccf3e2e963c12d7817c089fba1d2b93cb549ade876287af349ddd662",
+    "parsedUwCourseCodes": [
+      "AMATH 351",
+      "AMATH 352",
+      "BIOL 161",
+      "BIOL 162",
+      "BIOL 220",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 220",
+      "CSE 123",
+      "CSE 143",
+      "CSE 163",
+      "CSE 373",
+      "CSE 374",
+      "CSE 410",
+      "CSE 413",
+      "CSE 414",
+      "CSE 415",
+      "CSE 416",
+      "EE 201",
+      "EE 215",
+      "EE 233",
+      "EE 241",
+      "EE 242",
+      "EE 271",
+      "EE 280",
+      "EE 331",
+      "EE 332",
+      "EE 342",
+      "EE 344",
+      "EE 345",
+      "EE 347",
+      "EE 361",
+      "EE 371",
+      "EE 393",
+      "EE 397",
+      "EE 398",
+      "EE 400",
+      "EE 406",
+      "EE 417",
+      "EE 418",
+      "EE 419",
+      "EE 421",
+      "EE 423",
+      "EE 424",
+      "EE 437",
+      "EE 440",
+      "EE 442",
+      "EE 443",
+      "EE 445",
+      "EE 447",
+      "EE 448",
+      "EE 449",
+      "EE 452",
+      "EE 460",
+      "EE 461",
+      "EE 466",
+      "EE 467",
+      "EE 469",
+      "EE 470",
+      "EE 473",
+      "EE 474",
+      "EE 475",
+      "EE 476",
+      "EE 477",
+      "EE 478",
+      "EE 482",
+      "EE 484",
+      "EE 487",
+      "EE 488",
+      "EE 490",
+      "EE 491",
+      "EE 492",
+      "EE 497",
+      "EE 498",
+      "EE 510",
+      "EE 529",
+      "EE 535",
+      "EE 539",
+      "EE 547",
+      "EE 548",
+      "EE 549",
+      "ENGL 131",
+      "ENGR 321",
+      "ENGR 333",
+      "INDE 315",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "MATH 207",
+      "MATH 208",
+      "MATH 224",
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123",
+      "PHYS 141",
+      "PHYS 142",
+      "PHYS 143",
+      "STAT 390"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "AMATH 351",
+      "AMATH 352",
+      "BIOL 161",
+      "BIOL 162",
+      "BIOL 220",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 220",
+      "CSE 123",
+      "CSE 143",
+      "CSE 163",
+      "CSE 373",
+      "CSE 374",
+      "CSE 410",
+      "CSE 413",
+      "CSE 414",
+      "CSE 415",
+      "CSE 416",
+      "EE 201",
+      "EE 215",
+      "EE 233",
+      "EE 241",
+      "EE 242",
+      "EE 271",
+      "EE 280",
+      "EE 331",
+      "EE 332",
+      "EE 342",
+      "EE 344",
+      "EE 345",
+      "EE 347",
+      "EE 361",
+      "EE 371",
+      "EE 393",
+      "EE 397",
+      "EE 398",
+      "EE 400",
+      "EE 406",
+      "EE 417",
+      "EE 418",
+      "EE 419",
+      "EE 421",
+      "EE 423",
+      "EE 424",
+      "EE 437",
+      "EE 440",
+      "EE 442",
+      "EE 443",
+      "EE 445",
+      "EE 447",
+      "EE 448",
+      "EE 449",
+      "EE 452",
+      "EE 460",
+      "EE 461",
+      "EE 466",
+      "EE 467",
+      "EE 469",
+      "EE 470",
+      "EE 473",
+      "EE 474",
+      "EE 475",
+      "EE 476",
+      "EE 477",
+      "EE 478",
+      "EE 482",
+      "EE 484",
+      "EE 487",
+      "EE 488",
+      "EE 490",
+      "EE 491",
+      "EE 492",
+      "EE 497",
+      "EE 498",
+      "EE 510",
+      "EE 529",
+      "EE 535",
+      "EE 539",
+      "EE 547",
+      "EE 548",
+      "EE 549",
+      "ENGL 131",
+      "ENGR 321",
+      "ENGR 333",
+      "INDE 315",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "MATH 207",
+      "MATH 208",
+      "MATH 224",
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123",
+      "PHYS 141",
+      "PHYS 142",
+      "PHYS 143",
+      "STAT 390"
+    ],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
     "ownerId": "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway",
     "ownerTitle": "Electrical & Computer Engineering - Integrated Systems Pathway",
     "planId": "uw-seattle-electrical-computer-engineering",
@@ -38092,125 +37979,6 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnlyUwCourseCodes": []
   },
   {
-    "ownerId": "uw-seattle-electrical-computer-engineering:pathway:vlsi-design-digital-systems-design-pathway",
-    "ownerTitle": "Electrical & Computer Engineering - Vlsi Design / Digital Systems Design Pathway",
-    "planId": "uw-seattle-electrical-computer-engineering",
-    "pathwayId": "vlsi-design-digital-systems-design-pathway",
-    "campusId": "uw-seattle",
-    "parserType": "html-degree-page",
-    "sourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-    "sourceLabel": "UW ECE degree requirements",
-    "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-    "primarySourceLabel": "UW ECE degree requirements",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 77,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 20,
-    "requirementCueLineCount": 40,
-    "chooseStatementCount": 2,
-    "qualitySignalCodes": [],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "46bb9d5a56341e6318402abd257f4c26f349351ce9a9e92bca81d83988ebbe7c",
-    "parsedUwCourseCodes": [
-      "AMATH 351",
-      "AMATH 352",
-      "BIOL 161",
-      "BIOL 162",
-      "BIOL 220",
-      "CHEM 142",
-      "CHEM 143",
-      "CHEM 145",
-      "CHEM 152",
-      "CHEM 153",
-      "CHEM 155",
-      "CHEM 220",
-      "CSE 123",
-      "CSE 143",
-      "CSE 163",
-      "CSE 373",
-      "CSE 374",
-      "EE 201",
-      "EE 215",
-      "EE 233",
-      "EE 241",
-      "EE 242",
-      "EE 271",
-      "EE 280",
-      "EE 331",
-      "EE 347",
-      "EE 351",
-      "EE 371",
-      "EE 393",
-      "EE 397",
-      "EE 398",
-      "EE 406",
-      "EE 418",
-      "EE 437",
-      "EE 445",
-      "EE 447",
-      "EE 448",
-      "EE 449",
-      "EE 451",
-      "EE 454",
-      "EE 461",
-      "EE 469",
-      "EE 470",
-      "EE 474",
-      "EE 475",
-      "EE 476",
-      "EE 477",
-      "EE 478",
-      "EE 490",
-      "EE 491",
-      "EE 492",
-      "EE 497",
-      "EE 498",
-      "EE 510",
-      "EE 547",
-      "EE 548",
-      "EE 549",
-      "ENGL 131",
-      "ENGR 321",
-      "ENGR 333",
-      "INDE 315",
-      "MATH 124",
-      "MATH 125",
-      "MATH 126",
-      "MATH 134",
-      "MATH 135",
-      "MATH 136",
-      "MATH 207",
-      "MATH 208",
-      "MATH 224",
-      "PHYS 121",
-      "PHYS 122",
-      "PHYS 123",
-      "PHYS 141",
-      "PHYS 142",
-      "PHYS 143",
-      "STAT 390"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
     "ownerId": "uw-tacoma-electrical-engineering",
     "ownerTitle": "Electrical Engineering",
     "planId": "uw-tacoma-electrical-engineering",
@@ -38240,98 +38008,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 20,
     "requirementCueLineCount": 43,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "347634acc7e4d415c429af2021169637816c9a0713f799acfb9aad77846f4541",
-    "parsedUwCourseCodes": [
-      "CSE 121",
-      "CSE 122",
-      "EE 215",
-      "MATH 124",
-      "MATH 125",
-      "MATH 126",
-      "MATH 207",
-      "MATH 208",
-      "PHYS 121",
-      "PHYS 122",
-      "PHYS 123",
-      "TCES 230",
-      "TCES 310",
-      "TCES 312",
-      "TCES 330",
-      "TCES 380",
-      "TCES 421",
-      "TCSS 141",
-      "TCSS 142",
-      "TEE 225",
-      "TEE 315",
-      "TEE 316",
-      "TEE 317",
-      "TEE 331",
-      "TEE 341",
-      "TEE 372",
-      "TEE 431",
-      "TEE 451",
-      "TEE 453",
-      "TEE 480",
-      "TEE 481",
-      "TEE 482",
-      "TMATH 124",
-      "TMATH 125",
-      "TMATH 126",
-      "TMATH 207",
-      "TMATH 208",
-      "TPHYS 121",
-      "TPHYS 122",
-      "TPHYS 123"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [
-      "TCES 215"
-    ],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-tacoma-electrical-engineering:pathway:bioinformatics-option",
-    "ownerTitle": "Electrical Engineering - Bioinformatics Option",
-    "planId": "uw-tacoma-electrical-engineering",
-    "pathwayId": "bioinformatics-option",
-    "campusId": "uw-tacoma",
-    "parserType": "catalog-page",
-    "sourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TEE-MAJOR",
-    "sourceLabel": "Program of Study: Major: Electrical Engineering",
-    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TEE-MAJOR",
-    "primarySourceLabel": "Program of Study: Major: Electrical Engineering",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 40,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 1,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 2,
-    "requirementCueLineCount": 47,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "0242b93007fe7b97438a830f7dde6502306dcc691491e31c0a670e8dba193725",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "78a8f78d7eb9cdb9982877505e85bd7f1dcf27f55b9d1498645836d963a2fc96",
     "parsedUwCourseCodes": [
       "CSE 121",
       "CSE 122",
@@ -38401,27 +38081,116 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
-    "sourceOnlyUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 61,
+    "sourceOnlyUwCourseCodeCount": 30,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
     "extractedHeadingCount": 11,
-    "requirementCueLineCount": 1,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-used"
+    "requirementCueLineCount": 61,
+    "chooseStatementCount": 1,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "199b4140c8e5d68826cbe5f17509314c3b6ade41cf81ad400ae46664320524ea",
+    "parsedUwCourseCodes": [
+      "BCHEM 143",
+      "BCHEM 144",
+      "BEE 200",
+      "BEE 215",
+      "BEE 233",
+      "BEE 235",
+      "BEE 271",
+      "BEE 331",
+      "BEE 332",
+      "BEE 341",
+      "BEE 361",
+      "BEE 381",
+      "BEE 417",
+      "BEE 425",
+      "BEE 427",
+      "BEE 433",
+      "BEE 436",
+      "BEE 437",
+      "BEE 440",
+      "BEE 442",
+      "BEE 445",
+      "BEE 447",
+      "BEE 450",
+      "BEE 451",
+      "BEE 454",
+      "BEE 455",
+      "BEE 457",
+      "BEE 477",
+      "BEE 478",
+      "BEE 482",
+      "BEE 484",
+      "BEE 486",
+      "BEE 490",
+      "BEE 498",
+      "BEE 499",
+      "BENGR 494",
+      "BENGR 495",
+      "BENGR 496",
+      "BPHYS 121",
+      "BPHYS 122",
+      "BPHYS 123",
+      "BWRIT 132",
+      "BWRIT 133",
+      "BWRIT 134",
+      "BWRIT 135",
+      "CHEM 142",
+      "CSS 132",
+      "CSS 133",
+      "CSS 142",
+      "CSS 143",
+      "CSS 301",
+      "CSS 427",
+      "ENGL 131",
+      "ENGL 141",
+      "STMATH 124",
+      "STMATH 125",
+      "STMATH 126",
+      "STMATH 207",
+      "STMATH 208",
+      "STMATH 224",
+      "STMATH 390"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "aa1b7d300d37491fc6e7b133a828769355e24b42fe26227005ccc443344ad96f",
-    "parsedUwCourseCodes": [],
-    "sourceOnlyUwCourseCodes": [],
+    "sourceOnlyUwCourseCodes": [
+      "BEE 381",
+      "BEE 417",
+      "BEE 427",
+      "BEE 433",
+      "BEE 436",
+      "BEE 437",
+      "BEE 440",
+      "BEE 442",
+      "BEE 445",
+      "BEE 447",
+      "BEE 450",
+      "BEE 451",
+      "BEE 454",
+      "BEE 455",
+      "BEE 457",
+      "BEE 477",
+      "BEE 478",
+      "BEE 482",
+      "BEE 484",
+      "BEE 486",
+      "BEE 490",
+      "BEE 498",
+      "BEE 499",
+      "BWRIT 132",
+      "BWRIT 133",
+      "BWRIT 135",
+      "CHEM 142",
+      "CSS 427",
+      "ENGL 131",
+      "ENGL 141"
+    ],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -38541,6 +38310,81 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "ENGL 384"
     ],
     "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": []
+  },
+  {
+    "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
+    "ownerTitle": "English - Language, Literature & Culture - Language and Literature Option",
+    "planId": "uw-seattle-english-language-literature-and-culture",
+    "pathwayId": "language-and-literature-option",
+    "campusId": "uw-seattle",
+    "parserType": "html-degree-page",
+    "sourceUrl": "https://english.washington.edu/english-composition-strategies",
+    "sourceLabel": "English Composition Requirement",
+    "primarySourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "primarySourceLabel": "UW English LLC option requirements major requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "canCreateRequiredRows": true,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 15,
+    "sourceOnlyUwCourseCodeCount": 15,
+    "structuredOnlyUwCourseCodeCount": 0,
+    "approvedFilterUwCourseCodeCount": 0,
+    "electiveListUwCourseCodeCount": 0,
+    "supportOnlyUwCourseCodeCount": 0,
+    "supportListCount": 1,
+    "extractedHeadingCount": 20,
+    "requirementCueLineCount": 19,
+    "chooseStatementCount": 0,
+    "qualitySignalCodes": [
+      "alternate-official-source-used"
+    ],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 1,
+    "requirementFingerprint": "2411b7a11bd36a3859881749872764605f19e33ee9239d31080e9937c9318878",
+    "parsedUwCourseCodes": [
+      "CLIT 240",
+      "ENGL 109",
+      "ENGL 110",
+      "ENGL 111",
+      "ENGL 121",
+      "ENGL 131",
+      "ENGL 182",
+      "ENGL 197",
+      "ENGL 198",
+      "ENGL 199",
+      "ENGL 281",
+      "ENGL 297",
+      "ENGL 298",
+      "ENGL 299",
+      "ENGL 381"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "CLIT 240",
+      "ENGL 109",
+      "ENGL 110",
+      "ENGL 111",
+      "ENGL 121",
+      "ENGL 131",
+      "ENGL 182",
+      "ENGL 197",
+      "ENGL 198",
+      "ENGL 199",
+      "ENGL 281",
+      "ENGL 297",
+      "ENGL 298",
+      "ENGL 299",
+      "ENGL 381"
+    ],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -38679,7 +38523,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "nonSchedulable": false,
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 51,
+    "parsedUwCourseCodeCount": 65,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
@@ -38689,15 +38533,13 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "extractedHeadingCount": 0,
     "requirementCueLineCount": 80,
     "chooseStatementCount": 2,
-    "qualitySignalCodes": [
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
-    ],
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "ca81bca21846c0d24a08335a85999d68758fa1b3d0f1ad32e0e4bb8f1a25d1e9",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "7904b9f4efba910f6bc551d799b112a2391fc06a3535f1ecc5c939bba29506c3",
     "parsedUwCourseCodes": [
       "AA 260",
+      "AMATH 301",
       "AMATH 351",
       "AMATH 352",
       "ATMS 101",
@@ -38716,13 +38558,26 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "CEE 444",
       "CEE 445",
       "CEE 450",
+      "CEE 473",
+      "CEE 474",
+      "CEE 475",
+      "CEE 476",
+      "CEE 477",
+      "CEE 478",
+      "CEE 481",
       "CEE 483",
       "CEE 498",
       "CHEM 142",
       "CHEM 152",
+      "CSE 121",
+      "CSE 122",
+      "CSE 123",
+      "CSE 142",
+      "CSE 160",
       "ECON 200",
       "ECON 201",
       "ENGL 131",
+      "ENGR 101",
       "ENVIR 235",
       "ESRM 100",
       "ESRM 101",
@@ -42475,7 +42330,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "a3240bfcfbc949939962445d8a04cc43882bf38aed28452270a203fdcb62e7e9",
+    "requirementFingerprint": "8c9756dac17ba1f754767a76f6c23af8f4cb462cf93d4b4c486e293ca8222947",
     "parsedUwCourseCodes": [
       "BIME 300",
       "BIME 435",
@@ -42530,8 +42385,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 19,
-    "sourceOnlyUwCourseCodeCount": 2,
-    "structuredOnlyUwCourseCodeCount": 4,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 2,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
@@ -42542,7 +42397,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "28a9c02d917728bb47d0c8b4d7b2a6dec49fcf6ee34a213006a915d76b489688",
+    "requirementFingerprint": "ae23e0ba09a3dd7b815dde75d704206021721f7cc3b9224ee5ad1820cf002461",
     "parsedUwCourseCodes": [
       "BIME 300",
       "BIME 435",
@@ -42564,13 +42419,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "INFO 474",
       "INFO 478"
     ],
-    "sourceOnlyUwCourseCodes": [
-      "CSE 123",
-      "CSE 373"
-    ],
+    "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [
-      "INFO 201",
-      "INFO 290",
       "INFO 490",
       "INFO 491"
     ],
@@ -42587,8 +42437,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "parserType": "html-curriculum-page",
     "sourceUrl": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
     "sourceLabel": "Degree Planning",
-    "primarySourceUrl": "https://ischool.uw.edu/programs/informatics/curriculum#data-science",
-    "primarySourceLabel": "Data Science Option inferred option/concentration requirements major requirements",
+    "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
+    "primarySourceLabel": "UW Informatics curriculum",
     "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
     "canCreateSchedulableRows": true,
@@ -42598,20 +42448,20 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "nonSchedulable": false,
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 19,
-    "sourceOnlyUwCourseCodeCount": 2,
-    "structuredOnlyUwCourseCodeCount": 4,
+    "parsedUwCourseCodeCount": 21,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
     "extractedHeadingCount": 20,
-    "requirementCueLineCount": 19,
-    "chooseStatementCount": 2,
+    "requirementCueLineCount": 36,
+    "chooseStatementCount": 8,
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "2cf8c0d33a88635aa51f126f9f04a693cb4c8f4c7d0cefb4f0aa7000defaea66",
+    "requirementFingerprint": "b1afbdc319e35bf095118273159810670bc27a8c43fa966c80cdd1eaedf509a1",
     "parsedUwCourseCodes": [
       "BIME 300",
       "BIME 435",
@@ -42619,142 +42469,6 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "CSE 143",
       "CSE 163",
       "CSE 373",
-      "INFO 300",
-      "INFO 330",
-      "INFO 340",
-      "INFO 360",
-      "INFO 370",
-      "INFO 371",
-      "INFO 380",
-      "INFO 430",
-      "INFO 442",
-      "INFO 443",
-      "INFO 468",
-      "INFO 474",
-      "INFO 478"
-    ],
-    "sourceOnlyUwCourseCodes": [
-      "CSE 123",
-      "CSE 373"
-    ],
-    "structuredOnlyUwCourseCodes": [
-      "INFO 201",
-      "INFO 290",
-      "INFO 490",
-      "INFO 491"
-    ],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-seattle-informatics:pathway:other-approved-data-science-elective-option",
-    "ownerTitle": "Informatics - Other Approved Data Science Elective Option",
-    "planId": "uw-seattle-informatics",
-    "pathwayId": "other-approved-data-science-elective-option",
-    "campusId": "uw-seattle",
-    "parserType": "html-curriculum-page",
-    "sourceUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
-    "sourceLabel": "Academics",
-    "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-    "primarySourceLabel": "UW Informatics curriculum",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 22,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 20,
-    "requirementCueLineCount": 18,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "46a2f14bd4e3ae077ebb4bf72ecdaf6bff81ecd9249a87c91ab0ebaa426333c1",
-    "parsedUwCourseCodes": [
-      "BIME 300",
-      "BIME 435",
-      "CSE 143",
-      "CSE 163",
-      "INFO 200",
-      "INFO 201",
-      "INFO 290",
-      "INFO 300",
-      "INFO 330",
-      "INFO 340",
-      "INFO 360",
-      "INFO 370",
-      "INFO 371",
-      "INFO 380",
-      "INFO 430",
-      "INFO 442",
-      "INFO 443",
-      "INFO 468",
-      "INFO 474",
-      "INFO 478",
-      "INFO 490",
-      "INFO 491"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-seattle-informatics:pathway:other-data-science-electives-option",
-    "ownerTitle": "Informatics - Other Data Science Electives Option",
-    "planId": "uw-seattle-informatics",
-    "pathwayId": "other-data-science-electives-option",
-    "campusId": "uw-seattle",
-    "parserType": "html-curriculum-page",
-    "sourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum?audience=current-students",
-    "sourceLabel": "Current Students",
-    "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-    "primarySourceLabel": "UW Informatics curriculum",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 22,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 20,
-    "requirementCueLineCount": 18,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "alternate-official-source-used"
-    ],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "02d74241e76df84f9930899577d3c10ec578eb97e4d3d2276fa866137f7d865f",
-    "parsedUwCourseCodes": [
-      "BIME 300",
-      "BIME 435",
-      "CSE 143",
-      "CSE 163",
-      "INFO 200",
-      "INFO 201",
-      "INFO 290",
       "INFO 300",
       "INFO 330",
       "INFO 340",
@@ -43224,85 +42938,29 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "nonSchedulable": false,
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 14,
+    "parsedUwCourseCodeCount": 8,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 0,
+    "extractedHeadingCount": 20,
     "requirementCueLineCount": 11,
-    "chooseStatementCount": 2,
-    "qualitySignalCodes": [
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
-    ],
+    "chooseStatementCount": 3,
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "0ee6cb3f1b66eca08d641cce22d0fce9702c470e90466134abbd9259ec2d398f",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "c13cdeff28462f02edb88c940809784cf68d2eb39be3bf90b32e7761a36fcb57",
     "parsedUwCourseCodes": [
-      "HSTAS 201",
-      "HSTAS 202",
-      "HSTAS 211",
-      "HSTAS 212",
-      "HSTAS 221",
-      "HSTAS 241",
+      "JSIS 200",
       "JSIS 201",
+      "JSIS 202",
       "JSIS 203",
-      "JSISA 206",
-      "JSISA 207",
-      "JSISA 212",
-      "JSISA 221",
-      "JSISA 241",
-      "JSISA 242"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-seattle-international-studies:pathway:a-general-and-cross-regional-course-of-study-track",
-    "ownerTitle": "International Studies - A General and Cross-Regional Course of Study track",
-    "planId": "uw-seattle-international-studies",
-    "pathwayId": "a-general-and-cross-regional-course-of-study-track",
-    "campusId": "uw-seattle",
-    "parserType": "catalog-page",
-    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-    "sourceLabel": "UW General Catalog International Studies overview",
-    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-    "primarySourceLabel": "UW General Catalog International Studies overview",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "medium",
-    "parsedUwCourseCodeCount": 2,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 8,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
-    ],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "63db3ed8a32af42e905491898d67994c518d18967165641674279c65841b576e",
-    "parsedUwCourseCodes": [
-      "JSIS 201",
-      "JSIS 202"
+      "JSIS 495",
+      "JSIS 498",
+      "RELIG 201",
+      "RELIG 202"
     ],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
@@ -43329,29 +42987,42 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 14,
     "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 2,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 2,
+    "extractedHeadingCount": 1,
+    "requirementCueLineCount": 9,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "3eb5e0642844a9ea793a8ab5bd1ca72a562b7a0ec659b98823244edb08268220",
+    "parsedUwCourseCodes": [
+      "HSTAS 201",
+      "HSTAS 202",
+      "HSTAS 211",
+      "HSTAS 212",
+      "HSTAS 221",
+      "HSTAS 241",
+      "JSIS 201",
+      "JSIS 203",
+      "JSISA 206",
+      "JSISA 207",
+      "JSISA 212",
+      "JSISA 221",
+      "JSISA 241",
+      "JSISA 242"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "bac2d04cf58c110de97e75a9004c7efee07aba36959cdb2308f56ca28b9ed535",
-    "parsedUwCourseCodes": [],
     "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [
+      "ECON 200",
+      "ECON 201"
+    ],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": []
@@ -43375,27 +43046,30 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 7,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 3,
+    "extractedHeadingCount": 1,
+    "requirementCueLineCount": 4,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "8ac420d8b86cf5a0410dc05f5efa216ff7f507223d5f711fa2e11378cf703824",
+    "parsedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "JSIS 200",
+      "JSIS 201",
+      "JSIS 202",
+      "JSISA 356",
+      "JSISA 498"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "024deb5f480ca458bbed3a88b66d4fbab1a143152c0817c1f14b1f291f7b85da",
-    "parsedUwCourseCodes": [],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
@@ -43409,10 +43083,10 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "pathwayId": "ba-option-family:jewish-studies",
     "campusId": "uw-seattle",
     "parserType": "catalog-page",
-    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-f6f02d1c-b6f8-4565-ba26-e90c57f72ced",
-    "sourceLabel": "Bachelor of Arts degree with a major in International Studies: Jewish Studies",
-    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-f6f02d1c-b6f8-4565-ba26-e90c57f72ced",
-    "primarySourceLabel": "Bachelor of Arts degree with a major in International Studies: Jewish Studies",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+    "sourceLabel": "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
+    "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+    "primarySourceLabel": "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
     "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
     "canCreateSchedulableRows": true,
@@ -43421,26 +43095,31 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "medium",
-    "parsedUwCourseCodeCount": 1,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 9,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 0,
-    "requirementCueLineCount": 6,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-heading-context-missing",
-      "snapshot-fallback-used"
-    ],
+    "supportListCount": 1,
+    "extractedHeadingCount": 20,
+    "requirementCueLineCount": 32,
+    "chooseStatementCount": 1,
+    "qualitySignalCodes": [],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 2,
-    "requirementFingerprint": "e313b19287c3dd91116713ffeae0f37b19ab38376471b24f1e40fbb18aea6569",
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "005dd3df1037c68ac26ca243ac75a26f5a1ddb28739eec0319b1d0dfbed5127e",
     "parsedUwCourseCodes": [
-      "HSTCMP 250"
+      "HSTAS 211",
+      "HSTAS 241",
+      "HSTCMP 250",
+      "JSIS 201",
+      "JSISA 210",
+      "JSISA 241",
+      "JSISA 242",
+      "JSISA 356",
+      "JSISA 498"
     ],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],
@@ -45360,27 +45039,105 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
-    "sourceOnlyUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 40,
+    "sourceOnlyUwCourseCodeCount": 40,
     "structuredOnlyUwCourseCodeCount": 0,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
     "supportListCount": 0,
     "extractedHeadingCount": 10,
-    "requirementCueLineCount": 1,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-used"
+    "requirementCueLineCount": 59,
+    "chooseStatementCount": 1,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "d259de5276ea5d5bf63f7c458323187a41442e47a2cb0fcda22be32b6b8e11a7",
+    "parsedUwCourseCodes": [
+      "BEDUC 465",
+      "BEDUC 466",
+      "BEDUC 467",
+      "BST 301",
+      "BWRIT 134",
+      "CSS 132",
+      "CSS 142",
+      "CSS 301",
+      "ENGL 131",
+      "STMATH 124",
+      "STMATH 125",
+      "STMATH 126",
+      "STMATH 207",
+      "STMATH 208",
+      "STMATH 224",
+      "STMATH 300",
+      "STMATH 301",
+      "STMATH 310",
+      "STMATH 330",
+      "STMATH 341",
+      "STMATH 350",
+      "STMATH 381",
+      "STMATH 390",
+      "STMATH 392",
+      "STMATH 402",
+      "STMATH 403",
+      "STMATH 405",
+      "STMATH 406",
+      "STMATH 407",
+      "STMATH 408",
+      "STMATH 409",
+      "STMATH 420",
+      "STMATH 424",
+      "STMATH 425",
+      "STMATH 427",
+      "STMATH 441",
+      "STMATH 444",
+      "STMATH 493",
+      "STMATH 498",
+      "STMATH 499"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "701281c93e3904560bf6028914e711698786cb318f2d8267bbbcc162bb28bb31",
-    "parsedUwCourseCodes": [],
-    "sourceOnlyUwCourseCodes": [],
+    "sourceOnlyUwCourseCodes": [
+      "BEDUC 465",
+      "BEDUC 466",
+      "BEDUC 467",
+      "BST 301",
+      "BWRIT 134",
+      "CSS 132",
+      "CSS 142",
+      "CSS 301",
+      "ENGL 131",
+      "STMATH 124",
+      "STMATH 125",
+      "STMATH 126",
+      "STMATH 207",
+      "STMATH 208",
+      "STMATH 224",
+      "STMATH 300",
+      "STMATH 301",
+      "STMATH 310",
+      "STMATH 330",
+      "STMATH 341",
+      "STMATH 350",
+      "STMATH 381",
+      "STMATH 390",
+      "STMATH 392",
+      "STMATH 402",
+      "STMATH 403",
+      "STMATH 405",
+      "STMATH 406",
+      "STMATH 407",
+      "STMATH 408",
+      "STMATH 409",
+      "STMATH 420",
+      "STMATH 424",
+      "STMATH 425",
+      "STMATH 427",
+      "STMATH 441",
+      "STMATH 444",
+      "STMATH 493",
+      "STMATH 498",
+      "STMATH 499"
+    ],
     "structuredOnlyUwCourseCodes": [],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
@@ -45586,28 +45343,88 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "supportOnly": false,
     "nonSchedulable": false,
     "ok": true,
-    "parseConfidence": "low",
-    "parsedUwCourseCodeCount": 0,
+    "parseConfidence": "high",
+    "parsedUwCourseCodeCount": 61,
     "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 1,
     "approvedFilterUwCourseCodeCount": 0,
     "electiveListUwCourseCodeCount": 0,
     "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
+    "supportListCount": 1,
     "extractedHeadingCount": 11,
-    "requirementCueLineCount": 2,
+    "requirementCueLineCount": 58,
     "chooseStatementCount": 1,
-    "qualitySignalCodes": [
-      "low-confidence-parsed-source",
-      "no-parsed-uw-course-codes",
-      "snapshot-fallback-used"
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
+    "qualityNoteCount": 0,
+    "requirementFingerprint": "0790da551f41c6af591934bbcc51980e6dfd2048f4caa73945db6fd8f36871a1",
+    "parsedUwCourseCodes": [
+      "AA 210",
+      "AMATH 301",
+      "AMATH 351",
+      "AMATH 352",
+      "AMATH 353",
+      "CEE 220",
+      "CHEM 142",
+      "CHEM 152",
+      "EE 215",
+      "ENGL 131",
+      "ENGR 321",
+      "INDE 315",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 207",
+      "MATH 208",
+      "MATH 209",
+      "MATH 224",
+      "MATH 307",
+      "MATH 308",
+      "MATH 309",
+      "MATH 324",
+      "ME 123",
+      "ME 230",
+      "ME 323",
+      "ME 331",
+      "ME 333",
+      "ME 354",
+      "ME 355",
+      "ME 356",
+      "ME 373",
+      "ME 374",
+      "ME 414",
+      "ME 426",
+      "ME 430",
+      "ME 431",
+      "ME 440",
+      "ME 442",
+      "ME 445",
+      "ME 450",
+      "ME 460",
+      "ME 461",
+      "ME 469",
+      "ME 470",
+      "ME 471",
+      "ME 473",
+      "ME 477",
+      "ME 478",
+      "ME 480",
+      "ME 493",
+      "ME 494",
+      "ME 495",
+      "ME 498",
+      "ME 499",
+      "MSE 170",
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123",
+      "STAT 290",
+      "STAT 390"
     ],
-    "qualityWarningCount": 2,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "214365f43150911ed14b7af27f914e65ed280b5fad040f41b7049dd53ad4e184",
-    "parsedUwCourseCodes": [],
     "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [
+      "CEE 342"
+    ],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": []
@@ -45706,51 +45523,6 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "TPHYS 121",
       "TPHYS 122",
       "TPHYS 123"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": []
-  },
-  {
-    "ownerId": "uw-seattle-mechanical-engineering:pathway:special-projects-graded-option-only",
-    "ownerTitle": "Mechanical Engineering - Special Projects (Graded Option Only",
-    "planId": "uw-seattle-mechanical-engineering",
-    "pathwayId": "special-projects-graded-option-only",
-    "campusId": "uw-seattle",
-    "parserType": "html-degree-page",
-    "sourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-    "sourceLabel": "UW Mechanical Engineering degree requirements",
-    "primarySourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-    "primarySourceLabel": "UW Mechanical Engineering degree requirements",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "canCreateRequiredRows": true,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "ok": true,
-    "parseConfidence": "medium",
-    "parsedUwCourseCodeCount": 1,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "approvedFilterUwCourseCodeCount": 0,
-    "electiveListUwCourseCodeCount": 0,
-    "supportOnlyUwCourseCodeCount": 0,
-    "supportListCount": 0,
-    "extractedHeadingCount": 11,
-    "requirementCueLineCount": 5,
-    "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "snapshot-fallback-used"
-    ],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 1,
-    "requirementFingerprint": "162d247bf3a3170c703d0abc97b4c3359f0fb0ca9cc78d0af88dba41db85ae62",
-    "parsedUwCourseCodes": [
-      "ENGR 321"
     ],
     "sourceOnlyUwCourseCodes": [],
     "structuredOnlyUwCourseCodes": [],

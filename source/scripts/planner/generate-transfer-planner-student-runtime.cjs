@@ -42,6 +42,9 @@ const {
   getTransferPlannerStudentRuntimePathwaysForPlan,
   resolveTransferPlannerMajorPlan,
 } = require("../../constants/transfer-planner-source");
+const {
+  normalizeTransferPlannerPathwayId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
 
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/;
 const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
@@ -90,6 +93,10 @@ function sanitizeValue(value) {
       .filter(([, entryValue]) => entryValue !== undefined)
       .map(([key, entryValue]) => [key, sanitizeValue(entryValue)])
   );
+}
+
+function normalizeRuntimePathwayId(planId, pathwayId) {
+  return pathwayId == null ? null : normalizeTransferPlannerPathwayId(planId, pathwayId);
 }
 
 function nonEmptyArray(value) {
@@ -490,12 +497,14 @@ function compactParsedRequirementSourceBlock(block) {
 }
 
 function getSourceBackedDegreeMapSections(planId, pathwayId = null) {
+  const normalizedPathwayId = normalizeRuntimePathwayId(planId, pathwayId);
   return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY
     .filter(
       (block) =>
         block.ok &&
         block.planId === planId &&
-        (block.pathwayId ?? null) === (pathwayId ?? null) &&
+        normalizeRuntimePathwayId(block.planId, block.pathwayId ?? null) ===
+          normalizedPathwayId &&
         canRuntimeSourceBlockCreateSchedulableRows(block)
     )
     .flatMap((block) => {

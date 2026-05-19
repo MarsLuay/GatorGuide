@@ -1096,6 +1096,9 @@ function buildOwners(targetPlanId = null) {
     if (targetPlanId && plan.id !== targetPlanId) {
       continue;
     }
+    if (source.isTransferPlannerStudentHiddenSourceGap?.(plan.id)) {
+      continue;
+    }
 
     owners.push({
       ownerId: buildOwnerId(plan.id, null),
@@ -1106,6 +1109,9 @@ function buildOwners(targetPlanId = null) {
     });
 
     for (const pathway of source.getTransferPlannerPathwaysForPlan(plan) ?? []) {
+      if (source.isTransferPlannerStudentHiddenSourceGap?.(plan.id, pathway.id)) {
+        continue;
+      }
       owners.push({
         ownerId: buildOwnerId(plan.id, pathway.id),
         planId: plan.id,
@@ -6970,7 +6976,7 @@ function auditComputerEngineering(checks) {
     "UW Computer Engineering keeps the Allen School CE-approved Natural Science list as a support source",
     ceApprovedManifestSources.some(
       (entry) =>
-        /degree-requirements\/courses\/#core/i.test(entry.url ?? "") &&
+        /degree-requirements\/courses\/#natural-science/i.test(entry.url ?? "") &&
         getSourceRoleStatus(entry.role) === "support"
     ),
     ceApprovedManifestSources.map(
@@ -10415,4 +10421,5 @@ module.exports = {
   isNonSchedulableContextualSourceRowForTest: isNonSchedulableContextualSourceRow,
   isParsedChoiceRepresentedBySelectedRuntimeAlternativeForTest:
     isParsedChoiceRepresentedBySelectedRuntimeAlternative,
+  buildOwnersForTest: buildOwners,
 };

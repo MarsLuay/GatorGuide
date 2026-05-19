@@ -180,6 +180,8 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^courses by track$/i,
   /\bchoose from the following\b/i,
   /^doctor(?:\s+of)?\b/i,
+  /^ph\.?\s*d\.?\b/i,
+  /^p\.?\s*h\.?\s*d\.?\b/i,
   /\bnot admitting\b/i,
   /^a minor\b.*\bexplore the liberal arts\b/i,
   /^department must approve\b.*\boption\b/i,
@@ -218,6 +220,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^degree options?\b/i,
   /^electives?\b.*\bchoose\b/i,
   /^capstone experience\b/i,
+  /^capstone option\b/i,
   /^choose (?:one|two|three|between|from)\b/i,
   /^choose your\b/i,
   /^contact the\b/i,
@@ -259,6 +262,9 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^option-specific\b/i,
   /^or from\b.*\bconcentration\b/i,
   /^or course[- ]only option\b/i,
+  /^other approved\b.*\belectives?\s+option\b/i,
+  /^other\b.*\belectives?\s+option\b/i,
+  /^additional\b.*\belectives?\s+option\b/i,
   /^page \d+\b/i,
   /^\(?\d+\)?\s*plan a pathway toward\b/i,
   /^planning\b.*\bdegree electives?\b.*\bconcentration area\b/i,
@@ -306,6 +312,8 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^who should choose\b/i,
   /^which is detailed at\b/i,
   /^senior electives?\b/i,
+  /^topics option$/i,
+  /^special projects?\b.*\b(?:graded option only|count toward the option)\b/i,
   /^to be considered\b.*\bpathway\b/i,
   /\bdouble major\b/i,
   /\bdouble degree\b/i,
@@ -313,6 +321,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /\boption[- ]specific\b.*\b(?:credits?|requirements?|coursework)\b/i,
   /\b(?:option|track|concentration) course numbers?\b/i,
   /\b(?:option|track|concentration) courses?\b/i,
+  /\bno longer accepting new students\b/i,
   /\bconcentration projects?$/i,
   /\bstudents? must complete\b.*\bfor graduation\b/i,
   /\btrack[- ]specific\b.*\b(?:credits?|requirements?|coursework)\b/i,
@@ -361,6 +370,8 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^courses-by-track$/i,
   /(?:^|[-:])choose-from-the-following(?:$|[-:])/i,
   /^doctor(?:-|$)/i,
+  /^ph-?d(?:-|$)/i,
+  /^p-h-d(?:-|$)/i,
   /(?:^|[-:])not-admitting(?:$|[-:])/i,
   /^a-minor-.*explore-the-liberal-arts$/i,
   /^department-must-approve.*option$/i,
@@ -407,7 +418,14 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^graduation-track$/i,
   /^home-track$/i,
   /^including-.*-option$/i,
+  /^other-approved-.*electives?-option$/i,
+  /^other-.*electives?-option$/i,
+  /^additional-.*electives?-option$/i,
+  /^topics-option$/i,
+  /^.+-\d+(?:-\d+)?-option$/i,
+  /^.+-no-longer-accepting-new-students\b/i,
   /^senior-electives-pathway$/i,
+  /^special-projects?.*(?:graded-option-only|count-toward-the-option)/i,
   /^to-be-considered-.*-pathway$/i,
   /^who-should-choose-.*-option$/i,
   /^route-menu-active-trails(?:$|[-:])/i,
@@ -1310,6 +1328,7 @@ function normalizeDerivedPathwayCandidate(planTitle: string, value: string) {
     planTitle,
     selectDerivedPathwayKindSegment(normalizeDerivedPathwayText(value))
       .replace(/^[>\s]+/, "")
+      .replace(/^(?:and|or)\s+/i, "")
       .replace(/^[A-Z]\.\s+/i, "")
       .replace(/^\d+\)\s+/i, "")
       .replace(/^option\s+\d+\s*:\s*/i, "")
@@ -1426,6 +1445,36 @@ function isBachelorsRouteCandidate(value: string | null | undefined, credential:
   }
 
   return new RegExp(`^b\\.?\\s*${credential}\\.?\\s+route$`, "i").test(normalized);
+}
+
+function getExplicitBachelorRouteCredential(value: string | null | undefined) {
+  const normalized = normalizeDerivedPathwayText(value);
+  if (/\b(?:Bachelor of Arts|B\.?\s*A\.?|BA)\b/i.test(normalized)) {
+    return "a" as const;
+  }
+  if (/\b(?:Bachelor of Science|B\.?\s*S\.?|BS)\b/i.test(normalized)) {
+    return "s" as const;
+  }
+  return null;
+}
+
+function isMismatchedBachelorRoutePathway(
+  planTitle: string | null | undefined,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">
+) {
+  const planCredential = getExplicitBachelorRouteCredential(planTitle);
+  if (!planCredential) {
+    return false;
+  }
+
+  const pathwayLabel = normalizeDerivedPathwayText(pathway.label);
+  const pathwayIdText = normalizeTransferPlannerText(pathway.id).replace(/-/g, " ");
+  const isBaRoute =
+    isBachelorsRouteCandidate(pathwayLabel, "a") || isBachelorsRouteCandidate(pathwayIdText, "a");
+  const isBsRoute =
+    isBachelorsRouteCandidate(pathwayLabel, "s") || isBachelorsRouteCandidate(pathwayIdText, "s");
+
+  return (planCredential === "a" && isBsRoute) || (planCredential === "s" && isBaRoute);
 }
 
 function canonicalizeBasePathwayDerivedIdentity(
@@ -2106,7 +2155,8 @@ function buildDerivedPathwaySeeds(
     const seeds = [...seedById.values()].filter(
       (seed) =>
         !isSuspiciousStructuralPathwayLabel(seed.label) &&
-        !isPlanExcludedDerivedPathway(plan.id, seed)
+        !isPlanExcludedDerivedPathway(plan.id, seed) &&
+        !isMismatchedBachelorRoutePathway(plan.title, seed)
     );
     const namedOptionOrTrackSeedCount = seeds.filter(
       (seed) =>
