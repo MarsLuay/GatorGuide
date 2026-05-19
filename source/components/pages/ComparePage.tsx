@@ -77,6 +77,9 @@ export default function ComparePage() {
   const deferredSearchTerm = useDeferredValue(searchTerm);
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
   const notAvailable = t("home.notAvailable");
+  const isCompactPhone = width < 390;
+  const isPhone = width < 760;
+  const shellHorizontalPadding = width >= 768 ? 24 : isCompactPhone ? 16 : 20;
   const columnWidth = width >= 1180 ? 220 : width >= 820 ? 190 : 160;
   const metricColumnWidth = width >= 820 ? 180 : 138;
   const compareTableMinWidth = metricColumnWidth + selectedIds.length * columnWidth;
@@ -310,8 +313,21 @@ export default function ComparePage() {
 
   return (
     <ScreenBackground>
-      <ScrollView className="flex-1" contentContainerStyle={scrollContentPadding}>
-        <View style={{ width: "100%", maxWidth: 1220, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}>
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="handled"
+      >
+        <View
+          style={{
+            width: "100%",
+            maxWidth: 1220,
+            alignSelf: "center",
+            paddingHorizontal: shellHorizontalPadding,
+            paddingTop: 24,
+          }}
+        >
           <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
           <Text className={`text-2xl ${textClass} mb-1`}>{t("compare.title")}</Text>
@@ -337,8 +353,17 @@ export default function ComparePage() {
             </View>
           ) : (
             <>
-              <View className="flex-row flex-wrap gap-3 mb-5">
-                <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
+              <View
+                style={{
+                  flexDirection: isPhone ? "column" : "row",
+                  gap: 12,
+                  marginBottom: 20,
+                }}
+              >
+                <View
+                  className={`${cardBgClass} border rounded-2xl px-4 py-3`}
+                  style={{ flex: isPhone ? undefined : 1, minWidth: 0 }}
+                >
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("compare.selectedColleges")}</Text>
                   <Text className={`${textClass} text-lg font-semibold`}>
                     {t("compare.selectedCount", {
@@ -347,7 +372,10 @@ export default function ComparePage() {
                     })}
                   </Text>
                 </View>
-                <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
+                <View
+                  className={`${cardBgClass} border rounded-2xl px-4 py-3`}
+                  style={{ flex: isPhone ? undefined : 1, minWidth: 0 }}
+                >
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("savedColleges.summarySaved")}</Text>
                   <Text className={`${textClass} text-lg font-semibold`}>{formatLocalizedNumber(savedColleges.length, language)}</Text>
                   <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("compare.selectionLimitHint")}</Text>
@@ -370,7 +398,13 @@ export default function ComparePage() {
                   autoCapitalize="none"
                   autoCorrect={false}
                 />
-                <View className="flex-row flex-wrap gap-2">
+                <View
+                  style={{
+                    flexDirection: isPhone ? "column" : "row",
+                    flexWrap: isPhone ? "nowrap" : "wrap",
+                    gap: 8,
+                  }}
+                >
                   {(["match", "tuition", "admission"] as const).map((option) => {
                     const active = sortBy === option;
                     return (
@@ -380,6 +414,17 @@ export default function ComparePage() {
                         className={`px-3 py-2 rounded-lg border ${
                           active ? "bg-emerald-500 border-emerald-500" : `${cardBgClass} ${borderClass}`
                         }`}
+                        containerStyle={isPhone ? { width: "100%" } : undefined}
+                        style={
+                          isPhone
+                            ? {
+                                width: "100%",
+                                minHeight: 44,
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }
+                            : undefined
+                        }
                       >
                         <Text className={active ? (isDark ? "text-white font-medium" : "text-emerald-900 font-medium") : textClass}>
                           {option === "match"
@@ -417,7 +462,12 @@ export default function ComparePage() {
                     return (
                       <View
                         key={college.id}
-                        className={`px-4 py-4 flex-row items-center gap-3 border-b last:border-b-0 ${borderClass}`}
+                        className={`px-4 py-4 border-b last:border-b-0 ${borderClass}`}
+                        style={{
+                          flexDirection: isPhone ? "column" : "row",
+                          alignItems: isPhone ? "stretch" : "center",
+                          gap: 12,
+                        }}
                       >
                         <AnimatedCardPressable
                           onPress={() =>
@@ -427,7 +477,7 @@ export default function ComparePage() {
                               })
                             )
                           }
-                          style={{ flex: 1 }}
+                          style={{ flex: isPhone ? undefined : 1, width: isPhone ? "100%" : undefined }}
                         >
                           <Text className={`${textClass} font-semibold`} numberOfLines={1}>
                             {college.name}
@@ -449,6 +499,17 @@ export default function ComparePage() {
                                 ? `${cardBgClass} border-gray-400`
                                 : `${cardBgClass} ${borderClass}`
                           }`}
+                          containerStyle={isPhone ? { width: "100%" } : undefined}
+                          style={
+                            isPhone
+                              ? {
+                                  width: "100%",
+                                  minHeight: 44,
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                }
+                              : undefined
+                          }
                         >
                           <Text className={selected ? (isDark ? "text-white font-semibold" : "text-emerald-950 font-semibold") : textClass}>
                             {selected ? t("compare.selectedBadge") : t("compare.compareAction")}
@@ -462,7 +523,15 @@ export default function ComparePage() {
 
               {selectedColleges.length > 0 ? (
                 <View className={`${cardBgClass} border rounded-3xl p-4 mb-5`}>
-                  <View className="flex-row items-center justify-between mb-3">
+                  <View
+                    style={{
+                      flexDirection: isPhone ? "column" : "row",
+                      alignItems: isPhone ? "flex-start" : "center",
+                      justifyContent: "space-between",
+                      gap: 10,
+                      marginBottom: 12,
+                    }}
+                  >
                     <Text className={`${textClass} font-semibold`}>{t("compare.selectedColleges")}</Text>
                     <AnimatedIconPressable onPress={() => setSelectedIds([])}>
                       <Text className="text-red-500">{t("compare.clearSelection")}</Text>

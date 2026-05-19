@@ -1908,6 +1908,124 @@ test("Parser scopes shared Tacoma option pages to the selected pathway section",
   assert.equal(gisParsed.courseCodes.includes("TURB 360"), false);
 });
 
+test("Parser scopes Tacoma formal-option tables whose column headers precede their contents", () => {
+  const sharedHtml = `
+    <main>
+      <h1>Sustainable Urban Development (BA)</h1>
+      <h2>Shared Curriculum Courses</h2>
+      <p>T URB 101 Exploring Cities (5)</p>
+      <h2>Formal Options</h2>
+      <p>Students declare one of the following formal options:</p>
+      <table>
+        <tr>
+          <td><strong>A. Community Engagement</strong></td>
+          <td><strong>B. GIS Certificate</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <p>Complete all of the following:</p>
+            <p>T URB 235 Community Development (5)</p>
+            <p>T URB 220 Introduction to Urban Planning (5)</p>
+            <p>T UDE 340 Urban Social Change (5)</p>
+            <p>Choose 2 of the following:</p>
+            <p>T URB 379 Urban Field Experience (5)</p>
+            <p>T URB 470 Creating the Urban Narrative (5)</p>
+            <p>T URB 479 Planning & Development in the Puget Sound Region (5)</p>
+            <p>T URB 498 Urban Studies Internship (5)</p>
+          </td>
+          <td>
+            <p><strong>GIS Certificate</strong>: Complete all 5 courses listed below:</p>
+            <p>T GIS 311 Maps & GIS (6)</p>
+            <p>T GIS 312 Intermediate GIS (6)</p>
+            <p>T GIS 313 Applied GIS and Project Design (3)</p>
+            <p>T GIS 414 Advanced GIS (5)</p>
+            <p>T GIS 415 Critical GIS and Project Practicum (5)</p>
+          </td>
+        </tr>
+      </table>
+      <h2>General Electives</h2>
+      <p>Students complete university requirements and electives.</p>
+    </main>
+  `;
+  const baseEntry = {
+    planId: "uw-tacoma-sustainable-urban-development",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+    label: "UW Tacoma Sustainable Urban Development degree requirements",
+    sourceLabel: "UW Tacoma Sustainable Urban Development degree requirements",
+    ownerType: "pathway",
+  };
+  const baseParsed = parser.parseHtmlSourceFromArtifactsForTest(
+    buildRecoveryEntryFixture({
+      ...baseEntry,
+      ownerId: "uw-tacoma-sustainable-urban-development",
+      ownerTitle: "Sustainable Urban Development (BA)",
+      pathwayId: null,
+      ownerType: "major",
+    }),
+    sharedHtml
+  );
+  const communityParsed = parser.parseHtmlSourceFromArtifactsForTest(
+    buildRecoveryEntryFixture({
+      ...baseEntry,
+      ownerId: "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+      ownerTitle: "Sustainable Urban Development (BA) - Community Engagement option",
+      pathwayId: "community-engagement-option",
+    }),
+    sharedHtml
+  );
+  const gisParsed = parser.parseHtmlSourceFromArtifactsForTest(
+    buildRecoveryEntryFixture({
+      ...baseEntry,
+      ownerId: "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+      ownerTitle: "Sustainable Urban Development (BA) - GIS option",
+      pathwayId: "gis-option",
+    }),
+    sharedHtml
+  );
+
+  assert.ok(baseParsed.courseCodes.includes("TURB 101"));
+  assert.equal(baseParsed.courseCodes.includes("TURB 235"), false);
+  assert.equal(baseParsed.courseCodes.includes("TGIS 312"), false);
+  assert.ok(communityParsed.courseCodes.includes("TURB 235"));
+  assert.ok(communityParsed.courseCodes.includes("TUDE 340"));
+  assert.equal(communityParsed.courseCodes.includes("TGIS 312"), false);
+  assert.ok(gisParsed.courseCodes.includes("TGIS 312"));
+  assert.ok(gisParsed.courseCodes.includes("TGIS 415"));
+  assert.equal(gisParsed.courseCodes.includes("TURB 235"), false);
+});
+
+test("Parser recovery rejects sibling Tacoma major pages with only weak title overlap", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-sustainable-urban-development",
+    ownerTitle: "Sustainable Urban Development (BA)",
+    planId: "uw-tacoma-sustainable-urban-development",
+    campusId: "uw-tacoma",
+    ownerType: "major",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+    label: "UW Tacoma Sustainable Urban Development degree requirements",
+    sourceLabel: "UW Tacoma Sustainable Urban Development degree requirements",
+  });
+  const candidates = parser.extractParserRecoveryLinkCandidatesForTest(
+    entry,
+    `
+      <main>
+        <a href="/urban-studies/ba-urban-studies">BA in Urban Studies</a>
+        <a href="/urban-studies/ba-sustainable-urban-development">BA in Sustainable Urban Development</a>
+      </main>
+    `
+  );
+
+  assert.equal(
+    candidates.some((candidate) => candidate.url.endsWith("/urban-studies/ba-urban-studies")),
+    false
+  );
+});
+
 test("Parser does not re-add sibling courses when scoped Tacoma tracks share a subject", () => {
   const sharedHtml = `
     <main>
@@ -2081,6 +2199,82 @@ test("Parser keeps Tacoma Communications admission and track rows schedulable on
   );
 });
 
+test("Parser does not promote opposite-degree comparison prose into BA requirements", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-computer-science-and-systems-ba",
+    ownerTitle: "Computer Science and Systems (BA)",
+    planId: "uw-tacoma-computer-science-and-systems-ba",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+    label: "Bachelor of Arts in CSS page.",
+  });
+  const html = `
+    <main>
+      <h2>Bachelors of Science or Arts?</h2>
+      <h3>Similarities</h3>
+      <p>Fundamentals of programming and software development principles (TCSS 305, 360)</p>
+      <p>Machine organization (TCSS 372)</p>
+      <h3>Differences</h3>
+      <p>B.S. majors have 4 additional class requirements.</p>
+      <p>Computer architecture and operating systems (TCSS 372, 422)</p>
+      <p>Programming language concepts (TCSS 380)</p>
+      <p>Learn more about B.S. in CSS</p>
+      <h2>B.A. in CSS Requirements</h2>
+      <ul>
+        <li>TCSS 305 Programming Practicum</li>
+        <li>TCSS 321 Discrete Structures I</li>
+        <li>TCSS 325 Computers, Ethics, and Society</li>
+        <li>TCSS 342 Data Structures</li>
+        <li>TCSS 360 Software Development and Quality Assurance Techniques</li>
+        <li>TCSS 371 Machine Organization</li>
+        <li>TCSS 496 Portfolio Based Learning</li>
+      </ul>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+  const block = buildParsedBlockFixture(entry, html);
+  const auditRows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: entry.ownerId,
+    sourceUrl: entry.url,
+    sourceRole: block.sourceRole,
+    snapshotLines: parser.buildHtmlLines(html),
+  });
+
+  for (const courseCode of [
+    "TCSS 305",
+    "TCSS 321",
+    "TCSS 325",
+    "TCSS 342",
+    "TCSS 360",
+    "TCSS 371",
+    "TCSS 496",
+  ]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} to remain parsed.`);
+  }
+  for (const courseCode of ["TCSS 372", "TCSS 380", "TCSS 422"]) {
+    assert.equal(
+      parsed.courseCodes.includes(courseCode),
+      false,
+      `Expected ${courseCode} to stay out of BA requirements.`
+    );
+    assert.equal(
+      block.parsedUwCourseCodes.includes(courseCode),
+      false,
+      `Expected ${courseCode} to stay out of parsed source blocks.`
+    );
+  }
+  assert.ok(
+    auditRows.some(
+      (row) =>
+        row.courseCodesExtracted.includes("TCSS 372") &&
+        row.detectedSectionRole === "support-metadata" &&
+        row.schedulable === false
+    )
+  );
+});
+
 test("Parser keeps UWB CSSE-style accordion elective requirement rows schedulable", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-bothell-csse:pathway:iac-option",
@@ -2236,6 +2430,47 @@ test("Parser keeps parent option requirements while scoping nested concentration
   assert.ok(parsed.courseCodes.includes("BBUS 454"));
   assert.equal(parsed.courseCodes.includes("BBUS 443"), false);
   assert.equal(parsed.courseCodes.includes("BBUS 466"), false);
+});
+
+test("Parser does not promote standalone prerequisite numbers in course-title parentheticals", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId:
+      "uw-bothell-business-administration:pathway:finance-option-and-concentration",
+    ownerTitle: "Business Administration (BA) - Finance Option and Concentration",
+    sourceLabel: "Finance Option and Concentration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: "finance-option-and-concentration",
+    campusId: "uw-bothell",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+    label: "Finance Option and Concentration",
+  });
+  const html = `
+    <main>
+      <h1>Finance Option and Concentration</h1>
+      <h2>Option Required Courses</h2>
+      <ul>
+        <li>B BUS 350 - Business Finance</li>
+        <li>B BUS 454 - Investments</li>
+      </ul>
+      <h2>Finance Concentration Courses</h2>
+      <ul>
+        <li>B BUS 361 - Intermediate Accounting I</li>
+        <li>B BUS 362 - Intermediate Accounting II (361)</li>
+        <li>B BUS 468 - Advanced Accounting and Analytics (363)</li>
+        <li>ELCBUS 463 - International Finance and Trade (350)</li>
+      </ul>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  for (const courseCode of ["BBUS 361", "BBUS 362", "BBUS 468", "ELCBUS 463"]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} to remain parsed.`);
+  }
+  assert.equal(parsed.courseCodes.includes("BBUS 363"), false);
+  assert.equal(parsed.courseCodes.includes("ELCBUS 350"), false);
 });
 
 test("Parser recovery carries UWB BBA-style prerequisite pages as support only", () => {

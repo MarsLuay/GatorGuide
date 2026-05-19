@@ -16682,7 +16682,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership & Strategic Innovation Option",
+        "label": "Leadership and Strategic Innovation option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -16693,7 +16693,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW Bothell Leadership and Strategic Innovation option major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
             "visibility": "visible",
-            "status": "partially-verified"
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -16829,7 +16830,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "supply-chain-management-option",
-        "label": "Supply Chain Management Option",
+        "label": "Supply Chain Management option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -16840,7 +16841,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW Bothell Supply Chain Management option major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
             "visibility": "visible",
-            "status": "partially-verified"
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -16878,15 +16880,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell BBA curriculum hub",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -17580,11 +17574,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Bachelor of Economics overview",
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-        "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "label": "UW Bothell Bachelor of Economics curriculum",
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -19664,35 +19656,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "capstone-option",
-        "label": "Capstone Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Scoped section: Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and",
-            "url": "https://astro.washington.edu/undergraduate-program",
-            "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-seattle-atmospheric-and-climate-science",
@@ -20340,6 +20304,38 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "status": "partially-verified",
         "reason": "snapshot-only mode",
         "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": []
+  },
+  {
+    "id": "uw-seattle-classical-studies",
+    "campusId": "uw-seattle",
+    "title": "Classical Studies",
+    "shortTitle": "CS",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Classical Studies degree requirements",
+        "url": "https://classics.washington.edu/ba-classical-studies",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
@@ -21183,16 +21179,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Degree requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       },
       {
         "label": "UW Green River transfer equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -21217,9 +21211,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "Degree requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "low"
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -21232,8 +21225,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "strategy",
-        "label": "Strategy",
+        "id": "bs-option-family:data-science",
+        "label": "B.S. Data Science option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -21241,12 +21234,63 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science degree with a major in Economics: Strategy major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",
+            "label": "Degree requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "low"
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:financial-economics",
+        "label": "B.S. Financial Economics option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Degree requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:strategy",
+        "label": "B.S. Strategy option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Degree requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -23030,8 +23074,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
         "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -23056,9 +23099,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "Bachelor of Arts degree with a major in International Studies: Asia",
             "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-3de9e354-feff-4386-b164-15ad1dc4664d",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "low"
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -23083,9 +23125,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "Bachelor of Arts degree with a major in International Studies: Canada",
             "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-aee18906-122b-4160-8007-a1d7a61c0eb1",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "low"
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -23098,8 +23139,26 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "ba-option-family:jewish-studies",
-        "label": "B.A. Jewish Studies option",
+        "id": "ba-option-family:europe",
+        "label": "B.A. Europe option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "ba-option-family:latin-america-and-caribbean",
+        "label": "B.A. Latin America and Caribbean option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -25464,8 +25523,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Bachelor of Arts in CSS page.",
         "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -26412,12 +26470,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "BA in Sustainable Urban Development",
+        "label": "UW Tacoma Sustainable Urban Development degree requirements",
         "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
-        "sourceConfidence": "medium"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],

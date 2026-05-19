@@ -8,6 +8,10 @@ const TRANSFER_PLANNER_PATHWAY_ID_ALIASES_BY_PLAN: Record<string, Record<string,
     "freshmen-direct-pathway": "freshmen-direct-option",
     "upper-division-admission-pathway": "upper-division-admission-option",
   },
+  "uw-seattle-economics": {
+    "strategy": "bs-option-family:strategy",
+    "bs-option-family-strategy": "bs-option-family:strategy",
+  },
   "uw-seattle-geography": {
     "ba-option-family-in-geography-data-science": "data-science-option",
     "ba-option-family:in-geography-data-science": "data-science-option",

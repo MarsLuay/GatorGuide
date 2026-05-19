@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, TextInput, ScrollView, useWindowDimensions } from "react-native";
+import { Keyboard, View, Text, TextInput, ScrollView, useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -71,11 +71,27 @@ function getLocationPrimarySelection(value: string, language: ReturnType<typeof 
   }
 }
 
+function getQuestionIconName(question: Question): keyof typeof MaterialIcons.glyphMap {
+  switch (question.type) {
+    case "location":
+      return "place";
+    case "radio":
+      return "check-circle-outline";
+    case "section":
+      return "assignment";
+    case "textarea":
+      return "notes";
+    case "text":
+    default:
+      return "edit";
+  }
+}
+
 export default function QuestionnairePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
   const { isHydrated, state, setQuestionnaireAnswers } = useAppData();
   const { t, language } = useAppLanguage();
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
   const back = useBack(ROUTES.tabs);
   const questionnaireScrollRef = useRef<ScrollView>(null);
@@ -191,47 +207,47 @@ export default function QuestionnairePage() {
     [currentStep, sectionSummaries]
   );
   const currentSectionIndex = currentSection ? sectionSummaries.findIndex((section) => section.id === currentSection.id) : -1;
+  const answerableQuestions = useMemo(
+    () => questions.filter((question): question is Exclude<Question, { type: "section" }> => question.type !== "section"),
+    [questions]
+  );
+  const answeredQuestionCount = useMemo(
+    () => answerableQuestions.filter((question) => String(answers[question.id] ?? "").trim().length > 0).length,
+    [answerableQuestions, answers]
+  );
+  const completionLabel = `${answeredQuestionCount}/${answerableQuestions.length}`;
   const currentSectionPreviewQuestions = useMemo(() => {
     if (!currentQuestion || currentQuestion.type !== "section" || currentSectionIndex < 0) return [];
     const nextSectionStart = sectionSummaries[currentSectionIndex + 1]?.startIndex ?? questions.length;
-    return questions.slice(currentStep + 1, nextSectionStart).filter((question) => question.type !== "section").slice(0, width >= 1080 ? 4 : 2);
+    return questions.slice(currentStep + 1, nextSectionStart).filter((question) => question.type !== "section").slice(0, width >= 820 ? 4 : 2);
   }, [currentQuestion, currentSectionIndex, currentStep, questions, sectionSummaries, width]);
 
   const isCompactPhone = width < 390;
-  const isTablet = width >= 768;
-  const isWideLayout = width >= 1080;
-  const containerMaxWidth = isWideLayout ? 1280 : isTablet ? 960 : 680;
-  const earlyStateMaxWidth = Math.min(containerMaxWidth, isWideLayout ? 840 : isTablet ? 720 : 448);
+  const isWideLayout = width >= 820;
+  const usePhoneQuestionLayout = !isWideLayout;
+  const isDesktopLayout = width >= 1200;
+  const pageMaxWidth = isDesktopLayout ? 1280 : 1040;
+  const questionnaireMaxWidth = isWideLayout ? 900 : undefined;
+  const earlyStateMaxWidth = Math.min(pageMaxWidth, isDesktopLayout ? 760 : isWideLayout ? 680 : 448);
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
-    extraTop: isTablet ? 24 : 16,
+    extraTop: isWideLayout ? 24 : 16,
   });
-  const railWidth = width >= 1320 ? 320 : 292;
-  const horizontalPadding = isCompactPhone ? 16 : isTablet ? 24 : 20;
-  const headerPadding = isTablet ? 24 : isCompactPhone ? 18 : 20;
-  const cardPadding = isTablet ? 28 : isCompactPhone ? 20 : 22;
-  const textAreaMinHeight = isWideLayout ? 220 : isTablet ? 200 : 170;
-  const questionCardMinHeight = isWideLayout
-    ? Math.max(600, Math.min(height * 0.68, 760))
-    : isTablet
-      ? Math.max(500, Math.min(height * 0.62, 640))
-      : undefined;
-  const questionTitleMinHeight = isWideLayout ? 88 : isTablet ? 78 : 64;
-  const questionBodyMinHeight = typeof questionCardMinHeight === "number"
-    ? Math.max(240, questionCardMinHeight - (isWideLayout ? 250 : 220))
-    : undefined;
+  const horizontalPadding = isCompactPhone ? 16 : 24;
+  const cardPadding = isWideLayout ? 24 : 20;
+  const textAreaMinHeight = isWideLayout ? 180 : 150;
   const questionTitleStyle = {
-    fontSize: isTablet ? 26 : 22,
-    lineHeight: isTablet ? 36 : 30,
-    maxWidth: isWideLayout ? 720 : undefined,
+    fontSize: isWideLayout ? 22 : 19,
+    lineHeight: isWideLayout ? 30 : 26,
+    maxWidth: isWideLayout ? 680 : undefined,
   };
   const optionTextStyle = {
-    fontSize: isTablet ? 16 : 15,
-    lineHeight: isTablet ? 24 : 22,
+    fontSize: 15,
+    lineHeight: 22,
   };
   const inputTextStyle = {
-    fontSize: isTablet ? 16 : 15,
+    fontSize: 15,
     lineHeight: 22,
   };
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
@@ -267,32 +283,8 @@ export default function QuestionnairePage() {
       : "bg-emerald-500/10 border-emerald-500";
   const selectedOptionTextClass = isDark || isGreen ? "text-white" : "text-emerald-500";
   const selectedOptionIconColor = isDark || isGreen ? "#F9FAFB" : "#008f4e";
-  const sidebarItemClass = isDark
-    ? "bg-gray-900/75 border-gray-800"
-    : isGreen
-      ? "bg-emerald-900/70 border-emerald-800"
-      : isLight
-        ? "bg-white/95 border-emerald-200"
-        : "bg-white/95 border-gray-200";
-  const activeSidebarItemClass = isDark
-    ? "bg-gray-800 border-gray-600"
-    : isGreen
-      ? "bg-emerald-800 border-emerald-500"
-      : "bg-emerald-500/10 border-emerald-500";
-  const activeSidebarTextClass = isDark || isGreen ? "text-white" : "text-emerald-500";
-  const activeSidebarIconColor = isDark || isGreen ? "#F9FAFB" : "#10b981";
-  const accentTileClass = isDark
-    ? "bg-emerald-500/10 border-emerald-500/20"
-    : isGreen
-      ? "bg-emerald-500/15 border-emerald-300/20"
-      : "bg-emerald-500/10 border-emerald-200";
-  const progressPillClass = isDark
-    ? "bg-gray-800 border-gray-700"
-    : isGreen
-      ? "bg-emerald-950/60 border-emerald-700"
-      : "bg-emerald-50 border-emerald-200";
   const optionContentStyle = {
-    minHeight: isTablet ? 58 : 54,
+    minHeight: 48,
     flexDirection: "row" as const,
     alignItems: "center" as const,
     justifyContent: "space-between" as const,
@@ -443,6 +435,342 @@ export default function QuestionnairePage() {
     back();
   };
 
+  const renderSectionChips = () => (
+    <View
+      className={`border-b ${borderClass}`}
+      style={{ paddingHorizontal: cardPadding, paddingVertical: usePhoneQuestionLayout ? 14 : 16 }}
+    >
+      <View
+        style={
+          usePhoneQuestionLayout
+            ? { flexDirection: "column", gap: 8 }
+            : { flexDirection: "row", flexWrap: "wrap", gap: 8 }
+        }
+      >
+        {sectionSummaries.map((section, index) => {
+          const isActive = currentSection?.id === section.id;
+          const isComplete = currentStep > section.endIndex;
+
+          return (
+            <AnimatedChipPressable
+              key={section.id}
+              onPress={() => {
+                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                void handleJumpToSection(section.startIndex);
+              }}
+              className={`rounded-full border px-3 py-2 ${
+                isActive ? selectedOptionClass : idleOptionClass
+              }`}
+              containerStyle={usePhoneQuestionLayout ? { width: "100%" } : undefined}
+              style={
+                usePhoneQuestionLayout
+                  ? {
+                      width: "100%",
+                      minHeight: 44,
+                      justifyContent: "center",
+                    }
+                  : undefined
+              }
+              disabled={isActionLocked}
+            >
+              <View className="flex-row items-center" style={{ gap: 6 }}>
+                <MaterialIcons
+                  name={isComplete ? "check-circle" : isActive ? "radio-button-checked" : "radio-button-unchecked"}
+                  size={16}
+                  color={isComplete ? "#10b981" : isActive ? selectedOptionIconColor : placeholderColor}
+                />
+                <Text className={`${isActive ? selectedOptionTextClass : secondaryTextClass} text-xs font-semibold`}>
+                  {String(index + 1).padStart(2, "0")}
+                </Text>
+                <Text
+                  className={`${isActive ? selectedOptionTextClass : textClass} text-sm font-semibold`}
+                  numberOfLines={1}
+                  style={{ flexShrink: 1 }}
+                >
+                  {section.title}
+                </Text>
+              </View>
+            </AnimatedChipPressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+
+  const renderQuestionInput = () => {
+    if (currentQuestion.type === "section") {
+      return (
+        <View>
+          <Text className={`text-sm ${secondaryTextClass} mb-3`} style={{ lineHeight: 22 }}>
+            {t("questionnaire.sectionContinue")}
+          </Text>
+
+          {currentSectionPreviewQuestions.length > 0 ? (
+            <View
+              style={{
+                flexDirection: isWideLayout ? "row" : "column",
+                flexWrap: isWideLayout ? "wrap" : "nowrap",
+                gap: 12,
+              }}
+            >
+              {currentSectionPreviewQuestions.map((question, index) => (
+                <View
+                  key={question.id}
+                  className={`${inputBgClass} border rounded-lg px-3 py-3`}
+                  style={{ width: isWideLayout ? "48.8%" : "100%" }}
+                >
+                  <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
+                    {String(index + 1).padStart(2, "0")}
+                  </Text>
+                  <Text className={`${textClass} mt-2`} style={{ fontSize: 15, lineHeight: 22 }}>
+                    {question.question}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          ) : null}
+        </View>
+      );
+    }
+
+    if (currentQuestion.type === "textarea") {
+      return (
+        <TextInput
+          value={answers[currentQuestion.id]}
+          onChangeText={(value) => handleAnswer(currentQuestion.id, value)}
+          placeholder={currentQuestion.placeholder}
+          placeholderTextColor={placeholderColor}
+          multiline
+          textAlignVertical="top"
+          className={`${inputBgClass} ${textClass} border rounded-lg px-3 py-3`}
+          style={[inputTextStyle, { minHeight: textAreaMinHeight }]}
+        />
+      );
+    }
+
+    if (currentQuestion.type === "text") {
+      return (
+        <TextInput
+          value={answers[currentQuestion.id]}
+          onChangeText={(value) => handleAnswer(currentQuestion.id, value)}
+          placeholder={currentQuestion.placeholder}
+          placeholderTextColor={placeholderColor}
+          className={`${inputBgClass} ${textClass} border rounded-lg px-3 py-2`}
+          style={inputTextStyle}
+        />
+      );
+    }
+
+    if (currentQuestion.type === "location") {
+      return (
+        <View>
+          <Text className={`text-sm ${secondaryTextClass} mb-4`} style={{ lineHeight: 22 }}>
+            {t("questionnaire.locationHint")}
+          </Text>
+
+          <View style={{ gap: 10 }}>
+            {currentQuestion.options.map((option) => {
+              const isSelected = selectedLocationMode === option.key;
+
+              return (
+                <AnimatedChipPressable
+                  key={option.key}
+                  onPress={() => {
+                    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setLocationModeDraft(option.key);
+
+                    if (
+                      option.key === "washington_only" ||
+                      option.key === "near_current_location" ||
+                      option.key === "no_preference"
+                    ) {
+                      handleAnswer(currentQuestion.id, option.key);
+                      return;
+                    }
+
+                    if (option.key === "specific_state") {
+                      handleAnswer(
+                        currentQuestion.id,
+                        parsedLocation.kind === "state" ? buildStateLocationPreference(parsedLocation.state) : ""
+                      );
+                      return;
+                    }
+
+                    if (option.key === "specific_region") {
+                      handleAnswer(
+                        currentQuestion.id,
+                        parsedLocation.kind === "region" ? buildRegionLocationPreference(parsedLocation.regionKey) : ""
+                      );
+                      return;
+                    }
+
+                    handleAnswer(
+                      currentQuestion.id,
+                      parsedLocation.kind === "other" ? buildOtherLocationPreference(parsedLocation.otherText) : ""
+                    );
+                  }}
+                  className={`rounded-lg border px-3 py-2 ${
+                    isSelected ? selectedOptionClass : idleOptionClass
+                  }`}
+                  containerStyle={{ width: "100%" }}
+                >
+                  <View style={optionContentStyle}>
+                    <Text className={isSelected ? selectedOptionTextClass : textClass} style={[optionTextStyle, { flex: 1 }]}>
+                      {option.label}
+                    </Text>
+                    {isSelected ? <MaterialIcons name="check-circle" size={18} color={selectedOptionIconColor} /> : null}
+                  </View>
+                </AnimatedChipPressable>
+              );
+            })}
+          </View>
+
+          {selectedLocationMode === "specific_state" ? (
+            <View className="mt-5">
+              <Text className={`text-sm font-medium ${textClass} mb-3`}>
+                {t("questionnaire.locationSelectState")}
+              </Text>
+              <View className="flex-row flex-wrap gap-2">
+                {US_STATE_OPTIONS.map((stateOption) => {
+                  const isSelected = parsedLocation.kind === "state" && parsedLocation.state === stateOption;
+
+                  return (
+                    <AnimatedChipPressable
+                      key={stateOption}
+                      onPress={() => {
+                        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                        setLocationModeDraft("specific_state");
+                        handleAnswer(currentQuestion.id, buildStateLocationPreference(stateOption));
+                      }}
+                      className={`px-3 py-2 rounded-lg border ${
+                        isSelected ? selectedOptionClass : idleOptionClass
+                      }`}
+                    >
+                      <Text className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`}>
+                        {stateOption}
+                      </Text>
+                    </AnimatedChipPressable>
+                  );
+                })}
+              </View>
+            </View>
+          ) : null}
+
+          {selectedLocationMode === "specific_region" ? (
+            <View className="mt-5">
+              <Text className={`text-sm font-medium ${textClass} mb-3`}>
+                {t("questionnaire.locationSelectRegion")}
+              </Text>
+              <View style={{ gap: 10 }}>
+                {currentQuestion.regionOptions.map((option) => {
+                  const isSelected = parsedLocation.kind === "region" && parsedLocation.regionKey === option.key;
+
+                  return (
+                    <AnimatedChipPressable
+                      key={option.key}
+                      onPress={() => {
+                        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                        setLocationModeDraft("specific_region");
+                        handleAnswer(currentQuestion.id, buildRegionLocationPreference(option.key));
+                      }}
+                      className={`rounded-lg border px-3 py-2 ${
+                        isSelected ? selectedOptionClass : idleOptionClass
+                      }`}
+                      containerStyle={{ width: "100%" }}
+                    >
+                      <View style={optionContentStyle}>
+                        <Text
+                          className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`}
+                          style={[optionTextStyle, { flex: 1 }]}
+                        >
+                          {option.label}
+                        </Text>
+                        {isSelected ? <MaterialIcons name="check-circle" size={18} color={selectedOptionIconColor} /> : null}
+                      </View>
+                    </AnimatedChipPressable>
+                  );
+                })}
+              </View>
+            </View>
+          ) : null}
+
+          {selectedLocationMode === "other" ? (
+            <View className="mt-5">
+              <TextInput
+                value={parsedLocation.kind === "other" ? parsedLocation.otherText : ""}
+                onChangeText={(value) => handleAnswer(currentQuestion.id, buildOtherLocationPreference(value))}
+                placeholder={t("questionnaire.locationOtherPlaceholder")}
+                placeholderTextColor={placeholderColor}
+                className={`${inputBgClass} ${textClass} border rounded-lg px-3 py-2`}
+                style={inputTextStyle}
+              />
+            </View>
+          ) : null}
+        </View>
+      );
+    }
+
+    if (currentQuestion.type === "radio") {
+      return (
+        <View
+          style={{
+            width: "100%",
+            flexDirection: usePhoneQuestionLayout ? "column" : "row",
+            flexWrap: usePhoneQuestionLayout ? "nowrap" : "wrap",
+            gap: usePhoneQuestionLayout ? 8 : 8,
+          }}
+        >
+          {currentQuestion.options.map((option) => {
+            const isSelected = answers[currentQuestion.id] === option;
+
+            return (
+              <AnimatedChipPressable
+                key={option}
+                onPress={() => {
+                  void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  handleAnswer(currentQuestion.id, option);
+                }}
+                className={`rounded-lg border px-3 py-2 ${
+                  isSelected ? selectedOptionClass : idleOptionClass
+                }`}
+                containerStyle={
+                  usePhoneQuestionLayout
+                    ? { width: "100%" }
+                    : {
+                        flexGrow: 1,
+                        flexBasis: 220,
+                        minWidth: 220,
+                      }
+                }
+                style={usePhoneQuestionLayout ? { width: "100%" } : undefined}
+              >
+                <View
+                  style={{
+                    minHeight: usePhoneQuestionLayout ? 46 : 44,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                    gap: 8,
+                  }}
+                >
+                  <Text
+                    className={isSelected ? `${selectedOptionTextClass} font-semibold` : textClass}
+                    style={[optionTextStyle, { textAlign: "center", flexShrink: 1 }]}
+                  >
+                    {option}
+                  </Text>
+                  {isSelected ? <MaterialIcons name="check-circle" size={18} color={selectedOptionIconColor} /> : null}
+                </View>
+              </AnimatedChipPressable>
+            );
+          })}
+        </View>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <ScreenBackground>
       <ScrollView
@@ -450,11 +778,13 @@ export default function QuestionnairePage() {
         className="flex-1"
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+        onScrollBeginDrag={Keyboard.dismiss}
       >
         <View
           style={{
             width: "100%",
-            maxWidth: containerMaxWidth,
+            maxWidth: pageMaxWidth,
             alignSelf: "center",
             paddingHorizontal: horizontalPadding,
           }}
@@ -462,377 +792,101 @@ export default function QuestionnairePage() {
           <View
             style={{
               width: "100%",
-              flexDirection: isWideLayout ? "row" : "column",
-              alignItems: "stretch",
-              gap: 24,
+              maxWidth: questionnaireMaxWidth,
+              alignSelf: "center",
             }}
           >
-            {isWideLayout ? (
-              <View style={{ width: railWidth, flexShrink: 0 }}>
-                <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: cardPadding }}>
-                  <Text className={`text-xs uppercase ${secondaryTextClass}`}>
-                    {t("questionnaire.title")}
-                  </Text>
-                  <Text className={`mt-3 font-semibold ${textClass}`} style={{ fontSize: 24, lineHeight: 32 }}>
-                    {currentSection?.title ?? t("questionnaire.title")}
-                  </Text>
-                  <Text className={`mt-2 text-sm ${secondaryTextClass}`}>
-                    {t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
-                  </Text>
+            <PageBackButton
+              onPress={() => {
+                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                void handleExitQuestionnaire();
+              }}
+              label={t("general.back")}
+              textClassName={secondaryTextClass}
+              disabled={isActionLocked}
+            />
 
-                  <View className={`mt-6 h-2 ${progressBgClass} rounded-full overflow-hidden`}>
-                    <View className="h-full bg-emerald-500" style={{ width: `${progress}%` }} />
+            <View className="pb-3">
+              <Text className={`text-2xl ${textClass} font-semibold`}>
+                {t("questionnaire.title")}
+              </Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                {currentSection?.title ?? t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
+              </Text>
+            </View>
+
+            <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
+              <View className="bg-emerald-500/5 px-6 py-5 border-b border-emerald-500/20">
+                <View className="flex-row items-center">
+                  <View className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 items-center justify-center mr-4">
+                    <MaterialIcons name="assignment" size={24} color="#008f4e" />
                   </View>
 
-                  <View className="mt-6" style={{ gap: 12 }}>
-                    {sectionSummaries.map((section, index) => {
-                      const isActive = currentSection?.id === section.id;
-                      const isComplete = currentStep > section.endIndex;
-                      const sectionDescription =
-                        isActive && currentQuestion.type !== "section" ? currentQuestion.question : null;
-
-                      return (
-                        <AnimatedChipPressable
-                          key={section.id}
-                          onPress={() => {
-                            void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                            void handleJumpToSection(section.startIndex);
-                          }}
-                          className={`rounded-2xl border px-4 py-4 ${
-                            isActive ? activeSidebarItemClass : sidebarItemClass
-                          }`}
-                          containerStyle={{ width: "100%" }}
-                          disabled={isActionLocked}
-                        >
-                          <View className="flex-row items-start justify-between">
-                            <View style={{ flex: 1, minWidth: 0, paddingRight: 12 }}>
-                              <Text className={isActive ? `${activeSidebarTextClass} text-xs font-semibold` : `text-xs font-semibold ${secondaryTextClass}`}>
-                                {String(index + 1).padStart(2, "0")}
-                              </Text>
-                              <Text
-                                className={`${isActive ? activeSidebarTextClass : textClass} mt-2 font-semibold`}
-                                style={{ fontSize: 15, lineHeight: 22 }}
-                              >
-                                {section.title}
-                              </Text>
-                              {sectionDescription ? (
-                                <Text className={`mt-2 text-sm ${secondaryTextClass}`} numberOfLines={3}>
-                                  {sectionDescription}
-                                </Text>
-                              ) : null}
-                            </View>
-
-                            <MaterialIcons
-                              name={isComplete ? "check-circle" : isActive ? "radio-button-checked" : "radio-button-unchecked"}
-                              size={18}
-                              color={isComplete ? "#10b981" : isActive ? activeSidebarIconColor : placeholderColor}
-                            />
-                          </View>
-                        </AnimatedChipPressable>
-                      );
-                    })}
-                  </View>
-                </View>
-              </View>
-            ) : null}
-
-            <View style={{ flex: 1, minWidth: 0, width: "100%", maxWidth: isWideLayout ? 820 : undefined, alignSelf: "center" }}>
-              <PageBackButton
-                onPress={() => {
-                  void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  void handleExitQuestionnaire();
-                }}
-                label={t("general.back")}
-                textClassName={secondaryTextClass}
-                disabled={isActionLocked}
-              />
-
-              <View className={`${cardBgClass} border rounded-3xl`} style={{ padding: headerPadding }}>
-                <View className="flex-row items-start">
-                  <View className={`h-11 w-11 mr-4 items-center justify-center rounded-2xl border ${accentTileClass}`}>
-                    <MaterialIcons name="tune" size={22} color="#10b981" />
-                  </View>
-                  <View style={{ flex: 1, minWidth: 0 }}>
-                    <View className="flex-row items-start justify-between" style={{ gap: 12 }}>
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text className={`${textClass} font-semibold`} style={{ fontSize: isTablet ? 28 : 22, lineHeight: isTablet ? 34 : 28 }}>
-                          {t("questionnaire.title")}
-                        </Text>
-                        {!isWideLayout && currentSection ? (
-                          <Text className={`mt-2 ${secondaryTextClass}`} numberOfLines={2} style={{ fontSize: 14, lineHeight: 20 }}>
-                            {currentSection.title}
-                          </Text>
-                        ) : null}
-                      </View>
-                      <View className={`${progressPillClass} border rounded-full px-3 py-2`}>
-                        <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
-                          {t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
+                  <View className="flex-1 min-w-0">
+                    <Text className={`${textClass} ${isWideLayout ? "text-xl" : "text-lg"} font-semibold`} numberOfLines={2}>
+                      {t("questionnaire.title")}
+                    </Text>
+                    <View className="mt-2 flex-row flex-wrap items-center gap-2">
+                      <View className="bg-emerald-500/10 rounded-full px-2.5 py-1 border border-emerald-500/15">
+                        <Text className="text-emerald-500 text-xs font-semibold">
+                          {completionLabel}
                         </Text>
                       </View>
+                      <Text className={`${secondaryTextClass} text-xs`}>
+                        {t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
+                      </Text>
                     </View>
                   </View>
                 </View>
 
-                <View className={`mt-5 h-2 ${progressBgClass} rounded-full overflow-hidden`}>
+                <View className={`mt-4 h-2 ${progressBgClass} rounded-full overflow-hidden`}>
                   <View className="h-full bg-emerald-500" style={{ width: `${progress}%` }} />
                 </View>
               </View>
 
-              <View
-                className={`${cardBgClass} border rounded-3xl mt-5`}
-                style={{ padding: cardPadding, minHeight: questionCardMinHeight }}
-              >
-                <View style={{ minHeight: questionTitleMinHeight, marginBottom: 20 }}>
-                  {currentSection ? (
-                    <Text className={`text-xs uppercase ${secondaryTextClass}`} style={{ marginBottom: 10 }}>
-                      {currentSection.title}
-                    </Text>
-                  ) : null}
-                  <Text className={`${textClass} font-semibold`} style={questionTitleStyle}>
-                    {currentQuestion.question}
-                  </Text>
-                </View>
+              {renderSectionChips()}
 
-                <View style={{ flexGrow: 1, minHeight: questionBodyMinHeight }}>
-                {currentQuestion.type === "section" ? (
-                  <View>
-                    <Text className={`text-sm ${secondaryTextClass} mb-3`} style={{ lineHeight: 22 }}>
-                      {t("questionnaire.sectionContinue")}
-                    </Text>
-
-                    {currentSectionPreviewQuestions.length > 0 ? (
-                      <View
-                        style={{
-                          flexDirection: isWideLayout ? "row" : "column",
-                          flexWrap: isWideLayout ? "wrap" : "nowrap",
-                          gap: 12,
-                        }}
-                      >
-                        {currentSectionPreviewQuestions.map((question, index) => (
-                          <View
-                            key={question.id}
-                            className={`${inputBgClass} border rounded-2xl px-4 py-4`}
-                            style={{ width: isWideLayout ? "48.8%" : "100%" }}
-                          >
-                            <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
-                              {String(index + 1).padStart(2, "0")}
-                            </Text>
-                            <Text className={`${textClass} mt-2`} style={{ fontSize: 15, lineHeight: 22 }}>
-                              {question.question}
-                            </Text>
-                          </View>
-                        ))}
+              <View style={{ padding: cardPadding }}>
+                {usePhoneQuestionLayout ? (
+                  <View className="min-w-0">
+                    <View className="flex-row items-start min-w-0">
+                      <MaterialIcons name={getQuestionIconName(currentQuestion)} size={20} color="#008f4e" />
+                      <View className="flex-1 ml-3 min-w-0">
+                        {currentQuestion.type !== "section" && currentSection ? (
+                          <Text className={`text-sm ${secondaryTextClass} mb-1`}>
+                            {currentSection.title}
+                          </Text>
+                        ) : null}
+                        <Text className={`${textClass} font-semibold`} style={questionTitleStyle}>
+                          {currentQuestion.question}
+                        </Text>
                       </View>
-                    ) : null}
-                  </View>
-                ) : null}
-
-                {currentQuestion.type === "textarea" ? (
-                  <TextInput
-                    value={answers[currentQuestion.id]}
-                    onChangeText={(value) => handleAnswer(currentQuestion.id, value)}
-                    placeholder={currentQuestion.placeholder}
-                    placeholderTextColor={placeholderColor}
-                    multiline
-                    textAlignVertical="top"
-                    className={`${inputBgClass} ${textClass} border rounded-2xl px-4 py-3`}
-                    style={[inputTextStyle, { minHeight: textAreaMinHeight }]}
-                  />
-                ) : null}
-
-                {currentQuestion.type === "text" ? (
-                  <TextInput
-                    value={answers[currentQuestion.id]}
-                    onChangeText={(value) => handleAnswer(currentQuestion.id, value)}
-                    placeholder={currentQuestion.placeholder}
-                    placeholderTextColor={placeholderColor}
-                    className={`${inputBgClass} ${textClass} border rounded-2xl px-4 py-3`}
-                    style={inputTextStyle}
-                  />
-                ) : null}
-
-                {currentQuestion.type === "location" ? (
-                  <View>
-                    <Text className={`text-sm ${secondaryTextClass} mb-4`} style={{ lineHeight: 22 }}>
-                      {t("questionnaire.locationHint")}
-                    </Text>
-
-                    <View style={{ gap: 12 }}>
-                      {currentQuestion.options.map((option) => {
-                        const isSelected = selectedLocationMode === option.key;
-
-                        return (
-                          <AnimatedChipPressable
-                            key={option.key}
-                            onPress={() => {
-                              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                              setLocationModeDraft(option.key);
-
-                              if (
-                                option.key === "washington_only" ||
-                                option.key === "near_current_location" ||
-                                option.key === "no_preference"
-                              ) {
-                                handleAnswer(currentQuestion.id, option.key);
-                                return;
-                              }
-
-                              if (option.key === "specific_state") {
-                                handleAnswer(
-                                  currentQuestion.id,
-                                  parsedLocation.kind === "state" ? buildStateLocationPreference(parsedLocation.state) : ""
-                                );
-                                return;
-                              }
-
-                              if (option.key === "specific_region") {
-                                handleAnswer(
-                                  currentQuestion.id,
-                                  parsedLocation.kind === "region" ? buildRegionLocationPreference(parsedLocation.regionKey) : ""
-                                );
-                                return;
-                              }
-
-                              handleAnswer(
-                                currentQuestion.id,
-                                parsedLocation.kind === "other" ? buildOtherLocationPreference(parsedLocation.otherText) : ""
-                              );
-                            }}
-                            className={`rounded-2xl border px-4 py-2 ${
-                              isSelected ? selectedOptionClass : idleOptionClass
-                            }`}
-                            containerStyle={{ width: "100%" }}
-                          >
-                            <View style={optionContentStyle}>
-                              <View style={{ flex: 1, minWidth: 0 }}>
-                                <Text className={isSelected ? selectedOptionTextClass : textClass} style={optionTextStyle}>
-                                  {option.label}
-                                </Text>
-                              </View>
-                              {isSelected ? <MaterialIcons name="check-circle" size={20} color={selectedOptionIconColor} /> : null}
-                            </View>
-                          </AnimatedChipPressable>
-                        );
-                      })}
                     </View>
-
-                    {selectedLocationMode === "specific_state" ? (
-                      <View className="mt-5">
-                        <Text className={`text-sm font-medium ${textClass} mb-3`}>
-                          {t("questionnaire.locationSelectState")}
-                        </Text>
-                        <View className="flex-row flex-wrap gap-2">
-                          {US_STATE_OPTIONS.map((stateOption) => {
-                            const isSelected = parsedLocation.kind === "state" && parsedLocation.state === stateOption;
-
-                            return (
-                              <AnimatedChipPressable
-                                key={stateOption}
-                                onPress={() => {
-                                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                                  setLocationModeDraft("specific_state");
-                                  handleAnswer(currentQuestion.id, buildStateLocationPreference(stateOption));
-                                }}
-                                className={`px-3 py-2 rounded-xl border ${
-                                  isSelected ? selectedOptionClass : borderClass
-                                }`}
-                              >
-                                <Text className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`}>
-                                  {stateOption}
-                                </Text>
-                              </AnimatedChipPressable>
-                            );
-                          })}
-                        </View>
-                      </View>
-                    ) : null}
-
-                    {selectedLocationMode === "specific_region" ? (
-                      <View className="mt-5">
-                        <Text className={`text-sm font-medium ${textClass} mb-3`}>
-                          {t("questionnaire.locationSelectRegion")}
-                        </Text>
-                        <View style={{ gap: 10 }}>
-                          {currentQuestion.regionOptions.map((option) => {
-                            const isSelected = parsedLocation.kind === "region" && parsedLocation.regionKey === option.key;
-
-                            return (
-                              <AnimatedChipPressable
-                                key={option.key}
-                                onPress={() => {
-                                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                                  setLocationModeDraft("specific_region");
-                                  handleAnswer(currentQuestion.id, buildRegionLocationPreference(option.key));
-                                }}
-                                className={`rounded-2xl border px-4 py-2 ${
-                                  isSelected ? selectedOptionClass : borderClass
-                                }`}
-                                containerStyle={{ width: "100%" }}
-                              >
-                                <View style={optionContentStyle}>
-                                  <View style={{ flex: 1, minWidth: 0 }}>
-                                    <Text className={`${isSelected ? selectedOptionTextClass : textClass} font-semibold`} style={optionTextStyle}>
-                                      {option.label}
-                                    </Text>
-                                  </View>
-                                  {isSelected ? <MaterialIcons name="check-circle" size={18} color={selectedOptionIconColor} /> : null}
-                                </View>
-                              </AnimatedChipPressable>
-                            );
-                          })}
-                        </View>
-                      </View>
-                    ) : null}
-
-                    {selectedLocationMode === "other" ? (
-                      <View className="mt-5">
-                        <TextInput
-                          value={parsedLocation.kind === "other" ? parsedLocation.otherText : ""}
-                          onChangeText={(value) => handleAnswer(currentQuestion.id, buildOtherLocationPreference(value))}
-                          placeholder={t("questionnaire.locationOtherPlaceholder")}
-                          placeholderTextColor={placeholderColor}
-                          className={`${inputBgClass} ${textClass} border rounded-2xl px-4 py-3`}
-                          style={inputTextStyle}
-                        />
-                      </View>
-                    ) : null}
+                    <View className="mt-5">
+                      {renderQuestionInput()}
+                    </View>
                   </View>
-                ) : null}
-
-                {currentQuestion.type === "radio" ? (
-                  <View style={{ gap: 12 }}>
-                    {currentQuestion.options.map((option) => {
-                      const isSelected = answers[currentQuestion.id] === option;
-
-                      return (
-                        <AnimatedChipPressable
-                          key={option}
-                          onPress={() => {
-                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                            handleAnswer(currentQuestion.id, option);
-                          }}
-                          className={`rounded-2xl border px-4 py-2 ${
-                            isSelected ? selectedOptionClass : idleOptionClass
-                          }`}
-                          containerStyle={{ width: "100%" }}
-                        >
-                          <View style={optionContentStyle}>
-                            <View style={{ flex: 1, minWidth: 0 }}>
-                              <Text className={isSelected ? selectedOptionTextClass : textClass} style={optionTextStyle}>
-                                {option}
-                              </Text>
-                            </View>
-                            {isSelected ? <MaterialIcons name="check-circle" size={20} color={selectedOptionIconColor} /> : null}
-                          </View>
-                        </AnimatedChipPressable>
-                      );
-                    })}
+                ) : (
+                  <View className="flex-row items-start min-w-0">
+                    <MaterialIcons name={getQuestionIconName(currentQuestion)} size={20} color="#008f4e" />
+                    <View className="flex-1 ml-3 min-w-0">
+                      {currentQuestion.type !== "section" && currentSection ? (
+                        <Text className={`text-sm ${secondaryTextClass} mb-1`}>
+                          {currentSection.title}
+                        </Text>
+                      ) : null}
+                      <Text className={`${textClass} font-semibold`} style={questionTitleStyle}>
+                        {currentQuestion.question}
+                      </Text>
+                      <View className="mt-5">
+                        {renderQuestionInput()}
+                      </View>
+                    </View>
                   </View>
-                ) : null}
-                </View>
+                )}
 
                 <View className={`mt-6 pt-6 border-t ${borderClass}`} style={{ gap: 12 }}>
-                  <View style={{ flexDirection: isTablet ? "row" : "column", gap: 12 }}>
+                  <View style={{ flexDirection: isWideLayout ? "row" : "column", gap: 12 }}>
                     <AppButton
                       onPress={() => {
                         void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -842,8 +896,8 @@ export default function QuestionnairePage() {
                       variant="secondary"
                       icon={(color) => <MaterialIcons name="arrow-back" size={18} color={color} />}
                       style={{
-                        flex: isTablet ? 1 : undefined,
-                        width: isTablet ? undefined : "100%",
+                        flex: isWideLayout ? 1 : undefined,
+                        width: isWideLayout ? undefined : "100%",
                       }}
                       disabled={!isHydrated || isActionLocked || currentStep === 0}
                     />
@@ -868,8 +922,8 @@ export default function QuestionnairePage() {
                         />
                       )}
                       style={{
-                        flex: isTablet ? 1 : undefined,
-                        width: isTablet ? undefined : "100%",
+                        flex: isWideLayout ? 1 : undefined,
+                        width: isWideLayout ? undefined : "100%",
                       }}
                       disabled={!isHydrated || isActionLocked}
                     />

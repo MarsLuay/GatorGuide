@@ -31216,23 +31216,23 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
     "error": null
   },
   {
-    "id": "uw-tacoma-sustainable-urban-development:source-block:generic-official-html-page",
+    "id": "uw-tacoma-sustainable-urban-development:source-block:uw-tacoma-html-degree-page",
     "ownerId": "uw-tacoma-sustainable-urban-development",
     "ownerTitle": "Sustainable Urban Development (BA)",
     "planId": "uw-tacoma-sustainable-urban-development",
     "pathwayId": null,
     "campusId": "uw-tacoma",
-    "primaryParserType": "generic-html",
+    "primaryParserType": "html-degree-page",
     "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-    "primarySourceLabel": "BA in Sustainable Urban Development",
-    "parserType": "generic-html",
-    "adapterId": "generic-official-html-page",
-    "adapterFamily": "Generic official HTML pages",
+    "primarySourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+    "parserType": "html-degree-page",
+    "adapterId": "uw-tacoma-html-degree-page",
+    "adapterFamily": "UW Tacoma HTML degree pages",
     "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
     "coveredSourceUrls": [
       "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development"
     ],
-    "sourceLabel": "BA in Sustainable Urban Development",
+    "sourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
     "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
     "canCreateSchedulableRows": true,
@@ -31265,274 +31265,141 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
       {
         "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "rawLine": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
+        "sectionTitle": "ADMISSION REQUIREMENTS",
+        "rawLine": "ADMISSION REQUIREMENTS",
         "courseCodesExtracted": [],
-        "detectedSectionRole": "non-schedulable-course-list",
-        "schedulable": false,
-        "reason": "course-list/navigation section is not transfer-plannable by itself",
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "admission or preparation requirement heading",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: ADMISSION REQUIREMENTS Raw line: ADMISSION REQUIREMENTS Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
       },
       {
         "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "rawLine": "Contact",
+        "sectionTitle": "Program Overview",
+        "rawLine": "Program Overview",
         "courseCodesExtracted": [],
-        "detectedSectionRole": "non-schedulable-course-list",
-        "schedulable": false,
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: Contact Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Program Overview Raw line: Program Overview Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
         "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "rawLine": "School of Urban Studies",
+        "sectionTitle": "Admission Requirements",
+        "rawLine": "Admission Requirements",
         "courseCodesExtracted": [],
-        "detectedSectionRole": "non-schedulable-course-list",
-        "schedulable": false,
-        "reason": "inherits nearby source-section role",
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "admission or preparation requirement heading",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: School of Urban Studies Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Admission Requirements Raw line: Admission Requirements Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
       },
       {
         "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "rawLine": "uwturban@uw.edu",
+        "sectionTitle": "If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development.",
+        "rawLine": "If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development.",
         "courseCodesExtracted": [],
-        "detectedSectionRole": "non-schedulable-course-list",
-        "schedulable": false,
-        "reason": "inherits nearby source-section role",
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "admission or preparation requirement heading",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: uwturban@uw.edu Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
       },
       {
         "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "rawLine": "253-692-5880",
+        "sectionTitle": "If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development.",
+        "rawLine": "Cumulative GPA of 2.0 in all college coursework",
         "courseCodesExtracted": [],
-        "detectedSectionRole": "non-schedulable-course-list",
-        "schedulable": false,
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
         "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: 253-692-5880 Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
-      }
-    ],
-    "sourceSectionFilterAuditLines": [
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: Contact Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: School of Urban Studies Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: uwturban@uw.edu Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: 253-692-5880 Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: inherits nearby source-section role Issue: none"
-    ],
-    "parserSequenceChoiceAuditRows": [],
-    "parserSequenceChoiceAuditLines": [],
-    "sourceScopeAuditLines": [],
-    "resolutionStrategy": "cached-snapshot",
-    "ok": true,
-    "parseConfidence": "medium",
-    "parsedUwCourseCodes": [],
-    "approvedFilterUwCourseCodes": [],
-    "electiveListUwCourseCodes": [],
-    "supportOnlyUwCourseCodes": [],
-    "supportLists": [],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
-    "requirementCueLines": [
-      "Graduation Requirements",
-      "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:",
-      "Graduation Requirements:",
-      "Major GPA: minimum 2.0 in each course required for the major",
-      "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better."
-    ],
-    "chooseStatements": [],
-    "pathwayLabels": [],
-    "qualitySignals": [
-      {
-        "severity": "warning",
-        "code": "no-parsed-uw-course-codes",
-        "message": "The official source parsed successfully but did not yield usable UW course codes.",
-        "details": "source-role=primary-degree-requirements; requirement-cues=5"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: Cumulative GPA of 2.0 in all college coursework Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
-        "severity": "note",
-        "code": "snapshot-fallback-used",
-        "message": "Parsing relied on a cached snapshot after a live-source failure.",
-        "details": "snapshot-only mode"
-      },
-      {
-        "severity": "note",
-        "code": "snapshot-fallback-heading-context-missing",
-        "message": "Cached snapshot fallback did not include source heading metadata, which limits section-scoped parser validation.",
-        "details": "snapshot=C:\\Users\\marwa\\GatorGuide\\source\\.tmp\\transfer-planner-requirement-source-snapshots\\uw-tacoma-sustainable-urban-development-431c82e445.txt; requirement-cues=5; choose-statements=0"
-      }
-    ],
-    "parsedRequirementAtomCandidates": [],
-    "parsedDegreeMapBlockCandidates": [
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-01-sustainable-urban-development-ba-parsed-official-source-requirements",
-        "title": "Sustainable Urban Development (BA) parsed official source requirements",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-02-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-03-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-04-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-05-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-06-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-07-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-08-sustainable-urban-development-ba-parsed-official-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      },
-      {
-        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-90-requirement-cues",
-        "title": "Sustainable Urban Development (BA) parsed official requirement cues",
-        "uwCourseCodes": [],
-        "sourceLineHints": [
-          "Graduation Requirements",
-          "Graduation Requirements:",
-          "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:"
-        ]
-      }
-    ],
-    "snapshotPath": ".tmp/transfer-planner-requirement-source-snapshots/uw-tacoma-sustainable-urban-development-431c82e445.txt",
-    "usedSnapshotFallback": true,
-    "snapshotFallbackReason": "snapshot-only mode",
-    "error": null
-  },
-  {
-    "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-block:generic-official-html-page",
-    "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-    "ownerTitle": "Sustainable Urban Development (BA) - GIS option",
-    "planId": "uw-tacoma-sustainable-urban-development",
-    "pathwayId": "gis-option",
-    "campusId": "uw-tacoma",
-    "primaryParserType": "generic-html",
-    "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-    "primarySourceLabel": "BA in Sustainable Urban Development",
-    "parserType": "generic-html",
-    "adapterId": "generic-official-html-page",
-    "adapterFamily": "Generic official HTML pages",
-    "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-    "coveredSourceUrls": [
-      "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development"
-    ],
-    "sourceLabel": "BA in Sustainable Urban Development",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "canCreateSchedulableRows": true,
-    "sourceScope": {
-      "canCreateRequiredRows": true,
-      "canCreateOptionGroups": true,
-      "canCreateCreditBuckets": true,
-      "canCreateCategoryOptions": true,
-      "canCreateApprovedFilters": false,
-      "canCreateElectiveLists": false,
-      "canCreateSequencingHints": false,
-      "canCreateAdmissionPrepRows": false,
-      "canCreateScheduleRows": true,
-      "supportOnly": false,
-      "nonSchedulable": false
-    },
-    "canCreateRequiredRows": true,
-    "canCreateOptionGroups": true,
-    "canCreateCreditBuckets": true,
-    "canCreateCategoryOptions": true,
-    "canCreateApprovedFilters": false,
-    "canCreateElectiveLists": false,
-    "canCreateSequencingHints": false,
-    "canCreateAdmissionPrepRows": false,
-    "canCreateScheduleRows": true,
-    "supportOnly": false,
-    "nonSchedulable": false,
-    "sourceSectionAudit": null,
-    "sourceSectionFilterAuditRows": [
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "Major electives (20 credits)",
+        "sectionTitle": "If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development.",
+        "rawLine": "Completion of a minimum of 40 college-level credits",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: Completion of a minimum of 40 college-level credits Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development.",
+        "rawLine": "5 credits of English composition",
+        "courseCodesExtracted": [
+          "ENGL 131"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "primary requirement cue",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: 5 credits of English composition Course codes extracted: ENGL 131 Detected section role: primary-requirement-section Schedulable: yes Reason: primary requirement cue Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Transfer students meeting the above requirements may apply directly to the major.",
+        "rawLine": "Transfer students meeting the above requirements may apply directly to the major.",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "admission or preparation requirement heading",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Transfer students meeting the above requirements may apply directly to the major. Raw line: Transfer students meeting the above requirements may apply directly to the major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Transfer students meeting the above requirements may apply directly to the major.",
+        "rawLine": "First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Transfer students meeting the above requirements may apply directly to the major. Raw line: First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Curriculum",
+        "rawLine": "Curriculum",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Curriculum Raw line: Curriculum Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program.",
         "courseCodesExtracted": [],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
-        "reason": "credit-bucket requirement cue",
+        "reason": "inherits nearby source-section role",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: Major electives (20 credits) Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
+        "sectionTitle": "Major Requirements",
         "rawLine": "T URB 101 Exploring Cities (5)",
         "courseCodesExtracted": [
           "TURB 101"
@@ -31541,28 +31408,13 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 101 Exploring Cities (5) Course codes extracted: TURB 101 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 101 Exploring Cities (5) Course codes extracted: TURB 101 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T URB 102 City in World Development T URB 110 Urban Data Analysis (5)",
-        "courseCodesExtracted": [
-          "TURB 102",
-          "TURB 110"
-        ],
-        "detectedSectionRole": "primary-requirement-section",
-        "schedulable": true,
-        "reason": "course row without prerequisite-only or course-list section cues",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 102 City in World Development T URB 110 Urban Data Analysis (5) Course codes extracted: TURB 102, TURB 110 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T URB 103 Urban Studies in Practice (1)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 103 Urban Studies in Practice (3)",
         "courseCodesExtracted": [
           "TURB 103"
         ],
@@ -31570,82 +31422,40 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 103 Urban Studies in Practice (1) Course codes extracted: TURB 103 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 103 Urban Studies in Practice (3) Course codes extracted: TURB 103 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T SUD 222 Introduction to Sustainability (5)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 110 Urban Data Analysis (5)",
         "courseCodesExtracted": [
-          "TSUD 222"
+          "TURB 110"
         ],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 222 Introduction to Sustainability (5) Course codes extracted: TSUD 222 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 110 Urban Data Analysis (5) Course codes extracted: TURB 110 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T SUD 240 The City and Nature (5)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 200 Introduction to Urban Research (5)",
         "courseCodesExtracted": [
-          "TSUD 240"
+          "TURB 200"
         ],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 240 The City and Nature (5) Course codes extracted: TSUD 240 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 200 Introduction to Urban Research (5) Course codes extracted: TURB 200 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T SUD 444 Green Internationalism and the City (5)",
-        "courseCodesExtracted": [
-          "TSUD 444"
-        ],
-        "detectedSectionRole": "primary-requirement-section",
-        "schedulable": true,
-        "reason": "course row without prerequisite-only or course-list section cues",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 444 Green Internationalism and the City (5) Course codes extracted: TSUD 444 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T SUD 445 Urban Ecology (5)",
-        "courseCodesExtracted": [
-          "TSUD 445"
-        ],
-        "detectedSectionRole": "primary-requirement-section",
-        "schedulable": true,
-        "reason": "course row without prerequisite-only or course-list section cues",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 445 Urban Ecology (5) Course codes extracted: TSUD 445 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T SUD 475 Community and Economy (5)",
-        "courseCodesExtracted": [
-          "TSUD 475"
-        ],
-        "detectedSectionRole": "primary-requirement-section",
-        "schedulable": true,
-        "reason": "course row without prerequisite-only or course-list section cues",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 475 Community and Economy (5) Course codes extracted: TSUD 475 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
+        "sectionTitle": "Major Requirements",
         "rawLine": "T URB 403 Professional Development for Urban Careers (2)",
         "courseCodesExtracted": [
           "TURB 403"
@@ -31654,13 +31464,55 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 403 Professional Development for Urban Careers (2) Course codes extracted: TURB 403 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 403 Professional Development for Urban Careers (2) Course codes extracted: TURB 403 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T GIS 311 Maps and GIS (6 credits)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 220 Introduction to Urban Planning (5)",
+        "courseCodesExtracted": [
+          "TURB 220"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 220 Introduction to Urban Planning (5) Course codes extracted: TURB 220 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T SUD 222 Introduction to Sustainability (5)",
+        "courseCodesExtracted": [
+          "TSUD 222"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 222 Introduction to Sustainability (5) Course codes extracted: TSUD 222 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T SUD 240 City & Nature (5)",
+        "courseCodesExtracted": [
+          "TSUD 240"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 240 City & Nature (5) Course codes extracted: TSUD 240 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T GIS 311 Maps & GIS (6)",
         "courseCodesExtracted": [
           "TGIS 311"
         ],
@@ -31668,222 +31520,80 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 311 Maps and GIS (6 credits) Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T GIS 311 Maps & GIS (6) Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T URB 225 Statistics for Urban Analysis (5)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 314 Gender & the Urban Landscape (5)",
         "courseCodesExtracted": [
-          "TURB 225"
+          "TURB 314"
         ],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 225 Statistics for Urban Analysis (5) Course codes extracted: TURB 225 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 314 Gender & the Urban Landscape (5) Course codes extracted: TURB 314 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "T URB 200 Urban Research (5)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 322 Land Use Planning (5)",
         "courseCodesExtracted": [
-          "TURB 200"
+          "TURB 322"
         ],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
         "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 200 Urban Research (5) Course codes extracted: TURB 200 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 322 Land Use Planning (5) Course codes extracted: TURB 322 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "source root",
-        "rawLine": "Major Electives (20 credits)",
-        "courseCodesExtracted": [],
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T URB 410 Environmental Equity (5)",
+        "courseCodesExtracted": [
+          "TURB 410"
+        ],
         "detectedSectionRole": "primary-requirement-section",
         "schedulable": true,
-        "reason": "credit-bucket requirement cue",
+        "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: Major Electives (20 credits) Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 410 Environmental Equity (5) Course codes extracted: TURB 410 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "courseCodesExtracted": [],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "credit-limit note is support metadata",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: credit-limit note is support metadata Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T UDE 210 Introduction to Urban Design History & Theory",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T SUD 444 Green Internationalism and the City (5)",
         "courseCodesExtracted": [
-          "TUDE 210"
+          "TSUD 444"
         ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T UDE 210 Introduction to Urban Design History & Theory Course codes extracted: TUDE 210 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 444 Green Internationalism and the City (5) Course codes extracted: TSUD 444 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T UDE 260 Introduction to Urban Design (Urban Design Studio I)",
+        "sectionTitle": "Major Requirements",
+        "rawLine": "T SUD 445 Urban Ecology (5)",
         "courseCodesExtracted": [
-          "TUDE 260"
+          "TSUD 445"
         ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T UDE 260 Introduction to Urban Design (Urban Design Studio I) Course codes extracted: TUDE 260 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 445 Urban Ecology (5) Course codes extracted: TSUD 445 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "TESC 201 The Science of Sustainability",
-        "courseCodesExtracted": [
-          "TESC 201"
-        ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: TESC 201 The Science of Sustainability Course codes extracted: TESC 201 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "TEST 332 A Natural History of Garbage",
-        "courseCodesExtracted": [
-          "TEST 332"
-        ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: TEST 332 A Natural History of Garbage Course codes extracted: TEST 332 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T GEOG 101 Introduction to Geography",
-        "courseCodesExtracted": [
-          "TGEOG 101"
-        ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 101 Introduction to Geography Course codes extracted: TGEOG 101 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T GEOG 210 Geographies of Global Change",
-        "courseCodesExtracted": [
-          "TGEOG 210"
-        ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 210 Geographies of Global Change Course codes extracted: TGEOG 210 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T GEOG 321 Urban Geography",
-        "courseCodesExtracted": [
-          "TGEOG 321"
-        ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 321 Urban Geography Course codes extracted: TGEOG 321 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T GEOG 349 Geography and International Trade",
-        "courseCodesExtracted": [
-          "TGEOG 349"
-        ],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits non-schedulable source-section role from nearby heading",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 349 Geography and International Trade Course codes extracted: TGEOG 349 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T URB courses and descriptions",
-        "courseCodesExtracted": [],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits nearby source-section role",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T URB courses and descriptions Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "T SUD courses and descriptions",
-        "courseCodesExtracted": [],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits nearby source-section role",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T SUD courses and descriptions Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "General Electives",
-        "courseCodesExtracted": [],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits nearby source-section role",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: General Electives Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-        "rawLine": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180.",
-        "courseCodesExtracted": [],
-        "detectedSectionRole": "support-metadata",
-        "schedulable": false,
-        "reason": "inherits nearby source-section role",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180. Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
         "sectionTitle": "The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives.",
         "rawLine": "The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives.",
@@ -31892,10 +31602,10 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": true,
         "reason": "admission or preparation requirement heading",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Raw line: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Raw line: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
       },
       {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "ownerId": "uw-tacoma-sustainable-urban-development",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
         "sectionTitle": "Contact the School of Urban Studies Academic Advisor to help track your progress through the program.",
         "rawLine": "Contact the School of Urban Studies Academic Advisor to help track your progress through the program.",
@@ -31904,193 +31614,340 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "schedulable": false,
         "reason": "course-list/navigation section is not transfer-plannable by itself",
         "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Raw line: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none"
-      },
-      {
-        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
-        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-        "sectionTitle": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "rawLine": "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.",
-        "courseCodesExtracted": [],
-        "detectedSectionRole": "non-schedulable-course-list",
-        "schedulable": false,
-        "reason": "course-list/navigation section is not transfer-plannable by itself",
-        "issue": "none",
-        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none"
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Raw line: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none"
       }
     ],
     "sourceSectionFilterAuditLines": [
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: Major electives (20 credits) Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 101 Exploring Cities (5) Course codes extracted: TURB 101 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 102 City in World Development T URB 110 Urban Data Analysis (5) Course codes extracted: TURB 102, TURB 110 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 103 Urban Studies in Practice (1) Course codes extracted: TURB 103 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 222 Introduction to Sustainability (5) Course codes extracted: TSUD 222 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 240 The City and Nature (5) Course codes extracted: TSUD 240 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 444 Green Internationalism and the City (5) Course codes extracted: TSUD 444 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 445 Urban Ecology (5) Course codes extracted: TSUD 445 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T SUD 475 Community and Economy (5) Course codes extracted: TSUD 475 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 403 Professional Development for Urban Careers (2) Course codes extracted: TURB 403 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 311 Maps and GIS (6 credits) Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 225 Statistics for Urban Analysis (5) Course codes extracted: TURB 225 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 200 Urban Research (5) Course codes extracted: TURB 200 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: Major Electives (20 credits) Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: credit-bucket requirement cue Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: credit-limit note is support metadata Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T UDE 210 Introduction to Urban Design History & Theory Course codes extracted: TUDE 210 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T UDE 260 Introduction to Urban Design (Urban Design Studio I) Course codes extracted: TUDE 260 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: TESC 201 The Science of Sustainability Course codes extracted: TESC 201 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: TEST 332 A Natural History of Garbage Course codes extracted: TEST 332 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 101 Introduction to Geography Course codes extracted: TGEOG 101 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 210 Geographies of Global Change Course codes extracted: TGEOG 210 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 321 Urban Geography Course codes extracted: TGEOG 321 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T GEOG 349 Geography and International Trade Course codes extracted: TGEOG 349 Detected section role: support-metadata Schedulable: no Reason: inherits non-schedulable source-section role from nearby heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T URB courses and descriptions Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: T SUD courses and descriptions Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: General Electives Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: Raw line: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180. Course codes extracted: none Detected section role: support-metadata Schedulable: no Reason: inherits nearby source-section role Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Raw line: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Raw line: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none",
-      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Raw line: GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none"
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: ADMISSION REQUIREMENTS Raw line: ADMISSION REQUIREMENTS Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Program Overview Raw line: Program Overview Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Admission Requirements Raw line: Admission Requirements Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: Cumulative GPA of 2.0 in all college coursework Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: Completion of a minimum of 40 college-level credits Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of Arts in Sustainable Urban Development. Raw line: 5 credits of English composition Course codes extracted: ENGL 131 Detected section role: primary-requirement-section Schedulable: yes Reason: primary requirement cue Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Transfer students meeting the above requirements may apply directly to the major. Raw line: Transfer students meeting the above requirements may apply directly to the major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Transfer students meeting the above requirements may apply directly to the major. Raw line: First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Curriculum Raw line: Curriculum Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program. Course codes extracted: none Detected section role: primary-requirement-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 101 Exploring Cities (5) Course codes extracted: TURB 101 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 103 Urban Studies in Practice (3) Course codes extracted: TURB 103 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 110 Urban Data Analysis (5) Course codes extracted: TURB 110 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 200 Introduction to Urban Research (5) Course codes extracted: TURB 200 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 403 Professional Development for Urban Careers (2) Course codes extracted: TURB 403 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 220 Introduction to Urban Planning (5) Course codes extracted: TURB 220 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 222 Introduction to Sustainability (5) Course codes extracted: TSUD 222 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 240 City & Nature (5) Course codes extracted: TSUD 240 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T GIS 311 Maps & GIS (6) Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 314 Gender & the Urban Landscape (5) Course codes extracted: TURB 314 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 322 Land Use Planning (5) Course codes extracted: TURB 322 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T URB 410 Environmental Equity (5) Course codes extracted: TURB 410 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 444 Green Internationalism and the City (5) Course codes extracted: TSUD 444 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Major Requirements Raw line: T SUD 445 Urban Ecology (5) Course codes extracted: TSUD 445 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Raw line: The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives. Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Raw line: Contact the School of Urban Studies Academic Advisor to help track your progress through the program. Course codes extracted: none Detected section role: non-schedulable-course-list Schedulable: no Reason: course-list/navigation section is not transfer-plannable by itself Issue: none"
     ],
     "parserSequenceChoiceAuditRows": [],
     "parserSequenceChoiceAuditLines": [],
     "sourceScopeAuditLines": [
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TESC 201 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TEST 332 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGEOG 101 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGEOG 210 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGEOG 321 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGEOG 349 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 311 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 222 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 240 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 444 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 445 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 475 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TUDE 210 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TUDE 260 Emitted as: hidden-support-metadata Scheduled: no Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 101 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 102 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 103 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 110 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 200 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 225 Emitted as: option-group Scheduled: yes Issue: none",
-      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 403 Emitted as: option-group Scheduled: yes Issue: none"
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: ENGL 131 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 311 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 222 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 240 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 444 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TSUD 445 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 101 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 103 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 110 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 200 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 220 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 314 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 322 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 403 Emitted as: option-group Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 410 Emitted as: option-group Scheduled: yes Issue: none"
     ],
-    "resolutionStrategy": "cached-snapshot",
+    "resolutionStrategy": "primary-source",
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodes": [
+      "ENGL 131",
       "TGIS 311",
       "TSUD 222",
       "TSUD 240",
       "TSUD 444",
       "TSUD 445",
-      "TSUD 475",
       "TURB 101",
-      "TURB 102",
       "TURB 103",
       "TURB 110",
       "TURB 200",
-      "TURB 225",
-      "TURB 403"
+      "TURB 220",
+      "TURB 314",
+      "TURB 322",
+      "TURB 403",
+      "TURB 410"
     ],
     "approvedFilterUwCourseCodes": [],
     "electiveListUwCourseCodes": [],
     "supportOnlyUwCourseCodes": [],
     "supportLists": [],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": [],
+    "sourceOnlyUwCourseCodes": [
+      "ENGL 131"
+    ],
+    "structuredOnlyUwCourseCodes": [
+      "TGIS 312",
+      "TGIS 313",
+      "TGIS 414",
+      "TGIS 415",
+      "TSUD 475",
+      "TUDE 340",
+      "TURB 102",
+      "TURB 225",
+      "TURB 235",
+      "TURB 379",
+      "TURB 470",
+      "TURB 479",
+      "TURB 498"
+    ],
     "requirementCueLines": [
-      "Foundation courses (27 credits)",
-      "Methods courses (16 credits)",
-      "Major electives (20 credits)",
-      "Introductory Courses (11 credits)",
+      "ADMISSION REQUIREMENTS",
+      "The School of Urban Studies at UW Tacoma offers a BA in Sustainable Urban Development. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.",
+      "Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).",
+      "Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .",
+      "Admission Requirements",
+      "Completion of a minimum of 40 college-level credits",
+      "5 credits of English composition",
+      "Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.",
+      "Transfer students meeting the above requirements may apply directly to the major.",
+      "First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.",
+      "Major Requirements",
+      "The curriculum consists of 70-71 credits, depending on formal option and course selection:",
+      "Shared Curriculum courses (20 credits)",
+      "Foundation courses (25-26 credits)",
+      "Formal options ( choose one option ) (25 credits)",
+      "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program.",
+      "Shared Curriculum Courses (20 credits)",
       "T URB 101 Exploring Cities (5)",
-      "T URB 102 City in World Development T URB 110 Urban Data Analysis (5)",
-      "T URB 103 Urban Studies in Practice (1)",
+      "T URB 103 Urban Studies in Practice (3)",
+      "T URB 110 Urban Data Analysis (5)",
+      "T URB 200 Introduction to Urban Research (5)",
+      "T URB 403 Professional Development for Urban Careers (2)",
+      "Foundation Courses (25 credits, choose 5 courses)",
+      "T URB 220 Introduction to Urban Planning (5)",
       "T SUD 222 Introduction to Sustainability (5)",
-      "T SUD 240 The City and Nature (5)",
+      "T SUD 240 City & Nature (5)",
+      "T GIS 311 Maps & GIS (6)",
+      "T URB 314 Gender & the Urban Landscape (5)",
+      "T URB 322 Land Use Planning (5)",
+      "T URB 410 Environmental Equity (5)",
       "T SUD 444 Green Internationalism and the City (5)",
       "T SUD 445 Urban Ecology (5)",
-      "T SUD 475 Community and Economy (5)",
-      "T URB 403 Professional Development for Urban Careers (2)",
-      "T GIS 311 Maps and GIS (6 credits)",
-      "T URB 225 Statistics for Urban Analysis (5)",
-      "T URB 200 Urban Research (5)",
-      "Major Electives (20 credits)",
-      "Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:",
-      "T UDE 210 Introduction to Urban Design History & Theory",
-      "T UDE 260 Introduction to Urban Design (Urban Design Studio I)",
-      "TESC 201 The Science of Sustainability",
-      "TEST 332 A Natural History of Garbage",
-      "T GEOG 101 Introduction to Geography",
-      "T GEOG 210 Geographies of Global Change",
-      "T GEOG 321 Urban Geography",
-      "T GEOG 349 Geography and International Trade",
+      "Students declare one of the following formal options:",
       "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180.",
-      "Contact the School of Urban Studies Academic Advisor to help track your progress through the program.",
-      "Graduation Requirements",
-      "In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:",
-      "Graduation Requirements:",
-      "Major GPA: minimum 2.0 in each course required for the major",
-      "GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better."
+      "Contact the School of Urban Studies Academic Advisor to help track your progress through the program."
     ],
-    "chooseStatements": [],
+    "chooseStatements": [
+      "Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).",
+      "Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .",
+      "Formal options ( choose one option ) (25 credits)",
+      "Foundation Courses (25 credits, choose 5 courses)",
+      "Students declare one of the following formal options:"
+    ],
     "pathwayLabels": [],
     "qualitySignals": [
       {
-        "severity": "note",
-        "code": "snapshot-fallback-used",
-        "message": "Parsing relied on a cached snapshot after a live-source failure.",
-        "details": "snapshot-only mode"
+        "severity": "warning",
+        "code": "material-source-structured-drift",
+        "message": "Parsed source course coverage diverges materially from the structured degree-map coverage.",
+        "details": "parsed=15; source-only=1; structured-only=13"
       },
       {
-        "severity": "note",
-        "code": "snapshot-fallback-heading-context-missing",
-        "message": "Cached snapshot fallback did not include source heading metadata, which limits section-scoped parser validation.",
-        "details": "snapshot=C:\\Users\\marwa\\GatorGuide\\source\\.tmp\\transfer-planner-requirement-source-snapshots\\uw-tacoma-sustainable-urban-development-pathway-gis-option-431c82e445.txt; requirement-cues=33; choose-statements=0"
+        "severity": "warning",
+        "code": "large-structured-only-course-gap",
+        "message": "Structured degree-map coverage includes many UW course codes that were not recovered from the parsed source.",
+        "details": "structured-only=13; parsed=15; structured-coverage=27"
       }
     ],
-    "parsedRequirementAtomCandidates": [],
+    "parserRecovery": {
+      "triggered": true,
+      "triggerCodes": [
+        "material-source-structured-drift",
+        "large-structured-only-course-gap"
+      ],
+      "originalSourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      "originalSourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+      "originalSourceFingerprint": "e615a51c4216a9ca",
+      "selectedStrategy": null,
+      "selectedSourceUrl": null,
+      "attemptedStrategies": [
+        "section-scoping-recovery",
+        "support-source-recovery",
+        "official-sibling-child-page-recovery"
+      ],
+      "attempts": [
+        {
+          "strategy": "section-scoping-recovery",
+          "status": "parsed",
+          "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+          "sourceLabel": "Scoped current requirements: BA in Sustainable Urban Development | School of Urban Studies | University of Washington Tacoma",
+          "parserType": "html-degree-page",
+          "sourceRole": "primary-degree-requirements",
+          "sourceRoleStatus": "primary",
+          "score": 100,
+          "reason": "base owner excluded sibling formal-option table content from a broader official source",
+          "parsedUwCourseCodeCount": 15,
+          "qualitySignalCodes": [
+            "material-source-structured-drift",
+            "large-structured-only-course-gap"
+          ],
+          "qualityWarningCodes": [
+            "material-source-structured-drift",
+            "large-structured-only-course-gap"
+          ],
+          "sourceEvidenceFingerprint": "355c85919fd07e5f",
+          "error": null
+        },
+        {
+          "strategy": "support-source-recovery",
+          "status": "no-meaningful-content",
+          "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/academic-advising-resources",
+          "sourceLabel": "Academic Advising & Resources",
+          "parserType": "html-degree-page",
+          "sourceRole": "support-source",
+          "sourceRoleStatus": "support",
+          "score": 23,
+          "reason": "candidate parsed but did not expose requirement cues, choices, pathways, or UW course codes",
+          "parsedUwCourseCodeCount": 0,
+          "qualitySignalCodes": [],
+          "qualityWarningCodes": [],
+          "sourceEvidenceFingerprint": "695a22ba1c087cf2",
+          "error": null
+        },
+        {
+          "strategy": "official-sibling-child-page-recovery",
+          "status": "no-meaningful-content",
+          "sourceUrl": "https://www.tacoma.uw.edu/Shibboleth.sso/Login?target=/urban-studies/ba-sustainable-urban-development?shiblogin=1",
+          "sourceLabel": "UWNetID login",
+          "parserType": "html-degree-page",
+          "sourceRole": "primary-degree-requirements",
+          "sourceRoleStatus": "primary",
+          "score": 21,
+          "reason": "candidate parsed but did not expose requirement cues, choices, pathways, or UW course codes",
+          "parsedUwCourseCodeCount": 0,
+          "qualitySignalCodes": [],
+          "qualityWarningCodes": [],
+          "sourceEvidenceFingerprint": "377112cf53d848e4",
+          "error": null
+        }
+      ],
+      "recoveredSources": [],
+      "supportSources": [],
+      "before": {
+        "parsedUwCourseCodeCount": 15,
+        "sourceOnlyUwCourseCodeCount": 1,
+        "structuredOnlyUwCourseCodeCount": 13,
+        "parsedRequirementGroupCount": 1,
+        "parsedRequirementAtomCandidateCount": 1,
+        "requirementCueLineCount": 35,
+        "chooseStatementCount": 5,
+        "parseConfidence": "high",
+        "qualitySignalCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap"
+        ],
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap"
+        ],
+        "qualityWarningCount": 2,
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sourceRole": "primary-degree-requirements",
+        "sourceRoleStatus": "primary",
+        "sourceFingerprint": "e615a51c4216a9ca"
+      },
+      "after": {
+        "parsedUwCourseCodeCount": 15,
+        "sourceOnlyUwCourseCodeCount": 1,
+        "structuredOnlyUwCourseCodeCount": 13,
+        "parsedRequirementGroupCount": 1,
+        "parsedRequirementAtomCandidateCount": 1,
+        "requirementCueLineCount": 35,
+        "chooseStatementCount": 5,
+        "parseConfidence": "high",
+        "qualitySignalCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap"
+        ],
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap"
+        ],
+        "qualityWarningCount": 2,
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sourceRole": "primary-degree-requirements",
+        "sourceRoleStatus": "primary",
+        "sourceFingerprint": "e615a51c4216a9ca"
+      },
+      "blockerType": "source-official-but-ambiguous",
+      "sourceUnavailable": false,
+      "candidateCount": 3,
+      "succeeded": false
+    },
+    "parsedRequirementAtomCandidates": [
+      {
+        "id": "uw-tacoma-sustainable-urban-development:source-atom:engl-131",
+        "title": "ENGL 131",
+        "uwCourseCode": "ENGL 131",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "5 credits of English composition (ENGL 131)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "primary requirement cue"
+      }
+    ],
     "parsedDegreeMapBlockCandidates": [
       {
-        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-degree-map:",
-        "title": "Sustainable Urban Development (BA) - GIS option parsed official source requirements",
+        "id": "uw-tacoma-sustainable-urban-development:source-degree-map:",
+        "title": "Sustainable Urban Development (BA) parsed official source requirements",
         "uwCourseCodes": [
+          "ENGL 131",
           "TGIS 311",
           "TSUD 222",
           "TSUD 240",
           "TSUD 444",
           "TSUD 445",
-          "TSUD 475",
           "TURB 101",
-          "TURB 102",
           "TURB 103",
           "TURB 110",
           "TURB 200",
-          "TURB 225",
-          "TURB 403"
+          "TURB 220",
+          "TURB 314",
+          "TURB 322",
+          "TURB 403",
+          "TURB 410"
         ],
         "sourceLineHints": [
-          "Foundation courses (27 credits)",
-          "Methods courses (16 credits)",
-          "Major electives (20 credits)",
-          "Introductory Courses (11 credits)",
-          "T URB 101 Exploring Cities (5)",
-          "T URB 102 City in World Development T URB 110 Urban Data Analysis (5)",
-          "T URB 103 Urban Studies in Practice (1)",
-          "T SUD 222 Introduction to Sustainability (5)",
-          "T SUD 240 The City and Nature (5)",
-          "T SUD 444 Green Internationalism and the City (5)"
+          "ADMISSION REQUIREMENTS",
+          "The School of Urban Studies at UW Tacoma offers a BA in Sustainable Urban Development. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.",
+          "Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).",
+          "Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .",
+          "Admission Requirements",
+          "Completion of a minimum of 40 college-level credits",
+          "5 credits of English composition",
+          "Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.",
+          "Transfer students meeting the above requirements may apply directly to the major.",
+          "First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major."
         ]
       }
     ],
     "parsedRequirementGroups": [
       {
-        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "label": "Major electives (20 credits)",
-        "category": "major_electives",
-        "subcategory": "major_electives",
+        "id": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "label": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "subcategory": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
         "requirementType": "choose_credits",
         "requirementShape": "credit-bucket",
         "minCourses": null,
@@ -32101,12 +31958,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "maxCredits": 20,
         "creditText": "20",
         "satisfactionMode": "credit-based",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceRowText": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceRowText": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "sourceSection": null,
         "sourceSectionRole": "primary-requirement-section",
         "sourceSectionSchedulable": true,
-        "detectedOptionCue": "sectioned credit list",
+        "detectedOptionCue": "sectioned split-heading credit list",
         "sourceRole": "primary-degree-requirements",
         "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
         "sourceScope": null,
@@ -32123,7 +31980,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "sequencePaths": [],
         "options": [
           {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-turb-101",
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-101",
             "optionKind": "course",
             "sequencePathId": null,
             "pathLabel": null,
@@ -32142,9 +31999,9 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "maxCredits": null,
             "title": "Exploring Cities: An Introduction to Urban Studies",
             "department": "TURB",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
             "grcMatches": [],
             "compoundComponents": [],
             "categoryOption": null,
@@ -32153,69 +32010,157 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "label": "T URB 101 Exploring Cities (5)"
           },
           {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-turb-102-turb-110",
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-103",
             "optionKind": "course",
             "sequencePathId": null,
             "pathLabel": null,
             "displayCourseCodes": [
-              "T URB 102 City in World Development T URB 110 Urban Data Analysis (5)"
-            ],
-            "uwCourses": [
-              "TURB 102"
-            ],
-            "equivalentUwCourseCodes": [
-              "TURB 110"
-            ],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Cities in World Development",
-            "department": "TURB",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "T URB 102 City in World Development T URB 110 Urban Data Analysis (5)"
-          },
-          {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-turb-103",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "T URB 103 Urban Studies in Practice (1)"
+              "T URB 103 Urban Studies in Practice (3)"
             ],
             "uwCourses": [
               "TURB 103"
             ],
             "equivalentUwCourseCodes": [],
             "conditionalLabCourses": [],
-            "credits": 1,
-            "creditMin": 1,
-            "creditMax": 1,
-            "creditText": "1",
+            "credits": 3,
+            "creditMin": 3,
+            "creditMax": 3,
+            "creditText": "3",
             "maxCredits": null,
-            "title": "Foundation courses (27 credits)",
+            "title": "Urban Studies in Practice",
             "department": "TURB",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
             "grcMatches": [],
             "compoundComponents": [],
             "categoryOption": null,
             "constraints": [],
             "notes": [],
-            "label": "T URB 103 Urban Studies in Practice (1)"
+            "label": "T URB 103 Urban Studies in Practice (3)"
           },
           {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-tsud-222",
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-110",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 110 Urban Data Analysis (5)"
+            ],
+            "uwCourses": [
+              "TURB 110"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 5,
+            "creditMin": 5,
+            "creditMax": 5,
+            "creditText": "5",
+            "maxCredits": null,
+            "title": "Introduction to Digital Urban Data Analysis",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 110 Urban Data Analysis (5)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-200",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 200 Introduction to Urban Research (5)"
+            ],
+            "uwCourses": [
+              "TURB 200"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 5,
+            "creditMin": 5,
+            "creditMax": 5,
+            "creditText": "5",
+            "maxCredits": null,
+            "title": "Introduction to Urban Research",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 200 Introduction to Urban Research (5)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-403",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 403 Professional Development for Urban Careers (2)"
+            ],
+            "uwCourses": [
+              "TURB 403"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 2,
+            "creditMin": 2,
+            "creditMax": 2,
+            "creditText": "2",
+            "maxCredits": null,
+            "title": "Foundation Courses (25 credits, choose 5 courses)",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 403 Professional Development for Urban Careers (2)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-220",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 220 Introduction to Urban Planning (5)"
+            ],
+            "uwCourses": [
+              "TURB 220"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 5,
+            "creditMin": 5,
+            "creditMax": 5,
+            "creditText": "5",
+            "maxCredits": null,
+            "title": "Introduction to Urban Planning",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 220 Introduction to Urban Planning (5)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-tsud-222",
             "optionKind": "course",
             "sequencePathId": null,
             "pathLabel": null,
@@ -32234,9 +32179,9 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "maxCredits": null,
             "title": "Introduction to Sustainability",
             "department": "TSUD",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
             "grcMatches": [],
             "compoundComponents": [],
             "categoryOption": null,
@@ -32245,12 +32190,12 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "label": "T SUD 222 Introduction to Sustainability (5)"
           },
           {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-tsud-240",
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-tsud-240",
             "optionKind": "course",
             "sequencePathId": null,
             "pathLabel": null,
             "displayCourseCodes": [
-              "T SUD 240 The City and Nature (5)"
+              "T SUD 240 City & Nature (5)"
             ],
             "uwCourses": [
               "TSUD 240"
@@ -32264,18 +32209,138 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "maxCredits": null,
             "title": "The City and Nature",
             "department": "TSUD",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
             "grcMatches": [],
             "compoundComponents": [],
             "categoryOption": null,
             "constraints": [],
             "notes": [],
-            "label": "T SUD 240 The City and Nature (5)"
+            "label": "T SUD 240 City & Nature (5)"
           },
           {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-tsud-444",
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-tgis-311",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T GIS 311 Maps & GIS (6)"
+            ],
+            "uwCourses": [
+              "TGIS 311"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 6,
+            "creditMin": 6,
+            "creditMax": 6,
+            "creditText": "6",
+            "maxCredits": null,
+            "title": "Maps and GIS",
+            "department": "TGIS",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T GIS 311 Maps & GIS (6)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-314",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 314 Gender & the Urban Landscape (5)"
+            ],
+            "uwCourses": [
+              "TURB 314"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 5,
+            "creditMin": 5,
+            "creditMax": 5,
+            "creditText": "5",
+            "maxCredits": null,
+            "title": "Gender and the Urban Landscape",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 314 Gender & the Urban Landscape (5)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-322",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 322 Land Use Planning (5)"
+            ],
+            "uwCourses": [
+              "TURB 322"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 5,
+            "creditMin": 5,
+            "creditMax": 5,
+            "creditText": "5",
+            "maxCredits": null,
+            "title": "Land-Use Planning",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 322 Land Use Planning (5)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-turb-410",
+            "optionKind": "course",
+            "sequencePathId": null,
+            "pathLabel": null,
+            "displayCourseCodes": [
+              "T URB 410 Environmental Equity (5)"
+            ],
+            "uwCourses": [
+              "TURB 410"
+            ],
+            "equivalentUwCourseCodes": [],
+            "conditionalLabCourses": [],
+            "credits": 5,
+            "creditMin": 5,
+            "creditMax": 5,
+            "creditText": "5",
+            "maxCredits": null,
+            "title": "Environmental Equity",
+            "department": "TURB",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "grcMatches": [],
+            "compoundComponents": [],
+            "categoryOption": null,
+            "constraints": [],
+            "notes": [],
+            "label": "T URB 410 Environmental Equity (5)"
+          },
+          {
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-tsud-444",
             "optionKind": "course",
             "sequencePathId": null,
             "pathLabel": null,
@@ -32294,9 +32359,9 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "maxCredits": null,
             "title": "Green Internationalism and the City",
             "department": "TSUD",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
             "grcMatches": [],
             "compoundComponents": [],
             "categoryOption": null,
@@ -32305,7 +32370,7 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "label": "T SUD 444 Green Internationalism and the City (5)"
           },
           {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-tsud-445",
+            "id": "uw-tacoma-sustainable-urban-development:requirement-option:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-tsud-445",
             "optionKind": "course",
             "sequencePathId": null,
             "pathLabel": null,
@@ -32322,167 +32387,17 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
             "creditMax": 5,
             "creditText": "5",
             "maxCredits": null,
-            "title": "Urban Ecology",
+            "title": "Formal Options",
             "department": "TSUD",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
+            "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+            "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+            "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
             "grcMatches": [],
             "compoundComponents": [],
             "categoryOption": null,
             "constraints": [],
             "notes": [],
             "label": "T SUD 445 Urban Ecology (5)"
-          },
-          {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-tsud-475",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "T SUD 475 Community and Economy (5)"
-            ],
-            "uwCourses": [
-              "TSUD 475"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Community and Economy",
-            "department": "TSUD",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "T SUD 475 Community and Economy (5)"
-          },
-          {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-turb-403",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "T URB 403 Professional Development for Urban Careers (2)"
-            ],
-            "uwCourses": [
-              "TURB 403"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 2,
-            "creditMin": 2,
-            "creditMax": 2,
-            "creditText": "2",
-            "maxCredits": null,
-            "title": "Methods courses (16 credits)",
-            "department": "TURB",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "T URB 403 Professional Development for Urban Careers (2)"
-          },
-          {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-tgis-311",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "T GIS 311 Maps and GIS (6 credits)"
-            ],
-            "uwCourses": [
-              "TGIS 311"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 6,
-            "creditMin": 6,
-            "creditMax": 6,
-            "creditText": "6",
-            "maxCredits": null,
-            "title": "Maps and GIS",
-            "department": "TGIS",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "T GIS 311 Maps and GIS (6 credits)"
-          },
-          {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-turb-225",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "T URB 225 Statistics for Urban Analysis (5)"
-            ],
-            "uwCourses": [
-              "TURB 225"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Statistics for Urban Analysis",
-            "department": "TURB",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "T URB 225 Statistics for Urban Analysis (5)"
-          },
-          {
-            "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-option:major-electives-20-credits-turb-200",
-            "optionKind": "course",
-            "sequencePathId": null,
-            "pathLabel": null,
-            "displayCourseCodes": [
-              "T URB 200 Urban Research (5)"
-            ],
-            "uwCourses": [
-              "TURB 200"
-            ],
-            "equivalentUwCourseCodes": [],
-            "conditionalLabCourses": [],
-            "credits": 5,
-            "creditMin": 5,
-            "creditMax": 5,
-            "creditText": "5",
-            "maxCredits": null,
-            "title": "Major Electives (20 credits)",
-            "department": "TURB",
-            "category": "major_electives",
-            "sourceHeading": "Major electives (20 credits)",
-            "sourceCategory": "Major electives (20 credits)",
-            "grcMatches": [],
-            "compoundComponents": [],
-            "categoryOption": null,
-            "constraints": [],
-            "notes": [],
-            "label": "T URB 200 Urban Research (5)"
           }
         ]
       }
@@ -32496,60 +32411,92 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMin": 5,
         "creditMax": 5,
         "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
         "requirementType": "choose_credits",
         "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "notes": []
       },
       {
-        "courseCode": "T URB 102 City in World Development T URB 110 Urban Data Analysis (5)",
-        "normalizedCourseCode": "TURB 102",
-        "title": "Cities in World Development",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "TURB 110",
-        "normalizedCourseCode": "TURB 110",
-        "title": "Cities in World Development",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "alias",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "T URB 103 Urban Studies in Practice (1)",
+        "courseCode": "T URB 103 Urban Studies in Practice (3)",
         "normalizedCourseCode": "TURB 103",
-        "title": "Foundation courses (27 credits)",
-        "credits": 1,
-        "creditMin": 1,
-        "creditMax": 1,
-        "creditText": "1",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
+        "title": "Urban Studies in Practice",
+        "credits": 3,
+        "creditMin": 3,
+        "creditMax": 3,
+        "creditText": "3",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
         "requirementType": "choose_credits",
         "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 110 Urban Data Analysis (5)",
+        "normalizedCourseCode": "TURB 110",
+        "title": "Introduction to Digital Urban Data Analysis",
+        "credits": 5,
+        "creditMin": 5,
+        "creditMax": 5,
+        "creditText": "5",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 200 Introduction to Urban Research (5)",
+        "normalizedCourseCode": "TURB 200",
+        "title": "Introduction to Urban Research",
+        "credits": 5,
+        "creditMin": 5,
+        "creditMax": 5,
+        "creditText": "5",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 403 Professional Development for Urban Careers (2)",
+        "normalizedCourseCode": "TURB 403",
+        "title": "Foundation Courses (25 credits, choose 5 courses)",
+        "credits": 2,
+        "creditMin": 2,
+        "creditMax": 2,
+        "creditText": "2",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 220 Introduction to Urban Planning (5)",
+        "normalizedCourseCode": "TURB 220",
+        "title": "Introduction to Urban Planning",
+        "credits": 5,
+        "creditMin": 5,
+        "creditMax": 5,
+        "creditText": "5",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "notes": []
       },
       {
@@ -32560,28 +32507,92 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMin": 5,
         "creditMax": 5,
         "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
         "requirementType": "choose_credits",
         "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "notes": []
       },
       {
-        "courseCode": "T SUD 240 The City and Nature (5)",
+        "courseCode": "T SUD 240 City & Nature (5)",
         "normalizedCourseCode": "TSUD 240",
         "title": "The City and Nature",
         "credits": 5,
         "creditMin": 5,
         "creditMax": 5,
         "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
         "requirementType": "choose_credits",
         "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T GIS 311 Maps & GIS (6)",
+        "normalizedCourseCode": "TGIS 311",
+        "title": "Maps and GIS",
+        "credits": 6,
+        "creditMin": 6,
+        "creditMax": 6,
+        "creditText": "6",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 314 Gender & the Urban Landscape (5)",
+        "normalizedCourseCode": "TURB 314",
+        "title": "Gender and the Urban Landscape",
+        "credits": 5,
+        "creditMin": 5,
+        "creditMax": 5,
+        "creditText": "5",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 322 Land Use Planning (5)",
+        "normalizedCourseCode": "TURB 322",
+        "title": "Land-Use Planning",
+        "credits": 5,
+        "creditMin": 5,
+        "creditMax": 5,
+        "creditText": "5",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "notes": []
+      },
+      {
+        "courseCode": "T URB 410 Environmental Equity (5)",
+        "normalizedCourseCode": "TURB 410",
+        "title": "Environmental Equity",
+        "credits": 5,
+        "creditMin": 5,
+        "creditMax": 5,
+        "creditText": "5",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
+        "requirementType": "choose_credits",
+        "optionRole": "option",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "notes": []
       },
       {
@@ -32592,114 +32603,935 @@ export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9: unknown[]
         "creditMin": 5,
         "creditMax": 5,
         "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
         "requirementType": "choose_credits",
         "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "notes": []
       },
       {
         "courseCode": "T SUD 445 Urban Ecology (5)",
         "normalizedCourseCode": "TSUD 445",
-        "title": "Urban Ecology",
+        "title": "Formal Options",
         "credits": 5,
         "creditMin": 5,
         "creditMax": 5,
         "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
+        "category": "in_addition_to_the_coursework_for_the_major_students_are_to_complete_general_university_and_electives_and_to_bring_their_total_number_of_credits_to_180_running_regular_degree_audits_and_asking_your_advisor_for_a_degree_planning_worksheet_here_will_help_track_your_progress_through_the_program",
+        "requirementGroupId": "uw-tacoma-sustainable-urban-development:requirement-group:in-addition-to-the-coursework-required-for-the-major-students-are-required-to-complete-general-university-requirements-and-electives-and-to-bring-their-total-number-of-credits-to-180-running-regular-degree-audits-and-asking-your-advisor-for-a-degree-planning-worksheet-here-will-help-track-your-progress-through-the-program-choose-credits-20-20",
         "requirementType": "choose_credits",
         "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "T SUD 475 Community and Economy (5)",
-        "normalizedCourseCode": "TSUD 475",
-        "title": "Community and Economy",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "T URB 403 Professional Development for Urban Careers (2)",
-        "normalizedCourseCode": "TURB 403",
-        "title": "Methods courses (16 credits)",
-        "credits": 2,
-        "creditMin": 2,
-        "creditMax": 2,
-        "creditText": "2",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "T GIS 311 Maps and GIS (6 credits)",
-        "normalizedCourseCode": "TGIS 311",
-        "title": "Maps and GIS",
-        "credits": 6,
-        "creditMin": 6,
-        "creditMax": 6,
-        "creditText": "6",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "T URB 225 Statistics for Urban Analysis (5)",
-        "normalizedCourseCode": "TURB 225",
-        "title": "Statistics for Urban Analysis",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
-        "notes": []
-      },
-      {
-        "courseCode": "T URB 200 Urban Research (5)",
-        "normalizedCourseCode": "TURB 200",
-        "title": "Major Electives (20 credits)",
-        "credits": 5,
-        "creditMin": 5,
-        "creditMax": 5,
-        "creditText": "5",
-        "category": "major_electives",
-        "requirementGroupId": "uw-tacoma-sustainable-urban-development:pathway:gis-option:requirement-group:major-electives-20-credits-choose-credits-20-20",
-        "requirementType": "choose_credits",
-        "optionRole": "option",
-        "sourceHeading": "Major electives (20 credits)",
-        "sourceCategory": "Major electives (20 credits)",
+        "sourceHeading": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
+        "sourceCategory": "In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program",
         "notes": []
       }
     ],
+    "snapshotPath": ".tmp/transfer-planner-requirement-source-snapshots/uw-tacoma-sustainable-urban-development-431c82e445.txt",
+    "usedSnapshotFallback": false,
+    "snapshotFallbackReason": null,
+    "error": null
+  },
+  {
+    "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-block:uw-tacoma-html-degree-page",
+    "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+    "ownerTitle": "Sustainable Urban Development (BA) - Community Engagement option",
+    "planId": "uw-tacoma-sustainable-urban-development",
+    "pathwayId": "community-engagement-option",
+    "campusId": "uw-tacoma",
+    "primaryParserType": "html-degree-page",
+    "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+    "primarySourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+    "parserType": "html-degree-page",
+    "adapterId": "uw-tacoma-html-degree-page",
+    "adapterFamily": "UW Tacoma HTML degree pages",
+    "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+    "coveredSourceUrls": [
+      "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development"
+    ],
+    "sourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "sourceScope": {
+      "canCreateRequiredRows": true,
+      "canCreateOptionGroups": true,
+      "canCreateCreditBuckets": true,
+      "canCreateCategoryOptions": true,
+      "canCreateApprovedFilters": false,
+      "canCreateElectiveLists": false,
+      "canCreateSequencingHints": false,
+      "canCreateAdmissionPrepRows": false,
+      "canCreateScheduleRows": true,
+      "supportOnly": false,
+      "nonSchedulable": false
+    },
+    "canCreateRequiredRows": true,
+    "canCreateOptionGroups": true,
+    "canCreateCreditBuckets": true,
+    "canCreateCategoryOptions": true,
+    "canCreateApprovedFilters": false,
+    "canCreateElectiveLists": false,
+    "canCreateSequencingHints": false,
+    "canCreateAdmissionPrepRows": false,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "sourceSectionAudit": null,
+    "sourceSectionFilterAuditRows": [
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 235 Community Development (5)",
+        "courseCodesExtracted": [
+          "TURB 235"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 235 Community Development (5) Course codes extracted: TURB 235 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 220 Introduction to Urban Planning (5) *",
+        "courseCodesExtracted": [
+          "TURB 220"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 220 Introduction to Urban Planning (5) * Course codes extracted: TURB 220 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T UDE 340 Urban Social Change (5)",
+        "courseCodesExtracted": [
+          "TUDE 340"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T UDE 340 Urban Social Change (5) Course codes extracted: TUDE 340 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 379 Urban Field Experience (5)",
+        "courseCodesExtracted": [
+          "TURB 379"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 379 Urban Field Experience (5) Course codes extracted: TURB 379 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 470 Creating the Urban Narrative (5)",
+        "courseCodesExtracted": [
+          "TURB 470"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 470 Creating the Urban Narrative (5) Course codes extracted: TURB 470 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 479 Planning & Development in the Puget Sound Region (5)",
+        "courseCodesExtracted": [
+          "TURB 479"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 479 Planning & Development in the Puget Sound Region (5) Course codes extracted: TURB 479 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 498 Urban Studies Internship (5)",
+        "courseCodesExtracted": [
+          "TURB 498"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 498 Urban Studies Internship (5) Course codes extracted: TURB 498 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.",
+        "courseCodesExtracted": [
+          "TURB 220"
+        ],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "lower-division admission/preparation section",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits. Course codes extracted: TURB 220 Detected section role: admission-prep-section Schedulable: yes Reason: lower-division admission/preparation section Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T URB 220 Introduction to Urban Planning (5)",
+        "courseCodesExtracted": [
+          "TURB 220"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 220 Introduction to Urban Planning (5) Course codes extracted: TURB 220 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "ADMISSION REQUIREMENTS",
+        "rawLine": "ADMISSION REQUIREMENTS",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "admission or preparation requirement heading",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: ADMISSION REQUIREMENTS Raw line: ADMISSION REQUIREMENTS Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "HOW TO APPLY",
+        "rawLine": "HOW TO APPLY",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: HOW TO APPLY Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "HOW TO APPLY",
+        "rawLine": "CURRICULUM",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: CURRICULUM Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      }
+    ],
+    "sourceSectionFilterAuditLines": [
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 235 Community Development (5) Course codes extracted: TURB 235 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 220 Introduction to Urban Planning (5) * Course codes extracted: TURB 220 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T UDE 340 Urban Social Change (5) Course codes extracted: TUDE 340 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 379 Urban Field Experience (5) Course codes extracted: TURB 379 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 470 Creating the Urban Narrative (5) Course codes extracted: TURB 470 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 479 Planning & Development in the Puget Sound Region (5) Course codes extracted: TURB 479 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 498 Urban Studies Internship (5) Course codes extracted: TURB 498 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits. Course codes extracted: TURB 220 Detected section role: admission-prep-section Schedulable: yes Reason: lower-division admission/preparation section Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T URB 220 Introduction to Urban Planning (5) Course codes extracted: TURB 220 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: ADMISSION REQUIREMENTS Raw line: ADMISSION REQUIREMENTS Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: HOW TO APPLY Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: CURRICULUM Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+    ],
+    "parserSequenceChoiceAuditRows": [],
+    "parserSequenceChoiceAuditLines": [],
+    "sourceScopeAuditLines": [
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TUDE 340 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 220 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 235 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 379 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 470 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 479 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:community-engagement-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TURB 498 Emitted as: required-row Scheduled: yes Issue: none"
+    ],
+    "resolutionStrategy": "primary-source",
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodes": [
+      "TUDE 340",
+      "TURB 220",
+      "TURB 235",
+      "TURB 379",
+      "TURB 470",
+      "TURB 479",
+      "TURB 498"
+    ],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": [],
+    "supportLists": [],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [],
+    "requirementCueLines": [
+      "* Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.",
+      "ADMISSION REQUIREMENTS",
+      "Choose 2 of the following:",
+      "Complete all of the following:",
+      "GRADUATION REQUIREMENTS",
+      "T UDE 340 Urban Social Change (5)",
+      "T URB 220 Introduction to Urban Planning (5)",
+      "T URB 220 Introduction to Urban Planning (5) *",
+      "T URB 235 Community Development (5)",
+      "T URB 379 Urban Field Experience (5)",
+      "T URB 470 Creating the Urban Narrative (5)",
+      "T URB 479 Planning & Development in the Puget Sound Region (5)",
+      "T URB 498 Urban Studies Internship (5)"
+    ],
+    "chooseStatements": [
+      "Choose 2 of the following:"
+    ],
+    "pathwayLabels": [],
+    "qualitySignals": [],
+    "parsedRequirementAtomCandidates": [
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:tude-340",
+        "title": "TUDE 340",
+        "uwCourseCode": "TUDE 340",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T UDE 340 Urban Social Change (5) (TUDE 340)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:turb-220",
+        "title": "TURB 220",
+        "uwCourseCode": "TURB 220",
+        "phase": "before-application",
+        "displayPhase": "before-application",
+        "phaseConfidence": "high",
+        "sourceLineHints": [
+          "* Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits. (TURB 220)",
+          "T URB 220 Introduction to Urban Planning (5) (TURB 220)",
+          "T URB 220 Introduction to Urban Planning (5) * (TURB 220)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:turb-235",
+        "title": "TURB 235",
+        "uwCourseCode": "TURB 235",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T URB 235 Community Development (5) (TURB 235)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:turb-379",
+        "title": "TURB 379",
+        "uwCourseCode": "TURB 379",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T URB 379 Urban Field Experience (5) (TURB 379)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:turb-470",
+        "title": "TURB 470",
+        "uwCourseCode": "TURB 470",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T URB 470 Creating the Urban Narrative (5) (TURB 470)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:turb-479",
+        "title": "TURB 479",
+        "uwCourseCode": "TURB 479",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T URB 479 Planning & Development in the Puget Sound Region (5) (TURB 479)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-atom:turb-498",
+        "title": "TURB 498",
+        "uwCourseCode": "TURB 498",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T URB 498 Urban Studies Internship (5) (TURB 498)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      }
+    ],
+    "parsedDegreeMapBlockCandidates": [
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:community-engagement-option:source-degree-map:",
+        "title": "Sustainable Urban Development (BA) - Community Engagement option parsed official source requirements",
+        "uwCourseCodes": [
+          "TUDE 340",
+          "TURB 220",
+          "TURB 235",
+          "TURB 379",
+          "TURB 470",
+          "TURB 479",
+          "TURB 498"
+        ],
+        "sourceLineHints": [
+          "* Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.",
+          "ADMISSION REQUIREMENTS",
+          "Choose 2 of the following:",
+          "Complete all of the following:",
+          "GRADUATION REQUIREMENTS",
+          "T UDE 340 Urban Social Change (5)",
+          "T URB 220 Introduction to Urban Planning (5)",
+          "T URB 220 Introduction to Urban Planning (5) *",
+          "T URB 235 Community Development (5)",
+          "T URB 379 Urban Field Experience (5)"
+        ]
+      }
+    ],
+    "snapshotPath": ".tmp/transfer-planner-requirement-source-snapshots/uw-tacoma-sustainable-urban-development-pathway-community-engagement-option-431c82e445.txt",
+    "usedSnapshotFallback": false,
+    "snapshotFallbackReason": null,
+    "error": null
+  },
+  {
+    "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-block:uw-tacoma-html-degree-page",
+    "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+    "ownerTitle": "Sustainable Urban Development (BA) - GIS option",
+    "planId": "uw-tacoma-sustainable-urban-development",
+    "pathwayId": "gis-option",
+    "campusId": "uw-tacoma",
+    "primaryParserType": "html-degree-page",
+    "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+    "primarySourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+    "parserType": "html-degree-page",
+    "adapterId": "uw-tacoma-html-degree-page",
+    "adapterFamily": "UW Tacoma HTML degree pages",
+    "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+    "coveredSourceUrls": [
+      "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development"
+    ],
+    "sourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "canCreateSchedulableRows": true,
+    "sourceScope": {
+      "canCreateRequiredRows": true,
+      "canCreateOptionGroups": true,
+      "canCreateCreditBuckets": true,
+      "canCreateCategoryOptions": true,
+      "canCreateApprovedFilters": false,
+      "canCreateElectiveLists": false,
+      "canCreateSequencingHints": false,
+      "canCreateAdmissionPrepRows": false,
+      "canCreateScheduleRows": true,
+      "supportOnly": false,
+      "nonSchedulable": false
+    },
+    "canCreateRequiredRows": true,
+    "canCreateOptionGroups": true,
+    "canCreateCreditBuckets": true,
+    "canCreateCategoryOptions": true,
+    "canCreateApprovedFilters": false,
+    "canCreateElectiveLists": false,
+    "canCreateSequencingHints": false,
+    "canCreateAdmissionPrepRows": false,
+    "canCreateScheduleRows": true,
+    "supportOnly": false,
+    "nonSchedulable": false,
+    "sourceSectionAudit": null,
+    "sourceSectionFilterAuditRows": [
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T GIS 311 Maps & GIS (6) ***",
+        "courseCodesExtracted": [
+          "TGIS 311"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 311 Maps & GIS (6) *** Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T GIS 312 Intermediate GIS (6)",
+        "courseCodesExtracted": [
+          "TGIS 312"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 312 Intermediate GIS (6) Course codes extracted: TGIS 312 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T GIS 313 Applied GIS and Project Design (3)",
+        "courseCodesExtracted": [
+          "TGIS 313"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 313 Applied GIS and Project Design (3) Course codes extracted: TGIS 313 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T GIS 414 Advanced GIS (5)",
+        "courseCodesExtracted": [
+          "TGIS 414"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 414 Advanced GIS (5) Course codes extracted: TGIS 414 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "source root",
+        "rawLine": "T GIS 415 Critical GIS and Project Practicum (5)",
+        "courseCodesExtracted": [
+          "TGIS 415"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 415 Critical GIS and Project Practicum (5) Course codes extracted: TGIS 415 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "Note : GIS Certificate courses are sequential and cohort-based. Students must apply to the certificate program by posted deadlines and contact the Academic Advisor to discuss course planning.",
+        "rawLine": "Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.",
+        "courseCodesExtracted": [
+          "TGIS 311"
+        ],
+        "detectedSectionRole": "primary-requirement-section",
+        "schedulable": true,
+        "reason": "course row without prerequisite-only or course-list section cues",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Note : GIS Certificate courses are sequential and cohort-based. Students must apply to the certificate program by posted deadlines and contact the Academic Advisor to discuss course planning. Raw line: Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits. Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "ADMISSION REQUIREMENTS",
+        "rawLine": "ADMISSION REQUIREMENTS",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "admission or preparation requirement heading",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: ADMISSION REQUIREMENTS Raw line: ADMISSION REQUIREMENTS Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "HOW TO APPLY",
+        "rawLine": "HOW TO APPLY",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: HOW TO APPLY Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      },
+      {
+        "ownerId": "uw-tacoma-sustainable-urban-development:pathway:gis-option",
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sectionTitle": "HOW TO APPLY",
+        "rawLine": "CURRICULUM",
+        "courseCodesExtracted": [],
+        "detectedSectionRole": "admission-prep-section",
+        "schedulable": true,
+        "reason": "inherits nearby source-section role",
+        "issue": "none",
+        "copyOnlyDebugText": "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: CURRICULUM Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+      }
+    ],
+    "sourceSectionFilterAuditLines": [
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 311 Maps & GIS (6) *** Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 312 Intermediate GIS (6) Course codes extracted: TGIS 312 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 313 Applied GIS and Project Design (3) Course codes extracted: TGIS 313 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 414 Advanced GIS (5) Course codes extracted: TGIS 414 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: source root Raw line: T GIS 415 Critical GIS and Project Practicum (5) Course codes extracted: TGIS 415 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: Note : GIS Certificate courses are sequential and cohort-based. Students must apply to the certificate program by posted deadlines and contact the Academic Advisor to discuss course planning. Raw line: Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits. Course codes extracted: TGIS 311 Detected section role: primary-requirement-section Schedulable: yes Reason: course row without prerequisite-only or course-list section cues Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: ADMISSION REQUIREMENTS Raw line: ADMISSION REQUIREMENTS Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: admission or preparation requirement heading Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: HOW TO APPLY Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none",
+      "[parser prerequisite filter audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Section title: HOW TO APPLY Raw line: CURRICULUM Course codes extracted: none Detected section role: admission-prep-section Schedulable: yes Reason: inherits nearby source-section role Issue: none"
+    ],
+    "parserSequenceChoiceAuditRows": [],
+    "parserSequenceChoiceAuditLines": [],
+    "sourceScopeAuditLines": [
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 311 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 312 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 313 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 414 Emitted as: required-row Scheduled: yes Issue: none",
+      "[source scope audit] Owner id: uw-tacoma-sustainable-urban-development:pathway:gis-option Source URL: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development Source role: primary-degree-requirements Support-only: no Can create required rows: yes Can create option groups: yes Can create approved filters: no Course code: TGIS 415 Emitted as: required-row Scheduled: yes Issue: none"
+    ],
+    "resolutionStrategy": "primary-source",
+    "ok": true,
+    "parseConfidence": "high",
+    "parsedUwCourseCodes": [
+      "TGIS 311",
+      "TGIS 312",
+      "TGIS 313",
+      "TGIS 414",
+      "TGIS 415"
+    ],
+    "approvedFilterUwCourseCodes": [],
+    "electiveListUwCourseCodes": [],
+    "supportOnlyUwCourseCodes": [],
+    "supportLists": [],
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [
+      "TSUD 222",
+      "TSUD 240",
+      "TSUD 444",
+      "TSUD 445",
+      "TSUD 475",
+      "TUDE 340",
+      "TURB 101",
+      "TURB 102",
+      "TURB 103",
+      "TURB 110",
+      "TURB 200",
+      "TURB 220",
+      "TURB 225",
+      "TURB 235",
+      "TURB 314",
+      "TURB 322",
+      "TURB 379",
+      "TURB 403",
+      "TURB 410",
+      "TURB 470",
+      "TURB 479",
+      "TURB 498"
+    ],
+    "requirementCueLines": [
+      "*** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.",
+      "ADMISSION REQUIREMENTS",
+      "GIS Certificate **: Complete all 5 courses listed below:",
+      "GRADUATION REQUIREMENTS",
+      "T GIS 311 Maps & GIS (6) ***",
+      "T GIS 312 Intermediate GIS (6)",
+      "T GIS 313 Applied GIS and Project Design (3)",
+      "T GIS 414 Advanced GIS (5)",
+      "T GIS 415 Critical GIS and Project Practicum (5)"
+    ],
+    "chooseStatements": [],
+    "pathwayLabels": [],
+    "qualitySignals": [
+      {
+        "severity": "warning",
+        "code": "material-source-structured-drift",
+        "message": "Parsed source course coverage diverges materially from the structured degree-map coverage.",
+        "details": "parsed=5; source-only=0; structured-only=22"
+      },
+      {
+        "severity": "warning",
+        "code": "large-structured-only-course-gap",
+        "message": "Structured degree-map coverage includes many UW course codes that were not recovered from the parsed source.",
+        "details": "structured-only=22; parsed=5; structured-coverage=27"
+      },
+      {
+        "severity": "warning",
+        "code": "high-confidence-low-course-coverage",
+        "message": "The parser reported high confidence, but the recovered UW course coverage looks suspiciously low for this owner.",
+        "details": "parsed=5; structured-coverage=27; structured-only=22"
+      }
+    ],
+    "parserRecovery": {
+      "triggered": true,
+      "triggerCodes": [
+        "material-source-structured-drift",
+        "large-structured-only-course-gap",
+        "high-confidence-low-course-coverage"
+      ],
+      "originalSourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+      "originalSourceLabel": "UW Tacoma Sustainable Urban Development degree requirements",
+      "originalSourceFingerprint": "89a998b199a58dfe",
+      "selectedStrategy": null,
+      "selectedSourceUrl": null,
+      "attemptedStrategies": [
+        "section-scoping-recovery",
+        "support-source-recovery",
+        "official-sibling-child-page-recovery"
+      ],
+      "attempts": [
+        {
+          "strategy": "section-scoping-recovery",
+          "status": "parsed",
+          "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+          "sourceLabel": "Scoped pathway section: B. GIS Certificate",
+          "parserType": "html-degree-page",
+          "sourceRole": "primary-degree-requirements",
+          "sourceRoleStatus": "primary",
+          "score": 120,
+          "reason": "selected pathway heading matched within a broader official source",
+          "parsedUwCourseCodeCount": 5,
+          "qualitySignalCodes": [
+            "material-source-structured-drift",
+            "large-structured-only-course-gap",
+            "high-confidence-low-course-coverage"
+          ],
+          "qualityWarningCodes": [
+            "material-source-structured-drift",
+            "large-structured-only-course-gap",
+            "high-confidence-low-course-coverage"
+          ],
+          "sourceEvidenceFingerprint": "64e5cf83a045fb74",
+          "error": null
+        },
+        {
+          "strategy": "support-source-recovery",
+          "status": "no-meaningful-content",
+          "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/academic-advising-resources",
+          "sourceLabel": "Academic Advising & Resources",
+          "parserType": "html-degree-page",
+          "sourceRole": "support-source",
+          "sourceRoleStatus": "support",
+          "score": 23,
+          "reason": "candidate parsed but did not expose requirement cues, choices, pathways, or UW course codes",
+          "parsedUwCourseCodeCount": 0,
+          "qualitySignalCodes": [],
+          "qualityWarningCodes": [],
+          "sourceEvidenceFingerprint": "695a22ba1c087cf2",
+          "error": null
+        },
+        {
+          "strategy": "official-sibling-child-page-recovery",
+          "status": "no-meaningful-content",
+          "sourceUrl": "https://www.tacoma.uw.edu/Shibboleth.sso/Login?target=/urban-studies/ba-sustainable-urban-development?shiblogin=1",
+          "sourceLabel": "UWNetID login",
+          "parserType": "html-degree-page",
+          "sourceRole": "primary-degree-requirements",
+          "sourceRoleStatus": "primary",
+          "score": 21,
+          "reason": "candidate parsed but did not expose requirement cues, choices, pathways, or UW course codes",
+          "parsedUwCourseCodeCount": 0,
+          "qualitySignalCodes": [],
+          "qualityWarningCodes": [],
+          "sourceEvidenceFingerprint": "377112cf53d848e4",
+          "error": null
+        }
+      ],
+      "recoveredSources": [],
+      "supportSources": [],
+      "before": {
+        "parsedUwCourseCodeCount": 5,
+        "sourceOnlyUwCourseCodeCount": 0,
+        "structuredOnlyUwCourseCodeCount": 22,
+        "parsedRequirementGroupCount": 0,
+        "parsedRequirementAtomCandidateCount": 5,
+        "requirementCueLineCount": 9,
+        "chooseStatementCount": 0,
+        "parseConfidence": "high",
+        "qualitySignalCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap",
+          "high-confidence-low-course-coverage"
+        ],
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap",
+          "high-confidence-low-course-coverage"
+        ],
+        "qualityWarningCount": 3,
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sourceRole": "primary-degree-requirements",
+        "sourceRoleStatus": "primary",
+        "sourceFingerprint": "89a998b199a58dfe"
+      },
+      "after": {
+        "parsedUwCourseCodeCount": 5,
+        "sourceOnlyUwCourseCodeCount": 0,
+        "structuredOnlyUwCourseCodeCount": 22,
+        "parsedRequirementGroupCount": 0,
+        "parsedRequirementAtomCandidateCount": 5,
+        "requirementCueLineCount": 9,
+        "chooseStatementCount": 0,
+        "parseConfidence": "high",
+        "qualitySignalCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap",
+          "high-confidence-low-course-coverage"
+        ],
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap",
+          "high-confidence-low-course-coverage"
+        ],
+        "qualityWarningCount": 3,
+        "sourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+        "sourceRole": "primary-degree-requirements",
+        "sourceRoleStatus": "primary",
+        "sourceFingerprint": "89a998b199a58dfe"
+      },
+      "blockerType": "source-official-but-ambiguous",
+      "sourceUnavailable": false,
+      "candidateCount": 3,
+      "succeeded": false
+    },
+    "parsedRequirementAtomCandidates": [
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-atom:tgis-311",
+        "title": "TGIS 311",
+        "uwCourseCode": "TGIS 311",
+        "phase": "before-application",
+        "displayPhase": "before-application",
+        "phaseConfidence": "high",
+        "sourceLineHints": [
+          "*** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits. (TGIS 311)",
+          "T GIS 311 Maps & GIS (6) *** (TGIS 311)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-atom:tgis-312",
+        "title": "TGIS 312",
+        "uwCourseCode": "TGIS 312",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T GIS 312 Intermediate GIS (6) (TGIS 312)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-atom:tgis-313",
+        "title": "TGIS 313",
+        "uwCourseCode": "TGIS 313",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T GIS 313 Applied GIS and Project Design (3) (TGIS 313)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-atom:tgis-414",
+        "title": "TGIS 414",
+        "uwCourseCode": "TGIS 414",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T GIS 414 Advanced GIS (5) (TGIS 414)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      },
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-atom:tgis-415",
+        "title": "TGIS 415",
+        "uwCourseCode": "TGIS 415",
+        "phase": null,
+        "displayPhase": null,
+        "phaseConfidence": null,
+        "sourceLineHints": [
+          "T GIS 415 Critical GIS and Project Practicum (5) (TGIS 415)"
+        ],
+        "sourceSectionRole": "primary-requirement-section",
+        "sourceSectionSchedulable": true,
+        "sourceSectionReason": "course row without prerequisite-only or course-list section cues"
+      }
+    ],
+    "parsedDegreeMapBlockCandidates": [
+      {
+        "id": "uw-tacoma-sustainable-urban-development:pathway:gis-option:source-degree-map:",
+        "title": "Sustainable Urban Development (BA) - GIS option parsed official source requirements",
+        "uwCourseCodes": [
+          "TGIS 311",
+          "TGIS 312",
+          "TGIS 313",
+          "TGIS 414",
+          "TGIS 415"
+        ],
+        "sourceLineHints": [
+          "*** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.",
+          "ADMISSION REQUIREMENTS",
+          "GIS Certificate **: Complete all 5 courses listed below:",
+          "GRADUATION REQUIREMENTS",
+          "T GIS 311 Maps & GIS (6) ***",
+          "T GIS 312 Intermediate GIS (6)",
+          "T GIS 313 Applied GIS and Project Design (3)",
+          "T GIS 414 Advanced GIS (5)",
+          "T GIS 415 Critical GIS and Project Practicum (5)"
+        ]
+      }
+    ],
     "snapshotPath": ".tmp/transfer-planner-requirement-source-snapshots/uw-tacoma-sustainable-urban-development-pathway-gis-option-431c82e445.txt",
-    "usedSnapshotFallback": true,
-    "snapshotFallbackReason": "snapshot-only mode",
+    "usedSnapshotFallback": false,
+    "snapshotFallbackReason": null,
     "error": null
   },
   {

@@ -1457,6 +1457,9 @@ function extractExplicitCourseCodesFromLine(line) {
     const trailingSegment = normalizedLine.slice(currentMatchEnd, nextMatchStart);
 
     for (const numberMatch of trailingSegment.matchAll(COURSE_NUMBER_CONTINUATION_PATTERN)) {
+      if (isStandaloneParentheticalCourseNumberContinuation(trailingSegment, numberMatch)) {
+        continue;
+      }
       if (isCourseCodeMatchImmediatelyFollowedByLevel(trailingSegment, numberMatch)) {
         continue;
       }
@@ -1487,6 +1490,22 @@ function extractExplicitCourseCodesFromLine(line) {
   }
 
   return uniqueSorted(extractedCourseCodes);
+}
+
+function isStandaloneParentheticalCourseNumberContinuation(segment, match) {
+  const matchedText = String(match?.[0] ?? "");
+  if (!matchedText.trimStart().startsWith("(")) {
+    return false;
+  }
+  const matchStart = match.index ?? 0;
+  const matchEnd = matchStart + matchedText.length;
+  const afterMatch = segment.slice(matchEnd);
+  if (!/^\s*\)/.test(afterMatch)) {
+    return false;
+  }
+  const parentheticalEnd = matchEnd + (afterMatch.match(/^\s*\)/)?.[0].length ?? 0);
+  const parentheticalText = segment.slice(matchStart, parentheticalEnd);
+  return !/\b(?:or|and)\b|[,;/+&]/i.test(parentheticalText);
 }
 
 function isCourseCodeMatchImmediatelyFollowedByLevel(line, match) {
@@ -2187,6 +2206,80 @@ function lineReferencesDifferentMajorScope(entry, line) {
   );
 }
 
+function getOwnerDegreeRoute(entry) {
+  const searchable = normalizeWhitespace(
+    `${entry?.ownerTitle ?? ""} ${entry?.title ?? ""} ${entry?.planId ?? ""} ${entry?.ownerId ?? ""}`
+  );
+  if (/\b(?:b\.?\s*a\.?|bachelor\s+of\s+arts)\b|\(ba\)|(?:^|[-_\s])ba(?:[-_\s]|$)/i.test(searchable)) {
+    return "ba";
+  }
+  if (
+    /\b(?:b\.?\s*s\.?|bachelor\s+of\s+science)\b|\(bs\)|(?:^|[-_\s])bs(?:[-_\s]|$)/i.test(
+      searchable
+    )
+  ) {
+    return "bs";
+  }
+  return null;
+}
+
+function lineReferencesConflictingDegreeRoute(entry, lines, hintLineIndex) {
+  if (hintLineIndex < 0 || !Array.isArray(lines)) {
+    return false;
+  }
+
+  const route = getOwnerDegreeRoute(entry);
+  if (!route) {
+    return false;
+  }
+
+  const conflictingRoutePattern =
+    route === "ba"
+      ? /\b(?:b\.?\s*s\.?|bachelor\s+of\s+science)\s+majors?\b|\b(?:b\.?\s*s\.?|bachelor\s+of\s+science)\b.{0,80}\badditional\s+(?:class\s+)?requirements?\b/i
+      : /\b(?:b\.?\s*a\.?|bachelor\s+of\s+arts)\s+majors?\b|\b(?:b\.?\s*a\.?|bachelor\s+of\s+arts)\b.{0,80}\badditional\s+(?:class\s+)?requirements?\b/i;
+  const matchingRoutePattern =
+    route === "ba"
+      ? /\b(?:b\.?\s*a\.?|bachelor\s+of\s+arts)\b/i
+      : /\b(?:b\.?\s*s\.?|bachelor\s+of\s+science)\b/i;
+
+  const windowStart = Math.max(0, hintLineIndex - 4);
+  const nearbyLines = lines.slice(windowStart, hintLineIndex + 1).map(normalizeWhitespace);
+  if (matchingRoutePattern.test(nearbyLines[nearbyLines.length - 1] ?? "")) {
+    return false;
+  }
+  return nearbyLines.some((line) => conflictingRoutePattern.test(line));
+}
+
+function lineBelongsToDegreeRouteComparisonSection(lines, hintLineIndex) {
+  if (hintLineIndex < 0 || !Array.isArray(lines)) {
+    return false;
+  }
+
+  const previousLines = lines.slice(Math.max(0, hintLineIndex - 25), hintLineIndex + 1);
+  let comparisonStartIndex = -1;
+  for (let index = previousLines.length - 1; index >= 0; index -= 1) {
+    if (/\bbachelors?\s+of\s+science\s+or\s+arts?\b/i.test(previousLines[index])) {
+      comparisonStartIndex = index;
+      break;
+    }
+  }
+  if (comparisonStartIndex < 0) {
+    return false;
+  }
+
+  return !previousLines
+    .slice(comparisonStartIndex + 1)
+    .some((line) => /\blearn\s+more\s+about\s+b\.?\s*s\.?\s+in\b/i.test(line));
+}
+
+function isDegreeRouteComparisonSectionHeading(line) {
+  return /\bbachelors?\s+of\s+science\s+or\s+arts?\b/i.test(normalizeWhitespace(line));
+}
+
+function isDegreeRouteComparisonSectionTerminator(line) {
+  return /\blearn\s+more\s+about\s+b\.?\s*s\.?\s+in\b/i.test(normalizeWhitespace(line));
+}
+
 function isBareCourseCodeSourceHint(hint, courseCode) {
   const normalizedHint = normalizeWhitespace(String(hint ?? ""))
     .replace(/[|,;:.()[\]{}]+/g, " ")
@@ -2231,6 +2324,12 @@ function isUnsafeRequirementCourseHint(entry, courseCode, hint, lines = []) {
       normalizeWhitespace(line) === normalizedHint ||
       buildSourceLineHint(courseCode, line) === normalizedHint
   );
+  if (lineReferencesConflictingDegreeRoute(entry, lines, hintLineIndex)) {
+    return true;
+  }
+  if (lineBelongsToDegreeRouteComparisonSection(lines, hintLineIndex)) {
+    return true;
+  }
   const hasNearbyRequirementContext =
     hintLineIndex >= 0 && hasRequirementContextNearLine(lines, hintLineIndex, 4);
   if (
@@ -2770,6 +2869,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
   );
   let currentSectionTitle = "source root";
   let currentRole = "primary-requirement-section";
+  let inDegreeRouteComparisonSection = false;
 
   for (let index = 0; index < (input.snapshotLines ?? []).length; index += 1) {
     const rawLine = normalizeWhitespace(input.snapshotLines[index]);
@@ -2778,8 +2878,17 @@ function buildParserPrerequisiteFilterAuditRows(input) {
       continue;
     }
 
+    if (isDegreeRouteComparisonSectionHeading(normalizedLine)) {
+      inDegreeRouteComparisonSection = true;
+    }
+
     const courseCodes = extractCourseCodesFromRequirementLine(normalizedLine);
-    const explicit = classifySourceSectionRoleForLine(normalizedLine, currentRole);
+    const explicit = inDegreeRouteComparisonSection
+      ? {
+          sectionRole: "support-metadata",
+          reason: "degree-route comparison section is not schedulable requirement evidence",
+        }
+      : classifySourceSectionRoleForLine(normalizedLine, currentRole);
     const lineLooksLikeHeading =
       courseCodes.length === 0 &&
       (normalizedHeadings.has(normalizedLine) ||
@@ -2838,6 +2947,12 @@ function buildParserPrerequisiteFilterAuditRows(input) {
         "Issue: none",
       ].join(" "),
     });
+
+    if (isDegreeRouteComparisonSectionTerminator(normalizedLine)) {
+      inDegreeRouteComparisonSection = false;
+      currentRole = "primary-requirement-section";
+      currentSectionTitle = "source root";
+    }
   }
 
   return rows;
@@ -7692,6 +7807,26 @@ function lineMatchesStrictSelectedPathwayIdentity(entry, line) {
   });
 }
 
+function getPathwayHeadingIdentityTokens(line) {
+  return normalizeMatcherText(stripPathwayHeadingPrefix(line))
+    .split(" ")
+    .filter((token) => token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token));
+}
+
+function lineMatchesPathwayHeadingIdentity(headingLine, candidateLine) {
+  const tokens = getPathwayHeadingIdentityTokens(headingLine);
+  const normalizedCandidate = normalizeMatcherText(candidateLine);
+  if (!tokens.length || !normalizedCandidate) {
+    return false;
+  }
+
+  const tokenMatches = tokens.filter((token) =>
+    normalizedLineContainsToken(normalizedCandidate, token)
+  ).length;
+  const requiredMatches = tokens.length <= 2 ? tokens.length : 2;
+  return tokenMatches >= Math.max(1, requiredMatches);
+}
+
 function isLikelyPathwayChoiceContextLine(line) {
   const normalized = normalizeTransferPlannerText(line);
   if (
@@ -7944,6 +8079,216 @@ function buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes) {
   return null;
 }
 
+function findPathwayHtmlTableContentBoundary(lines, startIndex, headingLines) {
+  const forwardLimit = Math.min(lines.length - 1, startIndex + 220);
+  for (let index = startIndex; index <= forwardLimit; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (
+      !line ||
+      extractCourseCodesFromLine(line).length > 0 ||
+      PATHWAY_SECTION_BOUNDARY_PATTERN.test(line)
+    ) {
+      continue;
+    }
+
+    if (headingLines.some((headingLine) => lineMatchesPathwayHeadingIdentity(headingLine, line))) {
+      return index;
+    }
+  }
+
+  return null;
+}
+
+const PATHWAY_HTML_TABLE_CONTENT_END_BOUNDARY_PATTERN =
+  /^(?:general electives?|graduation requirements?|admission requirements?|curriculum|major requirements?|program overview|contact\b|for students admitted\b)/i;
+
+const PRIOR_ADMIT_CURRICULUM_START_PATTERN =
+  /^(?:for students admitted\b.*\b(?:before|prior to)\b|students admitted\b.*\b(?:before|prior to)\b|degree requirements?\b.*\bfor students admitted\b.*\b(?:before|prior to)\b)/i;
+
+function removePriorAdmitCurriculumSectionsFromCurrentScope(lines) {
+  if (!Array.isArray(lines) || lines.length < 12) {
+    return lines;
+  }
+
+  const legacyStartIndex = lines.findIndex((line) =>
+    PRIOR_ADMIT_CURRICULUM_START_PATTERN.test(normalizeWhitespace(line))
+  );
+  if (legacyStartIndex < 0) {
+    return lines;
+  }
+
+  const precedingText = normalizeMatcherText(lines.slice(0, legacyStartIndex).join(" "));
+  const hasCurrentCurriculumBeforeLegacy =
+    /\bformal options?\b/.test(precedingText) &&
+    /\bshared curriculum\b/.test(precedingText) &&
+    /\bfoundation courses?\b/.test(precedingText);
+  if (!hasCurrentCurriculumBeforeLegacy) {
+    return lines;
+  }
+
+  return lines.slice(0, legacyStartIndex);
+}
+
+function findPathwayHtmlTableContentEndIndex(entry, lines, startIndex) {
+  const defaultEndIndex = findPathwayHtmlSectionEndIndex(entry, lines, startIndex);
+  for (let index = startIndex + 1; index <= defaultEndIndex; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (
+      index > startIndex + 2 &&
+      line &&
+      extractCourseCodesFromLine(line).length === 0 &&
+      PATHWAY_HTML_TABLE_CONTENT_END_BOUNDARY_PATTERN.test(line)
+    ) {
+      return Math.max(startIndex, index - 1);
+    }
+  }
+
+  return defaultEndIndex;
+}
+
+function removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines) {
+  if (entry?.pathwayId || !Array.isArray(lines) || lines.length < 8) {
+    return lines;
+  }
+
+  const removeRanges = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    if (
+      extractCourseCodesFromLine(lines[index]).length > 0 ||
+      !isLikelyPeerPathwayHtmlSectionStartLine(lines[index])
+    ) {
+      continue;
+    }
+
+    let runEnd = index;
+    while (
+      runEnd + 1 < lines.length &&
+      extractCourseCodesFromLine(lines[runEnd + 1]).length === 0 &&
+      isLikelyPeerPathwayHtmlSectionStartLine(lines[runEnd + 1])
+    ) {
+      runEnd += 1;
+    }
+
+    if (runEnd === index) {
+      continue;
+    }
+
+    const contentStart = runEnd + 1;
+    let contentEnd = Math.min(lines.length - 1, contentStart + 220);
+    for (let scanIndex = contentStart + 1; scanIndex <= contentEnd; scanIndex += 1) {
+      const line = normalizeWhitespace(lines[scanIndex]);
+      if (
+        scanIndex > contentStart + 2 &&
+        line &&
+        extractCourseCodesFromLine(line).length === 0 &&
+        PATHWAY_HTML_TABLE_CONTENT_END_BOUNDARY_PATTERN.test(line)
+      ) {
+        contentEnd = scanIndex - 1;
+        break;
+      }
+    }
+
+    const removedLines = lines.slice(index, contentEnd + 1);
+    const removedCourseCount = removedLines.reduce(
+      (count, line) => count + extractCourseCodesFromLine(line).length,
+      0
+    );
+    if (removedCourseCount > 0) {
+      removeRanges.push({ startIndex: index, endIndex: contentEnd });
+    }
+
+    index = Math.max(index, runEnd);
+  }
+
+  if (!removeRanges.length) {
+    return lines;
+  }
+
+  return lines.filter((_, lineIndex) =>
+    removeRanges.every(
+      (range) => lineIndex < range.startIndex || lineIndex > range.endIndex
+    )
+  );
+}
+
+function buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes) {
+  const peerIndexByLineIndex = new Map(
+    peerStartIndexes
+      .filter((candidate) => extractCourseCodesFromLine(lines[candidate.index]).length === 0)
+      .map((candidate) => [candidate.index, candidate])
+  );
+
+  for (const selectedCandidate of peerStartIndexes.filter((candidate) => candidate.selected)) {
+    if (!peerIndexByLineIndex.has(selectedCandidate.index)) {
+      continue;
+    }
+
+    let runStart = selectedCandidate.index;
+    while (peerIndexByLineIndex.has(runStart - 1)) {
+      runStart -= 1;
+    }
+
+    let runEnd = selectedCandidate.index;
+    while (peerIndexByLineIndex.has(runEnd + 1)) {
+      runEnd += 1;
+    }
+
+    const runIndexes = [];
+    for (let index = runStart; index <= runEnd; index += 1) {
+      if (peerIndexByLineIndex.has(index)) {
+        runIndexes.push(index);
+      }
+    }
+    if (runIndexes.length < 2) {
+      continue;
+    }
+
+    const selectedPosition = runIndexes.indexOf(selectedCandidate.index);
+    if (selectedPosition < 0) {
+      continue;
+    }
+
+    const contentStart = runEnd + 1;
+    const selectedHeading = lines[selectedCandidate.index];
+    const laterSiblingHeadings = runIndexes
+      .slice(selectedPosition + 1)
+      .map((index) => lines[index]);
+
+    let startIndex = contentStart;
+    if (selectedPosition > 0) {
+      const repeatedSelectedHeadingIndex = findPathwayHtmlTableContentBoundary(
+        lines,
+        contentStart,
+        [selectedHeading]
+      );
+      if (repeatedSelectedHeadingIndex === null) {
+        continue;
+      }
+      startIndex = repeatedSelectedHeadingIndex;
+    }
+
+    const nextSiblingContentIndex = laterSiblingHeadings.length
+      ? findPathwayHtmlTableContentBoundary(lines, contentStart, laterSiblingHeadings)
+      : null;
+    const defaultEndIndex = findPathwayHtmlTableContentEndIndex(entry, lines, startIndex);
+    const endIndex =
+      nextSiblingContentIndex !== null && nextSiblingContentIndex > startIndex
+        ? Math.min(defaultEndIndex, nextSiblingContentIndex - 1)
+        : defaultEndIndex;
+    const sectionLines = uniqueInOrder([selectedHeading, ...lines.slice(startIndex, endIndex + 1)]);
+
+    if (sectionLines.some((line) => extractCourseCodesFromLine(line).length > 0)) {
+      return {
+        startIndex,
+        endIndex,
+        lines: sectionLines,
+      };
+    }
+  }
+
+  return null;
+}
+
 function findPathwayHtmlSectionRange(entry, lines) {
   if (!entry?.pathwayId || !Array.isArray(lines) || lines.length < 4) {
     return null;
@@ -7965,6 +8310,11 @@ function findPathwayHtmlSectionRange(entry, lines) {
 
   if (!selectedStartIndexes.length || !hasSiblingPathwaySection) {
     return null;
+  }
+
+  const tableScope = buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes);
+  if (tableScope) {
+    return tableScope;
   }
 
   const nestedScope = buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes);
@@ -8866,37 +9216,50 @@ function isApprovedElectiveHtmlSource(entry, title, headings, lines) {
 }
 
 function scopeHtmlLines(entry, title, headings, lines) {
-  const pathwaySectionRange = findPathwayHtmlSectionRange(entry, lines);
+  const currentCatalogLines = removePriorAdmitCurriculumSectionsFromCurrentScope(lines);
+  const sourceLines = currentCatalogLines;
+
+  const pathwaySectionRange = findPathwayHtmlSectionRange(entry, sourceLines);
   if (pathwaySectionRange) {
-    return pathwaySectionRange.lines ?? lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+    return pathwaySectionRange.lines ?? sourceLines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
   }
 
-  if (isApprovedElectiveHtmlSource(entry, title, headings, lines)) {
-    return lines;
+  const baseLinesWithoutParallelPathwayTableContent =
+    removeParallelPathwayHtmlTableContentFromBaseScope(entry, sourceLines);
+  if (baseLinesWithoutParallelPathwayTableContent !== sourceLines) {
+    return baseLinesWithoutParallelPathwayTableContent;
   }
 
-  if (shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, lines)) {
-    return lines;
+  if (sourceLines !== lines) {
+    return sourceLines;
   }
 
-  if (shouldUseFullFocusedDegreeHtmlScope(entry, title, headings, lines)) {
-    return lines;
+  if (isApprovedElectiveHtmlSource(entry, title, headings, sourceLines)) {
+    return sourceLines;
   }
 
-  const legacyCatalogSectionRange = findLegacyCatalogProgramSectionRange(entry, lines);
+  if (shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, sourceLines)) {
+    return sourceLines;
+  }
+
+  if (shouldUseFullFocusedDegreeHtmlScope(entry, title, headings, sourceLines)) {
+    return sourceLines;
+  }
+
+  const legacyCatalogSectionRange = findLegacyCatalogProgramSectionRange(entry, sourceLines);
   if (legacyCatalogSectionRange) {
-    return lines.slice(legacyCatalogSectionRange.startIndex, legacyCatalogSectionRange.endIndex + 1);
+    return sourceLines.slice(legacyCatalogSectionRange.startIndex, legacyCatalogSectionRange.endIndex + 1);
   }
 
   const titleTokens = getTitleScopeTokens(entry);
-  if (!titleTokens.length || lines.length <= 20) {
-    return lines;
+  if (!titleTokens.length || sourceLines.length <= 20) {
+    return sourceLines;
   }
 
   const useOwnerSectionScoping = isLegacyStudentCatalogSource(entry);
   const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
   const normalizedHeadings = new Set((headings ?? []).map((heading) => normalizeWhitespace(heading)));
-  const scoredLineIndexes = lines
+  const scoredLineIndexes = sourceLines
     .map((line, index) => ({
       index,
       score: (() => {
@@ -8948,7 +9311,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
     .sort((left, right) => right.score - left.score || left.index - right.index);
 
   if (!scoredLineIndexes.length) {
-    return lines;
+    return sourceLines;
   }
 
   const bestScore = scoredLineIndexes[0].score;
@@ -8962,27 +9325,27 @@ function scopeHtmlLines(entry, title, headings, lines) {
     .map((entryScore) => entryScore.index);
 
   if (!matchingIndexes.length) {
-    return lines;
+    return sourceLines;
   }
 
   const ownerSectionRange = useOwnerSectionScoping
-    ? findOwnerHtmlSectionRange(entry, lines, bestLineIndex)
+    ? findOwnerHtmlSectionRange(entry, sourceLines, bestLineIndex)
     : null;
   let startIndex = ownerSectionRange
     ? ownerSectionRange.startIndex
     : Math.max(0, Math.min(...matchingIndexes) - 6);
   const initialEndIndex = ownerSectionRange
     ? ownerSectionRange.endIndex
-    : Math.min(lines.length - 1, Math.max(...matchingIndexes) + 24);
+    : Math.min(sourceLines.length - 1, Math.max(...matchingIndexes) + 24);
   const scopedTableTailText = normalizeMatcherText(
-    lines.slice(Math.max(startIndex, initialEndIndex - 16), initialEndIndex + 1).join(" ")
+    sourceLines.slice(Math.max(startIndex, initialEndIndex - 16), initialEndIndex + 1).join(" ")
   );
   const isApprovedElectivesScope = /\bapproved electives?\b/.test(
     normalizeMatcherText(
       [
         entry?.label,
         entry?.url,
-        ...lines.slice(startIndex, initialEndIndex + 1),
+        ...sourceLines.slice(startIndex, initialEndIndex + 1),
       ]
         .filter(Boolean)
         .join(" ")
@@ -8996,9 +9359,9 @@ function scopeHtmlLines(entry, title, headings, lines) {
       scopedTableTailText
     ) || SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(scopedTableTailText))
   ) {
-    const continuationTail = lines.slice(
+    const continuationTail = sourceLines.slice(
       initialEndIndex + 1,
-      Math.min(lines.length, initialEndIndex + 501)
+      Math.min(sourceLines.length, initialEndIndex + 501)
     );
     let continuationCourseCount = 0;
     let quietLineCount = 0;
@@ -9063,7 +9426,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
   if (!ownerSectionRange) {
     const prerequisiteStartIndex = findPrecedingAdmissionRequirementStartIndex(
       entry,
-      lines,
+      sourceLines,
       startIndex
     );
     if (prerequisiteStartIndex !== null) {
@@ -9071,7 +9434,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
     }
   }
 
-  let scopedLines = lines.slice(startIndex, endIndex + 1);
+  let scopedLines = sourceLines.slice(startIndex, endIndex + 1);
   const differentOwnerBoundaryIndex = findDifferentOwnerAcronymDepartmentalBoundaryIndex(
     entry,
     scopedLines
@@ -10479,8 +10842,15 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
     entry,
     scopedParsed
   );
+  const scopedRemovesParallelPathwayTable =
+    !entry?.pathwayId &&
+    removeParallelPathwayHtmlTableContentFromBaseScope(
+      entry,
+      fullParsed.snapshotLines ?? []
+    ).length < (fullParsed.snapshotLines ?? []).length;
   const enrichedScopedParsed =
     !scopedMentionsSelectedPathwaySection &&
+    !scopedRemovesParallelPathwayTable &&
     !isLegacyStudentCatalogSource(entry) &&
     ["html-degree-page", "html-curriculum-page"].includes(entry.parserType)
       ? buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed)
@@ -10512,6 +10882,14 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   if (
     scopedMentionsSelectedPathwaySection &&
     scopedCourseCount >= 1
+  ) {
+    return enrichedScopedParsed;
+  }
+
+  if (
+    !entry?.pathwayId &&
+    scopedCourseCount >= 1 &&
+    scopedRemovesParallelPathwayTable
   ) {
     return enrichedScopedParsed;
   }
@@ -11477,17 +11855,49 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
     }
   }
 
-  return [
-    ...parsedGeneralSources,
-    ...buildSharedSpecializationSupplementalSource(
-      {
-        title: null,
-        courseCodes: [],
-      },
-      parsedSpecializationSources,
-      entry.parserType
-    ),
-  ];
+  const sharedSpecializationSources = buildSharedSpecializationSupplementalSource(
+    {
+      title: null,
+      courseCodes: [],
+    },
+    parsedSpecializationSources,
+    entry.parserType
+  );
+
+  if (isPathwayOwnerEntry(entry)) {
+    return [
+      ...parsedGeneralSources,
+      ...sharedSpecializationSources
+        .map((supplementalSource) => {
+          const lowerDivisionCourseCodes = (supplementalSource.parsed?.courseCodes ?? []).filter(
+            (courseCode) => {
+              const level = getCourseCodeNumericLevel(courseCode);
+              return level !== null && level < 300;
+            }
+          );
+
+          return {
+            ...supplementalSource,
+            parsed: {
+              ...supplementalSource.parsed,
+              requirementCueLines: [],
+              chooseStatements: [],
+              pathwayLabels: [],
+              snapshotLines: [],
+              courseCodes: lowerDivisionCourseCodes,
+              parseConfidence: buildParseConfidence(
+                lowerDivisionCourseCodes,
+                [],
+                entry.parserType
+              ),
+            },
+          };
+        })
+        .filter((supplementalSource) => supplementalSource.parsed.courseCodes.length),
+    ];
+  }
+
+  return [...parsedGeneralSources, ...sharedSpecializationSources];
 }
 
 function getParsedDegreeSheetSignalScore(parsed) {
@@ -12509,12 +12919,16 @@ function extractParserRecoveryLinkCandidates(entry, html) {
     ) {
       continue;
     }
+    const ownerTitleTokenCount = getTitleScopeTokens(entry).length;
+    const hasTitleTokenIdentity =
+      signals.titleTokenOverlapCount >=
+      Math.max(1, Math.min(2, ownerTitleTokenCount));
     const hasOwnerIdentitySignal =
       signals.exactTitleMatch ||
-      signals.titleTokenOverlapCount > 0 ||
+      hasTitleTokenIdentity ||
       signals.sameProgramRequirementLink ||
       signals.sameProgramSpecializationLink ||
-      (signals.sameOriginChildOrSiblingPage && signals.titleTokenOverlapCount > 0);
+      (signals.sameOriginChildOrSiblingPage && hasTitleTokenIdentity);
     const hasRelevantSignal =
       hasOwnerIdentitySignal ||
       (signals.supportSignal &&
@@ -12582,13 +12996,61 @@ function isParserRecoverySectionBoundaryLine(line) {
 }
 
 function buildParserRecoverySectionCandidates(entry, artifacts) {
-  const lines = artifacts?.lines ?? [];
+  const rawLines = artifacts?.lines ?? [];
+  const lines = removePriorAdmitCurriculumSectionsFromCurrentScope(rawLines);
   if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(`${entry.label ?? ""} ${entry.url ?? ""}`)) {
     return [];
   }
 
   if (!lines.length) {
     return [];
+  }
+
+  const pathwaySectionRange = findPathwayHtmlSectionRange(entry, lines);
+  if (pathwaySectionRange) {
+    const sectionLines =
+      pathwaySectionRange.lines ?? lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+    if (sectionLines.some((sectionLine) => extractCourseCodesFromLine(sectionLine).length > 0)) {
+      return [
+        {
+          strategy: "section-scoping-recovery",
+          url: entry.url,
+          label: `Scoped pathway section: ${normalizeWhitespace(sectionLines[0] ?? "").slice(0, 120)}`,
+          parserType: entry.parserType,
+          sourceRole: classifyRequirementSourceRole(entry),
+          sourceRoleStatus: getRequirementSourceRoleStatus(classifyRequirementSourceRole(entry)),
+          score: 120,
+          reason: "selected pathway heading matched within a broader official source",
+          sectionLineStart: pathwaySectionRange.startIndex,
+          sectionLineEnd: pathwaySectionRange.endIndex,
+          sectionLines,
+          title: artifacts.title ?? null,
+          headings: artifacts.headings ?? [],
+        },
+      ];
+    }
+  }
+
+  const baseLinesWithoutParallelPathwayTableContent =
+    removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines);
+  if (baseLinesWithoutParallelPathwayTableContent !== lines) {
+    return [
+      {
+        strategy: "section-scoping-recovery",
+        url: entry.url,
+        label: `Scoped current requirements: ${normalizeWhitespace(baseLinesWithoutParallelPathwayTableContent[0] ?? "").slice(0, 120)}`,
+        parserType: entry.parserType,
+        sourceRole: classifyRequirementSourceRole(entry),
+        sourceRoleStatus: getRequirementSourceRoleStatus(classifyRequirementSourceRole(entry)),
+        score: 100,
+        reason: "base owner excluded sibling formal-option table content from a broader official source",
+        sectionLineStart: 0,
+        sectionLineEnd: baseLinesWithoutParallelPathwayTableContent.length,
+        sectionLines: baseLinesWithoutParallelPathwayTableContent,
+        title: artifacts.title ?? null,
+        headings: artifacts.headings ?? [],
+      },
+    ];
   }
 
   const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
@@ -12838,6 +13300,27 @@ function shouldAcceptParserRecoveryOwner(beforeOwner, afterOwner, candidate) {
   const beforeSnapshot = buildParserRecoveryOwnerSnapshot(beforeOwner);
   const afterSnapshot = buildParserRecoveryOwnerSnapshot(afterOwner);
   if (afterSnapshot.parsedUwCourseCodeCount === 0) {
+    return false;
+  }
+
+  if (
+    beforeOwner.pathwayId &&
+    beforeSnapshot.parsedUwCourseCodeCount > 0 &&
+    parsedMentionsSelectedPathwaySection(beforeOwner, beforeOwner) &&
+    afterSnapshot.parsedUwCourseCodeCount > beforeSnapshot.parsedUwCourseCodeCount + 10
+  ) {
+    return false;
+  }
+
+  if (
+    !beforeOwner.pathwayId &&
+    beforeSnapshot.parsedUwCourseCodeCount > 0 &&
+    afterSnapshot.parsedUwCourseCodeCount > beforeSnapshot.parsedUwCourseCodeCount + 2 &&
+    removeParallelPathwayHtmlTableContentFromBaseScope(
+      beforeOwner,
+      afterOwner.snapshotLines ?? []
+    ).length < (afterOwner.snapshotLines ?? []).length
+  ) {
     return false;
   }
 

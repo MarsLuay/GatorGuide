@@ -330,7 +330,7 @@ test("Source-backed coverage treats explicit non-counting exploratory elective l
   );
 });
 
-test("UWB BBA materializes parser-backed lower-division pathway rows", () => {
+test("UWB BBA preserves current prerequisite source and materializes available lower-division rows", () => {
   const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
     "uw-bothell-business-administration"
   );
@@ -361,10 +361,28 @@ test("UWB BBA materializes parser-backed lower-division pathway rows", () => {
         item.sourceScope === "generated-course-pool"
     )
   );
-  assert.ok(generatedCourseCodes.has("CS 122"));
-  assert.ok(generatedCourseCodes.has("CS& 141"));
-  assert.ok(generatedCourseCodes.has("CS 145"));
   assert.ok(generatedCourseCodes.has("MATH& 148"));
+  assert.equal(
+    generatedCourseCodes.has("CS 122"),
+    false,
+    "Expected current BBA prerequisite materialization not to retain stale CS 122 rows."
+  );
+
+  const prerequisiteSupportList = (pathwayPlan?.supportLists ?? []).find(
+    (supportList) =>
+      supportList.sourceUrl ===
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses"
+  );
+  assert.ok(
+    prerequisiteSupportList,
+    "Expected the current official BBA prerequisite page to remain attached as support evidence."
+  );
+  for (const expectedPrerequisiteCode of ["ACCTG 215", "ECON 200", "ENGL 131", "MATH 112"]) {
+    assert.ok(
+      prerequisiteSupportList.acceptedUwCourseCodes?.includes(expectedPrerequisiteCode),
+      `Expected BBA prerequisite support source to include ${expectedPrerequisiteCode}.`
+    );
+  }
 });
 
 test("UW Bioengineering runtime normalization preserves parser-backed source rows", () => {
@@ -1224,6 +1242,67 @@ test("Bothell Business Administration hides prose-fragment pathways while keepin
   }
 });
 
+test("Bothell BBA pathways do not inherit sibling option source courses", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-business-administration");
+  assert.ok(plan);
+
+  const resolvedPlan = studentRuntime.resolveTransferPlannerStudentRuntimeMajorPlan(
+    plan,
+    "leadership-and-strategic-innovation-option"
+  );
+  assert.ok(resolvedPlan);
+
+  const degreeMapCourses = new Set(
+    (resolvedPlan.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  for (const expectedCourse of [
+    "BBUS 402",
+    "BBUS 441",
+    "BBUS 461",
+    "BBUS 473",
+    "BBUS 475",
+    "BBUS 491",
+  ]) {
+    assert.ok(
+      degreeMapCourses.has(expectedCourse),
+      `Expected LSI source requirements to include ${expectedCourse}.`
+    );
+  }
+  for (const siblingCourse of [
+    "BBUS 330",
+    "BBUS 361",
+    "BBUS 421",
+    "BBUS 435",
+    "ELCBUS 350",
+  ]) {
+    assert.equal(
+      degreeMapCourses.has(siblingCourse),
+      false,
+      `Expected LSI source requirements not to inherit sibling option course ${siblingCourse}.`
+    );
+  }
+});
+
+test("Bothell Economics uses the official curriculum page as student-visible source evidence", () => {
+  const sourceBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-economics"
+  );
+  assert.ok(sourceBlocks.length, "Expected Bothell Economics parsed source block.");
+  assert.equal(
+    sourceBlocks[0].sourceUrl,
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum"
+  );
+  assert.equal(
+    sourceBlocks[0].primarySourceUrl,
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum"
+  );
+
+  const parsedCodes = new Set(sourceBlocks.flatMap((block) => block.parsedUwCourseCodes ?? []));
+  for (const expectedCode of ["BBECN 302", "BBECN 303", "BBECN 382", "BBECN 460", "BBECN 469"]) {
+    assert.ok(parsedCodes.has(expectedCode), `Expected Bothell Economics source to include ${expectedCode}.`);
+  }
+});
+
 test("Student runtime hides source-gap aliases with no schedulable planner content", () => {
   const bothellMajorIds = studentRuntime
     .getTransferPlannerStudentRuntimeMajorsForCampus("uw-bothell")
@@ -1568,7 +1647,7 @@ test("UW Economics Strategy exposes undergraduate source requirements without gr
   assert.ok(plan);
 
   const strategyPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, "strategy");
-  assert.equal(strategyPlan?.selectedPathwayId, "strategy");
+  assert.equal(strategyPlan?.selectedPathwayId, "bs-option-family:strategy");
   const degreeMapCodes = new Set(
     (strategyPlan?.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
   );
@@ -1694,6 +1773,49 @@ test("Tacoma Electrical Engineering does not inherit sibling SET option pathways
     [],
     "Expected Tacoma EE not to expose sibling SET option pathways from the broad catalog page."
   );
+});
+
+function collectDegreeMapCourseCodes(plan) {
+  return new Set(
+    (plan?.degreeMapSections ?? [])
+      .flatMap((section) => section.items ?? [])
+      .flatMap((item) => String(item).match(/[A-Z]{1,5}\s*\d{3}/g) ?? [])
+      .map((courseCode) => courseCode.toUpperCase().replace(/\s+/g, " ").trim())
+  );
+}
+
+test("Tacoma Sustainable Urban Development pathways retain shared requirements without inheriting sibling option courses", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-tacoma-sustainable-urban-development"
+  );
+  assert.ok(plan);
+
+  const communityPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "community-engagement-option"
+  );
+  const gisPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, "gis-option");
+  assert.ok(communityPlan);
+  assert.ok(gisPlan);
+
+  const communityCodes = collectDegreeMapCourseCodes(communityPlan);
+  const gisCodes = collectDegreeMapCourseCodes(gisPlan);
+
+  for (const sharedCode of ["TURB 101", "TSUD 222"]) {
+    assert.ok(
+      communityCodes.has(sharedCode),
+      `Expected Community Engagement pathway to retain shared SUD requirement ${sharedCode}.`
+    );
+    assert.ok(
+      gisCodes.has(sharedCode),
+      `Expected GIS pathway to retain shared SUD requirement ${sharedCode}.`
+    );
+  }
+
+  assert.ok(communityCodes.has("TURB 235"));
+  assert.equal(communityCodes.has("TGIS 312"), false);
+  assert.ok(gisCodes.has("TGIS 312"));
+  assert.equal(gisCodes.has("TURB 235"), false);
 });
 
 function buildRepresentativeSuggestedPlanCourses(planId, pathwayId = null) {

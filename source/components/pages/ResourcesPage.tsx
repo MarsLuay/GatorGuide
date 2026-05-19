@@ -18,7 +18,10 @@ import {
   type ResourceCatalogSubsection,
 } from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
-import { OPPORTUNITY_TYPES } from "@/constants/opportunities";
+import {
+  OPPORTUNITY_LISTING_KINDS,
+  OPPORTUNITY_TYPES,
+} from "@/constants/opportunities";
 import {
   getTransferEquivalencyTagDisplayLabel,
   TRANSFER_EQUIVALENCY_ALL_TRACKED_TAGS_PARAM,
@@ -70,6 +73,8 @@ type OpportunitySection = {
   items: MatchedOpportunity[];
   subsections: OpportunitySubsection[];
 };
+
+type OpportunityListingGroup = "database" | "individual";
 
 type InternalToolTarget = {
   pathname: string;
@@ -224,6 +229,21 @@ function formatDueDate(value: string | null, locale: string) {
   }
 }
 
+function formatFullDate(value: string | null, locale: string) {
+  if (!value) return null;
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(parsed);
+  } catch {
+    return parsed.toDateString();
+  }
+}
+
 function getLocalDateOnly() {
   const now = new Date();
   const year = now.getFullYear();
@@ -237,6 +257,20 @@ function isExpiredResource(value: string | null | undefined) {
   if (!expiresAt) return false;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(expiresAt)) return false;
   return expiresAt < getLocalDateOnly();
+}
+
+function uniqueResourceSummaryParts(values: (string | null | undefined)[]) {
+  const seen = new Set<string>();
+  const parts: string[] = [];
+
+  for (const value of values) {
+    const normalizedValue = String(value ?? "").trim();
+    if (!normalizedValue || seen.has(normalizedValue)) continue;
+    seen.add(normalizedValue);
+    parts.push(normalizedValue);
+  }
+
+  return parts;
 }
 
 function openExternalUrlOnWeb(url: string) {
@@ -255,6 +289,7 @@ function buildOpportunitySearchText(opportunity: MatchedOpportunity) {
     opportunity.organizationName,
     opportunity.summary,
     opportunity.type,
+    opportunity.listingKind,
     opportunity.deadline?.label,
     opportunity.award?.amountText,
     ...(opportunity.matchReasons ?? []),
@@ -264,6 +299,79 @@ function buildOpportunitySearchText(opportunity: MatchedOpportunity) {
   ]
     .join(" ")
     .toLowerCase();
+}
+
+const OPPORTUNITY_DATABASE_KEYWORDS = [
+  "database",
+  "directory",
+  "job board",
+  "career network",
+  "search portal",
+  "search tool",
+  "listings",
+  "opportunities page",
+  "opportunity listing",
+  "opportunity listings",
+  "scholarship opportunities",
+  "scholarship listing",
+  "scholarship listings",
+  "internship opportunities",
+  "internship listing",
+  "internship listings",
+  "student employment",
+  "work study jobs",
+  "work-study jobs",
+  "sites directory",
+  "current openings",
+  "positions page",
+  "varies by posting",
+  "varies by scholarship",
+];
+
+function getOpportunityListingGroup(
+  opportunity: MatchedOpportunity
+): OpportunityListingGroup {
+  if (opportunity.listingKind === OPPORTUNITY_LISTING_KINDS.database) {
+    return OPPORTUNITY_LISTING_KINDS.database;
+  }
+  if (opportunity.listingKind === OPPORTUNITY_LISTING_KINDS.individual) {
+    return OPPORTUNITY_LISTING_KINDS.individual;
+  }
+
+  const searchableText = [
+    opportunity.title,
+    opportunity.organizationName,
+    opportunity.summary,
+    opportunity.externalUrl,
+    opportunity.deadline?.label,
+    opportunity.source?.sourceUrl,
+    opportunity.source?.sourceLabel,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return OPPORTUNITY_DATABASE_KEYWORDS.some((keyword) =>
+    searchableText.includes(keyword)
+  )
+    ? OPPORTUNITY_LISTING_KINDS.database
+    : OPPORTUNITY_LISTING_KINDS.individual;
+}
+
+function buildListingSubsections(
+  items: MatchedOpportunity[],
+  individualTitle: string
+): OpportunitySubsection[] {
+  const databases = items.filter(
+    (opportunity) => getOpportunityListingGroup(opportunity) === "database"
+  );
+  const individualItems = items.filter(
+    (opportunity) => getOpportunityListingGroup(opportunity) === "individual"
+  );
+
+  return [
+    { key: "databases", title: "Databases", items: databases },
+    { key: "individual", title: individualTitle, items: individualItems },
+  ].filter((subsection) => subsection.items.length > 0);
 }
 
 export default function ResourcesPage() {
@@ -296,6 +404,10 @@ export default function ResourcesPage() {
   const emeraldBadgeClass = "px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20";
   const locale = getLocaleForLanguage(language);
   const canShowOpportunityAdminTool = !!state.user && !state.user.isGuest;
+  const getStrictDeadlineLabel = (item: MatchedOpportunity) => {
+    const formatted = formatFullDate(item.computedDueAt, locale);
+    return formatted ? t("resources.dueOn", { date: formatted }) : t("resources.openDeadline");
+  };
   const getOpportunityDueLabel = (item: MatchedOpportunity) => {
     const formatted = formatDueDate(item.computedDueAt, locale);
     if (item.deadline.type === "rolling" && !formatted) {
@@ -303,12 +415,12 @@ export default function ResourcesPage() {
     }
     if (!formatted) return t("resources.openDeadline");
     if (item.deadline.type === "priority") {
-      return t("resources.priorityDueOn", { date: formatted });
+      return getStrictDeadlineLabel(item);
     }
     if (item.deadline.type === "rolling") {
       return t("resources.rollingDueOn", { date: formatted });
     }
-    return t("resources.dueOn", { date: formatted });
+    return getStrictDeadlineLabel(item);
   };
   const formatMoney = (amount: number | null, currency: string) => {
     if (amount == null) return null;
@@ -363,21 +475,42 @@ export default function ResourcesPage() {
     }
     return labels;
   };
+  const getExpiredProgressLabel = (item: MatchedOpportunity) => {
+    const formatted = formatFullDate(item.computedDueAt ?? item.dueAt, locale);
+    return formatted
+      ? `${t("resources.statusExpired")} ${formatted}`
+      : t("resources.statusExpired");
+  };
   const getProgressLabel = (item: MatchedOpportunity) => {
     if (item.progress === "won") return t("resources.statusWon");
-    if (item.progress === "expired") return t("resources.statusExpired");
+    if (item.progress === "expired") return getExpiredProgressLabel(item);
     if (item.progress === "submitted") return t("resources.statusSubmitted");
     return item.isDone ? t("resources.statusDone") : null;
   };
   const getOpportunitySummaryParts = (item: MatchedOpportunity) => {
     if (item.matchReasons.length) {
-      const dueLabel = getOpportunityDueLabel(item);
-      return item.matchReasons.map((reason) =>
-        reason.trim().toLowerCase() === "due soon" ? dueLabel : reason
-      );
+      const dueLabel = item.computedDueAt && !item.isDone
+        ? getStrictDeadlineLabel(item)
+        : null;
+      const reasonParts = item.matchReasons.map((reason) => {
+        const normalizedReason = reason.trim().toLowerCase();
+        const isStrictDeadlineReason =
+          normalizedReason === "due soon" ||
+          normalizedReason === "upcoming deadline" ||
+          normalizedReason === "priority deadline" ||
+          (
+            item.deadline.type !== "rolling" &&
+            normalizedReason.includes("deadline") &&
+            Boolean(item.computedDueAt)
+          );
+        if (isStrictDeadlineReason) return getStrictDeadlineLabel(item);
+        if (normalizedReason === "expired") return getExpiredProgressLabel(item);
+        return reason;
+      });
+      return uniqueResourceSummaryParts([dueLabel, ...reasonParts]);
     }
 
-    return [
+    return uniqueResourceSummaryParts([
       getRecommendationLabel(item),
       getEssayLabel(item),
       getAwardLabel(item),
@@ -385,7 +518,7 @@ export default function ResourcesPage() {
       item.recurrence.isYearly ? t("resources.yearly") : null,
       getOpportunityDueLabel(item),
       item.isDone ? getProgressLabel(item) ?? t("resources.statusDone") : null,
-    ].filter((value): value is string => Boolean(value));
+    ]);
   };
 
   useFocusEffect(
@@ -494,19 +627,25 @@ export default function ResourcesPage() {
   }, [matchedOpportunities, query]);
 
   const groupedOpportunities = useMemo(() => {
+    const scholarships = filteredOpportunities.filter(
+      (opportunity) => opportunity.type === OPPORTUNITY_TYPES.scholarship
+    );
+    const internships = filteredOpportunities.filter(
+      (opportunity) => opportunity.type === OPPORTUNITY_TYPES.internship
+    );
     const deadlineSubsections: OpportunitySubsection[] = [
       {
         key: "college_deadline",
         title: t("resources.collegeDeadlines"),
         items: filteredOpportunities.filter(
-          (opportunity) => opportunity.type === "college_deadline"
+          (opportunity) => opportunity.type === OPPORTUNITY_TYPES.collegeDeadline
         ),
       },
       {
         key: "general_deadline",
         title: "General deadlines",
         items: filteredOpportunities.filter(
-          (opportunity) => opportunity.type === "general_deadline"
+          (opportunity) => opportunity.type === OPPORTUNITY_TYPES.generalDeadline
         ),
       },
       {
@@ -525,19 +664,15 @@ export default function ResourcesPage() {
         key: "scholarship",
         title: t("resources.scholarships"),
         icon: "attach-money",
-        items: filteredOpportunities.filter(
-          (opportunity) => opportunity.type === "scholarship"
-        ),
-        subsections: [],
+        items: [],
+        subsections: buildListingSubsections(scholarships, "Individual scholarships"),
       },
       {
         key: "internship",
         title: t("resources.internships"),
         icon: "work",
-        items: filteredOpportunities.filter(
-          (opportunity) => opportunity.type === "internship"
-        ),
-        subsections: [],
+        items: [],
+        subsections: buildListingSubsections(internships, "Individual internships"),
       },
       {
         key: "deadlines",
@@ -810,32 +945,52 @@ export default function ResourcesPage() {
     options?: { inset?: boolean }
   ) =>
     items.map((item, index) => (
-      <AnimatedCardPressable
+      <View
         key={`${keyPrefix}-${item.title}`}
-        onHoverIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
-        onPressIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
-        onPress={() => {
-          void openLink(item.url);
-        }}
-        className={`px-4 py-4 flex-row items-center ${
+        className={`px-4 py-5 ${
           index !== items.length - 1 ? `border-b ${borderClass}` : ""
         }`}
         style={options?.inset ? { paddingLeft: 52 } : undefined}
-        accessibilityRole="link"
       >
-        <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center">
-          <Ionicons name="link-outline" size={18} color="#008f4e" />
-        </View>
+        <View
+          className={
+            stackOpportunityActions
+              ? "gap-4"
+              : "flex-row items-center justify-between"
+          }
+        >
+          <View
+            style={
+              stackOpportunityActions
+                ? undefined
+                : { flex: 1, minWidth: 0, paddingRight: 16 }
+            }
+          >
+            <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
+            <Text className={`${secondaryTextClass} text-sm`}>{item.description}</Text>
+          </View>
 
-        <View className="flex-1 ml-3 min-w-0">
-          <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
-          <Text className={`${secondaryTextClass} text-sm`}>{item.description}</Text>
+          <View
+            className="flex-row items-center gap-2"
+            style={stackOpportunityActions ? { width: "100%" } : undefined}
+          >
+            <AnimatedChipPressable
+              onHoverIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
+              onPressIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
+              onPress={() => {
+                void openLink(item.url);
+              }}
+              className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
+              style={stackOpportunityActions ? { flex: 1, minWidth: 0 } : undefined}
+              accessibilityRole="link"
+            >
+              <Text className="text-emerald-500 text-sm">
+                {t("resources.actionOpen")}
+              </Text>
+            </AnimatedChipPressable>
+          </View>
         </View>
-
-        <View className="w-9 h-9 rounded-2xl bg-emerald-500/10 items-center justify-center ml-3">
-          <MaterialIcons name="open-in-new" size={18} color="#008f4e" />
-        </View>
-      </AnimatedCardPressable>
+      </View>
     ));
 
   const renderReferenceSubsection = (
@@ -856,10 +1011,8 @@ export default function ResourcesPage() {
           className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
         >
-          <View className="w-9 h-9 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-            <View className="w-2 h-2 rounded-full bg-emerald-500/80" />
-          </View>
-          <Text className={`${textClass} flex-1 font-medium`} numberOfLines={1}>
+          <View className="w-2 h-2 rounded-full bg-emerald-500/70 mr-3" />
+          <Text className={`${textClass} flex-1`} numberOfLines={1}>
             {subsection.title}
           </Text>
           <View className={`${emeraldBadgeClass} mr-3`}>
@@ -889,20 +1042,16 @@ export default function ResourcesPage() {
     const sectionItemCount = countResourceSectionItems(section);
 
     return (
-      <View key={section.id} className={`${cardClass} border rounded-[28px] overflow-hidden`}>
+      <View key={section.id} className={`${cardClass} border rounded-2xl overflow-hidden`}>
         <AnimatedCardPressable
           onPress={() => toggleSection(sectionKey)}
-          className="px-5 py-5 flex-row items-center"
+          className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
         >
-          <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-            <MaterialIcons name={section.icon} size={20} color="#008f4e" />
-          </View>
-          <View className="flex-1 min-w-0">
-            <Text className={`${textClass} font-semibold`} numberOfLines={1}>
-              {section.title}
-            </Text>
-          </View>
+          <MaterialIcons name={section.icon} size={18} color="#008f4e" />
+          <Text className={`${textClass} ml-2 flex-1`} numberOfLines={1}>
+            {section.title}
+          </Text>
           <View className={`${emeraldBadgeClass} mr-3`}>
             <Text className="text-emerald-500 text-xs font-semibold">{sectionItemCount}</Text>
           </View>
@@ -1061,7 +1210,7 @@ export default function ResourcesPage() {
           className="px-4 py-4 flex-row items-center"
           accessibilityRole="button"
         >
-          <MaterialIcons name={section.icon} size={18} color={placeholderColor} />
+          <MaterialIcons name={section.icon} size={18} color="#008f4e" />
           <Text className={`${textClass} ml-2 flex-1`} numberOfLines={1}>
             {section.title}
           </Text>

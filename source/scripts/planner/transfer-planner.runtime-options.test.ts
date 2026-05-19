@@ -3355,18 +3355,71 @@ test("Runtime pathway options keep structured pathway-only course pools without 
   assert.deepEqual([...runtimeUrbanPathways.keys()], [...sourceUrbanPathways.keys()]);
 
   const sourceSudGisPathway = sourceSudPathways.get("gis-option");
+  const runtimeSudCommunityPathway = runtimeSudPathways.get("community-engagement-option");
   const runtimeSudGisPathway = runtimeSudPathways.get("gis-option");
   const sourceUrbanGisPathway = sourceUrbanPathways.get("gis-option");
   const runtimeUrbanGisPathway = runtimeUrbanPathways.get("gis-option");
 
+  assert.ok(
+    runtimeSudCommunityPathway,
+    "Expected runtime Tacoma SUD Community Engagement pathway option."
+  );
   assert.ok(runtimeSudGisPathway, "Expected runtime Tacoma SUD GIS pathway option.");
   assert.ok(runtimeUrbanGisPathway, "Expected runtime Tacoma Urban Studies GIS pathway option.");
+  assert.equal(runtimeSudCommunityPathway?.label, "Community Engagement option");
   assert.equal(runtimeSudGisPathway?.label, "GIS option");
   assert.equal(runtimeUrbanGisPathway?.label, "GIS option");
   assert.ok(runtimeSudGisPathway?.grcCourseList?.includes("GIS 260"));
   assert.ok(runtimeUrbanGisPathway?.grcCourseList?.includes("GIS 202"));
   assert.equal(runtimeSudGisPathway?.bestTrackId, sourceSudGisPathway?.bestTrackId ?? null);
   assert.equal(runtimeUrbanGisPathway?.bestTrackId, sourceUrbanGisPathway?.bestTrackId ?? null);
+
+  const runtimeSudCommunityPlan = resolveTransferPlannerMajorPlan(
+    sudRuntimePlan,
+    "community-engagement-option"
+  );
+  const runtimeSudGisPlan = resolveTransferPlannerMajorPlan(sudRuntimePlan, "gis-option");
+  const runtimeSudCommunityDegreeMapCourses = (runtimeSudCommunityPlan?.degreeMapSections ?? [])
+    .flatMap((section) => section.items)
+    .flatMap(extractCourseCodes);
+  const runtimeSudGisDegreeMapCourses = (runtimeSudGisPlan?.degreeMapSections ?? [])
+    .flatMap((section) => section.items)
+    .flatMap(extractCourseCodes);
+
+  assert.ok(
+    runtimeSudCommunityDegreeMapCourses.includes("TURB 235"),
+    "Expected SUD Community Engagement to keep official community option courses."
+  );
+  assert.ok(
+    runtimeSudCommunityDegreeMapCourses.includes("TURB 101"),
+    "Expected SUD Community Engagement to retain shared SUD major requirements."
+  );
+  assert.ok(
+    runtimeSudCommunityDegreeMapCourses.includes("TSUD 222"),
+    "Expected SUD Community Engagement to retain SUD foundation requirements."
+  );
+  assert.equal(
+    runtimeSudCommunityDegreeMapCourses.includes("TGIS 312"),
+    false,
+    "Expected SUD Community Engagement not to inherit GIS certificate courses."
+  );
+  assert.ok(
+    runtimeSudGisDegreeMapCourses.includes("TGIS 312"),
+    "Expected SUD GIS to keep official GIS certificate courses."
+  );
+  assert.ok(
+    runtimeSudGisDegreeMapCourses.includes("TURB 101"),
+    "Expected SUD GIS to retain shared SUD major requirements."
+  );
+  assert.ok(
+    runtimeSudGisDegreeMapCourses.includes("TSUD 222"),
+    "Expected SUD GIS to retain SUD foundation requirements."
+  );
+  assert.equal(
+    runtimeSudGisDegreeMapCourses.includes("TURB 235"),
+    false,
+    "Expected SUD GIS not to inherit Community Engagement option courses."
+  );
 });
 
 test("Student runtime planner rows keep parser-first source-backed notes and avoid manual/legacy language", () => {

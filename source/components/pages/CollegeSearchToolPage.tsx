@@ -117,12 +117,13 @@ export default function CollegeSearchToolPage() {
   const [resultsSource, setResultsSource] = useState<"live" | "cached" | "stub" | null>(null);
   const [searchNotice, setSearchNotice] = useState<string | null>(null);
 
+  const isCompactPhone = width < 390;
   const isTablet = width >= 768;
   const isDesktop = width >= 1180;
   const stackSearchActions = width < 760;
   const showSplitLayout = width >= 1120;
   const shellMaxWidth = isDesktop ? 1280 : isTablet ? 980 : 720;
-  const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : 20;
+  const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : isCompactPhone ? 16 : 20;
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
@@ -240,7 +241,8 @@ export default function CollegeSearchToolPage() {
             }}
             disabled={isSearching}
             className={`rounded-2xl px-4 py-3 items-center justify-center ${isSearching ? "bg-emerald-400" : "bg-emerald-500"}`}
-            containerStyle={stackSearchActions ? undefined : { minWidth: 132 }}
+            containerStyle={stackSearchActions ? { width: "100%" } : { minWidth: 132 }}
+            style={stackSearchActions ? { width: "100%", minHeight: 50 } : undefined}
           >
             {isSearching ? (
               <View className="flex-row items-center gap-2">
@@ -270,9 +272,14 @@ export default function CollegeSearchToolPage() {
                 params: { returnTo: ROUTES.collegeSearch },
               } as never)
             }
-            className="mt-4 rounded-2xl p-4 flex-row items-center bg-emerald-500"
+            className="mt-4 rounded-2xl p-4 bg-emerald-500"
+            style={{
+              flexDirection: stackSearchActions ? "column" : "row",
+              alignItems: stackSearchActions ? "flex-start" : "center",
+              gap: 12,
+            }}
           >
-            <View className="mr-3 p-2 rounded-xl bg-emerald-900/10">
+            <View className="p-2 rounded-xl bg-emerald-900/10">
               <Ionicons name="document-text" size={18} color="#001f0f" />
             </View>
             <View className="flex-1">
@@ -281,7 +288,12 @@ export default function CollegeSearchToolPage() {
                 {t("collegeSearchTool.questionnaireCardBody")}
               </Text>
             </View>
-            <Ionicons name="sparkles" size={18} color="#001f0f" />
+            <Ionicons
+              name="sparkles"
+              size={18}
+              color="#001f0f"
+              style={stackSearchActions ? { alignSelf: "flex-end" } : undefined}
+            />
           </AnimatedCardPressable>
         ) : null}
       </View>
@@ -292,7 +304,15 @@ export default function CollegeSearchToolPage() {
   const resultsPanel = (
     <View style={showSplitLayout ? { flex: 1, minWidth: 0 } : undefined}>
       <View className={panelClass}>
-        <View className="flex-row items-start justify-between gap-4 mb-4">
+        <View
+          style={{
+            flexDirection: stackSearchActions ? "column" : "row",
+            alignItems: stackSearchActions ? "stretch" : "flex-start",
+            justifyContent: "space-between",
+            gap: stackSearchActions ? 12 : 16,
+            marginBottom: 16,
+          }}
+        >
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>
               {t("collegeSearchTool.resultsTitle")}
@@ -302,7 +322,10 @@ export default function CollegeSearchToolPage() {
             </Text>
           </View>
           {resultsSource ? (
-            <View className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <View
+              className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+              style={stackSearchActions ? { alignItems: "center", width: "100%" } : undefined}
+            >
               <Text className="text-emerald-500 text-xs font-semibold">
                 {resultsSource === "cached"
                   ? t("home.cachedResults")

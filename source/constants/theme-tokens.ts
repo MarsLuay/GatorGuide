@@ -48,9 +48,9 @@ const THEME_TOKENS: Record<ResolvedAppTheme, ThemeTokens> = {
   light: {
     textClass: "text-emerald-900",
     secondaryTextClass: "text-emerald-700",
-    cardBgClass: "bg-white border-emerald-200",
+    cardBgClass: "bg-emerald-500/5 border-emerald-200",
     dropdownSurfaceColor: "#FFFFFF",
-    inputBgClass: "bg-white border-emerald-300",
+    inputBgClass: "bg-emerald-500/5 border-emerald-300",
     inactiveButtonClass: "bg-emerald-100",
     borderClass: "border-emerald-300",
     progressBgClass: "bg-emerald-300",

@@ -8736,6 +8736,18 @@ function materializePlanReferenceCourses(plan: TransferPlannerMajorPlan): Transf
   };
 }
 
+function mergePathwayDegreeMapSections(
+  plan: TransferPlannerMajorPlan,
+  pathway: TransferPlannerMajorPathway,
+  pathwayOwnsIndependentCatalogCredential: boolean
+) {
+  const baseSections = pathwayOwnsIndependentCatalogCredential ? [] : plan.degreeMapSections ?? [];
+  const pathwaySections = pathway.degreeMapSections ?? [];
+  return uniqueById([...baseSections, ...pathwaySections]).map((section) =>
+    sanitizeDegreeMapSection(section)
+  );
+}
+
 function mergePlannerPathwayWithPlan(
   plan: TransferPlannerMajorPlan,
   pathway: TransferPlannerMajorPathway,
@@ -8806,8 +8818,10 @@ function mergePlannerPathwayWithPlan(
       ...nmeSourceIncompleteWarnings,
     ]),
     officialLinks: uniquePlannerLinks([...(plan.officialLinks ?? []), ...(pathway.officialLinks ?? [])]),
-    degreeMapSections: (pathway.degreeMapSections ?? plan.degreeMapSections)?.map((section) =>
-      sanitizeDegreeMapSection(section)
+    degreeMapSections: mergePathwayDegreeMapSections(
+      plan,
+      pathway,
+      pathwayOwnsIndependentCatalogCredential
     ),
     validationNotes: sanitizePlannerOwnedStrings([
       ...(plan.validationNotes ?? []),

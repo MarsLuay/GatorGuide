@@ -60,6 +60,7 @@ export default function CostCalculatorPage() {
 
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
   const isCompactPhone = width < 390;
+  const isPhone = width < 760;
   const isTablet = width >= 768;
   const isWideLayout = width >= 1180;
   const showTwoColumnLayout = width >= 1180;
@@ -237,6 +238,33 @@ export default function CostCalculatorPage() {
                 }`}
                 containerStyle={{ width: chipCardWidth, minHeight: isTablet ? 76 : 68 }}
                 style={{ justifyContent: "center" }}
+              >
+                <Text className={`${isSelected ? "text-white font-medium" : `${textClass} text-sm`}`} numberOfLines={2}>
+                  {c.name}
+                </Text>
+                <Text className={`${isSelected ? "text-white/80 text-xs" : `${secondaryTextClass} text-xs`}`} style={{ marginTop: 4 }}>
+                  {formatMoney(tuitionVal)}
+                </Text>
+              </AnimatedChipPressable>
+            );
+          })}
+        </View>
+      ) : isPhone ? (
+        <View style={{ gap: 8 }}>
+          {savedColleges.map((c) => {
+            const tuitionVal = getOfficialTuitionValue(c, residencyMode);
+            const isSelected = String(c.id) === selectedCollegeId;
+            return (
+              <AnimatedChipPressable
+                key={c.id}
+                onPress={() => {
+                  setSelectedCollegeId(String(c.id));
+                }}
+                className={`rounded-xl border px-3 py-3 ${
+                  isSelected ? "bg-emerald-500 border-emerald-500" : borderClass
+                }`}
+                containerStyle={{ width: "100%", minHeight: 64 }}
+                style={{ width: "100%", justifyContent: "center" }}
               >
                 <Text className={`${isSelected ? "text-white font-medium" : `${textClass} text-sm`}`} numberOfLines={2}>
                   {c.name}

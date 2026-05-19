@@ -291,7 +291,17 @@ export default function OpportunityAdminPage() {
   });
   const isDesktop = width >= 1180;
   const isTablet = width >= 768;
+  const isPhone = width < 760;
   const pageMaxWidth = isDesktop ? 1360 : isTablet ? 1040 : 720;
+  const phoneChipContainerStyle = isPhone ? ({ width: "100%" } as const) : undefined;
+  const phoneChipStyle = isPhone
+    ? ({
+        width: "100%",
+        minHeight: 44,
+        alignItems: "center",
+        justifyContent: "center",
+      } as const)
+    : undefined;
   const starterIds = useMemo(
     () => new Set(STARTER_OPPORTUNITIES.map((item) => item.opportunityId)),
     []
@@ -548,7 +558,13 @@ export default function OpportunityAdminPage() {
   ) => (
     <View className="gap-2">
       <Text className={`${textClass} font-semibold`}>{label}</Text>
-      <View className="flex-row flex-wrap gap-2">
+      <View
+        style={{
+          flexDirection: isPhone ? "column" : "row",
+          flexWrap: isPhone ? "nowrap" : "wrap",
+          gap: 8,
+        }}
+      >
         {options.map((option) => {
           const isActive = value === option;
           return (
@@ -556,6 +572,8 @@ export default function OpportunityAdminPage() {
               key={option}
               onPress={() => onChange(option)}
               className={`px-3 py-2 rounded-full border ${isActive ? "bg-emerald-500 border-emerald-500" : `${styles.inactiveButtonClass} ${styles.borderClass}`}`}
+              containerStyle={phoneChipContainerStyle}
+              style={phoneChipStyle}
             >
               <Text className={`${isActive ? "text-white" : textClass} text-sm font-medium`}>
                 {formatChoiceLabel(option)}
@@ -574,7 +592,12 @@ export default function OpportunityAdminPage() {
   ) => (
     <View className="gap-2">
       <Text className={`${textClass} font-semibold`}>{label}</Text>
-      <View className="flex-row gap-2">
+      <View
+        style={{
+          flexDirection: isPhone ? "column" : "row",
+          gap: 8,
+        }}
+      >
         {[true, false].map((option) => {
           const isActive = value === option;
           const optionLabel = option ? "Yes" : "No";
@@ -583,6 +606,8 @@ export default function OpportunityAdminPage() {
               key={optionLabel}
               onPress={() => onChange(option)}
               className={`px-3 py-2 rounded-full border ${isActive ? "bg-emerald-500 border-emerald-500" : `${styles.inactiveButtonClass} ${styles.borderClass}`}`}
+              containerStyle={phoneChipContainerStyle}
+              style={phoneChipStyle}
             >
               <Text className={`${isActive ? "text-white" : textClass} text-sm font-medium`}>
                 {optionLabel}
@@ -603,6 +628,7 @@ export default function OpportunityAdminPage() {
           paddingBottom: scrollContentPadding.paddingBottom,
           paddingHorizontal: width >= 1280 ? 32 : isTablet ? 24 : 16,
         }}
+        contentInsetAdjustmentBehavior="automatic"
         keyboardShouldPersistTaps="handled"
       >
         <View style={{ width: "100%", maxWidth: pageMaxWidth, alignSelf: "center" }}>
@@ -625,6 +651,8 @@ export default function OpportunityAdminPage() {
                 onPress={() => router.push(ROUTES.profile)}
                 containerClassName="mt-4 self-start"
                 className="px-4 py-3 rounded-2xl bg-emerald-500"
+                containerStyle={phoneChipContainerStyle}
+                style={phoneChipStyle}
               >
                 <Text className="text-white font-semibold">Open profile</Text>
               </AnimatedChipPressable>
@@ -650,6 +678,8 @@ export default function OpportunityAdminPage() {
                 }}
                 containerClassName="mt-4 self-start"
                 className="px-4 py-3 rounded-2xl bg-emerald-500"
+                containerStyle={phoneChipContainerStyle}
+                style={phoneChipStyle}
               >
                 <Text className="text-white font-semibold">Retry</Text>
               </AnimatedChipPressable>
@@ -683,10 +713,18 @@ export default function OpportunityAdminPage() {
                       Signed in as {access.email ?? signedInUser.email}. Manual saves write to Firebase and appear in the shared catalog after refresh.
                     </Text>
                   </View>
-                  <View className="flex-row flex-wrap gap-2">
+                  <View
+                    style={{
+                      flexDirection: isPhone ? "column" : "row",
+                      flexWrap: isPhone ? "nowrap" : "wrap",
+                      gap: 8,
+                    }}
+                  >
                     <AnimatedChipPressable
                       onPress={handleCreateNew}
                       className={`px-4 py-3 rounded-2xl border ${styles.inactiveButtonClass} ${styles.borderClass}`}
+                      containerStyle={phoneChipContainerStyle}
+                      style={phoneChipStyle}
                     >
                       <Text className={`${textClass} font-semibold`}>New blank</Text>
                     </AnimatedChipPressable>
@@ -695,6 +733,8 @@ export default function OpportunityAdminPage() {
                         void refreshOpportunities();
                       }}
                       className="px-4 py-3 rounded-2xl bg-emerald-500"
+                      containerStyle={phoneChipContainerStyle}
+                      style={phoneChipStyle}
                     >
                       <Text className="text-white font-semibold">
                         {isRefreshing ? "Refreshing..." : "Refresh catalog"}
@@ -734,6 +774,8 @@ export default function OpportunityAdminPage() {
                       void handleExportScholarships();
                     }}
                     className={`px-4 py-3 rounded-2xl flex-row items-center ${scholarshipExportPreview.scholarshipCount ? "bg-emerald-500" : `${styles.inactiveButtonClass} border ${styles.borderClass}`}`}
+                    containerStyle={phoneChipContainerStyle}
+                    style={phoneChipStyle}
                     disabled={
                       isExportingScholarships ||
                       scholarshipExportPreview.scholarshipCount === 0
@@ -1174,12 +1216,20 @@ export default function OpportunityAdminPage() {
                           </Text>
                         ) : null}
                       </View>
-                      <View className="flex-row flex-wrap gap-2">
+                      <View
+                        style={{
+                          flexDirection: isPhone ? "column" : "row",
+                          flexWrap: isPhone ? "nowrap" : "wrap",
+                          gap: 8,
+                        }}
+                      >
                         <AnimatedChipPressable
                           onPress={() => {
                             void handleSave();
                           }}
                           className="px-4 py-3 rounded-2xl bg-emerald-500"
+                          containerStyle={phoneChipContainerStyle}
+                          style={phoneChipStyle}
                           disabled={isSaving}
                         >
                           <Text className="text-white font-semibold">
@@ -1192,6 +1242,8 @@ export default function OpportunityAdminPage() {
                               void handleArchive(draft.status !== OPPORTUNITY_STATUSES.archived);
                             }}
                             className={`px-4 py-3 rounded-2xl border ${styles.inactiveButtonClass} ${styles.borderClass}`}
+                            containerStyle={phoneChipContainerStyle}
+                            style={phoneChipStyle}
                             disabled={isSaving}
                           >
                             <Text className={`${textClass} font-semibold`}>
@@ -1205,6 +1257,8 @@ export default function OpportunityAdminPage() {
                               void handleDelete();
                             }}
                             className="px-4 py-3 rounded-2xl border border-red-500/40 bg-red-500/10"
+                            containerStyle={phoneChipContainerStyle}
+                            style={phoneChipStyle}
                             disabled={isSaving}
                           >
                             <Text className="text-red-500 font-semibold">Delete</Text>

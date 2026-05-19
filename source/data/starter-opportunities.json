@@ -66,6 +66,7 @@
     "schemaVersion": 1,
     "opportunityId": "green-river-foundation-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Green River College Foundation Scholarship",
     "organizationName": "Green River College Foundation",
@@ -129,6 +130,7 @@
     "schemaVersion": 1,
     "opportunityId": "immigrants-rising-scholarship-database",
     "type": "scholarship",
+    "listingKind": "database",
     "status": "active",
     "title": "Immigrants Rising Scholarship Database",
     "organizationName": "Immigrants Rising",
@@ -192,6 +194,7 @@
     "schemaVersion": 1,
     "opportunityId": "granco-federal-credit-union-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "GRANCO Federal Credit Union Scholarship",
     "organizationName": "GRANCO Federal Credit Union",
@@ -254,6 +257,7 @@
     "schemaVersion": 1,
     "opportunityId": "uw-scholarships-database",
     "type": "scholarship",
+    "listingKind": "database",
     "status": "active",
     "title": "UW Scholarships Database",
     "organizationName": "University of Washington Office of Admissions",
@@ -318,6 +322,7 @@
     "schemaVersion": 1,
     "opportunityId": "silme-domingo-gene-viernes-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Silme Domingo & Gene Viernes Scholarship in Labor Studies",
     "organizationName": "Harry Bridges Center for Labor Studies",
@@ -384,6 +389,7 @@
     "schemaVersion": 1,
     "opportunityId": "washington-society-professional-engineers-educational-foundation-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Washington Society of Professional Engineers Educational Foundation Engineering Scholarship Program",
     "organizationName": "Washington Society of Professional Engineers Educational Foundation",
@@ -697,6 +703,7 @@
     "schemaVersion": 1,
     "opportunityId": "green-river-student-employment",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "Green River Student Employment & Work Study",
     "organizationName": "Green River College",
@@ -758,8 +765,82 @@
   },
   {
     "schemaVersion": 1,
+    "opportunityId": "wsos-jobs-board",
+    "type": "internship",
+    "listingKind": "database",
+    "status": "active",
+    "title": "WSOS Jobs Board",
+    "organizationName": "Washington State Opportunity Scholarship",
+    "summary": "Internship and job opportunity board shared through the Washington State Opportunity Scholarship career network. Postings vary by employer, role, location, deadline, and eligibility requirements.",
+    "externalUrl": "https://waopportunityscholarship.org/jobs/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Varies by posting"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [
+        "stem",
+        "computer science",
+        "engineering",
+        "nursing",
+        "health care",
+        "information technology",
+        "business"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Pay and benefits vary by posting",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://waopportunityscholarship.org/jobs/",
+      "sourceLabel": "WSOS Jobs Board",
+      "model": null,
+      "fetchedAt": "2026-05-19T00:00:00.000Z",
+      "verifiedAt": "2026-05-19T00:00:00.000Z"
+    },
+    "createdAt": "2026-05-19T00:00:00.000Z",
+    "updatedAt": "2026-05-19T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
     "opportunityId": "wsos-career-technical-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "WSOS Career & Technical Scholarship",
     "organizationName": "Washington State Opportunity Scholarship",
@@ -837,6 +918,7 @@
     "schemaVersion": 1,
     "opportunityId": "wwin-star-scholars",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "WWIN Star Scholars",
     "organizationName": "WWIN",
@@ -904,6 +986,7 @@
     "schemaVersion": 1,
     "opportunityId": "martin-achievement-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Martin Achievement Scholarship",
     "organizationName": "Martin Family Foundation",
@@ -958,7 +1041,7 @@
     "source": {
       "kind": "manual",
       "sourceUrl": "https://new.expo.uw.edu/expo/scholarships/martinachievement",
-      "sourceLabel": "UW OMSFA Martin Achievement Scholarship database page",
+      "sourceLabel": "UW OMSFA Martin Achievement Scholarship page",
       "model": null,
       "fetchedAt": "2026-04-29T00:00:00.000Z",
       "verifiedAt": "2026-04-29T00:00:00.000Z"
@@ -970,6 +1053,7 @@
     "schemaVersion": 1,
     "opportunityId": "martin-family-foundation-honors-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Martin Family Foundation Honors Scholarship",
     "organizationName": "Martin Family Foundation",
@@ -1036,6 +1120,7 @@
     "schemaVersion": 1,
     "opportunityId": "nelson-mendenhall-summer-scholars-program",
     "type": "internship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Nelson-Mendenhall Summer Scholars Program",
     "organizationName": "University of Washington School of Pharmacy",
@@ -1106,6 +1191,7 @@
     "schemaVersion": 1,
     "opportunityId": "nsf-research-experiences-for-undergraduates-directory",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "NSF Research Experiences for Undergraduates (REU) Sites Directory",
     "organizationName": "U.S. National Science Foundation",
@@ -1179,6 +1265,7 @@
     "schemaVersion": 1,
     "opportunityId": "smithsonian-research-analysis-internship-opportunities",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "Smithsonian Research & Analysis Internship Opportunities",
     "organizationName": "Smithsonian Office of Academic Appointments and Internships",
@@ -1251,6 +1338,7 @@
     "schemaVersion": 1,
     "opportunityId": "wsos-baccalaureate-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "WSOS Baccalaureate Scholarship",
     "organizationName": "Washington State Opportunity Scholarship",
@@ -1324,6 +1412,7 @@
     "schemaVersion": 1,
     "opportunityId": "washington-college-grant-wa-grant",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Washington College Grant (WA Grant)",
     "organizationName": "Washington Student Achievement Council",
@@ -1393,6 +1482,7 @@
     "schemaVersion": 1,
     "opportunityId": "becu-foundation-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "BECU Foundation Scholarship",
     "organizationName": "BECU Foundation",
@@ -1457,6 +1547,7 @@
     "schemaVersion": 1,
     "opportunityId": "wsecu-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "WSECU Scholarship",
     "organizationName": "WSECU",
@@ -1521,6 +1612,7 @@
     "schemaVersion": 1,
     "opportunityId": "seattle-foundation-scholarship-opportunities",
     "type": "scholarship",
+    "listingKind": "database",
     "status": "active",
     "title": "Seattle Foundation Scholarship Opportunities",
     "organizationName": "Seattle Foundation",
@@ -1589,6 +1681,7 @@
     "schemaVersion": 1,
     "opportunityId": "lambeth-family-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Lambeth Family Scholarship",
     "organizationName": "Seattle Foundation",
@@ -1662,6 +1755,7 @@
     "schemaVersion": 1,
     "opportunityId": "pride-foundation-scholarships",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Pride Foundation Scholarships",
     "organizationName": "Pride Foundation",
@@ -1730,6 +1824,7 @@
     "schemaVersion": 1,
     "opportunityId": "washington-nasa-space-grant-scholarships",
     "type": "scholarship",
+    "listingKind": "database",
     "status": "active",
     "title": "Washington NASA Space Grant Scholarships",
     "organizationName": "Washington NASA Space Grant Consortium",
@@ -1805,6 +1900,7 @@
     "schemaVersion": 1,
     "opportunityId": "seattle-colleges-foundation-scholarship",
     "type": "scholarship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Seattle Colleges Foundation Scholarship",
     "organizationName": "Seattle Colleges Foundation",
@@ -1867,6 +1963,7 @@
     "schemaVersion": 1,
     "opportunityId": "doe-community-college-internships-cci",
     "type": "internship",
+    "listingKind": "individual",
     "status": "active",
     "title": "DOE Community College Internships (CCI)",
     "organizationName": "U.S. Department of Energy Office of Science / DOE National Laboratories",
@@ -1939,6 +2036,7 @@
     "schemaVersion": 1,
     "opportunityId": "wa-doh-pathway-paid-summer-internships",
     "type": "internship",
+    "listingKind": "individual",
     "status": "active",
     "title": "WA DOH Pathway Paid Summer Internships",
     "organizationName": "Washington State Department of Health",
@@ -2009,6 +2107,7 @@
     "schemaVersion": 1,
     "opportunityId": "dshs-internship-program",
     "type": "internship",
+    "listingKind": "individual",
     "status": "active",
     "title": "DSHS Internship Program",
     "organizationName": "Washington State Department of Social and Health Services",
@@ -2077,6 +2176,7 @@
     "schemaVersion": 1,
     "opportunityId": "washington-state-legislative-internship-program",
     "type": "internship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Washington State Legislative Internship Program",
     "organizationName": "Washington State Legislature",
@@ -2147,6 +2247,7 @@
     "schemaVersion": 1,
     "opportunityId": "port-of-seattle-college-and-graduate-internship-program",
     "type": "internship",
+    "listingKind": "individual",
     "status": "active",
     "title": "Port of Seattle College and Graduate Internship Program",
     "organizationName": "Port of Seattle",
@@ -2214,6 +2315,7 @@
     "schemaVersion": 1,
     "opportunityId": "port-of-tacoma-internships",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "Port of Tacoma Internships",
     "organizationName": "Port of Tacoma",
@@ -2276,8 +2378,82 @@
   },
   {
     "schemaVersion": 1,
+    "opportunityId": "washington-state-internships",
+    "type": "internship",
+    "listingKind": "database",
+    "status": "active",
+    "title": "Washington State Internships",
+    "organizationName": "Washington State Careers",
+    "summary": "Statewide internship information page for Washington agencies. Agencies may post internships through careers.wa.gov or market them individually, so students should use this as a starting point and check agency-specific postings.",
+    "externalUrl": "https://careers.wa.gov/internships.html",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Varies by agency posting"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [
+        "public service",
+        "business",
+        "communications",
+        "engineering",
+        "environmental science",
+        "information technology",
+        "urban planning"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Pay and eligibility vary by agency posting",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://careers.wa.gov/internships.html",
+      "sourceLabel": "Washington State Internships page",
+      "model": null,
+      "fetchedAt": "2026-05-19T00:00:00.000Z",
+      "verifiedAt": "2026-05-19T00:00:00.000Z"
+    },
+    "createdAt": "2026-05-19T00:00:00.000Z",
+    "updatedAt": "2026-05-19T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
     "opportunityId": "wsdot-internships",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "WSDOT Internships",
     "organizationName": "Washington State Department of Transportation",
@@ -2350,6 +2526,7 @@
     "schemaVersion": 1,
     "opportunityId": "city-of-seattle-internships",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "City of Seattle Internships",
     "organizationName": "City of Seattle",
@@ -2418,6 +2595,7 @@
     "schemaVersion": 1,
     "opportunityId": "seattle-city-light-college-internships",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "Seattle City Light College Internships",
     "organizationName": "Seattle City Light",
@@ -2486,6 +2664,7 @@
     "schemaVersion": 1,
     "opportunityId": "sound-transit-internships",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
     "title": "Sound Transit Internships",
     "organizationName": "Sound Transit",
@@ -2559,11 +2738,12 @@
     "schemaVersion": 1,
     "opportunityId": "washington-nasa-space-grant-surp",
     "type": "internship",
+    "listingKind": "database",
     "status": "active",
-    "title": "Washington NASA Space Grant Summer Undergraduate Research Program (SURP)",
-    "organizationName": "Washington NASA Space Grant Consortium / University of Washington-led programs",
-    "summary": "STEM summer undergraduate research program run through Washington NASA Space Grant. The 2026 program dates were June 22-August 21, 2026. Eligibility listed by WASG includes being 18+, enrolled in a WASG institution, U.S. citizen or permanent resident, demonstrated financial need via FAFSA/WASFA, STEM major, and availability for the full program. Good future target after confirming your institution is eligible.",
-    "externalUrl": "https://www.waspacegrant.org/info/about/student-faqs/",
+    "title": "Washington NASA Space Grant Opportunities",
+    "organizationName": "Washington NASA Space Grant Consortium",
+    "summary": "Washington NASA Space Grant opportunities page for STEM research, internship, fellowship, and student program listings. Eligibility, deadlines, awards, and host programs vary by opportunity, so students should check the live listing before applying.",
+    "externalUrl": "https://www.waspacegrant.org/opportunities/",
     "dueAt": null,
     "recurrence": {
       "isYearly": false,
@@ -2573,7 +2753,7 @@
     },
     "deadline": {
       "type": "final",
-      "label": "Check back for next annual cycle"
+      "label": "Deadlines vary by opportunity"
     },
     "matching": {
       "financialAidTags": [],
@@ -2602,7 +2782,7 @@
       "amountMin": null,
       "amountMax": null,
       "currency": "USD",
-      "amountText": "Research experience; award/support varies by annual posting",
+      "amountText": "Varies by opportunity",
       "renewable": null
     },
     "college": {
@@ -2614,8 +2794,8 @@
     },
     "source": {
       "kind": "manual",
-      "sourceUrl": "https://www.waspacegrant.org/info/about/student-faqs/",
-      "sourceLabel": "Washington NASA Space Grant UW-led Programs page",
+      "sourceUrl": "https://www.waspacegrant.org/opportunities/",
+      "sourceLabel": "Washington NASA Space Grant Opportunities page",
       "model": null,
       "fetchedAt": "2026-04-29T00:00:00.000Z",
       "verifiedAt": "2026-04-29T00:00:00.000Z"

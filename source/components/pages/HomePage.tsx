@@ -302,7 +302,7 @@ export default function HomePage() {
 
     return merged;
   }, [desktopCurrentCourses, plannerCurrentCourses]);
-  const shouldShowCurrentCoursesDashboardPanel = linkedCurrentCourses.length > 0;
+  const shouldShowCurrentCoursesInPlanner = linkedCurrentCourses.length > 0;
   const shouldShowRecommendedNextDashboardPanel =
     desktopRecommendedCourses.length > 0 || !!desktopCoursePlanningDeadline;
   const desktopProfileName = user?.name?.trim() || t("home.student");
@@ -601,27 +601,32 @@ export default function HomePage() {
     </View>
   );
 
-  const renderCurrentCoursesDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => {
-    if (!shouldShowCurrentCoursesDashboardPanel) return null;
+  const renderCoursePlannerDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => (
+    <View
+      className={`${dashboardPanelClass} border rounded-[28px] p-5`}
+      style={fullWidth ? { width: "100%" } : dashboardSectionWidth}
+    >
+      <View className="flex-row items-start mb-4">
+        <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+          <Ionicons name="map-outline" size={18} color="#008f4e" />
+        </View>
+        <View className="flex-1">
+          <Text className={`${textClass} text-lg font-semibold`}>Course Planner</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            Plan your future courses and trace your transfer roadmap.
+          </Text>
+        </View>
+      </View>
 
-    return (
-      <View
-        className={`${dashboardPanelClass} border rounded-[28px] p-5`}
-        style={fullWidth ? { width: "100%" } : dashboardSectionWidth}
-      >
-        <View className="flex-row items-start mb-4">
-          <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-            <Ionicons name="school-outline" size={18} color="#008f4e" />
-          </View>
-          <View className="flex-1">
-            <Text className={`${textClass} text-lg font-semibold`}>{t("roadmap.currentCourses")}</Text>
+      {shouldShowCurrentCoursesInPlanner ? (
+        <View className="gap-3">
+          <View>
+            <Text className={`${textClass} font-semibold`}>{t("roadmap.currentCourses")}</Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
               {user?.transcript ? t("home.currentCoursesWithTranscript") : t("home.currentCoursesWithoutTranscript")}
             </Text>
           </View>
-        </View>
 
-        <View className="gap-3">
           {linkedCurrentCourses.slice(0, 5).map((course) => (
             <View
               key={course}
@@ -631,9 +636,24 @@ export default function HomePage() {
             </View>
           ))}
         </View>
-      </View>
-    );
-  };
+      ) : (
+        <View className={`border rounded-3xl p-4 flex-1 justify-center items-center ${dashboardMutedClass}`}>
+          <Ionicons name="school-outline" size={32} color="#008f4e" style={{ opacity: 0.5, marginBottom: 8 }} />
+          <Text className={`${textClass} font-semibold text-center`}>Your graduation roadmap</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1 text-center px-4`}>
+            Design your schedule quarter by quarter.
+          </Text>
+        </View>
+      )}
+
+      <AnimatedChipPressable
+        onPress={() => router.push(ROUTES.transferPlanner)}
+        className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
+      >
+        <Text className="text-white font-semibold">Open course planner</Text>
+      </AnimatedChipPressable>
+    </View>
+  );
 
   const renderRecommendedNextDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => {
     if (!shouldShowRecommendedNextDashboardPanel) return null;
@@ -811,36 +831,7 @@ export default function HomePage() {
           )}
         </View>
 
-        <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
-          <View className="flex-row items-start mb-4">
-            <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-              <Ionicons name="map-outline" size={18} color="#008f4e" />
-            </View>
-            <View className="flex-1">
-              <Text className={`${textClass} text-lg font-semibold`}>Course Planner</Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                Plan your future courses and trace your transfer roadmap.
-              </Text>
-            </View>
-          </View>
-
-          <View className={`border rounded-3xl p-4 flex-1 justify-center items-center ${dashboardMutedClass}`}>
-            <Ionicons name="school-outline" size={32} color="#008f4e" style={{ opacity: 0.5, marginBottom: 8 }} />
-            <Text className={`${textClass} font-semibold text-center`}>Your graduation roadmap</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-1 text-center px-4`}>
-              Design your schedule quarter by quarter.
-            </Text>
-          </View>
-
-          <AnimatedChipPressable
-            onPress={() => router.push(ROUTES.transferPlanner)}
-            className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
-          >
-            <Text className="text-white font-semibold">Open course planner</Text>
-          </AnimatedChipPressable>
-        </View>
-
-        {renderCurrentCoursesDashboardPanel()}
+        {renderCoursePlannerDashboardPanel()}
 
         {renderRecommendedNextDashboardPanel()}
 
@@ -852,7 +843,7 @@ export default function HomePage() {
   const mobileDashboard = !isDesktopHome ? (
     <View className="gap-4">
       {renderMobileSnapshotPanel()}
-      {renderCurrentCoursesDashboardPanel({ fullWidth: true })}
+      {shouldShowCurrentCoursesInPlanner ? renderCoursePlannerDashboardPanel({ fullWidth: true }) : null}
       {renderRecommendedNextDashboardPanel({ fullWidth: true })}
       {renderDeadlinePanel(desktopCombinedDeadlineEntries.slice(0, 3))}
     </View>

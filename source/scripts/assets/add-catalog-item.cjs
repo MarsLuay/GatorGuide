@@ -50,7 +50,7 @@ const RESOURCE_KIND_TARGETS = {
   "green-river-transfer": { sectionId: "student-tools", subsectionId: "green-river-transfer" },
   "common-wa-universities": { sectionId: "student-tools", subsectionId: "common-wa-universities" },
   "transfer-guides": { sectionId: "student-tools", subsectionId: "transfer-guides" },
-  "financial-aid-scholarships": { sectionId: "financial-aid-scholarships", subsectionId: null },
+  "career-links": { sectionId: "career-internship-links", subsectionId: null },
   "career-internships": { sectionId: "career-internship-links", subsectionId: null },
 };
 
@@ -76,12 +76,8 @@ const RESOURCE_KIND_OPTIONS = [
     label: "Transfer guide / equivalency guide",
   },
   {
-    value: "financial-aid-scholarships",
-    label: "Financial aid or scholarship link",
-  },
-  {
-    value: "career-internships",
-    label: "Career, job, or internship link",
+    value: "career-links",
+    label: "Career link",
   },
   {
     value: "__other_existing__",
@@ -100,7 +96,7 @@ const RESOURCE_ICON_OPTIONS = [
   { value: "map", label: "Maps / transfer destinations" },
   { value: "find-in-page", label: "Guides / documents" },
   { value: "attach-money", label: "Money / scholarships" },
-  { value: "work", label: "Jobs / internships" },
+  { value: "work", label: "Career / jobs" },
   { value: "event", label: "Dates / deadlines" },
   { value: "link", label: "General links" },
   { value: "public", label: "Public websites" },
@@ -926,6 +922,7 @@ const OPPORTUNITY_EXCEL_EXPORT_COLUMNS = [
   { key: "name", label: "NAME", width: 31.13 },
   { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "type", label: "TYPE", width: 18.75 },
+  { key: "listingKind", label: "RESOURCE GROUP", width: 20 },
   { key: "organization", label: "ORGANIZATION", width: 28 },
   { key: "description", label: "DESCRIPTION", width: 56.88 },
   { key: "award", label: "AWARD", width: 24 },
@@ -940,6 +937,7 @@ const SCHOLARSHIP_EXCEL_EXPORT_COLUMNS = [
   { key: "link", label: "LINK", width: 44.5 },
   { key: "name", label: "NAME", width: 31.13 },
   { key: "deadline", label: "DEADLINE", width: 18.75 },
+  { key: "listingKind", label: "RESOURCE GROUP", width: 20 },
   { key: "amount", label: "AMOUNT", width: 24 },
   { key: "awardCadence", label: "One time or continuous", width: 21 },
   { key: "description", label: "DESCRIPTION", width: 56.88 },
@@ -967,6 +965,7 @@ const LEGACY_EXCEL_EXPORT_COLUMNS = [
   { key: "name", label: "NAME", width: 31.13 },
   { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "type", label: "TYPE", width: 18.75 },
+  { key: "listingKind", label: "RESOURCE GROUP", width: 20 },
   { key: "organization", label: "ORGANIZATION", width: 28 },
   { key: "amount", label: "AMOUNT", width: 24 },
   { key: "awardCadence", label: "One time or continuous", width: 21 },
@@ -1000,6 +999,104 @@ const OPPORTUNITY_TYPE_LABELS = {
   "quarter-start": "Quarter start",
   "quarter-end": "Quarter end",
 };
+
+const OPPORTUNITY_LISTING_KIND_LABELS = {
+  database: "Database",
+  individual: "Individual",
+};
+
+const OPPORTUNITY_DATABASE_KEYWORDS = [
+  "database",
+  "directory",
+  "job board",
+  "career network",
+  "search portal",
+  "search tool",
+  "listings",
+  "opportunities page",
+  "opportunity listing",
+  "opportunity listings",
+  "scholarship opportunities",
+  "scholarship listing",
+  "scholarship listings",
+  "internship opportunities",
+  "internship listing",
+  "internship listings",
+  "student employment",
+  "work study jobs",
+  "work-study jobs",
+  "sites directory",
+  "current openings",
+  "positions page",
+  "varies by posting",
+  "varies by scholarship",
+];
+
+function usesOpportunityListingKind(type) {
+  return type === "scholarship" || type === "internship";
+}
+
+function getDefaultOpportunityListingKind(type) {
+  return usesOpportunityListingKind(type) ? "individual" : null;
+}
+
+function parseOpportunityListingKind(value) {
+  const parsed = String(value ?? "").trim().toLowerCase();
+  if (parsed === "database") return "database";
+  if (parsed === "individual") return "individual";
+  return null;
+}
+
+function normalizeOpportunityListingKind(value, type) {
+  if (!usesOpportunityListingKind(type)) return null;
+  return parseOpportunityListingKind(value) ?? getDefaultOpportunityListingKind(type);
+}
+
+function inferOpportunityListingKind(opportunity) {
+  const type = opportunity?.type;
+  if (!usesOpportunityListingKind(type)) return null;
+  const explicit = parseOpportunityListingKind(opportunity?.listingKind);
+  if (explicit) return explicit;
+
+  const searchableText = [
+    opportunity?.title,
+    opportunity?.organizationName,
+    opportunity?.summary,
+    opportunity?.externalUrl,
+    opportunity?.deadline?.label,
+    opportunity?.source?.sourceUrl,
+    opportunity?.source?.sourceLabel,
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  return OPPORTUNITY_DATABASE_KEYWORDS.some((keyword) =>
+    searchableText.includes(keyword)
+  )
+    ? "database"
+    : "individual";
+}
+
+function getOpportunityListingKindOptions(type) {
+  if (type === "scholarship") {
+    return [
+      { value: "database", label: "Database / scholarship search list" },
+      { value: "individual", label: "Individual scholarship" },
+    ];
+  }
+
+  return [
+    { value: "database", label: "Database / internship or job board" },
+    { value: "individual", label: "Individual internship / work opportunity" },
+  ];
+}
+
+function formatOpportunityListingKind(value, type, opportunity = null) {
+  const normalized = opportunity
+    ? inferOpportunityListingKind(opportunity)
+    : normalizeOpportunityListingKind(value, type);
+  return normalized ? OPPORTUNITY_LISTING_KIND_LABELS[normalized] : "";
+}
 
 const WORKBOOK_OPTION_SHEET_NAME = "Options";
 const WORKBOOK_VALIDATION_MAX_ROW = 1000;
@@ -1430,6 +1527,11 @@ function getScholarshipLinkExportRows(opportunities, predicate) {
       link: getOpportunityExportLink(opportunity),
       name: opportunity.title,
       amount: formatOpportunityExportAward(opportunity),
+      listingKind: formatOpportunityListingKind(
+        opportunity.listingKind,
+        opportunity.type,
+        opportunity
+      ),
       awardCadence: formatOpportunityAwardCadence(opportunity),
       description: opportunity.summary,
       deadline: formatOpportunityExportDeadline(opportunity),
@@ -1460,6 +1562,11 @@ function getOpportunityLinkExportRows(opportunities, predicate) {
       link: getOpportunityExportLink(opportunity),
       name: opportunity.title,
       type: OPPORTUNITY_TYPE_LABELS[opportunity.type] ?? opportunity.type,
+      listingKind: formatOpportunityListingKind(
+        opportunity.listingKind,
+        opportunity.type,
+        opportunity
+      ),
       organization: opportunity.organizationName,
       description: opportunity.summary,
       deadline: formatOpportunityExportDeadline(opportunity),
@@ -1478,6 +1585,11 @@ function buildLegacyOpportunityExportRow(opportunity) {
     link: getOpportunityExportLink(opportunity),
     name: opportunity.title,
     type: OPPORTUNITY_TYPE_LABELS[opportunity.type] ?? opportunity.type,
+    listingKind: formatOpportunityListingKind(
+      opportunity.listingKind,
+      opportunity.type,
+      opportunity
+    ),
     organization: opportunity.organizationName,
     amount: formatOpportunityExportAward(opportunity),
     awardCadence: isScholarship ? formatOpportunityAwardCadence(opportunity) : "",
@@ -1621,6 +1733,16 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
     "archived",
     ...allOpportunities.map((opportunity) => opportunity.status),
   ]);
+  const optionListingKinds = uniqueSpreadsheetOptions([
+    ...Object.values(OPPORTUNITY_LISTING_KIND_LABELS),
+    ...allOpportunities.map((opportunity) =>
+      formatOpportunityListingKind(
+        opportunity.listingKind,
+        opportunity.type,
+        opportunity
+      )
+    ),
+  ]);
   const { refs: optionRefs, sheet: optionSheet } = buildOptionSheet([
     {
       key: "resourceSectionTitles",
@@ -1672,6 +1794,11 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
       values: optionStatuses,
     },
     {
+      key: "listingKinds",
+      label: "Resource groups",
+      values: optionListingKinds,
+    },
+    {
       key: "awardCadences",
       label: "Award cadences",
       values: ["one time", "continuous", ...allScholarshipRows.map((row) => row.awardCadence)],
@@ -1716,6 +1843,7 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
   const inlineFormulas = {
     awardCadences: createInlineListFormula(DEFAULT_AWARD_CADENCE_OPTIONS),
     opportunityTypes: createInlineListFormula(Object.values(OPPORTUNITY_TYPE_LABELS)),
+    listingKinds: createInlineListFormula(Object.values(OPPORTUNITY_LISTING_KIND_LABELS)),
     sourceKinds: createInlineListFormula(optionSourceKinds),
     statuses: createInlineListFormula(optionStatuses),
     scholarshipPrereqs: createInlineListFormula(DEFAULT_SCHOLARSHIP_PREREQ_OPTIONS),
@@ -1734,6 +1862,7 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
     { key: "sectionIcon", formula: optionRefs.resourceIcons },
   ]);
   const scholarshipValidations = createListValidations(SCHOLARSHIP_EXCEL_EXPORT_COLUMNS, [
+    { key: "listingKind", formula: inlineFormulas.listingKinds ?? optionRefs.listingKinds },
     { key: "awardCadence", formula: inlineFormulas.awardCadences ?? optionRefs.awardCadences },
     { key: "prereq", formula: inlineFormulas.scholarshipPrereqs ?? optionRefs.scholarshipPrereqs },
     { key: "institutionSpecific", formula: inlineFormulas.institutions ?? optionRefs.institutions },
@@ -1746,11 +1875,13 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
   ]);
   const opportunityValidations = createListValidations(OPPORTUNITY_EXCEL_EXPORT_COLUMNS, [
     { key: "type", formula: inlineFormulas.opportunityTypes ?? optionRefs.opportunityTypes },
+    { key: "listingKind", formula: inlineFormulas.listingKinds ?? optionRefs.listingKinds },
     { key: "sourceKind", formula: inlineFormulas.sourceKinds ?? optionRefs.sourceKinds },
     { key: "status", formula: inlineFormulas.statuses ?? optionRefs.statuses },
   ]);
   const legacyValidations = createListValidations(LEGACY_EXCEL_EXPORT_COLUMNS, [
     { key: "type", formula: inlineFormulas.opportunityTypes ?? optionRefs.opportunityTypes },
+    { key: "listingKind", formula: inlineFormulas.listingKinds ?? optionRefs.listingKinds },
     { key: "awardCadence", formula: inlineFormulas.awardCadences ?? optionRefs.awardCadences },
     { key: "prereq", formula: inlineFormulas.scholarshipPrereqs ?? optionRefs.scholarshipPrereqs },
     { key: "institutionSpecific", formula: inlineFormulas.institutions ?? optionRefs.institutions },
@@ -3408,6 +3539,22 @@ async function addOpportunity(rl, type) {
       },
     },
     {
+      when: () => usesOpportunityListingKind(type),
+      prompt: (_, state) =>
+        askChoice(
+          rl,
+          "How should this be grouped inside the Resources tab?",
+          getOpportunityListingKindOptions(type),
+          {
+            defaultValue:
+              state.listingKind ?? getDefaultOpportunityListingKind(type),
+          }
+        ),
+      assign(state, value) {
+        state.listingKind = value;
+      },
+    },
+    {
       prompt: (_, state) =>
         askYesNoUnknown(rl, "Should this appear in the app right away?", {
           defaultValue: state.showImmediately ?? true,
@@ -3458,6 +3605,10 @@ async function addOpportunity(rl, type) {
     const sourceLabel = smartTitleCase(
       answers.sourceLabel ?? "Added with batch catalog tool"
     );
+    const listingKind = normalizeOpportunityListingKind(
+      answers.listingKind,
+      type
+    );
     const showImmediately = answers.showImmediately ?? true;
 
     answers = {
@@ -3491,6 +3642,7 @@ async function addOpportunity(rl, type) {
       collegeWebsite,
       sourceUrl,
       sourceLabel,
+      listingKind,
       showImmediately,
     };
 
@@ -3630,10 +3782,21 @@ async function addOpportunity(rl, type) {
         value: sourceLabel,
         editStepIndex: 28,
       },
+      ...(
+        usesOpportunityListingKind(type)
+          ? [
+              {
+                label: "Resource group",
+                value: formatOpportunityListingKind(listingKind, type),
+                editStepIndex: 29,
+              },
+            ]
+          : []
+      ),
       {
         label: "Show right away",
         value: formatBooleanSummary(showImmediately),
-        editStepIndex: 29,
+        editStepIndex: usesOpportunityListingKind(type) ? 30 : 29,
       },
     ];
 
@@ -3717,6 +3880,7 @@ async function addOpportunity(rl, type) {
     collegeWebsite,
     sourceUrl,
     sourceLabel,
+    listingKind,
     showImmediately,
   } = answers;
   const recurrence =
@@ -3755,6 +3919,7 @@ async function addOpportunity(rl, type) {
     schemaVersion: 1,
     opportunityId,
     type,
+    listingKind,
     status: showImmediately ? "active" : "draft",
     title,
     organizationName,
@@ -4137,8 +4302,11 @@ async function removeOpportunity(rl) {
           rl,
           "Which kind of opportunity would you like to remove?",
           [
-            { value: "scholarship", label: "Scholarship" },
-            { value: "internship", label: "Internship / work opportunity" },
+            { value: "scholarship", label: "Scholarship (database or individual)" },
+            {
+              value: "internship",
+              label: "Internship / work opportunity (database or individual)",
+            },
             { value: "college_deadline", label: "College deadline" },
             { value: "general_deadline", label: "General deadline" },
             { value: "quarter-start", label: "Quarter start" },
@@ -4564,8 +4732,11 @@ async function main() {
         when: (state) => state.action !== "publish" && state.action !== "excel",
         prompt: async (state) => {
           const options = [
-            { value: "scholarship", label: "Scholarship" },
-            { value: "internship", label: "Internship / work opportunity" },
+            { value: "scholarship", label: "Scholarship (database or individual)" },
+            {
+              value: "internship",
+              label: "Internship / work opportunity (database or individual)",
+            },
             { value: "college_deadline", label: "College deadline" },
             { value: "general_deadline", label: "General deadline" },
             { value: "quarter-start", label: "Quarter start" },
@@ -4583,7 +4754,7 @@ async function main() {
             state.action === "remove" ? "What would you like to remove?" : "What would you like to add?",
             options,
             {
-              invalidMessage: "Enter in 1, 2, 3, 4, 5, or 6 for your choice.",
+              invalidMessage: "Enter a listed number for your choice.",
             }
           );
 

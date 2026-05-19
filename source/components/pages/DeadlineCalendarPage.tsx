@@ -695,6 +695,8 @@ export default function DeadlineCalendarPage() {
           paddingTop: insets.top,
           paddingBottom: Math.max(tabBarHeight + 20, insets.bottom + 36),
         }}
+        contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="handled"
       >
         <View
           style={{
@@ -749,18 +751,34 @@ export default function DeadlineCalendarPage() {
               </View>
             </View>
 
-            <View className="flex-row flex-wrap gap-2 mt-4">
-              <View className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <View
+              style={{
+                flexDirection: layout.isTablet ? "row" : "column",
+                flexWrap: layout.isTablet ? "wrap" : "nowrap",
+                gap: 8,
+                marginTop: 16,
+              }}
+            >
+              <View
+                className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
+              >
                 <Text className="text-emerald-600 text-xs font-semibold">
                   {formatMonthTitle(visibleMonth, locale)}
                 </Text>
               </View>
-              <View className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+              <View
+                className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
+              >
                 <Text className="text-emerald-600 text-xs font-semibold">
                   {t("deadlineCalendar.totalItems", { count: calendarEntries.length })}
                 </Text>
               </View>
-              <View className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+              <View
+                className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20"
+                style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
+              >
                 <Text className="text-emerald-600 text-xs font-semibold">
                   {t("deadlineCalendar.activeDatesThisMonth", {
                     count: monthGroups.length,
@@ -796,8 +814,8 @@ export default function DeadlineCalendarPage() {
               >
                 <View
                   style={{
-                    flexDirection: "row",
-                    alignItems: "flex-start",
+                    flexDirection: layout.isTablet ? "row" : "column",
+                    alignItems: layout.isTablet ? "flex-start" : "stretch",
                     justifyContent: "space-between",
                     gap: 12,
                     marginBottom: 18,
@@ -824,7 +842,10 @@ export default function DeadlineCalendarPage() {
                     </View>
                   </View>
 
-                  <View className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                  <View
+                    className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20"
+                    style={!layout.isTablet ? { alignItems: "center" } : undefined}
+                  >
                     <Text className="text-emerald-600 text-xs font-semibold">
                       {monthItemCount} {monthItemLabel}
                     </Text>
@@ -1017,8 +1038,8 @@ export default function DeadlineCalendarPage() {
                 >
                   <View
                     style={{
-                      flexDirection: "row",
-                      alignItems: "flex-start",
+                      flexDirection: layout.isTablet ? "row" : "column",
+                      alignItems: layout.isTablet ? "flex-start" : "stretch",
                       justifyContent: "space-between",
                       gap: 12,
                     }}
@@ -1138,8 +1159,8 @@ export default function DeadlineCalendarPage() {
 
                   <View
                     style={{
-                      flexDirection: "row",
-                      flexWrap: "wrap",
+                      flexDirection: layout.isTablet ? "row" : "column",
+                      flexWrap: layout.isTablet ? "wrap" : "nowrap",
                       gap: 8,
                       justifyContent: layout.isTablet ? "flex-end" : "flex-start",
                     }}
@@ -1148,6 +1169,8 @@ export default function DeadlineCalendarPage() {
                       <AnimatedChipPressable
                         onPress={() => setSelectedDateKey(null)}
                         className="px-3 py-2 rounded-2xl border border-emerald-500/20"
+                        containerStyle={!layout.isTablet ? { width: "100%" } : undefined}
+                        style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
                       >
                         <Text className={`${secondaryTextClass} text-xs font-semibold`}>
                           {t("deadlineCalendar.showAllDates")}
@@ -1155,7 +1178,10 @@ export default function DeadlineCalendarPage() {
                       </AnimatedChipPressable>
                     ) : null}
 
-                    <View className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                    <View
+                      className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20"
+                      style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
+                    >
                       <Text className="text-emerald-600 text-xs font-semibold">
                         {displayedItemCount} {selectedItemLabel}
                       </Text>
@@ -1249,8 +1275,8 @@ export default function DeadlineCalendarPage() {
                             paddingVertical: 14,
                             borderBottomWidth: 1,
                             borderBottomColor: "rgba(16,185,129,0.12)",
-                            flexDirection: "row",
-                            alignItems: "flex-start",
+                            flexDirection: layout.isTablet ? "row" : "column",
+                            alignItems: layout.isTablet ? "flex-start" : "stretch",
                             justifyContent: "space-between",
                             gap: 12,
                           }}
@@ -1266,7 +1292,10 @@ export default function DeadlineCalendarPage() {
                             ) : null}
                           </View>
 
-                          <View className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/15">
+                          <View
+                            className="px-3 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/15"
+                            style={!layout.isTablet ? { alignItems: "center" } : undefined}
+                          >
                             <Text className="text-emerald-600 text-xs font-semibold">
                               {group.items.length}{" "}
                               {group.items.length === 1
@@ -1424,13 +1453,21 @@ export default function DeadlineCalendarPage() {
                                 </View>
 
                                 {layout.isCompactAgendaCard ? (
-                                  <View className="flex-row items-center justify-between">
+                                  <View
+                                    style={{
+                                      flexDirection: layout.isTablet ? "row" : "column",
+                                      alignItems: layout.isTablet ? "center" : "stretch",
+                                      justifyContent: "space-between",
+                                      gap: 8,
+                                    }}
+                                  >
                                     <View
                                       className={`px-3 py-2 rounded-2xl border ${
                                         isRoadmapItem
                                           ? "bg-slate-500/10 border-slate-500/20"
                                           : "bg-emerald-500/10 border-emerald-500/20"
                                       }`}
+                                      style={!layout.isTablet ? { alignItems: "center" } : undefined}
                                     >
                                       <Text
                                         className={`text-xs font-semibold ${

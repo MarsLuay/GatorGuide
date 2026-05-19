@@ -11,6 +11,13 @@ export const OPPORTUNITY_TYPES = {
 
 export type OpportunityType = ValueOf<typeof OPPORTUNITY_TYPES>;
 
+export const OPPORTUNITY_LISTING_KINDS = {
+  database: "database",
+  individual: "individual",
+} as const;
+
+export type OpportunityListingKind = ValueOf<typeof OPPORTUNITY_LISTING_KINDS>;
+
 export const OPPORTUNITY_STATUSES = {
   draft: "draft",
   active: "active",
@@ -119,6 +126,7 @@ export type Opportunity = {
   schemaVersion: number;
   opportunityId: string;
   type: OpportunityType;
+  listingKind: OpportunityListingKind | null;
   status: OpportunityCatalogStatus;
   title: string;
   organizationName: string;
@@ -192,6 +200,19 @@ export function normalizeOpportunityType(value: unknown): OpportunityType {
     return parsed as OpportunityType;
   }
   return OPPORTUNITY_TYPES.scholarship;
+}
+
+export function normalizeOpportunityListingKind(
+  value: unknown
+): OpportunityListingKind | null {
+  const parsed = String(value ?? "").trim();
+  if (parsed === OPPORTUNITY_LISTING_KINDS.database) {
+    return OPPORTUNITY_LISTING_KINDS.database;
+  }
+  if (parsed === OPPORTUNITY_LISTING_KINDS.individual) {
+    return OPPORTUNITY_LISTING_KINDS.individual;
+  }
+  return null;
 }
 
 export function normalizeOpportunityStatus(
@@ -466,6 +487,7 @@ export function normalizeOpportunity(input: Partial<Opportunity>): Opportunity {
     schemaVersion: Number(input.schemaVersion) || OPPORTUNITY_SCHEMA_VERSION,
     opportunityId: normalizeOpportunityId(input.opportunityId),
     type: normalizeOpportunityType(input.type),
+    listingKind: normalizeOpportunityListingKind(input.listingKind),
     status: normalizeOpportunityStatus(input.status),
     title: String(input.title ?? "").trim() || "Untitled Opportunity",
     organizationName: String(input.organizationName ?? "").trim(),

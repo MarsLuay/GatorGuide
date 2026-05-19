@@ -477,14 +477,14 @@ export default function ProfilePage() {
     : isGreen
       ? "bg-emerald-900/90 border-emerald-800"
       : isLight
-        ? "bg-white border-emerald-200"
+        ? "bg-emerald-500/5 border-emerald-200"
         : "bg-white/90 border-gray-200";
   const inputBgClass = isDark
     ? "bg-gray-800 border-gray-700"
     : isGreen
       ? "bg-emerald-900/70 border-emerald-700"
       : isLight
-        ? "bg-white border-emerald-300"
+        ? "bg-emerald-500/5 border-emerald-300"
         : "bg-gray-50 border-gray-300";
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";

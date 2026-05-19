@@ -33,6 +33,9 @@ export default function SavedCollegesPage() {
   const savedColleges = useMemo(() => state.savedColleges ?? [], [state.savedColleges]);
   const { textClass, secondaryTextClass, borderClass, cardBgClass, inputBgClass, placeholderColor } = styles;
   const columns = width >= 900 ? 2 : 1;
+  const isCompactPhone = width < 390;
+  const isPhone = width < 760;
+  const shellHorizontalPadding = width >= 768 ? 24 : isCompactPhone ? 16 : 20;
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
@@ -82,9 +85,17 @@ export default function SavedCollegesPage() {
       <ScrollView
         className="flex-1"
         contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="handled"
       >
         <View
-          style={{ width: "100%", maxWidth: 1040, alignSelf: "center", paddingHorizontal: 24, paddingTop: 24 }}
+          style={{
+            width: "100%",
+            maxWidth: 1040,
+            alignSelf: "center",
+            paddingHorizontal: shellHorizontalPadding,
+            paddingTop: 24,
+          }}
         >
           <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
 
@@ -97,12 +108,24 @@ export default function SavedCollegesPage() {
 
           {savedColleges.length > 0 ? (
             <>
-              <View className="flex-row flex-wrap gap-3 mb-4">
-                <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
+              <View
+                style={{
+                  flexDirection: isPhone ? "column" : "row",
+                  gap: 12,
+                  marginBottom: 16,
+                }}
+              >
+                <View
+                  className={`${cardBgClass} border rounded-2xl px-4 py-3`}
+                  style={{ flex: isPhone ? undefined : 1, minWidth: 0 }}
+                >
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("savedColleges.summarySaved")}</Text>
                   <Text className={`${textClass} text-lg font-semibold`}>{formatLocalizedNumber(savedColleges.length, language)}</Text>
                 </View>
-                <View className={`${cardBgClass} border rounded-2xl px-4 py-3`}>
+                <View
+                  className={`${cardBgClass} border rounded-2xl px-4 py-3`}
+                  style={{ flex: isPhone ? undefined : 1, minWidth: 0 }}
+                >
                   <Text className={`${secondaryTextClass} text-xs uppercase`}>{t("savedColleges.summaryMatched")}</Text>
                   <Text className={`${textClass} text-lg font-semibold`}>{formatLocalizedNumber(matchedCount, language)}</Text>
                 </View>

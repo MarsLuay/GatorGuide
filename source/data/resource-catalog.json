@@ -90,8 +90,7 @@
             "tags": [
               "portal",
               "ctclink",
-              "registration",
-              "financial aid"
+              "registration"
             ]
           },
           {
@@ -224,51 +223,8 @@
     ]
   },
   {
-    "id": "financial-aid-scholarships",
-    "title": "Financial Aid & Scholarship Links",
-    "icon": "attach-money",
-    "items": [
-      {
-        "title": "FAFSA",
-        "description": "Apply for federal student aid, grants, work-study, and eligible loans through the official Federal Student Aid application.",
-        "url": "https://studentaid.gov/apply-for-aid/fafsa",
-        "tags": [
-          "fafsa",
-          "financial aid",
-          "federal aid",
-          "grants",
-          "student loans"
-        ]
-      },
-      {
-        "title": "Washington NASA Space Grant Opportunities",
-        "description": "Washington NASA Space Grant opportunities page for STEM scholarships, fellowships, and student research programs.",
-        "url": "https://www.waspacegrant.org/opportunities/",
-        "tags": [
-          "scholarships",
-          "internships",
-          "nasa",
-          "washington space grant",
-          "stem",
-          "research"
-        ]
-      },
-      {
-        "title": "Seattle Foundation Scholarship Opportunities",
-        "description": "Regional scholarship opportunity list hosted by Seattle Foundation and Scholarship America, with annual cycles and scholarship-specific eligibility rules.",
-        "url": "https://www.seattlefoundation.org/current-scholarship-opportunities",
-        "tags": [
-          "scholarships",
-          "seattle foundation",
-          "washington",
-          "financial aid"
-        ]
-      }
-    ]
-  },
-  {
     "id": "career-internship-links",
-    "title": "Career & Internship Links",
+    "title": "Career Links",
     "icon": "work",
     "items": [
       {
@@ -282,20 +238,8 @@
         ]
       },
       {
-        "title": "WSOS Jobs Board",
-        "description": "Explore internship and job opportunities shared through the Washington State Opportunity Scholarship career network.",
-        "url": "https://waopportunityscholarship.org/jobs/",
-        "tags": [
-          "internships",
-          "jobs",
-          "wsos",
-          "career opportunities",
-          "stem"
-        ]
-      },
-      {
         "title": "UW Resume Examples",
-        "description": "Common resume examples courtesy of the University of Washington Career & Internship Center.",
+        "description": "Common resume examples from University of Washington career resources.",
         "url": "https://careers.uw.edu/resources/sample-resumes/",
         "tags": [
           "resume",
@@ -303,55 +247,6 @@
           "career center",
           "sample resume",
           "application materials"
-        ]
-      },
-      {
-        "title": "Washington State Internships",
-        "description": "Statewide internship information page explaining that Washington agencies may post internships on careers.wa.gov or market them individually.",
-        "url": "https://careers.wa.gov/internships.html",
-        "tags": [
-          "internships",
-          "state government",
-          "washington",
-          "careers.wa.gov"
-        ]
-      },
-      {
-        "title": "City of Seattle Internships",
-        "description": "Browse City of Seattle internship information and student eligibility for certificate, two-year, four-year, and graduate programs.",
-        "url": "https://www.seattle.gov/human-resources/working-at-the-city/internships",
-        "tags": [
-          "internships",
-          "seattle",
-          "public service",
-          "paid",
-          "two-year college"
-        ]
-      },
-      {
-        "title": "Seattle City Light College Internships",
-        "description": "College internship page for Seattle City Light, including summer and school-year posting windows and associate/two-year certificate eligibility.",
-        "url": "https://www.seattle.gov/city-light/about-us/careers/internships/college-internships",
-        "tags": [
-          "internships",
-          "seattle city light",
-          "utility",
-          "engineering",
-          "associate degree",
-          "certificate"
-        ]
-      },
-      {
-        "title": "Sound Transit Internships",
-        "description": "Paid internship information for Sound Transit roles in engineering, IT, outreach, business, planning, operations, and public safety.",
-        "url": "https://www.soundtransit.org/get-to-know-us/jobs/internships",
-        "tags": [
-          "internships",
-          "sound transit",
-          "transportation",
-          "paid",
-          "engineering",
-          "it"
         ]
       }
     ]
