@@ -78,6 +78,7 @@ import {
   openExternalLink,
   orderSuggestedScheduleOptionGroupsByStableIds,
   removeGuidanceSummaryPrefixes,
+  shouldShowSuggestedScheduleOptionGroup,
   type SuggestedScheduleOptionGroup,
 } from "./transfer-planner-formatters";
 import type { PlannerCollegeId } from "./transfer-planner-storage";
@@ -910,9 +911,12 @@ export function SuggestedScheduleCard({
                   const isCurrentCourseSelected =
                     currentCourseSelections.has(courseSelectionKey) ||
                     currentCourseSelections.has(course.label);
-                  const optionGroup = course.optionGroup ?? null;
+                  const rawOptionGroup = course.optionGroup ?? null;
+                  const optionGroup = shouldShowSuggestedScheduleOptionGroup(rawOptionGroup)
+                    ? rawOptionGroup
+                    : null;
                   const shouldShowCurrentCourseCheckbox =
-                    course.status !== "completed" && !optionGroup?.isSelectionPrompt;
+                    course.status !== "completed" && !rawOptionGroup?.isSelectionPrompt;
 
                   // treat official GRC track courses as core visually
                   const isCoreVisual =

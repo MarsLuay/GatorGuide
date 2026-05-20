@@ -765,6 +765,73 @@
   },
   {
     "schemaVersion": 1,
+    "opportunityId": "green-river-tech-internships",
+    "type": "internship",
+    "listingKind": "database",
+    "status": "active",
+    "title": "Green River Tech Internships",
+    "organizationName": "Green River College Technology Programs",
+    "summary": "Green River Devs internship board for technology students. Postings vary by company, location, hours, qualifications, and application details, so students should review each live listing before applying.",
+    "externalUrl": "https://devs.greenrivertech.net/internships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Varies by posting"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [
+        "computer science",
+        "information technology",
+        "software development",
+        "technology",
+        "web development"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Pay varies by posting",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://devs.greenrivertech.net/internships",
+      "sourceLabel": "Green River Devs Internships page",
+      "model": null,
+      "fetchedAt": "2026-05-20T00:00:00.000Z",
+      "verifiedAt": "2026-05-20T00:00:00.000Z"
+    },
+    "createdAt": "2026-05-20T00:00:00.000Z",
+    "updatedAt": "2026-05-20T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
     "opportunityId": "wsos-jobs-board",
     "type": "internship",
     "listingKind": "database",
@@ -1260,6 +1327,79 @@
     },
     "createdAt": "2026-04-29T00:00:00.000Z",
     "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "nsf-etap-opportunity-search",
+    "type": "internship",
+    "listingKind": "database",
+    "status": "active",
+    "title": "NSF ETAP Opportunity Search",
+    "organizationName": "U.S. National Science Foundation",
+    "summary": "Search portal for NSF-funded education and training opportunities, including research experiences, summer programs, teaching assistantships, internships, career experience, scholarships, and fellowships. Deadlines, eligibility, and support vary by opportunity.",
+    "externalUrl": "https://etap.nsf.gov/search",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Varies by opportunity"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "biology",
+        "chemistry",
+        "computer science",
+        "education",
+        "engineering",
+        "mathematics",
+        "physics",
+        "research",
+        "stem"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Stipends, scholarships, fellowships, and other support vary by opportunity",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": "https://www.nsf.gov/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://etap.nsf.gov/search",
+      "sourceLabel": "NSF Education and Training Application search page",
+      "model": null,
+      "fetchedAt": "2026-05-20T00:00:00.000Z",
+      "verifiedAt": "2026-05-20T00:00:00.000Z"
+    },
+    "createdAt": "2026-05-20T00:00:00.000Z",
+    "updatedAt": "2026-05-20T00:00:00.000Z"
   },
   {
     "schemaVersion": 1,

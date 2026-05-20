@@ -85,6 +85,10 @@ import {
   TRANSFER_PLANNER_SOURCE_SUMMARY,
   TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS,
 } from "./transfer-planner.test-support";
+import {
+  collectSuggestedScheduleOptionGroups,
+  shouldShowSuggestedScheduleOptionGroup,
+} from "@/components/transfer-planner/transfer-planner-suggested-schedule";
 import type {
   TranscriptCourseEntry,
   TransferPlannerChecklistItem,
@@ -499,6 +503,62 @@ test("Choice-set planner rows expose option metadata and selected options become
   assert.deepEqual(selectedChemCourse?.optionGroup?.selectedOptionIds, [`${groupId}:chem-436`]);
   assert.equal(
     selectedPlanCourses.some((course) => course.label.startsWith("You have 3 different options")),
+    false
+  );
+});
+
+test("Single-option requirement choices auto-materialize without displaying a choice box", () => {
+  const groupId = "test-single-option-choice:requirement-group:chemistry";
+  const item: TransferPlannerChecklistItem = {
+    id: "single-chemistry-option",
+    title: "Chemistry requirement with one schedulable option",
+    grcCourses: ["CHEM& 161"],
+    minCompletedCount: 1,
+    requirementGroup: {
+      id: groupId,
+      label: "Chemistry requirement with one schedulable option",
+      category: "source-choice",
+      requirementType: "choose_n",
+      minCourses: 1,
+      maxCourses: 1,
+      selectionCount: 1,
+      options: [
+        {
+          id: `${groupId}:chem-161`,
+          uwCourses: ["CHEM 142"],
+          grcMatches: ["CHEM& 161"],
+          credits: 6,
+          label: "CHEM 142 / CHEM& 161",
+        },
+      ],
+    },
+  };
+  const plan = buildRuntimeOptionResolutionTestPlan(item, "test-single-option-choice");
+  const suggestedPlan = buildRuntimeOptionResolutionSuggestedPlan(plan);
+  const plannedLabels = getPlannedCourseLabels(suggestedPlan);
+  const plannedCourses = suggestedPlan.flatMap((quarter) => quarter.courses);
+  const plannedChemCourse = plannedCourses.find((course) => course.label === "CHEM& 161");
+  const collectedOptionGroups = collectSuggestedScheduleOptionGroups(suggestedPlan);
+
+  assert.equal(plannedLabels.has("CHEM& 161"), true);
+  assert.equal(
+    plannedCourses.some((course) => /^You have 1 different option/i.test(course.label)),
+    false
+  );
+  assert.equal(plannedChemCourse?.optionGroup?.id, groupId);
+  assert.equal(plannedChemCourse?.optionGroup?.selectionSource, "default");
+  assert.deepEqual(plannedChemCourse?.optionGroup?.selectedOptionIds, [`${groupId}:chem-161`]);
+  assert.equal(shouldShowSuggestedScheduleOptionGroup(plannedChemCourse?.optionGroup), false);
+  assert.equal(collectedOptionGroups.some((optionGroup) => optionGroup.id === groupId), false);
+
+  const explicitlyClearedPlan = buildRuntimeOptionResolutionSuggestedPlan(plan, {
+    [groupId]: [],
+  });
+  assert.equal(getPlannedCourseLabels(explicitlyClearedPlan).has("CHEM& 161"), true);
+  assert.equal(
+    collectSuggestedScheduleOptionGroups(explicitlyClearedPlan).some(
+      (optionGroup) => optionGroup.id === groupId
+    ),
     false
   );
 });

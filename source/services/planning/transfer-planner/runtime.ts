@@ -2795,6 +2795,28 @@ function getSchedulablePlannerRequirementOptionIdsForScheduling(input: {
     .map((entry) => entry.optionId);
 }
 
+function getSoleSchedulablePlannerRequirementOptionIdForScheduling(input: {
+  item: TransferPlannerChecklistItem;
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+}) {
+  if ((input.item.requirementGroup?.options ?? []).length !== 1) {
+    return null;
+  }
+
+  const optionGroup = buildSuggestedQuarterCourseOptionGroup({
+    item: input.item,
+    selectedOptionIds: [],
+    isSelectionPrompt: false,
+    campusId: input.campusId,
+  });
+
+  if (!optionGroup || optionGroup.options.length !== 1) {
+    return null;
+  }
+
+  return optionGroup.options[0]?.id ?? null;
+}
+
 function getSequenceChoiceOptionIdsMatchingStatus(input: {
   item: TransferPlannerChecklistItem;
   status?: TransferRequirementStatus | null;
@@ -2868,6 +2890,10 @@ function getPlannerRequirementOptionSelectionResolution(input: {
     optionIds: fallbackOptionIds,
     campusId: input.campusId ?? input.plan?.campusId,
   });
+  const soleSchedulableOptionId = getSoleSchedulablePlannerRequirementOptionIdForScheduling({
+    item: input.item,
+    campusId: input.campusId ?? input.plan?.campusId,
+  });
   const acceptedRawOptionIds = new Set(
     (input.item.requirementGroup?.options ?? []).map((option, optionIndex) =>
       getRequirementOptionId(input.item, option, optionIndex)
@@ -2885,6 +2911,17 @@ function getPlannerRequirementOptionSelectionResolution(input: {
       staleOptionIds,
       selectionSource: "student" as const,
       fellBackToDefault: false,
+    };
+  }
+
+  if (soleSchedulableOptionId) {
+    return {
+      selectedOptionIds: [soleSchedulableOptionId],
+      requestedOptionIds,
+      defaultOptionIds,
+      staleOptionIds,
+      selectionSource: "default" as const,
+      fellBackToDefault: hasExplicitSelection && requestedOptionIds.length > 0,
     };
   }
 

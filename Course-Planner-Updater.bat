@@ -20,6 +20,7 @@ if /I "%MODE%"=="refresh-no-downloads" goto runRefreshNoDownloads
 if /I "%MODE%"=="cache-summary" goto runCacheSummary
 if /I "%MODE%"=="edit-course-links" goto runEditCourseLinks
 if /I "%MODE%"=="laymans-diagnosis" goto runLaymansDiagnosis
+if /I "%MODE%"=="export-fact-check" goto runFactCheckExport
 if /I "%MODE%"=="help" goto printHelp
 if not "%MODE%"=="" goto invalidMode
 
@@ -33,10 +34,11 @@ echo 2. Course updates only
 echo 3. Show cache summary
 echo 4. Edit course links
 echo 5. Laymans Diagnosis
-echo 6. Back
+echo 6. Export AI fact-check pack
+echo 7. Back
 echo.
 set "CHOICE="
-set /p CHOICE=Enter 1-6:
+set /p CHOICE=Enter 1-7:
 
 if "%CHOICE%"=="1" goto maintenanceModeMenu
 if "%CHOICE%"=="2" goto refreshModeMenu
@@ -46,9 +48,10 @@ if "%CHOICE%"=="4" (
   goto runEditCourseLinks
 )
 if "%CHOICE%"=="5" goto runLaymansDiagnosis
-if "%CHOICE%"=="6" exit /b 0
+if "%CHOICE%"=="6" goto runFactCheckExport
+if "%CHOICE%"=="7" exit /b 0
 
-echo Enter a number from 1 to 6.
+echo Enter a number from 1 to 7.
 goto menu
 
 :maintenanceModeMenu
@@ -138,6 +141,11 @@ set "ACTION_LABEL=Laymans Diagnosis"
 powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -ShowLaymansDiagnosis -NoPrompt
 goto finish
 
+:runFactCheckExport
+set "ACTION_LABEL=AI fact-check export"
+node "%APP_ROOT%\scripts\planner\export-transfer-planner-fact-check.cjs"
+goto finish
+
 :invalidMode
 echo Unknown mode "%MODE%".
 echo.
@@ -153,6 +161,7 @@ echo   Course-Planner-Updater.bat refresh-no-downloads
 echo   Course-Planner-Updater.bat cache-summary
 echo   Course-Planner-Updater.bat edit-course-links
 echo   Course-Planner-Updater.bat laymans-diagnosis
+echo   Course-Planner-Updater.bat export-fact-check
 echo   Course-Planner-Updater.bat help
 exit /b 0
 

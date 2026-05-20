@@ -736,6 +736,12 @@ export function mergeSuggestedScheduleOptionGroups(
   return [...optionGroupsById.values()];
 }
 
+export function shouldShowSuggestedScheduleOptionGroup(
+  optionGroup: SuggestedScheduleOptionGroup | null | undefined
+): optionGroup is SuggestedScheduleOptionGroup {
+  return Boolean(optionGroup && optionGroup.options.length > 1);
+}
+
 export function addStableSuggestedScheduleOptionGroupId(
   optionGroupIds: string[],
   seenOptionGroupIds: Set<string>,
@@ -827,7 +833,7 @@ export function collectSuggestedScheduleOptionGroups(quarters: SuggestedQuarterP
   for (const quarter of quarters) {
     for (const course of quarter.courses) {
       const optionGroup = course.optionGroup ?? null;
-      if (!optionGroup) continue;
+      if (!shouldShowSuggestedScheduleOptionGroup(optionGroup)) continue;
       optionGroups.push(optionGroup);
     }
   }
