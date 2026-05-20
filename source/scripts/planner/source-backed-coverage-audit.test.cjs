@@ -385,6 +385,82 @@ test("UWB BBA preserves current prerequisite source and materializes available l
   }
 });
 
+test("UW Aquatic Conservation sectioned source groups materialize in student runtime", () => {
+  const runtimePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-aquatic-conservation-and-ecology"
+  );
+  assert.ok(runtimePlan, "Expected the Aquatic Conservation & Ecology runtime plan.");
+
+  const groupCodesByLabel = new Map(
+    (runtimePlan.requirementGroups ?? []).map((group) => [
+      group.label,
+      (group.options ?? []).flatMap((option) => option.uwCourses ?? []),
+    ])
+  );
+  const expectedGroups = new Map([
+    ["Biology", ["BIOL 180", "BIOL 200", "BIOL 220"]],
+    ["Programming & Data Science", ["CSE 160", "QSCI 256"]],
+    ["ACE Core required courses", ["FISH 312", "FISH 323"]],
+    ["ACE Core choice", ["FISH 340", "FISH 370"]],
+    ["Communicating Science", ["FISH 290", "MARBIO 305"]],
+    ["Data Analysis & Modeling", ["FISH 454", "QSCI 483"]],
+  ]);
+
+  for (const [label, expectedCodes] of expectedGroups) {
+    const actualCodes = groupCodesByLabel.get(label) ?? [];
+    assert.deepEqual(
+      expectedCodes.filter((courseCode) => !actualCodes.includes(courseCode)),
+      [],
+      `Expected ${label} to materialize official source courses. Actual: ${actualCodes.join(", ")}`
+    );
+  }
+
+  const biologyGroup = (runtimePlan.requirementGroups ?? []).find(
+    (group) => group.label === "Biology"
+  );
+  const biologyAltText = JSON.stringify(biologyGroup?.options ?? []);
+  assert.match(biologyAltText, /BIOL 220/);
+  assert.match(biologyAltText, /FISH 270/);
+  assert.equal(biologyGroup?.requirementType, "choose_credits");
+  assert.equal(biologyGroup?.minCredits, 15);
+
+  const biologyChecklistItem = (runtimePlan.beforeEnrollmentChecklist ?? []).find(
+    (item) => item.requirementGroup?.label === "Biology"
+  );
+  assert.ok(biologyChecklistItem, "Expected the Biology checklist row to be student-visible.");
+  const grcBiologyStatus = planner.buildRequirementStatuses(
+    [biologyChecklistItem],
+    [
+      { code: "BIOL& 211", credits: 5, grade: "4.0", term: "test" },
+      { code: "BIOL& 212", credits: 5, grade: "4.0", term: "test" },
+      { code: "BIOL& 213", credits: 5, grade: "4.0", term: "test" },
+    ]
+  )[0];
+  assert.equal(grcBiologyStatus.matched, true);
+  assert.equal(grcBiologyStatus.completedCredits, 15);
+  const uwBiologyStatus = planner.buildRequirementStatuses(
+    [biologyChecklistItem],
+    [
+      { code: "BIOL 180", credits: 5, grade: "4.0", term: "test" },
+      { code: "BIOL 200", credits: 5, grade: "4.0", term: "test" },
+      { code: "FISH 270", credits: 5, grade: "4.0", term: "test" },
+    ]
+  )[0];
+  assert.equal(uwBiologyStatus.matched, true);
+  assert.equal(uwBiologyStatus.completedCredits, 15);
+
+  const aceCoreRequiredGroup = (runtimePlan.requirementGroups ?? []).find(
+    (group) => group.label === "ACE Core required courses"
+  );
+  assert.equal(aceCoreRequiredGroup?.requirementType, "all_required");
+  assert.equal(aceCoreRequiredGroup?.requiredCount, 2);
+  const aceCoreChoiceGroup = (runtimePlan.requirementGroups ?? []).find(
+    (group) => group.label === "ACE Core choice"
+  );
+  assert.equal(aceCoreChoiceGroup?.requirementType, "choose_credits");
+  assert.equal(aceCoreChoiceGroup?.minCredits, 5);
+});
+
 test("UW Bioengineering runtime normalization preserves parser-backed source rows", () => {
   const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
     "uw-seattle-bioengineering"
@@ -1674,6 +1750,391 @@ test("UW Economics Strategy exposes undergraduate source requirements without gr
   assert.ok(parsedCodes.has("ECON 400"));
   assert.ok(parsedCodes.has("ECON 482"));
   assert.equal(parsedCodes.has("ECON 800"), false);
+});
+
+test("UW Anthropology undergraduate source requirements exclude graduate catalog sections", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-anthropology");
+  assert.ok(plan);
+
+  const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-anthropology"
+  );
+  assert.ok(blocks.length > 0);
+
+  const baseBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-anthropology",
+    null
+  );
+  assert.ok(baseBlocks.length > 0);
+
+  const parsedCodes = new Set(blocks.flatMap((block) => block.parsedUwCourseCodes ?? []));
+  assert.ok(parsedCodes.has("BIOA 201"));
+  assert.ok(parsedCodes.has("ARCHY 495"));
+  for (const graduateCode of [
+    "ANTH 550",
+    "ANTH 551",
+    "ANTH 565",
+    "ANTH 566",
+    "ANTH 567",
+    "ANTH 700",
+    "ARCHY 510",
+    "ARCHY 599",
+    "BIOA 525",
+  ]) {
+    assert.equal(
+      parsedCodes.has(graduateCode),
+      false,
+      `Expected Anthropology undergraduate source parsing not to include ${graduateCode}.`
+    );
+  }
+
+  const runtimeText = JSON.stringify(plan.requirementGroups ?? []);
+  for (const graduateCode of ["ANTH 550", "ANTH 565", "ARCHY 510", "BIOA 525"]) {
+    assert.equal(
+      runtimeText.includes(graduateCode),
+      false,
+      `Expected Anthropology student runtime requirements not to display ${graduateCode}.`
+    );
+  }
+
+  const baseRequirementText = JSON.stringify(
+    baseBlocks.flatMap((block) => block.parsedRequirementGroups ?? [])
+  );
+  assert.doesNotMatch(baseRequirementText, /Anthropology of Globalization option/i);
+  assert.doesNotMatch(baseRequirementText, /Indigenous Archaeology \(IA\) core/i);
+  assert.doesNotMatch(baseRequirementText, /MAGH list/i);
+
+  const hebBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-anthropology",
+    "ba-option-family:human-evolutionary-biology"
+  );
+  const hebRequirementText = JSON.stringify(
+    hebBlocks.flatMap((block) => block.parsedRequirementGroups ?? [])
+  );
+  assert.match(hebRequirementText, /Human Evolutionary Biology option/i);
+  assert.match(hebRequirementText, /BIOA 351/i);
+  assert.match(hebRequirementText, /BIOA 355/i);
+  assert.doesNotMatch(hebRequirementText, /Anthropology of Globalization option/i);
+  assert.doesNotMatch(hebRequirementText, /Indigenous Archaeology \(IA\) core/i);
+});
+
+test("UW Applied Mathematics inline source requirements materialize beyond the calculus sequence", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-applied-mathematics");
+  assert.ok(plan);
+
+  const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-applied-mathematics"
+  );
+  assert.ok(blocks.length > 0);
+  const parsedGroups = blocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  const computingGroup = parsedGroups.find((group) => /^Computing$/i.test(group.label ?? ""));
+  const introGroup = parsedGroups.find((group) =>
+    /^Introductory Applied Mathematics$/i.test(group.label ?? "")
+  );
+  const methodsGroup = parsedGroups.find((group) =>
+    /^Methods of Applied Mathematics$/i.test(group.label ?? "")
+  );
+
+  assert.equal(computingGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    computingGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 301"]
+  );
+  assert.equal(introGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    introGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 351", "AMATH 352", "AMATH 353"]
+  );
+  assert.equal(methodsGroup?.requirementType, "choose_n");
+  assert.equal(methodsGroup?.requiredCount, 2);
+  assert.deepEqual(
+    methodsGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 401", "AMATH 402", "AMATH 403"]
+  );
+
+  const runtimeText = JSON.stringify(plan.requirementGroups ?? []);
+  for (const courseCode of ["AMATH 301", "AMATH 351", "AMATH 352", "AMATH 353", "AMATH 401"]) {
+    assert.ok(
+      runtimeText.includes(courseCode),
+      `Expected Applied Mathematics student runtime requirements to display ${courseCode}.`
+    );
+  }
+
+  const dataScienceBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-applied-mathematics",
+    "bs-option-family:data-science"
+  );
+  const dataScienceGroups = dataScienceBlocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  const dataScienceAllRequiredGroup = dataScienceGroups.find((group) =>
+    /^AMATH 483, CFRM 410, and CFRM 420/i.test(group.label ?? "")
+  );
+  assert.equal(dataScienceAllRequiredGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    dataScienceAllRequiredGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 483", "CFRM 410", "CFRM 420"]
+  );
+  const societyAndDataGroup = dataScienceGroups.find((group) => {
+    const optionCourses = (group.options ?? []).flatMap((option) => option.uwCourses ?? []);
+    return optionCourses.includes("INFO 351") && optionCourses.includes("SOC 225");
+  });
+  assert.equal(societyAndDataGroup?.requirementType, "choose_one");
+  assert.equal(societyAndDataGroup?.requiredCount, 1);
+  assert.match(
+    `${societyAndDataGroup?.sourceHeading ?? ""} ${societyAndDataGroup?.sourceRowText ?? ""} ${societyAndDataGroup?.sourceSection ?? ""}`,
+    /Society and Data|INFO 351/i
+  );
+  assert.deepEqual(
+    societyAndDataGroup?.options.flatMap((option) => option.uwCourses),
+    ["INFO 351", "SOC 225"]
+  );
+
+  const dataSciencePlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "bs-option-family:data-science"
+  );
+  const dataScienceRuntimeText = JSON.stringify(dataSciencePlan?.requirementGroups ?? []);
+  for (const courseCode of ["AMATH 483", "CFRM 410", "CFRM 420", "INFO 351", "SOC 225"]) {
+    assert.ok(
+      dataScienceRuntimeText.includes(courseCode),
+      `Expected Applied Mathematics Data Science runtime requirements to display ${courseCode}.`
+    );
+  }
+  const dataScienceRuntimeSocietyGroup = (dataSciencePlan?.requirementGroups ?? []).find((group) => {
+    const optionCourses = (group.options ?? []).flatMap((option) => option.uwCourses ?? []);
+    return optionCourses.includes("INFO 351") && optionCourses.includes("SOC 225");
+  });
+  assert.equal(dataScienceRuntimeSocietyGroup?.requirementType, "choose_one");
+});
+
+test("UW American Ethnic Studies materializes official core courses and selected concentration pools", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-american-ethnic-studies");
+  assert.ok(plan);
+
+  const rootBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-american-ethnic-studies",
+    null
+  );
+  const rootGroups = rootBlocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  const coreGroup = rootGroups.find((group) => /^Core Courses$/i.test(group.label ?? ""));
+  assert.equal(coreGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    coreGroup?.options.flatMap((option) => option.uwCourses),
+    ["AAS 101", "AFRAM 101", "CHSTU 101", "AES 150", "AES 151", "AES 212"]
+  );
+
+  const africanBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-american-ethnic-studies",
+    "african-american-studies-concentration"
+  );
+  const africanGroups = africanBlocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  const africanConcentrationGroup = africanGroups.find((group) =>
+    /^African American Studies$/i.test(group.label ?? "")
+  );
+  const africanCodes =
+    africanConcentrationGroup?.options.flatMap((option) => option.uwCourses) ?? [];
+
+  assert.equal(africanConcentrationGroup?.requirementType, "choose_credits");
+  assert.equal(africanConcentrationGroup?.minCredits, 25);
+  assert.equal(africanConcentrationGroup?.maxCredits, 25);
+  assert.ok(africanCodes.includes("AFRAM 150"));
+  assert.ok(africanCodes.includes("AFRAM 214"));
+  assert.ok(africanCodes.includes("AFRAM 370"));
+  assert.equal(africanCodes.includes("AAS 220"), false);
+  assert.equal(africanCodes.includes("CHSTU 330"), false);
+
+  const normalizeAesLabel = (value) =>
+    String(value ?? "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  const concentrationExpectations = [
+    {
+      pathwayId: "african-american-studies-concentration",
+      label: "African American Studies",
+      expectedCodes: ["AFRAM 150", "AFRAM 214", "AFRAM 370"],
+      rejectedCodes: ["AAS 220", "CHSTU 330", "AES 250"],
+    },
+    {
+      pathwayId: "asian-american-pia-studies-concentration",
+      label: "Asian American/PIA Studies",
+      expectedCodes: ["AAS 206", "AAS 220"],
+      rejectedCodes: ["AFRAM 150", "CHSTU 330", "AES 250"],
+    },
+    {
+      pathwayId: "chicano-a-studies-concentration",
+      label: "Chicano/a Studies",
+      expectedCodes: ["CHSTU 200", "CHSTU 330", "CHSTU 356"],
+      rejectedCodes: ["AFRAM 150", "AAS 220", "AES 250"],
+    },
+    {
+      pathwayId: "comparative-american-ethnic-studies-concentration",
+      label: "Comparative American Ethnic Studies",
+      expectedCodes: ["AES 250", "AES 322", "AES 487"],
+      rejectedCodes: ["AFRAM 150", "AAS 220", "CHSTU 330", "AES 496"],
+    },
+  ];
+
+  for (const expectation of concentrationExpectations) {
+    const pathwayBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+      "uw-seattle-american-ethnic-studies",
+      expectation.pathwayId
+    );
+    const pathwayGroups = pathwayBlocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+    const group = pathwayGroups.find(
+      (candidate) => normalizeAesLabel(candidate.label) === normalizeAesLabel(expectation.label)
+    );
+    const codes = group?.options.flatMap((option) => option.uwCourses) ?? [];
+    assert.equal(group?.requirementType, "choose_credits", expectation.label);
+    assert.equal(group?.minCredits, 25, expectation.label);
+    assert.equal(group?.maxCredits, 25, expectation.label);
+    for (const courseCode of expectation.expectedCodes) {
+      assert.ok(codes.includes(courseCode), `Expected ${expectation.label} to include ${courseCode}.`);
+    }
+    for (const courseCode of expectation.rejectedCodes) {
+      assert.equal(
+        codes.includes(courseCode),
+        false,
+        `Expected ${expectation.label} not to include sibling or honors course ${courseCode}.`
+      );
+    }
+
+    const resolvedPathwayPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+      plan,
+      expectation.pathwayId
+    );
+    const resolvedGroup = (resolvedPathwayPlan?.requirementGroups ?? []).find(
+      (candidate) => normalizeAesLabel(candidate.label) === normalizeAesLabel(expectation.label)
+    );
+    assert.ok(resolvedGroup, `Expected runtime pathway to expose ${expectation.label}.`);
+    assert.equal(
+      (resolvedPathwayPlan?.requirementGroups ?? []).some((candidate) =>
+        /\binterdisciplinarity\b|\boverlapping\b|\btransnational communities\b/i.test(
+          candidate.label ?? ""
+        )
+      ),
+      false,
+      `Expected ${expectation.label} pathway not to expose descriptive prose as a requirement group.`
+    );
+  }
+
+  const resolvedAfricanPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "african-american-studies-concentration"
+  );
+  const runtimeText = JSON.stringify(resolvedAfricanPlan?.requirementGroups ?? []);
+  for (const courseCode of ["AAS 101", "AFRAM 101", "AES 212", "AFRAM 214", "AFRAM 370"]) {
+    assert.ok(
+      runtimeText.includes(courseCode),
+      `Expected American Ethnic Studies runtime requirements to display ${courseCode}.`
+    );
+  }
+  assert.equal(
+    runtimeText.includes("ENGL 131"),
+    false,
+    "Expected source-backed AES requirement groups not to promote recommended composition prose."
+  );
+
+  const staleManualTitles = [
+    "Ethnic studies and related social-science foundation",
+    "History and humanities support for concentration work",
+    "Writing-heavy humanities support",
+  ];
+  const staleManualCourses = ["AMES 100", "HUMAN 100", "ENGL& 101"];
+  for (const pathwayId of [null, ...concentrationExpectations.map((entry) => entry.pathwayId)]) {
+    const resolvedPlan = pathwayId
+      ? studentRuntime.resolveTransferPlannerMajorPlan(plan, pathwayId)
+      : plan;
+    const visibleItems = [
+      ...(resolvedPlan?.applicationChecklist ?? []),
+      ...(resolvedPlan?.beforeEnrollmentChecklist ?? []),
+      ...(resolvedPlan?.stayAtGrcChecklist ?? []),
+    ];
+    for (const item of visibleItems) {
+      assert.equal(
+        item.manualOverride === true,
+        false,
+        `Expected AES ${pathwayId ?? "base"} not to expose manual checklist item ${item.title}.`
+      );
+      assert.equal(
+        staleManualTitles.includes(item.title),
+        false,
+        `Expected AES ${pathwayId ?? "base"} not to expose stale manual title ${item.title}.`
+      );
+      const visibleCourses = item.grcCourses ?? [];
+      for (const courseCode of staleManualCourses) {
+        assert.equal(
+          visibleCourses.includes(courseCode),
+          false,
+          `Expected AES ${pathwayId ?? "base"} not to expose stale manual course ${courseCode}.`
+        );
+      }
+    }
+  }
+});
+
+test("UW American Indian Studies preserves all concentration-course sections", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-american-indian-studies");
+  assert.ok(plan);
+
+  const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-american-indian-studies",
+    null
+  );
+  const groups = blocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  const concentrationExpectations = [
+    {
+      label: "Governance Concentration Courses",
+      expectedCodes: ["AIS 212", "AIS 230", "AIS 492"],
+      rejectedCodes: ["AIS 306", "AIS 309"],
+    },
+    {
+      label: "Environment and Health Concentration Courses",
+      expectedCodes: ["AIS 306", "AIS 307", "AIS 451"],
+      rejectedCodes: ["AIS 212", "AIS 309"],
+    },
+    {
+      label: "Culture and History Concentration Courses",
+      expectedCodes: ["AIS 215", "AIS 309", "AIS 443"],
+      rejectedCodes: ["AIS 212", "AIS 306"],
+    },
+  ];
+
+  for (const expectation of concentrationExpectations) {
+    const group = groups.find((candidate) => candidate.label === expectation.label);
+    const codes = group?.options.flatMap((option) => option.uwCourses) ?? [];
+    assert.equal(group?.requirementType, "choose_credits", expectation.label);
+    assert.equal(group?.minCredits, 5, expectation.label);
+    assert.equal(group?.maxCredits, null, expectation.label);
+    for (const courseCode of expectation.expectedCodes) {
+      assert.ok(codes.includes(courseCode), `Expected ${expectation.label} to include ${courseCode}.`);
+    }
+    for (const courseCode of expectation.rejectedCodes) {
+      assert.equal(
+        codes.includes(courseCode),
+        false,
+        `Expected ${expectation.label} not to include sibling concentration course ${courseCode}.`
+      );
+    }
+  }
+
+  const runtimeText = JSON.stringify(plan.requirementGroups ?? []);
+  for (const label of concentrationExpectations.map((entry) => entry.label)) {
+    assert.ok(runtimeText.includes(label), `Expected AIS runtime requirements to display ${label}.`);
+  }
+
+  const parsedCodes = new Set(blocks.flatMap((block) => block.parsedUwCourseCodes ?? []));
+  for (const graduateCode of ["AIS 552", "AIS 570", "AIS 592"]) {
+    assert.equal(
+      parsedCodes.has(graduateCode),
+      false,
+      `Expected AIS undergraduate source parsing not to include graduate course ${graduateCode}.`
+    );
+    assert.equal(
+      runtimeText.includes(graduateCode),
+      false,
+      `Expected AIS runtime requirements not to display graduate course ${graduateCode}.`
+    );
+  }
 });
 
 test("UW Cinema and Media Studies does not expose sibling Comparative Literature Cinema Studies pathways", () => {

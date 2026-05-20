@@ -2608,6 +2608,36 @@ function hasPostAdmissionDegreeCompletionCue(text) {
   );
 }
 
+function hasSupportOnlyPostCompletionCourseCue(text) {
+  const normalizedText = normalizeWhitespace(text);
+  if (!normalizedText) {
+    return false;
+  }
+
+  return (
+    /\b(?:after|once|when)\s+(?:complet(?:ing|ed)|finish(?:ing|ed))\b.{0,180}\b(?:students?\s+)?(?:may|can)\s+(?:also\s+)?take\b/i.test(
+      normalizedText
+    ) ||
+    (/\bfulfill(?:ing|ed)?\s+(?:the\s+)?(?:university|college|campus)\s+requirements?\b/i.test(
+      normalizedText
+    ) &&
+      (/\b(?:students?\s+)?(?:may|can)\s+(?:also\s+)?take\b/i.test(normalizedText) ||
+        /\bmay\s+have\s+to\s+take\s+additional\s+courses?\b/i.test(normalizedText) ||
+        /\bencouraged\s+to\s+(?:take|enroll)\b/i.test(normalizedText)))
+  );
+}
+
+function hasApplicationOnlyOrRestrictedRegistrationCue(text) {
+  const normalizedText = normalizeWhitespace(text);
+  if (!normalizedText) {
+    return false;
+  }
+
+  return /\bapplication[-\s]?only\b|\bby\s+application\s+only\b|\bduring\s+period\s+3\s+of\s+registration\b/i.test(
+    normalizedText
+  );
+}
+
 function sectionRoleCanCreateScheduleRows(sectionRole) {
   return (
     sectionRole === "primary-requirement-section" ||
@@ -2634,6 +2664,26 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
     /\b(?:choose|select|one\s+of|one\s+course\s+from|credits?\s+from)\b/i.test(text) &&
     primaryCue &&
     !prerequisiteCue;
+  const isCreditBearingCourseRow =
+    courseCodes.length > 0 &&
+    sourceLineStartsWithCourseCode(text) &&
+    /\(\s*\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:credits?|cr\.?)?(?:\s*;[^)]*)?\)/i.test(
+      text
+    );
+
+  if (hasSupportOnlyPostCompletionCourseCue(text)) {
+    return {
+      sectionRole: "support-metadata",
+      reason: "post-completion recommendation or campus requirement note is support metadata",
+    };
+  }
+
+  if (hasApplicationOnlyOrRestrictedRegistrationCue(text)) {
+    return {
+      sectionRole: "support-metadata",
+      reason: "application-only or restricted-registration course row is support metadata",
+    };
+  }
 
   if (hasPostAdmissionDegreeCompletionCue(text)) {
     return {
@@ -2654,6 +2704,19 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   }
 
   if (prerequisiteCue) {
+    if (
+      isCreditBearingCourseRow &&
+      inheritedRole === "primary-requirement-section" &&
+      !/\b(?:prerequisite table|course #|course name|required prior|recommended preparation)\b/i.test(
+        text
+      )
+    ) {
+      return {
+        sectionRole: "primary-requirement-section",
+        reason: "credit-bearing requirement row with inline prerequisite note",
+      };
+    }
+
     if (
       levelSummary.allLowerDivision &&
       /\b(?:can take|take either|choose|select|or)\b/i.test(text) &&
@@ -2883,12 +2946,21 @@ function buildParserPrerequisiteFilterAuditRows(input) {
     }
 
     const courseCodes = extractCourseCodesFromRequirementLine(normalizedLine);
-    const explicit = inDegreeRouteComparisonSection
+    const explicit = isGraduateOrAppliedMastersRequirementContext(
+      { sourceUrl: input.sourceUrl, sourceRole: input.sourceRole },
+      input.snapshotLines,
+      index
+    )
       ? {
           sectionRole: "support-metadata",
-          reason: "degree-route comparison section is not schedulable requirement evidence",
+          reason: "graduate requirement context is not schedulable undergraduate evidence",
         }
-      : classifySourceSectionRoleForLine(normalizedLine, currentRole);
+      : inDegreeRouteComparisonSection
+        ? {
+            sectionRole: "support-metadata",
+            reason: "degree-route comparison section is not schedulable requirement evidence",
+          }
+        : classifySourceSectionRoleForLine(normalizedLine, currentRole);
     const lineLooksLikeHeading =
       courseCodes.length === 0 &&
       (normalizedHeadings.has(normalizedLine) ||
@@ -3101,7 +3173,7 @@ function getGroupSourceSectionDecision(group, auditRows) {
     return row;
   }
 
-  if (/^sectioned\b/i.test(group.detectedOptionCue ?? "")) {
+  if (/^(?:sectioned|pathway-scoped)\b/i.test(group.detectedOptionCue ?? "")) {
     return {
       detectedSectionRole: "primary-requirement-section",
       schedulable: true,
@@ -3403,6 +3475,20 @@ function parseRequirementCreditAmount(value) {
   }
 
   return null;
+}
+
+function parseRequirementCourseCount(value) {
+  const text = normalizeWhitespace(String(value ?? "")).toLowerCase();
+  const numericMatch = text.match(/\b(\d+)\s+courses?\b/);
+  if (numericMatch) {
+    const count = Number.parseInt(numericMatch[1], 10);
+    return Number.isFinite(count) && count > 0 ? count : null;
+  }
+
+  const wordMatch = text.match(
+    /\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\b/
+  );
+  return wordMatch?.[1] ? WORD_NUMBER_MAP.get(wordMatch[1]) ?? null : null;
 }
 
 function parseRequirementCreditRange(value) {
@@ -3778,11 +3864,17 @@ function parseChoiceRequiredCount(value) {
   }
 
   const wordMatch = text.match(
-    /\b(?:choose|select)\s+(one|two|three|four|five|six|seven|eight|nine|ten)\b|\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+of(?:\s+the\s+following)?\b/
+    /\b(?:choose|select)\s+(one|two|three|four|five|six|seven|eight|nine|ten)\b|\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+of(?:\s+the\s+following)?\b|\b(?:minimum|at\s+least)\s+(?:of\s+)?(one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\s+from\b/
   );
-  const word = wordMatch?.[1] ?? wordMatch?.[2] ?? null;
+  const word = wordMatch?.[1] ?? wordMatch?.[2] ?? wordMatch?.[3] ?? null;
   if (word) {
     return WORD_NUMBER_MAP.get(word) ?? 1;
+  }
+
+  const minimumCourseCountMatch = text.match(/\b(?:minimum|at\s+least)\s+(?:of\s+)?(\d+)\s+courses?\s+from\b/);
+  if (minimumCourseCountMatch) {
+    const count = Number.parseInt(minimumCourseCountMatch[1], 10);
+    return Number.isFinite(count) && count > 0 ? count : 1;
   }
 
   if (/\bone\s+(?:course\s+)?from\b|\bone\s+of(?:\s+the\s+following)?\b|\bselect\s+one\b|\bchoose\s+one\b|\beither\b/i.test(text)) {
@@ -5024,6 +5116,66 @@ function parseSectionHeadingCreditRange(line) {
     : null;
 }
 
+function parseLeadingSectionHeadingCreditRange(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (!normalizedLine || sourceLineStartsWithCourseCode(normalizedLine)) {
+    return null;
+  }
+
+  const directRange = parseSectionHeadingCreditRange(normalizedLine);
+  if (directRange) {
+    return directRange;
+  }
+
+  const simpleLeadingCreditMatch =
+    normalizedLine.match(
+      /^\(\s*(\d+(?:\.\d+)?)(?:\s*(?:-|to)\s*(\d+(?:\.\d+)?))?\s*(?:credits?|cr\.?)\s*\)/i
+    ) ??
+    normalizedLine.match(
+      /^(\d+(?:\.\d+)?)(?:\s*(?:-|to)\s*(\d+(?:\.\d+)?))?\s*(?:credits?|cr\.?)(?:\s|$)/i
+    );
+  if (simpleLeadingCreditMatch) {
+    const minCredits = Number.parseFloat(simpleLeadingCreditMatch[1] ?? "");
+    const maxCredits = Number.parseFloat(simpleLeadingCreditMatch[2] ?? "");
+    if (!Number.isFinite(minCredits) || minCredits <= 0) {
+      return null;
+    }
+    return {
+      minCredits,
+      maxCredits: Number.isFinite(maxCredits) && maxCredits >= minCredits ? maxCredits : minCredits,
+    };
+  }
+
+  const leadingParentheticalMatch = normalizedLine.match(
+    /^\(?\s*(\d+(?:\.\d+)?)(?:\s*(?:[-–—]|to)\s*(\d+(?:\.\d+)?))?\s*(?:credits?|cr\.?)\s*\)?(?:\s|$)/i
+  );
+  if (!leadingParentheticalMatch) {
+    return null;
+  }
+
+  const minCredits = Number.parseFloat(leadingParentheticalMatch[1] ?? "");
+  const maxCredits = Number.parseFloat(leadingParentheticalMatch[2] ?? "");
+  if (!Number.isFinite(minCredits) || minCredits <= 0) {
+    return null;
+  }
+
+  return {
+    minCredits,
+    maxCredits: Number.isFinite(maxCredits) && maxCredits >= minCredits ? maxCredits : minCredits,
+  };
+}
+
+function isStandaloneSectionChoiceCueLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  return (
+    !!normalizedLine &&
+    !sourceLineStartsWithCourseCode(normalizedLine) &&
+    /\b(?:one|choose|select)\s+(?:course\s+)?(?:of|from)\s+(?:the\s+)?following\b/i.test(
+      normalizedLine
+    )
+  );
+}
+
 function getNearbySectionCourseTitle(snapshotLines, courseLineIndex) {
   for (
     let index = courseLineIndex + 1;
@@ -5076,8 +5228,35 @@ function parseSectionCourseLineCreditRange(courseLine) {
   };
 }
 
+function parseCreditBearingCourseRowCreditRange(courseLine) {
+  const strictRange = parseSectionCourseLineCreditRange(courseLine);
+  if (strictRange) {
+    return strictRange;
+  }
+
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(courseLine));
+  const parentheticalCreditMatch = normalizedLine.match(
+    /\(\s*(\d+(?:\.\d+)?)(?:\s*(?:credits?|cr\.?))?(?:\s*;[^)]*)?\)/i
+  );
+  if (!parentheticalCreditMatch) {
+    return null;
+  }
+
+  const credits = Number.parseFloat(parentheticalCreditMatch[1] ?? "");
+  if (!Number.isFinite(credits) || credits <= 0 || credits > 30) {
+    return null;
+  }
+
+  return {
+    credits,
+    creditMin: credits,
+    creditMax: credits,
+    creditText: String(credits),
+  };
+}
+
 function getNearbySectionCourseCredits(snapshotLines, courseLineIndex, courseCode) {
-  const inlineCourseLineCredits = parseSectionCourseLineCreditRange(snapshotLines?.[courseLineIndex]);
+  const inlineCourseLineCredits = parseCreditBearingCourseRowCreditRange(snapshotLines?.[courseLineIndex]);
   if (inlineCourseLineCredits) {
     return inlineCourseLineCredits;
   }
@@ -5195,14 +5374,37 @@ function shouldSplitSectionedCourseLineIntoSeparateOptions(line, courseCodes) {
   return subjects.size === 1 && /,\s*\d{3}[A-Za-z]?\b/.test(line);
 }
 
+function getSectionedOptionCourseLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (!normalizedLine) {
+    return null;
+  }
+
+  const candidates = uniqueInOrder([
+    normalizedLine,
+    normalizedLine.replace(/^\d+(?:\.\d+)?\s*credits?\s*:\s*/i, ""),
+    normalizedLine.replace(/^\[[^\]]+\]\s*/i, ""),
+    normalizedLine
+      .replace(/^\d+(?:\.\d+)?\s*credits?\s*:\s*/i, "")
+      .replace(/^\[[^\]]+\]\s*/i, ""),
+  ]).map(normalizeWhitespace);
+
+  return (
+    candidates.find(
+      (candidate) => candidate && sourceLineStartsWithCourseCode(candidate)
+    ) ?? null
+  );
+}
+
 function collectSectionedOptionCourseOptions(owner, snapshotLines, startIndex, endIndex, input) {
   const options = [];
   for (let index = startIndex + 1; index < endIndex; index += 1) {
     const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    const courseLine = getSectionedOptionCourseLine(line);
     if (!line) {
       continue;
     }
-    if (!sourceLineStartsWithCourseCode(line)) {
+    if (!courseLine) {
       if (isCourseContinuationLine(line) && options.length) {
         const continuationCodes = extractCourseCodesFromLine(line);
         const previousOption = options[options.length - 1];
@@ -5225,13 +5427,25 @@ function collectSectionedOptionCourseOptions(owner, snapshotLines, startIndex, e
     if (/^\*/.test(line) && /\b(?:must|prereq|note|only)\b/i.test(line)) {
       continue;
     }
-    const courseCodes = extractOptionCourseCodesFromSectionedLine(line);
+    const courseCodes = extractOptionCourseCodesFromSectionedLine(courseLine);
     if (!courseCodes.length) {
       continue;
     }
 
     const title = getNearbySectionCourseTitle(snapshotLines, index);
-    const creditRange = getNearbySectionCourseCredits(snapshotLines, index, courseCodes[0]);
+    const inlineCreditRange = parseRequirementCreditRange(line);
+    const creditRange = inlineCreditRange
+      ? {
+          credits: inlineCreditRange.minCredits,
+          creditMin: inlineCreditRange.minCredits,
+          creditMax: inlineCreditRange.maxCredits ?? inlineCreditRange.minCredits,
+          creditText:
+            inlineCreditRange.maxCredits &&
+            inlineCreditRange.maxCredits !== inlineCreditRange.minCredits
+              ? `${inlineCreditRange.minCredits}-${inlineCreditRange.maxCredits}`
+              : String(inlineCreditRange.minCredits),
+        }
+      : getNearbySectionCourseCredits(snapshotLines, index, courseCodes[0]);
     const notes = [];
     const constraints = [];
     const maxDegreeCountingCreditMatch = (title ?? "").match(
@@ -5251,9 +5465,9 @@ function collectSectionedOptionCourseOptions(owner, snapshotLines, startIndex, e
       notes.push(normalizeWhitespace(snapshotLines[index + 2]));
     }
 
-    const optionCourseLines = shouldSplitSectionedCourseLineIntoSeparateOptions(line, courseCodes)
+    const optionCourseLines = shouldSplitSectionedCourseLineIntoSeparateOptions(courseLine, courseCodes)
       ? courseCodes
-      : [line];
+      : [courseLine];
     for (const optionCourseLine of optionCourseLines) {
       const option = buildSectionedOptionCourseOption(owner, {
         courseLine: optionCourseLine,
@@ -5271,6 +5485,154 @@ function collectSectionedOptionCourseOptions(owner, snapshotLines, startIndex, e
     }
   }
   return options;
+}
+
+function getSelectedPathwayDisplayLabel(owner) {
+  const majorTitle = getPrimaryMajorTitle(owner);
+  const semanticLabel = normalizeTransferPlannerSemanticPathwayLabel(
+    majorTitle,
+    owner?.ownerTitle
+  );
+  const fallbackLabel = String(owner?.pathwayId ?? "").replace(/[-_]+/g, " ");
+  return normalizeTransferPlannerText(semanticLabel || fallbackLabel)
+    .replace(/\b(?:option|track|route|pathway|concentration)\b$/i, "")
+    .trim();
+}
+
+function collectSelectedPathwaySectionCourseLines(owner, snapshotLines) {
+  if (!owner?.pathwayId) {
+    return [];
+  }
+
+  const selectedStartIndexes = (snapshotLines ?? [])
+    .map((line, index) => ({ line: normalizeWhitespace(stripChoiceListLine(line)), index }))
+    .filter(({ line }) => lineMatchesSelectedPathwayIdentity(owner, line))
+    .map(({ index }) => index);
+  const selectedCourseLines = [];
+
+  for (const selectedStartIndex of selectedStartIndexes) {
+    for (
+      let index = selectedStartIndex;
+      index < Math.min((snapshotLines ?? []).length, selectedStartIndex + 80);
+      index += 1
+    ) {
+      const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+      if (!line) {
+        continue;
+      }
+      if (
+        index > selectedStartIndex &&
+        (isPathwayHtmlSectionSiblingStart(owner, line) ||
+          PATHWAY_SECTION_BOUNDARY_PATTERN.test(line) ||
+          /\b(?:recommended courses?|honou?rs?\s+thesis)\b/i.test(line))
+      ) {
+        break;
+      }
+
+      const courseLine = getSectionedOptionCourseLine(line);
+      if (!courseLine) {
+        continue;
+      }
+      selectedCourseLines.push({ line, courseLine, index });
+    }
+  }
+
+  return uniqueBy(selectedCourseLines, (entry) => entry.courseLine);
+}
+
+function buildPathwaySectionFallbackConcentrationGroup(owner, snapshotLines, existingGroups) {
+  if (!owner?.pathwayId) {
+    return null;
+  }
+
+  const label = getSelectedPathwayDisplayLabel(owner);
+  if (!label) {
+    return null;
+  }
+
+  if (
+    (existingGroups ?? []).some(
+      (group) => normalizeMatcherText(group.label) === normalizeMatcherText(label)
+    )
+  ) {
+    return null;
+  }
+
+  const selectedCourseLines = collectSelectedPathwaySectionCourseLines(owner, snapshotLines);
+  if (!selectedCourseLines.length) {
+    return null;
+  }
+
+  const concentrationCreditLine = (snapshotLines ?? []).find((line) =>
+    /\bcredits?\b.{0,140}\bconcentration\s+area(?:\s+courses?)?\b/i.test(
+      normalizeWhitespace(stripChoiceListLine(line))
+    )
+  );
+  const concentrationCredits = parseRequirementCreditAmount(concentrationCreditLine);
+  if (!Number.isFinite(concentrationCredits) || concentrationCredits <= 0) {
+    return null;
+  }
+
+  const concentrationCourseCount = parseRequirementCourseCount(concentrationCreditLine);
+  const category = buildSectionedCourseCategory(label);
+  const options = [];
+
+  for (const { line, courseLine, index } of selectedCourseLines) {
+    const courseCodes = extractOptionCourseCodesFromSectionedLine(courseLine);
+    if (!courseCodes.length) {
+      continue;
+    }
+    const optionCourseLines = shouldSplitSectionedCourseLineIntoSeparateOptions(
+      courseLine,
+      courseCodes
+    )
+      ? courseCodes
+      : [courseLine];
+
+    for (const optionCourseLine of optionCourseLines) {
+      const option = buildSectionedOptionCourseOption(owner, {
+        courseLine: optionCourseLine,
+        title: getNearbySectionCourseTitle(snapshotLines, index),
+        creditRange: parseRequirementCreditRange(line),
+        category,
+        sectionHeading: label,
+        sourceHeading: label,
+      });
+      if (option) {
+        options.push(option);
+      }
+    }
+  }
+
+  if (!options.length) {
+    return null;
+  }
+
+  return buildParsedRequirementGroup({
+    id: `${owner.ownerId}:requirement-group:${slugify(
+      `${label}-choose_credits-${concentrationCredits}-${concentrationCredits}`
+    )}`,
+    label,
+    category,
+    subcategory: category,
+    requirementType: "choose_credits",
+    minCourses:
+      Number.isFinite(concentrationCourseCount) && concentrationCourseCount > 0
+        ? concentrationCourseCount
+        : null,
+    maxCourses:
+      Number.isFinite(concentrationCourseCount) && concentrationCourseCount > 0
+        ? concentrationCourseCount
+        : null,
+    minCredits: concentrationCredits,
+    maxCredits: concentrationCredits,
+    creditText: String(concentrationCredits),
+    sourceHeading: label,
+    sourceRowText: label,
+    detectedOptionCue: "pathway-scoped subject concentration course list",
+    notes: ["Parsed from the selected pathway subject rows in the official concentration list."],
+    options,
+  });
 }
 
 function buildSectionedOptionRequirementGroups(owner, snapshotLines) {
@@ -5398,9 +5760,28 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
     }
   }
 
+  const priorContextLines = (snapshotLines ?? [])
+    .slice(Math.max(0, index - 24), index + 1)
+    .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
+    .filter(Boolean);
+  for (let lineIndex = priorContextLines.length - 1; lineIndex >= 0; lineIndex -= 1) {
+    const line = priorContextLines[lineIndex];
+    if (
+      /\b(?:graduate credits?|graduate degree|graduate student status|master(?:'s|s)? program|m\.?\s*s\.?|ph\.?\s*d\.?|thesis\/non-thesis|dissertation|general examination)\b/i.test(
+        line
+      ) &&
+      !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line)
+    ) {
+      return true;
+    }
+    if (/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line)) {
+      break;
+    }
+  }
+
   const localText = localLines.join(" ");
   return (
-    /\b(?:graduate credits?|graduate degree|master(?:'s|s)? program|m\.?\s*s\.?|ph\.?\s*d\.?|thesis\/non-thesis)\b/i.test(
+    /\b(?:graduate credits?|graduate degree|graduate student status|master(?:'s|s)? program|m\.?\s*s\.?|ph\.?\s*d\.?|thesis\/non-thesis|dissertation|general examination)\b/i.test(
       localText
     ) && !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(localText)
   );
@@ -5524,7 +5905,7 @@ function hasUpcomingSectionedCourseRows(snapshotLines, startIndex, minimumCount 
     if (isSectionedOptionCourseBoundary(line)) {
       break;
     }
-    if (sourceLineStartsWithCourseCode(line)) {
+    if (getSectionedOptionCourseLine(line)) {
       courseRowCount += 1;
       if (courseRowCount >= minimumCount) {
         return true;
@@ -5533,6 +5914,59 @@ function hasUpcomingSectionedCourseRows(snapshotLines, startIndex, minimumCount 
   }
 
   return false;
+}
+
+function getNextMeaningfulSectionLine(snapshotLines, index) {
+  for (
+    let candidateIndex = index + 1;
+    candidateIndex < (snapshotLines ?? []).length;
+    candidateIndex += 1
+  ) {
+    const candidate = normalizeWhitespace(stripChoiceListLine(snapshotLines[candidateIndex]));
+    if (candidate) {
+      return candidate;
+    }
+  }
+  return "";
+}
+
+function looksLikeShortNamedCourseSectionHeading(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  return (
+    normalizedLine.length >= 3 &&
+    normalizedLine.length <= 90 &&
+    /^[A-Z0-9]/.test(normalizedLine) &&
+    !/[.;]$/.test(normalizedLine) &&
+    !sourceLineStartsWithCourseCode(normalizedLine) &&
+    !extractCourseCodesFromLine(normalizedLine).length &&
+    !/\b(?:advising|admission|apply|application|contact|scholarships?|tuition|sample|planning|overview|objectives?|outcomes?|learn by doing|recommended preparation)\b/i.test(
+      normalizedLine
+    )
+  );
+}
+
+function collectImmediateSectionCourseLines(snapshotLines, index, maxRows = 8) {
+  const rows = [];
+  for (
+    let candidateIndex = index + 1;
+    candidateIndex < (snapshotLines ?? []).length && rows.length < maxRows;
+    candidateIndex += 1
+  ) {
+    const candidate = normalizeWhitespace(stripChoiceListLine(snapshotLines[candidateIndex]));
+    if (!candidate) {
+      continue;
+    }
+    const courseLine = getSectionedOptionCourseLine(candidate);
+    if (courseLine) {
+      rows.push({ index: candidateIndex, line: courseLine });
+      continue;
+    }
+    if (!rows.length && parseLeadingSectionHeadingCreditRange(candidate)) {
+      continue;
+    }
+    break;
+  }
+  return rows;
 }
 
 function isNonRequirementSectionedCourseHeading(line) {
@@ -5591,6 +6025,7 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
     !rawLine ||
     isNonRequirementSectionedCourseHeading(rawLine) ||
     looksLikeDegreeTotalGeneralElectiveProse(rawLine) ||
+    looksLikeCreditSummaryForNamedRequirementSection(rawLine) ||
     looksLikeElectiveTimingOrSamplePlanNote(rawLine) ||
     sourceLineStartsWithCourseCode(rawLine) ||
     (previousMeaningfulLine &&
@@ -5600,7 +6035,11 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   ) {
     return null;
   }
-  if (/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(rawLine) || /^TOTAL\b/i.test(rawLine)) {
+  if (
+    /^\(?\s*\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:credits?|cr\.?)\b/i.test(rawLine) ||
+    /^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(rawLine) ||
+    /^TOTAL\b/i.test(rawLine)
+  ) {
     return null;
   }
   if (/\bcredits?\s+total\b/i.test(rawLine) && !/\b(?:selected|following|listed below|minimum|maximum)\b/i.test(rawLine)) {
@@ -5614,25 +6053,71 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
     !extractCourseCodesFromLine(followingCreditLine).length
       ? parseSectionHeadingCreditRange(followingCreditLine)
       : null;
+  const followingLeadingCreditRange =
+    followingCreditLine &&
+    !sourceLineStartsWithCourseCode(followingCreditLine) &&
+    !extractCourseCodesFromLine(followingCreditLine).length
+      ? parseLeadingSectionHeadingCreditRange(followingCreditLine)
+      : null;
+  const nextAfterFollowingCreditLine = getNextMeaningfulSectionLine(snapshotLines, index + 1);
+  const followingCreditLineWithoutCredit = followingCreditLine.replace(
+    /\b\d+(?:\.\d+)?\s*credits?(?:\s+total)?\b/gi,
+    ""
+  );
+  const followingCreditLineHasBlockingRequirementCue =
+    /\b(?:requirements?|core courses?|electives?)\b/i.test(followingCreditLineWithoutCredit) &&
+    !/\badditional\s+writing\s*\(?W\)?\s+requirement\b/i.test(followingCreditLineWithoutCredit);
   if (
-    followingCreditRange &&
+    followingLeadingCreditRange &&
     !/\bprerequisites?\b/i.test(rawLine) &&
-    /\b(?:core|electives?|approved|selected|list)\b/i.test(rawLine) &&
-    !/\b(?:requirements?|core courses?|electives?)\b/i.test(followingCreditLine.replace(/\b\d+(?:\.\d+)?\s*credits?(?:\s+total)?\b/gi, "")) &&
-    (/\b(?:from|electives?|core)\b/i.test(`${rawLine} ${followingCreditLine}`)) &&
+    (
+      /\b(?:core|electives?|approved|selected|list)\b/i.test(rawLine) ||
+      looksLikeShortNamedCourseSectionHeading(rawLine)
+    ) &&
+    (!followingCreditLineHasBlockingRequirementCue ||
+      getSectionedOptionCourseLine(nextAfterFollowingCreditLine)) &&
+    (/\b(?:from|electives?|core)\b/i.test(`${rawLine} ${followingCreditLine}`) ||
+      looksLikeShortNamedCourseSectionHeading(rawLine)) &&
+    (getSectionedOptionCourseLine(nextAfterFollowingCreditLine) ||
+      isStandaloneSectionChoiceCueLine(nextAfterFollowingCreditLine)) &&
     hasUpcomingSectionedCourseRows(snapshotLines, index + 1, 2)
   ) {
     return {
       label: normalizeSectionedCourseGroupLabel(rawLine),
       category: buildSectionedCourseCategory(rawLine),
       requirementType: "choose_credits",
-      minCredits: followingCreditRange.minCredits,
-      maxCredits: followingCreditRange.maxCredits ?? null,
+      minCredits: followingLeadingCreditRange.minCredits,
+      maxCredits: followingLeadingCreditRange.maxCredits ?? null,
       creditText:
-        followingCreditRange.maxCredits && followingCreditRange.maxCredits !== followingCreditRange.minCredits
-          ? `${followingCreditRange.minCredits}-${followingCreditRange.maxCredits}`
-          : String(followingCreditRange.minCredits),
+        followingLeadingCreditRange.maxCredits &&
+        followingLeadingCreditRange.maxCredits !== followingLeadingCreditRange.minCredits
+          ? `${followingLeadingCreditRange.minCredits}-${followingLeadingCreditRange.maxCredits}`
+          : String(followingLeadingCreditRange.minCredits),
       detectedOptionCue: "sectioned split-heading credit list",
+    };
+  }
+
+  const immediateCourseRows = collectImmediateSectionCourseLines(snapshotLines, index, 6);
+  const immediateCourseCredits = immediateCourseRows
+    .map((row) => parseCreditBearingCourseRowCreditRange(row.line)?.credits ?? null)
+    .filter((credits) => Number.isFinite(credits));
+  const uniqueImmediateCourseCredits = uniqueInOrder(immediateCourseCredits);
+  if (
+    looksLikeShortNamedCourseSectionHeading(rawLine) &&
+    /\b(?:data\s+analysis|modeling|statistical\s+inference|quantitative\s+methods?)\b/i.test(rawLine) &&
+    immediateCourseRows.length >= 2 &&
+    uniqueImmediateCourseCredits.length === 1 &&
+    hasUpcomingSectionedCourseRows(snapshotLines, index, 2)
+  ) {
+    const credits = uniqueImmediateCourseCredits[0];
+    return {
+      label: normalizeSectionedCourseGroupLabel(rawLine),
+      category: buildSectionedCourseCategory(rawLine),
+      requirementType: "choose_credits",
+      minCredits: credits,
+      maxCredits: credits,
+      creditText: String(credits),
+      detectedOptionCue: "sectioned inferred equal-credit course choice",
     };
   }
 
@@ -5666,13 +6151,13 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
 
   if (/\bconcentration courses?\b/i.test(rawLine)) {
     const concentrationCreditLine = (snapshotLines ?? [])
-      .slice(Math.max(0, index - 8), index)
+      .slice(Math.max(0, index - 80), index)
       .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
       .reverse()
       .find((line) => /\bcredits?\b.{0,80}\bminimum\b.{0,80}\beach concentration\b/i.test(line));
-    const concentrationCreditMatch = concentrationCreditLine?.match(
-      /\b(\d+(?:\.\d+)?)\s+credits?\b/i
-    );
+    const concentrationCreditMatch =
+      concentrationCreditLine?.match(/\b(\d+(?:\.\d+)?)\s+credits?\s+minimum\b/i) ??
+      concentrationCreditLine?.match(/\bminimum\s+(?:of\s+)?(\d+(?:\.\d+)?)\s+credits?\b/i);
     const concentrationCredits = concentrationCreditMatch
       ? Number.parseFloat(concentrationCreditMatch[1])
       : null;
@@ -5685,6 +6170,65 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
         maxCredits: null,
         creditText: `${concentrationCredits}+`,
         detectedOptionCue: "sectioned concentration credit list",
+      };
+    }
+  }
+
+  if (!owner?.pathwayId && /^core courses?$/i.test(rawLine)) {
+    const coreCreditLine = (snapshotLines ?? [])
+      .slice(Math.max(0, index - 8), index + 2)
+      .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
+      .find((line) => /\bcredits?\b.{0,80}\bcore courses?\b/i.test(line));
+    const coreCredits = parseRequirementCreditAmount(coreCreditLine);
+    const coreCourseCount = parseRequirementCourseCount(coreCreditLine);
+    if (Number.isFinite(coreCredits) && hasUpcomingSectionedCourseRows(snapshotLines, index, 2)) {
+      return {
+        label: normalizeSectionedCourseGroupLabel(rawLine),
+        category: buildSectionedCourseCategory(rawLine),
+        requirementType: "all_required",
+        minCourses: Number.isFinite(coreCourseCount) && coreCourseCount > 0 ? coreCourseCount : null,
+        maxCourses: Number.isFinite(coreCourseCount) && coreCourseCount > 0 ? coreCourseCount : null,
+        minCredits: coreCredits,
+        maxCredits: coreCredits,
+        creditText: String(coreCredits),
+        detectedOptionCue: "sectioned core course list",
+      };
+    }
+  }
+
+  if (
+    owner?.pathwayId &&
+    lineMatchesSelectedPathwayIdentity(owner, rawLine) &&
+    normalizeMatcherText(rawLine).split(" ").filter(Boolean).length <= 12 &&
+    !/[.;]$/.test(rawLine) &&
+    hasUpcomingSectionedCourseRows(snapshotLines, index, 1)
+  ) {
+    const concentrationCreditLine = (snapshotLines ?? [])
+      .slice(Math.max(0, index - 24), index)
+      .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
+      .reverse()
+      .find((line) =>
+        /\bcredits?\b.{0,140}\b(?:student|selected|chosen|their)\b.{0,140}\bconcentration\s+area(?:\s+courses?)?\b/i.test(line)
+      );
+    const concentrationCredits = parseRequirementCreditAmount(concentrationCreditLine);
+    const concentrationCourseCount = parseRequirementCourseCount(concentrationCreditLine);
+    if (Number.isFinite(concentrationCredits) && concentrationCredits > 0) {
+      return {
+        label: normalizeSectionedCourseGroupLabel(rawLine),
+        category: buildSectionedCourseCategory(rawLine),
+        requirementType: "choose_credits",
+        minCourses:
+          Number.isFinite(concentrationCourseCount) && concentrationCourseCount > 0
+            ? concentrationCourseCount
+            : null,
+        maxCourses:
+          Number.isFinite(concentrationCourseCount) && concentrationCourseCount > 0
+            ? concentrationCourseCount
+            : null,
+        minCredits: concentrationCredits,
+        maxCredits: concentrationCredits,
+        creditText: String(concentrationCredits),
+        detectedOptionCue: "pathway-scoped concentration course list",
       };
     }
   }
@@ -5817,7 +6361,28 @@ function isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollected
   if (!line) {
     return false;
   }
-  if (isSectionedOptionCourseBoundary(line)) {
+  if (/\b(?:recommended courses?|honou?rs?\s+thesis)\b/i.test(line)) {
+    return true;
+  }
+  const previousMeaningfulLine = (snapshotLines ?? [])
+    .slice(Math.max(0, index - 3), index)
+    .map((candidate) => normalizeWhitespace(stripChoiceListLine(candidate)))
+    .filter(Boolean)
+    .at(-1);
+  const nextMeaningfulLine = (snapshotLines ?? [])
+    .slice(index + 1, Math.min((snapshotLines ?? []).length, index + 4))
+    .map((candidate) => normalizeWhitespace(stripChoiceListLine(candidate)))
+    .filter(Boolean)
+    .at(0);
+  if (
+    hasCollectedCourses &&
+    !extractCourseCodesFromLine(line).length &&
+    nextMeaningfulLine &&
+    /^\[[^\]]+\]\s*[A-Z]{2,8}\b/i.test(nextMeaningfulLine)
+  ) {
+    return true;
+  }
+  if (getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input)) {
     return true;
   }
   if (
@@ -5826,7 +6391,16 @@ function isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollected
   ) {
     return true;
   }
-  if (!hasCollectedCourses || sourceLineStartsWithCourseCode(line)) {
+  if (previousMeaningfulLine && sourceLineStartsWithCourseCode(previousMeaningfulLine)) {
+    return false;
+  }
+  if (!hasCollectedCourses && parseLeadingSectionHeadingCreditRange(line)) {
+    return false;
+  }
+  if (isSectionedOptionCourseBoundary(line)) {
+    return true;
+  }
+  if (!hasCollectedCourses || getSectionedOptionCourseLine(line)) {
     return false;
   }
   if (/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(line)) {
@@ -5835,7 +6409,25 @@ function isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollected
   if (/^TOTAL\b/i.test(line)) {
     return true;
   }
-  if (getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input)) {
+  if (
+    hasCollectedCourses &&
+    !extractCourseCodesFromLine(line).length &&
+    hasUpcomingSectionedCourseRows(snapshotLines, index, 1) &&
+    (hasPrimaryRequirementSectionCue(line) ||
+      PATHWAY_LABEL_CUE_PATTERN.test(line) ||
+      /\b(?:recommended courses?|honou?rs?\s+thesis|advising|admission|polic(?:y|ies)|contact|tuition|scholarships?)\b/i.test(
+        line
+      ) ||
+      (owner?.pathwayId && getPathwayHeadingIdentityTokens(line).length >= 2))
+  ) {
+    return true;
+  }
+  if (
+    hasCollectedCourses &&
+    !extractCourseCodesFromLine(line).length &&
+    looksLikeShortNamedCourseSectionHeading(line) &&
+    getSectionedOptionCourseLine(nextMeaningfulLine)
+  ) {
     return true;
   }
   return (
@@ -5851,7 +6443,7 @@ function getSectionedCourseListEndIndex(owner, snapshotLines, startIndex, input 
   let hasCollectedCourses = false;
   for (let index = startIndex + 1; index < (snapshotLines ?? []).length; index += 1) {
     const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
-    if (sourceLineStartsWithCourseCode(line)) {
+    if (getSectionedOptionCourseLine(line)) {
       hasCollectedCourses = true;
       continue;
     }
@@ -5861,6 +6453,128 @@ function getSectionedCourseListEndIndex(owner, snapshotLines, startIndex, input 
   }
 
   return (snapshotLines ?? []).length;
+}
+
+function sumSectionedOptionCredits(options) {
+  const credits = (options ?? [])
+    .map((option) => option.creditMin ?? option.credits ?? null)
+    .filter((credit) => Number.isFinite(credit));
+  if (credits.length !== (options ?? []).length) {
+    return null;
+  }
+  return credits.reduce((sum, credit) => sum + credit, 0);
+}
+
+function buildInternalChoiceSplitSectionedCourseRequirementGroups(
+  owner,
+  snapshotLines,
+  startIndex,
+  endIndex,
+  descriptor,
+  sourceHeading
+) {
+  let choiceCueIndex = -1;
+  let courseRowsBeforeChoice = 0;
+  for (let index = startIndex + 1; index < endIndex; index += 1) {
+    const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    if (!line || parseLeadingSectionHeadingCreditRange(line)) {
+      continue;
+    }
+    if (isStandaloneSectionChoiceCueLine(line)) {
+      if (courseRowsBeforeChoice > 0) {
+        choiceCueIndex = index;
+      }
+      break;
+    }
+    if (getSectionedOptionCourseLine(line)) {
+      courseRowsBeforeChoice += 1;
+    }
+  }
+
+  if (choiceCueIndex < 0) {
+    return [];
+  }
+
+  const requiredOptions = collectSectionedOptionCourseOptions(
+    owner,
+    snapshotLines,
+    startIndex,
+    choiceCueIndex,
+    {
+      category: descriptor.category,
+      sectionHeading: `${sourceHeading} required courses`,
+      sourceHeading,
+    }
+  );
+  const choiceOptions = collectSectionedOptionCourseOptions(
+    owner,
+    snapshotLines,
+    choiceCueIndex,
+    endIndex,
+    {
+      category: descriptor.category,
+      sectionHeading: `${sourceHeading} choice`,
+      sourceHeading,
+    }
+  );
+
+  if (!requiredOptions.length || choiceOptions.length < 2) {
+    return [];
+  }
+
+  const requiredCredits = sumSectionedOptionCredits(requiredOptions);
+  const choiceCredits =
+    Number.isFinite(descriptor.minCredits) && Number.isFinite(requiredCredits)
+      ? descriptor.minCredits - requiredCredits
+      : null;
+  const groups = [
+    buildParsedRequirementGroup({
+      id: `${owner.ownerId}:requirement-group:${slugify(
+        `${descriptor.label}-required-courses-${requiredOptions
+          .flatMap((option) => option.uwCourses ?? [])
+          .join("-")}`
+      )}`,
+      label: `${descriptor.label} required courses`,
+      category: descriptor.category,
+      subcategory: descriptor.category,
+      requirementType: "all_required",
+      minCourses: requiredOptions.length,
+      maxCourses: requiredOptions.length,
+      minCredits: requiredCredits,
+      maxCredits: requiredCredits,
+      creditText: Number.isFinite(requiredCredits) ? String(requiredCredits) : null,
+      sourceHeading,
+      sourceRowText: sourceHeading,
+      detectedOptionCue: "sectioned required rows before explicit choice cue",
+      notes: ["Parsed from course rows before an explicit source choice cue."],
+      options: requiredOptions,
+    }),
+    buildParsedRequirementGroup({
+      id: `${owner.ownerId}:requirement-group:${slugify(
+        `${descriptor.label}-choice-${choiceOptions
+          .flatMap((option) => option.uwCourses ?? [])
+          .join("-or-")}`
+      )}`,
+      label: `${descriptor.label} choice`,
+      category: descriptor.category,
+      subcategory: descriptor.category,
+      requirementType: Number.isFinite(choiceCredits) && choiceCredits > 0 ? "choose_credits" : "choose_one",
+      minCourses: 1,
+      maxCourses: 1,
+      selectionCount: 1,
+      requiredCount: 1,
+      minCredits: Number.isFinite(choiceCredits) && choiceCredits > 0 ? choiceCredits : null,
+      maxCredits: Number.isFinite(choiceCredits) && choiceCredits > 0 ? choiceCredits : null,
+      creditText: Number.isFinite(choiceCredits) && choiceCredits > 0 ? String(choiceCredits) : null,
+      sourceHeading,
+      sourceRowText: normalizeWhitespace(snapshotLines[choiceCueIndex]),
+      detectedOptionCue: "sectioned explicit choice cue",
+      notes: ["Parsed from an explicit source choice cue inside a sectioned requirement."],
+      options: choiceOptions,
+    }),
+  ].filter((group) => group.options.length);
+
+  return groups.length === 2 ? groups : [];
 }
 
 function buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines) {
@@ -5903,6 +6617,26 @@ function buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines
       sourceHeading,
     });
     if (options.length < 1) {
+      continue;
+    }
+
+    const splitGroups = buildInternalChoiceSplitSectionedCourseRequirementGroups(
+      owner,
+      snapshotLines,
+      index,
+      endIndex,
+      effectiveDescriptor,
+      sourceHeading
+    );
+    if (splitGroups.length) {
+      for (const splitGroup of splitGroups) {
+        if (seenGroupIds.has(splitGroup.id)) {
+          continue;
+        }
+        seenGroupIds.add(splitGroup.id);
+        groups.push(splitGroup);
+      }
+      index = Math.max(index, endIndex - 1);
       continue;
     }
 
@@ -6256,6 +6990,472 @@ function buildSplitEitherOrRequirementGroups(owner, parsedCourseCodes, snapshotL
   return groups;
 }
 
+function stripInlineLabeledRequirementMarker(line) {
+  return normalizeWhitespace(
+    stripChoiceListLine(line)
+      .replace(/^\d+\s*[\).]\s*/i, "")
+      .replace(/^[A-Z]\s*[\).]\s*/i, "")
+  );
+}
+
+function getInlineLabeledRequirementParts(rawLine) {
+  const normalizedLine = stripInlineLabeledRequirementMarker(rawLine);
+  const colonIndex = normalizedLine.indexOf(":");
+  if (colonIndex <= 0) {
+    return null;
+  }
+
+  const label = normalizeWhitespace(normalizedLine.slice(0, colonIndex).replace(/[:.]+$/g, ""));
+  const body = normalizeWhitespace(normalizedLine.slice(colonIndex + 1));
+  if (
+    !label ||
+    !body ||
+    label.length > 140 ||
+    extractCourseCodesFromLine(label).length > 0 ||
+    extractCourseCodesFromLine(body).length < 1
+  ) {
+    return null;
+  }
+
+  return {
+    label,
+    body,
+    sourceLine: normalizedLine,
+  };
+}
+
+function parseInlineMinimumCourseCount(value) {
+  const text = normalizeWhitespace(value).toLowerCase();
+  const numericMatch = text.match(/\b(?:minimum|at\s+least)\s+(?:of\s+)?(\d+)\s+courses?\s+from\b/);
+  if (numericMatch) {
+    const count = Number.parseInt(numericMatch[1], 10);
+    return Number.isFinite(count) && count > 0 ? count : null;
+  }
+
+  const wordMatch = text.match(
+    /\b(?:minimum|at\s+least)\s+(?:of\s+)?(one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\s+from\b/
+  );
+  if (wordMatch?.[1]) {
+    return WORD_NUMBER_MAP.get(wordMatch[1]) ?? null;
+  }
+
+  return null;
+}
+
+function getInlineMinimumCourseListText(value) {
+  const match = normalizeWhitespace(value).match(
+    /\b(?:minimum|at\s+least)\s+(?:of\s+)?(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\s+from\s+(.+)$/i
+  );
+  return normalizeWhitespace(match?.[1] ?? "");
+}
+
+function buildInlineCourseRequirementOptions(owner, groupId, courseCodes, sourceLine, allowTotalCreditFallback = false) {
+  const totalCredits = parseRequirementCreditAmount(sourceLine);
+  return courseCodes.map((courseCode) => {
+    const metadata = getUwCourseMetadata(courseCode);
+    const creditRange = getUwCourseCreditRange(courseCode) ?? {};
+    const fallbackCredits =
+      allowTotalCreditFallback && courseCodes.length === 1 && Number.isFinite(totalCredits)
+        ? {
+            credits: totalCredits,
+            creditMin: totalCredits,
+            creditMax: totalCredits,
+            creditText: String(totalCredits),
+          }
+        : {};
+    return {
+      id: `${groupId}:option:${slugify(courseCode)}`,
+      uwCourses: [courseCode],
+      displayCourseCodes: [courseCode],
+      label: courseCode,
+      title: metadata?.title ?? null,
+      department: getCourseCodeSubject(courseCode),
+      sourceHeading: sourceLine,
+      sourceCategory: "inline-labeled-requirement",
+      ...creditRange,
+      ...fallbackCredits,
+    };
+  });
+}
+
+function extractInlineRequiredListAlternativeSets(text) {
+  const normalizedText = normalizeWhitespace(text);
+  const alternativeSets = [];
+  const alternativePattern =
+    /\b([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*(\d{3}[A-Za-z]?)(?:\s*\([^)]*\))?\s+or\s+(?:(?:([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*)?(\d{3}[A-Za-z]?))/gi;
+
+  for (const match of normalizedText.matchAll(alternativePattern)) {
+    const leftSubject = match[1];
+    const leftCode = normalizeExtractedCourseCode(leftSubject, match[2]);
+    const rightCode = normalizeExtractedCourseCode(match[3] || leftSubject, match[4]);
+    const courseCodes = uniqueInOrder([leftCode, rightCode].filter(Boolean).map(normalizeCourseCode));
+    if (courseCodes.length === 2) {
+      alternativeSets.push(courseCodes);
+    }
+  }
+
+  return uniqueBy(alternativeSets, (courseCodes) => courseCodes.join("|"));
+}
+
+function getMixedRequiredCourseListParts(parts) {
+  const sourceLine = normalizeWhitespace(parts?.sourceLine ?? "");
+  const label = normalizeWhitespace(parts?.label ?? "");
+  const body = normalizeWhitespace(parts?.body ?? "");
+  if (!sourceLine || !body || !/\bor\b/i.test(body)) {
+    return null;
+  }
+  if (
+    /\b(?:choose|select|one\s+of|any\s+of|electives?|approved|from\s+the\s+following|from\s+approved)\b/i.test(
+      sourceLine
+    ) ||
+    /\b(?:minimum|at\s+least)\s+(?:of\s+)?(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\b/i.test(
+      sourceLine
+    )
+  ) {
+    return null;
+  }
+  if (!/\b(?:core courses?|required courses?|major requirements?|requirements?)\b/i.test(label)) {
+    return null;
+  }
+  if (!/[,;]/.test(body)) {
+    return null;
+  }
+
+  const allCourseCodes = extractCourseCodesFromRequirementLine(body).map(normalizeCourseCode);
+  const alternativeSets = extractInlineRequiredListAlternativeSets(body);
+  if (allCourseCodes.length < 4 || !alternativeSets.length) {
+    return null;
+  }
+
+  const alternativeCourseCodeSet = new Set(alternativeSets.flat());
+  const requiredCourseCodes = uniqueInOrder(
+    allCourseCodes.filter((courseCode) => !alternativeCourseCodeSet.has(courseCode))
+  );
+  if (requiredCourseCodes.length < 2) {
+    return null;
+  }
+
+  return {
+    requiredCourseCodes,
+    alternativeSets,
+  };
+}
+
+function buildMixedInlineRequiredCourseListGroups(owner, parts) {
+  const mixedParts = getMixedRequiredCourseListParts(parts);
+  if (!mixedParts) {
+    return [];
+  }
+
+  const sourceLine = normalizeWhitespace(parts.sourceLine);
+  const label = normalizeWhitespace(parts.label);
+  const requiredGroupId = `${owner.ownerId}:requirement-group:inline-required-${slugify(
+    `${label}-${mixedParts.requiredCourseCodes.join("-")}`
+  )}`;
+  const groups = [
+    buildParsedRequirementGroup({
+      id: requiredGroupId,
+      label,
+      category: buildSectionedCourseCategory(label),
+      subcategory: buildSectionedCourseCategory(label),
+      requirementType: "all_required",
+      minCourses: mixedParts.requiredCourseCodes.length,
+      maxCourses: mixedParts.requiredCourseCodes.length,
+      sourceHeading: sourceLine,
+      sourceRowText: sourceLine,
+      detectedOptionCue: "inline required course list with embedded alternatives",
+      notes: ["Parsed from an inline required course list; embedded alternatives are separate choice groups."],
+      options: buildInlineCourseRequirementOptions(
+        owner,
+        requiredGroupId,
+        mixedParts.requiredCourseCodes,
+        sourceLine
+      ),
+    }),
+  ];
+
+  for (const alternativeSet of mixedParts.alternativeSets) {
+    const choiceGroupId = `${owner.ownerId}:requirement-group:inline-choice-${slugify(
+      `${label}-${alternativeSet.join("-or-")}`
+    )}`;
+    groups.push(
+      buildParsedRequirementGroup({
+        id: choiceGroupId,
+        label: alternativeSet.join(" or "),
+        category: "source-choice",
+        subcategory: buildSectionedCourseCategory(label),
+        requirementType: "choose_one",
+        minCourses: 1,
+        maxCourses: 1,
+        selectionCount: 1,
+        requiredCount: 1,
+        sourceHeading: sourceLine,
+        sourceRowText: sourceLine,
+        detectedOptionCue: "or",
+        options: buildInlineCourseRequirementOptions(owner, choiceGroupId, alternativeSet, sourceLine),
+      })
+    );
+  }
+
+  return groups.filter((group) => group.options.length);
+}
+
+function getInlineRequirementSectionClassification(owner, snapshotLines, targetIndex) {
+  let currentRole = "primary-requirement-section";
+  let inDegreeRouteComparisonSection = false;
+
+  for (let index = 0; index <= targetIndex && index < (snapshotLines ?? []).length; index += 1) {
+    const normalizedLine = normalizeSourceSectionLine(snapshotLines[index]);
+    if (!normalizedLine) {
+      continue;
+    }
+
+    if (isDegreeRouteComparisonSectionHeading(normalizedLine)) {
+      inDegreeRouteComparisonSection = true;
+    }
+
+    const explicit = isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines, index)
+      ? {
+          sectionRole: "support-metadata",
+          reason: "graduate requirement context is not schedulable undergraduate evidence",
+        }
+      : inDegreeRouteComparisonSection
+        ? {
+            sectionRole: "support-metadata",
+            reason: "degree-route comparison section is not schedulable requirement evidence",
+          }
+        : classifySourceSectionRoleForLine(normalizedLine, currentRole);
+
+    if (index === targetIndex) {
+      return explicit;
+    }
+
+    const courseCodes = extractCourseCodesFromRequirementLine(normalizedLine);
+    const lineLooksLikeHeading =
+      courseCodes.length === 0 &&
+      (hasPrerequisiteOnlyCue(normalizedLine) ||
+        ((hasCourseListSectionCue(normalizedLine) ||
+          hasApprovedCourseListSectionCue(normalizedLine) ||
+          hasElectiveListSectionCue(normalizedLine) ||
+          hasDistributionAreaCourseListSectionCue(normalizedLine)) &&
+          isLikelySourceSectionHeadingLine(normalizedLine)) ||
+        parserRules.hasOptionReplacementRequirementCue(normalizedLine) ||
+        hasPrimaryRequirementSectionCue(normalizedLine) ||
+        hasAdmissionPrepHeadingCue(normalizedLine) ||
+        hasPostAdmissionDegreeCompletionCue(normalizedLine));
+    const lineLooksLikeStandaloneRequirementTitle =
+      courseCodes.length === 0 && looksLikeStandaloneRequirementTitleLine(normalizedLine);
+    if (lineLooksLikeHeading || lineLooksLikeStandaloneRequirementTitle) {
+      currentRole = explicit.sectionRole;
+    }
+
+    if (isDegreeRouteComparisonSectionTerminator(normalizedLine)) {
+      inDegreeRouteComparisonSection = false;
+      currentRole = "primary-requirement-section";
+    }
+  }
+
+  return {
+    sectionRole: currentRole,
+    reason: "inherits nearby source-section role",
+  };
+}
+
+function sourceSectionCanMaterializeInlineRequirement(owner, snapshotLines, index) {
+  const classification = getInlineRequirementSectionClassification(owner, snapshotLines, index);
+  return sectionRoleCanCreateScheduleRows(classification.sectionRole);
+}
+
+function buildNumberedInlineAllRequiredCourseGroup(owner, rawLine) {
+  const normalizedLine = stripInlineLabeledRequirementMarker(rawLine);
+  const numberedMatch = normalizeWhitespace(rawLine).match(/^\s*\d+\s*[\).]\s+(.+)$/);
+  const body = normalizeWhitespace(numberedMatch?.[1] ?? "");
+  if (
+    !body ||
+    !sourceLineStartsWithCourseCode(body) ||
+    hasChoiceRequirementContext(body) ||
+    hasSequenceChoiceContext(body) ||
+    /\bor\b/i.test(body) ||
+    /\b(?:from|electives?|approved|minimum|maximum)\b/i.test(body) ||
+    buildParentheticalSequenceChoiceCandidates([body], 0).length > 0
+  ) {
+    return null;
+  }
+
+  const courseCodes = extractCourseCodesFromRequirementLine(body);
+  if (courseCodes.length < 2) {
+    return null;
+  }
+
+  const label = normalizeWhitespace(body.replace(/\(\s*\d+(?:\.\d+)?\s*credits?\s*\)\s*$/i, ""));
+  const groupCredits = parseRequirementCreditAmount(body);
+  const groupId = `${owner.ownerId}:requirement-group:inline-numbered-required-${slugify(
+    `${label}-${courseCodes.join("-")}`
+  )}`;
+  const group = buildParsedRequirementGroup({
+    id: groupId,
+    label,
+    category: "inline-numbered-requirement",
+    subcategory: "inline-numbered-requirement",
+    requirementType: "all_required",
+    minCourses: courseCodes.length,
+    maxCourses: courseCodes.length,
+    minCredits: Number.isFinite(groupCredits) ? groupCredits : null,
+    maxCredits: Number.isFinite(groupCredits) ? groupCredits : null,
+    sourceHeading: normalizedLine,
+    sourceRowText: normalizedLine,
+    detectedOptionCue: "inline numbered required courses",
+    notes: ["Parsed from an inline numbered source requirement."],
+    options: buildInlineCourseRequirementOptions(owner, groupId, courseCodes, normalizedLine, true),
+  });
+
+  return group.options.length ? group : null;
+}
+
+function buildInlineLabeledCourseRequirementGroups(owner, snapshotLines) {
+  const groups = [];
+  const seenGroupIds = new Set();
+
+  for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
+    if (isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines, index)) {
+      continue;
+    }
+
+    const rawLine = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    if (
+      !rawLine ||
+      !sourceSectionCanMaterializeInlineRequirement(owner, snapshotLines, index) ||
+      sourceLineStartsWithCourseCode(rawLine) ||
+      isNonRequirementSectionedCourseHeading(rawLine) ||
+      looksLikeDegreeTotalGeneralElectiveProse(rawLine) ||
+      looksLikeElectiveTimingOrSamplePlanNote(rawLine)
+    ) {
+      continue;
+    }
+
+    const parts = getInlineLabeledRequirementParts(rawLine);
+    if (!parts) {
+      const numberedGroup = buildNumberedInlineAllRequiredCourseGroup(owner, rawLine);
+      if (numberedGroup && !seenGroupIds.has(numberedGroup.id)) {
+        seenGroupIds.add(numberedGroup.id);
+        groups.push(numberedGroup);
+      }
+      continue;
+    }
+
+    const mixedRequiredCourseListGroups = buildMixedInlineRequiredCourseListGroups(owner, parts);
+    if (mixedRequiredCourseListGroups.length) {
+      for (const group of mixedRequiredCourseListGroups) {
+        if (seenGroupIds.has(group.id)) {
+          continue;
+        }
+        seenGroupIds.add(group.id);
+        groups.push(group);
+      }
+      continue;
+    }
+
+    const minimumCourseCount = parseInlineMinimumCourseCount(parts.body);
+    if (minimumCourseCount) {
+      const courseListText = getInlineMinimumCourseListText(parts.body);
+      const courseCodes = extractCourseCodesFromRequirementLine(courseListText);
+      if (courseCodes.length < Math.max(2, minimumCourseCount)) {
+        continue;
+      }
+
+      const groupId = `${owner.ownerId}:requirement-group:inline-choice-${slugify(
+        `${parts.label}-${minimumCourseCount}-${courseCodes.join("-")}`
+      )}`;
+      if (seenGroupIds.has(groupId)) {
+        continue;
+      }
+
+      const group = buildParsedRequirementGroup({
+        id: groupId,
+        label: parts.label,
+        category: buildSectionedCourseCategory(parts.label),
+        subcategory: buildSectionedCourseCategory(parts.label),
+        requirementType: "choose_n",
+        minCourses: minimumCourseCount,
+        maxCourses: minimumCourseCount,
+        selectionCount: minimumCourseCount,
+        requiredCount: minimumCourseCount,
+        sourceHeading: parts.sourceLine,
+        sourceRowText: parts.sourceLine,
+        sourceSection: findNearbyRequirementChoiceLabel(snapshotLines, index),
+        detectedOptionCue: "inline minimum course list",
+        notes: ["Parsed from an inline labeled source requirement."],
+        options: buildInlineCourseRequirementOptions(owner, groupId, courseCodes, parts.sourceLine),
+      });
+      if (!group.options.length) {
+        continue;
+      }
+      seenGroupIds.add(groupId);
+      groups.push(group);
+      continue;
+    }
+
+    const bodyHasChoiceOrSequence =
+      hasChoiceRequirementContext(parts.body) ||
+      hasSequenceChoiceContext(parts.body) ||
+      NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN.test(parts.body) ||
+      /\bor\b/i.test(parts.body) ||
+      buildParentheticalSequenceChoiceCandidates([parts.sourceLine], 0).length > 0;
+    const labelLooksLikeBroadRequirementHeading =
+      /^note\b/i.test(parts.label) || /\b(?:requirements?|credits?|electives?|options?)\b/i.test(parts.label);
+    if (bodyHasChoiceOrSequence || labelLooksLikeBroadRequirementHeading) {
+      continue;
+    }
+
+    const courseCodes = extractCourseCodesFromRequirementLine(parts.body);
+    if (!courseCodes.length) {
+      continue;
+    }
+
+    const groupCredits = parseRequirementCreditAmount(parts.body);
+    const groupId = `${owner.ownerId}:requirement-group:inline-required-${slugify(
+      `${parts.label}-${courseCodes.join("-")}`
+    )}`;
+    if (seenGroupIds.has(groupId)) {
+      continue;
+    }
+
+    const group = buildParsedRequirementGroup({
+      id: groupId,
+      label: parts.label,
+      category: buildSectionedCourseCategory(parts.label),
+      subcategory: buildSectionedCourseCategory(parts.label),
+      requirementType: "all_required",
+      minCourses: courseCodes.length,
+      maxCourses: courseCodes.length,
+      minCredits: Number.isFinite(groupCredits) ? groupCredits : null,
+      maxCredits: Number.isFinite(groupCredits) ? groupCredits : null,
+      sourceHeading: parts.sourceLine,
+      sourceRowText: parts.sourceLine,
+      sourceSection: findNearbyRequirementChoiceLabel(snapshotLines, index),
+      detectedOptionCue: "inline labeled required courses",
+      notes: ["Parsed from an inline labeled source requirement."],
+      options: buildInlineCourseRequirementOptions(owner, groupId, courseCodes, parts.sourceLine, true),
+    });
+    if (!group.options.length) {
+      continue;
+    }
+    seenGroupIds.add(groupId);
+    groups.push(group);
+  }
+
+  const pathwaySubjectFallbackGroup = buildPathwaySectionFallbackConcentrationGroup(
+    owner,
+    snapshotLines,
+    groups
+  );
+  if (pathwaySubjectFallbackGroup && !seenGroupIds.has(pathwaySubjectFallbackGroup.id)) {
+    groups.push(pathwaySubjectFallbackGroup);
+  }
+
+  return groups;
+}
+
 function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
   const parsedCourseCodeSet = new Set(parsedCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)));
   const seenGroupIds = new Set();
@@ -6300,6 +7500,9 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
     const hasNonChoiceCourseListContext =
       NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN.test(normalizedLine) ||
       SEQUENCE_ALTERNATIVE_CHOICE_LINE_PATTERN.test(normalizedLine);
+    const inlinePartsForChoice = getInlineLabeledRequirementParts(normalizedLine);
+    const hasMixedRequiredCourseList =
+      inlinePartsForChoice && getMixedRequiredCourseListParts(inlinePartsForChoice);
     const hasEmbeddedAlternativeRequiredSequence =
       /\([^)]*\bor\b[^)]*\)/i.test(normalizedLine) &&
       /[,;]\s*[A-Z]{2,8}&?\s*\d{3}/i.test(normalizedLine) &&
@@ -6324,6 +7527,7 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
         /\b\d+(?:\.\d+)?\s+credits?\b.{0,80}:\s*[A-Z]{2,8}&?\s+\d{3}/i.test(normalizedLine));
     if (
       hasNonChoiceCourseListContext ||
+      hasMixedRequiredCourseList ||
       hasEmbeddedAlternativeRequiredSequence ||
       (looksLikeCreditCourseBucket && hasMultipleCourses) ||
       (!hasExplicitOr && !(hasMultipleCourses && hasStrongChoiceContext)) ||
@@ -6627,6 +7831,7 @@ function shouldSkipCreditBucketLine(snapshotLines, index, text) {
 
   if (
     looksLikeDegreeTotalGeneralElectiveProse(normalizedText) ||
+    looksLikeCreditSummaryForNamedRequirementSection(normalizedText) ||
     looksLikeElectiveTimingOrSamplePlanNote(normalizedText)
   ) {
     return true;
@@ -6641,6 +7846,13 @@ function shouldSkipCreditBucketLine(snapshotLines, index, text) {
   }
 
   return false;
+}
+
+function looksLikeCreditSummaryForNamedRequirementSection(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return /\b\d+(?:\.\d+)?\s+credits?\s*\(\s*\d+\s+courses?(?:\s+total)?\s*\)\s+from\s+(?:core courses?|(?:the\s+)?(?:student.{0,12}|selected|chosen|their)\s+concentration\s+area\s+courses?)\b/i.test(
+    normalizedText
+  );
 }
 
 function looksLikeAdmissionDecisionNarrativeCreditBucket(text) {
@@ -7310,6 +8522,7 @@ function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
             ...buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines),
             ...buildSectionedOptionRequirementGroups(owner, snapshotLines),
             ...buildSplitEitherOrRequirementGroups(owner, parsedCourseCodes, snapshotLines),
+            ...buildInlineLabeledCourseRequirementGroups(owner, snapshotLines),
             ...buildGenericCreditBucketRequirementGroups(owner, snapshotLines),
             ...buildGenericSequenceChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
             ...buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
@@ -7660,6 +8873,8 @@ const PATHWAY_SCOPE_IDENTITY_STOPWORDS = new Set([
   "option",
   "pathway",
   "program",
+  "credit",
+  "credits",
   "route",
   "track",
   "with",
@@ -7729,6 +8944,37 @@ function getSelectedPathwayScopeTokenGroups(entry) {
   );
 }
 
+function getSelectedPathwayDiscriminatorTokens(entry) {
+  if (!entry?.pathwayId) {
+    return [];
+  }
+
+  const majorTitleTokens = new Set(
+    normalizeMatcherText(getPrimaryMajorTitle(entry))
+      .split(" ")
+      .filter((token) => token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token))
+  );
+  const pathwayIdLabel = String(entry.pathwayId).replace(/[-_]+/g, " ");
+  const candidateLabels = [
+    pathwayIdLabel,
+    normalizeTransferPlannerSemanticPathwayLabel(getPrimaryMajorTitle(entry), entry.ownerTitle),
+  ];
+
+  return uniqueInOrder(
+    candidateLabels
+      .flatMap((label) =>
+        normalizeMatcherText(label)
+          .split(" ")
+          .filter(
+            (token) =>
+              token.length >= 3 &&
+              !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token) &&
+              !majorTitleTokens.has(token)
+          )
+      )
+  );
+}
+
 function getStrictSelectedPathwayScopeLabels(entry) {
   if (!entry?.pathwayId) {
     return [];
@@ -7777,13 +9023,23 @@ function normalizedLineContainsToken(normalizedLine, token) {
   return new RegExp(`\\b${escapeRegex(token)}\\b`, "i").test(normalizedLine);
 }
 
-function lineMatchesSelectedPathwayIdentity(entry, line) {
+function lineMatchesPathwayIdentityTokenGroups(entry, line, tokenGroups) {
   const normalizedLine = normalizeMatcherText(line);
   if (!normalizedLine) {
     return false;
   }
 
-  return getSelectedPathwayScopeTokenGroups(entry).some((tokens) => {
+  const discriminatorTokens = getSelectedPathwayDiscriminatorTokens(entry);
+  const requiresDiscriminator = discriminatorTokens.length > 0;
+  const hasDiscriminatorMatch =
+    !requiresDiscriminator ||
+    discriminatorTokens.some((token) => normalizedLineContainsToken(normalizedLine, token));
+
+  if (!hasDiscriminatorMatch) {
+    return false;
+  }
+
+  return tokenGroups.some((tokens) => {
     const tokenMatches = tokens.filter((token) =>
       normalizedLineContainsToken(normalizedLine, token)
     ).length;
@@ -7792,19 +9048,20 @@ function lineMatchesSelectedPathwayIdentity(entry, line) {
   });
 }
 
-function lineMatchesStrictSelectedPathwayIdentity(entry, line) {
-  const normalizedLine = normalizeMatcherText(line);
-  if (!normalizedLine) {
-    return false;
-  }
+function lineMatchesSelectedPathwayIdentity(entry, line) {
+  return lineMatchesPathwayIdentityTokenGroups(
+    entry,
+    line,
+    getSelectedPathwayScopeTokenGroups(entry)
+  );
+}
 
-  return getStrictSelectedPathwayScopeTokenGroups(entry).some((tokens) => {
-    const tokenMatches = tokens.filter((token) =>
-      normalizedLineContainsToken(normalizedLine, token)
-    ).length;
-    const requiredMatches = tokens.length <= 2 ? tokens.length : 2;
-    return tokenMatches >= Math.max(1, requiredMatches);
-  });
+function lineMatchesStrictSelectedPathwayIdentity(entry, line) {
+  return lineMatchesPathwayIdentityTokenGroups(
+    entry,
+    line,
+    getStrictSelectedPathwayScopeTokenGroups(entry)
+  );
 }
 
 function getPathwayHeadingIdentityTokens(line) {
@@ -8002,6 +9259,20 @@ function findPathwayHtmlSectionEndIndex(entry, lines, selectedStartIndex) {
 
 function findPathwayHtmlSectionStartIndex(entry, lines, selectedStartIndex) {
   let startIndex = selectedStartIndex;
+  if (/\bconcentration\b/i.test(String(entry?.pathwayId ?? ""))) {
+    for (
+      let index = selectedStartIndex - 1;
+      index >= Math.max(0, selectedStartIndex - 80);
+      index -= 1
+    ) {
+      const line = normalizeWhitespace(lines[index]);
+      if (/\bconcentration\s+area(?:\s+courses?)?\b/i.test(line)) {
+        startIndex = index;
+        break;
+      }
+    }
+  }
+
   for (
     let index = selectedStartIndex - 1;
     index >= Math.max(0, selectedStartIndex - 3);
@@ -8021,6 +9292,40 @@ function findPathwayHtmlSectionStartIndex(entry, lines, selectedStartIndex) {
   }
 
   return startIndex;
+}
+
+function lineMatchesPathwayParentContext(entry, line) {
+  if (!entry?.pathwayId) {
+    return false;
+  }
+
+  const normalizedLine = normalizeMatcherText(line);
+  if (!normalizedLine || !PATHWAY_LABEL_CUE_PATTERN.test(normalizeTransferPlannerText(line))) {
+    return false;
+  }
+
+  const parentLabels = [
+    entry.sourceLabel,
+    entry.label,
+    String(entry.ownerTitle ?? "").split(/\s+-\s+/u)[0],
+  ];
+  return parentLabels.some((label) => {
+    const tokens = normalizeMatcherText(stripPathwayHeadingPrefix(label))
+      .split(" ")
+      .filter(
+        (token) =>
+          token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+      );
+    if (!tokens.length) {
+      return false;
+    }
+
+    const tokenMatches = tokens.filter((token) =>
+      normalizedLineContainsToken(normalizedLine, token)
+    ).length;
+    const requiredMatches = tokens.length <= 2 ? tokens.length : 2;
+    return tokenMatches >= Math.max(1, requiredMatches);
+  });
 }
 
 function buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes) {
@@ -8049,7 +9354,10 @@ function buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes) {
     ) {
       const parentLine = lines[parentStartIndex];
       const isLooseSelectedParent =
-        isLikelySelectedPathwayHtmlSectionStartLine(entry, parentLine) &&
+        (
+          isLikelySelectedPathwayHtmlSectionStartLine(entry, parentLine) ||
+          lineMatchesPathwayParentContext(entry, parentLine)
+        ) &&
         !lineMatchesStrictSelectedPathwayIdentity(entry, parentLine);
       if (!isLooseSelectedParent) {
         continue;
@@ -8312,14 +9620,14 @@ function findPathwayHtmlSectionRange(entry, lines) {
     return null;
   }
 
-  const tableScope = buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes);
-  if (tableScope) {
-    return tableScope;
-  }
-
   const nestedScope = buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes);
   if (nestedScope) {
     return nestedScope;
+  }
+
+  const tableScope = buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes);
+  if (tableScope) {
+    return tableScope;
   }
 
   for (const selectedStartIndex of selectedStartIndexes) {
@@ -8664,6 +9972,79 @@ function findNextCatalogCredentialBoundary(html, searchStartIndex, searchEndInde
   };
 }
 
+function normalizeCatalogBaseCredentialHeading(heading) {
+  return normalizeTransferPlannerText(heading)
+    .replace(/^Bachelor\s+of\s+(?:Arts|Science)\s+degree\s+with\s+a\s+major\s+in\s+/i, "")
+    .replace(/^Bachelor\s+of\s+[^:]+?\s+degree\s+with\s+a\s+major\s+in\s+/i, "")
+    .replace(/^Bachelor\s+of\s+(?:Arts|Science)\s+in\s+/i, "")
+    .replace(/^Bachelor\s+of\s+[^:]+?\s+in\s+/i, "")
+    .trim();
+}
+
+function isLikelyBaseCatalogCredentialHeading(entry, heading) {
+  const normalizedHeading = normalizeTransferPlannerText(heading);
+  if (
+    !normalizedHeading ||
+    /:/.test(normalizedHeading) ||
+    /\b(?:minor|master|doctor|graduate|certificate)\b/i.test(normalizedHeading)
+  ) {
+    return false;
+  }
+
+  const normalizedCredentialTitle = normalizeMatcherText(
+    normalizeCatalogBaseCredentialHeading(normalizedHeading)
+  );
+  const normalizedOwnerTitle = normalizeMatcherText(getPrimaryMajorTitle(entry));
+  if (normalizedOwnerTitle && normalizedCredentialTitle === normalizedOwnerTitle) {
+    return true;
+  }
+
+  return catalogSectionMatchesSelectedMajor(entry, normalizedHeading, [normalizedHeading]);
+}
+
+function findBaseCatalogCredentialSection(entry, html, searchStartIndex, searchEndIndex) {
+  if ((BOOTSTRAP_PLAN_PATHWAY_COUNT_BY_ID.get(entry.planId) ?? 0) <= 0) {
+    return null;
+  }
+
+  const credentialHeadingPattern =
+    /<h[3-5]\b[^>]*\bid=(["'])credential-[^"']+\1[^>]*>([\s\S]*?)<\/h[3-5]>/gi;
+  credentialHeadingPattern.lastIndex = Math.max(0, searchStartIndex);
+
+  for (const match of html.matchAll(credentialHeadingPattern)) {
+    if ((match.index ?? 0) >= searchEndIndex) {
+      break;
+    }
+
+    const sectionHeading = stripHtml(match[2]);
+    if (!isLikelyBaseCatalogCredentialHeading(entry, sectionHeading)) {
+      continue;
+    }
+
+    const peerStopBoundary = findNextCatalogPeerBoundary(
+      html,
+      (match.index ?? 0) + match[0].length,
+      "credential-derived"
+    );
+    const stopIndex = Math.min(peerStopBoundary.index, searchEndIndex);
+    const sectionHtml = html.slice(match.index ?? 0, stopIndex);
+    const sectionLines = buildHtmlLines(sectionHtml);
+    const sectionHeadings = extractHeadings(sectionHtml);
+
+    return {
+      sectionHeading,
+      lines: sectionLines,
+      headings: sectionHeadings,
+      stopBoundary:
+        peerStopBoundary.index <= searchEndIndex
+          ? peerStopBoundary.label
+          : "end of matched major program",
+    };
+  }
+
+  return null;
+}
+
 function collectIgnoredCatalogNeighboringSections(html, searchStartIndex, anchor = null) {
   const ignored = [];
   const boundaryPattern = /^credential-/i.test(String(anchor ?? ""))
@@ -8730,6 +10111,35 @@ function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
     );
     if (!sectionMatchedSelectedMajor) {
       continue;
+    }
+
+    const baseCredentialSection = findBaseCatalogCredentialSection(
+      entry,
+      html,
+      stopSearchStart,
+      stopBoundary.index
+    );
+    if (baseCredentialSection?.lines?.length) {
+      return {
+        scoped: true,
+        lines: baseCredentialSection.lines,
+        headings: baseCredentialSection.headings,
+        sectionAudit: buildSourceSectionAudit({
+          majorId: entry.planId,
+          sourceUrl: entry.url,
+          sourceRole,
+          requestedAnchor: null,
+          anchorFound: false,
+          sectionHeading: baseCredentialSection.sectionHeading,
+          sectionMatchedSelectedMajor: true,
+          stopBoundary: baseCredentialSection.stopBoundary,
+          ignoredNeighboringSections: collectIgnoredCatalogNeighboringSections(
+            html,
+            stopBoundary.index,
+            "credential-derived"
+          ),
+        }),
+      };
     }
 
     return {
@@ -10819,10 +12229,12 @@ function buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed) {
   return {
     ...scopedParsed,
     courseCodes: uniqueSorted([...(scopedParsed.courseCodes ?? []), ...safeOverflowCourseCodes]),
-    snapshotLines: uniqueInOrder([
+    snapshotLines: [
       ...(scopedParsed.snapshotLines ?? []),
-      ...safeOverflowSnapshotLines,
-    ]),
+      ...safeOverflowSnapshotLines.filter(
+        (line) => !(scopedParsed.snapshotLines ?? []).includes(line)
+      ),
+    ],
   };
 }
 
@@ -11171,7 +12583,7 @@ function buildMergedSnapshotLines(baseLines, supplementalSources) {
     }
   }
 
-  return uniqueInOrder(mergedLines).slice(0, 1200);
+  return mergedLines.slice(0, 1200);
 }
 
 function buildSharedLinkedCourseCodes(supplementalSources, minimumSupportCount) {

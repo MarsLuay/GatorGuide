@@ -17041,7 +17041,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "marketing-option-and-concentration",
+        "label": "Marketing Option and Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Marketing Option and Concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-bothell-business-administration-supply-chain-management",
@@ -18570,8 +18597,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac",
         "url": "https://aes.washington.edu/ba-american-ethnic-studies",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -18596,8 +18622,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW American Ethnic Studies degree requirements",
             "url": "https://aes.washington.edu/ba-american-ethnic-studies",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18623,8 +18648,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW American Ethnic Studies degree requirements",
             "url": "https://aes.washington.edu/ba-american-ethnic-studies",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18650,8 +18674,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac",
             "url": "https://aes.washington.edu/ba-american-ethnic-studies",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18677,8 +18700,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW American Ethnic Studies degree requirements",
             "url": "https://aes.washington.edu/ba-american-ethnic-studies",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18744,8 +18766,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW General Catalog Anthropology page",
         "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -18770,8 +18791,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW General Catalog Anthropology page",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18797,8 +18817,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW General Catalog Anthropology page",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18824,8 +18843,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW General Catalog Anthropology page",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18851,8 +18869,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW General Catalog Anthropology page",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -18878,89 +18895,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW General Catalog Anthropology page",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-option-family:archaeological-sciences",
-        "label": "B.S. Archaeological Sciences option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Anthropology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-            "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-option-family:human-evolutionary-biology",
-        "label": "B.S. Human Evolutionary Biology option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Anthropology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-            "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-option-family:medical-anthropology-and-global-health",
-        "label": "B.S. Medical Anthropology and Global Health option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Anthropology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-            "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -19158,7 +19093,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Applied Mathematics major requirements",
+            "label": "B.S. in Applied Mathematics",
             "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
             "visibility": "visible",
             "status": "verified",
@@ -19177,6 +19112,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "bs-option-family:in-applied-mathematics-data-science",
         "label": "B.S. in Applied Mathematics: Data Science Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science-option",
+        "label": "Data Science Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19213,8 +19166,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW Aquatic Conservation and Ecology major requirements",
         "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -23605,19 +23557,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Program Educational Objectives and Student Learning Outcomes",
-        "url": "https://mse.washington.edu/about/abet",
-        "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
-        "sourceConfidence": "low"
-      },
-      {
-        "label": "UW Materials Science degree requirements",
+        "label": "UW Materials Science & Engineering degree requirements",
         "url": "https://mse.washington.edu/current/undergrad/courses",
-        "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "snapshot-only mode",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -23675,19 +23617,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Program Educational Objectives and Student Learning Outcomes",
-            "url": "https://mse.washington.edu/about/abet",
-            "visibility": "hidden",
-            "status": "parser-unsupported",
-            "reason": "Snapshot-only mode could not find a cached source snapshot.",
-            "sourceConfidence": "low"
-          },
-          {
-            "label": "UW Materials Science degree requirements",
+            "label": "UW Materials Science & Engineering degree requirements",
             "url": "https://mse.washington.edu/current/undergrad/courses",
-            "visibility": "visible",
-            "status": "partially-verified",
-            "reason": "snapshot-only mode",
+            "status": "verified",
             "sourceConfidence": "high"
           }
         ],
@@ -26483,7 +26415,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "community-engagement-option",
+        "label": "Community Engagement option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Sustainable Urban Development degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-urban-design",

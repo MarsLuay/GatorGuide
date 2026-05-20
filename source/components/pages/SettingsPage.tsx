@@ -918,6 +918,7 @@ export default function SettingsPage() {
               contentContainerStyle={{
                 flexGrow: 1,
               }}
+              contentInsetAdjustmentBehavior="automatic"
               keyboardShouldPersistTaps="handled"
             >
               {/* touch-audit-ignore: settings modal backdrop is a full-screen dismiss surface, not a product control. */}
@@ -963,7 +964,7 @@ export default function SettingsPage() {
   if (!isHydrated) {
     return (
       <ScreenBackground>
-        <View className="flex-1 justify-center px-6">
+        <View className="flex-1 justify-center" style={{ paddingHorizontal: shellHorizontalPadding }}>
           <View style={{ width: "100%", maxWidth: earlyStateMaxWidth, alignSelf: "center" }}>
             <StateCard variant="loading" className="w-full" />
           </View>

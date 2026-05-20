@@ -191,6 +191,152 @@ export function getRequirementOptionCreditValue(option: RequirementGroupOption) 
   return credits;
 }
 
+type ChooseCreditsOptionMatchCandidate = {
+  courseCodes: string[];
+  allowCourseReuse: boolean;
+  preferTranscriptCredits: boolean;
+  creditValue: number;
+  creditMaxValue: number;
+};
+
+function normalizeCandidateCourseCodes(courseCodes: string[]) {
+  return unique(courseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean));
+}
+
+function getSourceCourseCandidateSets(option: RequirementGroupOption) {
+  const sourceCodes = normalizeCandidateCourseCodes([
+    ...(option.uwCourses ?? []),
+    ...(option.equivalentUwCourseCodes ?? []),
+  ]);
+  if (!sourceCodes.length) {
+    return [];
+  }
+
+  const displayText = (option.displayCourseCodes ?? []).join(" ");
+  const hasAlternativeSignal =
+    (option.equivalentUwCourseCodes ?? []).length > 0 ||
+    /\b(?:or|either)\b|\/|\b(?:same\s+as|cross-listed)\b/i.test(displayText);
+
+  return hasAlternativeSignal && sourceCodes.length > 1
+    ? sourceCodes.map((courseCode) => [courseCode])
+    : [sourceCodes];
+}
+
+function getChooseCreditsOptionMatchCandidates(option: RequirementGroupOption) {
+  const candidates: ChooseCreditsOptionMatchCandidate[] = [];
+  const seenCandidateKeys = new Set<string>();
+  const optionCreditValue = getRequirementOptionCreditValue(option);
+  const addCandidate = (
+    courseCodes: string[],
+    options: {
+      allowCourseReuse?: boolean;
+      preferTranscriptCredits?: boolean;
+    } = {}
+  ) => {
+    const normalizedCodes = normalizeCandidateCourseCodes(courseCodes);
+    if (!normalizedCodes.length) {
+      return;
+    }
+
+    const key = normalizedCodes.join("|");
+    if (seenCandidateKeys.has(key)) {
+      return;
+    }
+    seenCandidateKeys.add(key);
+    candidates.push({
+      courseCodes: normalizedCodes,
+      allowCourseReuse: Boolean(options.allowCourseReuse),
+      preferTranscriptCredits: Boolean(options.preferTranscriptCredits),
+      creditValue: optionCreditValue,
+      creditMaxValue: Math.max(
+        optionCreditValue,
+        Number(option.creditMax ?? 0),
+        Number(option.maxCredits ?? 0)
+      ),
+    });
+  };
+
+  for (const component of option.compoundComponents ?? []) {
+    addCandidate(component, {
+      allowCourseReuse: component.length > 1,
+      preferTranscriptCredits: false,
+    });
+  }
+
+  for (const grcMatch of getRequirementOptionMappedGrcCourseLabels(option)) {
+    addCandidate(extractCourseCodes(grcMatch), {
+      allowCourseReuse: false,
+      preferTranscriptCredits: false,
+    });
+  }
+
+  for (const sourceCandidateSet of getSourceCourseCandidateSets(option)) {
+    addCandidate(sourceCandidateSet, {
+      allowCourseReuse: false,
+      preferTranscriptCredits: true,
+    });
+  }
+
+  return candidates;
+}
+
+function getMatchedChooseCreditsOptionCandidate(
+  candidates: ChooseCreditsOptionMatchCandidate[],
+  completedByCode: Map<string, TranscriptCourseEntry>,
+  usedCompletedCourseCodes: Set<string>
+) {
+  for (const candidate of candidates) {
+    const matchedCourses = candidate.courseCodes
+      .map((courseCode) => completedByCode.get(courseCode) ?? null)
+      .filter((course): course is TranscriptCourseEntry => Boolean(course));
+    if (matchedCourses.length !== candidate.courseCodes.length) {
+      continue;
+    }
+    if (
+      !candidate.allowCourseReuse &&
+      matchedCourses.some((course) => usedCompletedCourseCodes.has(course.code))
+    ) {
+      continue;
+    }
+
+    return {
+      candidate,
+      matchedCourses,
+    };
+  }
+
+  return null;
+}
+
+function getMatchedChooseCreditsValue(
+  candidate: ChooseCreditsOptionMatchCandidate,
+  matchedCourses: TranscriptCourseEntry[],
+  expectedOptionCreditValue: number | null
+) {
+  const transcriptCredits = matchedCourses.reduce((sum, course) => {
+    const credits = Number(course.credits ?? 0);
+    return Number.isFinite(credits) && credits > 0 ? sum + credits : sum;
+  }, 0);
+
+  if (candidate.preferTranscriptCredits && transcriptCredits > 0) {
+    return transcriptCredits;
+  }
+
+  if (
+    expectedOptionCreditValue != null &&
+    expectedOptionCreditValue > candidate.creditValue &&
+    expectedOptionCreditValue <= candidate.creditMaxValue
+  ) {
+    return expectedOptionCreditValue;
+  }
+
+  if (candidate.creditValue > 0) {
+    return candidate.creditValue;
+  }
+
+  return transcriptCredits;
+}
+
 export function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
   const baseOptions = [item.grcCourses, ...(item.alternatives ?? [])]
     .map((courseLabels) =>
@@ -384,38 +530,78 @@ export function buildChooseCreditsRequirementStatus(
     return null;
   }
 
+  const requiredCreditCount = item.minCredits ?? group.minCredits ?? null;
+  const maxCreditCount = item.maxCredits ?? group.maxCredits ?? null;
+  if (completedByCode.size === 0) {
+    const explicitCourseCodes = unique(
+      (group.options ?? []).flatMap((option) =>
+        getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+      )
+    );
+    const creditProgressLabel =
+      requiredCreditCount != null && requiredCreditCount > 0
+        ? `0/${requiredCreditCount} credits completed`
+        : maxCreditCount != null && maxCreditCount > 0
+          ? `0/${maxCreditCount} credits counted`
+          : null;
+
+    return {
+      item,
+      matched: requiredCreditCount != null && requiredCreditCount > 0 ? false : true,
+      matchedCourses: [],
+      explicitCourseCodes,
+      requiredCompletedCount: requiredCreditCount != null && requiredCreditCount > 0 ? 1 : 0,
+      completedCredits: 0,
+      requiredCreditCount,
+      maxCreditCount,
+      creditProgressLabel,
+    };
+  }
+
+  const optionsWithCandidates = (group.options ?? []).map((option) => ({
+    option,
+    candidates: getChooseCreditsOptionMatchCandidates(option),
+  }));
   const explicitCourseCodes = unique(
-    (group.options ?? []).flatMap((option) =>
-      getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
-    )
+    optionsWithCandidates
+      .flatMap((entry) => entry.candidates.flatMap((candidate) => candidate.courseCodes))
+      .filter(Boolean)
   );
   const matchedCourses: TranscriptCourseEntry[] = [];
   const usedCompletedCourseCodes = new Set<string>();
+  const reportedMatchedCourseCodes = new Set<string>();
   let completedCredits = 0;
+  const expectedOptionCreditValue =
+    requiredCreditCount != null && requiredCreditCount > 0 && (group.options ?? []).length > 0
+      ? requiredCreditCount / (group.options ?? []).length
+      : null;
 
-  for (const option of group.options ?? []) {
-    const optionCourseCodes = unique(
-      getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+  for (const { candidates } of optionsWithCandidates) {
+    const matchedOption = getMatchedChooseCreditsOptionCandidate(
+      candidates,
+      completedByCode,
+      usedCompletedCourseCodes
     );
-    const matchedOptionCourses = optionCourseCodes
-      .map((courseCode) => completedByCode.get(courseCode) ?? null)
-      .filter((course): course is TranscriptCourseEntry =>
-        Boolean(course && !usedCompletedCourseCodes.has(course.code))
-      );
-
-    if (!optionCourseCodes.length || matchedOptionCourses.length !== optionCourseCodes.length) {
+    if (!matchedOption) {
       continue;
     }
 
-    for (const matchedCourse of matchedOptionCourses) {
-      usedCompletedCourseCodes.add(matchedCourse.code);
-      matchedCourses.push(matchedCourse);
+    for (const matchedCourse of matchedOption.matchedCourses) {
+      if (!matchedOption.candidate.allowCourseReuse) {
+        usedCompletedCourseCodes.add(matchedCourse.code);
+      }
+      if (!reportedMatchedCourseCodes.has(matchedCourse.code)) {
+        reportedMatchedCourseCodes.add(matchedCourse.code);
+        matchedCourses.push(matchedCourse);
+      }
     }
-    completedCredits += getRequirementOptionCreditValue(option);
+    completedCredits += getMatchedChooseCreditsValue(
+      matchedOption.candidate,
+      matchedOption.matchedCourses,
+      expectedOptionCreditValue
+    );
   }
 
-  const requiredCreditCount = item.minCredits ?? group.minCredits ?? null;
-  const maxCreditCount = item.maxCredits ?? group.maxCredits ?? null;
   const cappedCompletedCredits =
     maxCreditCount != null && maxCreditCount > 0
       ? Math.min(completedCredits, maxCreditCount)

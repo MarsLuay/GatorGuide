@@ -127,7 +127,11 @@ export default function OnboardingPage() {
     : "When the tour ends, we will send you to profile setup so search and planning feel more personal.";
   const primaryFinishDestinationLabel = hasCompletedSetup ? "Open the app" : "Go to profile setup";
   const skipTourLabel = hasCompletedSetup ? "Skip to app" : "Skip to setup";
-  const backLabel = isLanguageHydrated ? t("common.back") : "Back";
+  const resolveTourLabel = (key: string, fallback: string) => {
+    const translated = t(key);
+    return translated && translated !== key ? translated : fallback;
+  };
+  const backLabel = isLanguageHydrated ? resolveTourLabel("general.back", "Back") : "Back";
 
   const steps = useMemo<TourStep[]>(
     () => [
@@ -185,10 +189,10 @@ export default function OnboardingPage() {
   );
   const nextLabel = currentStep === steps.length - 1
     ? isLanguageHydrated
-      ? t("common.finish")
+      ? resolveTourLabel("profile.complete", "Finish")
       : "Finish"
     : isLanguageHydrated
-      ? t("common.next")
+      ? resolveTourLabel("setup.next", "Next")
       : "Next";
   const previewTabs = useMemo(
     () => [
@@ -363,6 +367,7 @@ export default function OnboardingPage() {
           paddingBottom: pageBottomPadding,
         }}
         contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
         <View
@@ -377,11 +382,11 @@ export default function OnboardingPage() {
             style={{
               flexDirection: showStepRail ? "row" : "column",
               gap: 24,
-              alignItems: "flex-start",
+              alignItems: showStepRail ? "flex-start" : "stretch",
             }}
           >
-            <View style={{ width: introWidth, alignSelf: "stretch" }}>
-              <GlassCard borderRadius={28} noPadding>
+            <View style={{ width: introWidth ?? "100%", alignSelf: "stretch" }}>
+              <GlassCard borderRadius={28} noPadding style={{ width: "100%" }}>
                 <View style={{ padding: introCardPadding }}>
                   <View
                     style={{
@@ -490,7 +495,7 @@ export default function OnboardingPage() {
                     </View>
                   </View>
 
-                  <GlassCard borderRadius={22} className="mt-5">
+                  <GlassCard borderRadius={22} className="mt-5" style={{ width: "100%" }}>
                     <Text
                       style={{
                         color: accentStrongColor,
@@ -579,9 +584,17 @@ export default function OnboardingPage() {
             </View>
 
             <View style={{ flex: 1, minWidth: 0, alignSelf: "stretch" }}>
-              <GlassCard borderRadius={28} noPadding>
+              <GlassCard borderRadius={28} noPadding style={{ width: "100%" }}>
                 <View style={{ padding: previewCardPadding }}>
-                  <View className="mb-4 flex-row items-start justify-between" style={{ gap: 16 }}>
+                  <View
+                    className="mb-4"
+                    style={{
+                      flexDirection: isCompactPhone ? "column" : "row",
+                      alignItems: isCompactPhone ? "stretch" : "flex-start",
+                      justifyContent: "space-between",
+                      gap: isCompactPhone ? 12 : 16,
+                    }}
+                  >
                     <View style={{ flex: 1 }}>
                       <Text className={`${textClass} font-semibold`}>Interactive Preview</Text>
                       <Text className={`${secondaryTextClass} mt-1 text-sm`} style={{ lineHeight: 20 }}>
@@ -597,6 +610,7 @@ export default function OnboardingPage() {
                         backgroundColor: accentSurfaceColor,
                         paddingHorizontal: 12,
                         paddingVertical: 6,
+                        alignSelf: isCompactPhone ? "flex-start" : undefined,
                       }}
                     >
                       <Text
@@ -903,15 +917,32 @@ export default function OnboardingPage() {
                         {stepProgressLabel}
                       </Text>
 
-                      <View className="flex-row justify-between mt-4" style={{ gap: 12 }}>
+                      <View
+                        style={{
+                          flexDirection: isCompactPhone ? "column" : "row",
+                          justifyContent: "space-between",
+                          gap: 12,
+                          marginTop: 16,
+                        }}
+                      >
                         <AppButton
                           onPress={onBack}
                           label={backLabel}
                           disabled={currentStep === 0}
                           variant="secondary"
-                          style={{ flex: 1 }}
+                          style={{
+                            flex: isCompactPhone ? undefined : 1,
+                            width: isCompactPhone ? "100%" : undefined,
+                          }}
                         />
-                        <AppButton onPress={onNext} label={nextLabel} style={{ flex: 1 }} />
+                        <AppButton
+                          onPress={onNext}
+                          label={nextLabel}
+                          style={{
+                            flex: isCompactPhone ? undefined : 1,
+                            width: isCompactPhone ? "100%" : undefined,
+                          }}
+                        />
                       </View>
 
                       <View

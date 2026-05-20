@@ -633,7 +633,10 @@ export default function ProfileSetupPage() {
                         }}
                         label={step === 1 ? t("setup.exit") : t("setup.previous")}
                         variant="secondary"
-                        style={{ flex: stackFooterActions ? undefined : 1 }}
+                        style={{
+                          flex: stackFooterActions ? undefined : 1,
+                          width: stackFooterActions ? "100%" : undefined,
+                        }}
                       />
 
                       {step < 3 ? (
@@ -644,7 +647,10 @@ export default function ProfileSetupPage() {
                           }}
                           label={t("setup.next")}
                           icon={(color) => <MaterialIcons name="arrow-forward" size={18} color={color} />}
-                          style={{ flex: stackFooterActions ? undefined : 1 }}
+                          style={{
+                            flex: stackFooterActions ? undefined : 1,
+                            width: stackFooterActions ? "100%" : undefined,
+                          }}
                         />
                       ) : (
                         <AppButton
@@ -656,7 +662,10 @@ export default function ProfileSetupPage() {
                           disabled={isUploading}
                           label={isUploading ? `${t("setup.continue")}...` : t("setup.continue")}
                           icon={(color) => <MaterialIcons name="arrow-forward" size={18} color={color} />}
-                          style={{ flex: stackFooterActions ? undefined : 1 }}
+                          style={{
+                            flex: stackFooterActions ? undefined : 1,
+                            width: stackFooterActions ? "100%" : undefined,
+                          }}
                         />
                       )}
                     </View>

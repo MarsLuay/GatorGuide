@@ -2457,6 +2457,14 @@ const TRACKS_BY_ID = new Map(TRANSFER_PLANNER_TRACKS.map((track) => [track.id, t
 const MAJOR_PLANS_BY_ID = new Map(
   TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.map((plan) => [plan.id, plan])
 );
+const STUDENT_RUNTIME_MAJORS_BY_CAMPUS_ID = new Map<
+  TransferPlannerCampusId,
+  TransferPlannerMajorPlan[]
+>();
+const RESOLVED_STUDENT_RUNTIME_PLANS_BY_KEY = new Map<
+  string,
+  TransferPlannerResolvedMajorPlan
+>();
 const COMPACT_COURSES_BY_KEY = new Map(
   TRANSFER_PLANNER_RUNTIME_COMPACT_COURSE_REGISTRY.map((entry) => [
     `${entry.schoolId}|${normalizeCourseCode(entry.code)}`,
@@ -2655,9 +2663,16 @@ export function getTransferPlannerAllEquivalencyRules() {
 export function getTransferPlannerStudentRuntimeMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {
-  return TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.filter((plan) => plan.campusId === campusId).map(
-    (plan) => normalizeStudentRuntimeMajorPlan(plan)
-  );
+  const cachedMajors = STUDENT_RUNTIME_MAJORS_BY_CAMPUS_ID.get(campusId);
+  if (cachedMajors) {
+    return cachedMajors;
+  }
+
+  const majors = TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.filter(
+    (plan) => plan.campusId === campusId
+  ).map((plan) => normalizeStudentRuntimeMajorPlan(plan));
+  STUDENT_RUNTIME_MAJORS_BY_CAMPUS_ID.set(campusId, majors);
+  return majors;
 }
 
 export function getTransferPlannerStudentRuntimePathwaysForPlan(
@@ -2682,10 +2697,16 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
     : null;
   const selectedPathwayId =
     matchedPathway?.id ?? pathways[0]?.id ?? null;
+  const resolvedRuntimePlanKey = getPlannerPathwayKey(plan.id, selectedPathwayId);
+  const cachedResolvedRuntimePlan = RESOLVED_STUDENT_RUNTIME_PLANS_BY_KEY.get(
+    resolvedRuntimePlanKey
+  );
+  if (cachedResolvedRuntimePlan) {
+    return cachedResolvedRuntimePlan;
+  }
+
   const resolvedPlan =
-    TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[
-      getPlannerPathwayKey(plan.id, selectedPathwayId)
-    ] ??
+    TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[resolvedRuntimePlanKey] ??
     TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[getPlannerPathwayKey(plan.id, null)] ??
     null;
 
@@ -2699,7 +2720,13 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
         selectedPathwaySummary: null,
       } satisfies TransferPlannerResolvedMajorPlan);
 
-  return normalizeStudentRuntimeResolvedMajorPlan(resolvedRuntimePlan);
+  const normalizedResolvedRuntimePlan =
+    normalizeStudentRuntimeResolvedMajorPlan(resolvedRuntimePlan);
+  RESOLVED_STUDENT_RUNTIME_PLANS_BY_KEY.set(
+    resolvedRuntimePlanKey,
+    normalizedResolvedRuntimePlan
+  );
+  return normalizedResolvedRuntimePlan;
 }
 
 export function getTransferPlannerMajorPlan(planId: string) {

@@ -82,6 +82,221 @@ function buildParsedBlockFixture(entry, html, structuredCourseCodes = []) {
   );
 }
 
+test("Pathway HTML scoping keeps selected subsection requirements after credit headings", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-applied-mathematics:pathway:bs-option-family:data-science",
+    ownerTitle: "Applied Mathematics - B.S. Data Science option",
+    planId: "uw-seattle-applied-mathematics",
+    pathwayId: "bs-option-family:data-science",
+    campusId: "uw-seattle",
+    url: "https://amath.washington.edu/applied-mathematics-data-science-option",
+    label: "B.S. in Applied Mathematics: Data Science Option",
+    sourceLabel: "B.S. in Applied Mathematics: Data Science Option",
+  });
+  const html = `
+    <html>
+      <head><title>Applied Mathematics: Data Science Option</title></head>
+      <body>
+        <nav>
+          <a>B.S. in Applied Mathematics: Data Science Option</a>
+          <a>B.S. in Computational Finance & Risk Management: Data Science Option</a>
+        </nav>
+        <h1>Applied Mathematics: Data Science Option</h1>
+        <h2>Degree requirements:</h2>
+        <p>Computing: AMATH 301 (4 credits)</p>
+        <h2>Requirements for Data Science Option: (26-30 credits)</h2>
+        <p>Data Science (23-25 credits):</p>
+        <p>1. one of AMATH 481 or CSE 163 (4-5 credits)</p>
+        <p>2. one of AMATH 482, CSE 414, or INFO 430 (4-5 credits)</p>
+        <p>3. AMATH 483, CFRM 410, and CFRM 420 (11 credits)</p>
+        <p>4. one of CFRM 421, CSE 416/STAT 416, or STAT 435 (4 credits)</p>
+        <p>Society and Data (3-5 credits):</p>
+        <p>5. INFO 351 (4 credits) or SOC 225 (3 or 5 credits)</p>
+      </body>
+    </html>
+  `;
+
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+  assert.ok(parsed.snapshotLines.includes("Society and Data (3-5 credits):"));
+  assert.ok(parsed.snapshotLines.includes("5. INFO 351 (4 credits) or SOC 225 (3 or 5 credits)"));
+
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    entry,
+    parsed.courseCodes,
+    parsed.snapshotLines
+  );
+  const societyAndDataGroup = groups.find((group) => {
+    const optionCodes = (group.options ?? []).flatMap((option) => option.uwCourses ?? []);
+    return optionCodes.includes("INFO 351") && optionCodes.includes("SOC 225");
+  });
+
+  assert.equal(societyAndDataGroup?.requirementType, "choose_one");
+  assert.equal(societyAndDataGroup?.requiredCount, 1);
+  assert.deepEqual(
+    societyAndDataGroup?.options.flatMap((option) => option.uwCourses),
+    ["INFO 351", "SOC 225"]
+  );
+  assert.doesNotMatch(
+    JSON.stringify(groups.filter((group) => group.requirementType === "all_required")),
+    /INFO 351.*SOC 225|SOC 225.*INFO 351/
+  );
+});
+
+test("Parser keeps credit-bearing requirement rows schedulable when they include prerequisite notes", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-seattle-aquatic-conservation-and-ecology",
+    sourceUrl: "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
+    sourceRole: "primary-degree-requirements",
+    snapshotLines: [
+      "Core Knowledge & Skills Courses",
+      "ACE Core",
+      "(15 credits) All of these courses will count towards the UW Additional Writing (W) requirement.",
+      "FISH 312 (5; prereq BIOL 220/FISH 270) Fisheries Ecology",
+      "FISH 323 (5) Conservation & Management of Aquatic Resources",
+      "FISH 340 (5; prereq BIOL 200) Genetics & Molecular Ecology",
+      "FISH 370 (5; prereq BIOL 220/FISH 270) Marine Evolutionary Biology",
+    ],
+  });
+  const rowsByLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  for (const rawLine of [
+    "FISH 312 (5; prereq BIOL 220/FISH 270) Fisheries Ecology",
+    "FISH 340 (5; prereq BIOL 200) Genetics & Molecular Ecology",
+    "FISH 370 (5; prereq BIOL 220/FISH 270) Marine Evolutionary Biology",
+  ]) {
+    assert.equal(rowsByLine.get(rawLine)?.schedulable, true, rawLine);
+    assert.equal(
+      rowsByLine.get(rawLine)?.detectedSectionRole,
+      "primary-requirement-section",
+      rawLine
+    );
+  }
+});
+
+test("Parser groups titled credit sections without core/elective cue words", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-aquatic-conservation-and-ecology",
+    ownerTitle: "Aquatic Conservation & Ecology",
+    planId: "uw-seattle-aquatic-conservation-and-ecology",
+    campusId: "uw-seattle",
+    sourceUrl:
+      "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
+    sourceRole: "primary-degree-requirements",
+  });
+  const snapshotLines = [
+    "Basic Sciences",
+    "Biology",
+    "(15 credits)",
+    "BIOL 180, 200",
+    "BIOL 220 or FISH 270",
+    "Majors are encouraged to complete the BIOL series as soon as possible, as many upper-level FISH Core and Elective courses have BIOL pre-requisites",
+    "Introductory Courses",
+    "Programming & Data Science",
+    "(4 credits)",
+    "CSE 160 (4) Data Programming",
+    "Q SCI 256 (4) Intro to Data Science Methods for Environmental Sciences",
+    "Core Knowledge & Skills Courses",
+    "ACE Core",
+    "(15 credits) All of these courses will count towards the UW Additional Writing (W) requirement.",
+    "FISH 312 (5; prereq BIOL 220/FISH 270) Fisheries Ecology",
+    "FISH 323 (5) Conservation & Management of Aquatic Resources",
+    "One of the following:",
+    "FISH 340 (5; prereq BIOL 200) Genetics & Molecular Ecology",
+    "FISH 370 (5; prereq BIOL 220/FISH 270) Marine Evolutionary Biology",
+    "Communicating Science",
+    "(3 credits)",
+    "One of the following:",
+    "FISH 290 (3) Scientific Writing & Communication",
+    "MARBIO 305 (3) Scientific Writing in Marine Biology",
+    "Data Analysis & Modeling",
+    "(5 credits)",
+    "One of the following:",
+    "FISH 454 (5; prereqs Q SCI 292 or MATH 125, Q SCI 381 or STAT 311) Ecological Modeling",
+    "Q SCI 483 (5; prereq Q SCI 482) Statistical Inference in Applied Research II",
+  ];
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    [
+      "BIOL 180",
+      "BIOL 200",
+      "BIOL 220",
+      "FISH 270",
+      "CSE 160",
+      "QSCI 256",
+      "FISH 312",
+      "FISH 323",
+      "FISH 340",
+      "FISH 370",
+      "FISH 290",
+      "MARBIO 305",
+      "FISH 454",
+      "QSCI 483",
+    ],
+    snapshotLines
+  );
+  const groupCodesByLabel = new Map(
+    groups.map((group) => [
+      group.label,
+      (group.options ?? []).flatMap((option) => option.uwCourses ?? []),
+    ])
+  );
+
+  assert.deepEqual(groupCodesByLabel.get("Programming & Data Science"), [
+    "CSE 160",
+    "QSCI 256",
+  ]);
+  assert.deepEqual(groupCodesByLabel.get("Biology"), [
+    "BIOL 180",
+    "BIOL 200",
+    "BIOL 220",
+  ]);
+  const biologyGroup = groups.find((group) => group.label === "Biology");
+  assert.match(JSON.stringify(biologyGroup?.options ?? []), /FISH 270/);
+  assert.equal(biologyGroup?.requirementType, "choose_credits");
+  assert.equal(biologyGroup?.minCredits, 15);
+  assert.deepEqual(groupCodesByLabel.get("ACE Core required courses"), [
+    "FISH 312",
+    "FISH 323",
+  ]);
+  assert.deepEqual(groupCodesByLabel.get("ACE Core choice"), [
+    "FISH 340",
+    "FISH 370",
+  ]);
+  const aceCoreRequiredGroup = groups.find((group) => group.label === "ACE Core required courses");
+  assert.equal(aceCoreRequiredGroup?.requirementType, "all_required");
+  assert.equal(aceCoreRequiredGroup?.requiredCount, 2);
+  const aceCoreChoiceGroup = groups.find((group) => group.label === "ACE Core choice");
+  assert.equal(aceCoreChoiceGroup?.requirementType, "choose_credits");
+  assert.equal(aceCoreChoiceGroup?.minCredits, 5);
+  assert.notDeepEqual(groupCodesByLabel.get("ACE Core"), [
+    "FISH 312",
+    "FISH 323",
+    "FISH 340",
+    "FISH 370",
+  ]);
+  assert.deepEqual(groupCodesByLabel.get("Communicating Science"), [
+    "FISH 290",
+    "MARBIO 305",
+  ]);
+  assert.deepEqual(groupCodesByLabel.get("Data Analysis & Modeling"), [
+    "FISH 454",
+    "QSCI 483",
+  ]);
+  const optionCourseCodes = groups.flatMap((group) =>
+    (group.options ?? []).flatMap((option) => [
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ])
+  );
+  for (const prerequisiteOnlyCode of ["QSCI 482"]) {
+    assert.equal(
+      optionCourseCodes.includes(prerequisiteOnlyCode),
+      false,
+      `Did not expect prerequisite-only ${prerequisiteOnlyCode} to become a section option.`
+    );
+  }
+});
+
 test("Course-code parser ignores prose-only 300-level requirement references", () => {
   const line =
     "These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.";
@@ -331,6 +546,150 @@ test("Legacy catalog scoping keeps the full selected program block", () => {
   assert.ok(parsed.courseCodes.includes("TEE 451"));
   assert.ok(!parsed.courseCodes.includes("TCE 304"));
   assert.ok(!parsed.courseCodes.includes("TEE 225"));
+});
+
+test("Legacy UW catalog Social Welfare credential scope keeps major requirements and excludes graduate credentials", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms">
+      <h2 class="expanded" id="undergradPrograms">Undergraduate Program</h2>
+    </div>
+    <div id="undergradPrograms-block" class="inner-block" style="display:block">
+      <div class="expandableGroup" data-expand="program-UG-SOC WF-MAJOR">
+        <h3 class="expanded" id="program-UG-SOC WF-MAJOR">Program of Study: Major: Social Welfare</h3>
+      </div>
+      <div id="program-UG-SOC WF-MAJOR-block" class="inner-block" style="display:block">
+        <div class="programRecommendedPrep">
+          Suggested First- and Second-Year College Courses: prerequisite courses in psychology and sociology; SOC WF 200.
+        </div>
+        <div class="expandableGroup" data-expand="credential-basw">
+          <h4 class="expanded" id="credential-basw">Bachelor of Arts degree with a major in Social Welfare</h4>
+        </div>
+        <div id="credential-basw-block" class="inner-block" style="display:block">
+          <div class="programCompletionRequirements">
+            <b>Completion Requirements</b>
+            <p>General Education Requirements</p>
+            <p>English Composition (C): 5 credits (minimum 2.0 grade)</p>
+            <p>Areas of Inquiry</p>
+            <p>Social Sciences (SSc): 20 credits</p>
+            <p>Major Requirements</p>
+            <p>67 credits</p>
+            <p>Core Courses: SOC WF 200, SOC WF 265, SOC WF 305, SOC WF 310, SOC WF 311, SOC WF 312, SOC WF 313, SOC WF 320, SOC WF 390, SOC WF 402, SOC WF 404, SOC WF 405, SOC WF 415 (12), SOC WF 435, SOC WF 460 or SOC WF 495 (3), SOC WF 465. Minimum 2.0 grade in each course.</p>
+          </div>
+          <div class="backToTop"><a href="#top">Back to Top</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="gradPrograms">
+      <h2 class="expanded" id="gradPrograms">Graduate Programs</h2>
+    </div>
+    <div id="gradPrograms-block" class="inner-block" style="display:block">
+      <div class="expandableGroup" data-expand="program-GR-SOC W-27">
+        <h3 class="expanded" id="program-GR-SOC W-27">Program of Study: Master Of Social Work</h3>
+      </div>
+      <div id="program-GR-SOC W-27-block" class="inner-block" style="display:block">
+        <div class="expandableGroup" data-expand="credential-msw">
+          <h4 class="expanded" id="credential-msw">Master Of Social Work</h4>
+        </div>
+        <div id="credential-msw-block" class="inner-block" style="display:block">
+          <p>Generalist core courses: SOC W 500, 501, 504, 505, 506 or 574, 510, 511, 512, 513.</p>
+          <p>Generalist practicum: SOC W 524. Specialized practicum: SOC W 525.</p>
+        </div>
+      </div>
+    </div>
+  `;
+  const entry = {
+    ownerId: "uw-seattle-social-welfare",
+    ownerTitle: "Social Welfare",
+    planId: "uw-seattle-social-welfare",
+    campusId: "uw-seattle",
+    parserType: "catalog-page",
+    url: "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
+    label: "UW General Catalog Social Welfare requirements",
+    ownerType: "major",
+  };
+  const expectedBaswCodes = [
+    "SOCWF 200",
+    "SOCWF 265",
+    "SOCWF 305",
+    "SOCWF 310",
+    "SOCWF 311",
+    "SOCWF 312",
+    "SOCWF 313",
+    "SOCWF 320",
+    "SOCWF 390",
+    "SOCWF 402",
+    "SOCWF 404",
+    "SOCWF 405",
+    "SOCWF 415",
+    "SOCWF 435",
+    "SOCWF 460",
+    "SOCWF 465",
+    "SOCWF 495",
+  ];
+  const forbiddenGraduateCodes = [
+    "SOCW 500",
+    "SOCW 501",
+    "SOCW 504",
+    "SOCW 505",
+    "SOCW 506",
+    "SOCW 510",
+    "SOCW 511",
+    "SOCW 512",
+    "SOCW 513",
+    "SOCW 524",
+    "SOCW 525",
+    "SOCW 574",
+  ];
+
+  for (const url of [entry.url, `${entry.url}#credential-basw`]) {
+    const parsed = parser.parseHtmlSourceFromArtifactsForTest({ ...entry, url }, html);
+    const scopedText = parsed.snapshotLines.join(" ");
+
+    assert.match(scopedText, /Major Requirements/);
+    assert.match(scopedText, /SOC WF 200/);
+    for (const courseCode of expectedBaswCodes) {
+      assert.ok(parsed.courseCodes.includes(courseCode), `${url} missing ${courseCode}`);
+    }
+    for (const courseCode of forbiddenGraduateCodes) {
+      assert.ok(!parsed.courseCodes.includes(courseCode), `${url} leaked ${courseCode}`);
+    }
+    assert.doesNotMatch(scopedText, /Generalist core courses/);
+
+    const groups = parser.buildParsedRequirementGroupsForTest(entry, parsed.courseCodes, parsed.snapshotLines);
+    const broadCoreChoice = groups.find(
+      (group) =>
+        group.requirementType === "choose_one" &&
+        /Core Courses:/i.test(group.sourceRowText ?? "") &&
+        (group.options ?? []).length > 3
+    );
+    assert.equal(broadCoreChoice, undefined, `${url} treated the full core list as one choose-one group`);
+
+    const coreRequiredGroup = groups.find(
+      (group) =>
+        group.requirementType === "all_required" &&
+        /Core Courses:/i.test(group.sourceRowText ?? "") &&
+        (group.options ?? []).some((option) => option.uwCourses?.includes("SOCWF 200"))
+    );
+    assert.ok(coreRequiredGroup, `${url} missing all-required Social Welfare core group`);
+    assert.ok(coreRequiredGroup.options.some((option) => option.uwCourses?.includes("SOCWF 465")));
+    assert.equal(
+      coreRequiredGroup.options.some(
+        (option) => option.uwCourses?.includes("SOCWF 460") || option.uwCourses?.includes("SOCWF 495")
+      ),
+      false,
+      `${url} should keep the SOCWF 460/495 alternative out of the all-required core group`
+    );
+
+    const practiceChoiceGroup = groups.find((group) => {
+      const optionCodes = (group.options ?? []).flatMap((option) => option.uwCourses ?? []).sort();
+      return (
+        group.requirementType === "choose_one" &&
+        /Core Courses:/i.test(group.sourceRowText ?? "") &&
+        optionCodes.join("|") === "SOCWF 460|SOCWF 495"
+      );
+    });
+    assert.ok(practiceChoiceGroup, `${url} missing SOCWF 460/495 choice group`);
+  }
 });
 
 test("Focused HTML degree pages keep full requirement pages", () => {

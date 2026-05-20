@@ -82,6 +82,9 @@ import {
 } from "./transfer-planner-formatters";
 import type { PlannerCollegeId } from "./transfer-planner-storage";
 
+const SHOULD_BUILD_SCHEDULE_RENDER_AUDITS =
+  __DEV__ && process.env.EXPO_PUBLIC_ENABLE_COURSE_PLANNER_RENDER_AUDITS === "1";
+
 function SuggestedScheduleOptionsBox({
   optionGroups,
   plan,
@@ -582,6 +585,10 @@ export function SuggestedScheduleCard({
         });
   const sourceBackedRequirementAuditText = useMemo(
     () => {
+      if (!SHOULD_BUILD_SCHEDULE_RENDER_AUDITS) {
+        return "";
+      }
+
       const sourceBackedAuditLines = auditUwBioengineeringSourceBackedRequirements({
         plan,
         suggestedPlan: quarters,

@@ -32,6 +32,13 @@ const {
   normalizeTransferPlannerCourseCode,
 } = require("../../constants/transfer-planner-source/course-code-normalization");
 const {
+  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
+} = require("../../constants/transfer-planner-source/primary-source-promotions.generated");
+const {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
+const {
   labelMentionsDifferentTransferPlannerMajor,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
 
@@ -80,6 +87,42 @@ const REQUIRED_COMPOUND_EQUIVALENCY_PATHS = [
   { uwTarget: "CHEM 241", sourceSet: ["CHEM& 261", "CHEM& 262"] },
   { uwTarget: "CHEM 242", sourceSet: ["CHEM& 261", "CHEM& 262", "CHEM& 263"] },
 ];
+
+test("Primary source promotions store canonical pathway owner ids", () => {
+  const pathwayPromotions = TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.filter(
+    (entry) => entry.ownerType === "pathway"
+  );
+
+  assert.ok(pathwayPromotions.length > 0, "Expected pathway promotions to exercise canonical owner checks.");
+
+  for (const entry of pathwayPromotions) {
+    const canonicalPathwayId = normalizeTransferPlannerPathwayId(entry.planId, entry.pathwayId);
+    const canonicalOwnerId = buildTransferPlannerOwnerId(entry.planId, canonicalPathwayId);
+
+    assert.equal(
+      entry.pathwayId,
+      canonicalPathwayId,
+      `${entry.ownerId} should store the canonical pathway id.`
+    );
+    assert.equal(
+      entry.ownerId,
+      canonicalOwnerId,
+      `${entry.ownerId} should store the canonical owner id.`
+    );
+    assert.equal(
+      entry.ownerKey,
+      canonicalOwnerId,
+      `${entry.ownerId} should store the canonical owner key.`
+    );
+  }
+
+  assert.ok(
+    pathwayPromotions.some(
+      (entry) => entry.ownerId === "uw-seattle-economics:pathway:bs-option-family:strategy"
+    ),
+    "Expected UW Seattle Economics Strategy to be stored under its canonical pathway owner id."
+  );
+});
 
 function normalizeTestCourseCode(value) {
   return normalizeTransferPlannerCourseCode(String(value ?? ""));
@@ -796,6 +839,24 @@ test("Graduate-only pages are ignored for undergraduate source discovery", () =>
   assert.equal(graduateCandidate.sourceRoleStatus, "ignored");
   assert.equal(graduateCandidate.canCreateSchedulableRows, false);
   assert.ok(graduateCandidate.score < 0);
+});
+
+test("Materials Science primary source prefers degree requirements over ABET overview", () => {
+  const basePrimary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-materials-science-engineering",
+    null
+  );
+  assert.equal(basePrimary?.url, "https://mse.washington.edu/current/undergrad/courses");
+  assert.equal(basePrimary?.role, "degree-requirements");
+  assert.equal(basePrimary?.confidence, "high");
+
+  const nmePrimary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-materials-science-engineering",
+    "nme-option"
+  );
+  assert.equal(nmePrimary?.url, "https://mse.washington.edu/current/undergrad/courses");
+  assert.equal(nmePrimary?.role, "degree-requirements");
+  assert.equal(nmePrimary?.confidence, "high");
 });
 
 test("Graduate catalog credential anchors are ignored even on mixed undergraduate pages", () => {
@@ -1862,7 +1923,7 @@ test("Catalog program anchor parser stops major scope before child credential se
   assert.doesNotMatch(scopedLineText, /Machine Learning/);
 });
 
-test("Unanchored UW catalog major pages stop before graduate program sections", () => {
+test("Unanchored UW catalog major pages scope to the base credential before sibling and graduate sections", () => {
   const html = `
     <div class="expandableGroup" data-expand="undergradPrograms|program-UG-ECON-MAJOR">
       <h3 class="expanded" id="program-UG-ECON-MAJOR">Program of Study: Major: Economics</h3>
@@ -1905,10 +1966,59 @@ test("Unanchored UW catalog major pages stop before graduate program sections", 
 
   assert.equal(scope?.scoped, true);
   assert.match(scopedText, /ECON 200/);
-  assert.match(scopedText, /ECON 482/);
+  assert.doesNotMatch(scopedText, /ECON 482/);
   assert.doesNotMatch(scopedText, /Graduate Admissions/);
   assert.doesNotMatch(scopedText, /ECON 800/);
-  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /program-GR-ECON-41/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /Economics: Strategy/);
+});
+
+test("Unanchored UW catalog Anthropology base scope excludes sibling option credentials", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-ANTH-MAJOR">
+      <h3 class="expanded" id="program-UG-ANTH-MAJOR">Program of Study: Major: Anthropology</h3>
+    </div>
+    <div id="program-UG-ANTH-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-anth-ba">Bachelor of Arts degree with a major in Anthropology</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Core courses (20 credits): BIO A 201; one from STAT 220, STAT 311, Q SCI 381, or ARCHY 495.</p>
+        <p>35 additional ANTH, ARCHY, and BIO A credits distributed across the subfields.</p>
+      </div>
+      <h4 class="expanded" id="credential-anth-globalization">Bachelor of Arts degree with a major in Anthropology: Anthropology of Globalization</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Option courses: include 20 credits from courses approved for the Anthropology of Globalization option.</p>
+      </div>
+      <h4 class="expanded" id="credential-anth-graduate">Doctor Of Philosophy (Anthropology)</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Core Requirements: ANTH 550, ANTH 551, ARCHY 510, ARCHY 599.</p>
+      </div>
+    </div>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    {
+      campusId: "uw-seattle",
+      ownerType: "major",
+      planId: "uw-seattle-anthropology",
+      ownerTitle: "Anthropology",
+      label: "UW General Catalog Anthropology page",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      url: "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+    },
+    html
+  );
+  const scopedText = parsed.snapshotLines.join(" ");
+  const parsedCodes = new Set(parsed.courseCodes);
+
+  assert.match(scopedText, /Bachelor of Arts degree with a major in Anthropology/);
+  assert.doesNotMatch(scopedText, /Anthropology of Globalization option/);
+  assert.ok(parsedCodes.has("BIOA 201"));
+  assert.ok(parsedCodes.has("STAT 311"));
+  assert.equal(parsedCodes.has("ANTH 550"), false);
+  assert.equal(parsedCodes.has("ARCHY 510"), false);
+  assert.match(
+    parsed.sourceSectionAudit?.stopBoundary ?? "",
+    /Anthropology of Globalization/
+  );
 });
 
 test("Unanchored UW catalog pathway pages scope to the matching credential", () => {
@@ -3121,7 +3231,7 @@ test("Parser extracts sectioned course groups from source headings without a pla
     ],
   });
   const engineeringGroup = parsedBlock.parsedRequirementGroups.find((group) =>
-    /Engineering Fundamentals Electives/i.test(group.label)
+    /Engineering Fundamentals/i.test(group.label)
   );
   const mseTechnicalGroup = parsedBlock.parsedRequirementGroups.find((group) =>
     /MSE 400-level courses/i.test(group.label)
@@ -3217,6 +3327,30 @@ test("Parser ignores graduate sectioned course lists for undergraduate requireme
     false
   );
   assert.equal(parsedBlock.parsedRequirementCourses.length, 0);
+
+  const mixedCatalogBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    url: "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+    label: "Anthropology undergraduate requirements",
+    planId: "uw-seattle-anthropology-fixture",
+    ownerId: "uw-seattle-anthropology-fixture",
+    ownerTitle: "Anthropology",
+    courseCodes: ["BIOA 201", "ANTH 550", "ANTH 551", "BIOA 525"],
+    snapshotLines: [
+      "The undergraduate program leads to the Bachelor of Arts degree.",
+      "Completion Requirements",
+      "Core courses (20 credits): BIO A 201; one from STAT 220, STAT 311, Q SCI 381, or ARCHY 495",
+      "Additional Requirements: Comprehensive written examination, teaching requirement, general examination, dissertation colloquium, dissertation research, and dissertation.",
+      "Core Requirements (25 credits): ANTH 550, ANTH 551, ANTH 565, ANTH 566, ANTH 567",
+      "Additional Course Requirement: BIO A 525",
+      "Elective Courses (18 credits) : Any course numbered 400-level and above taken while in graduate student status at the UW",
+    ],
+  });
+  const mixedCatalogCodes = new Set(mixedCatalogBlock.parsedUwCourseCodes);
+  assert.ok(mixedCatalogCodes.has("BIOA 201"));
+  assert.equal(mixedCatalogCodes.has("ANTH 550"), false);
+  assert.equal(mixedCatalogCodes.has("ANTH 551"), false);
+  assert.equal(mixedCatalogCodes.has("BIOA 525"), false);
 });
 
 test("Parser extracts split either-or course rows as alternatives without a major-specific branch", () => {
@@ -3756,16 +3890,43 @@ test("Parser builds requirement groups from sectioned credit course lists", () =
       "Environment and Health Concentration Courses:",
       "AIS 306 Contemporary Indigenous Environmental Issues",
       "AIS 307 Indigenous Literature and the Environment",
+      "Culture and History Concentration Courses:",
+      "AIS 308 Indigenous Intellectual History",
+      "AIS 309 Indigenous Poetics",
     ],
   });
   const contentGroup = parsedBlock.parsedRequirementGroups.find((group) =>
-    /selected from/i.test(group.sourceRowText ?? group.label ?? "")
+    /Content courses/i.test(group.label ?? group.sourceRowText ?? "")
   );
   assert.equal(contentGroup?.requirementType, "choose_credits");
   assert.equal(contentGroup?.minCredits, 10);
   assert.deepEqual(
     new Set(contentGroup?.options.flatMap((option) => option.uwCourses)),
     new Set(["AIS 170", "AIS 202"])
+  );
+  const concentrationGroups = parsedBlock.parsedRequirementGroups.filter((group) =>
+    /Concentration Courses/i.test(group.label)
+  );
+  assert.equal(concentrationGroups.length, 3);
+  for (const group of concentrationGroups) {
+    assert.equal(group.requirementType, "choose_credits");
+    assert.equal(group.minCredits, 5);
+    assert.equal(group.maxCredits, null);
+  }
+  const governanceGroup = concentrationGroups.find((group) => /^Governance/i.test(group.label));
+  const environmentGroup = concentrationGroups.find((group) => /^Environment/i.test(group.label));
+  const cultureGroup = concentrationGroups.find((group) => /^Culture/i.test(group.label));
+  assert.deepEqual(
+    new Set(governanceGroup?.options.flatMap((option) => option.uwCourses)),
+    new Set(["AIS 212", "AIS 230"])
+  );
+  assert.deepEqual(
+    new Set(environmentGroup?.options.flatMap((option) => option.uwCourses)),
+    new Set(["AIS 306", "AIS 307"])
+  );
+  assert.deepEqual(
+    new Set(cultureGroup?.options.flatMap((option) => option.uwCourses)),
+    new Set(["AIS 308", "AIS 309"])
   );
 });
 
@@ -4447,6 +4608,285 @@ test("Parser materializes colon course-list credit buckets", () => {
   assert.equal(introBucket.requirementType, "choose_credits");
   assert.equal(introBucket.minCredits, 15);
   assert.deepEqual(optionCodes, ["ART 101", "ART 140", "ART 190"]);
+});
+
+test("Parser materializes inline labeled required rows and choose-N course lists", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Applied Mathematics Degree Requirements",
+    planId: "uw-seattle-applied-mathematics",
+    ownerId: "uw-seattle-applied-mathematics",
+    ownerTitle: "Applied Mathematics",
+    courseCodes: [
+      "AMATH 301",
+      "AMATH 351",
+      "AMATH 352",
+      "AMATH 353",
+      "AMATH 401",
+      "AMATH 402",
+      "AMATH 403",
+    ],
+    headings: ["Degree Requirements"],
+    snapshotLines: [
+      "Computing: AMATH 301 (4 credits)",
+      "Introductory Applied Mathematics: AMATH 351, AMATH 352, AMATH 353 (9 credits)",
+      "1) Methods of Applied Mathematics: Minimum two courses from AMATH 401, AMATH 402, AMATH 403",
+      "3. AMATH 483, CFRM 410, and CFRM 420 (11 credits)",
+    ],
+  });
+
+  const computingGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /^Computing$/i.test(group.label)
+  );
+  const introGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /^Introductory Applied Mathematics$/i.test(group.label)
+  );
+  const methodsGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /^Methods of Applied Mathematics$/i.test(group.label)
+  );
+  const numberedRequiredGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /^AMATH 483, CFRM 410, and CFRM 420/i.test(group.label)
+  );
+
+  assert.equal(computingGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    computingGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 301"]
+  );
+
+  assert.equal(introGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    introGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 351", "AMATH 352", "AMATH 353"]
+  );
+
+  assert.equal(methodsGroup?.requirementType, "choose_n");
+  assert.equal(methodsGroup?.requiredCount, 2);
+  assert.deepEqual(
+    methodsGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 401", "AMATH 402", "AMATH 403"]
+  );
+
+  assert.equal(numberedRequiredGroup?.requirementType, "all_required");
+  assert.deepEqual(
+    numberedRequiredGroup?.options.flatMap((option) => option.uwCourses),
+    ["AMATH 483", "CFRM 410", "CFRM 420"]
+  );
+});
+
+test("Parser materializes credit-prefixed core rows and selected concentration course pools", () => {
+  const snapshotLines = [
+    "Degree Requirements",
+    "A minimum of 60 credits (12 courses total) are required for completion of the AES major:",
+    "30 credits (6 courses) from Core Courses",
+    "25 credits (5 courses) from the student's Concentration Area Courses",
+    "5 credits (1 course) from an upper-division course in an area other than the student's concentration",
+    "Core Courses",
+    "5 credits: AAS 101 -- Introduction to Asian American Studies (I&S, DIV)",
+    "5 credits: AFRAM 101 -- Introduction to African American Studies (I&S, DIV)",
+    "5 credits: CHSTU 101 -- The Chicano/Mexican Ethnic Experience in the United States (I&S, DIV)",
+    "5 credits: AES 150 -- In-Justice for All (I&S, DIV)",
+    "5 credits: AES 151 -- Identities, Cultures, and Power Across American Ethnic Groups (I&S, DIV)",
+    "5 credits: AES 212 -- Comparative American Ethnic Literature (I&S/VLPA, DIV)",
+    "African American Studies",
+    "[Arts and Humanities Focus] AFRAM 150 , 214 , 220",
+    "[History and Culture Heritage] AFRAM 150 , 270 , 272 , 321",
+    "[Social and Political Analysis] AFRAM 246 , 260 , 315 , 370",
+    "Asian American/PIA Studies",
+    "[Arts and Humanities Focus] AAS 220 , 320 , 330",
+    "[History, Culture, Social and Political Analysis] AAS 206 , 210 , 350",
+    "Chicano/a Studies",
+    "[Arts and Humanities Focus] CHSTU 330 , 332 , 340",
+    "[History and Culture Heritage] CHSTU 200 , 254 , 256",
+    "[Social and Political Analysis] CHSTU 200 , 256 , 356",
+    "Comparative AES",
+    "AES 250 , 322 , 333 , 335 , 442 , 487",
+    "Honors Thesis Option",
+    "AES 496 (Honors Thesis) is for students admitted to the honors track.",
+    "Recommended Courses",
+    "After completing the 60 credits required for the AES major and fulfilling the University requirements (including ENGL 131 for English composition), a student may have to take additional courses to accumulate the 180 credits the University requires for graduation.",
+  ];
+  const courseCodes = [
+    "AAS 101",
+    "AFRAM 101",
+    "CHSTU 101",
+    "AES 150",
+    "AES 151",
+    "AES 212",
+    "AFRAM 150",
+    "AFRAM 214",
+    "AFRAM 220",
+    "AFRAM 270",
+    "AFRAM 272",
+    "AFRAM 321",
+    "AFRAM 246",
+    "AFRAM 260",
+    "AFRAM 315",
+    "AFRAM 370",
+    "AAS 220",
+    "AAS 206",
+    "AAS 210",
+    "AAS 320",
+    "AAS 330",
+    "CHSTU 330",
+    "CHSTU 332",
+    "CHSTU 340",
+    "CHSTU 200",
+    "CHSTU 254",
+    "CHSTU 256",
+    "CHSTU 356",
+    "AES 250",
+    "AES 322",
+    "AES 333",
+    "AES 335",
+    "AES 442",
+    "AES 487",
+    "AES 496",
+    "ENGL 131",
+  ];
+  const baseBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "American Ethnic Studies Degree Requirements",
+    planId: "uw-seattle-american-ethnic-studies",
+    ownerId: "uw-seattle-american-ethnic-studies",
+    ownerTitle: "American Ethnic Studies",
+    courseCodes,
+    headings: ["Degree Requirements", "Core Courses", "African American Studies"],
+    snapshotLines,
+  });
+  const buildPathwayBlock = (pathwayId, ownerTitle) =>
+    buildParsedSourceScopeFixture({
+      sourceRole: "primary-degree-requirements",
+      label: "American Ethnic Studies Degree Requirements",
+      planId: "uw-seattle-american-ethnic-studies",
+      pathwayId,
+      ownerId: `uw-seattle-american-ethnic-studies:pathway:${pathwayId}`,
+      ownerTitle,
+      courseCodes,
+      headings: [
+        "Degree Requirements",
+        "Core Courses",
+        "African American Studies",
+        "Asian American/PIA Studies",
+        "Chicano/a Studies",
+        "Comparative AES",
+      ],
+      snapshotLines,
+    });
+  const pathwayBlock = buildPathwayBlock(
+    "african-american-studies-concentration",
+    "American Ethnic Studies - African American Studies Concentration"
+  );
+  const asianPathwayBlock = buildPathwayBlock(
+    "asian-american-pia-studies-concentration",
+    "American Ethnic Studies - Asian American/PIA Studies Concentration"
+  );
+  const chicanoPathwayBlock = buildPathwayBlock(
+    "chicano-a-studies-concentration",
+    "American Ethnic Studies - Chicano/a Studies Concentration"
+  );
+  const comparativePathwayBlock = buildPathwayBlock(
+    "comparative-american-ethnic-studies-concentration",
+    "American Ethnic Studies - Comparative AES Concentration"
+  );
+
+  const coreGroup = baseBlock.parsedRequirementGroups.find((group) =>
+    /^Core Courses$/i.test(group.label)
+  );
+  const concentrationGroup = pathwayBlock.parsedRequirementGroups.find((group) =>
+    /^African American Studies$/i.test(group.label)
+  );
+  const concentrationCodes = concentrationGroup?.options.flatMap((option) => option.uwCourses) ?? [];
+  const allGroupCodes = pathwayBlock.parsedRequirementGroups.flatMap((group) =>
+    group.options.flatMap((option) => option.uwCourses)
+  );
+
+  assert.equal(coreGroup?.requirementType, "all_required");
+  assert.equal(coreGroup?.minCredits, 30);
+  assert.equal(coreGroup?.minCourses, 6);
+  assert.deepEqual(
+    coreGroup?.options.flatMap((option) => option.uwCourses),
+    ["AAS 101", "AFRAM 101", "CHSTU 101", "AES 150", "AES 151", "AES 212"]
+  );
+  assert.equal(
+    pathwayBlock.parsedRequirementGroups.some((group) => /^Core Courses$/i.test(group.label)),
+    false,
+    "Expected pathway blocks to contribute selected concentration pools without duplicating shared core."
+  );
+
+  assert.equal(concentrationGroup?.requirementType, "choose_credits");
+  assert.equal(concentrationGroup?.minCredits, 25);
+  assert.equal(concentrationGroup?.maxCredits, 25);
+  assert.ok(concentrationCodes.includes("AFRAM 150"));
+  assert.ok(concentrationCodes.includes("AFRAM 214"));
+  assert.ok(concentrationCodes.includes("AFRAM 370"));
+  assert.equal(concentrationCodes.includes("AAS 220"), false);
+  assert.equal(concentrationCodes.includes("CHSTU 330"), false);
+  assert.equal(allGroupCodes.includes("AES 496"), false);
+  assert.equal(allGroupCodes.includes("ENGL 131"), false);
+  assert.equal(baseBlock.parsedUwCourseCodes.includes("ENGL 131"), false);
+  assert.equal(pathwayBlock.parsedUwCourseCodes.includes("ENGL 131"), false);
+  assert.equal(asianPathwayBlock.parsedUwCourseCodes.includes("ENGL 131"), false);
+  assert.equal(chicanoPathwayBlock.parsedUwCourseCodes.includes("ENGL 131"), false);
+  assert.equal(comparativePathwayBlock.parsedUwCourseCodes.includes("ENGL 131"), false);
+  const englishCompositionAuditRow = baseBlock.sourceSectionFilterAuditRows.find((row) =>
+    (row.courseCodesExtracted ?? []).includes("ENGL 131")
+  );
+  assert.equal(englishCompositionAuditRow?.schedulable, false);
+  assert.equal(englishCompositionAuditRow?.detectedSectionRole, "support-metadata");
+
+  const concentrationExpectations = [
+    {
+      block: pathwayBlock,
+      label: "African American Studies",
+      expectedCodes: ["AFRAM 150", "AFRAM 214", "AFRAM 370"],
+      rejectedCodes: ["AAS 220", "CHSTU 330", "AES 250"],
+    },
+    {
+      block: asianPathwayBlock,
+      label: "Asian American/PIA Studies",
+      expectedCodes: ["AAS 206", "AAS 220"],
+      rejectedCodes: ["AFRAM 150", "CHSTU 330", "AES 250"],
+    },
+    {
+      block: chicanoPathwayBlock,
+      label: "Chicano/a Studies",
+      expectedCodes: ["CHSTU 200", "CHSTU 330", "CHSTU 356"],
+      rejectedCodes: ["AFRAM 150", "AAS 220", "AES 250"],
+    },
+    {
+      block: comparativePathwayBlock,
+      label: "Comparative AES",
+      expectedCodes: ["AES 250", "AES 322", "AES 487"],
+      rejectedCodes: ["AFRAM 150", "AAS 220", "CHSTU 330", "AES 496"],
+    },
+  ];
+
+  const normalizeAesTestLabel = (value) =>
+    String(value ?? "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+
+  for (const expectation of concentrationExpectations) {
+    const group = expectation.block.parsedRequirementGroups.find((candidate) =>
+      normalizeAesTestLabel(candidate.label) === normalizeAesTestLabel(expectation.label)
+    );
+    const codes = group?.options.flatMap((option) => option.uwCourses) ?? [];
+    assert.equal(group?.requirementType, "choose_credits", expectation.label);
+    assert.equal(group?.minCredits, 25, expectation.label);
+    assert.equal(group?.maxCredits, 25, expectation.label);
+    for (const code of expectation.expectedCodes) {
+      assert.ok(codes.includes(code), `Expected ${expectation.label} to include ${code}.`);
+    }
+    for (const code of expectation.rejectedCodes) {
+      assert.equal(
+        codes.includes(code),
+        false,
+        `Expected ${expectation.label} not to include sibling concentration course ${code}.`
+      );
+    }
+  }
 });
 
 test("Parser splits semicolon-separated credit buckets and suppresses duplicate choice groups", () => {

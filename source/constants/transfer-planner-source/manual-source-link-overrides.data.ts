@@ -41,4 +41,33 @@ export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManua
         },
       ],
     },
+    {
+      planId: "uw-seattle-materials-science-engineering",
+      mode: "merge",
+      preferredPrimaryUrl: "https://mse.washington.edu/current/undergrad/courses",
+      removedUrls: ["https://mse.washington.edu/about/abet"],
+      links: [
+        {
+          label: "UW Materials Science & Engineering degree requirements",
+          url: "https://mse.washington.edu/current/undergrad/courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-materials-science-engineering",
+      pathwayId: "nme-option",
+      mode: "merge",
+      preferredPrimaryUrl: "https://mse.washington.edu/current/undergrad/courses",
+      removedUrls: ["https://mse.washington.edu/about/abet"],
+      links: [
+        {
+          label: "UW Materials Science & Engineering degree requirements",
+          url: "https://mse.washington.edu/current/undergrad/courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
   ];

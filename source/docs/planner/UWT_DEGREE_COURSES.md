@@ -20,75 +20,89 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Arts, Media and Culture overview](https://www.tacoma.uw.edu/sias/cac/arts-media-culture)
-- [UW Tacoma Arts, Media and Culture overview](https://www.tacoma.uw.edu/sias/cac/arts-media-culture) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Arts, Media and Culture overview](https://www.tacoma.uw.edu/sias/cac/arts-media-culture) - Source used for parser-backed UW requirement extraction.
 
 ##### Arts, Media and Culture (BA) parsed official source structure
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- Arts, Media &amp; Culture majors have five tracks to choose from:
 - LITERATURE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- FILM AND MEDIA TRACK
+- VISUAL AND PERFORMING ARTS TRACK
+- COMPARATIVE ARTS TRACK
+- AMERICAN CULTURES TRACK
+- ADMISSION REQUIREMENTS
+- At least 45 lower-division credits
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed choices and pathway notes
 
+- Arts, Media &amp; Culture majors have five tracks to choose from:
 - AMERICAN CULTURES TRACK
 - COMPARATIVE ARTS TRACK
 - FILM AND MEDIA TRACK
 - LITERATURE TRACK
 - VISUAL AND PERFORMING ARTS TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -97,8 +111,7 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: low.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
+- Source-backed note: Parser confidence: medium.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-01-arts-media-and-culture-ba-parsed-official-source-structure.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-02-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-03-arts-media-and-culture-ba-parsed-official-requirement-cues.
@@ -107,6 +120,7 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-06-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-07-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-08-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-09-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-90-requirement-cues.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -292,11 +306,9 @@ Source-generated from parsed UW requirement-source registries.
 - `ENGR& 214`
 - `ENGR& 215`
 - `ENGR& 225`
-- `CS 121`
 
 #### Required sequences for specific credits
 
-- Required before application: Programming foundation -> `CS 121`
 - Required before enrollment: At least 84 credits must be taken from the CE required courses below and CE Senior Electives list. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Civil Engineering students must complete 16 credits of technical electives. Click the button below to view the current academic year course offerings. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Statics (TME 221 or UWS: AA 210) -> `ENGR& 214`. complete at least 1 course from this set
@@ -320,30 +332,40 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Communications major requirements](https://www.tacoma.uw.edu/sias/cac/communication)
-- [UW Tacoma Communications major requirements](https://www.tacoma.uw.edu/sias/cac/communication) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Communications major requirements](https://www.tacoma.uw.edu/sias/cac/communication) - Source used for parser-backed UW requirement extraction.
 
 ##### Communications (BA) parsed official source requirements
 
-- Admission Requirements
+- The Communication major at the University of Washington-Tacoma is an exciting and dynamic field of study that examines the ways people interact and communicate with each other in various contexts. In the Communication major, you will actively and systematically study the power that media wield in the world today. You will study the role media and communication play in shaping public opinion, how it crosses boundaries between private and public life, as well as the role media plays in different intersecting arenas, including culture, society, national and global development, and our own identities. To allow you to focus on your areas of interest, the Communication major offers both a professional track and a research track. Both tracks are complemented by electives from other undergraduate programs at UW Tacoma. This degree provides the education and experience necessary for a wide variety of careers in print and broadcast writing, news reporting and editing, web design, video and digital media production, and media research. Transfer students should plan on two years to complete all degree requirements.
+- PROFESSIONAL TRACK
+- The Professional track offers you a comprehensive approach to the study of media criticism and media writing and production through:
+- RESEARCH TRACK
+- The Research Track provides you with an overview of foundational theoretical frameworks from various political, economic, historical, social, and cultural contexts when studying mass media. You can gain:
+- ADMISSION REQUIREMENTS
+- To declare the Communication major, you must take one of the following courses, with a minimum grade of 2.5:
 - TCOM 201 Media and Society OR
 - TCOM 230 Media Globalization and Citizenship
-- Degree Requirements
-- Professional Track students complete TCOM 320 and TCOM 420.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- DEGREE REQUIREMENTS
 
 ##### Communications (BA) parsed official requirement cues
 
-- Admission Requirements
+- The Communication major at the University of Washington-Tacoma is an exciting and dynamic field of study that examines the ways people interact and communicate with each other in various contexts. In the Communication major, you will actively and systematically study the power that media wield in the world today. You will study the role media and communication play in shaping public opinion, how it crosses boundaries between private and public life, as well as the role media plays in different intersecting arenas, including culture, society, national and global development, and our own identities. To allow you to focus on your areas of interest, the Communication major offers both a professional track and a research track. Both tracks are complemented by electives from other undergraduate programs at UW Tacoma. This degree provides the education and experience necessary for a wide variety of careers in print and broadcast writing, news reporting and editing, web design, video and digital media production, and media research. Transfer students should plan on two years to complete all degree requirements.
+- PROFESSIONAL TRACK
+- The Professional track offers you a comprehensive approach to the study of media criticism and media writing and production through:
+- RESEARCH TRACK
+- The Research Track provides you with an overview of foundational theoretical frameworks from various political, economic, historical, social, and cultural contexts when studying mass media. You can gain:
+- ADMISSION REQUIREMENTS
+- To declare the Communication major, you must take one of the following courses, with a minimum grade of 2.5:
 - TCOM 201 Media and Society OR
 - TCOM 230 Media Globalization and Citizenship
-- Degree Requirements
-- Professional Track students complete TCOM 320 and TCOM 420.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- DEGREE REQUIREMENTS
 
 ##### Communications (BA) parsed choices and pathway notes
 
-- Professional Track students complete TCOM 320 and TCOM 420.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- To declare the Communication major, you must take one of the following courses, with a minimum grade of 2.5:
+- PROFESSIONAL TRACK
+- RESEARCH TRACK
+- Video and Digital Media Production track
 
 #### GRC Equivalent Courses
 
@@ -353,7 +375,6 @@ On To Do list.
 
 - Required before enrollment: TCOM 201 or TCOM 230. complete at least 1 course from this set
 - Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-communications:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -406,20 +427,14 @@ Source-generated from parsed UW requirement-source registries.
 
 - `CS 122`
 - `CS 123`
-- `MATH 238`
-- `ENGR& 204`
 - `CS& 141`
 - `CS 145`
-- `MATH 240`
 
 #### Required sequences for specific credits
 
-- Required before application: MATH 207 -> `MATH 238`
-- Required before application: Circuit preparation -> `ENGR& 204`
 - Required before enrollment: Required Core Courses: 101 credits. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: TCSS 142 or CSE 122 or CSE 142 or equivalent -> `CS 122`. complete at least 1 course from this set. alternate path `CS& 141`
 - Required before enrollment: TCSS 143 or CSE 123 or CSE 143 or equivalent -> `CS 123`. complete at least 1 course from this set. alternate path `CS 145`
-- Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-computer-engineering:source-degree-map:.
@@ -438,7 +453,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Bachelor of Arts in CSS page.](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba)
-- [Bachelor of Arts in CSS page.](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Bachelor of Arts in CSS page.](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba) - Source used for parser-backed UW requirement extraction.
 
 ##### Computer Science and Systems (BA) parsed official source requirements
 
@@ -452,7 +467,6 @@ Source-generated from parsed UW requirement-source registries.
 - Computers, ethics, and society (TCSS 325)
 - Opportunities to take 400-level CSS electives, including internship (TCSS 497), directed readings (TCSS 498) and directed research (TCSS 499).
 - B.S. majors have 4 additional class requirements .
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Computer Science and Systems (BA) parsed official requirement cues
 
@@ -466,19 +480,15 @@ Source-generated from parsed UW requirement-source registries.
 - Computers, ethics, and society (TCSS 325)
 - Opportunities to take 400-level CSS electives, including internship (TCSS 497), directed readings (TCSS 498) and directed research (TCSS 499).
 - B.S. majors have 4 additional class requirements .
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
-- `CS 121`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before application: Programming foundation -> `CS 121`
-- Required before enrollment: TCSS 497 or TCSS 498 or TCSS 499. complete at least 1 course from this set
 - Required before enrollment: TCSS 101 or TCSS 141. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-computer-science-and-systems-ba:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -693,7 +703,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html)
-- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Electrical Engineering parsed official source requirements
 
@@ -707,7 +717,6 @@ Source-generated from parsed UW requirement-source registries.
 - Programming: 4-5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 141 (5) or CSE 121 (4) are examples of an acceptable course
 - Electrical Circuits TCES 215 or EE 215 or equivalent.
 - Completion Requirements
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Electrical Engineering parsed official requirement cues
 
@@ -721,7 +730,6 @@ Source-generated from parsed UW requirement-source registries.
 - Programming: 4-5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 141 (5) or CSE 121 (4) are examples of an acceptable course
 - Electrical Circuits TCES 215 or EE 215 or equivalent.
 - Completion Requirements
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -741,7 +749,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before application: Programming I -> `CS 121`
 - Required before application: Programming II -> `CS 122`
-- Required before enrollment: Required Core Courses: 103-106 credits -> `MATH 240`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Required Core Courses: 103-106 credits. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Calculus I -> `MATH& 151`. complete at least 1 course from this set. alternate path `MATH& 152` or `MATH& 163`
 - Required before enrollment: Differential Equations -> `MATH 238`. complete at least 1 course from this set
 - Required before enrollment: Physics I -> `PHYS& 221`. complete at least 1 course from this set. alternate path `PHYS& 222`
@@ -751,7 +759,6 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: CSE 122 or TCSS 142 -> `CS 122`. complete at least 1 course from this set
 - Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-electrical-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1159,13 +1166,12 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-- `MATH 240`
+On To Do list.
 
 #### Required sequences for specific credits
 
 - Required before enrollment: TCSS 141 or TCSS 142. complete at least 1 course from this set
 - Required before enrollment: TINFO 452 Windows System Admin or TINFO 457 Unix System Admin. complete at least 1 course from this set
-- Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-information-technology:source-degree-map:.
@@ -1395,7 +1401,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AM-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1435,15 +1441,10 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-- `MATH& 151`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before application: Calculus I-III sequence -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
 - Required before enrollment: Electives (20 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: TMATH 496 or TMATH 498 or TMATH 499. complete at least 1 course from this set
 - Required before enrollment: TMATH 351 or TMATH 450. complete at least 1 course from this set
@@ -1661,7 +1662,6 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before application: Psychology foundations
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
@@ -1690,26 +1690,26 @@ Source-generated from parsed UW requirement-source registries.
 - (2) Minimum grade of 2.0/C required in each course.
 - (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)
 - (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.
-- \* Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.
-- \*\* Total may vary based on the number of college level credits applied toward the degree.
+- \* Successful (C or 2.0 or higher) completion of a course in statistics is a prerequisite for TSOCWF 390.
 - 10 credits of writing-intensive course work (3)
-- 12 credits
-- 13 credits
-- 14 credits
-- 15 credits
+- 20 credits
+- 20 credits; Two of four courses met (4) with prerequisite courses
+- 5 credits may be met with a required introductory statistics course
+- 5 credits of English composition (2)
+- 5 credits of English composition (2) ; Met with prerequisite course
 
 ##### Social Welfare (BA) parsed official requirement cues
 
 - (2) Minimum grade of 2.0/C required in each course.
 - (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)
 - (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.
-- \* Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.
-- \*\* Total may vary based on the number of college level credits applied toward the degree.
+- \* Successful (C or 2.0 or higher) completion of a course in statistics is a prerequisite for TSOCWF 390.
 - 10 credits of writing-intensive course work (3)
-- 12 credits
-- 13 credits
-- 14 credits
-- 15 credits
+- 20 credits
+- 20 credits; Two of four courses met (4) with prerequisite courses
+- 5 credits may be met with a required introductory statistics course
+- 5 credits of English composition (2)
+- 5 credits of English composition (2) ; Met with prerequisite course
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
@@ -1722,11 +1722,7 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Electives - Attendance during summer quarter may be optional, but is likely needed. Consult with an academic advisor. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 20 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.. note: Credit bucket placeholder extracted from source text.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1799,100 +1795,54 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [BA in Sustainable Urban Development](https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development)
-- [BA in Sustainable Urban Development](https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Sustainable Urban Development degree requirements](https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development)
+- [UW Tacoma Sustainable Urban Development degree requirements](https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development) - Source used for parser-backed UW requirement extraction.
 
 ##### Sustainable Urban Development (BA) parsed official source requirements
 
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- ADMISSION REQUIREMENTS
+- The School of Urban Studies at UW Tacoma offers a BA in Sustainable Urban Development. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
+- Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
+- Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
+- Admission Requirements
+- Completion of a minimum of 40 college-level credits
+- 5 credits of English composition
+- Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
+- Transfer students meeting the above requirements may apply directly to the major.
+- First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
 
 ##### Sustainable Urban Development (BA) parsed official requirement cues
 
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- ADMISSION REQUIREMENTS
+- The School of Urban Studies at UW Tacoma offers a BA in Sustainable Urban Development. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
+- Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
+- Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
+- Admission Requirements
+- Completion of a minimum of 40 college-level credits
+- 5 credits of English composition
+- Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
+- Transfer students meeting the above requirements may apply directly to the major.
+- First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
 
-##### Sustainable Urban Development (BA) parsed official requirement cues
+##### Sustainable Urban Development (BA) parsed choices and pathway notes
 
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- Graduation Requirements:
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Sustainable Urban Development (BA) parsed official requirement cues
-
-- Graduation Requirements
-- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-- Graduation Requirements:
-- Major GPA: minimum 2.0 in each course required for the major
-- GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
+- Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
+- Formal options ( choose one option ) (25 credits)
+- Foundation Courses (25 credits, choose 5 courses)
+- Students declare one of the following formal options:
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: GIS 260 -> `GIS 260`
-- Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-01-sustainable-urban-development-ba-parsed-official-source-requirements.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-02-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-03-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-04-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-05-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-06-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-07-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-10-parsed-08-sustainable-urban-development-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:structured:uw-tacoma-sustainable-urban-development-degree-map-90-requirement-cues.
+- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program. note: Parsed from a source section heading and the following course rows.
+- Source-backed note: Parser confidence: high.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Urban Design (BS)

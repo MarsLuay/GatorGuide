@@ -524,9 +524,13 @@ export default function ProfilePage() {
     : selectorFieldBaseOverlayStyle;
   const isWideLayout = viewportWidth >= 820;
   const isDesktopLayout = viewportWidth >= 1200;
+  const isCompactPhone = viewportWidth < 390;
   const useDesktopFitLayout = Platform.OS === "web" && isDesktopLayout;
   const pageMaxWidth = isDesktopLayout ? 1280 : 1040;
   const earlyStateMaxWidth = Math.min(pageMaxWidth, isDesktopLayout ? 760 : isWideLayout ? 680 : 448);
+  const shellHorizontalPadding = isWideLayout ? 24 : isCompactPhone ? 16 : 20;
+  const profileContentPadding = isWideLayout ? 24 : isCompactPhone ? 18 : 20;
+  const stackProfileActionButtons = viewportWidth < 460;
   const avatarSize = isDesktopLayout ? 88 : isWideLayout ? 76 : 56;
   const avatarFallbackSize = isDesktopLayout ? 38 : isWideLayout ? 32 : 26;
   const desktopPanelGap = 16;
@@ -1070,7 +1074,10 @@ export default function ProfilePage() {
   };
 
   const renderProfileHero = () => (
-    <View className="bg-emerald-500/5 px-6 py-5 border-b border-emerald-500/20">
+    <View
+      className="bg-emerald-500/5 py-5 border-b border-emerald-500/20"
+      style={{ paddingHorizontal: profileContentPadding }}
+    >
       <View className="flex-row items-center">
         <View className="relative mr-4 pb-1 pr-1">
           <AnimatedIconPressable
@@ -1145,17 +1152,30 @@ export default function ProfilePage() {
       {user?.isGuest ? (
         <AnimatedCardPressable
           onPress={handleCreateAccount}
-          className={`${guestCtaCardClass} rounded-xl p-5 flex-row items-center justify-between mb-4`}
-          style={guestCtaCardStyle}
+          className={`${guestCtaCardClass} rounded-xl p-5 mb-4`}
+          style={[
+            guestCtaCardStyle,
+            {
+              flexDirection: isWideLayout ? "row" : "column",
+              alignItems: isWideLayout ? "center" : "stretch",
+              justifyContent: "space-between",
+              gap: 12,
+            },
+          ]}
         >
-          <View className="flex-1 pr-3">
+          <View style={{ flex: isWideLayout ? 1 : undefined, paddingRight: isWideLayout ? 12 : 0 }}>
             <View className="flex-row items-center mb-2">
               <MaterialIcons name="stars" size={20} color={guestCtaIconColor} />
               <Text className={`${guestCtaTextClass} font-bold text-base ml-2`}>{t("profile.createAccount")}</Text>
             </View>
             <Text className={`${guestCtaBodyClass} text-sm`}>{t("profile.saveDataMessage")}</Text>
           </View>
-          <MaterialIcons name="arrow-forward" size={24} color={guestCtaIconColor} />
+          <MaterialIcons
+            name="arrow-forward"
+            size={24}
+            color={guestCtaIconColor}
+            style={isWideLayout ? undefined : { alignSelf: "flex-end" }}
+          />
         </AnimatedCardPressable>
       ) : (
         <ProfileField
@@ -1423,7 +1443,14 @@ export default function ProfilePage() {
         <View className="flex-row items-start min-w-0">
           <MaterialIcons name="assignment" size={20} color="#008f4e" />
           <View className="flex-1 ml-3 min-w-0">
-            <View className="flex-row items-start justify-between gap-3">
+            <View
+              style={{
+                flexDirection: stackProfileActionButtons ? "column" : "row",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                gap: stackProfileActionButtons ? 8 : 12,
+              }}
+            >
               <View className="flex-1 min-w-0">
                 <Text className={`text-sm ${secondaryTextClass} mb-1`}>
                   {t("profile.questionnaire")}
@@ -1461,7 +1488,7 @@ export default function ProfilePage() {
   if (!isHydrated) {
     return (
       <ScreenBackground>
-        <View className="flex-1 justify-center px-6">
+        <View className="flex-1 justify-center" style={{ paddingHorizontal: shellHorizontalPadding }}>
           <View style={{ width: "100%", maxWidth: earlyStateMaxWidth, alignSelf: "center" }}>
             <StateCard variant="loading" className="w-full" />
           </View>
@@ -1474,7 +1501,7 @@ export default function ProfilePage() {
   if (!user) {
     return (
       <ScreenBackground>
-        <View className="flex-1 justify-center px-6">
+        <View className="flex-1 justify-center" style={{ paddingHorizontal: shellHorizontalPadding }}>
           <View style={{ width: "100%", maxWidth: earlyStateMaxWidth, alignSelf: "center" }}>
             <StateCard
               variant="empty"
@@ -1495,7 +1522,7 @@ export default function ProfilePage() {
   if (user?.isGuest && !showGuestProfile) {
     return (
       <ScreenBackground>
-        <View className="flex-1 justify-center px-6">
+        <View className="flex-1 justify-center" style={{ paddingHorizontal: shellHorizontalPadding }}>
           <View style={{ width: "100%", maxWidth: earlyStateMaxWidth, alignSelf: "center" }}>
             <View className="items-center mb-8">
               <View className="bg-emerald-500 p-4 rounded-full mb-4">
@@ -1556,7 +1583,7 @@ export default function ProfilePage() {
                   width: "100%",
                   maxWidth: pageMaxWidth,
                   alignSelf: "center",
-                  paddingHorizontal: 24,
+                  paddingHorizontal: shellHorizontalPadding,
                 }}
               >
               {user?.isGuest && showGuestProfile ? (
@@ -1574,10 +1601,16 @@ export default function ProfilePage() {
                         <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("profile.yourDataSaved")}</Text>
                       </View>
                     </View>
-                    <View className="flex-row gap-2">
+                    <View
+                      style={{
+                        flexDirection: stackProfileActionButtons ? "column" : "row",
+                        gap: 8,
+                      }}
+                    >
                       <AnimatedChipPressable
                         onPress={handleImportData}
                         className={`rounded-xl px-4 py-3 flex-row items-center justify-center ${isLight ? "bg-emerald-200" : "bg-emerald-500"}`}
+                        containerStyle={stackProfileActionButtons ? { width: "100%" } : undefined}
                       >
                         <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
                         <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold ml-2`}>
@@ -1587,6 +1620,7 @@ export default function ProfilePage() {
                       <AnimatedChipPressable
                         onPress={handleExportData}
                         className={`rounded-xl px-4 py-3 flex-row items-center justify-center ${cardBgClass} border-2 border-emerald-500`}
+                        containerStyle={stackProfileActionButtons ? { width: "100%" } : undefined}
                       >
                         <MaterialIcons name="file-upload" size={18} color="#008f4e" />
                         <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
@@ -1616,7 +1650,7 @@ export default function ProfilePage() {
                   {renderProfileHero()}
                   <View
                     style={{
-                      paddingHorizontal: 24,
+                      paddingHorizontal: profileContentPadding,
                       paddingVertical: 24,
                       paddingBottom: 28,
                     }}
@@ -1671,7 +1705,7 @@ export default function ProfilePage() {
           >
             <View style={{ width: "100%", maxWidth: pageMaxWidth }} className="self-center">
           {user?.isGuest && showGuestProfile ? (
-            <View className="px-6 pt-6">
+            <View className="pt-6" style={{ paddingHorizontal: shellHorizontalPadding }}>
               <View
                 className={`${cardBgClass} border-2 border-emerald-500/20 rounded-2xl p-5 mb-4`}
                 style={isWideLayout ? desktopProfileFrameStyle : undefined}
@@ -1685,17 +1719,24 @@ export default function ProfilePage() {
                     <Text className={`${secondaryTextClass} text-xs`}>{t("profile.yourDataSaved")}</Text>
                   </View>
                 </View>
-                <View className="flex-row gap-2">
+                <View
+                  style={{
+                    flexDirection: stackProfileActionButtons ? "column" : "row",
+                    gap: 8,
+                  }}
+                >
                   <AnimatedChipPressable
                     onPress={handleImportData}
-                    className={`flex-1 ${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-xl px-4 py-3 flex-row items-center justify-center`}
+                    className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-xl px-4 py-3 flex-row items-center justify-center`}
+                    containerStyle={stackProfileActionButtons ? { width: "100%" } : { flex: 1 }}
                   >
                     <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
                     <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("settings.import")}</Text>
                   </AnimatedChipPressable>
                   <AnimatedChipPressable
                     onPress={handleExportData}
-                    className={`flex-1 ${cardBgClass} border-2 border-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
+                    className={`${cardBgClass} border-2 border-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
+                    containerStyle={stackProfileActionButtons ? { width: "100%" } : { flex: 1 }}
                   >
                     <MaterialIcons name="file-upload" size={18} color="#008f4e" />
                     <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
@@ -1705,14 +1746,14 @@ export default function ProfilePage() {
             </View>
           ) : null}
           {/* Header */}
-          <View className="px-6 pt-6 pb-2">
+          <View className="pt-6 pb-2" style={{ paddingHorizontal: shellHorizontalPadding }}>
             <View style={isWideLayout ? desktopProfileFrameStyle : undefined}>
               <Text className={`text-2xl ${textClass} font-semibold`}>{t("home.yourProfile")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>{t("profile.yourDataSaved")}</Text>
             </View>
           </View>
 
-          <View className="px-6">
+          <View style={{ paddingHorizontal: shellHorizontalPadding }}>
             {isWideLayout ? (
               <View
                 style={{
@@ -1725,7 +1766,7 @@ export default function ProfilePage() {
                   style={profileCardOverlayStyle}
                 >
                   {renderProfileHero()}
-                  <View className="px-6 py-6">
+                  <View className="py-6" style={{ paddingHorizontal: profileContentPadding }}>
                     {renderProfileFields()}
                     {renderDocumentFields()}
                   </View>
@@ -1739,7 +1780,7 @@ export default function ProfilePage() {
                 style={profileCardOverlayStyle}
               >
                 {renderProfileHero()}
-                <View className="px-6 py-6">
+                <View className="py-6" style={{ paddingHorizontal: profileContentPadding }}>
                   {renderProfileFields()}
                   {renderDocumentFields()}
                 </View>

@@ -214,10 +214,10 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-economics:pathway:strategy",
-    "ownerKey": "uw-seattle-economics:pathway:strategy",
+    "ownerId": "uw-seattle-economics:pathway:bs-option-family:strategy",
+    "ownerKey": "uw-seattle-economics:pathway:bs-option-family:strategy",
     "planId": "uw-seattle-economics",
-    "pathwayId": "strategy",
+    "pathwayId": "bs-option-family:strategy",
     "ownerTitle": "Economics - Strategy",
     "campusId": "uw-seattle",
     "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",

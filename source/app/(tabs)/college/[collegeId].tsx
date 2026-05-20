@@ -641,7 +641,12 @@ export default function CollegeDetailsPage() {
 
   return (
     <ScreenBackground>
-      <ScrollView className="flex-1" keyboardShouldPersistTaps="handled" contentContainerStyle={scrollContentPadding}>
+      <ScrollView
+        className="flex-1"
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <View
           style={{
             width: "100%",

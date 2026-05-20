@@ -275,6 +275,19 @@ function hasSupportOnlyLineCue(line) {
     return false;
   }
   if (
+    /\b(?:after|once|when)\s+(?:complet(?:ing|ed)|finish(?:ing|ed))\b.{0,180}\b(?:students?\s+)?(?:may|can)\s+(?:also\s+)?take\b/i.test(
+      normalizedLine
+    ) ||
+    (/\bfulfill(?:ing|ed)?\s+(?:the\s+)?(?:university|college|campus)\s+requirements?\b/i.test(
+      normalizedLine
+    ) &&
+      (/\b(?:students?\s+)?(?:may|can)\s+(?:also\s+)?take\b/i.test(normalizedLine) ||
+        /\bmay\s+have\s+to\s+take\s+additional\s+courses?\b/i.test(normalizedLine) ||
+        /\bencouraged\s+to\s+(?:take|enroll)\b/i.test(normalizedLine)))
+  ) {
+    return true;
+  }
+  if (
     /\b(?:as well as|which can include|can include|up to)\b.{0,140}\bcount(?:s|ed)?\s+(?:toward|required(?:\s+for\s+graduation)?)\b/i.test(
       normalizedLine
     ) ||

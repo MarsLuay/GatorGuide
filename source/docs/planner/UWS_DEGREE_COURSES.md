@@ -97,7 +97,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -105,7 +105,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac](https://aes.washington.edu/ba-american-ethnic-studies)
-- [Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac](https://aes.washington.edu/ba-american-ethnic-studies) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac](https://aes.washington.edu/ba-american-ethnic-studies) - Source used for parser-backed UW requirement extraction.
 
 ##### American Ethnic Studies parsed official source requirements
 
@@ -119,7 +119,6 @@ Source-generated from parsed UW requirement-source registries.
 - 30 credits (6 courses) must come from the core courses:
 - 5 credits: AAS 101 -- Introduction to Asian American Studies (I&amp;S, DIV)
 - 5 credits: AFRAM 101 -- Introduction to African American Studies (I&amp;S, DIV)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### American Ethnic Studies parsed official requirement cues
 
@@ -133,7 +132,6 @@ Source-generated from parsed UW requirement-source registries.
 - 30 credits (6 courses) must come from the core courses:
 - 5 credits: AAS 101 -- Introduction to Asian American Studies (I&amp;S, DIV)
 - 5 credits: AFRAM 101 -- Introduction to African American Studies (I&amp;S, DIV)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### American Ethnic Studies parsed choices and pathway notes
 
@@ -142,20 +140,15 @@ Source-generated from parsed UW requirement-source registries.
 - Asian American/PIA Studies concentration
 - Chicano/a Studies concentration
 - Comparative American Ethnic Studies concentration
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
-- `AMES 100`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: Ethnic studies and related social-science foundation -> `AMES 100`
-- Worth finishing at Green River: History and humanities support for concentration work -> `HUMAN 100`
-- Worth finishing at Green River: Writing-heavy humanities support -> `ENGL& 101`
+- Required before enrollment: Core Courses. complete at least 6 courses from this set. note: Parsed from a source section heading and the following course rows.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-american-ethnic-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -210,6 +203,8 @@ On To Do list.
 - Required before enrollment: 10 credits/both courses. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 10 credits, two courses selected from. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Governance Concentration Courses. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Environment and Health Concentration Courses. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Culture and History Concentration Courses. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 10 credits: additional courses in AIS or approved courses taught by AIS Adjunct Faculty. note: Credit bucket placeholder extracted from source text.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-american-indian-studies:source-degree-map:.
@@ -228,13 +223,10 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW General Catalog Anthropology page](https://www.washington.edu/students/gencat/program/S/Anthropology-102.html)
-- [UW General Catalog Anthropology page](https://www.washington.edu/students/gencat/program/S/Anthropology-102.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW General Catalog Anthropology page](https://www.washington.edu/students/gencat/program/S/Anthropology-102.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Anthropology parsed official source requirements
 
-- The Department of Anthropology is committed to describing, interpreting, and explaining the historical, biological, and cultural diversity of the human species. The department offers three distinct academic programs: archaeology, biocultural anthropology, and sociocultural anthropology. Additional emphases include medical anthropology and global health, archaeological sciences, and anthropology of globalization.
-- Suggested First- and Second-Year College Courses: any 200-level ARCHY course; BIO A 201; any 200-level ANTH course; and one from CS&amp;SS 221/SOC 221/STAT 221, STAT 220, STAT 311, Q SCI 381, or ARCHY 495.
-- Admission Requirements
 - The undergraduate program leads to the Bachelor of Arts degree. After completing required courses within the anthropology core, students can elect to focus on one area or take courses in different areas within the major, including archaeology, biocultural anthropology and sociocultural anthropology. Additionally, students may complete an undergraduate option in medical anthropology and global health, archaeological sciences, anthropology of globalization, or human evolutionary biology.
 - Completion Requirements
 - 55 credits
@@ -242,13 +234,11 @@ Source-generated from parsed UW requirement-source registries.
 - 35 additional ANTH, ARCHY, and BIO A credits distributed across the subfields or concentrated as suits the interests of the student. Minimum 20 of these credits in upper-division (300- or 400-level) courses. One 100-level ANTH, ARCHY, or BIO A course, or AIS 102 may be counted toward the major, but is not required.
 - The following AIS courses may apply toward this requirement: AIS 202, AIS 203, AIS 209, AIS 210, AIS 311, AIS 330, AIS 335, AIS 340, AIS 425, AIS 443, AIS 480. No limit on the number of AIS courses that may apply to this requirement.
 - Maximum 12 credits (18 credits for departmental Honors students) from ANTH 499, ARCHY 499, and BIO A 499 combined may be counted toward the major.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Additional major requirements:
+- Minimum 15 upper-division credits in anthropology completed through the UW.
 
 ##### Anthropology parsed official requirement cues
 
-- The Department of Anthropology is committed to describing, interpreting, and explaining the historical, biological, and cultural diversity of the human species. The department offers three distinct academic programs: archaeology, biocultural anthropology, and sociocultural anthropology. Additional emphases include medical anthropology and global health, archaeological sciences, and anthropology of globalization.
-- Suggested First- and Second-Year College Courses: any 200-level ARCHY course; BIO A 201; any 200-level ANTH course; and one from CS&amp;SS 221/SOC 221/STAT 221, STAT 220, STAT 311, Q SCI 381, or ARCHY 495.
-- Admission Requirements
 - The undergraduate program leads to the Bachelor of Arts degree. After completing required courses within the anthropology core, students can elect to focus on one area or take courses in different areas within the major, including archaeology, biocultural anthropology and sociocultural anthropology. Additionally, students may complete an undergraduate option in medical anthropology and global health, archaeological sciences, anthropology of globalization, or human evolutionary biology.
 - Completion Requirements
 - 55 credits
@@ -256,47 +246,20 @@ Source-generated from parsed UW requirement-source registries.
 - 35 additional ANTH, ARCHY, and BIO A credits distributed across the subfields or concentrated as suits the interests of the student. Minimum 20 of these credits in upper-division (300- or 400-level) courses. One 100-level ANTH, ARCHY, or BIO A course, or AIS 102 may be counted toward the major, but is not required.
 - The following AIS courses may apply toward this requirement: AIS 202, AIS 203, AIS 209, AIS 210, AIS 311, AIS 330, AIS 335, AIS 340, AIS 425, AIS 443, AIS 480. No limit on the number of AIS courses that may apply to this requirement.
 - Maximum 12 credits (18 credits for departmental Honors students) from ANTH 499, ARCHY 499, and BIO A 499 combined may be counted toward the major.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Anthropology parsed choices and pathway notes
-
-- Bachelor of Arts degree with a major in Anthropology: Anthropology of Globalization
-- Bachelor of Arts degree with a major in Anthropology: Archaeological Sciences
-- Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology
-- Bachelor of Arts degree with a major in Anthropology: Indigenous Archaeology
-- Bachelor of Arts degree with a major in Anthropology: Medical Anthropology and Global Health
-- Bachelor of Science degree with a major in Anthropology: Archaeological Sciences
-- Bachelor of Science degree with a major in Anthropology: Human Evolutionary Biology
-- Bachelor of Science degree with a major in Anthropology: Medical Anthropology and Global Health
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Additional major requirements:
+- Minimum 15 upper-division credits in anthropology completed through the UW.
 
 #### GRC Equivalent Courses
 
-- `MATH& 146`
 - `ANTH& 205`
+- `MATH& 146`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Option courses: Requirements for the general anthropology major, as shown above, to include 20 credits from courses in ANTH, ARCHY, and BIO A approved for the Anthropology of Globalization option. A list of approved courses is available on the department website.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option courses: Requirements for the general anthropology major, as shown above, to include at least 15 credits from courses approved for the Archaeological Sciences core, and at least 15 credits from courses approved for the ASc elective lists. Lists of approved courses are available on the department website.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option courses: Requirements for the general anthropology major, as shown above, to include BIO A 351 or BIO A 355; either BIO A 101 or BIO A 348; and 15 credits from courses approved for the Human Evolutionary Biology option. A list of approved courses is available on the department website.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option courses: Requirements for the general anthropology major, as shown above, to include AIS 102, three courses from the approved Indigenous Archaeology (IA) core list, and 15 credits from courses approved for the IA elective list. Lists of approved courses are available on the department website.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option courses: Requirements for the general anthropology major, as shown above, to include either ANTH 215 or ANTH 302 and 15 additional credits from ANTH, ARCHY, and BIO A courses approved for the Medical Anthropology and Global Health option. A list of approved courses is available on the department website.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option Courses (50 credits): minimum 15 credits from approved ASc elective course list. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option Courses (50 credits): see department website for approved courses. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: 50 credits of Natural World. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option Courses (50 credits): minimum 35 credits from approved HEB course list. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Option Courses (50 credits): minimum 45 credits from courses approved for the MAGH list. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Required Courses (8 credits): ARCHY 510, ARCHY 599. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Statistical sequence - one from below or approved by faculty (minimum 8 credits): Course list maintained internally by the program.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Core Requirements (25 credits): ANTH 550, ANTH 551, ANTH 565, ANTH 566, ANTH 567. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Required Courses (8 credits): ARCHY 510 and ARCHY 599. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: ARCHY 495 or BIOA 201 or QSCI 381 or SOC 221 or STAT 220 or STAT 221 or STAT 311 -> `MATH& 146`. complete at least 1 course from this set. alternate path `ANTH& 205`
+- Required before enrollment: one from the following: CS&amp;SS 221/SOC 221/STAT 221, STAT 220, STAT 311, Q SCI 381, or ARCHY 495 -> `MATH& 146`. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-anthropology:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Applied & Computational Mathematical Sciences (ACMS)
@@ -377,8 +340,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Applied Mathematics major requirements](https://amath.washington.edu/undergraduate-major-applied-mathematics)
-- [UW Applied Mathematics major requirements](https://amath.washington.edu/undergraduate-major-applied-mathematics) - Source used for parser-backed UW requirement extraction.
+- [B.S. in Applied Mathematics](https://amath.washington.edu/undergraduate-major-applied-mathematics)
+- [B.S. in Applied Mathematics](https://amath.washington.edu/undergraduate-major-applied-mathematics) - Source used for parser-backed UW requirement extraction.
 
 ##### Applied Mathematics parsed official source requirements
 
@@ -420,6 +383,11 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Computing -> `ENGR 250`. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Introductory Applied Mathematics. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Methods of Applied Mathematics. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Modeling. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Computing and Data Sciences. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: MATH 124, MATH 125, MATH 126 or MATH 134, MATH 135, MATH 136 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-applied-mathematics:source-degree-map:.
@@ -439,7 +407,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Aquatic Conservation and Ecology major requirements](https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/)
-- [UW Aquatic Conservation and Ecology major requirements](https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Aquatic Conservation and Ecology major requirements](https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/) - Source used for parser-backed UW requirement extraction.
 
 ##### Aquatic Conservation &amp; Ecology degree preparation and admissions
 
@@ -447,38 +415,35 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Aquatic Conservation &amp; Ecology parsed official source requirements
 
-- 10 credits. CLAS 205 and COM 220 are recommended.
-- Additional Areas of Inquiry
-- 10 credits
-- = 88 credits
-- ACE Departmental Degree Requirements
-- The following documents will be helpful in planning your degree. It is also recommended that students meet with the SAFS Undergraduate Adviser early and often for help in degree planning and staying on track to graduation.
-- Degree Requirements Checklist
+- (1–2 credits)
+- (10–15 credits)
 - (15 credits)
-- Q SCI 291, 292 or MATH 124, 125 (calculus)
-- Q SCI 381 or STAT 311 (statistics)
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- (15 credits) All of these courses will count towards the UW Additional Writing (W) requirement.
+- (3 credits)
+- (3–5 credits)
+- (4 credits)
+- (5 credits)
+- (max. 7 credits) This is optional, but recommended for students who intend to pursue advanced degrees.
+- (min. 5 credits)
 
 ##### Aquatic Conservation &amp; Ecology parsed official requirement cues
 
-- 10 credits. CLAS 205 and COM 220 are recommended.
-- Additional Areas of Inquiry
-- 10 credits
-- = 88 credits
-- ACE Departmental Degree Requirements
-- The following documents will be helpful in planning your degree. It is also recommended that students meet with the SAFS Undergraduate Adviser early and often for help in degree planning and staying on track to graduation.
-- Degree Requirements Checklist
+- (1–2 credits)
+- (10–15 credits)
 - (15 credits)
-- Q SCI 291, 292 or MATH 124, 125 (calculus)
-- Q SCI 381 or STAT 311 (statistics)
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- (15 credits) All of these courses will count towards the UW Additional Writing (W) requirement.
+- (3 credits)
+- (3–5 credits)
+- (4 credits)
+- (5 credits)
+- (max. 7 credits) This is optional, but recommended for students who intend to pursue advanced degrees.
+- (min. 5 credits)
 
 ##### Aquatic Conservation &amp; Ecology parsed choices and pathway notes
 
-- One of the following:
 - One of the following (or other, approved by petition )
+- One of the following:
 - Practicum Option
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -487,10 +452,10 @@ Source-generated from parsed UW requirement-source registries.
 - `BIOL& 213`
 - `CHEM& 121`
 - `CHEM& 131`
+- `CMST& 220`
 - `MATH& 151`
 - `MATH& 152`
 - `PHYS& 221`
-- `CMST& 220`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
@@ -499,12 +464,20 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: CLAS 205 -> `CMST& 220`. note: Auto-promoted because the published UW requirement line groups CLAS 205 with other source-backed options that already resolve to real Green River prep paths.
+- Required before enrollment: Biology -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Life in Water. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: People and the Environment. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Connecting to Career Pathways. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Programming &amp; Data Science. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: ACE Core required courses. complete at least 2 courses from this set. note: Parsed from course rows before an explicit source choice cue.
+- Required before enrollment: ACE Core choice. note: Parsed from an explicit source choice cue inside a sectioned requirement.
+- Required before enrollment: Communicating Science. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Data Analysis &amp; Modeling. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Students must complete at least 20 credits total of approved elective courses with the following distribution requirements:. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Q SCI 291, 292 or MATH 124, 125 (calculus) -> `MATH& 151`, `MATH& 152`. complete at least 1 course from this set
 - Required before enrollment: Q SCI 381 or STAT 311 (statistics). complete at least 1 course from this set
 - Required before enrollment: CHEM 120 or both CHEM 142, 152 (general chemistry) -> `CHEM& 121`. complete at least 1 course from this set. alternate path `CHEM& 161` or `CHEM& 162`, `CHEM& 163`
 - Required before enrollment: CHEM 220, OCEAN 295, CHEM 223, or CHEM 237 (organic chemistry) -> `CHEM& 131`. complete at least 1 course from this set. alternate path `CHEM& 261`
-- Required before enrollment: BIOL 220 or FISH 270 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. complete at least 1 course from this set
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
 - Source-backed note: Choice-set supporting UW codes: COM 220.
@@ -512,7 +485,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Requirement cue lines: 10 credits. CLAS 205 and COM 220 are recommended.
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-aquatic-conservation-and-ecology:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -827,7 +799,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Asian Studies major page](https://jsis.washington.edu/programs/undergraduate/asia-studies/)
+- [Scoped section: Students may select any Asian language to fulfill the two-year requirement. Students who are native speakers of an Asian](https://jsis.washington.edu/programs/undergraduate/asia-studies/)
 - [UW Asian Studies major page](https://jsis.washington.edu/programs/undergraduate/asia-studies/) - Source used for parser-backed UW requirement extraction.
 
 ##### Asian Studies parsed official source requirements
@@ -1106,7 +1078,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Bioengineering degree requirements](https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/)
-- [UW Bioengineering degree requirements](https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Bioengineering degree requirements](https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/) - Source used for parser-backed UW requirement extraction.
 
 ##### Bioengineering parsed official source requirements
 
@@ -1120,7 +1092,6 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - MATH 124, 125, 126
 - MATH 207 or AMATH 351
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Bioengineering parsed official requirement cues
 
@@ -1134,7 +1105,6 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - MATH 124, 125, 126
 - MATH 207 or AMATH 351
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Bioengineering parsed choices and pathway notes
 
@@ -1143,8 +1113,6 @@ Source-generated from parsed UW requirement-source registries.
 - The capstone project should relate to the chosen senior emphasis. Students may choose a path that includes integrated design and research (BIOEN 401 &amp; 402), or a path that includes a small-group design project (BIOEN 404 &amp; 405) plus additional engineering elective credit as needed. If the group/team design project path is chosen, extracurricular research is encouraged but not required.
 - Data Science Option
 - Nano &amp; Molecular Engineering (NME) Option
-- PHD Data Science Option
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Bioengineering source-backed general education requirements
 
@@ -1177,9 +1145,6 @@ Source-generated from parsed UW requirement-source registries.
 - `MATH& 163`
 - `PHYS& 221`
 - `PHYS& 222`
-- `ENGL& 101`
-- `MATH& 153`
-- `MATH& 254`
 - `ENGR& 214`
 - `ENGR& 225`
 - `ENGR& 204`
@@ -1188,12 +1153,6 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before application: English Composition -> `ENGL& 101`
-- Required before application: MATH 124, 125, 126 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Required before application: CHEM 142, 152, 162 -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`
-- Required before application: PHYS 121 -> `PHYS& 221`
-- Required before application: BIOL 180, 200, 220 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`
-- Required before application: AMATH 301 -> `ENGR 250`
 - Required before enrollment: Bioengineering Senior Elective Courses (15 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Approved Engineering Electives (9-12 credits) -> `ENGR& 214`, `ENGR& 225`, `CS 122`, `CS 123`, `ENGR& 204`, `ENGR& 114`, `ENGR& 215`, `ENGR 140`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 44 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
@@ -1210,9 +1169,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: MATH 207 or AMATH 351 -> `MATH 238`
 - Required before enrollment: MATH 208 or AMATH 352 -> `MATH 240`
 - Required before enrollment: CHEM 223 or CHEM 237 -> `CHEM& 261`
-- Required before enrollment: PHYS 122 -> `PHYS& 222`
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-bioengineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1354,7 +1311,6 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: Approved calculus prerequisite. complete at least 1 course from this set. alternate path `MATH& 151` or `MATH& 152` or `MATH& 163`
-- Required before application: Microeconomics -> `ECON& 201`
 - Required before enrollment: 13 credits (minimum) of college-level composition and approved writing courses. Some may count toward the non-business requirement. Four of the twelve credits typically are BCMU 301 (Business Communications). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: MATH 112, MATH 124, MATH 125, MATH 126, MATH 134 or Q SCI 291 (Calculus) -> `MATH& 148`. complete at least 1 course from this set. alternate path `MATH& 151` or `MATH& 152` or `MATH& 163`
 - Source-backed note: Parser confidence: high.
@@ -1373,7 +1329,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Chemical Engineering curriculum](https://www.cheme.washington.edu/undergraduate_students/curriculum)
+- [Scoped section: The minimum number of credits required for a B.S.Ch.E degree is 180. Some courses cannot be counted toward degree requir](https://www.cheme.washington.edu/undergraduate_students/curriculum)
 - [UW Chemical Engineering curriculum](https://www.cheme.washington.edu/undergraduate_students/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Chemical Engineering parsed official source requirements
@@ -1484,6 +1440,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [BS Chemistry Checklist - ACS Certified (PDF)](https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf)
+- [Scoped section: BA Chemistry Checklist (PDF)](https://chem.washington.edu/ba-chemistry)
 - [UW BA in Chemistry requirements](https://chem.washington.edu/ba-chemistry)
 - [Scoped section: BA Chemistry Checklist (PDF)](https://chem.washington.edu/ba-chemistry) - Source used for parser-backed UW requirement extraction.
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
@@ -1689,14 +1646,6 @@ Source-generated from parsed UW requirement-source registries.
 - Critical concepts courses (10 credits):
 - one of CMS 302, CMS 303, or CMS 304
 
-##### Cinema &amp; Media Studies parsed choices and pathway notes
-
-- Bachelor of Arts degree with a major in Comparative Literature: Cinema Studies
-
-##### Cinema &amp; Media Studies parsed choices and pathway notes
-
-- Bachelor of Arts degree with a major in Comparative Literature: Cinema Studies
-
 #### GRC Equivalent Courses
 
 - `CMST 266`
@@ -1713,7 +1662,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-cinema-and-media-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Civil Engineering
@@ -1801,6 +1749,56 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-civil-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Classical Studies
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [UW Classical Studies degree requirements](https://classics.washington.edu/ba-classical-studies)
+- [UW Classical Studies degree requirements](https://classics.washington.edu/ba-classical-studies) - Source used for parser-backed UW requirement extraction.
+
+##### Classical Studies parsed official source requirements
+
+- M.A. Requirements
+- Ph.D. Requirements
+- Diversity &amp; Equity
+- Degree Requirements
+- The Classical Studies major is especially suited for students not preparing for graduate study in classics but wishing to explore the literature, history, art, archaeology, and philosophy of classical antiquity, primarily through English translation. Those with no previous exposure to ancient Greek or Latin can complete the Classical Studies major in two years.
+- Requirements for the major in Classical Studies (61-67 credits) are:
+- Either Greek or Latin through 307, or the equivalent (25-30 credits)
+- 34 additional credits chosen with department approval from the following courses: Greek and Latin at the 400 level; classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
+- CLAS 495, the Senior Essay (2-3 credits)
+
+##### Classical Studies parsed official requirement cues
+
+- M.A. Requirements
+- Ph.D. Requirements
+- Diversity &amp; Equity
+- Degree Requirements
+- The Classical Studies major is especially suited for students not preparing for graduate study in classics but wishing to explore the literature, history, art, archaeology, and philosophy of classical antiquity, primarily through English translation. Those with no previous exposure to ancient Greek or Latin can complete the Classical Studies major in two years.
+- Requirements for the major in Classical Studies (61-67 credits) are:
+- Either Greek or Latin through 307, or the equivalent (25-30 credits)
+- 34 additional credits chosen with department approval from the following courses: Greek and Latin at the 400 level; classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
+- CLAS 495, the Senior Essay (2-3 credits)
+
+#### GRC Equivalent Courses
+
+On To Do list.
+
+#### Required sequences for specific credits
+
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Source-backed note: Parser confidence: medium.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-classical-studies:source-degree-map:.
+- Source-backed note: Parsed requirement cues extracted from the current official source.
 
 
 ### Classics
@@ -2183,7 +2181,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Allen School CE-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/)
-- [Allen School CE-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core) - Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.
+- [Allen School CE-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science) - Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.
 - [Computer Engineering](https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf)
 - [Computer Engineering](https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf) - Source used for parser-backed UW requirement extraction.
 - [Study Abroad](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/study-abroad/)
@@ -2227,11 +2225,6 @@ Source-generated from parsed UW requirement-source registries.
 - `MATH 240`
 - `PHYS& 221`
 - `PHYS& 222`
-- `MATH& 151`
-- `MATH& 152`
-- `MATH& 163`
-- `MATH& 153`
-- `MATH& 254`
 - `CS 145`
 - `CHEM& 161`
 - `CHEM& 162`
@@ -2244,14 +2237,10 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before application: Calculus I-III sequence -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
 - Required before enrollment: CSE 123 or CSE 143 -> `CS 123`. complete at least 1 course from this set. alternate path `CS 145`. note: Source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Default Green River path is CS 123; CS 145 is preserved as the CSE 143 alternative for students on the legacy path.
 - Required before enrollment: EE 205 or EE 215 -> `ENGR& 204`. complete at least 1 course from this set. note: Source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Default Green River path is ENGR&amp; 204 for EE 215; EE 205 is preserved as the UW-only source option because no current source-backed Green River equivalent is mapped. Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: 10 additional credits approved natural science -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`, `PHYS& 223`, `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Degree sheet source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Approved CE Natural Science list source: <https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/> Concrete Green River options are included only where the UW-GRC equivalency guide proves the mapping; otherwise the category/list bucket remains visible.
 - Required before enrollment: 3-6 additional Math/Science -> `MATH 238`. note: Degree sheet source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Approved CE Natural Science list source: <https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/> MATH 207 is mapped to MATH 238 only because the UW-GRC guide proves that equivalency; the remaining approved list is represented by the placeholder until source-backed Green River mappings are available.
-- Required before enrollment: PHYS 121 -> `PHYS& 221`
-- Required before enrollment: PHYS 122 -> `PHYS& 222`
-- Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Required before enrollment: EE 215 -> `ENGR& 204`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-computer-engineering:source-degree-map:.
@@ -2270,7 +2259,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Allen School CS-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/)
+- [Allen School CE-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/)
 - [Computer Science](https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS__Fall23.pdf)
 - [Computer Science](https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS__Fall23.pdf) - Source used for parser-backed UW requirement extraction.
 
@@ -2334,9 +2323,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Choose thesis, project, or course-only option (0-9 credits):](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html)
 - [Bachelor of Science in Construction Management degree](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751)
 - [Bachelor of Science in Construction Management degree](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: Choose thesis, project, or course-only option (0-9 credits):](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html)
 
 ##### Construction Management parsed official source requirements
 
@@ -2410,9 +2399,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Capstone (3 credits): DANCE 595](https://www.washington.edu/students/gencat/program/S/Dance-133.html)
 - [Bachelor of Arts degree with a major in Dance](https://www.washington.edu/students/gencat/program/S/Dance-133.html#credential-60b927e9bcc770338fb5ecab)
 - [Bachelor of Arts degree with a major in Dance](https://www.washington.edu/students/gencat/program/S/Dance-133.html#credential-60b927e9bcc770338fb5ecab) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW General Catalog Dance requirements](https://www.washington.edu/students/gencat/program/S/Dance-133.html)
 
 ##### Dance parsed official source requirements
 
@@ -2758,53 +2747,83 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Degree requirements](https://www.washington.edu/students/gencat/program/S/Economics-135.html)
-- [Degree requirements](https://www.washington.edu/students/gencat/program/S/Economics-135.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Degree requirements](https://www.washington.edu/students/gencat/program/S/Economics-135.html) - Source used for parser-backed UW requirement extraction.
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
+- [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
+
+##### Economics before-enrollment degree head starts
+
+- MATH 120
 
 ##### Economics parsed official source requirements
 
+- Suggested First- and Second-Year College Courses : ECON 200, ECON 201; STAT 311; MATH 124. Courses that develop strong analytical and quantitative-reasoning skills.
+- Admission Requirements
+- Minimum 45 quarter credits, including ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134
+- Minimum 2.50 cumulative GPA for the following four courses: ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134, with a minimum 2.0 grade for each of these courses
 - Completion Requirements
-- 70 credits
-- Core Courses (40 credits):
-- STAT 311
-- MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136)
-- ECON 200, ECON 201, ECON 300, ECON 301. Minimum 2.0 grade in each course. ECON 300 and ECON 301 must be taken in residence as a matriculated student through the UW, Seattle.
-- Upper-Division Economics Courses (30 credits)
-- ECON 400, ECON 482; one of ECON 404 or ECON 485
-- Two courses from ECON 404, ECON 411, ECON 432, ECON 485, ECON 486, ECON 487
-- ECON 496, ECON 497, ECON 499 may not be applied to this requirement
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- 60 credits
+- Core Courses (35 credits):
+- MATH 124; STAT 311
+- ECON 200, ECON 201, ECON 300, ECON 301, ECON 382
+- Minimum 2.0 grade in ECON 200, ECON 201, ECON 300, ECON 301
 
 ##### Economics parsed official requirement cues
 
+- Suggested First- and Second-Year College Courses : ECON 200, ECON 201; STAT 311; MATH 124. Courses that develop strong analytical and quantitative-reasoning skills.
+- Admission Requirements
+- Minimum 45 quarter credits, including ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134
+- Minimum 2.50 cumulative GPA for the following four courses: ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134, with a minimum 2.0 grade for each of these courses
 - Completion Requirements
-- 70 credits
-- Core Courses (40 credits):
-- STAT 311
-- MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136)
-- ECON 200, ECON 201, ECON 300, ECON 301. Minimum 2.0 grade in each course. ECON 300 and ECON 301 must be taken in residence as a matriculated student through the UW, Seattle.
-- Upper-Division Economics Courses (30 credits)
-- ECON 400, ECON 482; one of ECON 404 or ECON 485
-- Two courses from ECON 404, ECON 411, ECON 432, ECON 485, ECON 486, ECON 487
-- ECON 496, ECON 497, ECON 499 may not be applied to this requirement
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- 60 credits
+- Core Courses (35 credits):
+- MATH 124; STAT 311
+- ECON 200, ECON 201, ECON 300, ECON 301, ECON 382
+- Minimum 2.0 grade in ECON 200, ECON 201, ECON 300, ECON 301
+
+##### Economics parsed choices and pathway notes
+
+- Minimum 45 quarter credits, including ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134
+- Minimum 2.50 cumulative GPA for the following four courses: ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134, with a minimum 2.0 grade for each of these courses
+- Minimum 2.50 cumulative GPA for the following four courses: ECON 200, ECON 201; STAT 311; one of the following: MATH 124 or MATH 134, with a minimum 2.0 grade for each of these courses.
+- Bachelor of Arts degree with a major in Economics: International Economics
+- Bachelor of Science degree with a major in Economics: Data Science
+- Bachelor of Science degree with a major in Economics: Financial Economics
+- Bachelor of Science degree with a major in Economics: Strategy
 
 #### GRC Equivalent Courses
 
 - `ECON& 201`
 - `ECON& 202`
+- `MATH 240`
+- `MATH& 142`
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
 
 #### Required sequences for specific credits
 
+- Required before enrollment: 50 credits of ECON prefix courses. note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: MATH 124, MATH 125, MATH 126 or MATH 134, MATH 135, MATH 136 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 1 course from this set
-- Required before enrollment: ECON 400, ECON 482; one of ECON 404 or ECON 485. complete at least 1 course from this set
+- Required before enrollment: one of the following: MATH 124 or MATH 134 -> `MATH& 151`. complete at least 1 course from this set
+- Required before enrollment: one of STAT 311, STAT 341, or STAT 390; MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136) -> `MATH& 151`. complete at least 1 course from this set. alternate path `MATH& 152` or `MATH& 163`
+- Required before enrollment: MATH 124 or STAT 311 or STAT 341 or STAT 390 -> `MATH& 151`. complete at least 1 course from this set
+- Required before enrollment: ECON 400 or ECON 401. complete at least 1 course from this set
+- Required before enrollment: ECON 405 or ECON 410 or ECON 411 or ECON 432 or ECON 481 or ECON 484 or ECON 485 or ECON 486 or ECON 487 or ECON 488. complete at least 1 course from this set
+- Required before enrollment: MATH 208 or AMATH 352 -> `MATH 240`. complete at least 1 course from this set
+- Required before enrollment: CSE 160 or CSE 163. complete at least 1 course from this set
+- Required before enrollment: one of ECON 404 or ECON 485. complete at least 1 course from this set
+- Required before enrollment: MATH 120 -> `MATH& 142`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for MATH 120.
+- Source-backed note: Added the Green River course path MATH&amp; 142 because the current planner rows did not expose it yet.
+- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH&amp; 142 for this UW requirement.
+- Source-backed note: Guide-backed rule: uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104.
+- Source-backed note: Requirement cue lines: Suggested First- and Second-Year College Courses: ECON 200, ECON 201, and MATH 120, MATH 124 and STAT 311. Additional calculus preparation during the first year is strongly recommended as MATH 125 and MATH 126 are required for admission. Courses that develop strong analytical and quantitative-reasoning skills.
+- Source-backed note: Source parse confidence: high.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-economics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Education, Communities & Organizations
@@ -2988,7 +3007,6 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: Advanced Electrical and Computer Engineering Electives (39 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: 45 credits of approved Electrical &amp; Computer Engineering Natural Science. note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses – scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list ). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: At least 20 EE course credits from the 39 credits of Advanced ECE Electives must be completed at the 400 level .. note: Credit bucket placeholder extracted from source text.
@@ -3001,6 +3019,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: 10 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 10 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 45 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 45 credits of approved Electrical &amp; Computer Engineering Natural Science. note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: PHYS 121 , PHYS 122 or PHYS 141 , PHYS 142 -> `PHYS& 221`, `PHYS& 222`. complete at least 1 course from this set
 - Required before enrollment: CSE 123 or CSE 143 or CSE 163 or EE 201 or EE 215 or EE 241 or EE 242 or EE 271 or EE 280 or EE 393 -> `CS 123`. complete at least 1 course from this set. alternate path `CS 145` or `ENGR& 204`
 - Required before enrollment: Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II -> `CS 123`. complete at least 1 course from this set. alternate path `CS 145`
@@ -3099,11 +3118,11 @@ On To Do list.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 
 
 ### Environmental Design & Sustainability
@@ -3117,9 +3136,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
 - [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c)
 - [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
 
 ##### Environmental Design &amp; Sustainability parsed official source requirements
 
@@ -3362,7 +3381,6 @@ Source-generated from parsed UW requirement-source registries.
 
 - [UW General Catalog ESRM degree requirements](https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html)
 - [UW General Catalog ESRM degree requirements](https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html) - Source used for parser-backed UW requirement extraction.
-- [UW General Catalog ESRM degree requirements](https://www.washington.edu/students/gencat/academic/sefs.html)
 
 ##### Environmental Science &amp; Terrestrial Resource Management parsed official source requirements
 
@@ -4229,18 +4247,10 @@ Source-generated from parsed UW requirement-source registries.
 - `CS 123`
 - `CS& 141`
 - `ENGL& 101`
-- `MATH& 151`
-- `MATH& 152`
-- `MATH& 163`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
 
 #### Required sequences for specific credits
 
 - Required before application: CSE 142 -> `CS& 141`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for CSE 142.
-- Required before application: Ten calculus credits -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 2 courses from this set
-- Required before application: Biology sequence -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`
 - Required before enrollment: Students must take 23 credits of HCDE electives, with at least 15 credits from the Engineering Electives list and at least 8 credits from the Systems and Society Electives list. Additional courses from the Engineering Electives list may also apply towards the Systems and Society Electives requirement if the Engineering Electives requirement has been satisfied. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Systems and Society Electives (8 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
@@ -4452,7 +4462,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Academics](https://ischool.uw.edu/programs/informatics/curriculum)
+- [UW Informatics curriculum](https://ischool.uw.edu/programs/informatics/curriculum)
 - [UW Informatics curriculum](https://ischool.uw.edu/academics/informatics/curriculum)
 - [UW Informatics curriculum](https://ischool.uw.edu/academics/informatics/curriculum) - Source used for parser-backed UW requirement extraction.
 
@@ -4522,43 +4532,42 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html)
-- [Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html) - Source used for parser-backed UW requirement extraction.
 
 ##### International Studies parsed official source requirements
 
-- The International Studies (Asia) major provides students with the background and analytical tools to understand the history and contemporary issues in Asia's many regions and countries. Students in this major can choose a general and cross-regional course of study, or they can concentrate in one of five countries/regions: China, Korea, Japan, South Asia and Southeast Asia.
-- Students may select any Asian language to fulfill the programs two-year college-level language requirement. Students who are native speakers of an Asian language may satisfy this requirement by demonstrating proof of fluency or proficiency through the second year college level.
-- Suggested First- and Second-Year College Courses: Either JSIS 203 or JSIS A 207, and two introductory Asian civilization courses (see major requirements, below). Progress toward two years of a relevant Asian language. Courses that develop writing skills, especially in the social sciences.
+- The Jackson School combines the social sciences, humanities, and professional fields to enhance understanding of our increasingly interconnected world. The International Studies program equips students with the skills (including writing and foreign languages) and the disciplinary tools needed to analyze global and regional issues and challenges. Students can choose from a variety of thematic and regional concentrations in shaping their course of study. The program's capstone experience provides students with a bridge between their academic and professional pursuits, either by participating in a team-based creation of policy reports and recommendations that are evaluated by external policy experts or by deepening their research and publication skills.
 - Admission Requirements
 - Completion Requirements
-- 80 credits
-- 30 credits or second-year equivalent language training in a language appropriate to student's concentration, plus 50 credits as follows:
-- Either JSIS 203 or JSIS A 207 (5 credits)
-- JSIS 201 (5 credits)
-- An Asian civilization course in student's concentration chosen from JSIS A 212/HSTAS 212, JSIS A 241/HSTAS 241, JSIS A 242, HSTAS 201, HSTAS 202, HSTAS 211, JSIS A 206, JSIS A 221/HSTAS 221 (5 credits)
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Competency in a language other than English through the second-year college level (proficiency requirement prior to graduation), plus 50 credits as follows:
+- Introductory Courses: 15 credits from JSIS 200, JSIS 201, JSIS 202, JSIS 203, RELIG 201, RELIG 202.
+- Political Economy: 5 credits from list of approved courses. Refer to department website for list of approved courses.
+- Culture, Power &amp; Religion: 5 credits from list of approved courses. Refer to department website for list of approved courses. No overlap allowed with courses chosen in "Concentration I/Themes".
+- Concentration I/Themes: 10 credits from one of following themes: (1) Environment and Health; (2) States and Markets; (3) Culture, Power and Religion; (4) Technology, Security and Diplomacy; (5) Rights and Movements. Refer to department website for list of approved courses.
+- Concentration II/Regions: 10 credits in one of the following regions: (1) Africa; (2) Americas; (3) Europe; (4) Russia/Eastern Europe/Central Asia; (5) Asia; (6) Middle East; (7) Arctic. Refer to department website for list of approved courses.
+- Capstone Experience (5 credits): JSIS 495 or JSIS 498
 
 ##### International Studies parsed official requirement cues
 
-- The International Studies (Asia) major provides students with the background and analytical tools to understand the history and contemporary issues in Asia's many regions and countries. Students in this major can choose a general and cross-regional course of study, or they can concentrate in one of five countries/regions: China, Korea, Japan, South Asia and Southeast Asia.
-- Students may select any Asian language to fulfill the programs two-year college-level language requirement. Students who are native speakers of an Asian language may satisfy this requirement by demonstrating proof of fluency or proficiency through the second year college level.
-- Suggested First- and Second-Year College Courses: Either JSIS 203 or JSIS A 207, and two introductory Asian civilization courses (see major requirements, below). Progress toward two years of a relevant Asian language. Courses that develop writing skills, especially in the social sciences.
+- The Jackson School combines the social sciences, humanities, and professional fields to enhance understanding of our increasingly interconnected world. The International Studies program equips students with the skills (including writing and foreign languages) and the disciplinary tools needed to analyze global and regional issues and challenges. Students can choose from a variety of thematic and regional concentrations in shaping their course of study. The program's capstone experience provides students with a bridge between their academic and professional pursuits, either by participating in a team-based creation of policy reports and recommendations that are evaluated by external policy experts or by deepening their research and publication skills.
 - Admission Requirements
 - Completion Requirements
-- 80 credits
-- 30 credits or second-year equivalent language training in a language appropriate to student's concentration, plus 50 credits as follows:
-- Either JSIS 203 or JSIS A 207 (5 credits)
-- JSIS 201 (5 credits)
-- An Asian civilization course in student's concentration chosen from JSIS A 212/HSTAS 212, JSIS A 241/HSTAS 241, JSIS A 242, HSTAS 201, HSTAS 202, HSTAS 211, JSIS A 206, JSIS A 221/HSTAS 221 (5 credits)
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Competency in a language other than English through the second-year college level (proficiency requirement prior to graduation), plus 50 credits as follows:
+- Introductory Courses: 15 credits from JSIS 200, JSIS 201, JSIS 202, JSIS 203, RELIG 201, RELIG 202.
+- Political Economy: 5 credits from list of approved courses. Refer to department website for list of approved courses.
+- Culture, Power &amp; Religion: 5 credits from list of approved courses. Refer to department website for list of approved courses. No overlap allowed with courses chosen in "Concentration I/Themes".
+- Concentration I/Themes: 10 credits from one of following themes: (1) Environment and Health; (2) States and Markets; (3) Culture, Power and Religion; (4) Technology, Security and Diplomacy; (5) Rights and Movements. Refer to department website for list of approved courses.
+- Concentration II/Regions: 10 credits in one of the following regions: (1) Africa; (2) Americas; (3) Europe; (4) Russia/Eastern Europe/Central Asia; (5) Asia; (6) Middle East; (7) Arctic. Refer to department website for list of approved courses.
+- Capstone Experience (5 credits): JSIS 495 or JSIS 498
 
 ##### International Studies parsed choices and pathway notes
 
-- The International Studies (Asia) major provides students with the background and analytical tools to understand the history and contemporary issues in Asia's many regions and countries. Students in this major can choose a general and cross-regional course of study, or they can concentrate in one of five countries/regions: China, Korea, Japan, South Asia and Southeast Asia.
-- Students may select any Asian language to fulfill the programs two-year college-level language requirement. Students who are native speakers of an Asian language may satisfy this requirement by demonstrating proof of fluency or proficiency through the second year college level.
-- An Asian civilization course in student's concentration chosen from JSIS A 212/HSTAS 212
+- The Jackson School combines the social sciences, humanities, and professional fields to enhance understanding of our increasingly interconnected world. The International Studies program equips students with the skills (including writing and foreign languages) and the disciplinary tools needed to analyze global and regional issues and challenges. Students can choose from a variety of thematic and regional concentrations in shaping their course of study. The program's capstone experience provides students with a bridge between their academic and professional pursuits, either by participating in a team-based creation of policy reports and recommendations that are evaluated by external policy experts or by deepening their research and publication skills.
+- Concentration II/Regions: 10 credits in one of the following regions: (1) Africa; (2) Americas; (3) Europe; (4) Russia/Eastern Europe/Central Asia; (5) Asia; (6) Middle East; (7) Arctic. Refer to department website for list of approved courses.
 - Bachelor of Arts degree with a major in International Studies: Asia
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Bachelor of Arts degree with a major in International Studies: Canada
+- Bachelor of Arts degree with a major in International Studies: Europe
+- Bachelor of Arts degree with a major in International Studies: Latin America and Caribbean
 
 #### GRC Equivalent Courses
 
@@ -4566,10 +4575,13 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: 35 credits of approved coursework from one regional or country concentration, or from the general Asia concentration. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Either JSIS 203 or JSIS A 207 (5 credits). complete at least 1 course from this set
+- Required before enrollment: Introductory Courses: 15 credits from JSIS 200, JSIS 201, JSIS 202, JSIS 203, RELIG 201, RELIG 202.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Political Economy: 5 credits from list of approved courses. Refer to department website for list of approved courses. Culture, Power &amp; Religion: 5 credits from list of approved courses. Refer to department website for list of approved courses. No overlap allowed with courses chosen in "Concentration I/Themes". Concentration I/Themes: 10 credits from one of following themes: (1) Environment and Health. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 5) Rights and Movements. Refer to department website for list of approved courses. Concentration II/Regions: 10 credits in one of the following regions: (1) Africa. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Culture, Power &amp; Religion: 5 credits from list of approved courses. Refer to department website for list of approved courses. No overlap allowed with courses chosen in "Concentration I/Themes". Concentration I/Themes: 10 credits from one of following themes: (1) Environment and Health. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Concentration II/Regions: 10 credits in one of the following regions: (1) Africa; (2) Americas; (3) Europe; (4) Russia/Eastern Europe/Central Asia; (5) Asia; (6) Middle East; (7) Arctic. Refer to department website for list of approved courses.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Capstone Experience (5 credits): JSIS 495 or JSIS 498. note: Credit bucket placeholder extracted from source text.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-international-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -5762,9 +5774,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
 - [Bachelor of Landscape Architecture degree](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6078dddbe5ffc09fa25582d4)
 - [Bachelor of Landscape Architecture degree](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6078dddbe5ffc09fa25582d4) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
 
 ##### Landscape Architecture parsed official source requirements
 
@@ -6085,8 +6097,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Program Educational Objectives and Student Learning Outcomes](https://mse.washington.edu/about/abet)
-- [UW Materials Science degree requirements](https://mse.washington.edu/current/undergrad/courses)
+- [UW Materials Science & Engineering degree requirements](https://mse.washington.edu/current/undergrad/courses)
 - [UW Materials Science degree requirements](https://mse.washington.edu/current/undergrad/courses) - Cached snapshot used for parser-backed UW requirement extraction.
 
 ##### Materials Science &amp; Engineering parsed official source requirements
@@ -6244,7 +6255,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -6252,148 +6263,72 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Mechanical Engineering degree requirements](https://www.me.washington.edu/students/ug/requirements)
-- [UW Mechanical Engineering degree requirements](https://www.me.washington.edu/students/ug/requirements) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Mechanical Engineering degree requirements](https://www.me.washington.edu/students/ug/requirements) - Source used for parser-backed UW requirement extraction.
 
 ##### Mechanical Engineering parsed official source requirements
 
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
-- BSME degree requirements
-- General education requirements
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Mechanical Engineering parsed official requirement cues
-
+- BSME degree requirements | UW Department of Mechanical Engineering
+- Diversity, equity and inclusion
 - Diversity, equity &amp; inclusion
 - Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Degree requirements
+- BSME degree requirements
+- A total of 180 credits are required for the BSME degree. Regardless of the number of mechanical engineering courses taken at another institution, a minimum of 45 credits in ME courses must be taken in residence at the University of Washington.
+- MATH 124 , MATH 125 , MATH 126
+- MATH 207 (or MATH 307)‡ or AMATH 351
+- MATH 208 (or MATH 308)‡ or AMATH 352
+
+##### Mechanical Engineering parsed official requirement cues
+
+- BSME degree requirements | UW Department of Mechanical Engineering
+- Diversity, equity and inclusion
+- Diversity, equity &amp; inclusion
+- Why choose Mechanical Engineering?
+- Degree requirements
+- BSME degree requirements
+- A total of 180 credits are required for the BSME degree. Regardless of the number of mechanical engineering courses taken at another institution, a minimum of 45 credits in ME courses must be taken in residence at the University of Washington.
+- MATH 124 , MATH 125 , MATH 126
+- MATH 207 (or MATH 307)‡ or AMATH 351
+- MATH 208 (or MATH 308)‡ or AMATH 352
 
 ##### Mechanical Engineering parsed choices and pathway notes
 
 - Why choose Mechanical Engineering?
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- CEE 342 for ME 333) will not count for ME option credit.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `CHEM& 161`
+- `ENGL& 101`
+- `ENGR 140`
+- `ENGR 250`
+- `ENGR& 114`
+- `ENGR& 204`
+- `ENGR& 214`
+- `ENGR& 215`
+- `ENGR& 225`
+- `MATH 238`
+- `MATH 240`
+- `MATH& 151`
+- `MATH& 152`
+- `MATH& 163`
+- `MATH& 264`
+- `PHYS& 221`
+- `PHYS& 222`
+- `PHYS& 223`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: low.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-01-mechanical-engineering-parsed-official-source-requirements.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-02-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-03-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-04-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-05-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-06-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-07-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-08-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-09-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-10-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-11-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-12-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-13-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-14-mechanical-engineering-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-10-parsed-15-mechanical-engineering-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-90-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:structured:uw-seattle-mechanical-engineering-degree-map-91-planning-notes.
+- Required before enrollment: ME core courses. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Biomechanics Seminar (only 1 ME seminar can be chosen towards 19-credits of senior electives). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 24 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: MATH 207 (or MATH 307)‡ or AMATH 351 -> `MATH 238`. complete at least 1 course from this set
+- Required before enrollment: MATH 208 (or MATH 308)‡ or AMATH 352 -> `MATH 240`. complete at least 1 course from this set
+- Required before enrollment: MATH 209 (or MATH 309) or MATH 224 (or MATH 324)‡ or AMATH 353 -> `MATH& 264`. complete at least 1 course from this set
+- Required before enrollment: INDE 315 (or STAT 290 or 390). complete at least 1 course from this set
+- Required before enrollment: MATH 207 or MATH 208 or MATH 209 or MATH 224 or MATH 307 or MATH 308 or MATH 309 or MATH 324 -> `MATH 240`. complete at least 1 course from this set. alternate path `MATH 238` or `MATH& 264`
+- Source-backed note: Parser confidence: high.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
@@ -7316,7 +7251,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Graduation Requirements](https://phys.washington.edu/undergraduate-departmental-honors-physics#gradreq)
 - [Physics B.S. Degree Requirements](https://phys.washington.edu/physics-bs-degree-requirements)
 - [Physics B.S. Degree Requirements](https://phys.washington.edu/physics-bs-degree-requirements) - Source used for parser-backed UW requirement extraction.
 
@@ -8060,35 +7994,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW General Catalog Social Welfare requirements](https://www.washington.edu/students/gencat/program/S/SocialWork-779.html)
-- [UW General Catalog Social Welfare requirements](https://www.washington.edu/students/gencat/program/S/SocialWork-779.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW General Catalog Social Welfare requirements](https://www.washington.edu/students/gencat/program/S/SocialWork-779.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Social Welfare parsed official source requirements
 
+- Suggested First- and Second-Year College Courses: prerequisite courses in psychology and sociology; SOC WF 200; introduction to statistics; world language; and social science coursework in subjects such as American ethnic studies; disability studies; public health; communication; economics; political science; human biology; human development; American government; diversity studies; law, societies, and justice; and gender, women, and sexuality studies.
+- Admission Requirements
+- Admission occurs once a year for autumn quarter. Applications open by February 1st and are due by April 15th. Applicants must meet the following prerequisite requirements by the end of summer quarter before starting the program in autumn quarter:
+- Minimum 65 transferable college-level credits completed
+- All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website.
 - Completion Requirements
 - General Education Requirements
 - English Composition (C): 5 credits (minimum 2.0 grade)
 - Additional Writing: 10 credits
 - Reasoning (RSN): 4 or 5 credits
-- Foreign Language: 0-15 credits, depending on placement or high school background
-- Diversity (DIV): 5 credits. Of Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
-- Areas of Inquiry
-- Arts and Humanities (A&amp;H): 20 credits
-- Social Sciences (SSc): 20 credits
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Social Welfare parsed official requirement cues
 
+- Suggested First- and Second-Year College Courses: prerequisite courses in psychology and sociology; SOC WF 200; introduction to statistics; world language; and social science coursework in subjects such as American ethnic studies; disability studies; public health; communication; economics; political science; human biology; human development; American government; diversity studies; law, societies, and justice; and gender, women, and sexuality studies.
+- Admission Requirements
+- Admission occurs once a year for autumn quarter. Applications open by February 1st and are due by April 15th. Applicants must meet the following prerequisite requirements by the end of summer quarter before starting the program in autumn quarter:
+- Minimum 65 transferable college-level credits completed
+- All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website.
 - Completion Requirements
 - General Education Requirements
 - English Composition (C): 5 credits (minimum 2.0 grade)
 - Additional Writing: 10 credits
 - Reasoning (RSN): 4 or 5 credits
-- Foreign Language: 0-15 credits, depending on placement or high school background
-- Diversity (DIV): 5 credits. Of Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
-- Areas of Inquiry
-- Arts and Humanities (A&amp;H): 20 credits
-- Social Sciences (SSc): 20 credits
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -8096,12 +8028,13 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Core Courses. complete at least 15 courses from this set. note: Parsed from an inline required course list; embedded alternatives are separate choice groups.
+- Required before enrollment: SOCWF 460 or SOCWF 495. complete at least 1 course from this set
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 20 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 20 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 20 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
-- Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
+- Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-social-welfare:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -8710,47 +8643,4 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-voice-b-m:source-degree-map:structured:uw-seattle-voice-b-m-degree-map-10-parsed-07-voice-b-m-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-voice-b-m:source-degree-map:structured:uw-seattle-voice-b-m-degree-map-10-parsed-08-voice-b-m-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-voice-b-m:source-degree-map:structured:uw-seattle-voice-b-m-degree-map-90-requirement-cues.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-
-
-### Classical Studies
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [UW B.A. in Classics](https://classics.washington.edu/ba-classics)
-- [UW B.A. in Classics](https://classics.washington.edu/ba-classics) - Cached snapshot used for parser-backed UW requirement extraction.
-
-##### Classical Studies parsed official source requirements
-
-- Requirements for the major in Latin (52-58 credits) are:
-- Either LATIN 101, LATIN 102, LATIN 103; or LATIN 300, LATIN 301 (10-15 credits)
-- 15 credits of 300-level LATIN courses, excluding LATIN 300 and LATIN 301
-- 15 credits of 400-level LATIN courses
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Classical Studies parsed official requirement cues
-
-- Requirements for the major in Latin (52-58 credits) are:
-- Either LATIN 101, LATIN 102, LATIN 103; or LATIN 300, LATIN 301 (10-15 credits)
-- 15 credits of 300-level LATIN courses, excluding LATIN 300 and LATIN 301
-- 15 credits of 400-level LATIN courses
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-#### GRC Equivalent Courses
-
-On To Do list.
-
-#### Required sequences for specific credits
-
-- Required before enrollment: Either LATIN 101, LATIN 102, LATIN 103; or LATIN 300, LATIN 301 (10-15 credits). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-classics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.

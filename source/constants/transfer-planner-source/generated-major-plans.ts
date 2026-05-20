@@ -5769,6 +5769,47 @@ function getChecklistFallbackCourseList(scope: {
   ]);
 }
 
+function getScopedRequirementGroupMappedGrcCourseCodeSet(
+  planId: string,
+  pathwayId?: string | null
+) {
+  return new Set(
+    getRequirementGroupsForScope(planId, pathwayId)
+      .flatMap(getRequirementGroupOptionGrcMatches)
+      .flatMap(extractReferenceCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function getSeedGrcCourseCodes(seed: SupplementalChecklistSeed) {
+  return uniqueReferenceCourseLabels([
+    ...(seed.grcCourses ?? []),
+    ...((seed.alternatives ?? []).flat()),
+  ])
+    .flatMap(extractReferenceCourseCodes)
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+}
+
+function supplementalSeedIsBackedByScopedRequirementGroups(
+  seed: SupplementalChecklistSeed,
+  planId: string
+) {
+  const scopedRequirementGroups = getRequirementGroupsForScope(planId);
+  if (!scopedRequirementGroups.length) {
+    return true;
+  }
+
+  const seedCourseCodes = getSeedGrcCourseCodes(seed);
+  if (!seedCourseCodes.length) {
+    return false;
+  }
+
+  const mappedGrcCourseCodes = getScopedRequirementGroupMappedGrcCourseCodeSet(planId);
+  return seedCourseCodes.some((courseCode) => mappedGrcCourseCodes.has(courseCode));
+}
+
 function materializeSupplementalChecklistItem(
   seed: SupplementalChecklistSeed,
   courseFallbacks: string[],
@@ -5866,6 +5907,10 @@ function buildSupplementalChecklistItems(scope: {
   const sourceMetadata = getPrimaryGeneratedSourceMetadata(scope.id, null);
 
   for (const seed of seeds) {
+    if (!supplementalSeedIsBackedByScopedRequirementGroups(seed, scope.id)) {
+      continue;
+    }
+
     const item = materializeSupplementalChecklistItem(seed, fallbackCourseList, sourceMetadata);
     if (!item) {
       continue;
@@ -7872,6 +7917,7 @@ function buildAutomaticCoursePoolChecklistItems(scope: {
           !existingChoiceCoverage.has(normalizeCourseCode(courseCode))
       )
     );
+
   if (!automaticCourseList.length) {
     return buildEmptyChecklistItemsByPhase();
   }

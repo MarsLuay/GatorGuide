@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { InteractionManager } from "react-native";
 
 import {
   TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD,
@@ -185,6 +186,51 @@ export function usePlannerSelectionState({
     () => selectedOptionsByPath[plannerPathKey] ?? {},
     [plannerPathKey, selectedOptionsByPath]
   );
+
+  useEffect(() => {
+    if (!isUwPlanner || openSelector !== "campus") return;
+
+    let cancelled = false;
+    let cancelScheduledWork = () => {};
+    const campusIdsToWarm = TRANSFER_PLANNER_CAMPUSES.map((entry) => entry.id).filter(
+      (campusId) => campusId !== selectedUwCampusId
+    );
+    let campusIndex = 0;
+    let scheduleNextCampus = () => {};
+
+    const preloadNextCampus = () => {
+      if (cancelled) return;
+
+      const campusId = campusIdsToWarm[campusIndex];
+      campusIndex += 1;
+      if (campusId) {
+        getTransferPlannerStudentRuntimeMajorsForCampus(campusId);
+      }
+
+      if (campusIndex < campusIdsToWarm.length) {
+        scheduleNextCampus();
+      }
+    };
+
+    scheduleNextCampus = () => {
+      if (typeof requestAnimationFrame === "function") {
+        const frame = requestAnimationFrame(preloadNextCampus);
+        cancelScheduledWork = () => cancelAnimationFrame(frame);
+        return;
+      }
+
+      const timeout = setTimeout(preloadNextCampus, 0);
+      cancelScheduledWork = () => clearTimeout(timeout);
+    };
+
+    const task = InteractionManager.runAfterInteractions(scheduleNextCampus);
+
+    return () => {
+      cancelled = true;
+      cancelScheduledWork();
+      task.cancel?.();
+    };
+  }, [isUwPlanner, openSelector, selectedUwCampusId]);
 
   useEffect(() => {
     if (!isHydrated || hydratedLastSelectionRef.current) return;

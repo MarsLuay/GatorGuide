@@ -1184,6 +1184,13 @@ function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlanner
     return "upper-division-prerequisite-table";
   }
 
+  if (
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
+  ) {
+    return "degree-requirements";
+  }
+
   if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
     return "non-schedulable-course-list";
   }
@@ -1194,13 +1201,6 @@ function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlanner
 
   if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
     return "support-source";
-  }
-
-  if (
-    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
-    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
-  ) {
-    return "degree-requirements";
   }
 
   if (/equivalency/.test(searchable)) {

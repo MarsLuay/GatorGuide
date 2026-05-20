@@ -25,6 +25,7 @@ import {
   roadmapService,
   type UserRoadmapDocument,
 } from "@/services/planning/roadmap.service";
+import { getSuggestedScheduleCourseDisplayLabel } from "@/components/transfer-planner/transfer-planner-suggested-schedule";
 
 type HomeTourStep = {
   id: string;
@@ -73,6 +74,41 @@ function getDeadlineOpportunityId(entry: DeadlineCalendarEntry) {
     ? entry.id.slice(opportunityPrefix.length)
     : null;
 }
+
+function getPlannerCurrentCourseDisplayLabel(value: string) {
+  const normalized = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+
+  const parts = normalized.split("|").map((part) => part.trim());
+  const sourceGroup = parts[0];
+  const isPlannerInstanceKey =
+    (sourceGroup === "gen-ed" || sourceGroup === "requirement") && parts.length >= 8;
+
+  if (!isPlannerInstanceKey) {
+    return normalized;
+  }
+
+  const occurrenceIndex = Number(parts[parts.length - 1]);
+  const sourceOrder = Number(parts[parts.length - 3]);
+  const priorityRank = Number(parts[parts.length - 4]);
+  const label = parts.slice(2, -5).join("|").trim();
+
+  if (
+    !label ||
+    !Number.isInteger(occurrenceIndex) ||
+    !Number.isFinite(sourceOrder) ||
+    !Number.isFinite(priorityRank)
+  ) {
+    return normalized;
+  }
+
+  return getSuggestedScheduleCourseDisplayLabel(label) || label;
+}
+
+type HomeCurrentCourse = {
+  id: string;
+  label: string;
+};
 
 export default function HomePage() {
   const router = useRouter();
@@ -157,8 +193,15 @@ export default function HomePage() {
     : "bg-emerald-50 border border-emerald-200";
   const dashboardBadgeTextClass = isDark || isGreen ? "text-emerald-100" : "text-emerald-700";
   const effectiveFontScale = Math.max(1, fontScale);
+  const isCompactPhone = screenWidth < 390;
   const contentMaxWidth = isDesktopHome ? 1280 : 448;
-  const desktopHorizontalPadding = isDesktopHome && screenWidth < 1100 ? 24 : isDesktopHome ? 32 : 24;
+  const shellHorizontalPadding = isDesktopHome && screenWidth < 1100
+    ? 24
+    : isDesktopHome
+      ? 32
+      : isCompactPhone
+        ? 16
+        : 20;
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
@@ -168,7 +211,7 @@ export default function HomePage() {
   const dashboardSectionWidth = desktopColumnsShouldStack
     ? { width: "100%" as DimensionValue }
     : { width: "48.8%" as DimensionValue };
-  const mobileSnapshotStatsShouldStack = screenWidth < 390 || effectiveFontScale > 1.05;
+  const mobileSnapshotStatsShouldStack = isCompactPhone || effectiveFontScale > 1.05;
   const renderGuestAccountCta = ({ desktop }: { desktop: boolean }) => (
     <View
       style={
@@ -287,16 +330,17 @@ export default function HomePage() {
 
     return merged;
   }, [state.questionnaireAnswers]);
-  const linkedCurrentCourses = useMemo(() => {
+  const linkedCurrentCourses = useMemo<HomeCurrentCourse[]>(() => {
     const seen = new Set<string>();
-    const merged: string[] = [];
+    const merged: HomeCurrentCourse[] = [];
 
     for (const source of [desktopCurrentCourses, plannerCurrentCourses]) {
       for (const entry of source) {
         const normalized = String(entry ?? "").trim();
+        const label = getPlannerCurrentCourseDisplayLabel(normalized);
         if (!normalized || seen.has(normalized)) continue;
         seen.add(normalized);
-        merged.push(normalized);
+        merged.push({ id: normalized, label });
       }
     }
 
@@ -418,7 +462,7 @@ export default function HomePage() {
   }, [desktopRoadmap, setOpportunityDone, user?.uid]);
 
   const shouldShowTour = Boolean(user && !user.isGuest && user.hasSeenOnboarding !== true);
-  const tourCardWidth = Math.min(448, Math.max(280, screenWidth - 32));
+  const tourCardWidth = Math.min(448, Math.max(280, screenWidth - shellHorizontalPadding * 2));
   const tourCardLeft = (screenWidth - tourCardWidth) / 2;
   const topAnchor = insets.top + 40;
   const tabAnchorY = screenHeight - insets.bottom - 56;
@@ -546,8 +590,14 @@ export default function HomePage() {
               }}
               className={`border rounded-3xl p-4 ${dashboardItemClass}`}
             >
-              <View className="flex-row items-start">
-                <View className="flex-1 min-w-0 pr-3">
+              <View
+                style={{
+                  flexDirection: isDesktopHome ? "row" : "column",
+                  alignItems: isDesktopHome ? "flex-start" : "stretch",
+                  gap: isDesktopHome ? 0 : 12,
+                }}
+              >
+                <View style={{ flex: 1, minWidth: 0, paddingRight: isDesktopHome ? 12 : 0 }}>
                   <Text className={`${textClass} font-semibold`} numberOfLines={2}>
                     {entry.title}
                   </Text>
@@ -571,13 +621,30 @@ export default function HomePage() {
                     <Text className="text-emerald-500 text-xs font-semibold">{t("home.openAction")}</Text>
                   </View>
                 </View>
-                <View className="items-end gap-3">
+                <View
+                  style={{
+                    alignItems: isDesktopHome ? "flex-end" : "center",
+                    flexDirection: isDesktopHome ? "column" : "row",
+                    justifyContent: isDesktopHome ? "flex-start" : "space-between",
+                    gap: 12,
+                    width: isDesktopHome ? undefined : "100%",
+                  }}
+                >
+                  {!isDesktopHome ? (
+                    <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
+                      <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
+                        {formatImportantDate(entry.dueAt)}
+                      </Text>
+                    </View>
+                  ) : null}
                   {renderDeadlineCheckbox(entry)}
-                  <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
-                    <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-                      {formatImportantDate(entry.dueAt)}
-                    </Text>
-                  </View>
+                  {isDesktopHome ? (
+                    <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
+                      <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
+                        {formatImportantDate(entry.dueAt)}
+                      </Text>
+                    </View>
+                  ) : null}
                 </View>
               </View>
             </AnimatedCardPressable>
@@ -629,10 +696,10 @@ export default function HomePage() {
 
           {linkedCurrentCourses.slice(0, 5).map((course) => (
             <View
-              key={course}
+              key={course.id}
               className={`border rounded-3xl p-4 ${dashboardItemClass}`}
             >
-              <Text className={`${textClass} font-medium`}>{course}</Text>
+              <Text className={`${textClass} font-medium`}>{course.label}</Text>
             </View>
           ))}
         </View>
@@ -686,13 +753,20 @@ export default function HomePage() {
           ) : null}
 
           {desktopRecommendedCourses.length ? (
-            <View className="flex-row flex-wrap gap-2">
+            <View
+              style={{
+                flexDirection: isDesktopHome ? "row" : "column",
+                flexWrap: isDesktopHome ? "wrap" : "nowrap",
+                gap: 8,
+              }}
+            >
               {desktopRecommendedCourses.slice(0, 6).map((course) => (
                 <View
                   key={course}
                   className={`rounded-full px-3 py-2 border ${isDark ? "border-sky-900 bg-sky-950/30" : "border-sky-200 bg-sky-50"}`}
+                  style={isDesktopHome ? undefined : { width: "100%" }}
                 >
-                  <Text className={`${isDark ? "text-sky-100" : "text-sky-800"} text-sm`}>
+                  <Text className={`${isDark ? "text-sky-100" : "text-sky-800"} text-sm`} numberOfLines={2}>
                     {course}
                   </Text>
                 </View>
@@ -851,12 +925,17 @@ export default function HomePage() {
 
   return (
     <ScreenBackground>
-      <ScrollView className="flex-1" contentContainerStyle={scrollContentPadding}>
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="handled"
+      >
         <View
           className="w-full self-center pt-10"
           style={{
             maxWidth: contentMaxWidth,
-            paddingHorizontal: desktopHorizontalPadding,
+            paddingHorizontal: shellHorizontalPadding,
           }}
         >
           <View className="mb-6" style={isDesktopHome ? { maxWidth: 720 } : undefined}>
@@ -912,11 +991,26 @@ export default function HomePage() {
             <Text className={`${secondaryTextClass} text-xs mt-2`}>
               {tourStepIndex + 1} of {tourSteps.length}
             </Text>
-            <View className="flex-row justify-between mt-4">
-              <AnimatedChipPressable onPress={completeTour} className="px-3 py-2 rounded-lg bg-black/25">
+            <View
+              style={{
+                flexDirection: isCompactPhone ? "column" : "row",
+                justifyContent: "space-between",
+                gap: 8,
+                marginTop: 16,
+              }}
+            >
+              <AnimatedChipPressable
+                onPress={completeTour}
+                className="px-3 py-2 rounded-lg bg-black/25"
+                style={isCompactPhone ? { width: "100%", alignItems: "center" } : undefined}
+              >
                 <Text className="text-white font-semibold">Exit tutorial</Text>
               </AnimatedChipPressable>
-              <AnimatedChipPressable onPress={advanceTour} className="px-3 py-2 rounded-lg bg-emerald-500">
+              <AnimatedChipPressable
+                onPress={advanceTour}
+                className="px-3 py-2 rounded-lg bg-emerald-500"
+                style={isCompactPhone ? { width: "100%", alignItems: "center" } : undefined}
+              >
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
                   {tourStepIndex === tourSteps.length - 1 ? "Finish" : "Next"}
                 </Text>

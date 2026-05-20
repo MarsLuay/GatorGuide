@@ -75,18 +75,23 @@ export function usePlannerComputation({
       track?.id,
     ]
   );
-  const [isPlannerComputationReady, setIsPlannerComputationReady] = useState(false);
+  const [readyPlannerStructureComputationKey, setReadyPlannerStructureComputationKey] =
+    useState<string | null>(null);
+  const isPlannerComputationReady =
+    readyPlannerStructureComputationKey === plannerStructureComputationKey;
 
   useEffect(() => {
     let cancelled = false;
     let cancelScheduledFrame = () => {};
-    setIsPlannerComputationReady(false);
+    setReadyPlannerStructureComputationKey((currentKey) =>
+      currentKey === plannerStructureComputationKey ? currentKey : null
+    );
 
     const task = InteractionManager.runAfterInteractions(() => {
       if (typeof requestAnimationFrame === "function") {
         const frame = requestAnimationFrame(() => {
           if (!cancelled) {
-            setIsPlannerComputationReady(true);
+            setReadyPlannerStructureComputationKey(plannerStructureComputationKey);
           }
         });
         cancelScheduledFrame = () => cancelAnimationFrame(frame);
@@ -95,7 +100,7 @@ export function usePlannerComputation({
 
       const timeout = setTimeout(() => {
         if (!cancelled) {
-          setIsPlannerComputationReady(true);
+          setReadyPlannerStructureComputationKey(plannerStructureComputationKey);
         }
       }, 0);
       cancelScheduledFrame = () => clearTimeout(timeout);
@@ -228,8 +233,12 @@ export function usePlannerComputation({
   const isPlannerComputationLoading =
     hasStructuredPlannerData && !isPlannerComputationReady;
   const hasNoDirectMajorEquivalencies = useMemo(
-    () => isUwPlanner && !!plan && !hasAnyDirectMajorEquivalencies(plan),
-    [isUwPlanner, plan]
+    () =>
+      isPlannerComputationReady &&
+      isUwPlanner &&
+      !!plan &&
+      !hasAnyDirectMajorEquivalencies(plan),
+    [isPlannerComputationReady, isUwPlanner, plan]
   );
 
   const handleToggleOnlyUwEssentialClasses = useCallback(() => {

@@ -391,10 +391,12 @@ export default function ResourcesPage() {
   const inputClass = styles.inputBgClass;
   const placeholderTextColor = placeholderColor;
   const isDesktop = width >= 1180;
+  const isCompactPhone = width < 390;
+  const isTablet = width >= 768;
   const stackOpportunityActions = width < 760;
   const shellMaxWidth = isDesktop ? 1280 : width >= 900 ? 1040 : 720;
-  const shellHorizontalPadding = width >= 1280 ? 32 : 24;
-  const shellTopPadding = width >= 900 ? 32 : 40;
+  const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : isCompactPhone ? 16 : 20;
+  const shellTopPadding = width >= 900 ? 32 : isCompactPhone ? 28 : 32;
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
@@ -950,7 +952,7 @@ export default function ResourcesPage() {
         className={`px-4 py-5 ${
           index !== items.length - 1 ? `border-b ${borderClass}` : ""
         }`}
-        style={options?.inset ? { paddingLeft: 52 } : undefined}
+        style={options?.inset ? { paddingLeft: isCompactPhone ? 36 : 52 } : undefined}
       >
         <View
           className={
@@ -972,7 +974,7 @@ export default function ResourcesPage() {
 
           <View
             className="flex-row items-center gap-2"
-            style={stackOpportunityActions ? { width: "100%" } : undefined}
+            style={stackOpportunityActions ? { width: "100%", justifyContent: "flex-end" } : undefined}
           >
             <AnimatedChipPressable
               onHoverIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
@@ -981,7 +983,6 @@ export default function ResourcesPage() {
                 void openLink(item.url);
               }}
               className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-              style={stackOpportunityActions ? { flex: 1, minWidth: 0 } : undefined}
               accessibilityRole="link"
             >
               <Text className="text-emerald-500 text-sm">
@@ -1085,7 +1086,7 @@ export default function ResourcesPage() {
         className={`px-4 py-5 ${
           index !== items.length - 1 ? `border-b ${borderClass}` : ""
         }`}
-        style={options?.inset ? { paddingLeft: 52 } : undefined}
+        style={options?.inset ? { paddingLeft: isCompactPhone ? 36 : 52 } : undefined}
       >
         <View
           className={
@@ -1113,7 +1114,7 @@ export default function ResourcesPage() {
 
           <View
             className="flex-row items-center gap-2"
-            style={stackOpportunityActions ? { width: "100%" } : undefined}
+            style={stackOpportunityActions ? { width: "100%", justifyContent: "flex-end" } : undefined}
           >
             {item.externalUrl ? (
               <AnimatedChipPressable
@@ -1121,14 +1122,13 @@ export default function ResourcesPage() {
                   void openLink(item.externalUrl ?? "");
                 }}
                 className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-                style={stackOpportunityActions ? { flex: 1, minWidth: 0 } : undefined}
               >
                 <Text className="text-emerald-500 text-sm">
                   {t("resources.actionOpen")}
                 </Text>
               </AnimatedChipPressable>
             ) : (
-              <View className="flex-1" />
+              !stackOpportunityActions ? <View className="flex-1" /> : null
             )}
 
             <TouchIconButton
@@ -1316,6 +1316,8 @@ export default function ResourcesPage() {
       <ScrollView
         className="flex-1"
         contentContainerStyle={scrollContentPadding}
+        contentInsetAdjustmentBehavior="automatic"
+        keyboardShouldPersistTaps="handled"
       >
         <View
           className="w-full self-center"

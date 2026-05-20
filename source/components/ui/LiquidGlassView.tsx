@@ -119,7 +119,18 @@ export function LiquidGlassView({
         <div style={surfaceStyle}>
           <div style={chromaticStyle} />
           {specular ? <div style={specularStyle} /> : null}
-          <div style={{ position: "relative", zIndex: 3, display: "flex", flex: 1, minHeight: 0 }}>
+          <div
+            style={{
+              position: "relative",
+              zIndex: 3,
+              display: "flex",
+              flex: 1,
+              flexDirection: "column",
+              minHeight: 0,
+              minWidth: 0,
+              width: "100%",
+            }}
+          >
             {children}
           </div>
         </div>

@@ -472,6 +472,7 @@ export default function AuthPage() {
   const useDetachedDesktopHeroMark = isWeb && width >= 460;
   const useHorizontalHero = width >= 460 && !useDetachedDesktopHeroMark;
   const stackProviderButtons = width < 460;
+  const shellHorizontalPadding = isCompactWidth ? 16 : 20;
   const cardPadding = isCompactWidth ? 18 : 24;
   const heroPadding = isCompactWidth ? 18 : 22;
   const heroBadgeSize = isCompactWidth ? 80 : 96;
@@ -485,8 +486,8 @@ export default function AuthPage() {
   const dividerColor = isDark || isGreen ? "rgba(148, 163, 184, 0.34)" : "rgba(16, 185, 129, 0.24)";
   const authCardClass = `${styles.cardBgClass} border rounded-[28px] ${isWeb ? "shadow-lg" : ""}`;
   const containerClass = isWeb 
-    ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
-    : "flex-1 items-center justify-center px-6";
+    ? "flex-1 items-center justify-center py-12 min-h-screen"
+    : "flex-1 items-center justify-center";
   const renderHeroMark = () => (
     <View
       style={{
@@ -803,13 +804,19 @@ export default function AuthPage() {
     <ScreenBackground>
       {!isWeb ? (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View className={containerClass}>
+          <View className={containerClass} style={{ paddingHorizontal: shellHorizontalPadding }}>
             {authContent}
           </View>
         </TouchableWithoutFeedback>
       ) : (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="flex-1">
-          <View className={containerClass}>
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          className="flex-1"
+          contentInsetAdjustmentBehavior="automatic"
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          <View className={containerClass} style={{ paddingHorizontal: shellHorizontalPadding }}>
             {authContent}
           </View>
         </ScrollView>
