@@ -228,6 +228,87 @@ type SupplementalParserOnlyPathwaySource = {
   validationNotes: string[];
   grcCourseList?: string[];
 };
+const TACOMA_BABA_SUPPLEMENTAL_PATHWAY_SOURCES =
+  [
+    ["accounting-option", "Accounting option", "UW Tacoma BABA Accounting curriculum"],
+    ["finance-option", "Finance option", "UW Tacoma BABA Finance curriculum"],
+    ["general-business-option", "General Business option", "UW Tacoma BABA General Business curriculum"],
+    ["management-option", "Management option", "UW Tacoma BABA Management curriculum"],
+    ["marketing-option", "Marketing option", "UW Tacoma BABA Marketing curriculum"],
+  ].map(
+    ([pathwayId, label, linkLabel]) =>
+      ({
+        planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+        pathwayId,
+        campusId: "uw-tacoma",
+        majorTitle: "Bachelor of Arts in Business Administration (BABA)",
+        label,
+        links: [
+          {
+            label: linkLabel,
+            url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          },
+        ],
+        validationNotes: [
+          "Supplemental parser-backed pathway metadata retained until Tacoma BABA option sections are emitted canonically.",
+        ],
+      }) satisfies SupplementalParserOnlyPathwaySource
+  );
+const TACOMA_HISTORY_SUPPLEMENTAL_PATHWAY_SOURCES =
+  [
+    [
+      "general-history-option",
+      "General History option",
+      "UW Tacoma General History option requirements",
+      "https://www.tacoma.uw.edu/sias-new/socs-new/general-option",
+    ],
+    [
+      "arts-culture-and-society-option",
+      "Arts, Culture and Society option",
+      "UW Tacoma History Arts, Culture and Society option requirements",
+      "https://www.tacoma.uw.edu/sias/socs/arts-culture-and-society-option",
+    ],
+    [
+      "global-history-option",
+      "Global History option",
+      "UW Tacoma Global History option requirements",
+      "https://www.tacoma.uw.edu/sias/socs/global-history-option",
+    ],
+    [
+      "labor-and-social-movements-option",
+      "Labor and Social Movements option",
+      "UW Tacoma Labor and Social Movements option requirements",
+      "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
+    ],
+    [
+      "power-gender-and-identity-option",
+      "Power, Gender and Identity option",
+      "UW Tacoma Power, Gender and Identity option requirements",
+      "https://www.tacoma.uw.edu/sias/socs/power-gender-and-identity-option",
+    ],
+  ].map(
+    ([pathwayId, label, linkLabel, url]) =>
+      ({
+        planId: "uw-tacoma-history",
+        pathwayId,
+        campusId: "uw-tacoma",
+        majorTitle: "History (BA)",
+        label,
+        links: [
+          {
+            label: linkLabel,
+            url,
+          },
+          {
+            label: "UW Tacoma History major options",
+            url: "https://www.tacoma.uw.edu/sias/socs/history",
+          },
+        ],
+        validationNotes: [
+          "Supplemental parser-backed pathway metadata retained until Tacoma History option source blocks are emitted canonically.",
+        ],
+      }) satisfies SupplementalParserOnlyPathwaySource
+  );
 const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[] = [
   {
     planId: "uw-seattle-classical-studies",
@@ -285,8 +366,55 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
       "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
     ],
   },
+  {
+    planId: "uw-bothell-chemistry-ba",
+    campusId: "uw-bothell",
+    ownerTitle: "Chemistry (BA)",
+    links: [
+      {
+        label: "Scoped section: B.A. in Chemistry requirements",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained until the canonical Bothell Chemistry BA source block is materialized.",
+    ],
+  },
 ];
 const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySource[] = [
+  ...TACOMA_BABA_SUPPLEMENTAL_PATHWAY_SOURCES,
+  {
+    planId: "uw-bothell-chemistry-bs",
+    pathwayId: "b-s-in-chemistry-general-option",
+    campusId: "uw-bothell",
+    majorTitle: "Chemistry (BS)",
+    label: "B.S. in Chemistry (general option)",
+    links: [
+      {
+        label: "Scoped section: B.S. in Chemistry (general option) requirements",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical Bothell Chemistry general option source block is emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-chemistry-bs",
+    pathwayId: "biochemistry-option",
+    campusId: "uw-bothell",
+    majorTitle: "Chemistry (BS)",
+    label: "Biochemistry Option",
+    links: [
+      {
+        label: "Scoped section: B.S. in Chemistry (biochemistry option) requirements",
+        url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical Bothell Chemistry biochemistry option source block is emitted canonically.",
+    ],
+  },
   {
     planId: "uw-bothell-business-administration",
     pathwayId: "entrepreneurship-concentration",
@@ -416,6 +544,54 @@ const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySou
     ],
   },
   {
+    planId: "uw-tacoma-environmental-science",
+    pathwayId: "general-environmental-science-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Science (BS)",
+    label: "General Environmental Science option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Science General Environmental Science option degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until Environmental Science option source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-environmental-science",
+    pathwayId: "conservation-biology-and-ecology-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Science (BS)",
+    label: "Conservation Biology and Ecology option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Science Conservation Biology and Ecology option degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until Environmental Science option source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-environmental-science",
+    pathwayId: "geoscience-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Science (BS)",
+    label: "Geoscience option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Science Geoscience option degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until Environmental Science option source blocks are emitted canonically.",
+    ],
+  },
+  {
     planId: "uw-tacoma-environmental-sustainability",
     pathwayId: "education-option",
     campusId: "uw-tacoma",
@@ -465,6 +641,27 @@ const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySou
     ],
     validationNotes: [
       "Supplemental parser-backed pathway metadata retained until pathway source blocks are emitted canonically.",
+    ],
+  },
+  ...TACOMA_HISTORY_SUPPLEMENTAL_PATHWAY_SOURCES,
+  {
+    planId: "uw-tacoma-writing-studies",
+    pathwayId: "creative-writing-track",
+    campusId: "uw-tacoma",
+    majorTitle: "Writing Studies (BA)",
+    label: "Creative Writing Track",
+    links: [
+      {
+        label: "UW Tacoma Creative Writing track requirements",
+        url: "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
+      },
+      {
+        label: "UW Tacoma Writing Studies tracks",
+        url: "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until Tacoma Writing Studies track source blocks are emitted canonically.",
     ],
   },
 ];
@@ -989,6 +1186,28 @@ const SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID = new Map<
   string,
   TransferPlannerSourceLink[]
 >([
+  [
+    "uw-tacoma-computer-science-and-systems-bs",
+    [
+      {
+        label: "UW Tacoma Computer Science and Systems BS degree requirements",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+        note:
+          "Broad official BS page kept as the primary parser source so the full curriculum outranks scoped BA-option snapshot noise.",
+      },
+    ],
+  ],
+  [
+    "uw-tacoma-environmental-science",
+    [
+      {
+        label: "UW Tacoma Environmental Science BS degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+        note:
+          "Broad official BS page kept as the primary parser source so preparatory, core, capstone, and option requirements are parsed together.",
+      },
+    ],
+  ],
   [
     "uw-seattle-computer-science",
     [
@@ -3001,6 +3220,24 @@ function buildPathwayRegistry() {
   function pushPathwayEntry(entry: TransferPlannerMajorPathwayEntry) {
     const key = `${entry.planId}::${entry.pathwayId}`;
     if (seenPathwayKeys.has(key)) {
+      const existingEntry = entries.find(
+        (candidate) =>
+          candidate.planId === entry.planId && candidate.pathwayId === entry.pathwayId
+      );
+      if (existingEntry) {
+        existingEntry.grcCourseList = unique([
+          ...(existingEntry.grcCourseList ?? []),
+          ...(entry.grcCourseList ?? []),
+        ]);
+        existingEntry.sourceLinks = dedupeLinks([
+          ...(existingEntry.sourceLinks ?? []),
+          ...(entry.sourceLinks ?? []),
+        ]);
+        existingEntry.validationNotes = unique([
+          ...(existingEntry.validationNotes ?? []),
+          ...(entry.validationNotes ?? []),
+        ]);
+      }
       return;
     }
 
@@ -3289,10 +3526,14 @@ function buildSourceManifestRegistry() {
       planId: pathway.planId,
       pathwayId: pathway.pathwayId,
       campusId: pathway.campusId,
-      links: dedupeLinks([
-        ...pathway.sourceLinks,
-        ...getSupplementalManifestSourceLinks(pathway.planId, pathway.pathwayId),
-      ]),
+      links: applyTransferPlannerManualSourceLinkOverride(
+        pathway.planId,
+        pathway.pathwayId,
+        dedupeLinks([
+          ...pathway.sourceLinks,
+          ...getSupplementalManifestSourceLinks(pathway.planId, pathway.pathwayId),
+        ])
+      ),
       validationNotes: pathway.validationNotes,
     });
   }

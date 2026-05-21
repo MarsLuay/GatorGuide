@@ -42,6 +42,81 @@ export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManua
       ],
     },
     {
+      planId: "uw-tacoma-environmental-sustainability",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      links: [
+        {
+          label: "UW Tacoma Environmental Sustainability BA degree requirements",
+          url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-environmental-sustainability",
+      pathwayId: "business-nonprofit-leadership-option",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      links: [
+        {
+          label:
+            "Scoped section: Business/Nonprofit Environmental Sustainability Option (20 credits) degree requirements",
+          url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-environmental-sustainability",
+      pathwayId: "education-option",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+      links: [
+        {
+          label: "UW Tacoma Environmental Sustainability Education option degree requirements",
+          url: "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-environmental-sustainability",
+      pathwayId: "environmental-communication-option",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+      links: [
+        {
+          label: "UW Tacoma Environmental Communication option degree requirements",
+          url: "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-environmental-sustainability",
+      pathwayId: "policy-law-option",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+      links: [
+        {
+          label: "UW Tacoma Environmental Policy and Law option degree requirements",
+          url: "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
       planId: "uw-seattle-materials-science-engineering",
       mode: "merge",
       preferredPrimaryUrl: "https://mse.washington.edu/current/undergrad/courses",

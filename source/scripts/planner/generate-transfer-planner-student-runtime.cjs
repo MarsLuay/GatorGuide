@@ -35,11 +35,13 @@ const {
   TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
   TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
+  TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS,
   TRANSFER_PLANNER_TRACKS,
   getTransferPlannerProgramApprovedCourseFilterDefinition,
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
+  isTransferPlannerStudentHiddenSourceGap,
   resolveTransferPlannerMajorPlan,
 } = require("../../constants/transfer-planner-source");
 const {
@@ -542,6 +544,40 @@ function mergeRuntimeDegreeMapSections(existingSections, sourceBackedSections) {
   );
 }
 
+function hasRuntimeSchedulableChecklistItem(items) {
+  return (items ?? []).some(
+    (item) => item.canCreateScheduleRow !== false && (item.grcCourses ?? []).length > 0
+  );
+}
+
+function hasRuntimeDegreeMapCourseItems(sections) {
+  return (sections ?? []).some((section) => (section.items ?? []).length > 0);
+}
+
+function hasRuntimePlannerContent(plan) {
+  const hasOwnContent =
+    hasRuntimeDegreeMapCourseItems(plan.degreeMapSections) ||
+    (plan.grcCourseList ?? []).length > 0 ||
+    (plan.requirementGroups ?? []).length > 0 ||
+    hasRuntimeSchedulableChecklistItem(plan.applicationChecklist) ||
+    hasRuntimeSchedulableChecklistItem(plan.beforeEnrollmentChecklist) ||
+    hasRuntimeSchedulableChecklistItem(plan.stayAtGrcChecklist);
+
+  if (hasOwnContent) {
+    return true;
+  }
+
+  return (plan.pathways ?? []).some(
+    (pathway) =>
+      hasRuntimeDegreeMapCourseItems(pathway.degreeMapSections) ||
+      (pathway.grcCourseList ?? []).length > 0 ||
+      (pathway.requirementGroups ?? []).length > 0 ||
+      hasRuntimeSchedulableChecklistItem(pathway.applicationChecklist) ||
+      hasRuntimeSchedulableChecklistItem(pathway.beforeEnrollmentChecklist) ||
+      hasRuntimeSchedulableChecklistItem(pathway.stayAtGrcChecklist)
+  );
+}
+
 function attachSourceBackedDegreeMapSectionsToPlan(plan) {
   const sourceBackedSections = getSourceBackedDegreeMapSections(plan.id, null);
   const pathways = (plan.pathways ?? []).map((pathway) => ({
@@ -560,9 +596,17 @@ function attachSourceBackedDegreeMapSectionsToPlan(plan) {
 }
 
 const runtimeMajorPlans = uniqueBy(
-  TRANSFER_PLANNER_CAMPUSES.flatMap((campus) =>
-    getTransferPlannerStudentRuntimeMajorsForCampus(campus.id)
-  ).map(attachSourceBackedDegreeMapSectionsToPlan),
+  [
+    ...TRANSFER_PLANNER_CAMPUSES.flatMap((campus) =>
+      getTransferPlannerStudentRuntimeMajorsForCampus(campus.id)
+    ),
+    ...TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS,
+  ]
+    .map(attachSourceBackedDegreeMapSectionsToPlan)
+    .filter(
+      (plan) =>
+        !isTransferPlannerStudentHiddenSourceGap(plan.id) && hasRuntimePlannerContent(plan)
+    ),
   (plan) => plan.id
 );
 

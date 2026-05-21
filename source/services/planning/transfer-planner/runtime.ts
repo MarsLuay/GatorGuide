@@ -366,6 +366,7 @@ export type SuggestedQuarterCourse = {
   label: string;
   type: "core" | "elective";
   status: "completed" | "current" | "planned";
+  explicitCourseCodes?: string[];
   creditAmount?: number | null;
   creditMin?: number | null;
   creditMax?: number | null;
@@ -2764,10 +2765,26 @@ function getValidPlannerRequirementOptionIdsForScheduling(input: {
   return optionGroup?.selectedOptionIds ?? [];
 }
 
+function isSchedulablePlannerRequirementOption(input: {
+  option: SuggestedQuarterCourseOption;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  if (!isUwTransferPlannerPlan(input.plan)) {
+    return true;
+  }
+
+  if (isRequirementCategoryOption(input.option)) {
+    return true;
+  }
+
+  return hasVisibleGrcCourseOrEquivalent(input.option.courseCodes ?? [], input.plan);
+}
+
 function getSchedulablePlannerRequirementOptionIdsForScheduling(input: {
   item: TransferPlannerChecklistItem;
   optionIds: string[];
   campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
 }) {
   const validOptionIds = getValidPlannerRequirementOptionIdsForScheduling(input);
   if (!validOptionIds.length) {
@@ -2787,12 +2804,49 @@ function getSchedulablePlannerRequirementOptionIdsForScheduling(input: {
     return optionGroup.selectedOptionIds;
   }
 
-  return getSelectedRequirementOptionsForPlanner(
-    input.item,
-    optionGroup.selectedOptionIds
-  )
+  const visibleSelectedOptionIds = new Set(
+    optionGroup.options
+      .filter((option) => optionGroup.selectedOptionIds.includes(option.id))
+      .filter((option) =>
+        isSchedulablePlannerRequirementOption({
+          option,
+          plan: input.plan,
+        })
+      )
+      .map((option) => option.id)
+  );
+  if (!visibleSelectedOptionIds.size) {
+    return [] as string[];
+  }
+
+  return optionGroup.options
+    .filter((option) => visibleSelectedOptionIds.has(option.id))
     .slice(0, optionGroup.selectionCount)
-    .map((entry) => entry.optionId);
+    .map((option) => option.id);
+}
+
+function getRequirementOptionIds(item: TransferPlannerChecklistItem) {
+  return (item.requirementGroup?.options ?? []).map((option, optionIndex) =>
+    getRequirementOptionId(item, option, optionIndex)
+  );
+}
+
+function getAlternativeSchedulablePlannerRequirementOptionIdsForScheduling(input: {
+  item: TransferPlannerChecklistItem;
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const group = input.item.requirementGroup;
+  if (!group || group.requirementType === "choose_credits") {
+    return [] as string[];
+  }
+
+  return getSchedulablePlannerRequirementOptionIdsForScheduling({
+    item: input.item,
+    optionIds: getRequirementOptionIds(input.item),
+    campusId: input.campusId,
+    plan: input.plan,
+  });
 }
 
 function getSoleSchedulablePlannerRequirementOptionIdForScheduling(input: {
@@ -2884,12 +2938,23 @@ function getPlannerRequirementOptionSelectionResolution(input: {
     item: input.item,
     optionIds: requestedOptionIds,
     campusId: input.campusId ?? input.plan?.campusId,
+    plan: input.plan,
   });
   const validDefaultOptionIds = getSchedulablePlannerRequirementOptionIdsForScheduling({
     item: input.item,
     optionIds: fallbackOptionIds,
     campusId: input.campusId ?? input.plan?.campusId,
+    plan: input.plan,
   });
+  const validFallbackOptionIds = validDefaultOptionIds.length
+    ? validDefaultOptionIds
+    : fallbackOptionIds.length
+      ? getAlternativeSchedulablePlannerRequirementOptionIdsForScheduling({
+          item: input.item,
+          campusId: input.campusId ?? input.plan?.campusId,
+          plan: input.plan,
+        })
+      : [];
   const soleSchedulableOptionId = getSoleSchedulablePlannerRequirementOptionIdForScheduling({
     item: input.item,
     campusId: input.campusId ?? input.plan?.campusId,
@@ -2936,9 +3001,9 @@ function getPlannerRequirementOptionSelectionResolution(input: {
     };
   }
 
-  if (validDefaultOptionIds.length) {
+  if (validFallbackOptionIds.length) {
     return {
-      selectedOptionIds: validDefaultOptionIds,
+      selectedOptionIds: validFallbackOptionIds,
       requestedOptionIds,
       defaultOptionIds,
       staleOptionIds,
@@ -8475,6 +8540,7 @@ function toSuggestedQuarterCourse(course: PendingSuggestedCourse): SuggestedQuar
       (course.type ?? (String(course.sourceKind ?? "").startsWith("official-grc") ? "core" : "elective")) as
       "core" | "elective",
     status: course.status,
+    explicitCourseCodes: course.explicitCourseCodes,
     creditAmount:
       course.creditAmount ??
       inferSuggestedCourseCreditAmount(course.label, course.explicitCourseCodes),
@@ -13898,6 +13964,19 @@ function getPendingSuggestedCourseSatisfyingCourseCodes(course: PendingSuggested
 }
 
 function getSuggestedQuarterCourseSatisfyingCourseCodes(course: SuggestedQuarterCourse) {
+  if (course.explicitCourseCodes !== undefined) {
+    const explicitCourseCodes = sortCourseCodes(
+      course.explicitCourseCodes
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    if (explicitCourseCodes.length || !course.optionGroup) {
+      return explicitCourseCodes;
+    }
+
+    return getSuggestedQuarterCourseOptionSelectedCourseCodes(course.optionGroup);
+  }
+
   const explicitCourseCodes = sortCourseCodes(extractCourseCodes(course.label));
   if (explicitCourseCodes.length) {
     return explicitCourseCodes;
@@ -16168,7 +16247,17 @@ function buildRemainingSuggestedCourses(
         : labelsToSchedule;
 
       for (const label of labelsForPlanner) {
-        const explicitCourseCodes = shouldScheduleAsChoiceBucket ? [] : extractCourseCodes(label);
+        const isOptionlessCreditBucketPlaceholder =
+          !shouldScheduleAsChoiceBucket &&
+          label === status.item.title &&
+          status.explicitCourseCodes.length === 0 &&
+          (status.item.grcCourses ?? []).length === 0 &&
+          status.item.requirementGroup?.requirementType === "choose_credits" &&
+          (status.item.requirementGroup.options ?? []).length === 0;
+        const explicitCourseCodes =
+          shouldScheduleAsChoiceBucket || isOptionlessCreditBucketPlaceholder
+            ? []
+            : extractCourseCodes(label);
         const promptCreditRange = promptOptionGroup
           ? getRemainingChooseCreditsRangeAfterSelectedOptions({
               status,

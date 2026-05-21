@@ -21,6 +21,32 @@ const GENERATED_OUTPUT_PATH = path.resolve(
   "source-gaps.generated.ts"
 );
 
+require("ts-node").register({
+  skipProject: true,
+  transpileOnly: true,
+  compilerOptions: {
+    module: "CommonJS",
+    moduleResolution: "node",
+  },
+});
+require("tsconfig-paths/register");
+
+const {
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+} = require(path.resolve(
+  REPO_ROOT,
+  "constants",
+  "transfer-planner-source",
+  "requirement-source-adapters.generated.ts"
+));
+const {
+  TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
+} = require(path.resolve(REPO_ROOT, "constants", "transfer-planner-source"));
+
+const ACTIVE_PATHWAY_OWNER_KEYS = new Set(
+  (TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []).map((entry) => entry.id)
+);
+
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
@@ -185,6 +211,70 @@ function buildOwnerKey(owner) {
   return `${owner.ownerType}:${owner.ownerKey}`;
 }
 
+function canParsedRequirementSourceBlockCreateRequiredScheduleRows(block) {
+  if (
+    block.canCreateScheduleRows === false ||
+    block.canCreateRequiredRows === false ||
+    block.canCreateSchedulableRows === false ||
+    block.supportOnly === true ||
+    block.nonSchedulable === true
+  ) {
+    return false;
+  }
+
+  if (["support", "non-schedulable", "ignored"].includes(String(block.sourceRoleStatus ?? ""))) {
+    return false;
+  }
+
+  return ![
+    "approved-course-list",
+    "elective-list",
+    "upper-division-prerequisite-table",
+    "non-schedulable-course-list",
+    "sample-schedule",
+    "support-source",
+    "admission-prerequisite-source",
+    "admissions-preparation",
+    "transfer-equivalency",
+    "matched-grc-track",
+    "old-archival",
+    "ignored",
+  ].includes(String(block.sourceRole ?? ""));
+}
+
+function buildParserBackedOwnerKeys() {
+  const keys = new Set();
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []) {
+    if (!block?.ok || !block.planId || !canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
+      continue;
+    }
+
+    keys.add(`major:${block.planId}`);
+    if (block.pathwayId) {
+      keys.add(`pathway:${block.ownerId || `${block.planId}:pathway:${block.pathwayId}`}`);
+    }
+  }
+
+  return keys;
+}
+
+function isStructuralPlaceholderSourceGapOwner(owner) {
+  const pathwayId = String(owner?.pathwayId ?? "").trim();
+  const ownerKey = String(owner?.ownerKey ?? "");
+  return (
+    pathwayId === "four-option" ||
+    /:pathway:four-option$/i.test(ownerKey)
+  );
+}
+
+function isInactivePathwaySourceGapOwner(owner) {
+  if (owner?.ownerType !== "pathway") {
+    return false;
+  }
+
+  return !ACTIVE_PATHWAY_OWNER_KEYS.has(String(owner.ownerKey ?? ""));
+}
+
 function uniqueOwnersByKey(entries) {
   const seen = new Set();
   const uniqueEntries = [];
@@ -213,10 +303,14 @@ function isSchedulablePrimarySuggestion(candidate) {
 
 function buildSourceGapReport(discoveryReport, options = {}) {
   const discoveryOwnerKeys = new Set((discoveryReport.owners ?? []).map(buildOwnerKey));
+  const parserBackedOwnerKeys = options.parserBackedOwnerKeys ?? new Set();
   const reviewEntries = options.reviewQueue
     ? uniqueOwnersByKey(
         getReviewQueueEntries(options.reviewQueue)
           .filter((entry) => discoveryOwnerKeys.has(buildOwnerKey(entry)))
+          .filter((entry) => !parserBackedOwnerKeys.has(buildOwnerKey(entry)))
+          .filter((entry) => !isStructuralPlaceholderSourceGapOwner(entry))
+          .filter((entry) => !isInactivePathwaySourceGapOwner(entry))
       )
     : [];
   const sourceGapEntriesFromReview = reviewEntries.map((entry) =>
@@ -226,6 +320,9 @@ function buildSourceGapReport(discoveryReport, options = {}) {
     ? sourceGapEntriesFromReview
     : (discoveryReport.owners ?? [])
     .filter((owner) => owner?.suggestedPrimary?.confidence !== "high")
+    .filter((owner) => !parserBackedOwnerKeys.has(buildOwnerKey(owner)))
+    .filter((owner) => !isStructuralPlaceholderSourceGapOwner(owner))
+    .filter((owner) => !isInactivePathwaySourceGapOwner(owner))
     .map((owner) => buildSourceGapEntryFromDiscoveryOwner(owner, discoveryReport.generatedAt))
   )
     .sort((left, right) =>
@@ -349,7 +446,11 @@ function main() {
 
   const discoveryReport = JSON.parse(fs.readFileSync(DISCOVERY_REPORT_PATH, "utf8"));
   const reviewQueue = JSON.parse(fs.readFileSync(REVIEW_QUEUE_REPORT_PATH, "utf8"));
-  const sourceGapReport = buildSourceGapReport(discoveryReport, { targetPlanId, reviewQueue });
+  const sourceGapReport = buildSourceGapReport(discoveryReport, {
+    targetPlanId,
+    reviewQueue,
+    parserBackedOwnerKeys: buildParserBackedOwnerKeys(),
+  });
 
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(sourceGapReport, null, 2)}\n`);
   fs.writeFileSync(GENERATED_OUTPUT_PATH, buildGeneratedFile(sourceGapReport));

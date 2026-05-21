@@ -468,8 +468,31 @@ const DERIVED_PATHWAY_DATE_SUFFIX_PATTERN =
 const DERIVED_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN =
   /\s+[-\u2013\u2014]\s+(?:UW|University of Washington)\b.*$/i;
 const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "track" | "route">> = {
+  "uw-tacoma-bachelor-of-arts-in-business-administration": "option",
   "uw-tacoma-sustainable-urban-development": "option",
   "uw-tacoma-urban-studies": "option",
+  "uw-tacoma-writing-studies": "track",
+};
+const CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN: Partial<
+  Record<string, TransferPlannerDerivedPathwaySeed[]>
+> = {
+  "uw-tacoma-bachelor-of-arts-in-business-administration": [
+    { id: "accounting-option", label: "Accounting option", summary: "" },
+    { id: "finance-option", label: "Finance option", summary: "" },
+    { id: "general-business-option", label: "General Business option", summary: "" },
+    { id: "management-option", label: "Management option", summary: "" },
+    { id: "marketing-option", label: "Marketing option", summary: "" },
+  ],
+  "uw-tacoma-environmental-science": [
+    { id: "general-environmental-science-option", label: "General Environmental Science option", summary: "" },
+    { id: "conservation-biology-and-ecology-option", label: "Conservation Biology and Ecology option", summary: "" },
+    { id: "geoscience-option", label: "Geoscience option", summary: "" },
+  ],
+  "uw-tacoma-writing-studies": [
+    { id: "creative-writing-track", label: "Creative Writing Track", summary: "" },
+    { id: "technical-communication-track", label: "Technical Communication Track", summary: "" },
+    { id: "writing-and-social-change-track", label: "Writing and Social Change Track", summary: "" },
+  ],
 };
 const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
   Record<string, Array<{ pattern: RegExp; id: string; label: string }>>
@@ -532,11 +555,75 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "Policy and Law option",
     },
   ],
+  "uw-tacoma-bachelor-of-arts-in-business-administration": [
+    {
+      pattern: /^accounting(?: option)?$/i,
+      id: "accounting-option",
+      label: "Accounting option",
+    },
+    {
+      pattern: /^finance(?: option)?$/i,
+      id: "finance-option",
+      label: "Finance option",
+    },
+    {
+      pattern: /^general business(?: option)?$/i,
+      id: "general-business-option",
+      label: "General Business option",
+    },
+    {
+      pattern: /^management(?: option)?$/i,
+      id: "management-option",
+      label: "Management option",
+    },
+    {
+      pattern: /^marketing(?: option)?$/i,
+      id: "marketing-option",
+      label: "Marketing option",
+    },
+  ],
   "uw-tacoma-history": [
     {
       pattern: /^general history option$/i,
       id: "general-history-option",
       label: "General History option",
+    },
+    {
+      pattern: /^arts,?\s+culture\s+and\s+society(?: option)?$/i,
+      id: "arts-culture-and-society-option",
+      label: "Arts, Culture and Society option",
+    },
+    {
+      pattern: /^global history(?: option)?$/i,
+      id: "global-history-option",
+      label: "Global History option",
+    },
+    {
+      pattern: /^labor\s+and\s+social\s+movements(?: option)?$/i,
+      id: "labor-and-social-movements-option",
+      label: "Labor and Social Movements option",
+    },
+    {
+      pattern: /^power,?\s+gender\s+and\s+identity(?: option)?$/i,
+      id: "power-gender-and-identity-option",
+      label: "Power, Gender and Identity option",
+    },
+  ],
+  "uw-tacoma-writing-studies": [
+    {
+      pattern: /^creative writing(?: track)?$/i,
+      id: "creative-writing-track",
+      label: "Creative Writing Track",
+    },
+    {
+      pattern: /^technical communication(?: track)?$/i,
+      id: "technical-communication-track",
+      label: "Technical Communication Track",
+    },
+    {
+      pattern: /^(?:rhetoric,\s*)?writing\s+and\s+social\s+change(?: track)?$/i,
+      id: "writing-and-social-change-track",
+      label: "Writing and Social Change Track",
     },
   ],
   "uw-tacoma-sustainable-urban-development": [
@@ -567,12 +654,32 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
   ],
 };
 const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, RegExp[]>> = {
+  "uw-bothell-chemistry-ba": [
+    /^b\.?\s*a\.?\s+in chemistry option$/i,
+    /^b\.?\s*a\.?\s+route$/i,
+    /^biochemistry option$/i,
+    /^chemistry series option$/i,
+    /^general option$/i,
+    /^important planning notes option$/i,
+    /^organic chemistry series option$/i,
+    /^upper division chemistry electives option$/i,
+  ],
+  "uw-bothell-chemistry-bs": [
+    /^chemistry series option$/i,
+    /^organic chemistry series option$/i,
+    /^upper division chemistry electives option$/i,
+  ],
   "uw-bothell-economics": [
     /^(?:accounting|entrepreneurship|finance|leadership\s*&\s*strategic innovation|lsi|management|marketing|management information systems(?:\s*\(mis\))?|mis|retail management|supply chain management|technology\s*&\s*innovation management(?:\s*\(tim\))?|tim)(?:\s+option(?:\s+and\s+concentration)?|\s+concentration)$/i,
   ],
   "uw-bothell-educational-studies-elementary-education": [/^elementary education option$/i],
   "uw-tacoma-arts-media-culture": [/^B\.?\s*A\.?\s+route$/i],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [/^B\.?\s*A\.?\s+route$/i],
+  "uw-tacoma-environmental-science": [
+    /^list [a-z]:?\s+/i,
+    /^additional courses for geoscience option$/i,
+  ],
+  "uw-tacoma-environmental-sustainability": [/^four option$/i],
   "uw-tacoma-history": [/^global studies concentration$/i],
   "uw-seattle-materials-science-engineering": [
     /^final project and internship\/industrial option$/i,
@@ -1458,7 +1565,7 @@ function getExplicitBachelorRouteCredential(value: string | null | undefined) {
   return null;
 }
 
-function isMismatchedBachelorRoutePathway(
+function isMismatchedBachelorCredentialPathway(
   planTitle: string | null | undefined,
   pathway: Pick<TransferPlannerMajorPathway, "id" | "label">
 ) {
@@ -1470,9 +1577,17 @@ function isMismatchedBachelorRoutePathway(
   const pathwayLabel = normalizeDerivedPathwayText(pathway.label);
   const pathwayIdText = normalizeTransferPlannerText(pathway.id).replace(/-/g, " ");
   const isBaRoute =
-    isBachelorsRouteCandidate(pathwayLabel, "a") || isBachelorsRouteCandidate(pathwayIdText, "a");
+    isBachelorsRouteCandidate(pathwayLabel, "a") ||
+    isBachelorsRouteCandidate(pathwayIdText, "a") ||
+    /\b(?:b\.?\s*a\.?|bachelor\s+of\s+arts)\b.*\b(?:option|track|route|pathway|concentration)\b/i.test(
+      `${pathwayLabel} ${pathwayIdText}`
+    );
   const isBsRoute =
-    isBachelorsRouteCandidate(pathwayLabel, "s") || isBachelorsRouteCandidate(pathwayIdText, "s");
+    isBachelorsRouteCandidate(pathwayLabel, "s") ||
+    isBachelorsRouteCandidate(pathwayIdText, "s") ||
+    /\b(?:b\.?\s*s\.?|bachelor\s+of\s+science)\b.*\b(?:option|track|route|pathway|concentration)\b/i.test(
+      `${pathwayLabel} ${pathwayIdText}`
+    );
 
   return (planCredential === "a" && isBsRoute) || (planCredential === "s" && isBaRoute);
 }
@@ -1926,6 +2041,34 @@ function extractDerivedPathwayCandidatesFromChoiceStatement(
   return results;
 }
 
+function mergeCuratedDerivedPathwaySeeds(
+  plan: TransferPlannerMajorPlan,
+  parsedSeeds: TransferPlannerDerivedPathwaySeed[],
+  parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
+) {
+  const curatedSeeds = CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN[plan.id] ?? [];
+  if (!curatedSeeds.length || !parsedSourceBlocks.length) {
+    return parsedSeeds;
+  }
+
+  const seedById = new Map<string, TransferPlannerDerivedPathwaySeed>();
+  for (const seed of [...curatedSeeds, ...parsedSeeds]) {
+    if (
+      isSuspiciousStructuralPathwayId(seed.id) ||
+      isSuspiciousStructuralPathwayLabel(seed.label) ||
+      isPlanExcludedDerivedPathway(plan.id, seed)
+    ) {
+      continue;
+    }
+
+    if (!seedById.has(seed.id)) {
+      seedById.set(seed.id, seed);
+    }
+  }
+
+  return [...seedById.values()];
+}
+
 function buildDerivedPathwaySeeds(
   plan: TransferPlannerMajorPlan,
   basePathways: TransferPlannerMajorPathway[],
@@ -2156,7 +2299,7 @@ function buildDerivedPathwaySeeds(
       (seed) =>
         !isSuspiciousStructuralPathwayLabel(seed.label) &&
         !isPlanExcludedDerivedPathway(plan.id, seed) &&
-        !isMismatchedBachelorRoutePathway(plan.title, seed)
+        !isMismatchedBachelorCredentialPathway(plan.title, seed)
     );
     const namedOptionOrTrackSeedCount = seeds.filter(
       (seed) =>
@@ -2198,7 +2341,11 @@ function buildDerivedPathwaySeeds(
     });
   }
 
-  return buildSeedsFromBlocks(planLevelBlocks.length ? planLevelBlocks : stableParsedSourceBlocks);
+  return mergeCuratedDerivedPathwaySeeds(
+    plan,
+    buildSeedsFromBlocks(planLevelBlocks.length ? planLevelBlocks : stableParsedSourceBlocks),
+    stableParsedSourceBlocks
+  );
 }
 
 function buildPathwayEvidenceFamiliesForBlock(
@@ -2836,6 +2983,7 @@ export function materializeTransferPlannerPathways(
 ): TransferPlannerMajorPathway[] {
   const keepMaterializedPathway = (pathway: TransferPlannerMajorPathway) =>
     !isPlanExcludedDerivedPathway(plan.id, pathway) &&
+    !isMismatchedBachelorCredentialPathway(plan.title, pathway) &&
     !isSuspiciousStructuralPathwayId(pathway.id) &&
     !isSuspiciousStructuralPathwayLabel(pathway.label);
   const canonicalBasePathways = canonicalizeBasePathwaysAgainstAutoPromotions(plan, basePathways).filter(

@@ -124,6 +124,37 @@ test("Primary source promotions store canonical pathway owner ids", () => {
   );
 });
 
+test("HTML requirement parsing drops Drupal cache metadata before source-section audit", () => {
+  const lines = parser.buildHtmlLines(`
+    <main>
+      <h1>Early Childhood & Family Studies</h1>
+      <p>Admission preparation</p>
+      <!-- CACHE CONTEXTS:
+      * route.name.is_layout_builder_ui
+      * url.site
+      * languages:language_interface
+      -->
+      <p>Minimum 2.0 grade in ECFS 200</p>
+    </main>
+  `);
+
+  assert.ok(lines.includes("Minimum 2.0 grade in ECFS 200"));
+  assert.equal(lines.some((line) => /route\.name|CACHE CONTEXTS|url\.site/i.test(line)), false);
+
+  const auditRows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-seattle-early-childhood-and-family-studies",
+    sourceUrl: "https://education.washington.edu/academics/program/early-childhood-family-studies",
+    sourceRole: "primary-degree-requirements",
+    headings: ["Early Childhood & Family Studies"],
+    snapshotLines: ["Admission preparation", "* route.name.is_layout_builder_ui", ...lines],
+  });
+
+  assert.equal(
+    auditRows.some((row) => /route\.name\.is_layout_builder_ui/i.test(row.rawLine)),
+    false
+  );
+});
+
 function normalizeTestCourseCode(value) {
   return normalizeTransferPlannerCourseCode(String(value ?? ""));
 }
@@ -1972,6 +2003,144 @@ test("Unanchored UW catalog major pages scope to the base credential before sibl
   assert.match(scope?.sectionAudit?.stopBoundary ?? "", /Economics: Strategy/);
 });
 
+test("Unanchored UW catalog majors without generated pathways still prefer the base credential", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-AMATH-MAJOR">
+      <h3 class="expanded" id="program-UG-AMATH-MAJOR">Program of Study: Major: Applied Mathematics</h3>
+    </div>
+    <div id="program-UG-AMATH-MAJOR-block" class="inner-block">
+      <p>Applied and computational mathematics includes mathematical finance.</p>
+      <h4 id="credential-amath-bs">Bachelor of Science degree with a major in Applied Mathematics</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Applied math electives may include CFRM 410, CFRM 420, and CFRM 421.</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-CFRM-MAJOR">
+      <h3 class="expanded" id="program-UG-CFRM-MAJOR">Program of Study: Major: Computational Finance and Risk Management</h3>
+    </div>
+    <div id="program-UG-CFRM-MAJOR-block" class="inner-block">
+      <p>This program of study leads to the following credentials:</p>
+      <h4 id="credential-cfrm-bs">Bachelor of Science degree with a major in Computational Finance and Risk Management</h4>
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <p>Quantitative Finance: CFRM 405, CFRM 410, CFRM 415, CFRM 420.</p>
+        <p>Computing: AMATH 301 and CFRM 425.</p>
+      </div>
+      <h4 id="credential-cfrm-data-science">Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science</h4>
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <p>Data Science option: AMATH 483 and one of CSE 416, STAT 416, or STAT 435.</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="program-GR-CFRM-MS">
+      <h3 class="expanded" id="program-GR-CFRM-MS">Program of Study: Master Of Science In Computational Finance And Risk Management</h3>
+    </div>
+    <div id="program-GR-CFRM-MS-block" class="inner-block">
+      <p>Core Courses: CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509.</p>
+    </div>
+  `;
+  const entry = {
+    campusId: "uw-seattle",
+    ownerType: "major",
+    planId: "uw-seattle-cfrm-no-pathway-fixture",
+    ownerTitle: "Computational Finance & Risk Management",
+    label: "Degree requirements",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
+  };
+  const scope = parser.scopeCatalogHtmlByAnchor(entry, html);
+  const scopedText = scope?.lines?.join(" ") ?? "";
+  const scopedLines = parser.scopeHtmlLinesForTest(entry, "Applied Mathematics", [], [
+    "Home",
+    "College of Arts and Sciences",
+    "Applied Mathematics",
+    "Undergraduate Programs",
+    "Program of Study: Major: Computational Finance and Risk Management",
+    "Program Overview",
+    "Computational finance has a strong applied mathematics foundation.",
+    "This program of study leads to the following credentials:",
+    "Bachelor of Science degree with a major in Computational Finance and Risk Management",
+    "Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science",
+    "Admission Requirements",
+    "Minimum requirements: MATH 124, MATH 125, MATH 126, and AMATH 301.",
+    "Continuation Policy",
+    "Bachelor of Science degree with a major in Computational Finance and Risk Management",
+    "Completion Requirements",
+    "Quantitative Finance: CFRM 405, CFRM 410, CFRM 415, CFRM 420.",
+    "Computing: AMATH 301 and CFRM 425.",
+    "Additional Completion Requirements",
+    "Minimum 26 credits from the following: CFRM 421, CFRM 422, CFRM 426, CFRM 430.",
+    "Back to Top",
+    "Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science",
+    "Credential Overview",
+    "Data Science continues to be a growing area of study within Computational Finance.",
+    "Completion Requirements",
+    "Data Science option: AMATH 483 and one of CSE 416, STAT 416, or STAT 435.",
+    "Back to Top",
+    "Program of Study: Master Of Science In Computational Finance And Risk Management",
+    "Completion Requirements",
+    "Core Courses: CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509.",
+  ]);
+  const scopedLineText = scopedLines.join(" ");
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /CFRM 405/);
+  assert.match(scopedText, /CFRM 425/);
+  assert.doesNotMatch(scopedText, /CFRM 501/);
+  assert.doesNotMatch(scopedText, /STAT 435/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /Data Science/);
+  assert.match(scopedLineText, /CFRM 405/);
+  assert.doesNotMatch(scopedLineText, /CFRM 501/);
+  assert.doesNotMatch(scopedLineText, /STAT 435/);
+});
+
+test("UW catalog scoping recognizes European Studies as International Studies Europe", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-EURO-MAJOR">
+      <h3 class="expanded" id="program-UG-EURO-MAJOR">Program of Study: Major: International Studies: Europe</h3>
+    </div>
+    <div id="program-UG-EURO-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-euro">Bachelor of Arts degree with a major in International Studies: Europe</h4>
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <p>Core: JSIS 201 and JSIS A 301.</p>
+        <p>European Studies elective courses: see approved list.</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="program-UG-JAPAN-MAJOR">
+      <h3 class="expanded" id="program-UG-JAPAN-MAJOR">Program of Study: Major: International Studies: Japan</h3>
+    </div>
+    <div id="program-UG-JAPAN-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-japan">Bachelor of Arts degree with a major in International Studies: Japan</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Core: JSIS A 241/HSTAS 241 or JSIS A 242.</p>
+      </div>
+    </div>
+  `;
+  const scope = parser.scopeCatalogHtmlByAnchor(
+    {
+      campusId: "uw-seattle",
+      ownerType: "major",
+      planId: "uw-seattle-european-studies",
+      ownerTitle: "European Studies",
+      label: "Degree requirements",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      url: "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+    },
+    html
+  );
+  const scopedText = scope?.lines?.join(" ") ?? "";
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /JSIS 201/);
+  assert.match(scopedText, /JSIS A 301/);
+  assert.doesNotMatch(scopedText, /JSIS A 241/);
+  assert.doesNotMatch(scopedText, /International Studies: Japan/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /program-UG-JAPAN/);
+});
+
 test("Unanchored UW catalog Anthropology base scope excludes sibling option credentials", () => {
   const html = `
     <div class="expandableGroup" data-expand="undergradPrograms|program-UG-ANTH-MAJOR">
@@ -2063,6 +2232,53 @@ test("Unanchored UW catalog pathway pages scope to the matching credential", () 
   assert.doesNotMatch(scopedText, /ECON 471/);
   assert.doesNotMatch(scopedText, /ECON 300/);
   assert.match(scope?.sectionAudit?.stopBoundary ?? "", /end of document|credential/);
+});
+
+test("Unanchored UW catalog pathway scoping requires the matching major credential", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-AMATH-MAJOR">
+      <h3 class="expanded" id="program-UG-AMATH-MAJOR">Program of Study: Major: Applied Mathematics</h3>
+    </div>
+    <div id="program-UG-AMATH-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-amath-data-science">Bachelor of Science degree with a major in Applied Mathematics: Data Science</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Applied Mathematics Data Science: AMATH 483 and INFO 430.</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-CFRM-MAJOR">
+      <h3 class="expanded" id="program-UG-CFRM-MAJOR">Program of Study: Major: Computational Finance and Risk Management</h3>
+    </div>
+    <div id="program-UG-CFRM-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-cfrm-base">Bachelor of Science degree with a major in Computational Finance and Risk Management</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Quantitative Finance: CFRM 405, CFRM 410, CFRM 415, CFRM 420.</p>
+      </div>
+      <h4 class="expanded" id="credential-cfrm-data-science">Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Computational Finance Data Science: AMATH 483 and CFRM 421.</p>
+      </div>
+    </div>
+  `;
+  const scope = parser.scopeCatalogHtmlByAnchor(
+    {
+      campusId: "uw-seattle",
+      ownerType: "pathway",
+      planId: "uw-seattle-computational-finance-and-risk-management",
+      pathwayId: "data-science",
+      ownerTitle: "Computational Finance & Risk Management - Data Science",
+      label: "Data Science",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      url: "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
+    },
+    html
+  );
+  const scopedText = scope?.lines?.join(" ") ?? "";
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /CFRM 421/);
+  assert.doesNotMatch(scopedText, /INFO 430/);
+  assert.doesNotMatch(scopedText, /Applied Mathematics Data Science/);
 });
 
 test("Pathway hub pages can promote matching child option and concentration sources", async () => {

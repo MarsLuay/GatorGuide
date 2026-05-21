@@ -13,6 +13,7 @@ require("ts-node").register({
 
 const {
   TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
 } = require("../../constants/transfer-planner-source");
 const {
@@ -121,6 +122,79 @@ function getValidationScopedReviewQueueEntries(reviewQueue, targetPlanId = null)
 
 function buildReviewOwnerKeySet(reviewQueue) {
   return new Set(getReviewQueueEntries(reviewQueue).map((entry) => buildOwnerKey(entry)));
+}
+
+const ACTIVE_PATHWAY_OWNER_KEYS = new Set(
+  (TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []).map((entry) =>
+    normalizeTransferPlannerOwnerId(entry.id, entry.planId, entry.pathwayId)
+  )
+);
+
+function canParsedRequirementSourceBlockCreateRequiredScheduleRows(block) {
+  if (
+    block.canCreateScheduleRows === false ||
+    block.canCreateRequiredRows === false ||
+    block.canCreateSchedulableRows === false ||
+    block.supportOnly === true ||
+    block.nonSchedulable === true
+  ) {
+    return false;
+  }
+
+  if (["support", "non-schedulable", "ignored"].includes(String(block.sourceRoleStatus ?? ""))) {
+    return false;
+  }
+
+  return ![
+    "approved-course-list",
+    "elective-list",
+    "upper-division-prerequisite-table",
+    "non-schedulable-course-list",
+    "sample-schedule",
+    "support-source",
+    "admission-prerequisite-source",
+    "admissions-preparation",
+    "transfer-equivalency",
+    "matched-grc-track",
+    "old-archival",
+    "ignored",
+  ].includes(String(block.sourceRole ?? ""));
+}
+
+function buildParserBackedReviewOwnerKeys() {
+  const keys = new Set();
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []) {
+    if (!block?.ok || !block.planId || !canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
+      continue;
+    }
+
+    keys.add(normalizeTransferPlannerOwnerId(block.planId, block.planId, null));
+    if (block.pathwayId) {
+      keys.add(
+        normalizeTransferPlannerOwnerId(
+          block.ownerId || buildTransferPlannerOwnerId(block.planId, block.pathwayId),
+          block.planId,
+          block.pathwayId
+        )
+      );
+    }
+  }
+
+  return keys;
+}
+
+function isStructuralPlaceholderReviewOwner(owner) {
+  const pathwayId = String(owner?.pathwayId ?? "").trim();
+  const ownerKey = String(owner?.ownerKey ?? "");
+  return pathwayId === "four-option" || /:pathway:four-option$/i.test(ownerKey);
+}
+
+function isInactivePathwayReviewOwner(owner) {
+  if (owner?.ownerType !== "pathway") {
+    return false;
+  }
+
+  return !ACTIVE_PATHWAY_OWNER_KEYS.has(buildOwnerKey(owner));
 }
 
 function getDiscoveryReportTargetPlanId(discoveryReport) {
@@ -838,6 +912,14 @@ async function main() {
       buildOwnerKey(owner)
     )
   );
+  const parserBackedReviewOwnerKeys = buildParserBackedReviewOwnerKeys();
+  const validationScopedSourceGapDiscoveryOwnerKeys = new Set(
+    getValidationScopedDiscoveryOwners(discoveryReport, "owners")
+      .filter((owner) => !parserBackedReviewOwnerKeys.has(buildOwnerKey(owner)))
+      .filter((owner) => !isStructuralPlaceholderReviewOwner(owner))
+      .filter((owner) => !isInactivePathwayReviewOwner(owner))
+      .map((owner) => buildOwnerKey(owner))
+  );
   const validationScopedReviewEntries = getValidationScopedReviewQueueEntries(
     reviewQueue,
     targetPlanId
@@ -845,11 +927,17 @@ async function main() {
   const validationScopedMissingPrimaryReviewOwnerKeys = new Set(
     validationScopedReviewEntries
       .filter((entry) => validationScopedDiscoveryOwnerKeys.has(buildOwnerKey(entry)))
+      .filter((entry) => !parserBackedReviewOwnerKeys.has(buildOwnerKey(entry)))
+      .filter((entry) => !isStructuralPlaceholderReviewOwner(entry))
+      .filter((entry) => !isInactivePathwayReviewOwner(entry))
       .map((entry) => buildOwnerKey(entry))
   );
   const validationScopedReviewOwnerCount = validationScopedReviewEntries.length;
+  const validationScopedSourceGapEntries = targetPlanId
+    ? (sourceGapReport.entries ?? []).filter((entry) => entry?.planId === targetPlanId)
+    : (sourceGapReport.entries ?? []);
   const sourceGapOwnerKeys = new Set(
-    (sourceGapReport.entries ?? []).map((entry) => buildOwnerKey(entry))
+    validationScopedSourceGapEntries.map((entry) => buildOwnerKey(entry))
   );
   const promotedOwnerIds = new Set(
     (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)
@@ -916,17 +1004,25 @@ async function main() {
       "discovery-partition",
       "Missing-primary discovery owners partition cleanly into eligible, review, and blocked buckets",
       () => {
+        const scopedEligibleMissingPrimaryAutoPromotionOwners =
+          eligibleMissingPrimaryAutoPromotionOwners.filter((owner) =>
+            validationScopedSourceGapDiscoveryOwnerKeys.has(buildOwnerKey(owner))
+          );
+        const scopedBlockedMissingPrimaryAutoPromotionOwners =
+          blockedMissingPrimaryAutoPromotionOwners.filter((owner) =>
+            validationScopedSourceGapDiscoveryOwnerKeys.has(buildOwnerKey(owner))
+          );
         assert.equal(
-          getValidationScopedDiscoveryOwnerCount(discoveryReport),
-          eligibleMissingPrimaryAutoPromotionOwners.length +
+          validationScopedSourceGapDiscoveryOwnerKeys.size,
+          scopedEligibleMissingPrimaryAutoPromotionOwners.length +
             validationScopedMissingPrimaryReviewOwnerKeys.size +
-            blockedMissingPrimaryAutoPromotionOwners.length,
+            scopedBlockedMissingPrimaryAutoPromotionOwners.length,
           "Discovery owner count should equal eligible auto-promotions plus review-queue owners plus explicitly blocked auto-promotions."
         );
         return [
-          `Discovery owners: ${getValidationScopedDiscoveryOwnerCount(discoveryReport)}`,
-          `Eligible missing-primary auto-promotions: ${eligibleMissingPrimaryAutoPromotionOwners.length}`,
-          `Blocked missing-primary auto-promotions: ${blockedMissingPrimaryAutoPromotionOwners.length}`,
+          `Discovery owners: ${validationScopedSourceGapDiscoveryOwnerKeys.size}`,
+          `Eligible missing-primary auto-promotions: ${scopedEligibleMissingPrimaryAutoPromotionOwners.length}`,
+          `Blocked missing-primary auto-promotions: ${scopedBlockedMissingPrimaryAutoPromotionOwners.length}`,
           `Eligible weak-existing replacements: ${eligibleWeakExistingReplacementOwners.length}`,
           `Review-queue owners: ${validationScopedReviewOwnerCount}`,
           `Missing-primary review owners: ${validationScopedMissingPrimaryReviewOwnerKeys.size}`,
@@ -978,7 +1074,7 @@ async function main() {
           { leftOnly: [], rightOnly: [] },
           `Review/source-gap mismatch. review-only=${setDiff.leftOnly.join(", ")} source-gap-only=${setDiff.rightOnly.join(", ")}`
         );
-        return `Shared unresolved owners: ${sourceGapReport.totalSourceGapOwners}`;
+        return `Shared unresolved owners: ${sourceGapOwnerKeys.size}`;
       }
     ),
     runCheck(

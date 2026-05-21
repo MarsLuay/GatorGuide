@@ -7103,6 +7103,14 @@ type StructuredPlanMetadata = {
 };
 
 const STRUCTURED_PLAN_METADATA_BY_ID = new Map<string, StructuredPlanMetadata>();
+const CANONICAL_SOURCE_GENERATED_MAJOR_TITLES_BY_ID = new Map<string, string>([
+  ["uw-bothell-media-and-communications-studies", "Media & Communication Studies (BA)"],
+  ["uw-tacoma-communications", "Communication (BA)"],
+]);
+
+function getCanonicalSourceGeneratedMajorTitle(planId: string, title: string) {
+  return CANONICAL_SOURCE_GENERATED_MAJOR_TITLES_BY_ID.get(planId) ?? title;
+}
 
 function registerStructuredPlanMetadata(
   planId: string | null | undefined,
@@ -7362,6 +7370,8 @@ const PARSER_ONLY_BASE_MAJOR_PLANS = Array.from(STRUCTURED_PLAN_METADATA_BY_ID.v
   .map((metadata) => buildParserOnlyBasePlan(metadata));
 const HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => ({
   ...plan,
+  title: getCanonicalSourceGeneratedMajorTitle(plan.id, plan.title),
+  shortTitle: buildFallbackShortTitle(getCanonicalSourceGeneratedMajorTitle(plan.id, plan.title)),
   pathways: buildBootstrapBasePathways(plan),
 }));
 const ALL_BASE_MAJOR_PLANS = uniqueById([

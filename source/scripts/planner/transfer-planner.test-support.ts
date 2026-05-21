@@ -96,6 +96,7 @@ import {
 import {
   getTransferPlannerMajorPlan as getCompactRuntimeMajorPlan,
   getTransferPlannerGrcCourseList as getCompactRuntimeGrcCourseList,
+  getTransferPlannerStudentRuntimePathwaysForPlan as getCompactRuntimePathwaysForPlan,
   getTransferPlannerTrack as getCompactRuntimeTrack,
   resolveTransferPlannerStudentRuntimeMajorPlan as resolveCompactRuntimeMajorPlan,
 } from "@/constants/transfer-planner-source/student-runtime";
@@ -2003,6 +2004,7 @@ export {
   getChecklistCoverageForPlan,
   getCompactRuntimeGrcCourseList,
   getCompactRuntimeMajorPlan,
+  getCompactRuntimePathwaysForPlan,
   getCompactRuntimeTrack,
   getCurrentTransferPlannerGrcCatalogYearLabel,
   getDuplicateSortedValues,

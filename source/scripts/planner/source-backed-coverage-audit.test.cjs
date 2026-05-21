@@ -1052,6 +1052,65 @@ test("Runtime option audit suppresses options scheduled for other source-backed 
   assert.equal(statisticsRow?.issue, "none");
 });
 
+test("Environmental Studies optionless credit bucket does not suppress schedulable analytical-methods default", () => {
+  const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-environmental-studies"
+  );
+  const plan = source.resolveTransferPlannerStudentRuntimeMajorPlan(basePlan, null);
+  assert.ok(plan);
+  const completedCourses = [];
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      plan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      plan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      plan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: source.getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const suggestedRows = suggestedPlan.flatMap((quarter) => quarter.courses);
+  const broadPlaceholder = suggestedRows.find((course) =>
+    /^Integrating Disciplines:/.test(course.label)
+  );
+  assert.deepEqual(broadPlaceholder?.explicitCourseCodes ?? [], []);
+  assert.ok(
+    suggestedRows.some(
+      (course) =>
+        course.label === "MATH& 146" &&
+        course.optionGroup?.selectedOptionIds.includes(
+          "uw-seattle-environmental-studies:requirement-option:stat-220"
+        )
+    )
+  );
+
+  const analyticalMethodsRow = planner.auditRuntimeOptionResolution({
+    ownerId: plan.id,
+    plan,
+    suggestedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+  }).find((row) => row.groupId.includes("envir-310-or-esrm-250"));
+
+  assert.deepEqual(analyticalMethodsRow?.scheduledOptionIds, [
+    "uw-seattle-environmental-studies:requirement-option:stat-220",
+  ]);
+  assert.equal(analyticalMethodsRow?.issue, "none");
+});
+
 test("Runtime option audit allows unresolved credit bucket remainders", () => {
   const plan = source.getTransferPlannerMajorPlan(
     "uw-seattle-environmental-science-and-terrestrial-resource-management"

@@ -40,6 +40,7 @@ import {
   getAllChecklistItems,
   getCompactRuntimeGrcCourseList,
   getCompactRuntimeMajorPlan,
+  getCompactRuntimePathwaysForPlan,
   getCurrentTransferPlannerGrcCatalogYearLabel,
   getDuplicateSortedValues,
   getGeneratedMetadataGapEntriesForCourse,
@@ -4347,6 +4348,233 @@ test.skip("Only majors with real supported routes expose planner pathways", () =
   assert.equal(getTransferPlannerPathwaysForPlan(tacomaWritingPlan).length, 3);
 });
 
+test("Tacoma source-backed option families remain student-visible after parser support lands", () => {
+  const expectedPathwaysByPlan = [
+    [
+      "uw-tacoma-bachelor-of-arts-in-business-administration",
+      sourceGeneratedTacomaBabaPlan,
+      [
+        "accounting-option",
+        "finance-option",
+        "general-business-option",
+        "management-option",
+        "marketing-option",
+      ],
+    ],
+    [
+      "uw-tacoma-environmental-science",
+      getRequiredPlan("uw-tacoma-environmental-science"),
+      [
+        "conservation-biology-and-ecology-option",
+        "general-environmental-science-option",
+        "geoscience-option",
+      ],
+    ],
+    [
+      "uw-tacoma-environmental-sustainability",
+      sourceGeneratedTacomaEnvSustainabilityPlan,
+      [
+        "business-nonprofit-leadership-option",
+        "education-option",
+        "environmental-communication-option",
+        "policy-law-option",
+      ],
+    ],
+    [
+      "uw-tacoma-history",
+      tacomaHistoryPlan,
+      [
+        "arts-culture-and-society-option",
+        "general-history-option",
+        "global-history-option",
+        "labor-and-social-movements-option",
+        "power-gender-and-identity-option",
+      ],
+    ],
+    [
+      "uw-tacoma-writing-studies",
+      tacomaWritingPlan,
+      [
+        "creative-writing-track",
+        "technical-communication-track",
+        "writing-and-social-change-track",
+      ],
+    ],
+  ] as const;
+
+  for (const [planId, sourcePlan, expectedPathwayIds] of expectedPathwaysByPlan) {
+    assert.ok(sourcePlan, `Expected source-generated plan ${planId}.`);
+    assert.deepEqual(
+      getTransferPlannerPathwaysForPlan(sourcePlan).map((pathway) => pathway.id).sort(),
+      [...expectedPathwayIds].sort(),
+      `Expected source pathways for ${planId} to match official Tacoma options.`
+    );
+
+    const runtimePlan = getCompactRuntimeMajorPlan(planId);
+    assert.ok(runtimePlan, `Expected student runtime plan ${planId}.`);
+    assert.deepEqual(
+      getCompactRuntimePathwaysForPlan(runtimePlan)
+        .map((pathway) => pathway.id)
+        .sort(),
+      [...expectedPathwayIds].sort(),
+      `Expected runtime pathways for ${planId} to match official Tacoma options.`
+    );
+  }
+});
+
+test("Tacoma Communication keeps the official singular title while preserving track pathways", () => {
+  const sourcePlan = getTransferPlannerMajorPlan("uw-tacoma-communications");
+  const runtimePlan = getCompactRuntimeMajorPlan("uw-tacoma-communications");
+
+  assert.ok(sourcePlan, "Expected Tacoma Communication source-generated plan.");
+  assert.ok(runtimePlan, "Expected Tacoma Communication compact runtime plan.");
+  assert.equal(sourcePlan.title, "Communication (BA)");
+  assert.equal(sourcePlan.shortTitle, "Communication");
+  assert.equal(runtimePlan.title, "Communication (BA)");
+  assert.equal(runtimePlan.shortTitle, "Communication");
+  assert.deepEqual(
+    getTransferPlannerPathwaysForPlan(sourcePlan)
+      .map((pathway) => pathway.id)
+      .sort(),
+    ["professional-track", "research-track"]
+  );
+  assert.deepEqual(
+    getCompactRuntimePathwaysForPlan(runtimePlan)
+      .map((pathway) => pathway.id)
+      .sort(),
+    ["professional-track", "research-track"]
+  );
+});
+
+test("Tacoma high-risk source-backed BS and RN-BSN pages materialize official requirements", () => {
+  const cssPlanId = "uw-tacoma-computer-science-and-systems-bs";
+  const cssPlan = getRequiredPlan(cssPlanId);
+  const cssRuntimePlan = getCompactRuntimeMajorPlan(cssPlanId);
+  const cssParsedCourseCodes = new Set(
+    getTransferPlannerParsedRequirementSourceBlocks(cssPlanId, null).flatMap(
+      (block) => block.parsedUwCourseCodes
+    )
+  );
+
+  assert.equal(
+    getTransferPlannerPrimaryDegreeRequirementsSource(cssPlanId, null)?.url,
+    "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs"
+  );
+  assert.deepEqual(getTransferPlannerPathwaysForPlan(cssPlan), []);
+  assert.ok(cssRuntimePlan, "Expected Tacoma CS&S BS in compact runtime.");
+  assert.deepEqual(getCompactRuntimePathwaysForPlan(cssRuntimePlan).map((pathway) => pathway.id), []);
+  for (const courseCode of [
+    "TCSS 305",
+    "TCSS 321",
+    "TCSS 342",
+    "TCSS 343",
+    "TCSS 360",
+    "TCSS 371",
+    "TCSS 372",
+    "TCSS 380",
+    "TCSS 422",
+    "TMATH 126",
+    "TMATH 208",
+    "TMATH 390",
+  ]) {
+    assert.ok(cssParsedCourseCodes.has(courseCode), `Expected CS&S BS to parse ${courseCode}.`);
+  }
+  assert.ok(
+    getAllChecklistItems(cssRuntimePlan).some((item) =>
+      ["TCSS 437", "TCSS 445", "TCSS 450", "TCSS 452", "TCSS 460", "TCSS 461", "TCSS 465", "TCSS 491"]
+        .every((courseCode) =>
+          (item.requirementGroup?.options ?? []).some((option) =>
+            (option.uwCourses ?? []).includes(courseCode)
+          )
+        )
+    ),
+    "Expected CS&S BS runtime to retain the official approved design-elective row."
+  );
+
+  const envSciencePlanId = "uw-tacoma-environmental-science";
+  const envSciencePlan = getRequiredPlan(envSciencePlanId);
+  const envScienceRuntimePlan = getCompactRuntimeMajorPlan(envSciencePlanId);
+  const expectedEnvSciencePathways = [
+    "conservation-biology-and-ecology-option",
+    "general-environmental-science-option",
+    "geoscience-option",
+  ].sort();
+  const envScienceParsedCourseCodes = new Set(
+    getTransferPlannerParsedRequirementSourceBlocks(envSciencePlanId, null).flatMap(
+      (block) => block.parsedUwCourseCodes
+    )
+  );
+
+  assert.deepEqual(
+    getTransferPlannerPathwaysForPlan(envSciencePlan).map((pathway) => pathway.id).sort(),
+    expectedEnvSciencePathways
+  );
+  assert.ok(envScienceRuntimePlan, "Expected Tacoma Environmental Science in compact runtime.");
+  assert.deepEqual(
+    getCompactRuntimePathwaysForPlan(envScienceRuntimePlan)
+      .map((pathway) => pathway.id)
+      .sort(),
+    expectedEnvSciencePathways
+  );
+  assert.equal(
+    getTransferPlannerPathwaysForPlan(envSciencePlan).some((pathway) =>
+      /list h/i.test(`${pathway.id} ${pathway.label}`)
+    ),
+    false,
+    "Expected Environmental Science to hide source-list headings as pathways."
+  );
+  for (const courseCode of [
+    "TBIOL 120",
+    "TBIOL 130",
+    "TBIOL 140",
+    "TCHEM 142",
+    "TCHEM 152",
+    "TCHEM 162",
+    "TESC 200",
+    "TESC 310",
+    "TESC 410",
+    "TBIOL 340",
+    "TCHEM 333",
+    "TBIOL 464",
+    "TESC 495",
+  ]) {
+    assert.ok(
+      envScienceParsedCourseCodes.has(courseCode),
+      `Expected Environmental Science to parse ${courseCode}.`
+    );
+  }
+
+  const nursingPlanId = "uw-tacoma-nursing";
+  const nursingRuntimePlan = getCompactRuntimeMajorPlan(nursingPlanId);
+  const nursingParsedCourseCodes = new Set(
+    getTransferPlannerParsedRequirementSourceBlocks(nursingPlanId, null).flatMap(
+      (block) => block.parsedUwCourseCodes
+    )
+  );
+  const nursingDegreeMapItems = new Set(
+    (nursingRuntimePlan?.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+
+  assert.ok(nursingRuntimePlan, "Expected Tacoma Nursing RN-BSN in compact runtime.");
+  for (const courseCode of [
+    "THLTH 340",
+    "THLTH 415",
+    "TNURS 360",
+    "TNURS 407",
+    "TNURS 410",
+    "TNURS 414",
+    "TNURS 420",
+    "TNURS 440",
+    "TNURS 460",
+  ]) {
+    assert.ok(nursingParsedCourseCodes.has(courseCode), `Expected Nursing RN-BSN to parse ${courseCode}.`);
+    assert.ok(
+      nursingDegreeMapItems.has(courseCode),
+      `Expected Nursing RN-BSN compact degree map to include ${courseCode}.`
+    );
+  }
+});
+
 test("Materialized pathway promotion only diverges from raw source-generated pathways when raw pathways are structurally suspicious", () => {
   const unexpectedPathwayDrift = TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.flatMap((plan) => {
     const rawPathways = plan.pathways ?? [];
@@ -4507,6 +4735,79 @@ test("Parser-backed supplemental pathway rows survive into generated and runtime
   );
   assert.ok(envBusinessPlan, "Expected Environmental Sustainability business pathway resolution.");
   assert.equal(envBusinessPlan.selectedPathwayId, "business-nonprofit-leadership-option");
+});
+
+test("Bothell IAS current public labels stay student-facing in runtime output", () => {
+  const mediaPlan = getCompactRuntimeMajorPlan("uw-bothell-media-and-communications-studies");
+  assert.ok(mediaPlan, "Expected Bothell Media & Communication Studies in compact runtime.");
+  assert.equal(mediaPlan.title, "Media & Communication Studies (BA)");
+
+  const visibleTitles = getTransferPlannerStudentVisibleMajorsForCampus("uw-bothell").map(
+    (plan) => plan.title
+  );
+  assert.ok(visibleTitles.includes("Media & Communication Studies (BA)"));
+  assert.equal(visibleTitles.includes("Media & Communications Studies (BA)"), false);
+});
+
+test("Bothell Chemistry sections stay scoped to BA, BS general, and BS biochemistry output", () => {
+  const chemistryBa = getCompactRuntimeMajorPlan("uw-bothell-chemistry-ba");
+  const chemistryBs = getCompactRuntimeMajorPlan("uw-bothell-chemistry-bs");
+
+  assert.ok(chemistryBa, "Expected Bothell Chemistry BA in compact runtime.");
+  assert.ok(chemistryBs, "Expected Bothell Chemistry BS in compact runtime.");
+  assert.deepEqual(
+    getCompactRuntimePathwaysForPlan(chemistryBa).map((pathway) => pathway.id),
+    []
+  );
+
+  const baParsedCodes = new Set(
+    getTransferPlannerParsedRequirementSourceBlocks("uw-bothell-chemistry-ba", null).flatMap(
+      (block) => block.parsedUwCourseCodes ?? []
+    )
+  );
+  for (const expectedCode of ["BCHEM 237", "BPHYS 121", "BCHEM 312"]) {
+    assert.ok(baParsedCodes.has(expectedCode), `Expected Chemistry BA source rows to include ${expectedCode}.`);
+  }
+
+  const bsPathways = getCompactRuntimePathwaysForPlan(chemistryBs);
+  assert.deepEqual(
+    bsPathways.map((pathway) => pathway.id).sort(),
+    ["b-s-in-chemistry-general-option", "biochemistry-option"]
+  );
+
+  const generalOption = bsPathways.find(
+    (pathway) => pathway.id === "b-s-in-chemistry-general-option"
+  );
+  const biochemistryOption = bsPathways.find((pathway) => pathway.id === "biochemistry-option");
+  assert.ok(generalOption, "Expected Chemistry BS general option runtime pathway.");
+  assert.ok(biochemistryOption, "Expected Chemistry BS biochemistry option runtime pathway.");
+
+  const generalDegreeMapItems = new Set(
+    (generalOption.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+  const biochemistryDegreeMapItems = new Set(
+    (biochemistryOption.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+
+  for (const expectedCode of ["BCHEM 237", "BCHEM 312", "BCHEM 364", "BCHEM 426"]) {
+    assert.ok(
+      generalDegreeMapItems.has(expectedCode),
+      `Expected Chemistry BS general option degree map to include ${expectedCode}.`
+    );
+  }
+  for (const expectedCode of ["BBIO 180", "BBIO 200", "BCHEM 364", "BCHEM 426"]) {
+    assert.ok(
+      biochemistryDegreeMapItems.has(expectedCode),
+      `Expected Chemistry BS biochemistry option degree map to include ${expectedCode}.`
+    );
+  }
+
+  assert.equal(getCompactRuntimeMajorPlan("uw-bothell-chemistry-biochemistry"), null);
+  const sourceGapOwnerKeys = new Set(
+    TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.map((entry) => entry.ownerKey)
+  );
+  assert.equal(sourceGapOwnerKeys.has("uw-bothell-chemistry-ba"), false);
+  assert.equal(sourceGapOwnerKeys.has("uw-bothell-chemistry-bs:pathway:biochemistry-option"), false);
 });
 
 test.skip("Resolving Biology pathways keeps the selected route metadata while preserving the shared source-backed prep list", () => {
@@ -5469,6 +5770,121 @@ test("Tacoma Environmental Sustainability pathway aliases collapse to four canon
       ["policy-law-option", "Policy and Law option"],
     ]
   );
+});
+
+test("Tacoma Environmental Sustainability parser scopes base requirements separately from option requirements", () => {
+  const planId = "uw-tacoma-environmental-sustainability";
+  const baseBlocks = getTransferPlannerParsedRequirementSourceBlocks(planId, null).filter(
+    (block) => block.pathwayId === null && block.sourceRoleStatus === "primary"
+  );
+  const baseParsedCodes = new Set(baseBlocks.flatMap((block) => block.parsedUwCourseCodes));
+
+  assert.ok(baseBlocks.length > 0, "Expected base Environmental Sustainability parsed block.");
+  assert.equal(
+    baseBlocks.flatMap((block) => block.qualitySignals ?? []).length,
+    0,
+    "Expected base Environmental Sustainability parse to be warning-free."
+  );
+  for (const courseCode of [
+    "TBIOL 110",
+    "TESC 201",
+    "TESC 345",
+    "TEST 200",
+    "TLAW 438",
+    "TWRT 331",
+    "TESC 495",
+    "TMGMT 465",
+    "TMGMT 466",
+  ]) {
+    assert.ok(
+      baseParsedCodes.has(courseCode),
+      `Expected base Environmental Sustainability requirements to include ${courseCode}.`
+    );
+  }
+  for (const optionOnlyCourseCode of ["TBGEN 212", "TEDUC 290", "TCOM 275", "TECON 210"]) {
+    assert.equal(
+      baseParsedCodes.has(optionOnlyCourseCode),
+      false,
+      `Expected base Environmental Sustainability requirements not to absorb option-only ${optionOnlyCourseCode}.`
+    );
+  }
+
+  const expectedPathwayCodesById = {
+    "business-nonprofit-leadership-option": [
+      "TBGEN 212",
+      "TBUS 300",
+      "TMGMT 420",
+      "TMGMT 452",
+      "TMGMT 457",
+      "TMGMT 465",
+      "TMGMT 466",
+    ],
+    "education-option": [
+      "TEDUC 290",
+      "TEDUC 471",
+      "TEDUC 482",
+      "TPSYCH 220",
+      "TPSYCH 320",
+      "TPSYCH 321",
+    ],
+    "environmental-communication-option": [
+      "TCOM 275",
+      "TCOM 310",
+      "TCOM 312",
+      "TCOM 482",
+      "TESC 404",
+      "TLIT 237",
+      "TWRT 211",
+      "TWRT 291",
+      "TWRT 372",
+      "TWRT 388",
+      "TWRT 389",
+      "TWRT 391",
+    ],
+    "policy-law-option": [
+      "TECON 210",
+      "TECON 410",
+      "TECON 421",
+      "TESC 404",
+      "TEST 337",
+      "TEST 343",
+      "TLAW 339",
+      "TLAW 465",
+      "TPOLS 203",
+      "TPOLS 270",
+    ],
+  } as const;
+  const forbiddenPathwayCodesById = {
+    "business-nonprofit-leadership-option": ["TEDUC 290", "TCOM 275", "TECON 210"],
+    "education-option": ["TBGEN 212", "TCOM 275", "TECON 210"],
+    "environmental-communication-option": ["TBGEN 212", "TEDUC 290", "TECON 210"],
+    "policy-law-option": ["TBGEN 212", "TEDUC 290", "TCOM 275"],
+  } as const;
+
+  for (const pathwayId of Object.keys(expectedPathwayCodesById) as Array<
+    keyof typeof expectedPathwayCodesById
+  >) {
+    const expectedCourseCodes = expectedPathwayCodesById[pathwayId];
+    const pathwayBlocks = getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId);
+    const parsedCodes = new Set(pathwayBlocks.flatMap((block) => block.parsedUwCourseCodes));
+    assert.equal(
+      pathwayBlocks.flatMap((block) => block.qualitySignals ?? []).length,
+      0,
+      `Expected Environmental Sustainability ${pathwayId} parse to be warning-free.`
+    );
+    assert.deepEqual(
+      Array.from(parsedCodes).sort(),
+      [...expectedCourseCodes].sort(),
+      `Expected Environmental Sustainability ${pathwayId} parsed codes to stay scoped.`
+    );
+    for (const forbiddenCourseCode of forbiddenPathwayCodesById[pathwayId]) {
+      assert.equal(
+        parsedCodes.has(forbiddenCourseCode),
+        false,
+        `Expected Environmental Sustainability ${pathwayId} not to absorb sibling option ${forbiddenCourseCode}.`
+      );
+    }
+  }
 });
 
 test("Tacoma EGLS materialization keeps only the three declared broad-page options", () => {

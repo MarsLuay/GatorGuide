@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const parser = require("./parse-transfer-planner-requirement-sources.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -19,7 +20,6 @@ require("tsconfig-paths/register");
 const source = require("../../constants/transfer-planner-source");
 const studentRuntime = require("../../constants/transfer-planner-source/student-runtime");
 const planner = require("../../services/planning/transfer-planner.service");
-const parser = require("./parse-transfer-planner-requirement-sources.cjs");
 const sourceBackedActionability = require("./source-backed-coverage-actionability.cjs");
 const {
   SOURCE_BACKED_COVERAGE_GATE_LABEL,

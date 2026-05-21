@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
@@ -472,7 +472,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "9a1bee58f7ba9b0bce2ce340a1f7d62d36ff989ed42e85ddbf3d48135bd08da0"
   },
   {
@@ -528,7 +528,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "B EDUC 300 Research & Educational Knowledge (W)",
       "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "297c24a1f610dc9bfb056c64c557b001698aa5d19beb3b8855df86d7408ae560"
   },
   {
@@ -573,7 +573,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "c7095ba2c6abb04915540d4fb3ea4ffbd3cf5e9c47b0c41dbcf98279b2ac2bcd"
   },
   {
@@ -617,7 +617,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "7d1c7832494f9dbf594b0d967b1299acb37b30e2c2c158484c18c74c0ff6c115"
   },
   {
@@ -687,7 +687,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -774,7 +774,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "71-73 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 215, DESIGN 325, DESIGN 371, DESIGN 372, DESIGN 383, DESIGN 384, DESIGN 481, DESIGN 483, DESIGN 485, DESIGN 486",
       "10 credits from DESIGN 326, DESIGN 373, DESIGN 374, DESIGN 376, DESIGN 400, DESIGN 467"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "9dc8f154463b396d649c44441e1c9dc6b0b9fa1ac2da6416bc43eb219c76ae24"
   },
   {
@@ -815,7 +815,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "MGMT 200 (Introduction to Law)",
       "QMETH 201 (Statistical Methods)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "872c60d5f1d15da7f5f57132020a2062b7bd46bb009c682c7c79929061440f19"
   },
   {
@@ -881,7 +881,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
   },
   {
@@ -980,7 +980,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
       "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "408509e11b8467d5c8eab6ac566d2d259fc8a5932c8a916201e59f26b7b04c47"
   },
   {
@@ -1016,7 +1016,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits of electives chosen from an approved list. See department website for approved list of courses.",
       "HSTAS 211 and either JSIS C 202 or one additional introductory Asian civilization course (10 credits)*"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "dfab70b22edfb71a128098d86eab4553f706f80a983ffb145d43d85e6512a236"
   },
   {
@@ -1068,7 +1068,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "e2ccb63d4acf3832039d801b9842ee6ee7ca7f542e64b73230d0bfd1ae7b4e78"
   },
   {
@@ -1110,7 +1110,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "7c02d2b529c08adc11905f3014348914f80680a198837e00b16f812b6122a33c"
   },
   {
@@ -1170,7 +1170,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "f5c5cc4d3826702874c743981939ad4a1c889d0cbd7b4323e549de2e7e30663e"
   },
   {
@@ -1354,8 +1354,64 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "e6692dc66c91b79488b6f7b2f1eeb7ccf9132513a45d655810f85d2d3d2d16d6"
+  },
+  {
+    "filterId": "UW_SEATTLE_MARINE_BIOLOGY_SPECIAL_TOPICS_ARE_APPROVED_BY_INDIVIDUAL_OFFERING_SEE_COURSES_PAGE_FOR_APPROVED_SECTIONS_BY_QUARTER",
+    "filterKey": "uw-seattle-marine-biology-special-topics-are-approved-by-individual-offering-see-courses-page-for-approved-sections-by-quarter",
+    "label": "Uw Seattle Marine Biology Special Topics Are Approved By Individual Offering See Courses Page For Approved Sections By Quarter",
+    "ownerIds": [
+      "uw-seattle-marine-biology"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+    "sourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "CHEM 120",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 220",
+      "CHEM 223",
+      "CHEM 237",
+      "FHL 468",
+      "FHL 472",
+      "FHL 495",
+      "FISH 497",
+      "OCEAN 295",
+      "OCEAN 411",
+      "OCEAN 431",
+      "OCEAN 497"
+    ],
+    "aliases": [
+      "uw-seattle-marine-biology-special-topics-are-approved-by-individual-offering-see-courses-page-for-approved-sections-by-quarter"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. \">",
+      "Chemistry",
+      "Biology"
+    ],
+    "sourceEvidenceLines": [
+      "The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. \">",
+      "Chemistry",
+      "CHEM 120",
+      "OCEAN 295",
+      "CHEM 220",
+      "CHEM 142",
+      "CHEM 152",
+      "CHEM 223",
+      "CHEM 143, 153 and 145, 155 are pre-approved substitutes for CHEM 142 and 152.",
+      "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
+      "Biology"
+    ],
+    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "sourceFingerprint": "a24e30e8ca410cbff2587a66e8395eb15fd4e2ede43aaba24e5171733bc4c990"
   },
   {
     "filterId": "UW_SEATTLE_MECHANICAL_ENGINEERING_FROM_THE_LIST_OF_APPROVED_400_LEVEL_ME_COURSES",
@@ -1389,7 +1445,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ME 402",
       "ME 406"
     ],
-    "generatedAt": "2026-05-20T08:39:53.872Z",
+    "generatedAt": "2026-05-21T08:35:27.472Z",
     "sourceFingerprint": "a021bd526a4967e010161b6bb09f3d2056f23005d6de590fa72c5935debdd975"
   }
 ] as const;
