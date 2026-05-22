@@ -276,7 +276,7 @@ run_fact_check_export() {
   node "$APP_ROOT/scripts/planner/export-transfer-planner-fact-check.cjs"
   exit_code="$?"
   set -e
-  finish "$exit_code" "AI fact-check export"
+  finish "$exit_code" "Course planner row document export"
 }
 
 maintenance_mode_menu() {
@@ -353,7 +353,7 @@ menu() {
     printf '3. Show cache summary\n'
     printf '4. Edit course links\n'
     printf '5. Laymans Diagnosis\n'
-    printf '6. Export AI fact-check pack\n'
+    printf '6. Export course planner row document\n'
     printf '7. Back\n'
     printf '\n'
     printf 'Enter 1-7:'

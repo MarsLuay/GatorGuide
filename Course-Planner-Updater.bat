@@ -43,7 +43,7 @@ echo 2. Course updates only
 echo 3. Show cache summary
 echo 4. Edit course links
 echo 5. Laymans Diagnosis
-echo 6. Export AI fact-check pack
+echo 6. Export course planner row document
 echo 7. Back
 echo.
 set "CHOICE="
@@ -151,7 +151,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-
 goto finish
 
 :runFactCheckExport
-set "ACTION_LABEL=AI fact-check export"
+set "ACTION_LABEL=Course planner row document export"
 node "%APP_ROOT%\scripts\planner\export-transfer-planner-fact-check.cjs"
 goto finish
 
