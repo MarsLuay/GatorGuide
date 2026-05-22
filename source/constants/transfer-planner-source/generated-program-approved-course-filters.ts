@@ -14,9 +14,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "AMATH 301",
       "AMATH 351",
-      "AMATH 352",
       "ASTR 301",
       "ASTR 321",
       "ASTR 322",
@@ -30,8 +28,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS 451",
       "ATMOS 452",
       "ATMOS 460",
-      "BIOEN 215",
-      "BIOL 130",
       "BIOL 162",
       "BIOL 180",
       "BIOL 200",
@@ -88,7 +84,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 144",
       "CHEM 145",
       "CHEM 152",
-      "CHEM 153",
       "CHEM 155",
       "CHEM 162",
       "CHEM 165",
@@ -104,15 +99,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 312",
       "CHEM 317",
       "CHEM 321",
-      "CSE 121",
-      "CSE 122",
-      "CSE 123",
-      "CSE 142",
-      "CSE 143",
-      "CSE 160",
-      "ENGL 131",
-      "ENGR 101",
-      "ENGR 115",
       "ESS 311",
       "ESS 313",
       "ESS 403",
@@ -128,29 +114,15 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ESS 466",
       "ESS 467",
       "ESS 471",
-      "MATH 124",
-      "MATH 125",
-      "MATH 126",
-      "MATH 134",
-      "MATH 135",
-      "MATH 136",
       "MATH 207",
-      "MATH 208",
       "MATH 209",
-      "MATH 224",
       "MATH 318",
       "MATH 334",
       "MATH 335",
       "MATH 394",
-      "ME 123",
-      "MSE 170",
       "PHYS 116",
       "PHYS 119",
-      "PHYS 121",
-      "PHYS 122",
       "PHYS 123",
-      "PHYS 141",
-      "PHYS 142",
       "PHYS 143",
       "PHYS 224",
       "PHYS 225",
@@ -178,7 +150,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "PHYS 426",
       "PHYS 434",
       "PHYS 460",
-      "STAT 220",
       "STAT 391",
       "STAT 394"
     ],
@@ -235,38 +206,21 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
-    "sourceFingerprint": "88a5f0fa8baea98bb97b56d429f1515fa2d6ecb566a3b4e54d18a5e1628e8d66"
+    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
     "filterId": "CE_APPROVED_NATURAL_SCIENCE",
     "filterKey": "computer-engineering-natural-science",
     "label": "CE-approved Natural Science",
     "ownerIds": [
-      "uw-seattle-computer-engineering",
-      "uw-seattle-electrical-computer-engineering",
-      "uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:computing-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:digital-systems-design-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:enriching-your-path-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:quantum-technologies-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway"
+      "uw-seattle-computer-engineering"
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
-      "AMATH 301",
-      "AMATH 351",
-      "AMATH 352",
       "ASTR 301",
       "ASTR 321",
       "ASTR 322",
@@ -280,8 +234,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS 451",
       "ATMOS 452",
       "ATMOS 460",
-      "BIOEN 215",
-      "BIOL 130",
       "BIOL 162",
       "BIOL 180",
       "BIOL 200",
@@ -338,7 +290,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 144",
       "CHEM 145",
       "CHEM 152",
-      "CHEM 153",
       "CHEM 155",
       "CHEM 162",
       "CHEM 165",
@@ -354,15 +305,6 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 312",
       "CHEM 317",
       "CHEM 321",
-      "CSE 121",
-      "CSE 122",
-      "CSE 123",
-      "CSE 142",
-      "CSE 143",
-      "CSE 160",
-      "ENGL 131",
-      "ENGR 101",
-      "ENGR 115",
       "ESS 311",
       "ESS 313",
       "ESS 403",
@@ -378,24 +320,9 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ESS 466",
       "ESS 467",
       "ESS 471",
-      "MATH 124",
-      "MATH 125",
-      "MATH 126",
-      "MATH 134",
-      "MATH 135",
-      "MATH 136",
-      "MATH 207",
-      "MATH 208",
-      "MATH 224",
-      "ME 123",
-      "MSE 170",
       "PHYS 116",
       "PHYS 119",
-      "PHYS 121",
-      "PHYS 122",
       "PHYS 123",
-      "PHYS 141",
-      "PHYS 142",
       "PHYS 143",
       "PHYS 224",
       "PHYS 225",
@@ -422,8 +349,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "PHYS 425",
       "PHYS 426",
       "PHYS 434",
-      "PHYS 460",
-      "STAT 220"
+      "PHYS 460"
     ],
     "approvedUwCourseGroups": [
       [
@@ -481,8 +407,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
-    "sourceFingerprint": "f53b9d0b5b36ed94de2394e373d496ed1babd5e9efd4aafae659b242ce3ff984"
+    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
     "filterId": "CS_APPROVED_SCIENCE",
@@ -666,60 +592,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "5346abe7179c682ac03f40e49b3d40b5ea06178c9653b08fd545cbcf0d82bc97"
-  },
-  {
-    "filterId": "UW_BOTHELL_EDUCATIONAL_STUDIES_ELEMENTARY_EDUCATION_UNITED_STATES_GOVERNMENT_OR_CIVICS_GEOGRAPHY_OR_ECONOMICS_COURSE_APPROVED_COURSES",
-    "filterKey": "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses",
-    "label": "Uw Bothell Educational Studies Elementary Education United States Government Or Civics Geography Or Economics Course Approved Courses",
-    "ownerIds": [
-      "uw-bothell-educational-studies-elementary-education:pathway:education-studies-elementary-education-option"
-    ],
-    "campusId": "uw-bothell",
-    "officialSourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-    "sourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-    "sourceRole": "primary-degree-requirements",
-    "approvedUwCourseCodes": [
-      "BEDUC 205",
-      "BEDUC 210",
-      "BEDUC 300",
-      "BEDUC 310",
-      "BEDUC 402",
-      "BEDUC 403",
-      "BEDUC 406",
-      "BEDUC 408",
-      "BEDUC 409",
-      "BEDUC 410",
-      "BEDUC 421",
-      "BEDUC 423",
-      "BEDUC 425",
-      "BEDUC 435",
-      "BEDUC 438",
-      "BEDUC 441",
-      "BEDUC 442",
-      "BEDUC 443",
-      "BEDUC 444",
-      "BEDUC 482",
-      "BEDUC 483",
-      "BEDUC 484"
-    ],
-    "aliases": [
-      "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses"
-    ],
-    "generatedFromOfficialSupportSource": true,
-    "sourceEvidenceHeadings": [
-      "20 credits School of Educational Studies Core Courses"
-    ],
-    "sourceEvidenceLines": [
-      "20 credits School of Educational Studies Core Courses",
-      "B EDUC 205 Education & Equity in the United States (DIV, SSc)",
-      "B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)",
-      "B EDUC 300 Research & Educational Knowledge (W)",
-      "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
-    ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
-    "sourceFingerprint": "4a9d1fc44a5a7a77f8012f6a0d5594ca378e06b2411db652dc85c762bce47abc"
   },
   {
     "filterId": "UW_BOTHELL_PHYSICS_BA_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
@@ -763,7 +637,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "c7095ba2c6abb04915540d4fb3ea4ffbd3cf5e9c47b0c41dbcf98279b2ac2bcd"
   },
   {
@@ -807,7 +681,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "7d1c7832494f9dbf594b0d967b1299acb37b30e2c2c158484c18c74c0ff6c115"
   },
   {
@@ -877,7 +751,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -944,7 +818,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -1312,7 +1186,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "MODHEB 496",
       "For any course prefix when topic is appropriate; check with adviser for approval"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "e285389950a8cc5ce4e0b5277813b604a659d6bde98c2c6259ddf61cbf057a2b"
   },
   {
@@ -1353,7 +1227,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "MGMT 200 (Introduction to Law)",
       "QMETH 201 (Statistical Methods)"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "872c60d5f1d15da7f5f57132020a2062b7bd46bb009c682c7c79929061440f19"
   },
   {
@@ -1419,7 +1293,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
   },
   {
@@ -1462,7 +1336,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "99ac61768a9869cb15d4bd908558b8ca2b7c915ccee91df76ff035d6565123de"
   },
   {
@@ -1515,7 +1389,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "3a3b3e3da8557f173f970eaf71a1c8a8bda0c7ee584c0b557eecde4306e2c6bb"
   },
   {
@@ -1567,7 +1441,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "b7a367adfe467e5325b13d374ed4d227fb266f3d3fe41c0b77ae06ab74baf247"
   },
   {
@@ -1612,7 +1486,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "German 401 (or equivalent)",
       "German 311 (Introduction to Literary Studies)"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "3bb53b00e0b8d66896aa2f2c44500089bfce14cdf9fc568f40b16c65f0611d12"
   },
   {
@@ -1664,7 +1538,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "e2ccb63d4acf3832039d801b9842ee6ee7ca7f542e64b73230d0bfd1ae7b4e78"
   },
   {
@@ -1706,7 +1580,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "7c02d2b529c08adc11905f3014348914f80680a198837e00b16f812b6122a33c"
   },
   {
@@ -1766,7 +1640,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "f5c5cc4d3826702874c743981939ad4a1c889d0cbd7b4323e549de2e7e30663e"
   },
   {
@@ -1950,7 +1824,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "e6692dc66c91b79488b6f7b2f1eeb7ccf9132513a45d655810f85d2d3d2d16d6"
   },
   {
@@ -2048,7 +1922,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
       "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
@@ -2184,7 +2058,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ASIAN 301 Songs of the Saints of India",
       "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "generatedAt": "2026-05-22T12:33:31.945Z",
     "sourceFingerprint": "dbcaa7b45d3c26fda3446f650a3321e9d7f055d07d1d2d33a55c8b178d3cf6a7"
   }
 ] as const;

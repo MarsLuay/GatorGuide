@@ -46,12 +46,13 @@ function req(overrides = {}) {
   };
 }
 
-function classify(previousEntry, currentEntry) {
+function classifyMany(previousEntries, currentEntries) {
+  const previousRequirementSourceFingerprints = (previousEntries ?? []).filter(Boolean);
+  const currentRequirementSourceFingerprints = (currentEntries ?? []).filter(Boolean);
   const previousFingerprints = {
     sourceFingerprints: [],
-    requirementSourceFingerprints: previousEntry ? [previousEntry] : [],
+    requirementSourceFingerprints: previousRequirementSourceFingerprints,
   };
-  const currentRequirementSourceFingerprints = currentEntry ? [currentEntry] : [];
   const requirementDiff = fingerprints.compareFingerprintsForTest(
     previousFingerprints.requirementSourceFingerprints,
     currentRequirementSourceFingerprints,
@@ -66,6 +67,10 @@ function classify(previousEntry, currentEntry) {
     sourceDiff: { added: [], changed: [], unchanged: [], removed: [] },
     requirementDiff,
   });
+}
+
+function classify(previousEntry, currentEntry) {
+  return classifyMany(previousEntry ? [previousEntry] : [], currentEntry ? [currentEntry] : []);
 }
 
 test("source change classifier detects new course additions", () => {
@@ -123,6 +128,52 @@ test("source change classifier detects structural parser drift", () => {
   assert.ok(change);
   assert.equal(change.actionStatus, "needs-parser-rule");
   assert.ok(change.recommendedAction.includes("targeted-parser-recovery"));
+});
+
+test("source change classifier treats child-covered parent overview drift as generated evidence", () => {
+  const planId = "uw-tacoma-ethnic-gender-and-labor-studies";
+  const previousParent = req({
+    ownerId: planId,
+    planId,
+    campusId: "uw-tacoma",
+    sourceUrl: "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+    parserType: "html-overview-page",
+    parsedUwCourseCodes: [],
+    parsedUwCourseCodeCount: 0,
+    requirementFingerprint: "parent-before",
+    qualitySignalCodes: ["no-parsed-uw-course-codes"],
+    qualityWarningCount: 1,
+  });
+  const currentParent = req({
+    ...previousParent,
+    requirementFingerprint: "parent-after",
+    qualitySignalCodes: ["large-structured-only-course-gap", "material-source-structured-drift"],
+    qualityWarningCount: 2,
+  });
+  const child = req({
+    ownerId: `${planId}:pathway:ethnic-studies-option`,
+    ownerTitle: "Ethnic, Gender and Labor Studies (BA) - Ethnic Studies Option",
+    planId,
+    pathwayId: "ethnic-studies-option",
+    campusId: "uw-tacoma",
+    sourceUrl: "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
+    parsedUwCourseCodes: ["TEGL 101", "TSOC 439"],
+    parsedUwCourseCodeCount: 2,
+    requirementFingerprint: "child-stable",
+  });
+
+  const report = classifyMany([previousParent, child], [currentParent, child]);
+  const change = report.changes.find(
+    (entry) => entry.ownerId === planId && entry.changeType === "source-structure-changed"
+  );
+
+  assert.ok(change);
+  assert.equal(change.actionStatus, "generated-evidence-only");
+  assert.equal(change.autoApplied, true);
+  assert.ok(change.recommendedAction.includes("preserve-parent-overview-evidence"));
+  assert.deepEqual(change.childPathwayCoverage.childOwnerIds, [
+    `${planId}:pathway:ethnic-studies-option`,
+  ]);
 });
 
 test("source change classifier detects current-year sibling promotion", () => {

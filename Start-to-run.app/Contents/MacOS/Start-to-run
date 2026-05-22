@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
+SCRIPT_DIR="$(cd -- "$(dirname -- "$SCRIPT_SOURCE")" && pwd)"
+RUNNER="$SCRIPT_DIR/../Resources/start-gator-guide.sh"
+
+if [ ! -f "$RUNNER" ]; then
+  osascript -e 'display alert "Start Gator Guide could not find its bundled launcher script." as critical' >/dev/null 2>&1 || true
+  exit 1
+fi
+
+case "$(uname -s)" in
+  Darwin)
+    osascript \
+      -e 'on run argv' \
+      -e 'set runnerPath to item 1 of argv' \
+      -e 'tell application "Terminal"' \
+      -e 'activate' \
+      -e 'do script "bash " & quoted form of runnerPath' \
+      -e 'end tell' \
+      -e 'end run' \
+      "$RUNNER"
+    ;;
+  *)
+    exec bash "$RUNNER" "$@"
+    ;;
+esac

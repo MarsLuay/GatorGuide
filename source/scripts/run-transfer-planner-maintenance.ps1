@@ -1764,8 +1764,19 @@ function Write-Summary {
       -TargetPlanId $script:selectedMaintenanceTargetPlanId `
       -IncludeWarnings
   )
+  if ($Outcome -eq "passed") {
+    $laymansDiagnosisItems = @($laymansDiagnosisItems | Where-Object { $_.severity -ne "warning" })
+  }
 
   $requiredActions = [System.Collections.Generic.List[string]]::new()
+  $autoRepairFreshness = ""
+  if ($autoRepairReport) {
+    $autoRepairFreshnessReport = Get-ReportValue -Object $autoRepairReport -Name "sourceReportFreshness" -Default $null
+    $autoRepairFreshness = [string](Get-ReportValue -Object $autoRepairFreshnessReport -Name "outcome" -Default "")
+  }
+  $autoRepairReportIsCurrent = $autoRepairReport -and (
+    [string]::IsNullOrWhiteSpace($autoRepairFreshness) -or $autoRepairFreshness -eq "fresh"
+  )
 
   if ($sourceBackedCoverageAuditReport -and ((Get-ReportValue -Object $sourceBackedCoverageAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
     Add-RequiredAction -List $requiredActions -Message "Clear the source-backed runtime coverage blocking gate: fix discovery/parser/generator/runtime/mapping automation until source-backed coverage issues are 0."
@@ -1795,12 +1806,8 @@ function Write-Summary {
     Add-RequiredAction -List $requiredActions -Message "Address owner-audit issues: fix missing/invalid primary sources, manifest gaps, and parser fallback warnings."
   }
 
-  if ($autoRepairReport -and ($autoRepairReport.caseCount -gt 0)) {
+  if ($autoRepairReportIsCurrent -and ($autoRepairReport.caseCount -gt 0)) {
     Add-RequiredAction -List $requiredActions -Message "Use the closed-loop auto-repair plan: rerun or extend source discovery/parser/runtime repair rules until classified repair cases reaches 0."
-  }
-
-  if ($parserRecoveryReport -and ($parserRecoveryReport.unrecoveredOwnerCount -gt 0)) {
-    Add-RequiredAction -List $requiredActions -Message "Resolve parser auto-recovery blockers: extend discovery or parser rules until unrecovered parser-recovery owners reaches 0."
   }
 
   if ($sourceChangeClassificationReport -and ($sourceChangeClassificationReport.countsByActionStatus)) {
@@ -1924,10 +1931,14 @@ function Write-Summary {
   }
 
   if ($autoRepairReport) {
+    if (-not $autoRepairReportIsCurrent) {
+      $summaryLines += "- Closed-loop auto-repair: stale report ignored for current run ($($autoRepairReport.caseCount) old case(s); freshness: $autoRepairFreshness)"
+    } else {
     $summaryLines += "- Closed-loop auto-repair cases: $($autoRepairReport.caseCount)"
     $summaryLines += "- Closed-loop auto-repair affected owners/plans: $($autoRepairReport.ownerCount)/$($autoRepairReport.planCount)"
     if ($autoRepairReport.repairAttempt) {
       $summaryLines += "- Closed-loop auto-repair commands attempted/failed: $(@($autoRepairReport.repairAttempt.commands).Count)/$($autoRepairReport.repairAttempt.failedCommandCount)"
+    }
     }
   } else {
     $summaryLines += "- Closed-loop auto-repair: unavailable (auto-repair plan missing)."
@@ -2276,8 +2287,7 @@ try {
     Get-TransferPlannerLaymansDiagnosis `
       -ProjectRoot $projectRoot `
       -LogPath $logPath `
-      -TargetPlanId $script:selectedMaintenanceTargetPlanId `
-      -IncludeWarnings
+      -TargetPlanId $script:selectedMaintenanceTargetPlanId
   )
   Write-TransferPlannerLaymansDiagnosis -Items $successDiagnosisItems -Header "Laymans Diagnosis"
 

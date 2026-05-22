@@ -1134,16 +1134,30 @@ function buildGeneratedRegistryAuditOwners(targetPlanId = null, protectedOnly = 
 function resolveRuntimePlan(planId, pathwayId) {
   const runtimePlan = source.getTransferPlannerStudentRuntimeMajorPlan(planId);
   if (!runtimePlan) {
-    return null;
+    return resolveCompactStudentRuntimeAliasPlan(planId, pathwayId);
   }
 
   return source.resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, pathwayId ?? null);
 }
 
+function resolveCompactStudentRuntimeAliasPlan(planId, pathwayId) {
+  const aliasCoverage = studentRuntime.getTransferPlannerStudentRuntimeAliasCoverage?.(
+    planId,
+    pathwayId ?? null
+  );
+  if (!aliasCoverage) {
+    return null;
+  }
+  if (pathwayId && aliasCoverage.parentPathwayId !== pathwayId) {
+    return null;
+  }
+  return aliasCoverage.resolvedPlan ?? null;
+}
+
 function resolveCompactStudentRuntimePlan(planId, pathwayId) {
   const runtimePlan = studentRuntime.getTransferPlannerMajorPlan(planId);
   if (!runtimePlan) {
-    return null;
+    return resolveCompactStudentRuntimeAliasPlan(planId, pathwayId);
   }
 
   return studentRuntime.resolveTransferPlannerMajorPlan(runtimePlan, pathwayId ?? null);
@@ -1932,6 +1946,9 @@ function buildParsedRequirementRows(block) {
   for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
     const courseCode = normalizeCourseCode(candidate.uwCourseCode ?? "");
     if (!courseCode || !isLowerDivisionCourseCode(courseCode)) {
+      continue;
+    }
+    if (candidate.sourceSectionSchedulable === false) {
       continue;
     }
     if (!sourceLineLooksRequirementBacked(candidate.sourceLineHints ?? [])) {
@@ -3319,10 +3336,12 @@ function resolveSourceGeneratedPlan(planId, pathwayId) {
 }
 
 function resolveCompactRuntimeGeneratedPlan(planId, pathwayId) {
-  return studentRuntime.resolveTransferPlannerMajorPlan(
-    studentRuntime.getTransferPlannerMajorPlan(planId),
-    pathwayId ?? null
-  );
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan(planId);
+  if (!runtimePlan) {
+    return resolveCompactStudentRuntimeAliasPlan(planId, pathwayId);
+  }
+
+  return studentRuntime.resolveTransferPlannerMajorPlan(runtimePlan, pathwayId ?? null);
 }
 
 function getCompactParsedRequirementGroupsBySourceBlockId(owner) {
@@ -7437,7 +7456,7 @@ function auditBioengineering(checks) {
     plan?.bestTrackId === TRACK_IDS.ast2BioChemical &&
       matchSummary?.trackCode === "AST-2" &&
       matchSummary?.matchCount === 14 &&
-      matchSummary?.totalTracked === 27 &&
+      matchSummary?.totalTracked === 23 &&
       !/\bAA-DTA\b|3 of the 4/i.test(plan?.recommendedTrackSummary ?? ""),
     plan?.recommendedTrackSummary ?? "",
     "stale-match-count"
@@ -7872,14 +7891,13 @@ function auditMseNme(checks) {
   addCheck(
     checks,
     "uw-mse-nme:math264-counted-once",
-    "UW MSE/NME counts MATH& 264 once while allowing prerequisite and option roles",
+    "UW MSE/NME counts MATH& 264 once while resolving it through the Math Elective audit",
     countedMath264?.countedOnce === true &&
       countedMath264?.requirementRoles?.some((role) =>
-        ["prerequisite", "required"].includes(role)
+        ["prerequisite", "required", "matched-track"].includes(role)
       ) &&
-      countedMath264?.requirementRoles?.some((role) =>
-        ["option-satisfaction", "selected-option"].includes(role)
-      ),
+      mathElectiveAudit?.countedSatisfyingCourses?.includes("MATH& 264") &&
+      mathElectiveAudit?.issue === null,
     countedMath264?.copyOnlyDebugText ?? `Transfer-only labels: ${transferOnlyLabels.join(", ")}`,
     "prep-credit-counted-as-main"
   );

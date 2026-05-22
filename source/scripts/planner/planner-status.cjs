@@ -27,6 +27,9 @@ const {
 const {
   TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES,
 } = require("../../constants/transfer-planner-source/derived-shared-source-plans");
+const {
+  getTransferPlannerStudentRuntimeAliasCoverage,
+} = require("../../constants/transfer-planner-source/student-runtime");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -104,6 +107,175 @@ function countBy(values) {
   }, {});
 }
 
+function isNonSchedulableParseOwner(owner) {
+  const sourceRoleStatus = String(owner?.sourceRoleStatus ?? "").trim();
+  return (
+    owner?.canCreateSchedulableRows === false ||
+    owner?.nonSchedulable === true ||
+    ["non-schedulable", "ignored"].includes(sourceRoleStatus)
+  );
+}
+
+function hasNoRuntimeSchedulableSource(owner) {
+  return (owner?.symptomIssues ?? []).some(
+    (issue) => String(issue?.code ?? "") === "no-runtime-schedulable-grc-rows"
+  );
+}
+
+const GENERIC_PATHWAY_ALIAS_TOKENS = new Set([
+  "a",
+  "and",
+  "b",
+  "ba",
+  "bs",
+  "degree",
+  "family",
+  "in",
+  "major",
+  "of",
+  "option",
+  "path",
+  "pathway",
+  "s",
+  "the",
+  "track",
+  "concentration",
+]);
+
+function tokenizePathwayAlias(value) {
+  return [
+    ...new Set(
+      String(value ?? "")
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .map((token) => token.trim())
+        .filter((token) => token && !GENERIC_PATHWAY_ALIAS_TOKENS.has(token))
+    ),
+  ];
+}
+
+function buildAliasAcronyms(tokens) {
+  const acronyms = new Set();
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    for (let length = 2; length <= 5 && index + length <= tokens.length; length += 1) {
+      const acronym = tokens
+        .slice(index, index + length)
+        .map((token) => token[0])
+        .join("");
+      if (acronym.length >= 3) {
+        acronyms.add(acronym);
+      }
+    }
+  }
+
+  return acronyms;
+}
+
+function diffEntriesAreNoPublicOnly(entries) {
+  return (
+    entries.length > 0 &&
+    entries.every((entry) => {
+      const kind = String(entry?.classificationKind ?? "");
+      const grcCourseCodes = Array.isArray(entry?.grcCourseCodes) ? entry.grcCourseCodes : [];
+      const alternativeCourseCodeSets = Array.isArray(entry?.alternativeCourseCodeSets)
+        ? entry.alternativeCourseCodeSets
+        : [];
+
+      return (
+        kind.includes("no-public") &&
+        grcCourseCodes.length === 0 &&
+        alternativeCourseCodeSets.every((set) => !Array.isArray(set) || set.length === 0)
+      );
+    })
+  );
+}
+
+function findGeneratedPathwayAlias(planId, pathwayId, parseOwner, generatedPathwayRowsByPlanId) {
+  if (!planId || !pathwayId) {
+    return null;
+  }
+
+  const candidates = generatedPathwayRowsByPlanId.get(planId) ?? [];
+  if (!candidates.length) {
+    return null;
+  }
+
+  const ownerTokens = tokenizePathwayAlias(pathwayId);
+  const ownerTokenSet = new Set(ownerTokens);
+  const ownerAcronyms = buildAliasAcronyms(ownerTokens);
+  const sourceUrlTokens = tokenizePathwayAlias(
+    [parseOwner?.sourceUrl, parseOwner?.primarySourceUrl, ...(parseOwner?.coveredSourceUrls ?? [])]
+      .filter(Boolean)
+      .join(" ")
+  );
+  const sourceUrlTokenSet = new Set(sourceUrlTokens);
+
+  let best = null;
+
+  for (const candidate of candidates) {
+    const candidateTokens = tokenizePathwayAlias([candidate.pathwayId, candidate.row?.label].join(" "));
+    if (!candidateTokens.length) {
+      continue;
+    }
+
+    const sharedTokens = candidateTokens.filter((token) => ownerTokenSet.has(token));
+    if (!sharedTokens.length) {
+      continue;
+    }
+
+    const candidateTokenSet = new Set(candidateTokens);
+    const candidateSubset = candidateTokens.every((token) => ownerTokenSet.has(token));
+    const ownerSubset = ownerTokens.every((token) => candidateTokenSet.has(token));
+    const acronymHit = candidateTokens.some((token) => ownerAcronyms.has(token));
+    const sourceUrlHit = candidateTokens.some(
+      (token) =>
+        ownerTokenSet.has(token) &&
+        sourceUrlTokenSet.has(token) &&
+        (token.length >= 5 || ownerAcronyms.has(token))
+    );
+    const strongSingleTokenHit =
+      sharedTokens.length === 1 && sharedTokens[0].length >= 8 && candidateTokens.length <= 2;
+
+    if (
+      !(
+        sharedTokens.length >= 2 ||
+        sourceUrlHit ||
+        acronymHit ||
+        strongSingleTokenHit ||
+        ownerSubset
+      )
+    ) {
+      continue;
+    }
+
+    let score = sharedTokens.length * 10;
+    if (candidateSubset || ownerSubset) {
+      score += 40;
+    }
+    if (sourceUrlHit) {
+      score += 70;
+    }
+    if (acronymHit) {
+      score += 60;
+    }
+    if (strongSingleTokenHit) {
+      score += 35;
+    }
+
+    if (!best || score > best.score) {
+      best = {
+        score,
+        row: candidate,
+      };
+    }
+  }
+
+  return best?.score >= 45 ? best.row : null;
+}
+
 function escapeMarkdown(value) {
   return String(value ?? "")
     .replace(/\\/g, "\\\\")
@@ -160,6 +332,7 @@ function plannerNarrativeMentionsTrack(scope, trackId) {
 function buildGeneratedAndRuntimeRowMaps() {
   const generatedRowsByKey = new Map();
   const runtimeRowsByKey = new Map();
+  const generatedPathwayRowsByPlanId = new Map();
 
   for (const campusId of CAMPUSES) {
     for (const generatedPlan of getTransferPlannerMajorsForCampus(campusId)) {
@@ -208,6 +381,9 @@ function buildGeneratedAndRuntimeRowMaps() {
           title: `${generatedPlan.title} - ${generatedPathway.label}`,
           row: generatedPathway,
         });
+        const currentPathwayRows = generatedPathwayRowsByPlanId.get(generatedPlan.id) ?? [];
+        currentPathwayRows.push(generatedRowsByKey.get(pathwayKey));
+        generatedPathwayRowsByPlanId.set(generatedPlan.id, currentPathwayRows);
 
         if (runtimePathway) {
           runtimeRowsByKey.set(pathwayKey, {
@@ -227,6 +403,7 @@ function buildGeneratedAndRuntimeRowMaps() {
   return {
     generatedRowsByKey,
     runtimeRowsByKey,
+    generatedPathwayRowsByPlanId,
   };
 }
 
@@ -264,7 +441,8 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
   const sourceGapEntries = TRANSFER_PLANNER_SOURCE_GAP_REGISTRY;
   const parsedBlockCountByOwnerKey = buildParsedBlockCountByOwnerKey();
   const diffEntriesByOwnerKey = buildDiffEntriesByOwnerKey();
-  const { generatedRowsByKey, runtimeRowsByKey } = buildGeneratedAndRuntimeRowMaps();
+  const { generatedRowsByKey, runtimeRowsByKey, generatedPathwayRowsByPlanId } =
+    buildGeneratedAndRuntimeRowMaps();
 
   const ownerAuditByKey = new Map(ownerAuditOwners.map((owner) => [owner.ownerKey, owner]));
   const parseOwnerByKey = new Map(
@@ -319,21 +497,58 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
       const canonicalOwnerKey = buildOwnerKey(canonicalPlanId, pathwayId);
       const canonicalOwner = ownerAuditByKey.get(canonicalOwnerKey) ?? directOwner;
       const canonicalParseOwner = parseOwnerByKey.get(canonicalOwnerKey) ?? directParseOwner;
+      const parentOwnerKey = pathwayId ? buildOwnerKey(canonicalPlanId, null) : null;
+      const parentOwner = parentOwnerKey ? ownerAuditByKey.get(parentOwnerKey) ?? null : null;
+      const structuralAliasRow =
+        !generatedRow && pathwayId
+          ? findGeneratedPathwayAlias(
+              canonicalPlanId,
+              pathwayId,
+              canonicalParseOwner,
+              generatedPathwayRowsByPlanId
+            )
+          : null;
+      const structuralAliasRuntimeRow = structuralAliasRow
+        ? runtimeRowsByKey.get(structuralAliasRow.ownerKey) ?? null
+        : null;
       const parsedSourceBlock = Boolean(
         parsedBlockCountByOwnerKey.get(canonicalOwnerKey) ?? parsedBlockCountByOwnerKey.get(ownerKey)
       );
+      const runtimeAliasCoverage =
+        !runtimeRow && !structuralAliasRuntimeRow && planId
+          ? getTransferPlannerStudentRuntimeAliasCoverage(planId, pathwayId)
+          : null;
       const diffEntries =
         diffEntriesByOwnerKey.get(canonicalOwnerKey) ??
         diffEntriesByOwnerKey.get(ownerKey) ??
         [];
+      const parentDiffEntries = parentOwnerKey ? diffEntriesByOwnerKey.get(parentOwnerKey) ?? [] : [];
       const noPublicClassificationCount = diffEntries.filter((entry) =>
         String(entry.classificationKind ?? "").includes("no-public")
       ).length;
+      const parsedOnlyNoPublicSource =
+        parsedSourceBlock &&
+        !generatedRow &&
+        !structuralAliasRow &&
+        diffEntriesAreNoPublicOnly(diffEntries);
+      const parentHasNoRuntimeSchedulableSource =
+        pathwayId &&
+        parentOwner &&
+        hasNoRuntimeSchedulableSource(parentOwner) &&
+        parentDiffEntries.length > 0 &&
+        diffEntriesAreNoPublicOnly(parentDiffEntries);
+      const nonSchedulableSource = isNonSchedulableParseOwner(canonicalParseOwner);
+      const noRuntimeSchedulableSource = Boolean(
+        hasNoRuntimeSchedulableSource(canonicalOwner) ||
+          parsedOnlyNoPublicSource ||
+          parentHasNoRuntimeSchedulableSource
+      );
       const generatedPlanRow = generatedPlan ?? getTransferPlannerMajorPlan(planId ?? "");
       const hiddenSourceGap =
         Boolean(sourceGap?.studentVisibility === "hidden") ||
         Boolean(isTransferPlannerStudentHiddenSourceGap(planId, pathwayId));
-      const studentVisibility = hiddenSourceGap ? "hidden" : "visible";
+      const hiddenStudentRuntimeAlias = Boolean(runtimeAliasCoverage || structuralAliasRow);
+      const studentVisibility = hiddenSourceGap || hiddenStudentRuntimeAlias ? "hidden" : "visible";
       const sourceBacked = Boolean(
         !hiddenSourceGap &&
           (canonicalOwner ||
@@ -342,10 +557,16 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
             (derivedAlias &&
               (ownerAuditByKey.has(canonicalOwnerKey) || parseOwnerByKey.has(canonicalOwnerKey))))
       );
-      const emittedGeneratedRow = Boolean(generatedRow);
-      const emittedRuntimeRow = Boolean(runtimeRow);
-      const runtimeScope = runtimeRow?.row ?? null;
-      const generatedScope = generatedRow?.row ?? null;
+      const emittedGeneratedRow = Boolean(generatedRow || structuralAliasRow);
+      const emittedRuntimeRow = Boolean(
+        runtimeRow || structuralAliasRuntimeRow || runtimeAliasCoverage
+      );
+      const runtimeScope =
+        runtimeRow?.row ??
+        structuralAliasRuntimeRow?.row ??
+        runtimeAliasCoverage?.resolvedPlan ??
+        null;
+      const generatedScope = generatedRow?.row ?? structuralAliasRow?.row ?? null;
       const bestTrackId = runtimeScope?.bestTrackId ?? null;
       const bestTrackPresent = Boolean(bestTrackId);
       const runtimeCourseList = runtimeScope?.grcCourseList ?? [];
@@ -365,13 +586,17 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
           !currentTrackNarrativeMatch
       );
       const missingBestTrackDespiteSupport = Boolean(
-        emittedRuntimeRow && !bestTrackId && fullRuntimeRecommendation?.trackId
+        emittedRuntimeRow &&
+          !hiddenStudentRuntimeAlias &&
+          !bestTrackId &&
+          fullRuntimeRecommendation?.trackId
       );
       const intentionallyUnmatched = Boolean(
         emittedRuntimeRow &&
           !bestTrackId &&
           !fullRuntimeRecommendation?.trackId &&
-          !hiddenSourceGap
+          !hiddenSourceGap &&
+          !hiddenStudentRuntimeAlias
       );
       const notes = [];
 
@@ -382,12 +607,37 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
         );
       }
 
+      if (runtimeAliasCoverage) {
+        pushUnique(
+          notes,
+          `Student runtime alias covered by ${runtimeAliasCoverage.parentPlanId} / ${runtimeAliasCoverage.parentPathwayId}.`
+        );
+      }
+
+      if (structuralAliasRow) {
+        pushUnique(
+          notes,
+          `Structured pathway alias covered by ${structuralAliasRow.planId} / ${structuralAliasRow.pathwayId}.`
+        );
+      }
+
       if ((canonicalOwner?.rootIssues ?? []).length > 0) {
         pushUnique(
           notes,
           `Owner-audit signals: ${(canonicalOwner.rootIssues ?? [])
             .map((issue) => issue.code)
             .join(", ")}.`
+        );
+      }
+
+      if ((nonSchedulableSource || noRuntimeSchedulableSource) && !emittedRuntimeRow) {
+        pushUnique(
+          notes,
+          nonSchedulableSource
+            ? "Intentional safe-empty state: source evidence is non-schedulable, so no student runtime row is expected."
+            : parsedOnlyNoPublicSource || parentHasNoRuntimeSchedulableSource
+              ? "Intentional safe-empty state: parsed source evidence has no planner-safe Green River course path, so no student runtime row is expected."
+              : "Intentional safe-empty state: source evidence has no Green River schedulable course rows, so no student runtime row is expected."
         );
       }
 
@@ -445,10 +695,22 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
         bucket = "true hidden source gap";
         finalState = "hidden-source-gap";
         reasonCode = "hidden-source-gap";
+      } else if (hiddenStudentRuntimeAlias) {
+        bucket = "student runtime alias covered by canonical parent";
+        finalState = "hidden-runtime-alias";
+        reasonCode = "hidden-runtime-alias";
       } else if (!sourceBacked) {
         bucket = "source discovery missing";
         finalState = "incomplete";
         reasonCode = "source-discovery-missing";
+      } else if ((nonSchedulableSource || noRuntimeSchedulableSource) && !emittedRuntimeRow) {
+        bucket = nonSchedulableSource
+          ? "safe non-schedulable source state"
+          : "safe no-schedulable-source state";
+        finalState = "intentionally-unmatched";
+        reasonCode = nonSchedulableSource
+          ? "non-schedulable-source-empty-state"
+          : "no-schedulable-source-empty-state";
       } else if (parsedSourceBlock && !emittedGeneratedRow) {
         bucket = "parsed source exists but no structured generation";
         finalState = "incomplete";
@@ -512,6 +774,14 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
         reasonCode,
         isDerivedSharedSourceAlias: Boolean(derivedAlias),
         derivedSourcePlanId: derivedAlias?.sourcePlanId ?? null,
+        hiddenStudentRuntimeAlias,
+        runtimeAliasParentPlanId: runtimeAliasCoverage?.parentPlanId ?? null,
+        runtimeAliasParentPathwayId: runtimeAliasCoverage?.parentPathwayId ?? null,
+        structuralAliasOwnerKey: structuralAliasRow?.ownerKey ?? null,
+        structuralAliasPlanId: structuralAliasRow?.planId ?? null,
+        structuralAliasPathwayId: structuralAliasRow?.pathwayId ?? null,
+        nonSchedulableSource,
+        noRuntimeSchedulableSource,
         ownerWarningCodes: (canonicalOwner?.rootIssues ?? []).map((issue) => issue.code),
         runtimeGrcCourseCount: runtimeCourseList.length,
         runtimeGrcCourseList: [...runtimeCourseList],
@@ -537,8 +807,13 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
     });
 
   const visibleRows = inventory.filter((row) => row.studentVisibility === "visible");
-  const hiddenRows = inventory.filter((row) => row.hiddenSourceGap);
-  const visibleSourceBackedRows = visibleRows.filter((row) => row.sourceBacked);
+  const hiddenRows = inventory.filter((row) => row.studentVisibility === "hidden");
+  const hiddenSourceGapRows = inventory.filter((row) => row.hiddenSourceGap);
+  const hiddenRuntimeAliasRows = inventory.filter((row) => row.hiddenStudentRuntimeAlias);
+  const visibleSourceBackedRows = visibleRows.filter(
+    (row) =>
+      row.sourceBacked && !row.nonSchedulableSource && !row.noRuntimeSchedulableSource
+  );
   const visibleGeneratedRows = visibleRows.filter((row) => row.emittedGeneratedRow);
   const visibleRuntimeRows = visibleRows.filter((row) => row.emittedStudentRuntimeRow);
   const matchedRows = visibleRows.filter((row) => row.finalState === "matched");
@@ -550,7 +825,12 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
     (row) => !row.emittedStudentRuntimeRow
   );
   const visibleOwnerRows = inventory.filter(
-    (row) => row.sourceBacked && row.studentVisibility === "visible" && !row.isDerivedSharedSourceAlias
+    (row) =>
+      row.sourceBacked &&
+      !row.nonSchedulableSource &&
+      !row.noRuntimeSchedulableSource &&
+      row.studentVisibility === "visible" &&
+      !row.isDerivedSharedSourceAlias
   );
   const visibleMajorCount = visibleRows.filter((row) => row.rowKind === "plan").length;
   const visiblePathwayCount = visibleRows.filter((row) => row.rowKind === "pathway").length;
@@ -578,7 +858,7 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
       totalStudentVisibleRows: visibleRows.length,
       totalStudentVisibleMajors: visibleMajorCount,
       totalStudentVisiblePathways: visiblePathwayCount,
-      totalHiddenSourceGapOwners: hiddenRows.length,
+      totalHiddenSourceGapOwners: hiddenSourceGapRows.length,
       totalSourceBackedVisibleOwners: visibleOwnerRows.length,
       totalVisibleSourceBackedRows: visibleSourceBackedRows.length,
       totalEmittedGeneratedRows: visibleGeneratedRows.length,
@@ -590,7 +870,8 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
         newlyConvertedFromIntentionalUnmatchedRows.length,
       unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners: unexpectedNullRuntimeRows.length,
       derivedSharedSourceVisibleRows: visibleRows.filter((row) => row.isDerivedSharedSourceAlias).length,
-      hiddenSourceGapRowCount: hiddenRows.length,
+      hiddenSourceGapRowCount: hiddenSourceGapRows.length,
+      hiddenRuntimeAliasRowCount: hiddenRuntimeAliasRows.length,
       rowsNeedingAttentionCount: attentionRows.length,
     },
     finalStateCounts: countBy(inventory.map((row) => row.finalState)),

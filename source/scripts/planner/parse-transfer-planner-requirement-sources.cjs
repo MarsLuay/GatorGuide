@@ -84,6 +84,17 @@ const BOOTSTRAP_PLAN_PATHWAY_COUNT_BY_ID = new Map(
     Array.isArray(plan.pathways) ? plan.pathways.length : 0,
   ])
 );
+
+function getMaterializableParserPathwayId(entry) {
+  const pathwayId = normalizeWhitespace(entry?.pathwayId ?? "") || null;
+  if (!pathwayId) {
+    return null;
+  }
+
+  const pathwayCount = BOOTSTRAP_PLAN_PATHWAY_COUNT_BY_ID.get(entry?.planId) ?? 0;
+  return pathwayCount > 0 ? pathwayId : null;
+}
+
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
@@ -445,6 +456,8 @@ const PARSER_RECOVERY_BLOCKER_TYPES = new Set([
 ]);
 const REQUIREMENT_FRIENDLY_HINT_PATTERN =
   /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|credits?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
+const INACTIVE_MAJOR_SOURCE_PATTERN =
+  /\b(?:not able|unable|cannot|can not|not currently able)\b.{0,120}\baccept(?:ing)?\b.{0,80}\bstudents?\b.{0,80}\bmajor\b|\bstudents?\b.{0,60}\bmay not declare\b.{0,80}\bmajor\b|\bmajor\b.{0,80}\bnot\b.{0,30}\baccepting\b.{0,60}\bstudents?\b/i;
 const SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN =
   /\b(?:selected from|from the following list|both courses?|list of approved courses|approved list of courses|courses? listed below|listed below are required|following departments|technical electives?|engineering fundamentals electives?|science electives?|math elective|core and elective requirements?)\b/i;
 const DIRECT_REQUIREMENT_COURSE_SEQUENCE_HINT_PATTERN =
@@ -793,6 +806,25 @@ function buildRequirementSourceScope(sourceRole) {
     supportOnly,
     nonSchedulable: nonSchedulable || ignored,
   };
+}
+
+function sourceContentIndicatesInactiveMajor(entry, parsed) {
+  const text = normalizeMatcherText(
+    [
+      entry?.ownerTitle,
+      entry?.label,
+      entry?.sourceLabel,
+      parsed?.title,
+      ...(parsed?.headings ?? []),
+      ...(parsed?.requirementCueLines ?? []),
+      ...(parsed?.chooseStatements ?? []),
+      ...(parsed?.snapshotLines ?? []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+
+  return INACTIVE_MAJOR_SOURCE_PATTERN.test(text);
 }
 
 function canRequirementSourceRoleCreateSchedulableRows(sourceRole) {
@@ -2568,8 +2600,12 @@ function hasCourseListSectionCue(text) {
 
 function hasDistributionAreaCourseListSectionCue(text) {
   const normalized = normalizeWhitespace(text).replace(/[:.]\s*$/g, "");
-  return /^(?:distribution areas?|historical depth(?: courses?)?|power and difference(?: courses?)?|genre,?\s+method,?\s+and language(?: courses?)?|pre-\d{3,4}|post-\d{3,4}|genre|method|language)$/i.test(
-    normalized
+  return (
+    /^(?:distribution areas?|historical depth(?: courses?)?|power and difference(?: courses?)?|genre,?\s+method,?\s+and language(?: courses?)?|pre-\d{3,4}|post-\d{3,4}|genre|method|language)$/i.test(
+      normalized
+    ) ||
+    /\bacademic breadth\b.{0,80}\b(?:subject areas?|courses?)\b/i.test(normalized) ||
+    /\bsubject areas?\s*&\s*courses?\b/i.test(normalized)
   );
 }
 
@@ -2743,6 +2779,16 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
     return {
       sectionRole: "support-metadata",
       reason: "application-only or restricted-registration course row is support metadata",
+    };
+  }
+
+  if (
+    courseCodes.length > 0 &&
+    /\b(?:suggested|recommended)\b.{0,80}\b(?:first|second|college|courses?)\b/i.test(text)
+  ) {
+    return {
+      sectionRole: "support-metadata",
+      reason: "suggested course list is support metadata",
     };
   }
 
@@ -5906,6 +5952,26 @@ function isGenericUniversityCategoryDistributionHeading(line) {
   );
 }
 
+function isGenericCategoryCreditBucketHeading(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (!normalizedLine || sourceLineStartsWithCourseCode(normalizedLine)) {
+    return false;
+  }
+  if (!lineHasGenericCategoryDistributionCue(normalizedLine)) {
+    return false;
+  }
+  if (extractCourseCodesFromLine(normalizedLine).length > 0) {
+    return false;
+  }
+  if (!parseRequirementCreditRange(normalizedLine)) {
+    return false;
+  }
+
+  return /^(?:Additional\s+)?(?:Diversity Requirement|Arts?\s+(?:and|&)\s+Humanities|Social Sciences?|Natural Sciences?|Natural Science|Natural World|Individuals\s+(?:and|&)\s+Societies|Quantitative\s+(?:and|&)\s+Symbolic\s+Reasoning|\b(?:A\s*&\s*H|S\s*Sc|N\s*Sc|I\s*&\s*S|VLPA|DIV|QSR|NW)\b)/i.test(
+    normalizedLine
+  );
+}
+
 function getTrimmedSectionedCourseGroupHeading(line, descriptor = null) {
   const normalizedLine = normalizeSectionedCourseGroupLabel(line);
   if (!normalizedLine || !lineHasGenericCategoryDistributionCue(normalizedLine)) {
@@ -6663,7 +6729,10 @@ function buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines
     }
 
     const rawSourceHeading = normalizeSectionedCourseGroupLabel(snapshotLines[index]);
-    if (isGenericUniversityCategoryDistributionHeading(rawSourceHeading)) {
+    if (
+      isGenericUniversityCategoryDistributionHeading(rawSourceHeading) ||
+      isGenericCategoryCreditBucketHeading(rawSourceHeading)
+    ) {
       continue;
     }
     const sourceHeading = getTrimmedSectionedCourseGroupHeading(rawSourceHeading, descriptor);
@@ -7466,9 +7535,10 @@ function buildInlineLabeledCourseRequirementGroups(owner, snapshotLines) {
       NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN.test(parts.body) ||
       /\bor\b/i.test(parts.body) ||
       buildParentheticalSequenceChoiceCandidates([parts.sourceLine], 0).length > 0;
+    const labelLooksLikeChoiceMarker = /^\(?\s*(?:choose|select)\s+from\b/i.test(parts.label);
     const labelLooksLikeBroadRequirementHeading =
       /^note\b/i.test(parts.label) || /\b(?:requirements?|credits?|electives?|options?)\b/i.test(parts.label);
-    if (bodyHasChoiceOrSequence || labelLooksLikeBroadRequirementHeading) {
+    if (bodyHasChoiceOrSequence || labelLooksLikeChoiceMarker || labelLooksLikeBroadRequirementHeading) {
       continue;
     }
 
@@ -8785,8 +8855,10 @@ const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
 );
 
 function getPrimaryMajorTitle(entry) {
+  const fallbackOwnerTitle = normalizeTransferPlannerText(entry.ownerTitle ?? "")
+    .split(/\s+-\s+/u)[0];
   return normalizeTransferPlannerText(
-    PRIMARY_MAJOR_TITLES_BY_PLAN_ID.get(entry.planId) ?? entry.ownerTitle ?? ""
+    PRIMARY_MAJOR_TITLES_BY_PLAN_ID.get(entry.planId) ?? fallbackOwnerTitle ?? ""
   );
 }
 
@@ -9010,6 +9082,11 @@ function getSelectedPathwayScopeLabels(entry) {
   }
 
   const majorTitle = getPrimaryMajorTitle(entry);
+  const majorTitleTokens = new Set(
+    normalizeMatcherText(majorTitle)
+      .split(" ")
+      .filter((token) => token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token))
+  );
   const pathwayIdLabel = String(entry.pathwayId).replace(/[-_]+/g, " ");
   const rawLabels = [
     pathwayIdLabel,
@@ -9035,8 +9112,17 @@ function getSelectedPathwayScopeLabels(entry) {
           return false;
         }
 
+        const hasPathwayCue = PATHWAY_LABEL_CUE_PATTERN.test(label);
+        if (
+          !hasPathwayCue &&
+          tokens.length > 1 &&
+          tokens.every((token) => majorTitleTokens.has(token))
+        ) {
+          return false;
+        }
+
         return (
-          PATHWAY_LABEL_CUE_PATTERN.test(label) ||
+          hasPathwayCue ||
           tokens.some((token) => pathwayIdTokens.includes(token))
         );
       })
@@ -9047,12 +9133,14 @@ function getSelectedPathwayScopeTokenGroups(entry) {
   return uniqueBy(
     getSelectedPathwayScopeLabels(entry)
       .map((label) =>
-        normalizeMatcherText(label)
-          .split(" ")
-          .filter(
-            (token) =>
-              token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
-          )
+        uniqueInOrder(
+          normalizeMatcherText(label)
+            .split(" ")
+            .filter(
+              (token) =>
+                token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+            )
+        )
       )
       .filter((tokens) => tokens.length > 0)
       .sort((left, right) => right.length - left.length),
@@ -9122,12 +9210,14 @@ function getStrictSelectedPathwayScopeTokenGroups(entry) {
   return uniqueBy(
     getStrictSelectedPathwayScopeLabels(entry)
       .map((label) =>
-        normalizeMatcherText(label)
-          .split(" ")
-          .filter(
-            (token) =>
-              token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
-          )
+        uniqueInOrder(
+          normalizeMatcherText(label)
+            .split(" ")
+            .filter(
+              (token) =>
+                token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+            )
+        )
       )
       .filter((tokens) => tokens.length > 0)
       .sort((left, right) => right.length - left.length),
@@ -9177,6 +9267,18 @@ function lineMatchesStrictSelectedPathwayIdentity(entry, line) {
     entry,
     line,
     getStrictSelectedPathwayScopeTokenGroups(entry)
+  );
+}
+
+function lineContainsSelectedPathwayDiscriminator(entry, line) {
+  const discriminatorTokens = getSelectedPathwayDiscriminatorTokens(entry);
+  if (!discriminatorTokens.length) {
+    return true;
+  }
+
+  const normalizedLine = normalizeMatcherText(line);
+  return discriminatorTokens.some((token) =>
+    normalizedLineContainsToken(normalizedLine, token)
   );
 }
 
@@ -9259,6 +9361,43 @@ function isLikelyBasePeerPathwayHtmlSectionStartLine(line) {
   return PATHWAY_LABEL_CUE_PATTERN.test(normalized);
 }
 
+function hasRecentFormalPathwayChoiceContext(lines, index) {
+  const precedingText = normalizeMatcherText(
+    lines.slice(Math.max(0, index - 8), index).join(" ")
+  );
+  return /\bformal options?\b/.test(precedingText);
+}
+
+function isLikelyFormalPathwayTableHeadingLine(lines, index) {
+  const rawLine = normalizeWhitespace(lines[index]);
+  const normalized = stripPathwayHeadingPrefix(rawLine);
+  const matcherText = normalizeMatcherText(normalized);
+  if (
+    !rawLine ||
+    !matcherText ||
+    !hasRecentFormalPathwayChoiceContext(lines, index) ||
+    NOISY_SOURCE_LINE_PATTERN.test(rawLine) ||
+    extractCourseCodesFromLine(rawLine).length > 0 ||
+    PATHWAY_SECTION_BOUNDARY_PATTERN.test(rawLine)
+  ) {
+    return false;
+  }
+
+  const wordCount = matcherText.split(" ").filter(Boolean).length;
+  if (!wordCount || wordCount > 8) {
+    return false;
+  }
+
+  return /^[A-Z]\.\s+/i.test(rawLine);
+}
+
+function isLikelyBaseParallelPathwayHtmlSectionStartLine(lines, index) {
+  return (
+    isLikelyBasePeerPathwayHtmlSectionStartLine(lines[index]) ||
+    isLikelyFormalPathwayTableHeadingLine(lines, index)
+  );
+}
+
 const BARE_PATHWAY_SECTION_SUBHEADING_PATTERN =
   /\b(?:admission|admissions|application|apply|capstone|checklist|core|course|courses|coursework|credits?|curriculum|degree|electives?|internship|major|minor|overview|prereq|prerequisite|program|requirements?|sample|schedule|series|student|students|worksheet)\b/i;
 
@@ -9302,7 +9441,11 @@ function lineLooksLikeSiblingBarePathwaySection(entry, line) {
 }
 
 function isLikelySelectedPathwayHtmlSectionStartLine(entry, line) {
-  if (!entry?.pathwayId || !lineMatchesSelectedPathwayIdentity(entry, line)) {
+  if (
+    !entry?.pathwayId ||
+    !lineMatchesSelectedPathwayIdentity(entry, line) ||
+    !lineContainsSelectedPathwayDiscriminator(entry, line)
+  ) {
     return false;
   }
 
@@ -9591,7 +9734,7 @@ function removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines) {
   for (let index = 0; index < lines.length; index += 1) {
     if (
       extractCourseCodesFromLine(lines[index]).length > 0 ||
-      !isLikelyBasePeerPathwayHtmlSectionStartLine(lines[index])
+      !isLikelyBaseParallelPathwayHtmlSectionStartLine(lines, index)
     ) {
       continue;
     }
@@ -9600,7 +9743,7 @@ function removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines) {
     while (
       runEnd + 1 < lines.length &&
       extractCourseCodesFromLine(lines[runEnd + 1]).length === 0 &&
-      isLikelyBasePeerPathwayHtmlSectionStartLine(lines[runEnd + 1])
+      isLikelyBaseParallelPathwayHtmlSectionStartLine(lines, runEnd + 1)
     ) {
       runEnd += 1;
     }
@@ -9640,7 +9783,7 @@ function removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines) {
     const line = normalizeWhitespace(lines[index]);
     if (
       extractCourseCodesFromLine(line).length > 0 ||
-      !isLikelyBasePeerPathwayHtmlSectionStartLine(line)
+      !isLikelyBaseParallelPathwayHtmlSectionStartLine(lines, index)
     ) {
       continue;
     }
@@ -9652,7 +9795,10 @@ function removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines) {
         continue;
       }
 
-      if (scanIndex > index + 2 && isLikelyBasePeerPathwayHtmlSectionStartLine(scanLine)) {
+      if (
+        scanIndex > index + 2 &&
+        isLikelyBaseParallelPathwayHtmlSectionStartLine(lines, scanIndex)
+      ) {
         contentEnd = scanIndex - 1;
         break;
       }
@@ -14411,7 +14557,6 @@ function isDifferentProgramSiblingPage(baseUrl, resolvedUrl) {
     const baseDivergentSegment = baseSegments[divergenceIndex] ?? "";
     const resolvedDivergentSegment = resolvedSegments[divergenceIndex] ?? "";
     const divergentCredentialPrograms =
-      parentSegment === "undergraduate" &&
       /^(?:bachelor|bachelors?|ba|bs|bba|major|minor)[-_]/i.test(baseDivergentSegment) &&
       /^(?:bachelor|bachelors?|ba|bs|bba|major|minor)[-_]/i.test(resolvedDivergentSegment);
 
@@ -14676,6 +14821,15 @@ function extractParserRecoveryLinkCandidates(entry, html) {
     }
 
     const { score, signals } = scoreParserRecoveryLinkCandidate(entry, resolvedUrl, label);
+    const ownerTitleTokenCount = getTitleScopeTokens(entry).length;
+    const requiredSiblingTitleOverlap = Math.min(2, ownerTitleTokenCount);
+    if (
+      isDifferentProgramSiblingPage(entry.url, resolvedUrl) &&
+      !signals.exactTitleMatch &&
+      signals.titleTokenOverlapCount < requiredSiblingTitleOverlap
+    ) {
+      continue;
+    }
     if (parserRecoveryCandidateConflictsWithPathway(entry, label, resolvedUrl)) {
       continue;
     }
@@ -14702,7 +14856,6 @@ function extractParserRecoveryLinkCandidates(entry, html) {
     ) {
       continue;
     }
-    const ownerTitleTokenCount = getTitleScopeTokens(entry).length;
     const hasTitleTokenIdentity =
       signals.titleTokenOverlapCount >=
       Math.max(1, Math.min(2, ownerTitleTokenCount));
@@ -14933,7 +15086,8 @@ function scoreOwnerSnapshotForParserRecovery(entry, snapshot) {
   const courseCodeCount = uniqueSorted(lines.flatMap(extractCourseCodesFromLine)).length;
   const cueLineCount = lines.filter((line) => REQUIREMENT_CUE_PATTERN.test(line)).length;
   const exactTitleScore = exactTitle && snapshotText.includes(exactTitle) ? 80 : 0;
-  const tokenScore = titleTokens.filter((token) => snapshotText.includes(token)).length * 16;
+  const matchedTitleTokenCount = titleTokens.filter((token) => snapshotText.includes(token)).length;
+  const tokenScore = matchedTitleTokenCount * 16;
   const sourceUrlScore = normalizeUrlForComparison(snapshot.sourceUrl) === normalizeUrlForComparison(entry.url)
     ? 20
     : 0;
@@ -14942,6 +15096,14 @@ function scoreOwnerSnapshotForParserRecovery(entry, snapshot) {
   )
     ? 120
     : 0;
+  if (
+    !sourceUrlScore &&
+    !exactTitleScore &&
+    titleTokens.length >= 2 &&
+    matchedTitleTokenCount < Math.min(2, titleTokens.length)
+  ) {
+    return 0;
+  }
 
   return exactTitleScore + tokenScore + courseCodeCount * 8 + cueLineCount * 4 + sourceUrlScore - noisyPenalty;
 }
@@ -15189,6 +15351,17 @@ function shouldAcceptParserRecoveryOwner(beforeOwner, afterOwner, candidate) {
 
   const beforeSnapshot = buildParserRecoveryOwnerSnapshot(beforeOwner);
   const afterSnapshot = buildParserRecoveryOwnerSnapshot(afterOwner);
+  const candidateSignals = candidate?.signals ?? {};
+  const beforeTitleTokenCount = getTitleScopeTokens(beforeOwner).length;
+  if (
+    isDifferentProgramSiblingPage(beforeOwner.sourceUrl ?? beforeOwner.primarySourceUrl, afterOwner.sourceUrl) &&
+    beforeTitleTokenCount >= 2 &&
+    !candidateSignals.exactTitleMatch &&
+    (candidateSignals.titleTokenOverlapCount ?? 0) < Math.min(2, beforeTitleTokenCount)
+  ) {
+    return false;
+  }
+
   if (afterSnapshot.parsedUwCourseCodeCount === 0) {
     return false;
   }
@@ -15874,15 +16047,13 @@ function inferApprovedListKeyFromSupportMetadata(input) {
   // support-list extraction derives approvedListKey from official owner/link
   // identity plus the source section heading instead of parser-side program ids.
   if (
-    (input.planId === "uw-seattle-computer-engineering" ||
-      /\bcomputer engineering\b/.test(context)) &&
+    input.planId === "uw-seattle-computer-engineering" &&
     /\b(?:natural science|science)\b/.test(context)
   ) {
     return "computer-engineering-natural-science";
   }
   if (
-    (input.planId === "uw-seattle-computer-science" ||
-      /\b(?:computer science|allen school|data science)\b/.test(context)) &&
+    input.planId === "uw-seattle-computer-science" &&
     /\b(?:natural science|science)\b/.test(context)
   ) {
     return "computer-science-approved-science";
@@ -16066,14 +16237,16 @@ function buildManifestParseSuccess(
         };
   const metadataSourceRole = classifyRequirementSourceRole(effectiveEntry);
   const parsedSourceRole = parsed.sourceRole ?? null;
-  const sourceRole = shouldUseTacomaMetadataPrimaryRole(
-    effectiveEntry,
-    parsedSourceRole,
-    metadataSourceRole,
-    parsed
-  )
-    ? metadataSourceRole
-    : parsedSourceRole ?? metadataSourceRole;
+  const sourceRole = sourceContentIndicatesInactiveMajor(effectiveEntry, parsed)
+    ? "non-schedulable-course-list"
+    : shouldUseTacomaMetadataPrimaryRole(
+        effectiveEntry,
+        parsedSourceRole,
+        metadataSourceRole,
+        parsed
+      )
+      ? metadataSourceRole
+      : parsedSourceRole ?? metadataSourceRole;
   const sourceRoleStatus = getRequirementSourceRoleStatus(sourceRole);
   const sourceScope = buildRequirementSourceScope(sourceRole);
   const allInitialParsedCourseCodes = uniqueSorted(
@@ -16348,7 +16521,7 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
     ownerId: entry.ownerId,
     ownerTitle: entry.ownerTitle,
     planId: entry.planId,
-    pathwayId: entry.pathwayId,
+    pathwayId: getMaterializableParserPathwayId(entry),
     campusId: entry.campusId,
     primaryParserType: entry.parserType,
     primarySourceUrl: entry.url,
@@ -17095,7 +17268,85 @@ function mergeParsedOwners(previousOwners, nextOwners, targetPlanIds) {
     (left, right) =>
       left.ownerTitle.localeCompare(right.ownerTitle) ||
       String(left.ownerId ?? "").localeCompare(String(right.ownerId ?? "")) ||
-      String(left.sourceUrl ?? "").localeCompare(String(right.sourceUrl ?? ""))
+    String(left.sourceUrl ?? "").localeCompare(String(right.sourceUrl ?? ""))
+  );
+}
+
+function parsedOwnerCanCreateSchedulableRows(owner) {
+  const sourceRoleStatus =
+    owner?.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner?.sourceRole ?? "ignored");
+  return (
+    owner?.canCreateSchedulableRows !== false &&
+    owner?.supportOnly !== true &&
+    owner?.nonSchedulable !== true &&
+    sourceRoleStatus === "primary"
+  );
+}
+
+function parsedOwnerIsCoveredByChildPathwayRequirements(owner, owners) {
+  if (!owner?.ok || owner.pathwayId || (owner.parsedUwCourseCodes ?? []).length > 0) {
+    return false;
+  }
+
+  const childOwners = (owners ?? []).filter(
+    (candidate) =>
+      candidate?.planId === owner.planId &&
+      candidate?.pathwayId &&
+      candidate?.ok &&
+      parsedOwnerCanCreateSchedulableRows(candidate) &&
+      (candidate.parsedUwCourseCodes ?? []).length > 0
+  );
+  if (!childOwners.length) {
+    return false;
+  }
+
+  const overviewText = normalizeMatcherText(
+    [
+      owner.primaryParserType,
+      owner.parserType,
+      owner.primarySourceLabel,
+      owner.sourceLabel,
+      owner.primarySourceUrl,
+      owner.sourceUrl,
+      ...(owner.pathwayLabels ?? []),
+      ...(owner.requirementCueLines ?? []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+
+  return (
+    (owner.pathwayLabels ?? []).length > 0 ||
+    /\b(?:overview|options?|tracks?|routes?|pathways?|concentrations?)\b/.test(overviewText)
+  );
+}
+
+function parsedOwnerHasActionableNoParsedCourses(owner, owners) {
+  if (!owner?.ok || (owner.parsedUwCourseCodes ?? []).length > 0) {
+    return false;
+  }
+  if (!parsedOwnerCanCreateSchedulableRows(owner)) {
+    return false;
+  }
+  return !parsedOwnerIsCoveredByChildPathwayRequirements(owner, owners);
+}
+
+function removeQualitySignal(owner, code) {
+  const qualitySignals = (owner.qualitySignals ?? []).filter((signal) => signal?.code !== code);
+  if (qualitySignals.length === (owner.qualitySignals ?? []).length) {
+    return owner;
+  }
+  return {
+    ...owner,
+    qualitySignals,
+  };
+}
+
+function normalizeParsedOwnersForReport(owners) {
+  return (owners ?? []).map((owner) =>
+    parsedOwnerIsCoveredByChildPathwayRequirements(owner, owners)
+      ? removeQualitySignal(owner, "no-parsed-uw-course-codes")
+      : owner
   );
 }
 
@@ -17109,7 +17360,7 @@ function buildParseReport(owners, options = {}) {
     owners,
     targetPlanIds
   );
-  const fullOwners = mergedOwners;
+  const fullOwners = normalizeParsedOwnersForReport(mergedOwners);
   const scopedOwners = targetPlanIdSet
     ? fullOwners.filter((owner) => targetPlanIdSet.has(owner.planId))
     : fullOwners;
@@ -17155,8 +17406,8 @@ function buildParseReport(owners, options = {}) {
     withSourceOnlyCourseCodesCount: fullOwners.filter(
       (owner) => owner.sourceOnlyUwCourseCodes.length > 0
     ).length,
-    withNoParsedCourseCodesCount: fullOwners.filter(
-      (owner) => owner.ok && owner.parsedUwCourseCodes.length === 0
+    withNoParsedCourseCodesCount: fullOwners.filter((owner) =>
+      parsedOwnerHasActionableNoParsedCourses(owner, fullOwners)
     ).length,
     ownersWithQualityWarningsCount: fullOwners.filter((owner) =>
       owner.qualitySignals.some((signal) => signal.severity === "warning")
@@ -17191,9 +17442,9 @@ function buildParseReport(owners, options = {}) {
       (owner) => owner.parserSequenceChoiceAuditLines ?? []
     ),
     sourceScopeAuditLines: scopedOwners.flatMap((owner) => owner.sourceScopeAuditLines ?? []),
-    uwMseCourseExtractionAudit: buildUwMseCourseExtractionAudit(mergedOwners),
-    parserRecoveryReport: buildParserRecoveryReport(mergedOwners),
-    owners: mergedOwners,
+    uwMseCourseExtractionAudit: buildUwMseCourseExtractionAudit(fullOwners),
+    parserRecoveryReport: buildParserRecoveryReport(fullOwners),
+    owners: fullOwners,
   };
 }
 

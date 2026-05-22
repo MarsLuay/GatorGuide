@@ -1,3 +1,6 @@
 *.sh text eol=lf
 *.command text eol=lf
 *.desktop text eol=lf
+Start-to-run.app/Contents/MacOS/Start-to-run text eol=lf
+Course-Planner-Updater.app/Contents/MacOS/Course-Planner-Updater text eol=lf
+add-or-remove-resources.app/Contents/MacOS/add-or-remove-resources text eol=lf

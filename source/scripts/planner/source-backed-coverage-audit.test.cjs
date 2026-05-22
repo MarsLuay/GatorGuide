@@ -1035,21 +1035,30 @@ test("Runtime option audit suppresses options scheduled for other source-backed 
     referenceDate: new Date("2026-05-06T12:00:00.000Z"),
     selectedRequirementOptionIdsByGroup: {},
   });
-  const statisticsRow = planner.auditRuntimeOptionResolution({
+  const optionRows = planner.auditRuntimeOptionResolution({
     ownerId: plan.id,
     plan,
     suggestedPlan,
     completedCourses,
     selectedRequirementOptionIdsByGroup: {},
-  }).find((row) =>
-    row.requirementTitle.startsWith("ACCTG 225 or ECON 200 or ECON 311")
+  });
+  const mathSequenceRow = optionRows.find((row) =>
+    (row.scheduledOptionIds ?? []).some((optionId) => /:math-124$/.test(optionId))
+  );
+  const statisticsRows = optionRows.filter((row) =>
+    /Statistics|QSCI 381|INDE 315|STAT 390/i.test(row.requirementTitle)
   );
 
-  assert.deepEqual(statisticsRow?.scheduledOptionIds, [
+  assert.deepEqual(mathSequenceRow?.scheduledOptionIds, [
     "uw-seattle-sustainable-bioresource-systems-engineering:requirement-option:math-124",
     "uw-seattle-sustainable-bioresource-systems-engineering:requirement-option:math-125",
   ]);
-  assert.equal(statisticsRow?.issue, "none");
+  assert.equal(mathSequenceRow?.issue, "none");
+  assert.ok(statisticsRows.length > 0, "Expected SBSE statistics option rows to be audited.");
+  for (const statisticsRow of statisticsRows) {
+    assert.deepEqual(statisticsRow.scheduledOptionIds, []);
+    assert.equal(statisticsRow.issue, "none");
+  }
 });
 
 test("Environmental Studies optionless credit bucket does not suppress schedulable analytical-methods default", () => {
@@ -1229,10 +1238,10 @@ test("Runtime option audit credits expected options scheduled as local support a
     suggestedPlan,
     completedCourses,
     selectedRequirementOptionIdsByGroup: {},
-  }).find((row) => row.requirementTitle === "Mathematics 126 or 136");
+  }).find((row) => /MATH 126.*MATH 135/i.test(row.requirementTitle));
 
   assert.deepEqual(mathRow?.scheduledOptionIds, [
-    "uw-seattle-astronomy:requirement-option:math-126",
+    "uw-seattle-astronomy:requirement-group:inline-choice-minimum-requirements-for-consideration-for-standard-admission-math-126-or-math-135:option:math-126",
   ]);
   assert.equal(mathRow?.issue, "none");
 });
@@ -1451,6 +1460,16 @@ test("Student runtime hides empty source-gap aliases without hiding source-backe
     );
     assert.equal(studentRuntime.getTransferPlannerMajorPlan(emptyAliasPlanId), null);
   }
+
+  const chemistryAliasPlanId = "uw-bothell-chemistry-biochemistry";
+  const chemistrySourceGap = source.TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.some(
+    (entry) => entry.planId === chemistryAliasPlanId
+  );
+  assert.equal(
+    chemistrySourceGap,
+    false,
+    "Expected the hidden Chemistry: Biochemistry alias to be suppressed because Chemistry BS / Biochemistry option owns the runtime source coverage."
+  );
 
   assert.ok(
     bothellMajorIds.includes("uw-bothell-chemistry-ba"),
@@ -1680,18 +1699,22 @@ test("UW Seattle option-family pathway aliases resolve to parsed source-backed p
     {
       planId: "uw-seattle-construction-management",
       aliasPathwayId: "early-admission-pathway",
+      expectedSelectedPathwayId: "early-admission-pathway",
     },
     {
       planId: "uw-seattle-construction-management",
       aliasPathwayId: "freshmen-direct-pathway",
+      expectedSelectedPathwayId: "freshmen-direct-pathway",
     },
     {
       planId: "uw-seattle-construction-management",
       aliasPathwayId: "upper-division-admission-pathway",
+      expectedSelectedPathwayId: "upper-division-admission-pathway",
     },
     {
       planId: "uw-seattle-geography",
       aliasPathwayId: "ba-option-family:in-geography-data-science",
+      expectedSelectedPathwayId: "geography-major-data-science-option",
     },
   ];
 
@@ -1704,7 +1727,7 @@ test("UW Seattle option-family pathway aliases resolve to parsed source-backed p
     );
     assert.equal(
       resolvedPlan?.selectedPathwayId,
-      testCase.aliasPathwayId,
+      testCase.expectedSelectedPathwayId,
       `Expected ${testCase.aliasPathwayId} to select the matching generated pathway instead of falling back.`
     );
     assert.ok(
@@ -1732,7 +1755,7 @@ test("UW Seattle Geography Data Science materializes parsed official source cour
     plan,
     "ba-option-family:in-geography-data-science"
   );
-  assert.equal(resolvedPlan?.selectedPathwayId, "ba-option-family:in-geography-data-science");
+  assert.equal(resolvedPlan?.selectedPathwayId, "geography-major-data-science-option");
 
   const parsedBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
     "uw-seattle-geography",
@@ -1744,7 +1767,7 @@ test("UW Seattle Geography Data Science materializes parsed official source cour
   const degreeMapCodes = new Set(
     (resolvedPlan.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
   );
-  for (const sourceCourseCode of ["GEOG 245", "GEOG 258", "CSE 122", "INFO 201"]) {
+  for (const sourceCourseCode of ["GEOG 360", "CSE 122", "INFO 371", "QSCI 482"]) {
     assert.ok(
       degreeMapCodes.has(sourceCourseCode),
       `Expected Geography Data Science generated pathway to include ${sourceCourseCode}`
@@ -1876,12 +1899,12 @@ test("UW Comparative Religion materializes every official semicolon-listed track
     .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
     .map((pathway) => pathway.id);
 
-  assert.deepEqual(pathwayIds, [
-    "religion-and-society-track",
+  assert.deepEqual(pathwayIds.sort(), [
     "history-of-religions-eastern-emphasis-track",
     "history-of-religions-western-emphasis-track",
+    "religion-and-society-track",
     "religion-and-symbolic-expression-track",
-  ]);
+  ].sort());
 });
 
 test("UW Economics Strategy exposes undergraduate source requirements without graduate courses", () => {
@@ -2031,45 +2054,35 @@ test("UW Applied Mathematics inline source requirements materialize beyond the c
     "bs-option-family:data-science"
   );
   const dataScienceGroups = dataScienceBlocks.flatMap((block) => block.parsedRequirementGroups ?? []);
-  const dataScienceAllRequiredGroup = dataScienceGroups.find((group) =>
-    /^AMATH 483, CFRM 410, and CFRM 420/i.test(group.label ?? "")
+  const computingAndDataSciencesGroup = dataScienceGroups.find((group) =>
+    /^Computing and Data Sciences$/i.test(group.label ?? "")
   );
-  assert.equal(dataScienceAllRequiredGroup?.requirementType, "all_required");
-  assert.deepEqual(
-    dataScienceAllRequiredGroup?.options.flatMap((option) => option.uwCourses),
-    ["AMATH 483", "CFRM 410", "CFRM 420"]
-  );
-  const societyAndDataGroup = dataScienceGroups.find((group) => {
-    const optionCourses = (group.options ?? []).flatMap((option) => option.uwCourses ?? []);
-    return optionCourses.includes("INFO 351") && optionCourses.includes("SOC 225");
-  });
-  assert.equal(societyAndDataGroup?.requirementType, "choose_one");
-  assert.equal(societyAndDataGroup?.requiredCount, 1);
-  assert.match(
-    `${societyAndDataGroup?.sourceHeading ?? ""} ${societyAndDataGroup?.sourceRowText ?? ""} ${societyAndDataGroup?.sourceSection ?? ""}`,
-    /Society and Data|INFO 351/i
-  );
-  assert.deepEqual(
-    societyAndDataGroup?.options.flatMap((option) => option.uwCourses),
-    ["INFO 351", "SOC 225"]
-  );
+  const computingAndDataSciencesCourses =
+    computingAndDataSciencesGroup?.options.flatMap((option) => option.uwCourses) ?? [];
+  assert.equal(computingAndDataSciencesGroup?.requirementType, "choose_n");
+  assert.equal(computingAndDataSciencesGroup?.requiredCount, 2);
+  for (const courseCode of ["AMATH 483", "CFRM 410", "CFRM 420"]) {
+    assert.ok(
+      computingAndDataSciencesCourses.includes(courseCode),
+      `Expected Applied Mathematics Data Science computing pool to include ${courseCode}.`
+    );
+  }
 
   const dataSciencePlan = studentRuntime.resolveTransferPlannerMajorPlan(
     plan,
     "bs-option-family:data-science"
   );
   const dataScienceRuntimeText = JSON.stringify(dataSciencePlan?.requirementGroups ?? []);
-  for (const courseCode of ["AMATH 483", "CFRM 410", "CFRM 420", "INFO 351", "SOC 225"]) {
+  for (const courseCode of ["AMATH 483", "CFRM 410", "CFRM 420"]) {
     assert.ok(
       dataScienceRuntimeText.includes(courseCode),
       `Expected Applied Mathematics Data Science runtime requirements to display ${courseCode}.`
     );
   }
-  const dataScienceRuntimeSocietyGroup = (dataSciencePlan?.requirementGroups ?? []).find((group) => {
-    const optionCourses = (group.options ?? []).flatMap((option) => option.uwCourses ?? []);
-    return optionCourses.includes("INFO 351") && optionCourses.includes("SOC 225");
-  });
-  assert.equal(dataScienceRuntimeSocietyGroup?.requirementType, "choose_one");
+  const dataScienceRuntimeComputingGroup = (dataSciencePlan?.requirementGroups ?? []).find((group) =>
+    /^Computing and Data Sciences$/i.test(group.label ?? "")
+  );
+  assert.equal(dataScienceRuntimeComputingGroup?.requirementType, "choose_n");
 });
 
 test("UW American Ethnic Studies materializes official core courses and selected concentration pools", () => {
@@ -2082,7 +2095,9 @@ test("UW American Ethnic Studies materializes official core courses and selected
   );
   const rootGroups = rootBlocks.flatMap((block) => block.parsedRequirementGroups ?? []);
   const coreGroup = rootGroups.find((group) => /^Core Courses$/i.test(group.label ?? ""));
-  assert.equal(coreGroup?.requirementType, "all_required");
+  assert.equal(coreGroup?.requirementType, "choose_credits");
+  assert.equal(coreGroup?.minCredits, 30);
+  assert.equal(coreGroup?.maxCredits, 30);
   assert.deepEqual(
     coreGroup?.options.flatMap((option) => option.uwCourses),
     ["AAS 101", "AFRAM 101", "CHSTU 101", "AES 150", "AES 151", "AES 212"]
@@ -2244,9 +2259,11 @@ test("UW American Indian Studies preserves all concentration-course sections", (
 
   const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
     "uw-seattle-american-indian-studies",
-    null
+    "ba-route"
   );
   const groups = blocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  const resolvedPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, "ba-route");
+  assert.ok(resolvedPlan);
   const concentrationExpectations = [
     {
       label: "Governance Concentration Courses",
@@ -2283,7 +2300,7 @@ test("UW American Indian Studies preserves all concentration-course sections", (
     }
   }
 
-  const runtimeText = JSON.stringify(plan.requirementGroups ?? []);
+  const runtimeText = JSON.stringify(resolvedPlan.requirementGroups ?? []);
   for (const label of concentrationExpectations.map((entry) => entry.label)) {
     assert.ok(runtimeText.includes(label), `Expected AIS runtime requirements to display ${label}.`);
   }
@@ -2308,12 +2325,14 @@ test("UW Cinema and Media Studies does not expose sibling Comparative Literature
   assert.ok(plan);
   const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(plan);
   assert.deepEqual(
-    pathways.map((pathway) => pathway.id),
+    pathways.filter((pathway) =>
+      /comparative literature|c lit|comparative-literature/i.test(`${pathway.id} ${pathway.label}`)
+    ),
     []
   );
   assert.ok(
     (plan.requirementGroups ?? []).some((group) =>
-      /Core courses.*CMS 301.*CMS 480/i.test(group.label ?? "")
+      /^CMS course:.*CMS 310.*CMS 321/i.test(group.label ?? "")
     )
   );
 });

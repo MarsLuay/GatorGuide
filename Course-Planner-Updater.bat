@@ -5,10 +5,19 @@ title GatorGuide Course Planner Updater
 set "REPO_ROOT=%~dp0"
 set "APP_ROOT=%REPO_ROOT%source"
 set "SCRIPT_ROOT=%APP_ROOT%\scripts"
+set "REPO_DIR_NAME=GatorGuide"
+set "REPO_URL=https://github.com/MarsLuay/GatorGuide.git"
 set "BACK_EXIT_CODE=86"
 set "INTERACTIVE_MENU=0"
 set "HOSTED_BACK_TARGET="
-cd /d "%APP_ROOT%"
+
+call :locate_or_clone_repo
+if errorlevel 1 exit /b 1
+
+cd /d "%APP_ROOT%" || (
+  echo Could not open "%APP_ROOT%".
+  exit /b 1
+)
 
 set "MODE=%~1"
 set "ACTION_LABEL=Course planner updater"
@@ -178,3 +187,72 @@ echo.
 pause
 if "%INTERACTIVE_MENU%"=="1" goto menu
 exit /b %EXIT_CODE%
+
+:locate_or_clone_repo
+if exist "%APP_ROOT%\package.json" (
+  exit /b 0
+)
+
+set "CLONE_ROOT=%REPO_ROOT%%REPO_DIR_NAME%"
+if exist "%CLONE_ROOT%\source\package.json" (
+  set "REPO_ROOT=%CLONE_ROOT%\"
+  set "APP_ROOT=%REPO_ROOT%source"
+  set "SCRIPT_ROOT=%APP_ROOT%\scripts"
+  echo Found Gator Guide in "%REPO_ROOT%".
+  exit /b 0
+)
+
+echo Gator Guide was not found next to this launcher.
+call :ensure_git
+if errorlevel 1 exit /b 1
+
+echo Cloning Gator Guide into "%CLONE_ROOT%"...
+git clone "%REPO_URL%" "%CLONE_ROOT%"
+if errorlevel 1 (
+  echo Could not clone the repo from %REPO_URL%.
+  exit /b 1
+)
+
+set "REPO_ROOT=%CLONE_ROOT%\"
+set "APP_ROOT=%REPO_ROOT%source"
+set "SCRIPT_ROOT=%APP_ROOT%\scripts"
+if not exist "%APP_ROOT%\package.json" (
+  echo The repo finished cloning, but "%APP_ROOT%\package.json" is still missing.
+  exit /b 1
+)
+
+echo Repo cloned successfully.
+exit /b 0
+
+:ensure_git
+set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
+where git >nul 2>&1
+if not errorlevel 1 (
+  echo Git is already installed.
+  exit /b 0
+)
+
+where winget >nul 2>&1
+if errorlevel 1 (
+  echo Git is missing and winget is not available on this PC.
+  echo Install Git from https://git-scm.com/downloads and run this file again.
+  exit /b 1
+)
+
+echo Git was not found. Installing Git with winget...
+winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements
+if errorlevel 1 (
+  echo Git installation failed.
+  exit /b 1
+)
+
+set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
+where git >nul 2>&1
+if errorlevel 1 (
+  echo Git was installed, but this terminal cannot find it yet.
+  echo Close this window and run Course-Planner-Updater.bat again.
+  exit /b 1
+)
+
+echo Git finished installing successfully.
+exit /b 0

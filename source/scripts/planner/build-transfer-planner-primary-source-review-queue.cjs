@@ -16,7 +16,21 @@ const OUTPUT_MD_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-primary-source-review-queue.md"
 );
+
+require("ts-node").register({
+  skipProject: true,
+  transpileOnly: true,
+  compilerOptions: {
+    module: "CommonJS",
+    moduleResolution: "node",
+  },
+});
+require("tsconfig-paths/register");
+
 const discovery = require("./discover-transfer-planner-primary-sources.cjs");
+const {
+  getTransferPlannerStudentRuntimeAliasCoverage,
+} = require("../../constants/transfer-planner-source/student-runtime");
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -118,12 +132,26 @@ function buildOwnerSourceGapEntry(owner, reviewCandidate = null) {
   };
 }
 
+function hasStudentRuntimeAliasCoverage(owner) {
+  if (!owner?.planId) {
+    return false;
+  }
+
+  return Boolean(
+    getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)
+  );
+}
+
 function buildQueue(report) {
   const highSafetyReviewOwners = [];
   const mediumOwners = [];
   const unresolvedOwners = [];
 
   for (const owner of report.owners ?? []) {
+    if (hasStudentRuntimeAliasCoverage(owner)) {
+      continue;
+    }
+
     const reviewCandidate = pickOwnerReviewCandidate(owner);
     if (reviewCandidate?.confidence === "high") {
       highSafetyReviewOwners.push(buildOwnerSourceGapEntry(owner, reviewCandidate));
@@ -141,6 +169,10 @@ function buildQueue(report) {
   }
 
   for (const owner of report.weakExistingOwners ?? []) {
+    if (hasStudentRuntimeAliasCoverage(owner)) {
+      continue;
+    }
+
     const reviewCandidate = pickOwnerReviewCandidate(owner);
     if (reviewCandidate?.confidence === "high") {
       highSafetyReviewOwners.push(buildOwnerSourceGapEntry(owner, reviewCandidate));

@@ -62,7 +62,8 @@ function Write-TransferPlannerLaymansDiagnosis {
   Write-Information "== $Header ==" -InformationAction Continue
 
   foreach ($item in $Items) {
-    Write-Information ("- What went wrong: {0}" -f $item.symptom) -InformationAction Continue
+    $leadLabel = if ($item.severity -eq "warning") { "Watch item" } else { "What went wrong" }
+    Write-Information ("- {0}: {1}" -f $leadLabel, $item.symptom) -InformationAction Continue
     Write-Information ("  Why it matters: {0}" -f $item.whyItMatters) -InformationAction Continue
     Write-Information ("  Likely cause: {0}" -f $item.likelyCause) -InformationAction Continue
     Write-Information ("  Next action: {0}" -f $item.nextAction) -InformationAction Continue
@@ -83,7 +84,8 @@ function Convert-TransferPlannerLaymansDiagnosisToMarkdownLines {
   )
 
   foreach ($item in $Items) {
-    $lines += "- What went wrong: $($item.symptom)"
+    $leadLabel = if ($item.severity -eq "warning") { "Watch item" } else { "What went wrong" }
+    $lines += "- ${leadLabel}: $($item.symptom)"
     $lines += "  Why it matters: $($item.whyItMatters)"
     $lines += "  Likely cause: $($item.likelyCause)"
     $lines += "  Next action: $($item.nextAction)"

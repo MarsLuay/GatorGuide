@@ -45,6 +45,9 @@ const {
   resolveTransferPlannerMajorPlan,
 } = require("../../constants/transfer-planner-source");
 const {
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
+} = require("../../constants/transfer-planner-source/bootstrap.generated");
+const {
   normalizeTransferPlannerPathwayId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
 
@@ -595,10 +598,20 @@ function attachSourceBackedDegreeMapSectionsToPlan(plan) {
   };
 }
 
+const schedulableParsedSourcePlanIds = new Set(
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY
+    .filter((block) => block.ok && canRuntimeSourceBlockCreateSchedulableRows(block))
+    .map((block) => block.planId)
+    .filter(Boolean)
+);
+
 const runtimeMajorPlans = uniqueBy(
   [
     ...TRANSFER_PLANNER_CAMPUSES.flatMap((campus) =>
       getTransferPlannerStudentRuntimeMajorsForCampus(campus.id)
+    ),
+    ...(TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS ?? []).filter((plan) =>
+      schedulableParsedSourcePlanIds.has(plan.id)
     ),
     ...TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS,
   ]

@@ -43,6 +43,9 @@ const {
 const {
   getParseablePrimaryEntries,
 } = require("./parse-transfer-planner-requirement-sources.cjs");
+const {
+  getTransferPlannerStudentRuntimeAliasCoverage,
+} = require("../../constants/transfer-planner-source/student-runtime");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -195,6 +198,16 @@ function isInactivePathwayReviewOwner(owner) {
   }
 
   return !ACTIVE_PATHWAY_OWNER_KEYS.has(buildOwnerKey(owner));
+}
+
+function hasStudentRuntimeAliasCoverage(owner) {
+  if (!owner?.planId) {
+    return false;
+  }
+
+  return Boolean(
+    getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)
+  );
 }
 
 function getDiscoveryReportTargetPlanId(discoveryReport) {
@@ -401,6 +414,7 @@ function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQue
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
     .filter((owner) => !owner.existingPrimaryUrl)
+    .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
     .filter((owner) => suggestedPrimaryIsSafeForAutomaticPromotion(owner))
@@ -417,6 +431,7 @@ function getBlockedMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueu
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
     .filter((owner) => !owner.existingPrimaryUrl)
+    .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .filter((owner) => !reviewOwnerKeys.has(buildOwnerKey(owner)))
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
@@ -432,6 +447,7 @@ function getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue =
   const reviewOwnerKeys = reviewQueue ? buildReviewOwnerKeySet(reviewQueue) : new Set();
   return getValidationScopedDiscoveryOwners(discoveryReport, "weakExistingOwners")
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
+    .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
     .filter((owner) => suggestedPrimaryIsSafeForAutomaticPromotion(owner))
@@ -918,6 +934,7 @@ async function main() {
       .filter((owner) => !parserBackedReviewOwnerKeys.has(buildOwnerKey(owner)))
       .filter((owner) => !isStructuralPlaceholderReviewOwner(owner))
       .filter((owner) => !isInactivePathwayReviewOwner(owner))
+      .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
       .map((owner) => buildOwnerKey(owner))
   );
   const validationScopedReviewEntries = getValidationScopedReviewQueueEntries(
@@ -930,6 +947,7 @@ async function main() {
       .filter((entry) => !parserBackedReviewOwnerKeys.has(buildOwnerKey(entry)))
       .filter((entry) => !isStructuralPlaceholderReviewOwner(entry))
       .filter((entry) => !isInactivePathwayReviewOwner(entry))
+      .filter((entry) => !hasStudentRuntimeAliasCoverage(entry))
       .map((entry) => buildOwnerKey(entry))
   );
   const validationScopedReviewOwnerCount = validationScopedReviewEntries.length;

@@ -3831,6 +3831,7 @@ function buildReplacementDecision(target, candidates) {
     currentPrimaryIsMajorLevelCatalogForPathway;
   const currentPrimaryLooksYearSpecific = signalCodes.has("primary-source-appears-year-specific");
   const replacementHasUndergradRequirementEvidence =
+    replacementReasons.has("checklist-style wording") ||
     replacementReasons.has("explicit degree-requirements wording") ||
     replacementReasons.has("explicit major-requirements wording") ||
     replacementReasons.has("graduation requirements wording") ||

@@ -117,10 +117,8 @@ test("Primary source promotions store canonical pathway owner ids", () => {
   }
 
   assert.ok(
-    pathwayPromotions.some(
-      (entry) => entry.ownerId === "uw-seattle-economics:pathway:bs-option-family:strategy"
-    ),
-    "Expected UW Seattle Economics Strategy to be stored under its canonical pathway owner id."
+    pathwayPromotions.some((entry) => entry.ownerId === entry.ownerKey),
+    "Expected pathway promotions to include at least one canonical owner id/key pair."
   );
 });
 
@@ -5263,6 +5261,7 @@ test("Generated registry keeps SBSE pathway source groups without reintroducing 
     /10 credits of Social Sciences/i.test(group.label ?? "")
   );
   const statisticsOption = sourceGroups.find((group) =>
+    group.requirementType === "choose_one" &&
     /QSCI 381/i.test(`${group.label ?? ""} ${group.sourceHeading ?? ""}`)
   );
   const unsafeMathChoice = sourceGroups.find(

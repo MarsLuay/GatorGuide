@@ -19,154 +19,42 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
+- [Cached source: Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma](https://www.tacoma.uw.edu/sias/cac/film-and-media-track)
+- [Cached source: Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma](https://www.tacoma.uw.edu/sias/cac/film-and-media-track) - Alternate official source used for parser-backed UW requirement extraction.
 - [UW Tacoma Arts, Media and Culture overview](https://www.tacoma.uw.edu/sias/cac/arts-media-culture)
-- [UW Tacoma Arts, Media and Culture overview](https://www.tacoma.uw.edu/sias/cac/arts-media-culture) - Source used for parser-backed UW requirement extraction.
+- [UW Tacoma Arts, Media and Culture overview](https://www.tacoma.uw.edu/sias/cac/arts-media-culture) - Primary source used for parser-backed UW requirement extraction.
 
-##### Arts, Media and Culture (BA) parsed official source structure
+##### Arts, Media and Culture (BA) parsed official source requirements
 
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Film and Media Track | Culture, Arts &amp; Communication | University of Washington Tacoma
+- Film and Media Track
+- 5 credits Foundation (5 credits)
+- TLIT 220 Literature and the Arts OR
+- TFILM 220 Film and the Arts
+- History (List A: one survey class and one non-survey history class) (10 credits)
+- THIST 150 World History I: Prehistory–1500
+- THIST 151 World History II: 1500–Present
+- THIST 200 American History I, 1607–1877
+- THIST 201 American History II 1877–present
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- ADMISSION REQUIREMENTS
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-
-##### Arts, Media and Culture (BA) parsed official requirement cues
-
-- Arts, Media &amp; Culture majors have five tracks to choose from:
-- LITERATURE TRACK
-- FILM AND MEDIA TRACK
-- VISUAL AND PERFORMING ARTS TRACK
-- COMPARATIVE ARTS TRACK
-- AMERICAN CULTURES TRACK
-- ADMISSION REQUIREMENTS
-- At least 45 lower-division credits
-- DEGREE REQUIREMENTS
-- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Film and Media Track | Culture, Arts &amp; Communication | University of Washington Tacoma
+- Film and Media Track
+- 5 credits Foundation (5 credits)
+- TLIT 220 Literature and the Arts OR
+- TFILM 220 Film and the Arts
+- History (List A: one survey class and one non-survey history class) (10 credits)
+- THIST 150 World History I: Prehistory–1500
+- THIST 151 World History II: 1500–Present
+- THIST 200 American History I, 1607–1877
+- THIST 201 American History II 1877–present
 
 ##### Arts, Media and Culture (BA) parsed choices and pathway notes
 
-- Arts, Media &amp; Culture majors have five tracks to choose from:
-- AMERICAN CULTURES TRACK
-- COMPARATIVE ARTS TRACK
-- FILM AND MEDIA TRACK
-- LITERATURE TRACK
-- VISUAL AND PERFORMING ARTS TRACK
-
-#### GRC Equivalent Courses
-
-On To Do list.
-
-#### Required sequences for specific credits
-
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: medium.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-01-arts-media-and-culture-ba-parsed-official-source-structure.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-02-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-03-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-04-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-05-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-06-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-07-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-08-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-09-arts-media-and-culture-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-90-requirement-cues.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
-
-
-### Bachelor of Arts in Business Administration (BABA)
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Scoped section: Accounting focuses on recording and reporting financial transactions and students in this option develop the financial a](https://www.tacoma.uw.edu/business/design-courses-baba)
-- [Scoped section: Accounting focuses on recording and reporting financial transactions and students in this option develop the financial a](https://www.tacoma.uw.edu/business/design-courses-baba) - Cached snapshot used for parser-backed UW requirement extraction.
-
-##### Bachelor of Arts in Business Administration (BABA) parsed official source requirements
-
-- The marketing option prepares students for responsibilities in both publicly and privately held business firms, as well as governmental agencies, and multinational organizations. Marketing careers include product or brand management, retailing, advertising, wholesaling, marketing research and sales.
-- Once accepted into the Business School, marketing students must complete the following courses for graduation.
-- 30 credits of core courses:
-- TBUS 300 Managing Organizations
-- TBUS 301 Quantitative Methods
-- TBUS 310 Effective Managerial Communication
-- TBUS 320 Introduction to Marketing Management
-- TBUS 330 Introduction to Information Technology
-- TBUS 350 Business Finance
-- 15 credits from Marketing that include:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Bachelor of Arts in Business Administration (BABA) parsed official requirement cues
-
-- The marketing option prepares students for responsibilities in both publicly and privately held business firms, as well as governmental agencies, and multinational organizations. Marketing careers include product or brand management, retailing, advertising, wholesaling, marketing research and sales.
-- Once accepted into the Business School, marketing students must complete the following courses for graduation.
-- 30 credits of core courses:
-- TBUS 300 Managing Organizations
-- TBUS 301 Quantitative Methods
-- TBUS 310 Effective Managerial Communication
-- TBUS 320 Introduction to Marketing Management
-- TBUS 330 Introduction to Information Technology
-- TBUS 350 Business Finance
-- 15 credits from Marketing that include:
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- History (One class from List A and one of the following: THIST 220, 221, 320, 340, 349 or TLAX 333) (10 credits)
+- American Cultures Track
+- Film and Media Track
 
 #### GRC Equivalent Courses
 
@@ -176,9 +64,33 @@ On To Do list.
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Bachelor of Arts in Business Administration (BABA)
+
+#### Summary
+
+Planner coverage: `partial`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [Scoped pathway section: Finance curriculum](https://www.tacoma.uw.edu/business/design-courses-baba)
+
+On To Do list.
+
+#### GRC Equivalent Courses
+
+On To Do list.
+
+#### Required sequences for specific credits
+
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 
 
 ### Biomedical Sciences (BS)
@@ -194,7 +106,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - [Scoped section: Core courses (39 credits)](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences)
 - [UW Tacoma Biomedical Sciences overview](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences)
-- [Scoped section: Core courses (39 credits)](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Scoped section: Core courses (39 credits)](https://www.tacoma.uw.edu/sias/sam/biomedical-sciences) - Source used for parser-backed UW requirement extraction.
 
 ##### Biomedical Sciences (BS) degree preparation and admissions
 
@@ -212,7 +124,6 @@ Source-generated from parsed UW requirement-source registries.
 - TBIOL 120 Introductory Biology 1 (6)
 - TBIOL 130 Introductory Biology 2 (6)
 - TBIOL 140 Introductory Biology 3 (6)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Biomedical Sciences (BS) parsed official requirement cues
 
@@ -226,13 +137,11 @@ Source-generated from parsed UW requirement-source registries.
 - TBIOL 120 Introductory Biology 1 (6)
 - TBIOL 130 Introductory Biology 2 (6)
 - TBIOL 140 Introductory Biology 3 (6)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Biomedical Sciences (BS) parsed choices and pathway notes
 
 - Complete a minimum of 15 credits of advanced Biomedical Sciences. Select a minimum of two classes from List A, and an additional class from List A or List B.
 - Select one course:
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -252,7 +161,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-biomedical-sciences:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -270,7 +178,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Civil Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/civil)
-- [UW Tacoma Civil Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/civil) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Civil Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/civil) - Source used for parser-backed UW requirement extraction.
 
 ##### Civil Engineering (BSCE) parsed official source requirements
 
@@ -284,7 +192,6 @@ Source-generated from parsed UW requirement-source registries.
 - General Chemistry I (TCHEM 142)
 - Statics (TME 221 or UWS: AA 210)
 - Mechanics of Materials (TME 222 or UWS: CEE 220)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Civil Engineering (BSCE) parsed official requirement cues
 
@@ -298,7 +205,6 @@ Source-generated from parsed UW requirement-source registries.
 - General Chemistry I (TCHEM 142)
 - Statics (TME 221 or UWS: AA 210)
 - Mechanics of Materials (TME 222 or UWS: CEE 220)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -310,17 +216,16 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: At least 84 credits must be taken from the CE required courses below and CE Senior Electives list. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Civil Engineering students must complete 16 credits of technical electives. Click the button below to view the current academic year course offerings. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 2025 - 2026 Electives. complete at least 2025 courses from this set. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Statics (TME 221 or UWS: AA 210) -> `ENGR& 214`. complete at least 1 course from this set
 - Required before enrollment: Mechanics of Materials -> `ENGR& 225`. complete at least 1 course from this set
 - Required before enrollment: Dynamics (TME 223 or UWS: ME 230) -> `ENGR& 215`. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-civil-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
 
-### Communications (BA)
+### Communication (BA)
 
 #### Summary
 
@@ -384,7 +289,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -393,50 +298,43 @@ Source-generated from parsed UW requirement-source registries.
 
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html)
-- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Computer Engineering parsed official source requirements
 
-- Admission Requirements
-- Completion of a minimum of 45 college-level credits
-- TMATH 124, TMATH 125, and TMATH 126
-- TMATH 207
-- T PHYS 121 and T PHYS 122
-- TCSS 142 or CSE 122 or CSE 142 or equivalent
-- TCSS 143 or CSE 123 or CSE 143 or equivalent
 - Completion Requirements
 - Complete all Computer Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
 - Physics sequence I, II, III must total 18 quarter credits. If this is not achieved, the remaining credits may be satisfied by any lab-based science course.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Complete a minimum of 30 credits of Computer Engineering required courses in residence at the University of Washington Tacoma.
+- Required Core Courses: 101 credits
+- Computer Science Fundamentals (10 credits)
+- TCES 203 (5)
+- TCSS 342 (5)
+- Electrical Engineering Fundamentals (10 credits)
+- TCES 310 (5)
 
 ##### Computer Engineering parsed official requirement cues
 
-- Admission Requirements
-- Completion of a minimum of 45 college-level credits
-- TMATH 124, TMATH 125, and TMATH 126
-- TMATH 207
-- T PHYS 121 and T PHYS 122
-- TCSS 142 or CSE 122 or CSE 142 or equivalent
-- TCSS 143 or CSE 123 or CSE 143 or equivalent
 - Completion Requirements
 - Complete all Computer Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
 - Physics sequence I, II, III must total 18 quarter credits. If this is not achieved, the remaining credits may be satisfied by any lab-based science course.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Complete a minimum of 30 credits of Computer Engineering required courses in residence at the University of Washington Tacoma.
+- Required Core Courses: 101 credits
+- Computer Science Fundamentals (10 credits)
+- TCES 203 (5)
+- TCSS 342 (5)
+- Electrical Engineering Fundamentals (10 credits)
+- TCES 310 (5)
 
 #### GRC Equivalent Courses
 
-- `CS 122`
-- `CS 123`
-- `CS& 141`
-- `CS 145`
+On To Do list.
 
 #### Required sequences for specific credits
 
 - Required before enrollment: Required Core Courses: 101 credits. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: TCSS 142 or CSE 122 or CSE 142 or equivalent -> `CS 122`. complete at least 1 course from this set. alternate path `CS& 141`
-- Required before enrollment: TCSS 143 or CSE 123 or CSE 143 or equivalent -> `CS 123`. complete at least 1 course from this set. alternate path `CS 145`
+- Required before enrollment: If a student wishes to substitute a course taken at another institution for a Computer Engineering required course, the student must submit a Petition to Substitute a Course form along with course syllabi to their academic advisor. The Electrical and Computer Engineering faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution. Computer engineering transfer courses are held to the same 2.0 grade standard required for all Computer Engineering coursework. Current UW Tacoma students wishing to change to a Computer Engineering major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.. note: Credit bucket placeholder extracted from source text.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-computer-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -497,7 +395,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `partial`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -505,16 +403,50 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped section: The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. W](https://www.tacoma.uw.edu/set/programs/undergrad/css/bs)
+- [UW Tacoma Computer Science and Systems BS degree requirements](https://www.tacoma.uw.edu/set/programs/undergrad/css/bs) - Source used for parser-backed UW requirement extraction.
 
-On To Do list.
+##### Computer Science and Systems (BS) parsed official source requirements
+
+- Diversity, Equity and Inclusion at SET
+- Internships for Credit
+- Bachelor of Arts Option
+- Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
+- Admission Requirements
+- Introduction to Programming (TCSS 142 or equivalent)
+- Object-Oriented Programming (TCSS 143 or equivalent)
+- \*\*UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
+- GPA Requirements
+- Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.
+
+##### Computer Science and Systems (BS) parsed official requirement cues
+
+- Diversity, Equity and Inclusion at SET
+- Internships for Credit
+- Bachelor of Arts Option
+- Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
+- Admission Requirements
+- Introduction to Programming (TCSS 142 or equivalent)
+- Object-Oriented Programming (TCSS 143 or equivalent)
+- \*\*UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
+- GPA Requirements
+- Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.
+
+##### Computer Science and Systems (BS) parsed choices and pathway notes
+
+- Bachelor of Arts Option
 
 #### GRC Equivalent Courses
 
-- `MATH 240`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
+- Required before enrollment: 5 credits from the following approved design electives: TCSS 437, 445, 450, 452, 460, 461, 465, or 491. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: You may need one additional approved lab-based science course. complete at least 1 course from this set
+- Source-backed note: Parser confidence: high.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-computer-science-and-systems-bs:source-degree-map:.
+- Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Criminal Justice (BA)
@@ -529,7 +461,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Criminal Justice curriculum](https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum)
-- [UW Tacoma Criminal Justice curriculum](https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Criminal Justice curriculum](https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Criminal Justice (BA) parsed official source requirements
 
@@ -543,7 +475,6 @@ Source-generated from parsed UW requirement-source registries.
 - T CRIM 225: Diversity and Social Justice in Criminology (5 cr)
 - T CRIM 361: Mental Health, Substance Use and the Criminal Justice System (5 cr)
 - T CRIM 362: Criminological Theory (5 cr)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Criminal Justice (BA) parsed official requirement cues
 
@@ -557,12 +488,10 @@ Source-generated from parsed UW requirement-source registries.
 - T CRIM 225: Diversity and Social Justice in Criminology (5 cr)
 - T CRIM 361: Mental Health, Substance Use and the Criminal Justice System (5 cr)
 - T CRIM 362: Criminological Theory (5 cr)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Criminal Justice (BA) parsed choices and pathway notes
 
 - The course requirements for a degree will not always total the 180 credits needed to graduate. The additional credits needed to complete 180 college-level quarter credits are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -572,9 +501,10 @@ On To Do list.
 
 - Required before enrollment: CJ majors must complete 20 credits from the approved core electives list below; each course listed is worth 5 credits unless otherwise indicated. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: CJ majors must complete 20 credits from the approved core electives list below. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: CJ majors may earn a maximum of five (5) credits from T CRIM 409 and/or T CRIM 490 as Core Elective credits. Review independent study guidelines and instructions for more information.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: CJ majors may only apply a maximum of ten (10) credits from T CRIM 450 as Core Elective credits.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Current social welfare majors, criminal justice majors or students who have declared the minor in criminal justice are eligible to submit course substitution petitions for review. You must supply documentation as outlined on the Program Petition for Course Substitution along with the signed form. Please allow a minimum of 7 -10 days for review. Decision notifications will be sent to your UW email address. Only college-level transferable courses are eligible for course substitutions (vocational-technical coursework is not eligible). All CJ core or core elective course substitutions must be approved by petition after CJ admission. A maximum of 10 transfer equivalent credits are allowed towards the 65 credit major.. note: Credit bucket placeholder extracted from source text.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-criminal-justice:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -592,35 +522,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Economics and Policy Analysis overview](https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa)
-- [UW Tacoma Economics and Policy Analysis overview](https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Economics and Policy Analysis overview](https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa) - Source used for parser-backed UW requirement extraction.
 
 ##### Economics and Policy Analysis (BA) parsed official source requirements
 
-- TECON 410 Economics of Public Policy
-- TECON 418 Urban Problems and Policies
-- TECON 421 Environmental Policy
-- TECON 430 Behavioral Economics
-- TECON 441 International Economics
-- TECON 450 Labor Economics and Policy
-- TECON 496 Internship in Economics and Policy Analysis (Maximum 5 credits, subject to individual approval)
-- Capstone (5 credits)
-- TECON 480 Seminar in Economics Analysis
-- TECON 496 Internship in Economics and Policy Analysis (Not offered in academic year 2026/2027)
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- Admission Requirements
+- Core courses (25 credits)
+- TECON 200 Introduction to Microeconomics OR
+- TBECON 220 Introduction to Microeconomics Theory
+- TECON 201 Introduction to Macroeconomics OR
+- TBECON 221 Introduction to Macroeconomic Theory
 
 ##### Economics and Policy Analysis (BA) parsed official requirement cues
 
-- TECON 410 Economics of Public Policy
-- TECON 418 Urban Problems and Policies
-- TECON 421 Environmental Policy
-- TECON 430 Behavioral Economics
-- TECON 441 International Economics
-- TECON 450 Labor Economics and Policy
-- TECON 496 Internship in Economics and Policy Analysis (Maximum 5 credits, subject to individual approval)
-- Capstone (5 credits)
-- TECON 480 Seminar in Economics Analysis
-- TECON 496 Internship in Economics and Policy Analysis (Not offered in academic year 2026/2027)
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- Admission Requirements
+- Core courses (25 credits)
+- TECON 200 Introduction to Microeconomics OR
+- TBECON 220 Introduction to Microeconomics Theory
+- TECON 201 Introduction to Macroeconomics OR
+- TBECON 221 Introduction to Macroeconomic Theory
 
 #### GRC Equivalent Courses
 
@@ -628,9 +556,10 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Transfer Equivalencies. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Internships are a great way to gain hands-on experience, build your resume, and strengthen ties to local organizations and communities. 5 credits of approved internships can count towards the major’s upper division elective requirement. Contact Anna Lovász to learn more: <plovi@uw.edu> .. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: TBECON 422: Econometrics or TMATH 410: Regression Analysis with Applications. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-economics-and-policy-analysis:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -647,47 +576,54 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma B.A. in Education overview](https://www.tacoma.uw.edu/soe/bachelor-arts-education)
-- [UW Tacoma B.A. in Education overview](https://www.tacoma.uw.edu/soe/bachelor-arts-education) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma B.A. in Education overview](https://www.tacoma.uw.edu/soe/bachelor-arts-education) - Source used for parser-backed UW requirement extraction.
 
 ##### Education (BA) parsed official source requirements
 
-- TEDUC 471 Equity &amp; Diversity in Schools and the Curriculum
-- TEDUC 482 Foundations of Education: Policy, Ethics, &amp; Philosophy
-- TEDUC 410 Science Methods K-8
-- TEDUC 449 Teaching &amp; Learning in Inclusive Settings
-- TEDUC 460 Mathematics Methods I
-- TEDUC 474 Native American Education Narratives &amp; Centering Tribal Sovereignty
-- TEDUC 441 Reading Methods and Interventions
-- TEDUC 448 Classroom Management for Equity &amp; Justice
-- TEDSP 448 Special Education Classroom Management for Equity &amp; Justice
-- TEDUC 461 Mathematics Methods II
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Washington State needs qualified teachers. We especially need teachers who reflect the growing diversity of students in our classrooms. Competitive starting salaries with local districts average $65,000 with added financial incentives of $6,000-$10,000 for completing your master’s degree.
+- The Bachelor of Arts in Education focuses on preparing ethical and reflective educators who transform learning, contribute to the community, exemplify professionalism, and promote diversity and justice in K-12 education. The program of study includes coursework and fieldwork in partner K-12 districts to merge cutting-edge research and theory with practice. Unique aspects of this program are the explicit integration of anti-racist, decolonizing, equity-centric, and inclusive pedagogies and practices, as well as partnering with communities, families/guardians, and school personnel to support a culturally responsive, holistic, and rigorous education for diverse learners.
+- This program will prepare students to be recommended for Washington State Residency Teacher Certification in Elementary Education Endorsement and a required choice of a concentration in a high- demand area, a second endorsement, in either Special Education or Teaching English Language Learners. Successful completion of all program and state requirements will prepare students to begin a career as a classroom teacher upon graduation.
+- OPTION 1: SPECIAL EDUCATION DUAL ENDORSEMENT
+- OPTION 2: ENGLISH LANGUAGE LEARNERS (ELL) DUAL ENDORSEMENT
+- CURRENT UW TACOMA students may complete the BA in Education Application
+- We value and welcome applications from all people, including international students! If you are applying from outside the United States, there may be additional requirements.
+- Admissions Requirements
+- Admission to the BA in Education program may be declared if following requirements are met:
+- at least 45 credits of completed college coursework
 
 ##### Education (BA) parsed official requirement cues
 
-- TEDUC 471 Equity &amp; Diversity in Schools and the Curriculum
-- TEDUC 482 Foundations of Education: Policy, Ethics, &amp; Philosophy
-- TEDUC 410 Science Methods K-8
-- TEDUC 449 Teaching &amp; Learning in Inclusive Settings
-- TEDUC 460 Mathematics Methods I
-- TEDUC 474 Native American Education Narratives &amp; Centering Tribal Sovereignty
-- TEDUC 441 Reading Methods and Interventions
-- TEDUC 448 Classroom Management for Equity &amp; Justice
-- TEDSP 448 Special Education Classroom Management for Equity &amp; Justice
-- TEDUC 461 Mathematics Methods II
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Washington State needs qualified teachers. We especially need teachers who reflect the growing diversity of students in our classrooms. Competitive starting salaries with local districts average $65,000 with added financial incentives of $6,000-$10,000 for completing your master’s degree.
+- The Bachelor of Arts in Education focuses on preparing ethical and reflective educators who transform learning, contribute to the community, exemplify professionalism, and promote diversity and justice in K-12 education. The program of study includes coursework and fieldwork in partner K-12 districts to merge cutting-edge research and theory with practice. Unique aspects of this program are the explicit integration of anti-racist, decolonizing, equity-centric, and inclusive pedagogies and practices, as well as partnering with communities, families/guardians, and school personnel to support a culturally responsive, holistic, and rigorous education for diverse learners.
+- This program will prepare students to be recommended for Washington State Residency Teacher Certification in Elementary Education Endorsement and a required choice of a concentration in a high- demand area, a second endorsement, in either Special Education or Teaching English Language Learners. Successful completion of all program and state requirements will prepare students to begin a career as a classroom teacher upon graduation.
+- OPTION 1: SPECIAL EDUCATION DUAL ENDORSEMENT
+- OPTION 2: ENGLISH LANGUAGE LEARNERS (ELL) DUAL ENDORSEMENT
+- CURRENT UW TACOMA students may complete the BA in Education Application
+- We value and welcome applications from all people, including international students! If you are applying from outside the United States, there may be additional requirements.
+- Admissions Requirements
+- Admission to the BA in Education program may be declared if following requirements are met:
+- at least 45 credits of completed college coursework
+
+##### Education (BA) parsed choices and pathway notes
+
+- Ethnic Studies Introduction (choose 1)
+- Service Learning Focus (choose 1)
+- Science Cognate (choose 1)
+- Critical Humanities-Ethnic/Gender Literature (choose 1)
+- Ethnic Studies/ Socio-Cultural (choose 1)
+- Psychology Cognate (choose 2) (1 must be a development course)
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Worth finishing at Green River: Education support course
+- Required before enrollment: TCORE 101 or TWRT 120. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-education:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Electrical Engineering
@@ -701,15 +637,14 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
+- [Scoped section: All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prereq](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TEE-MAJOR)
+- [Scoped section: All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prereq](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TEE-MAJOR) - Source used for parser-backed UW requirement extraction.
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html)
-- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Source used for parser-backed UW requirement extraction.
+- [UW Tacoma SET catalog page](https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html) - Primary source used for parser-backed UW requirement extraction.
 
 ##### Electrical Engineering parsed official source requirements
 
-- The field of Electrical engineering deals with systems that use electric and electromagnetic energy. Sub-fields of electrical engineering include power systems, communication systems, signal processing, control systems, and electronics. The BS in Electrical Engineering (EE) program emphasizes circuit design for applications such as communication, signal processing, electromagnetics, controls, and embedded systems. The curriculum provides students with a rigorous grounding in the theoretical principles of Electrical Engineering as well as teaching practical skills in a collaborative learning environment. The curriculum for the BS degree in EE satisfies all the requirements of the Accreditation Board for Engineering and Technology (ABET).
-- Admission Requirements
-- Completion of a minimum of 45 college-level credits
 - All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prerequisites before being accepted to the Electrical Engineering program.
 - Calculus I (TMATH 124 or MATH 124), Calculus II (TMATH 125 or MATH 125), Calculus III (TMATH 126 or MATH 126) (check the equivalency guide to see if calculus IV is needed)
 - Differential Equations (TMATH 207 or MATH 207)
@@ -717,12 +652,12 @@ Source-generated from parsed UW requirement-source registries.
 - Programming: 4-5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 141 (5) or CSE 121 (4) are examples of an acceptable course
 - Electrical Circuits TCES 215 or EE 215 or equivalent.
 - Completion Requirements
+- Graduation Requirements
+- Complete all Electrical Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
+- Complete a minimum of 30 credits of Electrical Engineering required courses in residence at the University of Washington Tacoma.
 
 ##### Electrical Engineering parsed official requirement cues
 
-- The field of Electrical engineering deals with systems that use electric and electromagnetic energy. Sub-fields of electrical engineering include power systems, communication systems, signal processing, control systems, and electronics. The BS in Electrical Engineering (EE) program emphasizes circuit design for applications such as communication, signal processing, electromagnetics, controls, and embedded systems. The curriculum provides students with a rigorous grounding in the theoretical principles of Electrical Engineering as well as teaching practical skills in a collaborative learning environment. The curriculum for the BS degree in EE satisfies all the requirements of the Accreditation Board for Engineering and Technology (ABET).
-- Admission Requirements
-- Completion of a minimum of 45 college-level credits
 - All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prerequisites before being accepted to the Electrical Engineering program.
 - Calculus I (TMATH 124 or MATH 124), Calculus II (TMATH 125 or MATH 125), Calculus III (TMATH 126 or MATH 126) (check the equivalency guide to see if calculus IV is needed)
 - Differential Equations (TMATH 207 or MATH 207)
@@ -730,6 +665,9 @@ Source-generated from parsed UW requirement-source registries.
 - Programming: 4-5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 141 (5) or CSE 121 (4) are examples of an acceptable course
 - Electrical Circuits TCES 215 or EE 215 or equivalent.
 - Completion Requirements
+- Graduation Requirements
+- Complete all Electrical Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
+- Complete a minimum of 30 credits of Electrical Engineering required courses in residence at the University of Washington Tacoma.
 
 #### GRC Equivalent Courses
 
@@ -767,7 +705,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `partial`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -775,8 +713,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped section: Electives for the General Environmental Science Option (29 credits)](https://www.tacoma.uw.edu/sias/sam/environmental-science)
+- [UW Tacoma Environmental Science BS degree requirements](https://www.tacoma.uw.edu/sias/sam/environmental-science) - Source used for parser-backed UW requirement extraction.
 
-On To Do list.
+##### Environmental Science (BS) parsed official source requirements
+
+- Admission Requirements
+- Preparatory courses (63 credits)
+- College Biology (with lab) series: TBIOL 120 , TBIOL 130 and TBIOL 140
+- College Chemistry (with lab) series: TCHEM 142 , TCHEM 152 and TCHEM 162
+- Physical Geology (with lab): TGEOS 117
+- College Physics (with lab): TPHYS 121
+- Calculus: TMATH 124 AND TMATH 125 OR TMATH 210
+- Statistics: TMATH 110
+- Core courses (20 credits)
+- TESC 310 Environmental Research Seminar (3 credits; to be taken the first quarter of junior standing.)
+
+##### Environmental Science (BS) parsed official requirement cues
+
+- Admission Requirements
+- Preparatory courses (63 credits)
+- College Biology (with lab) series: TBIOL 120 , TBIOL 130 and TBIOL 140
+- College Chemistry (with lab) series: TCHEM 142 , TCHEM 152 and TCHEM 162
+- Physical Geology (with lab): TGEOS 117
+- College Physics (with lab): TPHYS 121
+- Calculus: TMATH 124 AND TMATH 125 OR TMATH 210
+- Statistics: TMATH 110
+- Core courses (20 credits)
+- TESC 310 Environmental Research Seminar (3 credits; to be taken the first quarter of junior standing.)
 
 #### GRC Equivalent Courses
 
@@ -784,23 +747,64 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: College Biology (with lab) series. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: College Chemistry (with lab) series. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Physical Geology (with lab). complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: College Physics (with lab). complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Statistics. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: 5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Calculus: TMATH 124 AND TMATH 125 OR TMATH 210. complete at least 1 course from this set
+- Source-backed note: Parser confidence: high.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-environmental-science:source-degree-map:.
+- Source-backed note: Parsed requirement cues extracted from the current official source.
 
 
 ### Environmental Sustainability (BA)
 
 #### Summary
 
-Planner coverage: `partial`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [Scoped section: Environmental Policy and Law Option (20 credits)](https://www.tacoma.uw.edu/sias/sam/environmental-sustainability)
+- [UW Tacoma Environmental Sustainability BA degree requirements](https://www.tacoma.uw.edu/sias/sam/environmental-sustainability)
+- [UW Tacoma Environmental Sustainability BA degree requirements](https://www.tacoma.uw.edu/sias/sam/environmental-sustainability) - Source used for parser-backed UW requirement extraction.
 
-On To Do list.
+##### Environmental Sustainability (BA) parsed official source requirements
+
+- The BA in Environmental Sustainability prepares students to understand, analyze and solve environmental and sustainability challenges. The major combines interdisciplinary foundations in environmental sciences, including natural and social sciences with training in communications, writing, law, critical perspectives and emerging sustainability science. Students choose one of four options for in-depth study.
+- Admission Requirements
+- Preparatory courses (37-38 credits)
+- TBIOL 110 General Biology (with lab); minimum 1.5 GPA
+- TCHEM 131 Chemistry and Society (with lab); minimum 1.7 GPA
+- TECON 200 Introduction to Microeconomics ; minimum 2.0 GPA
+- TGEOS 243 Geography of the Physical Environment ; minimum 2.0 GPA
+- TMATH 110 Introductory Statistics with Applications ; minimum 2.0 GPA
+- TPHIL 251 Data and Discourse ; minimum 2.0 GPA
+- TWRT 211 Argumentation and Research ; minimum 2.0 GPA OR TWRT 291 Technical Communication in the Workplace ; minimum 2.0 GPA
+
+##### Environmental Sustainability (BA) parsed official requirement cues
+
+- The BA in Environmental Sustainability prepares students to understand, analyze and solve environmental and sustainability challenges. The major combines interdisciplinary foundations in environmental sciences, including natural and social sciences with training in communications, writing, law, critical perspectives and emerging sustainability science. Students choose one of four options for in-depth study.
+- Admission Requirements
+- Preparatory courses (37-38 credits)
+- TBIOL 110 General Biology (with lab); minimum 1.5 GPA
+- TCHEM 131 Chemistry and Society (with lab); minimum 1.7 GPA
+- TECON 200 Introduction to Microeconomics ; minimum 2.0 GPA
+- TGEOS 243 Geography of the Physical Environment ; minimum 2.0 GPA
+- TMATH 110 Introductory Statistics with Applications ; minimum 2.0 GPA
+- TPHIL 251 Data and Discourse ; minimum 2.0 GPA
+- TWRT 211 Argumentation and Research ; minimum 2.0 GPA OR TWRT 291 Technical Communication in the Workplace ; minimum 2.0 GPA
+
+##### Environmental Sustainability (BA) parsed choices and pathway notes
+
+- The BA in Environmental Sustainability prepares students to understand, analyze and solve environmental and sustainability challenges. The major combines interdisciplinary foundations in environmental sciences, including natural and social sciences with training in communications, writing, law, critical perspectives and emerging sustainability science. Students choose one of four options for in-depth study.
+- One of the following:
+- Capstone experience: must select at least a 3-credit option from the following list.
 
 #### GRC Equivalent Courses
 
@@ -808,7 +812,12 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: Capstone experience: must select at least a 3-credit option from the following list. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: TWRT 211 or TWRT 291. complete at least 1 course from this set
+- Source-backed note: Parser confidence: high.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-environmental-sustainability:source-degree-map:.
+- Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Ethnic, Gender and Labor Studies (BA)
@@ -823,177 +832,54 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Ethnic, Gender and Labor Studies overview](https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies)
-- [UW Tacoma Ethnic, Gender and Labor Studies overview](https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Ethnic, Gender and Labor Studies overview](https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies) - Source used for parser-backed UW requirement extraction.
 
-##### Ethnic, Gender and Labor Studies (BA) parsed official source structure
+##### Ethnic, Gender and Labor Studies (BA) parsed official source requirements
 
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
 
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
 
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
 - Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
 
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- The Ethnic, Gender and Labor Studies major examines how communities form and are transformed, with a focus on the relationship between social class, race and ethnicity and gender. Through a wide variety of courses in the social sciences and humanities, students explore historical roots of various communities and analyze movements to facilitate labor and community organizing, coalition building, conflict resolution, group empowerment and movements for social change. Students may choose from three options:
+- Admission Requirements
+- Ethnic Studies Option
 - The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Gender Studies Option
+- The Gender Studies option offers courses that focus on gender roles and gender identity from a variety of theoretical approaches. These courses not only investigate the concepts of gender and sexuality, but emphasize the intersections with such diverse phenomena as society, politics, literature, globalization, music, economics, art, poverty, communication, race, film, work and popular culture.
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
 
+- The Ethnic, Gender and Labor Studies major examines how communities form and are transformed, with a focus on the relationship between social class, race and ethnicity and gender. Through a wide variety of courses in the social sciences and humanities, students explore historical roots of various communities and analyze movements to facilitate labor and community organizing, coalition building, conflict resolution, group empowerment and movements for social change. Students may choose from three options:
 - Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
-
-- Ethnic Studies Option
-- The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
-
-- Ethnic Studies Option
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Gender Studies Option
+- Labor Studies Option
 
 #### GRC Equivalent Courses
 
@@ -1002,35 +888,8 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: low.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-01-ethnic-gender-and-labor-studies-ba-parsed-official-source-structure.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-02-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-03-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-04-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-05-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-06-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-07-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-08-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-09-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-10-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-11-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-12-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-13-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-14-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-15-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-16-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-17-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-18-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-19-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-20-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-21-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-22-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-23-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-24-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-25-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-26-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-27-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parser confidence: medium.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-01-ethnic-gender-and-labor-studies-ba-parsed-official-source-requirements.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1049,7 +908,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Healthcare Leadership degree requirements and sample program plan](https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan)
-- [UW Tacoma Healthcare Leadership degree requirements and sample program plan](https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Healthcare Leadership degree requirements and sample program plan](https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan) - Source used for parser-backed UW requirement extraction.
 
 ##### Healthcare Leadership (BA) parsed official source requirements
 
@@ -1063,7 +922,6 @@ Source-generated from parsed UW requirement-source registries.
 - THLEAD 420
 - THLEAD 406
 - THLEAD 480
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Healthcare Leadership (BA) parsed official requirement cues
 
@@ -1077,7 +935,6 @@ Source-generated from parsed UW requirement-source registries.
 - THLEAD 420
 - THLEAD 406
 - THLEAD 480
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -1087,7 +944,6 @@ On To Do list.
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-healthcare-leadership:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1128,7 +984,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Information Technology program details](https://www.tacoma.uw.edu/set/programs/undergrad/it)
-- [UW Tacoma Information Technology program details](https://www.tacoma.uw.edu/set/programs/undergrad/it) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Information Technology program details](https://www.tacoma.uw.edu/set/programs/undergrad/it) - Source used for parser-backed UW requirement extraction.
 
 ##### Information Technology (BS) parsed official source requirements
 
@@ -1142,7 +998,6 @@ Source-generated from parsed UW requirement-source registries.
 - GPA Requirements
 - If you do not meet the GPA requirements, please contact a SET advisor to discuss your situation and options.
 - Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite.
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Information Technology (BS) parsed official requirement cues
 
@@ -1156,13 +1011,11 @@ Source-generated from parsed UW requirement-source registries.
 - GPA Requirements
 - If you do not meet the GPA requirements, please contact a SET advisor to discuss your situation and options.
 - Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite.
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Information Technology (BS) parsed choices and pathway notes
 
 - Students graduating from our information focused programs will be able to choose many different roles; becoming IT and IS consultants, project planners, project managers, interface designers, information systems researchers, web developers, and systems analysts. To emphasize, consider some of the general tasks that an information technology and systems specialist is likely to perform depending on where she works:
 - Use systemic approaches to select, develop, apply, integrate, and administer secure computing technologies to accomplish user goals. \[IT\]
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -1170,10 +1023,10 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: TEMPORARILY SUSPENDED. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: TCSS 141 or TCSS 142. complete at least 1 course from this set
 - Required before enrollment: TINFO 452 Windows System Admin or TINFO 457 Unix System Admin. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-information-technology:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1191,35 +1044,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Interdisciplinary Arts and Sciences overview](https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences)
-- [UW Tacoma Interdisciplinary Arts and Sciences overview](https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Interdisciplinary Arts and Sciences overview](https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences) - Source used for parser-backed UW requirement extraction.
 
 ##### Interdisciplinary Arts and Sciences (BA) parsed official source requirements
 
+- Interdisciplinary Arts and Sciences | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- The BA in Interdisciplinary Arts and Sciences provides broad exposure to key areas of knowledge within the arts and sciences while stressing their interconnectedness. This major is based on core courses in history, environmental science, literature, the arts and social science. A degree in Interdisciplinary Arts and Sciences allows students to maximize the potential of interdisciplinary studies while gaining the skills needed to be successful in a rapidly changing society and world.
+- Admission Requirements
 - Core courses (22 credits)
 - List A (5 credits) — choose one:
 - THIST 150 World History: Prehistory to 1500
 - THIST 151 World History II 1500–Present
-- THIST 200 American History I, 1607–1877
-- THIST 201 American History II 1877–Present
-- List B (5 credits) — choose one:
-- TESC 102 Aquatic Ecosystems in Urban Areas
-- TESC 201 The Science of Sustainability
-- List C (5 credits) — choose one:
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Interdisciplinary Arts and Sciences (BA) parsed official requirement cues
 
+- Interdisciplinary Arts and Sciences | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- The BA in Interdisciplinary Arts and Sciences provides broad exposure to key areas of knowledge within the arts and sciences while stressing their interconnectedness. This major is based on core courses in history, environmental science, literature, the arts and social science. A degree in Interdisciplinary Arts and Sciences allows students to maximize the potential of interdisciplinary studies while gaining the skills needed to be successful in a rapidly changing society and world.
+- Admission Requirements
 - Core courses (22 credits)
 - List A (5 credits) — choose one:
 - THIST 150 World History: Prehistory to 1500
 - THIST 151 World History II 1500–Present
-- THIST 200 American History I, 1607–1877
-- THIST 201 American History II 1877–Present
-- List B (5 credits) — choose one:
-- TESC 102 Aquatic Ecosystems in Urban Areas
-- TESC 201 The Science of Sustainability
-- List C (5 credits) — choose one:
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Interdisciplinary Arts and Sciences (BA) parsed choices and pathway notes
 
@@ -1227,7 +1078,6 @@ Source-generated from parsed UW requirement-source registries.
 - List B (5 credits) — choose one:
 - List C (5 credits) — choose one:
 - List D (5 credits) — choose one:
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -1236,9 +1086,7 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Core courses (22 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: 45 credits Elective courses (At least 35 credits must be at the 300–400 level, with a minimum of 20 credits at the 400-level.). note: Parsed from a source section heading and the following course rows.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1256,96 +1104,49 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW General Catalog Interdisciplinary Arts and Sciences individually designed major](https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html)
-- [UW General Catalog Interdisciplinary Arts and Sciences individually designed major](https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW General Catalog Interdisciplinary Arts and Sciences individually designed major](https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official source requirements
 
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed choices and pathway notes
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
-- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
-- To propose an individually-designed concentration, students must do the following:
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
-
+- This concentration is an individually-designed option for those who wish to create a program of study by combining selected courses from within UW Tacoma's range of programs. You design your study under the guidance and supervision of an SIAS faculty member, an SIAS advisor, and the concentration coordinator.
+- Admission Requirements
 - To propose an individually-designed concentration, students must do the following:
 - Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
 - Identify the unifying interdisciplinary theme of your concentration. Consider what faculty would be appropriate as mentors and consult with them as needed during development phase.
 - Identify the courses taken or planned. The list should comprise of 55-credits, plus the 5-credit thesis. Meet with your IAS staff advisor for assistance. This is essential for transfer students.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- the rationale for the proposed concentration
+- a general description of the concentration
+- a complete course list (must include 55-credits plus the senior thesis)
+- Secure the support of at least one IAS faculty member to be your sponsor for the concentration. The faculty sponsor attests to the intellectual soundness of the proposal and agrees to provide whatever guidance s/he and the student may jointly decide is needed. The faculty sponsor may also suggest changes in the previously approved written proposal or list of courses.
+
+##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed official requirement cues
+
+- This concentration is an individually-designed option for those who wish to create a program of study by combining selected courses from within UW Tacoma's range of programs. You design your study under the guidance and supervision of an SIAS faculty member, an SIAS advisor, and the concentration coordinator.
+- Admission Requirements
+- To propose an individually-designed concentration, students must do the following:
+- Consult with the concentration coordinator to ensure you understand the requirements of the individually designed concentration. Continue working with the coordinator throughout the proposal process.
+- Identify the unifying interdisciplinary theme of your concentration. Consider what faculty would be appropriate as mentors and consult with them as needed during development phase.
+- Identify the courses taken or planned. The list should comprise of 55-credits, plus the 5-credit thesis. Meet with your IAS staff advisor for assistance. This is essential for transfer students.
+- the rationale for the proposed concentration
+- a general description of the concentration
+- a complete course list (must include 55-credits plus the senior thesis)
+- Secure the support of at least one IAS faculty member to be your sponsor for the concentration. The faculty sponsor attests to the intellectual soundness of the proposal and agrees to provide whatever guidance s/he and the student may jointly decide is needed. The faculty sponsor may also suggest changes in the previously approved written proposal or list of courses.
+
+##### Interdisciplinary Arts and Sciences: Individually-designed (BA) parsed choices and pathway notes
+
+- Choose one IAS academic advisor to work with you to help keep track of your progress toward graduation.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-01-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-source-requirements.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-02-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-03-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-04-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-05-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-06-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-07-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-08-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-10-parsed-09-interdisciplinary-arts-and-sciences-individually-designed-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:structured:uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-degree-map-90-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Law and Policy (BA)
@@ -1360,29 +1161,38 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Law and Policy overview](https://www.tacoma.uw.edu/sias/socs/law-and-policy)
-- [UW Tacoma Law and Policy overview](https://www.tacoma.uw.edu/sias/socs/law-and-policy) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Law and Policy overview](https://www.tacoma.uw.edu/sias/socs/law-and-policy) - Source used for parser-backed UW requirement extraction.
 
 ##### Law and Policy (BA) parsed official source requirements
 
-- A minimum of 45 lower-division credits is required before declaring the major. To declare the Law and Policy major, students should reach out to the major advisor .
-- DEGREE REQUIREMENTS
-- For a BA in Law and Policy, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses) with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-- Law and Policy Degree requirements prior to Summer 2024
-- Internships are a great way to gain hands-on experience in law and policy-related work, build your resume, and strengthen ties to local organizations and communities. Law and Policy majors can pursue an internship through the Legal Pathways Internship Program and enroll in TLAW 496 to receive academic credit. TLAW 496 can satisfy up to 5 credits of major electives . Contact Legal Pathways Director Jacqueline Shepard to learn more about currently available opportunities: <jfshep@uw.edu> .
-- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Law and Policy majors accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the major’s capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Law and Policy major coordinator for more information: <thumae@uw.edu> .
+- Law and Policy | Department of Social Sciences | University of Washington Tacoma
 - Department of Social Sciences
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- Admission Requirements
+- Major Requirements
+- Foundations (20 credits)
+- Take one of the following (LAW I) :
+- TLAW 150 Introduction to the American Legal System
+- TLAW 215 Introduction to International Organizations
 
 ##### Law and Policy (BA) parsed official requirement cues
 
-- A minimum of 45 lower-division credits is required before declaring the major. To declare the Law and Policy major, students should reach out to the major advisor .
-- DEGREE REQUIREMENTS
-- For a BA in Law and Policy, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses) with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-- Law and Policy Degree requirements prior to Summer 2024
-- Internships are a great way to gain hands-on experience in law and policy-related work, build your resume, and strengthen ties to local organizations and communities. Law and Policy majors can pursue an internship through the Legal Pathways Internship Program and enroll in TLAW 496 to receive academic credit. TLAW 496 can satisfy up to 5 credits of major electives . Contact Legal Pathways Director Jacqueline Shepard to learn more about currently available opportunities: <jfshep@uw.edu> .
-- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Law and Policy majors accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the major’s capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Law and Policy major coordinator for more information: <thumae@uw.edu> .
+- Law and Policy | Department of Social Sciences | University of Washington Tacoma
 - Department of Social Sciences
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- Admission Requirements
+- Major Requirements
+- Foundations (20 credits)
+- Take one of the following (LAW I) :
+- TLAW 150 Introduction to the American Legal System
+- TLAW 215 Introduction to International Organizations
+
+##### Law and Policy (BA) parsed choices and pathway notes
+
+- Take one of the following (LAW I) :
+- Take one of the following (METHODS):
 
 #### GRC Equivalent Courses
 
@@ -1390,11 +1200,11 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
+- Required before enrollment: Major Requirements. note: Parsed from a source section heading and the following course rows.
+- Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-law-and-policy:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Mathematics (BS)
@@ -1409,7 +1219,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Mathematics overview](https://www.tacoma.uw.edu/sias/sam/mathematics)
-- [UW Tacoma Mathematics overview](https://www.tacoma.uw.edu/sias/sam/mathematics) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Mathematics overview](https://www.tacoma.uw.edu/sias/sam/mathematics) - Source used for parser-backed UW requirement extraction.
 
 ##### Mathematics (BS) parsed official source requirements
 
@@ -1423,7 +1233,6 @@ Source-generated from parsed UW requirement-source registries.
 - TMATH 207 Introduction to Differential Equations
 - TMATH 208 Matrix Algebra with Applications
 - TMATH 224 Multivariable Calculus
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Mathematics (BS) parsed official requirement cues
 
@@ -1437,7 +1246,6 @@ Source-generated from parsed UW requirement-source registries.
 - TMATH 207 Introduction to Differential Equations
 - TMATH 208 Matrix Algebra with Applications
 - TMATH 224 Multivariable Calculus
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -1446,10 +1254,8 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Electives (20 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: TMATH 496 or TMATH 498 or TMATH 499. complete at least 1 course from this set
 - Required before enrollment: TMATH 351 or TMATH 450. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-mathematics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1466,7 +1272,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Mechanical Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/me)
-- [UW Tacoma Mechanical Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/me) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Mechanical Engineering program details](https://www.tacoma.uw.edu/set/programs/undergrad/me) - Source used for parser-backed UW requirement extraction.
 
 ##### Mechanical Engineering degree preparation and admissions
 
@@ -1484,7 +1290,6 @@ Source-generated from parsed UW requirement-source registries.
 - Multivariable Calculus (TMATH 324 or UWS: MATH 224)
 - Physics I (TPHYS 121), Physics II (TPHYS 122), Physics III (TPHYS 123). If Physics I, II and III are completed and 18 quarter credits are not achieved, the remaining credits may be satisfied by any additional lab-based science course (besides General Chemistry I).
 - General Chemistry I (TCHEM 142)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Mechanical Engineering parsed official requirement cues
 
@@ -1498,7 +1303,6 @@ Source-generated from parsed UW requirement-source registries.
 - Multivariable Calculus (TMATH 324 or UWS: MATH 224)
 - Physics I (TPHYS 121), Physics II (TPHYS 122), Physics III (TPHYS 123). If Physics I, II and III are completed and 18 quarter credits are not achieved, the remaining credits may be satisfied by any additional lab-based science course (besides General Chemistry I).
 - General Chemistry I (TCHEM 142)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -1513,7 +1317,8 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before application: EE 215 -> `ENGR& 204`. note: Auto-promoted because the current source-backed planner already has a strong exact-title consensus for EE 215.
 - Required before enrollment: At least 84 credits must be taken from the ME required courses below and ME Senior Electives lists. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Mechanical Engineering students must complete 15 credits of electives. Click the button below to view the current academic year course offerings. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 2025 - 2026 Electives. complete at least 2025 courses from this set. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Statics (TME 221or UWS -> `ENGR& 214`. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Multivariable Calculus -> `MATH& 264`. complete at least 1 course from this set
 - Required before enrollment: Mechanics of Materials -> `ENGR& 225`. complete at least 1 course from this set
 - Required before enrollment: Dynamics - (TME 223 or UWS: ME 230) -> `ENGR& 215`. complete at least 1 course from this set
@@ -1525,7 +1330,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Requirement-mapping consensus: 2/2 exact-title samples for EE 215.
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-mechanical-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1542,19 +1346,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Nursing RN-BSN degree requirements and sample program plan](https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans)
-- [UW Tacoma Nursing RN-BSN degree requirements and sample program plan](https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Nursing RN-BSN degree requirements and sample program plan](https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans) - Source used for parser-backed UW requirement extraction.
 
 ##### Nursing (RN-BSN) parsed official source requirements
 
-- Practicum (T NURS 414) focused on health, communities, and populations
+- Credits
+- Diversity, Equity and Inclusion
+- Diversity, Health and Inequalities
+- Elective offerings through SNHCL are available at: <https://www.washington.edu/students/crscatt/thlth.html>
+- ELECTIVE: Addiction and Mental Illness in Film
+- ELECTIVE: Adolescents in Film
+- ELECTIVE: Health Policy and Ethics in Film
 - Graduation Requirements
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Please note that the RN-BSN program requires students to complete 45 credits in residence at UW Tacoma, including 10 credits of upper-division electives. Individual program plans are issued by the academic advisor after orientation.
+- Practicum (T NURS 414) focused on health, communities, and populations
 
 ##### Nursing (RN-BSN) parsed official requirement cues
 
-- Practicum (T NURS 414) focused on health, communities, and populations
+- Credits
+- Diversity, Equity and Inclusion
+- Diversity, Health and Inequalities
+- Elective offerings through SNHCL are available at: <https://www.washington.edu/students/crscatt/thlth.html>
+- ELECTIVE: Addiction and Mental Illness in Film
+- ELECTIVE: Adolescents in Film
+- ELECTIVE: Health Policy and Ethics in Film
 - Graduation Requirements
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Please note that the RN-BSN program requires students to complete 45 credits in residence at UW Tacoma, including 10 credits of upper-division electives. Individual program plans are issued by the academic advisor after orientation.
+- Practicum (T NURS 414) focused on health, communities, and populations
 
 #### GRC Equivalent Courses
 
@@ -1562,9 +1380,8 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: low.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
+- Required before enrollment: Please note that the RN-BSN program requires students to complete 45 credits in residence at UW Tacoma, including 10 credits of upper-division electives. Individual program plans are issued by the academic advisor after orientation. note: Parsed from a source section heading and the following course rows.
+- Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-nursing:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1581,25 +1398,37 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma PP&E overview](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe)
-- [UW Tacoma PP&E overview](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma PP&E overview](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe) - Source used for parser-backed UW requirement extraction.
 
 ##### Politics, Philosophy and Economics (BA) parsed official source requirements
 
+- Politics, Philosophy and Economics (PP&amp;E) | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
+- Admission Requirements
+- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Students accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Washington State Legislative Internship coordinator for more information: <libisun@uw.edu> .
+- Department of Social Sciences (SOCS)
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
 - Degree Requirements
-- For a BA in Politics, Philosophy and Economics, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses), including a Capstone, with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Students accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Washington State Legislative Internship coordinator for more information: <libisun@uw.edu> .
-- Department of Social Sciences
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Politics, Philosophy and Economics (BA) parsed official requirement cues
 
+- Politics, Philosophy and Economics (PP&amp;E) | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
+- Admission Requirements
+- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Students accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Washington State Legislative Internship coordinator for more information: <libisun@uw.edu> .
+- Department of Social Sciences (SOCS)
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
 - Degree Requirements
-- For a BA in Politics, Philosophy and Economics, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses), including a Capstone, with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Students accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Washington State Legislative Internship coordinator for more information: <libisun@uw.edu> .
-- Department of Social Sciences
-- Note: Built from a cached official snapshot because snapshot-only mode.
+
+##### Politics, Philosophy and Economics (BA) parsed choices and pathway notes
+
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
 
 #### GRC Equivalent Courses
 
@@ -1609,9 +1438,9 @@ On To Do list.
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-politics-philosophy-and-economics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Psychology (BA)
@@ -1626,35 +1455,37 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Psychology overview](https://www.tacoma.uw.edu/sias/socs/psychology)
-- [UW Tacoma Psychology overview](https://www.tacoma.uw.edu/sias/socs/psychology) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Psychology overview](https://www.tacoma.uw.edu/sias/socs/psychology) - Source used for parser-backed UW requirement extraction.
 
 ##### Psychology (BA) parsed official source requirements
 
-- Core courses (15 credits) (Students must take courses across at least 2 core areas.)
-- TPSYCH 310 Controversies in Clinical Psychology
-- TPSYCH 311 Personality Theories
-- TPSYCH 312 Mental Illness Across Cultures
-- TPSYCH 313 Personality Disorders
-- TPSYCH 314 Tests and Measurements
-- TPSYCH 308 Conscience, Nature and Technology
-- TPSYCH 319 Child Development
-- TPSYCH 320 Race/Class/Gender Contexts of Child Development
-- TPSYCH 321 Adolescent Psychology
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Psychology | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- Psychology is the scientific study of the psychological, biological and contextual determinants of human behavior. Our program is ideal for students who plan to work as professional psychologists and need a sound preparation for graduate study, but also for students who plan a career in fields dealing with people, such as nursing, teaching, social work, guidance and human resources, and those who want to understand human behavior as part of a well-rounded education. Our courses focus on human diversity and contemporary cultural issues while advanced courses integrate traditional psychology education with applied topics that emphasize the intersectionality of Psychology with different approaches to understanding and working with social problems.
+- Admission Requirements
+- Prerequisites (25 credits)
+- One general or introduction to psychology course ( TPSYCH 101 OR equivalent)
+- Two psychology foundation courses chosen from more than one of the following areas:
+- Developmental psychology (Lifespan Development; TPSYCH 220 OR equivalent)
 
 ##### Psychology (BA) parsed official requirement cues
 
-- Core courses (15 credits) (Students must take courses across at least 2 core areas.)
-- TPSYCH 310 Controversies in Clinical Psychology
-- TPSYCH 311 Personality Theories
-- TPSYCH 312 Mental Illness Across Cultures
-- TPSYCH 313 Personality Disorders
-- TPSYCH 314 Tests and Measurements
-- TPSYCH 308 Conscience, Nature and Technology
-- TPSYCH 319 Child Development
-- TPSYCH 320 Race/Class/Gender Contexts of Child Development
-- TPSYCH 321 Adolescent Psychology
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Psychology | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
+- Psychology is the scientific study of the psychological, biological and contextual determinants of human behavior. Our program is ideal for students who plan to work as professional psychologists and need a sound preparation for graduate study, but also for students who plan a career in fields dealing with people, such as nursing, teaching, social work, guidance and human resources, and those who want to understand human behavior as part of a well-rounded education. Our courses focus on human diversity and contemporary cultural issues while advanced courses integrate traditional psychology education with applied topics that emphasize the intersectionality of Psychology with different approaches to understanding and working with social problems.
+- Admission Requirements
+- Prerequisites (25 credits)
+- One general or introduction to psychology course ( TPSYCH 101 OR equivalent)
+- Two psychology foundation courses chosen from more than one of the following areas:
+- Developmental psychology (Lifespan Development; TPSYCH 220 OR equivalent)
+
+##### Psychology (BA) parsed choices and pathway notes
+
+- Two psychology foundation courses chosen from more than one of the following areas:
 
 #### GRC Equivalent Courses
 
@@ -1665,10 +1496,11 @@ On To Do list.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: One introductory statistics course. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-psychology:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Social Welfare (BA)
@@ -1690,26 +1522,26 @@ Source-generated from parsed UW requirement-source registries.
 - (2) Minimum grade of 2.0/C required in each course.
 - (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)
 - (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.
-- \* Successful (C or 2.0 or higher) completion of a course in statistics is a prerequisite for TSOCWF 390.
+- \* Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.
+- \*\* Total may vary based on the number of college level credits applied toward the degree.
 - 10 credits of writing-intensive course work (3)
-- 20 credits
-- 20 credits; Two of four courses met (4) with prerequisite courses
-- 5 credits may be met with a required introductory statistics course
-- 5 credits of English composition (2)
-- 5 credits of English composition (2) ; Met with prerequisite course
+- 12 credits
+- 13 credits
+- 14 credits
+- 15 credits
 
 ##### Social Welfare (BA) parsed official requirement cues
 
 - (2) Minimum grade of 2.0/C required in each course.
 - (3) Writing-intensive coursework requirements can also be met with core TSOCWF coursework (3 courses)
 - (4) One course can fulfill multiple GER areas, but the credits completed can only count once toward the 180 total credits needed to graduate.
-- \* Successful (C or 2.0 or higher) completion of a course in statistics is a prerequisite for TSOCWF 390.
+- \* Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.
+- \*\* Total may vary based on the number of college level credits applied toward the degree.
 - 10 credits of writing-intensive course work (3)
-- 20 credits
-- 20 credits; Two of four courses met (4) with prerequisite courses
-- 5 credits may be met with a required introductory statistics course
-- 5 credits of English composition (2)
-- 5 credits of English composition (2) ; Met with prerequisite course
+- 12 credits
+- 13 credits
+- 14 credits
+- 15 credits
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
@@ -1723,6 +1555,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 20 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1741,35 +1574,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Tacoma Spanish Language and Cultures overview](https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures)
-- [UW Tacoma Spanish Language and Cultures overview](https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Tacoma Spanish Language and Cultures overview](https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures) - Source used for parser-backed UW requirement extraction.
 
 ##### Spanish Language and Cultures (BA) parsed official source requirements
 
-- List A: Spanish Language (10 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
-- TSPAN 335 Spanish Linguistics
-- TSPAN 345 Spanish for Community Engagement
-- TSPAN 348 Writing and the Research Process
-- TSPAN 420 Advanced Spanish Grammar
-- TSPAN 425 Advanced Communication Skills
-- TSPAN 430 Translation Techniques and Practices
-- List B: Literature, Film or Culture in Spanish (15 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
-- TSPAN 361 Mexican Film
-- TSPAN 371 The Hispanic Caribbean
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Core courses (35 credits)
+- TSPAN 301 Spanish Grammar and Lexicon
+- TSPAN 302 Spanish Conversation
+- TSPAN 303 Spanish Stylistics and Composition
+- TSPAN 351 Intro to Hispanic Literary Studies
+- TSPAN 352 Intro to Hispanic Cultural Studies
+- TSPAN 299 , 393 or 496 foreign study/experiential learning or internship (10 credits)
+- We recommend that students take TSPAN 301, 302 and 303 in sequence, but it's not required. A student can begin 300-level coursework in 302 or 303, as long as they have reached that level of proficiency via placement exam or coursework prerequisites.
+- TSPAN 302 is not open to NATIVE speakers or HERITAGE speakers of Spanish. See definitions provided below. Native and heritage speakers can substitute any other Spanish class at the 300–400 level in place of 302.
+- The foreign study credits must be in a program that offers at least 50 percent of the instruction in Spanish in a Spanish-speaking country. Students may combine credits from two programs, if desired. The experiential learning must be in a Spanish-speaking community, where at least 50 percent of the work the student does is in Spanish.
 
 ##### Spanish Language and Cultures (BA) parsed official requirement cues
 
-- List A: Spanish Language (10 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
-- TSPAN 335 Spanish Linguistics
-- TSPAN 345 Spanish for Community Engagement
-- TSPAN 348 Writing and the Research Process
-- TSPAN 420 Advanced Spanish Grammar
-- TSPAN 425 Advanced Communication Skills
-- TSPAN 430 Translation Techniques and Practices
-- List B: Literature, Film or Culture in Spanish (15 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
-- TSPAN 361 Mexican Film
-- TSPAN 371 The Hispanic Caribbean
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- Core courses (35 credits)
+- TSPAN 301 Spanish Grammar and Lexicon
+- TSPAN 302 Spanish Conversation
+- TSPAN 303 Spanish Stylistics and Composition
+- TSPAN 351 Intro to Hispanic Literary Studies
+- TSPAN 352 Intro to Hispanic Cultural Studies
+- TSPAN 299 , 393 or 496 foreign study/experiential learning or internship (10 credits)
+- We recommend that students take TSPAN 301, 302 and 303 in sequence, but it's not required. A student can begin 300-level coursework in 302 or 303, as long as they have reached that level of proficiency via placement exam or coursework prerequisites.
+- TSPAN 302 is not open to NATIVE speakers or HERITAGE speakers of Spanish. See definitions provided below. Native and heritage speakers can substitute any other Spanish class at the 300–400 level in place of 302.
+- The foreign study credits must be in a program that offers at least 50 percent of the instruction in Spanish in a Spanish-speaking country. Students may combine credits from two programs, if desired. The experiential learning must be in a Spanish-speaking community, where at least 50 percent of the work the student does is in Spanish.
 
 #### GRC Equivalent Courses
 
@@ -1777,9 +1608,9 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: Electives (25 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: TSPAN 299 , 393 or 496 foreign study/experiential learning or internship (10 credits). complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-spanish-language-and-cultures:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1801,28 +1632,28 @@ Source-generated from parsed UW requirement-source registries.
 ##### Sustainable Urban Development (BA) parsed official source requirements
 
 - ADMISSION REQUIREMENTS
+- GRADUATION REQUIREMENTS
+- alt="Dr. Pendras Teaching T SUD 240">
+- alt="Students T SUD 240">
 - The School of Urban Studies at UW Tacoma offers a BA in Sustainable Urban Development. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
 - Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
 - Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
 - Admission Requirements
 - Completion of a minimum of 40 college-level credits
 - 5 credits of English composition
-- Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
-- Transfer students meeting the above requirements may apply directly to the major.
-- First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
 
 ##### Sustainable Urban Development (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
+- GRADUATION REQUIREMENTS
+- alt="Dr. Pendras Teaching T SUD 240">
+- alt="Students T SUD 240">
 - The School of Urban Studies at UW Tacoma offers a BA in Sustainable Urban Development. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
 - Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
 - Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
 - Admission Requirements
 - Completion of a minimum of 40 college-level credits
 - 5 credits of English composition
-- Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
-- Transfer students meeting the above requirements may apply directly to the major.
-- First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
 
 ##### Sustainable Urban Development (BA) parsed choices and pathway notes
 
@@ -1857,7 +1688,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [BS in Urban Design](https://www.tacoma.uw.edu/urban-studies/bs-urban-design)
-- [BS in Urban Design](https://www.tacoma.uw.edu/urban-studies/bs-urban-design) - Cached snapshot used for parser-backed UW requirement extraction.
+- [BS in Urban Design](https://www.tacoma.uw.edu/urban-studies/bs-urban-design) - Source used for parser-backed UW requirement extraction.
 
 ##### Urban Design (BS) parsed official source requirements
 
@@ -1871,7 +1702,6 @@ Source-generated from parsed UW requirement-source registries.
 - Prospective students meeting the above criteria are invited to complete the application for admission to the Urban Design major. Applicants should prepare a thoughtful, 1-2 page response to the following prompt:
 - Note: Students must have at least 40 college-level credits to declare Urban Design as a major. Pre-majors are encouraged to take T GIS 311, and meet with the School of Urban Studies advisor to discuss other courses that will prepare them for the program.
 - Please visit the UW Tacoma Admissions website to submit the appropriate application or to connect with them. You will need to be admitted to UW Tacoma prior to declaring your major. Interested applicants are encouraged to meet with the School of Urban Studies advisor to discuss admissions and degree requirements.
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Urban Design (BS) parsed official requirement cues
 
@@ -1885,14 +1715,12 @@ Source-generated from parsed UW requirement-source registries.
 - Prospective students meeting the above criteria are invited to complete the application for admission to the Urban Design major. Applicants should prepare a thoughtful, 1-2 page response to the following prompt:
 - Note: Students must have at least 40 college-level credits to declare Urban Design as a major. Pre-majors are encouraged to take T GIS 311, and meet with the School of Urban Studies advisor to discuss other courses that will prepare them for the program.
 - Please visit the UW Tacoma Admissions website to submit the appropriate application or to connect with them. You will need to be admitted to UW Tacoma prior to declaring your major. Interested applicants are encouraged to meet with the School of Urban Studies advisor to discuss admissions and degree requirements.
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Urban Design (BS) parsed choices and pathway notes
 
 - One of the following classes (5 credits):
 - One of the following two classes (5 credits):
 - Choose at least 2 courses in Sustainable Urban Development (T SUD)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -1901,9 +1729,8 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: General electives. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Major electives (10 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: General electives. The additional credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (e.g., a minor or a certificate) or explore the liberal arts. note: Parsed from a source section heading and the following course rows.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-urban-design:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1921,55 +1748,57 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [BA in Urban Studies](https://www.tacoma.uw.edu/urban-studies/ba-urban-studies)
-- [BA in Urban Studies](https://www.tacoma.uw.edu/urban-studies/ba-urban-studies) - Cached snapshot used for parser-backed UW requirement extraction.
+- [BA in Urban Studies](https://www.tacoma.uw.edu/urban-studies/ba-urban-studies) - Source used for parser-backed UW requirement extraction.
 
 ##### Urban Studies (BA) parsed official source requirements
 
+- ADMISSION REQUIREMENTS
+- GRADUATION REQUIREMENTS
+- The School of Urban Studies offers a Bachelor of Arts in Urban Studies. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
+- BA in Urban Studies students will choose from two formal options: Community Engagement or Geographic Information Systems (GIS). The degree starts with an introduction to the discipline of urban studies with course topics on the history and evolution of cities, urban research, and urban studies "in practice". The formal options deliver focused theory and skill-based courses that teach how to understand and impact the local and global dynamics of urban society.
+- Students admitted prior to spring 2026 may continue under their existing degree requirements or speak with an advisor about changing to the new degree plan.
+- Urban Studies majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
+- Admission Requirements
+- Completion of a minimum of 40 college-level credits
+- 5 credits of English composition
 - Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
-- Transfer students meeting the above requirements may apply directly to the major.
-- First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
-- Major Requirements
-- The curriculum consists of 70-71 credits, depending on formal option and course selection:
-- Shared Curriculum courses (20 credits)
-- Foundation courses (25-26 credits)
-- Formal options ( choose one option ) (25 credits)
-- In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program.
-- Shared Curriculum Courses (20 credits)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Urban Studies (BA) parsed official requirement cues
 
+- ADMISSION REQUIREMENTS
+- GRADUATION REQUIREMENTS
+- The School of Urban Studies offers a Bachelor of Arts in Urban Studies. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
+- BA in Urban Studies students will choose from two formal options: Community Engagement or Geographic Information Systems (GIS). The degree starts with an introduction to the discipline of urban studies with course topics on the history and evolution of cities, urban research, and urban studies "in practice". The formal options deliver focused theory and skill-based courses that teach how to understand and impact the local and global dynamics of urban society.
+- Students admitted prior to spring 2026 may continue under their existing degree requirements or speak with an advisor about changing to the new degree plan.
+- Urban Studies majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
+- Admission Requirements
+- Completion of a minimum of 40 college-level credits
+- 5 credits of English composition
 - Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
-- Transfer students meeting the above requirements may apply directly to the major.
-- First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
-- Major Requirements
-- The curriculum consists of 70-71 credits, depending on formal option and course selection:
-- Shared Curriculum courses (20 credits)
-- Foundation courses (25-26 credits)
-- Formal options ( choose one option ) (25 credits)
-- In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program.
-- Shared Curriculum Courses (20 credits)
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 ##### Urban Studies (BA) parsed choices and pathway notes
 
+- BA in Urban Studies students will choose from two formal options: Community Engagement or Geographic Information Systems (GIS). The degree starts with an introduction to the discipline of urban studies with course topics on the history and evolution of cities, urban research, and urban studies "in practice". The formal options deliver focused theory and skill-based courses that teach how to understand and impact the local and global dynamics of urban society.
+- Urban Studies majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
 - Formal options ( choose one option ) (25 credits)
 - Foundation Courses (25 credits, choose 5 courses)
 - Students declare one of the following formal options:
 - Choose 2 of the following:
+- Formal options ( choose one option) (20-29 credits)
+- Select 4 courses from the list below:
+- Advanced GIS courses (no longer offered) : Select two courses from the list below:
 - Community Engagement option
-- GIS Certificate option
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
 - Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. The degree planning worksheet can help track your progress through the program required courses. complete at least 10 courses from this set. note: Parsed from course rows before an explicit source choice cue.
+- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. The degree planning worksheet can help track your progress through the program choice. complete at least 1 course from this set. note: Parsed from an explicit source choice cue inside a sectioned requirement.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-urban-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1986,79 +1815,45 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Writing Studies](https://www.tacoma.uw.edu/sias/cac/writing-studies)
-- [Writing Studies](https://www.tacoma.uw.edu/sias/cac/writing-studies) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Scoped pathway section: Rhetoric, Writing and Social Change Track](https://www.tacoma.uw.edu/sias/cac/writing-studies)
+- [Writing Studies](https://www.tacoma.uw.edu/sias/cac/writing-studies) - Source used for parser-backed UW requirement extraction.
 
-##### Writing Studies (BA) parsed choices and pathway notes
+##### Writing Studies (BA) parsed official source requirements
 
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed choices and pathway notes
-
-- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
-
-##### Writing Studies (BA) parsed official requirement cues
-
+- CREATIVE WRITING TRACK
+- The Creative Writing track offers the opportunity to study literary and popular forms of creative writing, with supportive faculty who publish in these genres, and provides a strong base for students wishing to pursue a Master of Fine Arts. To provide a distinctive interdisciplinary approach to creative writing: students choose classes in more than one genre (poetry, nonfiction and fiction), a wide range of literature courses from multiple perspectives, as well as professional/technical writing courses that can prepare them for writing jobs in a variety of fields. The creative writing track reflects the curricular guidelines of the Association of Writing Programs (AWP), the national professional organization in creative writing. Students can gain professional experience as editors and writers of Tahoma West , UW Tacoma’s student-run literary and arts magazine, as well as the school newspaper, The Ledger . Students are encouraged to engage in the vibrant literary community of the Puget Sound and to apply for internships at local arts and publishing organizations.
 - TECHNICAL COMMUNICATION TRACK
 - In the Technical Communication track, students learn to communicate complex information in a way that is concise, usable and compelling. Students learn how to identify the needs of an audience, design through an iterative process and make changes based on applied research. Courses emphasize real world design projects and students develop skills in collaborative problem solving and creativity. Technical Communication track students are well positioned for careers in technical and professional communication, user experience, usability, web design and other fields where communicating scientific and technical topics plays a central role. Students are encouraged to gain professional experience by completing internships and working with community partners.
 - RHETORIC, WRITING AND SOCIAL CHANGE TRACK
 - The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- Note: Built from a cached official snapshot because snapshot-only mode.
+- ADMISSION REQUIREMENTS
+- TCORE 101 OR TWRT 121 AND
+- TWRT 211
+- DEGREE REQUIREMENTS
+
+##### Writing Studies (BA) parsed official requirement cues
+
+- CREATIVE WRITING TRACK
+- The Creative Writing track offers the opportunity to study literary and popular forms of creative writing, with supportive faculty who publish in these genres, and provides a strong base for students wishing to pursue a Master of Fine Arts. To provide a distinctive interdisciplinary approach to creative writing: students choose classes in more than one genre (poetry, nonfiction and fiction), a wide range of literature courses from multiple perspectives, as well as professional/technical writing courses that can prepare them for writing jobs in a variety of fields. The creative writing track reflects the curricular guidelines of the Association of Writing Programs (AWP), the national professional organization in creative writing. Students can gain professional experience as editors and writers of Tahoma West , UW Tacoma’s student-run literary and arts magazine, as well as the school newspaper, The Ledger . Students are encouraged to engage in the vibrant literary community of the Puget Sound and to apply for internships at local arts and publishing organizations.
+- TECHNICAL COMMUNICATION TRACK
+- In the Technical Communication track, students learn to communicate complex information in a way that is concise, usable and compelling. Students learn how to identify the needs of an audience, design through an iterative process and make changes based on applied research. Courses emphasize real world design projects and students develop skills in collaborative problem solving and creativity. Technical Communication track students are well positioned for careers in technical and professional communication, user experience, usability, web design and other fields where communicating scientific and technical topics plays a central role. Students are encouraged to gain professional experience by completing internships and working with community partners.
+- RHETORIC, WRITING AND SOCIAL CHANGE TRACK
+- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
+- ADMISSION REQUIREMENTS
+- TCORE 101 OR TWRT 121 AND
+- TWRT 211
+- DEGREE REQUIREMENTS
 
 ##### Writing Studies (BA) parsed choices and pathway notes
 
+- The BA in Writing Studies enables students to learn to write effectively in a range of genres, and to think critically and creatively, with a well-rounded liberal arts education in the sciences and the humanities. Writing Studies has three tracks:
+- The Creative Writing track offers the opportunity to study literary and popular forms of creative writing, with supportive faculty who publish in these genres, and provides a strong base for students wishing to pursue a Master of Fine Arts. To provide a distinctive interdisciplinary approach to creative writing: students choose classes in more than one genre (poetry, nonfiction and fiction), a wide range of literature courses from multiple perspectives, as well as professional/technical writing courses that can prepare them for writing jobs in a variety of fields. The creative writing track reflects the curricular guidelines of the Association of Writing Programs (AWP), the national professional organization in creative writing. Students can gain professional experience as editors and writers of Tahoma West , UW Tacoma’s student-run literary and arts magazine, as well as the school newspaper, The Ledger . Students are encouraged to engage in the vibrant literary community of the Puget Sound and to apply for internships at local arts and publishing organizations.
+- CREATIVE WRITING TRACK
 - grassroots activism and community organizing. This track centers integrative and inclusive pedagogy
+- Post-graduate Studies track
 - TECHNICAL COMMUNICATION TRACK
+- User Experience and Usability track
 - WRITING AND SOCIAL CHANGE TRACK
-- Note: Built from a cached official snapshot because snapshot-only mode.
 
 #### GRC Equivalent Courses
 
@@ -2066,16 +1861,8 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: TCORE 101 OR TWRT 121 AND. complete at least 1 course from this set
 - Source-backed note: Parser confidence: medium.
-- Source-backed note: Used cached official snapshot fallback: snapshot-only mode
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-01-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-02-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-03-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-04-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-05-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-06-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-10-parsed-07-writing-studies-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:structured:uw-tacoma-writing-studies-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.

@@ -6,8 +6,14 @@ on:
       - "source/**"
       - "Start-to-run.bat"
       - "Start-to-run.sh"
-      - "Start-to-run.command"
+      - "Start-to-run.app/**"
       - "Start-to-run.desktop"
+      - "Course-Planner-Updater.bat"
+      - "Course-Planner-Updater.app/**"
+      - "Course-Planner-Updater.desktop"
+      - "add-or-remove-resources.bat"
+      - "add-or-remove-resources.app/**"
+      - "add-or-remove-resources.desktop"
       - ".github/workflows/mobile-windows-qa.yml"
   workflow_dispatch:
 

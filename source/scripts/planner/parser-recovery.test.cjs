@@ -32,6 +32,7 @@ function buildRecoveryOwnerFixture(overrides = {}) {
     qualitySignals: [],
     parsedRequirementGroups: [],
     parsedRequirementAtomCandidates: [],
+    parsedDegreeMapBlockCandidates: [],
     parsedRequirementCourses: [],
     usedSnapshotFallback: false,
     resolutionStrategy: "primary-source",
@@ -882,6 +883,73 @@ test("Parser recovery triggers on zero-course and low-confidence quality warning
   assert.ok(signalCodes.includes("no-parsed-uw-course-codes"));
   assert.ok(signalCodes.includes("low-confidence-parsed-source"));
   assert.equal(parser.shouldTriggerParserRecoveryForTest({ ...owner, qualitySignals: signals }), true);
+});
+
+test("Inactive major pages are non-schedulable instead of zero-course parser failures", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-italian",
+    ownerTitle: "Italian",
+    planId: "uw-seattle-italian",
+    campusId: "uw-seattle",
+    role: "degree-requirements",
+    url: "https://frenchitalian.washington.edu/undergraduate-studies-italian",
+    label: "UW Italian undergraduate studies and major requirements status",
+  });
+  const block = buildParsedBlockFixture(
+    entry,
+    `
+      <h1>Major in Italian Studies</h1>
+      <p>Please note at this time we are not able to offer the upper level courses for the Italian Studies major.</p>
+      <p>Therefore we are not able to accept new students into the Italian Studies major and students may not declare the Italian Studies major.</p>
+    `
+  );
+  const signals = parser.buildParseQualitySignalsForTest(block);
+
+  assert.equal(block.sourceRole, "non-schedulable-course-list");
+  assert.equal(block.sourceRoleStatus, "non-schedulable");
+  assert.equal(block.canCreateSchedulableRows, false);
+  assert.equal(signals.some((signal) => signal.code === "no-parsed-uw-course-codes"), false);
+});
+
+test("Plan overview rows covered by child option sources are not actionable no-course parses", () => {
+  const planOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-tacoma-example",
+    ownerTitle: "Example Studies",
+    planId: "uw-tacoma-example",
+    campusId: "uw-tacoma",
+    parserType: "html-overview-page",
+    primaryParserType: "html-overview-page",
+    sourceLabel: "Example Studies overview",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    pathwayLabels: ["Focused Option"],
+    qualitySignals: [
+      {
+        severity: "warning",
+        code: "no-parsed-uw-course-codes",
+        message: "The official source parsed successfully but did not yield usable UW course codes.",
+      },
+    ],
+  });
+  const childOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-tacoma-example:pathway:focused-option",
+    ownerTitle: "Example Studies - Focused Option",
+    planId: "uw-tacoma-example",
+    pathwayId: "focused-option",
+    campusId: "uw-tacoma",
+    parsedUwCourseCodes: ["TEXAM 301"],
+    parseConfidence: "high",
+    qualitySignals: [],
+  });
+
+  const report = parser.buildParseReport([planOwner, childOwner]);
+  const reportedPlanOwner = report.owners.find((owner) => owner.ownerId === planOwner.ownerId);
+
+  assert.equal(report.withNoParsedCourseCodesCount, 0);
+  assert.equal(
+    reportedPlanOwner.qualitySignals.some((signal) => signal.code === "no-parsed-uw-course-codes"),
+    false
+  );
 });
 
 test("Snapshot fallback quality audit classifies missing heading context", () => {

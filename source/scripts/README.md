@@ -10,9 +10,11 @@ For the easiest full run, use one command:
 npm run planner:full:verify
 ```
 
-Or double-click the repo-root launcher:
+Or double-click the repo-root launcher for your system:
 
-- `..\Course-Planner-Updater.bat`
+- Windows: `..\Course-Planner-Updater.bat`
+- macOS: `..\Course-Planner-Updater.app`
+- Linux: `..\Course-Planner-Updater.desktop`
 
 This executes refresh + verification + hardening + Windows QA and writes a summary to:
 
@@ -20,18 +22,16 @@ This executes refresh + verification + hardening + Windows QA and writes a summa
 
 If a run fails because of temporary source-download/network issues, use the updater's built-in no-download option:
 
-```bash
-..\Course-Planner-Updater.bat refresh-no-downloads
-```
+Run `..\Course-Planner-Updater.bat refresh-no-downloads` on Windows, or run the bundled `course-planner-updater.sh refresh-no-downloads` from the macOS/Linux launcher app resources when using a terminal.
 
 No-download mode reuses the local `.tmp` source artifacts and generated source outputs that are already on the machine. It skips live source checks, primary-source discovery, requirement-source parsing, deadline refresh, online catalog/equivalency ingests, Green River associate-track web refresh, and annual schedule PDF downloads. Run the normal Course updates + tests command once network access is stable if those cached source artifacts are missing or stale.
 
 ## Planner launchers
 
-- `Course-Planner-Updater.bat`
+- `Course-Planner-Updater.bat`, `Course-Planner-Updater.app`, and `Course-Planner-Updater.desktop`
   - Main one to use.
-  - Lives at the repo root now, with `scripts/Course-Planner-Updater.bat` kept as a thin compatibility wrapper.
-  - Double-click it for a menu, or run it from a terminal with one of the built-in modes:
+  - Live at the repo root now, with `scripts/Course-Planner-Updater.bat` kept as a thin compatibility wrapper.
+  - Double-click the launcher for a menu, or run it from a terminal with one of the built-in modes:
     - `maintenance`
     - `maintenance-no-downloads`
     - `refresh`

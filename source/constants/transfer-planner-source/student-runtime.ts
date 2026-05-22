@@ -11,6 +11,9 @@ import {
   TRANSFER_PLANNER_RUNTIME_TRACKS,
   type TransferPlannerRuntimeCompactCourseRegistryEntry,
 } from "./student-runtime.generated";
+import {
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
+} from "./bootstrap.generated";
 import type {
   TransferPlannerCampus,
   TransferPlannerCampusId,
@@ -132,8 +135,12 @@ type TransferPlannerRuntimeSourceGapEntry = {
 };
 
 type TransferPlannerRuntimeParsedRequirementSourceScopeBlock = {
+  pathwayId?: string | null;
+  sourceUrl?: string | null;
+  primarySourceUrl?: string | null;
   sourceRole?: string | null;
   sourceRoleStatus?: string | null;
+  parsedUwCourseCodes?: string[];
   canCreateSchedulableRows?: boolean;
   canCreateRequiredRows?: boolean;
   canCreateOptionGroups?: boolean;
@@ -1985,15 +1992,74 @@ function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(pl
   );
 }
 
+function getParsedSourceBlockUrl(block: TransferPlannerRuntimeParsedRequirementSourceScopeBlock) {
+  return String(block.sourceUrl ?? block.primarySourceUrl ?? "").trim();
+}
+
+function selectedPathwayOwnsIndependentRuntimeSource(
+  planId: string,
+  selectedPathwayId: string | null | undefined
+) {
+  if (!selectedPathwayId) {
+    return false;
+  }
+
+  const baseSourceUrls = new Set(
+    getTransferPlannerParsedRequirementSourceBlocks(planId, null)
+      .map(getParsedSourceBlockUrl)
+      .filter(Boolean)
+  );
+  const selectedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    planId,
+    selectedPathwayId
+  ).filter((block) => block.pathwayId === selectedPathwayId);
+
+  return selectedBlocks.some((block) => {
+    const parsedCodes = block.parsedUwCourseCodes ?? [];
+    const blockUrl = getParsedSourceBlockUrl(block);
+    const hasDistinctPathwaySource =
+      blockUrl && !baseSourceUrls.has(blockUrl) && parsedCodes.length >= 3;
+    const hasCatalogCredentialGroups =
+      block.sourceRole === "official-catalog" &&
+      (block.pathwayId === selectedPathwayId ||
+        (block.parsedRequirementGroups ?? []).some(
+          (group) => group.pathwayId === selectedPathwayId
+        ));
+
+    return hasDistinctPathwaySource || hasCatalogCredentialGroups;
+  });
+}
+
+function scopeIndependentRuntimePathwayContent<T extends TransferPlannerResolvedMajorPlan>(
+  plan: T
+): T {
+  const selectedPathwayId = plan.selectedPathwayId ?? null;
+  if (!selectedPathwayOwnsIndependentRuntimeSource(plan.id, selectedPathwayId)) {
+    return plan;
+  }
+
+  return {
+    ...plan,
+    degreeMapSections: (plan.degreeMapSections ?? []).filter((section) =>
+      section.id.includes("-pathway-")
+    ),
+    requirementGroups: (plan.requirementGroups ?? []).filter(
+      (group) => group.pathwayId === selectedPathwayId
+    ),
+  };
+}
+
 function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
-  return normalizeRequirementShapesRuntimePlan(
-    normalizeCategoryOptionRuntimePlan(
-      normalizeUwSeattleChemicalEngineeringRuntimePlan(
-        normalizeUwSeattleBioengineeringRuntimePlan(
-          normalizeUwSeattleCivilRuntimePlan(
-            normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+  return scopeIndependentRuntimePathwayContent(
+    normalizeRequirementShapesRuntimePlan(
+      normalizeCategoryOptionRuntimePlan(
+        normalizeUwSeattleChemicalEngineeringRuntimePlan(
+          normalizeUwSeattleBioengineeringRuntimePlan(
+            normalizeUwSeattleCivilRuntimePlan(
+              normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+            )
           )
         )
       )
@@ -2457,6 +2523,9 @@ const TRACKS_BY_ID = new Map(TRANSFER_PLANNER_TRACKS.map((track) => [track.id, t
 const MAJOR_PLANS_BY_ID = new Map(
   TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.map((plan) => [plan.id, plan])
 );
+const SOURCE_MAJOR_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan])
+);
 type StudentRuntimeAliasChildPathway = {
   parentPlanId: string;
   childPlan: TransferPlannerMajorPlan;
@@ -2506,11 +2575,12 @@ function getEquivalentCourseCodes(schoolId: TransferPlannerSourceSchoolId, code:
 
 function getStudentRuntimeAliasTitleParts(plan: TransferPlannerMajorPlan) {
   for (const title of [plan.title, plan.shortTitle]) {
-    const match = String(title ?? "").match(/^(.+?):\s*(.+?)(?:\s+\([^)]+\))?$/);
+    const match = String(title ?? "").match(/^(.+?):\s*(.+?)(?:\s+\(([^)]+)\))?$/);
     if (match?.[1] && match[2]) {
       return {
         parentTitle: match[1],
         optionTitle: match[2],
+        degreeLabel: match[3] ?? null,
       };
     }
   }
@@ -2522,7 +2592,7 @@ function getStudentRuntimeAliasParentPlan(plan: TransferPlannerMajorPlan) {
   if (!aliasTitleParts) return null;
 
   const normalizedParentTitle = normalizeStudentRuntimeAliasText(aliasTitleParts.parentTitle);
-  const parentPlan = TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.find(
+  const parentPlanCandidates = TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.filter(
     (candidatePlan) =>
       candidatePlan.id !== plan.id &&
       candidatePlan.campusId === plan.campusId &&
@@ -2530,6 +2600,28 @@ function getStudentRuntimeAliasParentPlan(plan: TransferPlannerMajorPlan) {
         (candidateTitle) => normalizeStudentRuntimeAliasText(candidateTitle) === normalizedParentTitle
       )
   );
+  const parentPlan = parentPlanCandidates
+    .map((candidatePlan) => {
+      const parentPathways =
+        TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID[candidatePlan.id] ?? candidatePlan.pathways ?? [];
+      const matchingContentBackedPathway = parentPathways.find(
+        (pathway) =>
+          doesPathwayMatchAliasOption(pathway, aliasTitleParts.optionTitle) &&
+          isContentBackedParentPathway(candidatePlan, pathway)
+      );
+      const degreeMatch = doesStudentRuntimeAliasDegreeMatch(
+        candidatePlan,
+        aliasTitleParts.degreeLabel
+      );
+      return {
+        candidatePlan,
+        score:
+          (matchingContentBackedPathway ? 1000 : 0) +
+          (degreeMatch ? 100 : 0) +
+          (hasStudentRuntimePlannerContent(candidatePlan) ? 10 : 0),
+      };
+    })
+    .sort((left, right) => right.score - left.score)[0]?.candidatePlan ?? null;
   return parentPlan ? { aliasTitleParts, parentPlan } : null;
 }
 
@@ -2538,6 +2630,36 @@ function normalizeStudentRuntimeAliasText(value: string) {
     value
       .replace(/&/g, " and ")
       .replace(/\([^)]*\)/g, " ")
+  );
+}
+
+function normalizeStudentRuntimeAliasDegreeLabel(value: string | null | undefined) {
+  return slugifyRuntimeId(
+    String(value ?? "")
+      .replace(/\./g, "")
+      .replace(/\bdegree\b/gi, " ")
+  );
+}
+
+function getStudentRuntimeAliasDegreeLabels(value: string | null | undefined) {
+  const labels: string[] = [];
+  for (const match of String(value ?? "").matchAll(/\(([^)]+)\)/g)) {
+    const normalized = normalizeStudentRuntimeAliasDegreeLabel(match[1]);
+    if (normalized) {
+      labels.push(normalized);
+    }
+  }
+  return labels;
+}
+
+function doesStudentRuntimeAliasDegreeMatch(
+  parentPlan: TransferPlannerMajorPlan,
+  degreeLabel: string | null | undefined
+) {
+  const normalizedDegreeLabel = normalizeStudentRuntimeAliasDegreeLabel(degreeLabel);
+  if (!normalizedDegreeLabel) return false;
+  return [parentPlan.title, parentPlan.shortTitle].some((title) =>
+    getStudentRuntimeAliasDegreeLabels(title).includes(normalizedDegreeLabel)
   );
 }
 
@@ -2788,6 +2910,71 @@ function getStudentRuntimeHiddenAliasPlanIds() {
 
 function isHiddenStudentRuntimeAliasPlan(plan: TransferPlannerMajorPlan) {
   return getStudentRuntimeHiddenAliasPlanIds().has(plan.id);
+}
+
+export function getTransferPlannerStudentRuntimeAliasCoverage(
+  planId: string,
+  pathwayId?: string | null
+) {
+  const childPlan = MAJOR_PLANS_BY_ID.get(planId) ?? SOURCE_MAJOR_PLANS_BY_ID.get(planId) ?? null;
+  if (!childPlan) return null;
+
+  const aliasParent = getStudentRuntimeAliasParentPlan(childPlan);
+  if (!aliasParent) return null;
+
+  const { aliasTitleParts, parentPlan } = aliasParent;
+  const parentRuntimePlan = getTransferPlannerMajorPlan(parentPlan.id);
+  if (!parentRuntimePlan) return null;
+
+  const parentPathways =
+    TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID[parentPlan.id] ?? parentPlan.pathways ?? [];
+  const normalizedChildPathwayId = normalizeTransferPlannerPathwayId(
+    childPlan.id,
+    pathwayId ?? null
+  );
+  const childPathways =
+    TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID[childPlan.id] ?? childPlan.pathways ?? [];
+  const childPathway = normalizedChildPathwayId
+    ? childPathways.find(
+        (pathway) =>
+          normalizeTransferPlannerPathwayId(childPlan.id, pathway.id) ===
+          normalizedChildPathwayId
+      ) ?? null
+    : null;
+  const aliasMatchText = childPathway
+    ? `${childPathway.id} ${childPathway.label}`
+    : aliasTitleParts.optionTitle;
+  const parentPathway =
+    parentPathways.find(
+      (pathway) =>
+        doesPathwayMatchAliasOption(pathway, aliasMatchText) &&
+        isContentBackedParentPathway(parentPlan, pathway)
+    ) ??
+    parentPathways.find(
+      (pathway) =>
+        childPathway &&
+        doesPathwayMatchAliasOption(pathway, aliasTitleParts.optionTitle) &&
+        isContentBackedParentPathway(parentPlan, pathway)
+    ) ??
+    null;
+
+  if (!parentPathway) return null;
+
+  const resolvedPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    parentRuntimePlan,
+    parentPathway.id
+  );
+  if (!resolvedPlan) return null;
+
+  return {
+    childPlanId: childPlan.id,
+    childPathwayId: normalizedChildPathwayId,
+    parentPlanId: parentPlan.id,
+    parentPathwayId: parentPathway.id,
+    parentPlan: parentRuntimePlan,
+    parentPathway,
+    resolvedPlan,
+  };
 }
 
 function parseCourseParts(code: string) {

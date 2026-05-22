@@ -17,19 +17,19 @@ const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7 } = require("./
 const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8 } = require("./requirement-source-adapters.generated/blocks-008.generated.ts");
 
 export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-21T23:09:16.793Z",
-  "totalOwners": 356,
-  "okCount": 356,
+  "generatedAt": "2026-05-22T12:33:31.945Z",
+  "totalOwners": 360,
+  "okCount": 360,
   "failedCount": 0,
-  "parsedRequirementSourceBlockCount": 356,
-  "parsedRequirementAtomCandidateCount": 6850,
-  "parsedDegreeMapBlockCandidateCount": 506,
-  "parsedRequirementGroupCount": 1939,
-  "parsedRequirementCourseCount": 7674,
+  "parsedRequirementSourceBlockCount": 360,
+  "parsedRequirementAtomCandidateCount": 6494,
+  "parsedDegreeMapBlockCandidateCount": 355,
+  "parsedRequirementGroupCount": 1956,
+  "parsedRequirementCourseCount": 7702,
   "snapshotFallbackCount": 0,
   "countsByAdapterId": {
-    "uw-seattle-html-degree-page": 112,
-    "uw-bothell-html-degree-page": 65,
+    "uw-seattle-html-degree-page": 119,
+    "uw-bothell-html-degree-page": 62,
     "generic-official-html-page": 38,
     "uw-seattle-catalog-page": 60,
     "generic-official-pdf-degree-sheet": 19,
@@ -38,8 +38,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
     "uw-tacoma-catalog-page": 2
   },
   "countsByAdapterFamily": {
-    "UW Seattle HTML degree pages": 112,
-    "UW Bothell HTML degree pages": 65,
+    "UW Seattle HTML degree pages": 119,
+    "UW Bothell HTML degree pages": 62,
     "Generic official HTML pages": 38,
     "UW Seattle catalog pages": 60,
     "Generic official PDF degree sheets": 19,
@@ -48,43 +48,42 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
     "UW Tacoma catalog pages": 2
   },
   "countsByCampus": {
-    "uw-seattle": 217,
-    "uw-bothell": 70,
+    "uw-seattle": 224,
+    "uw-bothell": 67,
     "uw-tacoma": 69
   },
   "countsByResolutionStrategy": {
-    "primary-source": 336,
-    "alternate-official-source": 20
+    "primary-source": 342,
+    "alternate-official-source": 18
   },
   "countsBySourceRole": {
-    "primary-degree-requirements": 246,
+    "primary-degree-requirements": 249,
     "department-requirements": 34,
     "official-catalog": 69,
-    "non-schedulable-course-list": 1,
+    "non-schedulable-course-list": 2,
     "approved-course-list": 3,
     "pathway-degree-sheet": 1,
     "admission-prerequisite-source": 2
   },
   "countsBySourceRoleStatus": {
-    "primary": 350,
-    "non-schedulable": 1,
+    "primary": 353,
+    "non-schedulable": 2,
     "support": 5
   },
-  "canCreateSchedulableRowCount": 350,
-  "canCreateRequiredRowCount": 350,
-  "canCreateOptionGroupCount": 350,
+  "canCreateSchedulableRowCount": 353,
+  "canCreateRequiredRowCount": 353,
+  "canCreateOptionGroupCount": 353,
   "canCreateApprovedFilterCount": 3,
   "canCreateElectiveListCount": 0,
   "supportOnlySourceCount": 5,
-  "nonSchedulableSourceCount": 1,
-  "qualityWarningCount": 154,
-  "qualityNoteCount": 20,
+  "nonSchedulableSourceCount": 2,
+  "qualityWarningCount": 101,
+  "qualityNoteCount": 18,
   "countsByQualitySignalCode": {
-    "material-source-structured-drift": 67,
-    "large-structured-only-course-gap": 62,
-    "high-confidence-low-course-coverage": 22,
-    "alternate-official-source-used": 20,
-    "no-parsed-uw-course-codes": 2,
+    "material-source-structured-drift": 45,
+    "large-structured-only-course-gap": 40,
+    "high-confidence-low-course-coverage": 15,
+    "alternate-official-source-used": 18,
     "uw-mse-expected-course-option-missing": 1
   }
 } as TransferPlannerRequirementSourceAdapterSummary;

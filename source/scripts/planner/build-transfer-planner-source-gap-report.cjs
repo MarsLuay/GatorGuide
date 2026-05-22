@@ -41,7 +41,18 @@ const {
 ));
 const {
   TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
+  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  getTransferPlannerStudentRuntimeMajorPlan,
+  getTransferPlannerStudentRuntimePathwaysForPlan,
 } = require(path.resolve(REPO_ROOT, "constants", "transfer-planner-source"));
+const {
+  getTransferPlannerStudentRuntimeAliasCoverage,
+} = require(path.resolve(
+  REPO_ROOT,
+  "constants",
+  "transfer-planner-source",
+  "student-runtime"
+));
 
 const ACTIVE_PATHWAY_OWNER_KEYS = new Set(
   (TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []).map((entry) => entry.id)
@@ -275,6 +286,102 @@ function isInactivePathwaySourceGapOwner(owner) {
   return !ACTIVE_PATHWAY_OWNER_KEYS.has(String(owner.ownerKey ?? ""));
 }
 
+function normalizeAliasMatchText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function parseDerivedOptionAliasTitle(title) {
+  const normalizedTitle = String(title ?? "").trim();
+  const match = normalizedTitle.match(/^(.+?):\s*(.+?)(?:\s+(\([^)]+\)))?$/);
+  if (!match) {
+    return null;
+  }
+
+  const parentBaseTitle = String(match[1] ?? "").trim();
+  const optionTitle = String(match[2] ?? "").trim();
+  const credentialSuffix = String(match[3] ?? "").trim();
+  if (!parentBaseTitle || !optionTitle || !credentialSuffix) {
+    return null;
+  }
+
+  return {
+    parentTitle: `${parentBaseTitle} ${credentialSuffix}`,
+    optionTitle,
+  };
+}
+
+function titlesMatch(left, right) {
+  return normalizeAliasMatchText(left) === normalizeAliasMatchText(right);
+}
+
+function pathwayMatchesOptionAlias(pathway, optionTitle) {
+  const normalizedOptionTitle = normalizeAliasMatchText(optionTitle);
+  const normalizedPathwayText = normalizeAliasMatchText(
+    [pathway?.id, pathway?.label, pathway?.title].filter(Boolean).join(" ")
+  );
+  if (!normalizedOptionTitle || !normalizedPathwayText) {
+    return false;
+  }
+
+  if (normalizedPathwayText.includes(normalizedOptionTitle)) {
+    return true;
+  }
+
+  const optionTokens = normalizedOptionTitle
+    .split(/\s+/)
+    .filter((token) => token && !["option", "route", "track", "degree"].includes(token));
+  return optionTokens.length > 0 && optionTokens.every((token) => normalizedPathwayText.includes(token));
+}
+
+function hasDerivedParentPathwayRuntimeCoverage(owner) {
+  if (owner?.ownerType !== "major") {
+    return false;
+  }
+
+  const aliasTitle = parseDerivedOptionAliasTitle(owner.title);
+  if (!aliasTitle) {
+    return false;
+  }
+
+  const campusId = String(owner.campusId ?? "").trim();
+  const parentPlans = (TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS ?? []).filter(
+    (plan) =>
+      (!campusId || String(plan?.campusId ?? "").trim() === campusId) &&
+      titlesMatch(plan?.title, aliasTitle.parentTitle)
+  );
+
+  for (const parentPlan of parentPlans) {
+    const parentRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(parentPlan.id);
+    if (!parentRuntimePlan) {
+      continue;
+    }
+
+    const parentPathways = getTransferPlannerStudentRuntimePathwaysForPlan(parentRuntimePlan);
+    if (parentPathways.some((pathway) => pathwayMatchesOptionAlias(pathway, aliasTitle.optionTitle))) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function hasStudentRuntimeAliasCoverage(owner) {
+  if (!owner?.planId) {
+    return false;
+  }
+
+  return (
+    Boolean(getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)) ||
+    hasDerivedParentPathwayRuntimeCoverage(owner)
+  );
+}
+
 function uniqueOwnersByKey(entries) {
   const seen = new Set();
   const uniqueEntries = [];
@@ -311,6 +418,7 @@ function buildSourceGapReport(discoveryReport, options = {}) {
           .filter((entry) => !parserBackedOwnerKeys.has(buildOwnerKey(entry)))
           .filter((entry) => !isStructuralPlaceholderSourceGapOwner(entry))
           .filter((entry) => !isInactivePathwaySourceGapOwner(entry))
+          .filter((entry) => !hasStudentRuntimeAliasCoverage(entry))
       )
     : [];
   const sourceGapEntriesFromReview = reviewEntries.map((entry) =>
@@ -323,6 +431,7 @@ function buildSourceGapReport(discoveryReport, options = {}) {
     .filter((owner) => !parserBackedOwnerKeys.has(buildOwnerKey(owner)))
     .filter((owner) => !isStructuralPlaceholderSourceGapOwner(owner))
     .filter((owner) => !isInactivePathwaySourceGapOwner(owner))
+    .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .map((owner) => buildSourceGapEntryFromDiscoveryOwner(owner, discoveryReport.generatedAt))
   )
     .sort((left, right) =>

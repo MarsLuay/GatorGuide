@@ -1701,6 +1701,33 @@ function canParsedRequirementSourceBlockCreateCategoryOptions(
   );
 }
 
+function parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course: {
+  optionRole?: string | null;
+  requirementType?: string | null;
+  sourceHeading?: string | null;
+  sourceCategory?: string | null;
+  category?: string | null;
+}) {
+  if (course.optionRole === "required") {
+    return true;
+  }
+
+  if (course.optionRole !== "option" || course.requirementType !== "choose_credits") {
+    return false;
+  }
+
+  const sourceText = [
+    course.sourceHeading,
+    course.sourceCategory,
+    course.category,
+  ].join(" ");
+  if (/\b(?:electives?|approved|concentration|distribution|breadth|area\s+of\s+knowledge)\b/i.test(sourceText)) {
+    return false;
+  }
+
+  return /\b(?:core courses?|required courses?|will need|must (?:complete|take|enroll))\b/i.test(sourceText);
+}
+
 function getSourceBackedRequiredUwCourseCodeSet(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -1722,7 +1749,7 @@ function getSourceBackedRequiredUwCourseCodeSet(
     if (structuredRequirementCourses.length) {
       sawStructuredRequirementCourses = true;
       for (const course of structuredRequirementCourses) {
-        if (course.optionRole !== "required") {
+        if (!parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course)) {
           continue;
         }
 
@@ -2407,6 +2434,15 @@ function buildSourceBackedRequiredCourseFallbackStatuses(scope: {
   completedCourses: TranscriptCourseEntry[];
 }) {
   const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(scope.plan);
+  const sourceBackedRequiredCourseDescriptors =
+    buildSourceBackedRequiredCourseDescriptors(scope.plan, scope.completedCourses);
+  const sourceBackedRequiredCourseCodes = new Set(
+    sourceBackedRequiredCourseDescriptors
+      .filter((descriptor) => descriptor.kind !== "choice-bucket")
+      .flatMap((descriptor) => descriptor.explicitCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
   const existingCourseCodes = new Set(
     scope.existingStatuses
       .flatMap((status) => {
@@ -2414,6 +2450,10 @@ function buildSourceBackedRequiredCourseFallbackStatuses(scope: {
         return status.explicitCourseCodes.filter((courseCode) => {
           if (!isTrueOptionGroup) {
             return true;
+          }
+
+          if (sourceBackedRequiredCourseCodes.has(normalizeCourseCode(courseCode))) {
+            return false;
           }
 
           return !courseMapsToSourceBackedRequiredUwCourse({
@@ -2427,7 +2467,7 @@ function buildSourceBackedRequiredCourseFallbackStatuses(scope: {
       .map((courseCode) => normalizeCourseCode(courseCode))
       .filter(Boolean)
   );
-  const fallbackItems = buildSourceBackedRequiredCourseDescriptors(scope.plan, scope.completedCourses)
+  const fallbackItems = sourceBackedRequiredCourseDescriptors
     .filter((descriptor) => descriptor.kind !== "choice-bucket")
     .flatMap((descriptor) => descriptor.explicitCourseCodes)
     .map((courseCode) => normalizeCourseCode(courseCode))
@@ -6240,6 +6280,13 @@ export function buildSourceBackedRequiredCourseDescriptors(
       .map((courseCode) => normalizeCourseCode(courseCode))
       .filter(Boolean)
   );
+  const existingRequiredDescriptorCourseCodes = new Set(
+    descriptors
+      .filter((descriptor) => !sourceBackedDescriptorLooksLikeTrueOption(descriptor))
+      .flatMap((descriptor) => descriptor.explicitCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
 
   for (const courseLabel of getTransferPlannerGrcCourseList(plan)) {
     for (const courseCode of extractCourseCodes(courseLabel)) {
@@ -6285,6 +6332,7 @@ export function buildSourceBackedRequiredCourseDescriptors(
         buildSourceBackedRequiredCourseFallbackDescriptor({ courseCode: normalizedCourseCode })
       );
       existingDescriptorCourseCodes.add(normalizedCourseCode);
+      existingRequiredDescriptorCourseCodes.add(normalizedCourseCode);
       markCoveredRequiredUwCourseCodes(
         buildRequiredUwCourseCodesCompletedBySourceCourse(
           normalizedCourseCode,
@@ -6293,6 +6341,37 @@ export function buildSourceBackedRequiredCourseDescriptors(
         )
       );
     }
+  }
+
+  for (const uwCourseCode of requiredUwCourseCodes) {
+    if (isCoveredRequiredUwCourseCode(uwCourseCode)) {
+      continue;
+    }
+
+    const pathCourseCodes = getBestGrcEquivalentPathCourseCodesForUwCourse(plan, uwCourseCode);
+    if (!pathCourseCodes.length) {
+      continue;
+    }
+
+    for (const pathCourseCode of pathCourseCodes) {
+      const normalizedPathCourseCode = normalizeCourseCode(pathCourseCode);
+      if (
+        !normalizedPathCourseCode ||
+        existingRequiredDescriptorCourseCodes.has(normalizedPathCourseCode)
+      ) {
+        continue;
+      }
+
+      descriptors.push(
+        buildSourceBackedRequiredCourseFallbackDescriptor({
+          courseCode: normalizedPathCourseCode,
+        })
+      );
+      existingDescriptorCourseCodes.add(normalizedPathCourseCode);
+      existingRequiredDescriptorCourseCodes.add(normalizedPathCourseCode);
+    }
+
+    markCoveredRequiredUwCourseCodes([uwCourseCode]);
   }
 
   for (const courseCode of getSourceBackedRequiredCoverageBackfillCourseCodes(plan)) {
@@ -6306,6 +6385,7 @@ export function buildSourceBackedRequiredCourseDescriptors(
         buildSourceBackedRequiredCourseFallbackDescriptor({ courseCode: normalizedCourseCode })
       );
       existingDescriptorCourseCodes.add(normalizedCourseCode);
+      existingRequiredDescriptorCourseCodes.add(normalizedCourseCode);
     }
   }
 
@@ -15964,6 +16044,68 @@ function capGrcOnlyFillerPoolByCatalogCredits(input: {
   return cappedFillerPool;
 }
 
+function getAllRequiredCompoundCourseLabelsForPlanner(
+  status: TransferRequirementStatus
+) {
+  const group = status.item.requirementGroup;
+  if (group?.requirementType !== "all_required" || !group.options?.length) {
+    return [] as string[];
+  }
+
+  const selectedOptionIds = new Set(
+    normalizeSelectedRequirementOptionIds(status.item.selectedRequirementOptionIds)
+  );
+  const matchedCourseCodes = new Set(
+    status.matchedCourses
+      .map((course) => normalizeCourseCode(course.code))
+      .filter(Boolean)
+  );
+  const labels: string[] = [];
+
+  for (const [optionIndex, option] of group.options.entries()) {
+    const optionId = getRequirementOptionId(status.item, option, optionIndex);
+    if (selectedOptionIds.size && !selectedOptionIds.has(optionId)) {
+      continue;
+    }
+
+    const concreteCompoundComponents = (option.compoundComponents ?? [])
+      .map((component) =>
+        unique(
+          component
+            .map((courseCode) => normalizeCourseCode(courseCode))
+            .filter((courseCode) => Boolean(courseCode && hasConcreteGrcCourseCode(courseCode)))
+        )
+      )
+      .filter((component) => component.length > 0);
+
+    if (concreteCompoundComponents.length) {
+      for (const component of concreteCompoundComponents) {
+        const remainingComponentCodes = component.filter(
+          (courseCode) => !matchedCourseCodes.has(courseCode)
+        );
+        if (remainingComponentCodes.length) {
+          labels.push(...remainingComponentCodes);
+        }
+      }
+      continue;
+    }
+
+    labels.push(
+      ...getRequirementOptionSchedulableCourseLabels(status.item, option).filter((label) => {
+        const courseCodes = extractCourseCodes(label)
+          .map((courseCode) => normalizeCourseCode(courseCode))
+          .filter(Boolean);
+        return (
+          !courseCodes.length ||
+          courseCodes.some((courseCode) => !matchedCourseCodes.has(courseCode))
+        );
+      })
+    );
+  }
+
+  return unique(labels.map((label) => String(label ?? "").trim()).filter(Boolean));
+}
+
 function buildRemainingSuggestedCourses(
   sections: {
     bucket: RequirementPriorityBucket;
@@ -16020,8 +16162,12 @@ function buildRemainingSuggestedCourses(
         status.requiredCompletedCount < status.explicitCourseCodes.length
           ? Math.max(1, status.requiredCompletedCount - status.matchedCourses.length)
           : status.explicitCourseCodes.length;
+      const allRequiredCompoundCourseLabels =
+        getAllRequiredCompoundCourseLabelsForPlanner(status);
       const labelsToSchedule = !missingExplicitCodes.length
         ? [status.item.grcCourses[0] ?? status.item.title]
+        : allRequiredCompoundCourseLabels.length
+          ? allRequiredCompoundCourseLabels
         : status.requiredCompletedCount < status.explicitCourseCodes.length
           ? missingExplicitCodes.slice(0, remainingNeeded)
           : missingExplicitCodes;
@@ -18761,7 +18907,7 @@ function getSuggestedCourseOptionIdsScheduledByCourses(input: {
       ? input.scheduledCourseCodes
       : new Set(
           input.scheduledCourses
-            .filter((course) => !course.optionGroup)
+            .filter((course) => input.includeNonSourceBackedScheduledCourses || !course.optionGroup)
             .filter(
               (course) =>
                 input.includeNonSourceBackedScheduledCourses ||
@@ -18781,7 +18927,7 @@ function getSuggestedCourseOptionIdsScheduledByCourses(input: {
       ? scheduledCourseCodes
       : new Set(
           input.scheduledCourses
-            .filter((course) => !course.optionGroup)
+            .filter((course) => input.includeNonSourceBackedScheduledCourses || !course.optionGroup)
             .filter(
               (course) =>
                 input.includeNonSourceBackedScheduledCourses ||

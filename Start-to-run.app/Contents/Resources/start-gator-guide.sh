@@ -13,8 +13,11 @@ LOG_PREFIX="[Start-to-run]"
 
 SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
 SCRIPT_DIR="$(cd -- "$(dirname -- "$SCRIPT_SOURCE")" && pwd)"
-ROOT_DIR="$SCRIPT_DIR"
+APP_BUNDLE_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+ROOT_DIR="$(cd -- "$APP_BUNDLE_DIR/.." && pwd)"
 APP_DIR="$ROOT_DIR/source"
+PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
+export PATH
 
 log() {
   printf '%s %s\n' "$LOG_PREFIX" "$*"
@@ -212,11 +215,41 @@ ensure_app_dependencies() {
   fi
 
   log "Installing app dependencies. This may take a few minutes..."
+  if ! (
+    cd "$APP_DIR"
+    npm ci
+  ); then
+    log "npm ci failed, trying npm install instead..."
+    (
+      cd "$APP_DIR"
+      npm install
+    ) || fail "Installing app dependencies failed."
+  fi
+  log "App dependencies installed successfully."
+}
+
+sync_expo_packages() {
+  log "Checking Expo package compatibility..."
+  if (
+    cd "$APP_DIR"
+    npx expo install --check >/dev/null 2>&1
+  ); then
+    log "Expo packages are already compatible with this SDK."
+    return
+  fi
+
+  log "Updating Expo-managed packages for this SDK..."
   (
     cd "$APP_DIR"
-    npm ci || npm install
-  )
-  log "App dependencies installed successfully."
+    npx expo install --fix --npm
+  ) || {
+    printf '%s %s\n' "$LOG_PREFIX" "Expo package update failed." >&2
+    printf '%s %s\n' "$LOG_PREFIX" "Run \`npx expo install --fix --npm\` manually from:" >&2
+    printf '%s %s\n' "$LOG_PREFIX" "$APP_DIR" >&2
+    exit 1
+  }
+
+  log "Expo packages updated successfully."
 }
 
 wait_for_server() {
@@ -273,6 +306,7 @@ main() {
   ensure_node_toolchain
   ensure_env_file
   ensure_app_dependencies
+  sync_expo_packages
 
   log "Starting Expo..."
   log "The Expo page will open in your default browser when it is ready."

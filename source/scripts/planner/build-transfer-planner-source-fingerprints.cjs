@@ -513,6 +513,63 @@ function hasNoUsableParsedCourses(entry) {
   return (entry?.parsedUwCourseCodeCount ?? 0) === 0;
 }
 
+function isParentPlanRequirementFingerprint(entry) {
+  const ownerId = String(entry?.ownerId ?? "").trim();
+  const planId = String(entry?.planId ?? "").trim();
+  return Boolean(ownerId && planId && ownerId === planId && !entry?.pathwayId);
+}
+
+function isChildPathwayRequirementFingerprint(entry, planId) {
+  const ownerId = String(entry?.ownerId ?? "").trim();
+  const entryPlanId = String(entry?.planId ?? "").trim();
+  if (!ownerId || !planId || entryPlanId !== planId || ownerId === planId) {
+    return false;
+  }
+
+  return Boolean(entry?.pathwayId) || ownerId.startsWith(`${planId}:pathway:`);
+}
+
+function buildPlanChildPathwayCoverage(requirementSourceFingerprints) {
+  const coverageByPlanId = new Map();
+  for (const entry of requirementSourceFingerprints ?? []) {
+    const planId = String(entry?.planId ?? "").trim();
+    if (!isChildPathwayRequirementFingerprint(entry, planId)) {
+      continue;
+    }
+    if (isSupportOnlyRequirementFingerprint(entry) || (entry.parsedUwCourseCodeCount ?? 0) <= 0) {
+      continue;
+    }
+
+    const coverage = coverageByPlanId.get(planId) ?? {
+      childOwnerIds: new Set(),
+      parsedUwCourseCodeCount: 0,
+    };
+    coverage.childOwnerIds.add(entry.ownerId);
+    coverage.parsedUwCourseCodeCount += entry.parsedUwCourseCodeCount ?? 0;
+    coverageByPlanId.set(planId, coverage);
+  }
+
+  return new Map(
+    [...coverageByPlanId.entries()].map(([planId, coverage]) => [
+      planId,
+      {
+        childOwnerIds: [...coverage.childOwnerIds].sort((left, right) => left.localeCompare(right)),
+        parsedUwCourseCodeCount: coverage.parsedUwCourseCodeCount,
+      },
+    ])
+  );
+}
+
+function getChildPathwayCoverageForParent(entry, planChildPathwayCoverageByPlanId) {
+  if (!isParentPlanRequirementFingerprint(entry) || (entry?.parsedUwCourseCodeCount ?? 0) > 0) {
+    return null;
+  }
+
+  const planId = String(entry?.planId ?? "").trim();
+  const coverage = planChildPathwayCoverageByPlanId?.get(planId) ?? null;
+  return coverage?.childOwnerIds?.length ? coverage : null;
+}
+
 function parseConfidenceRank(value) {
   switch (value) {
     case "high":
@@ -594,7 +651,7 @@ function isCurrentYearSiblingPromotion(previousEntry, currentEntry) {
   );
 }
 
-function classifyActionStatus(category, previousEntry, currentEntry, courseDelta) {
+function classifyActionStatus(category, previousEntry, currentEntry, courseDelta, options = {}) {
   if (category === "support-only-source-changed") {
     return "generated-evidence-only";
   }
@@ -602,6 +659,9 @@ function classifyActionStatus(category, previousEntry, currentEntry, courseDelta
     return "needs-discovery-rule";
   }
   if (category === "source-structure-changed") {
+    if (options.childPathwayCoverage) {
+      return "generated-evidence-only";
+    }
     return currentEntry?.qualityWarningCount > previousEntry?.qualityWarningCount
       ? "needs-parser-rule"
       : "auto-applied";
@@ -618,7 +678,7 @@ function classifyActionStatus(category, previousEntry, currentEntry, courseDelta
   return "auto-applied";
 }
 
-function recommendedActionsForChange(category, currentEntry) {
+function recommendedActionsForChange(category, currentEntry, options = {}) {
   switch (category) {
     case "new-course-added":
       return [
@@ -637,6 +697,13 @@ function recommendedActionsForChange(category, currentEntry) {
         "source-fingerprint-refresh",
       ];
     case "source-structure-changed":
+      if (options.childPathwayCoverage) {
+        return [
+          "preserve-parent-overview-evidence",
+          "targeted-requirement-parse",
+          "source-fingerprint-refresh",
+        ];
+      }
       return [
         "targeted-parser-recovery",
         "targeted-requirement-parse",
@@ -675,8 +742,16 @@ function buildSourceChangeRecord(input) {
     courseDelta,
     signalDelta,
     reason,
+    childPathwayCoverage,
   } = input;
   const effectiveEntry = currentEntry ?? previousEntry;
+  const actionStatus = classifyActionStatus(
+    category,
+    previousEntry ?? {},
+    currentEntry ?? {},
+    courseDelta,
+    { childPathwayCoverage }
+  );
 
   return {
     changeType: category,
@@ -711,12 +786,17 @@ function buildSourceChangeRecord(input) {
       currentChooseStatementCount: currentEntry?.chooseStatementCount ?? null,
     },
     qualitySignalDelta: signalDelta,
-    recommendedAction: recommendedActionsForChange(category, currentEntry ?? previousEntry),
-    actionStatus: classifyActionStatus(category, previousEntry ?? {}, currentEntry ?? {}, courseDelta),
-    autoApplied:
-      ["auto-applied", "generated-evidence-only"].includes(
-        classifyActionStatus(category, previousEntry ?? {}, currentEntry ?? {}, courseDelta)
-      ),
+    childPathwayCoverage: childPathwayCoverage
+      ? {
+          childOwnerIds: childPathwayCoverage.childOwnerIds,
+          parsedUwCourseCodeCount: childPathwayCoverage.parsedUwCourseCodeCount,
+        }
+      : null,
+    recommendedAction: recommendedActionsForChange(category, currentEntry ?? previousEntry, {
+      childPathwayCoverage,
+    }),
+    actionStatus,
+    autoApplied: ["auto-applied", "generated-evidence-only"].includes(actionStatus),
     reason,
   };
 }
@@ -731,6 +811,7 @@ function buildRequirementChangeRecords(input) {
     currentEntry,
     previousSourceResource,
     currentSourceResource,
+    planChildPathwayCoverageByPlanId,
   } = input;
   const previousCodes = normalizeCourseCodes(previousEntry?.parsedUwCourseCodes ?? []);
   const currentCodes = normalizeCourseCodes(currentEntry?.parsedUwCourseCodes ?? []);
@@ -739,6 +820,10 @@ function buildRequirementChangeRecords(input) {
   const records = [];
   const currentIsSupportOnly = isSupportOnlyRequirementFingerprint(currentEntry);
   const previousIsSupportOnly = isSupportOnlyRequirementFingerprint(previousEntry);
+  const currentChildPathwayCoverage = getChildPathwayCoverageForParent(
+    currentEntry,
+    planChildPathwayCoverageByPlanId
+  );
 
   if (currentIsSupportOnly || previousIsSupportOnly) {
     if (
@@ -837,7 +922,10 @@ function buildRequirementChangeRecords(input) {
         courseDelta,
         signalDelta,
         reason:
-          "Parsed structure, parser confidence, requirement cues, headings, or quality warnings changed materially.",
+          currentChildPathwayCoverage
+            ? "Parent overview structure changed, but same-plan child pathway sources provide schedulable requirement coverage."
+            : "Parsed structure, parser confidence, requirement cues, headings, or quality warnings changed materially.",
+        childPathwayCoverage: currentChildPathwayCoverage,
       })
     );
   }
@@ -875,6 +963,7 @@ function buildSourceOnlyChangeRecords(input) {
     currentSourceByUrl,
     previousRequirementByOwnerId,
     currentRequirementByOwnerId,
+    planChildPathwayCoverageByPlanId,
   } = input;
   const records = [];
   const changedRequirementOwnerIds = new Set(
@@ -919,6 +1008,10 @@ function buildSourceOnlyChangeRecords(input) {
           signalDelta: getQualitySignalDelta(previousEntry, currentEntry),
           reason:
             "Official source resource fingerprint changed while parsed requirement facts stayed stable.",
+          childPathwayCoverage: getChildPathwayCoverageForParent(
+            currentEntry,
+            planChildPathwayCoverageByPlanId
+          ),
         })
       );
     }
@@ -957,6 +1050,8 @@ function buildSourceChangeClassificationReport(input) {
   const currentRequirementByOwnerId = mapBy(requirementSourceFingerprints, "ownerId");
   const previousSourceByUrl = mapBy(previousFingerprints.sourceFingerprints, "url");
   const currentSourceByUrl = mapBy(sourceFingerprints, "url");
+  const planChildPathwayCoverageByPlanId =
+    buildPlanChildPathwayCoverage(requirementSourceFingerprints);
   const records = [];
 
   for (const currentEntry of [...(requirementDiff.changed ?? []), ...(requirementDiff.added ?? [])]) {
@@ -983,6 +1078,10 @@ function buildSourceChangeClassificationReport(input) {
           courseDelta,
           signalDelta: { added: currentEntry.qualitySignalCodes ?? [], removed: [] },
           reason: "New parsed requirement-source fingerprint appeared for this owner.",
+          childPathwayCoverage: getChildPathwayCoverageForParent(
+            currentEntry,
+            planChildPathwayCoverageByPlanId
+          ),
         })
       );
       continue;
@@ -994,6 +1093,7 @@ function buildSourceChangeClassificationReport(input) {
         currentEntry,
         previousSourceResource,
         currentSourceResource,
+        planChildPathwayCoverageByPlanId,
       })
     );
   }
@@ -1025,6 +1125,7 @@ function buildSourceChangeClassificationReport(input) {
       currentSourceByUrl,
       previousRequirementByOwnerId,
       currentRequirementByOwnerId,
+      planChildPathwayCoverageByPlanId,
     })
   );
 
@@ -1270,6 +1371,11 @@ function writeSourceChangeClassificationReport(report) {
       const warningAfter =
         change.currentFingerprintSummary?.qualitySignalCodes?.join(", ") || "none";
       lines.push(`- Quality signals: ${warningBefore} -> ${warningAfter}`);
+      if (change.childPathwayCoverage?.childOwnerIds?.length) {
+        lines.push(
+          `- Child pathway coverage: ${change.childPathwayCoverage.childOwnerIds.length} owner(s), ${change.childPathwayCoverage.parsedUwCourseCodeCount} parsed UW course code(s)`
+        );
+      }
       lines.push(
         `- Fingerprint: ${
           change.previousFingerprintSummary?.requirementFingerprint ?? "n/a"

@@ -30,7 +30,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",
@@ -141,7 +141,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",
@@ -200,6 +200,36 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
   },
   {
     "ownerType": "major",
+    "ownerId": "uw-seattle-chemistry",
+    "ownerKey": "uw-seattle-chemistry",
+    "planId": "uw-seattle-chemistry",
+    "pathwayId": null,
+    "ownerTitle": "Chemistry",
+    "campusId": "uw-seattle",
+    "url": "https://chem.washington.edu/ba-chemistry",
+    "label": "Scoped section: BA Chemistry Checklist (PDF)",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 113,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "checklist-style wording",
+      "explicitly names the selected major",
+      "matches major keyword \"chemistry\"",
+      "official source path matches the selected major",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-22T04:47:33.185Z"
+  },
+  {
+    "ownerType": "major",
     "ownerId": "uw-seattle-computer-engineering",
     "ownerKey": "uw-seattle-computer-engineering",
     "planId": "uw-seattle-computer-engineering",
@@ -230,7 +260,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",
@@ -333,7 +363,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -369,7 +399,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -405,7 +435,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -440,7 +470,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -475,7 +505,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -513,7 +543,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -543,7 +573,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "stays on the same department or school page",
       "Replaces existing primary https://english.washington.edu/english-composition-strategies after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",
@@ -618,7 +648,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -657,7 +687,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",
@@ -714,7 +744,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "pathway",
@@ -751,7 +781,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",
@@ -817,7 +847,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-21T15:57:04.779Z"
+    "generatedAt": "2026-05-22T04:47:33.185Z"
   },
   {
     "ownerType": "major",

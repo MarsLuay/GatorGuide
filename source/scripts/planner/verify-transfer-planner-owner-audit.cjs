@@ -30,6 +30,9 @@ const {
 const {
   normalizeTransferPlannerSemanticPathwayLabel,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
+const {
+  getTransferPlannerStudentRuntimeAliasCoverage,
+} = require("../../constants/transfer-planner-source/student-runtime");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -45,6 +48,12 @@ const SUPPORT_ONLY_PRIMARY_SOURCE_ROLES = new Set([
   "non-schedulable-course-list",
   "support-source",
   "upper-division-prerequisite-table",
+]);
+const NON_ACTIONABLE_NON_SCHEDULABLE_SYMPTOM_CODES = new Set([
+  "missing-runtime-base-plan",
+  "missing-runtime-resolved-plan",
+  "no-runtime-schedulable-grc-rows",
+  "no-parsed-uw-course-codes",
 ]);
 
 function getArgValue(flag) {
@@ -106,6 +115,83 @@ function isCoveredBySourceGap(owner) {
   );
 }
 
+function parsedSourceBlockCanCreateSchedulableRows(block) {
+  const sourceRoleStatus = String(block?.sourceRoleStatus ?? "").trim();
+  return (
+    block?.canCreateSchedulableRows !== false &&
+    block?.supportOnly !== true &&
+    block?.nonSchedulable !== true &&
+    sourceRoleStatus === "primary"
+  );
+}
+
+function parsedSourceBlockIsNonSchedulable(block) {
+  const sourceRoleStatus = String(block?.sourceRoleStatus ?? "").trim();
+  return (
+    block?.canCreateSchedulableRows === false ||
+    block?.nonSchedulable === true ||
+    ["non-schedulable", "ignored"].includes(sourceRoleStatus)
+  );
+}
+
+function parsedSourceBlockIsCoveredByChildPathwayRequirements(owner, parsedBlocksByOwnerId) {
+  if (owner.pathwayId) {
+    return false;
+  }
+
+  const childBlocks = [...parsedBlocksByOwnerId.values()].filter(
+    (block) =>
+      block?.planId === owner.planId &&
+      block?.pathwayId &&
+      block?.ok &&
+      parsedSourceBlockCanCreateSchedulableRows(block) &&
+      (block.parsedUwCourseCodes ?? []).length > 0
+  );
+  if (!childBlocks.length) {
+    return false;
+  }
+
+  const overviewText = [
+    owner.title,
+    childBlocks.map((block) => block.pathwayId).join(" "),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return /\b(options?|tracks?|routes?|pathways?|concentrations?)\b/.test(overviewText);
+}
+
+function shouldWarnOnNoParsedUwCourseCodes(owner, parsedBlock, parsedBlocksByOwnerId) {
+  if (!parsedBlock?.ok || (parsedBlock.parsedUwCourseCodes ?? []).length > 0) {
+    return false;
+  }
+  if (!parsedSourceBlockCanCreateSchedulableRows(parsedBlock)) {
+    return false;
+  }
+  return !parsedSourceBlockIsCoveredByChildPathwayRequirements(owner, parsedBlocksByOwnerId);
+}
+
+function buildRuntimeAliasOwnerId(runtimeAliasCoverage) {
+  if (!runtimeAliasCoverage?.parentPlanId) {
+    return null;
+  }
+  return buildParsedBlockOwnerId(
+    runtimeAliasCoverage.parentPlanId,
+    runtimeAliasCoverage.parentPathwayId ?? null
+  );
+}
+
+function getRuntimeAliasManifestEntries(runtimeAliasCoverage) {
+  if (!runtimeAliasCoverage?.parentPlanId) {
+    return [];
+  }
+  return getTransferPlannerSourceManifestEntriesForPlan(
+    runtimeAliasCoverage.parentPlanId,
+    runtimeAliasCoverage.parentPathwayId ?? null
+  );
+}
+
 function normalizePathwayAliasLabel(planTitle, label) {
   return normalizeTransferPlannerSemanticPathwayLabel(planTitle, label)
     .toLowerCase()
@@ -139,6 +225,170 @@ function findPathwayOwnerAliases(owner, planTitle) {
   );
 
   return [...aliasOwnerIds];
+}
+
+function getParsedBlockSourceUrl(block) {
+  return block?.primarySourceUrl ?? block?.sourceUrl ?? null;
+}
+
+function buildParsedBlockSourceEvidenceEntry(block) {
+  if (!block?.ok || !parsedSourceBlockCanCreateSchedulableRows(block)) {
+    return null;
+  }
+
+  const url = getParsedBlockSourceUrl(block);
+  if (!url) {
+    return null;
+  }
+
+  return {
+    ownerId: block.ownerId,
+    ownerType: block.pathwayId ? "pathway" : "major",
+    planId: block.planId,
+    pathwayId: block.pathwayId ?? null,
+    campusId: block.campusId,
+    label: block.sourceLabel ?? block.primarySourceLabel ?? block.ownerTitle ?? block.ownerId,
+    url,
+    role: block.sourceRole ?? "primary-degree-requirements",
+    parserType: block.parserType ?? block.primaryParserType ?? null,
+    isPrimaryDegreeRequirementsLink: true,
+  };
+}
+
+function findChildPathwayParsedBlocks(owner, parsedBlocksByOwnerId) {
+  if (owner.pathwayId) {
+    return [];
+  }
+
+  return [...parsedBlocksByOwnerId.values()].filter(
+    (block) =>
+      block?.planId === owner.planId &&
+      block?.pathwayId &&
+      block?.ok &&
+      parsedSourceBlockCanCreateSchedulableRows(block)
+  );
+}
+
+function findPathwayParsedBlockAliases(owner, planTitle, parsedBlocksByOwnerId) {
+  if (!owner.pathwayId || !owner.pathwayLabel) {
+    return [];
+  }
+
+  const normalizedOwnerLabel = normalizePathwayAliasLabel(planTitle, owner.pathwayLabel);
+  if (!normalizedOwnerLabel) {
+    return [];
+  }
+
+  return [...parsedBlocksByOwnerId.values()].filter((block) => {
+    if (block?.planId !== owner.planId || !block?.pathwayId || !block?.ok) {
+      return false;
+    }
+
+    const candidateLabels = [
+      block.pathwayId,
+      block.ownerTitle,
+      ...(Array.isArray(block.pathwayLabels) ? block.pathwayLabels : []),
+    ]
+      .map((label) => normalizePathwayAliasLabel(planTitle, label))
+      .filter(Boolean);
+
+    return candidateLabels.some(
+      (label) =>
+        label === normalizedOwnerLabel ||
+        label.includes(normalizedOwnerLabel) ||
+        normalizedOwnerLabel.includes(label)
+    );
+  });
+}
+
+const GENERIC_OWNER_ALIAS_TOKENS = new Set([
+  "a",
+  "and",
+  "ba",
+  "bs",
+  "degree",
+  "general",
+  "in",
+  "major",
+  "of",
+  "option",
+  "pathway",
+  "program",
+  "route",
+  "the",
+  "track",
+]);
+
+function tokenizeOwnerAlias(value) {
+  return [
+    ...new Set(
+      String(value ?? "")
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .map((token) => token.trim())
+        .filter((token) => token && !GENERIC_OWNER_ALIAS_TOKENS.has(token))
+    ),
+  ];
+}
+
+function findPlanOwnerPathwayAliasCoverage(owner, parsedBlocksByOwnerId) {
+  if (owner.pathwayId) {
+    return null;
+  }
+
+  const ownerTokens = tokenizeOwnerAlias(owner.title);
+  if (!ownerTokens.length) {
+    return null;
+  }
+  const ownerTokenSet = new Set(ownerTokens);
+  let best = null;
+
+  for (const candidatePlan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+    if (candidatePlan.id === owner.planId || candidatePlan.campusId !== owner.campusId) {
+      continue;
+    }
+
+    const candidatePlanTokens = tokenizeOwnerAlias(candidatePlan.title);
+    const sharedPlanTokens = candidatePlanTokens.filter((token) => ownerTokenSet.has(token));
+    if (!sharedPlanTokens.length) {
+      continue;
+    }
+
+    for (const candidatePathway of getTransferPlannerPathwaysForPlan(candidatePlan)) {
+      const pathwayTokens = tokenizeOwnerAlias(candidatePathway.label);
+      if (!pathwayTokens.length || !pathwayTokens.every((token) => ownerTokenSet.has(token))) {
+        continue;
+      }
+
+      const aliasOwnerId = buildParsedBlockOwnerId(candidatePlan.id, candidatePathway.id);
+      const manifestEntries = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+        (entry) => entry.ownerId === aliasOwnerId
+      );
+      const parsedBlock = parsedBlocksByOwnerId.get(aliasOwnerId) ?? null;
+      if (
+        !manifestEntries.some((entry) => entry.isPrimaryDegreeRequirementsLink) &&
+        !buildParsedBlockSourceEvidenceEntry(parsedBlock)
+      ) {
+        continue;
+      }
+
+      const score = sharedPlanTokens.length * 10 + pathwayTokens.length * 20;
+      if (!best || score > best.score) {
+        best = {
+          score,
+          ownerId: aliasOwnerId,
+          planId: candidatePlan.id,
+          pathwayId: candidatePathway.id,
+          manifestEntries,
+          parsedBlock,
+        };
+      }
+    }
+  }
+
+  return best;
 }
 
 function parseUrlOrNull(value) {
@@ -393,20 +643,6 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner, isKnow
     if (missingRuntimeResolvedPlan) {
       groupedSymptomCodes.add("missing-runtime-resolved-plan");
     }
-    addIssue(
-      rootIssues,
-      "warning",
-      "source-owner-not-runtime-schedulable",
-      "Source owner has no Green River schedulable course rows, so it is not expected to produce a student runtime plan until schedulable transfer rows exist.",
-      {
-        ownerId,
-        symptoms: [
-          "no-runtime-schedulable-grc-rows",
-          ...(missingRuntimeBasePlan ? ["missing-runtime-base-plan"] : []),
-          ...(missingRuntimeResolvedPlan ? ["missing-runtime-resolved-plan"] : []),
-        ],
-      }
-    );
   }
 
   for (const issue of symptomIssues) {
@@ -592,6 +828,12 @@ function main() {
     const aliasManifestEntries = aliasOwnerIds.flatMap((aliasOwnerId) =>
       TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter((entry) => entry.ownerId === aliasOwnerId)
     );
+    const planOwnerAliasCoverage = findPlanOwnerPathwayAliasCoverage(owner, parsedBlocksByOwnerId);
+    const planOwnerAliasManifestEntries = planOwnerAliasCoverage?.manifestEntries ?? [];
+    const effectiveAliasManifestEntries = [
+      ...aliasManifestEntries,
+      ...planOwnerAliasManifestEntries,
+    ];
     if (!basePlan) {
       addIssue(
         symptomIssues,
@@ -616,7 +858,16 @@ function main() {
     }
     const sourceSchedulableGrcCourseLabelCount = getSchedulableGrcCourseLabelCount(resolvedPlan);
 
-    const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan(owner.planId);
+    const runtimeAliasCoverage = getTransferPlannerStudentRuntimeAliasCoverage(
+      owner.planId,
+      owner.pathwayId
+    );
+    const runtimeAliasOwnerId = buildRuntimeAliasOwnerId(runtimeAliasCoverage);
+    const runtimeAliasManifestEntries = getRuntimeAliasManifestEntries(runtimeAliasCoverage);
+    const runtimeBasePlan =
+      getTransferPlannerStudentRuntimeMajorPlan(owner.planId) ??
+      runtimeAliasCoverage?.parentPlan ??
+      null;
     if (!runtimeBasePlan) {
       addIssue(
         symptomIssues,
@@ -634,11 +885,13 @@ function main() {
       );
     }
 
-    const runtimeResolvedPlan = runtimeBasePlan
-      ? owner.pathwayId
-        ? resolveTransferPlannerStudentRuntimeMajorPlan(runtimeBasePlan, owner.pathwayId)
-        : runtimeBasePlan
-      : null;
+    const runtimeResolvedPlan =
+      runtimeAliasCoverage?.resolvedPlan ??
+      (runtimeBasePlan
+        ? owner.pathwayId
+          ? resolveTransferPlannerStudentRuntimeMajorPlan(runtimeBasePlan, owner.pathwayId)
+          : runtimeBasePlan
+        : null);
     if (!runtimeResolvedPlan) {
       addIssue(
         symptomIssues,
@@ -652,9 +905,85 @@ function main() {
       owner.planId,
       owner.pathwayId
     );
+    const runtimeAliasPrimarySource = runtimeAliasCoverage?.parentPlanId
+      ? getTransferPlannerPrimaryDegreeRequirementsSource(
+          runtimeAliasCoverage.parentPlanId,
+          runtimeAliasCoverage.parentPathwayId ?? null
+        )
+      : null;
+    const manifestEntries = getTransferPlannerSourceManifestEntriesForPlan(
+      owner.planId,
+      owner.pathwayId
+    );
+    const planPrimaryManifestEntries = owner.pathwayId
+      ? getTransferPlannerSourceManifestEntriesForPlan(owner.planId, null).filter(
+          (entry) =>
+            entry.isPrimaryDegreeRequirementsLink &&
+            !SUPPORT_ONLY_PRIMARY_SOURCE_ROLES.has(entry.role)
+        )
+      : [];
+    const directOrAliasManifestEntries =
+      (manifestEntries ?? []).length > 0
+        ? manifestEntries
+        : effectiveAliasManifestEntries.length > 0
+          ? effectiveAliasManifestEntries
+          : runtimeAliasManifestEntries;
+    const directPrimaryManifestEntry = directOrAliasManifestEntries.find(
+      (entry) => entry.isPrimaryDegreeRequirementsLink
+    );
+    const pathwayParsedBlockAliases = owner.pathwayId && basePlan
+      ? findPathwayParsedBlockAliases(owner, basePlan.title, parsedBlocksByOwnerId)
+      : [];
+    const parentParsedBlock = owner.pathwayId
+      ? parsedBlocksByOwnerId.get(buildParsedBlockOwnerId(owner.planId, null)) ??
+        planPrimaryManifestEntries
+          .map((entry) => parsedBlocksByPlanSourceKey.get(buildManifestPlanSourceKey(entry)))
+          .find(Boolean) ??
+        null
+      : null;
+    const childPathwayParsedBlocks = findChildPathwayParsedBlocks(owner, parsedBlocksByOwnerId);
+    const parsedBlock =
+      parsedBlocksByOwnerId.get(owner.ownerId) ??
+      (runtimeAliasOwnerId ? parsedBlocksByOwnerId.get(runtimeAliasOwnerId) : null) ??
+      aliasOwnerIds.map((aliasOwnerId) => parsedBlocksByOwnerId.get(aliasOwnerId)).find(Boolean) ??
+      planOwnerAliasCoverage?.parsedBlock ??
+      pathwayParsedBlockAliases.find(Boolean) ??
+      (directPrimaryManifestEntry
+        ? parsedBlocksByPlanSourceKey.get(buildManifestPlanSourceKey(directPrimaryManifestEntry))
+        : null) ??
+      planPrimaryManifestEntries
+        .map((entry) => parsedBlocksByPlanSourceKey.get(buildManifestPlanSourceKey(entry)))
+        .find(Boolean) ??
+      childPathwayParsedBlocks.find(Boolean) ??
+      parentParsedBlock ??
+      null;
+    const parsedBlockEvidenceEntry = buildParsedBlockSourceEvidenceEntry(parsedBlock);
+    const childParsedBlockEvidenceEntry = childPathwayParsedBlocks
+      .map(buildParsedBlockSourceEvidenceEntry)
+      .find(Boolean);
+    const parentParsedBlockEvidenceEntry = buildParsedBlockSourceEvidenceEntry(parentParsedBlock);
+    const inheritedEvidenceEntries = [
+      parsedBlockEvidenceEntry,
+      childParsedBlockEvidenceEntry,
+      ...planPrimaryManifestEntries,
+      parentParsedBlockEvidenceEntry,
+    ].filter(Boolean);
+    const effectiveManifestEntries =
+      directOrAliasManifestEntries.length > 0
+        ? [...directOrAliasManifestEntries, ...inheritedEvidenceEntries]
+        : inheritedEvidenceEntries;
+    const primaryManifestEntry = effectiveManifestEntries.find(
+      (entry) => entry.isPrimaryDegreeRequirementsLink
+    );
     const effectivePrimarySourceUrl =
       primarySource?.url ??
-      aliasManifestEntries.find((entry) => entry.isPrimaryDegreeRequirementsLink)?.url ??
+      effectiveAliasManifestEntries.find((entry) => entry.isPrimaryDegreeRequirementsLink)?.url ??
+      runtimeAliasPrimarySource?.url ??
+      runtimeAliasManifestEntries.find((entry) => entry.isPrimaryDegreeRequirementsLink)?.url ??
+      primaryManifestEntry?.url ??
+      getParsedBlockSourceUrl(parsedBlock) ??
+      childParsedBlockEvidenceEntry?.url ??
+      parentParsedBlockEvidenceEntry?.url ??
       null;
     if (!effectivePrimarySourceUrl) {
       addIssue(
@@ -684,12 +1013,6 @@ function main() {
       }
     }
 
-    const manifestEntries = getTransferPlannerSourceManifestEntriesForPlan(
-      owner.planId,
-      owner.pathwayId
-    );
-    const effectiveManifestEntries =
-      (manifestEntries ?? []).length > 0 ? manifestEntries : aliasManifestEntries;
     if ((effectiveManifestEntries ?? []).length === 0) {
       addIssue(
         symptomIssues,
@@ -721,16 +1044,6 @@ function main() {
       }
     }
 
-    const primaryManifestEntry = effectiveManifestEntries.find(
-      (entry) => entry.isPrimaryDegreeRequirementsLink
-    );
-    const parsedBlock =
-      parsedBlocksByOwnerId.get(owner.ownerId) ??
-      aliasOwnerIds.map((aliasOwnerId) => parsedBlocksByOwnerId.get(aliasOwnerId)).find(Boolean) ??
-      (primaryManifestEntry
-        ? parsedBlocksByPlanSourceKey.get(buildManifestPlanSourceKey(primaryManifestEntry))
-        : null) ??
-      null;
     if (!parsedBlock) {
       addIssue(
         symptomIssues,
@@ -764,7 +1077,10 @@ function main() {
       const parsedUwCourseCodeCount = Array.isArray(parsedBlock.parsedUwCourseCodes)
         ? parsedBlock.parsedUwCourseCodes.length
         : 0;
-      if (parsedUwCourseCodeCount === 0) {
+      if (
+        parsedUwCourseCodeCount === 0 &&
+        shouldWarnOnNoParsedUwCourseCodes(owner, parsedBlock, parsedBlocksByOwnerId)
+      ) {
         addIssue(
           symptomIssues,
           "warning",
@@ -779,10 +1095,16 @@ function main() {
       sourceOnlyUwCourseCodeCount = parsedSourceOnlyUwCourseCodeCount;
     }
 
-    symptomIssues.sort(compareIssues);
+    const effectiveSymptomIssues = parsedSourceBlockIsNonSchedulable(parsedBlock)
+      ? symptomIssues.filter(
+          (issue) => !NON_ACTIONABLE_NON_SCHEDULABLE_SYMPTOM_CODES.has(issue.code)
+        )
+      : symptomIssues;
+
+    effectiveSymptomIssues.sort(compareIssues);
     const rootIssues = collapseOwnerIssues(
       owner.ownerId,
-      symptomIssues,
+      effectiveSymptomIssues,
       isAutoPromotedPrimarySource,
       isCoveredBySourceGap(owner)
     );
@@ -793,9 +1115,9 @@ function main() {
       primarySourceUrl: effectivePrimarySourceUrl,
       sourceOnlyUwCourseCodeCount,
       issueCounts: buildCountsBySeverity(rootIssues),
-      symptomIssueCounts: buildCountsBySeverity(symptomIssues),
+      symptomIssueCounts: buildCountsBySeverity(effectiveSymptomIssues),
       rootIssues,
-      symptomIssues,
+      symptomIssues: effectiveSymptomIssues,
     };
   });
 
