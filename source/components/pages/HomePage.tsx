@@ -3,7 +3,7 @@ import { View, Text, ScrollView, useWindowDimensions, Linking, Image, type Dimen
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, routeWithReturnTo } from "@/constants/routes";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
@@ -136,12 +136,7 @@ export default function HomePage() {
     : t("home.student");
 
   const openCalendar = useCallback(() => {
-    router.push(
-      {
-        pathname: ROUTES.calendar,
-        params: { returnTo: ROUTES.root },
-      } as never
-    );
+    router.push(routeWithReturnTo(ROUTES.calendar, ROUTES.root));
   }, [router]);
   const desktopRoadmapSeed = useMemo(
     () =>
@@ -470,40 +465,40 @@ export default function HomePage() {
   const tourSteps = useMemo<HomeTourStep[]>(() => [
     {
       id: "planning",
-      title: "Planning Snapshot",
-      description: "This area tracks transfer tasks, deadlines, and your next steps in one place.",
+      title: t("home.tourPlanningTitle"),
+      description: t("home.tourPlanningDescription"),
       x: tourCardLeft + tourCardWidth * 0.5,
       y: topAnchor + 360,
     },
     {
       id: "tab-home",
-      title: "Home",
-      description: "Home is your main page for tasks, deadlines, and your planning snapshot.",
+      title: t("navigation.home"),
+      description: t("home.tourHomeDescription"),
       x: screenWidth * 0.125,
       y: tabAnchorY,
     },
     {
       id: "tab-resources",
-      title: "Resources",
-      description: "Resources gives you useful links, tools, and planning references.",
+      title: t("navigation.resources"),
+      description: t("home.tourResourcesDescription"),
       x: screenWidth * 0.375,
       y: tabAnchorY,
     },
     {
       id: "tab-profile",
-      title: "Profile",
-      description: "Profile contains your academic details used for personalization.",
+      title: t("navigation.profile"),
+      description: t("home.tourProfileDescription"),
       x: screenWidth * 0.625,
       y: tabAnchorY,
     },
     {
       id: "tab-settings",
-      title: "Settings",
-      description: "Settings lets you manage preferences, language, account actions, and legal pages.",
+      title: t("navigation.settings"),
+      description: t("home.tourSettingsDescription"),
       x: screenWidth * 0.875,
       y: tabAnchorY,
     },
-  ], [screenWidth, tabAnchorY, tourCardLeft, tourCardWidth, topAnchor]);
+  ], [screenWidth, tabAnchorY, t, tourCardLeft, tourCardWidth, topAnchor]);
 
   const activeTourStep = tourSteps[Math.min(tourStepIndex, tourSteps.length - 1)];
   const bubbleWidth = Math.min(360, Math.max(260, screenWidth - 24));
@@ -547,7 +542,7 @@ export default function HomePage() {
         disabled={isPending}
         accessibilityRole="checkbox"
         accessibilityState={{ checked: isChecked, disabled: isPending }}
-        accessibilityLabel={`${isChecked ? "Mark deadline unfinished" : "Mark deadline done"}: ${entry.title}`}
+        accessibilityLabel={`${isChecked ? t("home.markDeadlineUnfinished") : t("home.markDeadlineDone")}: ${entry.title}`}
         className={`w-12 h-12 rounded-xl border items-center justify-center ${
           isChecked
             ? "bg-emerald-500 border-emerald-500"
@@ -573,9 +568,9 @@ export default function HomePage() {
           <Ionicons name="calendar-outline" size={18} color="#008f4e" />
         </View>
         <View className="flex-1">
-          <Text className={`${textClass} text-lg font-semibold`}>Upcoming deadlines</Text>
+          <Text className={`${textClass} text-lg font-semibold`}>{t("deadlineCalendar.upcomingDeadlines")}</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            School dates, scholarships, and other important deadlines coming up for you.
+            {t("home.upcomingDeadlinesDescription")}
           </Text>
         </View>
       </View>
@@ -608,14 +603,14 @@ export default function HomePage() {
                     <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
                       <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
                         {entry.kind === "roadmap_task"
-                          ? "School"
+                          ? t("home.deadlineKindSchool")
                           : entry.kind === "scholarship"
-                            ? "Scholarship"
+                            ? t("home.deadlineKindScholarship")
                             : entry.kind === "internship"
-                              ? "Internship"
+                              ? t("home.deadlineKindInternship")
                               : entry.kind === "quarter-start" || entry.kind === "quarter-end"
-                                ? "College"
-                                : "College"}
+                                ? t("home.deadlineKindCollege")
+                                : t("home.deadlineKindCollege")}
                       </Text>
                     </View>
                     <Text className="text-emerald-500 text-xs font-semibold">{t("home.openAction")}</Text>
@@ -652,9 +647,9 @@ export default function HomePage() {
         </View>
       ) : (
         <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-          <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
+          <Text className={`${textClass} font-semibold`}>{t("home.noDeadlinesYet")}</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Add dates to your planner or finish your profile to see more deadlines here.
+            {t("home.noDeadlinesYetDescription")}
           </Text>
         </View>
       )}
@@ -663,7 +658,7 @@ export default function HomePage() {
         onPress={openCalendar}
         className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
       >
-        <Text className="text-white font-semibold">Open deadline calendar</Text>
+        <Text className="text-white font-semibold">{t("home.openDeadlineCalendar")}</Text>
       </AnimatedChipPressable>
     </View>
   );
@@ -678,9 +673,9 @@ export default function HomePage() {
           <Ionicons name="map-outline" size={18} color="#008f4e" />
         </View>
         <View className="flex-1">
-          <Text className={`${textClass} text-lg font-semibold`}>Course Planner</Text>
+          <Text className={`${textClass} text-lg font-semibold`}>{t("home.coursePlanner")}</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Plan your future courses and trace your transfer roadmap.
+            {t("home.coursePlannerDescription")}
           </Text>
         </View>
       </View>
@@ -706,9 +701,9 @@ export default function HomePage() {
       ) : (
         <View className={`border rounded-3xl p-4 flex-1 justify-center items-center ${dashboardMutedClass}`}>
           <Ionicons name="school-outline" size={32} color="#008f4e" style={{ opacity: 0.5, marginBottom: 8 }} />
-          <Text className={`${textClass} font-semibold text-center`}>Your graduation roadmap</Text>
+          <Text className={`${textClass} font-semibold text-center`}>{t("home.graduationRoadmap")}</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1 text-center px-4`}>
-            Design your schedule quarter by quarter.
+            {t("home.graduationRoadmapDescription")}
           </Text>
         </View>
       )}
@@ -717,7 +712,7 @@ export default function HomePage() {
         onPress={() => router.push(ROUTES.transferPlanner)}
         className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
       >
-        <Text className="text-white font-semibold">Open course planner</Text>
+        <Text className="text-white font-semibold">{t("home.openCoursePlanner")}</Text>
       </AnimatedChipPressable>
     </View>
   );
@@ -735,9 +730,9 @@ export default function HomePage() {
             <Ionicons name="navigate-outline" size={18} color="#0284c7" />
           </View>
           <View className="flex-1">
-            <Text className={`${textClass} text-lg font-semibold`}>Recommended next</Text>
+            <Text className={`${textClass} text-lg font-semibold`}>{t("home.recommendedNext")}</Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              Courses the planner suggests lining up after what you are taking now.
+              {t("home.recommendedNextDescription")}
             </Text>
           </View>
         </View>
@@ -745,9 +740,11 @@ export default function HomePage() {
         <View className="gap-4">
           {desktopCoursePlanningDeadline ? (
             <View className={`border rounded-3xl p-4 ${isDark ? "border-amber-800 bg-amber-950/40" : "border-amber-200 bg-amber-50"}`}>
-              <Text className={`${textClass} font-semibold`}>Next class planning target</Text>
+              <Text className={`${textClass} font-semibold`}>{t("home.nextClassPlanningTarget")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                Aim to get class sign-up ready by {formatImportantDate(desktopCoursePlanningDeadline)}.
+                {t("home.nextClassPlanningTargetDescription", {
+                  date: formatImportantDate(desktopCoursePlanningDeadline),
+                })}
               </Text>
             </View>
           ) : null}
@@ -1004,7 +1001,7 @@ export default function HomePage() {
                 className="px-3 py-2 rounded-lg bg-black/25"
                 style={isCompactPhone ? { width: "100%", alignItems: "center" } : undefined}
               >
-                <Text className="text-white font-semibold">Exit tutorial</Text>
+                <Text className="text-white font-semibold">{t("home.exitTutorial")}</Text>
               </AnimatedChipPressable>
               <AnimatedChipPressable
                 onPress={advanceTour}
@@ -1012,7 +1009,7 @@ export default function HomePage() {
                 style={isCompactPhone ? { width: "100%", alignItems: "center" } : undefined}
               >
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
-                  {tourStepIndex === tourSteps.length - 1 ? "Finish" : "Next"}
+                  {tourStepIndex === tourSteps.length - 1 ? t("general.finish") : t("general.next")}
                 </Text>
               </AnimatedChipPressable>
             </View>

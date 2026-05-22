@@ -5,11 +5,13 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { ROUTES } from "@/constants/routes";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 const ONBOARDING_DEBUG_LOG_KEY = STORAGE_KEYS.onboardingDebugLog;
 
 export default function Index() {
   const router = useRouter();
+  const { t } = useAppLanguage();
   const { isHydrated, state } = useAppData();
   const hasNavigated = useRef(false);
 
@@ -67,5 +69,5 @@ export default function Index() {
     performNavigation();
   }, [isHydrated, state.user, router]);
 
-  return <LoadingScreen message="Preparing your data" />;
+  return <LoadingScreen message={t("startup.preparingData")} />;
 }

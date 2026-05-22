@@ -18,13 +18,13 @@ This executes refresh + verification + hardening + Windows QA and writes a summa
 
 - `.tmp/transfer-planner-maintenance-summary.md`
 
-If a run fails because of temporary schedule-download/network issues, use the updater's built-in no-download option:
+If a run fails because of temporary source-download/network issues, use the updater's built-in no-download option:
 
 ```bash
 ..\Course-Planner-Updater.bat refresh-no-downloads
 ```
 
-Then rerun the Course updates + tests command once network access is stable.
+No-download mode reuses the local `.tmp` source artifacts and generated source outputs that are already on the machine. It skips live source checks, primary-source discovery, requirement-source parsing, deadline refresh, online catalog/equivalency ingests, Green River associate-track web refresh, and annual schedule PDF downloads. Run the normal Course updates + tests command once network access is stable if those cached source artifacts are missing or stale.
 
 ## Planner launchers
 

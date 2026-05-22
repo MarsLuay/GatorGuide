@@ -13,8 +13,10 @@ import {
   getPlannerNoDataMessage,
   isOpenAdmissionMajor,
 } from "@/components/transfer-planner/transfer-planner-formatters";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 export default function TransferPlannerPage() {
+  const { t } = useAppLanguage();
   const {
     handleGoBack,
     backLabel,
@@ -102,8 +104,8 @@ export default function TransferPlannerPage() {
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
           <StateCard
             variant="empty"
-            title="Open this as a student profile first"
-            message="Start as a guest or sign in, then come back here to build a transcript-based course plan."
+            title={t("transferPlanner.profileNeededTitle")}
+            message={t("transferPlanner.profileNeededMessage")}
           />
         </View>
       </ScreenBackground>
@@ -116,8 +118,8 @@ export default function TransferPlannerPage() {
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
           <StateCard
             variant="empty"
-            title="No planner data yet"
-            message={getPlannerNoDataMessage(selectedCollegeId)}
+            title={t("transferPlanner.noPlannerDataTitle")}
+            message={getPlannerNoDataMessage(selectedCollegeId, t)}
           />
         </View>
       </ScreenBackground>
@@ -130,8 +132,8 @@ export default function TransferPlannerPage() {
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
           <StateCard
             variant="empty"
-            title="No planner data yet"
-            message={getPlannerNoDataMessage(selectedCollegeId)}
+            title={t("transferPlanner.noPlannerDataTitle")}
+            message={getPlannerNoDataMessage(selectedCollegeId, t)}
           />
         </View>
       </ScreenBackground>
@@ -236,15 +238,14 @@ export default function TransferPlannerPage() {
           {isUwPlanner && hasNoDirectMajorEquivalencies ? (
             <View className={`${cardBgClass} border rounded-[28px] p-5`}>
               <Text className={`${textClass} text-lg font-semibold`}>
-                No class equivalencies for {plan?.title ?? selectedMajorLabel}
+                {t("transferPlanner.noClassEquivalenciesFor", { major: plan?.title ?? selectedMajorLabel })}
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                There are no class equivalencies for this major right now.
+                {t("transferPlanner.noClassEquivalenciesBody")}
               </Text>
               {plan && isOpenAdmissionMajor(plan) ? (
                 <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                  This is an open major. You would transfer through general UW admission first, then
-                  declare {plan.title} through the department&apos;s current process after you enroll.
+                  {t("transferPlanner.openMajorBody", { major: plan.title })}
                 </Text>
               ) : null}
             </View>
@@ -253,12 +254,12 @@ export default function TransferPlannerPage() {
           {!hasStructuredPlannerData && !(isUwPlanner && hasNoDirectMajorEquivalencies) ? (
             <View className={`${cardBgClass} border rounded-[28px] p-5`}>
               <Text className={`${textClass} text-lg font-semibold`}>
-                Quarter plan note
+                {t("transferPlanner.quarterPlanNoteTitle")}
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
                 {isUwPlanner
-                  ? "This degree does not have a fixed quarter-by-quarter plan yet. Use the Green River class list and source-backed class-order notes above as your starting point. This planner only shows a source-backed plan, and unsupported majors, rules, or sequences stay hidden until public sources can verify them."
-                  : `This ${selectedGrcTrackRequirementNoun} does not have a fixed quarter-by-quarter plan yet. Use the tracked Green River ${selectedGrcTrackRequirementNoun} classes above as your starting point while more source-backed sequencing data is added.`}
+                  ? t("transferPlanner.quarterPlanNoteUw")
+                  : t("transferPlanner.quarterPlanNoteGrc", { noun: selectedGrcTrackRequirementNoun })}
               </Text>
             </View>
           ) : null}
@@ -271,10 +272,10 @@ export default function TransferPlannerPage() {
                     <ActivityIndicator color="#008f4e" />
                     <View className="ml-3 flex-1">
                       <Text className={`${textClass} text-lg font-semibold`}>
-                        Building your planner
+                        {t("transferPlanner.buildingPlannerTitle")}
                       </Text>
                       <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                        Loading the selected requirements, matching Green River courses, and then building the quarter plan.
+                        {t("transferPlanner.buildingPlannerBody")}
                       </Text>
                     </View>
                   </View>
@@ -319,11 +320,11 @@ export default function TransferPlannerPage() {
                 void handleReportBug();
               }}
               accessibilityRole="link"
-              accessibilityLabel="Report a bug in Course Planner"
+              accessibilityLabel={t("transferPlanner.reportBugLabel")}
               className="flex-row items-center justify-center px-3"
             >
               <Text className="text-sm font-semibold text-emerald-600 underline">
-                Report a Course Planner bug
+                {t("transferPlanner.reportBugLabel")}
               </Text>
             </TouchIconButton>
           </View>

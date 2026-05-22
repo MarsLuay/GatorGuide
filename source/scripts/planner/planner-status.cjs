@@ -805,7 +805,7 @@ function buildMarkdownReport(statusReport, queue) {
   } else {
     for (const row of statusReport.newlyConvertedFromIntentionalUnmatchedRows) {
       lines.push(
-        `- ${row.ownerKey} â€” matched â€” ${row.bestTrackId ?? "No best track id recorded."} â€” ${row.notes.join(" ") || "No notes captured."}`
+        `- ${row.ownerKey} — matched — ${row.bestTrackId ?? "No best track id recorded."} — ${row.notes.join(" ") || "No notes captured."}`
       );
     }
   }

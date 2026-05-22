@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 type TransferPlannerPageComponent = React.ComponentType;
 
 function TransferPlannerLoadingShell() {
+  const { t } = useAppLanguage();
+
   return (
     <View
       style={{
@@ -23,7 +26,7 @@ function TransferPlannerLoadingShell() {
           textAlign: "center",
         }}
       >
-        Loading transfer planner...
+        {t("transferPlanner.loading")}
       </Text>
     </View>
   );

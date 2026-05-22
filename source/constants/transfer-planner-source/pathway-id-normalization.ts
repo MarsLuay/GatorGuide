@@ -25,6 +25,10 @@ const TRANSFER_PLANNER_PATHWAY_ID_ALIASES_BY_PLAN: Record<string, Record<string,
     "nanoscience-and-molecular-engineering-nme-option": "nme-option",
     "nanoscience-and-molecular-engineering-option": "nme-option",
   },
+  "uw-tacoma-history": {
+    "culture-and-society-option": "arts-culture-and-society-option",
+    "gender-and-identity-option": "power-gender-and-identity-option",
+  },
 };
 
 function normalizeTransferPlannerPathwayIdToken(value: string | null | undefined) {

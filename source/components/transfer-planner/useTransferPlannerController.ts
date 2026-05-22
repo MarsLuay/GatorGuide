@@ -1,5 +1,4 @@
 import { useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { useWindowDimensions } from "react-native";
 
 import { ROUTES } from "@/constants/routes";
@@ -8,6 +7,7 @@ import {
   TRANSFER_PLANNER_TRACKS,
 } from "@/constants/transfer-planner-source/student-runtime";
 import { useAppData } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import useBack from "@/hooks/use-back";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -30,7 +30,7 @@ import { useTranscriptPlannerState } from "./useTranscriptPlannerState";
 
 export function useTransferPlannerController() {
   const handleGoBack = useBack(ROUTES.tabsResources);
-  const { t } = useTranslation();
+  const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
   const { isHydrated, state, patchUserLocally, updateUser, setQuestionnaireAnswers } = useAppData();
@@ -67,52 +67,53 @@ export function useTransferPlannerController() {
     return translated && translated !== "general.back" ? translated : "Back";
   }, [t]);
   const plannerHeroContent = useMemo(
-    () => getPlannerHeroContent(selection.selectedCollegeId),
-    [selection.selectedCollegeId]
+    () => getPlannerHeroContent(selection.selectedCollegeId, t),
+    [selection.selectedCollegeId, t]
   );
   const selectedCollegeLabel = useMemo(
-    () => getCollegeOptionLabel(selection.selectedCollegeId),
-    [selection.selectedCollegeId]
+    () => getCollegeOptionLabel(selection.selectedCollegeId, t),
+    [selection.selectedCollegeId, t]
   );
   const selectedCampusLabel = useMemo(
-    () => (selection.isUwPlanner ? selection.campus?.title ?? "UW Seattle" : "Green River College"),
-    [selection.campus?.title, selection.isUwPlanner]
+    () => (selection.isUwPlanner ? selection.campus?.title ?? "UW Seattle" : t("transferEquivalencies.greenRiverCollege")),
+    [selection.campus?.title, selection.isUwPlanner, t]
   );
   const selectedMajorLabel = useMemo(() => {
     if (!selection.isUwPlanner) {
       return selection.selectedGrcTrack
         ? `${selection.selectedGrcTrack.code} | ${selection.selectedGrcTrack.title}`
-        : "Select program";
+        : t("transferPlanner.selectProgram");
     }
 
-    return selection.plan?.title ?? selection.selectedBasePlan?.title ?? "Select major";
+    return selection.plan?.title ?? selection.selectedBasePlan?.title ?? t("transferPlanner.selectMajor");
   }, [
     selection.isUwPlanner,
     selection.plan?.title,
     selection.selectedBasePlan?.title,
     selection.selectedGrcTrack,
+    t,
   ]);
   const selectedGrcTrackRequirementNoun = useMemo(
-    () => getGrcTrackRequirementNoun(selection.selectedGrcTrack),
-    [selection.selectedGrcTrack]
+    () => getGrcTrackRequirementNoun(selection.selectedGrcTrack, t),
+    [selection.selectedGrcTrack, t]
   );
   const activeDegreeTitle = useMemo(() => {
     if (!selection.isUwPlanner) {
-      return selection.selectedGrcTrack?.title ?? "Selected Green River program";
+      return selection.selectedGrcTrack?.title ?? t("transferPlanner.selectedGrcProgram");
     }
 
     return selection.plan?.selectedPathwayLabel
       ? `${selection.plan.title} (${selection.plan.selectedPathwayLabel})`
-      : selection.plan?.title ?? "Selected UW degree";
-  }, [selection.isUwPlanner, selection.plan, selection.selectedGrcTrack]);
+      : selection.plan?.title ?? t("transferPlanner.selectedUwDegree");
+  }, [selection.isUwPlanner, selection.plan, selection.selectedGrcTrack, t]);
   const activeTrackCode = selection.track?.code ?? null;
   const activeTrackTitle = useMemo(
     () =>
       selection.track?.title ??
       (selection.isUwPlanner
-        ? "Custom Green River path"
-        : selection.selectedGrcTrack?.title ?? "Selected Green River program"),
-    [selection.isUwPlanner, selection.selectedGrcTrack, selection.track]
+        ? t("transferPlanner.customGrcPath")
+        : selection.selectedGrcTrack?.title ?? t("transferPlanner.selectedGrcProgram")),
+    [selection.isUwPlanner, selection.selectedGrcTrack, selection.track, t]
   );
   const activeTrackSummary = useMemo(
     () =>
@@ -143,14 +144,14 @@ export function useTransferPlannerController() {
     () => [
       {
         id: "uw",
-        label: getCollegeOptionLabel("uw"),
+        label: getCollegeOptionLabel("uw", t),
       },
       {
         id: "grc",
-        label: getCollegeOptionLabel("grc"),
+        label: getCollegeOptionLabel("grc", t),
       },
     ],
-    []
+    [t]
   );
   const campusOptions = useMemo(
     () =>
@@ -162,10 +163,10 @@ export function useTransferPlannerController() {
         : [
             {
               id: GRC_PLANNER_CAMPUS_ID,
-              label: "Green River College",
+              label: t("transferEquivalencies.greenRiverCollege"),
             },
           ],
-    [selection.isUwPlanner]
+    [selection.isUwPlanner, t]
   );
   const majorOptions = useMemo(
     () =>

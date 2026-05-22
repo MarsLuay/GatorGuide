@@ -1,7 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as FileSystem from "expo-file-system";
 
 import { LOCAL_DOCUMENTS_DIR_NAME } from "@/constants/schema";
+import {
+  deleteFileSystemPath,
+  getWritableBaseDirectory,
+  readDirectory,
+} from "@/services/storage/file-system-adapter.service";
 
 const CACHE_AUTO_CLEAR_ENABLED_KEY = "settings:cache:autoClear30d";
 const CACHE_LAST_CLEARED_AT_KEY = "settings:cache:lastClearedAt";
@@ -31,10 +35,7 @@ class CacheManagerService {
   }
 
   private async clearGuestLocalDocumentDirectories(): Promise<number> {
-    const baseDir =
-      (FileSystem as any).documentDirectory ??
-      (FileSystem as any).cacheDirectory ??
-      "";
+    const baseDir = getWritableBaseDirectory("document") ?? "";
     if (!baseDir) {
       return 0;
     }
@@ -43,7 +44,7 @@ class CacheManagerService {
 
     let childEntries: string[] = [];
     try {
-      childEntries = await FileSystem.readDirectoryAsync(docsRoot);
+      childEntries = await readDirectory(docsRoot);
     } catch {
       return 0;
     }
@@ -54,7 +55,7 @@ class CacheManagerService {
     for (const directory of guestDirectories) {
       const targetPath = `${docsRoot}${directory}`;
       try {
-        await FileSystem.deleteAsync(targetPath, { idempotent: true });
+        await deleteFileSystemPath(targetPath, { idempotent: true });
         removedCount += 1;
       } catch {
         // Ignore individual cleanup failures so cache clear can continue.

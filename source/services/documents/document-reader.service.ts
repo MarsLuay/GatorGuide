@@ -1,8 +1,7 @@
-import * as FileSystem from 'expo-file-system';
-import { Platform } from 'react-native';
 import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from '@/constants/planner-storage';
 import { aiGatewayService } from '@/services/ai/ai-gateway.service';
 import { isStubMode } from '@/services/app/config';
+import { readUriAsBase64 } from '@/services/storage/file-system-adapter.service';
 
 const MAX_INLINE_DOCUMENT_BYTES = 4 * 1024 * 1024;
 
@@ -127,30 +126,6 @@ function inferMimeType(fileName: string, mimeType?: string | null) {
 
 function isSupportedMimeType(mimeType: string) {
   return SUPPORTED_EXTRACTION_MIME_TYPES.has(mimeType);
-}
-
-async function readBlobAsBase64(blob: Blob): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const result = String(reader.result ?? '');
-      const [, base64 = ''] = result.split(',', 2);
-      resolve(base64);
-    };
-    reader.onerror = () => reject(new Error('Failed to read selected document.'));
-    reader.readAsDataURL(blob);
-  });
-}
-
-async function readFileAsBase64(fileUri: string) {
-  if (Platform.OS === 'web') {
-    const response = await fetch(fileUri);
-    const blob = await response.blob();
-    return readBlobAsBase64(blob);
-  }
-
-  const encodingType = (FileSystem as any).EncodingType?.Base64 ?? 'base64';
-  return FileSystem.readAsStringAsync(fileUri, { encoding: encodingType });
 }
 
 function stringifyList(value: unknown, separator = ', ') {
@@ -339,7 +314,7 @@ class DocumentReaderService {
             },
             currentProfile: input.currentProfile ?? {},
             questionnaire: input.questionnaireAnswers ?? {},
-            fileBase64: await readFileAsBase64(input.fileUri),
+            fileBase64: await readUriAsBase64(input.fileUri),
             mimeType,
           }).then((response) => response.extraction)
         );

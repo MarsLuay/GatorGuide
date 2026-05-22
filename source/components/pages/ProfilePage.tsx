@@ -20,6 +20,7 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
+import { useDataPortabilityActions } from "@/hooks/use-data-portability-actions";
 import {
   normalizeQuestionnaireAnswers,
   US_STATE_OPTIONS,
@@ -31,15 +32,14 @@ import {
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
 import { ProfileField } from "@/components/ui/ProfileField";
+import { ProfileGuestDataActionsCard } from "@/components/pages/profile/ProfileGuestDataActionsCard";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as FileSystem from "expo-file-system";
-import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, routeWithReturnTo } from "@/constants/routes";
 import { GREEN_RIVER_MAJOR_OPTIONS } from "@/constants/green-river-major-options.generated";
 import { collegeService } from "@/services/colleges/college.service";
 import {
@@ -48,13 +48,6 @@ import {
 } from "@/constants/schema";
 import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import type { SearchableSelectOption } from "@/components/ui/SearchableSelect";
-import {
-  buildDataExportPayload,
-  normalizeDataImportPayload,
-  restoreDataImportSnapshot,
-  stringifyDataExportPayload,
-  writeDataExportFile,
-} from "@/services/app/data-portability.service";
 import {
   documentReaderService,
   type DocumentExtractionReview,
@@ -350,92 +343,16 @@ export default function ProfilePage() {
       cancelled = true;
     };
   }, [user?.uid, user?.transcript]);
-  const handleExportData = async () => {
-    if (!isHydrated) return;
-
-    try {
-      const payload = await buildDataExportPayload({ state, theme, language });
-
-      if (Platform.OS === "web") {
-        const blob = new Blob([stringifyDataExportPayload(payload)], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "GatorGuide_export.json";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-        return;
-      }
-
-      const fileUri = new FileSystem.File(FileSystem.Paths.document, "GatorGuide_export.json").uri;
-      await writeDataExportFile(fileUri, payload);
-
-      const canShare = await Sharing.isAvailableAsync();
-      if (!canShare) {
-        Alert.alert(t("settings.exportReady"), t("settings.exportNotAvailable"));
-        return;
-      }
-
-      await Sharing.shareAsync(fileUri);
-    } catch {
-      Alert.alert(t("settings.exportFailed"), t("settings.exportError"));
-    }
-  };
-
-  const handleImportData = async () => {
-    if (!isHydrated) return;
-
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: "application/json",
-        copyToCacheDirectory: true,
-      });
-
-      if (result.canceled || !result.assets?.[0]?.uri) return;
-
-      const fileUri = result.assets[0].uri;
-      const raw = await FileSystem.readAsStringAsync(fileUri, {
-        encoding: "utf8",
-      });
-
-      const snapshot = normalizeDataImportPayload(JSON.parse(raw));
-
-      if (!snapshot) {
-        Alert.alert(t("settings.invalidFile"), t("settings.invalidFileMessage"));
-        return;
-      }
-
-      Alert.alert(
-        t("settings.importConfirm"),
-        t("settings.importOverwriteMessage"),
-        [
-          { text: t("general.cancel"), style: "cancel" },
-          {
-            text: t("settings.import"),
-            style: "destructive",
-            onPress: async () => {
-              try {
-                const restoredData = await restoreDataImportSnapshot(snapshot);
-                await restoreData(restoredData);
-                if (snapshot.theme) {
-                  setTheme(snapshot.theme);
-                }
-                if (snapshot.language) {
-                  setLanguage(snapshot.language);
-                }
-              } catch {
-                Alert.alert(t("settings.importFailed"), t("settings.importError"));
-              }
-            },
-          },
-        ]
-      );
-    } catch {
-      Alert.alert(t("settings.importFailed"), t("settings.importError"));
-    }
-  };
+  const { handleExportData, handleImportData } = useDataPortabilityActions({
+    isHydrated,
+    state,
+    theme,
+    language,
+    restoreData,
+    setTheme,
+    setLanguage,
+    t,
+  });
   const handleCreateAccount = async () => {
     if (!user?.isGuest || !isHydrated) return;
 
@@ -642,10 +559,7 @@ export default function ProfilePage() {
     : t("profile.complete");
   const openQuestionnairePage = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push({
-      pathname: ROUTES.questionnaire,
-      params: { returnTo: ROUTES.profile },
-    } as never);
+    router.push(routeWithReturnTo(ROUTES.questionnaire, ROUTES.profile));
   };
 
   const normalizedProfileDraft = useMemo<EditableProfileSnapshot>(() => {
@@ -1587,47 +1501,20 @@ export default function ProfilePage() {
                 }}
               >
               {user?.isGuest && showGuestProfile ? (
-                <View
-                  className={`${cardBgClass} border-2 border-emerald-500/20 rounded-2xl p-4 mb-4`}
-                  style={desktopProfileFrameStyle}
-                >
-                  <View className="flex-row items-center justify-between gap-4">
-                    <View className="flex-row items-center flex-1 min-w-0">
-                      <View className="bg-emerald-500/20 p-2 rounded-lg mr-3">
-                        <MaterialIcons name="cloud-upload" size={18} color="#008f4e" />
-                      </View>
-                      <View className="flex-1 min-w-0">
-                        <Text className={`${textClass} font-semibold`}>{t("profile.guestMode")}</Text>
-                        <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("profile.yourDataSaved")}</Text>
-                      </View>
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: stackProfileActionButtons ? "column" : "row",
-                        gap: 8,
-                      }}
-                    >
-                      <AnimatedChipPressable
-                        onPress={handleImportData}
-                        className={`rounded-xl px-4 py-3 flex-row items-center justify-center ${isLight ? "bg-emerald-200" : "bg-emerald-500"}`}
-                        containerStyle={stackProfileActionButtons ? { width: "100%" } : undefined}
-                      >
-                        <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
-                        <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold ml-2`}>
-                          {t("settings.import")}
-                        </Text>
-                      </AnimatedChipPressable>
-                      <AnimatedChipPressable
-                        onPress={handleExportData}
-                        className={`rounded-xl px-4 py-3 flex-row items-center justify-center ${cardBgClass} border-2 border-emerald-500`}
-                        containerStyle={stackProfileActionButtons ? { width: "100%" } : undefined}
-                      >
-                        <MaterialIcons name="file-upload" size={18} color="#008f4e" />
-                        <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
-                      </AnimatedChipPressable>
-                    </View>
-                  </View>
-                </View>
+                <ProfileGuestDataActionsCard
+                  variant="desktop"
+                  cardBgClass={cardBgClass}
+                  textClass={textClass}
+                  secondaryTextClass={secondaryTextClass}
+                  isLight={isLight}
+                  isDark={isDark}
+                  isGreen={isGreen}
+                  stackActions={stackProfileActionButtons}
+                  frameStyle={desktopProfileFrameStyle}
+                  onImport={handleImportData}
+                  onExport={handleExportData}
+                  t={t}
+                />
               ) : null}
 
               <View className="pb-3" style={desktopProfileFrameStyle}>
@@ -1706,43 +1593,20 @@ export default function ProfilePage() {
             <View style={{ width: "100%", maxWidth: pageMaxWidth }} className="self-center">
           {user?.isGuest && showGuestProfile ? (
             <View className="pt-6" style={{ paddingHorizontal: shellHorizontalPadding }}>
-              <View
-                className={`${cardBgClass} border-2 border-emerald-500/20 rounded-2xl p-5 mb-4`}
-                style={isWideLayout ? desktopProfileFrameStyle : undefined}
-              >
-                <View className="flex-row items-center mb-3">
-                  <View className="bg-emerald-500/20 p-2 rounded-lg mr-3">
-                    <MaterialIcons name="cloud-upload" size={20} color="#008f4e" />
-                  </View>
-                  <View className="flex-1">
-                    <Text className={`${textClass} font-semibold`}>{t("profile.guestMode")}</Text>
-                    <Text className={`${secondaryTextClass} text-xs`}>{t("profile.yourDataSaved")}</Text>
-                  </View>
-                </View>
-                <View
-                  style={{
-                    flexDirection: stackProfileActionButtons ? "column" : "row",
-                    gap: 8,
-                  }}
-                >
-                  <AnimatedChipPressable
-                    onPress={handleImportData}
-                    className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-xl px-4 py-3 flex-row items-center justify-center`}
-                    containerStyle={stackProfileActionButtons ? { width: "100%" } : { flex: 1 }}
-                  >
-                    <MaterialIcons name="file-download" size={18} color={isDark || isGreen ? "#FFFFFF" : "#000"} />
-                    <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("settings.import")}</Text>
-                  </AnimatedChipPressable>
-                  <AnimatedChipPressable
-                    onPress={handleExportData}
-                    className={`${cardBgClass} border-2 border-emerald-500 rounded-xl px-4 py-3 flex-row items-center justify-center`}
-                    containerStyle={stackProfileActionButtons ? { width: "100%" } : { flex: 1 }}
-                  >
-                    <MaterialIcons name="file-upload" size={18} color="#008f4e" />
-                    <Text className="text-emerald-500 font-semibold ml-2">{t("settings.export")}</Text>
-                  </AnimatedChipPressable>
-                </View>
-              </View>
+              <ProfileGuestDataActionsCard
+                variant="default"
+                cardBgClass={cardBgClass}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                isLight={isLight}
+                isDark={isDark}
+                isGreen={isGreen}
+                stackActions={stackProfileActionButtons}
+                frameStyle={isWideLayout ? desktopProfileFrameStyle : undefined}
+                onImport={handleImportData}
+                onExport={handleExportData}
+                t={t}
+              />
             </View>
           ) : null}
           {/* Header */}

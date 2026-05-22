@@ -130,10 +130,11 @@ class AiGatewayService {
   private normalizeError(error: unknown): AiGatewayError {
     if (error instanceof AiGatewayError) return error;
 
-    const rawCode = String((error as any)?.code ?? "");
-    const details = (error as any)?.details;
+    const errorInfo = error as { code?: unknown; details?: unknown; message?: unknown };
+    const rawCode = String(errorInfo.code ?? "");
+    const details = errorInfo.details;
     const message =
-      String((error as any)?.message ?? "").trim() || "AI gateway request failed.";
+      String(errorInfo.message ?? "").trim() || "AI gateway request failed.";
 
     if (rawCode.includes("resource-exhausted")) {
       return new AiGatewayError("quota-exceeded", message, rawCode, details);

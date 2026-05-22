@@ -146,6 +146,62 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
   assert.match(refreshScript, /tsc",\s*"--noEmit"/);
   assert.match(refreshScript, /Classify hidden source gaps/);
   assert.match(refreshScript, /Refresh summary:/);
+  assert.match(refreshScript, /GATORGUIDE_PLANNER_CACHE_ONLY/);
+  assert.match(refreshScript, /reuseCachedArtifact/);
+  assert.match(refreshScript, /PRIMARY_SOURCE_DISCOVERY_REPORT_PATH/);
+  assert.match(refreshScript, /REQUIREMENT_PARSE_REPORT_PATH/);
+
+  const noDownloadPlanProcess = spawnSync(
+    "node",
+    [
+      "scripts/planner/refresh-transfer-planner-sources.cjs",
+      "--print-step-plan-json",
+      "--skip-downloads",
+      "--skip-verify",
+    ],
+    { encoding: "utf8" }
+  );
+  assert.equal(noDownloadPlanProcess.status, 0, noDownloadPlanProcess.stderr);
+  const noDownloadPlan = JSON.parse(noDownloadPlanProcess.stdout);
+  const noDownloadLabels = new Set(noDownloadPlan.labels);
+  for (const skippedLiveSourceStep of [
+    "Discover Green River public materials",
+    "Generate Green River associate tracks",
+    "Check official source links",
+    "Discover primary official sources",
+    "Parse UW major requirement sources",
+    "Snapshot Green River annual schedules",
+    "Refresh deadline sources",
+    "Parse UW Green River equivalency guide",
+    "Ingest Green River course catalog",
+    "Ingest UW course catalogs",
+  ]) {
+    assert.equal(
+      noDownloadLabels.has(skippedLiveSourceStep),
+      false,
+      `${skippedLiveSourceStep} should not run in no-download mode.`
+    );
+  }
+  assert.equal(noDownloadLabels.has("Build primary-source automation queue"), true);
+  assert.equal(noDownloadLabels.has("Build source fingerprints and classify changes"), true);
+  assert.equal(noDownloadLabels.has("Generate merged course metadata"), true);
+
+  const noDownloadFullPlanProcess = spawnSync(
+    "node",
+    [
+      "scripts/planner/refresh-transfer-planner-sources.cjs",
+      "--print-step-plan-json",
+      "--skip-downloads",
+    ],
+    { encoding: "utf8" }
+  );
+  assert.equal(noDownloadFullPlanProcess.status, 0, noDownloadFullPlanProcess.stderr);
+  const noDownloadFullPlan = JSON.parse(noDownloadFullPlanProcess.stdout);
+  assert.equal(
+    noDownloadFullPlan.labels.includes("Run closed-loop auto-repair pass"),
+    false,
+    "No-download mode must not launch auto-repair because it can refresh online source parsers."
+  );
 });
 
 test("Bootstrap generators stay parser-first and never import legacy planner data module", () => {
@@ -686,4 +742,3 @@ test("Phase 10 generated snapshot-fallback metadata stays internally consistent"
   }
   assert.equal(failedBlocks.length, 0);
 });
-

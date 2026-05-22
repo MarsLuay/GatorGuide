@@ -35,7 +35,7 @@ export function MinimalInfoPage({
   description,
   items,
   note,
-  actionLabel = "Contact support",
+  actionLabel,
 }: MinimalInfoPageProps) {
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
@@ -129,7 +129,7 @@ export function MinimalInfoPage({
               onPress={() => {
                 void Linking.openURL(SUPPORT_MAILTO);
               }}
-              label={actionLabel}
+              label={actionLabel ?? t("general.contactSupport")}
               variant="secondary"
               icon={(color) => <MaterialIcons name="mail-outline" size={18} color={color} />}
             />

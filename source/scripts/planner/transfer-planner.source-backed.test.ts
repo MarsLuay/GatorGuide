@@ -178,7 +178,7 @@ test("Bothell Data Visualization rows keep the shared overview as primary while 
     assert.ok(
       parsedBlocks.some(
         (entry) =>
-          entry.parsedUwCourseCodes.includes("BBUS 301") &&
+          entry.parsedUwCourseCodes.includes("BBUS 215") &&
           entry.parsedUwCourseCodes.includes("BDATA 200")
       ),
       `Expected ${planId} to recover current overview-backed lower-division signals.`

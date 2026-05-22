@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import { makeRedirectUri, useAuthRequest, useAutoDiscovery, ResponseType } from "expo-auth-session";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, routeWithDefaultReturnTo } from "@/constants/routes";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -395,11 +395,6 @@ export default function AuthPage() {
       }
       if (isExpoGo) {
         Alert.alert(t("general.error"), t("auth.presentation.googleDevBuildRequired"));
-        if (Platform.OS !== "web") return;
-        Alert.alert(
-          t("general.error"),
-          "Google 登录需使用开发构建，Expo Go 不支持。\n\n请运行: npx expo run:ios\n或: npx expo run:android"
-        );
         return;
       }
       try {
@@ -560,32 +555,36 @@ export default function AuthPage() {
         {__DEV__ && onboardingDebugEnabled ? (
           <View className="mb-4 border border-emerald-500/40 rounded-lg p-3">
             <View className="flex-row items-center justify-between">
-              <Text className={`${styles.textClass} font-semibold text-sm`}>Onboarding/Auth Debug</Text>
+              <Text className={`${styles.textClass} font-semibold text-sm`}>{t("auth.debug.onboardingAuth")}</Text>
               {/* touch-audit-ignore: dev-only onboarding debug toggle is hidden from production UI. */}
               <Pressable onPress={() => setShowOnboardingDebugConsole((v) => !v)} className="px-3 py-1 rounded-lg bg-emerald-500">
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
-                  {showOnboardingDebugConsole ? "Hide" : "Show"}
+                  {showOnboardingDebugConsole ? t("general.hide") : t("general.show")}
                 </Text>
               </Pressable>
             </View>
             <View className="flex-row gap-2 mt-2">
               {/* touch-audit-ignore: dev-only debug log action is hidden from production UI. */}
               <Pressable onPress={copyOnboardingDebugLogs} className="px-3 py-1.5 rounded-lg bg-emerald-300">
-                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Copy Logs</Text>
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>{t("auth.debug.copyLogs")}</Text>
               </Pressable>
               {/* touch-audit-ignore: dev-only debug log action is hidden from production UI. */}
               <Pressable onPress={() => { void clearOnboardingDebugLogs(); }} className="px-3 py-1.5 rounded-lg bg-emerald-300">
-                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Clear</Text>
+                <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>{t("general.clear")}</Text>
               </Pressable>
             </View>
             {onboardingCopyStatus ? (
               <Text className={`${styles.secondaryTextClass} text-xs mt-2`}>
-                {onboardingCopyStatus === "copied" ? "Logs copied to clipboard." : "Clipboard copy failed."}
+                {onboardingCopyStatus === "copied"
+                  ? t("auth.debug.logsCopied")
+                  : t("auth.debug.clipboardCopyFailed")}
               </Text>
             ) : null}
             {showOnboardingDebugConsole ? (
               <Text selectable className={`${styles.secondaryTextClass} text-xs mt-2`}>
-                {onboardingDebugLogs.length ? onboardingDebugLogs.join("\n") : "No onboarding/auth logs yet."}
+                {onboardingDebugLogs.length
+                  ? onboardingDebugLogs.join("\n")
+                  : t("auth.debug.noLogsYet")}
               </Text>
             ) : null}
           </View>
@@ -721,10 +720,7 @@ export default function AuthPage() {
             <View className="items-end">
               <AnimatedIconPressable
                 onPress={() =>
-                  router.push({
-                    pathname: ROUTES.forgotPassword,
-                    params: { returnTo: ROUTES.login },
-                  } as never)
+                  router.push(routeWithDefaultReturnTo(ROUTES.forgotPassword))
                 }
                 disabled={!isHydrated}
               >
@@ -824,4 +820,3 @@ export default function AuthPage() {
     </ScreenBackground>
   );
 }
-

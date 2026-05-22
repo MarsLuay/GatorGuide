@@ -3,7 +3,6 @@
 // Resumes may use Firebase Storage; unofficial transcripts stay local-only.
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import {
@@ -17,6 +16,14 @@ import {
 } from '@/constants/schema';
 import { errorLoggingService } from '@/services/logging/error-logging.service';
 import { storage } from '@/services/firebase/firebase';
+import {
+  copyFile,
+  deleteFileSystemPath,
+  ensureDirectory,
+  getWritableBaseDirectory,
+  readUriAsBlob,
+  readUriAsDataUrl,
+} from '@/services/storage/file-system-adapter.service';
 
 type UploadFileMetadata = {
   fileName?: string | null;
@@ -115,33 +122,6 @@ function normalizeUploadedFile(raw: unknown): UploadedFile | null {
   };
 }
 
-async function uriToBlob(uri: string): Promise<Blob> {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.onload = () => resolve(xhr.response as Blob);
-    xhr.onerror = () => reject(new TypeError('Failed to read file'));
-    xhr.responseType = 'blob';
-    xhr.open('GET', uri, true);
-    xhr.send(null);
-  });
-}
-
-async function blobToDataUrl(blob: Blob): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const result = typeof reader.result === 'string' ? reader.result : '';
-      if (!result) {
-        reject(new TypeError('Failed to encode file'));
-        return;
-      }
-      resolve(result);
-    };
-    reader.onerror = () => reject(new TypeError('Failed to encode file'));
-    reader.readAsDataURL(blob);
-  });
-}
-
 async function persistWebFileUrl(sourceUri: string): Promise<string> {
   const normalizedUri = String(sourceUri ?? '').trim();
   if (!normalizedUri) {
@@ -156,12 +136,11 @@ async function persistWebFileUrl(sourceUri: string): Promise<string> {
     return normalizedUri;
   }
 
-  const blob = await uriToBlob(normalizedUri);
-  return blobToDataUrl(blob);
+  return readUriAsDataUrl(normalizedUri);
 }
 
 function getLocalDocumentsBaseDir() {
-  return (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
+  return getWritableBaseDirectory("document") ?? "";
 }
 
 function getLocalDocumentDirectoryUri(type: LocalDocumentType, userId: string) {
@@ -175,7 +154,7 @@ async function deleteLocalDocumentDirectory(type: LocalDocumentType, userId: str
   const directoryUri = getLocalDocumentDirectoryUri(type, userId);
   if (!directoryUri) return;
 
-  await FileSystem.deleteAsync(directoryUri, { idempotent: true }).catch((error) => {
+  await deleteFileSystemPath(directoryUri, { idempotent: true }).catch((error) => {
     void errorLoggingService.captureException(error, {
       category: 'storage',
       operation: 'delete-local-document-directory',
@@ -208,7 +187,7 @@ async function copyToLocalStorage(
   }
   const baseDir = getLocalDocumentsBaseDir();
   const dir = `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/${subDir}/`;
-  await FileSystem.makeDirectoryAsync(dir, { intermediates: true }).catch((error) => {
+  await ensureDirectory(dir).catch((error) => {
     void errorLoggingService.captureException(error, {
       category: 'storage',
       operation: 'create-local-document-directory',
@@ -221,7 +200,7 @@ async function copyToLocalStorage(
     });
   });
   const destUri = `${dir}${Date.now()}_${fileName}`;
-  await FileSystem.copyAsync({ from: sourceUri, to: destUri });
+  await copyFile(sourceUri, destUri);
   return destUri;
 }
 
@@ -259,7 +238,7 @@ async function uploadToFirebaseBucket(
 ): Promise<string | null> {
   if (!storage) return null;
   try {
-    const blob = await uriToBlob(fileUri);
+    const blob = await readUriAsBlob(fileUri);
     const ext = fileName.split('.').pop() || 'pdf';
     const safeName = `${bucket}_${Date.now()}.${ext}`;
     const path = buildFirebaseUserStoragePath(userId, bucket, safeName);

@@ -7,7 +7,12 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-auto-repair-plan.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-auto-repair-plan.md");
+const REPAIR_ATTEMPT_STATE_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-auto-repair-attempt-state.json"
+);
 const OWNER_AUDIT_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.json");
+const OWNER_AUDIT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.md");
 const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-requirement-source-parse-report.json"
@@ -15,6 +20,10 @@ const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
 const SOURCE_BACKED_AUDIT_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-source-backed-coverage-audit.json"
+);
+const SOURCE_BACKED_AUDIT_MD_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-source-backed-coverage-audit.md"
 );
 const PRIMARY_SOURCE_DISCOVERY_PATH = path.resolve(
   TMP_DIR,
@@ -24,6 +33,52 @@ const SOURCE_CHANGE_CLASSIFICATION_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-source-change-classification.json"
 );
+const GENERATED_SOURCE_DIR = path.resolve(REPO_ROOT, "constants", "transfer-planner-source");
+const GENERATED_OUTPUT_PATHS = {
+  primarySourcePromotions: path.resolve(
+    GENERATED_SOURCE_DIR,
+    "primary-source-promotions.generated.ts"
+  ),
+  sourceGaps: path.resolve(GENERATED_SOURCE_DIR, "source-gaps.generated.ts"),
+  bootstrap: path.resolve(GENERATED_SOURCE_DIR, "bootstrap.generated.ts"),
+  requirementSourceAdapters: path.resolve(
+    GENERATED_SOURCE_DIR,
+    "requirement-source-adapters.generated.ts"
+  ),
+  requirementSourceAdapterBlocks: path.resolve(
+    GENERATED_SOURCE_DIR,
+    "requirement-source-adapters.generated"
+  ),
+  programApprovedCourseFilters: path.resolve(
+    GENERATED_SOURCE_DIR,
+    "generated-program-approved-course-filters.ts"
+  ),
+  sourceFingerprints: path.resolve(GENERATED_SOURCE_DIR, "source-fingerprints.generated.ts"),
+  studentRuntime: path.resolve(GENERATED_SOURCE_DIR, "student-runtime.generated.ts"),
+  generatedMajorPlans: path.resolve(GENERATED_SOURCE_DIR, "generated-major-plans.ts"),
+};
+const REPORT_INPUTS = [
+  { key: "ownerAudit", label: "owner audit", path: OWNER_AUDIT_PATH },
+  { key: "requirementParse", label: "requirement parse", path: REQUIREMENT_PARSE_REPORT_PATH },
+  { key: "sourceBackedCoverage", label: "source-backed coverage", path: SOURCE_BACKED_AUDIT_PATH },
+  {
+    key: "primarySourceDiscovery",
+    label: "primary source discovery",
+    path: PRIMARY_SOURCE_DISCOVERY_PATH,
+  },
+  {
+    key: "sourceChangeClassification",
+    label: "source-change classification",
+    path: SOURCE_CHANGE_CLASSIFICATION_PATH,
+  },
+];
+const REPORT_FRESHNESS_TOLERANCE_MS = 5 * 60 * 1000;
+const POST_REPAIR_VERIFICATION_RESTORABLE_PATHS = [
+  OWNER_AUDIT_PATH,
+  OWNER_AUDIT_MD_PATH,
+  SOURCE_BACKED_AUDIT_PATH,
+  SOURCE_BACKED_AUDIT_MD_PATH,
+];
 
 const CATEGORY_LABELS = {
   "source-missing": "source missing",
@@ -197,11 +252,189 @@ function getNumericArgValue(flag) {
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
 }
 
+function getCommandIndexArgValue(flag) {
+  const value = getArgValue(flag);
+  if (value == null) {
+    return null;
+  }
+  if (!/^\d+$/.test(value)) {
+    throw new Error(`${flag} must be a positive integer.`);
+  }
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed) || parsed < 1) {
+    throw new Error(`${flag} must be 1 or greater.`);
+  }
+  return parsed;
+}
+
 function readJsonReport(reportPath) {
   if (!fs.existsSync(reportPath)) {
     return null;
   }
   return JSON.parse(fs.readFileSync(reportPath, "utf8"));
+}
+
+function snapshotFiles(filePaths) {
+  return new Map(
+    filePaths.map((filePath) => {
+      if (!fs.existsSync(filePath)) {
+        return [filePath, { exists: false, contents: null, atimeMs: null, mtimeMs: null }];
+      }
+      const stats = fs.statSync(filePath);
+      return [
+        filePath,
+        {
+          exists: true,
+          contents: fs.readFileSync(filePath),
+          atimeMs: stats.atimeMs,
+          mtimeMs: stats.mtimeMs,
+        },
+      ];
+    })
+  );
+}
+
+function restoreFileSnapshot(snapshot) {
+  for (const [filePath, record] of snapshot.entries()) {
+    if (record.exists) {
+      fs.mkdirSync(path.dirname(filePath), { recursive: true });
+      fs.writeFileSync(filePath, record.contents);
+      if (Number.isFinite(record.atimeMs) && Number.isFinite(record.mtimeMs)) {
+        fs.utimesSync(filePath, record.atimeMs / 1000, record.mtimeMs / 1000);
+      }
+    } else if (fs.existsSync(filePath)) {
+      fs.rmSync(filePath, { force: true });
+    }
+  }
+}
+
+function readPathMtimeMs(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+  return fs.statSync(filePath).mtimeMs;
+}
+
+function readNewestPathMtimeMs(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  const stats = fs.statSync(filePath);
+  if (!stats.isDirectory()) {
+    return stats.mtimeMs;
+  }
+
+  let newest = stats.mtimeMs;
+  for (const entryName of fs.readdirSync(filePath)) {
+    const entryMtime = readNewestPathMtimeMs(path.join(filePath, entryName));
+    if (entryMtime !== null && entryMtime > newest) {
+      newest = entryMtime;
+    }
+  }
+  return newest;
+}
+
+function formatIsoFromMtime(mtimeMs) {
+  return Number.isFinite(mtimeMs) ? new Date(mtimeMs).toISOString() : null;
+}
+
+function buildGeneratedOutputKeysForRepairPlans(repairPlans) {
+  const outputKeys = new Set();
+  for (const plan of repairPlans) {
+    if (plan.needsSourceDiscovery) {
+      outputKeys.add("primarySourcePromotions");
+      outputKeys.add("sourceGaps");
+      outputKeys.add("bootstrap");
+    }
+    if (plan.needsRequirementParse) {
+      outputKeys.add("requirementSourceAdapters");
+      outputKeys.add("requirementSourceAdapterBlocks");
+      outputKeys.add("programApprovedCourseFilters");
+      outputKeys.add("sourceFingerprints");
+      outputKeys.add("bootstrap");
+      outputKeys.add("studentRuntime");
+    }
+    if (plan.needsRuntimeGeneration) {
+      outputKeys.add("studentRuntime");
+      outputKeys.add("generatedMajorPlans");
+    }
+  }
+  return [...outputKeys].sort((left, right) => left.localeCompare(right));
+}
+
+function buildFreshnessOutputRecords(outputKeys, generatedOutputPaths = GENERATED_OUTPUT_PATHS) {
+  return outputKeys
+    .map((key) => {
+      const filePath = generatedOutputPaths[key];
+      const mtimeMs = filePath ? readNewestPathMtimeMs(filePath) : null;
+      return {
+        key,
+        path: filePath ?? null,
+        exists: mtimeMs !== null,
+        mtimeMs,
+        mtimeIso: formatIsoFromMtime(mtimeMs),
+      };
+    })
+    .sort((left, right) => left.key.localeCompare(right.key));
+}
+
+function buildFreshnessReport(repairPlans, options = {}) {
+  const toleranceMs = options.toleranceMs ?? REPORT_FRESHNESS_TOLERANCE_MS;
+  const reportInputs = options.reportInputs ?? REPORT_INPUTS;
+  const generatedOutputPaths = options.generatedOutputPaths ?? GENERATED_OUTPUT_PATHS;
+  const outputKeys = buildGeneratedOutputKeysForRepairPlans(repairPlans);
+  const generatedOutputs = buildFreshnessOutputRecords(outputKeys, generatedOutputPaths);
+  const existingGeneratedOutputs = generatedOutputs.filter((record) => record.exists);
+  const newestGeneratedOutput = existingGeneratedOutputs.reduce((newest, record) => {
+    if (!newest || record.mtimeMs > newest.mtimeMs) {
+      return record;
+    }
+    return newest;
+  }, null);
+  const sourceReports = reportInputs.map((input) => {
+    const mtimeMs = readPathMtimeMs(input.path);
+    return {
+      key: input.key,
+      label: input.label,
+      path: input.path,
+      exists: mtimeMs !== null,
+      mtimeMs,
+      mtimeIso: formatIsoFromMtime(mtimeMs),
+    };
+  });
+
+  if (!newestGeneratedOutput) {
+    return {
+      outcome: "fresh",
+      toleranceMs,
+      newestGeneratedOutput: null,
+      generatedOutputs,
+      sourceReports,
+      staleReports: [],
+    };
+  }
+
+  const staleReports = sourceReports
+    .filter((report) => report.exists)
+    .filter((report) => report.mtimeMs + toleranceMs < newestGeneratedOutput.mtimeMs)
+    .map((report) => ({
+      ...report,
+      newestGeneratedOutputKey: newestGeneratedOutput.key,
+      newestGeneratedOutputPath: newestGeneratedOutput.path,
+      newestGeneratedOutputMtimeMs: newestGeneratedOutput.mtimeMs,
+      newestGeneratedOutputMtimeIso: newestGeneratedOutput.mtimeIso,
+      staleByMs: Math.max(0, newestGeneratedOutput.mtimeMs - report.mtimeMs),
+    }));
+
+  return {
+    outcome: staleReports.length ? "stale" : "fresh",
+    toleranceMs,
+    newestGeneratedOutput,
+    generatedOutputs,
+    sourceReports,
+    staleReports,
+  };
 }
 
 function ensureTmpDir() {
@@ -232,6 +465,10 @@ function uniqueSorted(values) {
   return [...new Set(values.filter(Boolean).map(String))].sort((left, right) =>
     left.localeCompare(right)
   );
+}
+
+function normalizeWhitespace(value) {
+  return String(value ?? "").replace(/\s+/gu, " ").trim();
 }
 
 function summarizeArray(values, limit = 10) {
@@ -658,9 +895,13 @@ function buildRepairPlans(cases) {
         needsRequirementParse: false,
         needsRuntimeGeneration: false,
         caseCount: 0,
+        pathwayIds: [],
+        sourceUrls: [],
         commands: [],
       };
     plan.ownerIds = uniqueSorted([...plan.ownerIds, repairCase.ownerId]);
+    plan.pathwayIds = uniqueSorted([...plan.pathwayIds, repairCase.pathwayId]);
+    plan.sourceUrls = uniqueSorted([...plan.sourceUrls, repairCase.sourceUrl]);
     plan.categories = uniqueSorted([...plan.categories, repairCase.category]);
     plan.actions = uniqueSorted([...plan.actions, ...repairCase.actions]);
     plan.needsSourceDiscovery =
@@ -727,7 +968,9 @@ function buildReport(options) {
     ? allCases.filter((repairCase) => repairCase.planId === options.targetPlanId)
     : allCases;
   const repairPlans = buildRepairPlans(cases);
-  const repairCommandSequence = buildRepairCommandSequence(repairPlans);
+  const repairCommandPlan = buildRepairCommandPlan(repairPlans);
+  const repairCommandSequence = repairCommandPlan.commands;
+  const sourceReportFreshness = buildFreshnessReport(repairPlans);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -761,14 +1004,149 @@ function buildReport(options) {
       sourceBackedCoverage: ["unmapped-uw-only"],
     },
     repairCommandSequence,
+    repairCommandBatches: repairCommandPlan.batches,
     repairPlans,
     cases,
+    sourceReportFreshness,
     repairAttempt: null,
   };
 }
 
 function formatCommand(commandParts) {
   return commandParts.join(" ");
+}
+
+function getRepairResumeMode(options) {
+  if (options.resumeFailed) {
+    return "resume-failed";
+  }
+  if (options.fromCommandIndex != null) {
+    return "from-command-index";
+  }
+  return "from-start";
+}
+
+function extractCommand(record) {
+  if (Array.isArray(record)) {
+    return record;
+  }
+  if (Array.isArray(record?.command)) {
+    return record.command;
+  }
+  return null;
+}
+
+function commandsMatch(left, right) {
+  const leftCommand = extractCommand(left);
+  const rightCommand = extractCommand(right);
+  return (
+    Array.isArray(leftCommand) &&
+    Array.isArray(rightCommand) &&
+    formatCommand(leftCommand) === formatCommand(rightCommand)
+  );
+}
+
+function readRepairAttemptState(statePath = REPAIR_ATTEMPT_STATE_PATH) {
+  if (!fs.existsSync(statePath)) {
+    return null;
+  }
+  return JSON.parse(fs.readFileSync(statePath, "utf8"));
+}
+
+function writeRepairAttemptState(state, statePath = REPAIR_ATTEMPT_STATE_PATH) {
+  fs.mkdirSync(path.dirname(statePath), { recursive: true });
+  fs.writeFileSync(statePath, `${JSON.stringify(state, null, 2)}\n`);
+}
+
+function buildRepairCommandRecords(commands) {
+  return commands.map((command, index) => ({
+    commandIndex: index + 1,
+    command,
+  }));
+}
+
+function getSavedRepairCommandSequence(state) {
+  if (!Array.isArray(state?.commandSequence)) {
+    return [];
+  }
+  return state.commandSequence.map((record) => extractCommand(record));
+}
+
+function getSavedFailedCommandRecord(state) {
+  const attemptedCommands = Array.isArray(state?.attemptedCommands)
+    ? state.attemptedCommands
+    : Array.isArray(state?.commands)
+      ? state.commands
+      : [];
+  return attemptedCommands.find((command) => command?.status !== 0) ?? null;
+}
+
+function resolveSavedFailedCommandIndex(commands, state) {
+  const failedCommand = getSavedFailedCommandRecord(state);
+  if (!failedCommand) {
+    return null;
+  }
+
+  const explicitIndex = Number.parseInt(String(failedCommand.commandIndex ?? ""), 10);
+  if (Number.isFinite(explicitIndex) && explicitIndex > 0) {
+    return explicitIndex;
+  }
+
+  const failedCommandParts = extractCommand(failedCommand);
+  if (!failedCommandParts) {
+    return null;
+  }
+
+  const commandIndex = commands.findIndex((command) => commandsMatch(command, failedCommandParts));
+  return commandIndex === -1 ? null : commandIndex + 1;
+}
+
+function resolveRepairStartCommandIndex(commands, options, savedState = undefined) {
+  if (options.fromCommandIndex != null) {
+    if (options.fromCommandIndex < 1) {
+      throw new Error("--from-command-index must be 1 or greater.");
+    }
+    if (options.fromCommandIndex > commands.length) {
+      throw new Error(
+        `Cannot start from command #${options.fromCommandIndex}; the current repair sequence has ${commands.length} command(s).`
+      );
+    }
+    return options.fromCommandIndex;
+  }
+
+  if (!options.resumeFailed) {
+    return 1;
+  }
+
+  const statePath = options.repairAttemptStatePath ?? REPAIR_ATTEMPT_STATE_PATH;
+  const state = savedState === undefined ? readRepairAttemptState(statePath) : savedState;
+  if (!state) {
+    throw new Error(`Cannot --resume-failed: no repair-attempt state exists at ${statePath}.`);
+  }
+
+  const failedCommandIndex = resolveSavedFailedCommandIndex(commands, state);
+  if (failedCommandIndex == null) {
+    throw new Error("Cannot --resume-failed: the saved repair-attempt state has no failed command.");
+  }
+  if (failedCommandIndex > commands.length) {
+    throw new Error(
+      `Cannot --resume-failed: saved failed command #${failedCommandIndex} is outside the current repair sequence of ${commands.length} command(s).`
+    );
+  }
+
+  const savedSequence = getSavedRepairCommandSequence(state);
+  const savedFailedCommand =
+    savedSequence[failedCommandIndex - 1] ?? extractCommand(getSavedFailedCommandRecord(state));
+  const currentFailedCommand = commands[failedCommandIndex - 1];
+  if (savedFailedCommand && !commandsMatch(savedFailedCommand, currentFailedCommand)) {
+    throw new Error(
+      `Cannot --resume-failed: saved failed command #${failedCommandIndex} no longer matches the current repair sequence. Saved "${formatCommand(
+        savedFailedCommand
+      )}", current "${formatCommand(currentFailedCommand)}". Use --from-command-index ${failedCommandIndex} to override.`
+    );
+  }
+
+  return failedCommandIndex;
 }
 
 function writeMarkdown(report) {
@@ -810,14 +1188,52 @@ function writeMarkdown(report) {
     lines.push("- none");
   }
 
+  lines.push("", "## Source Report Freshness", "");
+  lines.push(`- Outcome: ${report.sourceReportFreshness.outcome}`);
+  lines.push(`- Tolerance: ${Math.round(report.sourceReportFreshness.toleranceMs / 1000)} seconds`);
+  if (report.sourceReportFreshness.newestGeneratedOutput) {
+    lines.push(
+      `- Newest generated output: ${report.sourceReportFreshness.newestGeneratedOutput.key} (${report.sourceReportFreshness.newestGeneratedOutput.mtimeIso})`
+    );
+  } else {
+    lines.push("- Newest generated output: none found for selected repair plans");
+  }
+  if (report.sourceReportFreshness.staleReports.length) {
+    lines.push("- Stale source reports:");
+    for (const staleReport of report.sourceReportFreshness.staleReports) {
+      lines.push(
+        `  - ${staleReport.label}: ${staleReport.mtimeIso} older than ${staleReport.newestGeneratedOutputKey} at ${staleReport.newestGeneratedOutputMtimeIso}`
+      );
+    }
+  } else {
+    lines.push("- Stale source reports: none");
+  }
+
   lines.push("", "## Full Repair Command Sequence", "");
   if (report.repairCommandSequence.length) {
-    for (const command of report.repairCommandSequence.slice(0, 120)) {
-      lines.push(`- ${formatCommand(command)}`);
+    for (const [index, command] of report.repairCommandSequence.slice(0, 120).entries()) {
+      lines.push(`- #${index + 1} ${formatCommand(command)}`);
     }
     if (report.repairCommandSequence.length > 120) {
       lines.push(
         `- ... ${report.repairCommandSequence.length - 120} additional command(s) omitted.`
+      );
+    }
+  } else {
+    lines.push("- none");
+  }
+
+  lines.push("", "## Command Batching", "");
+  if (report.repairCommandBatches?.length) {
+    for (const batch of report.repairCommandBatches.slice(0, 120)) {
+      lines.push(
+        `- ${batch.stage}: ${batch.planIds.join(", ")} (${batch.reasonCodes.join("; ")})`
+      );
+      lines.push(`  - Command: ${formatCommand(batch.command)}`);
+    }
+    if (report.repairCommandBatches.length > 120) {
+      lines.push(
+        `- ... ${report.repairCommandBatches.length - 120} additional batch(es) omitted.`
       );
     }
   } else {
@@ -886,14 +1302,58 @@ function writeMarkdown(report) {
   if (report.repairAttempt) {
     lines.push("## Repair Attempt", "");
     lines.push(`- Mode: ${report.repairAttempt.mode}`);
+    lines.push(`- Resume mode: ${report.repairAttempt.resumeMode}`);
+    if (report.repairAttempt.statePath) {
+      lines.push(`- State: ${report.repairAttempt.statePath}`);
+    }
+    lines.push(`- Total commands in sequence: ${report.repairAttempt.commandCount}`);
+    lines.push(`- Start command index: ${report.repairAttempt.startCommandIndex ?? "n/a"}`);
+    if (report.repairAttempt.blocked) {
+      lines.push(`- Blocked: ${report.repairAttempt.blockedReason}`);
+    }
     lines.push(`- Commands attempted: ${report.repairAttempt.commands.length}`);
     lines.push(`- Failed commands: ${report.repairAttempt.failedCommandCount}`);
     for (const command of report.repairAttempt.commands) {
       lines.push(
-        `- [${command.status === 0 ? "ok" : "failed"}] ${formatCommand(command.command)}`
+        `- [${command.status === 0 ? "ok" : "failed"}] #${
+          command.commandIndex ?? "?"
+        } ${formatCommand(command.command)}`
       );
     }
     lines.push("");
+
+    if (report.repairAttempt.postRepairVerification) {
+      const verification = report.repairAttempt.postRepairVerification;
+      lines.push("## Post-Repair Verification", "");
+      lines.push(`- Enabled: ${verification.enabled ? "yes" : "no"}`);
+      if (verification.skippedReason) {
+        lines.push(`- Skipped: ${verification.skippedReason}`);
+      }
+      lines.push(`- Plans verified: ${verification.verifiedPlanCount}`);
+      lines.push(`- Cases before: ${verification.summary.beforeCaseCount}`);
+      lines.push(`- Cases after: ${verification.summary.afterCaseCount}`);
+      lines.push(`- Cases fixed: ${verification.summary.fixedCaseCount}`);
+      lines.push(`- New cases: ${verification.summary.newCaseCount}`);
+      lines.push(
+        `- Verification command failures: ${verification.summary.failedVerificationCommandCount}`
+      );
+      for (const planResult of verification.planResults.slice(0, 80)) {
+        lines.push(
+          `- [${planResult.status}] ${planResult.planId}: ${planResult.before.caseCount} -> ${planResult.after.caseCount} case(s), fixed ${planResult.fixedCaseCount}, new ${planResult.newCaseCount}`
+        );
+        for (const command of planResult.commands) {
+          lines.push(
+            `  - [${command.status === 0 ? "ok" : "failed"}] ${formatCommand(command.command)}`
+          );
+        }
+      }
+      if (verification.planResults.length > 80) {
+        lines.push(
+          `- ... ${verification.planResults.length - 80} additional verified plan(s) omitted.`
+        );
+      }
+      lines.push("");
+    }
   }
 
   fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
@@ -918,41 +1378,167 @@ function runCommand(commandParts) {
   };
 }
 
-function buildRepairCommandSequence(repairPlans) {
-  const discoveryPlanIds = uniqueSorted(
-    repairPlans.filter((plan) => plan.needsSourceDiscovery).map((plan) => plan.planId)
+function normalizeRepairSourceUrl(value) {
+  try {
+    const parsed = new URL(String(value ?? ""));
+    parsed.hash = "";
+    const normalizedPathname = parsed.pathname.replace(/\/+$/, "") || "/";
+    return `${parsed.origin}${normalizedPathname}${parsed.search}`;
+  } catch {
+    return normalizeWhitespace(String(value ?? "")).replace(/#.*$/u, "");
+  }
+}
+
+function buildTargetPlanArgs(planIds) {
+  const uniquePlanIds = uniqueSorted(planIds);
+  if (uniquePlanIds.length === 1) {
+    return ["--target-plan-id", uniquePlanIds[0]];
+  }
+  return ["--target-plan-ids", uniquePlanIds.join(",")];
+}
+
+function buildTargetedCommand(scriptPath, planIds) {
+  return ["node", scriptPath, ...buildTargetPlanArgs(planIds)];
+}
+
+function createDisjointSet(values) {
+  const parentByValue = new Map(values.map((value) => [value, value]));
+  const find = (value) => {
+    const parent = parentByValue.get(value);
+    if (parent == null || parent === value) {
+      return value;
+    }
+    const root = find(parent);
+    parentByValue.set(value, root);
+    return root;
+  };
+  const union = (left, right) => {
+    const leftRoot = find(left);
+    const rightRoot = find(right);
+    if (leftRoot !== rightRoot) {
+      parentByValue.set(rightRoot, leftRoot);
+    }
+  };
+  return { find, union };
+}
+
+function buildRepairPlanBatches(repairPlans, stage) {
+  const relevantPlans = repairPlans.filter((plan) =>
+    stage === "discovery" ? plan.needsSourceDiscovery : plan.needsRequirementParse
   );
-  const parsePlanIds = uniqueSorted(
-    repairPlans.filter((plan) => plan.needsRequirementParse).map((plan) => plan.planId)
-  );
+  const planIds = uniqueSorted(relevantPlans.map((plan) => plan.planId));
+  if (!planIds.length) {
+    return [];
+  }
+
+  const planById = new Map(relevantPlans.map((plan) => [plan.planId, plan]));
+  const disjointSet = createDisjointSet(planIds);
+  const reasonsByEdge = new Map();
+  const connect = (left, right, reason) => {
+    if (!left || !right || left === right) {
+      return;
+    }
+    disjointSet.union(left, right);
+    const key = uniqueSorted([left, right]).join("\u0000");
+    const reasons = reasonsByEdge.get(key) ?? [];
+    reasons.push(reason);
+    reasonsByEdge.set(key, uniqueSorted(reasons));
+  };
+
+  for (const planId of planIds) {
+    for (const candidateParentId of planIds) {
+      if (planId !== candidateParentId && planId.startsWith(`${candidateParentId}-`)) {
+        connect(candidateParentId, planId, `parent-child:${candidateParentId}`);
+      }
+    }
+  }
+
+  const sourcePlanIdsByUrl = new Map();
+  for (const plan of relevantPlans) {
+    for (const sourceUrl of plan.sourceUrls ?? []) {
+      const normalizedUrl = normalizeRepairSourceUrl(sourceUrl);
+      if (!normalizedUrl) {
+        continue;
+      }
+      const sourcePlanIds = sourcePlanIdsByUrl.get(normalizedUrl) ?? [];
+      sourcePlanIds.push(plan.planId);
+      sourcePlanIdsByUrl.set(normalizedUrl, uniqueSorted(sourcePlanIds));
+    }
+  }
+  for (const [sourceUrl, sourcePlanIds] of sourcePlanIdsByUrl.entries()) {
+    if (sourcePlanIds.length < 2) {
+      continue;
+    }
+    for (const planId of sourcePlanIds.slice(1)) {
+      connect(sourcePlanIds[0], planId, `same-source:${sourceUrl}`);
+    }
+  }
+
+  const planIdsByRoot = new Map();
+  for (const planId of planIds) {
+    const root = disjointSet.find(planId);
+    const rootPlanIds = planIdsByRoot.get(root) ?? [];
+    rootPlanIds.push(planId);
+    planIdsByRoot.set(root, uniqueSorted(rootPlanIds));
+  }
+
+  return [...planIdsByRoot.values()]
+    .map((batchPlanIds) => {
+      const reasons = [];
+      for (let leftIndex = 0; leftIndex < batchPlanIds.length; leftIndex += 1) {
+        for (let rightIndex = leftIndex + 1; rightIndex < batchPlanIds.length; rightIndex += 1) {
+          const edgeKey = uniqueSorted([batchPlanIds[leftIndex], batchPlanIds[rightIndex]]).join(
+            "\u0000"
+          );
+          reasons.push(...(reasonsByEdge.get(edgeKey) ?? []));
+        }
+      }
+      return {
+        stage,
+        planIds: batchPlanIds,
+        planCount: batchPlanIds.length,
+        ownerIds: uniqueSorted(batchPlanIds.flatMap((planId) => planById.get(planId)?.ownerIds ?? [])),
+        sourceUrls: uniqueSorted(
+          batchPlanIds.flatMap((planId) => planById.get(planId)?.sourceUrls ?? [])
+        ),
+        reasonCodes: uniqueSorted(reasons).length ? uniqueSorted(reasons) : ["single-target"],
+      };
+    })
+    .sort((left, right) => left.planIds[0].localeCompare(right.planIds[0]));
+}
+
+function buildRepairCommandPlan(repairPlans) {
+  const discoveryBatches = buildRepairPlanBatches(repairPlans, "discovery");
+  const parseBatches = buildRepairPlanBatches(repairPlans, "parse");
   const needsRuntimeGeneration = repairPlans.some(
     (plan) => plan.needsRuntimeGeneration || plan.needsRequirementParse
   );
   const commands = [];
+  const batches = [];
 
-  for (const planId of discoveryPlanIds) {
-    commands.push([
-      "node",
+  for (const batch of discoveryBatches) {
+    const command = buildTargetedCommand(
       "scripts/planner/discover-transfer-planner-primary-sources.cjs",
-      "--target-plan-id",
-      planId,
-    ]);
+      batch.planIds
+    );
+    commands.push(command);
+    batches.push({ ...batch, command });
   }
-  if (discoveryPlanIds.length) {
+  if (discoveryBatches.length) {
     commands.push(["node", "scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"]);
     commands.push(["node", "scripts/planner/build-transfer-planner-primary-source-promotions.cjs"]);
     commands.push(["node", "scripts/planner/build-transfer-planner-source-gap-report.cjs"]);
   }
 
-  for (const planId of parsePlanIds) {
-    commands.push([
-      "node",
+  for (const batch of parseBatches) {
+    const command = buildTargetedCommand(
       "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
-      "--target-plan-id",
-      planId,
-    ]);
+      batch.planIds
+    );
+    commands.push(command);
+    batches.push({ ...batch, command });
   }
-  if (parsePlanIds.length) {
+  if (parseBatches.length) {
     commands.push(["node", "scripts/planner/build-transfer-planner-source-fingerprints.cjs"]);
     commands.push(["node", "scripts/planner/generate-transfer-planner-source-bootstrap.cjs"]);
   }
@@ -960,59 +1546,434 @@ function buildRepairCommandSequence(repairPlans) {
     commands.push(["node", "scripts/planner/generate-transfer-planner-student-runtime.cjs"]);
   }
 
-  return commands;
+  return { commands, batches };
 }
 
-function runRepairAttempt(report, options) {
+function buildRepairCommandSequence(repairPlans) {
+  return buildRepairCommandPlan(repairPlans).commands;
+}
+
+function buildCaseKey(repairCase) {
+  return `${repairCase.ownerId}::${repairCase.category}`;
+}
+
+function getCasesForPlan(report, planId) {
+  return (report.cases ?? []).filter((repairCase) => repairCase.planId === planId);
+}
+
+function buildPlanCaseSummary(report, planId) {
+  const cases = getCasesForPlan(report, planId);
+  return {
+    caseCount: cases.length,
+    errorCaseCount: cases.filter((repairCase) => repairCase.severity === "error").length,
+    warningCaseCount: cases.filter((repairCase) => repairCase.severity === "warning").length,
+    countsByCategory: buildCountsBy(cases, (repairCase) => repairCase.category),
+    countsByAction: buildCountsBy(
+      cases.flatMap((repairCase) => repairCase.actions),
+      (action) => action
+    ),
+    caseKeys: uniqueSorted(cases.map(buildCaseKey)),
+  };
+}
+
+function comparePlanCaseSummaries(before, after) {
+  const beforeKeys = new Set(before.caseKeys ?? []);
+  const afterKeys = new Set(after.caseKeys ?? []);
+  const fixedCaseKeys = [...beforeKeys].filter((caseKey) => !afterKeys.has(caseKey)).sort();
+  const newCaseKeys = [...afterKeys].filter((caseKey) => !beforeKeys.has(caseKey)).sort();
+  return {
+    fixedCaseKeys,
+    newCaseKeys,
+    fixedCaseCount: fixedCaseKeys.length,
+    newCaseCount: newCaseKeys.length,
+  };
+}
+
+function getTargetPlanIdsFromCommand(commandParts) {
+  const targetPlanIds = [];
+  for (let index = 0; index < commandParts.length; index += 1) {
+    const part = commandParts[index];
+    if (part === "--target-plan-id") {
+      targetPlanIds.push(commandParts[index + 1] ?? null);
+    } else if (part === "--target-plan-ids") {
+      targetPlanIds.push(...String(commandParts[index + 1] ?? "").split(","));
+    }
+    if (typeof part === "string" && part.startsWith("--target-plan-id=")) {
+      targetPlanIds.push(part.slice("--target-plan-id=".length) || null);
+    } else if (typeof part === "string" && part.startsWith("--target-plan-ids=")) {
+      targetPlanIds.push(...part.slice("--target-plan-ids=".length).split(","));
+    }
+  }
+  return uniqueSorted(targetPlanIds.map((planId) => String(planId ?? "").trim()));
+}
+
+function buildPostRepairVerificationPlanIds(selectedPlans, attemptedCommands, commandCount) {
+  if (!attemptedCommands.length) {
+    return [];
+  }
+
+  const selectedPlanIds = new Set(selectedPlans.map((plan) => plan.planId));
+  const failedCommandCount = attemptedCommands.filter((command) => command.status !== 0).length;
+  if (failedCommandCount === 0 && attemptedCommands.length === commandCount) {
+    return [...selectedPlanIds].sort((left, right) => left.localeCompare(right));
+  }
+
+  const successfulTargetPlanIds = uniqueSorted(
+    attemptedCommands
+      .filter((command) => command.status === 0)
+      .flatMap((command) => getTargetPlanIdsFromCommand(command.command))
+      .filter((planId) => planId && selectedPlanIds.has(planId))
+  );
+  if (successfulTargetPlanIds.length) {
+    return successfulTargetPlanIds;
+  }
+
+  const successfulGlobalCommandCount = attemptedCommands.filter(
+    (command) => command.status === 0 && !getTargetPlanIdsFromCommand(command.command).length
+  ).length;
+  return successfulGlobalCommandCount > 0
+    ? [...selectedPlanIds].sort((left, right) => left.localeCompare(right))
+    : [];
+}
+
+function buildPostRepairVerificationCommands(planId) {
+  return [
+    [
+      "node",
+      "scripts/planner/verify-transfer-planner-owner-audit.cjs",
+      "--target-plan-id",
+      planId,
+    ],
+    [
+      "node",
+      "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
+      "--target-plan-id",
+      planId,
+      "--report-only",
+    ],
+  ];
+}
+
+function buildSkippedPostRepairVerification(report, selectedPlans, reason) {
+  const beforeCaseCount = selectedPlans.reduce(
+    (count, plan) => count + buildPlanCaseSummary(report, plan.planId).caseCount,
+    0
+  );
+  return {
+    enabled: false,
+    skippedReason: reason,
+    verifiedPlanCount: 0,
+    planResults: [],
+    summary: {
+      beforeCaseCount,
+      afterCaseCount: beforeCaseCount,
+      fixedCaseCount: 0,
+      newCaseCount: 0,
+      failedVerificationCommandCount: 0,
+    },
+  };
+}
+
+function summarizePostRepairVerification(planResults) {
+  return planResults.reduce(
+    (summary, planResult) => {
+      summary.beforeCaseCount += planResult.before.caseCount;
+      summary.afterCaseCount += planResult.after.caseCount;
+      summary.fixedCaseCount += planResult.fixedCaseCount;
+      summary.newCaseCount += planResult.newCaseCount;
+      summary.failedVerificationCommandCount += planResult.failedVerificationCommandCount;
+      return summary;
+    },
+    {
+      beforeCaseCount: 0,
+      afterCaseCount: 0,
+      fixedCaseCount: 0,
+      newCaseCount: 0,
+      failedVerificationCommandCount: 0,
+    }
+  );
+}
+
+function getPostRepairVerificationStatus(comparison) {
+  if (comparison.newCaseCount > 0 && comparison.fixedCaseCount === 0) {
+    return "regressed";
+  }
+  if (comparison.fixedCaseCount > 0) {
+    return comparison.newCaseCount > 0 ? "changed" : "improved";
+  }
+  return "unchanged";
+}
+
+function runPostRepairVerification({
+  report,
+  options,
+  selectedPlans,
+  attemptedCommands,
+  commandCount,
+  commandRunner = runCommand,
+  reportBuilder = buildReport,
+}) {
+  if (options.postRepairVerification === false) {
+    return buildSkippedPostRepairVerification(
+      report,
+      selectedPlans,
+      "post-repair verification disabled"
+    );
+  }
+
+  const selectedPlansById = new Map(selectedPlans.map((plan) => [plan.planId, plan]));
+  const planIds = buildPostRepairVerificationPlanIds(
+    selectedPlans,
+    attemptedCommands,
+    commandCount
+  );
+  if (!planIds.length) {
+    return buildSkippedPostRepairVerification(
+      report,
+      selectedPlans,
+      "no successfully touched target plans"
+    );
+  }
+
+  const restorablePaths =
+    options.postRepairVerificationRestorablePaths ?? POST_REPAIR_VERIFICATION_RESTORABLE_PATHS;
+  const reportFileSnapshot = snapshotFiles(restorablePaths);
+  const planResults = [];
+
+  for (const planId of planIds) {
+    restoreFileSnapshot(reportFileSnapshot);
+    const plan = selectedPlansById.get(planId);
+    const before = buildPlanCaseSummary(report, planId);
+    const commands = buildPostRepairVerificationCommands(planId);
+    const commandResults = commands.map((command) => ({ ...commandRunner(command), command }));
+    let after = before;
+    let status = "verification-error";
+    let error = null;
+
+    try {
+      const afterReport = reportBuilder({ ...options, targetPlanId: planId, repair: false });
+      after = buildPlanCaseSummary(afterReport, planId);
+      const comparison = comparePlanCaseSummaries(before, after);
+      status = getPostRepairVerificationStatus(comparison);
+      planResults.push({
+        planId,
+        actions: plan?.actions ?? [],
+        commands: commandResults,
+        failedVerificationCommandCount: commandResults.filter((command) => command.status !== 0)
+          .length,
+        before,
+        after,
+        ...comparison,
+        status,
+        error,
+      });
+    } catch (caughtError) {
+      error = caughtError instanceof Error ? caughtError.message : String(caughtError);
+      planResults.push({
+        planId,
+        actions: plan?.actions ?? [],
+        commands: commandResults,
+        failedVerificationCommandCount: commandResults.filter((command) => command.status !== 0)
+          .length,
+        before,
+        after,
+        fixedCaseKeys: [],
+        newCaseKeys: [],
+        fixedCaseCount: 0,
+        newCaseCount: 0,
+        status,
+        error,
+      });
+    } finally {
+      restoreFileSnapshot(reportFileSnapshot);
+    }
+  }
+
+  return {
+    enabled: true,
+    skippedReason: null,
+    verifiedPlanCount: planResults.length,
+    planResults,
+    summary: summarizePostRepairVerification(planResults),
+  };
+}
+
+function buildRepairAttemptState({
+  report,
+  options,
+  selectedPlans,
+  skippedPlanCount,
+  commands,
+  commandBatches,
+  attemptedCommands,
+  startCommandIndex,
+  postRepairVerification,
+}) {
+  return {
+    generatedAt: new Date().toISOString(),
+    planGeneratedAt: report.generatedAt,
+    targetPlanId: report.targetPlanId,
+    maxRepairPlans: options.maxRepairPlans ?? null,
+    selectedPlanCount: selectedPlans.length,
+    selectedPlanIds: selectedPlans.map((plan) => plan.planId),
+    skippedPlanCount,
+    commandCount: commands.length,
+    startCommandIndex,
+    resumeMode: getRepairResumeMode(options),
+    commandSequence: buildRepairCommandRecords(commands),
+    commandBatches,
+    attemptedCommands,
+    failedCommandCount: attemptedCommands.filter((command) => command.status !== 0).length,
+    postRepairVerification,
+  };
+}
+
+function runRepairAttempt(
+  report,
+  options,
+  commandRunner = runCommand,
+  stateWriter = writeRepairAttemptState,
+  savedState = undefined,
+  postRepairVerifier = runPostRepairVerification
+) {
   const maxRepairPlans = options.maxRepairPlans;
   const selectedPlans =
     maxRepairPlans == null ? report.repairPlans : report.repairPlans.slice(0, maxRepairPlans);
   const skippedPlanCount = report.repairPlans.length - selectedPlans.length;
-  const commands = buildRepairCommandSequence(selectedPlans);
+  const commandPlan = buildRepairCommandPlan(selectedPlans);
+  const commands = commandPlan.commands;
+  const startCommandIndex = resolveRepairStartCommandIndex(commands, options, savedState);
   const attemptedCommands = [];
 
-  for (const command of commands) {
-    const result = runCommand(command);
-    attemptedCommands.push(result);
+  for (
+    let commandIndex = startCommandIndex - 1;
+    commandIndex < commands.length;
+    commandIndex += 1
+  ) {
+    const result = commandRunner(commands[commandIndex]);
+    attemptedCommands.push({
+      ...result,
+      command: result.command ?? commands[commandIndex],
+      commandIndex: commandIndex + 1,
+    });
     if (result.status !== 0) {
       break;
     }
   }
 
+  const postRepairVerification = postRepairVerifier({
+    report,
+    options,
+    selectedPlans,
+    attemptedCommands,
+    commandCount: commands.length,
+    commandRunner,
+  });
+
+  const state = buildRepairAttemptState({
+    report,
+    options,
+    selectedPlans,
+    skippedPlanCount,
+    commands,
+    commandBatches: commandPlan.batches,
+    attemptedCommands,
+    startCommandIndex,
+    postRepairVerification,
+  });
+  const statePath = options.repairAttemptStatePath ?? REPAIR_ATTEMPT_STATE_PATH;
+  stateWriter(state, statePath);
+
   return {
     mode: options.repair ? "repair" : "plan-only",
+    resumeMode: getRepairResumeMode(options),
     maxRepairPlans: maxRepairPlans ?? null,
     selectedPlanCount: selectedPlans.length,
     skippedPlanCount,
+    commandCount: commands.length,
+    commandBatches: commandPlan.batches,
+    startCommandIndex,
+    statePath,
     commands: attemptedCommands,
     failedCommandCount: attemptedCommands.filter((command) => command.status !== 0).length,
+    postRepairVerification,
+    blocked: false,
+    blockedReason: null,
   };
 }
 
 function parseOptions() {
+  const resumeFailed = hasArg("--resume-failed");
+  const fromCommandIndex = getCommandIndexArgValue("--from-command-index");
+  if (resumeFailed && fromCommandIndex != null) {
+    throw new Error("Use either --resume-failed or --from-command-index, not both.");
+  }
+
   return {
     repair: hasArg("--repair"),
     targetPlanId: getArgValue("--target-plan-id"),
     maxRepairPlans: getNumericArgValue("--max-repair-plans"),
+    resumeFailed,
+    fromCommandIndex,
+    repairAttemptStatePath: REPAIR_ATTEMPT_STATE_PATH,
+    postRepairVerification: !hasArg("--skip-post-repair-verification"),
+  };
+}
+
+function buildEmptyRepairAttempt(report, options, overrides = {}) {
+  return {
+    mode: options.repair ? "repair" : "plan-only",
+    resumeMode: getRepairResumeMode(options),
+    maxRepairPlans: options.maxRepairPlans ?? null,
+    selectedPlanCount: 0,
+    skippedPlanCount: report.repairPlans.length,
+    commandCount: 0,
+    commandBatches: [],
+    startCommandIndex: null,
+    statePath: null,
+    commands: [],
+    failedCommandCount: 0,
+    postRepairVerification: null,
+    blocked: false,
+    blockedReason: null,
+    ...overrides,
   };
 }
 
 function main() {
   ensureTmpDir();
-  const options = parseOptions();
+  let options;
+  try {
+    options = parseOptions();
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+    return;
+  }
+
   const report = buildReport(options);
 
-  if (options.repair && report.repairPlans.length) {
-    report.repairAttempt = runRepairAttempt(report, options);
+  if (
+    options.repair &&
+    report.repairPlans.length &&
+    report.sourceReportFreshness.outcome === "stale"
+  ) {
+    report.repairAttempt = buildEmptyRepairAttempt(report, options, {
+      blocked: true,
+      blockedReason:
+        "One or more source reports are older than the generated outputs selected for repair. Rerun the relevant audits/reports before auto-repair.",
+    });
+  } else if (options.repair && report.repairPlans.length) {
+    try {
+      report.repairAttempt = runRepairAttempt(report, options);
+    } catch (error) {
+      report.repairAttempt = buildEmptyRepairAttempt(report, options, {
+        blocked: true,
+        blockedReason: error instanceof Error ? error.message : String(error),
+      });
+    }
   } else {
-    report.repairAttempt = {
-      mode: options.repair ? "repair" : "plan-only",
-      maxRepairPlans: options.maxRepairPlans ?? null,
-      selectedPlanCount: 0,
-      skippedPlanCount: report.repairPlans.length,
-      commands: [],
-      failedCommandCount: 0,
-    };
+    report.repairAttempt = buildEmptyRepairAttempt(report, options);
   }
 
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
@@ -1022,16 +1983,61 @@ function main() {
   console.log(`Affected owners: ${report.ownerCount}`);
   console.log(`Affected plans: ${report.planCount}`);
   console.log(`Repair plans: ${report.repairPlans.length}`);
+  console.log(`Source report freshness: ${report.sourceReportFreshness.outcome}`);
+  if (report.sourceReportFreshness.staleReports.length) {
+    console.warn(
+      `Stale source reports: ${report.sourceReportFreshness.staleReports
+        .map((entry) => entry.label)
+        .join(", ")}`
+    );
+  }
+  if (report.repairAttempt?.blocked) {
+    console.error(`Auto-repair blocked: ${report.repairAttempt.blockedReason}`);
+  }
   if (report.repairAttempt?.commands?.length) {
     console.log(`Repair commands attempted: ${report.repairAttempt.commands.length}`);
     console.log(`Repair command failures: ${report.repairAttempt.failedCommandCount}`);
   }
+  if (report.repairAttempt?.postRepairVerification?.enabled) {
+    const summary = report.repairAttempt.postRepairVerification.summary;
+    console.log(
+      `Post-repair verification: ${report.repairAttempt.postRepairVerification.verifiedPlanCount} plan(s), cases ${summary.beforeCaseCount} -> ${summary.afterCaseCount}, fixed ${summary.fixedCaseCount}, new ${summary.newCaseCount}`
+    );
+    console.log(
+      `Post-repair verification command failures: ${summary.failedVerificationCommandCount}`
+    );
+  } else if (report.repairAttempt?.postRepairVerification?.skippedReason) {
+    console.log(
+      `Post-repair verification skipped: ${report.repairAttempt.postRepairVerification.skippedReason}`
+    );
+  }
+  if (report.repairAttempt?.startCommandIndex != null) {
+    console.log(`Repair start command index: ${report.repairAttempt.startCommandIndex}`);
+  }
+  if (report.repairAttempt?.statePath) {
+    console.log(`Repair state: ${report.repairAttempt.statePath}`);
+  }
   console.log(`JSON report: ${OUTPUT_JSON_PATH}`);
   console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
 
-  if (report.repairAttempt?.failedCommandCount > 0) {
+  if (report.repairAttempt?.blocked || report.repairAttempt?.failedCommandCount > 0) {
     process.exitCode = 1;
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  REPAIR_ATTEMPT_STATE_PATH,
+  REPORT_FRESHNESS_TOLERANCE_MS,
+  buildFreshnessReport,
+  buildGeneratedOutputKeysForRepairPlans,
+  buildPlanCaseSummary,
+  buildRepairCommandPlan,
+  buildPostRepairVerificationPlanIds,
+  runPostRepairVerification,
+  resolveRepairStartCommandIndex,
+  runRepairAttempt,
+};

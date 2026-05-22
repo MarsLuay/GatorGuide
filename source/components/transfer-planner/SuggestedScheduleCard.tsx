@@ -12,6 +12,7 @@ import {
   type TransferPlannerTrack,
 } from "@/constants/transfer-planner-source/student-runtime";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import {
   auditCategoryOptionDetection,
   auditCategoryTranscriptSatisfaction,
@@ -115,6 +116,7 @@ function SuggestedScheduleOptionsBox({
   borderClass: string;
 }) {
   const { isLight } = useAppTheme();
+  const { t } = useAppLanguage();
   const [closedOptionGroupIds, setClosedOptionGroupIds] = useState<Set<string>>(
     () => new Set()
   );
@@ -150,7 +152,7 @@ function SuggestedScheduleOptionsBox({
       <View className="flex-row items-center gap-2">
         <Ionicons name="options-outline" size={17} color="#059669" />
         <Text className={`${textClass} text-sm font-semibold`}>
-          Choose your plan options
+          {t("suggestedSchedule.choosePlanOptions")}
         </Text>
       </View>
 
@@ -190,10 +192,10 @@ function SuggestedScheduleOptionsBox({
           plan,
         });
         const optionGroupStatusVerb =
-          getSuggestedScheduleOptionGroupStatusVerb(optionGroup);
+          getSuggestedScheduleOptionGroupStatusVerb(optionGroup, t);
         const optionGroupStatusText = selectedOptionLabels.length
           ? `${optionGroupStatusVerb}: ${selectedOptionLabels.join("; ")}`
-          : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup);
+          : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup, t);
         const optionGroupProgressText =
           getSuggestedScheduleOptionGroupProgressText(optionGroup);
         const optionGroupTranscriptSatisfierText =
@@ -209,9 +211,12 @@ function SuggestedScheduleOptionsBox({
             <TouchOptionRow
               onPress={() => toggleOptionGroup(optionGroup.id)}
               expanded={isOptionGroupOpen}
-              accessibilityLabel={`${isOptionGroupOpen ? "Close" : "Open"} options for ${
-                optionGroupDisplayTitle
-              }`}
+              accessibilityLabel={t(
+                isOptionGroupOpen
+                  ? "suggestedSchedule.closeOptionsFor"
+                  : "suggestedSchedule.openOptionsFor",
+                { title: optionGroupDisplayTitle }
+              )}
               className={`rounded-xl border px-3 py-3 flex-row items-center justify-between gap-3 ${
                 isLight
                   ? "bg-white border-emerald-500/30"
@@ -354,8 +359,9 @@ function SuggestedScheduleOptionsBox({
                         isSuggestedScheduleCategoryOption(option) &&
                         optionTranscriptSatisfierText ? (
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                            Satisfied by completed transcript course:{" "}
-                            {optionTranscriptSatisfierText}
+                            {t("suggestedSchedule.satisfiedByCompletedTranscriptCourse", {
+                              course: optionTranscriptSatisfierText,
+                            })}
                           </Text>
                         ) : null}
                         <Text
@@ -377,7 +383,7 @@ function SuggestedScheduleOptionsBox({
                           className={`${secondaryTextClass} text-xs font-medium`}
                           style={{ fontVariant: ["tabular-nums"] }}
                         >
-                        {formatSuggestedScheduleCreditRange(optionCreditRange)}
+                        {formatSuggestedScheduleCreditRange(optionCreditRange, t)}
                       </Text>
                     ) : null}
                     </TouchOptionRow>
@@ -457,6 +463,7 @@ export function SuggestedScheduleCard({
 }) {
   const router = useRouter();
   const { isLight } = useAppTheme();
+  const { t } = useAppLanguage();
   const visibleQuarters = useMemo(
     () => quarters.filter((quarter) => quarter.phase !== "planned" || quarter.courses.length > 0),
     [quarters]
@@ -560,9 +567,9 @@ export function SuggestedScheduleCard({
   const scheduleTitle =
     collegeId === "grc"
       ? grcTrackRequirementNoun === "degree"
-        ? "GRC Degree Plan"
-        : "GRC Program Plan"
-      : "GRC Quarter Plan";
+        ? t("suggestedSchedule.grcDegreePlan")
+        : t("suggestedSchedule.grcProgramPlan")
+      : t("suggestedSchedule.grcQuarterPlan");
   const remainingCreditRange = buildSuggestedQuarterRemainingCreditRange({
     quarters: creditRangeQuarters,
     track: collegeId === "grc" ? grcTrack : null,
@@ -570,10 +577,11 @@ export function SuggestedScheduleCard({
   const remainingCreditText = formatSuggestedScheduleCreditRange({
     creditMin: remainingCreditRange.minRemainingCredits,
     creditMax: remainingCreditRange.maxRemainingCredits,
-  });
+  }, t);
   const remainingCreditCredentialLabel = getSuggestedScheduleCredentialLabel(
     degreeTitle,
-    collegeId === "grc" ? grcTrackRequirementNoun : "degree"
+    collegeId === "grc" ? grcTrackRequirementNoun : "degree",
+    t
   );
   const uwTransferMinimumRequirementSummary =
     collegeId === "grc"
@@ -728,14 +736,25 @@ export function SuggestedScheduleCard({
       selectedRequirementOptionIdsByGroup,
     ]
   );
-  const stemPrepToggleGuidance =
-    "Turn off 'Allow STEM prep classes' to skip unnecessary placement-dependent prep classes like Precalculus I/II or general physics when you are ready to start with Calculus I and Engineering Physics I.";
+  const stemPrepToggleGuidance = t("suggestedSchedule.stemPrepGuidance");
   const scheduleDescription =
     collegeId === "grc"
-      ? `This is your Green River plan for finishing the ${degreeTitle} ${grcTrackRequirementNoun} at ${getScheduleCampusLabel(collegeId, campusLabel)}. Completed transcript classes stay marked as done, and the planner fills in the remaining GRC ${grcTrackRequirementNoun} courses still ahead.`
+      ? t("suggestedSchedule.grcDescription", {
+          degreeTitle,
+          noun: grcTrackRequirementNoun,
+          campus: getScheduleCampusLabel(collegeId, campusLabel, t),
+        })
       : onlyUwEssentialClasses
-        ? `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. It starts focused on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies. Turn off Classes for UW transfer only to include optional Green River track classes. ${stemPrepToggleGuidance}`
-        : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Turn on Classes for UW transfer only to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies. ${stemPrepToggleGuidance}`;
+        ? t("suggestedSchedule.uwEssentialDescription", {
+            degreeTitle,
+            campus: getScheduleCampusLabel(collegeId, campusLabel, t),
+            guidance: stemPrepToggleGuidance,
+          })
+        : t("suggestedSchedule.uwFullDescription", {
+            degreeTitle,
+            campus: getScheduleCampusLabel(collegeId, campusLabel, t),
+            guidance: stemPrepToggleGuidance,
+          });
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -754,12 +773,12 @@ export function SuggestedScheduleCard({
                 onPress={onToggleOnlyUwEssentialClasses}
                 accessibilityRole="checkbox"
                 checked={onlyUwEssentialClasses}
-                accessibilityLabel="Only show classes that transfer into UW on this track"
-                accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes, official UW transfer admission guidance when applicable, and Gen-Eds that still unlock UW-required work."
+                accessibilityLabel={t("suggestedSchedule.onlyUwEssentialAccessibility")}
+                accessibilityHint={t("suggestedSchedule.onlyUwEssentialHint")}
                 className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
               >
                 <Text className={`${secondaryTextClass} text-xs font-medium`}>
-                  Classes for UW transfer only
+                  {t("suggestedSchedule.onlyUwEssentialLabel")}
                 </Text>
                 <Ionicons
                   name={onlyUwEssentialClasses ? "checkbox" : "square-outline"}
@@ -772,12 +791,12 @@ export function SuggestedScheduleCard({
               onPress={onToggleAllowStemPrepClasses}
               accessibilityRole="checkbox"
               checked={allowStemPrepClasses}
-              accessibilityLabel="Allow STEM prep classes in quarter planning"
-              accessibilityHint="Includes placement-dependent prep classes such as Precalculus I/II and general physics before Calculus I or Engineering Physics I."
+              accessibilityLabel={t("suggestedSchedule.allowStemPrepAccessibility")}
+              accessibilityHint={t("suggestedSchedule.allowStemPrepHint")}
               className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
             >
               <Text className={`${secondaryTextClass} text-xs font-medium`}>
-                Allow STEM prep classes
+                {t("suggestedSchedule.allowStemPrepLabel")}
               </Text>
               <Ionicons
                 name={allowStemPrepClasses ? "checkbox" : "square-outline"}
@@ -789,12 +808,12 @@ export function SuggestedScheduleCard({
               onPress={onToggleAllowSummerClasses}
               accessibilityRole="checkbox"
               checked={allowSummerClasses}
-              accessibilityLabel="Allow summer classes in quarter planning"
-              accessibilityHint="Includes summer quarter when building your future course plan."
+              accessibilityLabel={t("suggestedSchedule.allowSummerAccessibility")}
+              accessibilityHint={t("suggestedSchedule.allowSummerHint")}
               className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
             >
               <Text className={`${secondaryTextClass} text-xs font-medium`}>
-                Allow summer classes
+                {t("suggestedSchedule.allowSummerLabel")}
               </Text>
               <Ionicons
                 name={allowSummerClasses ? "checkbox" : "square-outline"}
@@ -833,11 +852,13 @@ export function SuggestedScheduleCard({
 
       <View className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-4">
         <Text className={`${textClass} text-base font-semibold`}>
-          You have{" "}
+          {t("suggestedSchedule.remainingCreditsPrefix")}{" "}
           <Text className="text-emerald-600" style={{ fontVariant: ["tabular-nums"] }}>
             {remainingCreditText}
           </Text>{" "}
-          left in order to finish what you can for the {remainingCreditCredentialLabel}
+          {t("suggestedSchedule.remainingCreditsSuffix", {
+            credential: remainingCreditCredentialLabel,
+          })}
         </Text>
         <SuggestedScheduleOptionsBox
           optionGroups={scheduleOptionGroups}
@@ -859,12 +880,12 @@ export function SuggestedScheduleCard({
         <TouchIconButton
           onPress={() => void openExternalLink("https://greenriver.navigate.eab.com/")}
           accessibilityRole="link"
-          accessibilityLabel="Schedule a meeting with a GRC advisor"
+          accessibilityLabel={t("suggestedSchedule.scheduleAdvisor")}
           className="mt-3 flex-row items-center gap-2"
         >
           <Ionicons name="calendar-outline" size={16} color="#059669" />
           <Text className="text-sm font-semibold text-emerald-600 underline">
-            Schedule a meeting with a GRC advisor
+            {t("suggestedSchedule.scheduleAdvisor")}
           </Text>
         </TouchIconButton>
       </View>
@@ -896,10 +917,10 @@ export function SuggestedScheduleCard({
                   }`}
                 >
                   {quarter.phase === "completed"
-                    ? "Completed"
+                    ? t("suggestedSchedule.completed")
                     : quarter.phase === "current"
-                      ? "Current"
-                      : "Planned"}
+                      ? t("suggestedSchedule.current")
+                      : t("suggestedSchedule.planned")}
                 </Text>
               </View>
             </View>
@@ -925,7 +946,7 @@ export function SuggestedScheduleCard({
                   const grcProgramRequirementFlavorText =
                     collegeId === "grc" &&
                     String(course.sourceKind ?? "").startsWith("official-grc")
-                      ? "Required for this Green River program."
+                      ? t("suggestedSchedule.requiredForGrcProgram")
                       : null;
                   const courseCardKey = `${quarter.label}-${courseSelectionKey || course.label}-${courseIndex}`;
                   const courseCardClassName = `px-3 py-3 rounded-2xl ${
@@ -1004,9 +1025,12 @@ export function SuggestedScheduleCard({
                                   </Text>
                                   <Text className={`${secondaryTextClass} text-xs`}>
                                     {selectedOptionLabels.length
-                                      ? `Selected: ${selectedOptionLabels.join("; ")}`
+                                      ? t("suggestedSchedule.selectedPrefix", {
+                                          items: selectedOptionLabels.join("; "),
+                                        })
                                       : getSuggestedScheduleOptionGroupSelectionTargetText(
-                                          optionGroup
+                                          optionGroup,
+                                          t
                                         )}
                                   </Text>
                                   {grcProgramRequirementFlavorText ? (
@@ -1121,7 +1145,9 @@ export function SuggestedScheduleCard({
                       onPress={() => onToggleCurrentCourse(courseSelectionKey, course.label)}
                       accessibilityRole="checkbox"
                       checked={isCurrentCourseSelected}
-                      accessibilityLabel={`Mark ${courseDisplayLabel} as a current course`}
+                      accessibilityLabel={t("suggestedSchedule.markCurrentCourse", {
+                        course: courseDisplayLabel,
+                      })}
                       className={courseCardClassName}
                     >
                       {courseCardContent}
@@ -1134,7 +1160,7 @@ export function SuggestedScheduleCard({
                 })
               ) : (
                 <Text className={`${secondaryTextClass} text-sm`}>
-                  Nothing else is required in this planned quarter.
+                  {t("suggestedSchedule.nothingElseRequired")}
                 </Text>
               )}
             </View>

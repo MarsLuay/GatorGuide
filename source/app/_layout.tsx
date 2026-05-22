@@ -15,11 +15,16 @@ import { AuthRedirectHandler } from "@/components/AuthRedirectHandler";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { cacheManagerService } from "@/services/storage/cache-manager.service";
+import { translations } from "@/services/app/translations";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { AppStartupScreen } from "@/components/AppStartupScreen";
 import { VercelAnalytics } from "@/components/VercelAnalytics";
 
 const HAS_SEEN_STARTUP_KEY = STORAGE_KEYS.hasSeenStartup;
+
+function rootCopy(key: string) {
+  return translations.English[key] ?? key;
+}
 
 const buildErrorLog = (error: Error) => {
   const lines = [
@@ -52,23 +57,23 @@ const sendErrorToSupport = async (error: Error) => {
     });
 
     if (result.status === 'sent') {
-      Alert.alert('Sent', 'Error log sent to support.');
+      Alert.alert(rootCopy("errorBoundary.sentTitle"), rootCopy("errorBoundary.sentToSupport"));
       return;
     }
 
     if (result.status === 'queued') {
-      Alert.alert('Sent', 'Error log saved to support logs.');
+      Alert.alert(rootCopy("errorBoundary.sentTitle"), rootCopy("errorBoundary.savedToSupportLogs"));
       return;
     }
 
     Alert.alert(
-      'Support endpoint not configured',
-      'Set EXPO_PUBLIC_SUPPORT_ERROR_LOG_WEBHOOK or sign in so logs can be stored in Firestore.'
+      rootCopy("errorBoundary.supportEndpointMissingTitle"),
+      rootCopy("errorBoundary.supportEndpointMissingMessage")
     );
   } catch {
     Alert.alert(
-      'Failed to send',
-      'Could not send the error log to support. Verify your webhook endpoint (or Firestore rules) and try again.'
+      rootCopy("errorBoundary.failedToSendTitle"),
+      rootCopy("errorBoundary.failedToSendMessage")
     );
   }
 };
@@ -77,7 +82,7 @@ const copyErrorLog = async (error: Error) => {
   const log = buildErrorLog(error);
   if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(log);
-    Alert.alert('Copied', 'Error log copied to clipboard.');
+    Alert.alert(rootCopy("errorBoundary.copiedTitle"), rootCopy("errorBoundary.copiedMessage"));
     return;
   }
 
@@ -103,9 +108,9 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   return (
     <View style={{ flex: 1, backgroundColor: '#0B0B0B', justifyContent: 'center', paddingHorizontal: 24 }}>
       <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center', backgroundColor: '#111827', borderRadius: 16, padding: 20 }}>
-        <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: '600', marginBottom: 8 }}>Something went wrong</Text>
+        <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: '600', marginBottom: 8 }}>{rootCopy("errorBoundary.title")}</Text>
         <Text style={{ color: '#D1D5DB', fontSize: 14, marginBottom: 16 }}>
-          Please copy the error log and send it so we can fix this quickly.
+          {rootCopy("errorBoundary.body")}
         </Text>
 
         <AnimatedChipPressable
@@ -113,7 +118,7 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
           containerStyle={{ marginBottom: 10 }}
           style={{ backgroundColor: '#22C55E', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
         >
-          <Text style={{ color: '#000000', fontWeight: '700' }}>Copy error log</Text>
+          <Text style={{ color: '#000000', fontWeight: '700' }}>{rootCopy("errorBoundary.copyLog")}</Text>
         </AnimatedChipPressable>
 
         <AnimatedChipPressable
@@ -121,11 +126,11 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
           containerStyle={{ marginBottom: 10 }}
           style={{ backgroundColor: '#1F2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
         >
-          <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>Send error log to support</Text>
+          <Text style={{ color: '#FFFFFF', fontWeight: '700' }}>{rootCopy("errorBoundary.sendLog")}</Text>
         </AnimatedChipPressable>
 
         <AnimatedIconPressable onPress={retry} style={{ alignItems: 'center', paddingVertical: 8 }}>
-          <Text style={{ color: '#93C5FD', fontWeight: '600' }}>Try again</Text>
+          <Text style={{ color: '#93C5FD', fontWeight: '600' }}>{rootCopy("errorBoundary.tryAgain")}</Text>
         </AnimatedIconPressable>
       </View>
     </View>
@@ -226,24 +231,22 @@ function RootLayoutContent() {
   }
 
   return (
-    <AppLanguageProvider>
-      <AppDataProvider>
-        <OpportunitiesProvider>
-          <AuthRedirectHandler />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              animation: 'slide_from_right',
-              animationDuration: 300,
-            }}
-          >
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
-          {DevModeComponent ? <DevModeComponent /> : null}
-          <VercelAnalytics />
-        </OpportunitiesProvider>
-      </AppDataProvider>
-    </AppLanguageProvider>
+    <AppDataProvider>
+      <OpportunitiesProvider>
+        <AuthRedirectHandler />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            animation: 'slide_from_right',
+            animationDuration: 300,
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+        {DevModeComponent ? <DevModeComponent /> : null}
+        <VercelAnalytics />
+      </OpportunitiesProvider>
+    </AppDataProvider>
   );
 }
 
@@ -251,7 +254,9 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <AppThemeProvider>
-        <RootLayoutContent />
+        <AppLanguageProvider>
+          <RootLayoutContent />
+        </AppLanguageProvider>
       </AppThemeProvider>
     </SafeAreaProvider>
   );

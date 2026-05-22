@@ -5,6 +5,7 @@ import { Alert, Platform } from "react-native";
 import { ROUTES } from "@/constants/routes";
 import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import type { QuestionnaireAnswers, User } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import {
   buildTransferPlannerTranscriptCachePatch,
@@ -60,6 +61,7 @@ export function useTranscriptPlannerState({
   updateUser,
   setQuestionnaireAnswers,
 }: UseTranscriptPlannerStateInput) {
+  const { t } = useAppLanguage();
   const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
   const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
@@ -351,7 +353,7 @@ export function useTranscriptPlannerState({
           tags: ["transcript", "transfer-planner", failureSnapshot.document.urlKind],
           metadata: failureSnapshot,
         });
-        setTranscriptError(buildFriendlyTranscriptError());
+        setTranscriptError(buildFriendlyTranscriptError(t));
       } finally {
         if (analysisGeneration === transcriptAnalysisGenerationRef.current) {
           appendTranscriptDebugEvent("transcript-analysis-finished", analysisStartedAt, {
@@ -370,6 +372,7 @@ export function useTranscriptPlannerState({
       setQuestionnaireAnswers,
       storedTranscriptParserVersion,
       storedTranscriptSource,
+      t,
     ]
   );
 
@@ -424,7 +427,10 @@ export function useTranscriptPlannerState({
 
   const handlePickTranscript = useCallback(async () => {
     if (!user?.uid) {
-      Alert.alert("Profile needed", "Open the app as a guest or signed-in student first.");
+      Alert.alert(
+        t("transferPlanner.profileNeededAlertTitle"),
+        t("transferPlanner.profileNeededAlertBody")
+      );
       return;
     }
 
@@ -532,13 +538,13 @@ export function useTranscriptPlannerState({
         route: ROUTES.transferPlanner,
         tags: ["transcript", "transfer-planner", "upload"],
       });
-      Alert.alert("Transcript upload failed", "We couldn't use that transcript yet.", [
+      Alert.alert(t("transferPlanner.transcriptUploadFailedTitle"), t("transferPlanner.transcriptUploadFailedBody"), [
         {
-          text: "Cancel",
+          text: t("general.cancel"),
           style: "cancel",
         },
         {
-          text: "Open ctcLink",
+          text: t("transferPlanner.openCtcLink"),
           onPress: () => {
             void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL);
           },
@@ -551,6 +557,7 @@ export function useTranscriptPlannerState({
     legacyCompletedCourseAnswers,
     storedTranscriptParserVersion,
     storedTranscriptSource,
+    t,
     updateUser,
     user?.uid,
   ]);
@@ -584,12 +591,12 @@ export function useTranscriptPlannerState({
       });
 
       if (Platform.OS === "web" && typeof window !== "undefined" && typeof window.alert === "function") {
-        window.alert("Couldn't remove transcript.");
+        window.alert(t("transferPlanner.removeFailedBody"));
       } else {
-        Alert.alert("Remove failed", "Couldn't remove transcript.");
+        Alert.alert(t("transferPlanner.removeFailedTitle"), t("transferPlanner.removeFailedBody"));
       }
     }
-  }, [patchUserLocally, setQuestionnaireAnswers, updateUser, user?.uid]);
+  }, [patchUserLocally, setQuestionnaireAnswers, t, updateUser, user?.uid]);
 
   const handleRemoveTranscript = useCallback(() => {
     void removeTranscriptNow();

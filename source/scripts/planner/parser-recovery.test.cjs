@@ -548,6 +548,113 @@ test("Legacy catalog scoping keeps the full selected program block", () => {
   assert.ok(!parsed.courseCodes.includes("TEE 225"));
 });
 
+test("Legacy catalog scoping matches parenthetical concentration credentials", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="program-UG-IAS-MAJOR">
+      <h3 class="expanded" id="program-UG-IAS-MAJOR">Program of Study: Major: Interdisciplinary Arts and Sciences</h3>
+    </div>
+    <div id="program-UG-IAS-MAJOR-block" class="inner-block" style="display:block">
+      <p>This program of study leads to the following credentials:</p>
+      <p>Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences</p>
+      <p>Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences (Individually Designed)</p>
+      <div class="expandableGroup" data-expand="credential-ias">
+        <h4 class="expanded" id="credential-ias">Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences</h4>
+      </div>
+      <div id="credential-ias-block" class="inner-block" style="display:block">
+        <p>Completion Requirements</p>
+        <p>Core Courses: TIAS 201, THIST 150.</p>
+        <p>Back to Top</p>
+      </div>
+      <div class="expandableGroup" data-expand="credential-ias-individual">
+        <h4 class="expanded" id="credential-ias-individual">Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences (Individually Designed)</h4>
+      </div>
+      <div id="credential-ias-individual-block" class="inner-block" style="display:block">
+        <p>Admission Requirements</p>
+        <p>To propose an individually-designed concentration, students must consult with an advisor.</p>
+        <p>Completion Requirements</p>
+        <p>Required thesis: TIAS 497.</p>
+        <p>Back to Top</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="program-UG-PPE-MAJOR">
+      <h3 class="expanded" id="program-UG-PPE-MAJOR">Program of Study: Major: Politics, Philosophy, and Economics</h3>
+    </div>
+    <div id="program-UG-PPE-MAJOR-block" class="inner-block" style="display:block">
+      <p>Core Courses: TECON 200, TECON 201.</p>
+    </div>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    {
+      ownerId: "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      ownerTitle: "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
+      planId: "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      campusId: "uw-tacoma",
+      parserType: "catalog-page",
+      url: "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+      label: "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+      ownerType: "major",
+    },
+    html
+  );
+  const scopedText = parsed.snapshotLines.join(" ");
+
+  assert.match(scopedText, /individually-designed concentration/i);
+  assert.ok(parsed.courseCodes.includes("TIAS 497"));
+  assert.ok(!parsed.courseCodes.includes("TIAS 201"));
+  assert.ok(!parsed.courseCodes.includes("TECON 200"));
+});
+
+test("Legacy catalog line scoping keeps parenthetical credentials past base Back to Top", () => {
+  const html = `
+    <h3>Program of Study: Major: Interdisciplinary Arts and Sciences</h3>
+    <p>This program of study leads to the following credentials:</p>
+    <p>Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences</p>
+    <p>Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences (Individually Designed)</p>
+    <h4>Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences</h4>
+    <p>Completion Requirements</p>
+    <p>Foundational/Core Courses: T HIST 150, TESC 102.</p>
+    <p>Back to Top</p>
+    <h4>Bachelor of Arts degree with a major in Interdisciplinary Arts and Sciences (Individually Designed)</h4>
+    <p>Credential Overview</p>
+    <p>This concentration is an individually-designed option.</p>
+    <p>Admission Requirements</p>
+    <p>To propose an individually-designed concentration, students must consult with an advisor.</p>
+    <p>Identify the unifying interdisciplinary theme of your concentration.</p>
+    <p>Identify the courses taken or planned.</p>
+    <p>Draft a proposal with a brief descriptive title.</p>
+    <p>Describe the rationale for the proposed concentration.</p>
+    <p>Describe the interrelationships among chosen courses.</p>
+    <p>Secure faculty sponsor support.</p>
+    <p>Choose an IAS academic advisor.</p>
+    <p>Submit the proposal by the end of junior year.</p>
+    <p>Completion Requirements</p>
+    <p>Required Course: TIAS 497.</p>
+    <p>Back to Top</p>
+    <h3>Program of Study: Major: Politics, Philosophy, and Economics</h3>
+    <p>Core Courses: TECON 200, TECON 201.</p>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    {
+      ownerId: "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      ownerTitle: "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
+      planId: "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      campusId: "uw-tacoma",
+      parserType: "catalog-page",
+      url: "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+      label: "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+      ownerType: "major",
+    },
+    html
+  );
+  const scopedText = parsed.snapshotLines.join(" ");
+
+  assert.match(scopedText, /individually-designed concentration/i);
+  assert.ok(parsed.courseCodes.includes("TIAS 497"));
+  assert.ok(!parsed.courseCodes.includes("THIST 150"));
+  assert.ok(!parsed.courseCodes.includes("TESC 102"));
+  assert.ok(!parsed.courseCodes.includes("TECON 200"));
+});
+
 test("Legacy UW catalog Social Welfare credential scope keeps major requirements and excludes graduate credentials", () => {
   const html = `
     <div class="expandableGroup" data-expand="undergradPrograms">
@@ -2476,6 +2583,68 @@ test("Parser keeps full dedicated Tacoma track degree pages instead of tail-scop
 
   for (const courseCode of ["TWRT 211", "TCOM 101", "TCOM 495", "TLAX 441"]) {
     assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} from full page scope`);
+  }
+});
+
+test("Parser scopes dedicated Tacoma pathway pages before sidebar sibling track links", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-communications:pathway:research-track",
+    ownerTitle: "Communications (BA) - Research Track",
+    planId: "uw-tacoma-communications",
+    pathwayId: "research-track",
+    campusId: "uw-tacoma",
+    ownerType: "pathway",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/sias/cac/research-track",
+    label: "Research Track degree requirements",
+    sourceLabel: "Research Track degree requirements",
+  });
+  const html = `
+    <html>
+      <head><title>Research Track | Culture, Arts & Communication</title></head>
+      <body>
+        <nav>
+          <a>Professional Track</a>
+          <a>Research Track</a>
+        </nav>
+        <main>
+          <h1>Research Track</h1>
+          <h2>Degree Requirements</h2>
+          <p>You need to complete 55 credits.</p>
+          <h3>Foundation (10 credits)</h3>
+          <p>TWRT 211 Argument and Research in Writing</p>
+          <p>TCOM 444 Gender, Ethnicity, Class and Media</p>
+          <p>TCOM 453 Critical Approaches to Mass Communication</p>
+          <h3>Core courses (including upper-division TCOM credits required) (45 credits)</h3>
+          <p>TCOM 101 Critical Media Literacy</p>
+          <p>TCOM 201 Media and Society</p>
+          <p>TCOM 220 Social Media</p>
+          <p>TCOM 230 Media Globalization and Citizenship</p>
+          <p>TCOM 247 Television Studies</p>
+          <p>TCOM 495 Communication Capstone Thesis</p>
+          <p>TLAX 441 Mexican Cinema and Society</p>
+        </main>
+        <h2>Contact</h2>
+      </body>
+    </html>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  for (const courseCode of ["TWRT 211", "TCOM 101", "TCOM 495", "TLAX 441"]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} after full-page scope`);
+    assert.ok(
+      parsed.snapshotLines.includes(
+        courseCode === "TCOM 101"
+          ? "TCOM 101 Critical Media Literacy"
+          : courseCode === "TCOM 495"
+            ? "TCOM 495 Communication Capstone Thesis"
+            : courseCode === "TLAX 441"
+              ? "TLAX 441 Mexican Cinema and Society"
+              : "TWRT 211 Argument and Research in Writing"
+      ),
+      `Expected ${courseCode} source line to remain in scope`
+    );
   }
 });
 

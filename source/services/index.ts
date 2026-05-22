@@ -19,6 +19,7 @@ export * from "./opportunities/opportunity-matching.service";
 export * from "./deadlines/deadline-calendar.service";
 export * from "./planning/roadmap.service";
 export * from "./storage/cache-manager.service";
+export * from "./storage/file-system-adapter.service";
 export * from "./colleges/saved-colleges.service";
 export * from "./dev/dev-console-log.service";
 export * from "./dev/transcript-planner-debug.service";

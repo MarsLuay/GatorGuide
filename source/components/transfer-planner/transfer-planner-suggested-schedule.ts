@@ -13,11 +13,21 @@ import {
 
 import type { PlannerCollegeId } from "./transfer-planner-storage";
 
-export function formatSuggestedScheduleCreditCount(creditAmount: number) {
+type Translate = (key: string, params?: Record<string, string | number>) => string;
+
+export function formatSuggestedScheduleCreditCount(creditAmount: number, t?: Translate) {
   const roundedCreditAmount = Number.isInteger(creditAmount)
     ? String(creditAmount)
     : creditAmount.toFixed(1).replace(/\.0$/, "");
-  return `${roundedCreditAmount} ${creditAmount === 1 ? "credit" : "credits"}`;
+  const noun =
+    creditAmount === 1
+      ? t
+        ? t("suggestedSchedule.creditSingular")
+        : "credit"
+      : t
+        ? t("suggestedSchedule.creditPlural")
+        : "credits";
+  return `${roundedCreditAmount} ${noun}`;
 }
 
 export function formatSuggestedScheduleCreditNumber(creditAmount: number) {
@@ -29,27 +39,38 @@ export function formatSuggestedScheduleCreditNumber(creditAmount: number) {
 export function formatSuggestedScheduleCreditRange(input: {
   creditMin: number;
   creditMax: number;
-}) {
+}, t?: Translate) {
   if (input.creditMin === input.creditMax) {
-    return formatSuggestedScheduleCreditCount(input.creditMin);
+    return formatSuggestedScheduleCreditCount(input.creditMin, t);
   }
 
   return `${formatSuggestedScheduleCreditNumber(input.creditMin)}-${formatSuggestedScheduleCreditNumber(
     input.creditMax
-  )} credits`;
+  )} ${t ? t("suggestedSchedule.creditPlural") : "credits"}`;
 }
 
 export function getSuggestedScheduleCredentialLabel(
   degreeTitle: string,
-  grcTrackRequirementNoun: string
+  grcTrackRequirementNoun: string,
+  t?: Translate
 ) {
   const trimmedDegreeTitle = String(degreeTitle ?? "").trim() || "selected";
   if (/\b(degree|program|certificate)\b$/i.test(trimmedDegreeTitle)) {
     return trimmedDegreeTitle;
   }
 
+  const normalizedRequirementNoun = String(grcTrackRequirementNoun ?? "")
+    .trim()
+    .toLowerCase();
   const credentialNoun =
-    grcTrackRequirementNoun === "degree" ? "Degree" : "Program";
+    normalizedRequirementNoun === "degree" ||
+    normalizedRequirementNoun === String(t ? t("transferPlanner.degreeNoun") : "degree").toLowerCase()
+      ? t
+        ? t("transferPlanner.degreeTitleSuffix")
+        : "Degree"
+      : t
+        ? t("transferPlanner.programTitleSuffix")
+        : "Program";
   return `${trimmedDegreeTitle} ${credentialNoun}`;
 }
 
@@ -572,7 +593,8 @@ export function getSuggestedScheduleOptionCreditRange(option: SuggestedScheduleO
 }
 
 export function getSuggestedScheduleOptionGroupSelectionTargetText(
-  optionGroup: SuggestedScheduleOptionGroup
+  optionGroup: SuggestedScheduleOptionGroup,
+  t?: Translate
 ) {
   if (isSuggestedScheduleCreditBasedOptionGroup(optionGroup)) {
     const requiredCredits = Number(optionGroup.requiredCredits ?? 0);
@@ -586,16 +608,36 @@ export function getSuggestedScheduleOptionGroupSelectionTargetText(
       maxRequiredCredits > 0 &&
       maxRequiredCredits !== requiredCredits
     ) {
-      return `Choose ${formatSuggestedScheduleCreditRange({
-        creditMin: requiredCredits,
-        creditMax: maxRequiredCredits,
-      })} from approved options`;
+      return t
+        ? t("suggestedSchedule.chooseCreditRange", {
+            credits: formatSuggestedScheduleCreditRange(
+              {
+                creditMin: requiredCredits,
+                creditMax: maxRequiredCredits,
+              },
+              t
+            ),
+          })
+        : `Choose ${formatSuggestedScheduleCreditRange({
+            creditMin: requiredCredits,
+            creditMax: maxRequiredCredits,
+          })} from approved options`;
     }
     if (Number.isFinite(requiredCredits) && requiredCredits > 0) {
-      return `Choose at least ${formatSuggestedScheduleCreditRange({
-        creditMin: requiredCredits,
-        creditMax: requiredCredits,
-      })} from approved options`;
+      return t
+        ? t("suggestedSchedule.chooseAtLeastCredits", {
+            credits: formatSuggestedScheduleCreditRange(
+              {
+                creditMin: requiredCredits,
+                creditMax: requiredCredits,
+              },
+              t
+            ),
+          })
+        : `Choose at least ${formatSuggestedScheduleCreditRange({
+            creditMin: requiredCredits,
+            creditMax: requiredCredits,
+          })} from approved options`;
     }
   }
 
@@ -603,8 +645,12 @@ export function getSuggestedScheduleOptionGroupSelectionTargetText(
     1,
     Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1)
   );
-  return selectionCount === 1
-    ? "Choose 1 approved option"
+  if (selectionCount === 1) {
+    return t ? t("suggestedSchedule.chooseOneApprovedOption") : "Choose 1 approved option";
+  }
+
+  return t
+    ? t("suggestedSchedule.chooseApprovedOptions", { count: selectionCount })
     : `Choose ${selectionCount} approved options`;
 }
 
@@ -682,18 +728,27 @@ export function getSuggestedScheduleOptionSatisfiedBy(
 }
 
 export function getSuggestedScheduleOptionGroupStatusVerb(
-  optionGroup: SuggestedScheduleOptionGroup
+  optionGroup: SuggestedScheduleOptionGroup,
+  t?: Translate
 ) {
   const selectedSourceLabels = getSuggestedScheduleResolvedOptionIds(optionGroup)
     .map((optionId) => getSuggestedScheduleOptionSatisfiedBy(optionGroup, optionId))
     .filter((sourceLabel) => sourceLabel !== "none");
   const uniqueSourceLabels = getSuggestedScheduleUniqueOptionIds(selectedSourceLabels);
-  if (!uniqueSourceLabels.length) return "Selected";
-  if (uniqueSourceLabels.length > 1) return "Satisfied";
-  if (uniqueSourceLabels[0] === "default") return "Default";
-  if (uniqueSourceLabels[0] === "transcript") return "Completed";
-  if (uniqueSourceLabels[0] === "scheduled-counted") return "Satisfied";
-  return "Selected";
+  if (!uniqueSourceLabels.length) return t ? t("suggestedSchedule.statusSelected") : "Selected";
+  if (uniqueSourceLabels.length > 1) {
+    return t ? t("suggestedSchedule.statusSatisfied") : "Satisfied";
+  }
+  if (uniqueSourceLabels[0] === "default") {
+    return t ? t("suggestedSchedule.statusDefault") : "Default";
+  }
+  if (uniqueSourceLabels[0] === "transcript") {
+    return t ? t("suggestedSchedule.statusCompleted") : "Completed";
+  }
+  if (uniqueSourceLabels[0] === "scheduled-counted") {
+    return t ? t("suggestedSchedule.statusSatisfied") : "Satisfied";
+  }
+  return t ? t("suggestedSchedule.statusSelected") : "Selected";
 }
 
 export function shouldPreferSuggestedScheduleOptionGroup(

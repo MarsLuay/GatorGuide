@@ -3,22 +3,16 @@ import { type NotificationPreferences, useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
+import { useDataPortabilityActions } from "@/hooks/use-data-portability-actions";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback, useEffect } from "react";
-import { Pressable, ScrollView, Text, View, Alert, Platform, Linking, TextInput, KeyboardAvoidingView, Modal, useWindowDimensions } from "react-native";
+import { Pressable, ScrollView, Text, View, Alert, Platform, Linking, TextInput, KeyboardAvoidingView, Modal, useWindowDimensions, type ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {
-  buildDataExportPayload,
-  normalizeDataImportPayload,
-  restoreDataImportSnapshot,
-  stringifyDataExportPayload,
-  writeDataExportFile,
-} from "@/services/app/data-portability.service";
 import { notificationsService } from "@/services/notifications/notifications.service";
 import { cacheManagerService } from "@/services/storage/cache-manager.service";
 import { APP_VERSION } from "@/constants/app-version";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, routeWithDefaultReturnTo } from "@/constants/routes";
 import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
@@ -28,38 +22,19 @@ import {
   TouchCard,
   TouchIconButton,
   TouchOptionRow,
-  TouchToggleRow,
 } from "@/components/ui/TouchPrimitives";
-import * as FileSystem from "expo-file-system";
-import * as Sharing from "expo-sharing";
-import * as DocumentPicker from "expo-document-picker";
+import {
+  AdvancedSettingsRows,
+  NotificationPreferenceRows,
+  SettingsRows,
+  SettingsSectionCard,
+  type AdvancedSettingsItem,
+  type NotificationPreferenceItem,
+  type SettingsItem,
+} from "@/components/pages/settings/SettingsRows";
 import * as Haptics from "expo-haptics";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { STORAGE_KEYS } from "@/constants/schema";
-
-type IconName = keyof typeof Ionicons.glyphMap;
-
-type SettingsItem =
-  | {
-      label: string;
-      icon: IconName;
-      type: "toggle";
-      enabled: boolean;
-      onPress: () => void;
-    }
-  | {
-      label: string;
-      icon: IconName;
-      type: "nav";
-      value?: string;
-      onPress: () => void;
-    }
-  | {
-      label: string;
-      icon: IconName;
-      type: "display";
-      value: string;
-    };
 
 const SUPPORT_MESSAGE_WEBHOOK =
   process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
@@ -152,7 +127,11 @@ export default function SettingsPage() {
   const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : isCompactPhone ? 16 : 20;
   const pageMaxWidth = isWideLayout ? 1280 : isTablet ? 960 : 720;
   const earlyStateMaxWidth = Math.min(pageMaxWidth, isWideLayout ? 760 : isTablet ? 680 : 448);
-  const sectionCardWidth = showSectionGrid ? (isWideLayout ? "48.2%" : "48%") : "100%";
+  const sectionCardWidth: ViewStyle["width"] = showSectionGrid
+    ? isWideLayout
+      ? "48.2%"
+      : "48%"
+    : "100%";
   const dialogMaxWidth = isWideLayout ? 620 : isTablet ? 560 : 420;
   const dialogPadding = isTablet ? 28 : 20;
   const dialogHorizontalPadding = isCompactPhone ? 16 : 24;
@@ -216,11 +195,7 @@ export default function SettingsPage() {
           icon: "time-outline",
           label: t("settings.notificationTypeGeneralDeadlines"),
         },
-      ] satisfies {
-        key: keyof NotificationPreferences;
-        icon: IconName;
-        label: string;
-      }[],
+      ] satisfies NotificationPreferenceItem[],
     [t]
   );
   const enabledNotificationPreferenceCount = notificationPreferenceItems.filter(
@@ -266,94 +241,16 @@ export default function SettingsPage() {
     [notificationPreferences, setNotificationPreferences]
   );
 
-  const handleExportData = useCallback(async () => {
-    if (!isHydrated) return;
-
-    try {
-      const payload = await buildDataExportPayload({ state, theme, language });
-
-      if (Platform.OS === "web") {
-        const blob = new Blob([stringifyDataExportPayload(payload)], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "GatorGuide_export.json";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-        return;
-      }
-
-      const fileUri = new FileSystem.File(FileSystem.Paths.document, "GatorGuide_export.json").uri;
-      await writeDataExportFile(fileUri, payload);
-
-      const canShare = await Sharing.isAvailableAsync();
-      // Platform.OS does not include 'web' in React Native types, but Expo web sets Platform.OS to 'web' at runtime.
-      // To avoid type error, use (Platform as any).OS === 'web'.
-      if (!canShare || (Platform as any).OS === "web") {
-        Alert.alert(t('settings.exportReady'), t('settings.exportNotAvailable'));
-        return;
-      }
-
-      await Sharing.shareAsync(fileUri);
-    } catch {
-      Alert.alert(t('settings.exportFailed'), t('settings.exportError'));
-    }
-  }, [isHydrated, language, state, theme, t]);
-
-  const handleImportData = useCallback(async () => {
-    if (!isHydrated) return;
-
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: "application/json",
-        copyToCacheDirectory: true,
-      });
-
-      if (result.canceled || !result.assets?.[0]?.uri) return;
-
-      const fileUri = result.assets[0].uri;
-      const raw = await FileSystem.readAsStringAsync(fileUri, {
-        encoding: "utf8",
-      });
-
-      const snapshot = normalizeDataImportPayload(JSON.parse(raw));
-
-      if (!snapshot) {
-        Alert.alert(t('settings.invalidFile'), t('settings.invalidFileMessage'));
-        return;
-      }
-
-      Alert.alert(
-        t('settings.importConfirm'),
-        t('settings.importOverwriteMessage'),
-        [
-          { text: t('general.cancel'), style: "cancel" },
-          {
-            text: t('settings.import'),
-            style: "destructive",
-            onPress: async () => {
-              try {
-                const restoredData = await restoreDataImportSnapshot(snapshot);
-                await restoreData(restoredData);
-                if (snapshot.theme) {
-                  setTheme(snapshot.theme);
-                }
-                if (snapshot.language) {
-                  setLanguage(snapshot.language);
-                }
-              } catch {
-                Alert.alert(t('settings.importFailed'), t('settings.importError'));
-              }
-            },
-          },
-        ]
-      );
-    } catch {
-      Alert.alert(t('settings.importFailed'), t('settings.importError'));
-    }
-    }, [isHydrated, restoreData, setLanguage, setTheme, t]);
+  const { handleExportData, handleImportData } = useDataPortabilityActions({
+    isHydrated,
+    state,
+    theme,
+    language,
+    restoreData,
+    setTheme,
+    setLanguage,
+    t,
+  });
 
   // removed hasExportableData (unused) to satisfy linter
 
@@ -505,10 +402,7 @@ export default function SettingsPage() {
 
   const openSettingsSubpage = useCallback(
     (pathname: string) => {
-      router.push({
-        pathname: pathname as never,
-        params: { returnTo: ROUTES.tabsSettings },
-      } as never);
+      router.push(routeWithDefaultReturnTo(pathname, undefined, ROUTES.tabsSettings));
     },
     [router]
   );
@@ -614,133 +508,22 @@ export default function SettingsPage() {
 
   const [settingsSection, , aboutSection] = sections;
 
-  const renderSettingsRows = (
-    items: SettingsItem[],
-    options?: {
-      valueMaxWidth?: number;
-      rowPaddingVertical?: number;
-    }
-  ) =>
-    items.map((item, index) => {
-      const isDisplay = item.type === "display";
-      const rowClassName = `${flexDirection} px-4`;
-      const accessibilityLabel =
-        "value" in item && item.value ? `${item.label}, ${item.value}` : item.label;
-      const rowStyle = {
-        alignItems: "center" as const,
-        paddingVertical: options?.rowPaddingVertical ?? (useDesktopSettingsLayout ? 18 : 20),
-        borderBottomWidth: index !== items.length - 1 ? 1 : 0,
-        borderColor: index !== items.length - 1 ? dividerColor : "transparent",
-      };
-      const rowContent = (
-        <>
-          <Ionicons name={item.icon} size={20} color={accentColor} />
+  const settingsRowChrome = {
+    flexDirection,
+    isRTL,
+    isDark,
+    isGreen,
+    isWideLayout,
+    isTablet,
+    useDesktopSettingsLayout,
+    textClass,
+    secondaryTextClass,
+    dividerColor,
+    accentColor,
+    accessoryIconColor,
+  };
 
-          <View
-            style={{
-              flex: 1,
-              minWidth: 0,
-              marginLeft: isRTL ? 0 : 12,
-              marginRight: isRTL ? 12 : 0,
-            }}
-          >
-            <Text className={`${isRTL ? "text-right" : ""} ${textClass}`} style={{ lineHeight: 22 }}>
-              {item.label}
-            </Text>
-          </View>
-
-          {item.type === "toggle" ? (
-            <View
-              className={`w-12 h-6 rounded-full ${
-                ("enabled" in item && item.enabled)
-                  ? "bg-emerald-500"
-                  : isDark
-                    ? "bg-gray-700"
-                    : isGreen
-                      ? "bg-emerald-700"
-                      : "bg-emerald-300"
-              }`}
-            >
-              <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${("enabled" in item && item.enabled) ? "ml-6" : "ml-0.5"}`} />
-            </View>
-          ) : item.type === "display" || ("value" in item && item.value) ? (
-            <View
-              style={{
-                flexShrink: 1,
-                maxWidth: options?.valueMaxWidth ?? (isWideLayout ? 240 : isTablet ? 200 : 140),
-                marginLeft: isRTL ? 0 : 12,
-                marginRight: isRTL ? 12 : 0,
-              }}
-            >
-              <Text className={`${isRTL ? "text-left" : "text-right"} ${secondaryTextClass}`} numberOfLines={2} style={{ lineHeight: 20 }}>
-                {item.type === "display" ? item.value : (item as { value?: string }).value}
-              </Text>
-            </View>
-          ) : (
-            <Ionicons
-              name={isRTL ? "chevron-back" : "chevron-forward"}
-              size={22}
-              color={accessoryIconColor}
-            />
-          )}
-        </>
-      );
-
-      if (isDisplay) {
-        return (
-          <View key={`${item.label}-${index}`} className={rowClassName} style={rowStyle}>
-            {rowContent}
-          </View>
-        );
-      }
-
-      if (item.type === "toggle") {
-        return (
-          <TouchToggleRow
-            key={`${item.label}-${index}`}
-            checked={item.enabled}
-            onPress={item.onPress}
-            accessibilityLabel={item.label}
-            className={rowClassName}
-            style={rowStyle}
-          >
-            {rowContent}
-          </TouchToggleRow>
-        );
-      }
-
-      return (
-        <TouchOptionRow
-          key={`${item.label}-${index}`}
-          onPress={item.onPress}
-          accessibilityLabel={accessibilityLabel}
-          className={rowClassName}
-          style={rowStyle}
-        >
-          {rowContent}
-        </TouchOptionRow>
-      );
-    });
-
-  const renderSectionCard = (section: { title: string; items: SettingsItem[] }) => (
-    <View key={section.title} style={{ width: sectionCardWidth }}>
-      <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{section.title}</Text>
-      <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-        {renderSettingsRows(section.items)}
-      </View>
-    </View>
-  );
-
-  const advancedDesktopItems: {
-    key: string;
-    icon: IconName;
-    label: string;
-    description: string;
-    type: "toggle" | "nav";
-    enabled?: boolean;
-    onPress: () => void;
-    danger?: boolean;
-  }[] = [
+  const advancedDesktopItems: AdvancedSettingsItem[] = [
     {
       key: "import",
       icon: "cloud-upload-outline",
@@ -779,98 +562,6 @@ export default function SettingsPage() {
   const advancedMobileItems = advancedDesktopItems.filter(
     (item) => item.key === "auto-clear" || item.key === "clear-cache"
   );
-
-  const renderAdvancedRows = (
-    items: typeof advancedDesktopItems,
-    options?: {
-      rowPaddingVertical?: number;
-    }
-  ) =>
-    items.map((item, index) => {
-      const rowClassName = `${flexDirection} items-center px-4`;
-      const accessibilityLabel = item.danger ? `${item.label}. ${item.description}` : item.label;
-      const rowStyle = {
-        paddingVertical: options?.rowPaddingVertical ?? 18,
-        borderTopWidth: index === 0 ? 0 : 1,
-        borderColor: dividerColor,
-      };
-      const rowContent = (
-        <>
-          <Ionicons name={item.icon} size={20} color={item.danger ? dangerIconColor : accentColor} />
-          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-            <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
-              {item.label}
-            </Text>
-            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-              {item.description}
-            </Text>
-          </View>
-
-          {item.type === "toggle" ? (
-            <View className={`w-12 h-6 rounded-full ${item.enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-              <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
-            </View>
-          ) : (
-            <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
-          )}
-        </>
-      );
-
-      if (item.type === "toggle") {
-        return (
-          <TouchToggleRow
-            key={item.key}
-            checked={!!item.enabled}
-            onPress={item.onPress}
-            accessibilityLabel={accessibilityLabel}
-            className={rowClassName}
-            style={rowStyle}
-          >
-            {rowContent}
-          </TouchToggleRow>
-        );
-      }
-
-      return (
-        <TouchOptionRow
-          key={item.key}
-          onPress={item.onPress}
-          accessibilityLabel={accessibilityLabel}
-          className={rowClassName}
-          style={rowStyle}
-        >
-          {rowContent}
-        </TouchOptionRow>
-      );
-    });
-
-  const renderNotificationPreferenceRows = () =>
-    notificationPreferenceItems.map((item, index) => {
-      const enabled = notificationPreferences[item.key];
-
-      return (
-        <TouchToggleRow
-          key={item.key}
-          checked={enabled}
-          onPress={() => handleToggleNotificationPreference(item.key)}
-          accessibilityLabel={item.label}
-          className={`${flexDirection} items-center`}
-          style={{
-            paddingVertical: 18,
-            borderTopWidth: index === 0 ? 0 : 1,
-            borderColor: dividerColor,
-          }}
-        >
-          <Ionicons name={item.icon} size={20} color={accentColor} />
-          <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${textClass}`}>
-            {item.label}
-          </Text>
-          <View className={`w-12 h-6 rounded-full ${enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-            <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${enabled ? "ml-6" : "ml-0.5"}`} />
-          </View>
-        </TouchToggleRow>
-      );
-    });
 
   const handleDeleteConfirm = async () => {
     if (!isHydrated) return;
@@ -998,7 +689,12 @@ export default function SettingsPage() {
           </View>
 
           <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
-            {renderSettingsRows(settingsSection.items, { valueMaxWidth: 260, rowPaddingVertical: 18 })}
+            <SettingsRows
+              {...settingsRowChrome}
+              items={settingsSection.items}
+              valueMaxWidth={260}
+              rowPaddingVertical={18}
+            />
           </View>
         </View>
 
@@ -1024,7 +720,12 @@ export default function SettingsPage() {
               nestedScrollEnabled
               showsVerticalScrollIndicator
             >
-              {renderSettingsRows(aboutSection.items, { valueMaxWidth: 260, rowPaddingVertical: 18 })}
+              <SettingsRows
+                {...settingsRowChrome}
+                items={aboutSection.items}
+                valueMaxWidth={260}
+                rowPaddingVertical={18}
+              />
             </ScrollView>
           </View>
         </View>
@@ -1063,7 +764,12 @@ export default function SettingsPage() {
         {isAdvancedSettingsOpen ? (
           <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ marginTop: 20, maxHeight: 320 }}>
             <ScrollView nestedScrollEnabled showsVerticalScrollIndicator>
-              {renderAdvancedRows(advancedDesktopItems)}
+              <AdvancedSettingsRows
+                {...settingsRowChrome}
+                items={advancedDesktopItems}
+                dangerTextClass={dangerTextClass}
+                dangerIconColor={dangerIconColor}
+              />
             </ScrollView>
           </View>
         ) : null}
@@ -1166,7 +872,15 @@ export default function SettingsPage() {
                   gap: 24,
                 }}
               >
-                {sections.map(renderSectionCard)}
+                {sections.map((section) => (
+                  <SettingsSectionCard
+                    key={section.title}
+                    {...settingsRowChrome}
+                    section={section}
+                    sectionCardWidth={sectionCardWidth}
+                    cardBgClass={cardBgClass}
+                  />
+                ))}
 
                 <View style={{ width: sectionCardWidth }}>
                   <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
@@ -1199,7 +913,15 @@ export default function SettingsPage() {
                         />
                       </View>
                     </TouchOptionRow>
-                    {isAdvancedSettingsOpen ? renderAdvancedRows(advancedMobileItems, { rowPaddingVertical: 20 }) : null}
+                    {isAdvancedSettingsOpen ? (
+                      <AdvancedSettingsRows
+                        {...settingsRowChrome}
+                        items={advancedMobileItems}
+                        dangerTextClass={dangerTextClass}
+                        dangerIconColor={dangerIconColor}
+                        rowPaddingVertical={20}
+                      />
+                    ) : null}
                   </View>
                 </View>
               </View>
@@ -1276,7 +998,12 @@ export default function SettingsPage() {
               marginTop: 8,
             }}
           >
-            {renderNotificationPreferenceRows()}
+            <NotificationPreferenceRows
+              {...settingsRowChrome}
+              items={notificationPreferenceItems}
+              preferences={notificationPreferences}
+              onToggle={handleToggleNotificationPreference}
+            />
           </View>
 
           <AnimatedChipPressable

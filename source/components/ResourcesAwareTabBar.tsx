@@ -3,32 +3,14 @@ import { View } from "react-native";
 import { BottomTabBar, BottomTabBarProps } from "@react-navigation/bottom-tabs";
 
 import { GlassTabBar } from "@/components/GlassTabBar";
+import {
+  PRIMARY_TAB_ROUTE_NAMES,
+  TAB_ROUTE_PRIMARY_TAB_BY_SCREEN,
+  type PrimaryTabRouteName,
+} from "@/constants/routes";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
-
-const RESOURCES_TAB_ROUTE = "resources/index" as const;
-const PRIMARY_TAB_ROUTES = ["index", RESOURCES_TAB_ROUTE, "profile", "settings"] as const;
-type PrimaryTabRoute = (typeof PRIMARY_TAB_ROUTES)[number];
-
-const TAB_ROUTE_ALIASES: Record<string, PrimaryTabRoute> = {
-  roadmap: "index",
-  questionnaire: "index",
-  resources: RESOURCES_TAB_ROUTE,
-  compare: RESOURCES_TAB_ROUTE,
-  "cost-calculator": RESOURCES_TAB_ROUTE,
-  "saved-colleges": RESOURCES_TAB_ROUTE,
-  calendar: RESOURCES_TAB_ROUTE,
-  "transfer-planner": RESOURCES_TAB_ROUTE,
-  "resources/transfer-planner": RESOURCES_TAB_ROUTE,
-  "college-search": RESOURCES_TAB_ROUTE,
-  "opportunity-admin": RESOURCES_TAB_ROUTE,
-  "college/[collegeId]": RESOURCES_TAB_ROUTE,
-  language: "settings",
-  about: "settings",
-  privacy: "settings",
-  terms: "settings",
-};
 
 type ResourcesAwareTabBarProps = BottomTabBarProps & {
   variant?: "classic" | "glass";
@@ -53,7 +35,7 @@ export function ResourcesAwareTabBar({
     horizontalPadding: { phone: 0, tablet: 0, desktop: 24 },
   });
 
-  const activeRouteName = TAB_ROUTE_ALIASES[currentRouteName] ?? currentRouteName;
+  const activeRouteName = TAB_ROUTE_PRIMARY_TAB_BY_SCREEN[currentRouteName] ?? currentRouteName;
   let modifiedState = state;
   if (activeRouteName !== currentRouteName) {
     const activeIndex = state.routes.findIndex((route) => route.name === activeRouteName);
@@ -63,10 +45,10 @@ export function ResourcesAwareTabBar({
   }
 
   const visibleRoutes = modifiedState.routes.filter((route) =>
-    PRIMARY_TAB_ROUTES.includes(route.name as PrimaryTabRoute)
+    PRIMARY_TAB_ROUTE_NAMES.includes(route.name as PrimaryTabRouteName)
   );
   const visibleRouteNames = modifiedState.routeNames.filter((routeName) =>
-    PRIMARY_TAB_ROUTES.includes(routeName as PrimaryTabRoute)
+    PRIMARY_TAB_ROUTE_NAMES.includes(routeName as PrimaryTabRouteName)
   );
   const visibleRouteKeys = new Set(visibleRoutes.map((route) => route.key));
   const filteredDescriptors = Object.fromEntries(

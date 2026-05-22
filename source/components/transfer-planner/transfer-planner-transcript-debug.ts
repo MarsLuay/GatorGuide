@@ -5,6 +5,8 @@ import type { TranscriptCourseEntry } from "@/services/planning/transfer-planner
 
 import type { TranscriptDocument } from "./transfer-planner-storage";
 
+type Translate = (key: string, params?: Record<string, string | number>) => string;
+
 export function getTranscriptDocumentIdentity(document: TranscriptDocument | null | undefined) {
   if (!document?.url) return "";
   return `${document.url}|${document.uploadedAt ?? ""}`;
@@ -15,8 +17,10 @@ export function getTranscriptAnalysisAttemptKey(document: TranscriptDocument | n
   return documentIdentity ? `${documentIdentity}|v${TRANSCRIPT_PARSER_VERSION}` : "";
 }
 
-export function buildFriendlyTranscriptError() {
-  return "We couldn't read past classes from this unofficial transcript yet. Upload the PDF directly from ctcLink using the link below.";
+export function buildFriendlyTranscriptError(t?: Translate) {
+  return t
+    ? t("transferPlanner.friendlyTranscriptError")
+    : "We couldn't read past classes from this unofficial transcript yet. Upload the PDF directly from ctcLink using the link below.";
 }
 
 export function getReadableTranscriptFileName(document: TranscriptDocument | null) {

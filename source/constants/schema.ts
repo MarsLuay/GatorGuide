@@ -1,5 +1,7 @@
 type ValueOf<T> = T[keyof T];
 
+export const APP_DATA_SCHEMA_VERSION = 1 as const;
+
 export const FIRESTORE_COLLECTIONS = {
   users: "users",
   questionnaires: "questionnaires",

@@ -11,12 +11,14 @@ import Animated, {
 } from 'react-native-reanimated';
 import { ScreenBackground } from '@/components/layouts/ScreenBackground';
 import { AppStartupScreen } from '@/components/AppStartupScreen';
+import { useAppLanguage } from '@/hooks/use-app-language';
 import { useAppTheme } from '@/hooks/use-app-theme';
 import { useThemeStyles } from '@/hooks/use-theme-styles';
 import { GatorGuideMark } from '@/components/ui/GatorGuideMark';
 
 export default function StartupAnimation({ onFinish }: { onFinish: () => void }) {
   const isWeb = Platform.OS === 'web';
+  const { t } = useAppLanguage();
   const { isDark, isGreen } = useAppTheme();
   const theme = useThemeStyles();
   const opacity = useSharedValue(1);
@@ -65,7 +67,7 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
           <View style={styles.logo}>
             <GatorGuideMark size={160} darkMode={isDark || isGreen} />
           </View>
-          <Text style={[styles.title, { color: theme.textColor }]}>Loading Gator Guide...</Text>
+          <Text style={[styles.title, { color: theme.textColor }]}>{t("startup.loadingGatorGuide")}</Text>
         </Animated.View>
       </View>
     </ScreenBackground>

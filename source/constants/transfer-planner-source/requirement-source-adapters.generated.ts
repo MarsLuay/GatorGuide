@@ -15,82 +15,76 @@ const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_5 } = require("./
 const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_6 } = require("./requirement-source-adapters.generated/blocks-006.generated.ts");
 const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7 } = require("./requirement-source-adapters.generated/blocks-007.generated.ts");
 const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8 } = require("./requirement-source-adapters.generated/blocks-008.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9 } = require("./requirement-source-adapters.generated/blocks-009.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10 } = require("./requirement-source-adapters.generated/blocks-010.generated.ts");
 
 export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-21T08:35:27.472Z",
-  "totalOwners": 409,
-  "okCount": 390,
-  "failedCount": 19,
-  "parsedRequirementSourceBlockCount": 409,
-  "parsedRequirementAtomCandidateCount": 8996,
-  "parsedDegreeMapBlockCandidateCount": 905,
-  "parsedRequirementGroupCount": 1979,
-  "parsedRequirementCourseCount": 9198,
-  "snapshotFallbackCount": 184,
+  "generatedAt": "2026-05-21T23:09:16.793Z",
+  "totalOwners": 356,
+  "okCount": 356,
+  "failedCount": 0,
+  "parsedRequirementSourceBlockCount": 356,
+  "parsedRequirementAtomCandidateCount": 6850,
+  "parsedDegreeMapBlockCandidateCount": 506,
+  "parsedRequirementGroupCount": 1939,
+  "parsedRequirementCourseCount": 7674,
+  "snapshotFallbackCount": 0,
   "countsByAdapterId": {
-    "uw-seattle-html-degree-page": 148,
-    "uw-bothell-html-degree-page": 67,
-    "generic-official-html-page": 45,
-    "uw-seattle-catalog-page": 70,
-    "generic-official-pdf-degree-sheet": 18,
-    "uw-tacoma-html-degree-page": 55,
+    "uw-seattle-html-degree-page": 112,
+    "uw-bothell-html-degree-page": 65,
+    "generic-official-html-page": 38,
+    "uw-seattle-catalog-page": 60,
+    "generic-official-pdf-degree-sheet": 19,
+    "uw-tacoma-html-degree-page": 57,
     "uw-bothell-pdf-worksheet": 3,
-    "uw-tacoma-catalog-page": 3
+    "uw-tacoma-catalog-page": 2
   },
   "countsByAdapterFamily": {
-    "UW Seattle HTML degree pages": 148,
-    "UW Bothell HTML degree pages": 67,
-    "Generic official HTML pages": 45,
-    "UW Seattle catalog pages": 70,
-    "Generic official PDF degree sheets": 18,
-    "UW Tacoma HTML degree pages": 55,
+    "UW Seattle HTML degree pages": 112,
+    "UW Bothell HTML degree pages": 65,
+    "Generic official HTML pages": 38,
+    "UW Seattle catalog pages": 60,
+    "Generic official PDF degree sheets": 19,
+    "UW Tacoma HTML degree pages": 57,
     "UW Bothell PDF worksheets": 3,
-    "UW Tacoma catalog pages": 3
+    "UW Tacoma catalog pages": 2
   },
   "countsByCampus": {
-    "uw-seattle": 269,
-    "uw-bothell": 72,
-    "uw-tacoma": 68
+    "uw-seattle": 217,
+    "uw-bothell": 70,
+    "uw-tacoma": 69
   },
   "countsByResolutionStrategy": {
-    "cached-snapshot": 187,
-    "primary-source": 211,
-    "alternate-official-source": 11
+    "primary-source": 336,
+    "alternate-official-source": 20
   },
   "countsBySourceRole": {
-    "primary-degree-requirements": 281,
-    "department-requirements": 45,
-    "official-catalog": 74,
-    "non-schedulable-course-list": 3,
+    "primary-degree-requirements": 246,
+    "department-requirements": 34,
+    "official-catalog": 69,
+    "non-schedulable-course-list": 1,
     "approved-course-list": 3,
     "pathway-degree-sheet": 1,
     "admission-prerequisite-source": 2
   },
   "countsBySourceRoleStatus": {
-    "primary": 401,
-    "non-schedulable": 3,
+    "primary": 350,
+    "non-schedulable": 1,
     "support": 5
   },
-  "canCreateSchedulableRowCount": 401,
-  "canCreateRequiredRowCount": 401,
-  "canCreateOptionGroupCount": 401,
+  "canCreateSchedulableRowCount": 350,
+  "canCreateRequiredRowCount": 350,
+  "canCreateOptionGroupCount": 350,
   "canCreateApprovedFilterCount": 3,
   "canCreateElectiveListCount": 0,
   "supportOnlySourceCount": 5,
-  "nonSchedulableSourceCount": 3,
-  "qualityWarningCount": 182,
-  "qualityNoteCount": 300,
+  "nonSchedulableSourceCount": 1,
+  "qualityWarningCount": 154,
+  "qualityNoteCount": 20,
   "countsByQualitySignalCode": {
-    "snapshot-fallback-used": 184,
-    "material-source-structured-drift": 64,
-    "large-structured-only-course-gap": 57,
-    "alternate-official-source-used": 11,
-    "no-parsed-uw-course-codes": 29,
-    "high-confidence-low-course-coverage": 9,
-    "snapshot-fallback-heading-context-missing": 105,
-    "low-confidence-parsed-source": 22,
+    "material-source-structured-drift": 67,
+    "large-structured-only-course-gap": 62,
+    "high-confidence-low-course-coverage": 22,
+    "alternate-official-source-used": 20,
+    "no-parsed-uw-course-codes": 2,
     "uw-mse-expected-course-option-missing": 1
   }
 } as TransferPlannerRequirementSourceAdapterSummary;
@@ -104,9 +98,7 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW: unknown[] = ([] as 
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_5,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_6,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8
 );
 
 export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS =

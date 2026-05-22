@@ -330,14 +330,22 @@ async function discoverLiveGrcPublicMaterials() {
 }
 
 async function loadGrcPublicMaterials(options = {}) {
-  const { forceRefresh = false, allowSnapshotFallback = true } = options;
+  const {
+    forceRefresh = false,
+    allowSnapshotFallback = true,
+    cacheOnly = process.env.GATORGUIDE_PLANNER_CACHE_ONLY === "1",
+  } = options;
   ensureTmpDir();
 
-  if (!forceRefresh) {
-    const cached = loadCachedGrcPublicMaterials();
-    if (cached) {
-      return cached;
-    }
+  const cached = loadCachedGrcPublicMaterials();
+  if (cached && (!forceRefresh || cacheOnly)) {
+    return cached;
+  }
+
+  if (cacheOnly) {
+    throw new Error(
+      `Cached Green River public-materials discovery is required in no-download mode, but ${OUTPUT_JSON_PATH} was not found. Run the normal planner refresh once to create it.`
+    );
   }
 
   try {

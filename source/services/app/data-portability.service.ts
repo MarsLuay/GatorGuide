@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as FileSystem from "expo-file-system";
 
 import { APP_VERSION } from "@/constants/app-version";
 import {
@@ -16,8 +15,19 @@ import {
 import type { AppDataState, User } from "@/hooks/use-app-data";
 import type { AppTheme } from "@/hooks/use-app-theme";
 import { type Language, translations } from "@/services/app/translations";
+import {
+  ensureDirectory,
+  getWritableBaseDirectory,
+  readBase64File,
+  readJsonFile,
+  saveTextFileForUser,
+  writeBase64File,
+  writeTextFile,
+  type UserFileSaveResult,
+} from "@/services/storage/file-system-adapter.service";
 
 const EXPORT_SCHEMA_VERSION = 2;
+export const DATA_EXPORT_FILE_NAME = "GatorGuide_export.json";
 
 const APP_THEME_VALUES = ["light", "dark", "green", "system"] as const;
 const SUPPORTED_LANGUAGE_VALUES = Object.keys(translations) as Language[];
@@ -154,14 +164,6 @@ function shouldEmbedDocumentUrl(url: unknown) {
   return true;
 }
 
-function getBase64Encoding() {
-  return ((FileSystem as any).EncodingType?.Base64 ?? "base64") as any;
-}
-
-function getUtf8Encoding() {
-  return ((FileSystem as any).EncodingType?.UTF8 ?? "utf8") as any;
-}
-
 function normalizeFileName(value: unknown, fallback: string) {
   const raw = String(value ?? "").trim();
   const normalized = raw
@@ -172,7 +174,7 @@ function normalizeFileName(value: unknown, fallback: string) {
 }
 
 function getLocalDocumentsBaseDir() {
-  return (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
+  return getWritableBaseDirectory("document") ?? "";
 }
 
 function getImportedDocumentDirectory(info: PortableDocumentStorageKeyInfo) {
@@ -193,9 +195,7 @@ async function maybeEmbedLocalDocumentFile(
     const url = String(parsed.url ?? "").trim();
     if (!shouldEmbedDocumentUrl(url)) return null;
 
-    const base64 = await FileSystem.readAsStringAsync(url, {
-      encoding: getBase64Encoding(),
-    });
+    const base64 = await readBase64File(url);
 
     return {
       storageKey,
@@ -307,7 +307,7 @@ async function restoreEmbeddedDocumentFile(
   const directoryUri = getImportedDocumentDirectory(info);
   if (!directoryUri) return null;
 
-  await FileSystem.makeDirectoryAsync(directoryUri, { intermediates: true });
+  await ensureDirectory(directoryUri);
 
   const fallbackName =
     info.kind === "roadmap"
@@ -316,9 +316,7 @@ async function restoreEmbeddedDocumentFile(
   const fileName = normalizeFileName(file.name, fallbackName);
   const fileUri = `${directoryUri}${Date.now()}_${fileName}`;
 
-  await FileSystem.writeAsStringAsync(fileUri, file.base64, {
-    encoding: getBase64Encoding(),
-  });
+  await writeBase64File(fileUri, file.base64);
 
   return fileUri;
 }
@@ -466,7 +464,19 @@ export function stringifyDataExportPayload(payload: GatorGuideDataExportPayload)
 }
 
 export async function writeDataExportFile(fileUri: string, payload: GatorGuideDataExportPayload) {
-  await FileSystem.writeAsStringAsync(fileUri, stringifyDataExportPayload(payload), {
-    encoding: getUtf8Encoding(),
+  await writeTextFile(fileUri, stringifyDataExportPayload(payload));
+}
+
+export async function saveDataExportPayloadForUser(
+  payload: GatorGuideDataExportPayload
+): Promise<UserFileSaveResult> {
+  return saveTextFileForUser({
+    fileName: DATA_EXPORT_FILE_NAME,
+    content: stringifyDataExportPayload(payload),
+    mimeType: "application/json",
   });
+}
+
+export async function readDataImportSnapshotFromFileUri(fileUri: string) {
+  return normalizeDataImportPayload(await readJsonFile<unknown>(fileUri));
 }

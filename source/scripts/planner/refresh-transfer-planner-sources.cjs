@@ -14,6 +14,24 @@ const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-requirement-source-parse-report.json"
 );
+const GRC_ASSOCIATE_TRACKS_GENERATED_PATH = path.resolve(
+  REPO_ROOT,
+  "constants",
+  "transfer-planner-source",
+  "grc-associate-tracks.generated.ts"
+);
+const EQUIVALENCY_GUIDE_PARSE_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-equivalency-guide-parse.json"
+);
+const GRC_CATALOG_INGEST_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-grc-catalog-ingest.json"
+);
+const UW_CATALOG_INGEST_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-uw-catalog-ingest.json"
+);
 const SOURCE_PIPELINE_VALIDATION_REPORT_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-source-pipeline-validation.json"
@@ -72,9 +90,15 @@ const REFRESH_SECTION_DEFINITIONS = [
     description:
       "Discover Green River public materials, verify source-year coverage, and regenerate Green River associate tracks.",
     steps: [
-      { label: "Discover Green River public materials" },
+      {
+        label: "Discover Green River public materials",
+        include: (options) => !options.skipDownloads,
+      },
       { label: "Check source year coverage" },
-      { label: "Generate Green River associate tracks" },
+      {
+        label: "Generate Green River associate tracks",
+        include: (options) => !options.skipDownloads,
+      },
     ],
   },
   {
@@ -85,9 +109,12 @@ const REFRESH_SECTION_DEFINITIONS = [
     steps: [
       {
         label: "Check official source links",
-        include: (options) => !options.skipSourceCheck,
+        include: (options) => !options.skipSourceCheck && !options.skipDownloads,
       },
-      { label: "Discover primary official sources" },
+      {
+        label: "Discover primary official sources",
+        include: (options) => !options.skipDownloads,
+      },
       { label: "Build primary-source automation queue" },
       { label: "Promote high-confidence primary sources" },
       { label: "Classify hidden source gaps" },
@@ -101,7 +128,7 @@ const REFRESH_SECTION_DEFINITIONS = [
     steps: [
       {
         label: "Parse UW major requirement sources",
-        include: (options) => !options.skipRequirementParse,
+        include: (options) => !options.skipRequirementParse && !options.skipDownloads,
       },
       { label: "Build source fingerprints and classify changes" },
       { label: "Validate source pipeline invariants" },
@@ -124,7 +151,12 @@ const REFRESH_SECTION_DEFINITIONS = [
     title: "Refresh: deadline sources",
     description:
       "Parse high-value deadline sources: Green River registrar dates, Green River financial aid deadlines, and UW Seattle transfer application deadlines.",
-    steps: [{ label: "Refresh deadline sources" }],
+    steps: [
+      {
+        label: "Refresh deadline sources",
+        include: (options) => !options.skipDownloads,
+      },
+    ],
   },
   {
     id: "catalog-and-generation",
@@ -133,9 +165,18 @@ const REFRESH_SECTION_DEFINITIONS = [
       "Generate the source bootstrap, parse equivalencies, ingest catalogs, merge metadata, rebuild availability, and refresh docs.",
     steps: [
       { label: "Generate source bootstrap" },
-      { label: "Parse UW Green River equivalency guide" },
-      { label: "Ingest Green River course catalog" },
-      { label: "Ingest UW course catalogs" },
+      {
+        label: "Parse UW Green River equivalency guide",
+        include: (options) => !options.skipDownloads,
+      },
+      {
+        label: "Ingest Green River course catalog",
+        include: (options) => !options.skipDownloads,
+      },
+      {
+        label: "Ingest UW course catalogs",
+        include: (options) => !options.skipDownloads,
+      },
       { label: "Generate merged course metadata" },
       { label: "Generate Green River availability registry" },
       { label: "Generate student runtime planner bundle" },
@@ -171,7 +212,9 @@ const REFRESH_SECTION_DEFINITIONS = [
       {
         label: "Run closed-loop auto-repair pass",
         include: (options) =>
-          (!options.skipVerify || options.verifyOnly) && !options.skipAutoRepair,
+          (!options.skipVerify || options.verifyOnly) &&
+          !options.skipAutoRepair &&
+          !options.skipDownloads,
       },
       {
         label: "Audit generated source registry",
@@ -402,6 +445,19 @@ function buildTargetPlanArgs(targetPlanId) {
   return targetPlanId ? ["--target-plan-id", targetPlanId] : [];
 }
 
+function assertCachedArtifact(label, filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(
+      `No-download mode needs cached ${label} at ${filePath}, but it was not found. Run the normal planner refresh once to create it.`
+    );
+  }
+}
+
+function reuseCachedArtifact(label, filePath) {
+  assertCachedArtifact(label, filePath);
+  console.log(`Using cached ${label}: ${filePath}`);
+}
+
 function runClosedLoopAutoRepair(options = {}) {
   runCommand("node", [
     "scripts/planner/build-transfer-planner-auto-repair-plan.cjs",
@@ -411,7 +467,7 @@ function runClosedLoopAutoRepair(options = {}) {
 }
 
 function runClosedLoopAutoRepairBeforeRethrow(error, options = {}) {
-  if (options.skipAutoRepair) {
+  if (options.skipAutoRepair || options.cacheOnlySources) {
     throw error;
   }
 
@@ -525,6 +581,11 @@ function runSourcePipelineValidationWithAutoParseRepair(options = {}) {
     }
 
     if (repairPlan.shouldRunParser) {
+      if (options.cacheOnlySources) {
+        throw new Error(
+          "Source-pipeline repair needs a requirement-source parser refresh, but --skip-downloads is running in cached-source mode. Run the normal planner refresh when online source refreshes are allowed."
+        );
+      }
       console.log(
         `Targeted parser repair plan(s): ${
           repairPlan.targetPlanIds.length ? repairPlan.targetPlanIds.join(", ") : "full parse"
@@ -578,7 +639,7 @@ function runVerification(runStepFn = runStep, options = {}) {
       runClosedLoopAutoRepairBeforeRethrow(error, options);
     }
   });
-  if (!options.skipAutoRepair) {
+  if (!options.skipAutoRepair && !options.cacheOnlySources) {
     runStepFn("Run closed-loop auto-repair pass", () => runClosedLoopAutoRepair(options));
   }
   runStepFn("Audit generated source registry", () =>
@@ -688,6 +749,10 @@ async function main() {
     sectionPlan,
     plannedStepLabels,
   } = buildStepPlanFromArgs();
+  const cacheOnlySources = skipDownloads;
+  if (cacheOnlySources) {
+    process.env.GATORGUIDE_PLANNER_CACHE_ONLY = "1";
+  }
 
   if (hasArg("--print-step-plan-json")) {
     console.log(
@@ -780,8 +845,9 @@ async function main() {
   const getGrcPublicMaterials = async () => {
     if (!refreshContext.grcPublicMaterials) {
       refreshContext.grcPublicMaterials = await loadGrcPublicMaterials({
-        forceRefresh: true,
+        forceRefresh: !cacheOnlySources,
         allowSnapshotFallback: true,
+        cacheOnly: cacheOnlySources,
       });
     }
     return refreshContext.grcPublicMaterials;
@@ -793,45 +859,74 @@ async function main() {
     Boolean(targetPlanId) && fs.existsSync(REQUIREMENT_PARSE_REPORT_PATH);
 
   if (targetPlanId && !canRunTargetedDiscovery) {
-    console.log(
-      `Targeted discovery requested for ${targetPlanId}, but no existing discovery baseline was found. Running full discovery for safety.`
-    );
+    if (cacheOnlySources) {
+      console.log(
+        `Targeted discovery requested for ${targetPlanId}, but no existing discovery baseline was found. No-download mode will require the cached full discovery report.`
+      );
+    } else {
+      console.log(
+        `Targeted discovery requested for ${targetPlanId}, but no existing discovery baseline was found. Running full discovery for safety.`
+      );
+    }
   }
   if (targetPlanId && !canRunTargetedRequirementParse) {
-    console.log(
-      `Targeted requirement parsing requested for ${targetPlanId}, but no existing parse baseline was found. Running full parsing for safety.`
-    );
+    if (cacheOnlySources) {
+      console.log(
+        `Targeted requirement parsing requested for ${targetPlanId}, but no existing parse baseline was found. No-download mode will require the cached full parse report.`
+      );
+    } else {
+      console.log(
+        `Targeted requirement parsing requested for ${targetPlanId}, but no existing parse baseline was found. Running full parsing for safety.`
+      );
+    }
   }
 
   const runSelectedSection = async (sectionId) => {
     switch (sectionId) {
       case "grc-discovery": {
-        await runTrackedAsyncStep("Discover Green River public materials", () =>
-          getGrcPublicMaterials()
-        );
+        if (!cacheOnlySources) {
+          await runTrackedAsyncStep("Discover Green River public materials", () =>
+            getGrcPublicMaterials()
+          );
+        } else {
+          await getGrcPublicMaterials();
+        }
         runTrackedStep("Check source year coverage", () =>
           runCommand("node", ["scripts/planner/check-transfer-planner-source-year-coverage.cjs"])
         );
-        runTrackedStep("Generate Green River associate tracks", () =>
-          runCommand("node", ["scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs"])
-        );
+        if (!cacheOnlySources) {
+          runTrackedStep("Generate Green River associate tracks", () =>
+            runCommand("node", ["scripts/planner/generate-transfer-planner-grc-associate-tracks.cjs"])
+          );
+        } else {
+          reuseCachedArtifact(
+            "Green River associate-track generated output",
+            GRC_ASSOCIATE_TRACKS_GENERATED_PATH
+          );
+        }
         return;
       }
       case "source-audit": {
-        if (!skipSourceCheck) {
+        if (!skipSourceCheck && !cacheOnlySources) {
           runTrackedStep("Check official source links", () =>
             runCommand("node", ["scripts/planner/check-transfer-planner-sources.cjs"])
           );
-        } else {
+        } else if (skipSourceCheck) {
           markSkipped("Check official source links", "--skip-source-check");
+        } else {
+          markSkipped("Check official source links", "--skip-downloads");
         }
 
-        runTrackedStep("Discover primary official sources", () =>
-          runCommand("node", [
-            "scripts/planner/discover-transfer-planner-primary-sources.cjs",
-            ...buildTargetPlanArgs(canRunTargetedDiscovery ? targetPlanId : null),
-          ])
-        );
+        if (!cacheOnlySources) {
+          runTrackedStep("Discover primary official sources", () =>
+            runCommand("node", [
+              "scripts/planner/discover-transfer-planner-primary-sources.cjs",
+              ...buildTargetPlanArgs(canRunTargetedDiscovery ? targetPlanId : null),
+            ])
+          );
+        } else {
+          reuseCachedArtifact("primary official-source discovery report", PRIMARY_SOURCE_DISCOVERY_REPORT_PATH);
+        }
         runTrackedStep("Build primary-source automation queue", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
         );
@@ -847,15 +942,17 @@ async function main() {
         return;
       }
       case "requirement-parsing": {
-        if (!skipRequirementParse) {
+        if (!skipRequirementParse && !cacheOnlySources) {
           runTrackedStep("Parse UW major requirement sources", () =>
             runCommand("node", [
               "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
               ...buildTargetPlanArgs(canRunTargetedRequirementParse ? targetPlanId : null),
             ])
           );
-        } else {
+        } else if (skipRequirementParse) {
           markSkipped("Parse UW major requirement sources", "--skip-requirement-parse");
+        } else {
+          reuseCachedArtifact("requirement-source parse report", REQUIREMENT_PARSE_REPORT_PATH);
         }
 
         runTrackedStep("Build source fingerprints and classify changes", () =>
@@ -864,6 +961,7 @@ async function main() {
         runTrackedStep("Validate source pipeline invariants", () =>
           runSourcePipelineValidationWithAutoParseRepair({
             skipAutoRepair,
+            cacheOnlySources,
             targetPlanId,
           })
         );
@@ -886,24 +984,32 @@ async function main() {
         return;
       }
       case "deadline-refresh": {
-        runTrackedStep("Refresh deadline sources", () =>
-          runCommand("node", ["scripts/planner/refresh-deadline-sources.cjs"])
-        );
+        if (!cacheOnlySources) {
+          runTrackedStep("Refresh deadline sources", () =>
+            runCommand("node", ["scripts/planner/refresh-deadline-sources.cjs"])
+          );
+        }
         return;
       }
       case "catalog-and-generation": {
         runTrackedStep("Generate source bootstrap", () =>
           runCommand("node", ["scripts/planner/generate-transfer-planner-source-bootstrap.cjs"])
         );
-        runTrackedStep("Parse UW Green River equivalency guide", () =>
-          runCommand("node", ["scripts/planner/parse-transfer-planner-equivalency-guide.cjs"])
-        );
-        runTrackedStep("Ingest Green River course catalog", () =>
-          runCommand("node", ["scripts/planner/ingest-grc-catalog.cjs"])
-        );
-        runTrackedStep("Ingest UW course catalogs", () =>
-          runCommand("node", ["scripts/planner/ingest-uw-catalog.cjs"])
-        );
+        if (!cacheOnlySources) {
+          runTrackedStep("Parse UW Green River equivalency guide", () =>
+            runCommand("node", ["scripts/planner/parse-transfer-planner-equivalency-guide.cjs"])
+          );
+          runTrackedStep("Ingest Green River course catalog", () =>
+            runCommand("node", ["scripts/planner/ingest-grc-catalog.cjs"])
+          );
+          runTrackedStep("Ingest UW course catalogs", () =>
+            runCommand("node", ["scripts/planner/ingest-uw-catalog.cjs"])
+          );
+        } else {
+          reuseCachedArtifact("UW-GRC equivalency guide parse report", EQUIVALENCY_GUIDE_PARSE_REPORT_PATH);
+          reuseCachedArtifact("Green River catalog ingest report", GRC_CATALOG_INGEST_REPORT_PATH);
+          reuseCachedArtifact("UW catalog ingest report", UW_CATALOG_INGEST_REPORT_PATH);
+        }
         runTrackedStep("Generate merged course metadata", () =>
           runCommand("node", ["scripts/planner/generate-transfer-planner-course-metadata.cjs"])
         );
@@ -923,6 +1029,7 @@ async function main() {
           runVerification(runTrackedStep, {
             includePipelineValidation: verifyOnly,
             skipAutoRepair,
+            cacheOnlySources,
             targetPlanId,
           });
         } else {

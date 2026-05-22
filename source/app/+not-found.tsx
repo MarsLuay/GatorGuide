@@ -5,12 +5,14 @@ import { ROUTES } from "@/constants/routes";
 import useBack from "@/hooks/use-back";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 
 export default function NotFound() {
   const router = useRouter();
   const back = useBack();
   const { isDark, isGreen, isLight } = useAppTheme();
+  const { t } = useAppLanguage();
   const { width } = useWindowDimensions();
   const shellHorizontalPadding = width < 390 ? 16 : 20;
 
@@ -30,9 +32,9 @@ export default function NotFound() {
         contentInsetAdjustmentBehavior="automatic"
       >
         <View className="max-w-md w-full items-center self-center">
-          <Text className={`text-xl ${textClass} mb-2`}>Route not found</Text>
+          <Text className={`text-xl ${textClass} mb-2`}>{t("notFound.title")}</Text>
           <Text className={`${secondaryTextClass} text-center mb-6`}>
-            {"The page you're looking for doesn't exist or was moved."}
+            {t("notFound.body")}
           </Text>
 
           <AnimatedChipPressable
@@ -40,11 +42,11 @@ export default function NotFound() {
             containerStyle={{ width: "100%" }}
             className="px-5 py-4 rounded-2xl bg-emerald-500 w-full items-center"
           >
-            <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>Go Home</Text>
+            <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("notFound.goHome")}</Text>
           </AnimatedChipPressable>
 
           <AnimatedIconPressable onPress={back} containerClassName="mt-4">
-            <Text className="text-emerald-500">Go Back</Text>
+            <Text className="text-emerald-500">{t("notFound.goBack")}</Text>
           </AnimatedIconPressable>
         </View>
       </ScrollView>

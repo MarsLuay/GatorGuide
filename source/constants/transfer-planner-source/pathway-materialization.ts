@@ -589,6 +589,11 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "General History option",
     },
     {
+      pattern: /^culture\s+and\s+society(?: option)?$/i,
+      id: "arts-culture-and-society-option",
+      label: "Arts, Culture and Society option",
+    },
+    {
       pattern: /^arts,?\s+culture\s+and\s+society(?: option)?$/i,
       id: "arts-culture-and-society-option",
       label: "Arts, Culture and Society option",
@@ -602,6 +607,11 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       pattern: /^labor\s+and\s+social\s+movements(?: option)?$/i,
       id: "labor-and-social-movements-option",
       label: "Labor and Social Movements option",
+    },
+    {
+      pattern: /^gender\s+and\s+identity(?: option)?$/i,
+      id: "power-gender-and-identity-option",
+      label: "Power, Gender and Identity option",
     },
     {
       pattern: /^power,?\s+gender\s+and\s+identity(?: option)?$/i,
@@ -680,7 +690,11 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
     /^additional courses for geoscience option$/i,
   ],
   "uw-tacoma-environmental-sustainability": [/^four option$/i],
-  "uw-tacoma-history": [/^global studies concentration$/i],
+  "uw-tacoma-history": [
+    /^culture\s+and\s+society(?: option)?$/i,
+    /^gender\s+and\s+identity(?: option)?$/i,
+    /^global studies concentration$/i,
+  ],
   "uw-seattle-materials-science-engineering": [
     /^final project and internship\/industrial option$/i,
   ],

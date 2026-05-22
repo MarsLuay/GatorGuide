@@ -118,15 +118,15 @@ export default function OnboardingPage() {
   const introMetaBorderColor = isDark || isGreen ? accentBorderColor : "rgba(16, 185, 129, 0.16)";
   const welcomeName = state.user?.name?.trim()?.split(/\s+/)[0] ?? "";
   const hasCompletedSetup = !!(state.user?.isProfileComplete || state.user?.major || state.user?.gpa);
-  const introTitle = welcomeName ? `Welcome, ${welcomeName}` : "Welcome to Gator Guide";
+  const introTitle = welcomeName ? t("onboarding.welcomeName", { name: welcomeName }) : t("onboarding.welcomeTitle");
   const introDescription = hasCompletedSetup
-    ? "Take the quick tour to see where search, resources, and your profile live before you jump into the app."
-    : "Take the quick tour, then head into profile setup so your recommendations and plan start out personalized.";
+    ? t("onboarding.introComplete")
+    : t("onboarding.introSetup");
   const introOutcomeText = hasCompletedSetup
-    ? "You can leave the tour at any time and head straight into the app."
-    : "When the tour ends, we will send you to profile setup so search and planning feel more personal.";
-  const primaryFinishDestinationLabel = hasCompletedSetup ? "Open the app" : "Go to profile setup";
-  const skipTourLabel = hasCompletedSetup ? "Skip to app" : "Skip to setup";
+    ? t("onboarding.outcomeComplete")
+    : t("onboarding.outcomeSetup");
+  const primaryFinishDestinationLabel = hasCompletedSetup ? t("onboarding.openApp") : t("onboarding.goToProfileSetup");
+  const skipTourLabel = hasCompletedSetup ? t("onboarding.skipToApp") : t("onboarding.skipToSetup");
   const resolveTourLabel = (key: string, fallback: string) => {
     const translated = t(key);
     return translated && translated !== key ? translated : fallback;
@@ -137,55 +137,55 @@ export default function OnboardingPage() {
     () => [
       {
         id: "search",
-        title: "Start with Search",
-        description: "Type a major, city, or goal here to quickly pull up schools that fit what you want.",
+        title: t("onboarding.stepSearchTitle"),
+        description: t("onboarding.stepSearchDescription"),
         target: "searchField",
         spotlightSize: 56,
       },
       {
         id: "planning",
-        title: "Keep a Plan Visible",
-        description: "Your planning card keeps transfer tasks, deadlines, and next steps in one place so nothing gets lost.",
+        title: t("onboarding.stepPlanningTitle"),
+        description: t("onboarding.stepPlanningDescription"),
         target: "planningCard",
         spotlightSize: 62,
       },
       {
         id: "keyboard",
-        title: "Search from the Keyboard",
-        description: "After typing, press your keyboard search or enter key to run a search even faster.",
+        title: t("onboarding.stepKeyboardTitle"),
+        description: t("onboarding.stepKeyboardDescription"),
         target: "searchButton",
         spotlightSize: 46,
       },
       {
         id: "home-tab",
-        title: "Home Tab",
-        description: "Home is your launch point for search, recommendations, and quick next actions.",
+        title: t("onboarding.stepHomeTitle"),
+        description: t("onboarding.stepHomeDescription"),
         target: "homeTab",
         spotlightSize: 44,
       },
       {
         id: "resources-tab",
-        title: "Resources Tab",
-        description: "Resources gives you transfer links, tools, deadlines, and saved planning references.",
+        title: t("onboarding.stepResourcesTitle"),
+        description: t("onboarding.stepResourcesDescription"),
         target: "resourcesTab",
         spotlightSize: 44,
       },
       {
         id: "profile-tab",
-        title: "Profile Tab",
-        description: "Profile stores your major, GPA, and other details that make recommendations more personal.",
+        title: t("onboarding.stepProfileTitle"),
+        description: t("onboarding.stepProfileDescription"),
         target: "profileTab",
         spotlightSize: 44,
       },
       {
         id: "settings-tab",
-        title: "Settings Tab",
-        description: "Settings is where you control theme, language, account actions, and support pages.",
+        title: t("onboarding.stepSettingsTitle"),
+        description: t("onboarding.stepSettingsDescription"),
         target: "settingsTab",
         spotlightSize: 44,
       },
     ],
-    []
+    [t]
   );
   const nextLabel = currentStep === steps.length - 1
     ? isLanguageHydrated
@@ -408,7 +408,7 @@ export default function OnboardingPage() {
                         textTransform: "uppercase",
                       }}
                     >
-                      Onboarding
+                      {t("onboarding.label")}
                     </Text>
                   </View>
 
@@ -429,7 +429,7 @@ export default function OnboardingPage() {
                       }}
                     >
                       <Text className={`${secondaryTextClass} text-xs`} style={{ letterSpacing: 0.2 }}>
-                        Guided stops
+                        {t("onboarding.guidedStops")}
                       </Text>
                       <Text
                         style={{
@@ -454,7 +454,7 @@ export default function OnboardingPage() {
                       }}
                     >
                       <Text className={`${secondaryTextClass} text-xs`} style={{ letterSpacing: 0.2 }}>
-                        Tour ends at
+                        {t("onboarding.tourEndsAt")}
                       </Text>
                       <Text
                         style={{
@@ -472,7 +472,7 @@ export default function OnboardingPage() {
 
                   <View style={{ marginTop: 20 }}>
                     <View className="flex-row items-center justify-between" style={{ gap: 12 }}>
-                      <Text className={`${secondaryTextClass} text-sm`}>Progress</Text>
+                      <Text className={`${secondaryTextClass} text-sm`}>{t("onboarding.progress")}</Text>
                       <Text className={`${secondaryTextClass} text-sm`}>{stepProgressLabel}</Text>
                     </View>
                     <View
@@ -505,7 +505,7 @@ export default function OnboardingPage() {
                         textTransform: "uppercase",
                       }}
                     >
-                      Current stop
+                      {t("onboarding.currentStop")}
                     </Text>
                     <Text className={`mt-2 text-base font-semibold ${textClass}`}>{step.title}</Text>
                     <Text className={`${secondaryTextClass} mt-2 text-sm`} style={{ lineHeight: 20 }}>
@@ -596,9 +596,9 @@ export default function OnboardingPage() {
                     }}
                   >
                     <View style={{ flex: 1 }}>
-                      <Text className={`${textClass} font-semibold`}>Interactive Preview</Text>
+                      <Text className={`${textClass} font-semibold`}>{t("onboarding.interactivePreview")}</Text>
                       <Text className={`${secondaryTextClass} mt-1 text-sm`} style={{ lineHeight: 20 }}>
-                        The highlighted area follows the current tour step.
+                        {t("onboarding.interactivePreviewDescription")}
                       </Text>
                     </View>
 
@@ -682,7 +682,7 @@ export default function OnboardingPage() {
                                 fontSize: 14,
                               }}
                             >
-                              Search colleges by major, city, or fit...
+                              {t("onboarding.previewSearchPlaceholder")}
                             </Text>
                           </View>
                           <View
@@ -706,7 +706,7 @@ export default function OnboardingPage() {
                                 fontWeight: "700",
                               }}
                             >
-                              Search
+                              {t("home.search")}
                             </Text>
                           </View>
                         </View>
@@ -768,7 +768,7 @@ export default function OnboardingPage() {
                             <Ionicons name="map" size={18} color={accentStrongColor} />
                           </View>
                           <View className="flex-1">
-                            <Text className={`${textClass} font-semibold`}>View your plan</Text>
+                            <Text className={`${textClass} font-semibold`}>{t("onboarding.previewPlanTitle")}</Text>
                             <Text
                               className={`${secondaryTextClass} text-sm`}
                               style={{
@@ -776,7 +776,7 @@ export default function OnboardingPage() {
                                 color: previewMutedTextColor,
                               }}
                             >
-                              Track transfer goals, saved deadlines, and next steps.
+                              {t("onboarding.previewPlanDescription")}
                             </Text>
                           </View>
                           <Ionicons name="chevron-forward" size={18} color={accentStrongColor} />

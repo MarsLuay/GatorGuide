@@ -14,6 +14,7 @@ import {
   AnimatedCardPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 export type SelectorOverlayStrategy = "inline" | "inline-isolated" | "modal";
 
@@ -75,6 +76,7 @@ export function SearchableSelect({
   onTouchStartInside,
   overlayStrategy = "inline",
 }: SearchableSelectProps) {
+  const { t } = useAppLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<TextInput | null>(null);
   const selectorFieldRef = useRef<View | null>(null);
@@ -283,7 +285,7 @@ export function SearchableSelect({
 
       {searchable && !effectiveQuery ? (
         <Text className={`${secondaryTextClass} text-xs mb-2`}>
-          Scroll to browse all options, or type to filter.
+          {t("searchableSelect.browseHint")}
         </Text>
       ) : null}
 
@@ -318,7 +320,7 @@ export function SearchableSelect({
 
         {searchable && effectiveQuery && !filteredOptions.length ? (
           <Text className={`${secondaryTextClass} text-sm`}>
-            No options match that search yet.
+            {t("searchableSelect.noMatches")}
           </Text>
         ) : null}
       </ScrollView>

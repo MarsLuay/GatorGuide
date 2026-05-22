@@ -135,12 +135,17 @@ function getTransferPlannerPlanTitle(
 
 function getNormalizedTransferPlannerPlanTitleVariants(title: string | null | undefined) {
   const normalizedTitle = normalizeTransferPlannerText(title).toLowerCase();
+  const baseVariants = [
+    normalizedTitle,
+    normalizedTitle.replace(/\s*\([^)]*\)\s*$/, ""),
+  ].filter(Boolean);
   return Array.from(
     new Set(
-      [
-        normalizedTitle,
-        normalizedTitle.replace(/\s*\([^)]*\)\s*$/, ""),
-      ].filter(Boolean)
+      baseVariants.flatMap((variant) => [
+        variant,
+        variant.replace(/\bcommunication\b/g, "communications"),
+        variant.replace(/\bcommunications\b/g, "communication"),
+      ])
     )
   );
 }
@@ -170,28 +175,21 @@ export function stripTransferPlannerPlanTitlePrefix(
   value: string | null | undefined
 ) {
   const normalizedValue = normalizeTransferPlannerText(value);
-  const normalizedPlanTitle = normalizeTransferPlannerText(planTitle);
-  const planTitleVariants = Array.from(
-    new Set(
-      [
-        normalizedPlanTitle,
-        normalizedPlanTitle.replace(/\s*\([^)]*\)\s*$/, ""),
-      ].filter(Boolean)
-    )
-  );
+  const normalizedValueForMatch = normalizedValue.toLowerCase();
+  const planTitleVariants = getNormalizedTransferPlannerPlanTitleVariants(planTitle);
 
   if (!planTitleVariants.length) {
     return normalizedValue;
   }
 
   for (const normalizedTitle of planTitleVariants) {
-    if (normalizedValue === normalizedTitle) {
+    if (normalizedValueForMatch === normalizedTitle) {
       return "";
     }
 
     for (const separator of PLAN_TITLE_PREFIX_SEPARATORS) {
       const prefix = `${normalizedTitle}${separator}`;
-      if (normalizedValue.startsWith(prefix)) {
+      if (normalizedValueForMatch.startsWith(prefix)) {
         return normalizedValue.slice(prefix.length).trim();
       }
     }

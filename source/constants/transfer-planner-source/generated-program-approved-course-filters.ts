@@ -14,7 +14,9 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
+      "AMATH 301",
       "AMATH 351",
+      "AMATH 352",
       "ASTR 301",
       "ASTR 321",
       "ASTR 322",
@@ -28,6 +30,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS 451",
       "ATMOS 452",
       "ATMOS 460",
+      "BIOEN 215",
+      "BIOL 130",
       "BIOL 162",
       "BIOL 180",
       "BIOL 200",
@@ -84,6 +88,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 144",
       "CHEM 145",
       "CHEM 152",
+      "CHEM 153",
       "CHEM 155",
       "CHEM 162",
       "CHEM 165",
@@ -99,6 +104,15 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 312",
       "CHEM 317",
       "CHEM 321",
+      "CSE 121",
+      "CSE 122",
+      "CSE 123",
+      "CSE 142",
+      "CSE 143",
+      "CSE 160",
+      "ENGL 131",
+      "ENGR 101",
+      "ENGR 115",
       "ESS 311",
       "ESS 313",
       "ESS 403",
@@ -114,15 +128,29 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ESS 466",
       "ESS 467",
       "ESS 471",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
       "MATH 207",
+      "MATH 208",
       "MATH 209",
+      "MATH 224",
       "MATH 318",
       "MATH 334",
       "MATH 335",
       "MATH 394",
+      "ME 123",
+      "MSE 170",
       "PHYS 116",
       "PHYS 119",
+      "PHYS 121",
+      "PHYS 122",
       "PHYS 123",
+      "PHYS 141",
+      "PHYS 142",
       "PHYS 143",
       "PHYS 224",
       "PHYS 225",
@@ -150,6 +178,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "PHYS 426",
       "PHYS 434",
       "PHYS 460",
+      "STAT 220",
       "STAT 391",
       "STAT 394"
     ],
@@ -206,21 +235,38 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "88a5f0fa8baea98bb97b56d429f1515fa2d6ecb566a3b4e54d18a5e1628e8d66"
   },
   {
     "filterId": "CE_APPROVED_NATURAL_SCIENCE",
     "filterKey": "computer-engineering-natural-science",
     "label": "CE-approved Natural Science",
     "ownerIds": [
-      "uw-seattle-computer-engineering"
+      "uw-seattle-computer-engineering",
+      "uw-seattle-electrical-computer-engineering",
+      "uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:computing-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:digital-systems-design-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:enriching-your-path-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:quantum-technologies-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway"
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
+      "AMATH 301",
+      "AMATH 351",
+      "AMATH 352",
       "ASTR 301",
       "ASTR 321",
       "ASTR 322",
@@ -234,6 +280,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS 451",
       "ATMOS 452",
       "ATMOS 460",
+      "BIOEN 215",
+      "BIOL 130",
       "BIOL 162",
       "BIOL 180",
       "BIOL 200",
@@ -290,6 +338,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 144",
       "CHEM 145",
       "CHEM 152",
+      "CHEM 153",
       "CHEM 155",
       "CHEM 162",
       "CHEM 165",
@@ -305,6 +354,15 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 312",
       "CHEM 317",
       "CHEM 321",
+      "CSE 121",
+      "CSE 122",
+      "CSE 123",
+      "CSE 142",
+      "CSE 143",
+      "CSE 160",
+      "ENGL 131",
+      "ENGR 101",
+      "ENGR 115",
       "ESS 311",
       "ESS 313",
       "ESS 403",
@@ -320,9 +378,24 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ESS 466",
       "ESS 467",
       "ESS 471",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "MATH 207",
+      "MATH 208",
+      "MATH 224",
+      "ME 123",
+      "MSE 170",
       "PHYS 116",
       "PHYS 119",
+      "PHYS 121",
+      "PHYS 122",
       "PHYS 123",
+      "PHYS 141",
+      "PHYS 142",
       "PHYS 143",
       "PHYS 224",
       "PHYS 225",
@@ -349,7 +422,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "PHYS 425",
       "PHYS 426",
       "PHYS 434",
-      "PHYS 460"
+      "PHYS 460",
+      "STAT 220"
     ],
     "approvedUwCourseGroups": [
       [
@@ -407,8 +481,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "f53b9d0b5b36ed94de2394e373d496ed1babd5e9efd4aafae659b242ce3ff984"
   },
   {
     "filterId": "CS_APPROVED_SCIENCE",
@@ -423,15 +497,135 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
+      "ASTR 301",
+      "ASTR 321",
+      "ASTR 322",
+      "ASTR 323",
+      "ASTR 423",
+      "ASTR 480",
       "BIOL 162",
       "BIOL 180",
+      "BIOL 200",
+      "BIOL 220",
+      "BIOL 325",
+      "BIOL 333",
+      "BIOL 340",
+      "BIOL 354",
+      "BIOL 355",
+      "BIOL 356",
+      "BIOL 401",
+      "BIOL 402",
+      "BIOL 403",
+      "BIOL 405",
+      "BIOL 407",
+      "BIOL 408",
+      "BIOL 409",
+      "BIOL 411",
+      "BIOL 412",
+      "BIOL 413",
+      "BIOL 414",
+      "BIOL 415",
+      "BIOL 425",
+      "BIOL 426",
+      "BIOL 427",
+      "BIOL 433",
+      "BIOL 434",
+      "BIOL 435",
+      "BIOL 437",
+      "BIOL 440",
+      "BIOL 441",
+      "BIOL 442",
+      "BIOL 443",
+      "BIOL 444",
+      "BIOL 446",
+      "BIOL 452",
+      "BIOL 454",
+      "BIOL 455",
+      "BIOL 459",
+      "BIOL 462",
+      "BIOL 463",
+      "BIOL 464",
+      "BIOL 471",
+      "BIOL 472",
+      "BIOL 473",
+      "BIOL 474",
+      "BIOL 475",
+      "BIOL 476",
+      "BIOL 477",
+      "BIOL 479",
       "CHEM 142",
       "CHEM 143",
+      "CHEM 144",
       "CHEM 145",
+      "CHEM 152",
+      "CHEM 155",
+      "CHEM 162",
+      "CHEM 165",
+      "CHEM 220",
+      "CHEM 221",
+      "CHEM 223",
+      "CHEM 224",
+      "CHEM 237",
+      "CHEM 238",
+      "CHEM 239",
+      "CHEM 241",
+      "CHEM 242",
+      "CHEM 312",
+      "CHEM 317",
+      "CHEM 321",
+      "CSE 301",
+      "CSE 394",
+      "CSE 492",
+      "EE 406",
+      "EE 471",
+      "EE 472",
+      "EE 478",
+      "ENGR 321",
+      "ESS 311",
+      "ESS 313",
+      "ESS 403",
+      "ESS 413",
+      "ESS 414",
+      "ESS 415",
+      "ESS 424",
+      "ESS 431",
+      "ESS 437",
+      "ESS 438",
+      "ESS 458",
+      "ESS 464",
+      "ESS 466",
+      "ESS 467",
       "PHYS 116",
       "PHYS 119",
       "PHYS 121",
-      "PHYS 141"
+      "PHYS 123",
+      "PHYS 141",
+      "PHYS 143",
+      "PHYS 224",
+      "PHYS 225",
+      "PHYS 227",
+      "PHYS 228",
+      "PHYS 231",
+      "PHYS 232",
+      "PHYS 315",
+      "PHYS 321",
+      "PHYS 322",
+      "PHYS 323",
+      "PHYS 324",
+      "PHYS 325",
+      "PHYS 328",
+      "PHYS 331",
+      "PHYS 334",
+      "PHYS 335",
+      "PHYS 407",
+      "PHYS 408",
+      "PHYS 421",
+      "PHYS 422",
+      "PHYS 423",
+      "PHYS 424",
+      "PHYS 425",
+      "PHYS 426",
+      "PHYS 434"
     ],
     "approvedUwCourseGroups": [
       [
@@ -472,19 +666,15 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "9a1bee58f7ba9b0bce2ce340a1f7d62d36ff989ed42e85ddbf3d48135bd08da0"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "5346abe7179c682ac03f40e49b3d40b5ea06178c9653b08fd545cbcf0d82bc97"
   },
   {
     "filterId": "UW_BOTHELL_EDUCATIONAL_STUDIES_ELEMENTARY_EDUCATION_UNITED_STATES_GOVERNMENT_OR_CIVICS_GEOGRAPHY_OR_ECONOMICS_COURSE_APPROVED_COURSES",
     "filterKey": "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses",
     "label": "Uw Bothell Educational Studies Elementary Education United States Government Or Civics Geography Or Economics Course Approved Courses",
     "ownerIds": [
-      "uw-bothell-educational-studies-elementary-education",
-      "uw-bothell-educational-studies-elementary-education:pathway:cecl-concentration",
-      "uw-bothell-educational-studies-elementary-education:pathway:education-studies-elementary-education-option",
-      "uw-bothell-educational-studies-elementary-education:pathway:esol-concentration",
-      "uw-bothell-educational-studies-elementary-education:pathway:lede-concentration"
+      "uw-bothell-educational-studies-elementary-education:pathway:education-studies-elementary-education-option"
     ],
     "campusId": "uw-bothell",
     "officialSourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
@@ -519,17 +709,17 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Elementary Education Endorsement Academic Breadth Courses"
+      "20 credits School of Educational Studies Core Courses"
     ],
     "sourceEvidenceLines": [
-      "Elementary Education Endorsement Academic Breadth Courses",
+      "20 credits School of Educational Studies Core Courses",
       "B EDUC 205 Education & Equity in the United States (DIV, SSc)",
       "B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)",
       "B EDUC 300 Research & Educational Knowledge (W)",
       "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "297c24a1f610dc9bfb056c64c557b001698aa5d19beb3b8855df86d7408ae560"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "4a9d1fc44a5a7a77f8012f6a0d5594ca378e06b2411db652dc85c762bce47abc"
   },
   {
     "filterId": "UW_BOTHELL_PHYSICS_BA_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
@@ -573,7 +763,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "c7095ba2c6abb04915540d4fb3ea4ffbd3cf5e9c47b0c41dbcf98279b2ac2bcd"
   },
   {
@@ -617,7 +807,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "7d1c7832494f9dbf594b0d967b1299acb37b30e2c2c158484c18c74c0ff6c115"
   },
   {
@@ -687,7 +877,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -741,41 +931,389 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ARTH 488",
       "ARTH 491",
       "ARTH 492",
-      "ARTH 494",
-      "DESIGN 207",
-      "DESIGN 208",
-      "DESIGN 209",
-      "DESIGN 210",
-      "DESIGN 215",
-      "DESIGN 325",
-      "DESIGN 371",
-      "DESIGN 372",
-      "DESIGN 373",
-      "DESIGN 374",
-      "DESIGN 376",
-      "DESIGN 383",
-      "DESIGN 384",
-      "DESIGN 400",
-      "DESIGN 467",
-      "DESIGN 481",
-      "DESIGN 483",
-      "DESIGN 485",
-      "DESIGN 486"
+      "ARTH 494"
     ],
     "aliases": [
       "uw-seattle-art-history-arth-prefix-courses"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "10 credits of art history (ART H-prefixed courses)"
+      "10 credits of ARTH prefix courses"
     ],
     "sourceEvidenceLines": [
-      "10 credits of art history (ART H-prefixed courses)",
-      "71-73 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 215, DESIGN 325, DESIGN 371, DESIGN 372, DESIGN 383, DESIGN 384, DESIGN 481, DESIGN 483, DESIGN 485, DESIGN 486",
-      "10 credits from DESIGN 326, DESIGN 373, DESIGN 374, DESIGN 376, DESIGN 400, DESIGN 467"
+      "10 credits of ARTH prefix courses",
+      "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "9dc8f154463b396d649c44441e1c9dc6b0b9fa1ac2da6416bc43eb219c76ae24"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
+  },
+  {
+    "filterId": "UW_SEATTLE_ASIAN_STUDIES_APPROVED_ELECTIVES",
+    "filterKey": "uw-seattle-asian-studies-approved-electives",
+    "label": "Uw Seattle Asian Studies Approved Electives",
+    "ownerIds": [
+      "uw-seattle-asian-studies:pathway:southeast-asia-concentration"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
+    "sourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "BH 339",
+      "CHID 206",
+      "CLAS 405",
+      "CLIT 396A",
+      "CLIT 496",
+      "ENGL 311",
+      "ENGL 312",
+      "ENGL 357",
+      "GEOG 373",
+      "GERMAN 195",
+      "GERMAN 295",
+      "GWSS 334",
+      "GWSS 438",
+      "HSTAA 336",
+      "HSTAA 337",
+      "HSTAM 367",
+      "HSTCMP 269",
+      "HSTCMP 270",
+      "HSTCMP 368",
+      "HSTCMP 369",
+      "HSTCMP 469",
+      "HSTEU 234",
+      "HSTEU 252",
+      "HSTEU 361",
+      "HSTEU 368",
+      "HSTEU 464",
+      "HSTEU 465",
+      "JEWST 175",
+      "JEWST 206",
+      "JEWST 210",
+      "JEWST 215",
+      "JEWST 269",
+      "JEWST 270",
+      "JEWST 289",
+      "JEWST 294",
+      "JEWST 295",
+      "JEWST 312",
+      "JEWST 317",
+      "JEWST 318",
+      "JEWST 320A",
+      "JEWST 325",
+      "JEWST 328",
+      "JEWST 330",
+      "JEWST 336",
+      "JEWST 337",
+      "JEWST 339",
+      "JEWST 357",
+      "JEWST 358",
+      "JEWST 360",
+      "JEWST 362",
+      "JEWST 367",
+      "JEWST 368",
+      "JEWST 369",
+      "JEWST 372",
+      "JEWST 373",
+      "JEWST 377",
+      "JEWST 378",
+      "JEWST 379",
+      "JEWST 396A",
+      "JEWST 418",
+      "JEWST 427",
+      "JEWST 438",
+      "JEWST 459",
+      "JEWST 460",
+      "JEWST 462",
+      "JEWST 463",
+      "JEWST 464",
+      "JEWST 465",
+      "JEWST 466",
+      "JEWST 468",
+      "JEWST 469",
+      "JEWST 490",
+      "JEWST 491",
+      "JEWST 495",
+      "JEWST 496",
+      "JSISA 252",
+      "JSISA 314",
+      "JSISA 458",
+      "LING 372",
+      "MELC 202",
+      "MELC 287",
+      "MELC 302",
+      "MELC 305",
+      "MELC 306",
+      "MELC 311",
+      "MELC 317",
+      "MELC 318",
+      "MELC 320",
+      "MELC 328",
+      "MELC 333",
+      "MELC 336",
+      "MODHEB 100",
+      "MODHEB 101",
+      "MODHEB 102",
+      "MODHEB 103",
+      "MODHEB 105",
+      "MODHEB 200",
+      "MODHEB 201",
+      "MODHEB 202",
+      "MODHEB 203",
+      "MODHEB 401",
+      "MODHEB 402",
+      "MODHEB 403",
+      "MODHEB 404",
+      "MODHEB 405",
+      "MODHEB 406",
+      "MODHEB 407",
+      "MODHEB 408",
+      "MODHEB 490",
+      "MODHEB 496",
+      "PHIL 418",
+      "POLS 325",
+      "RELIG 145",
+      "RELIG 201",
+      "RELIG 202",
+      "RELIG 240",
+      "RELIG 305",
+      "RELIG 306",
+      "RELIG 315",
+      "RELIG 334",
+      "RELIG 440",
+      "RUSS 320A",
+      "RUSS 427",
+      "SOC 377",
+      "SOC 378",
+      "SPAN 294",
+      "SPAN 360",
+      "SPAN 362"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "MELC 202",
+        "RELIG 202",
+        "RELIG 240"
+      ],
+      [
+        "HSTEU 252",
+        "JSISA 252"
+      ],
+      [
+        "CHID 206",
+        "JEWST 206"
+      ],
+      [
+        "HSTCMP 269",
+        "JEWST 269"
+      ],
+      [
+        "HSTCMP 270",
+        "JEWST 270"
+      ],
+      [
+        "MELC 306",
+        "RELIG 306"
+      ],
+      [
+        "ENGL 312",
+        "JEWST 312"
+      ],
+      [
+        "MELC 305",
+        "RELIG 305",
+        "RELIG 315"
+      ],
+      [
+        "JEWST 317",
+        "JEWST 318",
+        "MELC 317"
+      ],
+      [
+        "GWSS 334",
+        "RELIG 334"
+      ],
+      [
+        "HSTAA 336",
+        "JEWST 336"
+      ],
+      [
+        "HSTAA 337",
+        "JEWST 337"
+      ],
+      [
+        "BH 339",
+        "JEWST 328",
+        "JEWST 339",
+        "MELC 328"
+      ],
+      [
+        "HSTCMP 368",
+        "JEWST 358",
+        "JEWST 368"
+      ],
+      [
+        "GEOG 373",
+        "JEWST 362",
+        "JEWST 373",
+        "SPAN 362"
+      ],
+      [
+        "HSTAM 367",
+        "JEWST 367"
+      ],
+      [
+        "HSTEU 368",
+        "JEWST 368"
+      ],
+      [
+        "HSTCMP 369",
+        "JEWST 369"
+      ],
+      [
+        "JEWST 377",
+        "SOC 377"
+      ],
+      [
+        "JEWST 378",
+        "SOC 378"
+      ],
+      [
+        "JEWST 378",
+        "JEWST 379",
+        "SOC 378"
+      ],
+      [
+        "JEWST 418",
+        "PHIL 418"
+      ],
+      [
+        "CLIT 496",
+        "JEWST 427",
+        "JEWST 496",
+        "RUSS 427"
+      ],
+      [
+        "GWSS 438",
+        "JEWST 438"
+      ],
+      [
+        "JEWST 360",
+        "JEWST 460",
+        "SPAN 360"
+      ],
+      [
+        "HSTEU 465",
+        "JEWST 465"
+      ],
+      [
+        "HSTCMP 469",
+        "JEWST 466",
+        "JEWST 469"
+      ],
+      [
+        "HSTEU 464",
+        "JEWST 464",
+        "JEWST 468"
+      ]
+    ],
+    "petitionOnlyNotes": [
+      "To major in Jewish Studies, please schedule an appointment with a Jackson School Undergraduate Adviser for Jewish Studies majors.",
+      "Contact an adviser with questions or for clarification.",
+      "For any course prefix when topic is appropriate; check with adviser for approval",
+      "Students can meet with an adviser to discuss courses, majors, minors, study abroad, or fellowship and scholarship opportunities.",
+      "Meet an Adviser"
+    ],
+    "aliases": [
+      "uw-seattle-asian-studies-approved-electives"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses."
+    ],
+    "sourceEvidenceLines": [
+      "3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses.",
+      "To major in Jewish Studies, please schedule an appointment with a Jackson School Undergraduate Adviser for Jewish Studies majors.",
+      "Contact an adviser with questions or for clarification.",
+      "MODHEB 100",
+      "RELIG 145",
+      "JEW ST 175/",
+      "GERMAN 195",
+      "MODHEB 200 *",
+      "RELIG 201",
+      "MODHEB 201 *",
+      "MODHEB 202 *",
+      "MODHEB 203 *",
+      "JEW ST 210",
+      "JEW ST 215/ SPAN 294/ LING 372",
+      "HSTEU 234",
+      "RELIG 240/ MELC 202",
+      "HSTEU 252/ JSIS A 252",
+      "CHID 206/ JEW ST 206",
+      "JEW ST 269/ HSTCMP 269",
+      "JEW ST 270/ HSTCMP 270",
+      "MELC 287",
+      "JEW ST 289",
+      "JEW ST 295/",
+      "GERMAN 295",
+      "MELC 302",
+      "RELIG 306/ MELC 306",
+      "ENGL 311",
+      "MELC 311",
+      "JEW ST 312/ ENGL 312",
+      "JSIS A 314/ HSTAFM 314",
+      "RELIG 315/ MELC 305",
+      "JEW ST 318/ MELC 317",
+      "MELC 318",
+      "MELC 320",
+      "JEW ST 325",
+      "POL S 325",
+      "JEW ST 330",
+      "MELC 333",
+      "RELIG 334/ GWSS 334",
+      "JEW ST 336/ HSTAA 336",
+      "MELC 336",
+      "JEW ST 337/ HSTAA 337",
+      "JEW ST 339/ B H 339 / MELC 328",
+      "JEW ST 357/ ENGL 357 / RUSS 320A / C LIT 396A",
+      "JEW ST 358/ HSTCMP 368",
+      "HSTEU 361",
+      "JEW ST 362/ SPAN 362/ GEOG 373",
+      "JEW ST 367/ HSTAM 367",
+      "JEW ST 368/ HSTEU 368",
+      "JEW ST 369/ HSTCMP 369",
+      "JEW ST 377/ SOC 377",
+      "JEW ST 378/ SOC 378",
+      "JEW ST 379/ SOC 378",
+      "MODHEB 401",
+      "MODHEB 402",
+      "MODHEB 403",
+      "MODHEB 404",
+      "MODHEB 405",
+      "MODHEB 406",
+      "MODHEB 407",
+      "MODHEB 408",
+      "CLAS 405",
+      "JEW ST 418/ PHIL 418",
+      "JEW ST 427/ RUSS 427 / C LIT 496",
+      "JEW ST 438/ GWSS 438",
+      "RELIG 440",
+      "JSIS A 458",
+      "JEW ST 459/HSTAFM 459",
+      "JEW ST 460/ SPAN 360",
+      "JEW ST 462",
+      "JEW ST 463",
+      "JEW ST 465/ HSTEU 465",
+      "JEW ST 466/ HSTCMP 469",
+      "JEW ST 468/ HSTEU 464",
+      "JEW ST 490",
+      "MODHEB 490",
+      "JEW ST 491",
+      "JEW ST 495",
+      "MODHEB 496",
+      "For any course prefix when topic is appropriate; check with adviser for approval"
+    ],
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "e285389950a8cc5ce4e0b5277813b604a659d6bde98c2c6259ddf61cbf057a2b"
   },
   {
     "filterId": "UW_SEATTLE_BUSINESS_ADMINISTRATION_THERE_IS_NO_NEED_TO_SUBMIT_FOSTER_COURSES_ALL_APPROVED_COURSES_ARE_LISTED_ON_THE_BUSINESS_MINOR_WEBSITE_UNDER_CURRICULUM",
@@ -815,7 +1353,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "MGMT 200 (Introduction to Law)",
       "QMETH 201 (Statistical Methods)"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "872c60d5f1d15da7f5f57132020a2062b7bd46bb009c682c7c79929061440f19"
   },
   {
@@ -881,143 +1419,201 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
   },
   {
-    "filterId": "UW_SEATTLE_ECONOMICS_ECON_PREFIX_COURSES",
-    "filterKey": "uw-seattle-economics-econ-prefix-courses",
-    "label": "Uw Seattle Economics Econ Prefix Courses",
+    "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_DISTRIBUTION_AREAS",
+    "filterKey": "uw-seattle-english-language-literature-and-culture-distribution-areas",
+    "label": "Uw Seattle English Language Literature And Culture Distribution Areas",
     "ownerIds": [
-      "uw-seattle-economics"
+      "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
-    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "officialSourceUrl": "https://english.washington.edu/english-creative-writing-option",
+    "sourceUrl": "https://english.washington.edu/english-creative-writing-option",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ECON 200",
-      "ECON 201",
-      "ECON 230",
-      "ECON 235",
-      "ECON 300",
-      "ECON 301",
-      "ECON 382",
-      "ECON 400",
-      "ECON 401",
-      "ECON 402",
-      "ECON 404",
-      "ECON 405",
-      "ECON 406",
-      "ECON 409",
-      "ECON 410",
-      "ECON 411",
-      "ECON 412",
-      "ECON 415",
-      "ECON 422",
-      "ECON 423",
-      "ECON 424",
-      "ECON 426",
-      "ECON 427",
-      "ECON 431",
-      "ECON 432",
-      "ECON 435",
-      "ECON 448",
-      "ECON 450",
-      "ECON 452",
-      "ECON 464",
-      "ECON 471",
-      "ECON 472",
-      "ECON 473",
-      "ECON 475",
-      "ECON 476",
-      "ECON 481",
-      "ECON 482",
-      "ECON 483",
-      "ECON 484",
-      "ECON 485",
-      "ECON 486",
-      "ECON 487",
-      "ECON 488",
-      "ECON 490",
-      "ECON 491",
-      "ECON 492",
-      "ECON 493",
-      "ECON 495",
-      "ECON 496",
-      "ECON 497",
-      "ECON 499",
-      "ECON 500",
-      "ECON 501",
-      "ECON 502",
-      "ECON 503",
-      "ECON 508",
-      "ECON 509",
-      "ECON 511",
-      "ECON 537",
-      "ECON 580",
-      "ECON 581",
-      "ECON 582",
-      "ECON 600",
-      "ECON 601",
-      "ECON 800",
-      "MATH 124",
-      "MATH 311",
-      "STAT 311"
-    ],
-    "aliases": [
-      "uw-seattle-economics-econ-prefix-courses"
-    ],
-    "generatedFromOfficialSupportSource": true,
-    "sourceEvidenceHeadings": [
-      "Core Courses (35 credits):"
-    ],
-    "sourceEvidenceLines": [
-      "Core Courses (35 credits):",
-      "MATH 124; STAT 311",
-      "ECON 200, ECON 201, ECON 300, ECON 301, ECON 382",
-      "Minimum 2.0 grade in ECON 200, ECON 201, ECON 300, ECON 301",
-      "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
-      "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
-    ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "408509e11b8467d5c8eab6ac566d2d259fc8a5932c8a916201e59f26b7b04c47"
-  },
-  {
-    "filterId": "UW_SEATTLE_INTERNATIONAL_STUDIES_SEE_DEPARTMENT_WEBSITE_FOR_LIST_OF_APPROVED_COURSES",
-    "filterKey": "uw-seattle-international-studies-see-department-website-for-list-of-approved-courses",
-    "label": "Uw Seattle International Studies See Department Website For List Of Approved Courses",
-    "ownerIds": [
-      "uw-seattle-international-studies:pathway:ba-option-family:jewish-studies"
-    ],
-    "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-    "sourceRole": "official-catalog",
-    "approvedUwCourseCodes": [
-      "HSTAS 202",
-      "HSTAS 211",
-      "JSISA 301"
+      "ENGL 202",
+      "ENGL 283",
+      "ENGL 284",
+      "ENGL 351",
+      "ENGL 383",
+      "ENGL 384",
+      "ENGL 491"
     ],
     "approvedUwCourseGroups": [
       [
-        "HSTAS 202",
-        "HSTAS 211"
+        "ENGL 283",
+        "ENGL 284",
+        "ENGL 383",
+        "ENGL 384"
       ]
     ],
     "aliases": [
-      "uw-seattle-international-studies-see-department-website-for-list-of-approved-courses"
+      "uw-seattle-english-language-literature-and-culture-distribution-areas"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "15 credits of electives chosen from an approved list. See department website for approved list of courses."
+      "Creative Writing BA Courses"
     ],
     "sourceEvidenceLines": [
-      "15 credits of electives chosen from an approved list. See department website for approved list of courses.",
-      "HSTAS 211 and either JSIS C 202 or one additional introductory Asian civilization course (10 credits)*"
+      "Creative Writing BA Courses",
+      "ENGL 202: Introduction to English Language and Literature",
+      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "dfab70b22edfb71a128098d86eab4553f706f80a983ffb145d43d85e6512a236"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "99ac61768a9869cb15d4bd908558b8ca2b7c915ccee91df76ff035d6565123de"
+  },
+  {
+    "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_PRE_1700",
+    "filterKey": "uw-seattle-english-language-literature-and-culture-pre-1700",
+    "label": "Uw Seattle English Language Literature And Culture Pre 1700",
+    "ownerIds": [
+      "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://english.washington.edu/english-creative-writing-option",
+    "sourceUrl": "https://english.washington.edu/english-creative-writing-option",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 202",
+      "ENGL 210",
+      "ENGL 211",
+      "ENGL 225",
+      "ENGL 283",
+      "ENGL 284",
+      "ENGL 310",
+      "ENGL 321",
+      "ENGL 322",
+      "ENGL 323",
+      "ENGL 324",
+      "ENGL 325",
+      "ENGL 326",
+      "ENGL 383",
+      "ENGL 384",
+      "ENGL 400",
+      "ENGL 422"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "ENGL 283",
+        "ENGL 284",
+        "ENGL 383",
+        "ENGL 384"
+      ]
+    ],
+    "aliases": [
+      "uw-seattle-english-language-literature-and-culture-pre-1700"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Creative Writing BA Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Creative Writing BA Courses",
+      "ENGL 202: Introduction to English Language and Literature",
+      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+    ],
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "3a3b3e3da8557f173f970eaf71a1c8a8bda0c7ee584c0b557eecde4306e2c6bb"
+  },
+  {
+    "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_PRE_1945",
+    "filterKey": "uw-seattle-english-language-literature-and-culture-pre-1945",
+    "label": "Uw Seattle English Language Literature And Culture Pre 1945",
+    "ownerIds": [
+      "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://english.washington.edu/english-creative-writing-option",
+    "sourceUrl": "https://english.washington.edu/english-creative-writing-option",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 202",
+      "ENGL 212",
+      "ENGL 251",
+      "ENGL 256",
+      "ENGL 257",
+      "ENGL 258",
+      "ENGL 259",
+      "ENGL 265",
+      "ENGL 283",
+      "ENGL 284",
+      "ENGL 300",
+      "ENGL 303",
+      "ENGL 314",
+      "ENGL 315",
+      "ENGL 383",
+      "ENGL 384"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "ENGL 283",
+        "ENGL 284",
+        "ENGL 383",
+        "ENGL 384"
+      ]
+    ],
+    "aliases": [
+      "uw-seattle-english-language-literature-and-culture-pre-1945"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Creative Writing BA Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Creative Writing BA Courses",
+      "ENGL 202: Introduction to English Language and Literature",
+      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+    ],
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "b7a367adfe467e5325b13d374ed4d227fb266f3d3fe41c0b77ae06ab74baf247"
+  },
+  {
+    "filterId": "UW_SEATTLE_GERMAN_LANGUAGE",
+    "filterKey": "uw-seattle-german-language",
+    "label": "Uw Seattle German Language",
+    "ownerIds": [
+      "uw-seattle-german",
+      "uw-seattle-german:pathway:ba-option-family:cultural-studies",
+      "uw-seattle-german:pathway:ba-route"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://german.washington.edu/german-studies",
+    "sourceUrl": "https://german.washington.edu/german-studies",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "GERMAN 203",
+      "GERMAN 301",
+      "GERMAN 302",
+      "GERMAN 303",
+      "GERMAN 311",
+      "GERMAN 401"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "GERMAN 301",
+        "GERMAN 302",
+        "GERMAN 303"
+      ]
+    ],
+    "aliases": [
+      "uw-seattle-german-language"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Programs & Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Programs & Courses",
+      "German 203 (or equivalent)",
+      "2 courses from: German 301, 302, 303 (or equivalent)",
+      "German 401 (or equivalent)",
+      "German 311 (Introduction to Literary Studies)"
+    ],
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "3bb53b00e0b8d66896aa2f2c44500089bfce14cdf9fc568f40b16c65f0611d12"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_300_LEVEL_HUMAN_RIGHTS_OR_LAW_COURSES",
@@ -1068,7 +1664,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "e2ccb63d4acf3832039d801b9842ee6ee7ca7f542e64b73230d0bfd1ae7b4e78"
   },
   {
@@ -1110,7 +1706,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "7c02d2b529c08adc11905f3014348914f80680a198837e00b16f812b6122a33c"
   },
   {
@@ -1170,7 +1766,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "f5c5cc4d3826702874c743981939ad4a1c889d0cbd7b4323e549de2e7e30663e"
   },
   {
@@ -1354,98 +1950,241 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
+    "generatedAt": "2026-05-21T23:09:16.793Z",
     "sourceFingerprint": "e6692dc66c91b79488b6f7b2f1eeb7ccf9132513a45d655810f85d2d3d2d16d6"
   },
   {
-    "filterId": "UW_SEATTLE_MARINE_BIOLOGY_SPECIAL_TOPICS_ARE_APPROVED_BY_INDIVIDUAL_OFFERING_SEE_COURSES_PAGE_FOR_APPROVED_SECTIONS_BY_QUARTER",
-    "filterKey": "uw-seattle-marine-biology-special-topics-are-approved-by-individual-offering-see-courses-page-for-approved-sections-by-quarter",
-    "label": "Uw Seattle Marine Biology Special Topics Are Approved By Individual Offering See Courses Page For Approved Sections By Quarter",
+    "filterId": "UW_SEATTLE_SOUTH_ASIAN_LANGUAGES_AND_CULTURES_LIST_OF_APPROVED_COURSES_FOR_2_LITERATURE",
+    "filterKey": "uw-seattle-south-asian-languages-and-cultures-list-of-approved-courses-for-2-literature",
+    "label": "Uw Seattle South Asian Languages And Cultures List Of Approved Courses For 2 Literature",
     "ownerIds": [
-      "uw-seattle-marine-biology"
+      "uw-seattle-south-asian-languages-and-cultures"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
-    "sourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+    "officialSourceUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
+    "sourceUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "CHEM 120",
-      "CHEM 142",
-      "CHEM 143",
-      "CHEM 145",
-      "CHEM 152",
-      "CHEM 153",
-      "CHEM 155",
-      "CHEM 220",
-      "CHEM 223",
-      "CHEM 237",
-      "FHL 468",
-      "FHL 472",
-      "FHL 495",
-      "FISH 497",
-      "OCEAN 295",
-      "OCEAN 411",
-      "OCEAN 431",
-      "OCEAN 497"
+      "ASIAN 223",
+      "ASIAN 301",
+      "ASIAN 494",
+      "BENG 101",
+      "BENG 102",
+      "BENG 103",
+      "BENG 201",
+      "BENG 202",
+      "BENG 203",
+      "BENG 301",
+      "BENG 302",
+      "BENG 303",
+      "BENG 499",
+      "HINDI 101",
+      "HINDI 102",
+      "HINDI 103",
+      "HINDI 201",
+      "HINDI 202",
+      "HINDI 203",
+      "HINDI 301",
+      "HINDI 302",
+      "HINDI 303",
+      "HINDI 317",
+      "HINDI 321",
+      "HINDI 323",
+      "HINDI 324",
+      "HINDI 417",
+      "HINDI 421",
+      "HINDI 422",
+      "HINDI 423",
+      "HINDI 424",
+      "HINDI 431",
+      "HINDI 499",
+      "SASIA 203",
+      "SASIA 206",
+      "SASIA 225",
+      "SASIA 316",
+      "SNKRT 101",
+      "SNKRT 102",
+      "SNKRT 103",
+      "SNKRT 201",
+      "SNKRT 202",
+      "SNKRT 203",
+      "SNKRT 205",
+      "SNKRT 311",
+      "SNKRT 312",
+      "SNKRT 313",
+      "SNKRT 494",
+      "SNKRT 495",
+      "SNKRT 499",
+      "URDU 101",
+      "URDU 102",
+      "URDU 103",
+      "URDU 201",
+      "URDU 202",
+      "URDU 203",
+      "URDU 301",
+      "URDU 302",
+      "URDU 303",
+      "URDU 321",
+      "URDU 322",
+      "URDU 323",
+      "URDU 324",
+      "URDU 421",
+      "URDU 422",
+      "URDU 423",
+      "URDU 424",
+      "URDU 499"
     ],
     "aliases": [
-      "uw-seattle-marine-biology-special-topics-are-approved-by-individual-offering-see-courses-page-for-approved-sections-by-quarter"
+      "uw-seattle-south-asian-languages-and-cultures-list-of-approved-courses-for-2-literature"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. \">",
-      "Chemistry",
-      "Biology"
+      "A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe."
     ],
     "sourceEvidenceLines": [
-      "The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. \">",
-      "Chemistry",
-      "CHEM 120",
-      "OCEAN 295",
-      "CHEM 220",
-      "CHEM 142",
-      "CHEM 152",
-      "CHEM 223",
-      "CHEM 143, 153 and 145, 155 are pre-approved substitutes for CHEM 142 and 152.",
-      "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
-      "Biology"
+      "A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.",
+      "Bengali: BENG 101, BENG 102, BENG 103, BENG 201, BENG 202, BENG 203, BENG 301, BENG 302, BENG 303, BENG 499",
+      "Hindi: HINDI 101, HINDI 102, HINDI 103, HINDI 201, HINDI 202, HINDI 203, HINDI 301, HINDI 302, HINDI 303, HINDI 317, HINDI 321, HINDI 323, HINDI 324, HINDI 417, HINDI 421, HINDI 422, HINDI 423, HINDI 424, HINDI 431, HINDI 499",
+      "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
+      "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "a24e30e8ca410cbff2587a66e8395eb15fd4e2ede43aaba24e5171733bc4c990"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
-    "filterId": "UW_SEATTLE_MECHANICAL_ENGINEERING_FROM_THE_LIST_OF_APPROVED_400_LEVEL_ME_COURSES",
-    "filterKey": "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses",
-    "label": "Uw Seattle Mechanical Engineering From The List Of Approved 400 Level Me Courses",
+    "filterId": "UW_SEATTLE_SOUTH_ASIAN_LANGUAGES_AND_CULTURES_LIST_OF_APPROVED_COURSES_FOR_3_AREA_RELATED_HUMANITIES_AND_SOCIAL_SCIENCE_COURSES",
+    "filterKey": "uw-seattle-south-asian-languages-and-cultures-list-of-approved-courses-for-3-area-related-humanities-and-social-science-courses",
+    "label": "Uw Seattle South Asian Languages And Cultures List Of Approved Courses For 3 Area Related Humanities And Social Science Courses",
     "ownerIds": [
-      "uw-seattle-mechanical-engineering"
+      "uw-seattle-south-asian-languages-and-cultures"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-    "sourceUrl": "https://www.me.washington.edu/students/ug/requirements",
+    "officialSourceUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
+    "sourceUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ME 402",
-      "ME 406",
-      "ME 410",
-      "ME 411",
-      "ME 412",
-      "ME 419",
-      "ME 425"
+      "ANTH 316",
+      "ASIAN 210",
+      "ASIAN 223",
+      "ASIAN 301",
+      "ASIAN 494",
+      "ASIAN 498",
+      "BENG 101",
+      "BENG 102",
+      "BENG 103",
+      "BENG 201",
+      "BENG 202",
+      "BENG 203",
+      "BENG 301",
+      "BENG 302",
+      "BENG 303",
+      "BENG 499",
+      "HINDI 101",
+      "HINDI 102",
+      "HINDI 103",
+      "HINDI 201",
+      "HINDI 202",
+      "HINDI 203",
+      "HINDI 301",
+      "HINDI 302",
+      "HINDI 303",
+      "HINDI 317",
+      "HINDI 321",
+      "HINDI 323",
+      "HINDI 324",
+      "HINDI 417",
+      "HINDI 421",
+      "HINDI 422",
+      "HINDI 423",
+      "HINDI 424",
+      "HINDI 431",
+      "HINDI 499",
+      "HSTAS 202",
+      "HSTAS 401",
+      "HSTAS 402",
+      "HSTAS 403",
+      "HSTAS 404",
+      "JSIS 203",
+      "JSISA 202",
+      "JSISA 206",
+      "JSISA 210",
+      "JSISA 316",
+      "JSISA 340",
+      "JSISA 409",
+      "JSISA 417",
+      "JSISB 406",
+      "POLS 340",
+      "POLS 417",
+      "POLS 432",
+      "RELIG 211",
+      "RELIG 352",
+      "RELIG 354",
+      "SASIA 203",
+      "SASIA 206",
+      "SASIA 225",
+      "SASIA 254",
+      "SASIA 316",
+      "SASIA 498",
+      "SNKRT 101",
+      "SNKRT 102",
+      "SNKRT 103",
+      "SNKRT 201",
+      "SNKRT 202",
+      "SNKRT 203",
+      "SNKRT 205",
+      "SNKRT 311",
+      "SNKRT 312",
+      "SNKRT 313",
+      "SNKRT 494",
+      "SNKRT 495",
+      "SNKRT 499",
+      "URDU 101",
+      "URDU 102",
+      "URDU 103",
+      "URDU 201",
+      "URDU 202",
+      "URDU 203",
+      "URDU 301",
+      "URDU 302",
+      "URDU 303",
+      "URDU 321",
+      "URDU 322",
+      "URDU 323",
+      "URDU 324",
+      "URDU 421",
+      "URDU 422",
+      "URDU 423",
+      "URDU 424",
+      "URDU 499"
+    ],
+    "genericCategoryTags": [
+      "NSC",
+      "NW"
     ],
     "aliases": [
-      "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses"
+      "uw-seattle-south-asian-languages-and-cultures-list-of-approved-courses-for-3-area-related-humanities-and-social-science-courses"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "From the list of approved 400-level ME courses"
+      "A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe."
     ],
     "sourceEvidenceLines": [
-      "From the list of approved 400-level ME courses",
-      "ME 402",
-      "ME 406"
+      "A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.",
+      "Bengali: BENG 101, BENG 102, BENG 103, BENG 201, BENG 202, BENG 203, BENG 301, BENG 302, BENG 303, BENG 499",
+      "Hindi: HINDI 101, HINDI 102, HINDI 103, HINDI 201, HINDI 202, HINDI 203, HINDI 301, HINDI 302, HINDI 303, HINDI 317, HINDI 321, HINDI 323, HINDI 324, HINDI 417, HINDI 421, HINDI 422, HINDI 423, HINDI 424, HINDI 431, HINDI 499",
+      "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
+      "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499",
+      "S ASIA 203 Love and War in Classical Indian Literature",
+      "S ASIA 206 Modern Literature of South Asia",
+      "S ASIA 225 Indian Philosophical Literature",
+      "S ASIA 254 Fairies, Genies, and Monsters: The Romance Genre in India",
+      "ASIAN 210 Asian War Epics: Working through Many Mahabharatas",
+      "ASIAN 223 Buddhist Literature",
+      "S ASIA 316 Postcolonial Literature of South Asia",
+      "ASIAN 301 Songs of the Saints of India",
+      "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-05-21T08:35:27.472Z",
-    "sourceFingerprint": "a021bd526a4967e010161b6bb09f3d2056f23005d6de590fa72c5935debdd975"
+    "generatedAt": "2026-05-21T23:09:16.793Z",
+    "sourceFingerprint": "dbcaa7b45d3c26fda3446f650a3321e9d7f055d07d1d2d33a55c8b178d3cf6a7"
   }
 ] as const;

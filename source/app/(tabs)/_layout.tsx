@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { HapticTab } from "@/components/haptic-tab";
 import { ResourcesAwareTabBar } from "@/components/ResourcesAwareTabBar";
 import { RouteAccessBoundary } from "@/components/navigation/RouteAccessBoundary";
+import { HIDDEN_TAB_ROUTE_SCREENS } from "@/constants/routes";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -127,22 +128,13 @@ export default function TabLayout() {
           options={buildTabOptions(titles.settings, "settings")}
         />
 
-        {/* Keep these routes inside the tab navigator, but hide them from the tab bar */}
-        <Tabs.Screen name="calendar" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="opportunity-admin" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="resources/transfer-planner" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="transfer-planner" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="transfer-equivalencies" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="college-search" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="questionnaire" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="compare" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="cost-calculator" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="saved-colleges" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="language" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="about" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="privacy" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="terms" options={{ tabBarButton: () => null }} />
-        <Tabs.Screen name="college/[collegeId]" options={{ tabBarButton: () => null }} />
+        {HIDDEN_TAB_ROUTE_SCREENS.map((screenName) => (
+          <Tabs.Screen
+            key={screenName}
+            name={screenName}
+            options={{ tabBarButton: () => null }}
+          />
+        ))}
       </Tabs>
     </RouteAccessBoundary>
   );

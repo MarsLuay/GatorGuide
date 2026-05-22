@@ -23,22 +23,27 @@ import {
 
 import { getSuggestedScheduleCourseDisplayLabel } from "./transfer-planner-suggested-schedule";
 
-export function getEvaluationOutcomeBadgeLabel(outcome: TransferPlannerStudentCourseEvaluation["outcome"]) {
+type Translate = (key: string, params?: Record<string, string | number>) => string;
+
+export function getEvaluationOutcomeBadgeLabel(
+  outcome: TransferPlannerStudentCourseEvaluation["outcome"],
+  t?: Translate
+) {
   switch (outcome) {
     case "auto-approved":
-      return "Applies";
+      return t ? t("transferPlanner.outcomeApplies") : "Applies";
     case "legacy-rule-used":
-      return "Legacy";
+      return t ? t("transferPlanner.outcomeLegacy") : "Legacy";
     case "elective-credit":
-      return "Elective";
+      return t ? t("transferPlanner.outcomeElective") : "Elective";
     case "sequence-incomplete":
-      return "Sequence";
+      return t ? t("transferPlanner.outcomeSequence") : "Sequence";
     case "no-credit":
-      return "No credit";
+      return t ? t("transferPlanner.outcomeNoCredit") : "No credit";
     case "not-applicable-to-major":
-      return "Not used";
+      return t ? t("transferPlanner.outcomeNotUsed") : "Not used";
     case "source-unverified-hidden":
-      return "Hidden";
+      return t ? t("transferPlanner.outcomeHidden") : "Hidden";
   }
 }
 
@@ -203,18 +208,46 @@ export type MajorSpecificsGeneralEducationCreditLine = {
 
 export const MAJOR_SPECIFICS_GENERAL_ED_CATEGORIES: {
   id: MajorSpecificsGeneralEducationCategoryId;
-  label: string;
+  labelKey: string;
 }[] = [
-  { id: "ah", label: "Arts & Humanities Classes" },
-  { id: "ssc", label: "Social Science Classes" },
-  { id: "nsc", label: "Natural Science Classes" },
-  { id: "breadth", label: "Flexible Breadth Classes" },
-  { id: "div", label: "Diversity Classes" },
-  { id: "qsr", label: "Quantitative & Symbolic Reasoning Classes" },
-  { id: "vlpa", label: "Visual, Literary & Performing Arts Classes" },
-  { id: "nw", label: "Natural World Classes" },
-  { id: "iands", label: "Individuals & Societies Classes" },
+  { id: "ah", labelKey: "transferPlanner.generalEducationAh" },
+  { id: "ssc", labelKey: "transferPlanner.generalEducationSsc" },
+  { id: "nsc", labelKey: "transferPlanner.generalEducationNsc" },
+  { id: "breadth", labelKey: "transferPlanner.generalEducationBreadth" },
+  { id: "div", labelKey: "transferPlanner.generalEducationDiv" },
+  { id: "qsr", labelKey: "transferPlanner.generalEducationQsr" },
+  { id: "vlpa", labelKey: "transferPlanner.generalEducationVlpa" },
+  { id: "nw", labelKey: "transferPlanner.generalEducationNw" },
+  { id: "iands", labelKey: "transferPlanner.generalEducationIands" },
 ];
+
+function getMajorSpecificsGeneralEducationCategoryLabel(
+  entry: (typeof MAJOR_SPECIFICS_GENERAL_ED_CATEGORIES)[number],
+  t?: Translate
+) {
+  if (t) return t(entry.labelKey);
+
+  switch (entry.id) {
+    case "ah":
+      return "Arts & Humanities Classes";
+    case "ssc":
+      return "Social Science Classes";
+    case "nsc":
+      return "Natural Science Classes";
+    case "breadth":
+      return "Flexible Breadth Classes";
+    case "div":
+      return "Diversity Classes";
+    case "qsr":
+      return "Quantitative & Symbolic Reasoning Classes";
+    case "vlpa":
+      return "Visual, Literary & Performing Arts Classes";
+    case "nw":
+      return "Natural World Classes";
+    case "iands":
+      return "Individuals & Societies Classes";
+  }
+}
 
 export type MajorSpecificsGeneralEducationCreditTotals = Record<
   MajorSpecificsGeneralEducationCategoryId,
@@ -236,11 +269,12 @@ export function createEmptyMajorSpecificsGeneralEducationCreditTotals(): MajorSp
 }
 
 export function buildMajorSpecificsGeneralEducationCreditLinesFromTotals(
-  totals: MajorSpecificsGeneralEducationCreditTotals
+  totals: MajorSpecificsGeneralEducationCreditTotals,
+  t?: Translate
 ): MajorSpecificsGeneralEducationCreditLine[] {
   return MAJOR_SPECIFICS_GENERAL_ED_CATEGORIES.map((entry) => ({
     id: entry.id,
-    label: entry.label,
+    label: getMajorSpecificsGeneralEducationCategoryLabel(entry, t),
     credits: totals[entry.id] ?? 0,
   })).filter((entry) => entry.credits > 0);
 }
@@ -362,7 +396,8 @@ export function getMajorSpecificsGeneralEducationCategoryIdsForTrackLabel(
 }
 
 export function buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(
-  plan: TransferPlannerResolvedMajorPlan
+  plan: TransferPlannerResolvedMajorPlan,
+  t?: Translate
 ) {
   const searchableText = getPlanDegreeMapSearchText(plan);
   const parsedTargets = buildSourceBackedGeneralEducationRequirementTargets(plan);
@@ -378,11 +413,12 @@ export function buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(
   totals.nw = inferRequirementCreditTotalFromText(searchableText, "NW") ?? 0;
   totals.iands = inferRequirementCreditTotalFromText(searchableText, "IANDS") ?? 0;
 
-  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals);
+  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals, t);
 }
 
 export function buildInferredMajorSpecificsSupplementalUwGeneralEducationItems(
-  plan: TransferPlannerResolvedMajorPlan
+  plan: TransferPlannerResolvedMajorPlan,
+  t?: Translate
 ): TransferPlannerGeneralRequirementSection["items"] {
   const searchableText = getPlanDegreeMapSearchText(plan);
   const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
@@ -392,20 +428,23 @@ export function buildInferredMajorSpecificsSupplementalUwGeneralEducationItems(
   totals.nw = inferRequirementCreditTotalFromText(searchableText, "NW") ?? 0;
   totals.iands = inferRequirementCreditTotalFromText(searchableText, "IANDS") ?? 0;
 
-  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals).map((entry) => ({
+  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals, t).map((entry) => ({
     id: entry.id,
     label: entry.label,
-    valueText: `${entry.credits} credits`,
+    valueText: t
+      ? t("transferPlanner.creditsCount", { count: entry.credits })
+      : `${entry.credits} credits`,
     note: undefined,
     sourceKind: "source-backed-major" as const,
   }));
 }
 
 export function buildMajorSpecificsSourceBackedUwGeneralEducationSection(
-  plan: TransferPlannerResolvedMajorPlan
+  plan: TransferPlannerResolvedMajorPlan,
+  t?: Translate
 ) {
   const sourceBackedSection = buildSourceBackedMajorGeneralEducationRequirementSection(plan);
-  const supplementalItems = buildInferredMajorSpecificsSupplementalUwGeneralEducationItems(plan);
+  const supplementalItems = buildInferredMajorSpecificsSupplementalUwGeneralEducationItems(plan, t);
   const mergedItems = [
     ...(sourceBackedSection?.items ?? []),
     ...supplementalItems.filter(
@@ -419,10 +458,12 @@ export function buildMajorSpecificsSourceBackedUwGeneralEducationSection(
 
   return {
     id: sourceBackedSection?.id ?? "source-backed-major-general-education",
-    title: sourceBackedSection?.title ?? "Major Required Gen-Eds",
+    title: sourceBackedSection?.title ?? (t ? t("transferPlanner.majorRequiredGenEds") : "Major Required Gen-Eds"),
     summary:
       sourceBackedSection?.summary ??
-      "Source-backed major-specific general education targets from the current official major materials.",
+      (t
+        ? t("transferPlanner.majorRequiredGenEdsDescription")
+        : "Source-backed major-specific general education targets from the current official major materials."),
     campusId: sourceBackedSection?.campusId ?? plan.campusId,
     sourceKind: sourceBackedSection?.sourceKind ?? ("source-backed-major" as const),
     plannerUsage: sourceBackedSection?.plannerUsage ?? ("summary-only" as const),
@@ -447,10 +488,11 @@ export function buildMajorSpecificsGrcGeneralEducationCreditLines(args: {
   plan: TransferPlannerResolvedMajorPlan | null;
   track: TransferPlannerTrack | null;
   completedCourses: TranscriptCourseEntry[];
+  t?: Translate;
 }) {
-  const { plan, track, completedCourses } = args;
+  const { plan, track, completedCourses, t } = args;
   if (!track) {
-    return plan ? buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(plan) : [];
+    return plan ? buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(plan, t) : [];
   }
 
   const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
@@ -470,7 +512,7 @@ export function buildMajorSpecificsGrcGeneralEducationCreditLines(args: {
     }
   }
 
-  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals);
+  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals, t);
 }
 
 export function buildCourseDisplayLabel(

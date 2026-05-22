@@ -23,6 +23,7 @@ import {
   type TransferPlannerStudentEvaluationReport,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 import { MajorSpecificsSection } from "./MajorSpecificsSection";
 import {
@@ -175,6 +176,7 @@ function PlannerSelectionFields({
   borderClass: string;
   dropdownBackgroundColor: string;
 }) {
+  const { t } = useAppLanguage();
   const getFieldContainerStyle = (
     selectorKey: Exclude<PlannerSelectorKey, null>,
     shouldElevateInlineOverlay = false
@@ -202,9 +204,9 @@ function PlannerSelectionFields({
     >
       <View style={getFieldContainerStyle("college", true)}>
         <SelectorField
-          label="College"
+          label={t("transferPlanner.college")}
           value={selectedCollegeLabel}
-          helper={getPlannerSelectionHelperText(collegeId, "college")}
+          helper={getPlannerSelectionHelperText(collegeId, "college", t)}
           open={openSelector === "college"}
           onToggle={onToggleCollege}
           onTouchStartInside={onSelectorTouchStartInside}
@@ -223,9 +225,9 @@ function PlannerSelectionFields({
 
       <View style={getFieldContainerStyle("campus")}>
         <SelectorField
-          label="Campus"
+          label={t("transferPlanner.campus")}
           value={selectedCampusLabel}
-          helper={getPlannerSelectionHelperText(collegeId, "campus")}
+          helper={getPlannerSelectionHelperText(collegeId, "campus", t)}
           open={openSelector === "campus"}
           onToggle={onToggleCampus}
           onTouchStartInside={onSelectorTouchStartInside}
@@ -244,9 +246,9 @@ function PlannerSelectionFields({
 
       <View style={getFieldContainerStyle("major")}>
         <SelectorField
-          label="Major"
+          label={t("transferPlanner.major")}
           value={selectedMajorLabel}
-          helper={getPlannerSelectionHelperText(collegeId, "major")}
+          helper={getPlannerSelectionHelperText(collegeId, "major", t)}
           open={openSelector === "major"}
           onToggle={onToggleMajor}
           onTouchStartInside={onSelectorTouchStartInside}
@@ -255,7 +257,7 @@ function PlannerSelectionFields({
           onSelect={onSelectMajor}
           selectedOptionId={selectedMajorId}
           searchable
-          searchPlaceholder={getPlannerMajorSearchPlaceholder(collegeId)}
+          searchPlaceholder={getPlannerMajorSearchPlaceholder(collegeId, t)}
           textClass={textClass}
           secondaryTextClass={secondaryTextClass}
           borderClass={borderClass}
@@ -291,6 +293,7 @@ function PlannerTrackOverviewCard({
   secondaryTextClass: string;
   borderClass: string;
 }) {
+  const { t } = useAppLanguage();
   const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
   const matchedTrackDebugText = buildCopyOnlyMatchedTrackDebugText({
     headerTrackId,
@@ -309,13 +312,13 @@ function PlannerTrackOverviewCard({
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
       <Text className={`${textClass} text-base font-semibold`}>
         {collegeId === "grc"
-          ? "Selected Green River Program Path"
-          : "Best Green River Transfer Associates path"}
+          ? t("transferPlanner.selectedGreenRiverProgramPath")
+          : t("transferPlanner.bestGreenRiverPath")}
       </Text>
       <Text className={`${secondaryTextClass} text-sm mt-1`}>
         {collegeId === "grc"
-          ? "This is the Green River program path the planner is currently following."
-          : "This shows the Green River degree path that best matches the UW degree you picked."}
+          ? t("transferPlanner.selectedGreenRiverProgramPathDescription")
+          : t("transferPlanner.bestGreenRiverPathDescription")}
       </Text>
 
       <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
@@ -323,7 +326,7 @@ function PlannerTrackOverviewCard({
           <TouchIconButton
             onPress={() => void openExternalLink(trackOfficialLinkUrl)}
             accessibilityRole="link"
-            accessibilityLabel={`Open ${headingText}`}
+            accessibilityLabel={t("general.openNamed", { name: headingText })}
             className="self-start"
           >
             <Text className="text-emerald-500 underline font-semibold">{headingText}</Text>
@@ -361,6 +364,7 @@ function GrcDegreeSpecificsSection({
   secondaryTextClass: string;
   borderClass: string;
 }) {
+  const { t } = useAppLanguage();
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
   const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
   const grcGeneralEducationCreditLines = useMemo(
@@ -370,9 +374,10 @@ function GrcDegreeSpecificsSection({
             plan: null,
             track,
             completedCourses,
+            t,
           })
         : [],
-    [completedCourses, isGrcClassesOpen, isReferenceOpen, track]
+    [completedCourses, isGrcClassesOpen, isReferenceOpen, t, track]
   );
   const grcRequiredMajorCourseLines = useMemo(
     () =>
@@ -385,17 +390,21 @@ function GrcDegreeSpecificsSection({
         : [],
     [completedCourses, isGrcClassesOpen, isReferenceOpen, track]
   );
-  const grcTrackRequirementNoun = getGrcTrackRequirementNoun(track);
-  const grcSpecificsTitle = getGrcTrackSpecificsTitle(track);
-  const grcClassesLabelSuffix = getGrcTrackClassesLabelSuffix(track);
-  const grcTrackTitle = String(track?.title ?? "").trim() || "Selected Green River program";
+  const isGrcDegree = getGrcTrackRequirementNoun(track) === "degree";
+  const grcTrackRequirementNoun = getGrcTrackRequirementNoun(track, t);
+  const grcSpecificsTitle = getGrcTrackSpecificsTitle(track, t);
+  const grcClassesLabelSuffix = getGrcTrackClassesLabelSuffix(track, t);
+  const grcTrackTitle = String(track?.title ?? "").trim() || t("transferPlanner.selectedGrcProgram");
   const grcTrackDescription = track
-    ? `Open this dropdown for all classes needed to complete the ${grcTrackTitle} ${grcTrackRequirementNoun} at GRC.`
-    : "Open this dropdown for the Green River class list attached to this program.";
+    ? t("transferPlanner.grcTrackProgramDescription", {
+        title: grcTrackTitle,
+        noun: grcTrackRequirementNoun,
+      })
+    : t("transferPlanner.grcClassListForProgram");
   const grcRequiredMajorCourseFallbackText =
-    grcTrackRequirementNoun === "degree"
-      ? "No Green River degree-counting major-course list is available for this degree yet."
-      : "No Green River major-course list is available for this program yet.";
+    isGrcDegree
+      ? t("transferPlanner.noGrcDegreeMajorCourseList")
+      : t("transferPlanner.noGrcProgramMajorCourseList");
 
   if (!track) {
     return null;
@@ -412,7 +421,9 @@ function GrcDegreeSpecificsSection({
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>{grcSpecificsTitle}</Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              {`Open this dropdown for the currently tracked Green River ${grcTrackRequirementNoun} requirements.`}
+              {t("transferPlanner.grcTrackedRequirementsSummary", {
+                noun: grcTrackRequirementNoun,
+              })}
             </Text>
           </View>
           <Ionicons
@@ -451,11 +462,15 @@ function GrcDegreeSpecificsSection({
             {isGrcClassesOpen ? (
               <View className="mt-4 gap-4">
                 <View>
-                  <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
+                  <Text className={`${textClass} text-sm font-semibold`}>
+                    {t("transferPlanner.genEdCourses")}
+                  </Text>
                   <View className="mt-2 gap-2">
                     {grcGeneralEducationCreditLines.map((entry) => (
                       <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                        {`${entry.label}: ${entry.credits} credits`}
+                        {`${entry.label}: ${t("transferPlanner.creditsCount", {
+                          count: entry.credits,
+                        })}`}
                       </Text>
                     ))}
                   </View>
@@ -463,7 +478,7 @@ function GrcDegreeSpecificsSection({
 
                 <View>
                   <Text className={`${textClass} text-sm font-semibold`}>
-                    Required Major Courses
+                    {t("transferPlanner.requiredMajorCourses")}
                   </Text>
                   {grcRequiredMajorCourseLines.length ? (
                     <View className="mt-2 gap-2">
@@ -594,6 +609,7 @@ export function TranscriptSummaryCard({
   borderClass: string;
   dropdownBackgroundColor: string;
 }) {
+  const { t } = useAppLanguage();
   const isUwPlanner = collegeId === "uw";
   const hasOpenSelectorOverlay = openSelector !== null || isPathwaySelectorOpen;
   const cardOverlayStyle = hasOpenSelectorOverlay
@@ -647,10 +663,10 @@ export function TranscriptSummaryCard({
           </View>
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>
-              Upload your unofficial transcript
+              {t("transferPlanner.uploadUnofficialTranscript")}
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              This planner uses the classes from your unofficial transcript PDF. The unofficial transcript is only stored locally.
+              {t("transferPlanner.uploadUnofficialTranscriptBody")}
             </Text>
           </View>
         </View>
@@ -660,13 +676,17 @@ export function TranscriptSummaryCard({
             onPress={onUpload}
             className="px-4 py-3 rounded-2xl bg-emerald-500 border border-emerald-500 items-center"
           >
-            <Text className="text-white font-medium">Upload unofficial transcript</Text>
+            <Text className="text-white font-medium">
+              {t("transferPlanner.uploadUnofficialTranscriptAction")}
+            </Text>
           </AnimatedChipPressable>
           <AnimatedChipPressable
             onPress={onOpenTranscriptLink}
             className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 items-center"
           >
-            <Text className="text-emerald-500 font-medium">Get transcript in ctcLink</Text>
+            <Text className="text-emerald-500 font-medium">
+              {t("transferPlanner.getTranscriptInCtcLink")}
+            </Text>
           </AnimatedChipPressable>
         </View>
 
@@ -761,10 +781,10 @@ export function TranscriptSummaryCard({
       <View className="flex-row items-start justify-between gap-4">
         <View className="flex-1 min-w-0">
           <Text className={`${textClass} text-lg font-semibold`}>
-            Transcript-based course plan
+            {t("transferPlanner.transcriptBasedCoursePlan")}
           </Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            The planner is reading past completed classes from your unofficial transcript so it can mark what is already done.
+            {t("transferPlanner.transcriptBasedCoursePlanBody")}
           </Text>
         </View>
       </View>
@@ -772,27 +792,33 @@ export function TranscriptSummaryCard({
       <View className="mt-3 flex-row items-center gap-2">
         <TouchIconButton
           onPress={onUpload}
-          accessibilityLabel="Update transcript"
+          accessibilityLabel={t("transferPlanner.updateTranscript")}
           className="self-start"
         >
-          <Text className="text-emerald-500 text-sm font-medium">Update Transcript</Text>
+          <Text className="text-emerald-500 text-sm font-medium">
+            {t("transferPlanner.updateTranscript")}
+          </Text>
         </TouchIconButton>
         <Text className={`${secondaryTextClass} text-sm text-emerald-500`}>|</Text>
         <TouchIconButton
           onPress={onRemoveTranscript}
-          accessibilityLabel="Remove transcript"
+          accessibilityLabel={t("transferPlanner.removeTranscript")}
           className="self-start"
         >
-          <Text className="text-emerald-500 text-sm font-medium">Remove Transcript</Text>
+          <Text className="text-emerald-500 text-sm font-medium">
+            {t("transferPlanner.removeTranscript")}
+          </Text>
         </TouchIconButton>
         <Text className={`${secondaryTextClass} text-sm text-emerald-500`}>|</Text>
         <TouchIconButton
           onPress={onOpenTranscriptLink}
           accessibilityRole="link"
-          accessibilityLabel="Open transcript link"
+          accessibilityLabel={t("transferPlanner.openTranscriptLink")}
           className="self-start"
         >
-          <Text className="text-emerald-500 text-sm font-medium">Transcript Link</Text>
+          <Text className="text-emerald-500 text-sm font-medium">
+            {t("transferPlanner.transcriptLink")}
+          </Text>
         </TouchIconButton>
       </View>
 
@@ -800,23 +826,27 @@ export function TranscriptSummaryCard({
         <View className="flex-row items-center mt-4">
           <ActivityIndicator color="#008f4e" />
           <Text className={`${secondaryTextClass} text-sm ml-3`}>
-            Pulling completed classes from your unofficial transcript...
+            {t("transferPlanner.pullingCompletedClasses")}
           </Text>
         </View>
       ) : null}
 
       {errorMessage ? (
         <View className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
-          <Text className="text-amber-500 font-semibold">Transcript needs another try</Text>
+          <Text className="text-amber-500 font-semibold">
+            {t("transferPlanner.transcriptNeedsAnotherTry")}
+          </Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>{errorMessage}</Text>
           <TouchIconButton
             onPress={() => void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL)}
             accessibilityRole="link"
-            accessibilityLabel="Open unofficial transcript in ctcLink"
+            accessibilityLabel={t("transferPlanner.openUnofficialTranscriptInCtcLink")}
             className="self-start"
             containerStyle={{ marginTop: 12 }}
           >
-            <Text className="text-emerald-500 font-medium">Open unofficial transcript in ctcLink</Text>
+            <Text className="text-emerald-500 font-medium">
+              {t("transferPlanner.openUnofficialTranscriptInCtcLink")}
+            </Text>
           </TouchIconButton>
         </View>
       ) : null}
@@ -946,6 +976,7 @@ function MajorPathwaySection({
   borderClass: string;
   dropdownBackgroundColor: string;
 }) {
+  const { t } = useAppLanguage();
   if (pathwayOptions.length <= 1) {
     return null;
   }
@@ -965,9 +996,9 @@ function MajorPathwaySection({
       }
     >
       <SelectorField
-        label="Pathway"
-        value={selectedPathwayLabel ?? pathwayOptions[0]?.label ?? "Select pathway"}
-        helper="This major has multiple supported routes. Pick the route you want this planner to follow."
+        label={t("transferPlanner.pathway")}
+        value={selectedPathwayLabel ?? pathwayOptions[0]?.label ?? t("transferPlanner.selectPathway")}
+        helper={t("transferPlanner.pathwayHelper")}
         open={isPathwaySelectorOpen}
         onToggle={onTogglePathway}
         onTouchStartInside={onSelectorTouchStartInside}
@@ -1008,6 +1039,7 @@ function TranscriptEvaluationReportCard({
   embedded?: boolean;
 }) {
   const router = useRouter();
+  const { t } = useAppLanguage();
   const studentFacingEvaluations = evaluations.filter((entry) => entry.studentFacing);
   const creditTotalsByTag = useMemo(
     () => buildRequirementCreditTotalsByTag(plan, studentFacingEvaluations),
@@ -1036,7 +1068,10 @@ function TranscriptEvaluationReportCard({
     return totals;
   }, [studentFacingEvaluations]);
   const remainingGrcClassCount = report.nextPlannedCourseLabels.length;
-  const remainingGrcClassNoun = remainingGrcClassCount === 1 ? "class" : "classes";
+  const remainingGrcClassNoun =
+    remainingGrcClassCount === 1
+      ? t("transferPlanner.classSingular")
+      : t("transferPlanner.classPlural");
   const campusPossessiveLabel = report.campusLabel.endsWith("s")
     ? `${report.campusLabel}'`
     : `${report.campusLabel}'s`;
@@ -1055,19 +1090,27 @@ function TranscriptEvaluationReportCard({
       <TouchOptionRow
         onPress={() => setIsEvaluationOpen((currentValue) => !currentValue)}
         expanded={isEvaluationOpen}
-        accessibilityLabel="Transcript evaluation"
+        accessibilityLabel={t("transferPlanner.transcriptEvaluation")}
       >
         <View className="flex-row items-start justify-between gap-3">
           <View className="flex-1 min-w-0">
-            <Text className={`${textClass} text-lg font-semibold`}>Transcript evaluation</Text>
+            <Text className={`${textClass} text-lg font-semibold`}>
+              {t("transferPlanner.transcriptEvaluation")}
+            </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              Open this dropdown for specifics on how your transcript gets applied
+              {t("transferPlanner.transcriptEvaluationDescription")}
             </Text>
           </View>
           <View className="flex-row items-center gap-2">
             <View className="px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10">
               <Text className="text-emerald-500 text-xs font-semibold">
-                {report.officialRuleIds.length} rule{report.officialRuleIds.length === 1 ? "" : "s"}
+                {t("transferPlanner.ruleCount", {
+                  count: report.officialRuleIds.length,
+                  noun:
+                    report.officialRuleIds.length === 1
+                      ? t("transferPlanner.ruleSingular")
+                      : t("transferPlanner.rulePlural"),
+                })}
               </Text>
             </View>
             <Ionicons
@@ -1083,7 +1126,12 @@ function TranscriptEvaluationReportCard({
         <>
           <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
             <Text className={`${textClass} text-base font-semibold`}>
-              {`${remainingGrcClassCount} more ${remainingGrcClassNoun} before Green River College is tapped out for ${campusPossessiveLabel} ${report.majorTitle} degree.`}
+              {t("transferPlanner.remainingClassesBeforeTappedOut", {
+                count: remainingGrcClassCount,
+                classNoun: remainingGrcClassNoun,
+                campus: campusPossessiveLabel,
+                major: report.majorTitle,
+              })}
             </Text>
           </View>
 
@@ -1106,7 +1154,7 @@ function TranscriptEvaluationReportCard({
                     <View className="flex-1 min-w-0">
                       <Text className={`${textClass} font-semibold`}>{evaluation.courseCode}</Text>
                       <Text className={`${secondaryTextClass} text-xs mt-1`} numberOfLines={2}>
-                        {evaluation.targetOutcome ?? "No source-backed UW target outcome for this selected major."}
+                        {evaluation.targetOutcome ?? t("transferPlanner.noSourceBackedTargetOutcome")}
                       </Text>
                     </View>
                     <View className={`px-3 py-1 rounded-full border ${getEvaluationOutcomeBadgeClass(evaluation.outcome)}`}>
@@ -1116,14 +1164,16 @@ function TranscriptEvaluationReportCard({
                           textClass
                         )}`}
                       >
-                        {getEvaluationOutcomeBadgeLabel(evaluation.outcome)}
+                        {getEvaluationOutcomeBadgeLabel(evaluation.outcome, t)}
                       </Text>
                     </View>
                   </View>
 
                   {evaluation.missingSourceCourseCodes.length ? (
                     <Text className={`${secondaryTextClass} text-xs mt-2`}>
-                      Missing for strongest sequence: {evaluation.missingSourceCourseCodes.join(", ")}
+                      {t("transferPlanner.missingForStrongestSequence", {
+                        courses: evaluation.missingSourceCourseCodes.join(", "),
+                      })}
                     </Text>
                   ) : null}
 
@@ -1167,10 +1217,16 @@ function TranscriptEvaluationReportCard({
           {report.hiddenEvaluationCount ? (
             <View className="mt-4 px-4 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/20">
               <Text className="text-amber-500 text-sm font-semibold">
-                Hidden source-gap evaluation
+                {t("transferPlanner.hiddenSourceGapEvaluation")}
               </Text>
               <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                {report.hiddenEvaluationCount} course evaluation{report.hiddenEvaluationCount === 1 ? "" : "s"} stayed internal because this planner path is not source-verified for students.
+                {t("transferPlanner.hiddenEvaluationCount", {
+                  count: report.hiddenEvaluationCount,
+                  evaluationNoun:
+                    report.hiddenEvaluationCount === 1
+                      ? t("transferPlanner.evaluationSingular")
+                      : t("transferPlanner.evaluationPlural"),
+                })}
               </Text>
             </View>
           ) : null}

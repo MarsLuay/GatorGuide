@@ -1,5 +1,5 @@
-import * as FileSystem from "expo-file-system";
 import * as MailComposer from "expo-mail-composer";
+import { writeTextToAppDirectory } from "@/services/storage/file-system-adapter.service";
 
 export type CoursePlannerBugReportFile = {
   fileName: string;
@@ -19,22 +19,17 @@ function buildReportFileName(createdAt: string) {
 }
 
 async function writeReportAttachment(reportText: string): Promise<CoursePlannerBugReportFile> {
-  const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
-  if (!baseDir) {
-    throw new Error("No writable directory is available for the course planner report.");
-  }
-
   const createdAt = new Date().toISOString();
   const fileName = buildReportFileName(createdAt);
-  const dir = `${baseDir}${COURSE_PLANNER_REPORT_DIR}/`;
-  await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-
-  const fileUri = `${dir}${fileName}`;
-  await FileSystem.writeAsStringAsync(fileUri, reportText, { encoding: "utf8" });
+  const savedFile = await writeTextToAppDirectory({
+    fileName,
+    content: reportText,
+    directory: COURSE_PLANNER_REPORT_DIR,
+  });
 
   return {
     fileName,
-    fileUri,
+    fileUri: savedFile.fileUri,
     relativePath: `${COURSE_PLANNER_REPORT_DIR}/${fileName}`,
   };
 }

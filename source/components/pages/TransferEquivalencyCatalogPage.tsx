@@ -283,16 +283,16 @@ export default function TransferEquivalencyCatalogPage() {
     () => [
       {
         id: "uw",
-        label: "University of Washington",
-        description: "Browse UW transfer outcomes for Green River courses.",
+        label: t("transferEquivalencies.universityOfWashington"),
+        description: t("transferEquivalencies.uwDescription"),
       },
       {
         id: "grc",
-        label: "Green River College",
-        description: "Browse Green River courses that satisfy transfer categories.",
+        label: t("transferEquivalencies.greenRiverCollege"),
+        description: t("transferEquivalencies.grcDescription"),
       },
     ],
-    []
+    [t]
   );
 
   const selectedCollegeLabel =
@@ -684,16 +684,22 @@ export default function TransferEquivalencyCatalogPage() {
   );
   const pageDescription =
     selectedCollegeId === "grc"
-      ? `Green River College courses with source-backed ${campusLabel} transfer category tags for ${highlightedCategoryLabels}, and related requirement categories.`
-      : `Eligible Green River to ${campusLabel} transfer options for ${highlightedCategoryLabels}, and related requirement categories.`;
+      ? t("transferEquivalencies.pageDescriptionGrc", {
+          campus: campusLabel,
+          categories: highlightedCategoryLabels,
+        })
+      : t("transferEquivalencies.pageDescriptionUw", {
+          campus: campusLabel,
+          categories: highlightedCategoryLabels,
+        });
   const campusHelperText =
     selectedCollegeId === "grc"
-      ? "Choose the UW transfer destination used to verify these Green River category tags."
-      : "Choose which UW campus to browse source-backed transfer category equivalencies for.";
+      ? t("transferEquivalencies.campusHelperGrc")
+      : t("transferEquivalencies.campusHelperUw");
   const searchHelperText =
     selectedCollegeId === "grc"
-      ? "Search by Green River course, title, UW transfer outcome, or category."
-      : "Search by Green River course, UW outcome, title, or category.";
+      ? t("transferEquivalencies.searchHelperGrc")
+      : t("transferEquivalencies.searchHelperUw");
   const isDesktop = width >= 1024;
   const shellMaxWidth = isDesktop ? 1180 : 760;
   const shellPadding = isDesktop ? 32 : 20;
@@ -724,7 +730,7 @@ export default function TransferEquivalencyCatalogPage() {
               </View>
               <View className="flex-1 min-w-0">
                 <Text className={`${textClass} text-2xl font-semibold`}>
-                  Transfer Category Equivalencies
+                  {t("transferEquivalencies.title")}
                 </Text>
                 <Text className={`${secondaryTextClass} text-sm mt-2`}>
                   {pageDescription}
@@ -732,7 +738,7 @@ export default function TransferEquivalencyCatalogPage() {
               </View>
             </View>
             <View className={`rounded-2xl border ${borderClass} px-4 py-3 ${isDesktop ? "min-w-[190px]" : ""}`}>
-              <Text className={`${secondaryTextClass} text-xs`}>Showing</Text>
+              <Text className={`${secondaryTextClass} text-xs`}>{t("transferEquivalencies.showing")}</Text>
               <Text className={`${textClass} text-sm font-semibold mt-1`}>
                 {selectedCampusLabel}
               </Text>
@@ -742,9 +748,9 @@ export default function TransferEquivalencyCatalogPage() {
           <View className={`${panelClassName} px-5 py-5 mt-5 gap-5`}>
             <View className={`${isDesktop ? "flex-row gap-4" : "gap-4"}`}>
               <View className={`${isDesktop ? "flex-1" : ""}`}>
-                <Text className={`${textClass} font-semibold`}>College</Text>
+                <Text className={`${textClass} font-semibold`}>{t("transferEquivalencies.college")}</Text>
                 <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                  Choose whether to browse UW transfer outcomes or Green River source courses.
+                  {t("transferEquivalencies.collegeHelper")}
                 </Text>
                 <View className="mt-3">
                   <SearchableSelect
@@ -770,7 +776,7 @@ export default function TransferEquivalencyCatalogPage() {
               </View>
 
               <View className={`${isDesktop ? `flex-1 border-l ${borderClass} pl-4` : `border-t ${borderClass} pt-4`}`}>
-                <Text className={`${textClass} font-semibold`}>Campus</Text>
+                <Text className={`${textClass} font-semibold`}>{t("transferEquivalencies.campus")}</Text>
                 <Text className={`${secondaryTextClass} text-xs mt-1`}>
                   {campusHelperText}
                 </Text>
@@ -799,7 +805,7 @@ export default function TransferEquivalencyCatalogPage() {
             </View>
 
             <View className={`border-t ${borderClass} pt-5`}>
-              <Text className={`${textClass} font-semibold`}>Search equivalencies</Text>
+              <Text className={`${textClass} font-semibold`}>{t("transferEquivalencies.searchTitle")}</Text>
               <Text className={`${secondaryTextClass} text-xs mt-1`}>
                 {searchHelperText}
               </Text>
@@ -812,7 +818,7 @@ export default function TransferEquivalencyCatalogPage() {
                     setIsCollegeSelectorOpen(false);
                     setIsCampusSelectorOpen(false);
                   }}
-                  placeholder="Search courses or categories"
+                  placeholder={t("transferEquivalencies.searchPlaceholder")}
                   placeholderTextColor="#9CA3AF"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -825,7 +831,7 @@ export default function TransferEquivalencyCatalogPage() {
                     className="ml-2"
                     hitSlop={8}
                     accessibilityRole="button"
-                    accessibilityLabel="Clear equivalency search"
+                    accessibilityLabel={t("transferEquivalencies.clearSearch")}
                   >
                     <MaterialIcons name="close" size={18} color="#9CA3AF" />
                   </AnimatedIconPressable>
@@ -836,25 +842,28 @@ export default function TransferEquivalencyCatalogPage() {
 
           {!visibleTags.length ? (
             <View className={`${panelClassName} px-5 py-5 mt-5`}>
-              <Text className={`${textClass} font-semibold`}>No tagged equivalencies found</Text>
+              <Text className={`${textClass} font-semibold`}>{t("transferEquivalencies.noTaggedTitle")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                This campus currently has no source-backed category-tagged transfer rows for the selected filter.
+                {t("transferEquivalencies.noTaggedBody")}
               </Text>
             </View>
           ) : !displayedTags.length ? (
             <View className={`${panelClassName} px-5 py-5 mt-5`}>
-              <Text className={`${textClass} font-semibold`}>No matching equivalencies</Text>
+              <Text className={`${textClass} font-semibold`}>{t("transferEquivalencies.noMatchesTitle")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                Try a different course code, title, UW outcome, or category.
+                {t("transferEquivalencies.noMatchesBody")}
               </Text>
             </View>
           ) : (
             <View className="mt-5 gap-4">
               <View className={`${isDesktop ? "flex-row items-end justify-between" : ""} gap-2`}>
                 <View>
-                  <Text className={`${textClass} text-lg font-semibold`}>Category results</Text>
+                  <Text className={`${textClass} text-lg font-semibold`}>{t("transferEquivalencies.categoryResults")}</Text>
                   <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    {displayedTags.length} categor{displayedTags.length === 1 ? "y" : "ies"} available for the selected filters.
+                    {t("transferEquivalencies.categoryResultsCount", {
+                      count: displayedTags.length,
+                      noun: displayedTags.length === 1 ? t("transferEquivalencies.categorySingular") : t("transferEquivalencies.categoryPlural"),
+                    })}
                   </Text>
                 </View>
               </View>
@@ -884,8 +893,15 @@ export default function TransferEquivalencyCatalogPage() {
                           </Text>
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
                             {isSearching && rows.length !== sourceRowCount
-                              ? `${rows.length} of ${sourceRowCount} source-backed equivalenc${sourceRowCount === 1 ? "y" : "ies"}`
-                              : `${rows.length} source-backed equivalenc${rows.length === 1 ? "y" : "ies"}`}
+                              ? t("transferEquivalencies.filteredRowCount", {
+                                  count: rows.length,
+                                  total: sourceRowCount,
+                                  noun: sourceRowCount === 1 ? t("transferEquivalencies.equivalencySingular") : t("transferEquivalencies.equivalencyPlural"),
+                                })
+                              : t("transferEquivalencies.rowCount", {
+                                  count: rows.length,
+                                  noun: rows.length === 1 ? t("transferEquivalencies.equivalencySingular") : t("transferEquivalencies.equivalencyPlural"),
+                                })}
                           </Text>
                         </View>
                       </View>
@@ -911,17 +927,17 @@ export default function TransferEquivalencyCatalogPage() {
                               </Text>
                               {row.ceApprovedReason ? (
                                 <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                  Allen School CE-approved Natural Science:{" "}
+                                  {t("transferEquivalencies.ceApprovedNaturalScience")}{" "}
                                   {row.ceApprovedReason === "compound-path"
-                                    ? "compound path"
-                                    : "approved UW equivalent"}
+                                    ? t("transferEquivalencies.compoundPath")
+                                    : t("transferEquivalencies.approvedUwEquivalent")}
                                 </Text>
                               ) : null}
                             </View>
                             <View className={`${isDesktop ? "max-w-[420px] items-end" : "mt-2"}`}>
                               <Text className={`${secondaryTextClass} text-xs ${isDesktop ? "text-right" : ""}`}>
                                 {selectedCollegeId === "grc"
-                                  ? `UW outcome: ${row.targetOutcome}`
+                                  ? t("transferEquivalencies.uwOutcome", { outcome: row.targetOutcome })
                                   : row.targetOutcome}
                               </Text>
                             </View>

@@ -107,6 +107,38 @@ function getArgValue(flag) {
 
   return String(nextValue).trim() || null;
 }
+function getArgValues(flag) {
+  const args = process.argv.slice(2);
+  const values = [];
+  const directPrefix = `${flag}=`;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg.startsWith(directPrefix)) {
+      values.push(arg.slice(directPrefix.length).trim());
+    } else if (arg === flag) {
+      const nextValue = args[index + 1];
+      if (nextValue && !nextValue.startsWith("--")) {
+        values.push(String(nextValue).trim());
+      }
+    }
+  }
+  return values.filter(Boolean);
+}
+function parseTargetPlanIdsFromArgs() {
+  return uniqueSorted([
+    ...getArgValues("--target-plan-id"),
+    ...getArgValues("--target-plan-ids").flatMap((value) => value.split(",")),
+  ]);
+}
+function buildTargetPlanIdSet(targetPlanIds) {
+  const ids = Array.isArray(targetPlanIds)
+    ? targetPlanIds
+    : targetPlanIds
+      ? [targetPlanIds]
+      : [];
+  const uniqueIds = uniqueSorted(ids);
+  return uniqueIds.length ? new Set(uniqueIds) : null;
+}
 function readJsonIfExists(filePath) {
   if (!fs.existsSync(filePath)) {
     return null;
@@ -8774,16 +8806,39 @@ function getCatalogOwnerScopeTitles(entry) {
   );
 }
 
+function normalizeCatalogCredentialMatcherTitle(value) {
+  return normalizeMatcherText(
+    normalizeTransferPlannerText(value)
+      .replace(/\s*\((?:B\.?\s*A\.?|B\.?\s*S\.?|BABA|BSN)\)\s*$/i, "")
+      .replace(/\s+\b(?:B\.?\s*A\.?|B\.?\s*S\.?|BABA|BSN)\b\s*$/i, "")
+  );
+}
+
+function getCatalogOwnerScopeMatcherTitles(entry) {
+  return uniqueInOrder(
+    getCatalogOwnerScopeTitles(entry)
+      .flatMap((title) => [
+        normalizeMatcherText(title),
+        normalizeCatalogCredentialMatcherTitle(title),
+      ])
+      .filter(Boolean)
+  );
+}
+
+function catalogOwnerTitleHasSpecializedCredential(entry) {
+  const ownerTitle = normalizeTransferPlannerText(entry?.ownerTitle ?? "");
+  return /:\s*\S/.test(ownerTitle) || /\([^)]*\b(?:designed|option|track|route|pathway|concentration)\b[^)]*\)/i.test(ownerTitle);
+}
+
 function textMatchesCatalogOwnerScopeTitle(entry, text) {
   const normalizedText = normalizeMatcherText(text);
   if (!normalizedText) {
     return false;
   }
 
-  return getCatalogOwnerScopeTitles(entry)
-    .map((title) => normalizeMatcherText(title))
-    .filter(Boolean)
-    .some((title) => normalizedText.includes(title));
+  return getCatalogOwnerScopeMatcherTitles(entry).some((title) =>
+    normalizedText.includes(title)
+  );
 }
 
 function getOwnerSearchableText(entry) {
@@ -10109,16 +10164,15 @@ function normalizeCatalogBaseCredentialHeading(heading) {
 
 function isLikelyBaseCatalogCredentialHeading(entry, heading) {
   const normalizedHeading = normalizeTransferPlannerText(heading);
-  const normalizedCredentialTitle = normalizeMatcherText(
+  const normalizedCredentialTitle = normalizeCatalogCredentialMatcherTitle(
     normalizeCatalogBaseCredentialHeading(normalizedHeading)
   );
-  const normalizedOwnerTitles = new Set(
-    getCatalogOwnerScopeTitles(entry)
-      .map((title) => normalizeMatcherText(title))
-      .filter(Boolean)
-  );
+  const normalizedOwnerTitles = new Set(getCatalogOwnerScopeMatcherTitles(entry));
   const credentialMatchesKnownOwnerTitle =
     normalizedCredentialTitle && normalizedOwnerTitles.has(normalizedCredentialTitle);
+  if (catalogOwnerTitleHasSpecializedCredential(entry) && !credentialMatchesKnownOwnerTitle) {
+    return false;
+  }
   if (
     !normalizedHeading ||
     (/:/.test(normalizedHeading) && !credentialMatchesKnownOwnerTitle) ||
@@ -10260,9 +10314,6 @@ function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
     const sectionMatchedSelectedMajor = catalogProgramHeading
       ? legacyCatalogProgramLineMatchesOwner(entry, catalogProgramHeading)
       : catalogSectionMatchesSelectedMajor(entry, sectionHeading, sectionLines);
-    if (!sectionMatchedSelectedMajor) {
-      continue;
-    }
 
     const baseCredentialSection = findBaseCatalogCredentialSection(
       entry,
@@ -10291,6 +10342,10 @@ function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
           ),
         }),
       };
+    }
+
+    if (!sectionMatchedSelectedMajor) {
+      continue;
     }
 
     return {
@@ -10516,7 +10571,7 @@ function legacyCatalogProgramLineMatchesOwner(entry, line) {
 }
 
 function isLegacyCatalogCredentialHeadingLine(line) {
-  return /^Bachelor\b.+\bdegree\b.+\bmajor\b.+:/i.test(normalizeWhitespace(line));
+  return /^Bachelor\b.+\bdegree\b.+\bmajor\b/i.test(normalizeWhitespace(line));
 }
 
 function lineLooksLikeCatalogCredentialSectionStart(lines, index) {
@@ -10539,6 +10594,7 @@ function findLegacyCatalogBaseCredentialRange(entry, lines, startIndex, sectionE
   if (!shouldPreferBaseCatalogCredentialSection(entry)) {
     return null;
   }
+  const minimumCourseCount = catalogOwnerTitleHasSpecializedCredential(entry) ? 1 : 2;
 
   for (let index = startIndex + 1; index <= sectionEndIndex; index += 1) {
     const line = normalizeWhitespace(lines[index]);
@@ -10570,7 +10626,10 @@ function findLegacyCatalogBaseCredentialRange(entry, lines, startIndex, sectionE
     }
 
     const sectionLines = lines.slice(index, endIndex + 1);
-    if (uniqueSorted(sectionLines.flatMap(extractCourseCodesFromLine)).length < 2) {
+    if (
+      uniqueSorted(sectionLines.flatMap(extractCourseCodesFromLine)).length <
+      minimumCourseCount
+    ) {
       continue;
     }
 
@@ -10597,10 +10656,12 @@ function findLegacyCatalogProgramSectionRange(entry, lines) {
   }
 
   const candidateRanges = [];
+  const minimumCourseCount = catalogOwnerTitleHasSpecializedCredential(entry) ? 1 : 2;
 
   for (let startIndex = 0; startIndex < lines.length; startIndex += 1) {
     const line = normalizeWhitespace(lines[startIndex]);
-    if (!legacyCatalogProgramLineMatchesOwner(entry, line)) {
+    const programLineMatchesOwner = legacyCatalogProgramLineMatchesOwner(entry, line);
+    if (!programLineMatchesOwner && !/^Program of Study:/i.test(line)) {
       continue;
     }
 
@@ -10610,7 +10671,7 @@ function findLegacyCatalogProgramSectionRange(entry, lines) {
       if (!nextLine) {
         continue;
       }
-      if (/^Back to Top\b/i.test(nextLine)) {
+      if (/^Back to Top\b/i.test(nextLine) && !catalogOwnerTitleHasSpecializedCredential(entry)) {
         endIndex = Math.max(startIndex, index - 1);
         break;
       }
@@ -10628,8 +10689,16 @@ function findLegacyCatalogProgramSectionRange(entry, lines) {
       }
     }
 
+    const credentialRange = findLegacyCatalogBaseCredentialRange(entry, lines, startIndex, endIndex);
+    if (
+      (!programLineMatchesOwner && !credentialRange) ||
+      (catalogOwnerTitleHasSpecializedCredential(entry) && !credentialRange)
+    ) {
+      continue;
+    }
+
     const selectedRange =
-      findLegacyCatalogBaseCredentialRange(entry, lines, startIndex, endIndex) ?? {
+      credentialRange ?? {
         startIndex,
         endIndex,
       };
@@ -10651,7 +10720,7 @@ function findLegacyCatalogProgramSectionRange(entry, lines) {
 
   return (
     candidateRanges
-      .filter((range) => range.courseCount >= 2)
+      .filter((range) => range.courseCount >= minimumCourseCount)
       .sort(
         (left, right) =>
           right.score - left.score ||
@@ -10667,7 +10736,8 @@ function shouldUseFullFocusedDegreeHtmlScope(entry, title, headings, lines) {
   }
   if (
     isLegacyStudentCatalogSource(entry) &&
-    shouldStopMajorLegacyCatalogScopeBeforeCredentialSections(entry)
+    (catalogOwnerTitleHasSpecializedCredential(entry) ||
+      shouldStopMajorLegacyCatalogScopeBeforeCredentialSections(entry))
   ) {
     return false;
   }
@@ -10900,9 +10970,24 @@ function scopeHtmlLines(entry, title, headings, lines) {
     return bothellChemistryCurriculumLines;
   }
 
+  if (shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, sourceLines)) {
+    return sourceLines;
+  }
+
   const pathwaySectionRange = findPathwayHtmlSectionRange(entry, sourceLines);
   if (pathwaySectionRange) {
     return pathwaySectionRange.lines ?? sourceLines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+  }
+
+  const specializedLegacyCatalogSectionRange =
+    catalogOwnerTitleHasSpecializedCredential(entry)
+      ? findLegacyCatalogProgramSectionRange(entry, sourceLines)
+      : null;
+  if (specializedLegacyCatalogSectionRange) {
+    return sourceLines.slice(
+      specializedLegacyCatalogSectionRange.startIndex,
+      specializedLegacyCatalogSectionRange.endIndex + 1
+    );
   }
 
   const baseLinesWithoutParallelPathwayTableContent =
@@ -10916,10 +11001,6 @@ function scopeHtmlLines(entry, title, headings, lines) {
   }
 
   if (isApprovedElectiveHtmlSource(entry, title, headings, sourceLines)) {
-    return sourceLines;
-  }
-
-  if (shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, sourceLines)) {
     return sourceLines;
   }
 
@@ -15363,9 +15444,12 @@ async function recoverParsedOwnerFromWarnings(owner, baseResult, structuredCours
     isLegacyStudentCatalogSource(entry) &&
     Boolean(getRequestedUrlAnchor(entry.url)) &&
     beforeOwner.sourceSectionAudit?.anchorFound === true;
+  const hasSpecializedLegacyCatalogCredentialScope =
+    isLegacyStudentCatalogSource(entry) && catalogOwnerTitleHasSpecializedCredential(entry);
   const hasChildCredentialCatalogScope =
     isLegacyStudentCatalogSource(entry) &&
-    shouldStopMajorLegacyCatalogScopeBeforeCredentialSections(entry);
+    (hasSpecializedLegacyCatalogCredentialScope ||
+      shouldStopMajorLegacyCatalogScopeBeforeCredentialSections(entry));
   const sectionCandidates =
     artifacts && !hasScopedCatalogAnchor && !hasChildCredentialCatalogScope
       ? buildParserRecoverySectionCandidates(entry, artifacts)
@@ -15373,7 +15457,9 @@ async function recoverParsedOwnerFromWarnings(owner, baseResult, structuredCours
   const linkCandidates = artifacts && !hasChildCredentialCatalogScope
     ? extractParserRecoveryLinkCandidates(entry, artifacts.html)
     : [];
-  const snapshotCandidates = buildParserRecoveryOwnerSnapshotCandidates(entry, artifacts);
+  const snapshotCandidates = hasSpecializedLegacyCatalogCredentialScope
+    ? []
+    : buildParserRecoveryOwnerSnapshotCandidates(entry, artifacts);
   const candidates = uniqueBy(
     [...sectionCandidates, ...linkCandidates, ...snapshotCandidates],
     (candidate) => `${candidate.strategy}:${candidate.url}:${candidate.sectionLineStart ?? ""}:${candidate.sectionLineEnd ?? ""}`
@@ -16567,7 +16653,26 @@ function getSpecializedPlanTitleTokens(title) {
   return match ? normalizeSpecializedPlanToken(match[1]) : [];
 }
 
-function specializedPlanTokensMatchCandidate(planTokens, candidateTokens, candidateAcronymTokens = candidateTokens) {
+function getBaBsDegreeKind(title) {
+  const text = String(title ?? "");
+  if (/\bB\.?\s*A\.?\b|\(BA\)/i.test(text)) return "ba";
+  if (/\bB\.?\s*S\.?\b|\(BS\)/i.test(text)) return "bs";
+  return null;
+}
+
+function getDegreeVariantTitleBase(title) {
+  return normalizeSpecializedPlanCandidateToken(
+    String(title ?? "")
+      .replace(/\([^)]*\bB[AS]\b[^)]*\)/gi, " ")
+      .replace(/\bB\.?\s*[AS]\.?\b/gi, " ")
+  ).join(" ");
+}
+
+function specializedPlanTokensMatchCandidate(
+  planTokens,
+  candidateTokens,
+  candidateAcronymTokens = candidateTokens
+) {
   if (planTokens.every((token) => candidateTokens.has(token))) {
     return true;
   }
@@ -16576,17 +16681,45 @@ function specializedPlanTokensMatchCandidate(planTokens, candidateTokens, candid
   return Boolean(acronym && candidateAcronymTokens.has(acronym));
 }
 
+function manifestUrlIsSharedAcrossBaBsVariants(entry) {
+  const planTitle = BOOTSTRAP_PLAN_TITLES_BY_ID.get(entry.planId);
+  const planDegreeKind = getBaBsDegreeKind(planTitle);
+  const planTitleBase = getDegreeVariantTitleBase(planTitle);
+  if (!planDegreeKind || !planTitleBase) return false;
+
+  const normalizedEntryUrl = normalizeManifestUrlWithoutHashForDedupe(entry.url);
+  return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.some((candidate) => {
+    if (candidate === entry || candidate.planId === entry.planId) return false;
+    if (normalizeManifestUrlWithoutHashForDedupe(candidate.url) !== normalizedEntryUrl) {
+      return false;
+    }
+    const candidatePlanTitle = BOOTSTRAP_PLAN_TITLES_BY_ID.get(candidate.planId);
+    return (
+      getBaBsDegreeKind(candidatePlanTitle) !== planDegreeKind &&
+      getDegreeVariantTitleBase(candidatePlanTitle) === planTitleBase
+    );
+  });
+}
+
 function manifestEntryMatchesSpecializedPlanTitle(entry) {
   const planTitle = BOOTSTRAP_PLAN_TITLES_BY_ID.get(entry.planId);
   const planTokens = getSpecializedPlanTitleTokens(planTitle);
   if (!entry?.pathwayId) {
-    const planIsBa = /\bB\.?\s*A\.?\b|\(BA\)/i.test(String(planTitle ?? ""));
-    const planIsBs = /\bB\.?\s*S\.?\b|\(BS\)/i.test(String(planTitle ?? ""));
+    const planDegreeKind = getBaBsDegreeKind(planTitle);
     const sourceText = `${entry.label ?? ""} ${entry.url ?? ""}`;
-    const sourceIsBa = /\bB\.?\s*A\.?\b|\bba[-\s]/i.test(sourceText);
-    const sourceIsBs = /\bB\.?\s*S\.?\b|\bbs[-\s]/i.test(sourceText);
+    const sourceDegreeKind =
+      /\bB\.?\s*A\.?\b|\bba[-\s]/i.test(sourceText)
+        ? "ba"
+        : /\bB\.?\s*S\.?\b|\bbs[-\s]/i.test(sourceText)
+          ? "bs"
+          : null;
 
-    if ((planIsBa && sourceIsBs && !sourceIsBa) || (planIsBs && sourceIsBa && !sourceIsBs)) {
+    if (
+      planDegreeKind &&
+      sourceDegreeKind &&
+      planDegreeKind !== sourceDegreeKind &&
+      !manifestUrlIsSharedAcrossBaBsVariants(entry)
+    ) {
       return false;
     }
 
@@ -16600,13 +16733,16 @@ function manifestEntryMatchesSpecializedPlanTitle(entry) {
     return specializedPlanTokensMatchCandidate(planTokens, candidateTokens, candidateAcronymTokens);
   }
 
-  const planIsBa = /\bB\.?\s*A\.?\b|\(BA\)/i.test(String(planTitle ?? ""));
-  const planIsBs = /\bB\.?\s*S\.?\b|\(BS\)/i.test(String(planTitle ?? ""));
+  const planDegreeKind = getBaBsDegreeKind(planTitle);
   const pathwayText = `${entry.pathwayId ?? ""} ${entry.label ?? ""}`;
-  const pathwayIsBa = /\bB\.?\s*A\.?\b|\bba[-\s]/i.test(pathwayText);
-  const pathwayIsBs = /\bB\.?\s*S\.?\b|\bbs[-\s]/i.test(pathwayText);
+  const pathwayDegreeKind =
+    /\bB\.?\s*A\.?\b|\bba[-\s]/i.test(pathwayText)
+      ? "ba"
+      : /\bB\.?\s*S\.?\b|\bbs[-\s]/i.test(pathwayText)
+        ? "bs"
+        : null;
 
-  if ((planIsBa && pathwayIsBs && !pathwayIsBa) || (planIsBs && pathwayIsBa && !pathwayIsBs)) {
+  if (planDegreeKind && pathwayDegreeKind && planDegreeKind !== pathwayDegreeKind) {
     return false;
   }
 
@@ -16620,13 +16756,14 @@ function manifestEntryMatchesSpecializedPlanTitle(entry) {
   return specializedPlanTokensMatchCandidate(planTokens, candidateTokens, candidateAcronymTokens);
 }
 
-function getParseablePrimaryEntries(targetPlanId = null) {
+function getParseablePrimaryEntries(targetPlanIds = null) {
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const entries = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
     (entry) =>
       (entry.ownerType === "major" || entry.ownerType === "pathway") &&
       entry.campusId &&
       entry.campusId !== "grc" &&
-      (!targetPlanId || entry.planId === targetPlanId) &&
+      (!targetPlanIdSet || targetPlanIdSet.has(entry.planId)) &&
       manifestEntryMatchesSpecializedPlanTitle(entry) &&
       shouldParseRequirementSourceEntry(entry) &&
       PARSEABLE_PARSER_TYPES.has(entry.parserType)
@@ -16945,9 +17082,13 @@ function buildUwMseCourseExtractionAudit(owners) {
   return buildUwMseCourseExtractionAuditForOwner(owner);
 }
 
-function mergeParsedOwners(previousOwners, nextOwners, targetPlanId) {
-  const mergedOwners = targetPlanId
-    ? [...(previousOwners ?? []).filter((owner) => owner?.planId !== targetPlanId), ...nextOwners]
+function mergeParsedOwners(previousOwners, nextOwners, targetPlanIds) {
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
+  const mergedOwners = targetPlanIdSet
+    ? [
+        ...(previousOwners ?? []).filter((owner) => !targetPlanIdSet.has(owner?.planId)),
+        ...nextOwners,
+      ]
     : [...nextOwners];
 
   return dedupeParsedOwnersByCanonicalSource(mergedOwners).sort(
@@ -16959,14 +17100,18 @@ function mergeParsedOwners(previousOwners, nextOwners, targetPlanId) {
 }
 
 function buildParseReport(owners, options = {}) {
+  const targetPlanIds = uniqueSorted(
+    options.targetPlanIds ?? (options.targetPlanId ? [options.targetPlanId] : [])
+  );
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const mergedOwners = mergeParsedOwners(
     options.previousOwners ?? [],
     owners,
-    options.targetPlanId ?? null
+    targetPlanIds
   );
   const fullOwners = mergedOwners;
-  const scopedOwners = options.targetPlanId
-    ? fullOwners.filter((owner) => owner.planId === options.targetPlanId)
+  const scopedOwners = targetPlanIdSet
+    ? fullOwners.filter((owner) => targetPlanIdSet.has(owner.planId))
     : fullOwners;
 
   return {
@@ -17033,7 +17178,8 @@ function buildParseReport(owners, options = {}) {
       fullOwners.flatMap((owner) => owner.qualitySignals),
       (signal) => signal.code
     ),
-    targetPlanId: options.targetPlanId ?? null,
+    targetPlanId: targetPlanIds.length === 1 ? targetPlanIds[0] : null,
+    targetPlanIds,
     targetOwnerCount: scopedOwners.length,
     sourceSectionAuditLines: scopedOwners
       .map((owner) => owner.sourceSectionAudit?.line ?? null)
@@ -18238,26 +18384,26 @@ async function main() {
   }
 
   const snapshotOnly = hasArg("--snapshot-only");
-  const targetPlanId = getArgValue("--target-plan-id");
-  let effectiveTargetPlanId = targetPlanId;
-  if (effectiveTargetPlanId && !fs.existsSync(OUTPUT_JSON_PATH)) {
+  const targetPlanIds = parseTargetPlanIdsFromArgs();
+  let effectiveTargetPlanIds = targetPlanIds;
+  if (effectiveTargetPlanIds.length && !fs.existsSync(OUTPUT_JSON_PATH)) {
     console.log(
-      `No existing parse report was found at ${OUTPUT_JSON_PATH}. Running a full parse pass instead of a targeted merge for ${effectiveTargetPlanId}.`
+      `No existing parse report was found at ${OUTPUT_JSON_PATH}. Running a full parse pass instead of a targeted merge for ${effectiveTargetPlanIds.join(", ")}.`
     );
-    effectiveTargetPlanId = null;
+    effectiveTargetPlanIds = [];
   }
 
-  const rawManifestEntries = getParseablePrimaryEntries(effectiveTargetPlanId);
+  const rawManifestEntries = getParseablePrimaryEntries(effectiveTargetPlanIds);
   const manifestEntries = dedupeParseablePrimaryEntries(rawManifestEntries);
-  const previousReport = effectiveTargetPlanId ? readJsonIfExists(OUTPUT_JSON_PATH) : null;
+  const previousReport = effectiveTargetPlanIds.length ? readJsonIfExists(OUTPUT_JSON_PATH) : null;
   console.log(`Parsing ${manifestEntries.length} planner requirement source(s)...`);
   if (manifestEntries.length !== rawManifestEntries.length) {
     console.log(
       `Skipped ${rawManifestEntries.length - manifestEntries.length} duplicate requirement source entr${rawManifestEntries.length - manifestEntries.length === 1 ? "y" : "ies"} by owner, URL, parser type, and source role.`
     );
   }
-  if (effectiveTargetPlanId) {
-    console.log(`Target plan scope: ${effectiveTargetPlanId}`);
+  if (effectiveTargetPlanIds.length) {
+    console.log(`Target plan scope: ${effectiveTargetPlanIds.join(", ")}`);
   }
   if (snapshotOnly) {
     console.log("Snapshot-only mode enabled. Reusing cached requirement-source snapshots.");
@@ -18275,7 +18421,7 @@ async function main() {
   const owners = parsedOwners.map(enrichParsedOwnerWithQualitySignals);
   const report = buildParseReport(owners, {
     previousOwners: previousReport?.owners ?? [],
-    targetPlanId: effectiveTargetPlanId,
+    targetPlanIds: effectiveTargetPlanIds,
   });
 
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);

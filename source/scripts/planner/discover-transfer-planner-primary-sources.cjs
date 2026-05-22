@@ -466,6 +466,41 @@ function getArgValue(flag) {
   return String(nextValue).trim() || null;
 }
 
+function getArgValues(flag) {
+  const args = process.argv.slice(2);
+  const values = [];
+  const directPrefix = `${flag}=`;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg.startsWith(directPrefix)) {
+      values.push(arg.slice(directPrefix.length).trim());
+    } else if (arg === flag) {
+      const nextValue = args[index + 1];
+      if (nextValue && !nextValue.startsWith("--")) {
+        values.push(String(nextValue).trim());
+      }
+    }
+  }
+  return values.filter(Boolean);
+}
+
+function parseTargetPlanIdsFromArgs() {
+  return uniqueSorted([
+    ...getArgValues("--target-plan-id"),
+    ...getArgValues("--target-plan-ids").flatMap((value) => value.split(",")),
+  ]);
+}
+
+function buildTargetPlanIdSet(targetPlanIds) {
+  const ids = Array.isArray(targetPlanIds)
+    ? targetPlanIds
+    : targetPlanIds
+      ? [targetPlanIds]
+      : [];
+  const uniqueIds = uniqueSorted(ids);
+  return uniqueIds.length ? new Set(uniqueIds) : null;
+}
+
 function hostnameMatchesBaseDomains(hostname, baseDomains) {
   const normalizedHostname = String(hostname ?? "").toLowerCase();
   return baseDomains.some(
@@ -2577,14 +2612,15 @@ function buildWeakExistingPrimarySignals(params) {
   };
 }
 
-function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
+function buildWeakExistingOwnerTargets({ campusFilter, targetPlanIds = null }) {
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const targets = [];
 
   for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
     if (campusFilter && plan.campusId !== campusFilter) {
       continue;
     }
-    if (targetPlanId && plan.id !== targetPlanId) {
+    if (targetPlanIdSet && !targetPlanIdSet.has(plan.id)) {
       continue;
     }
 
@@ -2722,14 +2758,15 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
   return targets.sort((left, right) => left.title.localeCompare(right.title));
 }
 
-function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null }) {
+function buildOwnerTargets({ includeExisting, campusFilter, targetPlanIds = null }) {
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const targets = [];
 
   for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
     if (campusFilter && plan.campusId !== campusFilter) {
       continue;
     }
-    if (targetPlanId && plan.id !== targetPlanId) {
+    if (targetPlanIdSet && !targetPlanIdSet.has(plan.id)) {
       continue;
     }
 
@@ -2780,8 +2817,9 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null 
   return targets;
 }
 
-function mergeDiscoveryOwners(previousOwners, nextOwners, targetPlanId) {
-  if (!targetPlanId) {
+function mergeDiscoveryOwners(previousOwners, nextOwners, targetPlanIds) {
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
+  if (!targetPlanIdSet) {
     return [...nextOwners].sort(
       (left, right) =>
         left.title.localeCompare(right.title) ||
@@ -2789,7 +2827,10 @@ function mergeDiscoveryOwners(previousOwners, nextOwners, targetPlanId) {
     );
   }
 
-  return [...(previousOwners ?? []).filter((owner) => owner?.planId !== targetPlanId), ...nextOwners].sort(
+  return [
+    ...(previousOwners ?? []).filter((owner) => !targetPlanIdSet.has(owner?.planId)),
+    ...nextOwners,
+  ].sort(
     (left, right) =>
       left.title.localeCompare(right.title) ||
       String(left.ownerKey ?? "").localeCompare(String(right.ownerKey ?? ""))
@@ -2797,21 +2838,25 @@ function mergeDiscoveryOwners(previousOwners, nextOwners, targetPlanId) {
 }
 
 function buildDiscoveryReport(owners, weakExistingOwners, options = {}) {
+  const targetPlanIds = uniqueSorted(
+    options.targetPlanIds ?? (options.targetPlanId ? [options.targetPlanId] : [])
+  );
+  const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const mergedOwners = mergeDiscoveryOwners(
     options.previousOwners ?? [],
     owners,
-    options.targetPlanId ?? null
+    targetPlanIds
   );
   const mergedWeakExistingOwners = mergeDiscoveryOwners(
     options.previousWeakExistingOwners ?? [],
     weakExistingOwners,
-    options.targetPlanId ?? null
+    targetPlanIds
   );
-  const scopedOwners = options.targetPlanId
-    ? mergedOwners.filter((owner) => owner.planId === options.targetPlanId)
+  const scopedOwners = targetPlanIdSet
+    ? mergedOwners.filter((owner) => targetPlanIdSet.has(owner.planId))
     : mergedOwners;
-  const scopedWeakExistingOwners = options.targetPlanId
-    ? mergedWeakExistingOwners.filter((owner) => owner.planId === options.targetPlanId)
+  const scopedWeakExistingOwners = targetPlanIdSet
+    ? mergedWeakExistingOwners.filter((owner) => targetPlanIdSet.has(owner.planId))
     : mergedWeakExistingOwners;
 
   return {
@@ -2835,7 +2880,8 @@ function buildDiscoveryReport(owners, weakExistingOwners, options = {}) {
     keepExistingPrimaryCount: mergedWeakExistingOwners.filter(
       (owner) => owner.suggestedAction === "keep-existing-primary"
     ).length,
-    targetPlanId: options.targetPlanId ?? null,
+    targetPlanId: targetPlanIds.length === 1 ? targetPlanIds[0] : null,
+    targetPlanIds,
     targetOwnerCount: scopedOwners.length,
     targetWeakExistingOwnerCount: scopedWeakExistingOwners.length,
     owners: mergedOwners,
@@ -3700,7 +3746,7 @@ function parseArgs() {
   const dryRun = args.includes("--dry-run");
   const campusArg = args.find((arg) => arg.startsWith("--campus="));
   const campusFilter = campusArg ? campusArg.slice("--campus=".length) : null;
-  const targetPlanId = getArgValue("--target-plan-id");
+  const targetPlanIds = parseTargetPlanIdsFromArgs();
 
   if (campusFilter && !CAMPUS_IDS.has(campusFilter)) {
     throw new Error(`Unsupported campus filter: ${campusFilter}`);
@@ -3710,7 +3756,7 @@ function parseArgs() {
     includeExisting,
     dryRun,
     campusFilter,
-    targetPlanId,
+    targetPlanIds,
   };
 }
 
@@ -4726,25 +4772,25 @@ function writeMarkdownReport(report) {
 async function main() {
   ensureTmpDir();
 
-  const { includeExisting, dryRun, campusFilter, targetPlanId } = parseArgs();
-  let effectiveTargetPlanId = targetPlanId;
-  if (effectiveTargetPlanId && !fs.existsSync(OUTPUT_JSON_PATH)) {
+  const { includeExisting, dryRun, campusFilter, targetPlanIds } = parseArgs();
+  let effectiveTargetPlanIds = targetPlanIds;
+  if (effectiveTargetPlanIds.length && !fs.existsSync(OUTPUT_JSON_PATH)) {
     console.log(
-      `No existing discovery report was found at ${OUTPUT_JSON_PATH}. Running a full discovery pass instead of a targeted merge for ${effectiveTargetPlanId}.`
+      `No existing discovery report was found at ${OUTPUT_JSON_PATH}. Running a full discovery pass instead of a targeted merge for ${effectiveTargetPlanIds.join(", ")}.`
     );
-    effectiveTargetPlanId = null;
+    effectiveTargetPlanIds = [];
   }
 
   const targets = buildOwnerTargets({
     includeExisting,
     campusFilter,
-    targetPlanId: effectiveTargetPlanId,
+    targetPlanIds: effectiveTargetPlanIds,
   });
   const weakExistingTargets = buildWeakExistingOwnerTargets({
     campusFilter,
-    targetPlanId: effectiveTargetPlanId,
+    targetPlanIds: effectiveTargetPlanIds,
   });
-  const previousReport = effectiveTargetPlanId ? readJsonIfExists(OUTPUT_JSON_PATH) : null;
+  const previousReport = effectiveTargetPlanIds.length ? readJsonIfExists(OUTPUT_JSON_PATH) : null;
 
   console.log(
     `Discovering primary degree-requirements sources for ${targets.length} planner owner(s)...`
@@ -4752,8 +4798,8 @@ async function main() {
   console.log(
     `Re-evaluating ${weakExistingTargets.length} existing primary source owner(s) for stronger official replacements...`
   );
-  if (effectiveTargetPlanId) {
-    console.log(`Target plan scope: ${effectiveTargetPlanId}`);
+  if (effectiveTargetPlanIds.length) {
+    console.log(`Target plan scope: ${effectiveTargetPlanIds.join(", ")}`);
   }
 
   const owners = await mapWithConcurrency(
@@ -4778,7 +4824,7 @@ async function main() {
   const report = buildDiscoveryReport(owners, weakExistingOwners, {
     previousOwners: previousReport?.owners ?? [],
     previousWeakExistingOwners: previousReport?.weakExistingOwners ?? [],
-    targetPlanId: effectiveTargetPlanId,
+    targetPlanIds: effectiveTargetPlanIds,
   });
 
   if (!dryRun) {

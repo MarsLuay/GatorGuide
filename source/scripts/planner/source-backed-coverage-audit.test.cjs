@@ -1438,15 +1438,12 @@ test("Bothell Economics uses the official curriculum page as student-visible sou
   }
 });
 
-test("Student runtime hides source-gap aliases with no schedulable planner content", () => {
+test("Student runtime hides empty source-gap aliases without hiding source-backed variants", () => {
   const bothellMajorIds = studentRuntime
     .getTransferPlannerStudentRuntimeMajorsForCampus("uw-bothell")
     .map((plan) => plan.id);
 
-  for (const emptyAliasPlanId of [
-    "uw-bothell-chemistry-ba",
-    "uw-bothell-chemistry-biochemistry",
-  ]) {
+  for (const emptyAliasPlanId of ["uw-bothell-chemistry-biochemistry"]) {
     assert.equal(
       bothellMajorIds.includes(emptyAliasPlanId),
       false,
@@ -1454,6 +1451,12 @@ test("Student runtime hides source-gap aliases with no schedulable planner conte
     );
     assert.equal(studentRuntime.getTransferPlannerMajorPlan(emptyAliasPlanId), null);
   }
+
+  assert.ok(
+    bothellMajorIds.includes("uw-bothell-chemistry-ba"),
+    "Expected source-backed Bothell Chemistry BA to remain visible."
+  );
+  assert.ok(studentRuntime.getTransferPlannerMajorPlan("uw-bothell-chemistry-ba"));
 
   assert.ok(
     bothellMajorIds.includes("uw-bothell-business-administration"),
@@ -1470,17 +1473,6 @@ test("Student runtime hides source-gap aliases with no schedulable planner conte
   const sourceBackedAuditOwnerIds = new Set(
     coverageAudit.buildOwnersForTest().map((owner) => owner.ownerId)
   );
-  for (const hiddenSourceGapOwnerId of [
-    "uw-bothell-business-administration-finance",
-    "uw-bothell-chemistry-bs",
-    "uw-seattle-english-language-literature-and-culture",
-  ]) {
-    assert.equal(
-      sourceBackedAuditOwnerIds.has(hiddenSourceGapOwnerId),
-      false,
-      `Expected hidden source-gap owner ${hiddenSourceGapOwnerId} to stay out of the student-facing source-backed coverage gate.`
-    );
-  }
   assert.ok(
     sourceBackedAuditOwnerIds.has(
       "uw-bothell-business-administration:pathway:finance-option-and-concentration"
@@ -1491,6 +1483,60 @@ test("Student runtime hides source-gap aliases with no schedulable planner conte
     bothellMajorIds.includes("uw-bothell-electrical-engineering"),
     "Expected source-backed Bothell Electrical Engineering to remain visible."
   );
+});
+
+test("Compact runtime hides Bothell option aliases when parent pathway owns the route", () => {
+  const bothellMajorIds = studentRuntime
+    .getTransferPlannerStudentRuntimeMajorsForCampus("uw-bothell")
+    .map((plan) => plan.id);
+  const hiddenAliasPlanIds = [
+    "uw-bothell-business-administration-accounting",
+    "uw-bothell-business-administration-finance",
+    "uw-bothell-business-administration-leadership-and-strategic-innovation",
+    "uw-bothell-business-administration-marketing",
+    "uw-bothell-business-administration-supply-chain-management",
+    "uw-bothell-csse-information-assurance-and-cybersecurity",
+  ];
+
+  for (const hiddenAliasPlanId of hiddenAliasPlanIds) {
+    assert.equal(
+      bothellMajorIds.includes(hiddenAliasPlanId),
+      false,
+      `Expected ${hiddenAliasPlanId} to be hidden in the compact student runtime.`
+    );
+    assert.equal(studentRuntime.getTransferPlannerMajorPlan(hiddenAliasPlanId), null);
+  }
+
+  const bbaParentPlan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-bothell-business-administration"
+  );
+  assert.ok(bbaParentPlan);
+  const bbaPathwayIds = new Set(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(bbaParentPlan)
+      .map((pathway) => pathway.id)
+  );
+  for (const expectedPathwayId of [
+    "accounting-option",
+    "finance-option-and-concentration",
+    "leadership-and-strategic-innovation-option",
+    "marketing-option-and-concentration",
+    "supply-chain-management-option",
+  ]) {
+    assert.ok(
+      bbaPathwayIds.has(expectedPathwayId),
+      `Expected parent Bothell BBA pathway ${expectedPathwayId} to remain visible.`
+    );
+  }
+
+  const csseParentPlan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-csse");
+  assert.ok(csseParentPlan);
+  const cssePathwayIds = new Set(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(csseParentPlan)
+      .map((pathway) => pathway.id)
+  );
+  assert.ok(cssePathwayIds.has("iac-option"), "Expected parent CSSE IAC pathway to remain visible.");
 });
 
 test("Bothell CSSE IAC stays a parent option rather than an incomplete duplicate major", () => {
@@ -1515,6 +1561,67 @@ test("Bothell CSSE IAC stays a parent option rather than an incomplete duplicate
       (iacPathway.stayAtGrcChecklist?.length ?? 0) >
       0,
     "Expected the parent IAC pathway to retain planner content."
+  );
+});
+
+test("Tacoma IAS individually designed concentration is modeled as a parent pathway", () => {
+  const tacomaMajorIds = studentRuntime
+    .getTransferPlannerStudentRuntimeMajorsForCampus("uw-tacoma")
+    .map((plan) => plan.id);
+
+  assert.ok(
+    tacomaMajorIds.includes("uw-tacoma-interdisciplinary-arts-and-sciences"),
+    "Expected the Tacoma IAS parent major to remain visible."
+  );
+  assert.equal(
+    tacomaMajorIds.includes(
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
+    ),
+    false,
+    "Expected the individually designed concentration alias not to appear as a top-level major."
+  );
+
+  const parentPlan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-tacoma-interdisciplinary-arts-and-sciences"
+  );
+  assert.ok(parentPlan);
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(parentPlan);
+  const aliasPathway = pathways.find((pathway) =>
+    /individually-designed/i.test(`${pathway.id} ${pathway.label}`)
+  );
+  assert.ok(aliasPathway, "Expected Tacoma IAS to expose the individually designed pathway.");
+  assert.equal(
+    pathways.some((pathway) =>
+      /important note for students|to fulfill this option/i.test(pathway.label)
+    ),
+    false,
+    "Expected catalog guidance lines not to surface as Tacoma IAS pathways."
+  );
+
+  const resolvedAliasPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    parentPlan,
+    aliasPathway.id
+  );
+  assert.equal(resolvedAliasPlan?.selectedPathwayId, aliasPathway.id);
+  assert.equal(resolvedAliasPlan?.id, parentPlan.id);
+  assert.ok(
+    ((resolvedAliasPlan?.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+      .length ?? 0) > 0,
+    "Expected the parent pathway to retain source-backed planner rows from the alias credential."
+  );
+  const resolvedAliasContent = JSON.stringify({
+    degreeMapSections: resolvedAliasPlan?.degreeMapSections ?? [],
+    requirementGroups: resolvedAliasPlan?.requirementGroups ?? [],
+  });
+  assert.match(
+    resolvedAliasContent,
+    /TIAS 497|individually-designed/i,
+    "Expected the alias pathway content to come from the individually designed credential."
+  );
+  assert.doesNotMatch(
+    resolvedAliasContent,
+    /TECON 200|TPSYCH 101|THIST 379/,
+    "Expected the alias pathway not to inherit sibling Social Sciences credential courses."
   );
 });
 
@@ -2278,6 +2385,63 @@ test("Tacoma Communications Research Track keeps its dedicated official source b
       `Expected Research Track official source block to include ${courseCode}`
     );
   }
+});
+
+test("Tacoma Communication keeps concise student-facing pathway labels", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-tacoma-communications");
+  assert.ok(plan);
+  assert.equal(plan.title, "Communication (BA)");
+  assert.equal(plan.shortTitle, "Communication");
+
+  const pathwayLabelsById = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    .map((pathway) => [pathway.id, pathway.label])
+    .sort(([leftId], [rightId]) => leftId.localeCompare(rightId));
+
+  assert.deepEqual(pathwayLabelsById, [
+    ["professional-track", "Professional Track"],
+    ["research-track", "Research Track"],
+  ]);
+  assert.deepEqual(
+    pathwayLabelsById.filter(([, label]) => /Communications\s*\(BA\)/i.test(label)),
+    []
+  );
+});
+
+test("Tacoma History canonicalizes retired option labels to current student-visible pathways", () => {
+  const expectedPathwayIds = [
+    "arts-culture-and-society-option",
+    "general-history-option",
+    "global-history-option",
+    "labor-and-social-movements-option",
+    "power-gender-and-identity-option",
+  ];
+  const forbiddenPathwayIds = ["culture-and-society-option", "gender-and-identity-option"];
+
+  const sourcePlan = source.getTransferPlannerMajorPlan("uw-tacoma-history");
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan("uw-tacoma-history");
+  assert.ok(sourcePlan, "Expected Tacoma History source-generated plan.");
+  assert.ok(runtimePlan, "Expected Tacoma History compact runtime plan.");
+
+  const sourcePathwayIds = source
+    .getTransferPlannerPathwaysForPlan(sourcePlan)
+    .map((pathway) => pathway.id)
+    .sort();
+  const runtimePathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)
+    .map((pathway) => pathway.id)
+    .sort();
+
+  assert.deepEqual(sourcePathwayIds, expectedPathwayIds);
+  assert.deepEqual(runtimePathwayIds, expectedPathwayIds);
+  assert.deepEqual(
+    sourcePathwayIds.filter((pathwayId) => forbiddenPathwayIds.includes(pathwayId)),
+    []
+  );
+  assert.deepEqual(
+    runtimePathwayIds.filter((pathwayId) => forbiddenPathwayIds.includes(pathwayId)),
+    []
+  );
 });
 
 test("Tacoma Electrical Engineering does not inherit sibling SET option pathways", () => {

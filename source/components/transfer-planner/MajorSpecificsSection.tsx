@@ -8,6 +8,7 @@ import {
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerTrack,
 } from "@/constants/transfer-planner-source/student-runtime";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import {
   buildMajorSpecificsCourseSections,
   buildUwGeneralTransferRequirementSection,
@@ -46,6 +47,7 @@ export function MajorSpecificsSection({
   secondaryTextClass: string;
   borderClass: string;
 }) {
+  const { t } = useAppLanguage();
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
   const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
   const [isUwClassesOpen, setIsUwClassesOpen] = useState(false);
@@ -61,9 +63,10 @@ export function MajorSpecificsSection({
             plan,
             track,
             completedCourses,
+            t,
           })
         : [],
-    [completedCourses, isGrcClassesOpen, isReferenceOpen, plan, track]
+    [completedCourses, isGrcClassesOpen, isReferenceOpen, plan, t, track]
   );
   const grcRequiredMajorCourseLines = useMemo(
     () =>
@@ -79,9 +82,9 @@ export function MajorSpecificsSection({
   const sourceBackedUwGeneralEducationSection = useMemo(
     () =>
       isReferenceOpen && isUwClassesOpen
-        ? buildMajorSpecificsSourceBackedUwGeneralEducationSection(plan)
+        ? buildMajorSpecificsSourceBackedUwGeneralEducationSection(plan, t)
         : null,
-    [isReferenceOpen, isUwClassesOpen, plan]
+    [isReferenceOpen, isUwClassesOpen, plan, t]
   );
   const matchedGrcTrackBreadthRowsHiddenFromUwGenEdSection = useMemo(
     () =>
@@ -153,15 +156,15 @@ export function MajorSpecificsSection({
     : plan.officialLinks[0] ?? null;
   const majorSpecificsSummaryText = primaryUwDegreeLink
     ? degreeMapSections.length
-      ? "Open this dropdown for the official UW degree page and degree-specific requirement sections for your selected major."
-      : "Open this dropdown for the official UW degree page for your selected major."
+      ? t("transferPlanner.majorSpecificsSummaryWithOfficialAndSections")
+      : t("transferPlanner.majorSpecificsSummaryWithOfficial")
     : degreeMapSections.length
-      ? "Open this dropdown for degree-specific requirement sections for your selected major."
-      : "Open this dropdown for major details as they become available.";
+      ? t("transferPlanner.majorSpecificsSummaryWithSections")
+      : t("transferPlanner.majorSpecificsSummaryFallback");
   const grcTrackTitle = String(track?.title ?? "").trim() || plan.title;
   const grcTrackDescription = track
-    ? `Open this dropdown for all classes needed to complete the ${grcTrackTitle} transfer track at GRC.`
-    : "Open this dropdown for the Green River class list currently attached to this major.";
+    ? t("transferPlanner.grcTrackDescription", { title: grcTrackTitle })
+    : t("transferPlanner.grcClassListForMajor");
   const toggleDegreeSpecificSection = (sectionId: string) => {
     setOpenDegreeSpecificSectionIds((currentValue) => ({
       ...currentValue,
@@ -174,15 +177,15 @@ export function MajorSpecificsSection({
       <TouchOptionRow
         onPress={() => setIsReferenceOpen((currentValue) => !currentValue)}
         expanded={isReferenceOpen}
-        accessibilityLabel="Major Specifics"
+        accessibilityLabel={t("transferPlanner.majorSpecifics")}
       >
         <View className="flex-row items-start justify-between gap-3">
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>
-              Major Specifics
+              {t("transferPlanner.majorSpecifics")}
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              {`Source-backed summary. ${majorSpecificsSummaryText}`}
+              {t("transferPlanner.sourceBackedSummary", { summary: majorSpecificsSummaryText })}
             </Text>
           </View>
           <Ionicons
@@ -197,14 +200,16 @@ export function MajorSpecificsSection({
         <>
           {primaryUwDegreeLink ? (
             <View className="mt-5 gap-4">
-              <Text className={`${textClass} text-base font-semibold`}>Official UW degree page</Text>
+              <Text className={`${textClass} text-base font-semibold`}>
+                {t("transferPlanner.officialUwDegreePage")}
+              </Text>
               <Text className={`${secondaryTextClass} text-sm`}>
-                This is the main UW page the planner should use for the full degree requirements for this major.
+                {t("transferPlanner.officialUwDegreePageDescription")}
               </Text>
               <TouchCard
                 onPress={() => void openExternalLink(primaryUwDegreeLink.url)}
                 accessibilityRole="link"
-                accessibilityLabel={`Open ${primaryUwDegreeLink.label}`}
+                accessibilityLabel={t("general.openNamed", { name: primaryUwDegreeLink.label })}
                 className={`border ${borderClass} rounded-2xl px-4 py-4`}
               >
                 <Text className="text-emerald-500 font-semibold">
@@ -220,12 +225,14 @@ export function MajorSpecificsSection({
           {degreeMapSections.length ? (
             <View className="mt-5 gap-4">
               <Text className={`${textClass} text-base font-semibold`}>
-                Degree Specifics
+                {t("transferPlanner.degreeSpecifics")}
               </Text>
               <Text className={`${secondaryTextClass} text-sm`}>
                 {selectedPathwayLabel
-                  ? `These sections summarize the official UW degree structure currently attached to the ${selectedPathwayLabel} route for this major.`
-                  : "These sections summarize the official UW degree structure already lifted into the planner for this major."}
+                  ? t("transferPlanner.degreeSpecificsSelectedPathway", {
+                      pathway: selectedPathwayLabel,
+                    })
+                  : t("transferPlanner.degreeSpecificsDefault")}
               </Text>
               {degreeMapSections.map((section) => {
                 const isDegreeSpecificSectionOpen =
@@ -236,13 +243,21 @@ export function MajorSpecificsSection({
                   <TouchOptionRow
                     onPress={() => toggleDegreeSpecificSection(section.id)}
                     expanded={isDegreeSpecificSectionOpen}
-                    accessibilityLabel={`${section.title} parsed official source requirements`}
+                    accessibilityLabel={t("transferPlanner.parsedOfficialSourceRequirements", {
+                      title: section.title,
+                    })}
                   >
                     <View className="flex-row items-start justify-between gap-3">
                       <View className="flex-1 min-w-0">
                         <Text className={`${textClass} font-semibold`}>{section.title}</Text>
                         <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                          {`${section.items.length} parsed official source requirement${section.items.length === 1 ? "" : "s"}`}
+                          {t("transferPlanner.parsedOfficialRequirementCount", {
+                            count: section.items.length,
+                            noun:
+                              section.items.length === 1
+                                ? t("transferPlanner.requirementSingular")
+                                : t("transferPlanner.requirementPlural"),
+                          })}
                         </Text>
                   {section.note ? (
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
@@ -262,7 +277,7 @@ export function MajorSpecificsSection({
                   <View className="mt-3 gap-2">
                     {section.items.map((item) => (
                       <View key={`${section.id}-${item}`} className="flex-row items-start gap-2">
-                        <Text className={`${secondaryTextClass} text-sm`}>{"•"}</Text>
+                        <Text className={`${secondaryTextClass} text-sm`}>{"-"}</Text>
                         <Text className={`${secondaryTextClass} flex-1 text-sm`}>{item}</Text>
                       </View>
                     ))}
@@ -279,12 +294,18 @@ export function MajorSpecificsSection({
               <TouchOptionRow
                 onPress={() => setIsGrcClassesOpen((currentValue) => !currentValue)}
                 expanded={isGrcClassesOpen}
-                accessibilityLabel={`GRC ${grcTrackTitle} Degree Classes`}
+                accessibilityLabel={t("transferPlanner.grcClassesTitle", {
+                  title: grcTrackTitle,
+                  suffix: t("transferPlanner.degreeClasses"),
+                })}
               >
                 <View className="flex-row items-start justify-between gap-3">
                   <View className="flex-1 min-w-0">
                     <Text className={`${textClass} text-base font-semibold`}>
-                      {`GRC ${grcTrackTitle} Degree Classes`}
+                      {t("transferPlanner.grcClassesTitle", {
+                        title: grcTrackTitle,
+                        suffix: t("transferPlanner.degreeClasses"),
+                      })}
                     </Text>
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
                       {grcTrackDescription}
@@ -301,24 +322,30 @@ export function MajorSpecificsSection({
               {isGrcClassesOpen ? (
                 <View className="mt-4 gap-4">
                   <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
+                    <Text className={`${textClass} text-sm font-semibold`}>
+                      {t("transferPlanner.genEdCourses")}
+                    </Text>
                     {grcGeneralEducationCreditLines.length ? (
                       <View className="mt-2 gap-2">
                         {grcGeneralEducationCreditLines.map((entry) => (
                           <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {`${entry.label}: ${entry.credits} credits`}
+                            {`${entry.label}: ${t("transferPlanner.creditsCount", {
+                              count: entry.credits,
+                            })}`}
                           </Text>
                         ))}
                       </View>
                     ) : (
                       <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        No Green River track general-education targets are currently tagged for this route yet.
+                        {t("transferPlanner.noGrcTrackGenEdTargets")}
                       </Text>
                     )}
                   </View>
 
                   <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>Required Major Courses</Text>
+                    <Text className={`${textClass} text-sm font-semibold`}>
+                      {t("transferPlanner.requiredMajorCourses")}
+                    </Text>
                     {grcRequiredMajorCourseLines.length ? (
                       <View className="mt-2 gap-2">
                         {grcRequiredMajorCourseLines.map((entry) => (
@@ -329,7 +356,7 @@ export function MajorSpecificsSection({
                       </View>
                     ) : (
                       <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        No Green River degree-counting major-course list is available for this track yet.
+                        {t("transferPlanner.noGrcTrackMajorCourseList")}
                       </Text>
                     )}
                   </View>
@@ -341,17 +368,19 @@ export function MajorSpecificsSection({
               <TouchOptionRow
                 onPress={() => setIsUwClassesOpen((currentValue) => !currentValue)}
                 expanded={isUwClassesOpen}
-                accessibilityLabel={`UW ${plan.title} Degree Classes`}
+                accessibilityLabel={t("transferPlanner.uwDegreeClassesTitle", {
+                  title: plan.title,
+                })}
               >
                 <View className="flex-row items-start justify-between gap-3">
                   <View className="flex-1 min-w-0">
                     <Text className={`${textClass} text-base font-semibold`}>
-                      {`UW ${plan.title} Degree Classes`}
+                      {t("transferPlanner.uwDegreeClassesTitle", { title: plan.title })}
                     </Text>
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
                       {majorSpecificsCourseRowCount
-                        ? "Open this dropdown for categorized major requirements, Gen-Eds, Green River equivalents, and UW options from the official degree source."
-                        : "Open this dropdown for major requirements and Green River equivalents as they become available."}
+                        ? t("transferPlanner.uwDegreeClassesDescriptionReady")
+                        : t("transferPlanner.uwDegreeClassesDescriptionFallback")}
                     </Text>
                   </View>
                   <Ionicons
@@ -398,7 +427,7 @@ export function MajorSpecificsSection({
 
                   {!sourceBackedUwGeneralEducationSection ? (
                     <Text className={`${secondaryTextClass} text-sm`}>
-                      No source-backed major-specific general education targets are currently published for this major.
+                      {t("transferPlanner.noSourceBackedGenEdTargets")}
                     </Text>
                   ) : null}
 
@@ -429,9 +458,11 @@ export function MajorSpecificsSection({
                     ))
                   ) : (
                     <View>
-                      <Text className={`${textClass} text-sm font-semibold`}>Official UW Required Courses</Text>
+                      <Text className={`${textClass} text-sm font-semibold`}>
+                        {t("transferPlanner.officialUwRequiredCourses")}
+                      </Text>
                       <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        No source-backed UW-required major-course path is available for this major yet.
+                        {t("transferPlanner.noSourceBackedUwRequiredPath")}
                       </Text>
                     </View>
                   )}
@@ -442,15 +473,15 @@ export function MajorSpecificsSection({
                         setIsUwCoursesConsideredOpen((currentValue) => !currentValue)
                       }
                       expanded={isUwCoursesConsideredOpen}
-                      accessibilityLabel="UW Courses Considered"
+                      accessibilityLabel={t("transferPlanner.uwCoursesConsidered")}
                     >
                       <View className="flex-row items-start justify-between gap-3">
                         <View className="flex-1 min-w-0">
                           <Text className={`${textClass} text-sm font-semibold`}>
-                            UW Courses Considered
+                            {t("transferPlanner.uwCoursesConsidered")}
                           </Text>
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                            All UW courses parsed from the official degree source for this major.
+                            {t("transferPlanner.uwCoursesConsideredDescription")}
                           </Text>
                         </View>
                         <Ionicons
@@ -471,7 +502,7 @@ export function MajorSpecificsSection({
                           ))
                         ) : (
                           <Text className={`${secondaryTextClass} text-sm`}>
-                            No parsed UW course list is available for this major yet.
+                            {t("transferPlanner.noParsedUwCourseList")}
                           </Text>
                         )}
                       </View>

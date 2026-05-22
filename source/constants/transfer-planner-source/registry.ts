@@ -1626,6 +1626,7 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
   let score = 0;
   if (role === "degree-requirements") score += 100;
   if (role === "pathway-degree-sheet") score += 92;
+  if (role === "overview" && parserType === "html-overview-page") score += 110;
   if (role === "worksheet") score += 84;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
@@ -1959,11 +1960,35 @@ function isSafeFallbackPrimaryRole(role: TransferPlannerSourceManifestRole) {
 
 function pickPrimaryDegreeRequirementsUrl(links: TransferPlannerSourceLink[]) {
   const scoredLinks = dedupeLinks(links)
-    .map((link) => ({
-      link,
-      role: getSourceManifestRole(link),
-      score: getSourceManifestPrimaryScore(link),
-    }));
+    .map((link) => {
+      const role = getSourceManifestRole(link);
+      return {
+        link,
+        role,
+        parserType: getSourceManifestParserType(link, role),
+        score: getSourceManifestPrimaryScore(link),
+      };
+    });
+
+  const materializedRequirementCandidates = scoredLinks
+    .filter((entry) =>
+      ["degree-requirements", "pathway-degree-sheet", "curriculum", "catalog"].includes(entry.role)
+    )
+    .filter((entry) => entry.score > 0 && !isBlockedPrimarySourceUrl(entry.link.url))
+    .sort((left, right) => right.score - left.score || left.link.url.localeCompare(right.link.url));
+
+  if (materializedRequirementCandidates.length) {
+    return materializedRequirementCandidates[0]?.link.url ?? null;
+  }
+
+  const overviewCandidate = scoredLinks
+    .filter((entry) => entry.role === "overview" && entry.parserType === "html-overview-page")
+    .filter((entry) => entry.score > 0 && !isBlockedPrimarySourceUrl(entry.link.url))
+    .sort((left, right) => right.score - left.score || left.link.url.localeCompare(right.link.url))[0];
+
+  if (overviewCandidate) {
+    return overviewCandidate.link.url;
+  }
 
   const candidates = scoredLinks
     .filter((entry) => entry.score > 0)

@@ -1,5 +1,8 @@
 import { Platform } from "react-native";
-import * as FileSystem from "expo-file-system";
+import {
+  downloadTextFileOnWeb,
+  writeTextToAppDirectory,
+} from "@/services/storage/file-system-adapter.service";
 
 export type SavedDevConsoleLog = {
   fileName: string;
@@ -15,54 +18,37 @@ function buildLogFileName(savedAt: string) {
   return `dev-console-${savedAt.replace(/[:.]/g, "-")}.json`;
 }
 
-function canDownloadInBrowser() {
-  return typeof document !== "undefined" && typeof Blob !== "undefined" && typeof URL !== "undefined";
-}
-
 async function writeSnapshotToWritableDirectory(
   text: string,
   fileName: string,
   savedAt: string
 ): Promise<SavedDevConsoleLog> {
-  const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
-  if (!baseDir) {
-    throw new Error("No writable document directory is available.");
-  }
-
-  const dir = `${baseDir}${DEV_CONSOLE_LOG_DIR}/`;
-  await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
-
-  const fileUri = `${dir}${fileName}`;
-  await FileSystem.writeAsStringAsync(fileUri, text, { encoding: "utf8" });
+  const savedFile = await writeTextToAppDirectory({
+    fileName,
+    content: text,
+    directory: DEV_CONSOLE_LOG_DIR,
+  });
 
   return {
     fileName,
     relativePath: `${DEV_CONSOLE_LOG_DIR}/${fileName}`,
-    fileUri,
+    fileUri: savedFile.fileUri,
     savedAt,
     delivery: "filesystem",
   };
 }
 
 function downloadSnapshotOnWeb(text: string, fileName: string, savedAt: string): SavedDevConsoleLog {
-  if (!canDownloadInBrowser()) {
-    throw new Error("Browser download APIs are unavailable.");
-  }
-
-  const blob = new Blob([text], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  const savedFile = downloadTextFileOnWeb({
+    fileName,
+    content: text,
+    mimeType: "application/json",
+  });
 
   return {
     fileName,
     relativePath: `${DEV_CONSOLE_LOG_DIR}/${fileName}`,
-    fileUri: fileName,
+    fileUri: savedFile.fileUri,
     savedAt,
     delivery: "download",
   };

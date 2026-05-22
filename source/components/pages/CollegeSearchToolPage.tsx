@@ -19,7 +19,7 @@ import {
 import { PageBackButton } from "@/components/ui/PageBackButton";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, routeWithReturnTo } from "@/constants/routes";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
@@ -267,10 +267,7 @@ export default function CollegeSearchToolPage() {
         {!hasCompletedQuestionnaire ? (
           <AnimatedCardPressable
             onPress={() =>
-              router.push({
-                pathname: ROUTES.questionnaire,
-                params: { returnTo: ROUTES.collegeSearch },
-              } as never)
+              router.push(routeWithReturnTo(ROUTES.questionnaire, ROUTES.collegeSearch))
             }
             className="mt-4 rounded-2xl p-4 bg-emerald-500"
             style={{

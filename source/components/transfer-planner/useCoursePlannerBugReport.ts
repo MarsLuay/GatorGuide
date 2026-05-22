@@ -8,6 +8,7 @@ import type {
   TransferPlannerTrack,
 } from "@/constants/transfer-planner-source/student-runtime";
 import type { User } from "@/hooks/use-app-data";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { coursePlannerReportService } from "@/services/dev/course-planner-report.service";
 import { transcriptPlannerDebugService } from "@/services/dev/transcript-planner-debug.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
@@ -70,10 +71,6 @@ type UseCoursePlannerBugReportInput = {
   studentEvaluationReport: TransferPlannerStudentEvaluationReport | null;
 };
 
-const reportBugEmailSubject = "GatorGuide Course Planner Bug Report";
-const reportBugEmailBody =
-  "Please describe what happened in Course Planner:\n\n\nA current Course Planner log is attached when your email app supports attachments.";
-
 export function useCoursePlannerBugReport({
   user,
   selectedCollegeLabel,
@@ -111,9 +108,12 @@ export function useCoursePlannerBugReport({
   suggestedQuarterPlan,
   studentEvaluationReport,
 }: UseCoursePlannerBugReportInput) {
+  const { t } = useAppLanguage();
+  const reportBugEmailSubject = t("transferPlanner.bugReportSubject");
+  const reportBugEmailBody = t("transferPlanner.bugReportBody");
   const reportBugMailtoUrl = useMemo(
     () => buildCoursePlannerBugReportMailtoUrl(reportBugEmailSubject, reportBugEmailBody),
-    []
+    [reportBugEmailBody, reportBugEmailSubject]
   );
 
   const handleReportBug = useCallback(async () => {
@@ -194,17 +194,17 @@ export function useCoursePlannerBugReport({
       }
 
       Alert.alert(
-        "Email unavailable",
-        `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+        t("transferPlanner.emailUnavailableTitle"),
+        t("transferPlanner.emailUnavailableBody", { email: SUPPORT_EMAIL })
       );
       return;
     }
 
     const fallbackLog =
       reportLog.length > 7000
-        ? `${reportLog.slice(0, 7000)}\n\n[Course Planner log truncated because this email app does not support attachments here.]`
+        ? `${reportLog.slice(0, 7000)}\n\n${t("transferPlanner.coursePlannerLogTruncated")}`
         : reportLog;
-    const fallbackBody = `${reportBugEmailBody}\n\nCourse Planner log:\n${fallbackLog}`;
+    const fallbackBody = `${reportBugEmailBody}\n\n${t("transferPlanner.coursePlannerLogLabel")}\n${fallbackLog}`;
     const fallbackMailtoUrl = buildCoursePlannerBugReportMailtoUrl(
       reportBugEmailSubject,
       fallbackBody
@@ -220,8 +220,8 @@ export function useCoursePlannerBugReport({
         }
 
         Alert.alert(
-          "Email unavailable",
-          `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+          t("transferPlanner.emailUnavailableTitle"),
+          t("transferPlanner.emailUnavailableBody", { email: SUPPORT_EMAIL })
         );
         return;
       }
@@ -229,8 +229,8 @@ export function useCoursePlannerBugReport({
       await Linking.openURL(fallbackMailtoUrl);
     } catch {
       Alert.alert(
-        "Email unavailable",
-        `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+        t("transferPlanner.emailUnavailableTitle"),
+        t("transferPlanner.emailUnavailableBody", { email: SUPPORT_EMAIL })
       );
     }
   }, [
@@ -252,6 +252,8 @@ export function useCoursePlannerBugReport({
     onlyUwEssentialClasses,
     plan,
     plannerPathKey,
+    reportBugEmailBody,
+    reportBugEmailSubject,
     reportBugMailtoUrl,
     selectedCampusLabel,
     selectedCollegeId,
@@ -265,6 +267,7 @@ export function useCoursePlannerBugReport({
     storedTranscriptSource,
     studentEvaluationReport,
     suggestedQuarterPlan,
+    t,
     track,
     transcriptDerivedCompletedCourses,
     transcriptDocument,

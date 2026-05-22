@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, InteractionManager, Text, View } from "react-native";
+import { useAppLanguage } from "@/hooks/use-app-language";
 
 type TransferEquivalencyCatalogComponent = React.ComponentType;
 
 function TransferEquivalenciesLoadingShell() {
+  const { t } = useAppLanguage();
+
   return (
     <View
       style={{
@@ -23,7 +26,7 @@ function TransferEquivalenciesLoadingShell() {
           textAlign: "center",
         }}
       >
-        Loading transfer equivalencies...
+        {t("transferEquivalencies.loading")}
       </Text>
     </View>
   );

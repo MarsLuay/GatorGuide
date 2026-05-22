@@ -2,10 +2,13 @@ import React from "react";
 import { Platform, Text, View } from "react-native";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 
 function WebAppStartupScreen() {
+  const { t } = useAppLanguage();
+
   return (
     <div className="gg-app-loading">
       <div className="gg-app-loading__layer gg-app-loading__layer--base" />
@@ -45,7 +48,7 @@ function WebAppStartupScreen() {
           </g>
         </svg>
 
-        <p className="gg-app-loading__text">Loading Gator Guide...</p>
+        <p className="gg-app-loading__text">{t("startup.loadingGatorGuide")}</p>
       </div>
     </div>
   );
@@ -53,6 +56,7 @@ function WebAppStartupScreen() {
 
 function NativeAppStartupScreen() {
   const { isDark, isGreen } = useAppTheme();
+  const { t } = useAppLanguage();
   const theme = useThemeStyles();
 
   return (
@@ -69,7 +73,7 @@ function NativeAppStartupScreen() {
           <GatorGuideMark size={96} darkMode={isDark || isGreen} />
         </View>
         <Text style={{ color: theme.textColor, fontSize: 16, fontWeight: "600" }}>
-          Loading Gator Guide...
+          {t("startup.loadingGatorGuide")}
         </Text>
       </View>
     </ScreenBackground>

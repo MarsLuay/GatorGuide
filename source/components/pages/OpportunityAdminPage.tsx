@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Alert,
-  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -9,9 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import * as FileSystem from "expo-file-system";
 import { useRouter } from "expo-router";
-import * as Sharing from "expo-sharing";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import {
   AnimatedCardPressable,
@@ -38,6 +35,7 @@ import {
   type UpsertManualOpportunityInput,
 } from "@/services/opportunities/opportunity-gateway.service";
 import { buildScholarshipExportFile } from "@/services/opportunities/scholarship-export.service";
+import { saveTextFileForUser } from "@/services/storage/file-system-adapter.service";
 
 type OpportunityAdminDraft = {
   opportunityId: string;
@@ -494,38 +492,17 @@ export default function OpportunityAdminPage() {
     setExportMessage("");
 
     try {
-      if ((Platform as any).OS === "web") {
-        const blob = new Blob([exportFile.content], {
-          type: "text/tab-separated-values;charset=utf-8",
-        });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = exportFile.fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-      } else {
-        const fileUri = new FileSystem.File(
-          FileSystem.Paths.document,
-          exportFile.fileName
-        ).uri;
-        await FileSystem.writeAsStringAsync(fileUri, exportFile.content, {
-          encoding: "utf8",
-        });
+      const savedFile = await saveTextFileForUser({
+        fileName: exportFile.fileName,
+        content: exportFile.content,
+        mimeType: "text/tab-separated-values;charset=utf-8",
+      });
 
-        const canShare = await Sharing.isAvailableAsync();
-        if (canShare) {
-          await Sharing.shareAsync(fileUri, {
-            mimeType: "text/tab-separated-values",
-          });
-        } else {
-          Alert.alert(
-            "Scholarship export ready",
-            `${exportFile.fileName} was saved to app documents.`
-          );
-        }
+      if (savedFile.delivery === "filesystem") {
+        Alert.alert(
+          "Scholarship export ready",
+          `${exportFile.fileName} was saved to app documents.`
+        );
       }
 
       setExportMessage(

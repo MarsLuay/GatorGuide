@@ -1,6 +1,6 @@
-import * as FileSystem from "expo-file-system";
 import { inflate } from "pako";
 import { Platform } from "react-native";
+import { readBase64File } from "@/services/storage/file-system-adapter.service";
 
 export type ParsedTranscriptCourse = {
   code: string;
@@ -279,8 +279,7 @@ async function readPdfBytes(fileUri: string) {
     return new Uint8Array(arrayBuffer);
   }
 
-  const encoding = (FileSystem as any).EncodingType?.Base64 ?? "base64";
-  const base64 = await FileSystem.readAsStringAsync(normalizedUri, { encoding });
+  const base64 = await readBase64File(normalizedUri);
   return base64ToUint8Array(base64);
 }
 
