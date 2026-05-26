@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "7db7b17461bc06fe59c07ef6e53845a635b9b66663d0e11c881bee60349c2784"
   },
   {
@@ -592,7 +592,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "5346abe7179c682ac03f40e49b3d40b5ea06178c9653b08fd545cbcf0d82bc97"
   },
   {
@@ -650,7 +650,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "2d7ec69a49989c2825b93e5614c61f185b425d245a4564c68047054a8cb799e2"
   },
   {
@@ -708,7 +708,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "be6d60b338d0cb84c4be12f8a892e597d658cd849a07f126d3890f21162ccb1e"
   },
   {
@@ -753,7 +753,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "c7095ba2c6abb04915540d4fb3ea4ffbd3cf5e9c47b0c41dbcf98279b2ac2bcd"
   },
   {
@@ -797,7 +797,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "7d1c7832494f9dbf594b0d967b1299acb37b30e2c2c158484c18c74c0ff6c115"
   },
   {
@@ -867,7 +867,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -934,7 +934,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -976,7 +976,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "MGMT 200 (Introduction to Law)",
       "QMETH 201 (Statistical Methods)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "03f1b4ee2cd52e88e1854e471c3132d4def517999154d702b13d0201060c135a"
   },
   {
@@ -1059,7 +1059,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "The ID course of undergraduate study is an intensive program emphasizing the development of form that is derived from patterns of use, requirements for function, constraints imposed by industrial manufacturing and aesthetics driven by social context. Key aspects in this view on design are understanding the interactions between people and technology. Students are trained to identify design challenges and to envision promising strategies for design responses, communication, documentation, and organizational skills to conduct the design process from project brief to design implementation.",
       "84-86 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 211, DESIGN 316, DESIGN 317, DESIGN 318, DESIGN 319, DESIGN 320, DESIGN 322, DESIGN 324, DESIGN 326, DESIGN 445, DESIGN 446, DESIGN 485, DESIGN 486"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "2b15d2546d553ad733885a21ca648316affb5a8de541ed7b3f40f4a63ebc5eca"
   },
   {
@@ -1158,7 +1158,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
       "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "408509e11b8467d5c8eab6ac566d2d259fc8a5932c8a916201e59f26b7b04c47"
   },
   {
@@ -1201,7 +1201,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "3889a47b1c869ee9fe709c18c13a8ffc2a1a0f453409de41d3e608eeb094baf5"
   },
   {
@@ -1254,7 +1254,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "037a8a66bb0b1a564773d8bd5a74963ea380bacda94e7970ed82c9d9c6fbe59f"
   },
   {
@@ -1300,7 +1300,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "09acd21d01685a38f0e7663842b3ae327019b0fa1475581bd6feab9520d30781"
   },
   {
@@ -1344,7 +1344,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "German 401 (or equivalent)",
       "German 311 (Introduction to Literary Studies)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "dd8c829e21035a7db4f0f463ddf33a8037af4cbb4b6ae646f9bb2429d1927bc0"
   },
   {
@@ -1396,7 +1396,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "e2ccb63d4acf3832039d801b9842ee6ee7ca7f542e64b73230d0bfd1ae7b4e78"
   },
   {
@@ -1438,7 +1438,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "7c02d2b529c08adc11905f3014348914f80680a198837e00b16f812b6122a33c"
   },
   {
@@ -1498,7 +1498,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "f5c5cc4d3826702874c743981939ad4a1c889d0cbd7b4323e549de2e7e30663e"
   },
   {
@@ -1682,7 +1682,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "e6692dc66c91b79488b6f7b2f1eeb7ccf9132513a45d655810f85d2d3d2d16d6"
   },
   {
@@ -1711,21 +1711,33 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "JAPAN 441",
       "JAPAN 443",
       "JAPAN 544",
+      "LING 220",
+      "LING 270",
       "LING 499"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "LING 220",
+        "LING 270"
+      ]
+    ],
+    "petitionOnlyNotes": [
+      "NOTE: If you want to take a class outside the linguistics department that is related to linguistics but is not on the approved list, contact the Undergraduate Adviser for more information."
     ],
     "aliases": [
       "uw-seattle-linguistics-approved-electives"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "approved elective courses in other departments"
+      "Elective courses (20 credits):"
     ],
     "sourceEvidenceLines": [
-      "approved elective courses in other departments",
-      "Parsed approved course codes from https://linguistics.washington.edu/ba-linguistics."
+      "Elective courses (20 credits):",
+      "Generally, any upper division courses (300 level or higher) in Linguistics or Romance Linguistics which you have not already used to satisfy the core course or language requirements may be applied to the elective requirement, with the exception that introductory linguistics courses may not be used to fulfill the elective requirement. Additionally, LING 220 and 270 may count towards the elective requirement. Many departments on campus offer classes that are related to linguistics. These may be counted toward the Linguistics Elective requirement. See the list of approved elective courses in other departments .",
+      "NOTE: If you want to take a class outside the linguistics department that is related to linguistics but is not on the approved list, contact the Undergraduate Adviser for more information."
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
-    "sourceFingerprint": "4c3f0c3209cb5c104ffbbb097de5577d71a1cca653a1a3410f4fbfaee138e178"
+    "generatedAt": "2026-05-26T13:43:56.183Z",
+    "sourceFingerprint": "e93f03975547772b3e34ce5651ab0463ec8194ea884315192ab5fe697f2ccaf0"
   },
   {
     "filterId": "UW_SEATTLE_SOUTH_ASIAN_LANGUAGES_AND_CULTURES_LIST_OF_APPROVED_COURSES_FOR_2_LITERATURE",
@@ -1822,7 +1834,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
       "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
@@ -1959,7 +1971,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ASIAN 301 Songs of the Saints of India",
       "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "6c00b8f1a9a77f586e13c538fa1a5bfd689570f92a9ab7406e1808b8ca2475b7"
   },
   {
@@ -2015,7 +2027,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "TWRT 211",
       "Required Core: TECON 310 ( 5 credits)"
     ],
-    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "generatedAt": "2026-05-26T13:43:56.183Z",
     "sourceFingerprint": "d84a126ac30e4c486fefe2ab9f64dce73f411f5b3bf062d37ab92f255520c88e"
   }
 ] as const;

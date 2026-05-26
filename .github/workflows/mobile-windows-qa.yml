@@ -158,5 +158,8 @@ jobs:
       - name: Run planner harness tests
         run: npm run planner:test:harness
 
+      - name: Run complete planner diagnostics
+        run: npm run planner:test:complete-diagnostics
+
       - name: Run safe planner pipeline gates
         run: npm run planner:validate:safe -- pipeline

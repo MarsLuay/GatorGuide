@@ -21,6 +21,12 @@ const {
   hasArg,
   runCommand,
 } = require("./script-harness.cjs");
+const {
+  filterRequestedTestFiles,
+  getCompleteDiagnosticTestFiles,
+  getOptInEnvVars,
+  parseUnexpectedSkippedTests,
+} = require("../run-complete-diagnostics.cjs");
 
 test("planner test harness normalizes common diagnostic values", () => {
   assert.deepEqual(array("nope"), []);
@@ -80,6 +86,43 @@ test("planner script harness can run commands without throwing on inspected fail
     throwOnFailure: false,
   });
   assert.equal(result.status, 3);
+});
+
+test("complete diagnostic runner discovers opt-in gates and rejects unexpected skips", () => {
+  const testFiles = getCompleteDiagnosticTestFiles();
+  const normalizedFiles = testFiles.map((file) => file.replace(/\\/g, "/"));
+  assert.ok(
+    normalizedFiles.includes("scripts/planner/uw-biology-complete-diagnostics.test.cjs")
+  );
+
+  const optInEnvVars = getOptInEnvVars(testFiles);
+  assert.ok(optInEnvVars.includes("TRANSFER_PLANNER_RUN_UW_BIOLOGY_DIAGNOSTICS"));
+  assert.ok(
+    optInEnvVars.includes("TRANSFER_PLANNER_RUN_UW_SEATTLE_REMAINING_DIAGNOSTICS")
+  );
+
+  const originalArgv = process.argv;
+  try {
+    process.argv = [...originalArgv.slice(0, 2), "uw-biology"];
+    assert.deepEqual(filterRequestedTestFiles(testFiles).map((file) => file.replace(/\\/g, "/")), [
+      "scripts/planner/uw-biology-complete-diagnostics.test.cjs",
+    ]);
+  } finally {
+    process.argv = originalArgv;
+  }
+
+  const tap = [
+    "ok 1 - uw-seattle-art exposes every online official UW course # SKIP",
+    "ok 2 - Biology exposes every official UW course # SKIP",
+  ].join("\n");
+
+  assert.deepEqual(parseUnexpectedSkippedTests(tap, { allowOnlineSkips: true }), [
+    "Biology exposes every official UW course",
+  ]);
+  assert.deepEqual(parseUnexpectedSkippedTests(tap, { allowOnlineSkips: false }), [
+    "uw-seattle-art exposes every online official UW course",
+    "Biology exposes every official UW course",
+  ]);
 });
 
 test("bootstrap plan reader sees current UW planner owners without importing generated modules", () => {

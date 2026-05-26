@@ -79,6 +79,10 @@ export function usePlannerComputation({
     useState<string | null>(null);
   const isPlannerComputationReady =
     readyPlannerStructureComputationKey === plannerStructureComputationKey;
+  const hasDirectMajorEquivalencies = useMemo(
+    () => (isUwPlanner && plan ? hasAnyDirectMajorEquivalencies(plan) : false),
+    [isUwPlanner, plan]
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -115,54 +119,57 @@ export function usePlannerComputation({
 
   const applicationStatuses = useMemo(
     () =>
-      isPlannerComputationReady && isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan && hasDirectMajorEquivalencies
         ? buildRequirementStatuses(plan.applicationChecklist, completedCourses)
         : [],
-    [completedCourses, isPlannerComputationReady, isUwPlanner, plan]
+    [completedCourses, hasDirectMajorEquivalencies, isPlannerComputationReady, isUwPlanner, plan]
   );
   const beforeEnrollmentStatuses = useMemo(
     () =>
-      isPlannerComputationReady && isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan && hasDirectMajorEquivalencies
         ? buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses)
         : [],
-    [completedCourses, isPlannerComputationReady, isUwPlanner, plan]
+    [completedCourses, hasDirectMajorEquivalencies, isPlannerComputationReady, isUwPlanner, plan]
   );
   const stayAtGrcStatuses = useMemo(
     () =>
-      isPlannerComputationReady && isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan && hasDirectMajorEquivalencies
         ? buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses)
         : [],
-    [completedCourses, isPlannerComputationReady, isUwPlanner, plan]
+    [completedCourses, hasDirectMajorEquivalencies, isPlannerComputationReady, isUwPlanner, plan]
   );
   const hasOptionalStayAtGrcChecklist = plan?.stayAtGrcChecklist.length
     ? plan.stayAtGrcChecklist.some((item) => item.grcCourses.length > 0)
     : false;
   const shouldShowUwOnlyToggle =
-    isUwPlanner && (Boolean(track) || hasOptionalStayAtGrcChecklist);
+    isUwPlanner && hasDirectMajorEquivalencies && (Boolean(track) || hasOptionalStayAtGrcChecklist);
   const suggestedQuarterPlan = useMemo(
-    () =>
-      isPlannerComputationReady
-        ? buildSuggestedQuarterPlan({
-            plan: isUwPlanner ? plan : null,
-            plannerCollegeId: selectedCollegeId,
-            applicationStatuses,
-            beforeEnrollmentStatuses,
-            stayAtGrcStatuses,
-            completedCourses,
-            currentCourseKeys: currentPlannedCourseLabels,
-            currentCourseLabels: currentPlannedCourseLabels,
-            track,
-            includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
-            includeSummerQuarter: allowSummerClasses,
-            includeStemPrepCourses: allowStemPrepClasses,
-            selectedRequirementOptionIdsByGroup,
-          })
-        : [],
+    () => {
+      if (!isPlannerComputationReady) return [];
+      if (isUwPlanner && !hasDirectMajorEquivalencies) return [];
+
+      return buildSuggestedQuarterPlan({
+        plan: isUwPlanner ? plan : null,
+        plannerCollegeId: selectedCollegeId,
+        applicationStatuses,
+        beforeEnrollmentStatuses,
+        stayAtGrcStatuses,
+        completedCourses,
+        currentCourseKeys: currentPlannedCourseLabels,
+        currentCourseLabels: currentPlannedCourseLabels,
+        track,
+        includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
+        includeSummerQuarter: allowSummerClasses,
+        includeStemPrepCourses: allowStemPrepClasses,
+        selectedRequirementOptionIdsByGroup,
+      });
+    },
     [
       allowStemPrepClasses,
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
+      hasDirectMajorEquivalencies,
       currentPlannedCourseLabels,
       isPlannerComputationReady,
       isUwPlanner,
@@ -177,7 +184,7 @@ export function usePlannerComputation({
   );
   const studentCourseEvaluations = useMemo(
     () =>
-      isPlannerComputationReady && isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan && hasDirectMajorEquivalencies
         ? buildTransferPlannerStudentCourseEvaluations({
             plan,
             completedCourses,
@@ -190,6 +197,7 @@ export function usePlannerComputation({
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
+      hasDirectMajorEquivalencies,
       isPlannerComputationReady,
       isUwPlanner,
       plan,
@@ -198,7 +206,7 @@ export function usePlannerComputation({
   );
   const studentEvaluationReport = useMemo(
     () =>
-      isPlannerComputationReady && isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan && hasDirectMajorEquivalencies
         ? buildTransferPlannerStudentEvaluationReport({
             plan,
             campusLabel: campusLabel || getCollegeOptionLabel(selectedCollegeId),
@@ -210,6 +218,7 @@ export function usePlannerComputation({
     [
       campusLabel,
       completedCourses,
+      hasDirectMajorEquivalencies,
       isPlannerComputationReady,
       isUwPlanner,
       plan,
@@ -222,23 +231,23 @@ export function usePlannerComputation({
     () =>
       isUwPlanner
         ? !!plan &&
+          hasDirectMajorEquivalencies &&
           (
             plan.applicationChecklist.length > 0 ||
             plan.beforeEnrollmentChecklist.length > 0 ||
             plan.stayAtGrcChecklist.length > 0
           )
         : Boolean(track),
-    [isUwPlanner, plan, track]
+    [hasDirectMajorEquivalencies, isUwPlanner, plan, track]
   );
   const isPlannerComputationLoading =
     hasStructuredPlannerData && !isPlannerComputationReady;
   const hasNoDirectMajorEquivalencies = useMemo(
     () =>
-      isPlannerComputationReady &&
       isUwPlanner &&
       !!plan &&
-      !hasAnyDirectMajorEquivalencies(plan),
-    [isPlannerComputationReady, isUwPlanner, plan]
+      !hasDirectMajorEquivalencies,
+    [hasDirectMajorEquivalencies, isUwPlanner, plan]
   );
 
   const handleToggleOnlyUwEssentialClasses = useCallback(() => {

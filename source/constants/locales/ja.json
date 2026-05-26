@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "これは、プランナーが現在たどっている Green River プログラム パスです。",
     "selectedUwDegree": "選択された UW 度",
     "sourceBackedSummary": "まとめ。 {summary}",
+    "sourcesUsed": "使用したソース",
+    "sourcesUsedDescription": "この専攻に使用された公式ソースページ。",
     "transcriptBasedCoursePlan": "成績証明書ベースのコースプラン",
     "transcriptBasedCoursePlanBody": "プランナーは、非公式の成績証明書から過去に完了したクラスを読み取り、すでに完了した内容をマークすることができます。",
     "transcriptEvaluation": "成績証明書の評価",

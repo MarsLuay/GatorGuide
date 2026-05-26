@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "Đây là lộ trình chương trình Green River mà người lập kế hoạch hiện đang theo dõi.",
     "selectedUwDegree": "Đã chọn độ UW",
     "sourceBackedSummary": "bản tóm tắt. {summary}",
+    "sourcesUsed": "Nguồn đã dùng",
+    "sourcesUsedDescription": "Các trang nguồn chính thức được dùng cho ngành này.",
     "transcriptBasedCoursePlan": "Kế hoạch khóa học dựa trên bảng điểm",
     "transcriptBasedCoursePlanBody": "Người lập kế hoạch đang đọc các lớp đã hoàn thành trước đây từ bảng điểm không chính thức của bạn để có thể đánh dấu những gì đã được thực hiện.",
     "transcriptEvaluation": "Đánh giá bảng điểm",

@@ -2,8 +2,11 @@
 import {
   getTransferPlannerCanonicalCourse,
   getTransferPlannerEquivalencyRulesForSourceCourse,
+  getTransferPlannerGrcCourseList,
   type TransferPlannerCampusId,
   type TransferPlannerGeneralRequirementSection,
+  type TransferPlannerMajorPathway,
+  type TransferPlannerMajorPlan,
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerStudentCourseEvaluation,
   type TransferPlannerTrack,
@@ -864,12 +867,55 @@ export function hasDirectEquivalentRuleForCourse(courseCode: string, campusId: T
   });
 }
 
-export function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) {
-  const requirementCourseCodes = buildRequiredPlannerCourseCodes(plan);
-  if (!requirementCourseCodes.length) return false;
+function hasAcceptedEquivalentRuleForCourse(courseCode: string) {
+  return getTransferPlannerEquivalencyRulesForSourceCourse(courseCode).some((rule) => {
+    if (rule.acceptanceCategory === "no-credit") return false;
+    if (rule.type === "elective-credit" || rule.type === "limited-credit") return false;
+    return true;
+  });
+}
 
-  return requirementCourseCodes.some((courseCode: string) =>
-    hasDirectEquivalentRuleForCourse(courseCode, plan.campusId)
+export function hasDirectMajorEquivalencyInCourseLabels(
+  courseLabels: readonly string[] | null | undefined
+) {
+  const seenCourseCodes = new Set<string>();
+
+  for (const courseLabel of courseLabels ?? []) {
+    const extractedCourseCodes = extractCourseCodes(courseLabel);
+    const candidateCourseCodes = extractedCourseCodes.length
+      ? extractedCourseCodes
+      : [courseLabel];
+
+    for (const courseCode of candidateCourseCodes) {
+      const normalizedCourseCode = String(courseCode ?? "").trim();
+      if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) {
+        continue;
+      }
+
+      seenCourseCodes.add(normalizedCourseCode);
+      if (hasAcceptedEquivalentRuleForCourse(normalizedCourseCode)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+export function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) {
+  return hasDirectMajorEquivalencyInCourseLabels(getTransferPlannerGrcCourseList(plan));
+}
+
+export function hasAnyDirectMajorEquivalenciesInPlanOrPathways(
+  plan: TransferPlannerMajorPlan,
+  pathways: readonly TransferPlannerMajorPathway[]
+) {
+  if (hasDirectMajorEquivalencyInCourseLabels(plan.grcCourseList)) {
+    return true;
+  }
+
+  return pathways.some((pathway) =>
+    hasDirectMajorEquivalencyInCourseLabels(pathway.grcCourseList)
   );
 }
 

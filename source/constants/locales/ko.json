@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "플래너가 현재 따르고 있는 Green River 프로그램 경로입니다.",
     "selectedUwDegree": "선택된 UW 학위",
     "sourceBackedSummary": "요약. {summary}",
+    "sourcesUsed": "사용된 소스",
+    "sourcesUsedDescription": "이 전공에 사용된 공식 소스 페이지.",
     "transcriptBasedCoursePlan": "성적 증명서 기반 코스 계획",
     "transcriptBasedCoursePlanBody": "플래너는 비공식 성적표에서 과거에 완료된 수업을 읽어 이미 완료된 내용을 표시할 수 있습니다.",
     "transcriptEvaluation": "성적표 평가",

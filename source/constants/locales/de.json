@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "Dies ist der Green River-Programmpfad, dem der Planer derzeit folgt.",
     "selectedUwDegree": "Ausgewählter UW-Abschluss",
     "sourceBackedSummary": "Zusammenfassung. {summary}",
+    "sourcesUsed": "Verwendete Quellen",
+    "sourcesUsedDescription": "Offizielle Quellseiten, die fuer dieses Hauptfach verwendet werden.",
     "transcriptBasedCoursePlan": "Transkriptbasierter Kursplan",
     "transcriptBasedCoursePlanBody": "Der Planer liest vergangene abgeschlossene Kurse aus Ihrem inoffiziellen Zeugnis, damit er markieren kann, was bereits erledigt ist.",
     "transcriptEvaluation": "Transkriptauswertung",

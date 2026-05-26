@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "هذا هو مسار برنامج Green River الذي يتبعه المخطط حاليًا.",
     "selectedUwDegree": "درجة UW مختارة",
     "sourceBackedSummary": "ملخص. {summary}",
+    "sourcesUsed": "المصادر المستخدمة",
+    "sourcesUsedDescription": "صفحات المصدر الرسمية المستخدمة لهذا التخصص.",
     "transcriptBasedCoursePlan": "خطة الدورة على أساس النص",
     "transcriptBasedCoursePlanBody": "يقوم المخطط بقراءة الفصول المكتملة السابقة من نصك غير الرسمي حتى يتمكن من تحديد ما تم إنجازه بالفعل.",
     "transcriptEvaluation": "تقييم النص",

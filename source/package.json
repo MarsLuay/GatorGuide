@@ -64,6 +64,7 @@
     "planner:test:runtime-breakup": "node --test scripts/planner/transfer-planner.runtime-breakup.test.cjs",
     "planner:test:runtime-partitioning": "node --test scripts/planner/generated-runtime-partitioning.test.cjs",
     "planner:test:official-source-diagnostics": "node --test scripts/planner/official-source-diagnostics-coverage.test.cjs",
+    "planner:test:complete-diagnostics": "node scripts/planner/run-complete-diagnostics.cjs",
     "planner:test:parser": "node --max-old-space-size=8192 --test scripts/planner/source-discovery.test.cjs scripts/planner/source-backed-coverage-audit.test.cjs scripts/planner/triage-source-backed-blockers.test.cjs scripts/planner/parser-recovery.test.cjs scripts/planner/source-change-classification.test.cjs scripts/planner/grc-associate-track-generator.test.cjs scripts/planner/validate-transfer-planner-safe.test.cjs scripts/planner/uw-tacoma-course-planner-audit-regressions.test.cjs",
     "planner:test:parser-recovery": "node --test scripts/planner/parser-recovery.test.cjs",
     "planner:test:bothell-ee-source": "node --test --test-name-pattern \"Bothell STEM acronym|acronym-matched rich degree\" scripts/planner/parser-recovery.test.cjs",
@@ -186,7 +187,8 @@
     "lodash": "4.18.1",
     "node-forge": "1.4.0",
     "postcss": "8.5.10",
-    "protobufjs": "7.5.6",
+    "protobufjs": "7.5.8",
+    "qs": "6.15.2",
     "uuid": "14.0.0",
     "chokidar": {
       "picomatch": "2.3.2"

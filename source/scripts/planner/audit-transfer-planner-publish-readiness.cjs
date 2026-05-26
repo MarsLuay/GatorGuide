@@ -46,6 +46,16 @@ const REQUIRED_RELEASE_REPORT_KEYS = [
   "autoRepair",
 ];
 
+const RELEASE_READINESS_COMMAND_TIMEOUT_MS = {
+  parseRequirementSources: 180 * 60 * 1000,
+  buildAutoRepairPlan: 5 * 60 * 1000,
+  sourceBackedCoverage: 20 * 60 * 1000,
+  sourcePipeline: 5 * 60 * 1000,
+  repairQueue: 2 * 60 * 1000,
+  parserTests: 15 * 60 * 1000,
+  typecheck: 5 * 60 * 1000,
+};
+
 const MODES = {
   "course-source-coverage": {
     json: "transfer-planner-course-source-coverage.json",
@@ -83,6 +93,11 @@ function relative(filePath) {
 function compactText(value, maxLength = 260) {
   const text = String(value ?? "").replace(/\s+/g, " ").trim();
   return text.length > maxLength ? `${text.slice(0, maxLength - 3)}...` : text;
+}
+
+function compactTailText(value, maxLength = 1200) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  return text.length > maxLength ? `...${text.slice(text.length - maxLength + 3)}` : text;
 }
 
 function countBy(values) {
@@ -312,21 +327,49 @@ function runCommand(command, args, options = {}) {
     status: result.status,
     signal: result.signal,
     timedOut: result.error?.code === "ETIMEDOUT",
-    stdoutTail: compactText(result.stdout, 1200),
-    stderrTail: compactText(result.stderr, 1200),
+    stdoutTail: compactTailText(result.stdout, 1200),
+    stderrTail: compactTailText(result.stderr, 1200),
   };
 }
 
 function buildReleaseReadiness(inputs, options = {}) {
   const commands = [];
   if (options.runChecks) {
-    commands.push(runCommand(NPM_BIN, ["run", "planner:parse-requirement-sources"], { timeoutMs: 600000 }));
-    commands.push(runCommand(NPM_BIN, ["run", "planner:build-auto-repair-plan"], { timeoutMs: 300000 }));
-    commands.push(runCommand(NPM_BIN, ["run", "planner:audit:source-backed-coverage"], { timeoutMs: 600000 }));
-    commands.push(runCommand(NPM_BIN, ["run", "planner:validate-source-pipeline"], { timeoutMs: 300000 }));
-    commands.push(runCommand(NPM_BIN, ["run", "planner:repair-queue"], { timeoutMs: 120000 }));
-    commands.push(runCommand(NPM_BIN, ["run", "planner:test:parser"], { timeoutMs: 300000 }));
-    commands.push(runCommand(NPX_BIN, ["tsc", "--noEmit"], { timeoutMs: 300000 }));
+    commands.push(
+      runCommand(NPM_BIN, ["run", "planner:parse-requirement-sources"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parseRequirementSources,
+      })
+    );
+    commands.push(
+      runCommand(NPM_BIN, ["run", "planner:build-auto-repair-plan"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.buildAutoRepairPlan,
+      })
+    );
+    commands.push(
+      runCommand(NPM_BIN, ["run", "planner:audit:source-backed-coverage"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.sourceBackedCoverage,
+      })
+    );
+    commands.push(
+      runCommand(NPM_BIN, ["run", "planner:validate-source-pipeline"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.sourcePipeline,
+      })
+    );
+    commands.push(
+      runCommand(NPM_BIN, ["run", "planner:repair-queue"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.repairQueue,
+      })
+    );
+    commands.push(
+      runCommand(NPM_BIN, ["run", "planner:test:parser"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parserTests,
+      })
+    );
+    commands.push(
+      runCommand(NPX_BIN, ["tsc", "--noEmit"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.typecheck,
+      })
+    );
   }
 
   const currentInputs = options.runChecks ? loadInputs() : inputs;

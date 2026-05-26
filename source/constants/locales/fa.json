@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "This is the Green River program path the planner is currently following.",
     "selectedUwDegree": "Selected UW degree",
     "sourceBackedSummary": "summary. {summary}",
+    "sourcesUsed": "Sources Used",
+    "sourcesUsedDescription": "Official source pages used for this major.",
     "transcriptBasedCoursePlan": "Transcript-based course plan",
     "transcriptBasedCoursePlanBody": "The planner is reading past completed classes from your unofficial transcript so it can mark what is already done.",
     "transcriptEvaluation": "Transcript evaluation",

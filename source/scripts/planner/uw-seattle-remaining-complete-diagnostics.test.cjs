@@ -13,6 +13,10 @@ const {
 const RUN_DIAGNOSTICS =
   process.env.TRANSFER_PLANNER_RUN_UW_SEATTLE_REMAINING_DIAGNOSTICS === "1";
 const diagnosticTest = RUN_DIAGNOSTICS ? test : test.skip;
+const onlineDiagnosticTest =
+  RUN_DIAGNOSTICS && process.env.TRANSFER_PLANNER_COMPLETE_DIAGNOSTICS_ONLINE === "1"
+    ? test
+    : test.skip;
 
 let plannerModule;
 const sourceTextCache = new Map();
@@ -408,7 +412,7 @@ for (const program of seattleRemainingPrograms) {
     );
   });
 
-  diagnosticTest(`${program.planId} exposes every online official UW course`, async () => {
+  onlineDiagnosticTest(`${program.planId} exposes every online official UW course`, async () => {
     const onlineCourses = await getOnlineCourseCodes(program);
     if (onlineCourses.length === 0) {
       return;

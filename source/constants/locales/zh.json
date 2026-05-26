@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "这是规划者当前遵循的 Green River 程序路径。",
     "selectedUwDegree": "所选的威斯康星大学学位",
     "sourceBackedSummary": "概括。 {summary}",
+    "sourcesUsed": "使用的来源",
+    "sourcesUsedDescription": "用于该专业的官方来源页面。",
     "transcriptBasedCoursePlan": "基于成绩单的课程计划",
     "transcriptBasedCoursePlanBody": "计划员正在从您的非官方成绩单中读取过去已完成的课程，以便它可以标记已经完成的内容。",
     "transcriptEvaluation": "成绩单评估",

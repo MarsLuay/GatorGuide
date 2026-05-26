@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "Il s'agit du chemin du programme Green River que le planificateur suit actuellement.",
     "selectedUwDegree": "Diplôme UW sélectionné",
     "sourceBackedSummary": "résumé. {summary}",
+    "sourcesUsed": "Sources utilisees",
+    "sourcesUsedDescription": "Pages sources officielles utilisees pour cette majeure.",
     "transcriptBasedCoursePlan": "Plan de cours basé sur un relevé de notes",
     "transcriptBasedCoursePlanBody": "Le planificateur lit les cours terminés à partir de votre relevé de notes non officiel afin de pouvoir marquer ce qui est déjà fait.",
     "transcriptEvaluation": "Évaluation du relevé de notes",

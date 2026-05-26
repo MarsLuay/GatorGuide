@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "這是規劃者目前遵循的 Green River 程式路徑。",
     "selectedUwDegree": "所選的威斯康辛大學學位",
     "sourceBackedSummary": "概括。 {summary}",
+    "sourcesUsed": "使用的來源",
+    "sourcesUsedDescription": "用於此主修的官方來源頁面。",
     "transcriptBasedCoursePlan": "基於成績單的課程計劃",
     "transcriptBasedCoursePlanBody": "計劃者正在從您的非正式成績單中讀取過去已完成的課程，以便它可以標記已經完成的內容。",
     "transcriptEvaluation": "成績單評估",

@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "Ito ang Green River program path na kasalukuyang sinusunod ng tagaplano.",
     "selectedUwDegree": "Napiling UW degree",
     "sourceBackedSummary": "buod. {summary}",
+    "sourcesUsed": "Mga ginamit na source",
+    "sourcesUsedDescription": "Mga opisyal na source page na ginamit para sa major na ito.",
     "transcriptBasedCoursePlan": "Plano ng kursong nakabatay sa transcript",
     "transcriptBasedCoursePlanBody": "Binabasa ng tagaplano ang mga nakaraang natapos na klase mula sa iyong hindi opisyal na transcript para mamarkahan nito kung ano na ang tapos na.",
     "transcriptEvaluation": "Pagsusuri ng transcript",

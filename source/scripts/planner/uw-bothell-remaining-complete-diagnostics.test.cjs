@@ -23,6 +23,10 @@ const diagnosticTest = createDiagnosticTest(
   test,
   "TRANSFER_PLANNER_RUN_UW_BOTHELL_REMAINING_DIAGNOSTICS"
 );
+const onlineDiagnosticTest =
+  process.env.TRANSFER_PLANNER_COMPLETE_DIAGNOSTICS_ONLINE === "1"
+    ? diagnosticTest
+    : test.skip;
 const fetchSourceText = createSourceTextFetcher({
   operation: "Fetch Bothell diagnostic official source",
 });
@@ -168,7 +172,7 @@ for (const program of remainingBothellPrograms) {
     );
   });
 
-  diagnosticTest(`${program.planId} exposes every online official UW course`, async () => {
+  onlineDiagnosticTest(`${program.planId} exposes every online official UW course`, async () => {
     const onlineCourses = await getOnlineCourseCodes(program);
     if (onlineCourses.length === 0) {
       return;

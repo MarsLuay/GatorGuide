@@ -157,8 +157,24 @@ function readJsonIfExists(filePath) {
     return null;
   }
 }
+function getPositiveIntegerEnv(name, fallbackValue) {
+  const rawValue = process.env[name];
+  if (rawValue === undefined || rawValue === "") {
+    return fallbackValue;
+  }
+
+  const parsedValue = Number.parseInt(rawValue, 10);
+  return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : fallbackValue;
+}
 const DEFAULT_TIMEOUT_MS = 20000;
-const DEFAULT_CONCURRENCY = 2;
+const DEFAULT_CONCURRENCY = getPositiveIntegerEnv(
+  "GATORGUIDE_REQUIREMENT_SOURCE_PARSE_CONCURRENCY",
+  4
+);
+const SOURCE_ARTIFACT_CACHE_MAX_ENTRIES = getPositiveIntegerEnv(
+  "GATORGUIDE_REQUIREMENT_SOURCE_ARTIFACT_CACHE_MAX_ENTRIES",
+  80
+);
 const CURL_MAX_BUFFER_BYTES = SOURCE_DOWNLOAD_MAX_BUFFER_BYTES;
 const EXPLICIT_COURSE_CODE_PATTERN =
   /\b([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*(\d{3}[A-Za-z]?)\b/g;
@@ -487,6 +503,22 @@ const { downloadSource } = createSourceDownloader({
   execFileAsync,
   maxBufferBytes: CURL_MAX_BUFFER_BYTES,
 });
+
+function setBoundedSourceArtifactCacheEntry(cache, key, value) {
+  if (SOURCE_ARTIFACT_CACHE_MAX_ENTRIES <= 0) {
+    return;
+  }
+
+  if (cache.has(key)) {
+    cache.delete(key);
+  }
+  cache.set(key, value);
+
+  while (cache.size > SOURCE_ARTIFACT_CACHE_MAX_ENTRIES) {
+    const oldestKey = cache.keys().next().value;
+    cache.delete(oldestKey);
+  }
+}
 const REQUIREMENT_ADAPTERS = [
   {
     id: "uw-seattle-html-degree-page",
@@ -12920,7 +12952,7 @@ async function getHtmlSourceArtifacts(url, timeoutMs) {
     };
   })();
 
-  HTML_CACHE.set(cacheKey, htmlPromise);
+  setBoundedSourceArtifactCacheEntry(HTML_CACHE, cacheKey, htmlPromise);
 
   try {
     return await htmlPromise;
@@ -13043,7 +13075,7 @@ async function getDocxSourceArtifacts(url, timeoutMs) {
     };
   })();
 
-  DOCX_CACHE.set(cacheKey, docxPromise);
+  setBoundedSourceArtifactCacheEntry(DOCX_CACHE, cacheKey, docxPromise);
 
   try {
     return await docxPromise;
@@ -13064,28 +13096,48 @@ async function getPdfPageBlocks(url, timeoutMs) {
     const { body } = await downloadSource(url, timeoutMs, { binary: true });
     const pdfData = new Uint8Array(body);
     const pdfjs = await loadPdfjs();
-    const document = await pdfjs.getDocument({ data: pdfData, verbosity: 0 }).promise;
-    const pageCount = document.numPages;
-    const pageBlocks = [];
+    const loadingTask = pdfjs.getDocument({
+      data: pdfData,
+      disableFontFace: true,
+      useSystemFonts: false,
+      verbosity: 0,
+    });
+    let document = null;
 
-    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-      const page = await document.getPage(pageNumber);
-      const textContent = await page.getTextContent();
-      const lineTexts = buildPdfPageLineTexts(textContent);
-      const pageText = normalizeWhitespace(lineTexts.join(" "));
-      if (pageText) {
-        pageBlocks.push({
-          pageNumber,
-          pageText,
-          lineTexts,
-        });
+    try {
+      document = await loadingTask.promise;
+      const pageCount = document.numPages;
+      const pageBlocks = [];
+
+      for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+        const page = await document.getPage(pageNumber);
+        try {
+          const textContent = await page.getTextContent();
+          const lineTexts = buildPdfPageLineTexts(textContent);
+          const pageText = normalizeWhitespace(lineTexts.join(" "));
+          if (pageText) {
+            pageBlocks.push({
+              pageNumber,
+              pageText,
+              lineTexts,
+            });
+          }
+        } finally {
+          page.cleanup?.();
+        }
+      }
+
+      return pageBlocks;
+    } finally {
+      if (document?.destroy) {
+        await document.destroy();
+      } else {
+        loadingTask.destroy?.();
       }
     }
-
-    return pageBlocks;
   })();
 
-  PDF_PAGE_BLOCK_CACHE.set(cacheKey, pageBlocksPromise);
+  setBoundedSourceArtifactCacheEntry(PDF_PAGE_BLOCK_CACHE, cacheKey, pageBlocksPromise);
 
   try {
     return await pageBlocksPromise;

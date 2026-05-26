@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "Questo è il percorso del programma Green River che il pianificatore sta attualmente seguendo.",
     "selectedUwDegree": "Grado UW selezionato",
     "sourceBackedSummary": "riepilogo. {summary}",
+    "sourcesUsed": "Fonti usate",
+    "sourcesUsedDescription": "Pagine fonte ufficiali usate per questa specializzazione.",
     "transcriptBasedCoursePlan": "Piano del corso basato sulla trascrizione",
     "transcriptBasedCoursePlanBody": "Il pianificatore sta leggendo le lezioni completate in passato dalla tua trascrizione non ufficiale in modo da poter contrassegnare ciò che è già stato fatto.",
     "transcriptEvaluation": "Valutazione della trascrizione",

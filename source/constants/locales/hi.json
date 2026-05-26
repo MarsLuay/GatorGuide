@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "यह Green River प्रोग्राम पथ है जिसका योजनाकार वर्तमान में अनुसरण कर रहा है।",
     "selectedUwDegree": "चयनित UW डिग्री",
     "sourceBackedSummary": "सारांश। {summary}",
+    "sourcesUsed": "उपयोग किए गए स्रोत",
+    "sourcesUsedDescription": "इस मेजर के लिए उपयोग किए गए आधिकारिक स्रोत पृष्ठ।",
     "transcriptBasedCoursePlan": "प्रतिलेख-आधारित पाठ्यक्रम योजना",
     "transcriptBasedCoursePlanBody": "योजनाकार आपकी अनौपचारिक प्रतिलेख से पिछली पूर्ण की गई कक्षाओं को पढ़ रहा है ताकि यह चिह्नित कर सके कि क्या पहले ही पूरा हो चुका है।",
     "transcriptEvaluation": "प्रतिलेख मूल्यांकन",

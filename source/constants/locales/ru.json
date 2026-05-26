@@ -1345,6 +1345,8 @@
     "selectedGreenRiverProgramPathDescription": "Это путь программы Green River, по которому в настоящее время следует планировщик.",
     "selectedUwDegree": "Выбранная степень UW",
     "sourceBackedSummary": "краткое содержание. {summary}",
+    "sourcesUsed": "Использованные источники",
+    "sourcesUsedDescription": "Официальные страницы-источники, использованные для этой специальности.",
     "transcriptBasedCoursePlan": "План курса на основе стенограммы",
     "transcriptBasedCoursePlanBody": "Планировщик считывает прошлые завершенные занятия из вашего неофициального транскрипта, чтобы отметить то, что уже сделано.",
     "transcriptEvaluation": "Оценка стенограммы",

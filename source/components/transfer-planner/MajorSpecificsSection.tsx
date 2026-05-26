@@ -247,6 +247,9 @@ export function MajorSpecificsSection({
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
   const [isExtraUwDegreeLinksOpen, setIsExtraUwDegreeLinksOpen] = useState(false);
   const [isDegreeCoursesOpen, setIsDegreeCoursesOpen] = useState(false);
+  const [isGenEdCoursesOpen, setIsGenEdCoursesOpen] = useState(false);
+  const [isUsedDegreeCoursesOpen, setIsUsedDegreeCoursesOpen] = useState(false);
+  const [isSourcesUsedOpen, setIsSourcesUsedOpen] = useState(false);
   const [isDegreeCourseOptionsOpen, setIsDegreeCourseOptionsOpen] = useState(false);
   const [openDegreeCourseOptionGroupIds, setOpenDegreeCourseOptionGroupIds] = useState<
     Record<string, boolean>
@@ -269,21 +272,21 @@ export function MajorSpecificsSection({
   );
   const sourceBackedUwGeneralEducationSection = useMemo(
     () =>
-      isReferenceOpen && isDegreeCoursesOpen
+      isReferenceOpen && isDegreeCoursesOpen && isGenEdCoursesOpen
         ? buildMajorSpecificsSourceBackedUwGeneralEducationSection(plan, t)
         : null,
-    [isDegreeCoursesOpen, isReferenceOpen, plan, t]
+    [isDegreeCoursesOpen, isGenEdCoursesOpen, isReferenceOpen, plan, t]
   );
   const matchedGrcTrackBreadthRowsHiddenFromUwGenEdSection = useMemo(
     () =>
-      isReferenceOpen && isDegreeCoursesOpen
+      isReferenceOpen && isDegreeCoursesOpen && isGenEdCoursesOpen
         ? countMatchedGrcTrackGeneralEducationBreadthRows({
             track,
             completedCourses,
             plan,
           })
         : 0,
-    [completedCourses, isDegreeCoursesOpen, isReferenceOpen, plan, track]
+    [completedCourses, isDegreeCoursesOpen, isGenEdCoursesOpen, isReferenceOpen, plan, track]
   );
   const genEdSourceDebugText = useMemo(
     () =>
@@ -300,7 +303,7 @@ export function MajorSpecificsSection({
   );
   const uwGeneralTransferRequirementSection = useMemo(
     () =>
-      isReferenceOpen && isDegreeCoursesOpen
+      isReferenceOpen && isDegreeCoursesOpen && isGenEdCoursesOpen
         ? buildUwGeneralTransferRequirementSection(plan, {
             completedCourses: transcriptDerivedCompletedCourses,
             hasTranscriptDerivedCreditSource,
@@ -309,6 +312,7 @@ export function MajorSpecificsSection({
     [
       hasTranscriptDerivedCreditSource,
       isDegreeCoursesOpen,
+      isGenEdCoursesOpen,
       isReferenceOpen,
       plan,
       transcriptDerivedCompletedCourses,
@@ -324,6 +328,7 @@ export function MajorSpecificsSection({
   const genEdCourseSection =
     majorSpecificsCourseSections.find((section) => section.id === "gen-ed-breadth-requirements") ??
     null;
+  const genEdCourseRowCount = genEdCourseSection?.rows.length ?? 0;
   const usedDegreeCourseSections = useMemo(
     () => collectUsedDegreeCourseSections(majorSpecificsCourseSections),
     [majorSpecificsCourseSections]
@@ -366,6 +371,9 @@ export function MajorSpecificsSection({
     () => collectExtraDegreeLinks(plan.officialLinks, primaryUwDegreeLink),
     [plan.officialLinks, primaryUwDegreeLink]
   );
+  const sourceLinksUsed = primaryUwDegreeLink
+    ? [primaryUwDegreeLink, ...extraUwDegreeLinks]
+    : extraUwDegreeLinks;
   const majorSpecificsSummaryText = primaryUwDegreeLink
     ? t("transferPlanner.majorSpecificsSummaryWithOfficial")
     : t("transferPlanner.majorSpecificsSummaryFallback");
@@ -402,6 +410,15 @@ export function MajorSpecificsSection({
     }
     return t("transferPlanner.degreeCourseOptionChooseOptions");
   };
+  const getRequirementCountSummary = (count: number) =>
+    t("transferPlanner.ruleCount", {
+      count,
+      noun: t(
+        count === 1
+          ? "transferPlanner.requirementSingular"
+          : "transferPlanner.requirementPlural"
+      ),
+    });
   const renderDegreeCourseOptionDetail = (
     label: string,
     values: (string | null | undefined)[]
@@ -418,6 +435,21 @@ export function MajorSpecificsSection({
       </View>
     );
   };
+  const renderDegreeSourceLink = (link: DisplayDegreeLink) => (
+    <TouchCard
+      key={link.url}
+      onPress={() => void openExternalLink(link.url)}
+      accessibilityRole="link"
+      accessibilityLabel={t("general.openNamed", { name: link.label })}
+      className={`border ${borderClass} rounded-2xl px-4 py-4`}
+    >
+      <Text className="text-emerald-500 font-semibold">{link.label}</Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>{link.url}</Text>
+      {link.note ? (
+        <Text className={`${secondaryTextClass} text-xs mt-2`}>{link.note}</Text>
+      ) : null}
+    </TouchCard>
+  );
 
   return (
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
@@ -453,19 +485,7 @@ export function MajorSpecificsSection({
               <Text className={`${secondaryTextClass} text-sm`}>
                 {t("transferPlanner.officialUwDegreePageDescription")}
               </Text>
-              <TouchCard
-                onPress={() => void openExternalLink(primaryUwDegreeLink.url)}
-                accessibilityRole="link"
-                accessibilityLabel={t("general.openNamed", { name: primaryUwDegreeLink.label })}
-                className={`border ${borderClass} rounded-2xl px-4 py-4`}
-              >
-                <Text className="text-emerald-500 font-semibold">
-                  {primaryUwDegreeLink.label}
-                </Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                  {primaryUwDegreeLink.url}
-                </Text>
-              </TouchCard>
+              {renderDegreeSourceLink(primaryUwDegreeLink)}
               {extraUwDegreeLinks.length ? (
                 <View className="gap-3">
                   <TouchOptionRow
@@ -503,27 +523,7 @@ export function MajorSpecificsSection({
 
                   {isExtraUwDegreeLinksOpen ? (
                     <View className="gap-3">
-                      {extraUwDegreeLinks.map((link) => (
-                        <TouchCard
-                          key={link.url}
-                          onPress={() => void openExternalLink(link.url)}
-                          accessibilityRole="link"
-                          accessibilityLabel={t("general.openNamed", { name: link.label })}
-                          className={`border ${borderClass} rounded-2xl px-4 py-4`}
-                        >
-                          <Text className="text-emerald-500 font-semibold">
-                            {link.label}
-                          </Text>
-                          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                            {link.url}
-                          </Text>
-                          {link.note ? (
-                            <Text className={`${secondaryTextClass} text-xs mt-2`}>
-                              {link.note}
-                            </Text>
-                          ) : null}
-                        </TouchCard>
-                      ))}
+                      {extraUwDegreeLinks.map(renderDegreeSourceLink)}
                     </View>
                   ) : null}
                 </View>
@@ -561,304 +561,408 @@ export function MajorSpecificsSection({
 
               {isDegreeCoursesOpen ? (
                 <View className="mt-4 gap-4">
-                  <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>
-                      {t("transferPlanner.genEdCourses")}
-                    </Text>
-                    {uwGeneralTransferRequirementSection ? (
-                      <View className="mt-2 gap-2">
-                        <Text className={`${secondaryTextClass} text-sm`}>
-                          {uwGeneralTransferRequirementSection.summary}
-                        </Text>
-                        {uwGeneralTransferRequirementSection.items.map((entry) => (
-                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {`${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`}
+                  <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                    <TouchOptionRow
+                      onPress={() => setIsGenEdCoursesOpen((currentValue) => !currentValue)}
+                      expanded={isGenEdCoursesOpen}
+                      accessibilityLabel={t("transferPlanner.genEdCourses")}
+                    >
+                      <View className="flex-row items-start justify-between gap-3">
+                        <View className="flex-1 min-w-0">
+                          <Text className={`${textClass} text-sm font-semibold`}>
+                            {t("transferPlanner.genEdCourses")}
                           </Text>
-                        ))}
-                        {uwGeneralTransferRequirementSection.note ? (
-                          <Text className={`${secondaryTextClass} text-xs`}>
-                            {uwGeneralTransferRequirementSection.note}
+                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                            {genEdCourseRowCount
+                              ? getRequirementCountSummary(genEdCourseRowCount)
+                              : t("transferPlanner.majorRequiredGenEdsDescription")}
+                          </Text>
+                        </View>
+                        <Ionicons
+                          name={isGenEdCoursesOpen ? "chevron-up" : "chevron-down"}
+                          size={18}
+                          color="#9CA3AF"
+                        />
+                      </View>
+                    </TouchOptionRow>
+
+                    {isGenEdCoursesOpen ? (
+                      <View className="mt-3 gap-3">
+                        {uwGeneralTransferRequirementSection ? (
+                          <View className="gap-2">
+                            <Text className={`${secondaryTextClass} text-sm`}>
+                              {uwGeneralTransferRequirementSection.summary}
+                            </Text>
+                            {uwGeneralTransferRequirementSection.items.map((entry) => (
+                              <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                                {`${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`}
+                              </Text>
+                            ))}
+                            {uwGeneralTransferRequirementSection.note ? (
+                              <Text className={`${secondaryTextClass} text-xs`}>
+                                {uwGeneralTransferRequirementSection.note}
+                              </Text>
+                            ) : null}
+                          </View>
+                        ) : null}
+                        {genEdCourseSection?.rows.length ? (
+                          <View className="gap-2">
+                            {genEdCourseSection.rows.map((entry) => (
+                              <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                                {entry.text}
+                              </Text>
+                            ))}
+                          </View>
+                        ) : null}
+                        <Text
+                          selectable
+                          style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+                          accessibilityElementsHidden
+                          importantForAccessibility="no-hide-descendants"
+                        >
+                          {genEdSourceDebugText}
+                        </Text>
+                        {!uwGeneralTransferRequirementSection &&
+                        !sourceBackedUwGeneralEducationSection &&
+                        !genEdCourseSection?.rows.length ? (
+                          <Text className={`${secondaryTextClass} text-sm`}>
+                            {t("transferPlanner.noSourceBackedGenEdTargets")}
                           </Text>
                         ) : null}
                       </View>
                     ) : null}
-                    {genEdCourseSection?.rows.length ? (
-                      <View className="mt-2 gap-2">
-                        {genEdCourseSection.rows.map((entry) => (
-                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {entry.text}
-                          </Text>
-                        ))}
-                      </View>
-                    ) : null}
-                    <Text
-                      selectable
-                      style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
-                      accessibilityElementsHidden
-                      importantForAccessibility="no-hide-descendants"
+                  </View>
+
+                  <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                    <TouchOptionRow
+                      onPress={() => setIsUsedDegreeCoursesOpen((currentValue) => !currentValue)}
+                      expanded={isUsedDegreeCoursesOpen}
+                      accessibilityLabel={t("transferPlanner.usedDegreeCourses")}
                     >
-                      {genEdSourceDebugText}
-                    </Text>
-                    {!uwGeneralTransferRequirementSection &&
-                    !sourceBackedUwGeneralEducationSection &&
-                    !genEdCourseSection?.rows.length ? (
-                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        {t("transferPlanner.noSourceBackedGenEdTargets")}
-                      </Text>
+                      <View className="flex-row items-start justify-between gap-3">
+                        <View className="flex-1 min-w-0">
+                          <Text className={`${textClass} text-sm font-semibold`}>
+                            {t("transferPlanner.usedDegreeCourses")}
+                          </Text>
+                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                            {usedDegreeCourseRowCount
+                              ? getRequirementCountSummary(usedDegreeCourseRowCount)
+                              : t("transferPlanner.noUsedDegreeCourses")}
+                          </Text>
+                        </View>
+                        <Ionicons
+                          name={isUsedDegreeCoursesOpen ? "chevron-up" : "chevron-down"}
+                          size={18}
+                          color="#9CA3AF"
+                        />
+                      </View>
+                    </TouchOptionRow>
+
+                    {isUsedDegreeCoursesOpen ? (
+                      <View className="mt-3 gap-4">
+                        <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                          <TouchOptionRow
+                            onPress={() =>
+                              setIsDegreeCourseOptionsOpen((currentValue) => !currentValue)
+                            }
+                            expanded={isDegreeCourseOptionsOpen}
+                            accessibilityLabel={t("transferPlanner.degreeCourseOptions")}
+                          >
+                            <View className="flex-row items-start justify-between gap-3">
+                              <View className="flex-1 min-w-0">
+                                <Text className={`${textClass} text-sm font-semibold`}>
+                                  {t("transferPlanner.degreeCourseOptions")}
+                                </Text>
+                                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                  {degreeCourseOptionGroups.length
+                                    ? t("transferPlanner.degreeCourseOptionsSummary", {
+                                        groupCount: degreeCourseOptionGroups.length,
+                                        optionCount: degreeCourseOptionCount,
+                                      })
+                                    : t("transferPlanner.degreeCourseOptionsDescription")}
+                                </Text>
+                              </View>
+                              <Ionicons
+                                name={isDegreeCourseOptionsOpen ? "chevron-up" : "chevron-down"}
+                                size={18}
+                                color="#9CA3AF"
+                              />
+                            </View>
+                          </TouchOptionRow>
+
+                          {isDegreeCourseOptionsOpen ? (
+                            <View className="mt-3 gap-3">
+                              {degreeCourseOptionGroups.length ? (
+                                degreeCourseOptionGroups.map((group) => {
+                                  const isGroupOpen =
+                                    openDegreeCourseOptionGroupIds[group.id] ?? false;
+
+                                  return (
+                                    <View
+                                      key={group.id}
+                                      className={`border ${borderClass} rounded-2xl px-3 py-3`}
+                                    >
+                                      <TouchOptionRow
+                                        onPress={() => toggleDegreeCourseOptionGroup(group.id)}
+                                        expanded={isGroupOpen}
+                                        accessibilityLabel={group.label}
+                                      >
+                                        <View className="flex-row items-start justify-between gap-3">
+                                          <View className="flex-1 min-w-0">
+                                            <Text className={`${textClass} text-sm font-semibold`}>
+                                              {group.label}
+                                            </Text>
+                                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                              {getDegreeCourseOptionGroupSummary(group)}
+                                            </Text>
+                                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                              {t("transferPlanner.degreeCourseOptionCountSummary", {
+                                                count: group.options.length,
+                                              })}
+                                            </Text>
+                                          </View>
+                                          <Ionicons
+                                            name={isGroupOpen ? "chevron-up" : "chevron-down"}
+                                            size={18}
+                                            color="#9CA3AF"
+                                          />
+                                        </View>
+                                      </TouchOptionRow>
+
+                                      {isGroupOpen ? (
+                                        <View className="mt-3 gap-3">
+                                          {uniqueNonEmptyStrings(group.notes ?? []).length ? (
+                                            <Text className={`${secondaryTextClass} text-xs`}>
+                                              {uniqueNonEmptyStrings(group.notes ?? []).join(" ")}
+                                            </Text>
+                                          ) : null}
+                                          {group.options.map((option, optionIndex) => {
+                                            const optionStateId = getDegreeCourseOptionStateId(
+                                              group,
+                                              option,
+                                              optionIndex
+                                            );
+                                            const isOptionOpen =
+                                              openDegreeCourseOptionIds[optionStateId] ?? false;
+                                            const selectedOptionIds =
+                                              selectedDegreeCourseOptionIdsByGroup.get(group.id);
+                                            const isSelectedOption =
+                                              Boolean(option.id) &&
+                                              Boolean(selectedOptionIds?.has(option.id ?? ""));
+                                            const optionTitle =
+                                              getDegreeCourseOptionTitle(option) ||
+                                              t("transferPlanner.degreeCourseOptionFallback");
+                                            const creditText =
+                                              getDegreeCourseOptionCreditText(option);
+                                            const optionSubtitleParts = uniqueNonEmptyStrings([
+                                              isSelectedOption
+                                                ? t("transferPlanner.degreeCourseOptionSelected")
+                                                : null,
+                                              creditText
+                                                ? t(
+                                                    "transferPlanner.degreeCourseOptionCreditsInline",
+                                                    { credits: creditText }
+                                                  )
+                                                : null,
+                                            ]);
+
+                                            return (
+                                              <View
+                                                key={optionStateId}
+                                                className={`border ${borderClass} rounded-2xl px-3 py-3`}
+                                              >
+                                                <TouchOptionRow
+                                                  onPress={() =>
+                                                    toggleDegreeCourseOption(optionStateId)
+                                                  }
+                                                  expanded={isOptionOpen}
+                                                  accessibilityLabel={optionTitle}
+                                                >
+                                                  <View className="flex-row items-start justify-between gap-3">
+                                                    <View className="flex-1 min-w-0">
+                                                      <Text
+                                                        className={`${textClass} text-sm font-semibold`}
+                                                      >
+                                                        {optionTitle}
+                                                      </Text>
+                                                      {optionSubtitleParts.length ? (
+                                                        <Text
+                                                          className={`${secondaryTextClass} text-xs mt-1`}
+                                                        >
+                                                          {optionSubtitleParts.join(" | ")}
+                                                        </Text>
+                                                      ) : null}
+                                                    </View>
+                                                    <Ionicons
+                                                      name={
+                                                        isOptionOpen
+                                                          ? "chevron-up"
+                                                          : "chevron-down"
+                                                      }
+                                                      size={18}
+                                                      color="#9CA3AF"
+                                                    />
+                                                  </View>
+                                                </TouchOptionRow>
+
+                                                {isOptionOpen ? (
+                                                  <View className="mt-3 gap-3">
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionDisplayCourses"
+                                                      ),
+                                                      option.displayCourseCodes ?? []
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionUwCourses"
+                                                      ),
+                                                      option.uwCourses ?? []
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionEquivalentUwCourses"
+                                                      ),
+                                                      option.equivalentUwCourseCodes ?? []
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionConditionalLabCourses"
+                                                      ),
+                                                      option.conditionalLabCourses ?? []
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionGrcMatches"
+                                                      ),
+                                                      option.grcMatches ?? []
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionCategory"
+                                                      ),
+                                                      [
+                                                        option.category,
+                                                        option.categoryOption?.title,
+                                                        option.categoryOption?.sourceText,
+                                                      ]
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionSource"
+                                                      ),
+                                                      [
+                                                        option.sourceHeading,
+                                                        option.sourceCategory,
+                                                        group.sourceHeading,
+                                                        group.sourceRowText,
+                                                      ]
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionNotes"
+                                                      ),
+                                                      option.notes ?? []
+                                                    )}
+                                                    {renderDegreeCourseOptionDetail(
+                                                      t(
+                                                        "transferPlanner.degreeCourseOptionConstraints"
+                                                      ),
+                                                      option.constraints ?? []
+                                                    )}
+                                                  </View>
+                                                ) : null}
+                                              </View>
+                                            );
+                                          })}
+                                        </View>
+                                      ) : null}
+                                    </View>
+                                  );
+                                })
+                              ) : (
+                                <Text className={`${secondaryTextClass} text-sm`}>
+                                  {t("transferPlanner.noDegreeCourseOptions")}
+                                </Text>
+                              )}
+                            </View>
+                          ) : null}
+                        </View>
+                        {usedDegreeCourseSections.length ? (
+                          <View className="gap-4">
+                            {usedDegreeCourseSections.map((section) => (
+                              <View key={section.id}>
+                                <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+                                  {section.label}
+                                </Text>
+                                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                  {section.description}
+                                </Text>
+                                <View className="mt-2 gap-3">
+                                  {section.rows.map((entry) => (
+                                    <View key={entry.id}>
+                                      <Text className={`${secondaryTextClass} text-sm`}>
+                                        {entry.text}
+                                      </Text>
+                                      {entry.alternativeOptionsText ? (
+                                        <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                          {entry.alternativeOptionsText}
+                                        </Text>
+                                      ) : null}
+                                    </View>
+                                  ))}
+                                </View>
+                              </View>
+                            ))}
+                          </View>
+                        ) : (
+                          <Text className={`${secondaryTextClass} text-sm`}>
+                            {t("transferPlanner.noUsedDegreeCourses")}
+                          </Text>
+                        )}
+                      </View>
                     ) : null}
                   </View>
 
-                  <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>
-                      {t("transferPlanner.usedDegreeCourses")}
-                    </Text>
-                    <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-2`}>
+                  {sourceLinksUsed.length ? (
+                    <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
                       <TouchOptionRow
-                        onPress={() =>
-                          setIsDegreeCourseOptionsOpen((currentValue) => !currentValue)
-                        }
-                        expanded={isDegreeCourseOptionsOpen}
-                        accessibilityLabel={t("transferPlanner.degreeCourseOptions")}
+                        onPress={() => setIsSourcesUsedOpen((currentValue) => !currentValue)}
+                        expanded={isSourcesUsedOpen}
+                        accessibilityLabel={t("transferPlanner.sourcesUsed")}
                       >
                         <View className="flex-row items-start justify-between gap-3">
                           <View className="flex-1 min-w-0">
                             <Text className={`${textClass} text-sm font-semibold`}>
-                              {t("transferPlanner.degreeCourseOptions")}
+                              {t("transferPlanner.sourcesUsed")}
                             </Text>
                             <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                              {degreeCourseOptionGroups.length
-                                ? t("transferPlanner.degreeCourseOptionsSummary", {
-                                    groupCount: degreeCourseOptionGroups.length,
-                                    optionCount: degreeCourseOptionCount,
-                                  })
-                                : t("transferPlanner.degreeCourseOptionsDescription")}
+                              {t(
+                                sourceLinksUsed.length === 1
+                                  ? "resources.countLinkSingular"
+                                  : "resources.countLinkPlural",
+                                { count: sourceLinksUsed.length }
+                              )}
+                            </Text>
+                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                              {t("transferPlanner.sourcesUsedDescription")}
                             </Text>
                           </View>
                           <Ionicons
-                            name={isDegreeCourseOptionsOpen ? "chevron-up" : "chevron-down"}
+                            name={isSourcesUsedOpen ? "chevron-up" : "chevron-down"}
                             size={18}
                             color="#9CA3AF"
                           />
                         </View>
                       </TouchOptionRow>
 
-                      {isDegreeCourseOptionsOpen ? (
+                      {isSourcesUsedOpen ? (
                         <View className="mt-3 gap-3">
-                          {degreeCourseOptionGroups.length ? (
-                            degreeCourseOptionGroups.map((group) => {
-                              const isGroupOpen =
-                                openDegreeCourseOptionGroupIds[group.id] ?? false;
-
-                              return (
-                                <View
-                                  key={group.id}
-                                  className={`border ${borderClass} rounded-2xl px-3 py-3`}
-                                >
-                                  <TouchOptionRow
-                                    onPress={() => toggleDegreeCourseOptionGroup(group.id)}
-                                    expanded={isGroupOpen}
-                                    accessibilityLabel={group.label}
-                                  >
-                                    <View className="flex-row items-start justify-between gap-3">
-                                      <View className="flex-1 min-w-0">
-                                        <Text className={`${textClass} text-sm font-semibold`}>
-                                          {group.label}
-                                        </Text>
-                                        <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                          {getDegreeCourseOptionGroupSummary(group)}
-                                        </Text>
-                                        <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                          {t("transferPlanner.degreeCourseOptionCountSummary", {
-                                            count: group.options.length,
-                                          })}
-                                        </Text>
-                                      </View>
-                                      <Ionicons
-                                        name={isGroupOpen ? "chevron-up" : "chevron-down"}
-                                        size={18}
-                                        color="#9CA3AF"
-                                      />
-                                    </View>
-                                  </TouchOptionRow>
-
-                                  {isGroupOpen ? (
-                                    <View className="mt-3 gap-3">
-                                      {uniqueNonEmptyStrings(group.notes ?? []).length ? (
-                                        <Text className={`${secondaryTextClass} text-xs`}>
-                                          {uniqueNonEmptyStrings(group.notes ?? []).join(" ")}
-                                        </Text>
-                                      ) : null}
-                                      {group.options.map((option, optionIndex) => {
-                                        const optionStateId = getDegreeCourseOptionStateId(
-                                          group,
-                                          option,
-                                          optionIndex
-                                        );
-                                        const isOptionOpen =
-                                          openDegreeCourseOptionIds[optionStateId] ?? false;
-                                        const selectedOptionIds =
-                                          selectedDegreeCourseOptionIdsByGroup.get(group.id);
-                                        const isSelectedOption =
-                                          Boolean(option.id) &&
-                                          Boolean(selectedOptionIds?.has(option.id ?? ""));
-                                        const optionTitle =
-                                          getDegreeCourseOptionTitle(option) ||
-                                          t("transferPlanner.degreeCourseOptionFallback");
-                                        const creditText = getDegreeCourseOptionCreditText(option);
-                                        const optionSubtitleParts = uniqueNonEmptyStrings([
-                                          isSelectedOption
-                                            ? t("transferPlanner.degreeCourseOptionSelected")
-                                            : null,
-                                          creditText
-                                            ? t("transferPlanner.degreeCourseOptionCreditsInline", {
-                                                credits: creditText,
-                                              })
-                                            : null,
-                                        ]);
-
-                                        return (
-                                          <View
-                                            key={optionStateId}
-                                            className={`border ${borderClass} rounded-2xl px-3 py-3`}
-                                          >
-                                            <TouchOptionRow
-                                              onPress={() =>
-                                                toggleDegreeCourseOption(optionStateId)
-                                              }
-                                              expanded={isOptionOpen}
-                                              accessibilityLabel={optionTitle}
-                                            >
-                                              <View className="flex-row items-start justify-between gap-3">
-                                                <View className="flex-1 min-w-0">
-                                                  <Text
-                                                    className={`${textClass} text-sm font-semibold`}
-                                                  >
-                                                    {optionTitle}
-                                                  </Text>
-                                                  {optionSubtitleParts.length ? (
-                                                    <Text
-                                                      className={`${secondaryTextClass} text-xs mt-1`}
-                                                    >
-                                                      {optionSubtitleParts.join(" | ")}
-                                                    </Text>
-                                                  ) : null}
-                                                </View>
-                                                <Ionicons
-                                                  name={
-                                                    isOptionOpen
-                                                      ? "chevron-up"
-                                                      : "chevron-down"
-                                                  }
-                                                  size={18}
-                                                  color="#9CA3AF"
-                                                />
-                                              </View>
-                                            </TouchOptionRow>
-
-                                            {isOptionOpen ? (
-                                              <View className="mt-3 gap-3">
-                                                {renderDegreeCourseOptionDetail(
-                                                  t(
-                                                    "transferPlanner.degreeCourseOptionDisplayCourses"
-                                                  ),
-                                                  option.displayCourseCodes ?? []
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t("transferPlanner.degreeCourseOptionUwCourses"),
-                                                  option.uwCourses ?? []
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t(
-                                                    "transferPlanner.degreeCourseOptionEquivalentUwCourses"
-                                                  ),
-                                                  option.equivalentUwCourseCodes ?? []
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t(
-                                                    "transferPlanner.degreeCourseOptionConditionalLabCourses"
-                                                  ),
-                                                  option.conditionalLabCourses ?? []
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t("transferPlanner.degreeCourseOptionGrcMatches"),
-                                                  option.grcMatches ?? []
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t("transferPlanner.degreeCourseOptionCategory"),
-                                                  [
-                                                    option.category,
-                                                    option.categoryOption?.title,
-                                                    option.categoryOption?.sourceText,
-                                                  ]
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t("transferPlanner.degreeCourseOptionSource"),
-                                                  [
-                                                    option.sourceHeading,
-                                                    option.sourceCategory,
-                                                    group.sourceHeading,
-                                                    group.sourceRowText,
-                                                  ]
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t("transferPlanner.degreeCourseOptionNotes"),
-                                                  option.notes ?? []
-                                                )}
-                                                {renderDegreeCourseOptionDetail(
-                                                  t("transferPlanner.degreeCourseOptionConstraints"),
-                                                  option.constraints ?? []
-                                                )}
-                                              </View>
-                                            ) : null}
-                                          </View>
-                                        );
-                                      })}
-                                    </View>
-                                  ) : null}
-                                </View>
-                              );
-                            })
-                          ) : (
-                            <Text className={`${secondaryTextClass} text-sm`}>
-                              {t("transferPlanner.noDegreeCourseOptions")}
-                            </Text>
-                          )}
+                          {sourceLinksUsed.map(renderDegreeSourceLink)}
                         </View>
                       ) : null}
                     </View>
-                    {usedDegreeCourseSections.length ? (
-                      <View className="mt-2 gap-4">
-                        {usedDegreeCourseSections.map((section) => (
-                          <View key={section.id}>
-                            <Text className={`${secondaryTextClass} text-xs font-semibold`}>
-                              {section.label}
-                            </Text>
-                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                              {section.description}
-                            </Text>
-                            <View className="mt-2 gap-3">
-                              {section.rows.map((entry) => (
-                                <View key={entry.id}>
-                                  <Text className={`${secondaryTextClass} text-sm`}>
-                                    {entry.text}
-                                  </Text>
-                                  {entry.alternativeOptionsText ? (
-                                    <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                      {entry.alternativeOptionsText}
-                                    </Text>
-                                  ) : null}
-                                </View>
-                              ))}
-                            </View>
-                          </View>
-                        ))}
-                      </View>
-                    ) : (
-                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        {t("transferPlanner.noUsedDegreeCourses")}
-                      </Text>
-                    )}
-                  </View>
+                  ) : null}
 
                   <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
                     <TouchOptionRow

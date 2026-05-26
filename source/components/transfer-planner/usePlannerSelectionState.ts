@@ -15,6 +15,7 @@ import {
   TRANSFER_PLANNER_CAMPUSES,
   TRANSFER_PLANNER_TRACKS,
   type TransferPlannerCampusId,
+  type TransferPlannerMajorPlan,
 } from "@/constants/transfer-planner-source/student-runtime";
 import type { QuestionnaireAnswers } from "@/hooks/use-app-data";
 
@@ -22,6 +23,7 @@ import {
   getNextSuggestedScheduleToggleSelectionIds,
   getSuggestedScheduleUniqueOptionIds,
 } from "./transfer-planner-suggested-schedule";
+import { hasAnyDirectMajorEquivalenciesInPlanOrPathways } from "./transfer-planner-major-specifics-formatters";
 import {
   GRC_PLANNER_CAMPUS_ID,
   getDefaultPlannerCampusId,
@@ -49,6 +51,27 @@ type UsePlannerSelectionStateInput = {
   userMajor?: string | null;
 };
 
+const SELECTABLE_UW_MAJOR_PLANS_BY_CAMPUS_ID = new Map<
+  TransferPlannerCampusId,
+  TransferPlannerMajorPlan[]
+>();
+
+function getSelectableUwMajorPlansForCampus(campusId: TransferPlannerCampusId) {
+  const cachedMajors = SELECTABLE_UW_MAJOR_PLANS_BY_CAMPUS_ID.get(campusId);
+  if (cachedMajors) {
+    return cachedMajors;
+  }
+
+  const majors = getTransferPlannerStudentRuntimeMajorsForCampus(campusId).filter((plan) =>
+    hasAnyDirectMajorEquivalenciesInPlanOrPathways(
+      plan,
+      getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    )
+  );
+  SELECTABLE_UW_MAJOR_PLANS_BY_CAMPUS_ID.set(campusId, majors);
+  return majors;
+}
+
 export function usePlannerSelectionState({
   isHydrated,
   questionnaireAnswers,
@@ -59,7 +82,7 @@ export function usePlannerSelectionState({
   const [selectedCampusId, setSelectedCampusId] =
     useState<PlannerCampusSelectionId>("uw-seattle");
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
-    getTransferPlannerStudentRuntimeMajorsForCampus("uw-seattle")[0]?.id ?? ""
+    getSelectableUwMajorPlansForCampus("uw-seattle")[0]?.id ?? ""
   );
   const [openSelector, setOpenSelector] = useState<PlannerSelectorKey>(null);
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
@@ -91,7 +114,7 @@ export function usePlannerSelectionState({
   );
   const campusMajors = useMemo(
     () =>
-      isUwPlanner ? getTransferPlannerStudentRuntimeMajorsForCampus(selectedUwCampusId) : [],
+      isUwPlanner ? getSelectableUwMajorPlansForCampus(selectedUwCampusId) : [],
     [isUwPlanner, selectedUwCampusId]
   );
   const selectedBasePlan = useMemo(
@@ -207,7 +230,7 @@ export function usePlannerSelectionState({
       const campusId = campusIdsToWarm[campusIndex];
       campusIndex += 1;
       if (campusId) {
-        getTransferPlannerStudentRuntimeMajorsForCampus(campusId);
+        getSelectableUwMajorPlansForCampus(campusId);
       }
 
       if (campusIndex < campusIdsToWarm.length) {
@@ -259,7 +282,7 @@ export function usePlannerSelectionState({
     );
     if (!matchedCampus) return;
 
-    const nextMajors = getTransferPlannerStudentRuntimeMajorsForCampus(matchedCampus.id);
+    const nextMajors = getSelectableUwMajorPlansForCampus(matchedCampus.id);
     const matchedMajor = nextMajors.find((entry) => entry.id === storedLastSelectedPlan.majorId);
     if (!matchedMajor) return;
 

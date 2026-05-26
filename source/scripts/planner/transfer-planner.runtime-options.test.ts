@@ -40,6 +40,7 @@ import {
   getChecklistCoverageForPlan,
   getCompactRuntimeGrcCourseList,
   getCompactRuntimeMajorPlan,
+  getCompactRuntimePathwaysForPlan,
   getCompactRuntimeTrack,
   getGuideBackedCoverageGaps,
   getPlannedCourseLabelList,
@@ -85,6 +86,11 @@ import {
   TRANSFER_PLANNER_SUMMARY,
   TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS,
 } from "./transfer-planner.test-support";
+import {
+  hasAnyDirectMajorEquivalencies,
+  hasAnyDirectMajorEquivalenciesInPlanOrPathways,
+  hasDirectMajorEquivalencyInCourseLabels,
+} from "@/components/transfer-planner/transfer-planner-major-specifics-formatters";
 import {
   collectSuggestedScheduleOptionGroups,
   getNextSuggestedScheduleToggleSelectionIds,
@@ -1270,6 +1276,32 @@ test("Tacoma Computer Engineering keeps choice-set-backed prep aligned without l
       `Expected Tacoma Computer Engineering UW-only planning to keep ${courseCode}.`
     );
   }
+});
+
+test("Tacoma Computer Engineering is treated as having class equivalencies", () => {
+  const basePlan = getCompactRuntimeMajorPlan("uw-tacoma-computer-engineering");
+  const resolvedPlan = resolveCompactRuntimeMajorPlan(basePlan, null);
+
+  assert.ok(basePlan, "Expected the Tacoma Computer Engineering base plan.");
+  assert.ok(resolvedPlan, "Expected the Tacoma Computer Engineering resolved runtime plan.");
+  assert.equal(
+    hasDirectMajorEquivalencyInCourseLabels(getCompactRuntimeGrcCourseList(resolvedPlan)),
+    true,
+    "Expected Tacoma Computer Engineering GRC courses to have accepted UW-GRC equivalency rules."
+  );
+  assert.equal(
+    hasAnyDirectMajorEquivalencies(resolvedPlan),
+    true,
+    "Expected the selected Tacoma Computer Engineering plan to be allowed to build a quarter plan."
+  );
+  assert.equal(
+    hasAnyDirectMajorEquivalenciesInPlanOrPathways(
+      basePlan,
+      getCompactRuntimePathwaysForPlan(basePlan)
+    ),
+    true,
+    "Expected Tacoma Computer Engineering to stay visible in the major dropdown."
+  );
 });
 
 test("UW runtime majors keep a distinct official UW transfer admission requirements section when transcript-derived credits stay below 40", () => {
