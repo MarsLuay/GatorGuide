@@ -67,7 +67,7 @@ export function LiquidGlassView({
       }
     : undefined;
 
-  const Wrapper: React.ComponentType<any> = animate ? Animated.View : View;
+  const Wrapper = animate ? Animated.View : View;
 
   if (Platform.OS === "web") {
     const surfaceStyle: React.CSSProperties & { WebkitBackdropFilter?: string } = {

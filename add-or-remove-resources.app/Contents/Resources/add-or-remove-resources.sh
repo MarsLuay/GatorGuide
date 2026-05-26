@@ -129,12 +129,23 @@ locate_or_clone_repo() {
   log "Repo cloned successfully."
 }
 
+organize_tmp() {
+  if [ -f "$APP_ROOT/scripts/organize-tmp-artifacts.cjs" ] && command_exists node; then
+    node "$APP_ROOT/scripts/organize-tmp-artifacts.cjs" --quiet >/dev/null 2>&1 || true
+  fi
+}
+
 main() {
   locate_or_clone_repo
   [ -f "$NODE_SCRIPT" ] || fail "Could not find \"$NODE_SCRIPT\"."
   command_exists node || fail "Node.js was not found. Install Node.js from https://nodejs.org/ and run this launcher again."
   cd "$REPO_ROOT"
+  set +e
   node "$NODE_SCRIPT" "$@"
+  local exit_code="$?"
+  set -e
+  organize_tmp
+  exit "$exit_code"
 }
 
 main "$@"

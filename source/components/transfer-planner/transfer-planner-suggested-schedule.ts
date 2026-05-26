@@ -5,8 +5,14 @@ import {
   type TransferPlannerResolvedMajorPlan,
 } from "@/constants/transfer-planner-source/student-runtime";
 import {
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID,
+} from "@/constants/transfer-planner-source/computer-engineering-natural-science";
+import {
   auditOptionTitleFallback,
   extractCourseCodes,
+  isUserUnselectedRequirementOptionMarker,
+  markUserUnselectedRequirementOptionId,
+  normalizeUserUnselectedRequirementOptionIds,
   UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS,
   type SuggestedQuarterPlan,
 } from "@/services/planning/transfer-planner.service";
@@ -277,7 +283,14 @@ export function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
     lower.includes("natural science") || /\bnsc\b/i.test(lower) || /\bn\s*\d\b/i.test(normalized);
 
   if (hasComputerEngineeringNaturalScience) {
-    return { kind: "major-source" as const };
+    if (!/\bremaining\b/i.test(normalized)) {
+      return { kind: "major-source" as const };
+    }
+
+    return {
+      kind: "transfer-equivalency" as const,
+      tags: [COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID] as const,
+    };
   }
   if (hasUnresolvedApprovedListCue) {
     return null;
@@ -413,8 +426,52 @@ export type SuggestedScheduleOption = SuggestedScheduleOptionGroup["options"][nu
 export function getSuggestedScheduleUniqueOptionIds(optionIds: string[] | null | undefined) {
   return [
     ...new Set(
-      (optionIds ?? []).map((optionId) => String(optionId ?? "").trim()).filter(Boolean)
+      (optionIds ?? [])
+        .map((optionId) => String(optionId ?? "").trim())
+        .filter((optionId) => optionId && !isUserUnselectedRequirementOptionMarker(optionId))
     ),
+  ];
+}
+
+export function getNextSuggestedScheduleToggleSelectionIds(input: {
+  optionId: string;
+  selectionCount: number;
+  displayedOptionIds?: string[] | null;
+  storedOptionIds?: string[] | null;
+  hasStoredSelection?: boolean;
+}) {
+  const normalizedOptionId = String(input.optionId ?? "").trim();
+  if (!normalizedOptionId) return [] as string[];
+
+  const displayedOptionIds = getSuggestedScheduleUniqueOptionIds(input.displayedOptionIds);
+  const storedOptionIds = getSuggestedScheduleUniqueOptionIds(input.storedOptionIds);
+  const normalizedSelectionCount =
+    Number.isFinite(input.selectionCount) && input.selectionCount > 1
+      ? Math.floor(input.selectionCount)
+      : 1;
+
+  if (normalizedSelectionCount === 1) {
+    return [normalizedOptionId];
+  }
+
+  if (displayedOptionIds.includes(normalizedOptionId)) {
+    const userUnselectedOptionIds = normalizeUserUnselectedRequirementOptionIds(
+      input.storedOptionIds
+    ).filter((entry) => entry !== normalizedOptionId);
+    return [
+      ...displayedOptionIds.filter((entry) => entry !== normalizedOptionId),
+      markUserUnselectedRequirementOptionId(normalizedOptionId),
+      ...userUnselectedOptionIds.map(markUserUnselectedRequirementOptionId),
+    ];
+  }
+
+  const currentOptionIds = input.hasStoredSelection ? storedOptionIds : displayedOptionIds;
+  const userUnselectedOptionIds = normalizeUserUnselectedRequirementOptionIds(
+    input.storedOptionIds
+  ).filter((entry) => entry !== normalizedOptionId);
+  return [
+    ...[...currentOptionIds, normalizedOptionId].slice(-normalizedSelectionCount),
+    ...userUnselectedOptionIds.map(markUserUnselectedRequirementOptionId),
   ];
 }
 
@@ -482,6 +539,92 @@ export function isSuggestedScheduleCategoryOption(option: SuggestedScheduleOptio
   return option.optionKind === "category-option" && Boolean(option.categoryOption);
 }
 
+function normalizeSuggestedScheduleCourseCode(courseCode: string | null | undefined) {
+  return String(courseCode ?? "").replace(/\s+/g, " ").trim().toUpperCase();
+}
+
+function getSuggestedScheduleOptionCourseCodes(option: SuggestedScheduleOption) {
+  const explicitCourseCodes = option.courseCodes
+    .map(normalizeSuggestedScheduleCourseCode)
+    .filter(Boolean);
+  const fallbackCourseCodes = option.courseLabels
+    .flatMap((label) => extractCourseCodes(label))
+    .map(normalizeSuggestedScheduleCourseCode)
+    .filter(Boolean);
+
+  return getSuggestedScheduleUniqueOptionIds(
+    explicitCourseCodes.length ? explicitCourseCodes : fallbackCourseCodes
+  );
+}
+
+function getSuggestedScheduleSingleCourseOptionCode(option: SuggestedScheduleOption) {
+  if (isSuggestedScheduleCategoryOption(option)) return null;
+
+  const courseCodes = getSuggestedScheduleOptionCourseCodes(option);
+  return courseCodes.length === 1 ? courseCodes[0] : null;
+}
+
+function getSuggestedScheduleCanonicalPrerequisiteCourseCodes(courseCode: string) {
+  const canonicalCourse = getTransferPlannerCanonicalCourse("grc", courseCode);
+  return getSuggestedScheduleUniqueOptionIds(
+    [
+      ...(canonicalCourse?.prerequisiteCourseCodes ?? []),
+      ...(canonicalCourse?.prerequisiteAlternativeCourseCodeSets ?? []).flat(),
+    ].map(normalizeSuggestedScheduleCourseCode)
+  );
+}
+
+export function getSuggestedScheduleVisibleOptions(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  if (
+    optionGroup.options.length < 2 ||
+    isSuggestedScheduleCreditBasedOptionGroup(optionGroup) ||
+    getSuggestedScheduleOptionGroupRequiredSelectionCount(optionGroup) !== 1
+  ) {
+    return optionGroup.options;
+  }
+
+  const optionCourseEntries = optionGroup.options.map((option) => ({
+    option,
+    courseCode: getSuggestedScheduleSingleCourseOptionCode(option),
+  }));
+  if (optionCourseEntries.some((entry) => !entry.courseCode)) {
+    return optionGroup.options;
+  }
+
+  const optionCourseCodeSet = new Set(
+    optionCourseEntries.map((entry) => entry.courseCode).filter(Boolean)
+  );
+  const downstreamOptionIds = new Set<string>();
+
+  for (const entry of optionCourseEntries) {
+    const courseCode = entry.courseCode;
+    if (!courseCode) continue;
+
+    const prerequisiteCourseCodes =
+      getSuggestedScheduleCanonicalPrerequisiteCourseCodes(courseCode);
+    if (
+      prerequisiteCourseCodes.some((prerequisiteCourseCode) =>
+        optionCourseCodeSet.has(prerequisiteCourseCode)
+      )
+    ) {
+      downstreamOptionIds.add(entry.option.id);
+    }
+  }
+
+  if (!downstreamOptionIds.size) {
+    return optionGroup.options;
+  }
+
+  const selectedOptionIdSet = new Set(getSuggestedScheduleResolvedOptionIds(optionGroup));
+  const visibleOptions = optionGroup.options.filter(
+    (option) => !downstreamOptionIds.has(option.id) || selectedOptionIdSet.has(option.id)
+  );
+
+  return visibleOptions.length ? visibleOptions : optionGroup.options;
+}
+
 export function getSuggestedScheduleOptionCompletedTranscriptSatisfiers(
   optionGroup: SuggestedScheduleOptionGroup,
   optionId: string
@@ -513,11 +656,27 @@ export function getSuggestedScheduleOptionStatusDisplayLabel(
     : selectedLabel;
 }
 
+function getSuggestedScheduleOptionTitleSummaryLabel(option: SuggestedScheduleOption) {
+  if (isSuggestedScheduleCategoryOption(option)) {
+    return getSuggestedScheduleOptionSelectedDisplayLabel(option);
+  }
+
+  const rawLabel = String(option.label ?? "").replace(/\s+/g, " ").trim();
+  const courseTitleMatch = rawLabel.match(
+    /^[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\s*[-:–—]\s*(.+)$/i
+  );
+  const courseTitle = String(courseTitleMatch?.[1] ?? "").trim();
+  return courseTitle || getSuggestedScheduleOptionSelectedDisplayLabel(option);
+}
+
 export function getSuggestedScheduleSelectedOptionLabels(optionGroup: SuggestedScheduleOptionGroup) {
   return getSuggestedScheduleSelectedOptions(optionGroup).map((option) => {
-    const selectedLabel = getSuggestedScheduleOptionStatusDisplayLabel(optionGroup, option);
-    return option.guidanceSummary
-      ? `${selectedLabel}. ${option.guidanceSummary}`
+    const selectedLabel = getSuggestedScheduleOptionTitleSummaryLabel(option);
+    const transcriptSatisfierText = isSuggestedScheduleCategoryOption(option)
+      ? getSuggestedScheduleOptionCompletedTranscriptSatisfierText(optionGroup, option.id)
+      : null;
+    return transcriptSatisfierText
+      ? `${selectedLabel}, satisfied by ${transcriptSatisfierText}`
       : selectedLabel;
   });
 }
@@ -701,6 +860,19 @@ export function getSuggestedScheduleResolvedOptionIds(optionGroup: SuggestedSche
   }
 
   return getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds);
+}
+
+export function getSuggestedScheduleOptionIdsForToggle(
+  optionGroup: SuggestedScheduleOptionGroup,
+  optionId: string
+) {
+  const selectedOptionIds = getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds);
+  const normalizedOptionId = String(optionId ?? "").trim();
+  if (normalizedOptionId && selectedOptionIds.includes(normalizedOptionId)) {
+    return selectedOptionIds;
+  }
+
+  return getSuggestedScheduleResolvedOptionIds(optionGroup);
 }
 
 export function getSuggestedScheduleOptionSatisfactionSources(

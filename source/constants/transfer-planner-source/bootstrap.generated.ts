@@ -16448,22 +16448,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "note-classes-in-this-option-are-offered-primarily-during-daytime-hours",
-        "label": "Note: Classes in this option are offered primarily during daytime hours.",
+        "id": "classes-in-this-option-are-offered-primarily-during-daytime-hours",
+        "label": "Classes in this option are offered primarily during daytime hours.",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell American & Ethnic Studies requirements",
-            "url": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16491,7 +16483,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Applied Computing curriculum",
+        "label": "Scoped section: All UW students must complete a common set of general education requirements . As an Applied Computing major, you will a",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -16562,7 +16554,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Accounting Option",
+        "label": "Accounting Option major requirements",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
         "visibility": "visible",
         "status": "verified",
@@ -16624,6 +16616,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Bothell BBA admissions hub",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
           }
         ],
         "degreeMapSections": [],
@@ -16678,6 +16677,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "UW Bothell BBA how to apply",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
             "label": "UW Bothell Finance option and concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
             "visibility": "visible",
@@ -16704,11 +16717,18 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "UW Bothell BBA curriculum hub",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
             "label": "UW Bothell Leadership and Strategic Innovation option major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "high"
+            "sourceConfidence": "medium"
           }
         ],
         "degreeMapSections": [],
@@ -16729,6 +16749,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
           {
             "label": "UW Bothell Management concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
@@ -16754,7 +16781,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "UW Bothell BBA curriculum hub",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16773,6 +16815,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "UW Bothell BBA how to apply",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
           {
             "label": "UW Bothell Marketing option and concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
@@ -16800,11 +16856,18 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
             "label": "UW Bothell MIS concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "high"
+            "sourceConfidence": "medium"
           }
         ],
         "degreeMapSections": [],
@@ -16825,6 +16888,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
           {
             "label": "UW Bothell Retail Management concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
@@ -16852,11 +16922,18 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "UW Bothell BBA curriculum hub",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
             "label": "UW Bothell Supply Chain Management option major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "high"
+            "sourceConfidence": "medium"
           }
         ],
         "degreeMapSections": [],
@@ -16876,7 +16953,29 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "Technology & Innovation Management (TIM) Concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Bothell BBA how to apply",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16894,7 +16993,29 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "Technology & Innovation Management (TIM) Concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Bothell BBA how to apply",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16905,14 +17026,36 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "the-accounting-option-will-thoroughly-prepare-students-for-careers-in-private",
-        "label": "the Accounting Option will thoroughly prepare students for careers in private",
+        "id": "tim-concentration",
+        "label": "Technology & Innovation Management (TIM) Concentration",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "Technology & Innovation Management (TIM) Concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "UW Bothell BBA how to apply",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16940,10 +17083,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Accounting Option",
+        "label": "Accounting Option major requirements",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -16957,6 +17101,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "accounting-option",
         "label": "Accounting Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Accounting Option major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "the-accounting-option-will-thoroughly-prepare-students-for-careers-in-private",
+        "label": "the Accounting Option will thoroughly prepare students for careers in private",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -16990,10 +17160,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Finance Option and Concentration",
+        "label": "Finance Option and Concentration major requirements",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17048,7 +17219,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Leadership & Strategic Innovation Option",
+        "label": "Leadership & Strategic Innovation Option major requirements",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
         "visibility": "visible",
         "status": "verified",
@@ -17071,7 +17242,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Leadership & Strategic Innovation Option major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -17099,10 +17278,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Marketing Option and Concentration",
+        "label": "Marketing Option and Concentration major requirements",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17157,7 +17337,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Supply Chain Management curriculum",
+        "label": "UW Bothell Supply Chain Management option major requirements",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
         "visibility": "visible",
         "status": "verified",
@@ -17173,6 +17353,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "management-concentration",
+        "label": "Supply Chain Management Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Bothell Supply Chain Management option major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "supply-chain-management-option",
         "label": "Supply Chain Management Option",
         "summary": "",
@@ -17180,7 +17386,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW Bothell Supply Chain Management option major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -17208,7 +17422,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: B.A. in Chemistry requirements",
+        "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -17240,10 +17454,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: B.A. in Chemistry requirements",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+        "label": "Cached source: Chemistry Curriculum - School of Science, Technology, Engineering & Mathematics",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#bs-general",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17254,6 +17469,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
+      {
+        "id": "b-s-in-chemistry-biochemistry-option",
+        "label": "B.S. in Chemistry (biochemistry option)",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
       {
         "id": "b-s-in-chemistry-general-option",
         "label": "B.S. in Chemistry (general option)",
@@ -17281,8 +17514,70 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "biochemistry-option",
+        "label": "UW Bothell Chemistry curriculum",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
+            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "chemistry-series-option",
         "label": "Chemistry series option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "organic-chemistry-series-option",
+        "label": "Organic Chemistry series option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "upper-division-chemistry-electives-option",
+        "label": "Upper division Chemistry electives option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17394,7 +17689,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (",
+        "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering ( major requirements",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -17408,7 +17703,51 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "iac-option",
+        "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering ( major requirements",
+            "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "information-assurance-and-cybersecurity-iac-option",
+        "label": "Information Assurance and Cybersecurity (IAC) option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-bothell-csse-information-assurance-and-cybersecurity",
@@ -17426,7 +17765,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (",
+        "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering ( major requirements",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
         "visibility": "visible",
         "status": "partially-verified"
@@ -17798,24 +18137,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership & Strategic Innovation Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "management-concentration",
         "label": "Management Concentration",
         "summary": "",
@@ -17888,24 +18209,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "supply-chain-management-option",
-        "label": "Supply Chain Management Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "technology-and-innovation-management-tim-concentration",
         "label": "Technology & Innovation Management (TIM) Concentration",
         "summary": "",
@@ -17928,8 +18231,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
   {
     "id": "uw-bothell-educational-studies-elementary-education",
     "campusId": "uw-bothell",
-    "title": "Educational Studies: Elementary Education (BA) - Education Studies: Elementary Education Option",
-    "shortTitle": "Educational Studies: Elementary",
+    "title": "Educational Studies: Elementary Education (BA)",
+    "shortTitle": "ESEEB",
     "coverage": "partial",
     "summary": "Source-generated from parsed UW requirement-source registries.",
     "bestTrackId": null,
@@ -17941,10 +18244,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped pathway section: M.Ed. with English to Speakers of Other Languages (ESOL) Concentration",
+        "label": "Scoped pathway section: M.Ed. with English to Speakers of Other Languages (ESOL) Concentration major requirements",
         "url": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -18119,6 +18423,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
+        "label": "Health Studies Major Checklist (2025-2026)",
+        "url": "https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2026/04/25-26-hs-major-checklist.docx",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
         "label": "Scoped section: 2025-26 Health Studies (BA) Major Checklist - 90 credits",
         "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
         "visibility": "visible",
@@ -18236,7 +18547,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Bothell Law, Economics & Public Policy requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Bothell Law, Economics & Public Policy requirements",
+            "url": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-bothell-mathematical-thinking-and-visualization",
@@ -18268,7 +18605,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Bothell Mathematical Thinking & Visualization requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Bothell Mathematical Thinking & Visualization requirements",
+            "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-bothell-mathematics",
@@ -18286,7 +18649,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Mathematics curriculum",
+        "label": "Scoped section: All UW students must complete a common set of general education requirements . As a Mathematics major, you will already",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -18348,15 +18711,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW Bothell Media & Communication Studies requirements",
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -18380,15 +18735,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW Bothell RN to BSN overview",
-        "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -18412,15 +18759,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW Bothell RN to BSN overview",
-        "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -18446,7 +18785,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Physics curriculum",
+        "label": "Scoped section: Physics core courses (a total of 64 credits)",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -18460,7 +18799,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Bothell Physics curriculum",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Physics core courses (a total of 64 credits)",
+            "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-bothell-physics-bs",
@@ -18478,7 +18844,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Physics curriculum",
+        "label": "Scoped section: Physics core courses (a total of 64 credits)",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -18524,7 +18890,41 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "Ba Route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Here are three possible coursework pathways within the major that, along with other elective courses related to particul",
+            "url": "https://www.uwb.edu/ias/undergraduate/majors/community-psychology#major%20requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Bothell Psychology requirements",
+            "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-bothell-science-technology-and-society",
@@ -18638,7 +19038,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac",
+        "label": "UW American Ethnic Studies degree requirements",
         "url": "https://aes.washington.edu/ba-american-ethnic-studies",
         "visibility": "visible",
         "status": "verified",
@@ -18807,7 +19207,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW General Catalog Anthropology page",
+        "label": "Scoped section: Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology major requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
         "visibility": "visible",
         "status": "verified",
@@ -18858,7 +19258,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW General Catalog Anthropology page",
+            "label": "Scoped section: Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
             "status": "verified",
@@ -18884,7 +19284,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW General Catalog Anthropology page",
+            "label": "Scoped section: Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
             "status": "verified",
@@ -18910,7 +19310,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW General Catalog Anthropology page",
+            "label": "Scoped section: Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
             "status": "verified",
@@ -18929,6 +19329,84 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "ba-option-family:medical-anthropology-and-global-health",
         "label": "B.A. Medical Anthropology and Global Health option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Anthropology page",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:archaeological-sciences",
+        "label": "B.S. Archaeological Sciences option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Anthropology: Archaeological Sciences major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-60e7743209fe055be777d74a",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:human-evolutionary-biology",
+        "label": "B.S. Human Evolutionary Biology option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Anthropology: Human Evolutionary Biology major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-60e773ce535b40f724aec04d",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:medical-anthropology-and-global-health",
+        "label": "B.S. Medical Anthropology and Global Health option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19107,11 +19585,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "B.S. in Applied Mathematics",
+        "label": "B.S. in Applied Mathematics major requirements",
         "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
         "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
+        "status": "partially-verified"
       }
     ],
     "degreeMapSections": [],
@@ -19123,8 +19600,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "b-s-to-m-s-pathway",
-        "label": "B.S. to M.S. Pathway",
+        "id": "b-s-data-science-option",
+        "label": "Data Science Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19132,7 +19609,40 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "B.S. in Applied Mathematics",
+            "label": "BS in Applied Mathematics: Data Science Option major requirements",
+            "url": "https://amath.washington.edu/applied-mathematics-data-science-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "BS in Applied Mathematics: Data Science Option major requirements",
+            "url": "https://amath.washington.edu/applied-mathematics-bs-data-science-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "b-s-to-m-s-pathway",
+        "label": "B.S. in Applied Mathematics",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "B.S. in Applied Mathematics major requirements",
             "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
             "visibility": "visible",
             "status": "verified",
@@ -19149,14 +19659,55 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family:in-applied-mathematics-data-science",
-        "label": "B.S. in Applied Mathematics: Data Science Option",
+        "id": "bs-option-family:data-science",
+        "label": "B.S. in Applied Mathematics",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "B.S. in Applied Mathematics major requirements",
+            "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science-option",
+        "label": "Data Science Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "B.S. in Applied Mathematics",
+            "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "BS in Applied Mathematics: Data Science Option major requirements",
+            "url": "https://amath.washington.edu/applied-mathematics-bs-data-science-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -19207,15 +19758,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Aquatic Conservation and Ecology major requirements",
-            "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -19275,11 +19818,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW BA in Architectural Studies curriculum PDF",
+        "label": "UW BA in Architectural Studies curriculum PDF major requirements",
         "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
         "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
+        "status": "partially-verified"
       }
     ],
     "degreeMapSections": [],
@@ -19289,7 +19831,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "Ba Route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW BA in Architectural Studies curriculum PDF major requirements",
+            "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-art",
@@ -19307,7 +19876,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Admission to Industrial Design, Interaction Design, and Visual Communication Design: DESIGN 166 (see admission requireme",
+        "label": "Scoped section: Completion Requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
         "visibility": "visible",
         "status": "verified",
@@ -19339,7 +19908,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Admission to Industrial Design, Interaction Design, and Visual Communication Design: DESIGN 166 (see admission requireme",
+        "label": "Scoped section: Completion Requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
         "visibility": "visible",
         "status": "verified",
@@ -19401,15 +19970,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "Scoped section: Asian Studies - Japan Concentration",
-        "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -19428,112 +19989,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Cached source: Korea",
-            "url": "https://jsis.washington.edu/wordpress/wp-content/uploads/2019/06/Asian-Studies-Courses-Autumn-2019rev.pdf",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "general-concentration",
-        "label": "General Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "japan-concentration",
-        "label": "Japan Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Scoped section: Asian Studies - Japan Concentration",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "korea-concentration",
-        "label": "Korea Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Scoped section: Asian Studies - Korea Concentration",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "south-asia-concentration",
-        "label": "South Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Asian Studies – South Asia Concentration major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
+            "label": "Asian Studies - China Concentration major requirements",
+            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/china-studies/",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19558,8 +20015,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Asian Studies – Southeast Asia Concentration",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
+            "label": "Asian Studies - Southeast Asia Concentration major requirements",
+            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/southeast-asia-studies/",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19624,7 +20081,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Program of Study: Major: Atmospheric and Climate Science",
+        "label": "Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1",
         "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
         "visibility": "visible",
         "status": "verified",
@@ -19656,7 +20113,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Program of Study: Major: Atmospheric and Climate Science",
+            "label": "Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1",
             "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
             "visibility": "visible",
             "status": "verified",
@@ -19734,8 +20191,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science degree with a major in Atmospheric and Climate Science: Meteorology",
-            "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb50075e15782e7ae20feb",
+            "label": "Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1",
+            "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19823,15 +20280,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bioengineering degree requirements",
-            "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -19844,6 +20293,57 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "nano-and-molecular-engineering-nme-option",
         "label": "Nano & Molecular Engineering (NME) Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "nme-option",
+        "label": "UW Bioengineering degree requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) major requirements",
+            "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "UW Bioengineering degree requirements",
+            "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "programming-option",
+        "label": "Programming option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19900,6 +20400,120 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "bs-option-family:ecology-evolution-and-conservation",
+        "label": "B.S. Ecology, Evolution, and Conservation option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:general",
+        "label": "B.S. General option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:general-biology",
+        "label": "B.S. General major requirements option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Biology: General major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670406500bcbc98d8a6ea187",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:molecular-cellular-and-development",
+        "label": "B.S. Molecular, Cellular, and Development option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:physiology",
+        "label": "B.S. Physiology option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Biology: Physiology major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670408fef8793734586f7ec1",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "bs-option-family:plant",
         "label": "B.S. Plant option",
         "summary": "",
@@ -19908,6 +20522,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:plant-biology",
+        "label": "B.S. Plant major requirements option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Biology: Plant major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-6704083591c5178a667fb929",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -19935,15 +20575,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Curriculum",
-        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+        "label": "Foster business majors and areas of study",
+        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       },
       {
-        "label": "Foster business majors and areas of study",
-        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
+        "label": "Scoped section: Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree fro",
+        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -19956,7 +20596,60 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "autumn-2026-track",
+        "label": "Autumn 2026 track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Minors",
+            "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/minors-and-more-opportunities",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "note-track",
+        "label": "**Note track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Cached source: Curriculum | Foster School of Business",
+            "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-chemical-engineering",
@@ -19973,6 +20666,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
     "officialLinks": [
+      {
+        "label": "Engineering Electives",
+        "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
       {
         "label": "Scoped section: The minimum number of credits required for a B.S.Ch.E degree is 180. Some courses cannot be counted toward degree requir",
         "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
@@ -20017,8 +20717,41 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "NME Option",
+            "label": "Engineering Electives",
+            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "NME option major requirements",
             "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/NME.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "standard-option",
+        "label": "Standard option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Engineering Electives",
+            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20058,7 +20791,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "sourceConfidence": "high"
       },
       {
-        "label": "Scoped section: BA Chemistry Checklist (PDF)",
+        "label": "UW BA in Chemistry requirements",
         "url": "https://chem.washington.edu/ba-chemistry",
         "visibility": "visible",
         "status": "verified",
@@ -20096,6 +20829,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
     "officialLinks": [
+      {
+        "label": "previous requirements",
+        "url": "https://asian.washington.edu/pre-winter-2019-chinese-major-requirements",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
       {
         "label": "UW B.A. in Chinese requirements",
         "url": "https://asian.washington.edu/ba-chinese",
@@ -20150,7 +20890,41 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "Scoped current requirements: Home",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped current requirements: Home",
+            "url": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "Scoped section: Option specific credits (15 credits)",
+            "url": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-civil-engineering",
@@ -20397,6 +21171,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "encounters-across-cultures-option",
+        "label": "Encounters Across Cultures Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative History of Ideas requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "local-global-engagements-option",
         "label": "Local/Global Engagements Option",
         "summary": "",
@@ -20472,8 +21272,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
-        "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion",
+        "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "medium"
@@ -20489,13 +21289,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "history-of-religions-eastern-emphasis-track",
-        "label": "History of Religions-Eastern Emphasis track",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Comparative Religion",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20507,13 +21314,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "history-of-religions-western-emphasis-track",
-        "label": "History of Religions-Western Emphasis track",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Comparative Religion",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20525,13 +21339,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "religion-and-society-track",
-        "label": "Religion and Society track",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Comparative Religion",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20543,13 +21364,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "religion-and-symbolic-expression-track",
-        "label": "Religion and Symbolic Expression track",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Comparative Religion",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20591,7 +21419,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "bs-option-family:data-science",
+        "label": "B.S. Data Science option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Data Science continues to be a growing area of study within Computational Finance and the sciences in general. It incorp",
+            "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-computer-engineering",
@@ -20608,13 +21463,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
     "officialLinks": [
-      {
-        "label": "Allen School CE-approved Natural Science course list",
-        "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
       {
         "label": "Allen School CE-approved Natural Science course list",
         "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
@@ -20687,7 +21535,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "data-science-option",
-        "label": "Data Science option",
+        "label": "Data Science Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20697,6 +21545,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "Allen School CS-approved Natural Science course list",
             "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "Computer Science",
+            "url": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS__Fall23.pdf",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20736,7 +21591,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Bachelor of Science in Construction Management degree",
+        "label": "Bachelor of Science in Construction Management degree major requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751",
         "visibility": "visible",
         "status": "verified",
@@ -20760,7 +21615,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "early-admission-pathway",
-        "label": "Early Admission pathway",
+        "label": "Bachelor of Science in Construction Management degree",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20768,7 +21623,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science in Construction Management degree",
+            "label": "Bachelor of Science in Construction Management degree major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751",
             "visibility": "visible",
             "status": "verified",
@@ -20786,7 +21641,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "freshmen-direct-pathway",
-        "label": "Freshmen Direct pathway",
+        "label": "Bachelor of Science in Construction Management degree",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20794,7 +21649,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science in Construction Management degree",
+            "label": "Bachelor of Science in Construction Management degree major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751",
             "visibility": "visible",
             "status": "verified",
@@ -20812,7 +21667,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "upper-division-admission-pathway",
-        "label": "Upper-Division Admission pathway",
+        "label": "Bachelor of Science in Construction Management degree",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20820,7 +21675,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science in Construction Management degree",
+            "label": "Bachelor of Science in Construction Management degree major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751",
             "visibility": "visible",
             "status": "verified",
@@ -20854,13 +21709,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Bachelor of Arts degree with a major in Dance",
-        "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html#credential-60b927e9bcc770338fb5ecab",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
         "label": "Scoped section: The Dance Major is a liberal arts degree which takes a broad approach to studying dance as: a movement practice, a perfo",
         "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
         "visibility": "visible",
@@ -20893,7 +21741,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: DANISH 310 Topics in Danish Short Prose",
+        "label": "Scoped section: B.A. in Danish",
         "url": "https://scandinavian.washington.edu/ba-danish",
         "visibility": "visible",
         "status": "verified",
@@ -20925,7 +21773,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Admission to Industrial Design, Interaction Design, and Visual Communication Design: DESIGN 166 (see admission requireme",
+        "label": "Scoped section: Completion Requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
         "visibility": "visible",
         "status": "verified",
@@ -20955,15 +21803,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "Cached source: Disability Studies Major (Individualized Studies) | Disability Studies - UW College of Arts and Sciences",
-        "url": "https://disabilitystudies.washington.edu/DS_major",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -20989,6 +21829,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
+        "label": "Bachelor of Arts degree with a major in Drama: Design major requirements",
+        "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d64142271da38091ab356",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "Bachelor of Arts degree with a major in Drama: Performance major requirements",
+        "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d62ac13141c15f1bb6c5a",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
         "label": "Scoped section: Completion Requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
         "visibility": "visible",
@@ -21003,7 +21857,60 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-option-family:design",
+        "label": "B.A. Design option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Drama: Design major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d64142271da38091ab356",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "ba-option-family:performance",
+        "label": "B.A. Performance option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Drama: Performance major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d62ac13141c15f1bb6c5a",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-early-childhood-and-family-studies",
@@ -21069,6 +21976,58 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "bs-option-family:biology",
+        "label": "B.S. Biology option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Earth and Space Sciences: Biology",
+            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html#credential-d9fdd733-535c-4cfb-8235-4ab223f53853",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:geology",
+        "label": "B.S. Geology option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Earth and Space Sciences: Geology",
+            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html#credential-7a86f242-b274-4087-80b0-0315ca31444d",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "bs-option-family:geoscience",
         "label": "B.S. Geoscience option",
         "summary": "",
@@ -21076,7 +22035,41 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Earth and Space Sciences: Geoscience",
+            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html#credential-5e8ba2ef7fbacb2500c1eb64",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-option-family:physics",
+        "label": "B.S. Physics option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Science degree with a major in Earth and Space Sciences: Physics",
+            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html#credential-57511a34-1f84-42da-8335-f128a060d0ad",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21162,8 +22155,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+            "label": "Bachelor of Science degree with a major in Economics: Data Science",
+            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6737c98ea269d097a4b82313",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -21214,8 +22207,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+            "label": "Bachelor of Science degree with a major in Economics: Strategy",
+            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -21499,15 +22492,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21543,15 +22528,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21569,15 +22546,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21613,15 +22582,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21639,15 +22600,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21683,15 +22636,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21709,15 +22654,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21735,15 +22672,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21779,15 +22708,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21823,15 +22744,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21849,15 +22762,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21875,15 +22780,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21901,15 +22798,25 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "sustainable-energy-systems-pathway",
+        "label": "Sustainable Energy Systems Pathway",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21940,24 +22847,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "the-following-courses-are-also-recommended-for-those-following-the-embedded-systems-pathway",
         "label": "The following courses are also recommended for those following the Embedded Systems pathway:",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "the-following-courses-are-also-recommended-for-those-following-the-machine-learning-pathway",
-        "label": "The following courses are also recommended for those following the Machine Learning pathway:",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -22050,7 +22939,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW English LLC option requirements",
+        "label": "UW English LLC option requirements major requirements",
         "url": "https://english.washington.edu/english-language-literature-and-culture-option",
         "visibility": "visible",
         "status": "partially-verified"
@@ -22065,14 +22954,88 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "the-english-major-creative-writing-option",
-        "label": "The English Major: Creative Writing Option",
+        "id": "creative-writing-option",
+        "label": "Creative Writing Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "old requirements",
+            "url": "https://english.washington.edu/english-creative-writing-option-old-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "culture-option",
+        "label": "UW English LLC option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "old requirements",
+            "url": "https://english.washington.edu/english-language-and-literature-option-old-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW English LLC option requirements major requirements",
+            "url": "https://english.washington.edu/english-language-literature-and-culture-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "language-and-literature-option",
+        "label": "Language and Literature Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: The English major requires the completion of a minimum of 60 ENGL credits (the competitive-admission creative writing op",
+            "url": "https://english.washington.edu/english-language-and-literature-option-old-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "Scoped section: This page describes the English Major Concentration in Creative Writing. For the major's other option, see English Langu",
+            "url": "https://english.washington.edu/english-creative-writing-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -22100,8 +23063,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See",
-        "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
+        "label": "Bachelor of Arts degree with a major in Environmental Design and Sustainability",
+        "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -22114,7 +23077,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "select-one-area-of-concentration",
+        "label": "select one area of concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in Environmental Design and Sustainability",
+            "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-environmental-engineering",
@@ -22370,15 +23360,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
-        "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -22489,7 +23471,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW French Studies major requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW French Studies major requirements",
+            "url": "https://frenchitalian.washington.edu/major-french-studies",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-gender-women-and-sexuality-studies",
@@ -22539,7 +23547,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "B.A. in Geography: Data Science Option",
+        "label": "B.A. in Geography: Data Science Option major requirements",
         "url": "https://geography.washington.edu/ba-geography-data-science-option",
         "visibility": "visible",
         "status": "verified",
@@ -22570,44 +23578,26 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "b-a-in-geography-data-science-option-sample-course-plan",
-        "label": "B.A. in Geography: Data Science Option Sample Course Plan",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "ba-option-family:in-geography-data-science",
-        "label": "B.A. in Geography: Data Science Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "ba-option-family:in-geography-with-data-science",
         "label": "B.A. in Geography with Data Science Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "cities-citizenship-and-migration-track",
+        "label": "UW Geography B.A. major requirements",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -22618,8 +23608,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW Geography B.A. major requirements",
             "url": "https://geography.washington.edu/ba-geography",
             "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
+            "status": "partially-verified"
           }
         ],
         "degreeMapSections": [],
@@ -22657,13 +23646,31 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science-option",
+        "label": "Data Science Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Geography B.A. major requirements",
-            "url": "https://geography.washington.edu/ba-geography",
+            "label": "UW Geography courses by track",
+            "url": "https://geography.washington.edu/courses-track",
+            "note": "Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.",
             "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
+            "status": "partially-verified"
           }
         ],
         "degreeMapSections": [],
@@ -22701,13 +23708,30 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "environment-economy-and-sustainability-track",
+        "label": "UW Geography B.A. major requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
         "officialLinks": [
           {
             "label": "UW Geography B.A. major requirements",
             "url": "https://geography.washington.edu/ba-geography",
             "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
+            "status": "partially-verified"
           }
         ],
         "degreeMapSections": [],
@@ -22746,6 +23770,49 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "gis-mapping-and-society-track",
+        "label": "UW Geography B.A. major requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Geography B.A. major requirements",
+            "url": "https://geography.washington.edu/ba-geography",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "health-and-development-track",
+        "label": "Health and Development Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "mapping-and-society-gms-track",
         "label": "Mapping and Society (GMS) track",
         "summary": "",
@@ -22771,15 +23838,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Geography B.A. major requirements",
-            "url": "https://geography.washington.edu/ba-geography",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -22842,7 +23901,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "ba-option-family:cultural-studies",
-        "label": "B.A. Cultural Studies option",
+        "label": "Scoped section: The B.A. in German Studies: Cultural Studies provides students with intermediate to advanced competency in spoken and wr",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW German Studies requirements",
+            "url": "https://german.washington.edu/german-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "ba-route",
+        "label": "Scoped section: The B.A. in German Studies: Cultural Studies provides students with intermediate to advanced competency in spoken and wr",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -23012,7 +24097,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Completion Requirements",
+        "label": "UW General Catalog History and Philosophy of Science requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
         "visibility": "visible",
         "status": "verified",
@@ -23181,15 +24266,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Informatics curriculum",
-        "url": "https://ischool.uw.edu/programs/informatics/curriculum",
+        "label": "Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour",
+        "url": "https://ischool.uw.edu/programs/informatics/admissions/prerequisites",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour",
+        "url": "https://ischool.uw.edu/programs/informatics/admissions/current-students/prerequisites",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       },
       {
         "label": "UW Informatics curriculum",
-        "url": "https://ischool.uw.edu/academics/informatics/curriculum",
+        "url": "https://ischool.uw.edu/programs/informatics/curriculum",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -23206,6 +24298,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "biomedical-and-health-informatics-option",
         "label": "Biomedical and Health Informatics Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Degree Planning",
+            "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science-option",
+        "label": "Data Science Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -23247,7 +24365,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: The Canadian Studies Program is an interdisciplinary program designed to promote the understanding of Canada, of Canada'",
+        "label": "Program of Study: Major: International Studies: Europe",
+        "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "Scoped current requirements: Home",
         "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
         "visibility": "visible",
         "status": "verified",
@@ -23270,7 +24395,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in International Studies: Asia major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-3de9e354-feff-4386-b164-15ad1dc4664d",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23288,7 +24421,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Bachelor of Arts degree with a major in International Studies: Canada major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-aee18906-122b-4160-8007-a1d7a61c0eb1",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23308,7 +24449,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Arts degree with a major in International Studies: Europe",
+            "label": "Bachelor of Arts degree with a major in International Studies: Europe major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-5fd3bfc3e9f12600287fc73b",
             "visibility": "visible",
             "status": "verified",
@@ -23334,13 +24475,83 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Arts degree with a major in International Studies: Latin America and Caribbean",
+            "label": "Bachelor of Arts degree with a major in International Studies: Latin America and Caribbean major requirements",
             "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-de5ae307-66fe-4109-baa1-8df5deecc0cf",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "medium"
           }
         ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "concentration-i-themes",
+        "label": "Concentration I/Themes",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Program of Study: Major: International Studies: Europe",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "concentration-ii-regions",
+        "label": "Concentration II/Regions",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Program of Study: Major: International Studies: Europe",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "the-southeast-asian-studies-concentration-promotes-the-study-of-viet-nam",
+        "label": "The Southeast Asian Studies concentration promotes the study of Viet Nam",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23478,7 +24689,80 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "china-concentration",
+        "label": "China Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "japan-concentration",
+        "label": "Japan Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "korea-concentration",
+        "label": "Korea Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "southeast-asia-concentration",
+        "label": "Southeast Asia Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-korean",
@@ -23528,14 +24812,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Bachelor of Landscape Architecture degree",
-        "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6078dddbe5ffc09fa25582d4",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
-        "label": "Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See",
+        "label": "Scoped section: Project Option (12 credits): Choose from the following:",
         "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
         "visibility": "visible",
         "status": "verified",
@@ -23620,7 +24897,106 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "china-concentration",
+        "label": "China Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "japan-concentration",
+        "label": "Japan Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "korea-concentration",
+        "label": "Korea Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "south-asia-concentration",
+        "label": "South Asia Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "southeast-asia-concentration",
+        "label": "Southeast Asia Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Latin American and Caribbean Studies major requirements",
+            "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-law-societies-and-justice",
@@ -23638,7 +25014,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: LSJ 401 Field Experience in Law, Societies & Justice (5)",
+        "label": "UW Law, Societies and Justice curriculum requirements",
         "url": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
         "visibility": "visible",
         "status": "verified",
@@ -23809,7 +25185,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "nme-option",
-        "label": "NME Option",
+        "label": "UW Materials Science & Engineering degree requirements",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24015,7 +25391,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Middle Eastern Languages & Cultures requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -24482,7 +25866,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Completion Requirements",
+        "label": "UW General Catalog History and Philosophy of Science requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
         "visibility": "visible",
         "status": "verified",
@@ -24565,7 +25949,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped pathway section: Comprehensive Track (addl. 38-46 credits)",
+            "label": "Scoped section: Comprehensive Track (addl. 38-46 credits)",
             "url": "https://phys.washington.edu/physics-bs-degree-requirements",
             "visibility": "visible",
             "status": "verified",
@@ -24592,7 +25976,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "officialLinks": [
           {
             "label": "Scoped section: Teaching Physics Track (addl. 41-43 credits)",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
+            "url": "https://phys.washington.edu/physics-bs-degree-requirements#teaching",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -24687,7 +26071,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW Political Science major declaration and requirements",
+            "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -24723,7 +26115,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW Political Science major declaration and requirements",
+            "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -24814,7 +26214,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "health-education-and-promotion-ba-option",
-        "label": "Health Education & Promotion (BA Option)",
+        "label": "UW Public Health-Global Health AUT 2024 curriculum sheet",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24855,6 +26255,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
     "officialLinks": [
+      {
+        "label": "Bachelor of Arts degree with a major in Public Service and Policy",
+        "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#credential-67d34bb05d7813efef078283",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
       {
         "label": "UW Public Service and Policy degree requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
@@ -24920,7 +26327,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Slavic Languages & Literatures undergraduate programs",
+        "label": "Scoped section: The Department of Slavic Languages & Literatures stands in solidarity with the people of Ukraine. Please read our full s",
         "url": "https://slavic.washington.edu/undergraduate-programs",
         "visibility": "visible",
         "status": "verified",
@@ -24952,24 +26359,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "sourceConfidence": "high"
           }
         ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "russian-language-slavic-languages-or-russian-and-slavic-literatures",
-        "label": "Russian Language , Slavic Languages , or Russian and Slavic Literatures",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25061,7 +26450,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: S ASIA 498 Special Topics in Languages and Cultures of South Asia",
+        "label": "Scoped section: Minimum 20 credits of college coursework (or department-approved equivalent) in the intended primary language of concent",
         "url": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
         "visibility": "visible",
         "status": "verified",
@@ -25157,7 +26546,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Capstone project: STAT 496. Students can petition to have 2 credits of STAT 497 (Undergraduate Statistics Internship) or",
+        "label": "UW Statistics B.S. major requirements",
         "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
         "visibility": "visible",
         "status": "verified",
@@ -25180,7 +26569,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: STAT 421 Applied Statistics and Experimental Design",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25198,7 +26595,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Double Majors",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Statistics B.S. major requirements",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25217,6 +26629,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
+          {
+            "label": "Major Requirements",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
           {
             "label": "Scoped section: CSE/Stat double majors must complete both CSE 312 and MATH/STAT 394 to satisfy core requirements in each program. While",
             "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
@@ -25355,18 +26774,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Cached source: Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma",
-        "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
         "label": "UW Tacoma Arts, Media and Culture overview",
         "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "high"
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
@@ -25379,7 +26791,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "american-cultures-track",
-        "label": "American Cultures Track",
+        "label": "AMERICAN CULTURES TRACK",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -25387,8 +26799,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped pathway section: American Cultures Track",
-            "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+            "label": "American Cultures Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "comparative-arts-track",
+        "label": "COMPARATIVE ARTS TRACK",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Comparative Arts Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -25405,13 +26843,21 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "film-and-media-track",
-        "label": "Film and Media Track",
+        "label": "FILM AND MEDIA TRACK",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Film and Media Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25423,13 +26869,21 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "literature-track",
-        "label": "Literature Track",
+        "label": "LITERATURE TRACK",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Literature Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/literature-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25441,13 +26895,21 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "visual-and-performing-arts-track",
-        "label": "Visual and Performing Arts Track",
+        "label": "VISUAL AND PERFORMING ARTS TRACK",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Foundation (5 credits) major requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25462,8 +26924,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
   {
     "id": "uw-tacoma-bachelor-of-arts-in-business-administration",
     "campusId": "uw-tacoma",
-    "title": "Bachelor of Arts in Business Administration (BABA)",
-    "shortTitle": "BOAIBAB",
+    "title": "Business Administration (BA)",
+    "shortTitle": "Business Administration",
     "coverage": "partial",
     "summary": "Source-generated from parsed UW requirement-source registries.",
     "bestTrackId": null,
@@ -25475,14 +26937,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped pathway section: Finance curriculum",
+        "label": "UW Tacoma BA in Business Administration",
+        "url": "https://www.tacoma.uw.edu/business/baba",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "medium"
+      },
+      {
+        "label": "UW Tacoma Business Administration degree options",
         "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
-    "validationNotes": [],
+    "validationNotes": [
+      "Canonical Tacoma parent is Business Administration (BA); BABA remains a source/search alias and options are child pathways."
+    ],
     "grcCourseList": [],
     "grcCourseListGuidance": "",
     "bankIds": [],
@@ -25499,9 +26971,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped pathway section: The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become C",
+            "label": "UW Tacoma BABA Accounting curriculum",
             "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -25523,7 +26994,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BABA Finance curriculum",
+            "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25545,7 +27023,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Tacoma BABA General Business curriculum",
             "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -25571,7 +27048,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Tacoma BABA Management curriculum",
             "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -25597,7 +27073,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Tacoma BABA Marketing curriculum",
             "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -25710,7 +27185,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "professional-track",
-        "label": "PROFESSIONAL TRACK",
+        "label": "Professional Track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -25736,7 +27211,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "research-track",
-        "label": "RESEARCH TRACK",
+        "label": "Research Track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -25751,24 +27226,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "sourceConfidence": "high"
           }
         ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "video-and-digital-media-production-track",
-        "label": "Video and Digital Media Production track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25796,6 +27253,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
+        "label": "Computer Engineering",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
         "label": "UW Green River transfer equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
         "visibility": "visible",
@@ -25820,10 +27284,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": []
   },
   {
-    "id": "uw-tacoma-computer-science-and-systems-ba",
+    "id": "uw-tacoma-computer-science-and-systems",
     "campusId": "uw-tacoma",
-    "title": "Computer Science and Systems (BA)",
-    "shortTitle": "CSASB",
+    "title": "Computer Science and Systems",
+    "shortTitle": "CSAS",
     "coverage": "partial",
     "summary": "Source-generated from parsed UW requirement-source registries.",
     "bestTrackId": null,
@@ -25835,7 +27299,149 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Bachelor of Arts in CSS page.",
+        "label": "B.S. CSS Schedule Planning Grid",
+        "url": "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "B.S. CSS Schedule Planning Grid major requirements",
+        "url": "https://www.tacoma.uw.edu/sites/default/files/2021-07/css_bs_grid.pdf",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma Computer Science and Systems BA degree requirements",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma Computer Science and Systems BS degree requirements",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma Computer Science and Systems program",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [
+      "Canonical Tacoma CSS parent; BA and BS degree rows are modeled as child pathways for top-level planner audits."
+    ],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": [
+      {
+        "id": "bachelor-of-arts",
+        "label": "Bachelor of Arts",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Download the B.A. in CSS Planning Grid major requirements",
+            "url": "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Computer Science and Systems BA degree requirements",
+            "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bachelor-of-science",
+        "label": "Bachelor of Science",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "B.S. CSS Schedule Planning Grid major requirements",
+            "url": "https://www.tacoma.uw.edu/sites/default/files/2021-07/css_bs_grid.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "B.S. CSS Schedule Planning Grid major requirements",
+            "url": "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Computer Science and Systems BS degree requirements",
+            "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
+  },
+  {
+    "id": "uw-tacoma-computer-science-and-systems-ba",
+    "campusId": "uw-tacoma",
+    "title": "Computer Science and Systems: Bachelor of Arts (BA)",
+    "shortTitle": "CSS: BA",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "Download the B.A. in CSS Planning Grid major requirements",
+        "url": "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma Computer Science and Systems BA degree requirements",
         "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
         "visibility": "visible",
         "status": "verified",
@@ -25854,8 +27460,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
   {
     "id": "uw-tacoma-computer-science-and-systems-bs",
     "campusId": "uw-tacoma",
-    "title": "Computer Science and Systems (BS)",
-    "shortTitle": "CSASB",
+    "title": "Computer Science and Systems: Bachelor of Science (BS)",
+    "shortTitle": "CSS: BS",
     "coverage": "partial",
     "summary": "Source-generated from parsed UW requirement-source registries.",
     "bestTrackId": null,
@@ -25867,7 +27473,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. W",
+        "label": "UW Tacoma Computer Science and Systems BS degree requirements",
         "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
         "visibility": "visible",
         "status": "verified",
@@ -25881,26 +27487,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "bachelor-of-arts-option",
-        "label": "Bachelor of Arts Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-tacoma-criminal-justice",
@@ -25918,11 +27505,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Criminal Justice curriculum",
+        "label": "UW Tacoma Criminal Justice campus curriculum major requirements",
         "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
         "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
+        "status": "partially-verified"
       }
     ],
     "degreeMapSections": [],
@@ -25932,7 +27518,64 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "campus-pathway",
+        "label": "Campus pathway",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Criminal Justice campus curriculum",
+            "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "online-pathway",
+        "label": "Online pathway",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Criminal Justice online admission requirements",
+            "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-online-admission-requirements-and-how-apply",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          },
+          {
+            "label": "UW Tacoma Criminal Justice online curriculum",
+            "url": "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-economics-and-policy-analysis",
@@ -25950,7 +27593,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Economics and Policy Analysis overview",
+        "label": "Scoped section: Core courses (25 credits)",
         "url": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
         "visibility": "visible",
         "status": "verified",
@@ -25982,7 +27625,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma B.A. in Education overview",
+        "label": "UW Tacoma B.A. in Education overview major requirements",
         "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
         "visibility": "visible",
         "status": "verified",
@@ -25996,7 +27639,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Tacoma B.A. in Education overview",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma B.A. in Education overview major requirements",
+            "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-electrical-engineering",
@@ -26060,7 +27729,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Electives for the General Environmental Science Option (29 credits)",
+        "label": "Scoped section: Electives for the General Environmental Science Option (29 credits) major requirements",
         "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
         "visibility": "visible",
         "status": "verified",
@@ -26076,8 +27745,26 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "additional-courses-for-geoscience-option",
+        "label": "Additional Courses for Geoscience Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "conservation-biology-and-ecology-option",
-        "label": "Conservation Biology and Ecology option",
+        "label": "UW Tacoma Environmental Science Geoscience option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26085,7 +27772,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Environmental Science Conservation Biology and Ecology option degree requirements",
+            "label": "Scoped section: Electives for the General Environmental Science Option (29 credits) major requirements",
             "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
             "visibility": "visible",
             "status": "verified",
@@ -26103,7 +27790,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "general-environmental-science-option",
-        "label": "General Environmental Science option",
+        "label": "UW Tacoma Environmental Science Geoscience option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26111,7 +27798,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Environmental Science General Environmental Science option degree requirements",
+            "label": "Scoped section: Electives for the General Environmental Science Option (29 credits) major requirements",
             "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
             "visibility": "visible",
             "status": "verified",
@@ -26128,14 +27815,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "list-h-additional-courses-for-geoscience-option",
-        "label": "List H: Additional Courses for Geoscience Option",
+        "id": "geoscience-option",
+        "label": "UW Tacoma Environmental Science Geoscience option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Electives for the General Environmental Science Option (29 credits) major requirements",
+            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -26196,6 +27891,56 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "business-nonprofit-leadership-option",
+        "label": "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Business/Nonprofit Environmental Sustainability Option (20 credits) degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "education-option",
+        "label": "UW Tacoma Environmental Sustainability Education option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Environmental Sustainability Education option degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "environmental-communication-option",
         "label": "Environmental Communication Option",
         "summary": "",
@@ -26229,6 +27974,56 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "must-select-at-least-a-3-credit-option-from-the-following-list",
+        "label": "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Business/Nonprofit Environmental Sustainability Option (20 credits) degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "policy-law-option",
+        "label": "UW Tacoma Environmental Policy and Law option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Environmental Policy and Law option degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -26299,8 +28094,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Ethnic Studies Option major requirements",
-            "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
+            "label": "Scoped section: Gender Studies Electives (10 credits) major requirements",
+            "url": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -26417,10 +28212,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "General History Option",
+        "label": "General History Option major requirements",
         "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option",
         "visibility": "visible",
-        "status": "partially-verified"
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -26432,44 +28228,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "culture-and-society-option",
-        "label": "Culture and Society Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "gender-and-identity-option",
-        "label": "Gender and Identity Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "general-history-option",
-        "label": "General History Option",
+        "label": "General History option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26501,14 +28261,54 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "global-history-option",
-        "label": "Global History Option",
+        "id": "arts-culture-and-society-option",
+        "label": "Arts, Culture and Society option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
+          {
+            "label": "Scoped section: Arts, Culture and Society Option",
+            "url": "https://www.tacoma.uw.edu/sias-new/socs-new/arts-culture-and-society-history-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma History Arts, Culture and Society option requirements",
+            "url": "https://www.tacoma.uw.edu/sias/socs/arts-culture-and-society-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "global-history-option",
+        "label": "Global History option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Global History Option major requirements",
+            "url": "https://www.tacoma.uw.edu/sias-new/socs-new/global-history-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
           {
             "label": "UW Tacoma Global History option requirements",
             "url": "https://www.tacoma.uw.edu/sias/socs/global-history-option",
@@ -26528,7 +28328,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "labor-and-social-movements-option",
-        "label": "Labor and Social Movements Option",
+        "label": "Labor and Social Movements option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26536,8 +28336,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma History major options",
-            "url": "https://www.tacoma.uw.edu/sias/socs/history",
+            "label": "Labor and Social Movements Option major requirements",
+            "url": "https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -26545,6 +28345,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Tacoma Labor and Social Movements option requirements",
             "url": "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "power-gender-and-identity-option",
+        "label": "Power, Gender and Identity option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Power, Gender and Identity Option major requirements",
+            "url": "https://www.tacoma.uw.edu/sias-new/socs-new/power-gender-and-identity-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Power, Gender and Identity option requirements",
+            "url": "https://www.tacoma.uw.edu/sias/socs/power-gender-and-identity-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -26577,7 +28410,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Information Technology program details",
+        "label": "UW Tacoma Information Technology degree options",
         "url": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
         "visibility": "visible",
         "status": "verified",
@@ -26591,7 +28424,62 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "information-assurance-cybersecurity-option",
+        "label": "Information Assurance and Cybersecurity option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Information Technology degree options",
+            "url": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "digital-mobile-forensics-option",
+        "label": "Digital Mobile Forensics option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Information Technology degree options",
+            "url": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [
+          "Digital Mobile Forensics is temporarily suspended as an option; the Information Technology major remains active."
+        ],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-interdisciplinary-arts-and-sciences",
@@ -26645,7 +28533,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -26655,7 +28543,283 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "arts-culture-and-society-track",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "general-history-track",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "global-history-track",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "labor-and-social-movements-track",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "option-one",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "option-three",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "option-two",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "power-gender-and-identity-track",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "prerequisite-option",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "the-concentration-coordinator",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "to-fulfill-this-option",
+        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-law-and-policy",
@@ -26673,7 +28837,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Law and Policy overview",
+        "label": "Scoped section: Major Requirements",
         "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
         "visibility": "visible",
         "status": "verified",
@@ -26687,7 +28851,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Tacoma Law and Policy overview",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Major Requirements",
+            "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-mathematics",
@@ -26737,7 +28927,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Mechanical Engineering program details",
+        "label": "Cached source: B.S. in Mechanical Engineering | Engineering & Technology | University of Washington Tacoma",
         "url": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
         "visibility": "visible",
         "status": "verified",
@@ -26801,11 +28991,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma PP&E overview",
+        "label": "Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma",
         "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -26815,7 +29005,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Tacoma PP&E overview",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma",
+            "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-psychology",
@@ -26879,7 +29095,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "UW Tacoma BASW curriculum",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BASW curriculum",
+            "url": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-spanish-language-and-cultures",
@@ -26945,7 +29187,59 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "community-engagement-option",
-        "label": "Community Engagement option",
+        "label": "BA in Sustainable Urban Development",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Sustainable Urban Development degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "gis-certificate",
+        "label": "BA in Sustainable Urban Development",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Sustainable Urban Development degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "gis-option",
+        "label": "BA in Sustainable Urban Development",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -27019,7 +29313,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "BA in Urban Studies",
+        "label": "UW Tacoma Urban Studies degree requirements",
         "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
         "visibility": "visible",
         "status": "verified",
@@ -27044,7 +29338,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Students admitted prior to spring 2026 may complete their current degree requirements, or speak with their academic advi",
+            "label": "UW Tacoma Urban Studies degree requirements",
             "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
             "visibility": "visible",
             "status": "verified",
@@ -27061,14 +29355,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "gis-certificate-option",
-        "label": "GIS Certificate option",
+        "id": "gis-option",
+        "label": "GIS option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Urban Studies degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -27096,7 +29398,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped pathway section: Rhetoric, Writing and Social Change Track",
+        "label": "Scoped pathway section: Rhetoric, Writing and Social Change Track major requirements",
         "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
         "visibility": "visible",
         "status": "verified",
@@ -27121,7 +29423,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: To complete a BA in the Creative Writing track of Writing Studies, you need to complete 60 credits, including 45 credits",
+            "label": "UW Tacoma Creative Writing track requirements",
             "url": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
             "visibility": "visible",
             "status": "verified",
@@ -27200,6 +29502,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "to-complete-a-ba-in-the-technical-communication-track",
+        "label": "To complete a BA in the Technical Communication track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "user-experience-and-usability-track",
         "label": "User Experience and Usability track",
         "summary": "",
@@ -27227,8 +29547,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped pathway section: Rhetoric, Writing and Social Change Track",
-            "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+            "label": "RHETORIC, WRITING AND SOCIAL CHANGE TRACK major requirements",
+            "url": "https://www.tacoma.uw.edu/sias-new/cac-new/rhetoric-writing-and-social-change-track",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"

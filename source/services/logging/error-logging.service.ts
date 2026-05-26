@@ -1,10 +1,11 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import Constants from "expo-constants";
 import { Platform } from "react-native";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { FIRESTORE_COLLECTIONS, STORAGE_KEYS } from "@/constants/schema";
 import { API_CONFIG } from "@/services/app/config";
 import { db, firebaseAuth } from "@/services/firebase/firebase";
+import { fetchWithHandling } from "@/services/network/fetch-with-handling";
 
 const LOG_QUEUE_KEY = STORAGE_KEYS.errorLogQueue;
 const LOG_SCHEMA_VERSION = 1;
@@ -268,7 +269,7 @@ class ErrorLoggingService {
 
   private async readQueue() {
     try {
-      const raw = await AsyncStorage.getItem(LOG_QUEUE_KEY);
+      const raw = await localStorageService.getItem(LOG_QUEUE_KEY);
       if (!raw) return [] as ErrorLogEntry[];
       const parsed = JSON.parse(raw) as ErrorLogEntry[];
       return Array.isArray(parsed) ? parsed : [];
@@ -279,10 +280,10 @@ class ErrorLoggingService {
 
   private async writeQueue(queue: ErrorLogEntry[]) {
     if (queue.length === 0) {
-      await AsyncStorage.removeItem(LOG_QUEUE_KEY);
+      await localStorageService.removeItem(LOG_QUEUE_KEY);
       return;
     }
-    await AsyncStorage.setItem(
+    await localStorageService.setItem(
       LOG_QUEUE_KEY,
       JSON.stringify(queue.slice(-API_CONFIG.logging.maxQueuedErrorLogs))
     );
@@ -324,11 +325,15 @@ class ErrorLoggingService {
     const webhookUrl = API_CONFIG.logging.errorWebhookUrl;
     if (!webhookUrl) return false;
 
-    const response = await fetch(webhookUrl, {
+    const response = await fetchWithHandling(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      operation: "Support log webhook",
+      retries: 1,
+      retryDelayMs: 250,
+      timeoutMs: 10000,
       body: JSON.stringify({
         timestamp: entry.timestamp,
         platform: entry.platform,
@@ -354,11 +359,6 @@ class ErrorLoggingService {
         metadata: entry.metadata,
       }),
     });
-
-    if (!response.ok) {
-      const details = await response.text().catch(() => "");
-      throw new Error(`Support log webhook failed: ${response.status} ${details}`.trim());
-    }
 
     return true;
   }

@@ -1,4 +1,6 @@
-// Compatibility entry point for running the full transfer planner domain suite.
+// Legacy compatibility entry point for running the broad transfer planner domain suite.
+// This is an opt-in diagnostic surface, not the planner accuracy gate. The trusted
+// pass/fail accuracy signal is the source-backed-runtime-coverage audit.
 import "./transfer-planner.scheduler.test";
 import "./transfer-planner.requirements.test";
 import "./transfer-planner.source-backed.test";

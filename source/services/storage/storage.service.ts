@@ -2,21 +2,24 @@
 // File storage service for resumes and transcripts.
 // Resumes may use Firebase Storage; unofficial transcripts stay local-only.
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { Platform } from 'react-native';
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import {
   LOCAL_DOCUMENTS_DIR_NAME,
   buildFirebaseUserStoragePath,
   buildLocalDocumentSubdirectory,
-  getAvatarStorageKey,
-  getResumeStorageKey,
-  getRoadmapDocumentStorageKey,
-  getTranscriptStorageKey,
 } from '@/constants/schema';
 import { errorLoggingService } from '@/services/logging/error-logging.service';
 import { storage } from '@/services/firebase/firebase';
 import {
+  getAvatarStorageKey,
+  getResumeStorageKey,
+  getRoadmapDocumentStorageKey,
+  getTranscriptStorageKey,
+} from '@/services/storage/local-storage-contracts';
+import {
+  blobToDataUrl,
   copyFile,
   deleteFileSystemPath,
   ensureDirectory,
@@ -29,6 +32,7 @@ type UploadFileMetadata = {
   fileName?: string | null;
   mimeType?: string | null;
   sizeBytes?: number | null;
+  sourceFile?: Blob | null;
 };
 
 export type UploadedFile = {
@@ -122,7 +126,14 @@ function normalizeUploadedFile(raw: unknown): UploadedFile | null {
   };
 }
 
-async function persistWebFileUrl(sourceUri: string): Promise<string> {
+async function persistWebFileUrl(
+  sourceUri: string,
+  sourceFile?: Blob | null
+): Promise<string> {
+  if (sourceFile) {
+    return blobToDataUrl(sourceFile);
+  }
+
   const normalizedUri = String(sourceUri ?? '').trim();
   if (!normalizedUri) {
     throw new TypeError('Missing file URL');
@@ -173,7 +184,7 @@ async function copyToLocalStorage(
   sourceUri: string,
   fileName: string,
   subDir: string,
-  options?: { forceEmbeddedWebCopy?: boolean }
+  options?: { forceEmbeddedWebCopy?: boolean; sourceFile?: Blob | null }
 ): Promise<string> {
   if (Platform.OS === 'web') {
     const normalizedUri = String(sourceUri ?? '').trim();
@@ -183,7 +194,7 @@ async function copyToLocalStorage(
     ) {
       return normalizedUri;
     }
-    return persistWebFileUrl(sourceUri);
+    return persistWebFileUrl(sourceUri, options?.sourceFile);
   }
   const baseDir = getLocalDocumentsBaseDir();
   const dir = `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/${subDir}/`;
@@ -285,7 +296,7 @@ class StorageService {
       mimeType: normalizeMimeType(metadata?.mimeType),
       sizeBytes: normalizeSizeBytes(metadata?.sizeBytes),
     };
-    await AsyncStorage.setItem(getResumeStorageKey(userId), JSON.stringify(localData));
+    await localStorageService.setItem(getResumeStorageKey(userId), JSON.stringify(localData));
     return localData;
   }
 
@@ -299,7 +310,7 @@ class StorageService {
       fileUri,
       fileName,
       buildLocalDocumentSubdirectory('transcript', userId),
-      { forceEmbeddedWebCopy: true }
+      { forceEmbeddedWebCopy: true, sourceFile: metadata?.sourceFile }
     );
     const localData: UploadedFile = {
       name: fileName,
@@ -308,7 +319,7 @@ class StorageService {
       mimeType: normalizeMimeType(metadata?.mimeType),
       sizeBytes: normalizeSizeBytes(metadata?.sizeBytes),
     };
-    await AsyncStorage.setItem(getTranscriptStorageKey(userId), JSON.stringify(localData));
+    await localStorageService.setItem(getTranscriptStorageKey(userId), JSON.stringify(localData));
     return localData;
   }
 
@@ -327,7 +338,7 @@ class StorageService {
       mimeType: null,
       sizeBytes: null,
     };
-    await AsyncStorage.setItem(getAvatarStorageKey(userId), JSON.stringify(localData));
+    await localStorageService.setItem(getAvatarStorageKey(userId), JSON.stringify(localData));
     return localData;
   }
 
@@ -345,7 +356,7 @@ class StorageService {
       mimeType: normalizeMimeType(metadata?.mimeType),
       sizeBytes: normalizeSizeBytes(metadata?.sizeBytes),
     };
-    await AsyncStorage.setItem(
+    await localStorageService.setItem(
       getRoadmapDocumentStorageKey(userId, docType),
       JSON.stringify(localData)
     );
@@ -353,7 +364,7 @@ class StorageService {
   }
 
   async getDocument(userId: string, docType: string): Promise<UploadedFile | null> {
-    const data = await AsyncStorage.getItem(getRoadmapDocumentStorageKey(userId, docType));
+    const data = await localStorageService.getItem(getRoadmapDocumentStorageKey(userId, docType));
     return data ? normalizeUploadedFile(JSON.parse(data)) : null;
   }
 
@@ -361,7 +372,7 @@ class StorageService {
    * Get user's uploaded resume (from AsyncStorage; URL may be Firebase or local)
    */
   async getResume(userId: string): Promise<UploadedFile | null> {
-    const data = await AsyncStorage.getItem(getResumeStorageKey(userId));
+    const data = await localStorageService.getItem(getResumeStorageKey(userId));
     return data ? normalizeUploadedFile(JSON.parse(data)) : null;
   }
 
@@ -371,7 +382,7 @@ class StorageService {
    */
   async getTranscript(userId: string): Promise<UploadedFile | null> {
     const storageKey = getTranscriptStorageKey(userId);
-    const data = await AsyncStorage.getItem(storageKey);
+    const data = await localStorageService.getItem(storageKey);
     if (!data) return null;
 
     const normalized = normalizeUploadedFile(JSON.parse(data));
@@ -379,17 +390,17 @@ class StorageService {
     if (!isRemoteTranscriptUrl(normalized.url)) return normalized;
 
     await deleteLegacyRemoteTranscriptCopy(normalized.url);
-    await AsyncStorage.removeItem(storageKey);
+    await localStorageService.removeItem(storageKey);
     return null;
   }
 
   async getAvatar(userId: string): Promise<UploadedFile | null> {
-    const data = await AsyncStorage.getItem(getAvatarStorageKey(userId));
+    const data = await localStorageService.getItem(getAvatarStorageKey(userId));
     return data ? normalizeUploadedFile(JSON.parse(data)) : null;
   }
 
   /**
-   * Delete uploaded file metadata from AsyncStorage.
+   * Delete uploaded file metadata from local storage.
    * Legacy remote transcript copies are cleaned up if they still exist.
    */
   async deleteFile(userId: string, fileType: 'resume' | 'transcript'): Promise<void> {
@@ -400,7 +411,7 @@ class StorageService {
       }
     }
     await deleteLocalDocumentDirectory(fileType, userId);
-    await AsyncStorage.removeItem(
+    await localStorageService.removeItem(
       fileType === 'resume'
         ? getResumeStorageKey(userId)
         : getTranscriptStorageKey(userId)

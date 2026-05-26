@@ -9,7 +9,7 @@ import {
   TRANSFER_PLANNER_SELECTED_PATHWAY_BY_PLAN_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD,
-  TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/constants/planner-storage";
 import { transcriptPlannerDebugService } from "@/services/dev/transcript-planner-debug.service";
@@ -25,7 +25,7 @@ test("Transcript cache reset removes transcript-derived completed planner course
         label: "MATH& 151 Calculus I",
       },
     ],
-    [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+    [TRANSFER_PLANNER_TRANSCRIPT_FIELD]: "file:///tmp/transcript.pdf",
     [TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD]: "2026-04-21T01:02:03.000Z",
     [TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD]: 2,
     major: "Computer Science",
@@ -40,7 +40,7 @@ test("Transcript cache reset removes transcript-derived completed planner course
     false
   );
   assert.equal(
-    TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD in nextQuestionnaireAnswers,
+    TRANSFER_PLANNER_TRANSCRIPT_FIELD in nextQuestionnaireAnswers,
     false
   );
   assert.equal(
@@ -64,7 +64,7 @@ test("Transcript cache reset preserves unrelated planner preferences and profile
         label: "ENGL& 101 English Composition",
       },
     ],
-    [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+    [TRANSFER_PLANNER_TRANSCRIPT_FIELD]: "file:///tmp/transcript.pdf",
     [TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD]: {
       "uw-seattle::computer-science::base": ["CSE 123"],
     },
@@ -156,7 +156,7 @@ test("Shared transcript reset clears transcript reference, planner cache, and de
                   label: "MATH& 151 Calculus I",
                 },
               ],
-              [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+              [TRANSFER_PLANNER_TRANSCRIPT_FIELD]: "file:///tmp/transcript.pdf",
               [TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD]: {
                 "uw-seattle::computer-science::base": ["CSE 123"],
               },
@@ -177,7 +177,7 @@ test("Shared transcript reset clears transcript reference, planner cache, and de
     undefined
   );
   assert.equal(
-    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD],
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_FIELD],
     undefined
   );
   assert.deepEqual(
@@ -215,7 +215,7 @@ test("Shared transcript reset still clears local transcript and planner cache wh
                   label: "MATH& 151 Calculus I",
                 },
               ],
-              [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+              [TRANSFER_PLANNER_TRANSCRIPT_FIELD]: "file:///tmp/transcript.pdf",
             })
           : answers;
     },
@@ -231,7 +231,7 @@ test("Shared transcript reset still clears local transcript and planner cache wh
     undefined
   );
   assert.equal(
-    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD],
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_FIELD],
     undefined
   );
 });

@@ -1,4 +1,6 @@
-const ALLEN_SCHOOL_CE_NATURAL_SCIENCE_SOURCE_URL =
+const { fetchTextWithHandling } = require("../lib/fetch-with-handling.cjs");
+
+const ALLEN_SCHOOL_CE_NATURAL_SCIENCE_URL =
   "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science";
 
 const CE_NATURAL_SCIENCE_SUBJECTS = [
@@ -166,20 +168,17 @@ function extractComputerEngineeringApprovedNaturalScienceUwCourseCodesFromText(t
 }
 
 async function main() {
-  const response = await fetch(ALLEN_SCHOOL_CE_NATURAL_SCIENCE_SOURCE_URL);
-  if (!response.ok) {
-    throw new Error(
-      `Unable to fetch Allen School CE Natural Science source: ${response.status} ${response.statusText}`
-    );
-  }
-
-  const html = await response.text();
+  const html = await fetchTextWithHandling(ALLEN_SCHOOL_CE_NATURAL_SCIENCE_URL, {
+    operation: "Allen School CE Natural Science source fetch",
+    timeoutMs: 30000,
+    userAgent: "GatorGuideTransferPlannerSourceFetch/1.0",
+  });
   const approvedUwCourseCodes =
     extractComputerEngineeringApprovedNaturalScienceUwCourseCodesFromText(html);
   console.log(
     JSON.stringify(
       {
-        officialSource: ALLEN_SCHOOL_CE_NATURAL_SCIENCE_SOURCE_URL,
+        officialSource: ALLEN_SCHOOL_CE_NATURAL_SCIENCE_URL,
         approvedUwCourseCodes,
       },
       null,
@@ -196,6 +195,7 @@ if (require.main === module) {
 }
 
 module.exports = {
-  ALLEN_SCHOOL_CE_NATURAL_SCIENCE_SOURCE_URL,
+  ALLEN_SCHOOL_CE_NATURAL_SCIENCE_URL,
+  ALLEN_SCHOOL_CE_NATURAL_SCIENCE_SOURCE_URL: ALLEN_SCHOOL_CE_NATURAL_SCIENCE_URL,
   extractComputerEngineeringApprovedNaturalScienceUwCourseCodesFromText,
 };

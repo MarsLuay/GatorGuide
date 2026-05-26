@@ -19,36 +19,37 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "transfer-planner-maintenance-common.ps1")
+. (Join-Path $PSScriptRoot "transfer-planner-tmp-layout.ps1")
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$tmpDir = Join-Path $projectRoot ".tmp"
-$logDir = Join-Path $tmpDir "planner-refresh-logs"
+$tmpLayout = Initialize-GatorGuideTmpLayout -ProjectRoot $projectRoot
+$tmpDir = $tmpLayout.root
+$logDir = Join-Path $tmpLayout.logs "planner-refresh-logs"
 
-New-Item -ItemType Directory -Force -Path $tmpDir | Out-Null
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 
 $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $logPath = Join-Path $logDir "planner-maintenance-$timestamp.log"
-$summaryPath = Join-Path $tmpDir "transfer-planner-maintenance-summary.md"
+$summaryPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-maintenance-summary.md"
 $refreshLauncherPath = Join-Path $PSScriptRoot "run-transfer-planner-refresh.ps1"
 $refreshPipelineScriptPath = Join-Path $projectRoot "scripts\planner\refresh-transfer-planner-sources.cjs"
 $linkManagerScriptPath = Join-Path $projectRoot "scripts\planner\course-planner-link-manager.cjs"
 $plannerStatusScriptPath = Join-Path $projectRoot "scripts\planner\planner-status.cjs"
 $qaResultsRoot = Join-Path $projectRoot ".tools"
 $qaWebPath = Join-Path $qaResultsRoot "qa-web"
-$sourceGapReportPath = Join-Path $tmpDir "transfer-planner-source-gaps.json"
-$autoRepairReportPath = Join-Path $tmpDir "transfer-planner-auto-repair-plan.json"
-$requirementParseReportPath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.json"
-$parserRecoveryReportPath = Join-Path $tmpDir "transfer-planner-parser-recovery-report.json"
-$sourceChangeClassificationReportPath = Join-Path $tmpDir "transfer-planner-source-change-classification.json"
-$requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.json"
-$ownerAuditReportPath = Join-Path $tmpDir "transfer-planner-owner-audit.json"
-$sourceBackedCoverageAuditReportPath = Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.json"
-$generatedRegistryAuditReportPath = Join-Path $tmpDir "transfer-planner-generated-registry-audit.json"
-$mappingAuditReportPath = Join-Path $tmpDir "transfer-planner-mapping-audit.json"
-$hardeningReportPath = Join-Path $tmpDir "transfer-planner-hardening-report.json"
-$sourceYearCoverageReportPath = Join-Path $tmpDir "transfer-planner-source-year-coverage.json"
-$deadlineRefreshReportPath = Join-Path $tmpDir "deadline-refresh-report.json"
+$sourceGapReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-gaps.json"
+$autoRepairReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-auto-repair-plan.json"
+$requirementParseReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-requirement-source-parse-report.json"
+$parserRecoveryReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-parser-recovery-report.json"
+$sourceChangeClassificationReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-change-classification.json"
+$requirementDiffReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-requirement-diff-promotion-report.json"
+$ownerAuditReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-owner-audit.json"
+$sourceBackedCoverageAuditReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-backed-coverage-audit.json"
+$generatedRegistryAuditReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-generated-registry-audit.json"
+$mappingAuditReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-mapping-audit.json"
+$hardeningReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-hardening-report.json"
+$sourceYearCoverageReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-year-coverage.json"
+$deadlineRefreshReportPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "deadline-refresh-report.json"
 
 $stepResults = [ordered]@{
   "Planner refresh" = "pending"
@@ -440,29 +441,29 @@ function Get-SectionArtifacts {
   switch ($SectionId) {
     "grc-discovery" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-grc-public-materials.json"),
-        (Join-Path $tmpDir "transfer-planner-source-year-coverage.json"),
-        (Join-Path $tmpDir "transfer-planner-grc-associate-tracks.json")
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-grc-public-materials.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-year-coverage.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-grc-associate-tracks.json")
       )
     }
     "source-audit" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-source-link-snapshot.json"),
-        (Join-Path $tmpDir "transfer-planner-primary-source-discovery.json"),
-        (Join-Path $tmpDir "transfer-planner-primary-source-review-queue.json"),
-        (Join-Path $tmpDir "transfer-planner-source-gaps.json")
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-link-snapshot.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-primary-source-discovery.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-primary-source-review-queue.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-gaps.json")
       )
     }
     "requirement-parsing" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.json"),
-        (Join-Path $tmpDir "transfer-planner-parser-recovery-report.json"),
-        (Join-Path $tmpDir "transfer-planner-source-fingerprints.json"),
-        (Join-Path $tmpDir "transfer-planner-source-change-classification.json")
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-requirement-source-parse-report.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-parser-recovery-report.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-fingerprints.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-change-classification.json")
       )
     }
     "schedule-cache" {
-      $materialsPath = Join-Path $tmpDir "transfer-planner-grc-public-materials.json"
+      $materialsPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-grc-public-materials.json"
       $paths = @($materialsPath)
       if (Test-Path $materialsPath) {
         try {
@@ -476,7 +477,7 @@ function Get-SectionArtifacts {
         }
       } else {
         $paths += @(
-          Get-ChildItem -Path $tmpDir -Filter "*-Annual-Schedule.pdf" -File -ErrorAction SilentlyContinue |
+          Get-ChildItem -Path $tmpLayout.downloads -Filter "*-Annual-Schedule.pdf" -File -ErrorAction SilentlyContinue |
             ForEach-Object { $_.FullName }
         )
       }
@@ -484,34 +485,36 @@ function Get-SectionArtifacts {
     }
     "deadline-refresh" {
       return @(
-        (Join-Path $tmpDir "deadline-refresh-report.json"),
-        (Join-Path $tmpDir "deadline-refresh-report.md"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "deadline-refresh-report.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "deadline-refresh-report.md"),
         (Join-Path $projectRoot "data\starter-opportunities.json")
       )
     }
     "catalog-and-generation" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-equivalency-guide-parse.json"),
-        (Join-Path $tmpDir "transfer-planner-grc-catalog-ingest.json"),
-        (Join-Path $tmpDir "transfer-planner-uw-catalog-ingest.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-equivalency-guide-parse.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-grc-catalog-ingest.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-uw-catalog-ingest.json"),
         (Join-Path $projectRoot "constants\green-river-major-options.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\bootstrap.generated.ts"),
+        (Join-Path $projectRoot "constants\transfer-planner-source\course-metadata.generated.data.json"),
         (Join-Path $projectRoot "constants\transfer-planner-source\course-metadata.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\equivalency-guide.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\grc-associate-tracks.generated.ts"),
+        (Join-Path $projectRoot "constants\transfer-planner-source\student-runtime.generated"),
         (Join-Path $projectRoot "constants\transfer-planner-source\student-runtime.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\grc-course-availability.generated.ts")
       )
     }
     "verification" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-owner-audit.json"),
-        (Join-Path $tmpDir "transfer-planner-source-pipeline-validation.json"),
-        (Join-Path $tmpDir "transfer-planner-source-pipeline-validation.md"),
-        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.json"),
-        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.md"),
-        (Join-Path $tmpDir "transfer-planner-auto-repair-plan.json"),
-        (Join-Path $tmpDir "transfer-planner-auto-repair-plan.md")
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-owner-audit.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-pipeline-validation.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-pipeline-validation.md"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-backed-coverage-audit.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-backed-coverage-audit.md"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-auto-repair-plan.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-auto-repair-plan.md")
       )
     }
     "playwright-chromium" {
@@ -527,10 +530,10 @@ function Get-SectionArtifacts {
     }
     "hardening" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-hardening-report.json"),
-        (Join-Path $tmpDir "transfer-planner-hardening-report.md"),
-        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.json"),
-        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.md")
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-hardening-report.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-hardening-report.md"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-backed-coverage-audit.json"),
+        (Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-backed-coverage-audit.md")
       )
     }
     default {
@@ -1693,8 +1696,18 @@ function Write-Summary {
     return Get-ReportValue -Object $summary -Name $Name -Default $Default
   }
 
+  function Get-ObjectPropertyNames {
+    param($Object)
+
+    if ($null -eq $Object) {
+      return @()
+    }
+
+    return @($Object.PSObject.Properties | ForEach-Object { [string]$_.Name })
+  }
+
   function Get-ChangedMajorRequirementOwnerSummary {
-    $fingerprintsPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.json"
+    $fingerprintsPath = Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-fingerprints.json"
     $data = Read-JsonReport -Path $fingerprintsPath
     if (-not $data -or -not $data.requirementDiff) {
       return [pscustomobject]@{
@@ -1779,11 +1792,11 @@ function Write-Summary {
   )
 
   if ($sourceBackedCoverageAuditReport -and ((Get-ReportValue -Object $sourceBackedCoverageAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
-    Add-RequiredAction -List $requiredActions -Message "Clear the source-backed runtime coverage blocking gate: fix discovery/parser/generator/runtime/mapping automation until source-backed coverage issues are 0."
+    Add-RequiredAction -List $requiredActions -Message "Clear the runtime coverage blocking gate: fix discovery/parser/generator/runtime/mapping automation until coverage issues are 0."
   }
 
   if ($generatedRegistryAuditReport -and ((Get-ReportValue -Object $generatedRegistryAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
-    Add-RequiredAction -List $requiredActions -Message "Clear generated-registry audit failures after source-backed coverage is clean; repair generator/source metadata rules rather than generated data."
+    Add-RequiredAction -List $requiredActions -Message "Clear generated-registry audit failures after coverage is clean; repair generator/source metadata rules rather than generated data."
   }
 
   if ($mappingAuditReport -and ((Get-ReportValue -Object $mappingAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
@@ -1813,10 +1826,11 @@ function Write-Summary {
   if ($sourceChangeClassificationReport -and ($sourceChangeClassificationReport.countsByActionStatus)) {
     $needsDiscovery = 0
     $needsParser = 0
-    if ($sourceChangeClassificationReport.countsByActionStatus.PSObject.Properties.Name -contains "needs-discovery-rule") {
+    $actionStatusNames = Get-ObjectPropertyNames -Object $sourceChangeClassificationReport.countsByActionStatus
+    if ($actionStatusNames -contains "needs-discovery-rule") {
       $needsDiscovery = [int]$sourceChangeClassificationReport.countsByActionStatus.'needs-discovery-rule'
     }
-    if ($sourceChangeClassificationReport.countsByActionStatus.PSObject.Properties.Name -contains "needs-parser-rule") {
+    if ($actionStatusNames -contains "needs-parser-rule") {
       $needsParser = [int]$sourceChangeClassificationReport.countsByActionStatus.'needs-parser-rule'
     }
     if (($needsDiscovery + $needsParser) -gt 0) {
@@ -1894,19 +1908,19 @@ function Write-Summary {
   )
 
   if ($sourceBackedCoverageAuditReport) {
-    $summaryLines += "- Source-backed runtime coverage gate outcome: $((Get-ReportValue -Object $sourceBackedCoverageAuditReport -Name "outcome" -Default "unknown"))"
-    $summaryLines += "- Source-backed runtime coverage blocking issues: $((Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "blockingGateIssueCount" -Default "unknown"))"
-    $summaryLines += "- Source-backed owners audited: $((Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "ownerCount" -Default "unknown"))"
+    $summaryLines += "- runtime coverage gate outcome: $((Get-ReportValue -Object $sourceBackedCoverageAuditReport -Name "outcome" -Default "unknown"))"
+    $summaryLines += "- runtime coverage blocking issues: $((Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "blockingGateIssueCount" -Default "unknown"))"
+    $summaryLines += "- owners audited: $((Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "ownerCount" -Default "unknown"))"
     $sourceBackedLayerCounts = Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "issueCountsBySuspectedLayer" -Default $null
     if ($sourceBackedLayerCounts) {
-      $summaryLines += "- Source-backed suspected layers: $($sourceBackedLayerCounts | ConvertTo-Json -Compress)"
+      $summaryLines += "- suspected layers: $($sourceBackedLayerCounts | ConvertTo-Json -Compress)"
     }
     $sourceBackedClassCounts = Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "issueCountsByActionableClass" -Default $null
     if ($sourceBackedClassCounts) {
-      $summaryLines += "- Source-backed actionable classes: $($sourceBackedClassCounts | ConvertTo-Json -Compress)"
+      $summaryLines += "- actionable classes: $($sourceBackedClassCounts | ConvertTo-Json -Compress)"
     }
   } else {
-    $summaryLines += "- Source-backed runtime coverage gate: unavailable (blocking audit report missing)."
+    $summaryLines += "- runtime coverage gate: unavailable (blocking audit report missing)."
   }
 
   if ($generatedRegistryAuditReport) {
@@ -2019,19 +2033,19 @@ function Write-Summary {
     "",
     "- Planner maintenance summary: $summaryPath",
     "- Planner log: $logPath",
-    "- Green River public-material discovery: $(Join-Path $tmpDir 'transfer-planner-grc-public-materials.md')",
-    "- Planner source-gap report: $(Join-Path $tmpDir 'transfer-planner-source-gaps.md')",
-    "- Planner auto-repair plan: $(Join-Path $tmpDir 'transfer-planner-auto-repair-plan.md')",
-    "- Planner requirement parse report: $(Join-Path $tmpDir 'transfer-planner-requirement-source-parse-report.md')",
-    "- Planner parser auto-recovery report: $(Join-Path $tmpDir 'transfer-planner-parser-recovery-report.md')",
-    "- Planner source-change classification report: $(Join-Path $tmpDir 'transfer-planner-source-change-classification.md')",
-    "- Planner diff classification report: $(Join-Path $tmpDir 'transfer-planner-requirement-diff-promotion-report.md')",
-    "- Planner source-backed coverage audit: $(Join-Path $tmpDir 'transfer-planner-source-backed-coverage-audit.md')",
-    "- Planner generated-registry audit: $(Join-Path $tmpDir 'transfer-planner-generated-registry-audit.md')",
-    "- Planner UW-GRC mapping audit: $(Join-Path $tmpDir 'transfer-planner-mapping-audit.md')",
-    "- Planner hardening report: $(Join-Path $tmpDir 'transfer-planner-hardening-report.md')",
-    "- Planner source year coverage report: $(Join-Path $tmpDir 'transfer-planner-source-year-coverage.md')",
-    "- Deadline refresh report: $(Join-Path $tmpDir 'deadline-refresh-report.md')",
+    "- Green River public-material discovery: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-grc-public-materials.md')",
+    "- Planner source-gap report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-source-gaps.md')",
+    "- Planner auto-repair plan: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-auto-repair-plan.md')",
+    "- Planner requirement parse report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-requirement-source-parse-report.md')",
+    "- Planner parser auto-recovery report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-parser-recovery-report.md')",
+    "- Planner source-change classification report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-source-change-classification.md')",
+    "- Planner diff classification report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-requirement-diff-promotion-report.md')",
+    "- Planner coverage audit: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-source-backed-coverage-audit.md')",
+    "- Planner generated-registry audit: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-generated-registry-audit.md')",
+    "- Planner UW-GRC mapping audit: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-mapping-audit.md')",
+    "- Planner hardening report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-hardening-report.md')",
+    "- Planner source year coverage report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'transfer-planner-source-year-coverage.md')",
+    "- Deadline refresh report: $(Resolve-GatorGuideTmpPath -Layout $tmpLayout -Name 'deadline-refresh-report.md')",
     "- QA web export: $qaWebPath",
     "- QA output root: $qaResultsRoot",
     ""
@@ -2268,7 +2282,7 @@ try {
       -FilePath "node" `
       -Arguments @("scripts/planner/verify-transfer-planner-hardening.cjs") `
       -Description "Run planner hardening checks" `
-      -ProgressDetail "Checking the planner for source-backed hardening regressions"
+      -ProgressDetail "Checking the planner for hardening regressions"
   } else {
     Write-Host "Post-refresh maintenance checks are disabled. Use -RunPostChecks to enable." -ForegroundColor DarkCyan
   }

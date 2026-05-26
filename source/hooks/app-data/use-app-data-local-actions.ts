@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { useCallback, type Dispatch, type SetStateAction } from "react";
 import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
@@ -42,7 +42,7 @@ export function useAppDataLocalActions({
 
   const clearAll = useCallback(async () => {
     await notificationsService.clearManagedNotifications().catch(() => {});
-    await AsyncStorage.removeItem(STORAGE_KEY).catch((error) => {
+    await localStorageService.removeItem(STORAGE_KEY).catch((error) => {
       void errorLoggingService.captureException(error, {
         category: "storage",
         operation: "clear-app-data-primary",

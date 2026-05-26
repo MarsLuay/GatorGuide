@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { collection, getDocs } from "firebase/firestore";
 import {
   type Opportunity,
@@ -7,8 +7,9 @@ import {
   OPPORTUNITY_STATUSES,
 } from "@/constants/opportunities";
 import { STARTER_OPPORTUNITIES } from "@/constants/starter-opportunities";
-import { FIRESTORE_COLLECTIONS, STORAGE_KEYS } from "@/constants/schema";
+import { FIRESTORE_COLLECTIONS } from "@/constants/schema";
 import { db } from "@/services/firebase/firebase";
+import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
 import { opportunityGatewayService } from "./opportunity-gateway.service";
 
 type OpportunityCatalogCachePayload = {
@@ -52,14 +53,14 @@ function mergeOpportunityCatalogs(
 }
 
 class OpportunitiesService {
-  private catalogStorageKey = STORAGE_KEYS.opportunitiesCatalog;
+  private catalogStorageKey = LOCAL_STORAGE_KEYS.opportunitiesCatalog;
   private starterCatalog = sortOpportunities(
     STARTER_OPPORTUNITIES.map((opportunity) => normalizeOpportunity(opportunity))
   );
 
   async readCatalogCache(): Promise<OpportunityCatalogCachePayload | null> {
     try {
-      const raw = await AsyncStorage.getItem(this.catalogStorageKey);
+      const raw = await localStorageService.getItem(this.catalogStorageKey);
       if (!raw) return null;
       const parsed = JSON.parse(raw) as OpportunityCatalogCachePayload;
       if (!Array.isArray(parsed?.opportunities)) return null;
@@ -86,7 +87,7 @@ class OpportunitiesService {
       fetchedAt: new Date().toISOString(),
       opportunities: mergeOpportunityCatalogs(this.starterCatalog, opportunities),
     };
-    await AsyncStorage.setItem(this.catalogStorageKey, JSON.stringify(payload));
+    await localStorageService.setItem(this.catalogStorageKey, JSON.stringify(payload));
   }
 
   async getCatalogFromFirestore(): Promise<Opportunity[]> {

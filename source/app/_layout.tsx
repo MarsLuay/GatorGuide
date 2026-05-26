@@ -1,7 +1,7 @@
 import { useEffect, useState, type ComponentType } from 'react';
 import '../global.css';
 import * as SplashScreen from 'expo-splash-screen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorageService } from "@/services/storage/local-storage.service";
 import StartupAnimation from '@/components/pages/StartupAnimation';
 import { Stack } from "expo-router";
 import type { ErrorBoundaryProps } from "expo-router";
@@ -146,7 +146,7 @@ function RootLayoutContent() {
   useEffect(() => {
     async function prepare() {
       try {
-        const hasSeenStartup = await AsyncStorage.getItem(HAS_SEEN_STARTUP_KEY);
+        const hasSeenStartup = await localStorageService.getItem(HAS_SEEN_STARTUP_KEY);
         setShowAnimation(hasSeenStartup === 'true' ? false : true);
       } catch (e) {
         void errorLoggingService.captureException(e, {
@@ -216,7 +216,7 @@ function RootLayoutContent() {
   }, [appIsReady, showAnimation, themeHydrated]);
 
   const handleAnimationFinish = () => {
-    AsyncStorage.setItem(HAS_SEEN_STARTUP_KEY, 'true').catch(() => {});
+    localStorageService.setItem(HAS_SEEN_STARTUP_KEY, 'true').catch(() => {});
     setShowAnimation(false);
   };
 

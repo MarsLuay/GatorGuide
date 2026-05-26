@@ -1,20 +1,20 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 
 import { APP_VERSION } from "@/constants/app-version";
-import {
-  LOCAL_DOCUMENTS_DIR_NAME,
-  STORAGE_KEYS,
-  buildLocalDocumentSubdirectory,
-  getAvatarStorageKey,
-  getOpportunityPendingStorageKey,
-  getOpportunityStatusesStorageKey,
-  getResumeStorageKey,
-  getSavedCollegesPendingStorageKey,
-  getTranscriptStorageKey,
-} from "@/constants/schema";
 import type { AppDataState, User } from "@/hooks/use-app-data";
 import type { AppTheme } from "@/hooks/use-app-theme";
 import { type Language, translations } from "@/services/app/translations";
+import {
+  getAvatarStorageKey,
+  getImportedLocalDocumentDirectory,
+  getLocalStorageOwnerContext,
+  getPortableLocalStorageKeysForOwner,
+  getResumeStorageKey,
+  getTranscriptStorageKey,
+  isPortableLocalStorageKeyForOwner,
+  parseLocalDocumentStorageKey,
+  type LocalDocumentStorageKeyInfo,
+} from "@/services/storage/local-storage-contracts";
 import {
   ensureDirectory,
   getWritableBaseDirectory,
@@ -31,14 +31,6 @@ export const DATA_EXPORT_FILE_NAME = "GatorGuide_export.json";
 
 const APP_THEME_VALUES = ["light", "dark", "green", "system"] as const;
 const SUPPORTED_LANGUAGE_VALUES = Object.keys(translations) as Language[];
-
-type PortableDocumentKind = "resume" | "transcript" | "avatar" | "roadmap";
-
-type PortableDocumentStorageKeyInfo = {
-  kind: PortableDocumentKind;
-  userId: string;
-  docType?: string;
-};
 
 type EmbeddedPortableFile = {
   storageKey: string;
@@ -77,16 +69,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
-function normalizeUserId(user: User | null | undefined) {
-  return String(user?.uid ?? "").trim();
-}
-
-function getOpportunityUserKey(user: User | null | undefined) {
-  const userId = normalizeUserId(user);
-  if (!user) return null;
-  return userId && !user?.isGuest ? userId : "guest";
-}
-
 function normalizeTheme(value: unknown): AppTheme | undefined {
   return APP_THEME_VALUES.includes(value as AppTheme)
     ? (value as AppTheme)
@@ -97,64 +79,6 @@ function normalizeLanguage(value: unknown): Language | undefined {
   return SUPPORTED_LANGUAGE_VALUES.includes(value as Language)
     ? (value as Language)
     : undefined;
-}
-
-function parseDocumentStorageKey(key: string): PortableDocumentStorageKeyInfo | null {
-  const resumeMatch = /^resume:(.+)$/.exec(key);
-  if (resumeMatch?.[1]) {
-    return { kind: "resume", userId: resumeMatch[1] };
-  }
-
-  const transcriptMatch = /^transcript:(.+)$/.exec(key);
-  if (transcriptMatch?.[1]) {
-    return { kind: "transcript", userId: transcriptMatch[1] };
-  }
-
-  const avatarMatch = /^avatar:(.+)$/.exec(key);
-  if (avatarMatch?.[1]) {
-    return { kind: "avatar", userId: avatarMatch[1] };
-  }
-
-  const roadmapMatch = /^roadmap:([^:]+):(.+)$/.exec(key);
-  if (roadmapMatch?.[1] && roadmapMatch?.[2]) {
-    return {
-      kind: "roadmap",
-      userId: roadmapMatch[1],
-      docType: roadmapMatch[2],
-    };
-  }
-
-  return null;
-}
-
-function isPortableStorageKeyForState(state: AppDataState, key: string) {
-  const userId = normalizeUserId(state.user);
-  const opportunityUserKey = getOpportunityUserKey(state.user);
-
-  if (
-    state.user?.isGuest &&
-    (key === STORAGE_KEYS.guestProfileShow || key === STORAGE_KEYS.guestRoadmapShow)
-  ) {
-    return true;
-  }
-
-  if (opportunityUserKey === "guest") {
-    if (key === STORAGE_KEYS.opportunitiesGuestStatuses) return true;
-    if (key === STORAGE_KEYS.opportunitiesGuestPending) return true;
-  } else if (opportunityUserKey) {
-    if (key === getOpportunityStatusesStorageKey(opportunityUserKey)) return true;
-    if (key === getOpportunityPendingStorageKey(opportunityUserKey)) return true;
-    if (key === getSavedCollegesPendingStorageKey(opportunityUserKey)) return true;
-  }
-
-  if (!userId) return false;
-
-  if (key === getResumeStorageKey(userId)) return true;
-  if (key === getTranscriptStorageKey(userId)) return true;
-  if (key === getAvatarStorageKey(userId)) return true;
-
-  const documentKey = parseDocumentStorageKey(key);
-  return !!documentKey && documentKey.kind === "roadmap" && documentKey.userId === userId;
 }
 
 function shouldEmbedDocumentUrl(url: unknown) {
@@ -177,17 +101,17 @@ function getLocalDocumentsBaseDir() {
   return getWritableBaseDirectory("document") ?? "";
 }
 
-function getImportedDocumentDirectory(info: PortableDocumentStorageKeyInfo) {
+function getImportedDocumentDirectory(info: LocalDocumentStorageKeyInfo) {
   const baseDir = getLocalDocumentsBaseDir();
   if (!baseDir) return null;
-  return `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/${buildLocalDocumentSubdirectory(info.kind, info.userId)}/`;
+  return `${baseDir}${getImportedLocalDocumentDirectory(info)}`;
 }
 
 async function maybeEmbedLocalDocumentFile(
   storageKey: string,
   storageValue: string
 ): Promise<EmbeddedPortableFile | null> {
-  const info = parseDocumentStorageKey(storageKey);
+  const info = parseLocalDocumentStorageKey(storageKey);
   if (!info) return null;
 
   try {
@@ -214,8 +138,11 @@ async function maybeEmbedLocalDocumentFile(
 }
 
 async function getPortableStorageSnapshot(state: AppDataState) {
-  const keys = await AsyncStorage.getAllKeys();
-  const portableKeys = keys.filter((key) => isPortableStorageKeyForState(state, key));
+  const keys = await localStorageService.getAllKeys();
+  const portableKeys = getPortableLocalStorageKeysForOwner(
+    keys,
+    getLocalStorageOwnerContext(state.user)
+  );
   if (!portableKeys.length) {
     return {
       localStorage: {} as Record<string, string>,
@@ -223,7 +150,7 @@ async function getPortableStorageSnapshot(state: AppDataState) {
     };
   }
 
-  const pairs = await AsyncStorage.multiGet(portableKeys);
+  const pairs = await localStorageService.multiGet(portableKeys);
   const localStorage: Record<string, string> = {};
   const embeddedFiles: Record<string, EmbeddedPortableFile> = {};
 
@@ -283,25 +210,29 @@ function normalizeEmbeddedFiles(value: unknown) {
 
 function normalizeLocalStorage(value: unknown, state: AppDataState) {
   if (!isRecord(value)) return {};
+  const owner = getLocalStorageOwnerContext(state.user);
 
   return Object.fromEntries(
     Object.entries(value)
       .filter(([key, storageValue]) =>
-        typeof storageValue === "string" && isPortableStorageKeyForState(state, key)
+        typeof storageValue === "string" && isPortableLocalStorageKeyForOwner(key, owner)
       )
   ) as Record<string, string>;
 }
 
 async function clearPortableStorageForState(state: AppDataState) {
-  const keys = await AsyncStorage.getAllKeys();
-  const portableKeys = keys.filter((key) => isPortableStorageKeyForState(state, key));
+  const keys = await localStorageService.getAllKeys();
+  const portableKeys = getPortableLocalStorageKeysForOwner(
+    keys,
+    getLocalStorageOwnerContext(state.user)
+  );
   if (portableKeys.length) {
-    await AsyncStorage.multiRemove(portableKeys);
+    await localStorageService.multiRemove(portableKeys);
   }
 }
 
 async function restoreEmbeddedDocumentFile(
-  info: PortableDocumentStorageKeyInfo,
+  info: LocalDocumentStorageKeyInfo,
   file: EmbeddedPortableFile
 ) {
   const directoryUri = getImportedDocumentDirectory(info);
@@ -326,7 +257,7 @@ async function restorePortableStorageEntry(
   value: string,
   embeddedFile: EmbeddedPortableFile | undefined
 ) {
-  const info = parseDocumentStorageKey(key);
+  const info = parseLocalDocumentStorageKey(key);
   if (!info || !embeddedFile) return value;
 
   try {
@@ -357,7 +288,7 @@ function patchUserDocumentFieldsFromStorage(
   data: AppDataState,
   localStorage: Record<string, string>
 ) {
-  const userId = normalizeUserId(data.user);
+  const userId = getLocalStorageOwnerContext(data.user).userId ?? "";
   if (!data.user || !userId) return data;
 
   const fieldByKey: Array<[string, keyof Pick<User, "resume" | "transcript" | "avatar">]> = [
@@ -452,7 +383,7 @@ export async function restoreDataImportSnapshot(
   }
 
   if (restoredStorageEntries.length) {
-    await AsyncStorage.multiSet(restoredStorageEntries);
+    await localStorageService.multiSet(restoredStorageEntries);
   }
 
   const restoredStorage = Object.fromEntries(restoredStorageEntries);

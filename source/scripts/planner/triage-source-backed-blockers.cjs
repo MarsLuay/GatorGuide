@@ -1,9 +1,16 @@
 /* global __dirname */
 const fs = require("fs");
 const path = require("path");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 const {
-  SOURCE_BACKED_AUDIT_ROW_COLLECTIONS,
+  AUDIT_ROW_COLLECTIONS,
   getRowIssueType,
   hasAuditIssue,
   getActionableIssueClass,
@@ -12,23 +19,14 @@ const {
   buildActionableAuditIssueMetadata,
 } = require("./source-backed-coverage-actionability.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SOURCE_BACKED_AUDIT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-coverage-audit.json"
-);
-const AUTO_REPAIR_PLAN_PATH = path.resolve(TMP_DIR, "transfer-planner-auto-repair-plan.json");
-const TRIAGE_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-blocker-triage.json"
-);
-const TRIAGE_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-blocker-triage.md"
-);
-const REPAIR_QUEUE_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-repair-queue.json");
-const REPAIR_QUEUE_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-repair-queue.md");
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const AUDIT_PATH = getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.json");
+const AUTO_REPAIR_PLAN_PATH = getPlannerTmpPath("transfer-planner-auto-repair-plan.json");
+const TRIAGE_JSON_PATH = getPlannerTmpPath("transfer-planner-source-backed-blocker-triage.json");
+const TRIAGE_MD_PATH = getPlannerTmpPath("transfer-planner-source-backed-blocker-triage.md");
+const REPAIR_QUEUE_JSON_PATH = getPlannerTmpPath("transfer-planner-repair-queue.json");
+const REPAIR_QUEUE_MD_PATH = getPlannerTmpPath("transfer-planner-repair-queue.md");
 
 const TOP_LIMIT = 30;
 
@@ -40,15 +38,11 @@ function readJson(filePath, label) {
 }
 
 function writeJson(filePath, value) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(`${filePath}.tmp`, `${JSON.stringify(value, null, 2)}\n`);
-  fs.renameSync(`${filePath}.tmp`, filePath);
+  writePlannerJsonReport(filePath, value);
 }
 
 function writeText(filePath, value) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(`${filePath}.tmp`, value.endsWith("\n") ? value : `${value}\n`);
-  fs.renameSync(`${filePath}.tmp`, filePath);
+  writePlannerMarkdownReport(filePath, value);
 }
 
 function compactText(value, maxLength = 260) {
@@ -430,7 +424,7 @@ function collectBlockers(sourceBackedAudit, autoRepairPlan) {
   const sourceRoleIndex = buildSourceRoleIndex(sourceBackedAudit);
   const blockers = [];
 
-  for (const collectionName of SOURCE_BACKED_AUDIT_ROW_COLLECTIONS) {
+  for (const collectionName of AUDIT_ROW_COLLECTIONS) {
     const rows = sourceBackedAudit[collectionName] ?? [];
     rows.forEach((row, index) => {
       if (hasAuditIssue(row)) {
@@ -586,7 +580,7 @@ function buildTriage(blockers, autoRepairPlan) {
   return {
     generatedAt: new Date().toISOString(),
     sourceReports: {
-      sourceBackedAudit: path.relative(REPO_ROOT, SOURCE_BACKED_AUDIT_PATH).replace(/\\/g, "/"),
+      sourceBackedAudit: path.relative(REPO_ROOT, AUDIT_PATH).replace(/\\/g, "/"),
       autoRepairPlan: path.relative(REPO_ROOT, AUTO_REPAIR_PLAN_PATH).replace(/\\/g, "/"),
     },
     blockerCount: blockers.length,
@@ -663,7 +657,7 @@ function renderCountsTable(counts, keyLabel = "Key") {
 
 function renderTriageMarkdown(triage, queue) {
   return [
-    "# Transfer Planner Source-Backed Blocker Triage",
+    "# Transfer Planner Blocker Triage",
     "",
     `Generated: ${triage.generatedAt}`,
     "",
@@ -672,7 +666,7 @@ function renderTriageMarkdown(triage, queue) {
     markdownTable(
       ["Metric", "Value"],
       [
-        ["Source-backed blockers", triage.blockerCount],
+        ["blockers", triage.blockerCount],
         ["Auto-repair cases", triage.autoRepairCaseCount],
         ["Auto-repair owners", triage.autoRepairOwnerCount ?? "unknown"],
         ["Auto-repair plans", triage.autoRepairPlanCount ?? "unknown"],
@@ -719,11 +713,11 @@ function renderTriageMarkdown(triage, queue) {
 
 function renderRepairQueueMarkdown(queue, triage) {
   const parts = [
-    "# Transfer Planner Source-Backed Repair Queue",
+    "# Transfer Planner Repair Queue",
     "",
     `Generated: ${triage.generatedAt}`,
     "",
-    `Source-backed blockers: ${triage.blockerCount}`,
+    `blockers: ${triage.blockerCount}`,
     "",
   ];
 
@@ -779,7 +773,7 @@ function renderRepairQueueMarkdown(queue, triage) {
 }
 
 function main() {
-  const sourceBackedAudit = readJson(SOURCE_BACKED_AUDIT_PATH, "source-backed coverage audit");
+  const sourceBackedAudit = readJson(AUDIT_PATH, "coverage audit");
   const autoRepairPlan = readJson(AUTO_REPAIR_PLAN_PATH, "auto-repair plan");
   const blockers = collectBlockers(sourceBackedAudit, autoRepairPlan);
   const triage = buildTriage(blockers, autoRepairPlan);

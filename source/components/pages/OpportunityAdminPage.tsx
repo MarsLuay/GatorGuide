@@ -1,6 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  Alert,
   ScrollView,
   Text,
   TextInput,
@@ -15,235 +13,23 @@ import {
   AnimatedChipPressable,
 } from "@/components/ui/AnimatedPressables";
 import { PageBackButton } from "@/components/ui/PageBackButton";
-import { STARTER_OPPORTUNITIES } from "@/constants/starter-opportunities";
 import {
   OPPORTUNITY_DEADLINE_TYPES,
   OPPORTUNITY_STATUSES,
-  OPPORTUNITY_TYPES,
   type Opportunity,
 } from "@/constants/opportunities";
 import { ROUTES } from "@/constants/routes";
-import { useAppData } from "@/hooks/use-app-data";
-import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import useBack from "@/hooks/use-back";
 import {
-  OpportunityGatewayError,
-  opportunityGatewayService,
-  type OpportunityAdminAccessResponse,
-  type UpsertManualOpportunityInput,
-} from "@/services/opportunities/opportunity-gateway.service";
-import { buildScholarshipExportFile } from "@/services/opportunities/scholarship-export.service";
-import { saveTextFileForUser } from "@/services/storage/file-system-adapter.service";
-
-type OpportunityAdminDraft = {
-  opportunityId: string;
-  type: string;
-  status: string;
-  title: string;
-  organizationName: string;
-  summary: string;
-  externalUrl: string;
-  dueDate: string;
-  isYearly: boolean;
-  timezone: string;
-  deadlineType: string;
-  deadlineLabel: string;
-  financialAidTags: string;
-  suggestedMajors: string;
-  hasToBeMajor: boolean;
-  gpaMin: string;
-  residencyTypes: string;
-  transferOnly: boolean;
-  recommendationCountMin: string;
-  essayCount: string;
-  awardAmountMin: string;
-  awardAmountMax: string;
-  awardCurrency: string;
-  awardAmountText: string;
-  awardRenewable: "" | "true" | "false";
-  collegeId: string;
-  collegeName: string;
-  collegeCity: string;
-  collegeState: string;
-  collegeWebsite: string;
-  sourceUrl: string;
-  sourceLabel: string;
-};
-
-const TYPE_OPTIONS = [
-  OPPORTUNITY_TYPES.scholarship,
-  OPPORTUNITY_TYPES.internship,
-  OPPORTUNITY_TYPES.generalDeadline,
-  OPPORTUNITY_TYPES.collegeDeadline,
-  OPPORTUNITY_TYPES.quarterStart,
-  OPPORTUNITY_TYPES.quarterEnd,
-] as const;
-
-const STATUS_OPTIONS = [
-  OPPORTUNITY_STATUSES.active,
-  OPPORTUNITY_STATUSES.draft,
-  OPPORTUNITY_STATUSES.archived,
-] as const;
-
-const DEADLINE_TYPE_OPTIONS = [
-  OPPORTUNITY_DEADLINE_TYPES.final,
-  OPPORTUNITY_DEADLINE_TYPES.priority,
-  OPPORTUNITY_DEADLINE_TYPES.rolling,
-] as const;
-
-function toDateInput(value: string | null | undefined) {
-  if (!value) return "";
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return "";
-  return parsed.toISOString().slice(0, 10);
-}
-
-function parseNullableNumber(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) return null;
-  const parsed = Number(trimmed);
-  return Number.isFinite(parsed) ? parsed : null;
-}
-
-function parseList(value: string) {
-  return value
-    .split(",")
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
-function formatChoiceLabel(option: string) {
-  return option.replace(/_/g, " ");
-}
-
-function createBlankDraft(): OpportunityAdminDraft {
-  return {
-    opportunityId: "",
-    type: OPPORTUNITY_TYPES.scholarship,
-    status: OPPORTUNITY_STATUSES.active,
-    title: "",
-    organizationName: "",
-    summary: "",
-    externalUrl: "",
-    dueDate: "",
-    isYearly: false,
-    timezone: "America/Los_Angeles",
-    deadlineType: OPPORTUNITY_DEADLINE_TYPES.final,
-    deadlineLabel: "",
-    financialAidTags: "",
-    suggestedMajors: "",
-    hasToBeMajor: false,
-    gpaMin: "",
-    residencyTypes: "",
-    transferOnly: false,
-    recommendationCountMin: "",
-    essayCount: "",
-    awardAmountMin: "",
-    awardAmountMax: "",
-    awardCurrency: "USD",
-    awardAmountText: "",
-    awardRenewable: "",
-    collegeId: "",
-    collegeName: "",
-    collegeCity: "",
-    collegeState: "",
-    collegeWebsite: "",
-    sourceUrl: "",
-    sourceLabel: "",
-  };
-}
-
-function buildDraftFromOpportunity(opportunity: Opportunity): OpportunityAdminDraft {
-  return {
-    opportunityId: opportunity.opportunityId,
-    type: opportunity.type,
-    status: opportunity.status,
-    title: opportunity.title,
-    organizationName: opportunity.organizationName,
-    summary: opportunity.summary,
-    externalUrl: opportunity.externalUrl ?? "",
-    dueDate: toDateInput(opportunity.dueAt),
-    isYearly: !!opportunity.recurrence.isYearly,
-    timezone: opportunity.recurrence.timezone ?? "America/Los_Angeles",
-    deadlineType: opportunity.deadline.type,
-    deadlineLabel: opportunity.deadline.label ?? "",
-    financialAidTags: (opportunity.matching.financialAidTags ?? []).join(", "),
-    suggestedMajors: (opportunity.matching.suggestedMajors ?? []).join(", "),
-    hasToBeMajor: !!opportunity.matching.hasToBeMajor,
-    gpaMin: opportunity.eligibility.gpaMin == null ? "" : String(opportunity.eligibility.gpaMin),
-    residencyTypes: (opportunity.eligibility.residencyTypes ?? []).join(", "),
-    transferOnly: !!opportunity.eligibility.transferOnly,
-    recommendationCountMin:
-      opportunity.requirements.recommendationCountMin == null
-        ? ""
-        : String(opportunity.requirements.recommendationCountMin),
-    essayCount:
-      opportunity.requirements.essayCount == null
-        ? ""
-        : String(opportunity.requirements.essayCount),
-    awardAmountMin:
-      opportunity.award.amountMin == null ? "" : String(opportunity.award.amountMin),
-    awardAmountMax:
-      opportunity.award.amountMax == null ? "" : String(opportunity.award.amountMax),
-    awardCurrency: opportunity.award.currency || "USD",
-    awardAmountText: opportunity.award.amountText ?? "",
-    awardRenewable:
-      opportunity.award.renewable == null
-        ? ""
-        : opportunity.award.renewable
-          ? "true"
-          : "false",
-    collegeId: opportunity.college.collegeId ?? "",
-    collegeName: opportunity.college.collegeName ?? "",
-    collegeCity: opportunity.college.city ?? "",
-    collegeState: opportunity.college.state ?? "",
-    collegeWebsite: opportunity.college.website ?? "",
-    sourceUrl: opportunity.source.sourceUrl ?? "",
-    sourceLabel: opportunity.source.sourceLabel ?? "",
-  };
-}
-
-function buildSaveInput(draft: OpportunityAdminDraft): UpsertManualOpportunityInput {
-  return {
-    opportunityId: draft.opportunityId.trim() || null,
-    type: draft.type,
-    status: draft.status,
-    title: draft.title.trim(),
-    organizationName: draft.organizationName.trim(),
-    summary: draft.summary.trim(),
-    externalUrl: draft.externalUrl.trim() || null,
-    dueDate: draft.deadlineType === OPPORTUNITY_DEADLINE_TYPES.rolling ? null : draft.dueDate.trim() || null,
-    isYearly: draft.isYearly,
-    timezone: draft.timezone.trim() || null,
-    deadlineType: draft.deadlineType,
-    deadlineLabel: draft.deadlineLabel.trim() || null,
-    financialAidTags: parseList(draft.financialAidTags),
-    suggestedMajors: parseList(draft.suggestedMajors),
-    hasToBeMajor: draft.hasToBeMajor,
-    gpaMin: parseNullableNumber(draft.gpaMin),
-    residencyTypes: parseList(draft.residencyTypes),
-    transferOnly: draft.transferOnly,
-    recommendationCountMin: parseNullableNumber(draft.recommendationCountMin),
-    essayCount: parseNullableNumber(draft.essayCount),
-    awardAmountMin: parseNullableNumber(draft.awardAmountMin),
-    awardAmountMax: parseNullableNumber(draft.awardAmountMax),
-    awardCurrency: draft.awardCurrency.trim() || "USD",
-    awardAmountText: draft.awardAmountText.trim() || null,
-    awardRenewable:
-      draft.awardRenewable === ""
-        ? null
-        : draft.awardRenewable === "true",
-    collegeId: draft.collegeId.trim() || null,
-    collegeName: draft.collegeName.trim() || null,
-    collegeCity: draft.collegeCity.trim() || null,
-    collegeState: draft.collegeState.trim() || null,
-    collegeWebsite: draft.collegeWebsite.trim() || null,
-    sourceUrl: draft.sourceUrl.trim() || null,
-    sourceLabel: draft.sourceLabel.trim() || null,
-  };
-}
+  DEADLINE_TYPE_OPTIONS,
+  STATUS_OPTIONS,
+  TYPE_OPTIONS,
+  formatChoiceLabel,
+  toDateInput,
+} from "@/components/pages/opportunity-admin/opportunity-admin-draft";
+import { useOpportunityAdminController } from "@/components/pages/opportunity-admin/useOpportunityAdminController";
 
 function formatOpportunityMeta(opportunity: Opportunity) {
   return [opportunity.type, opportunity.status, opportunity.source.kind]
@@ -261,21 +47,38 @@ function formatOpportunityDue(opportunity: Opportunity) {
 export default function OpportunityAdminPage() {
   const router = useRouter();
   const back = useBack(ROUTES.tabsResources);
-  const { state } = useAppData();
-  const { opportunities, refreshOpportunities, isRefreshing } = useOpportunities();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
-  const [query, setQuery] = useState("");
-  const [selectedOpportunityId, setSelectedOpportunityId] = useState<string | null>(null);
-  const [draft, setDraft] = useState<OpportunityAdminDraft>(() => createBlankDraft());
-  const [access, setAccess] = useState<OpportunityAdminAccessResponse | null>(null);
-  const [isCheckingAccess, setIsCheckingAccess] = useState(false);
-  const [accessError, setAccessError] = useState("");
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveMessage, setSaveMessage] = useState("");
-  const [isExportingScholarships, setIsExportingScholarships] = useState(false);
-  const [exportMessage, setExportMessage] = useState("");
+  const {
+    access,
+    accessError,
+    canDeleteSelected,
+    draft,
+    exportMessage,
+    filteredOpportunities,
+    handleArchive,
+    handleCreateNew,
+    handleDelete,
+    handleExportScholarships,
+    handleSave,
+    handleSelectOpportunity,
+    isCheckingAccess,
+    isExportingScholarships,
+    isRefreshing,
+    isSaving,
+    loadAccess,
+    opportunities,
+    query,
+    refreshOpportunities,
+    saveMessage,
+    scholarshipExportPreview,
+    selectedOpportunity,
+    selectedOpportunityId,
+    setQuery,
+    signedInUser,
+    updateDraft,
+  } = useOpportunityAdminController();
 
   const textClass = styles.textClass;
   const secondaryTextClass = styles.secondaryTextClass;
@@ -300,233 +103,6 @@ export default function OpportunityAdminPage() {
         justifyContent: "center",
       } as const)
     : undefined;
-  const starterIds = useMemo(
-    () => new Set(STARTER_OPPORTUNITIES.map((item) => item.opportunityId)),
-    []
-  );
-  const signedInUser = state.user && !state.user.isGuest ? state.user : null;
-  const scholarshipExportPreview = useMemo(
-    () => buildScholarshipExportFile([...STARTER_OPPORTUNITIES, ...opportunities]),
-    [opportunities]
-  );
-
-  const selectedOpportunity = useMemo(
-    () =>
-      selectedOpportunityId
-        ? opportunities.find((item) => item.opportunityId === selectedOpportunityId) ?? null
-        : null,
-    [opportunities, selectedOpportunityId]
-  );
-
-  const filteredOpportunities = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) return opportunities;
-    return opportunities.filter((opportunity) =>
-      [
-        opportunity.title,
-        opportunity.organizationName,
-        opportunity.summary,
-        opportunity.opportunityId,
-        opportunity.type,
-        opportunity.status,
-      ]
-        .join(" ")
-        .toLowerCase()
-        .includes(normalizedQuery)
-    );
-  }, [opportunities, query]);
-
-  const canDeleteSelected =
-    !!selectedOpportunity &&
-    selectedOpportunity.source.kind === "manual" &&
-    !starterIds.has(selectedOpportunity.opportunityId);
-
-  const loadAccess = useCallback(async () => {
-    if (!signedInUser) {
-      setAccess(null);
-      setAccessError("");
-      setIsCheckingAccess(false);
-      return;
-    }
-
-    setIsCheckingAccess(true);
-    setAccessError("");
-    try {
-      const result = await opportunityGatewayService.getOpportunityAdminAccess();
-      setAccess(result);
-    } catch (error) {
-      setAccess(null);
-      setAccessError(
-        error instanceof OpportunityGatewayError
-          ? error.message
-          : "Could not verify admin access."
-      );
-    } finally {
-      setIsCheckingAccess(false);
-    }
-  }, [signedInUser]);
-
-  useEffect(() => {
-    void loadAccess();
-  }, [loadAccess]);
-
-  const handleSelectOpportunity = useCallback((opportunity: Opportunity) => {
-    setSelectedOpportunityId(opportunity.opportunityId);
-    setDraft(buildDraftFromOpportunity(opportunity));
-    setSaveMessage("");
-  }, []);
-
-  const handleCreateNew = useCallback(() => {
-    setSelectedOpportunityId(null);
-    setDraft(createBlankDraft());
-    setSaveMessage("");
-  }, []);
-
-  const handleSave = useCallback(async () => {
-    if (!draft.title.trim()) {
-      Alert.alert("Missing title", "Add a title before saving this opportunity.");
-      return;
-    }
-
-    if (!draft.summary.trim()) {
-      Alert.alert("Missing summary", "Add a short summary before saving this opportunity.");
-      return;
-    }
-
-    setIsSaving(true);
-    setSaveMessage("");
-    try {
-      const response = await opportunityGatewayService.upsertManualOpportunity(
-        buildSaveInput(draft)
-      );
-      await refreshOpportunities();
-      setSelectedOpportunityId(response.opportunityId);
-      setDraft((current) => ({
-        ...current,
-        opportunityId: response.opportunityId,
-      }));
-      setSaveMessage(
-        response.created
-          ? "Opportunity created and added to the Firebase catalog."
-          : "Opportunity updated in the Firebase catalog."
-      );
-    } catch (error) {
-      setSaveMessage(
-        error instanceof OpportunityGatewayError
-          ? error.message
-          : "Opportunity save failed."
-      );
-    } finally {
-      setIsSaving(false);
-    }
-  }, [draft, refreshOpportunities]);
-
-  const handleArchive = useCallback(
-    async (archived: boolean) => {
-      if (!selectedOpportunityId) return;
-
-      setIsSaving(true);
-      setSaveMessage("");
-      try {
-        await opportunityGatewayService.archiveOpportunity(
-          selectedOpportunityId,
-          archived
-        );
-        await refreshOpportunities();
-        setDraft((current) => ({
-          ...current,
-          status: archived ? OPPORTUNITY_STATUSES.archived : OPPORTUNITY_STATUSES.active,
-        }));
-        setSaveMessage(
-          archived
-            ? "Opportunity archived from the live catalog."
-            : "Opportunity restored to the live catalog."
-        );
-      } catch (error) {
-        setSaveMessage(
-          error instanceof OpportunityGatewayError
-            ? error.message
-            : "Could not update archive status."
-        );
-      } finally {
-        setIsSaving(false);
-      }
-    },
-    [refreshOpportunities, selectedOpportunityId]
-  );
-
-  const handleDelete = useCallback(async () => {
-    if (!selectedOpportunityId || !canDeleteSelected) return;
-
-    setIsSaving(true);
-    setSaveMessage("");
-    try {
-      await opportunityGatewayService.deleteOpportunity(selectedOpportunityId);
-      await refreshOpportunities();
-      setSelectedOpportunityId(null);
-      setDraft(createBlankDraft());
-      setSaveMessage("Manual opportunity deleted from Firebase.");
-    } catch (error) {
-      setSaveMessage(
-        error instanceof OpportunityGatewayError
-          ? error.message
-          : "Could not delete opportunity."
-      );
-    } finally {
-      setIsSaving(false);
-    }
-  }, [canDeleteSelected, refreshOpportunities, selectedOpportunityId]);
-
-  const handleExportScholarships = useCallback(async () => {
-    const exportFile = buildScholarshipExportFile([
-      ...STARTER_OPPORTUNITIES,
-      ...opportunities,
-    ]);
-
-    if (!exportFile.scholarshipCount) {
-      Alert.alert("No scholarships found", "There are no scholarship records to export yet.");
-      return;
-    }
-
-    setIsExportingScholarships(true);
-    setExportMessage("");
-
-    try {
-      const savedFile = await saveTextFileForUser({
-        fileName: exportFile.fileName,
-        content: exportFile.content,
-        mimeType: "text/tab-separated-values;charset=utf-8",
-      });
-
-      if (savedFile.delivery === "filesystem") {
-        Alert.alert(
-          "Scholarship export ready",
-          `${exportFile.fileName} was saved to app documents.`
-        );
-      }
-
-      setExportMessage(
-        `Exported ${exportFile.scholarshipCount} scholarships (${exportFile.legacyCount} legacy).`
-      );
-    } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : "Could not create the scholarship export.";
-      setExportMessage(message);
-      Alert.alert("Scholarship export failed", message);
-    } finally {
-      setIsExportingScholarships(false);
-    }
-  }, [opportunities]);
-
-  const updateDraft = useCallback(
-    <K extends keyof OpportunityAdminDraft>(key: K, value: OpportunityAdminDraft[K]) => {
-      setDraft((current) => ({ ...current, [key]: value }));
-    },
-    []
-  );
-
   const renderChoiceRow = (
     label: string,
     value: string,
@@ -1027,6 +603,18 @@ export default function OpportunityAdminPage() {
                             className={inputClass}
                           />
                         </View>
+                      </View>
+
+                      <View className="gap-2">
+                        <Text className={`${textClass} font-semibold`}>Community eligibility tags</Text>
+                        <TextInput
+                          value={draft.communityTags}
+                          onChangeText={(value) => updateDraft("communityTags", value)}
+                          placeholder="lgbtq"
+                          placeholderTextColor={placeholderTextColor}
+                          className={inputClass}
+                          autoCapitalize="none"
+                        />
                       </View>
 
                       <View className={`gap-4 ${isTablet ? "flex-row" : ""}`}>

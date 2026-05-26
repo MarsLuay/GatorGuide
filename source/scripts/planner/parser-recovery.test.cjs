@@ -83,6 +83,47 @@ function buildParsedBlockFixture(entry, html, structuredCourseCodes = []) {
   );
 }
 
+test("Inactive major sources do not trigger parser recovery debt", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-italian",
+    ownerTitle: "Italian",
+    planId: "uw-seattle-italian",
+    campusId: "uw-seattle",
+    url: "https://frenchitalian.washington.edu/undergraduate-studies-italian",
+    label: "UW Italian undergraduate studies and major requirements status",
+    sourceLabel: "UW Italian undergraduate studies and major requirements status",
+  });
+  const html = `
+    <html>
+      <head><title>Undergraduate Studies in Italian</title></head>
+      <body>
+        <h1>Undergraduate Studies in Italian</h1>
+        <p>Please note at this time we are not able to offer the upper level courses for the Italian major. Therefore we are not able to accept students into the Italian major.</p>
+        <a href="/major-italian-studies">Major Requirements</a>
+      </body>
+    </html>
+  `;
+
+  const owner = buildParsedBlockFixture(entry, html);
+  const qualitySignals = parser.buildParseQualitySignalsForTest(owner);
+
+  assert.equal(owner.sourceInactiveMajor, true);
+  assert.equal(owner.sourceRole, "non-schedulable-course-list");
+  assert.equal(owner.canCreateSchedulableRows, false);
+  assert.equal(
+    qualitySignals.some((signal) => signal.code === "inactive-major-source"),
+    true
+  );
+  assert.equal(
+    qualitySignals.some((signal) => signal.code === "no-parsed-uw-course-codes"),
+    false
+  );
+  assert.equal(
+    parser.shouldTriggerParserRecoveryForTest({ ...owner, qualitySignals }),
+    false
+  );
+});
+
 test("Pathway HTML scoping keeps selected subsection requirements after credit headings", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-seattle-applied-mathematics:pathway:bs-option-family:data-science",
@@ -140,6 +181,61 @@ test("Pathway HTML scoping keeps selected subsection requirements after credit h
   assert.doesNotMatch(
     JSON.stringify(groups.filter((group) => group.requirementType === "all_required")),
     /INFO 351.*SOC 225|SOC 225.*INFO 351/
+  );
+});
+
+test("Parser ignores Expand All / Collapse All controls before sectioned credit buckets", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-aeronautics-astronautics",
+    ownerTitle: "Aeronautics & Astronautics",
+    planId: "uw-seattle-aeronautics-astronautics",
+    campusId: "uw-seattle",
+    url: "https://www.aa.washington.edu/students/academics/bsaae",
+    label: "Aeronautics & Astronautics degree requirements",
+    sourceLabel: "Aeronautics & Astronautics degree requirements",
+  });
+  const html = `
+    <html>
+      <body>
+        <h1>Undergraduate Degree Requirements</h1>
+        <button>Expand All | Collapse All</button>
+        <h2>Mathematics (27 credits)</h2>
+        <p>MATH 124 Calculus with Analytic Geometry I (5)</p>
+        <p>MATH 125 Calculus with Analytic Geometry II (5)</p>
+        <p>MATH 126 Calculus with Analytic Geometry III (5)</p>
+        <p>MATH 207 Differential Equations (3)</p>
+        <p>MATH 208 Matrix Algebra (3)</p>
+        <p>MATH 224 Advanced Multivariable Calculus (3)</p>
+        <h2>Engineering Fundamentals</h2>
+      </body>
+    </html>
+  `;
+
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+  assert.equal(parsed.snapshotLines.includes("Expand All | Collapse All"), false);
+
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    entry,
+    parsed.courseCodes,
+    parsed.snapshotLines
+  );
+  const groupText = JSON.stringify(
+    groups.map((group) => ({
+      label: group.label,
+      sourceHeading: group.sourceHeading,
+      sourceRowText: group.sourceRowText,
+    }))
+  );
+
+  assert.doesNotMatch(groupText, /Expand All \| Collapse All/);
+  assert.ok(
+    groups.some(
+      (group) =>
+        /^Mathematics\b/.test(group.label ?? "") &&
+        group.requirementType === "choose_credits" &&
+        group.minCredits === 27
+    ),
+    groupText
   );
 });
 
@@ -371,6 +467,69 @@ test("Course-code parser expands same-subject plus-separated course numbers", ()
   );
 });
 
+test("Requirement parser treats same-subject bare-number alternatives as sequence choices", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-computer-engineering",
+    ownerTitle: "Computer Engineering",
+    planId: "uw-seattle-computer-engineering",
+    campusId: "uw-seattle",
+  });
+  const snapshotLines = [
+    "Core and Electives (40 credits)",
+    "Computer Engineering Systems Electives list",
+    "on the CSE website",
+    "Mathematics & Natural Sciences (41 credits)",
+    "MATH 124, 125, 126 or 134, 135, 136 (15) 1 course from the CSE Capstone list (5)",
+  ];
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    ["MATH 124", "MATH 125", "MATH 126", "MATH 134", "MATH 135", "MATH 136"],
+    snapshotLines
+  );
+  const sequenceGroup = groups.find((group) => group.requirementType === "sequence_choice");
+
+  assert.ok(
+    sequenceGroup,
+    "Expected same-subject bare-number alternatives to parse as a sequence choice."
+  );
+  assert.deepEqual(
+    (sequenceGroup.sequencePaths ?? []).map((path) => path.uwCourses),
+    [
+      ["MATH 124", "MATH 125", "MATH 126"],
+      ["MATH 134", "MATH 135", "MATH 136"],
+    ]
+  );
+});
+
+test("Requirement parser keeps trailing if-taken prerequisites out of option groups", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-computer-engineering",
+    ownerTitle: "Computer Engineering",
+    planId: "uw-seattle-computer-engineering",
+    campusId: "uw-seattle",
+  });
+  const snapshotLines = [
+    "Mathematics & Natural Sciences (41 credits)",
+    "PHYS 122 Electromagnetism (or PHYS 142) (5) 121 or CSE 122 if taken).",
+  ];
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    ["PHYS 122", "PHYS 142", "CSE 122"],
+    snapshotLines
+  );
+  const physicsAliasGroup = groups.find((group) =>
+    (group.options ?? []).some((option) => (option.uwCourses ?? []).includes("PHYS 122"))
+  );
+  const leakedCseOption = groups.some((group) =>
+    (group.options ?? []).some((option) => (option.uwCourses ?? []).includes("CSE 122"))
+  );
+
+  assert.ok(physicsAliasGroup, "Expected the PHYS 122 / PHYS 142 alias group.");
+  assert.equal(physicsAliasGroup.requirementType, "all_required");
+  assert.equal(physicsAliasGroup.category, "course-alias");
+  assert.equal(leakedCseOption, false);
+});
+
 test("Parser keeps prerequisite options scoped by owner acronym", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-tacoma-information-technology",
@@ -491,6 +650,73 @@ test("PDF degree-sheet recovery keeps direct course rows outside dense subject c
   );
 });
 
+test("Generic primary degree HTML keeps direct concentration course rows", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-american-indian-studies",
+    ownerTitle: "American Indian Studies",
+    planId: "uw-seattle-american-indian-studies",
+    campusId: "uw-seattle",
+    parserType: "generic-html",
+    label: "UW B.A. in American Indian Studies",
+    sourceLabel: "UW B.A. in American Indian Studies",
+    url: "https://ais.washington.edu/ba-american-indian-studies",
+  });
+  const html = `
+    <h1>B.A. in American Indian Studies</h1>
+    <h2>Degree Requirements</h2>
+    <p>In order to graduate with the Bachelor of Arts in American Indian Studies, students must complete 55 credits as follows:</p>
+    <h3>1. Introductory courses</h3>
+    <p>10 credits/both courses:</p>
+    <p>AIS 102 Introduction to American Indian Studies</p>
+    <p>AIS 103 The Indigenous Pacific Northwest</p>
+    <h3>2. Content courses</h3>
+    <p>10 credits, two courses selected from:</p>
+    <p>AIS 170 American Indian Art and Aesthetics</p>
+    <p>AIS 202 Introduction to American Indian Contemporary and Social Issues</p>
+    <h3>3. Concentrations</h3>
+    <p>25 credits total, 5 credits minimum chosen from each concentration, additional courses available as listed in time schedule and with special approval by academic advisor:</p>
+    <h4>Governance Concentration Courses:</h4>
+    <p>AIS 212 Indigenous Leaders and Activists</p>
+    <p>AIS 230 Contemporary Indian Gaming and Casinos</p>
+    <p>AIS 492 Indigenous Sovereignties</p>
+    <h4>Environment and Health Concentration Courses:</h4>
+    <p>AIS 306 Contemporary Indigenous Environmental Issues</p>
+    <p>AIS 307 Indigenous Literature and the Environment</p>
+    <p>AIS 451 Critical Conversations in AIS</p>
+  `;
+  const owner = buildParsedBlockFixture(entry, html, [
+    "AIS 102",
+    "AIS 103",
+    "AIS 170",
+    "AIS 202",
+    "AIS 212",
+    "AIS 230",
+    "AIS 306",
+    "AIS 307",
+    "AIS 451",
+    "AIS 492",
+  ]);
+  const governance = owner.parsedRequirementGroups.find(
+    (group) => group.label === "Governance Concentration Courses"
+  );
+  const environment = owner.parsedRequirementGroups.find(
+    (group) => group.label === "Environment and Health Concentration Courses"
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("AIS 212"));
+  assert.ok(owner.parsedUwCourseCodes.includes("AIS 451"));
+  assert.deepEqual(governance?.options.flatMap((option) => option.uwCourses), [
+    "AIS 212",
+    "AIS 230",
+    "AIS 492",
+  ]);
+  assert.deepEqual(environment?.options.flatMap((option) => option.uwCourses), [
+    "AIS 306",
+    "AIS 307",
+    "AIS 451",
+  ]);
+});
+
 test("Legacy catalog scoping keeps the full selected program block", () => {
   const html = `
     <h2>Undergraduate Programs</h2>
@@ -502,7 +728,9 @@ test("Legacy catalog scoping keeps the full selected program block", () => {
       <li>Program of Study: Major: Electrical Engineering</li>
       <li>Bachelor of Science in Electrical Engineering degree</li>
     </ul>
-    <h3>Program of Study: Major: Civil Engineering</h3>
+    <div class="expandableGroup" data-expand="program-UG-TCIV-MAJOR">
+      <h3 id="program-UG-TCIV-MAJOR">Program of Study: Major: Civil Engineering</h3>
+    </div>
     <p>TCE 304 (3)</p>
     <p>Back to Top</p>
     <p>Catalog overview</p>
@@ -515,17 +743,22 @@ test("Legacy catalog scoping keeps the full selected program block", () => {
     <p>Program notes</p>
     <p>Transfer notes</p>
     <p>Degree overview</p>
-    <h3>Program of Study: Major: Computer Engineering</h3>
+    <div class="expandableGroup" data-expand="program-UG-TCENGR-MAJOR">
+      <h3 id="program-UG-TCENGR-MAJOR">Program of Study: Major: Computer Engineering</h3>
+    </div>
     <p>Admission Requirements</p>
     <p>TMATH 124, TMATH 125, and TMATH 126</p>
     <p>TMATH 207</p>
-    <h4>Bachelor of Science degree with a major in Computer Engineering</h4>
+    <h4 id="credential-TCENGR-BS">Bachelor of Science degree with a major in Computer Engineering</h4>
+    <p>Completion Requirements</p>
     <p>Required Core Courses: 101 credits</p>
     <p>TCSS 342 (5)</p>
     <p>TCES 230 (5)</p>
     <p>TEE 451 (5)</p>
     <p>Back to Top</p>
-    <h3>Program of Study: Major: Electrical Engineering</h3>
+    <div class="expandableGroup" data-expand="program-UG-TEE-MAJOR">
+      <h3 id="program-UG-TEE-MAJOR">Program of Study: Major: Electrical Engineering</h3>
+    </div>
     <p>TEE 225 (5)</p>
   `;
   const parsed = parser.parseHtmlSourceFromArtifactsForTest(
@@ -541,12 +774,24 @@ test("Legacy catalog scoping keeps the full selected program block", () => {
     html
   );
 
+  const snapshotText = parsed.snapshotLines.join(" \n");
+  const programIndex = snapshotText.indexOf("Program of Study: Major: Computer Engineering");
+  const completionIndex = snapshotText.indexOf("Completion Requirements");
+
+  assert.ok(programIndex >= 0);
+  assert.ok(completionIndex > programIndex);
+  assert.match(snapshotText, /Admission Requirements/);
+  assert.match(snapshotText, /TMATH 124/);
   assert.ok(parsed.courseCodes.includes("TMATH 207"));
   assert.ok(parsed.courseCodes.includes("TCSS 342"));
   assert.ok(parsed.courseCodes.includes("TCES 230"));
   assert.ok(parsed.courseCodes.includes("TEE 451"));
   assert.ok(!parsed.courseCodes.includes("TCE 304"));
   assert.ok(!parsed.courseCodes.includes("TEE 225"));
+  assert.equal(
+    parsed.sourceSectionAudit?.sectionHeading,
+    "Program of Study: Major: Computer Engineering"
+  );
 });
 
 test("Legacy catalog scoping matches parenthetical concentration credentials", () => {
@@ -803,6 +1048,10 @@ test("Legacy UW catalog Social Welfare credential scope keeps major requirements
 test("Focused HTML degree pages keep full requirement pages", () => {
   const html = `
     <title>Undergraduate Degree Requirements - UW Bioengineering</title>
+    <nav>
+      <a href="/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/">BS Bioengineering with Option in Nano & Molecular Engineering (NME)</a>
+      <a href="/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/">BS Bioengineering with Option in Data Science</a>
+    </nav>
     <h1>Undergraduate Degree Requirements</h1>
     <h2>TOTAL CREDITS FOR DEGREE = 180</h2>
     <h4>Engineering Fundamentals (72 credits)</h4>
@@ -858,6 +1107,8 @@ test("Focused HTML degree pages keep full requirement pages", () => {
 
   assert.ok(parsed.courseCodes.includes("MATH 124"));
   assert.ok(parsed.courseCodes.includes("MATH 126"));
+  assert.ok(parsed.courseCodes.includes("CHEM 142"));
+  assert.ok(parsed.requirementCueLines.includes("Natural Science (44 credits)"));
   assert.ok(parsed.courseCodes.includes("BIOEN 315"));
   assert.ok(parsed.courseCodes.includes("BIOEN 345"));
   assert.ok(parsed.courseCodes.includes("BIOEN 400"));
@@ -950,6 +1201,115 @@ test("Plan overview rows covered by child option sources are not actionable no-c
     reportedPlanOwner.qualitySignals.some((signal) => signal.code === "no-parsed-uw-course-codes"),
     false
   );
+});
+
+test("Plan family coverage suppresses cross-owner structured-only parser warnings", () => {
+  const planOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-bothell-example",
+    ownerTitle: "Example Studies",
+    planId: "uw-bothell-example",
+    campusId: "uw-bothell",
+    parsedUwCourseCodes: ["BEXAM 101"],
+    structuredOnlyUwCourseCodes: ["BEXAM 301"],
+    qualitySignals: [
+      {
+        severity: "warning",
+        code: "large-structured-only-course-gap",
+        message: "Structured degree-map coverage includes many UW course codes that were not recovered from the parsed source.",
+      },
+      {
+        severity: "warning",
+        code: "material-source-structured-drift",
+        message: "Parsed source course coverage diverges materially from the structured degree-map coverage.",
+      },
+    ],
+  });
+  const childOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-bothell-example:pathway:focused-option",
+    ownerTitle: "Example Studies - Focused Option",
+    planId: "uw-bothell-example",
+    pathwayId: "focused-option",
+    campusId: "uw-bothell",
+    parsedUwCourseCodes: ["BEXAM 301"],
+    qualitySignals: [],
+  });
+
+  const report = parser.buildParseReport([planOwner, childOwner]);
+  const reportedPlanOwner = report.owners.find((owner) => owner.ownerId === planOwner.ownerId);
+
+  assert.deepEqual(
+    reportedPlanOwner.qualitySignals.map((signal) => signal.code),
+    []
+  );
+  assert.equal(report.ownersWithQualityWarningsCount, 0);
+});
+
+test("Structured-only warnings ignore explicitly excluded or advising-only course mentions", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-mathematics",
+    ownerTitle: "Mathematics",
+    planId: "uw-seattle-mathematics",
+    campusId: "uw-seattle",
+    parsedUwCourseCodes: ["MATH 124", "MATH 300", "MATH 402", "MATH 403"],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [
+      "MATH 334",
+      "MATH 335",
+      "MATH 382",
+      "MATH 397",
+      "MATH 398",
+      "MATH 399",
+      "MATH 497",
+      "MATH 498",
+      "MATH 499",
+    ],
+    requirementCueLines: [
+      "This information is for major planning only. Meet with a Math adviser if completing MATH 334/335/336.",
+      "Major Option Electives exclude MATH 300, 382, 397, 398, 399, 497, 498, 499, CR/NC, independent study, research, seminars, internships; can apply credits from one of the following Algebra sequences: MATH 411/412 OR MATH 402/403.",
+    ],
+    parseConfidence: "high",
+  });
+
+  const signals = parser.buildParseQualitySignalsForTest(owner);
+  const signalCodes = signals.map((signal) => signal.code);
+
+  assert.equal(signalCodes.includes("material-source-structured-drift"), false);
+  assert.equal(signalCodes.includes("large-structured-only-course-gap"), false);
+  assert.equal(signalCodes.includes("high-confidence-low-course-coverage"), false);
+});
+
+test("Structured-only warnings ignore suggested preparation course mentions", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-speech-and-hearing-sciences",
+    ownerTitle: "Speech and Hearing Sciences",
+    planId: "uw-seattle-speech-and-hearing-sciences",
+    campusId: "uw-seattle",
+    parsedUwCourseCodes: ["SPHSC 250", "SPHSC 261", "SPHSC 302"],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [
+      "BIOL 118",
+      "BIOL 180",
+      "CHEM 110",
+      "CHEM 220",
+      "EDPSY 490",
+      "LING 200",
+      "LING 400",
+      "PHYS 107",
+      "PHYS 110",
+      "STAT 220",
+    ],
+    requirementCueLines: [
+      "Suggested First and Second-Year College Courses: Biological science: BIOL 118 or BIOL 180. Physics or chemistry: PHYS 107, PHYS 110, or CHEM 110, CHEM 220. Statistics: STAT 220 or EDPSY 490. Linguistics: LING 200 or LING 400.",
+    ],
+    parseConfidence: "high",
+  });
+
+  const signals = parser.buildParseQualitySignalsForTest(owner);
+  const signalCodes = signals.map((signal) => signal.code);
+
+  assert.equal(signalCodes.includes("material-source-structured-drift"), false);
+  assert.equal(signalCodes.includes("large-structured-only-course-gap"), false);
+  assert.equal(signalCodes.includes("high-confidence-low-course-coverage"), false);
 });
 
 test("Snapshot fallback quality audit classifies missing heading context", () => {
@@ -1933,6 +2293,151 @@ test("Parser recovery finds official child and sibling requirement pages", () =>
   );
 });
 
+test("Parser recovery does not use specific option pages for an unscoped base major", () => {
+  const entry = buildRecoveryEntryFixture({
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+    label: "UW Bothell BBA curriculum hub",
+    sourceLabel: "UW Bothell BBA curriculum hub",
+    parserType: "html-curriculum-page",
+  });
+  const html = `
+    <main>
+      <a href="/business/undergraduate/bachelor-of-business-administration/degree-requirements">
+        Business Administration degree requirements
+      </a>
+      <a href="/business/undergraduate/bachelor-of-business-administration/supply-chain">
+        Supply Chain Management Option
+      </a>
+      <a href="/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses">
+        BBA prerequisite courses
+      </a>
+    </main>
+  `;
+  const candidates = parser.extractParserRecoveryLinkCandidatesForTest(entry, html);
+
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      entry,
+      "Cached source: Supply Chain Management Option - School of Business",
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain"
+    ),
+    true
+  );
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      entry,
+      "Cached source: Curriculum - School of Business",
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum#marketing"
+    ),
+    true
+  );
+  assert.equal(candidates.some((candidate) => /\/supply-chain$/.test(candidate.url)), false);
+  assert.ok(candidates.some((candidate) => /\/degree-requirements$/.test(candidate.url)));
+  assert.ok(candidates.some((candidate) => /\/admissions\/prerequisite-courses$/.test(candidate.url)));
+});
+
+test("Parser recovery rejects merged cached pathway snapshots for an unscoped base major", () => {
+  const entry = buildRecoveryEntryFixture({
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+    label: "UW Bothell BBA curriculum hub",
+    sourceLabel: "UW Bothell BBA curriculum hub",
+    parserType: "html-curriculum-page",
+  });
+
+  assert.equal(
+    parser.parserRecoverySnapshotConflictsWithBaseOwnerScopeForTest(entry, [
+      "[Supplemental official source] Finance Option and Concentration",
+      "BBUS 455 - Financial Risk Management",
+      "[Supplemental official source] Marketing Option and Concentration",
+      "BBUS 421 - Consumer Marketing",
+    ]),
+    true
+  );
+  assert.equal(
+    parser.parserRecoverySnapshotConflictsWithBaseOwnerScopeForTest(
+      { ...entry, pathwayId: "marketing-option-and-concentration" },
+      [
+        "[Supplemental official source] Marketing Option and Concentration",
+        "BBUS 421 - Consumer Marketing",
+      ]
+    ),
+    false
+  );
+});
+
+test("Parser recovery reclassifies alternate section-scoped support URLs by their own source role", () => {
+  const entry = buildRecoveryEntryFixture({
+    role: "curriculum",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+    label: "UW Bothell BBA curriculum hub",
+    sourceLabel: "UW Bothell BBA curriculum hub",
+    parserType: "html-curriculum-page",
+  });
+  const supportCandidateEntry = parser.buildParserRecoveryCandidateEntryForTest(entry, {
+    strategy: "section-scoping-recovery",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+    label: "Scoped section: BBA prerequisite courses",
+    parserType: "html-admissions-page",
+  });
+  const sameUrlCandidateEntry = parser.buildParserRecoveryCandidateEntryForTest(entry, {
+    strategy: "section-scoping-recovery",
+    url: entry.url,
+    label: "Scoped current requirements: Curriculum",
+    parserType: "html-curriculum-page",
+  });
+
+  assert.equal(supportCandidateEntry.role, undefined);
+  assert.equal(
+    parser.classifyRequirementSourceRole(supportCandidateEntry),
+    "admission-prerequisite-source"
+  );
+  assert.equal(sameUrlCandidateEntry.role, "curriculum");
+  assert.equal(parser.classifyRequirementSourceRole(sameUrlCandidateEntry), "primary-degree-requirements");
+});
+
+test("Parser recovery rejects cached support snapshots from sibling degree routes", () => {
+  const entry = buildRecoveryEntryFixture({
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+    label: "UW Bothell BBA curriculum hub",
+    sourceLabel: "UW Bothell BBA curriculum hub",
+    parserType: "html-curriculum-page",
+  });
+
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithProgramSiblingForTest(
+      entry,
+      "Prerequisites - School of Business",
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites"
+    ),
+    true
+  );
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithProgramSiblingForTest(
+      entry,
+      "BBA prerequisite courses",
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses"
+    ),
+    false
+  );
+});
+
+test("Requirement parser includes admissions support pages in parseable sources", () => {
+  const entries = parser.getParseablePrimaryEntries(["uw-bothell-business-administration"]);
+
+  assert.ok(
+    entries.some(
+      (entry) =>
+        /\/admissions\/prerequisite-courses$/.test(entry.url) &&
+        parser.getRequirementSourceRoleStatus(parser.classifyRequirementSourceRole(entry)) === "support"
+    )
+  );
+});
+
 test("Parser recovery treats overview sibling worksheets as linked primary candidates", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-bothell-nursing-rn-to-bsn",
@@ -2061,6 +2566,41 @@ test("Parser recovery rejects sibling pages for a different pathway option", () 
 
   assert.equal(candidates.some((candidate) => /\/accounting$/.test(candidate.url)), false);
   assert.ok(candidates.some((candidate) => /finance-option\/requirements$/.test(candidate.url)));
+});
+
+test("Parser recovery rejects sibling pathway pages without option cue words", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-business-administration-accounting:pathway:accounting-option",
+    ownerTitle: "Business Administration: Accounting (BA) - Accounting Option",
+    sourceLabel: "Accounting Option major requirements",
+    planId: "uw-bothell-business-administration-accounting",
+    pathwayId: "accounting-option",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+    label: "Accounting Option major requirements",
+  });
+  const html = `
+    <main>
+      <a href="/business/undergraduate/bachelor-of-business-administration/supply-chain">
+        Supply Chain Management curriculum
+      </a>
+      <a href="/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses">
+        BBA prerequisite courses
+      </a>
+    </main>
+  `;
+  const candidates = parser.extractParserRecoveryLinkCandidatesForTest(entry, html);
+
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      entry,
+      "Cached source: Supply Chain Management Option - School of Business",
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain"
+    ),
+    true
+  );
+  assert.equal(candidates.some((candidate) => /\/supply-chain$/.test(candidate.url)), false);
+  assert.ok(candidates.some((candidate) => /\/admissions\/prerequisite-courses$/.test(candidate.url)));
 });
 
 test("Parser recovery treats option hubs as same-program child source launchers", () => {
@@ -2206,6 +2746,121 @@ test("Parser classifies Tacoma primary pages with acronym and parent-major ident
     assert.equal(sourceRole, "primary-degree-requirements", fixture.ownerId);
     assert.equal(sourceScope.canCreateScheduleRows, true, fixture.ownerId);
   }
+});
+
+test("Parser manifest selection rejects mismatched Tacoma CSS route sources", () => {
+  const entries = parser.getParseablePrimaryEntries([
+    "uw-tacoma-computer-science-and-systems",
+  ]);
+  const entrySummaries = entries.map((entry) => ({
+    ownerId: entry.ownerId,
+    url: entry.url,
+    label: entry.label,
+  }));
+
+  assert.equal(
+    entries.some((entry) => String(entry.url ?? "").includes("/undergrad/cengr")),
+    false,
+    JSON.stringify(entrySummaries, null, 2)
+  );
+  assert.equal(
+    entries.some(
+      (entry) =>
+        entry.ownerId ===
+          "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science" &&
+        String(entry.url ?? "").includes("/undergrad/css/ba")
+    ),
+    false,
+    JSON.stringify(entrySummaries, null, 2)
+  );
+  assert.ok(
+    entries.some(
+      (entry) =>
+        entry.ownerId ===
+          "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science" &&
+        String(entry.url ?? "").includes("/undergrad/css/bs")
+    ),
+    JSON.stringify(entrySummaries, null, 2)
+  );
+  assert.ok(
+    entries.some(
+      (entry) =>
+        entry.ownerId ===
+          "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-arts" &&
+        (String(entry.url ?? "").includes("/undergrad/css/ba") ||
+          /CSS_B\.A\._Grid/i.test(String(entry.url ?? "")))
+    ),
+    JSON.stringify(entrySummaries, null, 2)
+  );
+});
+
+test("Parser alternate fallback rejects mismatched Tacoma CSS route sources", () => {
+  const entries = parser.getParseablePrimaryEntries([
+    "uw-tacoma-computer-science-and-systems",
+  ]);
+  const bsPathwayEntry = entries.find(
+    (entry) =>
+      entry.ownerId ===
+        "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science" &&
+      String(entry.url ?? "").includes("/undergrad/css")
+  );
+
+  assert.ok(bsPathwayEntry, JSON.stringify(entries, null, 2));
+
+  const alternates = parser.getAlternateParseableManifestEntriesForTest(bsPathwayEntry);
+  const alternateSummaries = alternates.map((entry) => ({
+    ownerId: entry.ownerId,
+    url: entry.url,
+    label: entry.label,
+  }));
+
+  assert.equal(
+    alternates.some((entry) => String(entry.url ?? "").includes("/undergrad/css/ba")),
+    false,
+    JSON.stringify(alternateSummaries, null, 2)
+  );
+});
+
+test("Parser recovery rejects cached Tacoma CSS snapshots from other majors or routes", () => {
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      {
+        ownerId: "uw-tacoma-computer-science-and-systems",
+        ownerTitle: "Computer Science and Systems",
+        planId: "uw-tacoma-computer-science-and-systems",
+        pathwayId: null,
+      },
+      "B.S. in Computer Engineering",
+      "https://www.tacoma.uw.edu/set/programs/undergrad/cengr"
+    ),
+    true
+  );
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      {
+        ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+        ownerTitle: "Computer Science and Systems - Bachelor of Science",
+        planId: "uw-tacoma-computer-science-and-systems",
+        pathwayId: "bachelor-of-science",
+      },
+      "UW Tacoma Computer Science and Systems BA degree requirements",
+      "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba"
+    ),
+    true
+  );
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      {
+        ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-arts",
+        ownerTitle: "Computer Science and Systems - Bachelor of Arts",
+        planId: "uw-tacoma-computer-science-and-systems",
+        pathwayId: "bachelor-of-arts",
+      },
+      "UW Tacoma Computer Science and Systems BA degree requirements",
+      "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba"
+    ),
+    false
+  );
 });
 
 test("Parser promotes Tacoma acronym primary pages when parsed source-only evidence says ignored", () => {
@@ -2651,6 +3306,45 @@ test("Parser keeps full dedicated Tacoma track degree pages instead of tail-scop
 
   for (const courseCode of ["TWRT 211", "TCOM 101", "TCOM 495", "TLAX 441"]) {
     assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} from full page scope`);
+  }
+});
+
+test("Parser keeps Tacoma list sections inside dedicated track pages", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-arts-media-culture:pathway:film-and-media-track",
+    ownerTitle: "Arts, Media and Culture (BA) - Film and Media Track",
+    planId: "uw-tacoma-arts-media-culture",
+    pathwayId: "film-and-media-track",
+    campusId: "uw-tacoma",
+    ownerType: "pathway",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+    label: "Film and Media Track",
+    sourceLabel: "Film and Media Track",
+  });
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h1>Film and Media Track</h1>
+        <p>Foundation (5 credits)</p>
+        <p>TLIT 220 Literature and the Arts OR</p>
+        <p>TFILM 220 Film and the Arts</p>
+        <h2>List A History</h2>
+        <p>THIST 150 World History I</p>
+        <h2>LIST B: CULTURE</h2>
+        <p>TAMST 101 American Art, Place and Space</p>
+        <h2>LIST F: FILM AND MEDIA</h2>
+        <p>TCOM 201 Media and Society</p>
+        <p>TFILM 350 Screenwriting</p>
+        <h2>Contact</h2>
+      </main>
+    `
+  );
+
+  for (const courseCode of ["TLIT 220", "TFILM 220", "THIST 150", "TAMST 101", "TCOM 201", "TFILM 350"]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} from Tacoma list sections`);
   }
 });
 
@@ -3174,6 +3868,164 @@ test("Parser recovery does not section-scope graduate primary pages for undergra
   });
 
   assert.deepEqual(candidates, []);
+});
+
+test("Catalog parser blocks graduate degree sections on shared undergraduate catalog pages", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-speech-and-hearing-sciences",
+    ownerTitle: "Speech and Hearing Sciences",
+    planId: "uw-seattle-speech-and-hearing-sciences",
+    campusId: "uw-seattle",
+    parserType: "catalog-page",
+    url: "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+    label: "Scoped current requirements: Home",
+    sourceLabel: "Scoped current requirements: Home",
+  });
+  const baseResult = buildRecoveryOwnerFixture({
+    ownerId: entry.ownerId,
+    ownerTitle: entry.ownerTitle,
+    planId: entry.planId,
+    campusId: entry.campusId,
+    primaryParserType: entry.parserType,
+    primarySourceUrl: entry.url,
+    primarySourceLabel: entry.label,
+    sourceUrl: entry.url,
+    sourceLabel: entry.label,
+    sourceRole: "official-catalog",
+    structuredUwCourseCodes: ["SPHSC 250"],
+    supportLists: [],
+  });
+  const parsed = {
+    courseCodes: ["SPHSC 250", "SPHSC 503", "SPHSC 506", "SPHSC 601", "SPHSC 801"],
+    snapshotLines: [
+      "Undergraduate Program",
+      "Bachelor of Science degree with a major in Speech and Hearing Sciences",
+      "Completion Requirements",
+      "SPHSC 250",
+      "Back to Top",
+      "Graduate Programs",
+      "Program of Study: Doctor Of Audiology (not admitting)",
+      "Doctor Of Audiology (fee-based) (not admitting)",
+      "Completion Requirements",
+      "Didactic (minimum 82 credits): SPHSC 503",
+      "40 credits of SPHSC 601",
+      "Minimum 12 credits of SPHSC 801",
+      "Academic Coursework : For students with a prior undergraduate or graduate degree in speech and hearing sciences (minimum 41 credits as follows):",
+      "SPHSC 506 or approved alternative (minimum 3 credits)",
+    ],
+    headings: [],
+    requirementCueLines: [],
+    chooseStatements: [],
+    pathwayLabels: [],
+    title: "Speech and Hearing Sciences",
+  };
+
+  const owner = parser.buildManifestParseSuccessForTest(
+    baseResult,
+    ["SPHSC 250"],
+    entry,
+    parsed,
+    "primary-source"
+  );
+  const auditRowsByCourse = new Map(
+    owner.sourceSectionFilterAuditRows
+      .flatMap((row) => (row.courseCodesExtracted ?? []).map((courseCode) => [courseCode, row]))
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("SPHSC 250"));
+  for (const graduateCourseCode of ["SPHSC 503", "SPHSC 506", "SPHSC 601", "SPHSC 801"]) {
+    assert.equal(owner.parsedUwCourseCodes.includes(graduateCourseCode), false);
+    assert.equal(auditRowsByCourse.get(graduateCourseCode)?.schedulable, false);
+  }
+});
+
+test("Graduate career-planning prose does not suppress undergraduate catalog requirements", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-education-studies:pathway:ba-option-family:education-research-and-policy",
+    ownerTitle: "Education Studies - B.A. Education Research and Policy option",
+    planId: "uw-seattle-education-studies",
+    pathwayId: "ba-option-family:education-research-and-policy",
+    campusId: "uw-seattle",
+    parserType: "catalog-page",
+    url: "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-64d254efdd5ce4dd309ca01f",
+    label: "Education Studies catalog credential",
+    sourceLabel: "Education Studies catalog credential",
+  });
+  const structuredCourseCodes = [
+    "EDLPS 302",
+    "EDPSY 380",
+    "EDPSY 404",
+    "EDPSY 490",
+    "EDUC 240",
+    "EDUC 251",
+    "EDUC 280",
+    "EDUC 310",
+    "EDUC 400",
+    "EDUC 472",
+    "EDUC 473",
+  ];
+  const baseResult = buildRecoveryOwnerFixture({
+    ownerId: entry.ownerId,
+    ownerTitle: entry.ownerTitle,
+    planId: entry.planId,
+    pathwayId: entry.pathwayId,
+    campusId: entry.campusId,
+    primaryParserType: entry.parserType,
+    primarySourceUrl: entry.url,
+    primarySourceLabel: entry.label,
+    sourceUrl: entry.url,
+    sourceLabel: entry.label,
+    sourceRole: "official-catalog",
+    structuredUwCourseCodes: structuredCourseCodes,
+    supportLists: [],
+  });
+  const parsed = {
+    courseCodes: structuredCourseCodes,
+    snapshotLines: [
+      "Bachelor of Arts degree with a major in Education Studies: Education Research and Policy",
+      "Credential Overview",
+      "The Education Research and Policy option is designed for students interested in pursuing careers in organizations that conduct research about education, and is a good choice for students who plan to pursue a graduate degree in education policy.",
+      "Completion Requirements",
+      "Major Requirements",
+      "Foundation Courses (18 credits):",
+      "One introductory course from ECFS 200, EDUC 240, or EDUC 280",
+      "One development course from EDPSY 302, EDPSY 380, or EDPSY 404",
+      "EDUC 251, EDUC 310",
+      "Additional Completion Requirements",
+      "Option specific credits (20 credits): EDLPS 302; EDUC 400 (2 credits), EDUC 472, EDUC 473; EDPSY 490",
+    ],
+    headings: [
+      "Bachelor of Arts degree with a major in Education Studies: Education Research and Policy",
+    ],
+    requirementCueLines: [],
+    chooseStatements: [],
+    pathwayLabels: [],
+    title: "Education Studies",
+  };
+
+  const owner = parser.buildManifestParseSuccessForTest(
+    baseResult,
+    structuredCourseCodes,
+    entry,
+    parsed,
+    "primary-source"
+  );
+  const rowsByRawLine = new Map(
+    owner.sourceSectionFilterAuditRows.map((row) => [row.rawLine, row])
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("EDUC 251"));
+  assert.ok(owner.parsedUwCourseCodes.includes("EDUC 472"));
+  assert.equal(
+    rowsByRawLine.get("EDUC 251, EDUC 310")?.detectedSectionRole,
+    "primary-requirement-section"
+  );
+  assert.equal(
+    rowsByRawLine.get(
+      "Option specific credits (20 credits): EDLPS 302; EDUC 400 (2 credits), EDUC 472, EDUC 473; EDPSY 490"
+    )?.detectedSectionRole,
+    "primary-requirement-section"
+  );
 });
 
 test("Parser recovery builds scoped section candidates for broad multi-program pages", () => {

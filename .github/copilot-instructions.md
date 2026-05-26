@@ -57,7 +57,7 @@ Generated or generated-like outputs include:
 - `source/docs/planner/UWB_DEGREE_COURSES.md`
 - `source/docs/planner/UWT_DEGREE_COURSES.md`
 
-For planner work, inspect reports under `source/.tmp/` and prefer these commands:
+For planner work, inspect reports under `source/.tmp/reports/` and prefer these commands:
 
 ```powershell
 npm run planner:refresh

@@ -15,13 +15,13 @@ const {
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
 } = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
 const {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS,
 } = require("../../constants/transfer-planner-source/requirement-source-adapters.generated");
 const {
-  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+  TRANSFER_PLANNER_GAP_ENTRIES,
 } = require("../../constants/transfer-planner-source/source-gaps.generated");
 const {
-  TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
+  TRANSFER_PLANNER_FINGERPRINTS,
 } = require("../../constants/transfer-planner-source/source-fingerprints.generated");
 const {
   isSuspiciousStructuralPathwayId,
@@ -67,8 +67,8 @@ const PATHWAY_EXPLICIT_COURSE_CODE_PATTERN =
   /\b[A-Z]{2,8}(?:\/[A-Z]{2,8})?\s+\d{3}(?:\.\d+)?[A-Z]?\b/i;
 const PATHWAY_KIND_PATTERN =
   /\b(option|track|route|pathway|certificate|concentration)\b/i;
-const SOURCE_GAP_BY_OWNER_KEY = new Map(
-  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.flatMap((entry) => [
+const GAP_BY_OWNER_KEY = new Map(
+  TRANSFER_PLANNER_GAP_ENTRIES.flatMap((entry) => [
     [entry.ownerKey, entry],
     [makeOwnerKey(entry.planId, entry.pathwayId ?? null), entry],
   ])
@@ -414,6 +414,413 @@ function buildShortTitle(title) {
   return normalized.split(/\s+/).slice(0, 3).join(" ");
 }
 
+function createEmptyPathway(id, label, officialLinks = [], validationNotes = []) {
+  return {
+    id,
+    label,
+    summary: "",
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks,
+    degreeMapSections: [],
+    validationNotes,
+    grcCourseList: [],
+    grcCourseListGuidance: "",
+    plannerNote: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+  };
+}
+
+function mergePathway(basePathway, canonicalPathway) {
+  const base = basePathway ?? {};
+  return {
+    ...base,
+    id: canonicalPathway.id,
+    label: canonicalPathway.label,
+    summary: String(base.summary ?? canonicalPathway.summary ?? ""),
+    applicationChecklist: base.applicationChecklist ?? canonicalPathway.applicationChecklist ?? [],
+    beforeEnrollmentChecklist:
+      base.beforeEnrollmentChecklist ?? canonicalPathway.beforeEnrollmentChecklist ?? [],
+    stayAtGrcChecklist: base.stayAtGrcChecklist ?? canonicalPathway.stayAtGrcChecklist ?? [],
+    advisorFlags: uniqueStrings([
+      ...(base.advisorFlags ?? []),
+      ...(canonicalPathway.advisorFlags ?? []),
+    ]),
+    officialLinks: uniqueLinks([
+      ...(canonicalPathway.officialLinks ?? []),
+      ...(base.officialLinks ?? []),
+    ]),
+    degreeMapSections: base.degreeMapSections ?? canonicalPathway.degreeMapSections ?? [],
+    validationNotes: uniqueStrings([
+      ...(base.validationNotes ?? []),
+      ...(canonicalPathway.validationNotes ?? []),
+    ]),
+    grcCourseList: uniqueStrings([
+      ...(base.grcCourseList ?? []),
+      ...(canonicalPathway.grcCourseList ?? []),
+    ]),
+    grcCourseListGuidance:
+      String(base.grcCourseListGuidance ?? "").trim() ||
+      String(canonicalPathway.grcCourseListGuidance ?? "").trim(),
+    plannerNote:
+      String(base.plannerNote ?? "").trim() || String(canonicalPathway.plannerNote ?? "").trim(),
+    bestTrackId: base.bestTrackId ?? canonicalPathway.bestTrackId ?? null,
+    recommendedTrackSummary:
+      String(base.recommendedTrackSummary ?? "").trim() ||
+      String(canonicalPathway.recommendedTrackSummary ?? "").trim(),
+    whyThisTrack: uniqueStrings([
+      ...(base.whyThisTrack ?? []),
+      ...(canonicalPathway.whyThisTrack ?? []),
+    ]),
+    requirementGroups: base.requirementGroups ?? canonicalPathway.requirementGroups,
+    requirementReplacements:
+      base.requirementReplacements ?? canonicalPathway.requirementReplacements,
+    supportLists: base.supportLists ?? canonicalPathway.supportLists,
+  };
+}
+
+function replacePlanPathwaysWithCanonicalSet(plan, canonicalPathways, aliasPathwayIds = {}) {
+  const existingPathways = Array.isArray(plan.pathways) ? plan.pathways : [];
+  const existingByCanonicalId = new Map();
+
+  for (const pathway of existingPathways) {
+    const existingId = String(pathway.id ?? "").trim();
+    const canonicalId = aliasPathwayIds[existingId] ?? existingId;
+    if (!canonicalId || existingByCanonicalId.has(canonicalId)) {
+      continue;
+    }
+    existingByCanonicalId.set(canonicalId, pathway);
+  }
+
+  return {
+    ...plan,
+    pathways: canonicalPathways.map((canonicalPathway) =>
+      mergePathway(existingByCanonicalId.get(canonicalPathway.id), canonicalPathway)
+    ),
+  };
+}
+
+function createEmptyPlan(id, campusId, title, officialLinks = [], validationNotes = []) {
+  return {
+    id,
+    campusId,
+    title,
+    shortTitle: buildShortTitle(title),
+    coverage: "partial",
+    summary: "Source-generated from parsed UW requirement-source registries.",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks,
+    degreeMapSections: [],
+    validationNotes,
+    grcCourseList: [],
+    grcCourseListGuidance: "",
+    bankIds: [],
+    plannerNote: "",
+    sourceType: "master-generated",
+    pathways: [],
+  };
+}
+
+function upsertPlan(plansById, plan) {
+  const existing = plansById.get(plan.id);
+  if (!existing) {
+    plansById.set(plan.id, plan);
+    return plan;
+  }
+
+  const merged = {
+    ...existing,
+    ...plan,
+    officialLinks: uniqueLinks([
+      ...(plan.officialLinks ?? []),
+      ...(existing.officialLinks ?? []),
+    ]),
+    validationNotes: uniqueStrings([
+      ...(existing.validationNotes ?? []),
+      ...(plan.validationNotes ?? []),
+    ]),
+    pathways:
+      Array.isArray(plan.pathways) && plan.pathways.length
+        ? plan.pathways
+        : existing.pathways ?? [],
+  };
+  plansById.set(plan.id, merged);
+  return merged;
+}
+
+const TACOMA_CSS_PARENT_PLAN_ID = "uw-tacoma-computer-science-and-systems";
+const TACOMA_CSS_PARENT_LINKS = [
+  {
+    label: "UW Tacoma Computer Science and Systems program",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+  },
+  {
+    label: "UW Tacoma Computer Science and Systems BA degree requirements",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+  },
+  {
+    label: "UW Tacoma Computer Science and Systems BS degree requirements",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+  },
+];
+
+function applyTacomaCoursePlannerAuditModeling(plans) {
+  const plansById = new Map(plans.map((plan) => [plan.id, plan]));
+
+  const babaPlan = plansById.get("uw-tacoma-bachelor-of-arts-in-business-administration");
+  if (babaPlan) {
+    plansById.set(babaPlan.id, {
+      ...babaPlan,
+      title: "Business Administration (BA)",
+      shortTitle: "Business Administration",
+      officialLinks: uniqueLinks([
+        {
+          label: "UW Tacoma Business Administration degree options",
+          url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+        },
+        {
+          label: "UW Tacoma BA in Business Administration",
+          url: "https://www.tacoma.uw.edu/business/baba",
+        },
+        ...(babaPlan.officialLinks ?? []),
+      ]),
+      validationNotes: uniqueStrings([
+        ...(babaPlan.validationNotes ?? []),
+        "Canonical Tacoma parent is Business Administration (BA); BABA remains a source/search alias and options are child pathways.",
+      ]),
+    });
+    plansById.set(
+      babaPlan.id,
+      replacePlanPathwaysWithCanonicalSet(plansById.get(babaPlan.id), [
+        createEmptyPathway("accounting-option", "Accounting option", [
+          {
+            label: "UW Tacoma BABA Accounting curriculum",
+            url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          },
+        ]),
+        createEmptyPathway("finance-option", "Finance option", [
+          {
+            label: "UW Tacoma BABA Finance curriculum",
+            url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          },
+        ]),
+        createEmptyPathway("general-business-option", "General Business option", [
+          {
+            label: "UW Tacoma BABA General Business curriculum",
+            url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          },
+        ]),
+        createEmptyPathway("management-option", "Management option", [
+          {
+            label: "UW Tacoma BABA Management curriculum",
+            url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          },
+        ]),
+        createEmptyPathway("marketing-option", "Marketing option", [
+          {
+            label: "UW Tacoma BABA Marketing curriculum",
+            url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          },
+        ]),
+      ])
+    );
+  }
+
+  const cssBaPlan = plansById.get("uw-tacoma-computer-science-and-systems-ba");
+  if (cssBaPlan) {
+    plansById.set(cssBaPlan.id, {
+      ...cssBaPlan,
+      title: "Computer Science and Systems: Bachelor of Arts (BA)",
+      shortTitle: "CSS: BA",
+    });
+  }
+
+  const cssBsPlan = plansById.get("uw-tacoma-computer-science-and-systems-bs");
+  if (cssBsPlan) {
+    plansById.set(cssBsPlan.id, {
+      ...cssBsPlan,
+      title: "Computer Science and Systems: Bachelor of Science (BS)",
+      shortTitle: "CSS: BS",
+    });
+  }
+
+  const cssParentPlan = upsertPlan(
+    plansById,
+    createEmptyPlan(
+      TACOMA_CSS_PARENT_PLAN_ID,
+      "uw-tacoma",
+      "Computer Science and Systems",
+      TACOMA_CSS_PARENT_LINKS,
+      [
+        "Canonical Tacoma CSS parent; BA and BS degree rows are modeled as child pathways for top-level planner audits.",
+      ]
+    )
+  );
+  plansById.set(
+    TACOMA_CSS_PARENT_PLAN_ID,
+    replacePlanPathwaysWithCanonicalSet(cssParentPlan, [
+      createEmptyPathway("bachelor-of-arts", "Bachelor of Arts", [
+        {
+          label: "UW Tacoma Computer Science and Systems BA degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+        },
+      ]),
+      createEmptyPathway("bachelor-of-science", "Bachelor of Science", [
+        {
+          label: "UW Tacoma Computer Science and Systems BS degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+        },
+      ]),
+    ])
+  );
+
+  const criminalJusticePlan = plansById.get("uw-tacoma-criminal-justice");
+  if (criminalJusticePlan) {
+    plansById.set(
+      criminalJusticePlan.id,
+      replacePlanPathwaysWithCanonicalSet(
+        criminalJusticePlan,
+        [
+          createEmptyPathway("campus-pathway", "Campus pathway", [
+            {
+              label: "UW Tacoma Criminal Justice campus curriculum",
+              url: "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+            },
+          ]),
+          createEmptyPathway("online-pathway", "Online pathway", [
+            {
+              label: "UW Tacoma Criminal Justice online curriculum",
+              url: "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+            },
+            {
+              label: "UW Tacoma Criminal Justice online admission requirements",
+              url: "https://www.tacoma.uw.edu/swcj/criminal-justice-online-admission-requirements-and-how-apply",
+            },
+          ]),
+        ],
+        {
+          "ba-route": "campus-pathway",
+          "campus-curriculum": "campus-pathway",
+          "online-curriculum": "online-pathway",
+        }
+      )
+    );
+  }
+
+  const historyPlan = plansById.get("uw-tacoma-history");
+  if (historyPlan) {
+    plansById.set(
+      historyPlan.id,
+      replacePlanPathwaysWithCanonicalSet(
+        historyPlan,
+        [
+          createEmptyPathway("general-history-option", "General History option", [
+            {
+              label: "UW Tacoma General History option requirements",
+              url: "https://www.tacoma.uw.edu/sias-new/socs-new/general-option",
+            },
+          ]),
+          createEmptyPathway("arts-culture-and-society-option", "Arts, Culture and Society option", [
+            {
+              label: "UW Tacoma History Arts, Culture and Society option requirements",
+              url: "https://www.tacoma.uw.edu/sias/socs/arts-culture-and-society-option",
+            },
+          ]),
+          createEmptyPathway("global-history-option", "Global History option", [
+            {
+              label: "UW Tacoma Global History option requirements",
+              url: "https://www.tacoma.uw.edu/sias/socs/global-history-option",
+            },
+          ]),
+          createEmptyPathway("labor-and-social-movements-option", "Labor and Social Movements option", [
+            {
+              label: "UW Tacoma Labor and Social Movements option requirements",
+              url: "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
+            },
+          ]),
+          createEmptyPathway("power-gender-and-identity-option", "Power, Gender and Identity option", [
+            {
+              label: "UW Tacoma Power, Gender and Identity option requirements",
+              url: "https://www.tacoma.uw.edu/sias/socs/power-gender-and-identity-option",
+            },
+          ]),
+        ],
+        {
+          "culture-and-society-option": "arts-culture-and-society-option",
+          "gender-and-identity-option": "power-gender-and-identity-option",
+        }
+      )
+    );
+  }
+
+  const informationTechnologyPlan = plansById.get("uw-tacoma-information-technology");
+  if (informationTechnologyPlan) {
+    plansById.set(
+      informationTechnologyPlan.id,
+      replacePlanPathwaysWithCanonicalSet(informationTechnologyPlan, [
+        createEmptyPathway("information-assurance-cybersecurity-option", "Information Assurance and Cybersecurity option", [
+          {
+            label: "UW Tacoma Information Technology degree options",
+            url: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+          },
+        ]),
+        createEmptyPathway(
+          "digital-mobile-forensics-option",
+          "Digital Mobile Forensics option",
+          [
+            {
+              label: "UW Tacoma Information Technology degree options",
+              url: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+            },
+          ],
+          [
+            "Digital Mobile Forensics is temporarily suspended as an option; the Information Technology major remains active.",
+          ]
+        ),
+      ])
+    );
+  }
+
+  const urbanStudiesPlan = plansById.get("uw-tacoma-urban-studies");
+  if (urbanStudiesPlan) {
+    plansById.set(
+      urbanStudiesPlan.id,
+      replacePlanPathwaysWithCanonicalSet(
+        urbanStudiesPlan,
+        [
+          createEmptyPathway("community-engagement-option", "Community Engagement option", [
+            {
+              label: "UW Tacoma Urban Studies degree requirements",
+              url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            },
+          ]),
+          createEmptyPathway("gis-option", "GIS option", [
+            {
+              label: "UW Tacoma Urban Studies degree requirements",
+              url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            },
+          ]),
+        ],
+        {
+          "gis-certificate-option": "gis-option",
+        }
+      )
+    );
+  }
+
+  return [...plansById.values()];
+}
+
 function mapPhaseToChecklistField(phase) {
   switch (phase) {
     case "before-application":
@@ -540,14 +947,51 @@ function pathwayCandidateMatchesSpecializedPlanTitle(planTitle, pathwayCandidate
   return planTokens.every((token) => candidateTokens.has(token));
 }
 
+function getFingerprintLinkLabelScore(label) {
+  const normalized = normalizeTransferPlannerText(label);
+  if (!normalized) {
+    return -100;
+  }
+
+  let score = 0;
+  if (/\b(?:degree|major|program|graduation) requirements?\b/.test(normalized)) score += 80;
+  if (/\brequirements?\b/.test(normalized)) score += 40;
+  if (/\b(?:checklist|worksheet|catalog)\b/.test(normalized)) score += 20;
+  if (/^scoped section\b/.test(normalized)) score -= 50;
+  if (/\b(?:electives?|approved courses?|course list)\b/.test(normalized)) score -= 20;
+  if (/\b(?:admissions?|advising|student resources?|faq)\b/.test(normalized)) score -= 30;
+  return score;
+}
+
+function chooseFingerprintLinkLabel(entry, ownerId) {
+  const labels = uniqueStrings(entry.labels ?? []);
+  if (!labels.length) {
+    return `${ownerId} requirements`;
+  }
+
+  return labels
+    .map((label, index) => ({
+      label,
+      index,
+      score: getFingerprintLinkLabelScore(label),
+    }))
+      .sort((left, right) => right.score - left.score || left.index - right.index)[0].label;
+}
+
+function getFingerprintLinkUrl(entry) {
+  const url = String(entry?.url ?? "").trim();
+  const finalUrl = String(entry?.finalUrl ?? "").trim();
+  return url.includes("#") ? url : finalUrl || url;
+}
+
 function buildFingerprintLinksForOwner(ownerId) {
   return uniqueLinks(
-    (TRANSFER_PLANNER_SOURCE_FINGERPRINTS ?? [])
+    (TRANSFER_PLANNER_FINGERPRINTS ?? [])
       .filter((entry) => (entry.ownerIds ?? []).includes(ownerId))
       .filter((entry) => entry.ok !== false && String(entry.url ?? "").trim())
       .map((entry) => ({
-        label: String(entry.labels?.[0] ?? `${ownerId} requirements`).trim(),
-        url: String(entry.finalUrl ?? entry.url).trim(),
+        label: chooseFingerprintLinkLabel(entry, ownerId),
+        url: getFingerprintLinkUrl(entry),
         visibility: "hidden",
         status: "parser-unsupported",
         sourceConfidence: undefined,
@@ -555,10 +999,54 @@ function buildFingerprintLinksForOwner(ownerId) {
   );
 }
 
+function parsePathwayOwnerId(ownerId) {
+  const normalizedOwnerId = String(ownerId ?? "").trim();
+  const pathwaySeparator = ":pathway:";
+  const pathwayIndex = normalizedOwnerId.indexOf(pathwaySeparator);
+  if (pathwayIndex === -1) {
+    return null;
+  }
+
+  const planId = normalizedOwnerId.slice(0, pathwayIndex);
+  const pathwayId = normalizedOwnerId.slice(pathwayIndex + pathwaySeparator.length);
+  return planId && pathwayId ? { planId, pathwayId } : null;
+}
+
+function fingerprintEntryCanSeedPathway(entry, planId, titlesByPlanId) {
+  if (!entry?.ok || !String(entry?.url ?? "").trim()) {
+    return false;
+  }
+
+  const sourceText = [
+    ...(entry.labels ?? []),
+    entry.title,
+    entry.url,
+    entry.finalUrl,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  if (/equivalency[-\s]?guide|green[-\s]?river/i.test(sourceText)) {
+    return false;
+  }
+
+  if (
+    (entry.labels ?? []).some((label) =>
+      labelMentionsDifferentTransferPlannerMajor(planId, label, titlesByPlanId)
+    )
+  ) {
+    return false;
+  }
+
+  return /\b(?:bachelor|degree|major|option|track|route|pathway|concentration|requirements?|catalog|curriculum)\b|#credential-/i.test(
+    sourceText
+  );
+}
+
 function selectPathwayKindSegment(value) {
   const normalized = normalizeTransferPlannerText(value);
   const segments = normalized
-    .split(/\s+(?:[-\u2013\u2014]|:)\s+|,\s+/)
+    .split(/\s+(?:[-\u2013\u2014])\s+|\s*:\s+|,\s+/)
     .map((segment) => normalizeTransferPlannerText(segment))
     .filter(Boolean);
 
@@ -679,6 +1167,9 @@ function getPathwayCandidateScore(label, sourceKind) {
     case "parsed":
       score += 45;
       break;
+    case "fingerprint":
+      score += 40;
+      break;
     case "owner":
       score += 20;
       break;
@@ -700,6 +1191,66 @@ function getPathwayCandidateScore(label, sourceKind) {
   }
 
   return score - label.length * 0.01;
+}
+
+function buildPathwayCandidateFromFingerprint(planTitle, pathwayId, entry) {
+  const labels = uniqueStrings(entry?.labels ?? []);
+  const label =
+    labels
+      .map((value) => normalizePathwayLabelCandidate(planTitle, value))
+      .filter(Boolean)
+      .sort(
+        (left, right) =>
+          getPathwayCandidateScore(right, "fingerprint") -
+            getPathwayCandidateScore(left, "fingerprint") ||
+          left.length - right.length ||
+          left.localeCompare(right)
+      )[0] || titleCasePathwayLabel(pathwayId);
+
+  if (!label || isSuspiciousStructuralPathwayLabel(label)) {
+    return null;
+  }
+
+  return {
+    id: pathwayId,
+    label,
+    score: getPathwayCandidateScore(label, "fingerprint"),
+    sourceKind: "fingerprint",
+    officialLinks: uniqueLinks([
+      {
+        label: chooseFingerprintLinkLabel(entry, `${planTitle} ${label}`),
+        url: getFingerprintLinkUrl(entry),
+      },
+    ]),
+  };
+}
+
+function buildFingerprintPathwayCandidatesForPlan(planId, planTitle, titlesByPlanId) {
+  const candidates = [];
+
+  for (const entry of TRANSFER_PLANNER_FINGERPRINTS ?? []) {
+    for (const ownerId of entry.ownerIds ?? []) {
+      const parsedOwner = parsePathwayOwnerId(ownerId);
+      if (!parsedOwner || parsedOwner.planId !== planId) {
+        continue;
+      }
+
+      if (!fingerprintEntryCanSeedPathway(entry, planId, titlesByPlanId)) {
+        continue;
+      }
+
+      const pathwayCandidate = buildPathwayCandidateFromFingerprint(
+        planTitle,
+        parsedOwner.pathwayId,
+        entry
+      );
+      if (pathwayCandidate) {
+        candidates.push(pathwayCandidate);
+      }
+    }
+  }
+
+  return candidates;
 }
 
 function buildPathwayLabelFromSupplementalLink(planId, pathwayId) {
@@ -902,7 +1453,7 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
     const campusId = String(rootBlock.campusId ?? "").trim();
     if (!campusId) continue;
 
-    const planGap = SOURCE_GAP_BY_OWNER_KEY.get(makeOwnerKey(planId, null)) ?? null;
+    const planGap = GAP_BY_OWNER_KEY.get(makeOwnerKey(planId, null)) ?? null;
     const title =
       String(planGap?.title ?? "").trim() ||
       stripGeneratedOwnerPathwaySuffix(rootBlock.ownerTitle) ||
@@ -938,7 +1489,7 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
         beforeEnrollmentChecklist: [],
         stayAtGrcChecklist: [],
         advisorFlags: [],
-        officialLinks: [],
+        officialLinks: uniqueLinks(pathwayCandidate.officialLinks ?? []),
         degreeMapSections: [],
         validationNotes: [],
         grcCourseList: [],
@@ -981,6 +1532,14 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
       addPathwayCandidate(pathwayCandidate, block);
     }
 
+    for (const pathwayCandidate of buildFingerprintPathwayCandidatesForPlan(
+      planId,
+      title,
+      primaryMajorTitlesByPlanId
+    )) {
+      addPathwayCandidate(pathwayCandidate, null);
+    }
+
     plans.push({
       id: planId,
       campusId,
@@ -1009,7 +1568,7 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
     });
   }
 
-  for (const gap of TRANSFER_PLANNER_SOURCE_GAP_ENTRIES) {
+  for (const gap of TRANSFER_PLANNER_GAP_ENTRIES) {
     const planId = String(gap?.planId ?? "").trim();
     if (
       !planId ||
@@ -1060,13 +1619,13 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
 }
 
 function buildMajorPlansFromParsedRegistries() {
-  const basePlans = buildBasePlansFromParsedBlocks(TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS);
+  const basePlans = buildBasePlansFromParsedBlocks(TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS);
   const primaryMajorTitlesByPlanId = buildPrimaryMajorTitlesByPlanId(
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS
   );
 
   const parsedBlocksByOwnerScope = new Map();
-  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS) {
     const key = makePlanPathwayKey(block.planId, block.pathwayId ?? null);
     if (!parsedBlocksByOwnerScope.has(key)) {
       parsedBlocksByOwnerScope.set(key, []);
@@ -1075,7 +1634,7 @@ function buildMajorPlansFromParsedRegistries() {
   }
 
   const sourceGapByOwnerKey = new Map(
-    TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.map((entry) => [entry.ownerKey, entry])
+    TRANSFER_PLANNER_GAP_ENTRIES.map((entry) => [entry.ownerKey, entry])
   );
   const getOwnerLinkDefaults = (planId, pathwayId) => {
     const ownerGap = sourceGapByOwnerKey.get(makeOwnerKey(planId, pathwayId ?? null)) ?? null;
@@ -1153,7 +1712,7 @@ function buildMajorPlansFromParsedRegistries() {
     );
   };
 
-  return basePlans
+  return applyTacomaCoursePlannerAuditModeling(basePlans)
     .map((plan) => ({
       ...plan,
       officialLinks: enrichOfficialLinks(plan.officialLinks ?? [], plan.id, null),

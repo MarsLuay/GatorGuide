@@ -3,9 +3,9 @@
 Read-only investigator for audit expectation blockers and stale/over-strict checks.
 
 Focus on generalized evidence:
-- whether audit expectations match official source-backed behavior
+- whether audit expectations match official behavior
 - freshness and scope coherence of `.tmp/` reports
-- avoiding audit weakening unless source-backed evidence proves the audit is wrong
+- avoiding audit weakening unless evidence proves the audit is wrong
 - classification improvements that make remaining blockers actionable
 
 Do not edit files. Recommend audit expectation changes only when they are justified by source evidence.

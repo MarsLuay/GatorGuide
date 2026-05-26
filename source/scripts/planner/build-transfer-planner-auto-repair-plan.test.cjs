@@ -7,8 +7,12 @@ const test = require("node:test");
 const {
   buildFreshnessReport,
   buildGeneratedOutputKeysForRepairPlans,
+  buildIndexes,
   buildPostRepairVerificationPlanIds,
   buildRepairCommandPlan,
+  collectDiscoveryCases,
+  collectOwnerAuditCases,
+  collectParseReportCases,
   runPostRepairVerification,
   resolveRepairStartCommandIndex,
   runRepairAttempt,
@@ -95,6 +99,364 @@ test("auto-repair freshness allows reports inside the freshness tolerance", () =
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }
+});
+
+test("auto-repair freshness does not make discovery stale from downstream source registries", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "gatorguide-repair-freshness-"));
+  try {
+    const discoveryPath = path.join(tmpDir, "primary-source-discovery.json");
+    const generatedMajorPlansPath = path.join(tmpDir, "generated-major-plans.ts");
+    const bootstrapPath = path.join(tmpDir, "bootstrap.generated.ts");
+    const promotionsPath = path.join(tmpDir, "primary-source-promotions.generated.ts");
+    const sourceGapsPath = path.join(tmpDir, "source-gaps.generated.ts");
+    const base = Date.UTC(2026, 0, 1, 12, 0, 0);
+
+    writeFileWithMtime(generatedMajorPlansPath, base);
+    writeFileWithMtime(discoveryPath, base + 1_000);
+    writeFileWithMtime(promotionsPath, base + 10_000);
+    writeFileWithMtime(sourceGapsPath, base + 11_000);
+    writeFileWithMtime(bootstrapPath, base + 12_000);
+
+    const freshness = buildFreshnessReport(
+      [{ needsSourceDiscovery: true, needsRequirementParse: false, needsRuntimeGeneration: false }],
+      {
+        toleranceMs: 1_000,
+        reportInputs: [
+          {
+            key: "primarySourceDiscovery",
+            label: "primary source discovery",
+            path: discoveryPath,
+          },
+        ],
+        generatedOutputPaths: {
+          generatedMajorPlans: generatedMajorPlansPath,
+          primarySourcePromotions: promotionsPath,
+          sourceGaps: sourceGapsPath,
+          bootstrap: bootstrapPath,
+        },
+      }
+    );
+
+    assert.equal(freshness.outcome, "fresh");
+    assert.equal(freshness.staleReports.length, 0);
+    assert.equal(
+      freshness.sourceReports[0]?.newestRelevantGeneratedOutputKey,
+      "generatedMajorPlans"
+    );
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+});
+
+test("auto-repair freshness marks discovery stale when generated major plans are newer", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "gatorguide-repair-freshness-"));
+  try {
+    const discoveryPath = path.join(tmpDir, "primary-source-discovery.json");
+    const generatedMajorPlansPath = path.join(tmpDir, "generated-major-plans.ts");
+    const base = Date.UTC(2026, 0, 1, 12, 0, 0);
+
+    writeFileWithMtime(discoveryPath, base);
+    writeFileWithMtime(generatedMajorPlansPath, base + 10_000);
+
+    const freshness = buildFreshnessReport(
+      [{ needsSourceDiscovery: true, needsRequirementParse: false, needsRuntimeGeneration: false }],
+      {
+        toleranceMs: 1_000,
+        reportInputs: [
+          {
+            key: "primarySourceDiscovery",
+            label: "primary source discovery",
+            path: discoveryPath,
+          },
+        ],
+        generatedOutputPaths: {
+          generatedMajorPlans: generatedMajorPlansPath,
+        },
+      }
+    );
+
+    assert.equal(freshness.outcome, "stale");
+    assert.equal(freshness.staleReports.length, 1);
+    assert.equal(freshness.staleReports[0].key, "primarySourceDiscovery");
+    assert.equal(freshness.staleReports[0].newestGeneratedOutputKey, "generatedMajorPlans");
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+});
+
+test("auto-repair freshness compares requirement reports only to parser-derived outputs", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "gatorguide-repair-freshness-"));
+  try {
+    const requirementParsePath = path.join(tmpDir, "requirement-parse.json");
+    const sourceChangePath = path.join(tmpDir, "source-change.json");
+    const sourceGapsPath = path.join(tmpDir, "source-gaps.generated.ts");
+    const sourceFingerprintsPath = path.join(tmpDir, "source-fingerprints.generated.ts");
+    const requirementAdaptersPath = path.join(
+      tmpDir,
+      "requirement-source-adapters.generated.ts"
+    );
+    const base = Date.UTC(2026, 0, 1, 12, 0, 0);
+
+    writeFileWithMtime(requirementParsePath, base);
+    writeFileWithMtime(sourceChangePath, base + 500);
+    writeFileWithMtime(requirementAdaptersPath, base + 800);
+    writeFileWithMtime(sourceFingerprintsPath, base + 900);
+    writeFileWithMtime(sourceGapsPath, base + 60_000);
+
+    const freshness = buildFreshnessReport(
+      [{ needsSourceDiscovery: true, needsRequirementParse: true, needsRuntimeGeneration: false }],
+      {
+        toleranceMs: 1_000,
+        reportInputs: [
+          { key: "requirementParse", label: "requirement parse", path: requirementParsePath },
+          {
+            key: "sourceChangeClassification",
+            label: "source-change classification",
+            path: sourceChangePath,
+          },
+        ],
+        generatedOutputPaths: {
+          requirementSourceAdapters: requirementAdaptersPath,
+          sourceFingerprints: sourceFingerprintsPath,
+          sourceGaps: sourceGapsPath,
+        },
+      }
+    );
+
+    assert.equal(freshness.outcome, "fresh");
+    assert.equal(freshness.staleReports.length, 0);
+    assert.equal(
+      freshness.sourceReports.find((report) => report.key === "requirementParse")
+        ?.newestRelevantGeneratedOutputKey,
+      "sourceFingerprints"
+    );
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+});
+
+test("auto-repair ignores no-code inactive major sources", () => {
+  const parseOwner = {
+    ownerId: "uw-seattle-italian",
+    ownerTitle: "Italian",
+    planId: "uw-seattle-italian",
+    pathwayId: null,
+    campusId: "uw-seattle",
+    ok: true,
+    sourceUrl: "https://frenchitalian.washington.edu/undergraduate-studies-italian",
+    sourceRole: "non-schedulable-course-list",
+    sourceRoleStatus: "non-schedulable",
+    sourceInactiveMajor: true,
+    parsedUwCourseCodes: [],
+    structuredUwCourseCodes: [],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [],
+    requirementCueLines: ["Major Requirements"],
+    qualitySignals: [
+      {
+        severity: "note",
+        code: "inactive-major-source",
+        message: "Inactive major source.",
+      },
+    ],
+  };
+  const ownerAudit = {
+    owners: [
+      {
+        ownerId: parseOwner.ownerId,
+        planId: parseOwner.planId,
+        title: parseOwner.ownerTitle,
+        rootIssues: [
+          {
+            code: "no-parsed-uw-course-codes",
+            severity: "warning",
+            message: "Parsed source produced no usable UW course codes.",
+          },
+        ],
+      },
+    ],
+  };
+  const parseReport = { owners: [parseOwner] };
+  const discoveryReport = {
+    owners: [],
+    weakExistingOwners: [
+      {
+        ownerKey: parseOwner.ownerId,
+        planId: parseOwner.planId,
+        pathwayId: null,
+        title: parseOwner.ownerTitle,
+        campusId: parseOwner.campusId,
+        existingPrimaryUrl: parseOwner.sourceUrl,
+        suggestedPrimary: null,
+        candidateCount: 3,
+        reevaluationSignals: [
+          {
+            code: "no-parsed-uw-course-codes",
+            reason: "Parsed source block produced zero UW course codes.",
+          },
+        ],
+      },
+    ],
+  };
+  const indexes = buildIndexes({ ownerAudit, parseReport, discoveryReport });
+  const caseMap = new Map();
+
+  collectOwnerAuditCases(caseMap, ownerAudit, indexes);
+  collectParseReportCases(caseMap, parseReport, indexes);
+  collectDiscoveryCases(caseMap, discoveryReport, indexes);
+
+  assert.equal(caseMap.size, 0);
+});
+
+test("auto-repair ignores no-code parent owners covered by parsed child pathways", () => {
+  const parentOwner = {
+    ownerId: "uw-tacoma-egls",
+    ownerTitle: "Ethnic, Gender and Labor Studies",
+    planId: "uw-tacoma-egls",
+    pathwayId: null,
+    campusId: "uw-tacoma",
+    ok: true,
+    sourceUrl: "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parsedUwCourseCodes: [],
+    structuredUwCourseCodes: [],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [],
+    requirementCueLines: ["Major requirements"],
+    qualitySignals: [],
+  };
+  const childOwner = {
+    ...parentOwner,
+    ownerId: "uw-tacoma-egls:pathway:ethnic-studies-option",
+    ownerTitle: "Ethnic, Gender and Labor Studies - Ethnic Studies Option",
+    pathwayId: "ethnic-studies-option",
+    parsedUwCourseCodes: ["TEGL 101", "TEGL 201"],
+  };
+  const ownerAudit = {
+    owners: [
+      {
+        ownerId: parentOwner.ownerId,
+        planId: parentOwner.planId,
+        title: parentOwner.ownerTitle,
+        rootIssues: [
+          {
+            code: "no-parsed-uw-course-codes",
+            severity: "warning",
+            message: "Parsed source produced no usable UW course codes.",
+          },
+        ],
+      },
+    ],
+  };
+  const parseReport = { owners: [parentOwner, childOwner] };
+  const discoveryReport = {
+    owners: [],
+    weakExistingOwners: [
+      {
+        ownerKey: parentOwner.ownerId,
+        planId: parentOwner.planId,
+        pathwayId: null,
+        title: parentOwner.ownerTitle,
+        campusId: parentOwner.campusId,
+        existingPrimaryUrl: parentOwner.sourceUrl,
+        suggestedPrimary: null,
+        candidateCount: 160,
+        reevaluationSignals: [
+          {
+            code: "no-parsed-uw-course-codes",
+            reason: "Parsed source block produced zero UW course codes.",
+          },
+        ],
+      },
+    ],
+  };
+  const indexes = buildIndexes({ ownerAudit, parseReport, discoveryReport });
+  const caseMap = new Map();
+
+  collectOwnerAuditCases(caseMap, ownerAudit, indexes);
+  collectParseReportCases(caseMap, parseReport, indexes);
+  collectDiscoveryCases(caseMap, discoveryReport, indexes);
+
+  assert.equal(caseMap.size, 0);
+});
+
+test("auto-repair owner-audit cases prefer root causes over raw symptoms", () => {
+  const ownerAudit = {
+    owners: [
+      {
+        ownerId: "alpha:pathway:known-gap",
+        planId: "alpha",
+        pathwayId: "known-gap",
+        title: "Alpha - Known Gap",
+        rootIssues: [
+          {
+            severity: "warning",
+            code: "known-source-gap-unresolved",
+            message: "Owner is intentionally hidden behind a generated source-gap entry.",
+          },
+        ],
+        symptomIssues: [
+          {
+            severity: "error",
+            code: "missing-primary-source",
+            message: "No primary degree-requirements source URL is registered for this owner.",
+          },
+          {
+            severity: "error",
+            code: "missing-source-manifest-entries",
+            message: "No source manifest entries were found for this owner.",
+          },
+        ],
+      },
+    ],
+  };
+  const indexes = buildIndexes({ ownerAudit, parseReport: null, discoveryReport: null });
+  const caseMap = new Map();
+
+  collectOwnerAuditCases(caseMap, ownerAudit, indexes);
+
+  const cases = [...caseMap.values()];
+  assert.equal(cases.length, 1);
+  assert.equal(cases[0].category, "source-missing");
+  assert.equal(cases[0].severity, "warning");
+  assert.deepEqual(
+    cases[0].evidence.map((entry) => entry.code),
+    ["known-source-gap-unresolved"]
+  );
+});
+
+test("auto-repair owner-audit cases fall back to symptoms without root causes", () => {
+  const ownerAudit = {
+    owners: [
+      {
+        ownerId: "alpha",
+        planId: "alpha",
+        title: "Alpha",
+        rootIssues: [],
+        symptomIssues: [
+          {
+            severity: "error",
+            code: "missing-primary-source",
+            message: "No primary degree-requirements source URL is registered for this owner.",
+          },
+        ],
+      },
+    ],
+  };
+  const indexes = buildIndexes({ ownerAudit, parseReport: null, discoveryReport: null });
+  const caseMap = new Map();
+
+  collectOwnerAuditCases(caseMap, ownerAudit, indexes);
+
+  const cases = [...caseMap.values()];
+  assert.equal(cases.length, 1);
+  assert.equal(cases[0].category, "source-missing");
+  assert.equal(cases[0].severity, "error");
+  assert.deepEqual(
+    cases[0].evidence.map((entry) => entry.code),
+    ["missing-primary-source"]
+  );
 });
 
 test("auto-repair resume accepts an explicit 1-based command index", () => {

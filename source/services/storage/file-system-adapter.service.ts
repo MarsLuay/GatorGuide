@@ -1,6 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import { Platform } from "react-native";
+import { fetchTextWithHandling } from "@/services/network/fetch-with-handling";
 
 type FileSystemEncoding = NonNullable<
   NonNullable<Parameters<typeof FileSystem.readAsStringAsync>[1]>["encoding"]
@@ -127,8 +128,10 @@ export async function copyFile(sourceUri: string, destinationUri: string) {
 export async function readTextFile(uri: string, options?: WriteTextFileOptions) {
   const normalizedUri = String(uri ?? "").trim();
   if (options?.encoding !== "base64" && /^(data:|blob:|https?:)/i.test(normalizedUri)) {
-    const response = await fetch(normalizedUri);
-    return response.text();
+    return fetchTextWithHandling(normalizedUri, {
+      operation: "File text read",
+      timeoutMs: 15000,
+    });
   }
 
   return FileSystem.readAsStringAsync(uri, {

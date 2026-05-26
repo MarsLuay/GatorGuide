@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 process.env.TS_NODE_TRANSPILE_ONLY = "true";
 process.env.TS_NODE_BASEURL = process.env.TS_NODE_BASEURL || ".";
@@ -28,15 +29,9 @@ const {
 } = require("../../services/planning/transfer-planner.service");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-grc-merged-required-label-audit.json"
-);
-const OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-grc-merged-required-label-audit.md"
-);
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const OUTPUT_JSON_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-merged-required-label-audit.json");
+const OUTPUT_MD_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-merged-required-label-audit.md");
 const GRC_TRACK_NOTE_TERM_LABEL_PATTERN = /\btransferability of credits\b/i;
 const SUSPICIOUS_TEXT_PATTERNS = [
   /or\s+2\s*A/i,

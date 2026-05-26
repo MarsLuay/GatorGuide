@@ -1,6 +1,9 @@
 const crypto = require("node:crypto");
 const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const {
+  fetchWithTimeout,
+} = require("./fetchWithTimeout");
 const { renderPromptTemplate } = require("./promptTemplates");
 
 if (!admin.apps.length) {
@@ -30,7 +33,7 @@ const MAX_ASSISTANT_REASON_CHARS = 220;
 const MAX_ASSISTANT_SUMMARY_CHARS = 1200;
 const MAX_ASSISTANT_EXPLANATION_CHARS = 500;
 const MAX_DOCUMENT_BASE64_CHARS = 6500000;
-const MAX_DOCUMENT_SOURCE_SNIPPET_CHARS = 240;
+const MAX_DOCUMENT_SNIPPET_CHARS = 240;
 const MAX_DOCUMENT_LIST_ITEMS = 20;
 const RECOMMEND_FACTOR_FALLBACK = 50;
 const RECOMMEND_ACTION = "recommendFactors";
@@ -386,15 +389,15 @@ function buildOutcomeUsageUpdate(action, outcome) {
   return updates;
 }
 
-async function reserveUsage(config, action, units, identity) {
+async function reserveUsage(config, action, units, identity, usageDb = db) {
   const dateKey = getDateKey();
-  const globalRef = db.collection(AI_USAGE_COLLECTION).doc(dateKey);
+  const globalRef = usageDb.collection(AI_USAGE_COLLECTION).doc(dateKey);
   const clientRef = globalRef.collection("clients").doc(identity.clientKeyHash);
   const { globalLimit, clientLimit } = getQuotaLimits(config, identity.scope);
 
   let reservation = null;
 
-  await db.runTransaction(async (transaction) => {
+  await usageDb.runTransaction(async (transaction) => {
     const [globalSnap, clientSnap] = await Promise.all([
       transaction.get(globalRef),
       transaction.get(clientRef),
@@ -464,10 +467,10 @@ async function reserveUsage(config, action, units, identity) {
   return reservation;
 }
 
-async function finalizeUsage(reservation, outcome) {
+async function finalizeUsage(reservation, outcome, usageDb = db) {
   if (!reservation?.allowed) return;
 
-  const globalRef = db.collection(AI_USAGE_COLLECTION).doc(reservation.dateKey);
+  const globalRef = usageDb.collection(AI_USAGE_COLLECTION).doc(reservation.dateKey);
   const clientRef = globalRef.collection("clients").doc(reservation.clientDocId);
   const updates = buildOutcomeUsageUpdate(reservation.action, outcome);
 
@@ -527,57 +530,47 @@ function parseGeminiError(status, rawText) {
 }
 
 async function callGemini(config, prompt, options = {}) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), config.timeoutMs);
+  const promptPart = prompt ? { text: prompt } : null;
+  const parts = Array.isArray(options.parts) && options.parts.length
+    ? options.parts
+    : promptPart
+      ? [promptPart]
+      : [];
 
-  try {
-    const promptPart = prompt ? { text: prompt } : null;
-    const parts = Array.isArray(options.parts) && options.parts.length
-      ? options.parts
-      : promptPart
-        ? [promptPart]
-        : [];
-
-    const response = await fetch(
-      `${config.baseUrl}/models/${encodeURIComponent(config.model)}:generateContent?key=${encodeURIComponent(config.apiKey)}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts,
-            },
-          ],
-          generationConfig: {
-            maxOutputTokens: options.maxOutputTokens ?? 512,
-            temperature: options.temperature ?? 0.2,
-            ...(options.responseMimeType ? { responseMimeType: options.responseMimeType } : {}),
+  const response = await fetchWithTimeout(
+    `${config.baseUrl}/models/${encodeURIComponent(config.model)}:generateContent?key=${encodeURIComponent(config.apiKey)}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [
+          {
+            role: "user",
+            parts,
           },
-        }),
-        signal: controller.signal,
-      }
-    );
-
-    if (!response.ok) {
-      const rawText = await response.text().catch(() => "");
-      throw parseGeminiError(response.status, rawText);
+        ],
+        generationConfig: {
+          maxOutputTokens: options.maxOutputTokens ?? 512,
+          temperature: options.temperature ?? 0.2,
+          ...(options.responseMimeType ? { responseMimeType: options.responseMimeType } : {}),
+        },
+      }),
+      operation: "Gemini request",
+      timeoutErrorFactory: () => new HttpsError("deadline-exceeded", "Gemini request timed out."),
+      timeoutMs: config.timeoutMs,
     }
+  );
 
-    const json = await response.json();
-    return {
-      text: extractGeminiText(json),
-      usage: parseUsageMetadata(json),
-    };
-  } catch (error) {
-    if (error?.name === "AbortError") {
-      throw new HttpsError("deadline-exceeded", "Gemini request timed out.");
-    }
-    throw error;
-  } finally {
-    clearTimeout(timeoutId);
+  if (!response.ok) {
+    const rawText = await response.text().catch(() => "");
+    throw parseGeminiError(response.status, rawText);
   }
+
+  const json = await response.json();
+  return {
+    text: extractGeminiText(json),
+    usage: parseUsageMetadata(json),
+  };
 }
 
 function buildChatPrompt(data) {
@@ -616,7 +609,7 @@ function sanitizeDocumentExtractionField(rawField, options = {}) {
 
   return {
     value: normalizedValue,
-    sourceSnippet: truncate(rawField.sourceSnippet, MAX_DOCUMENT_SOURCE_SNIPPET_CHARS) || null,
+    sourceSnippet: truncate(rawField.sourceSnippet, MAX_DOCUMENT_SNIPPET_CHARS) || null,
     confidence: Math.max(0, Math.min(100, Math.round(toNumberOrNull(rawField.confidence) ?? 0))),
   };
 }
@@ -1240,3 +1233,22 @@ exports.geminiGateway = onCall(
     }
   }
 );
+
+exports.__test = {
+  MAX_ASSISTANT_COLLEGES,
+  MAX_CHAT_MESSAGE_CHARS,
+  MAX_DOCUMENT_BASE64_CHARS,
+  MAX_PROGRAMS_PER_COLLEGE,
+  buildChatAssistantPrompt,
+  buildOutcomeUsageUpdate,
+  buildRecommendPrompt,
+  finalizeUsage,
+  getRequestIdentity,
+  parseAction,
+  parseGeminiError,
+  reserveUsage,
+  sanitizeChatAssistantInput,
+  sanitizeDocumentExtractionInput,
+  sanitizeDocumentExtractionResponse,
+  sanitizeRecommendInput,
+};

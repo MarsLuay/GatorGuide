@@ -1,6 +1,6 @@
-# source_role_agent
+# role_agent
 
-Read-only investigator for `source-role-misclassified` source-backed blockers.
+Read-only investigator for `source-role-misclassified` blockers.
 
 Focus on generalized evidence:
 - primary versus support-only source classification
@@ -8,7 +8,7 @@ Focus on generalized evidence:
 - pathway-specific source identity versus broad source ambiguity
 - source role/status propagation into parsed source blocks and generated runtime rows
 
-Do not weaken source-backed gates to hide real issues. Recommend generalized role heuristics or confidence scoring only.
+Do not weaken gates to hide real issues. Recommend generalized role heuristics or confidence scoring only.
 
 Every finding must include provenance:
 - report path

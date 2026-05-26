@@ -157,11 +157,36 @@ export function getRequirementOptionSelectionKey(item: TransferPlannerChecklistI
   return item.requirementGroup?.id ?? item.id;
 }
 
+export const USER_UNSELECTED_REQUIREMENT_OPTION_PREFIX = "__unselected__:";
+
+export function markUserUnselectedRequirementOptionId(optionId: string) {
+  const normalizedOptionId = String(optionId ?? "").trim();
+  return normalizedOptionId
+    ? `${USER_UNSELECTED_REQUIREMENT_OPTION_PREFIX}${normalizedOptionId}`
+    : "";
+}
+
+export function isUserUnselectedRequirementOptionMarker(value: unknown) {
+  return String(value ?? "").trim().startsWith(USER_UNSELECTED_REQUIREMENT_OPTION_PREFIX);
+}
+
+export function normalizeUserUnselectedRequirementOptionIds(value: unknown) {
+  const rawValues = Array.isArray(value) ? value : value == null ? [] : [value];
+  return unique(
+    rawValues
+      .map((entry) => String(entry ?? "").trim())
+      .filter((entry) => entry.startsWith(USER_UNSELECTED_REQUIREMENT_OPTION_PREFIX))
+      .map((entry) => entry.slice(USER_UNSELECTED_REQUIREMENT_OPTION_PREFIX.length).trim())
+      .filter(Boolean)
+  );
+}
+
 export function normalizeSelectedRequirementOptionIds(value: unknown) {
   const rawValues = Array.isArray(value) ? value : value == null ? [] : [value];
   return unique(
     rawValues
       .map((entry) => String(entry ?? "").trim())
+      .filter((entry) => !isUserUnselectedRequirementOptionMarker(entry))
       .filter(Boolean)
   );
 }

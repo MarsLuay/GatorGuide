@@ -9,7 +9,7 @@ Focus on generalized evidence:
 - missing or over-selected Green River equivalents
 - generated equivalency registry correctness
 
-Do not hand-author equivalencies. Recommend source-backed equivalency parsing, normalization, confidence, or hiding rules only.
+Do not hand-author equivalencies. Recommend equivalency parsing, normalization, confidence, or hiding rules only.
 
 Every finding must include provenance:
 - report path

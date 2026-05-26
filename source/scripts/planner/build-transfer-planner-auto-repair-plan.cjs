@@ -1,83 +1,87 @@
 /* global __dirname */
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  hasArg,
+  runCommand: runHarnessCommand,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-auto-repair-plan.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-auto-repair-plan.md");
-const REPAIR_ATTEMPT_STATE_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-auto-repair-attempt-state.json"
-);
-const OWNER_AUDIT_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.json");
-const OWNER_AUDIT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.md");
-const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-requirement-source-parse-report.json"
-);
-const SOURCE_BACKED_AUDIT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-coverage-audit.json"
-);
-const SOURCE_BACKED_AUDIT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-coverage-audit.md"
-);
-const PRIMARY_SOURCE_DISCOVERY_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.json"
-);
-const SOURCE_CHANGE_CLASSIFICATION_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-change-classification.json"
-);
-const GENERATED_SOURCE_DIR = path.resolve(REPO_ROOT, "constants", "transfer-planner-source");
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-auto-repair-plan.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-auto-repair-plan.md");
+const REPAIR_ATTEMPT_STATE_PATH = getPlannerTmpPath("transfer-planner-auto-repair-attempt-state.json");
+const DEFAULT_REPAIR_NODE_MAX_OLD_SPACE_SIZE_MB = 8192;
+const OWNER_AUDIT_PATH = getPlannerTmpPath("transfer-planner-owner-audit.json");
+const OWNER_AUDIT_MD_PATH = getPlannerTmpPath("transfer-planner-owner-audit.md");
+const REQUIREMENT_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
+const AUDIT_PATH = getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.json");
+const AUDIT_MD_PATH = getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.md");
+const PRIMARY_DISCOVERY_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const CHANGE_CLASSIFICATION_PATH = getPlannerTmpPath("transfer-planner-source-change-classification.json");
+const GENERATED_DIR = path.resolve(REPO_ROOT, "constants", "transfer-planner-source");
 const GENERATED_OUTPUT_PATHS = {
   primarySourcePromotions: path.resolve(
-    GENERATED_SOURCE_DIR,
+    GENERATED_DIR,
     "primary-source-promotions.generated.ts"
   ),
-  sourceGaps: path.resolve(GENERATED_SOURCE_DIR, "source-gaps.generated.ts"),
-  bootstrap: path.resolve(GENERATED_SOURCE_DIR, "bootstrap.generated.ts"),
+  sourceGaps: path.resolve(GENERATED_DIR, "source-gaps.generated.ts"),
+  bootstrap: path.resolve(GENERATED_DIR, "bootstrap.generated.ts"),
   requirementSourceAdapters: path.resolve(
-    GENERATED_SOURCE_DIR,
+    GENERATED_DIR,
     "requirement-source-adapters.generated.ts"
   ),
   requirementSourceAdapterBlocks: path.resolve(
-    GENERATED_SOURCE_DIR,
+    GENERATED_DIR,
     "requirement-source-adapters.generated"
   ),
   programApprovedCourseFilters: path.resolve(
-    GENERATED_SOURCE_DIR,
+    GENERATED_DIR,
     "generated-program-approved-course-filters.ts"
   ),
-  sourceFingerprints: path.resolve(GENERATED_SOURCE_DIR, "source-fingerprints.generated.ts"),
-  studentRuntime: path.resolve(GENERATED_SOURCE_DIR, "student-runtime.generated.ts"),
-  generatedMajorPlans: path.resolve(GENERATED_SOURCE_DIR, "generated-major-plans.ts"),
+  sourceFingerprints: path.resolve(GENERATED_DIR, "source-fingerprints.generated.ts"),
+  studentRuntime: path.resolve(GENERATED_DIR, "student-runtime.generated.ts"),
+  generatedMajorPlans: path.resolve(GENERATED_DIR, "generated-major-plans.ts"),
 };
 const REPORT_INPUTS = [
   { key: "ownerAudit", label: "owner audit", path: OWNER_AUDIT_PATH },
   { key: "requirementParse", label: "requirement parse", path: REQUIREMENT_PARSE_REPORT_PATH },
-  { key: "sourceBackedCoverage", label: "source-backed coverage", path: SOURCE_BACKED_AUDIT_PATH },
+  { key: "sourceBackedCoverage", label: "coverage", path: AUDIT_PATH },
   {
     key: "primarySourceDiscovery",
     label: "primary source discovery",
-    path: PRIMARY_SOURCE_DISCOVERY_PATH,
+    path: PRIMARY_DISCOVERY_PATH,
   },
   {
     key: "sourceChangeClassification",
     label: "source-change classification",
-    path: SOURCE_CHANGE_CLASSIFICATION_PATH,
+    path: CHANGE_CLASSIFICATION_PATH,
   },
 ];
 const REPORT_FRESHNESS_TOLERANCE_MS = 5 * 60 * 1000;
+const DEFAULT_REPORT_GENERATED_OUTPUT_DEPENDENCIES = {
+  ownerAudit: null,
+  sourceBackedCoverage: null,
+  primarySourceDiscovery: ["generatedMajorPlans"],
+  requirementParse: [
+    "programApprovedCourseFilters",
+    "requirementSourceAdapterBlocks",
+    "requirementSourceAdapters",
+    "sourceFingerprints",
+  ],
+  sourceChangeClassification: ["sourceFingerprints"],
+};
 const POST_REPAIR_VERIFICATION_RESTORABLE_PATHS = [
   OWNER_AUDIT_PATH,
   OWNER_AUDIT_MD_PATH,
-  SOURCE_BACKED_AUDIT_PATH,
-  SOURCE_BACKED_AUDIT_MD_PATH,
+  AUDIT_PATH,
+  AUDIT_MD_PATH,
 ];
 
 const CATEGORY_LABELS = {
@@ -110,7 +114,7 @@ const CATEGORY_PRIORITY = {
   "source-course-removed": 70,
 };
 
-const SOURCE_LEVEL_CATEGORIES = new Set([
+const LEVEL_CATEGORIES = new Set([
   "source-missing",
   "source-too-broad",
   "source-support-only",
@@ -142,14 +146,15 @@ const LOW_COVERAGE_SIGNAL_CODES = new Set([
   "large-structured-only-course-gap",
 ]);
 const STRUCTURAL_DRIFT_SIGNAL_CODES = new Set(["material-source-structured-drift"]);
-const OWNER_SOURCE_MISSING_CODES = new Set([
+const OWNER_MISSING_CODES = new Set([
+  "known-source-gap-unresolved",
   "missing-primary-source",
   "missing-source-manifest-entries",
   "missing-parsed-source-block",
   "canonical-source-registry-missing-owner",
   "canonical-source-registry-drift",
 ]);
-const OWNER_SOURCE_SUPPORT_CODES = new Set(["support-source-marked-primary"]);
+const OWNER_SUPPORT_CODES = new Set(["support-source-marked-primary"]);
 const OWNER_UNPARSEABLE_CODES = new Set([
   "parsed-source-block-failed",
   "promoted-source-not-parsed",
@@ -176,7 +181,7 @@ const SUPPORT_OR_NON_SCHEDULABLE_SCOPE_ISSUES = new Set([
   "list-promoted-to-required",
   "elective-list-as-required",
 ]);
-const BROAD_SOURCE_SCOPE_ISSUES = new Set([
+const BROAD_SCOPE_ISSUES = new Set([
   "parser-source-scope-violation",
   "source-scope-contamination",
   "gen-ed-scope-leak",
@@ -217,31 +222,6 @@ const RUNTIME_ROW_ISSUES = new Set([
   "missing-compound-component",
   "duplicate-compound-component",
 ]);
-
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
 
 function getNumericArgValue(flag) {
   const value = getArgValue(flag);
@@ -343,6 +323,7 @@ function buildGeneratedOutputKeysForRepairPlans(repairPlans) {
   const outputKeys = new Set();
   for (const plan of repairPlans) {
     if (plan.needsSourceDiscovery) {
+      outputKeys.add("generatedMajorPlans");
       outputKeys.add("primarySourcePromotions");
       outputKeys.add("sourceGaps");
       outputKeys.add("bootstrap");
@@ -379,21 +360,44 @@ function buildFreshnessOutputRecords(outputKeys, generatedOutputPaths = GENERATE
     .sort((left, right) => left.key.localeCompare(right.key));
 }
 
+function getGeneratedOutputsForReportFreshness(input, generatedOutputs, dependencyMap) {
+  const dependencyKeys = dependencyMap[input.key];
+  if (!Array.isArray(dependencyKeys)) {
+    return generatedOutputs;
+  }
+
+  const dependencySet = new Set(dependencyKeys);
+  return generatedOutputs.filter((output) => dependencySet.has(output.key));
+}
+
+function getNewestGeneratedOutputRecord(generatedOutputs) {
+  return generatedOutputs
+    .filter((record) => record.exists)
+    .reduce((newest, record) => {
+      if (!newest || record.mtimeMs > newest.mtimeMs) {
+        return record;
+      }
+      return newest;
+    }, null);
+}
+
 function buildFreshnessReport(repairPlans, options = {}) {
   const toleranceMs = options.toleranceMs ?? REPORT_FRESHNESS_TOLERANCE_MS;
   const reportInputs = options.reportInputs ?? REPORT_INPUTS;
   const generatedOutputPaths = options.generatedOutputPaths ?? GENERATED_OUTPUT_PATHS;
+  const reportGeneratedOutputDependencies =
+    options.reportGeneratedOutputDependencies ?? DEFAULT_REPORT_GENERATED_OUTPUT_DEPENDENCIES;
   const outputKeys = buildGeneratedOutputKeysForRepairPlans(repairPlans);
   const generatedOutputs = buildFreshnessOutputRecords(outputKeys, generatedOutputPaths);
-  const existingGeneratedOutputs = generatedOutputs.filter((record) => record.exists);
-  const newestGeneratedOutput = existingGeneratedOutputs.reduce((newest, record) => {
-    if (!newest || record.mtimeMs > newest.mtimeMs) {
-      return record;
-    }
-    return newest;
-  }, null);
+  const newestGeneratedOutput = getNewestGeneratedOutputRecord(generatedOutputs);
   const sourceReports = reportInputs.map((input) => {
     const mtimeMs = readPathMtimeMs(input.path);
+    const relevantGeneratedOutputs = getGeneratedOutputsForReportFreshness(
+      input,
+      generatedOutputs,
+      reportGeneratedOutputDependencies
+    );
+    const newestRelevantGeneratedOutput = getNewestGeneratedOutputRecord(relevantGeneratedOutputs);
     return {
       key: input.key,
       label: input.label,
@@ -401,6 +405,11 @@ function buildFreshnessReport(repairPlans, options = {}) {
       exists: mtimeMs !== null,
       mtimeMs,
       mtimeIso: formatIsoFromMtime(mtimeMs),
+      relevantGeneratedOutputKeys: relevantGeneratedOutputs.map((output) => output.key),
+      newestRelevantGeneratedOutputKey: newestRelevantGeneratedOutput?.key ?? null,
+      newestRelevantGeneratedOutputPath: newestRelevantGeneratedOutput?.path ?? null,
+      newestRelevantGeneratedOutputMtimeMs: newestRelevantGeneratedOutput?.mtimeMs ?? null,
+      newestRelevantGeneratedOutputMtimeIso: newestRelevantGeneratedOutput?.mtimeIso ?? null,
     };
   });
 
@@ -417,14 +426,18 @@ function buildFreshnessReport(repairPlans, options = {}) {
 
   const staleReports = sourceReports
     .filter((report) => report.exists)
-    .filter((report) => report.mtimeMs + toleranceMs < newestGeneratedOutput.mtimeMs)
+    .filter(
+      (report) =>
+        Number.isFinite(report.newestRelevantGeneratedOutputMtimeMs) &&
+        report.mtimeMs + toleranceMs < report.newestRelevantGeneratedOutputMtimeMs
+    )
     .map((report) => ({
       ...report,
-      newestGeneratedOutputKey: newestGeneratedOutput.key,
-      newestGeneratedOutputPath: newestGeneratedOutput.path,
-      newestGeneratedOutputMtimeMs: newestGeneratedOutput.mtimeMs,
-      newestGeneratedOutputMtimeIso: newestGeneratedOutput.mtimeIso,
-      staleByMs: Math.max(0, newestGeneratedOutput.mtimeMs - report.mtimeMs),
+      newestGeneratedOutputKey: report.newestRelevantGeneratedOutputKey,
+      newestGeneratedOutputPath: report.newestRelevantGeneratedOutputPath,
+      newestGeneratedOutputMtimeMs: report.newestRelevantGeneratedOutputMtimeMs,
+      newestGeneratedOutputMtimeIso: report.newestRelevantGeneratedOutputMtimeIso,
+      staleByMs: Math.max(0, report.newestRelevantGeneratedOutputMtimeMs - report.mtimeMs),
     }));
 
   return {
@@ -438,7 +451,7 @@ function buildFreshnessReport(repairPlans, options = {}) {
 }
 
 function ensureTmpDir() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 }
 
 function buildOwnerId(planId, pathwayId) {
@@ -544,7 +557,7 @@ function resolveOwnerIdentity(row, indexes) {
 
 function categoryActions(category) {
   const actions = [];
-  if (SOURCE_LEVEL_CATEGORIES.has(category)) {
+  if (LEVEL_CATEGORIES.has(category)) {
     actions.push(
       "targeted-source-discovery",
       "primary-source-review-queue",
@@ -615,9 +628,56 @@ function classifyNoParsedOwner(parseOwner) {
   return "source-unparseable";
 }
 
+function parseOwnerIsInactiveMajor(parseOwner) {
+  return (
+    parseOwner?.sourceInactiveMajor === true ||
+    (parseOwner?.qualitySignals ?? []).some((signal) => signal?.code === "inactive-major-source")
+  );
+}
+
+function parseOwnerHasParsedChildCoverage(parseOwner, indexes) {
+  if (!parseOwner || parseOwner.pathwayId) {
+    return false;
+  }
+
+  const planId = parseOwner.planId ?? inferPlanIdFromOwnerId(parseOwner.ownerId);
+  if (!planId) {
+    return false;
+  }
+
+  const parentStructuredCount =
+    (parseOwner.structuredUwCourseCodes?.length ?? 0) +
+    (parseOwner.structuredOnlyUwCourseCodes?.length ?? 0);
+  if (parentStructuredCount > 0) {
+    return false;
+  }
+
+  for (const childOwner of indexes.parseOwnerByOwnerId.values()) {
+    if (
+      childOwner?.planId === planId &&
+      childOwner.pathwayId &&
+      childOwner.ok &&
+      (childOwner.parsedUwCourseCodes?.length ?? 0) > 0 &&
+      childOwner.sourceRoleStatus === "primary"
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function shouldSkipNoParsedOwner(parseOwner, indexes = { parseOwnerByOwnerId: new Map() }) {
+  return (
+    parseOwnerIsInactiveMajor(parseOwner) ||
+    parseOwnerHasParsedChildCoverage(parseOwner, indexes)
+  );
+}
+
 function collectOwnerAuditCases(caseMap, ownerAudit, indexes) {
   for (const owner of ownerAudit?.owners ?? []) {
-    const issues = [...(owner.rootIssues ?? []), ...(owner.symptomIssues ?? [])];
+    const rootIssues = owner.rootIssues ?? [];
+    const issues = rootIssues.length ? rootIssues : owner.symptomIssues ?? [];
     if (!issues.length) {
       continue;
     }
@@ -626,13 +686,16 @@ function collectOwnerAuditCases(caseMap, ownerAudit, indexes) {
     const identity = resolveOwnerIdentity(owner, indexes);
     for (const issue of issues) {
       let category = null;
-      if (OWNER_SOURCE_MISSING_CODES.has(issue.code)) {
+      if (OWNER_MISSING_CODES.has(issue.code)) {
         category = "source-missing";
-      } else if (OWNER_SOURCE_SUPPORT_CODES.has(issue.code)) {
+      } else if (OWNER_SUPPORT_CODES.has(issue.code)) {
         category = "source-support-only";
       } else if (OWNER_UNPARSEABLE_CODES.has(issue.code)) {
         category = "source-unparseable";
       } else if (issue.code === "no-parsed-uw-course-codes") {
+        if (shouldSkipNoParsedOwner(parseOwner, indexes)) {
+          continue;
+        }
         category = classifyNoParsedOwner(parseOwner);
       }
 
@@ -674,7 +737,7 @@ function collectParseReportCases(caseMap, parseReport, indexes) {
       });
     }
 
-    if (owner.ok && parsedCount === 0) {
+    if (owner.ok && parsedCount === 0 && !shouldSkipNoParsedOwner(owner, indexes)) {
       addRepairCase(caseMap, identity, classifyNoParsedOwner(owner), "warning", {
         report: "requirement-source-parse",
         code: "no-parsed-uw-course-codes",
@@ -729,7 +792,7 @@ function classifySourceBackedIssue(row) {
   if (SUPPORT_OR_NON_SCHEDULABLE_SCOPE_ISSUES.has(issueType)) {
     return "source-support-only";
   }
-  if (BROAD_SOURCE_SCOPE_ISSUES.has(issueType)) {
+  if (BROAD_SCOPE_ISSUES.has(issueType)) {
     return "source-too-broad";
   }
   if (RUNTIME_ROW_ISSUES.has(issueType)) {
@@ -759,7 +822,7 @@ function collectSourceBackedAuditCases(caseMap, sourceBackedAudit, indexes) {
     addRepairCase(caseMap, identity, category, "error", {
       report: "source-backed-coverage-audit",
       code: issueType,
-      message: row.copyOnlyDebugText ?? row.hiddenInternalReason ?? "Source-backed audit issue.",
+      message: row.copyOnlyDebugText ?? row.hiddenInternalReason ?? "audit issue.",
       sourceRole: row.detectedSourceRole ?? row.sourceRole ?? null,
       sourceRoleStatus: row.sourceRoleStatus ?? null,
       courseCodes: summarizeArray([
@@ -793,6 +856,7 @@ function collectDiscoveryCases(caseMap, discoveryReport, indexes) {
       indexes
     );
     const signalCodes = new Set((owner.reevaluationSignals ?? []).map((signal) => signal.code));
+    const parseOwner = indexes.parseOwnerByOwnerId.get(identity.ownerId);
 
     if (!owner.existingPrimaryUrl && owner.suggestedAction === "no-suggestion") {
       addRepairCase(caseMap, identity, "source-missing", "warning", {
@@ -803,7 +867,11 @@ function collectDiscoveryCases(caseMap, discoveryReport, indexes) {
       });
     }
 
-    if (signalCodes.has("no-parsed-uw-course-codes") && !owner.suggestedPrimary) {
+    if (
+      signalCodes.has("no-parsed-uw-course-codes") &&
+      !owner.suggestedPrimary &&
+      !shouldSkipNoParsedOwner(parseOwner, indexes)
+    ) {
       addRepairCase(caseMap, identity, "source-unparseable", "warning", {
         report: "primary-source-discovery",
         code: "weak-existing-no-parsed-courses",
@@ -951,9 +1019,9 @@ function buildRepairPlans(cases) {
 function buildReport(options) {
   const ownerAudit = readJsonReport(OWNER_AUDIT_PATH);
   const parseReport = readJsonReport(REQUIREMENT_PARSE_REPORT_PATH);
-  const sourceBackedAudit = readJsonReport(SOURCE_BACKED_AUDIT_PATH);
-  const discoveryReport = readJsonReport(PRIMARY_SOURCE_DISCOVERY_PATH);
-  const sourceChangeReport = readJsonReport(SOURCE_CHANGE_CLASSIFICATION_PATH);
+  const sourceBackedAudit = readJsonReport(AUDIT_PATH);
+  const discoveryReport = readJsonReport(PRIMARY_DISCOVERY_PATH);
+  const sourceChangeReport = readJsonReport(CHANGE_CLASSIFICATION_PATH);
   const indexes = buildIndexes({ ownerAudit, parseReport, discoveryReport });
   const caseMap = new Map();
 
@@ -980,14 +1048,14 @@ function buildReport(options) {
       requirementParse: fs.existsSync(REQUIREMENT_PARSE_REPORT_PATH)
         ? REQUIREMENT_PARSE_REPORT_PATH
         : null,
-      sourceBackedCoverage: fs.existsSync(SOURCE_BACKED_AUDIT_PATH)
-        ? SOURCE_BACKED_AUDIT_PATH
+      sourceBackedCoverage: fs.existsSync(AUDIT_PATH)
+        ? AUDIT_PATH
         : null,
-      primarySourceDiscovery: fs.existsSync(PRIMARY_SOURCE_DISCOVERY_PATH)
-        ? PRIMARY_SOURCE_DISCOVERY_PATH
+      primarySourceDiscovery: fs.existsSync(PRIMARY_DISCOVERY_PATH)
+        ? PRIMARY_DISCOVERY_PATH
         : null,
-      sourceChangeClassification: fs.existsSync(SOURCE_CHANGE_CLASSIFICATION_PATH)
-        ? SOURCE_CHANGE_CLASSIFICATION_PATH
+      sourceChangeClassification: fs.existsSync(CHANGE_CLASSIFICATION_PATH)
+        ? CHANGE_CLASSIFICATION_PATH
         : null,
     },
     caseCount: cases.length,
@@ -1054,8 +1122,7 @@ function readRepairAttemptState(statePath = REPAIR_ATTEMPT_STATE_PATH) {
 }
 
 function writeRepairAttemptState(state, statePath = REPAIR_ATTEMPT_STATE_PATH) {
-  fs.mkdirSync(path.dirname(statePath), { recursive: true });
-  fs.writeFileSync(statePath, `${JSON.stringify(state, null, 2)}\n`);
+  writePlannerJsonReport(statePath, state);
 }
 
 function buildRepairCommandRecords(commands) {
@@ -1356,25 +1423,47 @@ function writeMarkdown(report) {
     }
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function runCommand(commandParts) {
   const [command, ...args] = commandParts;
-  const isWindowsCmd = process.platform === "win32" && /\.cmd$/i.test(command);
-  const result = spawnSync(
-    isWindowsCmd ? "cmd" : command,
-    isWindowsCmd ? ["/c", command, ...args] : args,
-    {
-      cwd: REPO_ROOT,
-      stdio: "inherit",
-      shell: false,
-      env: process.env,
-    }
-  );
+  const spawnParts = withPlannerNodeHeapLimit(command, args);
+  const result = runHarnessCommand(spawnParts.command, spawnParts.args, {
+    cwd: REPO_ROOT,
+    stdio: "inherit",
+    throwOnFailure: false,
+  });
   return {
     command: commandParts,
     status: result.status ?? 1,
+  };
+}
+
+function getRepairNodeMaxOldSpaceSizeMb() {
+  const configuredValue = Number.parseInt(
+    process.env.TRANSFER_PLANNER_REPAIR_NODE_MAX_OLD_SPACE_SIZE_MB ?? "",
+    10
+  );
+  if (Number.isFinite(configuredValue) && configuredValue > 0) {
+    return configuredValue;
+  }
+  return DEFAULT_REPAIR_NODE_MAX_OLD_SPACE_SIZE_MB;
+}
+
+function isNodeCommand(command) {
+  return /(^|[\\/])node(?:\.exe)?$/i.test(String(command ?? ""));
+}
+
+function withPlannerNodeHeapLimit(command, args) {
+  if (!isNodeCommand(command) || args.some((arg) => /^--max-old-space-size=/u.test(String(arg)))) {
+    return { command, args };
+  }
+
+  const nodeMaxOldSpaceSizeMb = getRepairNodeMaxOldSpaceSizeMb();
+  return {
+    command: process.execPath || command,
+    args: [`--max-old-space-size=${nodeMaxOldSpaceSizeMb}`, ...args],
   };
 }
 
@@ -1976,7 +2065,7 @@ function main() {
     report.repairAttempt = buildEmptyRepairAttempt(report, options);
   }
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writePlannerJsonReport(OUTPUT_JSON_PATH, report);
   writeMarkdown(report);
 
   console.log(`Auto-repair cases: ${report.caseCount}`);
@@ -2032,11 +2121,15 @@ if (require.main === module) {
 module.exports = {
   REPAIR_ATTEMPT_STATE_PATH,
   REPORT_FRESHNESS_TOLERANCE_MS,
+  buildIndexes,
   buildFreshnessReport,
   buildGeneratedOutputKeysForRepairPlans,
   buildPlanCaseSummary,
   buildRepairCommandPlan,
   buildPostRepairVerificationPlanIds,
+  collectDiscoveryCases,
+  collectOwnerAuditCases,
+  collectParseReportCases,
   runPostRepairVerification,
   resolveRepairStartCommandIndex,
   runRepairAttempt,

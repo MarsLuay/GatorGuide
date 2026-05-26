@@ -73,6 +73,137 @@ function classify(previousEntry, currentEntry) {
   return classifyMany(previousEntry ? [previousEntry] : [], currentEntry ? [currentEntry] : []);
 }
 
+test("source change classifier compares duplicate owner fingerprints by source URL", () => {
+  const primary = req({
+    ownerId: "uw-example-multi-source",
+    planId: "uw-example-multi-source",
+    sourceUrl: "https://example.edu/program/requirements",
+    requirementFingerprint: "primary-source-fingerprint",
+    parsedUwCourseCodes: ["EXAM 101"],
+    parsedUwCourseCodeCount: 1,
+  });
+  const supplemental = req({
+    ...primary,
+    sourceUrl: "https://example.edu/program/supplemental-list",
+    sourceRole: "approved-course-list",
+    sourceRoleStatus: "support",
+    canCreateSchedulableRows: false,
+    canCreateRequiredRows: false,
+    canCreateScheduleRows: false,
+    supportOnly: true,
+    requirementFingerprint: "supplemental-source-fingerprint",
+    parsedUwCourseCodes: ["EXAM 201"],
+    parsedUwCourseCodeCount: 1,
+  });
+  const previous = [primary, supplemental];
+  const current = [primary, supplemental];
+  const requirementDiff = fingerprints.compareFingerprintsForTest(
+    previous,
+    current,
+    fingerprints.getRequirementFingerprintCompareKeyForTest,
+    "requirementFingerprint"
+  );
+  const report = fingerprints.buildSourceChangeClassificationReportForTest({
+    previousFingerprints: {
+      sourceFingerprints: [],
+      requirementSourceFingerprints: previous,
+    },
+    sourceFingerprints: [],
+    requirementSourceFingerprints: current,
+  });
+
+  assert.equal(requirementDiff.changed.length, 0);
+  assert.equal(requirementDiff.added.length, 0);
+  assert.equal(requirementDiff.removed.length, 0);
+  assert.equal(report.totalChangeCount, 0);
+});
+
+test("source fingerprints drop stale owner ids from mismatched source-link snapshots", () => {
+  const requirementOwners = [
+    req({
+      ownerId: "uw-tacoma-computer-engineering",
+      ownerTitle: "Computer Engineering",
+      planId: "uw-tacoma-computer-engineering",
+      campusId: "uw-tacoma",
+      sourceUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+      sourceLabel: "Computer Engineering",
+    }),
+    req({
+      ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-arts",
+      ownerTitle: "Computer Science and Systems - Bachelor of Arts",
+      planId: "uw-tacoma-computer-science-and-systems",
+      pathwayId: "bachelor-of-arts",
+      campusId: "uw-tacoma",
+      sourceUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      sourceLabel: "UW Tacoma Computer Science and Systems BA degree requirements",
+    }),
+    req({
+      ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+      ownerTitle: "Computer Science and Systems - Bachelor of Science",
+      planId: "uw-tacoma-computer-science-and-systems",
+      pathwayId: "bachelor-of-science",
+      campusId: "uw-tacoma",
+      sourceUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      sourceLabel: "UW Tacoma Computer Science and Systems BS degree requirements",
+    }),
+  ];
+  const report = fingerprints.buildReport(
+    {
+      generatedAt: "test",
+      sources: [
+        {
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+          finalUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+          labels: ["Computer Engineering"],
+          ownerIds: [
+            "uw-tacoma-computer-engineering",
+            "uw-tacoma-computer-science-and-systems",
+            "uw-tacoma-computer-science-and-systems::bachelor-of-science",
+          ],
+          kinds: ["major", "pathway"],
+          ok: true,
+        },
+        {
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+          finalUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+          labels: ["UW Tacoma Computer Science and Systems BA degree requirements"],
+          ownerIds: [
+            "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-arts",
+            "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+          ],
+          kinds: ["pathway"],
+          ok: true,
+        },
+      ],
+    },
+    {
+      generatedAt: "test",
+      owners: requirementOwners,
+    },
+    { sourceFingerprints: [], requirementSourceFingerprints: [] }
+  );
+
+  const cengr = report.sourceFingerprints.find((entry) =>
+    String(entry.url).includes("/undergrad/cengr")
+  );
+  const cssBa = report.sourceFingerprints.find((entry) =>
+    String(entry.url).includes("/undergrad/css/ba")
+  );
+
+  assert.deepEqual(cengr.ownerIds, ["uw-tacoma-computer-engineering"]);
+  assert.ok(
+    cssBa.ownerIds.includes(
+      "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-arts"
+    )
+  );
+  assert.equal(
+    cssBa.ownerIds.includes(
+      "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science"
+    ),
+    false
+  );
+});
+
 test("source change classifier detects new course additions", () => {
   const report = classify(
     req({ requirementFingerprint: "a", parsedUwCourseCodes: ["CSE 121"], parsedUwCourseCodeCount: 1 }),

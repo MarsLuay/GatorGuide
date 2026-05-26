@@ -204,6 +204,9 @@ function formatPrereq(opportunity: Opportunity) {
   if (opportunity.eligibility.residencyTypes.length) {
     prereqs.push(`Residency: ${opportunity.eligibility.residencyTypes.join(", ")}`);
   }
+  if (opportunity.eligibility.communityTags.length) {
+    prereqs.push(`Community: ${opportunity.eligibility.communityTags.join(", ")}`);
+  }
   if (opportunity.matching.hasToBeMajor && opportunity.matching.suggestedMajors.length) {
     prereqs.push(`Major: ${opportunity.matching.suggestedMajors.join(", ")}`);
   }

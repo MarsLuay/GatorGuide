@@ -1,10 +1,11 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 const test = require("node:test");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.join(REPO_ROOT, ".tmp");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
 const FIXTURE_PATH = path.join(
   __dirname,
   "fixtures",
@@ -23,9 +24,9 @@ function readText(filePath) {
 }
 
 const fixture = readJson(FIXTURE_PATH);
-const ownerAuditReport = readJson(path.join(TMP_DIR, "transfer-planner-owner-audit.json"));
+const ownerAuditReport = readJson(getTmpPath(REPO_ROOT, "transfer-planner-owner-audit.json"));
 const parseReport = readJson(
-  path.join(TMP_DIR, "transfer-planner-requirement-source-parse-report.json")
+  getTmpPath(REPO_ROOT, "transfer-planner-requirement-source-parse-report.json")
 );
 
 const campusId = fixture.campusId;

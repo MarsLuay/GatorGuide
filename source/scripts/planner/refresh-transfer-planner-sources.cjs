@@ -1,80 +1,49 @@
 /* global __dirname, Buffer */
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const { fetchArrayBufferWithHandling } = require("../lib/fetch-with-handling.cjs");
 const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
+const {
+  NPM_BIN,
+  NPX_BIN,
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  hasArg,
+  runCommand,
+} = require("./lib/script-harness.cjs");
+const {
+  refreshLegacyServiceTestArtifactStatus,
+} = require("./lib/legacy-service-test-artifacts.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const PRIMARY_SOURCE_DISCOVERY_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.json"
-);
-const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-requirement-source-parse-report.json"
-);
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const PRIMARY_DISCOVERY_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const REQUIREMENT_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
 const GRC_ASSOCIATE_TRACKS_GENERATED_PATH = path.resolve(
   REPO_ROOT,
   "constants",
   "transfer-planner-source",
   "grc-associate-tracks.generated.ts"
 );
-const EQUIVALENCY_GUIDE_PARSE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-equivalency-guide-parse.json"
-);
-const GRC_CATALOG_INGEST_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-grc-catalog-ingest.json"
-);
-const UW_CATALOG_INGEST_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-uw-catalog-ingest.json"
-);
-const SOURCE_PIPELINE_VALIDATION_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-pipeline-validation.json"
-);
+const EQUIVALENCY_GUIDE_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-equivalency-guide-parse.json");
+const GRC_CATALOG_INGEST_REPORT_PATH = getPlannerTmpPath("transfer-planner-grc-catalog-ingest.json");
+const UW_CATALOG_INGEST_REPORT_PATH = getPlannerTmpPath("transfer-planner-uw-catalog-ingest.json");
+const PIPELINE_VALIDATION_REPORT_PATH = getPlannerTmpPath("transfer-planner-source-pipeline-validation.json");
 const TS_NODE_COMPILER_OPTIONS = JSON.stringify({
   module: "Node16",
   moduleResolution: "node16",
 });
 const TS_NODE_TEST_COMPILER_OPTIONS = JSON.stringify({
-  module: "Node16",
-  moduleResolution: "node16",
+  module: "CommonJS",
+  moduleResolution: "node",
+  jsx: "react-jsx",
   baseUrl: ".",
   paths: {
     "@/*": ["./*"],
   },
 });
-const NPX_BIN = process.platform === "win32" ? "npx.cmd" : "npx";
-const NPM_BIN = process.platform === "win32" ? "npm.cmd" : "npm";
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
 function readJsonIfExists(filePath) {
   if (!fs.existsSync(filePath)) {
     return null;
@@ -206,12 +175,13 @@ const REFRESH_SECTION_DEFINITIONS = [
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
       {
-        label: "Audit source-backed runtime coverage (blocking)",
+        label: "Audit runtime coverage (blocking)",
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
       {
         label: "Run closed-loop auto-repair pass",
         include: (options) =>
+          !options.verifyOnly &&
           (!options.skipVerify || options.verifyOnly) &&
           !options.skipAutoRepair &&
           !options.skipDownloads,
@@ -229,7 +199,7 @@ const REFRESH_SECTION_DEFINITIONS = [
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
       {
-        label: "Run transfer planner tests",
+        label: "Check legacy planner service-test diagnostics",
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
     ],
@@ -386,21 +356,12 @@ function buildStepPlanFromArgs() {
   };
 }
 
-function runCommand(command, args, options = {}) {
-  const isWindowsCmd = process.platform === "win32" && /\.cmd$/i.test(command);
-  const result = spawnSync(isWindowsCmd ? "cmd" : command, isWindowsCmd ? ["/c", command, ...args] : args, {
-    cwd: REPO_ROOT,
-    stdio: "inherit",
-    shell: false,
-    env: {
-      ...process.env,
-      ...(options.env ?? {}),
-    },
-  });
-
-  if (result.status !== 0) {
-    throw new Error(`Command failed: ${command} ${args.join(" ")}`);
-  }
+function runLargeNode(scriptPath, args = [], options = {}) {
+  runCommand(
+    process.execPath,
+    ["--max-old-space-size=8192", scriptPath, ...args],
+    options
+  );
 }
 
 function runTsNode(scriptPath) {
@@ -434,6 +395,7 @@ function runTsNodeTest(scriptPath) {
     {
       env: {
         TS_NODE_TRANSPILE_ONLY: "true",
+        TS_NODE_SKIP_PROJECT: "true",
         TS_NODE_COMPILER_OPTIONS: TS_NODE_TEST_COMPILER_OPTIONS,
         TS_NODE_BASEURL: ".",
       },
@@ -459,11 +421,13 @@ function reuseCachedArtifact(label, filePath) {
 }
 
 function runClosedLoopAutoRepair(options = {}) {
-  runCommand("node", [
+  runLargeNode(
     "scripts/planner/build-transfer-planner-auto-repair-plan.cjs",
-    "--repair",
-    ...buildTargetPlanArgs(options.targetPlanId),
-  ]);
+    [
+      "--repair",
+      ...buildTargetPlanArgs(options.targetPlanId),
+    ]
+  );
 }
 
 function runClosedLoopAutoRepairBeforeRethrow(error, options = {}) {
@@ -481,7 +445,7 @@ function runClosedLoopAutoRepairBeforeRethrow(error, options = {}) {
 }
 
 function getSourcePipelineAutoRepairPlan() {
-  const report = readJsonIfExists(SOURCE_PIPELINE_VALIDATION_REPORT_PATH);
+  const report = readJsonIfExists(PIPELINE_VALIDATION_REPORT_PATH);
   const registryRepair = report?.autoRepair?.registryParserAlignment ?? null;
   const promotedRepair = report?.autoRepair?.promotedOwnerCoverage ?? null;
   const fingerprintRepair = report?.autoRepair?.fingerprintAlignment ?? null;
@@ -532,72 +496,102 @@ function runRequirementParserRepairForPlans(targetPlanIds) {
     console.log(
       "Source-pipeline repair is running a full requirement parse because no parse baseline or target plan list was available."
     );
-    runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"]);
+    runLargeNode("scripts/planner/parse-transfer-planner-requirement-sources.cjs");
     return;
   }
 
   for (const planId of targetPlanIds) {
     console.log(`Source-pipeline repair is refreshing requirement sources for ${planId}.`);
-    runCommand("node", [
-      "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
+    runLargeNode("scripts/planner/parse-transfer-planner-requirement-sources.cjs", [
       "--target-plan-id",
       planId,
     ]);
   }
 }
 
+function regenerateSourcePipelineRuntimeOutputs() {
+  console.log(
+    "Source-pipeline repair updated parser/source artifacts; regenerating source bootstrap and student runtime."
+  );
+  runCommand("node", ["scripts/planner/generate-transfer-planner-source-bootstrap.cjs"]);
+  runCommand("node", ["scripts/planner/generate-transfer-planner-student-runtime.cjs"]);
+}
+
 function runSourcePipelineValidationWithAutoParseRepair(options = {}) {
-  try {
-    runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"]);
-    return;
-  } catch (error) {
-    if (options.skipAutoRepair) {
-      throw error;
-    }
+  const maxRepairPasses = 3;
+  let lastError = null;
 
-    const repairPlan = getSourcePipelineAutoRepairPlan();
-    if (!repairPlan) {
-      throw error;
-    }
+  for (let repairPass = 0; repairPass <= maxRepairPasses; repairPass += 1) {
+    try {
+      runCommand("node", [
+        "scripts/planner/verify-transfer-planner-source-pipeline.cjs",
+        ...buildTargetPlanArgs(options.targetPlanId),
+      ]);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (repairPass >= maxRepairPasses) {
+        throw error;
+      }
 
-    if (repairPlan.registryRepair?.needed) {
-      const missingCurrentCount =
-        repairPlan.registryRepair.missingCurrentSourceCoverage?.length ?? 0;
-      const missingGeneratedCount =
-        repairPlan.registryRepair.missingGeneratedSourceCoverage?.length ?? 0;
-      console.log(
-        `Source-pipeline parser coverage drift detected: ${missingCurrentCount} current and ${missingGeneratedCount} generated owner/source pair(s) need parser coverage.`
-      );
-    }
-    if (repairPlan.promotedRepair?.needed) {
-      console.log(
-        `Source-pipeline promoted-owner coverage drift detected: ${(repairPlan.promotedRepair.missingParsedOwnerIds ?? []).length} parsed block(s) and ${(repairPlan.promotedRepair.missingFingerprintOwnerIds ?? []).length} fingerprint(s) need refresh.`
-      );
-    }
-    if (repairPlan.fingerprintRepair?.needed) {
-      console.log(
-        `Source-pipeline fingerprint drift detected: ${(repairPlan.fingerprintRepair.parsedOnlyOwnerIds ?? []).length} parsed-only owner(s), ${(repairPlan.fingerprintRepair.fingerprintOnlyOwnerIds ?? []).length} fingerprint-only owner(s).`
-      );
-    }
+      if (options.skipAutoRepair) {
+        throw error;
+      }
 
-    if (repairPlan.shouldRunParser) {
-      if (options.cacheOnlySources) {
-        throw new Error(
-          "Source-pipeline repair needs a requirement-source parser refresh, but --skip-downloads is running in cached-source mode. Run the normal planner refresh when online source refreshes are allowed."
+      const repairPlan = getSourcePipelineAutoRepairPlan();
+      if (!repairPlan) {
+        throw error;
+      }
+      if (!repairPlan.shouldRunParser && !repairPlan.shouldRunFingerprintRefresh) {
+        throw error;
+      }
+
+      if (repairPlan.registryRepair?.needed) {
+        const missingCurrentCount =
+          repairPlan.registryRepair.missingCurrentSourceCoverage?.length ?? 0;
+        const missingGeneratedCount =
+          repairPlan.registryRepair.missingGeneratedSourceCoverage?.length ?? 0;
+        console.log(
+          `Source-pipeline parser coverage drift detected: ${missingCurrentCount} current and ${missingGeneratedCount} generated owner/source pair(s) need parser coverage.`
         );
       }
+      if (repairPlan.promotedRepair?.needed) {
+        console.log(
+          `Source-pipeline promoted-owner coverage drift detected: ${(repairPlan.promotedRepair.missingParsedOwnerIds ?? []).length} parsed block(s) and ${(repairPlan.promotedRepair.missingFingerprintOwnerIds ?? []).length} fingerprint(s) need refresh.`
+        );
+      }
+      if (repairPlan.fingerprintRepair?.needed) {
+        console.log(
+          `Source-pipeline fingerprint drift detected: ${(repairPlan.fingerprintRepair.parsedOnlyOwnerIds ?? []).length} parsed-only owner(s), ${(repairPlan.fingerprintRepair.fingerprintOnlyOwnerIds ?? []).length} fingerprint-only owner(s).`
+        );
+      }
+
+      if (repairPlan.shouldRunParser) {
+        if (options.cacheOnlySources) {
+          throw new Error(
+            "Source-pipeline repair needs a requirement-source parser refresh, but --skip-downloads is running in cached-source mode. Run the normal planner refresh when online source refreshes are allowed."
+          );
+        }
+        console.log(
+          `Targeted parser repair plan(s): ${
+            repairPlan.targetPlanIds.length ? repairPlan.targetPlanIds.join(", ") : "full parse"
+          }`
+        );
+        runRequirementParserRepairForPlans(repairPlan.targetPlanIds);
+      }
+      if (repairPlan.shouldRunFingerprintRefresh) {
+        runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"]);
+      }
+      if (repairPlan.shouldRunParser || repairPlan.shouldRunFingerprintRefresh) {
+        regenerateSourcePipelineRuntimeOutputs();
+      }
       console.log(
-        `Targeted parser repair plan(s): ${
-          repairPlan.targetPlanIds.length ? repairPlan.targetPlanIds.join(", ") : "full parse"
-        }`
+        `Source-pipeline auto-repair pass ${repairPass + 1}/${maxRepairPasses} complete; re-running validation.`
       );
-      runRequirementParserRepairForPlans(repairPlan.targetPlanIds);
     }
-    if (repairPlan.shouldRunFingerprintRefresh) {
-      runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"]);
-    }
-    runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"]);
   }
+
+  throw lastError;
 }
 
 function sleep(delayMs) {
@@ -629,7 +623,7 @@ function runVerification(runStepFn = runStep, options = {}) {
   runStepFn("Run parser extraction and source-discovery tests", () =>
     runCommand(NPM_BIN, ["run", "planner:test:parser"])
   );
-  runStepFn("Audit source-backed runtime coverage (blocking)", () => {
+  runStepFn("Audit runtime coverage (blocking)", () => {
     try {
       runCommand("node", [
         "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
@@ -640,7 +634,9 @@ function runVerification(runStepFn = runStep, options = {}) {
     }
   });
   if (!options.skipAutoRepair && !options.cacheOnlySources) {
-    runStepFn("Run closed-loop auto-repair pass", () => runClosedLoopAutoRepair(options));
+    if (!options.verifyOnly) {
+      runStepFn("Run closed-loop auto-repair pass", () => runClosedLoopAutoRepair(options));
+    }
   }
   runStepFn("Audit generated source registry", () =>
     runCommand("node", [
@@ -657,10 +653,18 @@ function runVerification(runStepFn = runStep, options = {}) {
     ])
   );
   runStepFn("Run TypeScript typecheck", () => runCommand(NPX_BIN, ["tsc", "--noEmit"]));
-  runStepFn("Run transfer planner tests", () => {
+  runStepFn("Check legacy planner service-test diagnostics", () => {
+    const legacyArtifactStatus = refreshLegacyServiceTestArtifactStatus({
+      retireStaleArtifacts: true,
+    });
+    console.log(
+      `Legacy service-test artifact status: ${legacyArtifactStatus.status}; retired ${legacyArtifactStatus.retiredArtifactCount ?? 0} stale artifact(s).`
+    );
+    console.log(`Legacy service-test status report: ${legacyArtifactStatus.output.markdownPath}`);
+
     if (process.env.GATORGUIDE_RUN_LEGACY_TRANSFER_PLANNER_SERVICE_TESTS !== "1") {
       console.log(
-        "Skipping legacy transfer planner service tests in maintenance. The parser, source-backed runtime, generated-registry, mapping, and TypeScript gates above are the blocking planner maintenance checks. Set GATORGUIDE_RUN_LEGACY_TRANSFER_PLANNER_SERVICE_TESTS=1 to run the legacy suite as an opt-in diagnostic."
+        "Skipping legacy transfer planner service tests in maintenance. The parser, runtime, generated-registry, mapping, and TypeScript gates above are the blocking planner accuracy checks. Set GATORGUIDE_RUN_LEGACY_TRANSFER_PLANNER_SERVICE_TESTS=1 to run the legacy compatibility suite as an opt-in diagnostic."
       );
       return;
     }
@@ -669,7 +673,7 @@ function runVerification(runStepFn = runStep, options = {}) {
       runTsNodeTest("scripts/planner/transfer-planner.service.test.ts");
     } catch (error) {
       console.log(
-        "Transfer planner service tests failed; continuing because the source-backed runtime, generated-registry, mapping, parser, and TypeScript gates above are the blocking planner maintenance checks."
+        "Transfer planner service tests failed; continuing because the runtime, generated-registry, mapping, parser, and TypeScript gates above are the blocking planner maintenance checks."
       );
       console.log(error instanceof Error ? error.message : String(error));
     }
@@ -677,18 +681,12 @@ function runVerification(runStepFn = runStep, options = {}) {
 }
 
 async function downloadFile(url, outputPath) {
-  const response = await fetch(url, {
-    redirect: "follow",
-    headers: {
-      "user-agent": "GatorGuideTransferPlannerRefresh/1.0",
-    },
+  const arrayBuffer = await fetchArrayBufferWithHandling(url, {
+    operation: "Download transfer planner source",
+    timeoutMs: 30000,
+    userAgent: "GatorGuideTransferPlannerRefresh/1.0",
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to download ${url}: ${response.status} ${response.statusText}`);
-  }
-
-  const buffer = Buffer.from(await response.arrayBuffer());
+  const buffer = Buffer.from(arrayBuffer);
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, buffer);
 }
@@ -718,7 +716,7 @@ async function refreshScheduleDownloads(scheduleDownloads, forceRefresh) {
     fallbackUsed: 0,
   };
 
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 
   for (const download of scheduleDownloads) {
     if (!forceRefresh && fs.existsSync(download.outputPath)) {
@@ -868,7 +866,7 @@ async function main() {
   };
 
   const canRunTargetedDiscovery =
-    Boolean(targetPlanId) && fs.existsSync(PRIMARY_SOURCE_DISCOVERY_REPORT_PATH);
+    Boolean(targetPlanId) && fs.existsSync(PRIMARY_DISCOVERY_REPORT_PATH);
   const canRunTargetedRequirementParse =
     Boolean(targetPlanId) && fs.existsSync(REQUIREMENT_PARSE_REPORT_PATH);
 
@@ -939,29 +937,31 @@ async function main() {
             ])
           );
         } else {
-          reuseCachedArtifact("primary official-source discovery report", PRIMARY_SOURCE_DISCOVERY_REPORT_PATH);
+          reuseCachedArtifact("primary official-source discovery report", PRIMARY_DISCOVERY_REPORT_PATH);
         }
         runTrackedStep("Build primary-source automation queue", () =>
-          runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
+          runLargeNode("scripts/planner/build-transfer-planner-primary-source-review-queue.cjs")
         );
         runTrackedStep("Promote high-confidence primary sources", () =>
-          runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-promotions.cjs"])
+          runLargeNode("scripts/planner/build-transfer-planner-primary-source-promotions.cjs")
         );
         runTrackedStep("Classify hidden source gaps", () =>
-          runCommand("node", [
+          runLargeNode(
             "scripts/planner/build-transfer-planner-source-gap-report.cjs",
-            ...buildTargetPlanArgs(targetPlanId),
-          ])
+            [
+              ...buildTargetPlanArgs(targetPlanId),
+            ]
+          )
         );
         return;
       }
       case "requirement-parsing": {
         if (!skipRequirementParse && !cacheOnlySources) {
           runTrackedStep("Parse UW major requirement sources", () =>
-            runCommand("node", [
+            runLargeNode(
               "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
-              ...buildTargetPlanArgs(canRunTargetedRequirementParse ? targetPlanId : null),
-            ])
+              [...buildTargetPlanArgs(canRunTargetedRequirementParse ? targetPlanId : null)]
+            )
           );
         } else if (skipRequirementParse) {
           markSkipped("Parse UW major requirement sources", "--skip-requirement-parse");
@@ -1042,6 +1042,7 @@ async function main() {
         if (!skipVerify || verifyOnly) {
           runVerification(runTrackedStep, {
             includePipelineValidation: verifyOnly,
+            verifyOnly,
             skipAutoRepair,
             cacheOnlySources,
             targetPlanId,

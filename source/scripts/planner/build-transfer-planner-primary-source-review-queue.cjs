@@ -1,21 +1,19 @@
 const fs = require("fs");
-const path = require("path");
-const { spawnSync } = require("child_process");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  hasArg,
+  runCommand,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const DISCOVERY_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.json"
-);
-const OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-review-queue.json"
-);
-const OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-review-queue.md"
-);
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const DISCOVERY_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-primary-source-review-queue.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-primary-source-review-queue.md");
 
 require("ts-node").register({
   skipProject: true,
@@ -29,23 +27,19 @@ require("tsconfig-paths/register");
 
 const discovery = require("./discover-transfer-planner-primary-sources.cjs");
 const {
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
+  getTransferPlannerStudentRuntimeMajorPlan,
+  getTransferPlannerStudentRuntimePathwaysForPlan,
+} = require("../../constants/transfer-planner-source");
+const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require("../../constants/transfer-planner-source/student-runtime");
 
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
 function runDiscovery() {
-  const result = spawnSync("node", ["scripts/planner/discover-transfer-planner-primary-sources.cjs"], {
+  runCommand(process.execPath, ["scripts/planner/discover-transfer-planner-primary-sources.cjs"], {
     cwd: REPO_ROOT,
-    stdio: "inherit",
-    shell: false,
+    errorMessage: "Primary-source discovery failed, so the source-gap report could not be built.",
   });
-
-  if (result.status !== 0) {
-    throw new Error("Primary-source discovery failed, so the source-gap report could not be built.");
-  }
 }
 
 function normalizeCampusLabel(campusId) {
@@ -132,13 +126,99 @@ function buildOwnerSourceGapEntry(owner, reviewCandidate = null) {
   };
 }
 
+function normalizeAliasMatchText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function parseDerivedOptionAliasTitle(title) {
+  const normalizedTitle = String(title ?? "").trim();
+  const match = normalizedTitle.match(/^(.+?):\s*(.+?)(?:\s+(\([^)]+\)))?$/);
+  if (!match) {
+    return null;
+  }
+
+  const parentBaseTitle = String(match[1] ?? "").trim();
+  const optionTitle = String(match[2] ?? "").trim();
+  const credentialSuffix = String(match[3] ?? "").trim();
+  if (!parentBaseTitle || !optionTitle || !credentialSuffix) {
+    return null;
+  }
+
+  return {
+    parentTitle: `${parentBaseTitle} ${credentialSuffix}`,
+    optionTitle,
+  };
+}
+
+function titlesMatch(left, right) {
+  return normalizeAliasMatchText(left) === normalizeAliasMatchText(right);
+}
+
+function pathwayMatchesOptionAlias(pathway, optionTitle) {
+  const normalizedOptionTitle = normalizeAliasMatchText(optionTitle);
+  const normalizedPathwayText = normalizeAliasMatchText(
+    [pathway?.id, pathway?.label, pathway?.title].filter(Boolean).join(" ")
+  );
+  if (!normalizedOptionTitle || !normalizedPathwayText) {
+    return false;
+  }
+
+  if (normalizedPathwayText.includes(normalizedOptionTitle)) {
+    return true;
+  }
+
+  const optionTokens = normalizedOptionTitle
+    .split(/\s+/)
+    .filter((token) => token && !["option", "route", "track", "degree"].includes(token));
+  return optionTokens.length > 0 && optionTokens.every((token) => normalizedPathwayText.includes(token));
+}
+
+function hasDerivedParentPathwayRuntimeCoverage(owner) {
+  if (owner?.ownerType !== "major") {
+    return false;
+  }
+
+  const aliasTitle = parseDerivedOptionAliasTitle(owner.title);
+  if (!aliasTitle) {
+    return false;
+  }
+
+  const campusId = String(owner.campusId ?? "").trim();
+  const parentPlans = (TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? []).filter(
+    (plan) =>
+      (!campusId || String(plan?.campusId ?? "").trim() === campusId) &&
+      titlesMatch(plan?.title, aliasTitle.parentTitle)
+  );
+
+  for (const parentPlan of parentPlans) {
+    const parentRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(parentPlan.id);
+    if (!parentRuntimePlan) {
+      continue;
+    }
+
+    const parentPathways = getTransferPlannerStudentRuntimePathwaysForPlan(parentRuntimePlan);
+    if (parentPathways.some((pathway) => pathwayMatchesOptionAlias(pathway, aliasTitle.optionTitle))) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function hasStudentRuntimeAliasCoverage(owner) {
   if (!owner?.planId) {
     return false;
   }
 
-  return Boolean(
-    getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)
+  return (
+    Boolean(getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)) ||
+    hasDerivedParentPathwayRuntimeCoverage(owner)
   );
 }
 
@@ -296,13 +376,13 @@ function writeMarkdown(queue) {
     }
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function main() {
   const discoverFirst = hasArg("--discover-first") || !fs.existsSync(DISCOVERY_REPORT_PATH);
 
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 
   if (discoverFirst) {
     runDiscovery();
@@ -317,7 +397,7 @@ function main() {
   const report = JSON.parse(fs.readFileSync(DISCOVERY_REPORT_PATH, "utf8"));
   const queue = buildQueue(report);
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(queue, null, 2)}\n`);
+  writePlannerJsonReport(OUTPUT_JSON_PATH, queue);
   writeMarkdown(queue);
 
   console.log(`Source-gap owners: ${queue.totalReviewOwners}`);

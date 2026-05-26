@@ -9,10 +9,28 @@
     }
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "constants/*.ts",
+    "hooks/**/*.ts",
+    "hooks/**/*.tsx",
+    "services/**/*.ts",
+    "services/**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".tmp",
+    ".tools",
+    "functions",
+    "scripts",
+    "constants/*.generated.ts",
+    "constants/transfer-planner-source/*.generated.ts",
+    "constants/transfer-planner-source/requirement-source-adapters.generated/**/*.ts"
   ]
 }

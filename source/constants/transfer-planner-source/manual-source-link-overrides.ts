@@ -1,12 +1,12 @@
 import {
-  TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES,
+  TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES,
   type TransferPlannerManualSourceLinkOverride,
   type TransferPlannerManualSourceLinkOverrideMode,
 } from "./manual-source-link-overrides.data";
 import type { TransferPlannerSourceLink } from "./schema";
 
 export {
-  TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES,
+  TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES,
   type TransferPlannerManualSourceLinkOverride,
   type TransferPlannerManualSourceLinkOverrideMode,
 } from "./manual-source-link-overrides.data";
@@ -48,7 +48,7 @@ export function getTransferPlannerManualSourceLinkOverride(
 ) {
   const ownerKey = getTransferPlannerManualSourceOwnerKey(planId, pathwayId);
   return (
-    TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES.find(
+    TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES.find(
       (entry) =>
         getTransferPlannerManualSourceOwnerKey(entry.planId, entry.pathwayId ?? null) === ownerKey
     ) ?? null

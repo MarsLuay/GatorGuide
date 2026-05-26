@@ -26,13 +26,13 @@ export const OPPORTUNITY_STATUSES = {
 
 export type OpportunityCatalogStatus = ValueOf<typeof OPPORTUNITY_STATUSES>;
 
-export const OPPORTUNITY_SOURCE_KINDS = {
+export const OPPORTUNITY_KINDS = {
   manual: "manual",
   seed: "seed",
   aiCollegeDeadline: "ai_college_deadline",
 } as const;
 
-export type OpportunitySourceKind = ValueOf<typeof OPPORTUNITY_SOURCE_KINDS>;
+export type OpportunitySourceKind = ValueOf<typeof OPPORTUNITY_KINDS>;
 
 export const OPPORTUNITY_FINANCIAL_AID_TAGS = {
   needBased: "need_based",
@@ -45,6 +45,12 @@ export const OPPORTUNITY_FINANCIAL_AID_TAGS = {
 
 export type OpportunityFinancialAidTag =
   ValueOf<typeof OPPORTUNITY_FINANCIAL_AID_TAGS>;
+
+export const OPPORTUNITY_COMMUNITY_TAGS = {
+  lgbtq: "lgbtq",
+} as const;
+
+export type OpportunityCommunityTag = ValueOf<typeof OPPORTUNITY_COMMUNITY_TAGS>;
 
 export const OPPORTUNITY_DEADLINE_TYPES = {
   priority: "priority",
@@ -97,6 +103,7 @@ export type OpportunityAward = {
 export type OpportunityEligibility = {
   gpaMin: number | null;
   residencyTypes: string[];
+  communityTags: OpportunityCommunityTag[] | string[];
   transferOnly: boolean;
 };
 
@@ -188,6 +195,17 @@ export function normalizeResidencyTag(value: unknown): string {
     .replace(/[^a-z0-9]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+export function normalizeCommunityTag(value: unknown): string {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\+/g, " plus ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b(?:lgbtq|lgbtqia|lgbt|queer|2slgbtqia)\b.*/, "lgbtq");
 }
 
 export function normalizeOpportunityId(value: unknown): string {
@@ -432,6 +450,15 @@ export function normalizeOpportunityEligibility(
           .filter(Boolean)
       )
     ),
+    communityTags: Array.from(
+      new Set(
+        (Array.isArray(value?.communityTags) ? value?.communityTags : [])
+          .map(normalizeCommunityTag)
+          .filter((tag) =>
+            (Object.values(OPPORTUNITY_COMMUNITY_TAGS) as string[]).includes(tag)
+          )
+      )
+    ),
     transferOnly: !!value?.transferOnly,
   };
 }
@@ -529,7 +556,7 @@ export function normalizeOpportunity(input: Partial<Opportunity>): Opportunity {
       website: String(college.website ?? "").trim() || null,
     },
     source: {
-      kind: String(source.kind ?? OPPORTUNITY_SOURCE_KINDS.manual).trim() || OPPORTUNITY_SOURCE_KINDS.manual,
+      kind: String(source.kind ?? OPPORTUNITY_KINDS.manual).trim() || OPPORTUNITY_KINDS.manual,
       sourceUrl: String(source.sourceUrl ?? "").trim() || null,
       sourceLabel: String(source.sourceLabel ?? "").trim() || null,
       model: String(source.model ?? "").trim() || null,

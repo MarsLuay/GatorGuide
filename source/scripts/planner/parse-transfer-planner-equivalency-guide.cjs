@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { fetchWithHandling } = require("../lib/fetch-with-handling.cjs");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -19,10 +21,10 @@ try {
 }
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-equivalency-guide-snapshots");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-equivalency-guide-parse.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-equivalency-guide-parse.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const SNAPSHOT_DIR = getTmpPath(REPO_ROOT, "transfer-planner-equivalency-guide-snapshots");
+const OUTPUT_JSON_PATH = getTmpPath(REPO_ROOT, "transfer-planner-equivalency-guide-parse.json");
+const OUTPUT_MD_PATH = getTmpPath(REPO_ROOT, "transfer-planner-equivalency-guide-parse.md");
 const OUTPUT_TS_PATH = path.resolve(
   REPO_ROOT,
   "constants",
@@ -30,13 +32,13 @@ const OUTPUT_TS_PATH = path.resolve(
   "equivalency-guide.generated.ts"
 );
 const GUIDE_URL = "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/";
-const GUIDE_SOURCE_LINK = {
+const GUIDE_LINK = {
   label: "UW Green River transfer equivalency guide",
   url: GUIDE_URL,
   note: "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.",
 };
-const DERIVED_RULE_SOURCE_KIND = "uw-green-river-equivalency-guide-derived";
-const DERIVED_RULE_SOURCE_LINK = {
+const DERIVED_RULE_KIND = "uw-green-river-equivalency-guide-derived";
+const DERIVED_RULE_LINK = {
   label: "UW Green River derived equivalency synthesis",
   url: GUIDE_URL,
   note: "Structured transfer-planner rule derived from parsed official UW Green River equivalency-guide rows.",
@@ -731,7 +733,7 @@ function buildRule(row) {
     parsedFromOfficialGuide: true,
     plannerWarnings: buildWarnings(type, canonicalRow, sourceCourseSet),
     notes: buildNotes(canonicalRow, targetCourseCodes),
-    sourceLinks: [GUIDE_SOURCE_LINK],
+    sourceLinks: [GUIDE_LINK],
   };
 }
 
@@ -1053,7 +1055,7 @@ function buildDerivedRuleFromSpec(spec, supportRules) {
     title: spec.title,
     acceptanceCategory: spec.acceptanceCategory,
     ruleStatus: spec.ruleStatus ?? resolvedSupportRules[0]?.ruleStatus ?? "active",
-    sourceKind: DERIVED_RULE_SOURCE_KIND,
+    sourceKind: DERIVED_RULE_KIND,
     sourceSchoolId: "grc",
     targetSchoolIds: TARGET_CAMPUSES,
     sourceCourseSets,
@@ -1083,7 +1085,7 @@ function buildDerivedRuleFromSpec(spec, supportRules) {
       ...(spec.notes ?? []),
     ]),
     sourceLinks: uniqueSourceLinks([
-      DERIVED_RULE_SOURCE_LINK,
+      DERIVED_RULE_LINK,
       ...resolvedSupportRules.flatMap((rule) => rule.sourceLinks ?? []),
     ]),
   };
@@ -1215,11 +1217,11 @@ function writeReports(report) {
 }
 
 async function fetchGuideHtml() {
-  const response = await fetch(GUIDE_URL, {
-    redirect: "follow",
-    headers: {
-      "user-agent": "GatorGuideTransferPlannerEquivalencyIngest/1.0",
-    },
+  const response = await fetchWithHandling(GUIDE_URL, {
+    operation: "Fetch UW Green River equivalency guide",
+    throwOnHttpError: false,
+    timeoutMs: 30000,
+    userAgent: "GatorGuideTransferPlannerEquivalencyIngest/1.0",
   });
   const html = await response.text();
   if (!response.ok) {

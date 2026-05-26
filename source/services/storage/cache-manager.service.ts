@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 
 import { LOCAL_DOCUMENTS_DIR_NAME } from "@/constants/schema";
 import {
@@ -6,34 +6,14 @@ import {
   getWritableBaseDirectory,
   readDirectory,
 } from "@/services/storage/file-system-adapter.service";
-
-const CACHE_AUTO_CLEAR_ENABLED_KEY = "settings:cache:autoClear30d";
-const CACHE_LAST_CLEARED_AT_KEY = "settings:cache:lastClearedAt";
-const CACHE_AUTO_CLEAR_WINDOW_MS = 1000 * 60 * 60 * 24 * 5;
-
-const CACHE_KEY_PREFIXES = [
-  "college:",
-  "zip:geocode:",
-  "gatorguide:opportunities:",
-];
-
-const CACHE_KEY_EXACT = new Set([
-  "ai:lastResponse",
-  "ai:lastResponseMap",
-  "ai:lastRoadmap",
-  "ai:recommend:factorCache:v1",
-]);
+import {
+  LOCAL_STORAGE_CACHE_POLICY,
+  LOCAL_STORAGE_KEYS,
+  getCacheClearableLocalStorageKeys,
+  getGuestLocalDocumentStorageKeys,
+} from "@/services/storage/local-storage-contracts";
 
 class CacheManagerService {
-  private isGuestDocumentStorageKey(key: string) {
-    return (
-      key.startsWith("transcript:guest-") ||
-      key.startsWith("resume:guest-") ||
-      key.startsWith("avatar:guest-") ||
-      key.startsWith("roadmap:guest-")
-    );
-  }
-
   private async clearGuestLocalDocumentDirectories(): Promise<number> {
     const baseDir = getWritableBaseDirectory("document") ?? "";
     if (!baseDir) {
@@ -66,11 +46,11 @@ class CacheManagerService {
   }
 
   async clearGuestDocumentCaches(): Promise<{ clearedCount: number }> {
-    const keys = await AsyncStorage.getAllKeys();
-    const guestDocumentKeys = keys.filter((key) => this.isGuestDocumentStorageKey(key));
+    const keys = await localStorageService.getAllKeys();
+    const guestDocumentKeys = getGuestLocalDocumentStorageKeys(keys);
 
     if (guestDocumentKeys.length) {
-      await AsyncStorage.multiRemove(guestDocumentKeys);
+      await localStorageService.multiRemove(guestDocumentKeys);
     }
 
     const removedGuestDirs = await this.clearGuestLocalDocumentDirectories();
@@ -82,7 +62,7 @@ class CacheManagerService {
 
   async getAutoClearEnabled(): Promise<boolean> {
     try {
-      const raw = await AsyncStorage.getItem(CACHE_AUTO_CLEAR_ENABLED_KEY);
+      const raw = await localStorageService.getItem(LOCAL_STORAGE_KEYS.cacheAutoClearEnabled);
       if (raw == null) return true;
       return raw === "true";
     } catch {
@@ -91,23 +71,27 @@ class CacheManagerService {
   }
 
   async setAutoClearEnabled(enabled: boolean): Promise<void> {
-    await AsyncStorage.setItem(CACHE_AUTO_CLEAR_ENABLED_KEY, enabled ? "true" : "false");
+    await localStorageService.setItem(
+      LOCAL_STORAGE_KEYS.cacheAutoClearEnabled,
+      enabled ? "true" : "false"
+    );
   }
 
   async clearRelevantCaches(): Promise<{ clearedCount: number }> {
-    const keys = await AsyncStorage.getAllKeys();
+    const keys = await localStorageService.getAllKeys();
     // Only remove derived/cache keys; keep user profile and core app state keys.
-    const targetKeys = keys.filter((key) =>
-      CACHE_KEY_EXACT.has(key) || CACHE_KEY_PREFIXES.some((prefix) => key.startsWith(prefix))
-    );
+    const targetKeys = getCacheClearableLocalStorageKeys(keys);
 
     if (targetKeys.length) {
-      await AsyncStorage.multiRemove(targetKeys);
+      await localStorageService.multiRemove(targetKeys);
     }
 
     const { clearedCount: guestDocumentClearedCount } = await this.clearGuestDocumentCaches();
 
-    await AsyncStorage.setItem(CACHE_LAST_CLEARED_AT_KEY, String(Date.now()));
+    await localStorageService.setItem(
+      LOCAL_STORAGE_KEYS.cacheLastClearedAt,
+      String(Date.now())
+    );
     return { clearedCount: targetKeys.length + guestDocumentClearedCount };
   }
 
@@ -117,9 +101,13 @@ class CacheManagerService {
 
     const now = Date.now();
     // Throttle maintenance runs to avoid frequent full key scans.
-    const rawLast = await AsyncStorage.getItem(CACHE_LAST_CLEARED_AT_KEY);
+    const rawLast = await localStorageService.getItem(LOCAL_STORAGE_KEYS.cacheLastClearedAt);
     const lastClearedAt = Number(rawLast ?? 0);
-    if (Number.isFinite(lastClearedAt) && lastClearedAt > 0 && now - lastClearedAt < CACHE_AUTO_CLEAR_WINDOW_MS) {
+    if (
+      Number.isFinite(lastClearedAt) &&
+      lastClearedAt > 0 &&
+      now - lastClearedAt < LOCAL_STORAGE_CACHE_POLICY.autoClearWindowMs
+    ) {
       return { ran: false, clearedCount: 0 };
     }
 

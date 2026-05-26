@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const net = require("node:net");
 const path = require("node:path");
 const { spawn } = require("node:child_process");
+const { getTmpPath } = require("../lib/tmp-layout.cjs");
 const {
   runRepoHealthCheck,
   printRepoHealthCheck,
@@ -515,9 +516,8 @@ function createOutputBridgeTail(filePath, onLine) {
 
 async function attemptExpoStart({ mode, web, port, extraExpoArgs }) {
   const args = buildExpoArgs({ web, port, mode, extraExpoArgs });
-  const outputBridgeFilePath = path.join(
+  const outputBridgeFilePath = getTmpPath(
     process.cwd(),
-    ".expo",
     `start-expo-bridge-${mode}-${process.pid}.log`
   );
   const env =

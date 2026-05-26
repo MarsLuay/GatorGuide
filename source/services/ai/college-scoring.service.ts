@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorageService } from "@/services/storage/local-storage.service";
 
 import { isStubMode } from '@/services/app/config';
 import { getLocationRegionStates, normalizeLocationPreference, parseLocationPreference } from '@/services/app/questionnaire.enums';
@@ -72,7 +72,7 @@ export class CollegeScoringService {
 
   protected async readAiFactorCache(): Promise<Record<string, AiFactorCacheEntry>> {
     try {
-      const raw = await AsyncStorage.getItem(AI_FACTOR_CACHE_KEY);
+      const raw = await localStorageService.getItem(AI_FACTOR_CACHE_KEY);
       if (!raw) return {};
       const parsed = JSON.parse(raw) as Record<string, AiFactorCacheEntry>;
       if (!parsed || typeof parsed !== 'object') return {};
@@ -93,10 +93,10 @@ export class CollegeScoringService {
           return bt - at;
         });
         const trimmed = Object.fromEntries(entries.slice(0, AI_FACTOR_CACHE_MAX_ENTRIES));
-        await AsyncStorage.setItem(AI_FACTOR_CACHE_KEY, JSON.stringify(trimmed));
+        await localStorageService.setItem(AI_FACTOR_CACHE_KEY, JSON.stringify(trimmed));
         return;
       }
-      await AsyncStorage.setItem(AI_FACTOR_CACHE_KEY, JSON.stringify(cache));
+      await localStorageService.setItem(AI_FACTOR_CACHE_KEY, JSON.stringify(cache));
     } catch {
       // best-effort cache
     }

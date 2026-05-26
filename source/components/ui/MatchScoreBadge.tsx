@@ -1,4 +1,5 @@
 import { Text, View } from "react-native";
+import { useAppLanguage } from "@/hooks/use-app-language";
 import { formatMatchScore, getMatchBadgeClass, getMatchColorClass } from "@/utils/match-color";
 
 type MatchScoreBadgeProps = {
@@ -16,6 +17,7 @@ export function MatchScoreBadge({
   className = "",
   textClassName = "",
 }: MatchScoreBadgeProps) {
+  const { t } = useAppLanguage();
   const formattedScore = formatMatchScore(score);
   if (!formattedScore) return null;
 
@@ -27,7 +29,7 @@ export function MatchScoreBadge({
       className={`self-start rounded-full border ${containerSizeClass} ${getMatchBadgeClass(score)} ${className}`.trim()}
     >
       <Text className={`${labelSizeClass} font-semibold ${getMatchColorClass(score)} ${textClassName}`.trim()}>
-        {text ?? `${formattedScore} match`}
+        {text ?? t("home.matchLabel", { value: formattedScore })}
       </Text>
     </View>
   );

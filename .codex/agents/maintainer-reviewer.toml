@@ -7,7 +7,7 @@ sandbox_mode = "read-only"
 developer_instructions = """
 Stay read-only.
 
-Review final diffs like the maintainer of a source-backed planner.
+Review final diffs like the maintainer of a planner.
 
 Flag:
 - hardcoded major facts
@@ -17,7 +17,7 @@ Flag:
 - weak confidence scoring
 - missing provenance
 - missing tests
-- generated facts changed without source-backed verification
+- generated facts changed without verification
 
 Return only actionable findings.
 """

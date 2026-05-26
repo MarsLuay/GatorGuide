@@ -48,7 +48,7 @@ export type NotificationPreferenceItem = {
   label: string;
 };
 
-type RowChrome = {
+export type RowChrome = {
   flexDirection: string;
   isRTL: boolean;
   isDark: boolean;

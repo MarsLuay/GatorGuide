@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -13,21 +14,25 @@ require("ts-node").register({
 });
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.join(REPO_ROOT, ".tmp");
-const OUTPUT_JSON = path.join(TMP_DIR, "transfer-planner-source-block-course-presence-audit.json");
-const OUTPUT_MD = path.join(TMP_DIR, "transfer-planner-source-block-course-presence-audit.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const OUTPUT_JSON = getTmpPath(REPO_ROOT, "transfer-planner-source-block-course-presence-audit.json");
+const OUTPUT_MD = getTmpPath(REPO_ROOT, "transfer-planner-source-block-course-presence-audit.md");
 
 const CAMPUS_ORDER = ["uw-seattle", "uw-tacoma", "uw-bothell"];
 const {
   normalizeTransferPlannerPathwayId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
 const {
-  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+  TRANSFER_PLANNER_GAP_ENTRIES,
 } = require("../../constants/transfer-planner-source/source-gaps.generated");
 
 function readGeneratedJson(relativePath, constName) {
   const filePath = path.join(REPO_ROOT, relativePath);
   const text = fs.readFileSync(filePath, "utf8");
+  if (relativePath.endsWith(".json")) {
+    return JSON.parse(text);
+  }
+
   const match = text.match(new RegExp(`const ${constName} = "([\\s\\S]*?)";`));
   if (!match) {
     throw new Error(`Could not find ${constName} in ${relativePath}`);
@@ -61,8 +66,8 @@ function ownerKey(planId, pathwayId = null) {
   return `${planId}::${normalizedPathwayId ?? ""}`;
 }
 
-const HIDDEN_SOURCE_GAP_OWNER_KEYS = new Map(
-  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES.filter((entry) => entry.studentVisibility === "hidden").map(
+const HIDDEN_GAP_OWNER_KEYS = new Map(
+  TRANSFER_PLANNER_GAP_ENTRIES.filter((entry) => entry.studentVisibility === "hidden").map(
     (entry) => [
       ownerKey(entry.planId, entry.pathwayId ?? null),
       entry,
@@ -207,16 +212,16 @@ function getBlocksForCoursePresence({ owner, ownBlocks, parentBlocks }) {
 function main() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
   const majorPlans = readGeneratedJson(
-    "constants/transfer-planner-source/student-runtime.generated/major-plans.generated.ts",
+    "constants/transfer-planner-source/student-runtime.generated/major-plans.generated.json",
     "TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS_JSON"
   );
   const pathwaysByPlanId = readGeneratedJson(
-    "constants/transfer-planner-source/student-runtime.generated/pathways-by-plan-id.generated.ts",
+    "constants/transfer-planner-source/student-runtime.generated/pathways-by-plan-id.generated.json",
     "TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID_JSON"
   );
   const sourceBlocks = readGeneratedJson(
-    "constants/transfer-planner-source/student-runtime.generated/parsed-requirement-source-block-registry.generated.ts",
-    "TRANSFER_PLANNER_RUNTIME_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY_JSON"
+    "constants/transfer-planner-source/student-runtime.generated/parsed-requirement-block-registry.generated.json",
+    "TRANSFER_PLANNER_RUNTIME_PARSED_REQUIREMENT_BLOCK_REGISTRY_JSON"
   );
   const blocksByOwner = new Map();
   for (const block of sourceBlocks) {
@@ -230,7 +235,7 @@ function main() {
   const rows = owners.map((owner) => {
     const key = ownerKey(owner.planId, owner.pathwayId);
     const parentKey = ownerKey(owner.planId, null);
-    const hiddenSourceGap = HIDDEN_SOURCE_GAP_OWNER_KEYS.get(key) ?? null;
+    const hiddenSourceGap = HIDDEN_GAP_OWNER_KEYS.get(key) ?? null;
     const ownBlocks = blocksByOwner.get(key) ?? [];
     const parentBlocks = owner.pathwayId ? blocksByOwner.get(parentKey) ?? [] : [];
     const blocks = getBlocksForCoursePresence({ owner, ownBlocks, parentBlocks });

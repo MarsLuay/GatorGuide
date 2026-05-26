@@ -463,7 +463,7 @@ export function buildMajorSpecificsSourceBackedUwGeneralEducationSection(
       sourceBackedSection?.summary ??
       (t
         ? t("transferPlanner.majorRequiredGenEdsDescription")
-        : "Source-backed major-specific general education targets from the current official major materials."),
+        : "major-specific general education targets from the current official major materials."),
     campusId: sourceBackedSection?.campusId ?? plan.campusId,
     sourceKind: sourceBackedSection?.sourceKind ?? ("source-backed-major" as const),
     plannerUsage: sourceBackedSection?.plannerUsage ?? ("summary-only" as const),
@@ -479,7 +479,7 @@ export function buildCopyOnlyGenEdSourceDebugText(input: {
   return [
     "[copy-only gen-ed source debug]",
     `Planner mode: ${input.plannerMode}`,
-    `UW source-backed targets: ${input.sourceBackedTargetCount}`,
+    `UW targets: ${input.sourceBackedTargetCount}`,
     `Matched GRC track breadth rows hidden from UW gen-ed section: ${input.hiddenMatchedGrcTrackBreadthRowCount}`,
   ].join(" ");
 }

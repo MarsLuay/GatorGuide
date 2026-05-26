@@ -32,7 +32,7 @@ const {
   normalizeTransferPlannerCourseCode,
 } = require("../../constants/transfer-planner-source/course-code-normalization");
 const {
-  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
+  TRANSFER_PLANNER_PRIMARY_PROMOTIONS,
 } = require("../../constants/transfer-planner-source/primary-source-promotions.generated");
 const {
   buildTransferPlannerOwnerId,
@@ -89,7 +89,7 @@ const REQUIRED_COMPOUND_EQUIVALENCY_PATHS = [
 ];
 
 test("Primary source promotions store canonical pathway owner ids", () => {
-  const pathwayPromotions = TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.filter(
+  const pathwayPromotions = TRANSFER_PLANNER_PRIMARY_PROMOTIONS.filter(
     (entry) => entry.ownerType === "pathway"
   );
 
@@ -119,6 +119,34 @@ test("Primary source promotions store canonical pathway owner ids", () => {
   assert.ok(
     pathwayPromotions.some((entry) => entry.ownerId === entry.ownerKey),
     "Expected pathway promotions to include at least one canonical owner id/key pair."
+  );
+});
+
+test("Primary source discovery skips hidden aliases covered by parent pathways", () => {
+  const owner = {
+    ownerType: "major",
+    planId: "uw-bothell-chemistry-biochemistry",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Chemistry: Biochemistry (BS)",
+  };
+
+  assert.equal(
+    discovery.hasStudentRuntimeAliasCoverageForTest(owner),
+    true,
+    "Expected the hidden Chemistry: Biochemistry alias to be covered by Chemistry BS / Biochemistry option."
+  );
+
+  const targets = discovery.buildOwnerTargetsForTest({
+    includeExisting: false,
+    campusFilter: null,
+    targetPlanIds: [owner.planId],
+  });
+
+  assert.deepEqual(
+    targets.map((target) => target.ownerKey),
+    [],
+    "Expected the covered alias to stay out of missing-primary discovery."
   );
 });
 
@@ -680,6 +708,47 @@ test("ChemE/NME engineering elective lists are classified as support-only electi
   assert.equal(candidate.sourceRoleStatus, "support");
   assert.equal(candidate.canCreateSchedulableRows, false);
   assert.ok(candidate.score > 0, `Expected elective support source to retain positive value, got ${candidate.score}.`);
+  assert.equal(
+    parser.classifyRequirementSourceRole({
+      ownerId: "uw-seattle-chemical-engineering",
+      ownerTitle: "Chemical Engineering",
+      planId: "uw-seattle-chemical-engineering",
+      url: "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
+      label: "Engineering Electives",
+      role: "degree-requirements",
+      parserType: "html-curriculum-page",
+      isPrimaryDegreeRequirementsLink: true,
+    }),
+    "elective-list"
+  );
+});
+
+test("SBSE engineering elective credit bucket materializes as a program-specific placeholder", () => {
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    {
+      ownerId: SBSE_PLAN_ID,
+      ownerTitle: "Sustainable Bioresource Systems Engineering",
+      planId: SBSE_PLAN_ID,
+      campusId: "uw-seattle",
+    },
+    [],
+    [
+      "SBSE Major Requirements",
+      "Engineering Elective Credit (12 credits)",
+      "Engineering Electives: 12 credits chosen from the Engineering Elective list posted at BSE Academic Requirements | School of Environmental and Forest Sciences",
+    ]
+  );
+  const engineeringElectiveGroup = groups.find(
+    (group) => group.label === "Engineering Elective Credit (12 credits)"
+  );
+  const option = engineeringElectiveGroup?.options?.[0] ?? null;
+
+  assert.equal(engineeringElectiveGroup?.requirementType, "choose_credits");
+  assert.equal(engineeringElectiveGroup?.minCredits, 12);
+  assert.equal(engineeringElectiveGroup?.maxCredits, 12);
+  assert.equal(option?.optionKind, "category-option");
+  assert.equal(option?.categoryOption?.programSpecific, true);
+  assert.equal(option?.categoryOption?.approvedListKey, `${SBSE_PLAN_ID}-engineering-elective-credit`);
 });
 
 test("Broad prerequisite and course-list pages are non-schedulable source roles", () => {
@@ -918,6 +987,64 @@ test("Graduate catalog credential anchors are ignored even on mixed undergraduat
   assert.equal(graduateCredential.sourceRoleStatus, "ignored");
   assert.equal(graduateCredential.canCreateSchedulableRows, false);
   assert.ok(graduateCredential.score < 0);
+});
+
+test("Catalog credential anchors use local heading text for pathway route conflicts", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "pathway",
+    ownerKey: "uw-seattle-biology:pathway:bs-option-family:ecology-evolution-and-conservation",
+    planId: "uw-seattle-biology",
+    pathwayId: "bs-option-family:ecology-evolution-and-conservation",
+    campusId: "uw-seattle",
+    title: "Biology - B.S. Ecology, Evolution, and Conservation option",
+    label: "B.S. Ecology, Evolution, and Conservation option",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 6,
+  });
+  const selectedCredential = {
+    url: "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-66fdc8be23f02d5e38e37ff0",
+    anchorText:
+      "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+    linkText:
+      "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+    pageTitle: "Biology",
+    pageHeadings: [
+      "Bachelor of Arts degree with a major in Biology",
+      "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation",
+      "Bachelor of Science degree with a major in Biology: Physiology",
+    ],
+    sourceRole: "official-catalog",
+    sourceRoleStatus: "primary",
+    parserType: "catalog-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 213,
+    confidence: "high",
+    reasons: ["official catalog credential names the selected pathway"],
+  };
+  const broadAdmissionsPage = {
+    url: "https://admit.washington.edu/apply/running-start/",
+    label: "Running Start",
+    pageTitle: "Running Start",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-degree-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 60,
+    confidence: "medium",
+    reasons: ["does not clearly mention the selected major"],
+  };
+
+  const decision = discovery.buildReplacementDecision(target, [
+    selectedCredential,
+    broadAdmissionsPage,
+  ]);
+
+  assert.equal(decision.action, "add-missing-primary");
+  assert.equal(decision.suggestedPrimary?.url, selectedCredential.url);
 });
 
 test("Official support sources are not downgraded to ignored", () => {
@@ -1322,6 +1449,27 @@ test("Tacoma broad overview pages stay out of auto-promotion", () => {
   assert.equal(discovery.isAutoPromotablePrimaryCandidate(overview), false);
 });
 
+test("Pathway-specific primary child pages can auto-promote without requirements slugs", () => {
+  assert.equal(
+    discovery.isAutoPromotablePrimaryCandidate({
+      url: "https://www.uwb.edu/education/undergraduate/educational-studies/cecl-concentration#content",
+      anchorText: "Skip To Content",
+      score: 121,
+      confidence: "high",
+      sourceRole: "primary-degree-requirements",
+      sourceRoleStatus: "primary",
+      parserType: "html-degree-page",
+      canCreateSchedulableRows: true,
+      reasons: [
+        "explicitly names the selected pathway or route",
+        "official source path matches the selected pathway",
+        "pathway-specific official child page matches the selected pathway",
+      ],
+    }),
+    true
+  );
+});
+
 test("Durable Bothell Electrical Engineering worksheets remain auto-promotable", () => {
   const target = discovery.buildOwnerTargetRecord({
     analysisMode: "missing-primary",
@@ -1371,6 +1519,57 @@ test("Auto-promotion rejects explicit different-major catalog anchors", () => {
     }),
     false
   );
+});
+
+test("Auto-promotion rejects study-abroad support pages under degree-requirement paths", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    ownerType: "major",
+    planId: "uw-seattle-computer-engineering",
+    ownerId: "uw-seattle-computer-engineering",
+    pathwayId: null,
+    campusId: "uw-seattle",
+    title: "Computer Engineering",
+    label: "Computer Engineering",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 0,
+  });
+  const candidate = {
+    url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/study-abroad/",
+    label: "Study Abroad",
+    pageTitle: "Study Abroad",
+    sourceKind: "official-link",
+  };
+  const scored = { ...candidate, ...discovery.scoreCandidate(target, candidate) };
+
+  assert.equal(scored.sourceRole, "support-source");
+  assert.equal(scored.sourceRoleStatus, "support");
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(scored), false);
+});
+
+test("Source manifest prefers CompE degree PDF over Study Abroad support page", () => {
+  const entries = sourceRegistry.getTransferPlannerSourceManifestEntriesForPlan(
+    "uw-seattle-computer-engineering"
+  );
+  const primary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-computer-engineering"
+  );
+  const studyAbroad = entries.find((entry) => /study-abroad/i.test(entry.url));
+
+  assert.match(primary?.url ?? "", /CompE_degreq_dec24v2\.pdf$/i);
+  assert.equal(primary?.role, "degree-requirements");
+  assert.equal(studyAbroad?.role, "support-source");
+  assert.equal(studyAbroad?.isPrimaryDegreeRequirementsLink, false);
+});
+
+test("Requirement parser keeps CompE approved-list support source parseable", () => {
+  const entries = parser.getParseablePrimaryEntries(["uw-seattle-computer-engineering"]);
+  const approvedList = entries.find((entry) =>
+    /courses\/#natural-science/i.test(entry.url)
+  );
+
+  assert.equal(approvedList?.role, "approved-course-list");
+  assert.equal(approvedList?.isPrimaryDegreeRequirementsLink, false);
 });
 
 test("Sentence-fragment pathway labels are rejected while real options stay materializable", () => {
@@ -2137,6 +2336,72 @@ test("UW catalog scoping recognizes European Studies as International Studies Eu
   assert.doesNotMatch(scopedText, /JSIS A 241/);
   assert.doesNotMatch(scopedText, /International Studies: Japan/);
   assert.match(scope?.sectionAudit?.stopBoundary ?? "", /program-UG-JAPAN/);
+});
+
+test("UW catalog discovery scores European Studies against the matching Europe section anchor", () => {
+  const target = {
+    ownerType: "major",
+    planId: "uw-seattle-european-studies",
+    pathwayId: null,
+    campusId: "uw-seattle",
+    title: "European Studies",
+    label: "European Studies",
+    keywordTokens: ["european", "studies"],
+    existingPrimaryUrl: null,
+  };
+  const baseUrl =
+    "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html";
+  const pageHeadings = [
+    "Bachelor of Arts degree with a major in International Studies: Europe",
+    "Bachelor of Arts degree with a major in International Studies: Jewish Studies",
+  ];
+  const contentSnippets = [
+    "Bachelor of Arts degree with a major in International Studies: Europe Completion Requirements 50 credits plus language proficiency.",
+    "Bachelor of Arts degree with a major in International Studies: Jewish Studies Credential Overview.",
+    "The purpose of the curriculum in European Studies is to help prepare students.",
+  ];
+  const buildCandidate = (anchor, text) => {
+    const rawCandidate = {
+      url: `${baseUrl}${anchor}`,
+      anchorText: text,
+      linkText: text,
+      pageHeadings,
+      contentSnippets,
+      sourceKind: "discovered-anchor",
+    };
+    return {
+      ...rawCandidate,
+      ...discovery.scoreCandidate(target, rawCandidate),
+    };
+  };
+
+  const europeCandidate = buildCandidate(
+    "#program-UG-EURO-MAJOR",
+    "Program of Study: Major: International Studies: Europe"
+  );
+  const jewishCandidate = buildCandidate(
+    "#program-UG-SISJE-MAJOR",
+    "Program of Study: Major: International Studies: Jewish Studies"
+  );
+  const decision = discovery.buildReplacementDecision(target, [
+    jewishCandidate,
+    europeCandidate,
+  ]);
+
+  assert.equal(decision.suggestedPrimary?.url, europeCandidate.url);
+  assert.ok(
+    europeCandidate.score > jewishCandidate.score,
+    "Expected the matching Europe anchor to outrank the sibling Jewish Studies anchor."
+  );
+  assert.ok(
+    europeCandidate.reasons.includes("official source text matches the selected major"),
+    "Expected European Studies to match the International Studies: Europe anchor text."
+  );
+  assert.equal(
+    jewishCandidate.reasons.includes("official source text matches the selected major"),
+    false,
+    "Sibling catalog anchors should not inherit owner identity from the full page text."
+  );
 });
 
 test("Unanchored UW catalog Anthropology base scope excludes sibling option credentials", () => {
@@ -5167,7 +5432,7 @@ test("Generated registry keeps Computer Science approved science list as support
   );
   assert.ok(
     supportBlock.supportLists[0].acceptedUwCourseCodes.includes("PHYS 121"),
-    "Expected CS approved science filter to use the source-backed CS science list."
+    "Expected CS approved science filter to use the CS science list."
   );
   assert.equal(
     supportBlock.supportLists[0].acceptedUwCourseCodes.includes("CSE 121"),
@@ -5292,7 +5557,7 @@ test("Generated registry keeps SBSE pathway source groups without reintroducing 
   assert.equal(unsafeMathChoice, undefined);
   assert.ok(
     runtimeGroups.some((group) => group.id === diversityBucket?.id),
-    "Expected compact runtime to retain the source-backed SBSE Diversity bucket."
+    "Expected compact runtime to retain the SBSE Diversity bucket."
   );
 });
 
@@ -5846,6 +6111,212 @@ test("Tacoma missing-primary discovery can use the generic campus major index", 
   assert.equal(result.suggestedAction, "add-missing-primary");
 });
 
+test("Tacoma SET program pages replace shared catalog primaries and retain planning grids", async () => {
+  const indexUrl = "https://www.tacoma.uw.edu/admissions/majors-degrees";
+  const catalogUrl =
+    "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html";
+  const cengrUrl = "https://www.tacoma.uw.edu/set/programs/undergrad/cengr";
+  const gridUrl = "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf";
+  const weakSignals = discovery.buildWeakExistingPrimarySignals({
+    primarySource: {
+      label: "UW General Catalog School of Engineering and Technology",
+      url: catalogUrl,
+    },
+    parsedBlock: {
+      ok: true,
+      extractedTitle: "School of Engineering and Technology",
+      extractedHeadings: ["Bachelor of Science degree with a major in Computer Engineering"],
+      parsedUwCourseCodes: ["TCSS 342", "TCES 230"],
+      qualitySignals: [],
+      requirementCueLines: ["Completion Requirements", "Required Core Courses: 101 credits"],
+      chooseStatements: [],
+    },
+    runtimeGrcCourseCount: 0,
+    bestTrackId: null,
+    trackRecommendationId: null,
+    noPublicClassificationCount: 0,
+    ownerType: "major",
+    campusId: "uw-tacoma",
+  });
+  const target = buildSbseTarget({
+    analysisMode: "weak-existing-primary",
+    ownerKey: "uw-tacoma-computer-engineering",
+    planId: "uw-tacoma-computer-engineering",
+    campusId: "uw-tacoma",
+    title: "Computer Engineering",
+    label: "Computer Engineering",
+    officialLinks: [
+      {
+        label: "UW General Catalog School of Engineering and Technology",
+        url: catalogUrl,
+      },
+    ],
+    existingPrimary: {
+      label: "UW General Catalog School of Engineering and Technology",
+      url: catalogUrl,
+    },
+    reevaluationSignals: weakSignals.signals,
+    reevaluationContext: weakSignals.context,
+    pathwayCount: 0,
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === indexUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "UW Tacoma majors and degrees",
+          headings: ["Majors and degrees"],
+          anchors: [{ url: cengrUrl, text: "Computer Engineering", sourceUrl: url }],
+          contentSnippets: [],
+          error: null,
+        };
+      }
+
+      if (url === cengrUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "B.S. in Computer Engineering",
+          headings: ["B.S. in Computer Engineering", "How to Apply", "Curriculum Details"],
+          anchors: [{ url: gridUrl, text: "CENGR Schedule Planning Grid", sourceUrl: url }],
+          contentSnippets: [
+            "Admission Requirements Prerequisites: Calculus I (TMATH 124), Calculus II (TMATH 125), Calculus III (TMATH 126), Differential Equations (TMATH 207), Physics I (T PHYS 121), Physics II (T PHYS 122), Programming (TCSS 142 and TCSS 143), Electrical Circuits (TCES 215).",
+            "Curriculum Details Additional Math and Science Requirements include T PHYS 123 Physics III and TMATH 208 Matrix Algebra. Required courses include TCES 230 and TCSS 342.",
+          ],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: true,
+        status: 200,
+        finalUrl: url,
+        contentType: "text/html",
+        title: "School of Engineering and Technology",
+        headings: ["School of Engineering and Technology"],
+        anchors: [],
+        contentSnippets: [],
+        error: null,
+      };
+    },
+  });
+
+  assert.equal(weakSignals.triggered, true);
+  assert.ok(includesExactUrl(inspectedUrls, indexUrl));
+  assert.ok(includesExactUrl(inspectedUrls, cengrUrl));
+  assert.equal(result.suggestedAction, "replace-existing-primary");
+  assert.equal(result.suggestedPrimary.url, cengrUrl);
+  assert.equal(result.suggestedPrimary.sourceRole, "primary-degree-requirements");
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(result.suggestedPrimary), true);
+  assert.notEqual(result.currentPrimary?.url, result.suggestedPrimary.url);
+  assert.ok(result.topCandidates.some((candidate) => candidate.url === cengrUrl));
+
+  const planningGrid = result.supportCandidates.find((candidate) => candidate.url === gridUrl);
+  assert.ok(planningGrid, "Expected the CENGR planning grid PDF to be retained as support.");
+  assert.equal(planningGrid.sourceRole, "curriculum-map");
+  assert.equal(planningGrid.parserType, "pdf-degree-sheet");
+  assert.equal(planningGrid.supportOnly, true);
+  assert.equal(planningGrid.discoveredFromUrl, cengrUrl);
+});
+
+test("Tacoma Computer Engineering runtime uses GRC mappings", () => {
+  const cengrUrl = "https://www.tacoma.uw.edu/set/programs/undergrad/cengr";
+  const catalogUrl =
+    "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html";
+  const primarySource = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-tacoma-computer-engineering",
+    null
+  );
+  const plan = getCompactRuntimePlan("uw-tacoma-computer-engineering");
+  const eePlan = getCompactRuntimePlan("uw-tacoma-electrical-engineering");
+  const checklistItems = getChecklistItems(plan);
+  const degreeMapItems = (plan?.degreeMapSections ?? []).flatMap((section) => section.items ?? []);
+  const mappedChecklistItems = checklistItems.filter(
+    (item) => item.canCreateScheduleRow !== false && (item.grcCourses ?? []).length > 0
+  );
+  const eeMappedChecklistItemCount = getChecklistItems(eePlan).filter(
+    (item) => item.canCreateScheduleRow !== false && (item.grcCourses ?? []).length > 0
+  ).length;
+
+  assert.equal(primarySource?.url, cengrUrl);
+  assert.notEqual(primarySource?.url, catalogUrl);
+  assert.ok(plan, "Expected UW Tacoma Computer Engineering to be present in the compact runtime.");
+  assert.ok((plan.grcCourseList ?? []).length > 0, "Expected GRC courses.");
+  assert.ok(
+    mappedChecklistItems.length >= Math.min(eeMappedChecklistItemCount, 6),
+    `Expected CENGR mapped checklist rows to be comparable to EE (${mappedChecklistItems.length} vs ${eeMappedChecklistItemCount}).`
+  );
+
+  for (const uwCourseCode of [
+    "TMATH 124",
+    "TMATH 125",
+    "TMATH 126",
+    "TMATH 207",
+    "TMATH 208",
+    "TPHYS 121",
+    "TPHYS 122",
+    "TPHYS 123",
+    "TCSS 142",
+    "TCSS 143",
+    "TCES 215",
+  ]) {
+    assert.ok(
+      degreeMapItems.includes(uwCourseCode),
+      `Expected degree map rows to include ${uwCourseCode}.`
+    );
+  }
+
+  for (const grcCourseCode of [
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "MATH 238",
+    "MATH 240",
+    "PHYS& 221",
+    "PHYS& 222",
+    "PHYS& 223",
+    "ENGR& 204",
+  ]) {
+    assert.ok(
+      (plan.grcCourseList ?? []).includes(grcCourseCode),
+      `Expected GRC course list to include ${grcCourseCode}.`
+    );
+  }
+
+  assert.ok(
+    (plan.grcCourseList ?? []).some((courseCode) =>
+      ["CS 121", "CS 122", "CS 123", "CS 145"].includes(courseCode)
+    ),
+    "Expected a programming GRC equivalent."
+  );
+  assert.ok(
+    checklistItems.some(
+      (item) =>
+        /Electrical Circuits/i.test(item.title) &&
+        (item.grcCourses ?? []).includes("ENGR& 204")
+    ),
+    "Expected Electrical Circuits to map to ENGR& 204."
+  );
+  assert.ok(
+    checklistItems.some((item) =>
+      /No direct Green River equivalent found for TCES 203/i.test(item.note ?? "")
+    ),
+    "Expected unmapped lower-division source rows to be explicitly marked."
+  );
+  assert.doesNotMatch(JSON.stringify(plan), /On To Do list/i);
+});
+
 test("Pathway manifest sources prefer matching parent track links over sibling tracks", () => {
   const primary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
     "uw-tacoma-arts-media-culture",
@@ -5904,7 +6375,7 @@ test("Planner verify step plan includes parser, source-discovery, and source-sco
   assert.ok(
     stepPlan.labels.includes("Run parser extraction and source-discovery tests")
   );
-  assert.ok(stepPlan.labels.includes("Audit source-backed runtime coverage (blocking)"));
+  assert.ok(stepPlan.labels.includes("Audit runtime coverage (blocking)"));
   assert.ok(stepPlan.labels.includes("Audit generated source registry"));
   assert.ok(stepPlan.labels.includes("Audit UW-GRC mapping regressions"));
 });
@@ -6099,6 +6570,6 @@ test("Compound equivalency audit reports full scheduled paths instead of partial
   assert.deepEqual(chem152?.missingComponents, []);
   assert.equal(chem152?.satisfied, true);
   assert.equal(chem152?.issue, null);
-  assert.match(chem152?.copyOnlyDebugText ?? "", /^\[compound equivalency audit\]/);
+  assert.match(chem152?.copyOnlyDebugText ?? "", /^\[copy-only compound equivalency audit\]/);
   assert.match(chem152?.copyOnlyDebugText ?? "", /Owner id: uw-seattle-civil-engineering/);
 });

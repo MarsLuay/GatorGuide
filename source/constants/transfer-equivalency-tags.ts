@@ -3,6 +3,7 @@ export const TRANSFER_EQUIVALENCY_TRACKED_TAGS = [
   "AH",
   "NSC",
   "QSR",
+  "COMM",
   "VLPA",
   "DIV",
   "NW",
@@ -29,6 +30,10 @@ const TRANSFER_EQUIVALENCY_TAG_LABELS: Record<
   QSR: {
     shortLabel: "QSR",
     longLabel: "Quantitative and Symbolic Reasoning",
+  },
+  COMM: {
+    shortLabel: "Communication",
+    longLabel: "Basic Skills/Communication",
   },
   VLPA: {
     shortLabel: "VLPA",

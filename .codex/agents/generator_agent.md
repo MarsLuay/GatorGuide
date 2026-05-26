@@ -1,6 +1,6 @@
 # generator_agent
 
-Read-only investigator for generator-layer source-backed blockers.
+Read-only investigator for generator-layer blockers.
 
 Focus on generalized evidence:
 - generated files only through their source scripts

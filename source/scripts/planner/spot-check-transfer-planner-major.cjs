@@ -1,61 +1,24 @@
 #!/usr/bin/env node
 
-const { spawnSync } = require("node:child_process");
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  SOURCE_ROOT,
+  getArgValue,
+  getPlannerTmpPath,
+  getPositionalArgs,
+  hasArg,
+  runNodeScript,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
-const SOURCE_ROOT = path.resolve(__dirname, "../..");
-const DEFAULT_COMMAND_FILE = path.join(SOURCE_ROOT, ".tmp", "planner-major-spot-check-commands.md");
+const DEFAULT_COMMAND_FILE = getPlannerTmpPath("planner-major-spot-check-commands.md");
 const BOOTSTRAP_MAJOR_PLANS_PATH = path.join(
   SOURCE_ROOT,
   "constants",
   "transfer-planner-source",
   "bootstrap.generated.ts"
 );
-
-function getArgValue(...names) {
-  const args = process.argv.slice(2);
-  for (const name of names) {
-    const index = args.indexOf(name);
-    if (index >= 0) {
-      return args[index + 1] ?? null;
-    }
-    const prefix = `${name}=`;
-    const inline = args.find((arg) => arg.startsWith(prefix));
-    if (inline) {
-      return inline.slice(prefix.length);
-    }
-  }
-  return null;
-}
-
-function hasArg(...names) {
-  const args = process.argv.slice(2);
-  return names.some((name) => args.includes(name));
-}
-
-function getPositionalArgs() {
-  const args = process.argv.slice(2);
-  const positional = [];
-  const valueFlags = new Set([
-    "--target-plan-id",
-    "--plan-id",
-    "--target",
-    "--campus-id",
-    "--write-command-file",
-  ]);
-  for (let index = 0; index < args.length; index += 1) {
-    const arg = args[index];
-    if (arg.startsWith("--")) {
-      if (valueFlags.has(arg)) {
-        index += 1;
-      }
-      continue;
-    }
-    positional.push(arg);
-  }
-  return positional;
-}
 
 function printUsageAndExit(exitCode = 1) {
   console.log(`Usage:
@@ -68,7 +31,7 @@ Options:
   --campus-id <campus-id>      Filter --list or --commands output.
   --list                       List every spot-checkable major.
   --commands                   Print direct node commands for every major.
-  --write-command-file [path]  Write the command list to .tmp/planner-major-spot-check-commands.md.
+  --write-command-file [path]  Write the command list to .tmp/reports/planner-major-spot-check-commands.md.
   --parse                      Run targeted requirement parsing for the selected major.
   --assert                     Assert the selected major exists in the current parse report.
   --probe                      Probe source links for the selected major.
@@ -134,12 +97,56 @@ function readTopLevelJsonArrayFromGeneratedTs(filePath, exportName) {
   throw new Error(`Could not parse array initializer for ${exportName}.`);
 }
 
+function normalizeAliasText(value) {
+  return String(value ?? "")
+    .replace(/&/g, " and ")
+    .replace(/\([^)]*\)/g, " ")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getAliasTitleParts(plan) {
+  for (const title of [plan.title, plan.shortTitle]) {
+    const match = String(title ?? "").match(/^(.+?):\s*(.+?)(?:\s+\(([^)]+)\))?$/);
+    if (match?.[1] && match[2]) {
+      return {
+        parentTitle: match[1],
+        optionTitle: match[2],
+      };
+    }
+  }
+  return null;
+}
+
+function getTopLevelPlannerPlans(plans) {
+  const plansByCampusAndTitle = new Map();
+  for (const plan of plans) {
+    const key = `${plan.campusId}::${normalizeAliasText(plan.title)}`;
+    if (!plansByCampusAndTitle.has(key)) {
+      plansByCampusAndTitle.set(key, []);
+    }
+    plansByCampusAndTitle.get(key).push(plan);
+  }
+
+  return plans.filter((plan) => {
+    const aliasTitleParts = getAliasTitleParts(plan);
+    if (!aliasTitleParts) {
+      return true;
+    }
+
+    const parentKey = `${plan.campusId}::${normalizeAliasText(aliasTitleParts.parentTitle)}`;
+    const parentCandidates = plansByCampusAndTitle.get(parentKey) ?? [];
+    return !parentCandidates.some((candidate) => candidate.id !== plan.id);
+  });
+}
+
 function getPlannerMajors(campusId = null) {
   const plans = readTopLevelJsonArrayFromGeneratedTs(
     BOOTSTRAP_MAJOR_PLANS_PATH,
     "TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS"
   );
-  return plans
+  return getTopLevelPlannerPlans(plans)
     .filter((plan) => !campusId || plan.campusId === campusId)
     .map((plan) => ({
       planId: plan.id,
@@ -199,8 +206,7 @@ function buildCommandMarkdown(majors) {
 function printCommands(majors, writePath) {
   const markdown = buildCommandMarkdown(majors);
   if (writePath) {
-    fs.mkdirSync(path.dirname(writePath), { recursive: true });
-    fs.writeFileSync(writePath, markdown);
+    writePlannerMarkdownReport(writePath, markdown);
     console.log(`Wrote ${writePath}`);
     return;
   }
@@ -209,16 +215,10 @@ function printCommands(majors, writePath) {
 
 function runNode(args) {
   console.log(`\n> node ${args.map(shellQuote).join(" ")}`);
-  const result = spawnSync(process.execPath, args, {
+  runNodeScript(args[0], args.slice(1), {
     cwd: SOURCE_ROOT,
-    stdio: "inherit",
+    errorMessage: `Spot-check command failed: node ${args.join(" ")}`,
   });
-  if (result.error) {
-    throw result.error;
-  }
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
-  }
 }
 
 function runSelectedChecks(planId, phases) {
@@ -254,18 +254,20 @@ function runSelectedChecks(planId, phases) {
 }
 
 function main() {
-  if (hasArg("--help", "-h")) {
+  if (hasArg(["--help", "-h"])) {
     printUsageAndExit(0);
   }
 
-  const positionalArgs = getPositionalArgs();
+  const positionalArgs = getPositionalArgs({
+    valueFlags: ["--target-plan-id", "--plan-id", "--target", "--campus-id", "--write-command-file"],
+  });
   const positionalCampusId = positionalArgs.find((arg) =>
     ["uw-bothell", "uw-seattle", "uw-tacoma"].includes(arg)
   );
   const campusId = getArgValue("--campus-id") ?? positionalCampusId;
   const planId =
-    getArgValue("--target-plan-id", "--plan-id", "--target") ??
-    (hasArg("--list", "--commands") ? null : positionalArgs[0]);
+    getArgValue(["--target-plan-id", "--plan-id", "--target"]) ??
+    (hasArg(["--list", "--commands"]) ? null : positionalArgs[0]);
   const majors = getPlannerMajors(campusId);
 
   if (hasArg("--list")) {
@@ -293,8 +295,8 @@ function main() {
 
   const phases = {
     refresh: hasArg("--refresh") || positionalArgs.includes("refresh"),
-    parse: hasArg("--parse", "--standard") || positionalArgs.includes("parse") || positionalArgs.includes("standard"),
-    assert: hasArg("--assert", "--standard") || positionalArgs.includes("assert") || positionalArgs.includes("standard"),
+    parse: hasArg(["--parse", "--standard"]) || positionalArgs.includes("parse") || positionalArgs.includes("standard"),
+    assert: hasArg(["--assert", "--standard"]) || positionalArgs.includes("assert") || positionalArgs.includes("standard"),
     probe: hasArg("--probe") || positionalArgs.includes("probe"),
   };
 

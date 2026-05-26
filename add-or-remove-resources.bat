@@ -16,7 +16,9 @@ if not exist "%NODE_SCRIPT%" (
 )
 
 node "%NODE_SCRIPT%" %*
-exit /b %ERRORLEVEL%
+set "EXIT_CODE=%ERRORLEVEL%"
+if exist "%ROOT_DIR%source\scripts\organize-tmp-artifacts.cjs" node "%ROOT_DIR%source\scripts\organize-tmp-artifacts.cjs" --quiet >nul 2>&1
+exit /b %EXIT_CODE%
 
 :locate_or_clone_repo
 if exist "%NODE_SCRIPT%" (

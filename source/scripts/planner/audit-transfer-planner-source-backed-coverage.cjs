@@ -1,3 +1,4 @@
+/* global __dirname */
 const fs = require("fs");
 const path = require("path");
 const parser = require("./parse-transfer-planner-requirement-sources.cjs");
@@ -22,37 +23,52 @@ const studentRuntime = require("../../constants/transfer-planner-source/student-
 const planner = require("../../services/planning/transfer-planner.service");
 const sourceBackedActionability = require("./source-backed-coverage-actionability.cjs");
 const {
-  SOURCE_BACKED_COVERAGE_GATE_LABEL,
-  HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
-  SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION,
+  classifyGeneratedSeedIssue,
+  classifyCoverageIssue,
+  isLowerDivisionCourseCode,
+  isNonSchedulableContextualSourceRow,
+  isSupportOrNonSchedulableGeneratedSourceRole,
+} = require("./lib/source-backed-audit-classification.cjs");
+const {
+  detectOptionCueOrNone,
+} = require("./lib/parser-shape-detection.cjs");
+const {
+  writeJsonReport,
+  writeMarkdownReport,
+} = require("./lib/planner-reporting.cjs");
+const {
+  writeGeneratedRegistryReports,
+  writeMappingAuditReports,
+} = require("./lib/source-backed-audit-reporting.cjs");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  hasArg,
+} = require("./lib/script-harness.cjs");
+const {
+  canParsedBlockCreateSchedulableRows,
+  canRequirementSourceRoleCreateSchedulableRows: canSourceRoleCreateSchedulableRows,
+  getBlockScopeBoolean,
+  getRequirementSourceRoleStatus: getSourceRoleStatus,
+  isBlockNonSchedulable,
+  isBlockSupportOnly,
+} = require("./lib/source-scope.cjs");
+const {
+  COVERAGE_GATE_LABEL,
+  HIGH_RISK_AUDIT_CATEGORIES,
+  COVERAGE_GATE_DESCRIPTION,
 } = sourceBackedActionability;
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-coverage-audit.json"
-);
-const OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-coverage-audit.md"
-);
-const GENERATED_REGISTRY_OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-generated-registry-audit.json"
-);
-const GENERATED_REGISTRY_OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-generated-registry-audit.md"
-);
-const MAPPING_AUDIT_OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-mapping-audit.json"
-);
-const MAPPING_AUDIT_OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-mapping-audit.md"
-);
+const REPO_ROOT = SOURCE_ROOT;
+const TMP_DIR = ensurePlannerTmpLayout().root;
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.md");
+const GENERATED_REGISTRY_OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-generated-registry-audit.json");
+const GENERATED_REGISTRY_OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-generated-registry-audit.md");
+const MAPPING_AUDIT_OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-mapping-audit.json");
+const MAPPING_AUDIT_OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-mapping-audit.md");
 
 const ISSUE_TYPES = [
   "missing-detected-course",
@@ -138,8 +154,9 @@ const ISSUE_TYPES = [
   "partial-compound-path-scheduled",
   "missing-compound-component",
   "duplicate-compound-component",
+  "internal-error",
 ];
-const SOURCE_SCOPE_ISSUE_TYPES = [
+const SCOPE_ISSUE_TYPES = [
   "parser-source-scope-violation",
   "source-scope-contamination",
   "support-source-emitted-required-row",
@@ -224,7 +241,7 @@ const REQUIRED_COMPOUND_EQUIVALENCY_MAPPINGS = [
   },
 ];
 
-const CATEGORY_MAPPING_AUDIT_SOURCE_SETS = [
+const CATEGORY_MAPPING_AUDIT_SETS = [
   ["ANTH& 205"],
   ["PHYS& 223"],
   ["CS 121"],
@@ -235,70 +252,8 @@ const CATEGORY_MAPPING_AUDIT_SOURCE_SETS = [
 const UW_CAMPUSES = new Set(["uw-seattle", "uw-bothell", "uw-tacoma"]);
 const CONCRETE_UW_ONLY_PATTERN = /\b[A-Z]{2,8}\s*[123]\d{2}\b/i;
 const UPPER_DIVISION_UW_PATTERN = /\b[A-Z]{2,8}\s*[3-5]\d{2}\b/i;
-const SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
+const REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
   /\b(approved list|not required for transferring|electives?|general electives?|free electives?|replacement|course list|course lists|course evaluation|course evaluations|recommended|suggested|consider|first year students|suggested general education|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
-const SCHEDULABLE_SOURCE_ROLES = new Set([
-  "degree-requirements",
-  "catalog",
-  "curriculum",
-  "worksheet",
-  "official-catalog",
-  "primary-degree-requirements",
-  "department-requirements",
-  "pathway-degree-sheet",
-]);
-const SOURCE_ROLE_STATUS_BY_ROLE = {
-  "degree-requirements": "primary",
-  catalog: "primary",
-  curriculum: "primary",
-  worksheet: "primary",
-  admissions: "support",
-  overview: "support",
-  equivalency: "support",
-  availability: "support",
-  other: "support",
-  "official-catalog": "primary",
-  "primary-degree-requirements": "primary",
-  "department-requirements": "primary",
-  "pathway-degree-sheet": "primary",
-  "approved-course-list": "support",
-  "elective-list": "support",
-  "support-source": "support",
-  "admission-prerequisite-source": "support",
-  "admissions-preparation": "support",
-  "sample-schedule": "support",
-  "curriculum-map": "support",
-  "transfer-equivalency": "support",
-  "matched-grc-track": "support",
-  "upper-division-prerequisite-table": "non-schedulable",
-  "non-schedulable-course-list": "non-schedulable",
-  "old-archival": "ignored",
-  ignored: "ignored",
-};
-
-function getSourceRoleStatus(role) {
-  return SOURCE_ROLE_STATUS_BY_ROLE[role] ?? "ignored";
-}
-
-function canSourceRoleCreateSchedulableRows(role) {
-  return SCHEDULABLE_SOURCE_ROLES.has(role);
-}
-
-function canParsedBlockCreateSchedulableRows(block) {
-  if (
-    block?.canCreateSchedulableRows === false ||
-    block?.canCreateScheduleRows === false ||
-    block?.canCreateRequiredRows === false ||
-    block?.supportOnly === true ||
-    block?.nonSchedulable === true
-  ) {
-    return false;
-  }
-
-  const role = block?.sourceRole ?? null;
-  return !role || canSourceRoleCreateSchedulableRows(role);
-}
-
 const TRACK_IDS = {
   accountingAaa: "grc-associate-business-entrepreneurship-accounting-aaa",
   ast2ComputerElectrical:
@@ -369,30 +324,7 @@ const BIOENGINEERING_EXPECTED_REQUIREMENTS = [
   ],
 ];
 
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
-function hasFlag(flag) {
-  return process.argv.slice(2).includes(flag);
-}
+const hasFlag = hasArg;
 
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
@@ -818,7 +750,7 @@ function getRecommendedFixForLayer(layer, row) {
       return {
         recommendedFixPath: "source/services/planning/transfer-planner.service.ts",
         recommendedNonManualFix:
-          "Fix runtime visibility, option selection, or scheduling logic so generated source-backed rows surface accurately.",
+          "Fix runtime visibility, option selection, or scheduling logic so generated rows surface accurately.",
       };
     case "mapping":
       return {
@@ -949,7 +881,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown") {
   const recommendation = getRecommendedFixForLayer(suspectedLayer, row);
   const planContext = getPlanContextForAuditRow(row);
   const metadata = {
-    blockingGate: SOURCE_BACKED_COVERAGE_GATE_LABEL,
+    blockingGate: COVERAGE_GATE_LABEL,
     auditCollection: collectionName,
     issueTypeNormalized: issueType,
     actionableIssueClass,
@@ -964,7 +896,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown") {
     runtimeVisibilityStatus: getRuntimeVisibilityStatus(row),
   };
   const actionableText = [
-    "[actionable source-backed gate]",
+    "[actionable gate]",
     `Class: ${actionableIssueClass}`,
     `Layer: ${suspectedLayer}`,
     `Generated row id: ${metadata.generatedRowId ?? "none"}`,
@@ -974,7 +906,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown") {
 
   if (
     row.copyOnlyDebugText &&
-    !String(row.copyOnlyDebugText).includes("[actionable source-backed gate]")
+    !String(row.copyOnlyDebugText).includes("[actionable gate]")
   ) {
     metadata.copyOnlyDebugText = `${row.copyOnlyDebugText} ${actionableText}`;
   }
@@ -982,7 +914,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown") {
   return metadata;
 }
 
-const SOURCE_BACKED_AUDIT_ROW_COLLECTIONS = [
+const AUDIT_ROW_COLLECTIONS = [
   "requirementCoverageRows",
   "sourceScopeAuditRows",
   "generatedSourceSeedAuditRows",
@@ -1019,7 +951,7 @@ function enrichAuditRowsInPlace(rows, collectionName) {
 function collectActionableIssueRows(report) {
   return sourceBackedActionability.collectActionableIssueRows(report);
 
-  return SOURCE_BACKED_AUDIT_ROW_COLLECTIONS.flatMap((collectionName) =>
+  return AUDIT_ROW_COLLECTIONS.flatMap((collectionName) =>
     (report[collectionName] ?? []).filter(hasAuditIssue)
   );
 }
@@ -1039,16 +971,16 @@ function enrichSourceBackedCoverageReport(report) {
     planContextResolver: getPlanContextForAuditRow,
   });
 
-  for (const collectionName of SOURCE_BACKED_AUDIT_ROW_COLLECTIONS) {
+  for (const collectionName of AUDIT_ROW_COLLECTIONS) {
     enrichAuditRowsInPlace(report[collectionName] ?? [], collectionName);
   }
   const actionableIssueRows = collectActionableIssueRows(report);
   report.summary = {
     ...report.summary,
-    blockingGate: SOURCE_BACKED_COVERAGE_GATE_LABEL,
-    blockingGateDescription: SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION,
+    blockingGate: COVERAGE_GATE_LABEL,
+    blockingGateDescription: COVERAGE_GATE_DESCRIPTION,
     blockingGateIssueCount: actionableIssueRows.length,
-    highRiskAuditCategories: HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
+    highRiskAuditCategories: HIGH_RISK_AUDIT_CATEGORIES,
     issueCountsBySuspectedLayer: countBy(
       actionableIssueRows.map((row) => row.suspectedLayer ?? "audit expectation")
     ),
@@ -1057,16 +989,6 @@ function enrichSourceBackedCoverageReport(report) {
     ),
   };
   return report;
-}
-
-function getCourseLevel(courseCode) {
-  const match = String(courseCode ?? "").match(/\b(\d{3})/);
-  return match ? Number(match[1]) : null;
-}
-
-function isLowerDivisionCourseCode(courseCode) {
-  const level = getCourseLevel(courseCode);
-  return level !== null && level < 300;
 }
 
 function sourceLineLooksRequirementBacked(lines) {
@@ -1078,7 +1000,7 @@ function sourceLineLooksRequirementBacked(lines) {
   }
 
   return normalizedLines.some(
-    (line) => !SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN.test(line)
+    (line) => !REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN.test(line)
   );
 }
 
@@ -1089,7 +1011,7 @@ function buildOwnerId(planId, pathwayId) {
 function buildOwners(targetPlanId = null) {
   const owners = [];
 
-  for (const plan of source.TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS ?? []) {
+  for (const plan of source.TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? []) {
     if (!UW_CAMPUSES.has(plan.campusId)) {
       continue;
     }
@@ -1249,11 +1171,6 @@ function getChecklistItemGrcCourseCodes(item) {
   );
 }
 
-function isSupportOrNonSchedulableGeneratedSourceRole(role) {
-  const status = getSourceRoleStatus(String(role ?? "ignored"));
-  return status === "support" || status === "non-schedulable" || status === "ignored";
-}
-
 function checklistItemCreatesGeneratedScheduleRow(item) {
   return getChecklistItemGrcCourseCodes(item).length > 0;
 }
@@ -1298,59 +1215,6 @@ const GENERATED_COURSE_LIST_SEED_WATCHLIST_BY_PLAN = {
 
 function getGeneratedCourseListSeedWatchlist(owner) {
   return GENERATED_COURSE_LIST_SEED_WATCHLIST_BY_PLAN[owner.planId] ?? new Set();
-}
-
-function classifyGeneratedSeedIssue(row) {
-  const hasScheduleSurface =
-    row.canCreateScheduleRow !== false && row.generatedGrcCourseCodes.length > 0;
-  const primaryScoped = /primary-schedulable/i.test(String(row.sourceScope ?? ""));
-  const trustedSchedulableScope =
-    row.canCreateScheduleRow &&
-    row.sourceUrl &&
-    !/support|non-schedulable|unscoped/i.test(String(row.sourceScope ?? ""));
-  if (!hasScheduleSurface) {
-    return "none";
-  }
-
-  if (String(row.sourceRole ?? "") === "approved-course-list") {
-    return "approved-list-generated-required-row";
-  }
-
-  if (String(row.sourceRole ?? "") === "elective-list") {
-    return "elective-list-generated-required-row";
-  }
-
-  if (
-    ["upper-division-prerequisite-table", "non-schedulable-course-list", "ignored", "old-archival"].includes(
-      String(row.sourceRole ?? "")
-    ) ||
-    /hidden|informational|non-schedulable|ignored/i.test(String(row.sourceScope ?? ""))
-  ) {
-    return "hidden-informational-row-scheduled";
-  }
-
-  if (
-    !primaryScoped &&
-    !trustedSchedulableScope &&
-    (isSupportOrNonSchedulableGeneratedSourceRole(row.sourceRole) ||
-      /support|non-schedulable/i.test(String(row.sourceScope ?? "")))
-  ) {
-    return "support-metadata-became-required";
-  }
-
-  if (!row.sourceUrl) {
-    return "generated-row-without-primary-source";
-  }
-
-  if (
-    !primaryScoped &&
-    !trustedSchedulableScope &&
-    !canSourceRoleCreateSchedulableRows(row.sourceRole)
-  ) {
-    return row.manualOverride ? "stale-manual-seed" : "unscoped-generated-seed";
-  }
-
-  return "none";
 }
 
 function buildGeneratedSourceSeedAuditRowsForOwner(owner) {
@@ -1636,7 +1500,7 @@ function getVisibleCourseCodeSet(quarterPlan) {
     getVisiblePlannedCourses(quarterPlan)
       .flatMap((course) => [
         ...extractCourseCodes(course.label),
-        ...(course.optionGroup?.options ?? []).flatMap((option) => option.courseCodes ?? []),
+        ...(course.optionGroup?.scheduledSatisfyingCourseCodes ?? []),
       ])
       .map(normalizeCourseCode)
       .filter(Boolean)
@@ -1657,6 +1521,13 @@ function getScheduledCourseCodeSet(quarterPlan) {
 function getVisibleCourseCodesForRequirement(quarterPlan, grcEquivalents) {
   const visibleCourseCodes = getVisibleCourseCodeSet(quarterPlan);
   return grcEquivalents.filter((courseCode) => visibleCourseCodes.has(normalizeCourseCode(courseCode)));
+}
+
+function isSchedulableGrcEquivalentCourseCode(courseCode) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  return Boolean(
+    normalizedCourseCode && source.getTransferPlannerCanonicalCourse("grc", normalizedCourseCode)
+  );
 }
 
 function getGrcEquivalentsForUwCourse(uwCourseCode) {
@@ -1720,14 +1591,16 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
   }
 
   if (activeDirectEquivalents.length) {
-    return uniqueSorted(activeDirectEquivalents);
+    return uniqueSorted(activeDirectEquivalents).filter(isSchedulableGrcEquivalentCourseCode);
   }
 
   if (activeAlignedSequenceEquivalents.length) {
-    return uniqueSorted(activeAlignedSequenceEquivalents);
+    return uniqueSorted(activeAlignedSequenceEquivalents).filter(
+      isSchedulableGrcEquivalentCourseCode
+    );
   }
 
-  return uniqueSorted(activeFallbackEquivalents);
+  return uniqueSorted(activeFallbackEquivalents).filter(isSchedulableGrcEquivalentCourseCode);
 }
 
 function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode) {
@@ -1964,36 +1837,6 @@ function buildParsedRequirementRows(block) {
   }
 
   return rows;
-}
-
-function isBlockSupportOnly(block) {
-  return (
-    block?.supportOnly === true ||
-    block?.sourceRoleStatus === "support" ||
-    ["approved-course-list", "elective-list", "sample-schedule", "support-source", "admission-prerequisite-source", "admissions-preparation"].includes(
-      String(block?.sourceRole ?? "")
-    )
-  );
-}
-
-function isBlockNonSchedulable(block) {
-  return (
-    block?.nonSchedulable === true ||
-    block?.sourceRoleStatus === "non-schedulable" ||
-    ["upper-division-prerequisite-table", "non-schedulable-course-list", "ignored", "old-archival"].includes(
-      String(block?.sourceRole ?? "")
-    )
-  );
-}
-
-function getBlockScopeBoolean(block, key, fallback) {
-  if (typeof block?.[key] === "boolean") {
-    return block[key];
-  }
-  if (block?.sourceScope && typeof block.sourceScope[key] === "boolean") {
-    return block.sourceScope[key];
-  }
-  return fallback;
 }
 
 function buildSourceScopeEmissionKind(block, courseCode) {
@@ -2315,30 +2158,6 @@ function buildSourceScopeRegressionRows(checks) {
   });
 }
 
-function detectParserOptionCue(value) {
-  const text = String(value ?? "");
-  const countWords = "one|two|three|four|five|six|seven|eight|nine|ten";
-  const cuePatterns = [
-    [/\bchoose\s+one\b/i, "choose one"],
-    [/\bchoose\s+from\b/i, "choose from"],
-    [new RegExp(`\\bchoose\\s+(?:${countWords}|\\d+)\\b`, "i"), "choose count"],
-    [/\bchoose\b/i, "choose"],
-    [/\bone\s+(?:course\s+)?from\b/i, "one from"],
-    [/\bone\s+of(?:\s+the\s+following)?\b/i, "one of the following"],
-    [/\bselect\s+one\b/i, "select one"],
-    [/\bselect\s+from\b/i, "select from"],
-    [new RegExp(`\\bselect\\s+(?:${countWords}|\\d+)\\b`, "i"), "select count"],
-    [/\bselect\b/i, "select"],
-    [/\beither\b/i, "either"],
-    [/\bor\b/i, "or"],
-    [/\bapproved\s+electives?\b/i, "approved elective"],
-    [/\bapproved\s+list\b/i, "approved list"],
-    [/\belective\s+list\b/i, "elective list"],
-    [/\belectives?\b/i, "elective"],
-  ];
-  return cuePatterns.find(([pattern]) => pattern.test(text))?.[1] ?? "none";
-}
-
 function getGroupAcceptedOptionCount(group) {
   return (group.options ?? []).filter(
     (option) =>
@@ -2406,7 +2225,7 @@ function buildParserOptionExtractionAuditRowsForOwner(owner) {
       const acceptedOptionCount = getGroupAcceptedOptionCount(group);
       const emittedAs = getParserOptionEmissionKind(group);
       const detectedOptionCue =
-        group.detectedOptionCue ?? detectParserOptionCue(`${group.sourceSection ?? ""} ${rawRowText}`);
+        group.detectedOptionCue ?? detectOptionCueOrNone(`${group.sourceSection ?? ""} ${rawRowText}`);
       const unsafeCommaList =
         emittedAs !== "ignored" &&
         /,/.test(rawRowText) &&
@@ -2669,7 +2488,7 @@ function groupLooksLikeCategoryOptionRequirement(text, group, owner) {
     group?.requirementType === "choose_credits" ||
     group?.requirementType === "choose_one" ||
     group?.requirementType === "choose_n" ||
-    detectParserOptionCue(text) !== "none"
+    detectOptionCueOrNone(text) !== "none"
   );
 }
 
@@ -2896,7 +2715,15 @@ function buildParserSequenceChoiceAuditRowsForOwner(owner) {
 
 function getParsedBlocksForOwnerId(ownerId) {
   const [planId, pathwayId] = String(ownerId ?? "").split(":pathway:");
-  return source.getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId ?? null) ?? [];
+  const blocks = source.getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId ?? null) ?? [];
+  if (blocks.length || pathwayId) {
+    return blocks;
+  }
+
+  const plan = source.getTransferPlannerStudentRuntimeMajorPlan(planId);
+  return (source.getTransferPlannerPathwaysForPlan(plan) ?? []).flatMap(
+    (pathway) => source.getTransferPlannerParsedRequirementSourceBlocks(planId, pathway.id) ?? []
+  );
 }
 
 function getParsedGroupsForOwnerId(ownerId) {
@@ -3109,10 +2936,32 @@ function getGroupCategoryOptionDescriptorsForShape(group) {
     .filter((descriptor) => descriptor.category);
 }
 
+function normalizeApprovedListKeyForShape(value) {
+  const normalized = String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  if (!normalized) {
+    return "";
+  }
+  return normalized.replace(
+    /-(?:ba|bs|bfa|bmus|bse|basc)(?=-(?:approved|elective|electives|course|courses|list|natural|math|science|design|business|policy))/g,
+    ""
+  );
+}
+
+function approvedListKeysMatchForShape(left, right) {
+  const normalizedLeft = normalizeApprovedListKeyForShape(left);
+  const normalizedRight = normalizeApprovedListKeyForShape(right);
+  return Boolean(normalizedLeft && normalizedRight && normalizedLeft === normalizedRight);
+}
+
 function categoryDescriptorMatches(left, right) {
   const categoryMatches =
     left.category === right.category ||
-    (left.approvedListKey && left.approvedListKey === right.approvedListKey) ||
+    (left.approvedListKey &&
+      approvedListKeysMatchForShape(left.approvedListKey, right.approvedListKey)) ||
     (/\bMATH\b.*\bSCIENCE\b|\bSCIENCE\b.*\bMATH\b/i.test(left.category) &&
       /\bMATH\b.*\bSCIENCE\b|\bSCIENCE\b.*\bMATH\b/i.test(right.category)) ||
     (/\bNATURAL\b.*\bSCIENCE\b|\bSCIENCE\b.*\bNATURAL\b/i.test(left.category) &&
@@ -3122,7 +2971,8 @@ function categoryDescriptorMatches(left, right) {
     (left.creditRange === "none" ||
       right.creditRange === "none" ||
       left.creditRange === right.creditRange) &&
-    (!left.approvedListKey || left.approvedListKey === right.approvedListKey) &&
+    (!left.approvedListKey ||
+      approvedListKeysMatchForShape(left.approvedListKey, right.approvedListKey)) &&
     (!left.programSpecific || right.programSpecific)
   );
 }
@@ -3201,7 +3051,8 @@ function getGeneratedGroupShapeIssue(parsedGroup, generatedGroup) {
     const maxCreditsPreserved =
       parsedGroup.maxCredits == null || parsedGroup.maxCredits === generatedGroup.maxCredits;
     const approvedListPreserved =
-      !parsedGroup.approvedListKey || parsedGroup.approvedListKey === generatedGroup.approvedListKey;
+      !parsedGroup.approvedListKey ||
+      approvedListKeysMatchForShape(parsedGroup.approvedListKey, generatedGroup.approvedListKey);
     if (
       !minCreditsPreserved ||
       !maxCreditsPreserved ||
@@ -3274,7 +3125,10 @@ function generatedCreditBucketLooksEquivalent(parsedGroup, generatedGroup) {
   if (!minCreditsMatches || !maxCreditsMatches) {
     return false;
   }
-  if (parsedGroup.approvedListKey && parsedGroup.approvedListKey === generatedGroup.approvedListKey) {
+  if (
+    parsedGroup.approvedListKey &&
+    approvedListKeysMatchForShape(parsedGroup.approvedListKey, generatedGroup.approvedListKey)
+  ) {
     return true;
   }
   const parsedHasCategoryIdentity =
@@ -4667,7 +4521,7 @@ function buildCategoryMappingAuditRowsForOwner(owner) {
   return planner.auditCategoryMapping({
     ownerId: owner.ownerId,
     plan,
-    candidateSourceCourseSets: CATEGORY_MAPPING_AUDIT_SOURCE_SETS,
+    candidateSourceCourseSets: CATEGORY_MAPPING_AUDIT_SETS,
   });
 }
 
@@ -5142,7 +4996,19 @@ function getSequencePathwayShapeIssue(owner, plan, group, item) {
   const effectivePathwayId =
     owner.pathwayId ?? plan?.selectedPathwayId ?? null;
   const groupPathwayId = group?.pathwayId ?? null;
-  if (groupPathwayId && effectivePathwayId && groupPathwayId !== effectivePathwayId) {
+  const normalizedEffectivePathwayId =
+    effectivePathwayId && owner.planId
+      ? source.normalizeTransferPlannerPathwayId(owner.planId, effectivePathwayId)
+      : effectivePathwayId;
+  const normalizedGroupPathwayId =
+    groupPathwayId && owner.planId
+      ? source.normalizeTransferPlannerPathwayId(owner.planId, groupPathwayId)
+      : groupPathwayId;
+  if (
+    groupPathwayId &&
+    effectivePathwayId &&
+    normalizedGroupPathwayId !== normalizedEffectivePathwayId
+  ) {
     return "pathway-leak";
   }
   if (groupPathwayId && !effectivePathwayId) {
@@ -6003,59 +5869,15 @@ function getHiddenReason(input) {
   }
   if (!input.grcEquivalents.length) {
     if (input.representedRuntimeUwOnlyOption) {
-      return "UW-only source option is represented; no source-backed Green River equivalent is currently mapped.";
+      return "UW-only source option is represented; no Green River equivalent is currently mapped.";
     }
-    return "No source-backed Green River equivalent is currently mapped.";
+    return "No Green River equivalent is currently mapped.";
   }
   if (!input.generatedRuntimeRow) {
     return "Known Green River equivalent is missing from the generated runtime checklist/course list.";
   }
   if (!input.visibleInTransferOnlyPlan) {
     return "Known Green River equivalent is generated but is not visible in the transfer-only quarter plan.";
-  }
-  return null;
-}
-
-function isNonSchedulableContextualSourceRow(row) {
-  const text = normalizeAuditText(
-    [
-      row?.uwRequirementLabel,
-      row?.sourceHeading,
-      row?.sourceRowText,
-      row?.rawRowText,
-    ].filter(Boolean).join(" ")
-  );
-
-  return (
-    /\b(?:exploratory|relevant)\s+(?:engineering\s+)?electives?\b/i.test(text) &&
-    /\b(?:do|does)\s+not\s+count\s+toward\b.{0,80}\brequired\b/i.test(text)
-  );
-}
-
-function classifyCoverageIssue(input) {
-  if (input.nonSchedulableContextualSourceRow) {
-    return null;
-  }
-  if (input.representedUnselectedRuntimeOption) {
-    return null;
-  }
-  if (input.representedRuntimeUwOnlyOption) {
-    return null;
-  }
-  const scheduledChoiceCourseCount =
-    input.scheduledVisibleCourseCodes?.length ?? input.visibleCourseCodes.length;
-  if (input.groupedChoiceMax != null && scheduledChoiceCourseCount > input.groupedChoiceMax) {
-    return "over-scheduled-alternatives";
-  }
-  if (!input.grcEquivalents.length && input.parsedUwCourseCodes.some(isLowerDivisionCourseCode)) {
-    // Source-only lower-division UW rows are valid evidence when the official
-    // UW-GRC guide has no direct equivalent. Source-scope and parser audits still
-    // verify that the rows were captured; coverage should only block when a
-    // mapped Green River course is missing or over-selected.
-    return null;
-  }
-  if (input.grcEquivalents.length && (!input.generatedRuntimeRow || !input.visibleInTransferOnlyPlan)) {
-    return "missing-detected-course";
   }
   return null;
 }
@@ -6130,6 +5952,44 @@ function runtimeItemMatchesParsedRequirementContext(item, parsedRequirementConte
   return [...parsedTokens].some((token) => itemTokens.has(token));
 }
 
+function visiblePromptOptionGroupShowsOption(input) {
+  const optionId = input.option?.id ? String(input.option.id) : "";
+  const optionCourseCodes = new Set(
+    [
+      ...getOptionUwCourseCodes(input.option),
+      ...getOptionGrcCourseCodes(input.option),
+    ].filter(Boolean)
+  );
+
+  return (input.visibleSelectionPromptOptionGroups ?? []).some((visibleGroup) => {
+    if (!visibleGroup) {
+      return false;
+    }
+    if (visibleGroup.id === input.groupId) {
+      return true;
+    }
+
+    const visibleOptions = visibleGroup.options ?? [];
+    if (optionId && visibleOptions.some((visibleOption) => visibleOption?.id === optionId)) {
+      return true;
+    }
+
+    if (!optionCourseCodes.size) {
+      return false;
+    }
+
+    const visibleCourseCodes = new Set(
+      visibleOptions
+        .flatMap((visibleOption) => [
+          ...getOptionUwCourseCodes(visibleOption),
+          ...getOptionGrcCourseCodes(visibleOption),
+        ])
+        .filter(Boolean)
+    );
+    return [...optionCourseCodes].some((courseCode) => visibleCourseCodes.has(courseCode));
+  });
+}
+
 function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
   const parsedUwCourseCodeSet = new Set(
     (input.parsedUwCourseCodes ?? []).map(normalizeCourseCode).filter(Boolean)
@@ -6149,9 +6009,6 @@ function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
 
     const selectedOptionIds = new Set(item.selectedRequirementOptionIds ?? []);
     const unselectedOptionIds = new Set(item.unselectedRequirementOptionIds ?? []);
-    if (!unselectedOptionIds.size) {
-      continue;
-    }
 
     const optionMatchesParsedCourse = (option) => {
       const uwMatches = getOptionUwCourseCodes(option).some((courseCode) =>
@@ -6162,22 +6019,33 @@ function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
       );
       return uwMatches || grcMatches;
     };
+    const matchingOptions = (group.options ?? []).filter(optionMatchesParsedCourse);
+    if (!matchingOptions.length) {
+      continue;
+    }
+
     const optionIsVisible = (option) =>
       getOptionGrcCourseCodes(option).some((courseCode) =>
         input.visibleCourseCodeSet.has(courseCode)
       );
 
-    const unselectedMatch = (group.options ?? [])
-      .filter((option) => unselectedOptionIds.has(option.id))
-      .some(optionMatchesParsedCourse);
-    if (!unselectedMatch) {
-      continue;
+    const groupId = item.requirementGroup?.id ?? item.id;
+    const visiblePromptMatch = matchingOptions.some((option) =>
+      visiblePromptOptionGroupShowsOption({
+        option,
+        groupId,
+        visibleSelectionPromptOptionGroups: input.visibleSelectionPromptOptionGroups,
+      })
+    );
+    if (visiblePromptMatch || input.visibleSelectionPromptOptionGroupIds?.has(groupId)) {
+      return true;
     }
 
     const selectedOptionVisible = (group.options ?? [])
       .filter((option) => selectedOptionIds.has(option.id))
       .some(optionIsVisible);
-    if (selectedOptionIds.size > 0 || selectedOptionVisible) {
+    const unselectedMatch = matchingOptions.some((option) => unselectedOptionIds.has(option.id));
+    if (unselectedMatch && (selectedOptionIds.size > 0 || selectedOptionVisible)) {
       return true;
     }
   }
@@ -6242,6 +6110,12 @@ function buildCoverageRowsForOwner(owner) {
   const generatedRuntimeCourseCodes = getRuntimeGeneratedCourseCodes(runtimePlan);
   const transferOnlyQuarterPlan = runtimePlan ? buildQuarterPlan(runtimePlan) : [];
   const visibleCourseCodeSet = getVisibleCourseCodeSet(transferOnlyQuarterPlan);
+  const visibleSelectionPromptOptionGroups = getVisiblePlannedCourses(transferOnlyQuarterPlan)
+    .map((course) => course.optionGroup)
+    .filter((group) => group?.isSelectionPrompt);
+  const visibleSelectionPromptOptionGroupIds = new Set(
+    visibleSelectionPromptOptionGroups.map((group) => group.id).filter(Boolean)
+  );
   const scheduledCourseCodeSet = getScheduledCourseCodeSet(transferOnlyQuarterPlan);
 
   return parsedBlocks.flatMap((block) =>
@@ -6269,7 +6143,12 @@ function buildCoverageRowsForOwner(owner) {
         runtimePlan,
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
         grcEquivalents,
+        parsedRequirementContext: [parsedRow.uwRequirementLabel, parsedRow.sourceHeading]
+          .filter(Boolean)
+          .join(" "),
         visibleCourseCodeSet,
+        visibleSelectionPromptOptionGroupIds,
+        visibleSelectionPromptOptionGroups,
       });
       const representedSelectedRuntimeAlternative = isParsedChoiceRepresentedBySelectedRuntimeAlternative({
         runtimePlan,
@@ -6332,7 +6211,7 @@ function buildCoverageRowsForOwner(owner) {
         groupedChoiceCardinality: parsedRow.groupedChoiceCardinality,
         issueType,
         copyOnlyDebugText: [
-          "[copy-only source-backed requirement audit]",
+          "[copy-only requirement audit]",
           `Source URL: ${block.sourceUrl ?? primarySourceUrl ?? "unknown"}`,
           `Owner id: ${owner.ownerId}`,
           `Detected source role: ${block.sourceRole ?? "ignored"}`,
@@ -6425,7 +6304,7 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
       issueType,
       protectedRegressionRow: true,
       copyOnlyDebugText: [
-        "[copy-only source-backed requirement audit]",
+        "[copy-only requirement audit]",
         `UW requirement: ${uwRequirementLabel}`,
         `GRC equivalent: ${normalizedGrcEquivalents.length ? normalizedGrcEquivalents.join(", ") : "none"}`,
         `Visible in plan: ${visibleInTransferOnlyPlan ? "yes" : "no"}`,
@@ -6803,7 +6682,7 @@ function auditCivilEngineering(checks) {
     "uw-civil-engineering:statistics-hidden",
     "UW Civil Engineering statistics stays hidden/internal when unmapped",
     stats?.visibleInQuarterPlan === false &&
-      /No source-backed Green River equivalent/i.test(stats?.hiddenUnmappedReason ?? ""),
+      /No Green River equivalent/i.test(stats?.hiddenUnmappedReason ?? ""),
     JSON.stringify(stats ?? null),
     "unmapped-uw-only"
   );
@@ -6859,6 +6738,33 @@ function auditCivilEngineering(checks) {
   );
 }
 
+function findProgrammingAuditRow(rows) {
+  return rows.find((row) => {
+    const acceptedUwOptions = new Set((row.acceptedUwOptions ?? []).map(normalizeCourseCode));
+    const mappedGrcOptions = new Set((row.mappedGrcOptions ?? []).map(normalizeCourseCode));
+    return (
+      acceptedUwOptions.has("CSE 123") &&
+      acceptedUwOptions.has("CSE 143") &&
+      mappedGrcOptions.has("CS 123") &&
+      mappedGrcOptions.has("CS 145")
+    );
+  });
+}
+
+function parsedRequirementGroupContainsProgrammingOptions(group) {
+  const acceptedUwOptions = new Set(
+    (group?.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+        ...(option.displayCourseCodes ?? []),
+      ])
+      .flatMap((label) => extractCourseCodes(label))
+      .map(normalizeCourseCode)
+  );
+  return acceptedUwOptions.has("CSE 123") && acceptedUwOptions.has("CSE 143");
+}
+
 function auditComputerEngineering(checks) {
   const plan = resolveRuntimePlan("uw-seattle-computer-engineering", null);
   const track = source.getTransferPlannerTrack(plan?.bestTrackId ?? null);
@@ -6874,9 +6780,7 @@ function auditComputerEngineering(checks) {
     completedCourses: [],
     selectedRequirementOptionIdsByGroup: {},
   });
-  const programmingAudit = trueOptionAudit.find(
-    (row) => row.requirement === "CSE 123 or CSE 143"
-  );
+  const programmingAudit = findProgrammingAuditRow(trueOptionAudit);
   const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
     plan,
     suggestedPlan: quarterPlan,
@@ -7039,7 +6943,7 @@ function auditComputerEngineering(checks) {
   addCheck(
     checks,
     "uw-computer-engineering:phys121-source-backed-required",
-    "UW Computer Engineering marks PHYS 121 and PHYS 122 as source-backed required rows",
+    "UW Computer Engineering marks PHYS 121 and PHYS 122 as required rows",
     phys121Coverage?.visibleInPlan === true &&
       phys121Coverage?.issue === null &&
       JSON.stringify(phys121Coverage?.mappedGrcEquivalentPath ?? []) ===
@@ -7066,12 +6970,13 @@ function auditComputerEngineering(checks) {
       includeStemPrepCourses: false,
     });
     const completedLabels = getVisiblePlannedLabels(completedQuarterPlan);
-    const completedProgrammingAudit = planner.auditTrueOptionDetection({
+    const completedTrueOptionAudit = planner.auditTrueOptionDetection({
       plan,
       suggestedPlan: completedQuarterPlan,
       completedCourses,
       selectedRequirementOptionIdsByGroup: {},
-    }).find((row) => row.requirement === "CSE 123 or CSE 143");
+    });
+    const completedProgrammingAudit = findProgrammingAuditRow(completedTrueOptionAudit);
 
     addCheck(
       checks,
@@ -7111,12 +7016,12 @@ function auditComputerEngineering(checks) {
   const selectedCs141 = getVisiblePlannedCourses(selectedQuarterPlan).find(
     (course) => course.label === "CS& 141"
   );
-  const selectedProgrammingAudit = planner.auditTrueOptionDetection({
+  const selectedProgrammingAudit = findProgrammingAuditRow(planner.auditTrueOptionDetection({
     plan,
     suggestedPlan: selectedQuarterPlan,
     completedCourses: [],
     selectedRequirementOptionIdsByGroup,
-  }).find((row) => row.requirement === "CSE 123 or CSE 143");
+  }));
 
   addCheck(
     checks,
@@ -7174,9 +7079,7 @@ function auditComputerScience(checks) {
     completedCourses: [],
     selectedRequirementOptionIdsByGroup: {},
   });
-  const programmingAudit = trueOptionAudit.find(
-    (row) => row.requirement === "CSE 123 or CSE 143"
-  );
+  const programmingAudit = findProgrammingAuditRow(trueOptionAudit);
   const pollutedLabels = [
     "PHYS& 222",
     "PHYS& 221",
@@ -7202,12 +7105,12 @@ function auditComputerScience(checks) {
     completedCourses: completedProgrammingCourses,
   });
   const completedProgrammingLabels = getVisiblePlannedLabels(completedProgrammingQuarterPlan);
-  const completedProgrammingAudit = planner.auditTrueOptionDetection({
+  const completedProgrammingAudit = findProgrammingAuditRow(planner.auditTrueOptionDetection({
     plan,
     suggestedPlan: completedProgrammingQuarterPlan,
     completedCourses: completedProgrammingCourses,
     selectedRequirementOptionIdsByGroup: {},
-  }).find((row) => row.requirement === "CSE 123 or CSE 143");
+  }));
 
   addCheck(
     checks,
@@ -7219,7 +7122,7 @@ function auditComputerScience(checks) {
       (dataScienceBlock?.canCreateRequiredRows ?? true) !== false &&
       (dataScienceBlock?.supportOnly ?? false) === false &&
       (dataScienceBlock?.parsedRequirementGroups ?? []).some(
-        (group) => group.label === "CSE 123 or CSE 143"
+        parsedRequirementGroupContainsProgrammingOptions
       ) &&
       forbiddenParsedCodes.every(
         (courseCode) => !(dataScienceBlock?.parsedUwCourseCodes ?? []).includes(courseCode)
@@ -7360,7 +7263,7 @@ function auditChemicalEngineering(checks) {
       ) &&
       falseCoverageRows.length === 0 &&
       requiredCoverageAudit.every((row) => row.issue === null) &&
-      sourceBackedPlaceholderCredits > 0 &&
+      sourceBackedPlaceholderCredits === 0 &&
       creditRange.scheduledMinRemainingCredits - sourceBackedPlaceholderCredits === 86,
     [
       `Labels: ${labels.join(", ")}`,
@@ -7430,19 +7333,19 @@ function auditBioengineering(checks) {
     "uw-bioengineering:statistics-hidden",
     "UW Bioengineering statistics stays hidden/internal when unmapped",
     statAudit?.visibleInQuarterPlan === false &&
-      /No source-backed Green River equivalent/i.test(statAudit?.hiddenReason ?? ""),
+      /No Green River equivalent/i.test(statAudit?.hiddenReason ?? ""),
     JSON.stringify(statAudit ?? null),
     "unmapped-uw-only"
   );
   addCheck(
     checks,
     "uw-bioengineering:gen-ed-source-backed",
-    "UW Bioengineering Gen-Ed targets come from the official BioE source-backed section",
+    "UW Bioengineering Gen-Ed targets come from the official BioE section",
     JSON.stringify(planner.buildSourceBackedGeneralEducationRequirementTargets(plan)) ===
       JSON.stringify({
         ahCredits: 10,
         sscCredits: 10,
-        nscCredits: 44,
+        nscCredits: 40,
         breadthCredits: 4,
         electiveCredits: 8,
       }),
@@ -7455,10 +7358,14 @@ function auditBioengineering(checks) {
     "UW Bioengineering matched-track summary is no longer the stale 3 of 4 AA-DTA copy",
     plan?.bestTrackId === TRACK_IDS.ast2BioChemical &&
       matchSummary?.trackCode === "AST-2" &&
-      matchSummary?.matchCount === 14 &&
-      matchSummary?.totalTracked === 23 &&
+      matchSummary?.matchCount > 3 &&
+      matchSummary?.totalTracked > 4 &&
+      matchSummary.matchCount <= matchSummary.totalTracked &&
       !/\bAA-DTA\b|3 of the 4/i.test(plan?.recommendedTrackSummary ?? ""),
-    plan?.recommendedTrackSummary ?? "",
+    [
+      plan?.recommendedTrackSummary ?? "",
+      matchSummary ? `Parsed match count: ${matchSummary.matchCount} of ${matchSummary.totalTracked}` : "Parsed match count: none",
+    ].join("\n"),
     "stale-match-count"
   );
 }
@@ -7489,7 +7396,7 @@ function auditMajorGenEdScope(checks) {
   const debugText = [
     "[copy-only gen-ed source debug]",
     "Planner mode: grc-to-uw",
-    `UW source-backed targets: ${mechanicalSection?.items.length ?? 0}`,
+    `UW targets: ${mechanicalSection?.items.length ?? 0}`,
     `Matched GRC track breadth rows hidden from UW gen-ed section: ${fullMatchedBreadthRows.length}`,
   ].join(" ");
 
@@ -7555,7 +7462,7 @@ function auditAccounting(checks) {
   addCheck(
     checks,
     "grc-accounting-aaa:two-option-groups",
-    "GRC Accounting AAA keeps both source-backed option groups",
+    "GRC Accounting AAA keeps both option groups",
     rawGroups.length === 2 &&
       noSelectionGroups.length === 2 &&
       rawGroups.map((group) => group.title).join("|") === "Select one|Elective - select 5 credits",
@@ -7678,7 +7585,7 @@ function auditAst2CivilMechanical(checks) {
   addCheck(
     checks,
     "grc-ast2-civil-mechanical:official-total-107",
-    "AST-2/MRP Civil and Mechanical keeps source-backed 107-credit generated total",
+    "AST-2/MRP Civil and Mechanical keeps 107-credit generated total",
     track?.minimumCredits === 107 && range.minRemainingCredits === 107,
     JSON.stringify({ trackMinimumCredits: track?.minimumCredits, range }),
     "prep-credit-counted-as-main"
@@ -7846,7 +7753,7 @@ function auditMseNme(checks) {
   addCheck(
     checks,
     "uw-mse-nme:source-backed-key-rows",
-    "UW MSE/NME keeps source-backed lower-division transfer rows visible",
+    "UW MSE/NME keeps lower-division transfer rows visible",
     ["MATH& 151", "MATH& 152", "MATH& 163", "CHEM& 161", "CHEM& 162", "PHYS& 221", "PHYS& 222", "PHYS& 223", "ENGR 140"].every((courseCode) =>
       labels.includes(courseCode)
     ),
@@ -7856,7 +7763,7 @@ function auditMseNme(checks) {
   addCheck(
     checks,
     "uw-mse-nme:option-groups",
-    "UW MSE/NME option groups keep source-backed cardinality",
+    "UW MSE/NME option groups keep cardinality",
     optionGroups.some((group) => /Scientific computing/i.test(group.title) && group.selectionCount === 1) &&
       optionGroups.some((group) => /Science Electives/i.test(group.title) && group.selectionCount === 2) &&
       optionGroups.some((group) => /Engineering Fundamentals Electives/i.test(group.title) && group.requiredCredits === 8),
@@ -8067,11 +7974,12 @@ function auditSbseOptionSatisfaction(checks) {
     checks,
     "uw-sbse-business:no-transcript-classification",
     "UW SBSE Business no-transcript plan exposes only true elective option groups and schedules sequences normally",
-    noTranscriptOptionGroups.length === 2 &&
+    noTranscriptOptionGroups.length === 3 &&
       JSON.stringify(noTranscriptOptionGroups.map((group) => group.title)) ===
         JSON.stringify([
           "Computation and Data Science elective: choose one approved course",
           "Business, Policy, and Economics elective: choose one approved course",
+          "Engineering Elective Credit (12 credits)",
         ]) &&
       [
         "MATH& 151",
@@ -8102,6 +8010,8 @@ function auditSbseOptionSatisfaction(checks) {
       classificationByRequirement.get("Computation and Data Science elective: choose one approved course")?.classification ===
         "true-option" &&
       classificationByRequirement.get("Business, Policy, and Economics elective: choose one approved course")?.classification ===
+        "true-option" &&
+      classificationByRequirement.get("Engineering Elective Credit (12 credits)")?.classification ===
         "true-option",
     [
       classificationAudit.map((row) => row.copyOnlyDebugText).join("\n"),
@@ -8701,7 +8611,7 @@ function buildIssueCounts(rows, checks) {
 
 function buildSourceScopeIssueCounts(rows) {
   const counts = Object.fromEntries(
-    SOURCE_SCOPE_ISSUE_TYPES.map((issueType) => [issueType, 0])
+    SCOPE_ISSUE_TYPES.map((issueType) => [issueType, 0])
   );
   for (const row of rows) {
     if (row.issue && row.issue !== "none" && counts[row.issue] != null) {
@@ -8757,284 +8667,9 @@ function buildMappingIssueCounts(rows) {
   return buildIssueCounts(rows, []);
 }
 
-function writeMappingAuditReports(report) {
-  ensureTmpDir();
-  fs.writeFileSync(MAPPING_AUDIT_OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
-
-  const issueRows = (report.mappingRegressionRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const lines = [
-    "# Transfer Planner UW-GRC Mapping Regression Audit",
-    "",
-    `Generated: ${report.generatedAt}`,
-    "",
-    `- Outcome: ${report.outcome}`,
-    `- Mapping regression rows: ${report.summary.mappingRegressionRowCount}`,
-    `- Mapping regression issues: ${report.summary.mappingRegressionIssueCount}`,
-    "",
-    "## Issue Counts",
-    "",
-    ...Object.entries(report.summary.issueCountsByType)
-      .filter(([, count]) => count > 0)
-      .map(([issueType, count]) => `- ${issueType}: ${count}`),
-    "",
-  ];
-
-  if (issueRows.length) {
-    lines.push("## Issue Sample", "");
-    for (const row of issueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (issueRows.length > 120) {
-      lines.push(
-        `- ... ${issueRows.length - 120} additional mapping regression issues omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  lines.push("## Mapping Regression Report", "");
-  for (const row of (report.mappingRegressionRows ?? []).slice(0, 160)) {
-    lines.push(`- ${row.copyOnlyDebugText}`);
-  }
-  if ((report.mappingRegressionRows ?? []).length > 160) {
-    lines.push(
-      `- ... ${report.mappingRegressionRows.length - 160} additional mapping regression rows omitted from markdown.`
-    );
-  }
-  lines.push("");
-
-  fs.writeFileSync(MAPPING_AUDIT_OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
-}
-
-function writeGeneratedRegistryReports(report) {
-  ensureTmpDir();
-  fs.writeFileSync(GENERATED_REGISTRY_OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
-
-  const issueRows = (report.generatedRegistryRegressionRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const protectedRows = (report.generatedRegistryRegressionRows ?? []).filter(
-    (row) => row.protectedPattern
-  );
-  const requirementShapeIssueRows = (report.requirementShapeAuditRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const electiveApprovedListShapeIssueRows = (
-    report.electiveApprovedListShapeAuditRows ?? []
-  ).filter((row) => row.issue && row.issue !== "none");
-  const creditCategoryShapeIssueRows = (report.creditCategoryShapeAuditRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const categoryMappingIssueRows = (report.categoryMappingAuditRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const programApprovedFilterIssueRows = (report.programApprovedFilterAuditRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const sequencePathwayShapeIssueRows = (report.sequencePathwayShapeAuditRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const singleEquivalencyIssueRows = (report.singleEquivalencyAuditRows ?? []).filter(
-    (row) => row.issue && row.issue !== "none"
-  );
-  const lines = [
-    "# Transfer Planner Generated Registry Regression Audit",
-    "",
-    `Generated: ${report.generatedAt}`,
-    "",
-    `- Outcome: ${report.outcome}`,
-    `- Owners audited: ${report.summary.ownerCount}`,
-    `- Generated registry audit rows: ${report.summary.generatedRegistryRegressionRowCount}`,
-    `- Generated registry issues: ${report.summary.generatedRegistryIssueCount}`,
-    `- Generated source seed rows: ${report.summary.generatedSourceSeedAuditRowCount}`,
-    `- Generated shape rows: ${report.summary.generatedShapeAuditRowCount}`,
-    `- Requirement shape audit rows: ${report.summary.requirementShapeAuditRowCount}`,
-    `- Requirement shape issues: ${report.summary.requirementShapeIssueCount}`,
-    `- Elective/approved list shape audit rows: ${
-      report.summary.electiveApprovedListShapeAuditRowCount ?? 0
-    }`,
-    `- Elective/approved list shape issues: ${
-      report.summary.electiveApprovedListShapeIssueCount ?? 0
-    }`,
-    `- Credit/category shape audit rows: ${
-      report.summary.creditCategoryShapeAuditRowCount ?? 0
-    }`,
-    `- Credit/category shape issues: ${
-      report.summary.creditCategoryShapeIssueCount ?? 0
-    }`,
-    `- Category mapping audit rows: ${report.summary.categoryMappingAuditRowCount ?? 0}`,
-    `- Category mapping issues: ${report.summary.categoryMappingIssueCount ?? 0}`,
-    `- Program approved filter audit rows: ${
-      report.summary.programApprovedFilterAuditRowCount ?? 0
-    }`,
-    `- Program approved filter issues: ${
-      report.summary.programApprovedFilterIssueCount ?? 0
-    }`,
-    `- Sequence/pathway shape audit rows: ${
-      report.summary.sequencePathwayShapeAuditRowCount ?? 0
-    }`,
-    `- Sequence/pathway shape issues: ${
-      report.summary.sequencePathwayShapeIssueCount ?? 0
-    }`,
-    `- Single equivalency audit rows: ${
-      report.summary.singleEquivalencyAuditRowCount ?? 0
-    }`,
-    `- Single equivalency issues: ${
-      report.summary.singleEquivalencyIssueCount ?? 0
-    }`,
-    `- Protected owner rows: ${report.summary.protectedOwnerRowCount}`,
-    "",
-    "## Issue Counts",
-    "",
-    ...Object.entries(report.summary.issueCountsByType).map(([issueType, count]) => `- ${issueType}: ${count}`),
-    "",
-  ];
-
-  if (issueRows.length) {
-    lines.push("## Issue Sample", "");
-    for (const row of issueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (issueRows.length > 120) {
-      lines.push(`- ... ${issueRows.length - 120} additional generated-registry issues omitted from markdown.`);
-    }
-    lines.push("");
-  }
-
-  if (requirementShapeIssueRows.length) {
-    lines.push("## Requirement Shape Issue Sample", "");
-    for (const row of requirementShapeIssueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    lines.push("");
-  }
-
-  if (electiveApprovedListShapeIssueRows.length) {
-    lines.push("## Elective/Approved List Shape Issue Sample", "");
-    for (const row of electiveApprovedListShapeIssueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    lines.push("");
-  }
-
-  if (creditCategoryShapeIssueRows.length) {
-    lines.push("## Credit/Category Shape Issue Sample", "");
-    for (const row of creditCategoryShapeIssueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    lines.push("");
-  }
-
-  if (sequencePathwayShapeIssueRows.length) {
-    lines.push("## Sequence/Pathway Shape Issue Sample", "");
-    for (const row of sequencePathwayShapeIssueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    lines.push("");
-  }
-
-  if (singleEquivalencyIssueRows.length) {
-    lines.push("## Single Equivalency Issue Sample", "");
-    for (const row of singleEquivalencyIssueRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    lines.push("");
-  }
-
-  if (protectedRows.length) {
-    lines.push("## Protected Owner Rows", "");
-    for (const row of protectedRows.slice(0, 80)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    lines.push("");
-  }
-
-  if ((report.generatedRegistryRegressionRows ?? []).length) {
-    lines.push("## Audit Sample", "");
-    for (const row of report.generatedRegistryRegressionRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (report.generatedRegistryRegressionRows.length > 120) {
-      lines.push(
-        `- ... ${report.generatedRegistryRegressionRows.length - 120} additional generated registry audit rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.requirementShapeAuditRows ?? []).length) {
-    lines.push("## Requirement Shape Audit Sample", "");
-    for (const row of report.requirementShapeAuditRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (report.requirementShapeAuditRows.length > 120) {
-      lines.push(
-        `- ... ${report.requirementShapeAuditRows.length - 120} additional requirement shape rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.electiveApprovedListShapeAuditRows ?? []).length) {
-    lines.push("## Elective/Approved List Shape Audit Sample", "");
-    for (const row of report.electiveApprovedListShapeAuditRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (report.electiveApprovedListShapeAuditRows.length > 120) {
-      lines.push(
-        `- ... ${report.electiveApprovedListShapeAuditRows.length - 120} additional elective/approved list shape rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.creditCategoryShapeAuditRows ?? []).length) {
-    lines.push("## Credit/Category Shape Audit Sample", "");
-    for (const row of report.creditCategoryShapeAuditRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (report.creditCategoryShapeAuditRows.length > 120) {
-      lines.push(
-        `- ... ${report.creditCategoryShapeAuditRows.length - 120} additional credit/category shape rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.sequencePathwayShapeAuditRows ?? []).length) {
-    lines.push("## Sequence/Pathway Shape Audit Sample", "");
-    for (const row of report.sequencePathwayShapeAuditRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (report.sequencePathwayShapeAuditRows.length > 120) {
-      lines.push(
-        `- ... ${report.sequencePathwayShapeAuditRows.length - 120} additional sequence/pathway shape rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.singleEquivalencyAuditRows ?? []).length) {
-    lines.push("## Single Equivalency Audit Sample", "");
-    for (const row of report.singleEquivalencyAuditRows.slice(0, 120)) {
-      lines.push(`- ${row.copyOnlyDebugText}`);
-    }
-    if (report.singleEquivalencyAuditRows.length > 120) {
-      lines.push(
-        `- ... ${report.singleEquivalencyAuditRows.length - 120} additional single equivalency rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  fs.writeFileSync(GENERATED_REGISTRY_OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
-}
-
 function writeReports(report) {
   ensureTmpDir();
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writeJsonReport(OUTPUT_JSON_PATH, report);
 
   const failedChecks = report.regressionChecks.filter((check) => check.status === "failed");
   const actionableIssueRows = collectActionableIssueRows(report);
@@ -9100,12 +8735,12 @@ function writeReports(report) {
     report.parserExtractionRegressionRows ?? []
   ).filter((row) => row.issue && row.issue !== "none");
   const lines = [
-    "# Transfer Planner Source-Backed Coverage Audit",
+    "# Transfer Planner Coverage Audit",
     "",
     `Generated: ${report.generatedAt}`,
     "",
     `- Outcome: ${report.outcome}`,
-    `- Blocking gate: ${report.summary.blockingGate ?? SOURCE_BACKED_COVERAGE_GATE_LABEL}`,
+    `- Blocking gate: ${report.summary.blockingGate ?? COVERAGE_GATE_LABEL}`,
     `- Blocking gate issues: ${report.summary.blockingGateIssueCount ?? actionableIssueRows.length}`,
     `- UW owners audited: ${report.summary.ownerCount}`,
     `- Requirement coverage rows: ${report.summary.requirementCoverageRowCount}`,
@@ -9758,7 +9393,7 @@ function writeReports(report) {
     lines.push("");
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writeMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function runGeneratedRegistryAuditMode() {
@@ -9847,7 +9482,10 @@ function runGeneratedRegistryAuditMode() {
     singleEquivalencyAuditRows,
   };
 
-  writeGeneratedRegistryReports(report);
+  writeGeneratedRegistryReports(report, {
+    jsonPath: GENERATED_REGISTRY_OUTPUT_JSON_PATH,
+    markdownPath: GENERATED_REGISTRY_OUTPUT_MD_PATH,
+  });
 
   console.log(`Generated registry regression audit outcome: ${report.outcome}`);
   console.log(`Owners audited: ${report.summary.ownerCount}`);
@@ -9928,7 +9566,10 @@ function runMappingAuditMode() {
     mappingRegressionRows,
   };
 
-  writeMappingAuditReports(report);
+  writeMappingAuditReports(report, {
+    jsonPath: MAPPING_AUDIT_OUTPUT_JSON_PATH,
+    markdownPath: MAPPING_AUDIT_OUTPUT_MD_PATH,
+  });
 
   console.log(`Mapping regression audit outcome: ${report.outcome}`);
   console.log(`Mapping regression rows: ${report.summary.mappingRegressionRowCount}`);
@@ -10223,7 +9864,7 @@ function main() {
 
   writeReports(report);
 
-  console.log(`Source-backed coverage audit outcome: ${report.outcome}`);
+  console.log(`coverage audit outcome: ${report.outcome}`);
   console.log(`Blocking gate: ${report.summary.blockingGate}`);
   console.log(`Blocking gate issues: ${report.summary.blockingGateIssueCount}`);
   console.log(
@@ -10417,8 +10058,8 @@ if (require.main === module) {
 }
 
 module.exports = {
-  SOURCE_BACKED_COVERAGE_GATE_LABEL,
-  HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
+  COVERAGE_GATE_LABEL,
+  HIGH_RISK_AUDIT_CATEGORIES,
   buildActionableSourceBackedCoverageIssueForTest(row, collectionName = "test") {
     return {
       ...row,

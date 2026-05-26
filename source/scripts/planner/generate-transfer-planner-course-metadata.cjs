@@ -1,9 +1,12 @@
 const fs = require("fs");
 const Module = require("module");
 const path = require("path");
+const { getTmpPath } = require("../lib/tmp-layout.cjs");
 const pdfjs = require("pdfjs-dist/legacy/build/pdf.mjs");
 const ts = require("typescript");
 const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
+
+const REPO_ROOT = path.resolve(__dirname, "..", "..");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -13,19 +16,27 @@ const OUTPUT_PATH = path.resolve(
   "transfer-planner-source",
   "course-metadata.generated.ts"
 );
-const GRC_CATALOG_INGEST_PATH = path.resolve(
+const OUTPUT_VALUE_DIR = path.resolve(
   __dirname,
   "..",
   "..",
-  ".tmp",
-  "transfer-planner-grc-catalog-ingest.json"
+  "constants",
+  "transfer-planner-source",
+  "course-metadata.generated"
+);
+const LEGACY_OUTPUT_VALUE_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "constants",
+  "transfer-planner-source",
+  "course-metadata.generated.data.json"
+);
+const GRC_CATALOG_INGEST_PATH = path.resolve(
+  getTmpPath(REPO_ROOT, "reports", "transfer-planner-grc-catalog-ingest.json")
 );
 const UW_CATALOG_INGEST_PATH = path.resolve(
-  __dirname,
-  "..",
-  "..",
-  ".tmp",
-  "transfer-planner-uw-catalog-ingest.json"
+  getTmpPath(REPO_ROOT, "reports", "transfer-planner-uw-catalog-ingest.json")
 );
 const BOOTSTRAP_GENERATED_PATH = path.resolve(
   __dirname,
@@ -51,6 +62,25 @@ const GRC_AVAILABILITY_GENERATED_PATH = path.resolve(
   "transfer-planner-grc-availability.generated.ts"
 );
 const EXACT_GRC_COURSE_CODE_PATTERN = /^[A-Z]{2,8}&?(?:\s+[A-Z]{2,8}&?){0,2}\s+\d{2,3}(?:\.\d+)?[A-Z]?$/;
+const EXPLICIT_SPACED_SUBJECT_ALIASES = new Map([
+  ["A A", "AA"],
+  ["A MATH", "AMATH"],
+  ["ART H", "ARTH"],
+  ["CHEM E", "CHEME"],
+  ["E E", "EE"],
+  ["IND E", "INDE"],
+  ["M E", "ME"],
+]);
+const RECOVERABLE_LEADING_SUBJECT_TOKENS = new Set([
+  "AND",
+  "AS",
+  "BOTH",
+  "EITHER",
+  "IN",
+  "OR",
+  "PREREQ",
+  "PREREQUISITE",
+]);
 const SUPPLEMENTAL_LEGACY_AVAILABILITY_STATUSES = new Set([
   "catalog-listed-not-in-latest-schedules",
   "published-in-recent-history-not-latest",
@@ -78,6 +108,69 @@ function normalizeCourseCode(value) {
     .toUpperCase()
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function getCourseMetadataSubjectCode(value) {
+  const match = normalizeCourseCode(value).match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/);
+  return match?.[1] ?? null;
+}
+
+function slugifyGeneratedFilePart(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function normalizeCourseMetadataLookupCode(value, knownSubjectCodes) {
+  const normalized = normalizeCourseCode(value);
+  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
+  if (!match) {
+    return normalized;
+  }
+
+  let subjectTokens = match[1].split(" ").filter(Boolean);
+  while (
+    subjectTokens.length > 1 &&
+    RECOVERABLE_LEADING_SUBJECT_TOKENS.has(subjectTokens[0])
+  ) {
+    const candidateTokens = subjectTokens.slice(1);
+    const candidateSpacedSubject = candidateTokens.join(" ");
+    const candidateCollapsedSubject = candidateTokens.join("");
+    if (
+      knownSubjectCodes.has(candidateSpacedSubject) ||
+      knownSubjectCodes.has(candidateCollapsedSubject)
+    ) {
+      subjectTokens = candidateTokens;
+      continue;
+    }
+    break;
+  }
+
+  const spacedSubject = subjectTokens.join(" ");
+  const explicitAlias = EXPLICIT_SPACED_SUBJECT_ALIASES.get(spacedSubject);
+  if (explicitAlias) {
+    return `${explicitAlias} ${match[2]}`;
+  }
+
+  const collapsedSubject = subjectTokens.join("");
+  const normalizedSubject =
+    subjectTokens.every((token) => token.length === 1) ||
+    (subjectTokens.length > 1 &&
+      knownSubjectCodes.has(collapsedSubject) &&
+      !knownSubjectCodes.has(spacedSubject))
+      ? collapsedSubject
+      : spacedSubject;
+
+  return `${normalizedSubject} ${match[2]}`;
+}
+
+function getCourseMetadataPartitionKey(entry, knownSubjectCodes) {
+  const lookupCode = normalizeCourseMetadataLookupCode(entry.code, knownSubjectCodes);
+  const subjectCode = getCourseMetadataSubjectCode(lookupCode) ?? "unknown";
+  const schoolPart = slugifyGeneratedFilePart(entry.schoolId) || "unknown-school";
+  const subjectPart = slugifyGeneratedFilePart(subjectCode) || "unknown-subject";
+  return `${schoolPart}-${subjectPart}`;
 }
 
 function loadGeneratedTsModule(filePath) {
@@ -248,6 +341,28 @@ function uniqueStrings(values) {
   return [...new Set((values ?? []).filter(Boolean))].sort();
 }
 
+function uniqueGrcGeneralEducationCategories(values = []) {
+  const byKey = new Map();
+  for (const category of values ?? []) {
+    const catalogYearLabel = String(category?.catalogYearLabel ?? "").trim();
+    const label = normalizeTitle(category?.label);
+    const tags = uniqueStrings(category?.tags ?? []);
+    if (!catalogYearLabel || !label || !tags.length) {
+      continue;
+    }
+    byKey.set(`${catalogYearLabel}|${label}|${tags.join(",")}`, {
+      catalogYearLabel,
+      label,
+      tags,
+    });
+  }
+  return [...byKey.values()].sort(
+    (left, right) =>
+      left.catalogYearLabel.localeCompare(right.catalogYearLabel) ||
+      left.label.localeCompare(right.label)
+  );
+}
+
 function normalizeCoursePath(values) {
   return uniqueStrings((values ?? []).map((value) => normalizeCourseCode(value)).filter(Boolean));
 }
@@ -348,6 +463,10 @@ function mergeMetadataEntry(existing, incoming) {
         : existing.creditValue ?? null,
     creditLabel: incoming.creditLabel ?? existing.creditLabel ?? null,
     catalogDescription: incoming.catalogDescription ?? existing.catalogDescription ?? null,
+    grcGeneralEducationCategories: uniqueGrcGeneralEducationCategories([
+      ...(existing.grcGeneralEducationCategories ?? []),
+      ...(incoming.grcGeneralEducationCategories ?? []),
+    ]),
     ...mergedPrerequisiteFields,
     prerequisiteNotes: uniqueStrings([
       ...(existing.prerequisiteNotes ?? []),
@@ -561,7 +680,7 @@ function buildSupplementalLegacyGuideEntries(existingEntries) {
         creditLabel: creditValue != null ? String(creditValue) : null,
         prerequisiteCourseCodes: [predecessorCode],
         prerequisiteNotes: [
-          `Source-backed planning-order prerequisite inferred from ${predecessorSupport.count}/${support.total} published planner course lists that place ${predecessorCode} immediately before ${code} while the current public catalog no longer exposes a standalone course-description page for ${code}.`,
+          `planning-order prerequisite inferred from ${predecessorSupport.count}/${support.total} published planner course lists that place ${predecessorCode} immediately before ${code} while the current public catalog no longer exposes a standalone course-description page for ${code}.`,
         ],
         effectiveYearRanges: mergeRanges(
           [],
@@ -569,7 +688,7 @@ function buildSupplementalLegacyGuideEntries(existingEntries) {
         ),
         sourceLinks: prioritizedSourceLinks,
         notes: [
-          "Source-backed legacy Green River metadata synthesized from official UW equivalency-guide coverage plus repeated planner ordering across published transfer-planning sources.",
+          "legacy Green River metadata synthesized from official UW equivalency-guide coverage plus repeated planner ordering across published transfer-planning sources.",
         ],
       })
     );
@@ -578,25 +697,40 @@ function buildSupplementalLegacyGuideEntries(existingEntries) {
   return supplementalEntries;
 }
 
-function chunkEntries(entries, size) {
-  const chunks = [];
-  for (let index = 0; index < entries.length; index += size) {
-    chunks.push(entries.slice(index, index + size));
+function buildCourseMetadataGenerationModel(entries) {
+  const subjectCodes = uniqueStrings(entries.map((entry) => getCourseMetadataSubjectCode(entry.code)));
+  const knownSubjectCodes = new Set(subjectCodes);
+  const partitions = new Map();
+  const partitionIndex = {};
+
+  for (const entry of entries) {
+    const partitionKey = getCourseMetadataPartitionKey(entry, knownSubjectCodes);
+    const lookupCode = normalizeCourseMetadataLookupCode(entry.code, knownSubjectCodes);
+    const lookupKey = `${entry.schoolId}|${lookupCode}`;
+    const simpleLookupKey = `${entry.schoolId}|${normalizeCourseCode(entry.code)}`;
+
+    partitions.set(partitionKey, [...(partitions.get(partitionKey) ?? []), entry]);
+    partitionIndex[lookupKey] = partitionKey;
+    partitionIndex[simpleLookupKey] ??= partitionKey;
   }
-  return chunks;
+
+  return {
+    partitionIndex,
+    partitions: new Map([...partitions.entries()].sort(([left], [right]) => left.localeCompare(right))),
+    subjectCodes,
+  };
 }
 
-function buildGeneratedCourseMetadataSource(entries) {
-  const chunks = chunkEntries(entries, 80);
-  const chunkDeclarations = chunks
-    .map(
-      (chunk, index) =>
-        `const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_${index}: unknown[] = ${JSON.stringify(chunk, null, 2)};`
-    )
-    .join("\n\n");
-  const chunkNames = chunks
-    .map((_, index) => `TRANSFER_PLANNER_GENERATED_COURSE_METADATA_CHUNK_${index}`)
-    .join(",\n  ");
+function buildGeneratedCourseMetadataSource(model) {
+  const partitionKeys = [...model.partitions.keys()];
+  const partitionKeyLines = partitionKeys.map((key) => `  ${JSON.stringify(key)},`);
+  const subjectCodeLines = model.subjectCodes.map((subjectCode) => `  ${JSON.stringify(subjectCode)},`);
+  const partitionLoaderCases = partitionKeys.map((partitionKey) =>
+    [
+      `    case ${JSON.stringify(partitionKey)}:`,
+      `      return require("./course-metadata.generated/entries-by-school-subject/${partitionKey}.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];`,
+    ].join("\n")
+  );
 
   return [
     "/* eslint-disable */",
@@ -604,13 +738,196 @@ function buildGeneratedCourseMetadataSource(entries) {
     "",
     'import type { TransferPlannerNormalizedCourseMetadataEntry } from "./course-metadata";',
     "",
-    chunkDeclarations,
+    'const { createLazyGeneratedValue } = require("./generated-lazy") as typeof import("./generated-lazy");',
     "",
-    `const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_RAW: unknown[] = ([] as unknown[]).concat(\n  ${chunkNames}\n);`,
+    "const EXPLICIT_SPACED_SUBJECT_ALIASES = new Map<string, string>([",
+    '  ["A A", "AA"],',
+    '  ["A MATH", "AMATH"],',
+    '  ["ART H", "ARTH"],',
+    '  ["CHEM E", "CHEME"],',
+    '  ["E E", "EE"],',
+    '  ["IND E", "INDE"],',
+    '  ["M E", "ME"],',
+    "]);",
     "",
-    "export const TRANSFER_PLANNER_GENERATED_COURSE_METADATA = TRANSFER_PLANNER_GENERATED_COURSE_METADATA_RAW as TransferPlannerNormalizedCourseMetadataEntry[];",
+    "const RECOVERABLE_LEADING_SUBJECT_TOKENS = new Set([",
+    '  "AND",',
+    '  "AS",',
+    '  "BOTH",',
+    '  "EITHER",',
+    '  "IN",',
+    '  "OR",',
+    '  "PREREQ",',
+    '  "PREREQUISITE",',
+    "]);",
+    "",
+    "export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [",
+    subjectCodeLines.join("\n"),
+    "] as const;",
+    "",
+    "const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_KEYS = [",
+    partitionKeyLines.join("\n"),
+    "] as const;",
+    "",
+    "function normalizeGeneratedCourseMetadataCode(value: string | null | undefined) {",
+    "  return String(value ?? \"\")",
+    "    .toUpperCase()",
+    "    .replace(/\\s+/g, \" \")",
+    "    .trim();",
+    "}",
+    "",
+    "function normalizeGeneratedCourseMetadataLookupCode(value: string | null | undefined) {",
+    "  const normalized = normalizeGeneratedCourseMetadataCode(value);",
+    "  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\\d{3}(?:\\.\\d+)?[A-Z]?)$/);",
+    "  if (!match) {",
+    "    return normalized;",
+    "  }",
+    "",
+    "  const knownSubjectCodes = new Set<string>(TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES);",
+    "  let subjectTokens = match[1].split(\" \").filter(Boolean);",
+    "  while (",
+    "    subjectTokens.length > 1 &&",
+    "    RECOVERABLE_LEADING_SUBJECT_TOKENS.has(subjectTokens[0])",
+    "  ) {",
+    "    const candidateTokens = subjectTokens.slice(1);",
+    "    const candidateSpacedSubject = candidateTokens.join(\" \");",
+    "    const candidateCollapsedSubject = candidateTokens.join(\"\");",
+    "    if (",
+    "      knownSubjectCodes.has(candidateSpacedSubject) ||",
+    "      knownSubjectCodes.has(candidateCollapsedSubject)",
+    "    ) {",
+    "      subjectTokens = candidateTokens;",
+    "      continue;",
+    "    }",
+    "    break;",
+    "  }",
+    "",
+    "  const spacedSubject = subjectTokens.join(\" \");",
+    "  const explicitAlias = EXPLICIT_SPACED_SUBJECT_ALIASES.get(spacedSubject);",
+    "  if (explicitAlias) {",
+    "    return `${explicitAlias} ${match[2]}`;",
+    "  }",
+    "",
+    "  const collapsedSubject = subjectTokens.join(\"\");",
+    "  const normalizedSubject =",
+    "    subjectTokens.every((token) => token.length === 1) ||",
+    "    (subjectTokens.length > 1 &&",
+    "      knownSubjectCodes.has(collapsedSubject) &&",
+    "      !knownSubjectCodes.has(spacedSubject))",
+    "      ? collapsedSubject",
+    "      : spacedSubject;",
+    "",
+    "  return `${normalizedSubject} ${match[2]}`;",
+    "}",
+    "",
+    "function getGeneratedCourseMetadataSubjectCode(value: string | null | undefined) {",
+    "  const match = normalizeGeneratedCourseMetadataLookupCode(value).match(/^([A-Z&]+(?: [A-Z&]+)*)\\s+\\d/);",
+    "  return match?.[1] ?? \"unknown\";",
+    "}",
+    "",
+    "function slugifyGeneratedCourseMetadataKey(value: string | null | undefined) {",
+    "  return String(value ?? \"\")",
+    "    .toLowerCase()",
+    "    .replace(/[^a-z0-9]+/g, \"-\")",
+    "    .replace(/^-+|-+$/g, \"\");",
+    "}",
+    "",
+    "function getTransferPlannerGeneratedCourseMetadataPartitionKey(",
+    "  schoolId: string | null | undefined,",
+    "  code: string | null | undefined",
+    ") {",
+    "  const schoolPart = slugifyGeneratedCourseMetadataKey(schoolId) || \"unknown-school\";",
+    "  const subjectPart =",
+    "    slugifyGeneratedCourseMetadataKey(getGeneratedCourseMetadataSubjectCode(code)) ||",
+    "    \"unknown-subject\";",
+    "  return `${schoolPart}-${subjectPart}`;",
+    "}",
+    "",
+    "function loadTransferPlannerGeneratedCourseMetadataPartitionIndex() {",
+    '  return require("./course-metadata.generated/partition-index.generated.json") as Record<string, string>;',
+    "}",
+    "",
+    "const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_INDEX =",
+    "  createLazyGeneratedValue<Record<string, string>>(",
+    "    loadTransferPlannerGeneratedCourseMetadataPartitionIndex,",
+    "    {} as Record<string, string>",
+    "  );",
+    "",
+    "function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: string) {",
+    "  switch (partitionKey) {",
+    partitionLoaderCases.join("\n"),
+    "    default:",
+    "      return [] as TransferPlannerNormalizedCourseMetadataEntry[];",
+    "  }",
+    "}",
+    "",
+    "function loadTransferPlannerGeneratedCourseMetadata() {",
+    "  return TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_KEYS.flatMap((partitionKey) =>",
+    "    loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey)",
+    "  ) as TransferPlannerNormalizedCourseMetadataEntry[];",
+    "}",
+    "",
+    "export const TRANSFER_PLANNER_GENERATED_COURSE_METADATA =",
+    "  createLazyGeneratedValue<TransferPlannerNormalizedCourseMetadataEntry[]>(",
+    "    loadTransferPlannerGeneratedCourseMetadata,",
+    "    []",
+    "  );",
+    "",
+    "export function getTransferPlannerGeneratedCourseMetadata() {",
+    "  return TRANSFER_PLANNER_GENERATED_COURSE_METADATA;",
+    "}",
+    "",
+    "export function getTransferPlannerGeneratedCourseMetadataEntry(",
+    "  schoolId: string,",
+    "  code: string",
+    ") {",
+    "  const normalizedSchoolId = String(schoolId ?? \"\");",
+    "  const normalizedCode = normalizeGeneratedCourseMetadataLookupCode(code);",
+    "  const lookupKey = `${normalizedSchoolId}|${normalizedCode}`;",
+    "  const partitionKey =",
+    "    TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_INDEX[lookupKey] ??",
+    "    getTransferPlannerGeneratedCourseMetadataPartitionKey(normalizedSchoolId, normalizedCode);",
+    "  return (",
+    "    loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey).find(",
+    "      (entry) =>",
+    "        entry.schoolId === normalizedSchoolId &&",
+    "        normalizeGeneratedCourseMetadataLookupCode(entry.code) === normalizedCode",
+    "    ) ?? null",
+    "  );",
+    "}",
+    "",
+    "export function getTransferPlannerGeneratedCourseSubjectCodes() {",
+    "  return [...TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES];",
+    "}",
     "",
   ].join("\n");
+}
+
+function writeGeneratedCourseMetadataValueFiles(model) {
+  fs.rmSync(OUTPUT_VALUE_DIR, { recursive: true, force: true });
+  fs.rmSync(LEGACY_OUTPUT_VALUE_PATH, { force: true });
+  fs.mkdirSync(OUTPUT_VALUE_DIR, { recursive: true });
+
+  fs.writeFileSync(
+    path.join(OUTPUT_VALUE_DIR, "partition-index.generated.json"),
+    `${JSON.stringify(model.partitionIndex)}\n`,
+    "utf8"
+  );
+  fs.writeFileSync(
+    path.join(OUTPUT_VALUE_DIR, "subject-codes.generated.json"),
+    `${JSON.stringify(model.subjectCodes)}\n`,
+    "utf8"
+  );
+
+  const partitionDir = path.join(OUTPUT_VALUE_DIR, "entries-by-school-subject");
+  fs.mkdirSync(partitionDir, { recursive: true });
+  for (const [partitionKey, partitionEntries] of model.partitions.entries()) {
+    fs.writeFileSync(
+      path.join(partitionDir, `${partitionKey}.generated.json`),
+      `${JSON.stringify(partitionEntries)}\n`,
+      "utf8"
+    );
+  }
 }
 
 function buildScheduleEntries(courseMap) {
@@ -651,10 +968,13 @@ async function main() {
     ...baseEntries,
     ...buildSupplementalLegacyGuideEntries(baseEntries),
   ]);
-  const output = buildGeneratedCourseMetadataSource(entries);
+  const generationModel = buildCourseMetadataGenerationModel(entries);
+  const output = buildGeneratedCourseMetadataSource(generationModel);
 
+  writeGeneratedCourseMetadataValueFiles(generationModel);
   fs.writeFileSync(OUTPUT_PATH, output);
   console.log(`Wrote ${entries.length} generated course metadata entries to ${OUTPUT_PATH}`);
+  console.log(`Wrote generated course metadata values to ${OUTPUT_VALUE_DIR}`);
 }
 
 main().catch((error) => {

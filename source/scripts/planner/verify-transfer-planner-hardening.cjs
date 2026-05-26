@@ -1,7 +1,15 @@
+/* global __dirname */
 const assert = require("assert/strict");
-const { spawnSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  runCommand,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -19,27 +27,18 @@ const {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } = require("../../constants/transfer-planner-source/requirement-diff-classifications.generated");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-hardening-report.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-hardening-report.md");
-const SOURCE_BACKED_COVERAGE_AUDIT_SCRIPT = path.resolve(
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-hardening-report.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-hardening-report.md");
+const COVERAGE_AUDIT_SCRIPT = path.resolve(
   REPO_ROOT,
   "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs"
 );
-const SOURCE_BACKED_COVERAGE_AUDIT_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-backed-coverage-audit.json"
-);
-const SOURCE_GAP_REPORT_PATH = path.resolve(TMP_DIR, "transfer-planner-source-gaps.json");
-const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-requirement-source-parse-report.json"
-);
-const REQUIREMENT_DIFF_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-requirement-diff-promotion-report.json"
-);
+const COVERAGE_AUDIT_REPORT_PATH = getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.json");
+const GAP_REPORT_PATH = getPlannerTmpPath("transfer-planner-source-gaps.json");
+const REQUIREMENT_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
+const REQUIREMENT_DIFF_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-diff-promotion-report.json");
 const ALLOWED_GRC_AVAILABILITY_STATUSES = new Set([
   "published-in-latest-schedule",
   "published-in-recent-history-not-latest",
@@ -47,10 +46,6 @@ const ALLOWED_GRC_AVAILABILITY_STATUSES = new Set([
   "planner-course-no-current-public-source",
   "legacy-track-only-no-current-public-source",
 ]);
-
-function ensureDir(directoryPath) {
-  fs.mkdirSync(directoryPath, { recursive: true });
-}
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
@@ -86,8 +81,8 @@ function runCheck(id, label, callback) {
 }
 
 function writeReports(report) {
-  ensureDir(TMP_DIR);
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  ensurePlannerTmpLayout();
+  writePlannerJsonReport(OUTPUT_JSON_PATH, report);
 
   const lines = [
     "# Transfer Planner Hardening Report",
@@ -107,11 +102,11 @@ function writeReports(report) {
     "",
   ];
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function main() {
-  const sourceGapReport = readJson(SOURCE_GAP_REPORT_PATH);
+  const sourceGapReport = readJson(GAP_REPORT_PATH);
   const requirementParseReport = readJson(REQUIREMENT_PARSE_REPORT_PATH);
   const requirementDiffReport = readJson(REQUIREMENT_DIFF_REPORT_PATH);
   const availabilityEntries = Object.values(TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY);
@@ -184,6 +179,7 @@ function main() {
         "docs/README.md",
         "docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md",
         "components/pages/TransferPlannerPage.tsx",
+        "constants/locales/en.json",
         "constants/transfer-planner-source/bootstrap.generated.ts",
       ];
 
@@ -195,31 +191,35 @@ function main() {
       }
 
       const transferPlannerPage = readText("components/pages/TransferPlannerPage.tsx");
-      assert.match(transferPlannerPage, /source-backed plan/i);
-      assert.match(transferPlannerPage, /unsupported majors, rules, or sequences stay hidden/i);
+      const englishLocale = readText("constants/locales/en.json");
+      assert.match(transferPlannerPage, /plan/i);
+      assert.match(transferPlannerPage, /transferPlanner\.quarterPlanNoteUw|quarterPlanNoteUw/i);
+      assert.match(englishLocale, /unsupported majors, rules, or sequences stay hidden/i);
 
       return [
-        "Docs checked: README, docs/README, planner summary, bootstrap source layer",
+        "Docs checked: README, docs/README, planner summary, bootstrap source layer, English locale",
         "UI checked: TransferPlannerPage",
       ];
     }),
-    runCheck("source-backed-coverage-audit-clean", "Source-backed coverage maintainer audit passes", () => {
-      const result = spawnSync(process.execPath, [SOURCE_BACKED_COVERAGE_AUDIT_SCRIPT], {
+    runCheck("source-backed-coverage-audit-clean", "coverage maintainer audit passes", () => {
+      const result = runCommand(process.execPath, [COVERAGE_AUDIT_SCRIPT], {
         cwd: REPO_ROOT,
+        stdio: "pipe",
         encoding: "utf8",
+        throwOnFailure: false,
       });
       assert.equal(
         result.status,
         0,
-        `source-backed coverage audit failed\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`
+        `coverage audit failed\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`
       );
-      const auditReport = readJson(SOURCE_BACKED_COVERAGE_AUDIT_REPORT_PATH);
+      const auditReport = readJson(COVERAGE_AUDIT_REPORT_PATH);
       assert.equal(auditReport.outcome, "passed");
       assert.equal(auditReport.summary.failedRegressionCheckCount, 0);
       return [
         `UW owners audited: ${auditReport.summary.ownerCount}`,
         `Requirement coverage rows: ${auditReport.summary.requirementCoverageRowCount}`,
-        `Report: ${SOURCE_BACKED_COVERAGE_AUDIT_REPORT_PATH}`,
+        `Report: ${COVERAGE_AUDIT_REPORT_PATH}`,
       ];
     }),
   ];

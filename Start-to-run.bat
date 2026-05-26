@@ -32,6 +32,7 @@ set "EXPO_START_PORT=%EXPO_PORT%"
 call npm run start
 set "EXPO_EXIT=%ERRORLEVEL%"
 popd >nul
+call :organize_tmp
 
 if not "%EXPO_EXIT%"=="0" (
   echo Failed to start Expo.
@@ -171,17 +172,17 @@ if exist "%APP_DIR%\.env" (
   exit /b 0
 )
 
-if not exist "%APP_DIR%\env.example" (
+if not exist "%APP_DIR%\.env.example" (
   exit /b 0
 )
 
-copy /y "%APP_DIR%\env.example" "%APP_DIR%\.env" >nul
+copy /y "%APP_DIR%\.env.example" "%APP_DIR%\.env" >nul
 if errorlevel 1 (
   echo Could not create "%APP_DIR%\.env".
   exit /b 1
 )
 
-echo Created source\.env from env.example.
+echo Created source\.env from .env.example.
 exit /b 0
 
 :ensure_app_dependencies
@@ -243,4 +244,10 @@ if not "!EXPO_FIX_EXIT!"=="0" (
 )
 
 echo Expo packages updated successfully.
+exit /b 0
+
+:organize_tmp
+if exist "%APP_DIR%\scripts\organize-tmp-artifacts.cjs" (
+  node "%APP_DIR%\scripts\organize-tmp-artifacts.cjs" --quiet >nul 2>&1
+)
 exit /b 0

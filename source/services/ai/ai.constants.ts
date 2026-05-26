@@ -1,9 +1,13 @@
-export const AI_LAST_RESPONSE_KEY = 'ai:lastResponse';
-export const AI_LAST_RESPONSE_MAP_KEY = 'ai:lastResponseMap';
-export const AI_LAST_ASSISTANT_RESPONSE_KEY = 'ai:lastAssistantResponse';
-export const AI_LAST_ASSISTANT_RESPONSE_MAP_KEY = 'ai:lastAssistantResponseMap';
-export const AI_LAST_ROADMAP_KEY = 'ai:lastRoadmap';
-export const AI_FACTOR_CACHE_KEY = 'ai:recommend:factorCache:v1';
+import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
+
+export const AI_LAST_RESPONSE_KEY = LOCAL_STORAGE_KEYS.aiLastResponse;
+export const AI_LAST_RESPONSE_MAP_KEY = LOCAL_STORAGE_KEYS.aiLastResponseMap;
+export const AI_LAST_ASSISTANT_RESPONSE_KEY =
+  LOCAL_STORAGE_KEYS.aiLastAssistantResponse;
+export const AI_LAST_ASSISTANT_RESPONSE_MAP_KEY =
+  LOCAL_STORAGE_KEYS.aiLastAssistantResponseMap;
+export const AI_LAST_ROADMAP_KEY = LOCAL_STORAGE_KEYS.aiLastRoadmap;
+export const AI_FACTOR_CACHE_KEY = LOCAL_STORAGE_KEYS.aiFactorCache;
 export const AI_FACTOR_CACHE_MAX_ENTRIES = 2000;
 export const AI_ASSISTANT_MAX_RANKED_COLLEGES = 6;
 export const AI_ASSISTANT_MAX_PROGRAMS = 8;

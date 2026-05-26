@@ -1,6 +1,9 @@
 const crypto = require("node:crypto");
 const admin = require("firebase-admin");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const {
+  fetchWithTimeout,
+} = require("./fetchWithTimeout");
 const { renderPromptTemplate } = require("./promptTemplates");
 
 if (!admin.apps.length) {
@@ -253,27 +256,15 @@ function getHost(value) {
   }
 }
 
-async function fetchWithTimeout(url, config, options = {}) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), config.timeoutMs);
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal,
-      headers: {
-        "user-agent": "GatorGuideOpportunityGateway/1.0",
-        ...(options.headers ?? {}),
-      },
-    });
-    return response;
-  } catch (error) {
-    if (error?.name === "AbortError") {
-      throw new HttpsError("deadline-exceeded", "Opportunity request timed out.");
-    }
-    throw error;
-  } finally {
-    clearTimeout(timeoutId);
-  }
+async function fetchOpportunityGateway(url, config, options = {}) {
+  return fetchWithTimeout(url, {
+    ...options,
+    operation: "Opportunity gateway request",
+    timeoutErrorFactory: () =>
+      new HttpsError("deadline-exceeded", "Opportunity request timed out."),
+    timeoutMs: config.timeoutMs,
+    userAgent: "GatorGuideOpportunityGateway/1.0",
+  });
 }
 
 async function callGemini(config, prompt) {
@@ -284,7 +275,7 @@ async function callGemini(config, prompt) {
     );
   }
 
-  const response = await fetchWithTimeout(
+  const response = await fetchOpportunityGateway(
     `${config.geminiBaseUrl}/models/${encodeURIComponent(
       config.geminiModel
     )}:generateContent?key=${encodeURIComponent(config.geminiApiKey)}`,
@@ -362,7 +353,7 @@ async function searchOfficialPages(college, config) {
     const searchUrl = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(
       term
     )}`;
-    const response = await fetchWithTimeout(searchUrl, config);
+    const response = await fetchOpportunityGateway(searchUrl, config);
     if (!response.ok) continue;
     const html = await response.text();
     urls.push(...extractSearchResultUrls(html, officialHost));
@@ -375,7 +366,7 @@ async function fetchEvidence(urls, config) {
   const evidence = [];
   for (const url of urls) {
     try {
-      const response = await fetchWithTimeout(url, config);
+      const response = await fetchOpportunityGateway(url, config);
       if (!response.ok) continue;
       const html = await response.text();
       const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -455,7 +446,7 @@ async function fetchScorecardCollege(config, data) {
   if (config.scorecardApiKey) {
     params.set("api_key", config.scorecardApiKey);
     params.set("keys_nested", "true");
-    const response = await fetchWithTimeout(
+    const response = await fetchOpportunityGateway(
       `${SCORECARD_BASE_URL}?${params.toString()}`,
       config
     );
@@ -515,6 +506,7 @@ function buildGreenRiverSeedDocument(now) {
     eligibility: {
       gpaMin: null,
       residencyTypes: [],
+      communityTags: [],
       transferOnly: false,
     },
     requirements: {
@@ -612,6 +604,7 @@ async function upsertCollegeDeadlineOpportunity(data, requestId, config) {
     eligibility: {
       gpaMin: null,
       residencyTypes: [],
+      communityTags: [],
       transferOnly: false,
     },
     requirements: {
@@ -721,6 +714,7 @@ function buildManualOpportunityPayload(data, now, existingData = null) {
       eligibility: {
         gpaMin: parseNullableNumber(data.gpaMin, 0, 4.5),
         residencyTypes: normalizeTagList(data.residencyTypes, { lowercase: true }),
+        communityTags: normalizeTagList(data.communityTags, { lowercase: true }),
         transferOnly: parseBoolean(data.transferOnly, false),
       },
       requirements: {
@@ -885,3 +879,22 @@ exports.opportunityGateway = onCall(
     throw new HttpsError("invalid-argument", "Unsupported opportunity action.");
   }
 );
+
+exports.__test = {
+  buildIsoDueDate,
+  buildManualOpportunityPayload,
+  extractSearchResultUrls,
+  getMonthDayFromIso,
+  getOpportunityAdminDecision,
+  normalizeDeadlineType,
+  normalizeOpportunityStatus,
+  normalizeOpportunityType,
+  normalizeTagList,
+  normalizeUrl,
+  parseBoolean,
+  parseConfigList,
+  parseNullableInteger,
+  parseNullableNumber,
+  stripHtmlToText,
+  truncate,
+};

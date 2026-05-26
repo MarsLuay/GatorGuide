@@ -78,7 +78,7 @@ export default function TabLayout() {
   });
 
   return (
-    <RouteAccessBoundary allowGuest loadingMessage="Preparing your data">
+    <RouteAccessBoundary allowGuest>
       <Tabs
         tabBar={(props) => <ResourcesAwareTabBar {...props} variant="glass" />}
         screenOptions={{

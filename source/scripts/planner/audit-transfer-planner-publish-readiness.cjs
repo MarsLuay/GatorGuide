@@ -1,27 +1,38 @@
 /* global __dirname */
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const {
+  NPM_BIN,
+  NPX_BIN,
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  hasArg,
+  runCommand: runHarnessCommand,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 const {
-  SOURCE_BACKED_AUDIT_ROW_COLLECTIONS,
+  AUDIT_ROW_COLLECTIONS,
   getActionableIssueClass,
   getRowIssueType,
   hasAuditIssue,
 } = require("./source-backed-coverage-actionability.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
 
 const REPORTS = {
-  sourceBacked: path.resolve(TMP_DIR, "transfer-planner-source-backed-coverage-audit.json"),
-  repairQueue: path.resolve(TMP_DIR, "transfer-planner-repair-queue.json"),
-  parse: path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.json"),
-  sourcePipeline: path.resolve(TMP_DIR, "transfer-planner-source-pipeline-validation.json"),
-  sourceGaps: path.resolve(TMP_DIR, "transfer-planner-source-gaps.json"),
-  generatedRegistry: path.resolve(TMP_DIR, "transfer-planner-generated-registry-audit.json"),
-  mapping: path.resolve(TMP_DIR, "transfer-planner-mapping-audit.json"),
-  autoRepair: path.resolve(TMP_DIR, "transfer-planner-auto-repair-plan.json"),
+  sourceBacked: getPlannerTmpPath("transfer-planner-source-backed-coverage-audit.json"),
+  repairQueue: getPlannerTmpPath("transfer-planner-repair-queue.json"),
+  parse: getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json"),
+  sourcePipeline: getPlannerTmpPath("transfer-planner-source-pipeline-validation.json"),
+  sourceGaps: getPlannerTmpPath("transfer-planner-source-gaps.json"),
+  generatedRegistry: getPlannerTmpPath("transfer-planner-generated-registry-audit.json"),
+  mapping: getPlannerTmpPath("transfer-planner-mapping-audit.json"),
+  autoRepair: getPlannerTmpPath("transfer-planner-auto-repair-plan.json"),
 };
 
 const REQUIRED_RELEASE_REPORT_KEYS = [
@@ -58,10 +69,6 @@ const MODES = {
   },
 };
 
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
 function readJsonIfExists(filePath) {
   if (!fs.existsSync(filePath)) {
     return null;
@@ -76,18 +83,6 @@ function relative(filePath) {
 function compactText(value, maxLength = 260) {
   const text = String(value ?? "").replace(/\s+/g, " ").trim();
   return text.length > maxLength ? `${text.slice(0, maxLength - 3)}...` : text;
-}
-
-function writeJson(filePath, value) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(`${filePath}.tmp`, `${JSON.stringify(value, null, 2)}\n`);
-  fs.renameSync(`${filePath}.tmp`, filePath);
-}
-
-function writeText(filePath, value) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(`${filePath}.tmp`, value.endsWith("\n") ? value : `${value}\n`);
-  fs.renameSync(`${filePath}.tmp`, filePath);
 }
 
 function countBy(values) {
@@ -124,7 +119,7 @@ function getPlanContext(row) {
 
 function collectSourceBackedBlockers(sourceBacked) {
   const blockers = [];
-  for (const collectionName of SOURCE_BACKED_AUDIT_ROW_COLLECTIONS) {
+  for (const collectionName of AUDIT_ROW_COLLECTIONS) {
     const rows = sourceBacked?.[collectionName] ?? [];
     rows.forEach((row, index) => {
       if (!hasAuditIssue(row)) {
@@ -300,15 +295,18 @@ function buildStudentVisibleFacts(inputs) {
 
 function runCommand(command, args, options = {}) {
   const startedAt = new Date().toISOString();
-  const result = spawnSync(command, args, {
+  const result = runHarnessCommand(command, args, {
     cwd: REPO_ROOT,
+    stdio: "pipe",
     encoding: "utf8",
-    shell: process.platform === "win32",
+    throwOnFailure: false,
     timeout: options.timeoutMs ?? 120000,
     maxBuffer: 1024 * 1024 * 20,
   });
+  const displayCommand =
+    command === NPM_BIN ? "npm" : command === NPX_BIN ? "npx" : command;
   return {
-    command: [command, ...args].join(" "),
+    command: [displayCommand, ...args].join(" "),
     startedAt,
     finishedAt: new Date().toISOString(),
     status: result.status,
@@ -322,13 +320,13 @@ function runCommand(command, args, options = {}) {
 function buildReleaseReadiness(inputs, options = {}) {
   const commands = [];
   if (options.runChecks) {
-    commands.push(runCommand("npm", ["run", "planner:parse-requirement-sources"], { timeoutMs: 600000 }));
-    commands.push(runCommand("npm", ["run", "planner:build-auto-repair-plan"], { timeoutMs: 300000 }));
-    commands.push(runCommand("npm", ["run", "planner:audit:source-backed-coverage"], { timeoutMs: 600000 }));
-    commands.push(runCommand("npm", ["run", "planner:validate-source-pipeline"], { timeoutMs: 300000 }));
-    commands.push(runCommand("npm", ["run", "planner:repair-queue"], { timeoutMs: 120000 }));
-    commands.push(runCommand("npm", ["run", "planner:test:parser"], { timeoutMs: 300000 }));
-    commands.push(runCommand("npx", ["tsc", "--noEmit"], { timeoutMs: 300000 }));
+    commands.push(runCommand(NPM_BIN, ["run", "planner:parse-requirement-sources"], { timeoutMs: 600000 }));
+    commands.push(runCommand(NPM_BIN, ["run", "planner:build-auto-repair-plan"], { timeoutMs: 300000 }));
+    commands.push(runCommand(NPM_BIN, ["run", "planner:audit:source-backed-coverage"], { timeoutMs: 600000 }));
+    commands.push(runCommand(NPM_BIN, ["run", "planner:validate-source-pipeline"], { timeoutMs: 300000 }));
+    commands.push(runCommand(NPM_BIN, ["run", "planner:repair-queue"], { timeoutMs: 120000 }));
+    commands.push(runCommand(NPM_BIN, ["run", "planner:test:parser"], { timeoutMs: 300000 }));
+    commands.push(runCommand(NPX_BIN, ["tsc", "--noEmit"], { timeoutMs: 300000 }));
   }
 
   const currentInputs = options.runChecks ? loadInputs() : inputs;
@@ -347,7 +345,7 @@ function buildReleaseReadiness(inputs, options = {}) {
     blockingReasons.push(`missing required reports: ${missingRequiredReportKeys.join(", ")}`);
   }
   if (sourceBackedStatus.issueCount > 0) {
-    blockingReasons.push(`source-backed coverage blockers: ${sourceBackedStatus.issueCount}`);
+    blockingReasons.push(`coverage blockers: ${sourceBackedStatus.issueCount}`);
   }
   if (studentVisibleFacts.summary.studentVisibleUnsupportedFactCount > 0) {
     blockingReasons.push(
@@ -504,8 +502,7 @@ function loadInputs() {
 }
 
 function main() {
-  const modeArg = process.argv.find((arg) => arg.startsWith("--mode="));
-  const mode = modeArg ? modeArg.slice("--mode=".length) : "release-readiness";
+  const mode = getArgValue("--mode") ?? "release-readiness";
   const config = MODES[mode];
   if (!config) {
     throw new Error(`Unknown publish-readiness audit mode: ${mode}`);
@@ -519,10 +516,10 @@ function main() {
         : mode === "student-visible-facts"
           ? buildStudentVisibleFacts(inputs)
           : buildReleaseReadiness(inputs, { runChecks: hasArg("--run-checks") });
-  const jsonPath = path.resolve(TMP_DIR, config.json);
-  const mdPath = path.resolve(TMP_DIR, config.md);
-  writeJson(jsonPath, report);
-  writeText(mdPath, renderMarkdown(config.title, report));
+  const jsonPath = getPlannerTmpPath(config.json);
+  const mdPath = getPlannerTmpPath(config.md);
+  writePlannerJsonReport(jsonPath, report);
+  writePlannerMarkdownReport(mdPath, renderMarkdown(config.title, report));
   console.log(`${config.title} outcome: ${report.outcome}`);
   console.log(`JSON report: ${jsonPath}`);
   console.log(`Markdown report: ${mdPath}`);

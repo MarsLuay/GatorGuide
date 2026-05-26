@@ -164,9 +164,17 @@ pause_for_enter() {
   IFS= read -r _
 }
 
+organize_tmp() {
+  if [ -f "$APP_ROOT/scripts/organize-tmp-artifacts.cjs" ] && command_exists node; then
+    node "$APP_ROOT/scripts/organize-tmp-artifacts.cjs" --quiet >/dev/null 2>&1 || true
+  fi
+}
+
 finish() {
   local exit_code="$1"
   local action_label="$2"
+
+  organize_tmp
 
   if [ "$exit_code" = "$BACK_EXIT_CODE" ] && [ -n "$HOSTED_BACK_TARGET" ]; then
     local target="$HOSTED_BACK_TARGET"

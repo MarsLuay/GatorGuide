@@ -354,7 +354,7 @@ These are the places where the latest current public sources still leave gaps:
 | Associate in Science - Transfer Track 1 (`999A`) | One year-2 spring slot did not fully surface in the latest text extract, so I left it marked as unresolved rather than backfilling it from older material. |
 | Green River general-education category rows outside the engineering tracks | `HUMANITIES`, `SOCIAL SCIENCE`, `NATURAL SCIENCE`, and similar broad category slots still need a separate catalog-safe expansion pass if the planner ever wants fully named general-ed suggestions by catalog year. |
 
-These narrative-source gaps do not authorize planner guessing. In the runtime planner, unsupported or insufficiently source-backed outputs should stay broad, remain explicitly source-limited, or stay hidden rather than being hand-filled.
+These narrative-source gaps do not authorize planner guessing. In the runtime planner, unsupported or insufficiently outputs should stay broad, remain explicitly source-limited, or stay hidden rather than being hand-filled.
 
 ## Bottom Line
 

@@ -40,9 +40,11 @@ export type DeadlineCalendarEntry = {
   dueAt: string;
   title: string;
   subtitle: string;
+  subtitleKey?: string;
   description: string;
   kind: DeadlineCalendarEntryKind;
   sourceLabel: string;
+  sourceLabelKey?: string;
   isDone: boolean;
   target: DeadlineCalendarEntryTarget;
   hideFromHomeUpcoming?: boolean;
@@ -57,11 +59,11 @@ export type DeadlineCalendarGroup = {
 
 export const UPCOMING_DEADLINE_WINDOW_DAYS = 180;
 
-const ROADMAP_SECTION_LABELS: Record<RoadmapSectionId, string> = {
-  documents: "Planning documents",
-  courses: "Planning courses",
-  applications: "Planning applications",
-  interests: "Planning interests",
+const ROADMAP_SECTION_LABEL_KEYS: Record<RoadmapSectionId, string> = {
+  documents: "deadlineCalendar.roadmapPlanningDocuments",
+  courses: "deadlineCalendar.roadmapPlanningCourses",
+  applications: "deadlineCalendar.roadmapPlanningApplications",
+  interests: "deadlineCalendar.roadmapPlanningInterests",
 };
 
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
@@ -142,6 +144,21 @@ function buildOpportunityEntry(
   dueDate: Date,
   idSuffix = ""
 ): DeadlineCalendarEntry {
+  const fallbackLabelKey =
+    opportunity.type === "college_deadline"
+      ? "deadlineCalendar.kindCollegeDeadline"
+      : opportunity.type === "general_deadline"
+        ? "deadlineCalendar.kindGeneralDeadline"
+        : isAcademicCalendarOpportunityType(opportunity.type)
+          ? "deadlineCalendar.kindAcademicCalendar"
+          : "deadlineCalendar.kindOpportunity";
+  const subtitle =
+    opportunity.type === "college_deadline"
+      ? opportunity.college.collegeName || opportunity.organizationName || ""
+      : isAcademicCalendarOpportunityType(opportunity.type)
+        ? opportunity.college.collegeName || opportunity.organizationName || ""
+        : opportunity.organizationName || "";
+
   let target: DeadlineCalendarEntryTarget = {
     type: "resources",
     opportunityId: opportunity.opportunityId,
@@ -168,24 +185,12 @@ function buildOpportunityEntry(
     dateKey: toDateKey(dueDate),
     dueAt: dueDate.toISOString(),
     title: opportunity.title,
-    subtitle:
-      opportunity.type === "college_deadline"
-        ? opportunity.college.collegeName || opportunity.organizationName || "College deadline"
-        : opportunity.type === "general_deadline"
-          ? opportunity.organizationName || "General deadline"
-          : isAcademicCalendarOpportunityType(opportunity.type)
-            ? opportunity.college.collegeName || opportunity.organizationName || "Academic calendar"
-          : opportunity.organizationName || "Opportunity",
+    subtitle,
+    subtitleKey: subtitle ? undefined : fallbackLabelKey,
     description: opportunity.summary,
     kind: opportunity.type,
-    sourceLabel:
-      opportunity.type === "college_deadline"
-        ? "College deadline"
-        : opportunity.type === "general_deadline"
-          ? "General deadline"
-          : isAcademicCalendarOpportunityType(opportunity.type)
-            ? "Academic calendar"
-          : "Opportunity",
+    sourceLabel: "",
+    sourceLabelKey: fallbackLabelKey,
     isDone: opportunity.isDone,
     target,
     ...getOpportunityDeadlineVisibility(opportunity),
@@ -225,10 +230,12 @@ class DeadlineCalendarService {
           dateKey: toDateKey(dueDate),
           dueAt: dueDate.toISOString(),
           title: task.title,
-          subtitle: ROADMAP_SECTION_LABELS[section.id],
+          subtitle: "",
+          subtitleKey: ROADMAP_SECTION_LABEL_KEYS[section.id],
           description: task.description,
           kind: "roadmap_task",
-          sourceLabel: "Planner",
+          sourceLabel: "",
+          sourceLabelKey: "deadlineCalendar.sourcePlanner",
           isDone: task.status === "completed",
           target: buildRoadmapTarget(section.id, task.id),
         });

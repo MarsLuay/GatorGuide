@@ -1,5 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -11,10 +18,10 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_SUMMARY,
+  TRANSFER_PLANNER_GAP_REGISTRY,
+  TRANSFER_PLANNER_SUMMARY,
   getTransferPlannerAutoMatchedTrackRecommendation,
   getTransferPlannerMajorPlan,
   getTransferPlannerMajorsForCampus,
@@ -25,37 +32,33 @@ const {
   isTransferPlannerStudentHiddenSourceGap,
 } = require("../../constants/transfer-planner-source");
 const {
-  TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES,
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
 } = require("../../constants/transfer-planner-source/derived-shared-source-plans");
 const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require("../../constants/transfer-planner-source/student-runtime");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
+const REPO_ROOT = SOURCE_ROOT;
 const CAMPUSES = ["uw-bothell", "uw-seattle", "uw-tacoma"];
 
 const REPORT_PATHS = {
-  sourceGap: path.resolve(TMP_DIR, "transfer-planner-source-gaps.json"),
-  requirementParse: path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.json"),
-  sourcePipelineValidation: path.resolve(
-    TMP_DIR,
-    "transfer-planner-source-pipeline-validation.json"
-  ),
-  requirementDiff: path.resolve(TMP_DIR, "transfer-planner-requirement-diff-promotion-report.json"),
-  ownerAudit: path.resolve(TMP_DIR, "transfer-planner-owner-audit.json"),
-  hardening: path.resolve(TMP_DIR, "transfer-planner-hardening-report.json"),
-  sourceYearCoverage: path.resolve(TMP_DIR, "transfer-planner-source-year-coverage.json"),
-  plannerStatusJson: path.resolve(TMP_DIR, "transfer-planner-status.json"),
-  plannerStatusMd: path.resolve(TMP_DIR, "transfer-planner-status.md"),
+  sourceGap: getPlannerTmpPath("transfer-planner-source-gaps.json"),
+  requirementParse: getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json"),
+  sourcePipelineValidation: getPlannerTmpPath("transfer-planner-source-pipeline-validation.json"),
+  requirementDiff: getPlannerTmpPath("transfer-planner-requirement-diff-promotion-report.json"),
+  ownerAudit: getPlannerTmpPath("transfer-planner-owner-audit.json"),
+  hardening: getPlannerTmpPath("transfer-planner-hardening-report.json"),
+  sourceYearCoverage: getPlannerTmpPath("transfer-planner-source-year-coverage.json"),
+  plannerStatusJson: getPlannerTmpPath("transfer-planner-status.json"),
+  plannerStatusMd: getPlannerTmpPath("transfer-planner-status.md"),
 };
 
 const DERIVED_ALIAS_BY_DERIVED_PLAN_ID = new Map(
-  TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES.map((alias) => [alias.derivedPlanId, alias])
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.map((alias) => [alias.derivedPlanId, alias])
 );
 
 function ensureTmpDir() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 }
 
 function readJsonOrNull(filePath) {
@@ -71,11 +74,11 @@ function readJsonOrNull(filePath) {
 }
 
 function writeJson(filePath, value) {
-  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  writePlannerJsonReport(filePath, value);
 }
 
 function writeText(filePath, value) {
-  fs.writeFileSync(filePath, value, "utf8");
+  writePlannerMarkdownReport(filePath, value);
 }
 
 function buildOwnerKey(planId, pathwayId) {
@@ -423,7 +426,7 @@ function buildDiffEntriesByOwnerKey() {
 function buildParsedBlockCountByOwnerKey() {
   const counts = new Map();
 
-  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY) {
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY) {
     if (!block.ok) {
       continue;
     }
@@ -438,7 +441,7 @@ function buildParsedBlockCountByOwnerKey() {
 function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
   const ownerAuditOwners = reports.ownerAudit?.owners ?? [];
   const parseOwners = reports.requirementParse?.owners ?? [];
-  const sourceGapEntries = TRANSFER_PLANNER_SOURCE_GAP_REGISTRY;
+  const sourceGapEntries = TRANSFER_PLANNER_GAP_REGISTRY;
   const parsedBlockCountByOwnerKey = buildParsedBlockCountByOwnerKey();
   const diffEntriesByOwnerKey = buildDiffEntriesByOwnerKey();
   const { generatedRowsByKey, runtimeRowsByKey, generatedPathwayRowsByPlanId } =
@@ -603,7 +606,7 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
       if (derivedAlias) {
         pushUnique(
           notes,
-          `Derived shared-source alias of ${derivedAlias.sourcePlanId}; inherits source-backed coverage from the canonical owner.`
+          `Derived shared-source alias of ${derivedAlias.sourcePlanId}; inherits coverage from the canonical owner.`
         );
       }
 
@@ -673,7 +676,7 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
         pushUnique(
           notes,
           noPublicClassificationCount > 0
-            ? `Intentional safe-empty state: ${noPublicClassificationCount} source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.`
+            ? `Intentional safe-empty state: ${noPublicClassificationCount} requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.`
             : "Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row."
         );
       }
@@ -900,13 +903,13 @@ function buildPlannerCompletenessReport(reports, previousStatusReport = null) {
         }
       : null,
     sourceSummary: {
-      sourceGeneratedMajorPlanCount: TRANSFER_PLANNER_SOURCE_SUMMARY.sourceGeneratedMajorPlanCount,
-      studentVisibleMajorPlanCount: TRANSFER_PLANNER_SOURCE_SUMMARY.studentVisibleMajorPlanCount,
-      sourceGeneratedPathwayCount: TRANSFER_PLANNER_SOURCE_SUMMARY.sourceGeneratedPathwayCount,
-      studentVisiblePathwayCount: TRANSFER_PLANNER_SOURCE_SUMMARY.studentVisiblePathwayCount,
+      sourceGeneratedMajorPlanCount: TRANSFER_PLANNER_SUMMARY.sourceGeneratedMajorPlanCount,
+      studentVisibleMajorPlanCount: TRANSFER_PLANNER_SUMMARY.studentVisibleMajorPlanCount,
+      sourceGeneratedPathwayCount: TRANSFER_PLANNER_SUMMARY.sourceGeneratedPathwayCount,
+      studentVisiblePathwayCount: TRANSFER_PLANNER_SUMMARY.studentVisiblePathwayCount,
       parsedRequirementSourceBlockCount:
-        TRANSFER_PLANNER_SOURCE_SUMMARY.parsedRequirementSourceBlockCount,
-      hiddenSourceGapCount: TRANSFER_PLANNER_SOURCE_SUMMARY.sourceGapCount,
+        TRANSFER_PLANNER_SUMMARY.parsedRequirementSourceBlockCount,
+      hiddenSourceGapCount: TRANSFER_PLANNER_SUMMARY.sourceGapCount,
     },
     attentionRows,
     intentionallyUnmatchedRows,
@@ -996,7 +999,7 @@ function buildRequiredUpdateQueue(reports, statusReport) {
   if (Number(statusReport?.summary?.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners ?? 0) > 0) {
     addRequiredAction(
       queue,
-      "Restore runtime materialization: visible source-backed rows should not be missing student runtime plans."
+      "Restore runtime materialization: visible rows should not be missing student runtime plans."
     );
   }
 
@@ -1011,8 +1014,8 @@ function buildMarkdownReport(statusReport, queue) {
     ["Visible majors", statusReport.summary.totalStudentVisibleMajors],
     ["Visible pathways", statusReport.summary.totalStudentVisiblePathways],
     ["Hidden source-gap owners", statusReport.summary.totalHiddenSourceGapOwners],
-    ["Visible source-backed owners", statusReport.summary.totalSourceBackedVisibleOwners],
-    ["Visible source-backed rows", statusReport.summary.totalVisibleSourceBackedRows],
+    ["Visible owners", statusReport.summary.totalSourceBackedVisibleOwners],
+    ["Visible rows", statusReport.summary.totalVisibleSourceBackedRows],
     ["Emitted generated rows", statusReport.summary.totalEmittedGeneratedRows],
     ["Emitted runtime rows", statusReport.summary.totalEmittedRuntimeRows],
     ["Rows with best-track matches", statusReport.summary.totalRowsWithBestTrackMatches],
@@ -1023,7 +1026,7 @@ function buildMarkdownReport(statusReport, queue) {
       statusReport.summary.newlyConvertedFromIntentionalUnmatchedCount,
     ],
     [
-      "Unexpected null runtime rows among visible source-backed owners",
+      "Unexpected null runtime rows among visible owners",
       statusReport.summary.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners,
     ],
     ["Rows needing attention", statusReport.summary.rowsNeedingAttentionCount],
@@ -1157,7 +1160,7 @@ function main() {
     `- Visible rows: ${statusReport.summary.totalStudentVisibleRows} (${statusReport.summary.totalStudentVisibleMajors} majors, ${statusReport.summary.totalStudentVisiblePathways} pathways)`
   );
   console.log(
-    `- Visible source-backed rows: ${statusReport.summary.totalVisibleSourceBackedRows}`
+    `- Visible rows: ${statusReport.summary.totalVisibleSourceBackedRows}`
   );
   console.log(
     `- Emitted rows: ${statusReport.summary.totalEmittedGeneratedRows} generated / ${statusReport.summary.totalEmittedRuntimeRows} runtime`
@@ -1175,7 +1178,7 @@ function main() {
     `- Rows needing attention: ${statusReport.summary.rowsNeedingAttentionCount}`
   );
   console.log(
-    `- Unexpected null runtime rows among visible source-backed owners: ${statusReport.summary.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners}`
+    `- Unexpected null runtime rows among visible owners: ${statusReport.summary.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners}`
   );
   console.log("");
   console.log("Required update queue:");

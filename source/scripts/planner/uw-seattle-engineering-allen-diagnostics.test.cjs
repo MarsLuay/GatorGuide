@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 const test = require("node:test");
+const { getTmpPath } = require("../lib/tmp-layout.cjs");
 
 const { auditOwners } = require("./fixtures/uw-seattle-engineering-allen-diagnostics.fixture.cjs");
 
@@ -15,16 +16,15 @@ const diagnosticOwners = FOCUSED_PLAN_ID
   ? auditOwners.filter((owner) => owner.planId === FOCUSED_PLAN_ID)
   : auditOwners;
 
-const SOURCE_ROOT = path.resolve(__dirname, "..", "..");
+const ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_SCRIPT = path.join(
-  SOURCE_ROOT,
+  ROOT,
   "scripts",
   "planner",
   "audit-transfer-planner-source-backed-coverage.cjs"
 );
-const AUDIT_JSON_PATH = path.join(
-  SOURCE_ROOT,
-  ".tmp",
+const AUDIT_JSON_PATH = getTmpPath(
+  ROOT,
   "transfer-planner-source-backed-coverage-audit.json"
 );
 
@@ -122,7 +122,7 @@ function runSourceBackedAudit(planId) {
     process.execPath,
     [AUDIT_SCRIPT, "--target-plan-id", planId, "--report-only"],
     {
-      cwd: SOURCE_ROOT,
+      cwd: ROOT,
       encoding: "utf8",
       maxBuffer: 1024 * 1024 * 80,
     }
@@ -132,7 +132,7 @@ function runSourceBackedAudit(planId) {
     result.status,
     0,
     [
-      `Expected source-backed audit CLI to run for ${planId}.`,
+      `Expected audit CLI to run for ${planId}.`,
       result.stdout,
       result.stderr,
     ]

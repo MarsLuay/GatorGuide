@@ -1,14 +1,16 @@
 /* global __dirname, fetch */
 const fs = require("node:fs");
 const path = require("node:path");
+const { fetchTextWithHandling } = require("../lib/fetch-with-handling.cjs");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 const PROJECT_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(PROJECT_ROOT, ".tmp");
+const TMP_DIR = ensureTmpLayout(PROJECT_ROOT).root;
 const OPPORTUNITIES_PATH = path.resolve(PROJECT_ROOT, "data", "starter-opportunities.json");
-const REPORT_JSON_PATH = path.resolve(TMP_DIR, "deadline-refresh-report.json");
-const REPORT_MD_PATH = path.resolve(TMP_DIR, "deadline-refresh-report.md");
+const REPORT_JSON_PATH = getTmpPath(PROJECT_ROOT, "deadline-refresh-report.json");
+const REPORT_MD_PATH = getTmpPath(PROJECT_ROOT, "deadline-refresh-report.md");
 const TIMEZONE = "America/Los_Angeles";
-const SOURCE_KIND = "official_page";
+const KIND = "official_page";
 const USER_AGENT = "GatorGuideDeadlineRefresh/1.0";
 const RECENT_PAST_WINDOW_DAYS = 14;
 
@@ -307,18 +309,11 @@ function slugify(value) {
 }
 
 async function fetchHtml(source) {
-  const response = await fetch(source.url, {
-    redirect: "follow",
-    headers: {
-      "user-agent": USER_AGENT,
-    },
+  return fetchTextWithHandling(source.url, {
+    operation: `Fetch deadline source ${source.key}`,
+    timeoutMs: 30000,
+    userAgent: USER_AGENT,
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${source.url}: ${response.status} ${response.statusText}`);
-  }
-
-  return response.text();
 }
 
 function extractTableAfter(html, headingText) {
@@ -461,7 +456,7 @@ function sortTerms(terms) {
 
 function buildSource(source, nowIso) {
   return {
-    kind: SOURCE_KIND,
+    kind: KIND,
     sourceUrl: source.url,
     sourceLabel: source.label,
     model: null,

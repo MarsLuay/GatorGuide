@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -217,8 +217,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "uw-seattle-computer-engineering"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
-    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
+    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
     "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
       "ASTR 301",
@@ -407,8 +407,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "7db7b17461bc06fe59c07ef6e53845a635b9b66663d0e11c881bee60349c2784"
   },
   {
     "filterId": "CS_APPROVED_SCIENCE",
@@ -592,8 +592,124 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "5346abe7179c682ac03f40e49b3d40b5ea06178c9653b08fd545cbcf0d82bc97"
+  },
+  {
+    "filterId": "UW_BOTHELL_EDUCATIONAL_STUDIES_ELEMENTARY_EDUCATION_APPLIED_ART",
+    "filterKey": "uw-bothell-educational-studies-elementary-education-applied-art",
+    "label": "Uw Bothell Educational Studies Elementary Education Applied Art",
+    "ownerIds": [
+      "uw-bothell-educational-studies-elementary-education"
+    ],
+    "campusId": "uw-bothell",
+    "officialSourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    "sourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ART 110",
+      "ART 120",
+      "ART 121",
+      "ART 122",
+      "ART 220",
+      "ART 224",
+      "ART 240",
+      "ECON 260",
+      "ENGL 131",
+      "ENGL 211",
+      "GEOG 102",
+      "GEOG 105",
+      "GEOG 123",
+      "GEOG 250",
+      "GEOG 258",
+      "POLS 160"
+    ],
+    "aliases": [
+      "uw-bothell-educational-studies-elementary-education-applied-art"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Elementary Education Endorsement Academic Breadth Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Elementary Education Endorsement Academic Breadth Courses",
+      "ECON 260 Economic Development of the U.S.",
+      "GEOG 102 World Regional Geography",
+      "GEOG 105 Geography of World Affairs",
+      "GEOG 123 Introduction to Globalization",
+      "GEOG 250 Geography of the Pacific Northwest",
+      "GEOG 258 Intro to Mapping & Geographic Information System",
+      "POLS 160 Introduction to American Political Culture",
+      "ART 110 2-Dimensional Design",
+      "ART 120 Introduction to Graphic Design",
+      "ART 121 Drawing",
+      "ART 122 Drawing II",
+      "ART 220 Beginning Painting",
+      "ART 224 Figure Drawing",
+      "ART 240 Introduction to Printmaking",
+      "ENGL& 101 English Composition I",
+      "ENGL 211 Literary Genres and Traditions"
+    ],
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "2d7ec69a49989c2825b93e5614c61f185b425d245a4564c68047054a8cb799e2"
+  },
+  {
+    "filterId": "UW_BOTHELL_EDUCATIONAL_STUDIES_ELEMENTARY_EDUCATION_ELEMENTARY_EDUCATION_ENDORSEMENT_ACADEMIC_BREADTH_COURSES",
+    "filterKey": "uw-bothell-educational-studies-elementary-education-elementary-education-endorsement-academic-breadth-courses",
+    "label": "Uw Bothell Educational Studies Elementary Education Elementary Education Endorsement Academic Breadth Courses",
+    "ownerIds": [
+      "uw-bothell-educational-studies-elementary-education"
+    ],
+    "campusId": "uw-bothell",
+    "officialSourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    "sourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ART 110",
+      "ART 120",
+      "ART 121",
+      "ART 122",
+      "ART 220",
+      "ART 224",
+      "ART 240",
+      "ECON 260",
+      "ENGL 131",
+      "ENGL 211",
+      "GEOG 102",
+      "GEOG 105",
+      "GEOG 123",
+      "GEOG 250",
+      "GEOG 258",
+      "POLS 160"
+    ],
+    "aliases": [
+      "uw-bothell-educational-studies-elementary-education-elementary-education-endorsement-academic-breadth-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Elementary Education Endorsement Academic Breadth Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Elementary Education Endorsement Academic Breadth Courses",
+      "ECON 260 Economic Development of the U.S.",
+      "GEOG 102 World Regional Geography",
+      "GEOG 105 Geography of World Affairs",
+      "GEOG 123 Introduction to Globalization",
+      "GEOG 250 Geography of the Pacific Northwest",
+      "GEOG 258 Intro to Mapping & Geographic Information System",
+      "POLS 160 Introduction to American Political Culture",
+      "ART 110 2-Dimensional Design",
+      "ART 120 Introduction to Graphic Design",
+      "ART 121 Drawing",
+      "ART 122 Drawing II",
+      "ART 220 Beginning Painting",
+      "ART 224 Figure Drawing",
+      "ART 240 Introduction to Printmaking",
+      "ENGL& 101 English Composition I",
+      "ENGL 211 Literary Genres and Traditions"
+    ],
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "be6d60b338d0cb84c4be12f8a892e597d658cd849a07f126d3890f21162ccb1e"
   },
   {
     "filterId": "UW_BOTHELL_PHYSICS_BA_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
@@ -637,7 +753,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "c7095ba2c6abb04915540d4fb3ea4ffbd3cf5e9c47b0c41dbcf98279b2ac2bcd"
   },
   {
@@ -681,7 +797,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Chemistry",
       "English Composition (C) – 5 credits"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "7d1c7832494f9dbf594b0d967b1299acb37b30e2c2c158484c18c74c0ff6c115"
   },
   {
@@ -751,7 +867,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -818,383 +934,16 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
-  },
-  {
-    "filterId": "UW_SEATTLE_ASIAN_STUDIES_APPROVED_ELECTIVES",
-    "filterKey": "uw-seattle-asian-studies-approved-electives",
-    "label": "Uw Seattle Asian Studies Approved Electives",
-    "ownerIds": [
-      "uw-seattle-asian-studies:pathway:southeast-asia-concentration"
-    ],
-    "campusId": "uw-seattle",
-    "officialSourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
-    "sourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-    "sourceRole": "primary-degree-requirements",
-    "approvedUwCourseCodes": [
-      "BH 339",
-      "CHID 206",
-      "CLAS 405",
-      "CLIT 396A",
-      "CLIT 496",
-      "ENGL 311",
-      "ENGL 312",
-      "ENGL 357",
-      "GEOG 373",
-      "GERMAN 195",
-      "GERMAN 295",
-      "GWSS 334",
-      "GWSS 438",
-      "HSTAA 336",
-      "HSTAA 337",
-      "HSTAM 367",
-      "HSTCMP 269",
-      "HSTCMP 270",
-      "HSTCMP 368",
-      "HSTCMP 369",
-      "HSTCMP 469",
-      "HSTEU 234",
-      "HSTEU 252",
-      "HSTEU 361",
-      "HSTEU 368",
-      "HSTEU 464",
-      "HSTEU 465",
-      "JEWST 175",
-      "JEWST 206",
-      "JEWST 210",
-      "JEWST 215",
-      "JEWST 269",
-      "JEWST 270",
-      "JEWST 289",
-      "JEWST 294",
-      "JEWST 295",
-      "JEWST 312",
-      "JEWST 317",
-      "JEWST 318",
-      "JEWST 320A",
-      "JEWST 325",
-      "JEWST 328",
-      "JEWST 330",
-      "JEWST 336",
-      "JEWST 337",
-      "JEWST 339",
-      "JEWST 357",
-      "JEWST 358",
-      "JEWST 360",
-      "JEWST 362",
-      "JEWST 367",
-      "JEWST 368",
-      "JEWST 369",
-      "JEWST 372",
-      "JEWST 373",
-      "JEWST 377",
-      "JEWST 378",
-      "JEWST 379",
-      "JEWST 396A",
-      "JEWST 418",
-      "JEWST 427",
-      "JEWST 438",
-      "JEWST 459",
-      "JEWST 460",
-      "JEWST 462",
-      "JEWST 463",
-      "JEWST 464",
-      "JEWST 465",
-      "JEWST 466",
-      "JEWST 468",
-      "JEWST 469",
-      "JEWST 490",
-      "JEWST 491",
-      "JEWST 495",
-      "JEWST 496",
-      "JSISA 252",
-      "JSISA 314",
-      "JSISA 458",
-      "LING 372",
-      "MELC 202",
-      "MELC 287",
-      "MELC 302",
-      "MELC 305",
-      "MELC 306",
-      "MELC 311",
-      "MELC 317",
-      "MELC 318",
-      "MELC 320",
-      "MELC 328",
-      "MELC 333",
-      "MELC 336",
-      "MODHEB 100",
-      "MODHEB 101",
-      "MODHEB 102",
-      "MODHEB 103",
-      "MODHEB 105",
-      "MODHEB 200",
-      "MODHEB 201",
-      "MODHEB 202",
-      "MODHEB 203",
-      "MODHEB 401",
-      "MODHEB 402",
-      "MODHEB 403",
-      "MODHEB 404",
-      "MODHEB 405",
-      "MODHEB 406",
-      "MODHEB 407",
-      "MODHEB 408",
-      "MODHEB 490",
-      "MODHEB 496",
-      "PHIL 418",
-      "POLS 325",
-      "RELIG 145",
-      "RELIG 201",
-      "RELIG 202",
-      "RELIG 240",
-      "RELIG 305",
-      "RELIG 306",
-      "RELIG 315",
-      "RELIG 334",
-      "RELIG 440",
-      "RUSS 320A",
-      "RUSS 427",
-      "SOC 377",
-      "SOC 378",
-      "SPAN 294",
-      "SPAN 360",
-      "SPAN 362"
-    ],
-    "approvedUwCourseGroups": [
-      [
-        "MELC 202",
-        "RELIG 202",
-        "RELIG 240"
-      ],
-      [
-        "HSTEU 252",
-        "JSISA 252"
-      ],
-      [
-        "CHID 206",
-        "JEWST 206"
-      ],
-      [
-        "HSTCMP 269",
-        "JEWST 269"
-      ],
-      [
-        "HSTCMP 270",
-        "JEWST 270"
-      ],
-      [
-        "MELC 306",
-        "RELIG 306"
-      ],
-      [
-        "ENGL 312",
-        "JEWST 312"
-      ],
-      [
-        "MELC 305",
-        "RELIG 305",
-        "RELIG 315"
-      ],
-      [
-        "JEWST 317",
-        "JEWST 318",
-        "MELC 317"
-      ],
-      [
-        "GWSS 334",
-        "RELIG 334"
-      ],
-      [
-        "HSTAA 336",
-        "JEWST 336"
-      ],
-      [
-        "HSTAA 337",
-        "JEWST 337"
-      ],
-      [
-        "BH 339",
-        "JEWST 328",
-        "JEWST 339",
-        "MELC 328"
-      ],
-      [
-        "HSTCMP 368",
-        "JEWST 358",
-        "JEWST 368"
-      ],
-      [
-        "GEOG 373",
-        "JEWST 362",
-        "JEWST 373",
-        "SPAN 362"
-      ],
-      [
-        "HSTAM 367",
-        "JEWST 367"
-      ],
-      [
-        "HSTEU 368",
-        "JEWST 368"
-      ],
-      [
-        "HSTCMP 369",
-        "JEWST 369"
-      ],
-      [
-        "JEWST 377",
-        "SOC 377"
-      ],
-      [
-        "JEWST 378",
-        "SOC 378"
-      ],
-      [
-        "JEWST 378",
-        "JEWST 379",
-        "SOC 378"
-      ],
-      [
-        "JEWST 418",
-        "PHIL 418"
-      ],
-      [
-        "CLIT 496",
-        "JEWST 427",
-        "JEWST 496",
-        "RUSS 427"
-      ],
-      [
-        "GWSS 438",
-        "JEWST 438"
-      ],
-      [
-        "JEWST 360",
-        "JEWST 460",
-        "SPAN 360"
-      ],
-      [
-        "HSTEU 465",
-        "JEWST 465"
-      ],
-      [
-        "HSTCMP 469",
-        "JEWST 466",
-        "JEWST 469"
-      ],
-      [
-        "HSTEU 464",
-        "JEWST 464",
-        "JEWST 468"
-      ]
-    ],
-    "petitionOnlyNotes": [
-      "To major in Jewish Studies, please schedule an appointment with a Jackson School Undergraduate Adviser for Jewish Studies majors.",
-      "Contact an adviser with questions or for clarification.",
-      "For any course prefix when topic is appropriate; check with adviser for approval",
-      "Students can meet with an adviser to discuss courses, majors, minors, study abroad, or fellowship and scholarship opportunities.",
-      "Meet an Adviser"
-    ],
-    "aliases": [
-      "uw-seattle-asian-studies-approved-electives"
-    ],
-    "generatedFromOfficialSupportSource": true,
-    "sourceEvidenceHeadings": [
-      "3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses."
-    ],
-    "sourceEvidenceLines": [
-      "3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses.",
-      "To major in Jewish Studies, please schedule an appointment with a Jackson School Undergraduate Adviser for Jewish Studies majors.",
-      "Contact an adviser with questions or for clarification.",
-      "MODHEB 100",
-      "RELIG 145",
-      "JEW ST 175/",
-      "GERMAN 195",
-      "MODHEB 200 *",
-      "RELIG 201",
-      "MODHEB 201 *",
-      "MODHEB 202 *",
-      "MODHEB 203 *",
-      "JEW ST 210",
-      "JEW ST 215/ SPAN 294/ LING 372",
-      "HSTEU 234",
-      "RELIG 240/ MELC 202",
-      "HSTEU 252/ JSIS A 252",
-      "CHID 206/ JEW ST 206",
-      "JEW ST 269/ HSTCMP 269",
-      "JEW ST 270/ HSTCMP 270",
-      "MELC 287",
-      "JEW ST 289",
-      "JEW ST 295/",
-      "GERMAN 295",
-      "MELC 302",
-      "RELIG 306/ MELC 306",
-      "ENGL 311",
-      "MELC 311",
-      "JEW ST 312/ ENGL 312",
-      "JSIS A 314/ HSTAFM 314",
-      "RELIG 315/ MELC 305",
-      "JEW ST 318/ MELC 317",
-      "MELC 318",
-      "MELC 320",
-      "JEW ST 325",
-      "POL S 325",
-      "JEW ST 330",
-      "MELC 333",
-      "RELIG 334/ GWSS 334",
-      "JEW ST 336/ HSTAA 336",
-      "MELC 336",
-      "JEW ST 337/ HSTAA 337",
-      "JEW ST 339/ B H 339 / MELC 328",
-      "JEW ST 357/ ENGL 357 / RUSS 320A / C LIT 396A",
-      "JEW ST 358/ HSTCMP 368",
-      "HSTEU 361",
-      "JEW ST 362/ SPAN 362/ GEOG 373",
-      "JEW ST 367/ HSTAM 367",
-      "JEW ST 368/ HSTEU 368",
-      "JEW ST 369/ HSTCMP 369",
-      "JEW ST 377/ SOC 377",
-      "JEW ST 378/ SOC 378",
-      "JEW ST 379/ SOC 378",
-      "MODHEB 401",
-      "MODHEB 402",
-      "MODHEB 403",
-      "MODHEB 404",
-      "MODHEB 405",
-      "MODHEB 406",
-      "MODHEB 407",
-      "MODHEB 408",
-      "CLAS 405",
-      "JEW ST 418/ PHIL 418",
-      "JEW ST 427/ RUSS 427 / C LIT 496",
-      "JEW ST 438/ GWSS 438",
-      "RELIG 440",
-      "JSIS A 458",
-      "JEW ST 459/HSTAFM 459",
-      "JEW ST 460/ SPAN 360",
-      "JEW ST 462",
-      "JEW ST 463",
-      "JEW ST 465/ HSTEU 465",
-      "JEW ST 466/ HSTCMP 469",
-      "JEW ST 468/ HSTEU 464",
-      "JEW ST 490",
-      "MODHEB 490",
-      "JEW ST 491",
-      "JEW ST 495",
-      "MODHEB 496",
-      "For any course prefix when topic is appropriate; check with adviser for approval"
-    ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "e285389950a8cc5ce4e0b5277813b604a659d6bde98c2c6259ddf61cbf057a2b"
   },
   {
     "filterId": "UW_SEATTLE_BUSINESS_ADMINISTRATION_THERE_IS_NO_NEED_TO_SUBMIT_FOSTER_COURSES_ALL_APPROVED_COURSES_ARE_LISTED_ON_THE_BUSINESS_MINOR_WEBSITE_UNDER_CURRICULUM",
     "filterKey": "uw-seattle-business-administration-there-is-no-need-to-submit-foster-courses-all-approved-courses-are-listed-on-the-business-minor-website-under-curriculum",
     "label": "Uw Seattle Business Administration There Is No Need To Submit Foster Courses All Approved Courses Are Listed On The Business Minor Website Under Curriculum",
     "ownerIds": [
-      "uw-seattle-business-administration:pathway:ba-route"
+      "uw-seattle-business-administration",
+      "uw-seattle-business-administration:pathway:note-track"
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
@@ -1227,8 +976,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "MGMT 200 (Introduction to Law)",
       "QMETH 201 (Statistical Methods)"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "872c60d5f1d15da7f5f57132020a2062b7bd46bb009c682c7c79929061440f19"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "03f1b4ee2cd52e88e1854e471c3132d4def517999154d702b13d0201060c135a"
   },
   {
     "filterId": "UW_SEATTLE_DESIGN_ARTH_PREFIX_COURSES",
@@ -1280,21 +1029,137 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ARTH 488",
       "ARTH 491",
       "ARTH 492",
-      "ARTH 494"
+      "ARTH 494",
+      "DESIGN 207",
+      "DESIGN 208",
+      "DESIGN 209",
+      "DESIGN 210",
+      "DESIGN 211",
+      "DESIGN 316",
+      "DESIGN 317",
+      "DESIGN 318",
+      "DESIGN 319",
+      "DESIGN 320",
+      "DESIGN 322",
+      "DESIGN 324",
+      "DESIGN 326",
+      "DESIGN 445",
+      "DESIGN 446",
+      "DESIGN 485",
+      "DESIGN 486"
     ],
     "aliases": [
       "uw-seattle-design-arth-prefix-courses"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "10 credits of ARTH prefix courses"
+      "The ID course of undergraduate study is an intensive program emphasizing the development of form that is derived from patterns of use, requirements for function, constraints imposed by industrial manufacturing and aesthetics driven by social context. Key aspects in this view on design are understanding the interactions between people and technology. Students are trained to identify design challenges and to envision promising strategies for design responses, communication, documentation, and organizational skills to conduct the design process from project brief to design implementation."
     ],
     "sourceEvidenceLines": [
-      "10 credits of ARTH prefix courses",
-      "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
+      "The ID course of undergraduate study is an intensive program emphasizing the development of form that is derived from patterns of use, requirements for function, constraints imposed by industrial manufacturing and aesthetics driven by social context. Key aspects in this view on design are understanding the interactions between people and technology. Students are trained to identify design challenges and to envision promising strategies for design responses, communication, documentation, and organizational skills to conduct the design process from project brief to design implementation.",
+      "84-86 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 211, DESIGN 316, DESIGN 317, DESIGN 318, DESIGN 319, DESIGN 320, DESIGN 322, DESIGN 324, DESIGN 326, DESIGN 445, DESIGN 446, DESIGN 485, DESIGN 486"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "a7266626f336838d6b3680d24896f2eba0bc73cbdbbf611469489e6c8b6a561d"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "2b15d2546d553ad733885a21ca648316affb5a8de541ed7b3f40f4a63ebc5eca"
+  },
+  {
+    "filterId": "UW_SEATTLE_ECONOMICS_ECON_PREFIX_COURSES",
+    "filterKey": "uw-seattle-economics-econ-prefix-courses",
+    "label": "Uw Seattle Economics Econ Prefix Courses",
+    "ownerIds": [
+      "uw-seattle-economics"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ECON 200",
+      "ECON 201",
+      "ECON 230",
+      "ECON 235",
+      "ECON 300",
+      "ECON 301",
+      "ECON 382",
+      "ECON 400",
+      "ECON 401",
+      "ECON 402",
+      "ECON 404",
+      "ECON 405",
+      "ECON 406",
+      "ECON 409",
+      "ECON 410",
+      "ECON 411",
+      "ECON 412",
+      "ECON 415",
+      "ECON 422",
+      "ECON 423",
+      "ECON 424",
+      "ECON 426",
+      "ECON 427",
+      "ECON 431",
+      "ECON 432",
+      "ECON 435",
+      "ECON 448",
+      "ECON 450",
+      "ECON 452",
+      "ECON 464",
+      "ECON 471",
+      "ECON 472",
+      "ECON 473",
+      "ECON 475",
+      "ECON 476",
+      "ECON 481",
+      "ECON 482",
+      "ECON 483",
+      "ECON 484",
+      "ECON 485",
+      "ECON 486",
+      "ECON 487",
+      "ECON 488",
+      "ECON 490",
+      "ECON 491",
+      "ECON 492",
+      "ECON 493",
+      "ECON 495",
+      "ECON 496",
+      "ECON 497",
+      "ECON 499",
+      "ECON 500",
+      "ECON 501",
+      "ECON 502",
+      "ECON 503",
+      "ECON 508",
+      "ECON 509",
+      "ECON 511",
+      "ECON 537",
+      "ECON 580",
+      "ECON 581",
+      "ECON 582",
+      "ECON 600",
+      "ECON 601",
+      "ECON 800",
+      "MATH 124",
+      "MATH 311",
+      "STAT 311"
+    ],
+    "aliases": [
+      "uw-seattle-economics-econ-prefix-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Core Courses (35 credits):"
+    ],
+    "sourceEvidenceLines": [
+      "Core Courses (35 credits):",
+      "MATH 124; STAT 311",
+      "ECON 200, ECON 201, ECON 300, ECON 301, ECON 382",
+      "Minimum 2.0 grade in ECON 200, ECON 201, ECON 300, ECON 301",
+      "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
+      "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
+    ],
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "408509e11b8467d5c8eab6ac566d2d259fc8a5932c8a916201e59f26b7b04c47"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_DISTRIBUTION_AREAS",
@@ -1306,7 +1171,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://english.washington.edu/english-creative-writing-option",
     "sourceUrl": "https://english.washington.edu/english-creative-writing-option",
-    "sourceRole": "primary-degree-requirements",
+    "sourceRole": "department-requirements",
     "approvedUwCourseCodes": [
       "ENGL 202",
       "ENGL 283",
@@ -1336,8 +1201,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "99ac61768a9869cb15d4bd908558b8ca2b7c915ccee91df76ff035d6565123de"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "3889a47b1c869ee9fe709c18c13a8ffc2a1a0f453409de41d3e608eeb094baf5"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_PRE_1700",
@@ -1349,7 +1214,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://english.washington.edu/english-creative-writing-option",
     "sourceUrl": "https://english.washington.edu/english-creative-writing-option",
-    "sourceRole": "primary-degree-requirements",
+    "sourceRole": "department-requirements",
     "approvedUwCourseCodes": [
       "ENGL 202",
       "ENGL 210",
@@ -1389,8 +1254,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "3a3b3e3da8557f173f970eaf71a1c8a8bda0c7ee584c0b557eecde4306e2c6bb"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "037a8a66bb0b1a564773d8bd5a74963ea380bacda94e7970ed82c9d9c6fbe59f"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_PRE_1945",
@@ -1402,16 +1267,10 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://english.washington.edu/english-creative-writing-option",
     "sourceUrl": "https://english.washington.edu/english-creative-writing-option",
-    "sourceRole": "primary-degree-requirements",
+    "sourceRole": "department-requirements",
     "approvedUwCourseCodes": [
       "ENGL 202",
       "ENGL 212",
-      "ENGL 251",
-      "ENGL 256",
-      "ENGL 257",
-      "ENGL 258",
-      "ENGL 259",
-      "ENGL 265",
       "ENGL 283",
       "ENGL 284",
       "ENGL 300",
@@ -1441,15 +1300,14 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "b7a367adfe467e5325b13d374ed4d227fb266f3d3fe41c0b77ae06ab74baf247"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "09acd21d01685a38f0e7663842b3ae327019b0fa1475581bd6feab9520d30781"
   },
   {
     "filterId": "UW_SEATTLE_GERMAN_LANGUAGE",
     "filterKey": "uw-seattle-german-language",
     "label": "Uw Seattle German Language",
     "ownerIds": [
-      "uw-seattle-german",
       "uw-seattle-german:pathway:ba-option-family:cultural-studies",
       "uw-seattle-german:pathway:ba-route"
     ],
@@ -1486,8 +1344,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "German 401 (or equivalent)",
       "German 311 (Introduction to Literary Studies)"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "3bb53b00e0b8d66896aa2f2c44500089bfce14cdf9fc568f40b16c65f0611d12"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "dd8c829e21035a7db4f0f463ddf33a8037af4cbb4b6ae646f9bb2429d1927bc0"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_300_LEVEL_HUMAN_RIGHTS_OR_LAW_COURSES",
@@ -1538,7 +1396,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "e2ccb63d4acf3832039d801b9842ee6ee7ca7f542e64b73230d0bfd1ae7b4e78"
   },
   {
@@ -1580,7 +1438,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "7c02d2b529c08adc11905f3014348914f80680a198837e00b16f812b6122a33c"
   },
   {
@@ -1640,7 +1498,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "f5c5cc4d3826702874c743981939ad4a1c889d0cbd7b4323e549de2e7e30663e"
   },
   {
@@ -1824,8 +1682,50 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "e6692dc66c91b79488b6f7b2f1eeb7ccf9132513a45d655810f85d2d3d2d16d6"
+  },
+  {
+    "filterId": "UW_SEATTLE_LINGUISTICS_APPROVED_ELECTIVES",
+    "filterKey": "uw-seattle-linguistics-approved-electives",
+    "label": "Uw Seattle Linguistics Approved Electives",
+    "ownerIds": [
+      "uw-seattle-linguistics"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://linguistics.washington.edu/electives-other-departments",
+    "sourceUrl": "https://linguistics.washington.edu/ba-linguistics",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ANTH 359",
+      "ANTH 464",
+      "ASIAN 404",
+      "ASIAN 503",
+      "CHIN 342",
+      "CHIN 442",
+      "CHIN 531",
+      "CHIN 540",
+      "CSE 311",
+      "CSE 447",
+      "JAPAN 343",
+      "JAPAN 441",
+      "JAPAN 443",
+      "JAPAN 544",
+      "LING 499"
+    ],
+    "aliases": [
+      "uw-seattle-linguistics-approved-electives"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "approved elective courses in other departments"
+    ],
+    "sourceEvidenceLines": [
+      "approved elective courses in other departments",
+      "Parsed approved course codes from https://linguistics.washington.edu/ba-linguistics."
+    ],
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "4c3f0c3209cb5c104ffbbb097de5577d71a1cca653a1a3410f4fbfaee138e178"
   },
   {
     "filterId": "UW_SEATTLE_SOUTH_ASIAN_LANGUAGES_AND_CULTURES_LIST_OF_APPROVED_COURSES_FOR_2_LITERATURE",
@@ -1922,7 +1822,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
       "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
+    "generatedAt": "2026-05-25T23:56:29.166Z",
     "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
@@ -1993,6 +1893,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "RELIG 211",
       "RELIG 352",
       "RELIG 354",
+      "RELIG 456",
       "SASIA 203",
       "SASIA 206",
       "SASIA 225",
@@ -2058,7 +1959,63 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ASIAN 301 Songs of the Saints of India",
       "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-05-22T12:33:31.945Z",
-    "sourceFingerprint": "dbcaa7b45d3c26fda3446f650a3321e9d7f055d07d1d2d33a55c8b178d3cf6a7"
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "6c00b8f1a9a77f586e13c538fa1a5bfd689570f92a9ab7406e1808b8ca2475b7"
+  },
+  {
+    "filterId": "UW_TACOMA_INTERDISCIPLINARY_ARTS_AND_SCIENCES_INDIVIDUALLY_DESIGNED_SEE_THE_LAW_AND_POLICY_WEB_PAGE_FOR_A_LIST_OF_APPROVED_COURSES",
+    "filterKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-see-the-law-and-policy-web-page-for-a-list-of-approved-courses",
+    "label": "Uw Tacoma Interdisciplinary Arts And Sciences Individually Designed See The Law And Policy Web Page For A List Of Approved Courses",
+    "ownerIds": [
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:general-history-track",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:option-one",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:option-three",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:option-two",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:power-gender-and-identity-track",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:prerequisite-option",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:the-concentration-coordinator",
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:to-fulfill-this-option"
+    ],
+    "campusId": "uw-tacoma",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+    "sourceRole": "official-catalog",
+    "approvedUwCourseCodes": [
+      "TECON 200",
+      "TECON 201",
+      "TECON 310",
+      "TLAW 496",
+      "TMATH 116",
+      "TMATH 120",
+      "TPHIL 251",
+      "TPOLS 480",
+      "TPOLS 496",
+      "TPOLS 497",
+      "TWRT 211"
+    ],
+    "approvedUwCourseGroups": [
+      [
+        "TMATH 116",
+        "TMATH 120"
+      ]
+    ],
+    "aliases": [
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed-see-the-law-and-policy-web-page-for-a-list-of-approved-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Complete a minimum of 45 credits of Interdisciplinary Arts and Sciences course work."
+    ],
+    "sourceEvidenceLines": [
+      "Complete a minimum of 45 credits of Interdisciplinary Arts and Sciences course work.",
+      "TECON 200",
+      "TECON 201",
+      "T PHIL 251",
+      "TMATH 116 (or equivalent), OR TMATH 120 (or equivalent)",
+      "TWRT 211",
+      "Required Core: TECON 310 ( 5 credits)"
+    ],
+    "generatedAt": "2026-05-25T23:56:29.166Z",
+    "sourceFingerprint": "d84a126ac30e4c486fefe2ab9f64dce73f411f5b3bf062d37ab92f255520c88e"
   }
 ] as const;

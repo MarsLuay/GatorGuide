@@ -3,6 +3,8 @@ const crypto = require("crypto");
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
+const { fetchWithHandling } = require("../lib/fetch-with-handling.cjs");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 const { execFile } = require("child_process");
 const { promisify } = require("util");
 const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
@@ -17,20 +19,20 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
   getTransferPlannerPathwaysForPlan,
 } = require("../../constants/transfer-planner-source");
 const {
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
 } = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
 const {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY,
 } = require("../../constants/transfer-planner-source/registry");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SNAPSHOT_PATH = path.resolve(TMP_DIR, "transfer-planner-source-link-snapshot.json");
-const SUMMARY_PATH = path.resolve(TMP_DIR, "transfer-planner-source-link-summary.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const SNAPSHOT_PATH = getTmpPath(REPO_ROOT, "transfer-planner-source-link-snapshot.json");
+const SUMMARY_PATH = getTmpPath(REPO_ROOT, "transfer-planner-source-link-summary.md");
 const DEFAULT_TIMEOUT_MS = 20000;
 const DEFAULT_CONCURRENCY = 6;
 const HOST_MIN_DELAY_MS = 900;
@@ -46,8 +48,8 @@ const hostThrottleTails = new Map();
 const hostNextAllowedAt = new Map();
 let playwrightModulePromise = null;
 let browserContextPromise = null;
-const PARSED_REQUIREMENT_BLOCK_BY_SOURCE_URL = new Map(
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+const PARSED_REQUIREMENT_BLOCK_BY_URL = new Map(
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter(
     (block) => block.ok && !block.usedSnapshotFallback && block.sourceUrl
   ).map((block) => [block.sourceUrl, block])
 );
@@ -119,7 +121,7 @@ function collectSourceEntries(extraSourceLinks) {
     return current;
   }
 
-  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     for (const link of plan.officialLinks ?? []) {
       const entry = getOrCreate(link.url);
       if (!entry) continue;
@@ -182,22 +184,13 @@ function extractTitle(html) {
 }
 
 async function fetchWithTimeout(url, options, timeoutMs) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-  try {
-    return await fetch(url, {
-      ...options,
-      redirect: "follow",
-      signal: controller.signal,
-      headers: {
-        "user-agent": USER_AGENT,
-        ...(options?.headers ?? {}),
-      },
-    });
-  } finally {
-    clearTimeout(timeoutId);
-  }
+  return fetchWithHandling(url, {
+    ...options,
+    operation: "Inspect transfer planner source",
+    throwOnHttpError: false,
+    timeoutMs,
+    userAgent: USER_AGENT,
+  });
 }
 
 function getHeaderValue(response, name) {
@@ -440,7 +433,7 @@ function buildStableSignature(result) {
 }
 
 function buildParsedPrimaryVerificationResult(entry) {
-  const parsedBlock = PARSED_REQUIREMENT_BLOCK_BY_SOURCE_URL.get(entry.url);
+  const parsedBlock = PARSED_REQUIREMENT_BLOCK_BY_URL.get(entry.url);
   if (!parsedBlock) {
     return null;
   }

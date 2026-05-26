@@ -5,5 +5,5 @@ export type TransferPlannerDerivedSharedSourcePlanAlias = {
   derivedShortTitle?: string;
 };
 
-export const TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES: TransferPlannerDerivedSharedSourcePlanAlias[] =
+export const TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES: TransferPlannerDerivedSharedSourcePlanAlias[] =
   [];

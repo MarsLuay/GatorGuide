@@ -48,11 +48,17 @@ The current green-state maintenance baseline is:
 - generated merged course-metadata rows: `2376`
 - latest full pass: `npm run planner:full:verify`
 
+## Planner accuracy signal
+
+The trusted planner accuracy signal is the `source-backed-runtime-coverage` gate in `.tmp/reports/transfer-planner-source-backed-coverage-audit.md` and `.json`.
+
+The old `legacy-transfer-planner-service-test.*` artifacts are diagnostic only. They are not an accuracy percentage, and stale copies are retired by the refresh flow into `.stale.*` files with a status report at `.tmp/reports/legacy-transfer-planner-service-test.status.md`.
+
 ## What the planner is
 
 - A Green River College transfer-planning tool for UW Seattle, UW Bothell, and UW Tacoma.
 - A planner that works per row of `source college + target campus + target major`.
-- A planning tool that compares transcript courses against source-backed Green River equivalents and requirement buckets.
+- A planning tool that compares transcript courses against Green River equivalents and requirement buckets.
 
 ## What the planner currently uses
 
@@ -69,7 +75,7 @@ The current green-state maintenance baseline is:
   - `schema.ts`
   - `registry.ts`
   - `index.ts`
-- A normalized canonical course-metadata seed in `constants/transfer-planner-source/course-metadata.ts` for planner-critical courses, now carrying source-backed titles, credits, prerequisite/co-requisite structure fields, and effective-year ranges where the current sources support them.
+- A normalized canonical course-metadata seed in `constants/transfer-planner-source/course-metadata.ts` for planner-critical courses, now carrying titles, credits, prerequisite/co-requisite structure fields, and effective-year ranges where the current sources support them.
 - A generated Green River schedule-metadata layer in `constants/transfer-planner-source/course-metadata.generated.ts`, sourced from the official `2024-2025` and `2025-2026` annual schedules to widen title and year-range coverage across many additional planner-tracked GRC courses.
 - A one-command refresh pipeline in:
   - `scripts/planner/check-transfer-planner-sources.cjs`
@@ -107,14 +113,14 @@ The current green-state maintenance baseline is:
 ## Current migration state
 
 - The layered source-of-truth foundation now exists in code.
-- All current student-visible majors now resolve through the source-backed planner layer, and the hidden source-gap registry is currently empty for the student-facing planner.
+- All current student-visible majors now resolve through the planner layer, and the hidden source-gap registry is currently empty for the student-facing planner.
 - The current one-pass maintenance run is green end to end, including planner refresh, typecheck, planner tests, hardening verification, and Windows QA.
 - The primary requirement parser is currently succeeding for every tracked student-visible owner (`244/244`).
 - The canonical course registry, equivalency-rule registry, degree-map block registry, major-requirement registry, and planner-policy registry are bootstrapped from the current planner data.
 - The canonical course registry now stores normalized `title`, `creditValue`, `creditLabel`, `prerequisiteAlternativeCourseCodeSets`, `corequisiteAlternativeCourseCodeSets`, and `effectiveYearRanges` fields for the planner-critical seed set.
-- The canonical course registry now also widens Green River title coverage through source-backed schedule-display metadata generated from the current annual schedules.
-- The current generated source-backed metadata coverage includes `1458` Green River catalog courses, `915` planner-relevant UW catalog courses, and `2376` merged generated course-metadata rows.
-- The normalization is still intentionally strongest for planner-critical Green River STEM and support sequences plus a small set of UW anchor courses. The remaining work is expanding source-backed credits, prerequisite/co-requisite structure, and non-abbreviated titles across the long-tail registry without inventing unknown values.
+- The canonical course registry now also widens Green River title coverage through schedule-display metadata generated from the current annual schedules.
+- The current generated metadata coverage includes `1458` Green River catalog courses, `915` planner-relevant UW catalog courses, and `2376` merged generated course-metadata rows.
+- The normalization is still intentionally strongest for planner-critical Green River STEM and support sequences plus a small set of UW anchor courses. The remaining work is expanding credits, prerequisite/co-requisite structure, and non-abbreviated titles across the long-tail registry without inventing unknown values.
 - The planner now also has a structured major-pathway layer in code, with pathway registry entries and runtime pathway resolution for supported majors.
 - The planner now also has a structured source-manifest registry in code, with one entry per tracked major/pathway/track source link. Each manifest entry now carries:
   - source role
@@ -122,7 +128,7 @@ The current green-state maintenance baseline is:
   - confidence
   - primary degree-requirements flag
   - validation notes
-- The equivalency-rule registry now stores structured acceptance categories, weaker-than relationships, effective-year ranges, and planner warnings, so legacy-accepted and accepted-with-warning paths live in one source-backed place instead of only in scattered notes.
+- The equivalency-rule registry now stores structured acceptance categories, weaker-than relationships, effective-year ranges, and planner warnings, so legacy-accepted and accepted-with-warning paths live in one place instead of only in scattered notes.
 - The planner page, generated campus docs, service-layer Green River availability lookups, and planner-facing maintenance scripts now read source-layer runtime helpers or source bootstrap snapshots instead of reaching straight into the mixed legacy row list.
 - The legacy planner data module is no longer part of the operational runtime path. It now acts as a bootstrap-only source for snapshot generation, while shared planner types live in `transfer-planner-types.ts` and the structured registries keep expanding.
 - Requirement atoms now carry both a source `phase` and a student-facing `displayPhase`, so checklist bucket overrides live in the structured registry layer instead of a runtime-only rebalance list.
@@ -294,7 +300,7 @@ Running `npm run planner:refresh` now does the highest-value automatic maintenan
 - discovers candidate primary degree-requirements links and records confidence-ranked recommendations in source-gap automation reports
 - rebuilds internal source-gap automation reports for medium-confidence and unresolved primary-source candidates
 - parses the current primary degree-requirements sources and compares extracted UW course codes against the structured degree-map blocks already in the planner
-- classifies parsed requirement diffs into source-backed categories and leaves the requirement-diff classification report in `.tmp/`
+- classifies parsed requirement diffs into categories and leaves the requirement-diff classification report in `.tmp/`
 - writes source and parsed-fact fingerprints into `.tmp/`
 - writes a source snapshot plus change summary into `.tmp/`
 - parses the UW Green River equivalency guide into generated structured rules
@@ -404,7 +410,7 @@ The detailed planner-facing equivalency and series-rule assumptions now live in:
 - It is not an official UW degree audit.
 - It is not a live registrar schedule.
 - It is not a promise that every course is offered every quarter.
-- It is not a claim beyond the current source-backed public requirements; unsupported paths should stay hidden.
+- It is not a claim beyond the current public requirements; unsupported paths should stay hidden.
 - It should not show fake dropdown choices for majors that do not actually have distinct supported pathways.
 
 ## Planner doc set

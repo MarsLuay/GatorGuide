@@ -45,6 +45,7 @@ export type UpsertManualOpportunityInput = {
   hasToBeMajor?: boolean;
   gpaMin?: number | null;
   residencyTypes?: string[];
+  communityTags?: string[];
   transferOnly?: boolean;
   recommendationCountMin?: number | null;
   essayCount?: number | null;
@@ -90,6 +91,24 @@ export class OpportunityGatewayError extends Error {
   }
 }
 
+type OpportunityGatewayErrorRecord = {
+  message?: unknown;
+  code?: unknown;
+  details?: unknown;
+};
+
+function isOpportunityGatewayErrorRecord(
+  value: unknown
+): value is OpportunityGatewayErrorRecord {
+  return !!value && typeof value === "object";
+}
+
+function getErrorString(value: unknown, fallback: string) {
+  if (typeof value === "string") return value.trim() || fallback;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  return fallback;
+}
+
 class OpportunityGatewayService {
   private withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
     return new Promise<T>((resolve, reject) => {
@@ -109,12 +128,14 @@ class OpportunityGatewayService {
     });
   }
 
-  private normalizeError(error: unknown) {
+  private normalizeError(error: unknown): OpportunityGatewayError {
     if (error instanceof OpportunityGatewayError) return error;
+    const record = isOpportunityGatewayErrorRecord(error) ? error : null;
+
     return new OpportunityGatewayError(
-      String((error as any)?.message ?? "Opportunity gateway request failed."),
-      String((error as any)?.code ?? ""),
-      (error as any)?.details
+      getErrorString(record?.message, "Opportunity gateway request failed."),
+      getErrorString(record?.code, ""),
+      record?.details
     );
   }
 

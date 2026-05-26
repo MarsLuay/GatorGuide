@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { View, useColorScheme } from "react-native";
 import { getThemeTokens } from "@/constants/theme-tokens";
+import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
 
 export type AppTheme = "light" | "dark" | "green" | "system";
 
-const STORAGE_KEY = "app-theme";
+const STORAGE_KEY = LOCAL_STORAGE_KEYS.appTheme;
 const APP_THEME_VALUES: AppTheme[] = ["light", "dark", "green", "system"];
 
 type AppThemeContextValue = {
@@ -54,14 +55,14 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
     let mounted = true;
     (async () => {
       try {
-        const stored = await AsyncStorage.getItem(STORAGE_KEY);
+        const stored = await localStorageService.getItem(STORAGE_KEY);
         if (!mounted) return;
         if (isAppTheme(stored)) {
           const normalizedTheme = normalizeAppTheme(stored);
           setThemeState(normalizedTheme);
 
           if (stored !== normalizedTheme) {
-            AsyncStorage.setItem(STORAGE_KEY, normalizedTheme).catch(() => {});
+            localStorageService.setItem(STORAGE_KEY, normalizedTheme).catch(() => {});
           }
         }
       } finally {
@@ -76,7 +77,7 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   const setTheme = (value: AppTheme) => {
     const normalizedTheme = normalizeAppTheme(value);
     setThemeState(normalizedTheme);
-    AsyncStorage.setItem(STORAGE_KEY, normalizedTheme).catch(() => {});
+    localStorageService.setItem(STORAGE_KEY, normalizedTheme).catch(() => {});
   };
 
   const normalizedTheme = normalizeAppTheme(theme);

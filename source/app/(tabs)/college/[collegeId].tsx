@@ -35,6 +35,12 @@ const humanizeValue = (value?: string | number | null) => {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  !!value && typeof value === "object" && !Array.isArray(value);
+
+const getErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : "Error fetching";
+
 export default function CollegeDetailsPage() {
   const params = useLocalSearchParams<{ collegeId?: string | string[] }>();
   const rawId = params?.collegeId;
@@ -83,7 +89,7 @@ export default function CollegeDetailsPage() {
     if (!college?.raw) return [] as { path: string; value: unknown }[];
     const out: { path: string; value: unknown }[] = [];
 
-    const visit = (obj: any, prefix = "") => {
+    const visit = (obj: unknown, prefix = "") => {
       if (obj === null) return;
       if (typeof obj !== "object") {
         out.push({ path: prefix || "root", value: obj });
@@ -93,6 +99,7 @@ export default function CollegeDetailsPage() {
         obj.forEach((item, index) => visit(item, prefix ? `${prefix}[${index}]` : `[${index}]`));
         return;
       }
+      if (!isRecord(obj)) return;
       for (const key of Object.keys(obj)) {
         const value = obj[key];
         const path = prefix ? `${prefix}.${key}` : key;
@@ -202,8 +209,8 @@ export default function CollegeDetailsPage() {
       if (!collegeId) throw new Error("missing id");
       const nextCollege = await collegeService.getCollegeDetails(String(collegeId));
       setCollege(nextCollege);
-    } catch (err: any) {
-      setError(err?.message || "Error fetching");
+    } catch (err: unknown) {
+      setError(getErrorMessage(err));
     } finally {
       setLoading(false);
     }

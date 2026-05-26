@@ -43,11 +43,26 @@ export const QUESTIONNAIRE_RADIO_OPTIONS = {
     { key: 'no', labelKey: 'questionnaire.no' },
     { key: 'maybe', labelKey: 'questionnaire.maybe' },
   ],
+  lgbtqCommunity: [
+    { key: 'yes', labelKey: 'questionnaire.yes' },
+    { key: 'no', labelKey: 'questionnaire.no' },
+    { key: 'prefer_not_to_say', labelKey: 'questionnaire.preferNotToSay' },
+  ],
 } as const;
 
 type RadioField = keyof typeof QUESTIONNAIRE_RADIO_OPTIONS;
 
-type QuestionnaireRecord = Partial<Record<QuestionnaireFieldId, any>> & Record<string, any>;
+export type QuestionnaireAnswerValue =
+  | string
+  | number
+  | boolean
+  | null
+  | QuestionnaireAnswerValue[]
+  | { [key: string]: QuestionnaireAnswerValue };
+
+export type QuestionnaireAnswers = Record<string, QuestionnaireAnswerValue>;
+
+type QuestionnaireRecordInput = Record<string, unknown>;
 
 const STATE_ABBR_TO_NAME: Record<string, string> = {
   AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', FL: 'Florida', GA: 'Georgia',
@@ -95,6 +110,39 @@ const norm = (value: unknown) =>
     .replace(/[^\p{L}\p{N} ]/gu, '');
 
 const allLanguageBundles = Object.values(translations) as Record<string, string>[];
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  !!value && typeof value === 'object' && !Array.isArray(value);
+
+export function isQuestionnaireAnswerValue(value: unknown): value is QuestionnaireAnswerValue {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return true;
+  if (typeof value === 'number') return Number.isFinite(value);
+  if (Array.isArray(value)) return value.every(isQuestionnaireAnswerValue);
+  if (!isRecord(value)) return false;
+  return Object.values(value).every(isQuestionnaireAnswerValue);
+}
+
+function coerceQuestionnaireAnswers(answers: QuestionnaireRecordInput | null | undefined): QuestionnaireAnswers {
+  if (!isRecord(answers)) return {};
+
+  const normalized: QuestionnaireAnswers = {};
+  for (const [key, value] of Object.entries(answers)) {
+    if (isQuestionnaireAnswerValue(value)) {
+      normalized[key] = value;
+    }
+  }
+  return normalized;
+}
+
+export function getQuestionnaireAnswerText(
+  answers: QuestionnaireRecordInput | null | undefined,
+  fieldId: string
+) {
+  const value = answers?.[fieldId];
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  return '';
+}
 
 const normalizeStateName = (value: unknown): string | null => {
   const raw = String(value ?? '').trim();
@@ -258,8 +306,11 @@ const mapLegacyValue = (field: RadioField, rawValue: unknown, activeLanguage?: L
   return null;
 };
 
-export function normalizeQuestionnaireAnswers(answers: QuestionnaireRecord | null | undefined, activeLanguage?: Language) {
-  const normalized: QuestionnaireRecord = { ...(answers ?? {}) };
+export function normalizeQuestionnaireAnswers(
+  answers: QuestionnaireRecordInput | null | undefined,
+  activeLanguage?: Language
+): QuestionnaireAnswers {
+  const normalized = coerceQuestionnaireAnswers(answers);
 
   (Object.keys(QUESTIONNAIRE_RADIO_OPTIONS) as RadioField[]).forEach((field) => {
     if (!(field in normalized)) return;

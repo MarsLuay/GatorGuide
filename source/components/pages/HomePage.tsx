@@ -19,96 +19,30 @@ import {
   deadlineCalendarService,
   type DeadlineCalendarEntry,
 } from "@/services/deadlines/deadline-calendar.service";
-import { TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD } from "@/constants/planner-storage";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import {
   roadmapService,
   type UserRoadmapDocument,
 } from "@/services/planning/roadmap.service";
-import { getSuggestedScheduleCourseDisplayLabel } from "@/components/transfer-planner/transfer-planner-suggested-schedule";
-
-type HomeTourStep = {
-  id: string;
-  title: string;
-  description: string;
-  x: number;
-  y: number;
-};
+import {
+  formatGpaDisplay,
+  formatImportantDate,
+  getDeadlineEntrySubtitle,
+  getDeadlineOpportunityId,
+  getHomeDeadlineKindLabelKey,
+  getHomeFirstNameDisplay,
+  getPlannerCurrentCourseKeys,
+  mergeHomeCurrentCourses,
+  type HomeCurrentCourse,
+} from "@/components/pages/home/home-page-utils";
+import {
+  buildHomeTourSteps,
+  resolveHomeTourBubbleLayout,
+  type HomeTourStep,
+} from "@/components/pages/home/home-tour";
 
 const DESKTOP_HOME_MIN_WIDTH = 960;
 const PHONE_FALLBACK_ASPECT_RATIO = 1.5;
-
-function formatImportantDate(value: string | null, fallback = "Coming soon") {
-  if (!value) return fallback;
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return value;
-
-  try {
-    const options: Intl.DateTimeFormatOptions = {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    };
-    return new Intl.DateTimeFormat(undefined, options).format(parsed);
-  } catch {
-    return value;
-  }
-}
-
-function formatGpaDisplay(value: string | null | undefined) {
-  const raw = String(value ?? "").trim();
-  if (!raw) return "";
-  const match = raw.match(/-?\d+(?:\.\d+)?/);
-  if (!match) return raw;
-  const num = Number.parseFloat(match[0]);
-  if (!Number.isFinite(num)) return raw;
-  const clamped = Math.max(0, Math.min(num, 4.0));
-  const truncated = Math.floor(clamped * 100) / 100;
-  return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
-}
-
-function getDeadlineOpportunityId(entry: DeadlineCalendarEntry) {
-  if (entry.target.type === "resources") return entry.target.opportunityId;
-  const opportunityPrefix = "opportunity:";
-  return entry.id.startsWith(opportunityPrefix)
-    ? entry.id.slice(opportunityPrefix.length)
-    : null;
-}
-
-function getPlannerCurrentCourseDisplayLabel(value: string) {
-  const normalized = String(value ?? "").replace(/\s+/g, " ").trim();
-  if (!normalized) return "";
-
-  const parts = normalized.split("|").map((part) => part.trim());
-  const sourceGroup = parts[0];
-  const isPlannerInstanceKey =
-    (sourceGroup === "gen-ed" || sourceGroup === "requirement") && parts.length >= 8;
-
-  if (!isPlannerInstanceKey) {
-    return normalized;
-  }
-
-  const occurrenceIndex = Number(parts[parts.length - 1]);
-  const sourceOrder = Number(parts[parts.length - 3]);
-  const priorityRank = Number(parts[parts.length - 4]);
-  const label = parts.slice(2, -5).join("|").trim();
-
-  if (
-    !label ||
-    !Number.isInteger(occurrenceIndex) ||
-    !Number.isFinite(sourceOrder) ||
-    !Number.isFinite(priorityRank)
-  ) {
-    return normalized;
-  }
-
-  return getSuggestedScheduleCourseDisplayLabel(label) || label;
-}
-
-type HomeCurrentCourse = {
-  id: string;
-  label: string;
-};
 
 export default function HomePage() {
   const router = useRouter();
@@ -131,9 +65,7 @@ export default function HomePage() {
   const [pendingDeadlineIds, setPendingDeadlineIds] = useState<Set<string>>(() => new Set());
   const [tourStepIndex, setTourStepIndex] = useState(0);
 
-  const capitalizedName = user?.name 
-    ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
-    : t("home.student");
+  const capitalizedName = getHomeFirstNameDisplay(user?.name, t("home.student"));
 
   const openCalendar = useCallback(() => {
     router.push(routeWithReturnTo(ROUTES.calendar, ROUTES.root));
@@ -302,45 +234,14 @@ export default function HomePage() {
     () => desktopRoadmap?.profileSnapshot.deadline?.trim() || null,
     [desktopRoadmap?.profileSnapshot.deadline]
   );
-  const plannerCurrentCourses = useMemo(() => {
-    const rawValue =
-      state.questionnaireAnswers?.[TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD];
-    if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
-      return [] as string[];
-    }
-
-    const seen = new Set<string>();
-    const merged: string[] = [];
-
-    for (const value of Object.values(rawValue)) {
-      if (!Array.isArray(value)) continue;
-
-      for (const entry of value) {
-        const normalized = String(entry ?? "").trim();
-        if (!normalized || seen.has(normalized)) continue;
-        seen.add(normalized);
-        merged.push(normalized);
-      }
-    }
-
-    return merged;
-  }, [state.questionnaireAnswers]);
-  const linkedCurrentCourses = useMemo<HomeCurrentCourse[]>(() => {
-    const seen = new Set<string>();
-    const merged: HomeCurrentCourse[] = [];
-
-    for (const source of [desktopCurrentCourses, plannerCurrentCourses]) {
-      for (const entry of source) {
-        const normalized = String(entry ?? "").trim();
-        const label = getPlannerCurrentCourseDisplayLabel(normalized);
-        if (!normalized || seen.has(normalized)) continue;
-        seen.add(normalized);
-        merged.push({ id: normalized, label });
-      }
-    }
-
-    return merged;
-  }, [desktopCurrentCourses, plannerCurrentCourses]);
+  const plannerCurrentCourses = useMemo(
+    () => getPlannerCurrentCourseKeys(state.questionnaireAnswers),
+    [state.questionnaireAnswers]
+  );
+  const linkedCurrentCourses = useMemo<HomeCurrentCourse[]>(
+    () => mergeHomeCurrentCourses(desktopCurrentCourses, plannerCurrentCourses),
+    [desktopCurrentCourses, plannerCurrentCourses]
+  );
   const shouldShowCurrentCoursesInPlanner = linkedCurrentCourses.length > 0;
   const shouldShowRecommendedNextDashboardPanel =
     desktopRecommendedCourses.length > 0 || !!desktopCoursePlanningDeadline;
@@ -462,59 +363,39 @@ export default function HomePage() {
   const topAnchor = insets.top + 40;
   const tabAnchorY = screenHeight - insets.bottom - 56;
 
-  const tourSteps = useMemo<HomeTourStep[]>(() => [
-    {
-      id: "planning",
-      title: t("home.tourPlanningTitle"),
-      description: t("home.tourPlanningDescription"),
-      x: tourCardLeft + tourCardWidth * 0.5,
-      y: topAnchor + 360,
-    },
-    {
-      id: "tab-home",
-      title: t("navigation.home"),
-      description: t("home.tourHomeDescription"),
-      x: screenWidth * 0.125,
-      y: tabAnchorY,
-    },
-    {
-      id: "tab-resources",
-      title: t("navigation.resources"),
-      description: t("home.tourResourcesDescription"),
-      x: screenWidth * 0.375,
-      y: tabAnchorY,
-    },
-    {
-      id: "tab-profile",
-      title: t("navigation.profile"),
-      description: t("home.tourProfileDescription"),
-      x: screenWidth * 0.625,
-      y: tabAnchorY,
-    },
-    {
-      id: "tab-settings",
-      title: t("navigation.settings"),
-      description: t("home.tourSettingsDescription"),
-      x: screenWidth * 0.875,
-      y: tabAnchorY,
-    },
-  ], [screenWidth, tabAnchorY, t, tourCardLeft, tourCardWidth, topAnchor]);
+  const tourSteps = useMemo<HomeTourStep[]>(
+    () =>
+      buildHomeTourSteps({
+        t,
+        screenWidth,
+        tabAnchorY,
+        tourCardLeft,
+        tourCardWidth,
+        topAnchor,
+      }),
+    [screenWidth, tabAnchorY, t, tourCardLeft, tourCardWidth, topAnchor]
+  );
 
   const activeTourStep = tourSteps[Math.min(tourStepIndex, tourSteps.length - 1)];
-  const bubbleWidth = Math.min(360, Math.max(260, screenWidth - 24));
-  const bubbleHeight = Math.max(150, Math.round(136 * effectiveFontScale));
-  const preferBubbleTop = activeTourStep ? activeTourStep.y > screenHeight * 0.45 : false;
-  const bubbleTop = activeTourStep
-    ? preferBubbleTop
-      ? Math.max(insets.top + 12, activeTourStep.y - bubbleHeight - 36)
-      : Math.min(screenHeight - bubbleHeight - insets.bottom - 20, activeTourStep.y + 26)
-    : insets.top + 12;
-  const bubbleLeft = activeTourStep
-    ? Math.max(12, Math.min(activeTourStep.x - bubbleWidth / 2, screenWidth - bubbleWidth - 12))
-    : 12;
-  const pointerOffset = activeTourStep
-    ? Math.max(20, Math.min(activeTourStep.x - bubbleLeft - 8, bubbleWidth - 28))
-    : 24;
+  const {
+    bubbleWidth,
+    bubbleHeight,
+    preferBubbleTop,
+    bubbleTop,
+    bubbleLeft,
+    pointerOffset,
+  } = useMemo(
+    () =>
+      resolveHomeTourBubbleLayout({
+        activeTourStep,
+        bottomInset: insets.bottom,
+        effectiveFontScale,
+        screenHeight,
+        screenWidth,
+        topInset: insets.top,
+      }),
+    [activeTourStep, effectiveFontScale, insets.bottom, insets.top, screenHeight, screenWidth]
+  );
 
   const completeTour = async () => {
     await setOnboardingSeen(true);
@@ -597,20 +478,12 @@ export default function HomePage() {
                     {entry.title}
                   </Text>
                   <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
-                    {entry.subtitle}
+                    {getDeadlineEntrySubtitle(entry, t)}
                   </Text>
                   <View className="flex-row flex-wrap items-center gap-2 mt-3">
                     <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
                       <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-                        {entry.kind === "roadmap_task"
-                          ? t("home.deadlineKindSchool")
-                          : entry.kind === "scholarship"
-                            ? t("home.deadlineKindScholarship")
-                            : entry.kind === "internship"
-                              ? t("home.deadlineKindInternship")
-                              : entry.kind === "quarter-start" || entry.kind === "quarter-end"
-                                ? t("home.deadlineKindCollege")
-                                : t("home.deadlineKindCollege")}
+                        {t(getHomeDeadlineKindLabelKey(entry.kind))}
                       </Text>
                     </View>
                     <Text className="text-emerald-500 text-xs font-semibold">{t("home.openAction")}</Text>
@@ -628,7 +501,7 @@ export default function HomePage() {
                   {!isDesktopHome ? (
                     <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
                       <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-                        {formatImportantDate(entry.dueAt)}
+                        {formatImportantDate(entry.dueAt, t("home.comingSoon"))}
                       </Text>
                     </View>
                   ) : null}
@@ -636,7 +509,7 @@ export default function HomePage() {
                   {isDesktopHome ? (
                     <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
                       <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-                        {formatImportantDate(entry.dueAt)}
+                        {formatImportantDate(entry.dueAt, t("home.comingSoon"))}
                       </Text>
                     </View>
                   ) : null}
@@ -743,7 +616,7 @@ export default function HomePage() {
               <Text className={`${textClass} font-semibold`}>{t("home.nextClassPlanningTarget")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
                 {t("home.nextClassPlanningTargetDescription", {
-                  date: formatImportantDate(desktopCoursePlanningDeadline),
+                  date: formatImportantDate(desktopCoursePlanningDeadline, t("home.comingSoon")),
                 })}
               </Text>
             </View>

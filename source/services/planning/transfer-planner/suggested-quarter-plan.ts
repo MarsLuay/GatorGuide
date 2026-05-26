@@ -4,12 +4,14 @@ export {
   buildSuggestedQuarterPlan,
   buildSuggestedQuarterRemainingCreditRange,
   buildTrackUsageSummary,
-  buildTransferPlannerCoursePlanningGraph,
+  canMarkSuggestedQuarterCourseCurrent,
   getPreparatoryTrackCourseCodeSet,
   getResolvedTrackTermsForRequirementDisplay,
   getResolvedTrackTermsForStudentProgress,
   getSuggestedQuarterCourseCreditBucket,
+  hasConcreteSuggestedQuarterCourse,
 } from "./runtime";
+export { buildTransferPlannerCoursePlanningGraph } from "./course-planning-graph";
 
 export type {
   HistoricalGrcTrackComparison,
@@ -24,5 +26,5 @@ export type {
   SuggestedQuarterPlan,
   SuggestedQuarterRemainingCreditRange,
   TrackUsageSummary,
-  TransferPlannerCoursePlanningGraph,
 } from "./runtime";
+export type { TransferPlannerCoursePlanningGraph } from "./course-planning-graph";

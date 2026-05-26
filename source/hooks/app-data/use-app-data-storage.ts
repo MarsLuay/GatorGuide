@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import {
@@ -27,7 +27,7 @@ export function useAppDataStorage({
     let mounted = true;
     (async () => {
       try {
-        const raw = await AsyncStorage.getItem(STORAGE_KEY);
+        const raw = await localStorageService.getItem(STORAGE_KEY);
         if (!mounted) return;
         if (raw) {
           const persisted = parsePersistedAppDataState(raw);
@@ -55,7 +55,7 @@ export function useAppDataStorage({
 
   useEffect(() => {
     if (!isHydrated) return;
-    AsyncStorage.setItem(STORAGE_KEY, serializeAppDataState(state)).catch((error) => {
+    localStorageService.setItem(STORAGE_KEY, serializeAppDataState(state)).catch((error) => {
       void errorLoggingService.captureException(error, {
         category: "storage",
         operation: "persist-app-data",

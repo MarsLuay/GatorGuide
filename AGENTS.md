@@ -46,6 +46,8 @@ Do not hand-edit generated planner artifacts unless the user explicitly asks for
 Common generated or generated-like planner files include:
 
 - `source/constants/transfer-planner-source/*.generated.ts`
+- `source/constants/transfer-planner-source/course-metadata.generated.data.json`
+- `source/constants/transfer-planner-source/student-runtime.generated/*.generated.json`
 - `source/constants/transfer-planner-source/generated-major-plans.ts`
 - `source/constants/transfer-planner-grc-availability.generated.ts`
 - `source/constants/transfer-equivalency-catalog.generated.ts`
@@ -54,7 +56,7 @@ Common generated or generated-like planner files include:
 - `source/docs/planner/UWB_DEGREE_COURSES.md`
 - `source/docs/planner/UWT_DEGREE_COURSES.md`
 
-When planner output changes unexpectedly, inspect the source scripts and reports in `source/.tmp/` rather than editing output files directly.
+When planner output changes unexpectedly, inspect the source scripts and reports in `source/.tmp/reports/` rather than editing output files directly.
 
 ## Safe Editing Defaults
 

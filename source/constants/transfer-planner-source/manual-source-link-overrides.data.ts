@@ -11,7 +11,7 @@ export type TransferPlannerManualSourceLinkOverride = {
   links?: TransferPlannerSourceLink[];
 };
 
-export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManualSourceLinkOverride[] =
+export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSourceLinkOverride[] =
   [
     {
       planId: "uw-bothell-economics",
@@ -50,6 +50,21 @@ export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManua
         {
           label: "UW Tacoma Environmental Sustainability BA degree requirements",
           url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-computer-science-and-systems",
+      pathwayId: "bachelor-of-science",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      links: [
+        {
+          label: "UW Tacoma Computer Science and Systems BS degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
           status: "verified",
           sourceConfidence: "high",
         },
@@ -113,6 +128,65 @@ export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManua
           url: "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
           status: "verified",
           sourceConfidence: "high",
+        },
+      ],
+    },
+    ...[
+      ["accounting-option", "UW Tacoma BABA Accounting curriculum"],
+      ["finance-option", "UW Tacoma BABA Finance curriculum"],
+      ["general-business-option", "UW Tacoma BABA General Business curriculum"],
+      ["management-option", "UW Tacoma BABA Management curriculum"],
+      ["marketing-option", "UW Tacoma BABA Marketing curriculum"],
+    ].map(
+      ([pathwayId, label]) =>
+        ({
+          planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+          pathwayId,
+          mode: "replace",
+          preferredPrimaryUrl: "https://www.tacoma.uw.edu/business/design-courses-baba",
+          links: [
+            {
+              label,
+              url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+              status: "verified",
+              sourceConfidence: "high",
+            },
+          ],
+        }) satisfies TransferPlannerManualSourceLinkOverride
+    ),
+    {
+      planId: "uw-tacoma-criminal-justice",
+      pathwayId: "campus-pathway",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+      links: [
+        {
+          label: "UW Tacoma Criminal Justice campus curriculum",
+          url: "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-criminal-justice",
+      pathwayId: "online-pathway",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+      links: [
+        {
+          label: "UW Tacoma Criminal Justice online curriculum",
+          url: "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Criminal Justice online admission requirements",
+          url: "https://www.tacoma.uw.edu/swcj/criminal-justice-online-admission-requirements-and-how-apply",
+          status: "verified",
+          sourceConfidence: "medium",
         },
       ],
     },

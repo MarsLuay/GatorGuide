@@ -20,7 +20,7 @@ function loadPdfjs() {
   return pdfjsImportPromise;
 }
 const {
-  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  TRANSFER_PLANNER_MANIFEST_REGISTRY,
   TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY,
 } = require("../../constants/transfer-planner-source");
 const {
@@ -43,27 +43,63 @@ try {
   TRANSFER_PLANNER_GENERATED_COURSE_METADATA = [];
 }
 const parserRules = require("./parser-rule-utils.cjs");
+const {
+  CHOICE_COUNT_WORDS_PATTERN,
+  CHOICE_LIST_START_PATTERN,
+  CHOICE_REQUIREMENT_CONTEXT_PATTERN,
+  CHOICE_REQUIREMENT_LABEL_PATTERN,
+  NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN,
+  PROGRAMMING_CHOICE_CONTEXT_PATTERN,
+  SEQUENCE_ALTERNATIVE_CHOICE_LINE_PATTERN,
+  SEQUENCE_CHOICE_CONTEXT_PATTERN,
+  SEQUENCE_HEADING_BOUNDARY_PATTERN,
+  SEQUENCE_LABEL_ALTERNATIVE_PATTERN,
+  STRONG_CHOICE_REQUIREMENT_CONTEXT_PATTERN,
+  createParserShapeDetection,
+  detectOptionCue,
+  parseChoiceRequiredCount,
+} = require("./lib/parser-shape-detection.cjs");
+const {
+  SOURCE_DOWNLOAD_MAX_BUFFER_BYTES,
+  createSourceDownloader,
+} = require("./lib/source-fetching.cjs");
+const {
+  writeJsonReport,
+} = require("./lib/planner-reporting.cjs");
+const {
+  writeParserRecoveryReport,
+  writeRequirementSourceParseMarkdownReport,
+} = require("./lib/parser-reporting.cjs");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getArgValues,
+  getPlannerTmpPath,
+  hasArg,
+} = require("./lib/script-harness.cjs");
+const {
+  PARSEABLE_SUPPORT_ROLES,
+  buildRequirementSourceScope,
+  canRequirementSourceRoleCreateSchedulableRows,
+  flattenRequirementSourceScope,
+  getRequirementSourceRoleStatus,
+} = require("./lib/source-scope.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-requirement-source-snapshots");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.md");
-const RECOVERY_OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-parser-recovery-report.json"
-);
-const RECOVERY_OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-parser-recovery-report.md"
-);
+const REPO_ROOT = SOURCE_ROOT;
+const TMP_DIR = ensurePlannerTmpLayout().root;
+const SNAPSHOT_DIR = getPlannerTmpPath("transfer-planner-requirement-source-snapshots");
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.md");
+const RECOVERY_OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-parser-recovery-report.json");
+const RECOVERY_OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-parser-recovery-report.md");
 const OUTPUT_TS_PATH = path.resolve(
   REPO_ROOT,
   "constants",
   "transfer-planner-source",
   "requirement-source-adapters.generated.ts"
 );
-const OUTPUT_TS_CHUNK_DIR = path.resolve(
+const OUTPUT_BLOCK_VALUE_DIR = path.resolve(
   REPO_ROOT,
   "constants",
   "transfer-planner-source",
@@ -95,46 +131,6 @@ function getMaterializableParserPathwayId(entry) {
   return pathwayCount > 0 ? pathwayId : null;
 }
 
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-function getArgValues(flag) {
-  const args = process.argv.slice(2);
-  const values = [];
-  const directPrefix = `${flag}=`;
-  for (let index = 0; index < args.length; index += 1) {
-    const arg = args[index];
-    if (arg.startsWith(directPrefix)) {
-      values.push(arg.slice(directPrefix.length).trim());
-    } else if (arg === flag) {
-      const nextValue = args[index + 1];
-      if (nextValue && !nextValue.startsWith("--")) {
-        values.push(String(nextValue).trim());
-      }
-    }
-  }
-  return values.filter(Boolean);
-}
 function parseTargetPlanIdsFromArgs() {
   return uniqueSorted([
     ...getArgValues("--target-plan-id"),
@@ -163,20 +159,15 @@ function readJsonIfExists(filePath) {
 }
 const DEFAULT_TIMEOUT_MS = 20000;
 const DEFAULT_CONCURRENCY = 2;
-const DEFAULT_RETRY_ATTEMPTS = 3;
-const DEFAULT_HOST_COOLDOWN_MS = 750;
-const USER_AGENT = "GatorGuideTransferPlannerRequirementParser/1.0";
-const CURL_COMMAND = process.platform === "win32" ? "curl.exe" : "curl";
-const CURL_MAX_BUFFER_BYTES = 40 * 1024 * 1024;
-const CURL_ACCEPT_HEADER =
-  "text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf;q=0.8,*/*;q=0.7";
-const GENERATED_CHUNK_SIZE = 40;
+const CURL_MAX_BUFFER_BYTES = SOURCE_DOWNLOAD_MAX_BUFFER_BYTES;
 const EXPLICIT_COURSE_CODE_PATTERN =
   /\b([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*(\d{3}[A-Za-z]?)\b/g;
 const COURSE_NUMBER_CONTINUATION_PATTERN =
   /(?:^|[,(;/+&]\s*|\b(?:or|and)\s+)(\d{3}[A-Za-z]?)(?=$|[\s,);:/+&]|(?:\s*(?:or|and)\b))/gi;
-const NOISY_SOURCE_LINE_PATTERN =
+const NOISY_LINE_PATTERN =
   /(?:src=|srcset=|aria-label=|title=|\.jpg\b|\.jpeg\b|\.png\b|\.svg\b|\.gif\b|^\[page\s+\d+\]\s*%pdf-|^\s*%pdf-|^\s*(?:<!--|-->|(?:pre-bubbling\s+)?cache\s+(?:contexts|tags|max-age):?$|(?:\*\s*)?(?:route\.name\.|url\.site$|languages:|user\.permissions$|theme$)))/i;
+const HTML_CONTROL_LINE_PATTERN =
+  /^(?:Expand\s+All\s*(?:\|\s*)?Collapse\s+All|Collapse\s+All\s*(?:\|\s*)?Expand\s+All|Expand\s+All|Collapse\s+All)$/i;
 const TRANSFER_CREDIT_NOISE_PATTERN =
   /\b(transfer credits?|transfer equivalenc(?:y|ies)|articulation agreement|community colleges?|community college)\b/i;
 const ENGLISH_COMPOSITION_REQUIREMENT_PATTERN = /\benglish composition\b/i;
@@ -375,9 +366,9 @@ const HTML_LINK_PATTERN = /<a\b[^>]*href=(?:"([^"]+)"|'([^']+)')[^>]*>([\s\S]*?)
 const HTML_COMMENT_PATTERN = /<!--[\s\S]*?-->/g;
 const HTML_TAG_PATTERN = /<[^>]+>/g;
 const SUPPLEMENTAL_HTML_LINK_PATTERN =
-  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|approved electives?|elective lists?|elective webpage|course lists?|worksheet|checklist|plan of study|program of study|study plan|sample plan|track|option|concentration|specialization|route|pathway|b\.?\s*a\.?|b\.?\s*s\.?|bachelor(?:'s)?|major(?: in)?|undergraduate studies?)\b/i;
+  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|approved electives?|elective lists?|elective webpage|course lists?|worksheet|checklist|degree map|curriculum map|schedule planning grid|schedule grid|planning grid|plan of study|program of study|study plan|sample plan|track|option|concentration|specialization|route|pathway|b\.?\s*a\.?|b\.?\s*s\.?|bachelor(?:'s)?|major(?: in)?|undergraduate studies?)\b/i;
 const HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN =
-  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|approved electives?|elective lists?|elective webpage|course lists?|worksheet|checklist|plan of study|program of study|study plan|sample plan)\b/i;
+  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|approved electives?|elective lists?|elective webpage|course lists?|worksheet|checklist|degree map|curriculum map|schedule planning grid|schedule grid|planning grid|plan of study|program of study|study plan|sample plan)\b/i;
 const SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN =
   /\b(track|option|concentration|specialization|route|pathway)\b/i;
 const LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN =
@@ -386,13 +377,17 @@ const NOISY_SUPPLEMENTAL_HTML_LINK_LABEL_PATTERN =
   /\b(apply|canvas|calendar|directory|map|myuw|library|tools|about|news|faculty|staff|contact|privacy|accessibility|terms|alumni|events|parking|transportation|research|housing|student life|jobs|visit|give|get involved|post graduation|minor|certificate|graduate|scholarships?|course lists?|course evaluations?|capstone courses?|study abroad|policy(?:\s*&\s*|\s+and\s+)procedures|suggested course pathways?)\b/i;
 const NON_STUDENT_FACING_REQUIREMENT_HINT_PATTERN =
   /\b(suggested general education|not required for transferring|highly recommended courses?|other recommended courses?|approved list|study abroad|capstone courses?|course evaluations?|course lists?|policy(?:\s*&\s*|\s+and\s+)procedures|graduate school|graduate programs?)\b/i;
-const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
+const LEGACY_STUDENT_GENCAT_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
-const PATHWAY_SOURCE_CUE_PATTERN =
+const UW_TACOMA_SET_UNDERGRAD_PROGRAM_URL_PATTERN =
+  /\/\/(?:www\.)?tacoma\.uw\.edu\/set\/programs\/undergrad\/[^/?#]+\/?(?:[?#].*)?$/i;
+const DEGREE_MAP_OR_PLANNING_GRID_CUE_PATTERN =
+  /\b(?:curriculum map|degree map|four[-\s]?year plan|schedule planning grid|schedule grid|planning grid)\b/i;
+const PATHWAY_CUE_PATTERN =
   /\b(track|option|route|pathway|concentration|specialization)\b/i;
-const PATHWAY_HUB_SOURCE_CUE_PATTERN =
+const PATHWAY_HUB_CUE_PATTERN =
   /\b(curriculum|degree requirements?|major requirements?|program requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)\b|\/(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)(?:[/?#-]|$)/i;
 const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
   /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
@@ -404,34 +399,17 @@ const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
   /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
 const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
   /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?|suggested course pathways?|computing specializations?|capstones?)\b|\/(?:courses?|course-list|course-lists|print\/courses|capstones?|computing-specializations)(?:[-/?#]|$)/i;
-const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+const ADMISSION_PREREQUISITE_CUE_PATTERN =
   /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
-const SUPPORT_SOURCE_CUE_PATTERN =
+const SUPPORT_CUE_PATTERN =
   /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
   /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
-const SOURCE_ROLE_STATUS_BY_ROLE = {
-  "official-catalog": "primary",
-  "primary-degree-requirements": "primary",
-  "department-requirements": "primary",
-  "pathway-degree-sheet": "primary",
-  "approved-course-list": "support",
-  "elective-list": "support",
-  "support-source": "support",
-  "admission-prerequisite-source": "support",
-  "admissions-preparation": "support",
-  "sample-schedule": "support",
-  "curriculum-map": "support",
-  "transfer-equivalency": "support",
-  "matched-grc-track": "support",
-  "upper-division-prerequisite-table": "non-schedulable",
-  "non-schedulable-course-list": "non-schedulable",
-  "old-archival": "ignored",
-  ignored: "ignored",
-};
-const GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN =
+const GRADUATE_SUPPLEMENTAL_PATTERN =
   /\b(graduate|ph\.?\s*d\.?|doctor(?:al|ate)?|m\.?\s*a\.?|masters?|master(?:'s)?)\b|\/(?:ma|phd|graduate|masters?|amp)(?:[-/]|$)/i;
-const TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN =
+const GRADUATE_DEGREE_CONTEXT_PATTERN =
+  /\b(?:graduate\s+(?:programs?|admissions?|degree|student status|work)|master(?:'s|s)?\s+program|master\s+of|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctor(?:al|ate)?|doctor\s+of|thesis\/non-thesis|dissertation|general examination)\b/i;
+const TRACK_CATALOG_SUPPLEMENTAL_PATTERN =
   /\b(course(?:s)? by track|courses-track|list of geography courses by track|suggested course pathways?)\b/i;
 const HTML_SECTION_BOUNDARY_LINE_PATTERN =
   /^(?:Program of Study:|[A-Z][A-Z0-9&]{1,8}\s+Departmental\s+Degree\s+requirements?\b|Bachelor\b|Minor\b|Master\b|Doctor\b|Undergraduate Programs\b|Graduate Programs\b|Back to Top\b)/i;
@@ -456,7 +434,7 @@ const PARSER_RECOVERY_BLOCKER_TYPES = new Set([
 ]);
 const REQUIREMENT_FRIENDLY_HINT_PATTERN =
   /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|credits?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
-const INACTIVE_MAJOR_SOURCE_PATTERN =
+const INACTIVE_MAJOR_PATTERN =
   /\b(?:not able|unable|cannot|can not|not currently able)\b.{0,120}\baccept(?:ing)?\b.{0,80}\bstudents?\b.{0,80}\bmajor\b|\bstudents?\b.{0,60}\bmay not declare\b.{0,80}\bmajor\b|\bmajor\b.{0,80}\bnot\b.{0,30}\baccepting\b.{0,60}\bstudents?\b/i;
 const SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN =
   /\b(?:selected from|from the following list|both courses?|list of approved courses|approved list of courses|courses? listed below|listed below are required|following departments|technical electives?|engineering fundamentals electives?|science electives?|math elective|core and elective requirements?)\b/i;
@@ -475,7 +453,7 @@ const PATHWAY_LABEL_APPLY_PATTERN =
 const PATHWAY_SECTION_CONTEXT_PATTERN =
   /\b(?:concentration|track|option|route|pathway)s?\b.*\b(?:area courses?|courses?|listed below|choose|select|customize|approved area)\b|\b(?:choose|select)\s+one\s+of\b.*\b(?:concentration|track|option|route|pathway)s?\b/i;
 const PATHWAY_SECTION_BOUNDARY_PATTERN =
-  /^(?:admissions?|advising|student resources?|degree requirements?|core courses?|honou?rs?\b|recommended courses?|language courses?|share|support us|contact us|privacy|terms|site map)\b/i;
+  /^(?:admissions?|advising|student resources?|degree requirements?|core courses?|honou?rs?\b|recommended courses?|language courses?|career options?|share|support us|contact us|privacy|terms|site map)\b/i;
 const PATHWAY_SECTION_SUBCATEGORY_PATTERN = /^\[[^\]]+\]/;
 const HONORS_THESIS_PATHWAY_LABEL_PATTERN = /\bhonou?rs?\s+thesis\s+option\b/i;
 const PATHWAY_CHOICE_COUNT_BY_WORD = new Map([
@@ -493,6 +471,7 @@ const CAMPUS_ORDER = ["uw-seattle", "uw-bothell", "uw-tacoma"];
 const PARSEABLE_PARSER_TYPES = new Set([
   "html-degree-page",
   "html-curriculum-page",
+  "html-admissions-page",
   "html-overview-page",
   "catalog-page",
   "generic-html",
@@ -500,24 +479,15 @@ const PARSEABLE_PARSER_TYPES = new Set([
   "pdf-worksheet",
   "generic-pdf",
 ]);
-const PARSEABLE_SUPPORT_SOURCE_ROLES = new Set([
-  "approved-course-list",
-  "elective-list",
-  "upper-division-prerequisite-table",
-  "non-schedulable-course-list",
-  "sample-schedule",
-  "admission-prerequisite-source",
-  "admissions-preparation",
-  "transfer-equivalency",
-]);
-const HOST_REQUEST_CHAINS = new Map();
-const HOST_NEXT_ALLOWED_AT = new Map();
-const SOURCE_DOWNLOAD_CACHE = new Map();
-const HTML_SOURCE_CACHE = new Map();
-const DOCX_SOURCE_CACHE = new Map();
+const HTML_CACHE = new Map();
+const DOCX_CACHE = new Map();
 const PDF_PAGE_BLOCK_CACHE = new Map();
 const execFileAsync = promisify(execFile);
-const REQUIREMENT_SOURCE_ADAPTERS = [
+const { downloadSource } = createSourceDownloader({
+  execFileAsync,
+  maxBufferBytes: CURL_MAX_BUFFER_BYTES,
+});
+const REQUIREMENT_ADAPTERS = [
   {
     id: "uw-seattle-html-degree-page",
     family: "UW Seattle HTML degree pages",
@@ -592,51 +562,14 @@ function ensureDir(directoryPath) {
   fs.mkdirSync(directoryPath, { recursive: true });
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function getHostKey(url) {
-  try {
-    return new URL(url).host.toLowerCase();
-  } catch {
-    return "unknown-host";
-  }
-}
-
-async function withHostThrottle(url, work) {
-  const hostKey = getHostKey(url);
-  const previous = HOST_REQUEST_CHAINS.get(hostKey) ?? Promise.resolve();
-  const run = previous
-    .catch(() => undefined)
-    .then(async () => {
-      const waitMs = Math.max(0, (HOST_NEXT_ALLOWED_AT.get(hostKey) ?? 0) - Date.now());
-      if (waitMs > 0) {
-        await sleep(waitMs);
-      }
-
-      try {
-        return await work();
-      } finally {
-        HOST_NEXT_ALLOWED_AT.set(hostKey, Date.now() + DEFAULT_HOST_COOLDOWN_MS);
-      }
-    });
-
-  HOST_REQUEST_CHAINS.set(
-    hostKey,
-    run.then(
-      () => undefined,
-      () => undefined
-    )
-  );
-
-  return run;
-}
-
 function normalizeWhitespace(value) {
   return String(value ?? "")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function isUwTacomaSetUndergradProgramUrl(url) {
+  return UW_TACOMA_SET_UNDERGRAD_PROGRAM_URL_PATTERN.test(String(url ?? ""));
 }
 
 function decodeHtmlEntities(value) {
@@ -734,6 +667,33 @@ function slugify(value) {
     .replace(/^-+|-+$/g, "");
 }
 
+function stableSourceIdHash(value) {
+  let hash = 0;
+  const text = String(value ?? "");
+  for (let index = 0; index < text.length; index += 1) {
+    hash = ((hash << 5) - hash + text.charCodeAt(index)) | 0;
+  }
+  return Math.abs(hash).toString(36);
+}
+
+function buildRequirementSourceBlockId(owner) {
+  const adapterSlug = slugify(owner.adapterId);
+  const role = String(owner.sourceRole ?? "");
+  const roleStatus = String(
+    owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(role)
+  );
+  const needsDisambiguator =
+    roleStatus !== "primary" ||
+    owner.supportOnly === true ||
+    owner.nonSchedulable === true ||
+    owner.canCreateSchedulableRows === false ||
+    owner.canCreateScheduleRows === false;
+  const suffix = needsDisambiguator
+    ? `${adapterSlug}:${slugify(role || "support")}:${stableSourceIdHash(owner.sourceUrl)}`
+    : adapterSlug;
+  return `${owner.ownerId}:source-block:${suffix}`;
+}
+
 function getUwCourseMetadata(courseCode) {
   return UW_COURSE_METADATA_BY_CODE.get(normalizeCourseCode(courseCode)) ?? null;
 }
@@ -775,37 +735,9 @@ function getUwCourseCreditRange(courseCode) {
 
 function selectRequirementSourceAdapter(entry) {
   return (
-    REQUIREMENT_SOURCE_ADAPTERS.find((adapter) => adapter.matches(entry)) ??
-    REQUIREMENT_SOURCE_ADAPTERS[REQUIREMENT_SOURCE_ADAPTERS.length - 1]
+    REQUIREMENT_ADAPTERS.find((adapter) => adapter.matches(entry)) ??
+    REQUIREMENT_ADAPTERS[REQUIREMENT_ADAPTERS.length - 1]
   );
-}
-
-function getRequirementSourceRoleStatus(sourceRole) {
-  return SOURCE_ROLE_STATUS_BY_ROLE[sourceRole] ?? "ignored";
-}
-
-function buildRequirementSourceScope(sourceRole) {
-  const sourceRoleStatus = getRequirementSourceRoleStatus(sourceRole);
-  const primary = sourceRoleStatus === "primary";
-  const supportOnly = sourceRoleStatus === "support";
-  const nonSchedulable = sourceRoleStatus === "non-schedulable";
-  const ignored = sourceRoleStatus === "ignored";
-
-  return {
-    canCreateRequiredRows: primary,
-    canCreateOptionGroups: primary,
-    canCreateCreditBuckets: primary,
-    canCreateCategoryOptions: primary,
-    canCreateApprovedFilters: sourceRole === "approved-course-list",
-    canCreateElectiveLists: sourceRole === "elective-list",
-    canCreateSequencingHints: sourceRole === "sample-schedule" || sourceRole === "curriculum-map",
-    canCreateAdmissionPrepRows:
-      sourceRole === "admission-prerequisite-source" ||
-      sourceRole === "admissions-preparation",
-    canCreateScheduleRows: primary,
-    supportOnly,
-    nonSchedulable: nonSchedulable || ignored,
-  };
 }
 
 function sourceContentIndicatesInactiveMajor(entry, parsed) {
@@ -824,11 +756,7 @@ function sourceContentIndicatesInactiveMajor(entry, parsed) {
       .join(" ")
   );
 
-  return INACTIVE_MAJOR_SOURCE_PATTERN.test(text);
-}
-
-function canRequirementSourceRoleCreateSchedulableRows(sourceRole) {
-  return buildRequirementSourceScope(sourceRole).canCreateScheduleRows;
+  return INACTIVE_MAJOR_PATTERN.test(text);
 }
 
 function canRequirementSourceCreateSchedulableRows(entry) {
@@ -984,13 +912,13 @@ function isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchabl
   const ownerIsPathway = Boolean(entry?.pathwayId) || /:pathway:/.test(String(entry?.ownerId ?? ""));
   if (
     /\b(?:admissions?|apply|application|preparation|prereq(?:uisites?)?)\b/i.test(sourceSearchable) ||
-    SUPPORT_SOURCE_CUE_PATTERN.test(sourceSearchable)
+    SUPPORT_CUE_PATTERN.test(sourceSearchable)
   ) {
     return false;
   }
 
   const sourceLooksLikePathway =
-    PATHWAY_SOURCE_CUE_PATTERN.test(sourceSearchable) ||
+    PATHWAY_CUE_PATTERN.test(sourceSearchable) ||
     /(?:^|[-/])(?:track|option|route|pathway|concentration|specialization)(?:[-/?#]|$)/i.test(url);
   const sourceLooksLikeDegreeProgram =
     /\b(?:bachelor|bachelors?|b\.?\s*a\.?|b\.?\s*s\.?|ba|bs|bba)\b/i.test(sourceSearchable) ||
@@ -1064,6 +992,9 @@ function getSourceRoleScore(entry) {
 }
 
 function classifyRequirementSourceRole(entry) {
+  const sourceIdentitySearchable = normalizeMatcherText(
+    [entry?.url, entry?.label, entry?.sourceLabel].filter(Boolean).join(" ")
+  );
   const sourceSearchable = normalizeMatcherText(
     [entry?.url, entry?.label, entry?.sourceLabel, entry?.role, entry?.parserType]
       .filter(Boolean)
@@ -1081,6 +1012,20 @@ function classifyRequirementSourceRole(entry) {
     return "non-schedulable-course-list";
   }
 
+  if (
+    APPROVED_COURSE_LIST_CUE_PATTERN.test(sourceIdentitySearchable) &&
+    !PRIMARY_REQUIREMENT_CUE_PATTERN.test(sourceIdentitySearchable)
+  ) {
+    return "approved-course-list";
+  }
+
+  if (
+    hasStandaloneElectiveListSourceCue(sourceIdentitySearchable) &&
+    !PRIMARY_REQUIREMENT_CUE_PATTERN.test(sourceIdentitySearchable)
+  ) {
+    return "elective-list";
+  }
+
   if (entry?.isPrimaryDegreeRequirementsLink && isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)) {
     return "primary-degree-requirements";
   }
@@ -1094,7 +1039,7 @@ function classifyRequirementSourceRole(entry) {
     hasMajorPlanningWorksheetCue &&
     isDocumentWorksheetSource &&
     !/admissions\.uwb\.edu\/register\/mpw-/i.test(entryUrl) &&
-    !ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)
+    !ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable)
   ) {
     return "primary-degree-requirements";
   }
@@ -1148,6 +1093,19 @@ function classifyRequirementSourceRole(entry) {
     return "official-catalog";
   }
 
+  if (isUwTacomaSetUndergradProgramUrl(entry?.url)) {
+    if (
+      PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+      ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable) ||
+      /\b(?:degree requirements?|major requirements?|program requirements?|curriculum|courses?|schedule planning|prerequisites?|admission requirements?)\b/i.test(
+        searchable
+      )
+    ) {
+      return "primary-degree-requirements";
+    }
+    return "department-requirements";
+  }
+
   if (/\b(?:archive|archived|retired|old requirements?|prior to|pre-20\d{2})\b/.test(searchable)) {
     return "old-archival";
   }
@@ -1168,7 +1126,11 @@ function classifyRequirementSourceRole(entry) {
     return "sample-schedule";
   }
 
-  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(sourceSearchable) && PATHWAY_SOURCE_CUE_PATTERN.test(sourceSearchable)) {
+  if (DEGREE_MAP_OR_PLANNING_GRID_CUE_PATTERN.test(searchable)) {
+    return "curriculum-map";
+  }
+
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(sourceSearchable) && PATHWAY_CUE_PATTERN.test(sourceSearchable)) {
     return "pathway-degree-sheet";
   }
 
@@ -1192,11 +1154,11 @@ function classifyRequirementSourceRole(entry) {
     return "non-schedulable-course-list";
   }
 
-  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
     return "admission-prerequisite-source";
   }
 
-  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (SUPPORT_CUE_PATTERN.test(searchable)) {
     return "support-source";
   }
 
@@ -1221,6 +1183,16 @@ function classifyRequirementSourceRole(entry) {
   }
 
   return "ignored";
+}
+
+function hasStandaloneElectiveListSourceCue(sourceSearchable) {
+  return (
+    ELECTIVE_LIST_CUE_PATTERN.test(sourceSearchable) ||
+    /\b(?:engineering|technical|departmental|major|science|natural science|approved)\s+electives?\b/i.test(
+      sourceSearchable
+    ) ||
+    /\belectives?\s+html\b/i.test(sourceSearchable)
+  );
 }
 
 function getParserTypeScore(parserType) {
@@ -1289,12 +1261,18 @@ function shouldAllowAlternateManifestEntryForParse(entry, alternateEntry) {
 }
 
 function getAlternateParseableManifestEntries(entry) {
-  return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  return TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (candidate) =>
       candidate.ownerId === entry.ownerId &&
       candidate.id !== entry.id &&
       candidate.url !== entry.url &&
       candidate.campusId === entry.campusId &&
+      manifestEntryMatchesSpecializedPlanTitle(candidate) &&
+      !parserRecoveryCandidateConflictsWithOwnerIdentity(
+        entry,
+        candidate.label,
+        candidate.url
+      ) &&
       PARSEABLE_PARSER_TYPES.has(candidate.parserType) &&
       shouldAllowAlternateManifestEntryForParse(entry, candidate)
   ).sort(compareManifestFallbackCandidates);
@@ -1318,13 +1296,108 @@ function shouldKeepStructuredUwCourseCodeForManifestEntry(manifestEntry, courseC
   return /\b(?:graduate|master|m\.?s\.?|ph\.?d|certificate)\b/i.test(ownerText);
 }
 
+function manifestEntryCanUseGraduateCourseCodes(manifestEntry) {
+  const ownerText = normalizeWhitespace(
+    [
+      manifestEntry?.ownerTitle,
+      manifestEntry?.majorTitle,
+      manifestEntry?.title,
+      manifestEntry?.label,
+      manifestEntry?.sourceLabel,
+      manifestEntry?.url,
+    ].join(" ")
+  );
+  return /\b(?:graduate|master|m\.?s\.?|m\.?a\.?|ph\.?d|doctor|certificate)\b/i.test(ownerText);
+}
+
+function isGraduateCrossListedCompanionForUndergraduateSource(manifestEntry, lines, courseCode) {
+  if (manifestEntryCanUseGraduateCourseCodes(manifestEntry)) {
+    return false;
+  }
+
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const subject = getCourseCodeSubject(normalizedCourseCode);
+  const level = getCourseCodeNumericLevel(normalizedCourseCode);
+  if (!subject || level === null || level < 500) {
+    return false;
+  }
+
+  return getSourceLineHints(lines ?? [], normalizedCourseCode).some((hint) =>
+    extractCourseCodesFromLine(hint).some(
+      (candidateCode) =>
+        getCourseCodeSubject(candidateCode) === subject &&
+        (getCourseCodeNumericLevel(candidateCode) ?? 999) < 500
+    )
+  );
+}
+
+function filterGraduateCrossListedCompanionsForUndergraduateSource(
+  manifestEntry,
+  lines,
+  courseCodes
+) {
+  return uniqueSorted(
+    (courseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+      .filter(
+        (courseCode) =>
+          !isGraduateCrossListedCompanionForUndergraduateSource(manifestEntry, lines, courseCode)
+      )
+  );
+}
+
+const STRUCTURED_PATHWAY_GENERIC_TOKENS = new Set([
+  "ba",
+  "bs",
+  "option",
+  "pathway",
+  "track",
+  "family",
+]);
+
+const STRUCTURED_DEGREE_MAP_PLAN_IDS_WITH_SCOPED_BLOCKS = new Set(
+  TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter((block) => block.pathwayId).map(
+    (block) => block.planId
+  )
+);
+
+function structuredDegreeMapBlockMatchesManifestEntry(block, manifestEntry) {
+  if (block.planId !== manifestEntry.planId) {
+    return false;
+  }
+
+  const pathwayId = manifestEntry.pathwayId ?? null;
+  if (!pathwayId) {
+    return !block.pathwayId;
+  }
+
+  if (block.pathwayId === pathwayId) {
+    return true;
+  }
+  if (block.pathwayId) {
+    return false;
+  }
+
+  if (!STRUCTURED_DEGREE_MAP_PLAN_IDS_WITH_SCOPED_BLOCKS.has(block.planId)) {
+    return true;
+  }
+
+  const pathwayTokens = slugify(pathwayId)
+    .split("-")
+    .filter((token) => token && !STRUCTURED_PATHWAY_GENERIC_TOKENS.has(token));
+  if (!pathwayTokens.length) {
+    return false;
+  }
+
+  const blockSlug = slugify(`${block.id ?? ""} ${block.title ?? ""}`);
+  return pathwayTokens.every((token) => blockSlug.includes(token));
+}
+
 function getStructuredUwCourseCodes(manifestEntry) {
   return uniqueSorted(
-    TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter(
-      (block) =>
-        block.planId === manifestEntry.planId &&
-        ((manifestEntry.pathwayId && block.pathwayId === manifestEntry.pathwayId) ||
-          (!manifestEntry.pathwayId && !block.pathwayId))
+    TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter((block) =>
+      structuredDegreeMapBlockMatchesManifestEntry(block, manifestEntry)
     )
       .flatMap((block) => block.uwCourseCodes ?? [])
       .map((courseCode) => normalizeCourseCode(courseCode))
@@ -1493,13 +1566,13 @@ function extractRelevantRequirementLines(lines, headings) {
     .sort((left, right) => left - right)
     .map((index) => lines[index])
     .filter(
-      (line) => !NOISY_SOURCE_LINE_PATTERN.test(line) && !isTransferCreditNoiseOnlyLine(line)
+      (line) => !NOISY_LINE_PATTERN.test(line) && !isTransferCreditNoiseOnlyLine(line)
     );
 }
 
 function extractExplicitCourseCodesFromLine(line) {
   let normalizedLine = normalizeWhitespace(String(line ?? ""));
-  if (NOISY_SOURCE_LINE_PATTERN.test(normalizedLine)) {
+  if (NOISY_LINE_PATTERN.test(normalizedLine)) {
     return [];
   }
   const transferNoiseIndex = normalizedLine.search(TRANSFER_CREDIT_NOISE_PATTERN);
@@ -1635,6 +1708,13 @@ function extractCourseCodesFromLine(line) {
 
   return uniqueSorted(extractedCourseCodes);
 }
+
+const {
+  looksLikeStandaloneRequirementLabelLine,
+  looksLikeStandaloneRequirementTitleLine,
+  stripLeadingRequirementGlyphs,
+  stripSnapshotPagePrefix,
+} = createParserShapeDetection({ extractCourseCodesFromLine });
 
 function isCourseContinuationLine(line) {
   const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
@@ -2087,7 +2167,7 @@ function extractSafeKnownSubjectCourseClusterCodesFromLines(entry, lines) {
   const recoveredCodes = [];
   for (let index = 0; index < lines.length; index += 1) {
     const line = normalizeWhitespace(lines[index]);
-    if (!line || NOISY_SOURCE_LINE_PATTERN.test(line) || TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
+    if (!line || NOISY_LINE_PATTERN.test(line) || TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
       continue;
     }
 
@@ -2108,8 +2188,13 @@ function isDirectCourseLineRecoverySource(entry) {
     entry?.sourceLabel,
     entry?.url,
   ].filter(Boolean).join(" ");
+  const isGenericPrimaryDegreeHtml =
+    /\bgeneric-html\b/i.test(sourceText) &&
+    entry?.isPrimaryDegreeRequirementsLink === true &&
+    /\b(?:b\.?\s*a\.?|b\.?\s*s\.?|bachelor|degree|major|requirements?)\b/i.test(sourceText);
   return (
     /\bpdf-(?:degree-sheet|worksheet)\b/i.test(sourceText) ||
+    isGenericPrimaryDegreeHtml ||
     (/\bhtml-(?:degree|curriculum|overview)-page\b/i.test(sourceText) &&
       /\b(curriculum|requirements?|checklist|worksheet|degree|sample program plan)\b/i.test(sourceText)) ||
     (/\.(?:pdf|docx)(?:$|[?#])/i.test(sourceText) &&
@@ -2127,7 +2212,7 @@ function extractSafeDirectCourseLineCodesFromLines(entry, lines) {
     const line = normalizeWhitespace(lines[index]);
     if (
       !line ||
-      NOISY_SOURCE_LINE_PATTERN.test(line) ||
+      NOISY_LINE_PATTERN.test(line) ||
       TRANSFER_CREDIT_NOISE_PATTERN.test(line) ||
       !sourceLineStartsWithCourseCode(line) ||
       !hasRequirementContextNearLine(lines, index, 80)
@@ -2160,7 +2245,7 @@ function extractSubjectScopedBareChecklistCodesFromLines(entry, lines) {
   for (let index = 0; index < lines.length; index += 1) {
     const rawLine = normalizeWhitespace(lines[index]);
     const line = stripChoiceListLine(rawLine);
-    if (!line || NOISY_SOURCE_LINE_PATTERN.test(line) || TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
+    if (!line || NOISY_LINE_PATTERN.test(line) || TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
       continue;
     }
 
@@ -2533,7 +2618,7 @@ function inferParsedRequirementPhaseFromHints(sourceLineHints) {
   };
 }
 
-const NON_SCHEDULABLE_SOURCE_SECTION_ROLES = new Set([
+const NON_SCHEDULABLE_SECTION_ROLES = new Set([
   "upper-division-prerequisite-table",
   "post-admission-degree-completion-section",
   "approved-course-list",
@@ -2957,7 +3042,7 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
 
   if (
     inheritedRole &&
-    NON_SCHEDULABLE_SOURCE_SECTION_ROLES.has(inheritedRole) &&
+    NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
     courseCodes.length > 0 &&
     /^[^:]{2,90}:\s+/.test(text)
   ) {
@@ -2969,7 +3054,7 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
 
   if (
     inheritedRole &&
-    NON_SCHEDULABLE_SOURCE_SECTION_ROLES.has(inheritedRole) &&
+    NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
     courseCodes.length > 0 &&
     levelSummary.allLowerDivision &&
     /\(\s*\d+(?:\.\d+)?\s*(?:credits?|cr)?\s*\)/i.test(text) &&
@@ -2985,7 +3070,7 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
 
   if (
     inheritedRole &&
-    NON_SCHEDULABLE_SOURCE_SECTION_ROLES.has(inheritedRole) &&
+    NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
     courseCodes.length > 0 &&
     !primaryCue &&
     !explicitChoiceRequirementCue
@@ -3032,6 +3117,24 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   };
 }
 
+function isUndergraduateCatalogSectionResetLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  return (
+    /^(?:undergraduate\s+programs?|program\s+of\s+study:\s+major\b|bachelor\s+of\b|bachelor\b.+\bmajor\b|b\.?\s*[as]\.?\s+in\b)/i.test(
+      normalizedLine
+    ) && !GRADUATE_DEGREE_CONTEXT_PATTERN.test(normalizedLine)
+  );
+}
+
+function shouldInheritGraduateRequirementSection(currentRole, currentRoleReason, line) {
+  return (
+    currentRole === "support-metadata" &&
+    /graduate requirement context/i.test(currentRoleReason ?? "") &&
+    !hasPrimaryRequirementSectionCue(line) &&
+    !isUndergraduateCatalogSectionResetLine(line)
+  );
+}
+
 function buildParserPrerequisiteFilterAuditRows(input) {
   const rows = [];
   const normalizedHeadings = new Set(
@@ -3039,6 +3142,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
   );
   let currentSectionTitle = "source root";
   let currentRole = "primary-requirement-section";
+  let currentRoleReason = null;
   let inDegreeRouteComparisonSection = false;
 
   for (let index = 0; index < (input.snapshotLines ?? []).length; index += 1) {
@@ -3046,8 +3150,8 @@ function buildParserPrerequisiteFilterAuditRows(input) {
     const normalizedLine = normalizeSourceSectionLine(rawLine);
     if (
       !normalizedLine ||
-      NOISY_SOURCE_LINE_PATTERN.test(rawLine) ||
-      NOISY_SOURCE_LINE_PATTERN.test(normalizedLine)
+      NOISY_LINE_PATTERN.test(rawLine) ||
+      NOISY_LINE_PATTERN.test(normalizedLine)
     ) {
       continue;
     }
@@ -3056,12 +3160,18 @@ function buildParserPrerequisiteFilterAuditRows(input) {
       inDegreeRouteComparisonSection = true;
     }
 
+    if (isUndergraduateCatalogSectionResetLine(normalizedLine)) {
+      currentRole = "primary-requirement-section";
+      currentRoleReason = null;
+    }
+
     const courseCodes = extractCourseCodesFromRequirementLine(normalizedLine);
-    const explicit = isGraduateOrAppliedMastersRequirementContext(
+    const lineIsGraduateRequirementContext = isGraduateOrAppliedMastersRequirementContext(
       { sourceUrl: input.sourceUrl, sourceRole: input.sourceRole },
       input.snapshotLines,
       index
-    )
+    );
+    const explicit = lineIsGraduateRequirementContext
       ? {
           sectionRole: "support-metadata",
           reason: "graduate requirement context is not schedulable undergraduate evidence",
@@ -3071,7 +3181,12 @@ function buildParserPrerequisiteFilterAuditRows(input) {
             sectionRole: "support-metadata",
             reason: "degree-route comparison section is not schedulable requirement evidence",
           }
-        : classifySourceSectionRoleForLine(normalizedLine, currentRole);
+        : shouldInheritGraduateRequirementSection(currentRole, currentRoleReason, normalizedLine)
+          ? {
+              sectionRole: "support-metadata",
+              reason: "inherits graduate requirement context from nearby heading",
+            }
+          : classifySourceSectionRoleForLine(normalizedLine, currentRole);
     const lineLooksLikeHeading =
       courseCodes.length === 0 &&
       (normalizedHeadings.has(normalizedLine) ||
@@ -3091,6 +3206,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
     if (lineLooksLikeHeading || lineLooksLikeStandaloneRequirementTitle) {
       currentSectionTitle = normalizedLine;
       currentRole = explicit.sectionRole;
+      currentRoleReason = explicit.reason;
     }
 
     const sectionRole = explicit.sectionRole;
@@ -3134,6 +3250,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
     if (isDegreeRouteComparisonSectionTerminator(normalizedLine)) {
       inDegreeRouteComparisonSection = false;
       currentRole = "primary-requirement-section";
+      currentRoleReason = null;
       currentSectionTitle = "source root";
     }
   }
@@ -3483,6 +3600,90 @@ function filterParsedRequirementGroupsBySourceSections(groups, auditRows) {
       return decision.schedulable;
     })
     .map((group) => filterParsedRequirementGroupOptionsBySourceSections(group, auditRows))
+    .filter(parsedRequirementGroupHasRequirementSurface);
+}
+
+function filterAlignedDisplayCourseCodesForKeptCourses(
+  displayCourseCodes,
+  originalCourseCodes,
+  keptCourseCodes
+) {
+  if (!Array.isArray(displayCourseCodes) || displayCourseCodes.length !== originalCourseCodes.length) {
+    return displayCourseCodes;
+  }
+
+  const keptCourseCodeSet = new Set(keptCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)));
+  return displayCourseCodes.filter((_, index) =>
+    keptCourseCodeSet.has(normalizeCourseCode(originalCourseCodes[index]))
+  );
+}
+
+function filterParsedRequirementGroupsByCourseCodePredicate(groups, shouldKeepCourseCode) {
+  return (groups ?? [])
+    .map((group) => {
+      const sequencePaths = (group.sequencePaths ?? [])
+        .map((path) => {
+          const originalUwCourses = path.uwCourses ?? [];
+          const keptUwCourses = originalUwCourses.filter(shouldKeepCourseCode);
+          const keptConditionalLabCourses = (path.conditionalLabCourses ?? []).filter(shouldKeepCourseCode);
+          if (!keptUwCourses.length && !keptConditionalLabCourses.length) {
+            return null;
+          }
+          return {
+            ...path,
+            uwCourses: keptUwCourses,
+            conditionalLabCourses: keptConditionalLabCourses,
+            displayCourseCodes: filterAlignedDisplayCourseCodesForKeptCourses(
+              path.displayCourseCodes,
+              originalUwCourses,
+              keptUwCourses
+            ),
+          };
+        })
+        .filter(Boolean);
+
+      const options = (group.options ?? [])
+        .map((option) => {
+          if (option.optionKind === "category-option") {
+            return option;
+          }
+
+          const originalUwCourses = option.uwCourses ?? [];
+          const keptUwCourses = originalUwCourses.filter(shouldKeepCourseCode);
+          const keptEquivalentUwCourseCodes = (option.equivalentUwCourseCodes ?? []).filter(
+            shouldKeepCourseCode
+          );
+          const keptConditionalLabCourses = (option.conditionalLabCourses ?? []).filter(
+            shouldKeepCourseCode
+          );
+          if (
+            !keptUwCourses.length &&
+            !keptEquivalentUwCourseCodes.length &&
+            !keptConditionalLabCourses.length
+          ) {
+            return null;
+          }
+
+          return {
+            ...option,
+            uwCourses: keptUwCourses,
+            equivalentUwCourseCodes: keptEquivalentUwCourseCodes,
+            conditionalLabCourses: keptConditionalLabCourses,
+            displayCourseCodes: filterAlignedDisplayCourseCodesForKeptCourses(
+              option.displayCourseCodes,
+              originalUwCourses,
+              keptUwCourses
+            ),
+          };
+        })
+        .filter(Boolean);
+
+      return {
+        ...group,
+        sequencePaths,
+        options,
+      };
+    })
     .filter(parsedRequirementGroupHasRequirementSurface);
 }
 
@@ -3859,142 +4060,6 @@ function buildCategoryRequirementOptionsFromChoiceLine(owner, normalizedLine, fa
   );
 }
 
-function stripSnapshotPagePrefix(line) {
-  return normalizeWhitespace(String(line ?? "").replace(/^\[Page\s+\d+\]\s*/i, ""));
-}
-
-function stripLeadingRequirementGlyphs(line) {
-  return normalizeWhitespace(
-    String(line ?? "")
-      .replace(/^\(\s*\d+(?:\.\d+)?\s*\)\s*[^A-Za-z0-9(]{1,12}\s*/u, "")
-      .replace(/^[^A-Za-z0-9(\[]{1,12}\s*/u, "")
-      .replace(/^(?:[•●\-\u2023\u25B8\u1405]+\s*)+/u, "")
-  );
-}
-
-function looksLikeStandaloneRequirementLabelLine(line) {
-  const normalizedLine = stripLeadingRequirementGlyphs(stripSnapshotPagePrefix(line));
-  if (!normalizedLine) {
-    return false;
-  }
-  if (extractCourseCodesFromLine(normalizedLine).length > 0) {
-    return false;
-  }
-  if (/\b(?:students?|see|details?|list|technical electives?|provide|coursework)\b/i.test(normalizedLine)) {
-    return false;
-  }
-  if (!/\b(?:credits?|cr)\b/i.test(normalizedLine)) {
-    return false;
-  }
-  return /\b(?:programming|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus)\b/i.test(
-    normalizedLine
-  );
-}
-
-function looksLikeStandaloneRequirementTitleLine(line) {
-  const normalizedLine = stripLeadingRequirementGlyphs(stripSnapshotPagePrefix(line));
-  if (!normalizedLine) {
-    return false;
-  }
-  if (extractCourseCodesFromLine(normalizedLine).length > 0) {
-    return false;
-  }
-  if (/^\d+(?:-\d+)?\s*cr$/i.test(normalizedLine)) {
-    return false;
-  }
-  if (/\b(?:students?|see|details?|list|technical electives?|provide|coursework)\b/i.test(normalizedLine)) {
-    return false;
-  }
-  return /\b(?:programming|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus)\b/i.test(
-    normalizedLine
-  );
-}
-
-const CHOICE_COUNT_WORDS_PATTERN = "one|two|three|four|five|six|seven|eight|nine|ten";
-const CHOICE_REQUIREMENT_CONTEXT_PATTERN = new RegExp(
-  `\\b(?:choose(?:\\s+(?:from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|select(?:ed)?(?:\\s+(?:one|from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|electives?|options?|approved\\s+(?:courses?|electives?|list)|elective\\s+list|course\\s+list|one\\s+(?:course\\s+)?from|one\\s+of(?:\\s+the\\s+following)?|either)\\b`,
-  "i"
-);
-const STRONG_CHOICE_REQUIREMENT_CONTEXT_PATTERN = new RegExp(
-  `\\b(?:choose(?:\\s+(?:from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|select(?:ed)?(?:\\s+(?:one|from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|approved\\s+(?:courses?|electives?|list)|elective\\s+list|course\\s+list|one\\s+(?:course\\s+)?from|one\\s+of(?:\\s+the\\s+following)?|either|electives?)\\b`,
-  "i"
-);
-const CHOICE_REQUIREMENT_LABEL_PATTERN =
-  /\b(?:programming|computing|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus|electives?|options?|approved|course\s+list|list)\b/i;
-const PROGRAMMING_CHOICE_CONTEXT_PATTERN =
-  /^(?:\[[^\]]+\]\s*)?(?:computer\s+)?(?:programming|computing)\b/i;
-const CHOICE_LIST_START_PATTERN = new RegExp(
-  `^\\(?\\s*(?:choose(?:\\s+(?:from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|select(?:ed)?(?:\\s+(?:one|from|${CHOICE_COUNT_WORDS_PATTERN}|\\d+))?|one\\s+(?:course\\s+)?from|one\\s+of(?:\\s+the\\s+following)?|either|approved\\s+(?:courses?|electives?|list)|elective\\s+list)\\b`,
-  "i"
-);
-const NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN =
-  /\b(?:all\s+count|will\s+all\s+count|count\s+toward|counts?\s+toward|may\s+count\s+toward|may\s+be\s+(?:applied|used)\s+toward|up\s+to\s+\d+(?:\.\d+)?\s+credits?\b.{0,120}\b(?:applied|count|counts?|used)\b|does\s+not\s+count|not\s+count\s+as|should\s+not\s+take\s+both|may\s+request\b.{0,60}\bsubstitut|also\s+fulfills?|may\s+overlap|overlap\s+with|as\s+well\s+as|must\s+(?:include|complete)|required\s+to\s+complete|suggested\s+first|suggested\s+first-\s*and\s+second-year|sample\s+schedule|sequence|series)\b/i;
-const SEQUENCE_ALTERNATIVE_CHOICE_LINE_PATTERN =
-  /\b[A-Z&]+(?:\s+[A-Z&]+)?\s+\d{3}[A-Z]?\s*,\s*\d{3}[A-Z]?(?:\s*,\s*\d{3}[A-Z]?){0,2}\s+or\s+(?:[A-Z&]+(?:\s+[A-Z&]+)?\s+)?\d{3}[A-Z]?\s*,\s*\d{3}[A-Z]?(?:\s*,\s*\d{3}[A-Z]?){0,2}\b/i;
-const SEQUENCE_CHOICE_CONTEXT_PATTERN =
-  /\b(?:one\s+of\s+the\s+following(?:\s+\w+){0,4}\s+sequences?|(?:two|three)\s+quarters?\s+of\s+(?:physics|chemistry|mathematics|math|biology)\b.{0,80}\bone\s+of\s+the\s+following|choose\s+one\s+sequence|select\s+one\s+sequence|one\s+sequence|either\s+sequence|two-quarter\s+sequences?|three-quarter\s+sequences?|calculus-based\s+or\s+algebra-based|algebra-based\s+or\s+calculus-based|regular\s+or\s+accelerated\s+or\s+honors|standard\s+or\s+honors|standard\s+sequence|honors\s+sequence)\b/i;
-const SEQUENCE_LABEL_ALTERNATIVE_PATTERN =
-  /\b(?:calculus-based|algebra-based|regular|standard|accelerated|honors?)\b(?:\s+or\s+\b(?:calculus-based|algebra-based|regular|standard|accelerated|honors?)\b)+/i;
-const SEQUENCE_HEADING_BOUNDARY_PATTERN =
-  /\b(?:additional degree requirements?|minimum\s+\d|gpa|option requirement|breadth|natural history|genetics|technical electives?|advanced|capstone|core courses?|required courses?|electives?|freshman year|sophomore year|junior and senior years)\b/i;
-
-function detectOptionCue(value) {
-  const text = normalizeWhitespace(value);
-  const cuePatterns = [
-    [/\bone\s+of\s+the\s+following(?:\s+\w+){0,4}\s+sequences?\b/i, "one of the following sequences"],
-    [/\bchoose\s+one\s+sequence\b/i, "choose one sequence"],
-    [/\bselect\s+one\s+sequence\b/i, "select one sequence"],
-    [/\b(?:calculus-based|algebra-based)\b.{0,40}\bor\b.{0,40}\b(?:calculus-based|algebra-based)\b/i, "sequence labels"],
-    [/\b(?:regular|standard|accelerated|honors?)\b.{0,40}\bor\b.{0,40}\b(?:regular|standard|accelerated|honors?)\b/i, "sequence labels"],
-    [/\bchoose\s+one\b/i, "choose one"],
-    [/\bchoose\s+from\b/i, "choose from"],
-    [new RegExp(`\\bchoose\\s+(?:${CHOICE_COUNT_WORDS_PATTERN}|\\d+)\\b`, "i"), "choose count"],
-    [/\bchoose\b/i, "choose"],
-    [/\bone\s+(?:course\s+)?from\b/i, "one from"],
-    [/\bone\s+of(?:\s+the\s+following)?\b/i, "one of the following"],
-    [/\bselect\s+one\b/i, "select one"],
-    [/\bselect\s+from\b/i, "select from"],
-    [new RegExp(`\\bselect\\s+(?:${CHOICE_COUNT_WORDS_PATTERN}|\\d+)\\b`, "i"), "select count"],
-    [/\bselect\b/i, "select"],
-    [/\beither\b/i, "either"],
-    [/\bor\b/i, "or"],
-    [/\bapproved\s+electives?\b/i, "approved elective"],
-    [/\bapproved\s+list\b/i, "approved list"],
-    [/\belective\s+list\b/i, "elective list"],
-    [/\belectives?\b/i, "elective"],
-  ];
-  return cuePatterns.find(([pattern]) => pattern.test(text))?.[1] ?? null;
-}
-
-function parseChoiceRequiredCount(value) {
-  const text = normalizeWhitespace(value).toLowerCase();
-  const numericMatch = text.match(/\b(?:choose|select)\s+(\d+)\b/);
-  if (numericMatch) {
-    const count = Number.parseInt(numericMatch[1], 10);
-    return Number.isFinite(count) && count > 0 ? count : 1;
-  }
-
-  const wordMatch = text.match(
-    /\b(?:choose|select)\s+(one|two|three|four|five|six|seven|eight|nine|ten)\b|\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+of(?:\s+the\s+following)?\b|\b(?:minimum|at\s+least)\s+(?:of\s+)?(one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\s+from\b/
-  );
-  const word = wordMatch?.[1] ?? wordMatch?.[2] ?? wordMatch?.[3] ?? null;
-  if (word) {
-    return WORD_NUMBER_MAP.get(word) ?? 1;
-  }
-
-  const minimumCourseCountMatch = text.match(/\b(?:minimum|at\s+least)\s+(?:of\s+)?(\d+)\s+courses?\s+from\b/);
-  if (minimumCourseCountMatch) {
-    const count = Number.parseInt(minimumCourseCountMatch[1], 10);
-    return Number.isFinite(count) && count > 0 ? count : 1;
-  }
-
-  if (/\bone\s+(?:course\s+)?from\b|\bone\s+of(?:\s+the\s+following)?\b|\bselect\s+one\b|\bchoose\s+one\b|\beither\b/i.test(text)) {
-    return 1;
-  }
-
-  return 1;
-}
-
 function hasChoiceRequirementContext(value) {
   return CHOICE_REQUIREMENT_CONTEXT_PATTERN.test(normalizeWhitespace(value));
 }
@@ -4009,6 +4074,7 @@ function stripNonOptionCourseEvidenceFromChoiceLine(value) {
       .replace(/\[[^\]]*\b(?:pr|pre-?req|prereq(?:uisite)?)[^\]]*\]/gi, "")
       .replace(/\([^)]*\b(?:pr|pre-?req|prereq(?:uisite)?)[^)]*\)/gi, "")
       .replace(/\b(?:pr|pre-?req|prereq(?:uisite)?):\s*[^.;)\]]+/gi, "")
+      .replace(/\s+\d{3}\s+or\s+[A-Z&]{2,8}\s+\d{3}[A-Z]?\s+if\s+taken\)?\.?\s*$/i, "")
   );
   const embeddedOneOfMatch = text.match(
     /\b(?:one\s+(?:course\s+)?(?:from|of)(?:\s+the\s+following)?|either)\b/i
@@ -4219,6 +4285,28 @@ function normalizeSequenceSourceLine(line) {
   return stripLeadingRequirementGlyphs(stripSnapshotPagePrefix(line));
 }
 
+function getInlineSequenceFallbackSubject(line) {
+  const normalizedLine = normalizeSequenceSourceLine(line);
+  if (!SEQUENCE_ALTERNATIVE_CHOICE_LINE_PATTERN.test(normalizedLine)) {
+    return null;
+  }
+
+  const explicitSubjects = getCourseCodeSubjects(extractCourseCodesFromLine(normalizedLine));
+  if (explicitSubjects.length === 1) {
+    return explicitSubjects[0];
+  }
+
+  const firstExplicitCourseCode = extractCourseCodesFromLine(normalizedLine)[0] ?? null;
+  const firstSubject = getCourseCodeSubject(firstExplicitCourseCode);
+  if (!firstSubject) {
+    return null;
+  }
+
+  return /(?:,\s*\d{3}[A-Za-z]?|\bor\s+\d{3}[A-Za-z]?)/.test(normalizedLine)
+    ? firstSubject
+    : null;
+}
+
 function getSequenceFallbackSubjectFromContext(snapshotLines, index, currentLine = "") {
   const contextLines = [
     { rawLine: currentLine, isCurrent: true },
@@ -4230,6 +4318,11 @@ function getSequenceFallbackSubjectFromContext(snapshotLines, index, currentLine
 
   for (const { rawLine, isCurrent } of contextLines) {
     const line = normalizeWhitespace(rawLine);
+    const inlineSequenceSubject = getInlineSequenceFallbackSubject(line);
+    if (inlineSequenceSubject) {
+      return inlineSequenceSubject;
+    }
+
     const parentheticalSubject = line.match(/\(([A-Z&]{2,8})\)\s*$/);
     if (parentheticalSubject) {
       const subject = normalizeExtractedCourseSubject(parentheticalSubject[1]);
@@ -5843,6 +5936,28 @@ function buildParserRuleRequirementReplacements(owner, snapshotLines) {
   ];
 }
 
+function isGraduateCareerPlanningNote(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (
+    /\b(?:plan(?:s)?\s+to\s+pursue|pursu(?:e|ing)|prepar(?:e|es|ing)?\s+for|good\s+choice\s+for|careers?)\b.{0,160}\b(?:graduate\s+degree|graduate\s+school|professional\s+school|post[-\s]?graduate\s+work)\b/i.test(
+      normalizedLine
+    ) &&
+    !/\b(?:graduate\s+(?:programs?|admissions?|requirements?|curriculum|coursework)|master(?:'s|s)?\s+program|degree\s+requirements?)\b/i.test(
+      normalizedLine
+    )
+  ) {
+    return true;
+  }
+  return (
+    /\b(?:graduate work|graduate school|professional school|post[-\s]?graduate work)\b/i.test(
+      normalizedLine
+    ) &&
+    !/\b(?:graduate\s+(?:program|degree|admission|requirements?)|master|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctor)\b/i.test(
+      normalizedLine
+    )
+  );
+}
+
 function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [], index = 0) {
   const sourceContext = [
     owner?.sourceUrl,
@@ -5851,7 +5966,7 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
     owner?.primarySourceLabel,
   ].filter(Boolean).join(" ");
   if (
-    GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(sourceContext) &&
+    GRADUATE_SUPPLEMENTAL_PATTERN.test(sourceContext) &&
     !/\bundergrad(?:uate)?\b/i.test(sourceContext)
   ) {
     return true;
@@ -5865,7 +5980,7 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
     const line = localLines[lineIndex];
     if (/^\[Supplemental official source\]/i.test(line) || /^Title:/i.test(line)) {
       return (
-        GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(line) &&
+        GRADUATE_SUPPLEMENTAL_PATTERN.test(line) &&
         !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line)
       );
     }
@@ -5877,10 +5992,11 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
     .filter(Boolean);
   for (let lineIndex = priorContextLines.length - 1; lineIndex >= 0; lineIndex -= 1) {
     const line = priorContextLines[lineIndex];
+    if (isGraduateCareerPlanningNote(line)) {
+      continue;
+    }
     if (
-      /\b(?:graduate credits?|graduate degree|graduate student status|master(?:'s|s)? program|m\.?\s*s\.?|ph\.?\s*d\.?|thesis\/non-thesis|dissertation|general examination)\b/i.test(
-        line
-      ) &&
+      GRADUATE_DEGREE_CONTEXT_PATTERN.test(line) &&
       !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line)
     ) {
       return true;
@@ -5890,11 +6006,12 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
     }
   }
 
-  const localText = localLines.join(" ");
+  const graduateContextLines = localLines.filter(
+    (line) => GRADUATE_DEGREE_CONTEXT_PATTERN.test(line) && !isGraduateCareerPlanningNote(line)
+  );
   return (
-    /\b(?:graduate credits?|graduate degree|graduate student status|master(?:'s|s)? program|m\.?\s*s\.?|ph\.?\s*d\.?|thesis\/non-thesis|dissertation|general examination)\b/i.test(
-      localText
-    ) && !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(localText)
+    graduateContextLines.length > 0 &&
+    !localLines.some((line) => /\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line))
   );
 }
 
@@ -6118,6 +6235,13 @@ function isNonRequirementSectionedCourseHeading(line) {
   );
 }
 
+function looksLikeBroadRequirementContainerHeading(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  return /^(?:undergraduate\s+)?(?:degree|major|graduation|completion)\s+requirements?$/i.test(
+    normalizedLine
+  ) || /^requirements?$/i.test(normalizedLine);
+}
+
 function looksLikeSectionedCourseHeadingLine(line) {
   const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
   if (
@@ -6200,6 +6324,7 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
     !/\badditional\s+writing\s*\(?W\)?\s+requirement\b/i.test(followingCreditLineWithoutCredit);
   if (
     followingLeadingCreditRange &&
+    !looksLikeBroadRequirementContainerHeading(rawLine) &&
     !/\bprerequisites?\b/i.test(rawLine) &&
     (
       /\b(?:core|electives?|approved|selected|list)\b/i.test(rawLine) ||
@@ -6367,7 +6492,8 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   const hasCourseListCue =
     SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(rawLine) ||
     /\belectives?\b/i.test(rawLine) ||
-    /\bfollowing\s+departments\b/i.test(rawLine);
+    /\bfollowing\s+departments\b/i.test(rawLine) ||
+    (exactCreditRange && hasPrimaryRequirementSectionCue(rawLine));
   if (!hasCourseListCue) {
     return null;
   }
@@ -7764,8 +7890,68 @@ function getProgramSpecificCreditBucketDescriptor(owner, text) {
     parserRules.detectProgramApprovedCreditBucket({
       owner,
       text: normalizedText,
-    }) ?? detectSubjectPrefixCreditBucket(owner, normalizedText)
+    }) ??
+    detectSubjectPrefixCreditBucket(owner, normalizedText) ??
+    detectProgramElectiveCreditBucket(owner, normalizedText)
   );
+}
+
+function getProgramElectiveBucketLabel(text) {
+  const normalizedText = normalizeWhitespace(text);
+  const match = normalizedText.match(
+    /\b((?:approved\s+)?(?:advanced\s+)?(?:engineering|technical|departmental|major|science|natural science|program|concentration|option|upper[-\s]?division)\s+electives?(?:\s+credit)?|elective\s+credit)\b/i
+  );
+  const rawLabel = normalizeWhitespace(match?.[1] ?? "");
+  if (!rawLabel || /^elective\s+credit$/i.test(rawLabel)) {
+    return "Program Elective Credit";
+  }
+
+  if (/\belectives?\s+credit\b/i.test(rawLabel)) {
+    return rawLabel.replace(/\belectives?\s+credit\b/i, "Elective Credit");
+  }
+
+  return rawLabel.replace(/\belectives?\b/i, "Elective Credit");
+}
+
+function detectProgramElectiveCreditBucket(owner, text) {
+  const normalizedText = normalizeWhitespace(text);
+  const creditRange = parseRequirementCreditRange(normalizedText);
+  if (
+    !creditRange ||
+    /\bfree electives?\b/i.test(normalizedText) ||
+    /\bapproved\b/i.test(normalizedText)
+  ) {
+    return null;
+  }
+
+  const hasProgramElectiveCue =
+    /\b(?:engineering|technical|departmental|major|science|natural science|program|concentration|option|upper[-\s]?division)\s+electives?(?:\s+credit)?\b/i.test(
+      normalizedText
+    ) ||
+    /\belective\s+credit\b/i.test(normalizedText) ||
+    /\belectives?\b.{0,100}\bcredits?\s+(?:chosen\s+)?from\b/i.test(normalizedText) ||
+    /\bcredits?\s+(?:chosen\s+)?from\b.{0,100}\belectives?\b/i.test(normalizedText);
+  if (!hasProgramElectiveCue) {
+    return null;
+  }
+
+  const label = getProgramElectiveBucketLabel(normalizedText);
+  const ownerPart = slugify(owner?.planId ?? owner?.ownerId ?? "program");
+  const labelPart = slugify(label);
+  const category = label.toUpperCase().replace(/[^A-Z0-9]+/g, "_").replace(/^_+|_+$/g, "") || "PROGRAM_ELECTIVE_CREDIT";
+  const creditText =
+    creditRange.maxCredits && creditRange.maxCredits !== creditRange.minCredits
+      ? `${creditRange.minCredits}-${creditRange.maxCredits}`
+      : String(creditRange.minCredits);
+
+  return {
+    category,
+    sourceCategoryCode: label,
+    longLabel: label,
+    preferredLabel: `${label} (${creditText} credits)`,
+    approvedListKey: `${ownerPart}-${labelPart}`,
+    programSpecific: true,
+  };
 }
 
 function extractSubjectPrefixFromCreditBucketText(text) {
@@ -8253,7 +8439,7 @@ function buildGenericCreditBucketRequirementGroups(owner, snapshotLines) {
           ? `${creditRange.minCredits}-${creditRange.maxCredits}`
           : String(creditRange.minCredits);
       const label = labelDescriptor
-        ? `${creditText} credits of ${labelDescriptor.longLabel}`
+        ? labelDescriptor.preferredLabel ?? `${creditText} credits of ${labelDescriptor.longLabel}`
         : normalizeWhitespace(sourceLine.replace(/^[^A-Za-z0-9]+/, ""));
       const groupId = `${owner.ownerId}:requirement-group:credit-bucket-${slugify(
         `${label}-${creditRange.minCredits}-${creditRange.maxCredits ?? "open"}`
@@ -8611,6 +8797,14 @@ function isRequirementGroupUnderSupportCourseList(snapshotLines, lineIndex) {
       return false;
     }
     if (
+      index === lineIndex &&
+      hasSequenceChoiceContext(line) &&
+      extractCourseCodesFromLine(line).length >= 4 &&
+      (parseRequirementCreditAmount(line) !== null || /\(\s*\d+(?:\.\d+)?\s*\)/.test(line))
+    ) {
+      return false;
+    }
+    if (
       /\b(?:requirements?|coursework requirements?|core courses?|degree requirements?)\b/i.test(line) &&
       !/\belectives?\s+list\b/i.test(line)
     ) {
@@ -8647,6 +8841,414 @@ function filterRequirementGroupsBySupplementalPathwayScope(owner, groups, snapsh
   });
 }
 
+function filterGenericBseSupplementalGroupsForSbse(owner, groups, snapshotLines) {
+  if (owner?.planId !== "uw-seattle-sustainable-bioresource-systems-engineering") {
+    return groups ?? [];
+  }
+
+  return (groups ?? []).filter((group) => {
+    const lineIndex = findSnapshotLineIndexForRequirementGroup(group, snapshotLines);
+    const markerLine = findNearestSupplementalSourceMarker(snapshotLines, lineIndex);
+    if (!/^\[Supplemental official source\].*\bBSE\b/i.test(markerLine ?? "")) {
+      return true;
+    }
+    return new RegExp(`^${owner.ownerId}:requirement-group:sbse-`).test(group.id ?? "");
+  });
+}
+
+function getParallelChooseOneHeadingLabel(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (!normalizedLine || extractCourseCodesFromLine(normalizedLine).length > 0) {
+    return "";
+  }
+
+  const match = normalizedLine.match(/^(.+?)\s+(?:[-\u2013\u2014]|\S{1,4})?\s*choose\s+one\s+option:?$/i);
+  return normalizeWhitespace(match?.[1] ?? "").replace(/[:;.\-]+$/g, "");
+}
+
+function getParallelChooseOneHeadingSubjects(label) {
+  const normalizedLabel = normalizeMatcherText(label);
+  if (/\bbiochemistry\b/.test(normalizedLabel)) {
+    return ["BIOC"];
+  }
+  if (/\bmathematics?\b/.test(normalizedLabel)) {
+    return ["MATH", "Q SCI", "QSCI"];
+  }
+  if (/\bstatistics?\b/.test(normalizedLabel)) {
+    return ["STAT", "BIOST", "Q SCI", "QSCI"];
+  }
+  if (/\bphysics?\b/.test(normalizedLabel)) {
+    return ["PHYS"];
+  }
+  if (/\bchemistry\b/.test(normalizedLabel)) {
+    return ["CHEM"];
+  }
+  if (/\bbiology\b/.test(normalizedLabel)) {
+    return ["BIOL"];
+  }
+
+  return [];
+}
+
+function lineStartsWithNumberedParallelChoice(line) {
+  return /^\s*\d+\s*[).]\s+/.test(normalizeWhitespace(stripChoiceListLine(line)));
+}
+
+function headingSubjectsMatchCourseCodes(subjects, courseCodes) {
+  if (!subjects.length) {
+    return true;
+  }
+
+  const subjectSet = new Set(subjects.map((subject) => normalizeWhitespace(subject)));
+  return (courseCodes ?? []).some((courseCode) => {
+    const subject = normalizeWhitespace(getCourseCodeSubject(courseCode) ?? "");
+    return subjectSet.has(subject) || subjectSet.has(subject.replace(/\s+/g, ""));
+  });
+}
+
+function buildParallelChooseOneRequirementGroups(owner, snapshotLines) {
+  const groups = [];
+  const seenGroupIds = new Set();
+
+  for (let index = 0; index < (snapshotLines ?? []).length - 1; index += 1) {
+    const firstHeading = getParallelChooseOneHeadingLabel(snapshotLines[index]);
+    const secondHeading = getParallelChooseOneHeadingLabel(snapshotLines[index + 1]);
+    if (!firstHeading || !secondHeading) {
+      continue;
+    }
+
+    const headings = [firstHeading, secondHeading].map((label) => ({
+      label,
+      subjects: getParallelChooseOneHeadingSubjects(label),
+      rows: [],
+    }));
+    const scanLimit = Math.min((snapshotLines ?? []).length, index + 36);
+    for (let rowIndex = index + 2; rowIndex < scanLimit; rowIndex += 1) {
+      if (
+        rowIndex > index + 3 &&
+        getParallelChooseOneHeadingLabel(snapshotLines[rowIndex]) &&
+        getParallelChooseOneHeadingLabel(snapshotLines[rowIndex + 1])
+      ) {
+        break;
+      }
+
+      const row = normalizeWhitespace(stripChoiceListLine(snapshotLines[rowIndex]));
+      if (!row) {
+        continue;
+      }
+      if (
+        headings.some((heading) => heading.rows.length > 0) &&
+        !lineStartsWithNumberedParallelChoice(row) &&
+        extractCourseCodesFromLine(row).length === 0 &&
+        /^(?:freshman|sophomore|junior|senior)\s+year\b|^major requirements?\b/i.test(row)
+      ) {
+        break;
+      }
+      if (!lineStartsWithNumberedParallelChoice(row)) {
+        continue;
+      }
+
+      const courseCodes = extractCourseCodesFromRequirementLine(row);
+      if (!courseCodes.length) {
+        continue;
+      }
+      const compatibleHeading =
+        headings.find((heading) =>
+          headingSubjectsMatchCourseCodes(heading.subjects, courseCodes)
+        ) ?? null;
+      if (!compatibleHeading) {
+        continue;
+      }
+      compatibleHeading.rows.push({ row, courseCodes });
+    }
+
+    for (const heading of headings) {
+      if (heading.rows.length < 2) {
+        continue;
+      }
+      const groupId = `${owner.ownerId}:requirement-group:parallel-choose-one-${slugify(
+        heading.label
+      )}`;
+      if (seenGroupIds.has(groupId)) {
+        continue;
+      }
+
+      const sourceHeading = `${heading.label} - Choose One Option`;
+      const category = buildSectionedCourseCategory(heading.label);
+      const group = buildParsedRequirementGroup({
+        id: groupId,
+        label: sourceHeading,
+        category,
+        subcategory: category,
+        requirementType: "choose_one",
+        minCourses: 1,
+        maxCourses: 1,
+        selectionCount: 1,
+        requiredCount: 1,
+        sourceHeading,
+        sourceRowText: sourceHeading,
+        detectedOptionCue: "parallel choose-one columns",
+        notes: ["Parsed from adjacent source columns headed Choose One Option."],
+        options: heading.rows.map(({ row, courseCodes }) => ({
+          id: `${owner.ownerId}:requirement-option:${slugify(
+            `${heading.label}-${courseCodes.join("-")}`
+          )}`,
+          uwCourses: courseCodes,
+          displayCourseCodes: courseCodes,
+          label: row.replace(/^\s*\d+\s*[).]\s+/, ""),
+          sourceHeading,
+          sourceCategory: category,
+        })),
+      });
+      if (!group.options.length) {
+        continue;
+      }
+      seenGroupIds.add(groupId);
+      groups.push(group);
+    }
+
+    index += 1;
+  }
+
+  return groups;
+}
+
+function buildCategoryCreditBucketOption(groupId, input) {
+  return {
+    id: `${groupId}:option:${slugify(input.sourceCategoryCode)}`,
+    optionKind: "category-option",
+    label: input.title,
+    categoryOption: {
+      category: input.category,
+      sourceCategoryCode: input.sourceCategoryCode,
+      title: input.title,
+      credits: input.credits,
+      creditMin: input.credits,
+      creditMax: input.credits,
+      sourceText: input.sourceText,
+      approvedListKey: input.approvedListKey ?? null,
+      programSpecific: input.programSpecific ?? false,
+    },
+    sourceHeading: input.sourceText,
+    sourceCategory: input.category,
+  };
+}
+
+function buildSbseComparisonTableRequirementGroups(owner, snapshotLines) {
+  if (owner?.planId !== "uw-seattle-sustainable-bioresource-systems-engineering") {
+    return [];
+  }
+
+  const text = normalizeMatcherText((snapshotLines ?? []).join(" "));
+  if (!/\bcomparison table\b.*\bbse\b.*\bsbse\b/.test(text)) {
+    return [];
+  }
+
+  const groups = [];
+  const engineeringElectiveLine = (snapshotLines ?? []).find((line) =>
+    /^Engineering Electives?:\s*12\s+credits\s+chosen\s+from\b/i.test(
+      normalizeWhitespace(stripChoiceListLine(line))
+    )
+  );
+  if (engineeringElectiveLine) {
+    const sourceHeading = normalizeWhitespace(stripChoiceListLine(engineeringElectiveLine));
+    const label = "Engineering Elective Credit (12 credits)";
+    const groupId = `${owner.ownerId}:requirement-group:sbse-engineering-elective-credit`;
+    groups.push(
+      buildParsedRequirementGroup({
+        id: groupId,
+        label,
+        category: "program-approved-credit-bucket",
+        subcategory: `${owner.planId}-engineering-elective-credit`,
+        requirementType: "choose_credits",
+        minCredits: 12,
+        maxCredits: 12,
+        creditText: "12",
+        sourceHeading,
+        sourceRowText: sourceHeading,
+        detectedOptionCue: "SBSE comparison-table engineering elective credit bucket",
+        approvedListKey: `${owner.planId}-engineering-elective-credit`,
+        canCreatePlaceholder: true,
+        programSpecific: true,
+        notes: ["Parsed from the official BSE/SBSE comparison table."],
+        options: [
+          buildCategoryCreditBucketOption(groupId, {
+            category: "ENGINEERING_ELECTIVE_CREDIT",
+            sourceCategoryCode: "Engineering Elective Credit",
+            title: "Engineering Elective Credit",
+            credits: 12,
+            sourceText: sourceHeading,
+            approvedListKey: `${owner.planId}-engineering-elective-credit`,
+            programSpecific: true,
+          }),
+        ],
+      })
+    );
+  }
+
+  const diversityLine = (snapshotLines ?? []).find((line) =>
+    /^Diversity\s*\(DIV\):\s*5\s+credits\b/i.test(normalizeWhitespace(stripChoiceListLine(line)))
+  );
+  if (diversityLine) {
+    const label = "5 credits of Diversity";
+    const groupId = `${owner.ownerId}:requirement-group:sbse-diversity`;
+    groups.push(
+      buildParsedRequirementGroup({
+        id: groupId,
+        label,
+        category: "diversity",
+        subcategory: "diversity",
+        requirementType: "choose_credits",
+        minCredits: 5,
+        maxCredits: 5,
+        creditText: "5",
+        sourceHeading: normalizeWhitespace(stripChoiceListLine(diversityLine)),
+        sourceRowText: normalizeWhitespace(stripChoiceListLine(diversityLine)),
+        detectedOptionCue: "SBSE comparison-table category credit bucket",
+        notes: ["Parsed from the official BSE/SBSE comparison table."],
+        options: [
+          buildCategoryCreditBucketOption(groupId, {
+            category: "diversity",
+            sourceCategoryCode: "DIV",
+            title: "Diversity",
+            credits: 5,
+            sourceText: normalizeWhitespace(stripChoiceListLine(diversityLine)),
+            programSpecific: true,
+          }),
+        ],
+      })
+    );
+  }
+
+  const socialScienceLine = (snapshotLines ?? []).find((line) =>
+    /^10\s+credits\s+chosen\s+from\s+the\s+University\s+SSc\s+list\b/i.test(
+      normalizeWhitespace(stripChoiceListLine(line))
+    )
+  );
+  if (socialScienceLine) {
+    const label = "10 credits of Social Sciences";
+    const groupId = `${owner.ownerId}:requirement-group:sbse-social-sciences`;
+    groups.push(
+      buildParsedRequirementGroup({
+        id: groupId,
+        label,
+        category: "social_sciences",
+        subcategory: "social_sciences",
+        requirementType: "choose_credits",
+        minCredits: 10,
+        maxCredits: 10,
+        creditText: "10",
+        sourceHeading: normalizeWhitespace(stripChoiceListLine(socialScienceLine)),
+        sourceRowText: normalizeWhitespace(stripChoiceListLine(socialScienceLine)),
+        detectedOptionCue: "SBSE comparison-table category credit bucket",
+        notes: ["Parsed from the official BSE/SBSE comparison table."],
+        options: [
+          buildCategoryCreditBucketOption(groupId, {
+            category: "social_sciences",
+            sourceCategoryCode: "SSc",
+            title: "Social Sciences",
+            credits: 10,
+            sourceText: normalizeWhitespace(stripChoiceListLine(socialScienceLine)),
+            programSpecific: true,
+          }),
+        ],
+      })
+    );
+  }
+
+  const statisticsLine = (snapshotLines ?? []).find((line) =>
+    /^QSCI\s+381\s+\(or\s+INDE\s+315\s+or\s+STAT\s+390\)/i.test(
+      normalizeWhitespace(stripChoiceListLine(line))
+    )
+  );
+  if (statisticsLine) {
+    const sourceHeading = normalizeWhitespace(stripChoiceListLine(statisticsLine));
+    const groupId = `${owner.ownerId}:requirement-group:sbse-statistics`;
+    groups.push(
+      buildParsedRequirementGroup({
+        id: groupId,
+        label: "QSCI 381, INDE 315, or STAT 390",
+        category: "statistics",
+        subcategory: "statistics",
+        requirementType: "choose_one",
+        minCourses: 1,
+        maxCourses: 1,
+        selectionCount: 1,
+        requiredCount: 1,
+        sourceHeading,
+        sourceRowText: sourceHeading,
+        detectedOptionCue: "SBSE comparison-table course choice",
+        notes: ["Parsed from the official BSE/SBSE comparison table."],
+        options: ["QSCI 381", "INDE 315", "STAT 390"].map((courseCode) => ({
+          id: `${owner.ownerId}:requirement-option:${slugify(courseCode)}`,
+          uwCourses: [courseCode],
+          displayCourseCodes: [courseCode],
+          label: courseCode,
+          sourceHeading,
+          sourceCategory: "statistics",
+        })),
+      })
+    );
+  }
+
+  const physicsLine = (snapshotLines ?? []).find((line) =>
+    /^PHYS\s+121\s+and\s+PHYS\s+122\s+\(or\s+PHYS\s+141,\s*142\)/i.test(
+      normalizeWhitespace(stripChoiceListLine(line))
+    )
+  );
+  if (physicsLine) {
+    const sourceHeading = normalizeWhitespace(stripChoiceListLine(physicsLine));
+    const sequencePaths = [
+      {
+        id: `${owner.ownerId}:sequence-path:phys-121-122`,
+        label: "PHYS 121 and PHYS 122",
+        uwCourses: ["PHYS 121", "PHYS 122"],
+        displayCourseCodes: ["PHYS 121", "PHYS 122"],
+        conditionalLabCourses: [],
+        notes: [],
+        sourceText: sourceHeading,
+      },
+      {
+        id: `${owner.ownerId}:sequence-path:phys-141-142`,
+        label: "PHYS 141 and PHYS 142",
+        uwCourses: ["PHYS 141", "PHYS 142"],
+        displayCourseCodes: ["PHYS 141", "PHYS 142"],
+        conditionalLabCourses: [],
+        notes: [],
+        sourceText: sourceHeading,
+      },
+    ];
+    groups.push(
+      buildParsedRequirementGroup({
+        id: `${owner.ownerId}:requirement-group:sbse-physics-sequence`,
+        label: "PHYS 121 and PHYS 122 or PHYS 141 and PHYS 142",
+        category: "physics",
+        subcategory: "physics",
+        requirementType: "sequence_choice",
+        sourceHeading,
+        sourceRowText: sourceHeading,
+        detectedOptionCue: "SBSE comparison-table sequence choice",
+        notes: ["Parsed from the official BSE/SBSE comparison table."],
+        sequencePaths,
+        options: sequencePaths.map((path) => ({
+          id: `${owner.ownerId}:requirement-option:${slugify(path.id)}`,
+          sequencePathId: path.id,
+          pathLabel: path.label,
+          uwCourses: path.uwCourses,
+          displayCourseCodes: path.displayCourseCodes,
+          conditionalLabCourses: path.conditionalLabCourses,
+          notes: path.notes,
+          label: path.label,
+          sourceHeading,
+          sourceCategory: "physics",
+        })),
+      })
+    );
+  }
+
+  return groups.filter((group) => group?.options?.length || group?.sequencePaths?.length);
+}
+
 function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
   return uniqueBy(
     dedupeCreditBucketRequirementGroups(
@@ -8659,6 +9261,8 @@ function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
             ...buildSplitEitherOrRequirementGroups(owner, parsedCourseCodes, snapshotLines),
             ...buildInlineLabeledCourseRequirementGroups(owner, snapshotLines),
             ...buildGenericCreditBucketRequirementGroups(owner, snapshotLines),
+            ...buildParallelChooseOneRequirementGroups(owner, snapshotLines),
+            ...buildSbseComparisonTableRequirementGroups(owner, snapshotLines),
             ...buildGenericSequenceChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
             ...buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
           ],
@@ -8849,7 +9453,7 @@ function hasOwnerAcronymDepartmentalBoundary(entry, lines) {
 }
 
 const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
-  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) => entry.ownerType === "major" && entry.planId && entry.ownerTitle
   ).map((entry) => [entry.planId, normalizeTransferPlannerText(entry.ownerTitle)])
 );
@@ -8910,6 +9514,54 @@ function textMatchesCatalogOwnerScopeTitle(entry, text) {
 
   return getCatalogOwnerScopeMatcherTitles(entry).some((title) =>
     normalizedText.includes(title)
+  );
+}
+
+function getLegacyCatalogParentProgramMatcherTitles(entry) {
+  if (!catalogOwnerTitleHasSpecializedCredential(entry)) {
+    return [];
+  }
+
+  return uniqueInOrder(
+    getCatalogOwnerScopeTitles(entry)
+      .flatMap((title) => {
+        const normalizedTitle = normalizeTransferPlannerText(title);
+        const parentTitle = normalizedTitle
+          .split(/\s*:\s*/u)[0]
+          .replace(
+            /\s*\([^)]*\b(?:designed|option|track|route|pathway|concentration)\b[^)]*\)\s*$/i,
+            ""
+          )
+          .trim();
+        const normalizedParentTitle = normalizeCatalogCredentialMatcherTitle(parentTitle);
+        const normalizedExactTitle = normalizeCatalogCredentialMatcherTitle(normalizedTitle);
+        return normalizedParentTitle && normalizedParentTitle !== normalizedExactTitle
+          ? [normalizedParentTitle]
+          : [];
+      })
+      .filter(Boolean)
+  );
+}
+
+function normalizedMatcherTextContainsPhrase(normalizedText, normalizedPhrase) {
+  if (!normalizedText || !normalizedPhrase) {
+    return false;
+  }
+
+  return new RegExp(
+    `(?:^|\\s)${escapeRegex(normalizedPhrase).replace(/\s+/g, "\\s+")}(?:\\s|$)`,
+    "i"
+  ).test(normalizedText);
+}
+
+function textMatchesLegacyCatalogParentProgramTitle(entry, text) {
+  const normalizedText = normalizeMatcherText(text);
+  if (!normalizedText) {
+    return false;
+  }
+
+  return getLegacyCatalogParentProgramMatcherTitles(entry).some((title) =>
+    normalizedMatcherTextContainsPhrase(normalizedText, title)
   );
 }
 
@@ -9317,12 +9969,18 @@ function isLikelyPathwayChoiceContextLine(line) {
   );
 }
 
+function isCourseListSectionHeadingLine(line) {
+  const normalizedMatcherText = normalizeMatcherText(stripPathwayHeadingPrefix(line));
+  return /^list\s+[a-z0-9]\b/i.test(normalizedMatcherText);
+}
+
 function isLikelyPeerPathwayHtmlSectionStartLine(line) {
   const normalized = stripPathwayHeadingPrefix(line);
   const normalizedMatcherText = normalizeMatcherText(normalized);
   if (
     !normalizedMatcherText ||
-    NOISY_SOURCE_LINE_PATTERN.test(normalized) ||
+    isCourseListSectionHeadingLine(line) ||
+    NOISY_LINE_PATTERN.test(normalized) ||
     extractCourseCodesFromLine(normalized).length > 0 ||
     PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalized)
   ) {
@@ -9376,7 +10034,7 @@ function isLikelyFormalPathwayTableHeadingLine(lines, index) {
     !rawLine ||
     !matcherText ||
     !hasRecentFormalPathwayChoiceContext(lines, index) ||
-    NOISY_SOURCE_LINE_PATTERN.test(rawLine) ||
+    NOISY_LINE_PATTERN.test(rawLine) ||
     extractCourseCodesFromLine(rawLine).length > 0 ||
     PATHWAY_SECTION_BOUNDARY_PATTERN.test(rawLine)
   ) {
@@ -9399,14 +10057,15 @@ function isLikelyBaseParallelPathwayHtmlSectionStartLine(lines, index) {
 }
 
 const BARE_PATHWAY_SECTION_SUBHEADING_PATTERN =
-  /\b(?:admission|admissions|application|apply|capstone|checklist|core|course|courses|coursework|credits?|curriculum|degree|electives?|internship|major|minor|overview|prereq|prerequisite|program|requirements?|sample|schedule|series|student|students|worksheet)\b/i;
+  /\b(?:admission|admissions|application|apply|capstone|checklist|core|course|courses|coursework|credits?|curriculum|degree|electives?|internship|list|major|minor|overview|prereq|prerequisite|program|requirements?|sample|schedule|series|student|students|worksheet)\b/i;
 
 function isLikelyBarePathwayHtmlSectionHeading(line) {
   const normalized = stripPathwayHeadingPrefix(line);
   const matcherText = normalizeMatcherText(normalized);
   if (
     !matcherText ||
-    NOISY_SOURCE_LINE_PATTERN.test(normalized) ||
+    isCourseListSectionHeadingLine(line) ||
+    NOISY_LINE_PATTERN.test(normalized) ||
     extractCourseCodesFromLine(normalized).length > 0 ||
     PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalized) ||
     PATHWAY_LABEL_CUE_PATTERN.test(normalized) ||
@@ -9453,7 +10112,7 @@ function isLikelySelectedPathwayHtmlSectionStartLine(entry, line) {
   const normalizedMatcherText = normalizeMatcherText(normalized);
   if (
     !normalizedMatcherText ||
-    NOISY_SOURCE_LINE_PATTERN.test(normalized) ||
+    NOISY_LINE_PATTERN.test(normalized) ||
     extractCourseCodesFromLine(normalized).length > 0 ||
     PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalized)
   ) {
@@ -9668,6 +10327,25 @@ function findPathwayHtmlTableContentBoundary(lines, startIndex, headingLines) {
       continue;
     }
 
+    if (
+      !isLikelyPeerPathwayHtmlSectionStartLine(line) &&
+        !isLikelyBarePathwayHtmlSectionHeading(line)
+    ) {
+      const normalizedLine = normalizeTransferPlannerText(line);
+      const wordCount = normalizeMatcherText(line).split(" ").filter(Boolean).length;
+      const isInlineRepeatedHeading =
+        wordCount > 0 &&
+        wordCount <= 14 &&
+        /:\s*\b(?:complete|choose|select|required|courses?\s+listed|all\s+\d+\s+courses?)\b/i.test(
+          normalizedLine
+        ) &&
+        headingLines.some((headingLine) => lineMatchesPathwayHeadingIdentity(headingLine, line));
+      if (isInlineRepeatedHeading) {
+        return index;
+      }
+      continue;
+    }
+
     if (headingLines.some((headingLine) => lineMatchesPathwayHeadingIdentity(headingLine, line))) {
       return index;
     }
@@ -9689,23 +10367,28 @@ function removePriorAdmitCurriculumSectionsFromCurrentScope(lines) {
     return lines;
   }
 
-  const legacyStartIndex = lines.findIndex((line) =>
-    PRIOR_ADMIT_CURRICULUM_START_PATTERN.test(normalizeWhitespace(line))
-  );
-  if (legacyStartIndex < 0) {
-    return lines;
+  for (let legacyStartIndex = 0; legacyStartIndex < lines.length; legacyStartIndex += 1) {
+    if (!PRIOR_ADMIT_CURRICULUM_START_PATTERN.test(normalizeWhitespace(lines[legacyStartIndex]))) {
+      continue;
+    }
+
+    const precedingText = normalizeMatcherText(lines.slice(0, legacyStartIndex).join(" "));
+    const hasCurrentCurriculumBeforeLegacy =
+      /\bformal options?\b/.test(precedingText) &&
+    (/\bshared curriculum\b/.test(precedingText) ||
+      /\bbeginning in spring 2026\b/.test(precedingText) ||
+      /\bspring 2026\b/.test(precedingText)) &&
+    (/\bfoundation courses?\b/.test(precedingText) ||
+      /\bmethods courses?\b/.test(precedingText) ||
+      /\bintroductory courses?\b/.test(precedingText) ||
+      /\bbeginning in spring 2026\b/.test(precedingText));
+
+    if (hasCurrentCurriculumBeforeLegacy) {
+      return lines.slice(0, legacyStartIndex);
+    }
   }
 
-  const precedingText = normalizeMatcherText(lines.slice(0, legacyStartIndex).join(" "));
-  const hasCurrentCurriculumBeforeLegacy =
-    /\bformal options?\b/.test(precedingText) &&
-    /\bshared curriculum\b/.test(precedingText) &&
-    /\bfoundation courses?\b/.test(precedingText);
-  if (!hasCurrentCurriculumBeforeLegacy) {
-    return lines;
-  }
-
-  return lines.slice(0, legacyStartIndex);
+  return lines;
 }
 
 function findPathwayHtmlTableContentEndIndex(entry, lines, startIndex) {
@@ -9725,12 +10408,90 @@ function findPathwayHtmlTableContentEndIndex(entry, lines, startIndex) {
   return defaultEndIndex;
 }
 
+function isFormalOptionsBaseSectionStartLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  return (
+    /^formal options?\b/i.test(normalizedLine) &&
+    extractCourseCodesFromLine(normalizedLine).length === 0
+  );
+}
+
+function isFormalOptionHeadingLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (!normalizedLine || extractCourseCodesFromLine(normalizedLine).length > 0) {
+    return false;
+  }
+
+  return (
+    /^[A-Z]\.\s+\S/.test(normalizedLine) ||
+    (normalizedLine.split(/\s+/).length <= 8 &&
+      /\b(?:option|certificate|concentration|track|pathway)\b/i.test(normalizedLine) &&
+      !/\b(?:choose|select|declare|complete|credits?)\b/i.test(normalizedLine))
+  );
+}
+
+function findBaseFormalOptionsRemovalRanges(entry, lines) {
+  if (entry?.pathwayId || !Array.isArray(lines) || lines.length < 8) {
+    return [];
+  }
+
+  const ranges = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    if (!isFormalOptionsBaseSectionStartLine(lines[index])) {
+      continue;
+    }
+
+    const introText = normalizeMatcherText(lines.slice(index, index + 18).join(" "));
+    if (!/\b(?:choose|select|declare)\s+one\b/.test(introText)) {
+      continue;
+    }
+
+    const optionHeadingCount = lines
+      .slice(index + 1, Math.min(lines.length, index + 40))
+      .filter(isFormalOptionHeadingLine).length;
+    if (optionHeadingCount < 2) {
+      continue;
+    }
+
+    const firstOptionHeadingIndex = lines.findIndex(
+      (line, lineIndex) =>
+        lineIndex > index && lineIndex < index + 40 && isFormalOptionHeadingLine(line)
+    );
+    if (firstOptionHeadingIndex > index + 12) {
+      continue;
+    }
+
+    let endIndex = Math.min(lines.length - 1, index + 220);
+    for (let scanIndex = index + 3; scanIndex <= endIndex; scanIndex += 1) {
+      const scanLine = normalizeWhitespace(stripChoiceListLine(lines[scanIndex]));
+      if (
+        extractCourseCodesFromLine(scanLine).length === 0 &&
+        /^(?:general electives?|graduation requirements?|admissions?|advising|contact\b|how to apply\b|degree requirements?|major requirements?)\b/i.test(
+          scanLine
+        )
+      ) {
+        endIndex = scanIndex - 1;
+        break;
+      }
+    }
+
+    const removedCourseCount = lines
+      .slice(index, endIndex + 1)
+      .reduce((count, line) => count + extractCourseCodesFromLine(line).length, 0);
+    if (removedCourseCount > 0) {
+      ranges.push({ startIndex: index, endIndex });
+    }
+  }
+
+  return ranges;
+}
+
 function removeParallelPathwayHtmlTableContentFromBaseScope(entry, lines) {
   if (entry?.pathwayId || !Array.isArray(lines) || lines.length < 8) {
     return lines;
   }
 
-  const removeRanges = [];
+  const removeRanges = [...findBaseFormalOptionsRemovalRanges(entry, lines)];
   for (let index = 0; index < lines.length; index += 1) {
     if (
       extractCourseCodesFromLine(lines[index]).length > 0 ||
@@ -9933,6 +10694,35 @@ function findPathwayHtmlSectionRange(entry, lines) {
 
   if (!selectedStartIndexes.length || !hasSiblingPathwaySection) {
     return null;
+  }
+
+  const curriculumSectionCandidates = [];
+  for (const selectedStartIndex of selectedStartIndexes.filter((index) =>
+    /\b(?:curriculum|requirements?)\b/i.test(stripPathwayHeadingPrefix(lines[index]))
+  )) {
+    const endIndex = findPathwayHtmlSectionEndIndex(entry, lines, selectedStartIndex);
+    const sectionLines = lines.slice(selectedStartIndex, endIndex + 1);
+    const courseCount = sectionLines.reduce(
+      (count, line) => count + extractCourseCodesFromLine(line).length,
+      0
+    );
+    if (courseCount <= 0) {
+      continue;
+    }
+    const startIndex = findPathwayHtmlSectionStartIndex(entry, lines, selectedStartIndex);
+    curriculumSectionCandidates.push({
+      startIndex,
+      endIndex,
+      courseCount,
+      selectedStartIndex,
+    });
+  }
+
+  if (curriculumSectionCandidates.length) {
+    return curriculumSectionCandidates.sort(
+      (left, right) =>
+        right.courseCount - left.courseCount || right.selectedStartIndex - left.selectedStartIndex
+    )[0];
   }
 
   const nestedScope = buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes);
@@ -10417,6 +11207,33 @@ function collectIgnoredCatalogNeighboringSections(html, searchStartIndex, anchor
   return ignored;
 }
 
+function shouldKeepLegacyCatalogProgramLeadIn(sectionLines, baseCredentialSection) {
+  if (!baseCredentialSection?.lines?.length || !sectionLines?.length) {
+    return false;
+  }
+
+  const credentialHeading = normalizeMatcherText(baseCredentialSection.sectionHeading ?? "");
+  let credentialIndex = sectionLines.findIndex((line) =>
+    /^Completion Requirements\b/i.test(normalizeWhitespace(line))
+  );
+  if (credentialHeading) {
+    const headingIndex = sectionLines.findIndex((line) =>
+      normalizeMatcherText(line).includes(credentialHeading)
+    );
+    if (credentialIndex < 0 || (headingIndex >= 0 && headingIndex > credentialIndex)) {
+      credentialIndex = headingIndex;
+    }
+  }
+  if (credentialIndex <= 0) {
+    return false;
+  }
+
+  const leadInText = normalizeMatcherText(sectionLines.slice(0, credentialIndex).join(" "));
+  return /\b(?:admission requirements?|prerequisites?|pre[-\s]?requisite|how to apply to the major|transfer(?:ring)? from a community college|associate of science transfer|recommended preparation)\b/i.test(
+    leadInText
+  );
+}
+
 function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
   if (
     !entry ||
@@ -10461,6 +11278,10 @@ function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
       ? legacyCatalogProgramLineMatchesOwner(entry, catalogProgramHeading)
       : catalogSectionMatchesSelectedMajor(entry, sectionHeading, sectionLines);
 
+    if (!sectionMatchedSelectedMajor) {
+      continue;
+    }
+
     const baseCredentialSection = findBaseCatalogCredentialSection(
       entry,
       html,
@@ -10468,6 +11289,29 @@ function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
       stopBoundary.index
     );
     if (baseCredentialSection?.lines?.length) {
+      if (shouldKeepLegacyCatalogProgramLeadIn(sectionLines, baseCredentialSection)) {
+        return {
+          scoped: true,
+          lines: sectionLines,
+          headings: sectionHeadings,
+          sectionAudit: buildSourceSectionAudit({
+            majorId: entry.planId,
+            sourceUrl: entry.url,
+            sourceRole,
+            requestedAnchor: null,
+            anchorFound: false,
+            sectionHeading,
+            sectionMatchedSelectedMajor: true,
+            stopBoundary: stopBoundary.label,
+            ignoredNeighboringSections: collectIgnoredCatalogNeighboringSections(
+              html,
+              stopBoundary.index,
+              "program"
+            ),
+          }),
+        };
+      }
+
       return {
         scoped: true,
         lines: baseCredentialSection.lines,
@@ -10488,10 +11332,6 @@ function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
           ),
         }),
       };
-    }
-
-    if (!sectionMatchedSelectedMajor) {
-      continue;
     }
 
     return {
@@ -10701,6 +11541,9 @@ function legacyCatalogProgramLineMatchesOwner(entry, line) {
   if (textMatchesCatalogOwnerScopeTitle(entry, normalizedLine)) {
     return true;
   }
+  if (textMatchesLegacyCatalogParentProgramTitle(entry, normalizedLine)) {
+    return true;
+  }
 
   const titleTokens = getTitleScopeTokens(entry);
   if (!titleTokens.length) {
@@ -10792,6 +11635,7 @@ function shouldStopMajorLegacyCatalogScopeBeforeCredentialSections(entry) {
   return Boolean(
     entry?.ownerType === "major" &&
       !entry?.pathwayId &&
+      !catalogOwnerTitleHasSpecializedCredential(entry) &&
       (BOOTSTRAP_PLAN_PATHWAY_COUNT_BY_ID.get(entry.planId) ?? 0) > 0
   );
 }
@@ -11087,6 +11931,61 @@ function findPrecedingAdmissionRequirementStartIndex(entry, lines, scopedStartIn
   return candidates[0]?.index ?? null;
 }
 
+function looksLikePrecedingInlineRequirementLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (
+    !normalizedLine ||
+    NOISY_LINE_PATTERN.test(normalizedLine) ||
+    TRANSFER_CREDIT_NOISE_PATTERN.test(normalizedLine) ||
+    sourceLineStartsWithCourseCode(normalizedLine)
+  ) {
+    return false;
+  }
+
+  const parts = getInlineLabeledRequirementParts(normalizedLine);
+  if (!parts || extractCourseCodesFromRequirementLine(parts.body).length === 0) {
+    return false;
+  }
+
+  return !/\b(?:admissions?|application|deadline|tuition|fees?|contact|career|graduate)\b/i.test(
+    parts.label
+  );
+}
+
+function findPrecedingInlineRequirementStartIndex(entry, lines, scopedStartIndex) {
+  if (!entry || !Array.isArray(lines) || scopedStartIndex <= 0) {
+    return null;
+  }
+
+  const minIndex = Math.max(0, scopedStartIndex - 8);
+  let startIndex = null;
+  for (let index = scopedStartIndex - 1; index >= minIndex; index -= 1) {
+    const line = normalizeWhitespace(stripChoiceListLine(lines[index]));
+    if (looksLikePrecedingInlineRequirementLine(line)) {
+      startIndex = index;
+      continue;
+    }
+
+    if (startIndex !== null) {
+      break;
+    }
+
+    if (!line) {
+      continue;
+    }
+    if (
+      HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) ||
+      PRIMARY_REQUIREMENT_CUE_PATTERN.test(line) ||
+      PATHWAY_SECTION_BOUNDARY_PATTERN.test(line) ||
+      /\b(?:admissions?|application|how do you major|contact|career)\b/i.test(line)
+    ) {
+      break;
+    }
+  }
+
+  return startIndex;
+}
+
 function isApprovedElectiveHtmlSource(entry, title, headings, lines) {
   const sourceIdentityText = normalizeMatcherText(
     [
@@ -11105,6 +12004,121 @@ function isApprovedElectiveHtmlSource(entry, title, headings, lines) {
     /\bapproved electives?\b/.test(sourceIdentityText) ||
     /\belective (?:lists?|webpage|courses?)\b/.test(sourceIdentityText)
   );
+}
+
+function shouldUseFullGenericConcentrationDegreeScope(entry, headings, lines) {
+  if (
+    entry?.pathwayId ||
+    entry?.parserType !== "generic-html" ||
+    entry?.isPrimaryDegreeRequirementsLink !== true
+  ) {
+    return false;
+  }
+
+  const searchableText = normalizeMatcherText(
+    [
+      entry?.ownerTitle,
+      entry?.label,
+      entry?.sourceLabel,
+      ...(headings ?? []),
+      ...(lines ?? []).slice(0, 160),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  return (
+    /\bdegree requirements\b/.test(searchableText) &&
+    /\bconcentration courses\b/.test(searchableText) &&
+    (lines ?? []).some((line, index) =>
+      /\bconcentration courses?:?$/i.test(normalizeWhitespace(stripChoiceListLine(line))) &&
+      hasUpcomingSectionedCourseRows(lines, index, 1)
+    )
+  );
+}
+
+function getSbseComparisonTableScopeLines(entry, sourceLines, scopedLines) {
+  if (
+    entry?.planId !== "uw-seattle-sustainable-bioresource-systems-engineering" ||
+    !Array.isArray(sourceLines) ||
+    !Array.isArray(scopedLines) ||
+    scopedLines.some((line) => /Comparison Table:\s*BSE\s+vs\s+SBSE/i.test(line))
+  ) {
+    return [];
+  }
+
+  const startIndex = sourceLines.findIndex((line) =>
+    /Comparison Table:\s*BSE\s+vs\s+SBSE/i.test(normalizeWhitespace(stripChoiceListLine(line)))
+  );
+  if (startIndex < 0) {
+    return [];
+  }
+
+  let endIndex = Math.min(sourceLines.length - 1, startIndex + 120);
+  for (let index = startIndex + 20; index <= endIndex; index += 1) {
+    const line = normalizeWhitespace(stripChoiceListLine(sourceLines[index]));
+    if (/^Expand\/contract subsection\b|^Apply to the major\b|^Admissions\b/i.test(line)) {
+      endIndex = index - 1;
+      break;
+    }
+  }
+
+  const comparisonLines = sourceLines.slice(startIndex, endIndex + 1);
+  const sbseLines = [];
+  let inPairedRequirementRows = false;
+  let expectBseRow = true;
+  for (let index = 0; index < comparisonLines.length; index += 1) {
+    const line = normalizeWhitespace(stripChoiceListLine(comparisonLines[index]));
+    const nextLine = normalizeWhitespace(stripChoiceListLine(comparisonLines[index + 1]));
+    if (!line) {
+      continue;
+    }
+    if (/^BSE Major Requirements?$/i.test(line) && /^SBSE Major Requirements?$/i.test(nextLine)) {
+      sbseLines.push(nextLine);
+      inPairedRequirementRows = true;
+      expectBseRow = true;
+      index += 1;
+      continue;
+    }
+    if (/^BSE Major Requirement$/i.test(line) && /^SBSE Major Requirement$/i.test(nextLine)) {
+      sbseLines.push(nextLine);
+      inPairedRequirementRows = true;
+      expectBseRow = true;
+      index += 1;
+      continue;
+    }
+    if (!inPairedRequirementRows) {
+      sbseLines.push(line);
+      continue;
+    }
+    if (
+      extractCourseCodesFromLine(line).length === 0 &&
+      /^(?:Basic Skills|Areas of Inquiry|Core Engineering Requirements|Elective Requirement|Note:|Back to Top|Students|Undergraduate Programs)\b/i.test(
+        line
+      )
+    ) {
+      sbseLines.push(line);
+      expectBseRow = true;
+      continue;
+    }
+    if (expectBseRow) {
+      expectBseRow = false;
+      continue;
+    }
+    sbseLines.push(line);
+    expectBseRow = true;
+  }
+
+  const courseCodeCount = uniqueSorted(sbseLines.flatMap(extractCourseCodesFromLine)).length;
+  return courseCodeCount >= 8 ? sbseLines : [];
+}
+
+function appendSupplementalScopedRequirementLines(entry, sourceLines, scopedLines) {
+  const supplementalLines = getSbseComparisonTableScopeLines(entry, sourceLines, scopedLines);
+  if (!supplementalLines.length) {
+    return scopedLines;
+  }
+
+  return [...scopedLines, "[Supplemental official source] SBSE comparison table", ...supplementalLines];
 }
 
 function scopeHtmlLines(entry, title, headings, lines) {
@@ -11136,21 +12150,25 @@ function scopeHtmlLines(entry, title, headings, lines) {
     );
   }
 
+  if (isApprovedElectiveHtmlSource(entry, title, headings, sourceLines)) {
+    return sourceLines;
+  }
+
+  if (shouldUseFullGenericConcentrationDegreeScope(entry, headings, sourceLines)) {
+    return sourceLines;
+  }
+
   const baseLinesWithoutParallelPathwayTableContent =
     removeParallelPathwayHtmlTableContentFromBaseScope(entry, sourceLines);
   if (baseLinesWithoutParallelPathwayTableContent !== sourceLines) {
     return baseLinesWithoutParallelPathwayTableContent;
   }
 
-  if (sourceLines !== lines) {
-    return sourceLines;
-  }
-
-  if (isApprovedElectiveHtmlSource(entry, title, headings, sourceLines)) {
-    return sourceLines;
-  }
-
   if (shouldUseFullFocusedDegreeHtmlScope(entry, title, headings, sourceLines)) {
+    return sourceLines;
+  }
+
+  if (sourceLines !== lines) {
     return sourceLines;
   }
 
@@ -11263,7 +12281,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
 
   if (
     !ownerSectionRange &&
-    (/\b(course #|course name|credits?|cr\.?|requirements?|electives?|offered|prereq|prerequisite)\b/.test(
+    (/\b(course #|course name|credits?|cr\.?|requirements?|electives?|concentrations?|offered|prereq|prerequisite)\b/.test(
       scopedTableTailText
     ) || SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(scopedTableTailText))
   ) {
@@ -11282,7 +12300,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
 
       const lineCourseCodes = extractCourseCodesFromLine(line);
       const hasTableSignal =
-        /\b(course #|course name|credits?|cr\.?|requirements?|electives?|offered|prereq|prerequisite)\b/i.test(
+        /\b(course #|course name|credits?|cr\.?|requirements?|electives?|concentrations?|offered|prereq|prerequisite)\b/i.test(
           line
         ) || SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(line);
 
@@ -11340,6 +12358,14 @@ function scopeHtmlLines(entry, title, headings, lines) {
     if (prerequisiteStartIndex !== null) {
       startIndex = prerequisiteStartIndex;
     }
+    const inlineRequirementStartIndex = findPrecedingInlineRequirementStartIndex(
+      entry,
+      sourceLines,
+      startIndex
+    );
+    if (inlineRequirementStartIndex !== null) {
+      startIndex = inlineRequirementStartIndex;
+    }
   }
 
   let scopedLines = sourceLines.slice(startIndex, endIndex + 1);
@@ -11351,11 +12377,17 @@ function scopeHtmlLines(entry, title, headings, lines) {
     scopedLines = scopedLines.slice(0, differentOwnerBoundaryIndex);
   }
 
-  if (scopedLines.length < 12 && title) {
-    return [title, ...scopedLines];
+  const scopedLinesWithSupplement = appendSupplementalScopedRequirementLines(
+    entry,
+    sourceLines,
+    scopedLines
+  );
+
+  if (scopedLinesWithSupplement.length < 12 && title) {
+    return [title, ...scopedLinesWithSupplement];
   }
 
-  return scopedLines;
+  return scopedLinesWithSupplement;
 }
 
 function getStructuredDegreeMapBlocksForOwner(owner) {
@@ -11610,7 +12642,7 @@ function readSnapshotFile(snapshotPath, expectedSourceUrl = null) {
     .slice(bodyStartIndex >= 0 ? bodyStartIndex + 1 : 0)
     .map((line) => normalizeWhitespace(line))
     .filter(Boolean)
-    .filter((line) => !NOISY_SOURCE_LINE_PATTERN.test(line))
+    .filter((line) => !NOISY_LINE_PATTERN.test(line))
     .slice(0, 1200);
 
   if (!snapshotLines.length) {
@@ -11871,179 +12903,9 @@ function parseSnapshotSource(entry, originalError) {
   };
 }
 
-function parseRetryAfterToMs(value) {
-  const normalized = normalizeWhitespace(value);
-  if (!normalized) {
-    return null;
-  }
-
-  if (/^\d+$/.test(normalized)) {
-    return Number(normalized) * 1000;
-  }
-
-  const retryAt = Date.parse(normalized);
-  if (Number.isNaN(retryAt)) {
-    return null;
-  }
-
-  return Math.max(0, retryAt - Date.now());
-}
-
-function isRetryableHttpStatus(status) {
-  return [408, 425, 429, 500, 502, 503, 504].includes(status);
-}
-
-function getRetryDelayMs(attempt, retryAfterHeader = null) {
-  const retryAfterMs = parseRetryAfterToMs(retryAfterHeader);
-  if (retryAfterMs !== null) {
-    return Math.min(Math.max(retryAfterMs, DEFAULT_HOST_COOLDOWN_MS), 8000);
-  }
-
-  return Math.min(DEFAULT_HOST_COOLDOWN_MS * Math.pow(2, Math.max(0, attempt - 1)), 8000);
-}
-
-async function fetchWithTimeoutOnce(url, timeoutMs) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-  try {
-    return await fetch(url, {
-      redirect: "follow",
-      signal: controller.signal,
-      headers: {
-        "user-agent": USER_AGENT,
-      },
-    });
-  } finally {
-    clearTimeout(timeoutId);
-  }
-}
-
-async function fetchWithRetries(url, timeoutMs) {
-  let lastError = null;
-  let lastResponse = null;
-
-  for (let attempt = 1; attempt <= DEFAULT_RETRY_ATTEMPTS; attempt += 1) {
-    try {
-      const response = await withHostThrottle(url, () => fetchWithTimeoutOnce(url, timeoutMs));
-      if (response.ok) {
-        return response;
-      }
-
-      lastResponse = response;
-      if (!isRetryableHttpStatus(response.status) || attempt >= DEFAULT_RETRY_ATTEMPTS) {
-        return response;
-      }
-
-      await sleep(getRetryDelayMs(attempt, response.headers.get("retry-after")));
-    } catch (error) {
-      lastError = error;
-      if (attempt >= DEFAULT_RETRY_ATTEMPTS) {
-        break;
-      }
-
-      await sleep(getRetryDelayMs(attempt));
-    }
-  }
-
-  if (lastResponse) {
-    return lastResponse;
-  }
-
-  throw lastError ?? new Error(`Failed to fetch ${url}.`);
-}
-
-function buildCurlErrorMessage(error, url) {
-  const stderr = normalizeWhitespace(error?.stderr ?? "");
-  const stdout = normalizeWhitespace(error?.stdout ?? "");
-  const details = stderr || stdout || normalizeWhitespace(error?.message ?? "");
-  return details ? `${details}` : `curl failed for ${url}`;
-}
-
-async function downloadWithCurl(url, timeoutMs, binary) {
-  const args = [
-    "--silent",
-    "--show-error",
-    "--location",
-    "--fail",
-    "--user-agent",
-    USER_AGENT,
-    "--header",
-    `Accept: ${CURL_ACCEPT_HEADER}`,
-    "--max-time",
-    String(Math.max(5, Math.ceil(timeoutMs / 1000))),
-    url,
-  ];
-
-  try {
-    const result = await withHostThrottle(url, () =>
-      execFileAsync(CURL_COMMAND, args, {
-        encoding: binary ? "buffer" : "utf8",
-        maxBuffer: CURL_MAX_BUFFER_BYTES,
-        windowsHide: true,
-      })
-    );
-
-    return {
-      body: binary ? Buffer.from(result.stdout) : String(result.stdout ?? ""),
-      fetchMode: "curl",
-    };
-  } catch (error) {
-    throw new Error(buildCurlErrorMessage(error, url));
-  }
-}
-
-async function downloadSource(url, timeoutMs, { binary = false } = {}) {
-  const cacheKey = `${binary ? "binary" : "text"}::${String(url ?? "")}`;
-  const cached = SOURCE_DOWNLOAD_CACHE.get(cacheKey);
-  if (cached) {
-    return cached;
-  }
-
-  const downloadPromise = (async () => {
-  let fetchResponse = null;
-  let fetchError = null;
-
-  try {
-    fetchResponse = await fetchWithRetries(url, timeoutMs);
-    if (fetchResponse.ok) {
-      return {
-        body: binary
-          ? Buffer.from(await fetchResponse.arrayBuffer())
-          : await fetchResponse.text(),
-        fetchMode: "fetch",
-      };
-    }
-  } catch (error) {
-    fetchError = error;
-  }
-
-  try {
-    return await downloadWithCurl(url, timeoutMs, binary);
-  } catch (curlError) {
-    if (fetchResponse && !fetchResponse.ok) {
-      throw new Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`);
-    }
-    if (fetchError) {
-      throw fetchError;
-    }
-    throw curlError;
-  }
-  })();
-
-  SOURCE_DOWNLOAD_CACHE.set(cacheKey, downloadPromise);
-
-  try {
-    return await downloadPromise;
-  } catch (error) {
-    SOURCE_DOWNLOAD_CACHE.delete(cacheKey);
-    throw error;
-  }
-}
-
 async function getHtmlSourceArtifacts(url, timeoutMs) {
   const cacheKey = String(url ?? "");
-  const cached = HTML_SOURCE_CACHE.get(cacheKey);
+  const cached = HTML_CACHE.get(cacheKey);
   if (cached) {
     return cached;
   }
@@ -12058,12 +12920,12 @@ async function getHtmlSourceArtifacts(url, timeoutMs) {
     };
   })();
 
-  HTML_SOURCE_CACHE.set(cacheKey, htmlPromise);
+  HTML_CACHE.set(cacheKey, htmlPromise);
 
   try {
     return await htmlPromise;
   } catch (error) {
-    HTML_SOURCE_CACHE.delete(cacheKey);
+    HTML_CACHE.delete(cacheKey);
     throw error;
   }
 }
@@ -12146,7 +13008,7 @@ function buildDocxLines(documentXml) {
 }
 
 async function extractDocxDocumentXml(docxBuffer, timeoutMs) {
-  const tempDir = fs.mkdtempSync(path.join(TMP_DIR, "transfer-planner-docx-"));
+  const tempDir = fs.mkdtempSync(getPlannerTmpPath("transfer-planner-docx-"));
   const archivePath = path.join(tempDir, "source.docx");
   fs.writeFileSync(archivePath, docxBuffer);
 
@@ -12166,7 +13028,7 @@ async function extractDocxDocumentXml(docxBuffer, timeoutMs) {
 
 async function getDocxSourceArtifacts(url, timeoutMs) {
   const cacheKey = String(url ?? "");
-  const cached = DOCX_SOURCE_CACHE.get(cacheKey);
+  const cached = DOCX_CACHE.get(cacheKey);
   if (cached) {
     return cached;
   }
@@ -12181,12 +13043,12 @@ async function getDocxSourceArtifacts(url, timeoutMs) {
     };
   })();
 
-  DOCX_SOURCE_CACHE.set(cacheKey, docxPromise);
+  DOCX_CACHE.set(cacheKey, docxPromise);
 
   try {
     return await docxPromise;
   } catch (error) {
-    DOCX_SOURCE_CACHE.delete(cacheKey);
+    DOCX_CACHE.delete(cacheKey);
     throw error;
   }
 }
@@ -12269,7 +13131,12 @@ function buildHtmlLines(html) {
     .replace(BLOCK_TAG_PATTERN, "\n")
     .split(/\r?\n/)
     .map((line) => stripHtml(line))
-    .filter((line) => line && !NOISY_SOURCE_LINE_PATTERN.test(line));
+    .filter(
+      (line) =>
+        line &&
+        !NOISY_LINE_PATTERN.test(line) &&
+        !HTML_CONTROL_LINE_PATTERN.test(line)
+    );
 }
 
 function extractTitle(html) {
@@ -12296,7 +13163,7 @@ function extractRequirementCueLines(lines) {
     const line = normalizeWhitespace(lines[index]);
     if (
       !line ||
-      NOISY_SOURCE_LINE_PATTERN.test(line) ||
+      NOISY_LINE_PATTERN.test(line) ||
       TRANSFER_CREDIT_NOISE_PATTERN.test(line)
     ) {
       continue;
@@ -12328,7 +13195,28 @@ function extractChooseStatements(lines) {
     .slice(0, 20);
 }
 
+function looksLikeStandalonePathwayLabel(value) {
+  const normalized = normalizeTransferPlannerText(value);
+  if (
+    !normalized ||
+    !PATHWAY_LABEL_CUE_PATTERN.test(normalized) ||
+    extractCourseCodesFromLine(normalized).length > 0 ||
+    normalized.length > 90 ||
+    normalized.split(/\s+/).length > 8
+  ) {
+    return false;
+  }
+
+  return !/\b(?:major|degree|program|department|school|college|admissions?|application|requirements?|courses?|curriculum)\b/i.test(
+    normalized
+  );
+}
+
 function pathwayLabelMentionsDifferentMajor(entry, line) {
+  if (looksLikeStandalonePathwayLabel(line)) {
+    return false;
+  }
+
   const titlesByPlanId = PRIMARY_MAJOR_TITLES_BY_PLAN_ID.has(entry.planId)
     ? PRIMARY_MAJOR_TITLES_BY_PLAN_ID
     : new Map([
@@ -12346,7 +13234,7 @@ function pathwayLabelMentionsDifferentMajor(entry, line) {
 function selectExtractedPathwayKindSegment(value) {
   const normalized = normalizeTransferPlannerText(value);
   const segments = normalized
-    .split(/\s+(?:[-â€“â€”]|:)\s+|,\s+/)
+    .split(/\s+(?:[-â€“â€”])\s+|\s*:\s+|,\s+/)
     .map((segment) => normalizeTransferPlannerText(segment))
     .filter(Boolean);
 
@@ -12580,13 +13468,9 @@ function extractPathwaySectionLabels(entry, lines) {
 
 function extractPathwayLabels(entry, lines, headings) {
   const isPathwayLabelCandidate = (rawLine, normalizedLine) => {
-    if (pathwayLabelMentionsDifferentMajor(entry, rawLine)) {
-      return false;
-    }
-
     const normalized = normalizedLine ?? normalizeCanonicalExtractedPathwayLabel(entry, rawLine);
     const isDegreeTitleCandidate = PATHWAY_LABEL_DEGREE_TITLE_PATTERN.test(normalized);
-    if (!normalized || NOISY_SOURCE_LINE_PATTERN.test(normalized)) {
+    if (!normalized || NOISY_LINE_PATTERN.test(normalized)) {
       return false;
     }
     if (isSuspiciousParsedPathwayLabel(normalized)) {
@@ -13205,18 +14089,32 @@ function mergeParsedSources(baseParsed, supplementalSources, parserType) {
 }
 
 function shouldKeepLinkedSupplementalHtmlSource(entry, baseParsed, supplementalSource) {
-  if (entry?.pathwayId) {
-    return true;
-  }
-
   const baseSnapshotText = normalizeMatcherText((baseParsed?.snapshotLines ?? []).slice(0, 90).join(" "));
+  const baseSnapshotCourseCodeCount = uniqueSorted(
+    (baseParsed?.snapshotLines ?? []).flatMap((line) => extractCourseCodesFromLine(line))
+  ).length;
+  const hasPrimaryRequirementCue =
+    /\brequired courses?\b/.test(baseSnapshotText) ||
+    /\bmust complete\b.{0,120}\bcourses?\b/.test(baseSnapshotText) ||
+    /\bcurriculum\b/.test(baseSnapshotText);
   const hasStrongPrimaryRequirementSection =
-    /\brequired courses?\b/.test(baseSnapshotText) &&
+    hasPrimaryRequirementCue &&
     /\b(?:lower division|upper division|core courses?)\b/.test(baseSnapshotText) &&
-    (baseParsed?.courseCodes?.length ?? 0) >= 6;
+    Math.max(baseParsed?.courseCodes?.length ?? 0, baseSnapshotCourseCodeCount) >= 6;
 
   if (!hasStrongPrimaryRequirementSection) {
     return true;
+  }
+
+  if (entry?.pathwayId) {
+    return (
+      supplementalSource?.candidate?.sameProgramRequirementLink === true &&
+      supplementalHtmlCandidateHasSelectedPathwayPhrase(
+        entry,
+        supplementalSource.candidate,
+        supplementalSource.parsed
+      )
+    );
   }
 
   const linkText = normalizeMatcherText(
@@ -13238,7 +14136,7 @@ function getCourseCodeNumericLevel(courseCode) {
 }
 
 function isTrackCatalogSupplementalHtmlCandidate(candidate) {
-  return TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN.test(
+  return TRACK_CATALOG_SUPPLEMENTAL_PATTERN.test(
     `${candidate?.label ?? ""} ${candidate?.url ?? ""}`
   );
 }
@@ -13327,7 +14225,7 @@ function isSameProgramSpecializationHubLink(baseUrl, resolvedUrl, linkText) {
     }
 
     return (
-      PATHWAY_HUB_SOURCE_CUE_PATTERN.test(base.pathname) &&
+      PATHWAY_HUB_CUE_PATTERN.test(base.pathname) &&
       resolvedPath.startsWith(`${basePrefix}/`)
     );
   } catch {
@@ -13453,7 +14351,7 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
       continue;
     }
 
-    if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(linkText)) {
+    if (GRADUATE_SUPPLEMENTAL_PATTERN.test(linkText)) {
       continue;
     }
     const specializationSignal = SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
@@ -13636,7 +14534,7 @@ function extractSupplementalDocumentLinkCandidates(entry, html) {
       normalizedLinkText.includes(token)
     ).length;
     const hasDocumentRequirementSignal =
-      /\b(requirements?|degree|curriculum|worksheet|checklist|plan of study|program of study|study plan|sample plan)\b/i.test(
+      /\b(requirements?|degree|curriculum|worksheet|checklist|degree map|curriculum map|schedule planning grid|schedule grid|planning grid|plan of study|program of study|study plan|sample plan)\b/i.test(
         `${label} ${href}`
       );
     const titleAcronymMatches = hasDocumentRequirementSignal
@@ -14042,7 +14940,7 @@ function shouldPreferSupplementalHtmlSource(entry, baseParsed, candidate, htmlPa
     return false;
   }
   if (
-    GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(`${candidate.label ?? ""} ${candidate.url ?? ""}`) &&
+    GRADUATE_SUPPLEMENTAL_PATTERN.test(`${candidate.label ?? ""} ${candidate.url ?? ""}`) &&
     !/\bundergrad(?:uate)?\b/i.test(`${candidate.label ?? ""} ${candidate.url ?? ""}`)
   ) {
     return false;
@@ -14271,7 +15169,7 @@ function isBroadSupplementalSource(entry) {
 
 function isLegacyStudentCatalogSource(entryOrUrl) {
   const url = typeof entryOrUrl === "string" ? entryOrUrl : entryOrUrl?.url;
-  return LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN.test(String(url ?? ""));
+  return LEGACY_STUDENT_GENCAT_URL_PATTERN.test(String(url ?? ""));
 }
 
 function isSharedLanguageDepartmentSource(entryOrUrl) {
@@ -14318,6 +15216,16 @@ function shouldAllowAlternateToReplaceBestSource(
   alternateParsed
 ) {
   if (!hasMeaningfulParsedContent(alternateParsed)) {
+    return false;
+  }
+
+  if (
+    parserRecoveryCandidateConflictsWithOwnerIdentity(
+      bestEntry,
+      alternateEntry?.label,
+      alternateEntry?.url
+    )
+  ) {
     return false;
   }
 
@@ -14371,6 +15279,16 @@ function shouldMergeSupplementalAlternateSource(
   alternateParsed
 ) {
   if (!hasMeaningfulParsedContent(alternateParsed)) {
+    return false;
+  }
+
+  if (
+    parserRecoveryCandidateConflictsWithOwnerIdentity(
+      baseEntry,
+      alternateEntry?.label,
+      alternateEntry?.url
+    )
+  ) {
     return false;
   }
 
@@ -14589,8 +15507,8 @@ function getParserRecoveryLinkSignals(entry, resolvedUrl, label) {
   const supportSignal =
     APPROVED_COURSE_LIST_CUE_PATTERN.test(linkText) ||
     ELECTIVE_LIST_CUE_PATTERN.test(linkText) ||
-    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(linkText) ||
-    SUPPORT_SOURCE_CUE_PATTERN.test(linkText);
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(linkText) ||
+    SUPPORT_CUE_PATTERN.test(linkText);
   const sameProgramRequirementLink = isSameProgramRequirementLink(
     entry.url,
     resolvedUrl,
@@ -14634,13 +15552,19 @@ function getParserRecoveryPathwayIdentityTokens(entry, value) {
     "concentration",
     "courses",
     "current",
+    "curriculum",
     "degree",
+    "admission",
+    "admissions",
     "major",
     "option",
     "pathway",
+    "prerequisite",
+    "prerequisites",
     "program",
     "requirements",
     "route",
+    "school",
     "students",
     "track",
     "undergraduate",
@@ -14658,21 +15582,180 @@ function getParserRecoveryPathwayIdentityTokens(entry, value) {
   );
 }
 
-function parserRecoveryCandidateConflictsWithPathway(entry, label, url) {
-  if (!entry.pathwayId) {
+function getParserRecoverySelectedPathwayIdentityTokens(entry) {
+  if (!entry?.pathwayId) {
+    return [];
+  }
+
+  const labels = getSelectedPathwayScopeLabels(entry);
+  const fallbackLabel = String(entry.pathwayId).replace(/[-_]+/g, " ");
+  return uniqueSorted(
+    [...labels, fallbackLabel]
+      .flatMap((label) => normalizeMatcherText(label).split(" "))
+      .filter(
+        (token) =>
+          token.length >= 3 &&
+          !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+      )
+  );
+}
+
+function parserRecoveryCandidateConflictsWithOwnerIdentity(entry, label, url) {
+  if (pathwayLabelMentionsDifferentMajor(entry, label)) {
+    return true;
+  }
+
+  const ownerDegreeKind = entry?.pathwayId
+    ? getBaBsDegreeKind(`${entry.pathwayId ?? ""} ${entry.ownerTitle ?? ""} ${entry.ownerId ?? ""}`)
+    : getBaBsDegreeKind(BOOTSTRAP_PLAN_TITLES_BY_ID.get(entry.planId) ?? entry.ownerTitle);
+  const candidateDegreeKind = getBaBsDegreeKind(`${label ?? ""} ${url ?? ""}`);
+  return Boolean(
+    ownerDegreeKind &&
+      candidateDegreeKind &&
+      ownerDegreeKind !== candidateDegreeKind &&
+      !manifestUrlIsSharedAcrossBaBsVariants({ ...entry, label, url })
+  );
+}
+
+function parserRecoveryCandidateConflictsWithProgramSibling(entry, label, url) {
+  if (!isDifferentProgramSiblingPage(entry?.url, url)) {
+    return false;
+  }
+
+  const linkText = normalizeMatcherText(`${label ?? ""} ${url ?? ""}`);
+  const exactTitle = normalizeMatcherText(entry?.ownerTitle ?? "");
+  if (exactTitle && linkText.includes(exactTitle)) {
+    return false;
+  }
+
+  const titleTokens = getTitleScopeTokens(entry);
+  const titleTokenOverlapCount = titleTokens.filter((token) => linkText.includes(token)).length;
+  return titleTokens.length >= 2 && titleTokenOverlapCount < Math.min(2, titleTokens.length);
+}
+
+function getLastUrlPathSegment(value) {
+  try {
+    const segments = new URL(String(value ?? "")).pathname.split("/").filter(Boolean);
+    return segments[segments.length - 1] ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function getUrlHashFragment(value) {
+  try {
+    return new URL(String(value ?? "")).hash.replace(/^#/, "");
+  } catch {
+    return "";
+  }
+}
+
+function parserRecoveryCandidateConflictsWithBaseOwnerScope(entry, label, url) {
+  if (entry?.pathwayId) {
+    return false;
+  }
+
+  const normalizedEntryUrl = normalizeUrlForComparison(entry?.url);
+  const normalizedCandidateUrl = normalizeUrlForComparison(url);
+  const hashFragment = getUrlHashFragment(url);
+  if (
+    !normalizedCandidateUrl ||
+    (normalizedEntryUrl === normalizedCandidateUrl && !hashFragment) ||
+    !isSameOriginChildOrSiblingPage(entry?.url, url)
+  ) {
     return false;
   }
 
   const linkText = `${label ?? ""} ${url ?? ""}`;
-  if (!PATHWAY_SOURCE_CUE_PATTERN.test(linkText)) {
+  const isSupportOrAdmissionLink =
+    APPROVED_COURSE_LIST_CUE_PATTERN.test(linkText) ||
+    ELECTIVE_LIST_CUE_PATTERN.test(linkText) ||
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(linkText) ||
+    SUPPORT_CUE_PATTERN.test(linkText);
+  if (isSupportOrAdmissionLink) {
     return false;
   }
+
+  const lastSegment = getLastUrlPathSegment(url);
+  const normalizedHashFragment = normalizeMatcherText(hashFragment.replace(/[-_]+/g, " "));
+  const genericPathwayHubSegment =
+    /^(?:curriculum|overview|requirements?|degree-requirements?|major-requirements?|program-requirements?|options?|tracks?|routes?|pathways?|concentrations?|specializations?)$/i.test(
+      lastSegment
+    );
+  const genericHashFragment =
+    !normalizedHashFragment ||
+    /^(?:content|main|top|curriculum|overview|requirements?|degree requirements?|major requirements?|program requirements?|options?|tracks?|routes?|pathways?|concentrations?|specializations?)$/i.test(
+      normalizedHashFragment
+    );
+  if (genericPathwayHubSegment && genericHashFragment) {
+    return false;
+  }
+
+  const hasSpecificPathwayCue =
+    PATHWAY_CUE_PATTERN.test(linkText) ||
+    /(?:^|[-_])(?:option|track|route|pathway|concentration|specialization)(?:[-_]|$)/i.test(
+      lastSegment
+    ) ||
+    !genericHashFragment;
+  if (!hasSpecificPathwayCue) {
+    return false;
+  }
+
+  const candidateTokens = getParserRecoveryPathwayIdentityTokens(
+    entry,
+    `${label ?? ""} ${lastSegment.replace(/[-_]+/g, " ")} ${hashFragment.replace(/[-_]+/g, " ")}`
+  );
+  return candidateTokens.length > 0;
+}
+
+function planHasPathwayManifestEntries(planId) {
+  if (!planId) {
+    return false;
+  }
+  return TRANSFER_PLANNER_MANIFEST_REGISTRY.some(
+    (entry) => entry?.planId === planId && Boolean(entry?.pathwayId)
+  );
+}
+
+function parserRecoverySnapshotConflictsWithBaseOwnerScope(entry, snapshotLines) {
+  if (entry?.pathwayId || !planHasPathwayManifestEntries(entry?.planId)) {
+    return false;
+  }
+
+  const supplementalPathwaySourceCount = (snapshotLines ?? []).filter((line) => {
+    const normalizedLine = normalizeWhitespace(line);
+    return (
+      /^\[Supplemental official source\]/i.test(normalizedLine) &&
+      PATHWAY_LABEL_CUE_PATTERN.test(normalizedLine)
+    );
+  }).length;
+
+  return supplementalPathwaySourceCount >= 2;
+}
+
+function parserRecoveryCandidateConflictsWithPathway(entry, label, url) {
+  if (parserRecoveryCandidateConflictsWithOwnerIdentity(entry, label, url)) {
+    return true;
+  }
+
+  if (!entry.pathwayId) {
+    return parserRecoveryCandidateConflictsWithBaseOwnerScope(entry, label, url);
+  }
+
+  const linkText = `${label ?? ""} ${url ?? ""}`;
+  const hasPathwayCue = PATHWAY_CUE_PATTERN.test(linkText);
+  const isSupportOrAdmissionLink =
+    APPROVED_COURSE_LIST_CUE_PATTERN.test(linkText) ||
+    ELECTIVE_LIST_CUE_PATTERN.test(linkText) ||
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(linkText) ||
+    SUPPORT_CUE_PATTERN.test(linkText);
 
   const ownerIdentityText = normalizeMatcherText(
     `${entry.pathwayId ?? ""} ${entry.ownerTitle ?? ""} ${entry.sourceLabel ?? ""} ${entry.label ?? ""}`
   );
   const candidateOptionAcronym = linkText.match(/\b([A-Z][A-Z0-9&]{1,8})\s+Option\b/)?.[1];
   if (
+    hasPathwayCue &&
     candidateOptionAcronym &&
     !ownerIdentityText.split(" ").includes(candidateOptionAcronym.toLowerCase())
   ) {
@@ -14687,6 +15770,7 @@ function parserRecoveryCandidateConflictsWithPathway(entry, label, url) {
   const compactPathwayId = normalizeMatcherText(entry.pathwayId ?? "").replace(/\s+/g, "");
   const compactLinkText = normalizedLinkText.replace(/\s+/g, "");
   if (
+    hasPathwayCue &&
     pathwayPhrase.split(" ").some((token) => token.length > 4) &&
     !normalizedLinkText.includes(pathwayPhrase) &&
     !(compactPathwayId && compactLinkText.includes(compactPathwayId))
@@ -14694,11 +15778,16 @@ function parserRecoveryCandidateConflictsWithPathway(entry, label, url) {
     return true;
   }
 
-  const ownerTokens = getParserRecoveryPathwayIdentityTokens(
-    entry,
-    ownerIdentityText
-  );
+  const ownerTokens = getParserRecoverySelectedPathwayIdentityTokens(entry);
   const candidateTokens = getParserRecoveryPathwayIdentityTokens(entry, linkText);
+  const looksLikeSiblingPathwayIdentity =
+    !isSupportOrAdmissionLink &&
+    isSameOriginChildOrSiblingPage(entry.url, url) &&
+    candidateTokens.length >= 2;
+
+  if (!hasPathwayCue && !looksLikeSiblingPathwayIdentity) {
+    return false;
+  }
 
   return (
     ownerTokens.length > 0 &&
@@ -14765,7 +15854,7 @@ function scoreParserRecoveryLinkCandidate(entry, resolvedUrl, label) {
   if (/\/(?:requirements?|curriculum|degree|program|pathways?|tracks?|options?|concentrations?|worksheets?|checklists?|prereq|admissions?)(?:[-/?#]|$)/i.test(resolvedUrl)) {
     score += 6;
   }
-  if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(linkText)) {
+  if (GRADUATE_SUPPLEMENTAL_PATTERN.test(linkText)) {
     score -= 35;
   }
 
@@ -14816,7 +15905,7 @@ function extractParserRecoveryLinkCandidates(entry, html) {
       continue;
     }
 
-    if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(`${label} ${resolvedUrl}`)) {
+    if (GRADUATE_SUPPLEMENTAL_PATTERN.test(`${label} ${resolvedUrl}`)) {
       continue;
     }
 
@@ -14934,12 +16023,32 @@ function isParserRecoverySectionBoundaryLine(line) {
 function buildParserRecoverySectionCandidates(entry, artifacts) {
   const rawLines = artifacts?.lines ?? [];
   const lines = removePriorAdmitCurriculumSectionsFromCurrentScope(rawLines);
-  if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(`${entry.label ?? ""} ${entry.url ?? ""}`)) {
+  if (GRADUATE_SUPPLEMENTAL_PATTERN.test(`${entry.label ?? ""} ${entry.url ?? ""}`)) {
     return [];
   }
 
   if (!lines.length) {
     return [];
+  }
+
+  if (shouldUseFullGenericConcentrationDegreeScope(entry, artifacts.headings ?? [], lines)) {
+    return [
+      {
+        strategy: "section-scoping-recovery",
+        url: entry.url,
+        label: `Scoped current requirements: ${normalizeWhitespace(lines[0] ?? "").slice(0, 120)}`,
+        parserType: entry.parserType,
+        sourceRole: classifyRequirementSourceRole(entry),
+        sourceRoleStatus: getRequirementSourceRoleStatus(classifyRequirementSourceRole(entry)),
+        score: 130,
+        reason: "full concentration degree requirements page keeps sibling concentration course sections together",
+        sectionLineStart: 0,
+        sectionLineEnd: lines.length,
+        sectionLines: lines,
+        title: artifacts.title ?? null,
+        headings: artifacts.headings ?? [],
+      },
+    ];
   }
 
   const pathwaySectionRange = findPathwayHtmlSectionRange(entry, lines);
@@ -14995,7 +16104,7 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
 
   lines.forEach((line, index) => {
     const normalizedLine = normalizeMatcherText(line);
-    if (!normalizedLine || GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(line)) {
+    if (!normalizedLine || GRADUATE_SUPPLEMENTAL_PATTERN.test(line)) {
       return;
     }
 
@@ -15010,7 +16119,7 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
     if (REQUIREMENT_CUE_PATTERN.test(line)) {
       score += 6;
     }
-    if (PATHWAY_SOURCE_CUE_PATTERN.test(line)) {
+    if (PATHWAY_CUE_PATTERN.test(line)) {
       score += 5;
     }
     if (/\b(admission|apply|application|sample schedule|four[-\s]?year plan|graduate)\b/i.test(line)) {
@@ -15036,7 +16145,13 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
       }
     }
 
-    const sectionLines = lines.slice(index, endIndex);
+    const inlineRequirementStartIndex = findPrecedingInlineRequirementStartIndex(
+      entry,
+      lines,
+      index
+    );
+    const startIndex = inlineRequirementStartIndex ?? index;
+    const sectionLines = lines.slice(startIndex, endIndex);
     const sampledText = sectionLines.slice(0, 60).join(" ");
     if (
       !REQUIREMENT_CUE_PATTERN.test(sampledText) &&
@@ -15054,7 +16169,7 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
       sourceRoleStatus: getRequirementSourceRoleStatus(classifyRequirementSourceRole(entry)),
       score,
       reason: "owner/requirement heading matched within a broader official source",
-      sectionLineStart: index,
+      sectionLineStart: startIndex,
       sectionLineEnd: endIndex,
       sectionLines,
       title: artifacts.title ?? null,
@@ -15091,7 +16206,7 @@ function scoreOwnerSnapshotForParserRecovery(entry, snapshot) {
   const sourceUrlScore = normalizeUrlForComparison(snapshot.sourceUrl) === normalizeUrlForComparison(entry.url)
     ? 20
     : 0;
-  const noisyPenalty = GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(
+  const noisyPenalty = GRADUATE_SUPPLEMENTAL_PATTERN.test(
     `${snapshot.title ?? ""} ${snapshot.sourceUrl ?? ""}`
   )
     ? 120
@@ -15124,6 +16239,14 @@ function buildParserRecoveryOwnerSnapshotCandidates(entry, currentArtifacts = nu
 
     const candidateUrl = snapshot.sourceUrl || entry.url;
     const candidateLabel = snapshot.title || entry.label || "Cached owner source snapshot";
+    if (
+      parserRecoveryCandidateConflictsWithPathway(entry, candidateLabel, candidateUrl) ||
+      parserRecoveryCandidateConflictsWithProgramSibling(entry, candidateLabel, candidateUrl) ||
+      parserRecoverySnapshotConflictsWithBaseOwnerScope(entry, snapshot.snapshotLines)
+    ) {
+      continue;
+    }
+
     const candidateEntry = {
       ...entry,
       role: undefined,
@@ -15185,9 +16308,14 @@ function buildParserRecoveryOwnerSnapshotCandidates(entry, currentArtifacts = nu
 }
 
 function buildParserRecoveryCandidateEntry(entry, candidate) {
+  const candidateUrlMatchesEntry =
+    normalizeUrlForComparison(candidate.url) === normalizeUrlForComparison(entry.url);
   return {
     ...entry,
-    role: candidate.strategy === "section-scoping-recovery" ? entry.role : undefined,
+    role:
+      candidate.strategy === "section-scoping-recovery" && candidateUrlMatchesEntry
+        ? entry.role
+        : undefined,
     url: candidate.url,
     label: candidate.label,
     parserType: candidate.parserType,
@@ -15243,8 +16371,8 @@ async function parseParserRecoveryCandidate(
             sourceRole: classifyRequirementSourceRole(candidateEntry),
             sourceSectionAudit: {
               scoped: true,
-              line: `Parser recovery scoped ${entry.ownerId} to lines ${candidate.sectionLineStart}-${candidate.sectionLineEnd} from ${entry.url}.`,
-              sourceUrl: entry.url,
+              line: `Parser recovery scoped ${entry.ownerId} to lines ${candidate.sectionLineStart}-${candidate.sectionLineEnd} from ${candidate.url ?? entry.url}.`,
+              sourceUrl: candidate.url ?? entry.url,
               ownerId: entry.ownerId,
               reason: "parser-warning-section-scoping",
             },
@@ -15308,12 +16436,17 @@ async function parseParserRecoveryCandidate(
 function scoreOwnerForParserRecovery(owner) {
   const snapshot = buildParserRecoveryOwnerSnapshot(owner);
   const confidenceScore = owner.parseConfidence === "high" ? 70 : owner.parseConfidence === "medium" ? 35 : 0;
+  const primarySourceScore =
+    normalizeUrlForComparison(owner.sourceUrl) === normalizeUrlForComparison(owner.primarySourceUrl)
+      ? 400
+      : 0;
   return (
     snapshot.parsedUwCourseCodeCount * 100 +
     snapshot.parsedRequirementGroupCount * 35 +
     snapshot.parsedRequirementAtomCandidateCount * 15 +
     snapshot.requirementCueLineCount * 3 +
     snapshot.chooseStatementCount * 4 +
+    primarySourceScore +
     confidenceScore -
     snapshot.qualityWarningCount * 120
   );
@@ -15363,6 +16496,25 @@ function shouldAcceptParserRecoveryOwner(beforeOwner, afterOwner, candidate) {
   }
 
   if (afterSnapshot.parsedUwCourseCodeCount === 0) {
+    return false;
+  }
+
+  const beforeUsesPrimarySource =
+    beforeOwner.resolutionStrategy !== "alternate-official-source" &&
+    normalizeUrlForComparison(beforeOwner.sourceUrl) ===
+      normalizeUrlForComparison(beforeOwner.primarySourceUrl ?? beforeOwner.sourceUrl);
+  const afterUsesPrimarySource =
+    afterOwner.resolutionStrategy !== "alternate-official-source" &&
+    normalizeUrlForComparison(afterOwner.sourceUrl) ===
+      normalizeUrlForComparison(afterOwner.primarySourceUrl ?? afterOwner.sourceUrl);
+  if (
+    beforeUsesPrimarySource &&
+    !afterUsesPrimarySource &&
+    beforeSnapshot.parsedUwCourseCodeCount >= 8 &&
+    beforeSnapshot.parsedRequirementGroupCount > 0 &&
+    afterSnapshot.parsedUwCourseCodeCount <= beforeSnapshot.parsedUwCourseCodeCount + 5 &&
+    afterSnapshot.parsedRequirementGroupCount <= beforeSnapshot.parsedRequirementGroupCount + 2
+  ) {
     return false;
   }
 
@@ -15857,23 +17009,6 @@ function recoverStructuredCourseCodesFromSourceEvidence(entry, structuredCourseC
   return structuredCourseCodes.filter((courseCode) => sourceEvidenceCourseCodeSet.has(courseCode));
 }
 
-function flattenRequirementSourceScope(sourceScope) {
-  return {
-    sourceScope,
-    canCreateRequiredRows: sourceScope.canCreateRequiredRows,
-    canCreateOptionGroups: sourceScope.canCreateOptionGroups,
-    canCreateCreditBuckets: sourceScope.canCreateCreditBuckets,
-    canCreateCategoryOptions: sourceScope.canCreateCategoryOptions,
-    canCreateApprovedFilters: sourceScope.canCreateApprovedFilters,
-    canCreateElectiveLists: sourceScope.canCreateElectiveLists,
-    canCreateSequencingHints: sourceScope.canCreateSequencingHints,
-    canCreateAdmissionPrepRows: sourceScope.canCreateAdmissionPrepRows,
-    canCreateScheduleRows: sourceScope.canCreateScheduleRows,
-    supportOnly: sourceScope.supportOnly,
-    nonSchedulable: sourceScope.nonSchedulable,
-  };
-}
-
 function buildCourseEmissionKind(
   courseCode,
   sourceScope,
@@ -16237,7 +17372,8 @@ function buildManifestParseSuccess(
         };
   const metadataSourceRole = classifyRequirementSourceRole(effectiveEntry);
   const parsedSourceRole = parsed.sourceRole ?? null;
-  const sourceRole = sourceContentIndicatesInactiveMajor(effectiveEntry, parsed)
+  const sourceInactiveMajor = sourceContentIndicatesInactiveMajor(effectiveEntry, parsed);
+  const sourceRole = sourceInactiveMajor
     ? "non-schedulable-course-list"
     : shouldUseTacomaMetadataPrimaryRole(
         effectiveEntry,
@@ -16276,7 +17412,7 @@ function buildManifestParseSuccess(
         sourceSectionFilterAuditRows
       )
     : directSourceLineCourseCodes;
-  const initialParsedCourseCodes = uniqueSorted([
+  const unfilteredInitialParsedCourseCodes = uniqueSorted([
     ...(sourceScope.canCreateScheduleRows
       ? filterParsedCourseCodesBySourceSections(
           allInitialParsedCourseCodes,
@@ -16285,10 +17421,17 @@ function buildManifestParseSuccess(
       : allInitialParsedCourseCodes),
     ...schedulableDirectSourceLineCourseCodes,
   ]);
+  const initialParsedCourseCodes = filterGraduateCrossListedCompanionsForUndergraduateSource(
+    effectiveEntry,
+    parsed.snapshotLines ?? [],
+    unfilteredInitialParsedCourseCodes
+  );
   const blockedSourceSectionCourseCodes = sourceScope.canCreateScheduleRows
-    ? getBlockedSourceSectionCourseCodes(sourceSectionFilterAuditRows).filter(
-        (courseCode) => !initialParsedCourseCodes.includes(courseCode)
-      )
+    ? filterGraduateCrossListedCompanionsForUndergraduateSource(
+        effectiveEntry,
+        parsed.snapshotLines ?? [],
+        getBlockedSourceSectionCourseCodes(sourceSectionFilterAuditRows)
+      ).filter((courseCode) => !initialParsedCourseCodes.includes(courseCode))
     : [];
   const schedulableSnapshotLines = sourceScope.canCreateScheduleRows
     ? getSchedulableSourceSectionLines(
@@ -16301,13 +17444,31 @@ function buildManifestParseSuccess(
     sourceScope.canCreateCreditBuckets ||
     sourceScope.canCreateCategoryOptions;
   const rawParsedRequirementGroups = canCreateStructuredRequirementGroups
-    ? filterParsedRequirementGroupsBySourceSections(
-        buildParsedRequirementGroups(
-          baseResult,
-          initialParsedCourseCodes,
-          parsed.snapshotLines
+    ? filterParsedRequirementGroupsByCourseCodePredicate(
+        uniqueBy(
+          [
+            ...filterGenericBseSupplementalGroupsForSbse(
+              baseResult,
+              filterParsedRequirementGroupsBySourceSections(
+                buildParsedRequirementGroups(
+                  baseResult,
+                  initialParsedCourseCodes,
+                  parsed.snapshotLines
+                ),
+                sourceSectionFilterAuditRows
+              ),
+              parsed.snapshotLines
+            ),
+            ...buildSbseComparisonTableRequirementGroups(baseResult, parsed.snapshotLines),
+          ],
+          (group) => group.id
         ),
-        sourceSectionFilterAuditRows
+        (courseCode) =>
+          !isGraduateCrossListedCompanionForUndergraduateSource(
+            effectiveEntry,
+            parsed.snapshotLines ?? [],
+            courseCode
+          ),
       )
     : [];
   const parsedRequirementGroups = rawParsedRequirementGroups.map((group) => {
@@ -16356,11 +17517,15 @@ function buildManifestParseSuccess(
         parsed.snapshotLines ?? []
       )
     : [];
-  const parsedCourseCodes = uniqueSorted([
-    ...initialParsedCourseCodes,
-    ...extractParsedRequirementGroupCourseCodes(parsedRequirementGroups),
-    ...(parsedRequirementCourses ?? []).map((course) => course.normalizedCourseCode),
-  ]);
+  const parsedCourseCodes = filterGraduateCrossListedCompanionsForUndergraduateSource(
+    effectiveEntry,
+    parsed.snapshotLines ?? [],
+    [
+      ...initialParsedCourseCodes,
+      ...extractParsedRequirementGroupCourseCodes(parsedRequirementGroups),
+      ...(parsedRequirementCourses ?? []).map((course) => course.normalizedCourseCode),
+    ]
+  );
   const inferredApprovedListKey = inferApprovedListKeyFromSupportMetadata({
     ...baseResult,
     sourceUrl: effectiveSourceUrl,
@@ -16389,7 +17554,14 @@ function buildManifestParseSuccess(
       : [];
   const supportListInput = {
     ...baseResult,
-    id: `${baseResult.ownerId}${baseResult.pathwayId ? `:pathway:${baseResult.pathwayId}` : ""}:source-block:${selectRequirementSourceAdapter(effectiveEntry).id}`,
+    id: buildRequirementSourceBlockId({
+      ...baseResult,
+      adapterId: selectRequirementSourceAdapter(effectiveEntry).id,
+      sourceUrl: effectiveSourceUrl,
+      sourceRole,
+      sourceRoleStatus,
+      ...flattenRequirementSourceScope(sourceScope),
+    }),
     sourceUrl: effectiveSourceUrl,
     sourceLabel: effectiveSourceLabel,
     sourceRole,
@@ -16472,6 +17644,7 @@ function buildManifestParseSuccess(
     adapterFamily: selectRequirementSourceAdapter(effectiveEntry).family,
     sourceUrl: effectiveSourceUrl,
     sourceLabel: effectiveSourceLabel,
+    sourceInactiveMajor,
     sourceRole,
     sourceRoleStatus,
     canCreateSchedulableRows,
@@ -16769,7 +17942,7 @@ function shouldParseRequirementSourceEntry(entry) {
   const sourceRole = classifyRequirementSourceRole(entry);
   return (
     getRequirementSourceRoleStatus(sourceRole) === "primary" ||
-    PARSEABLE_SUPPORT_SOURCE_ROLES.has(sourceRole)
+    PARSEABLE_SUPPORT_ROLES.has(sourceRole)
   );
 }
 
@@ -16827,9 +18000,9 @@ function getSpecializedPlanTitleTokens(title) {
 }
 
 function getBaBsDegreeKind(title) {
-  const text = String(title ?? "");
-  if (/\bB\.?\s*A\.?\b|\(BA\)/i.test(text)) return "ba";
-  if (/\bB\.?\s*S\.?\b|\(BS\)/i.test(text)) return "bs";
+  const text = normalizeMatcherText(title);
+  if (/\b(?:b\s*a|ba|bachelor\s+of\s+arts)\b/.test(text)) return "ba";
+  if (/\b(?:b\s*s|bs|bachelor\s+of\s+science)\b/.test(text)) return "bs";
   return null;
 }
 
@@ -16861,7 +18034,7 @@ function manifestUrlIsSharedAcrossBaBsVariants(entry) {
   if (!planDegreeKind || !planTitleBase) return false;
 
   const normalizedEntryUrl = normalizeManifestUrlWithoutHashForDedupe(entry.url);
-  return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.some((candidate) => {
+  return TRANSFER_PLANNER_MANIFEST_REGISTRY.some((candidate) => {
     if (candidate === entry || candidate.planId === entry.planId) return false;
     if (normalizeManifestUrlWithoutHashForDedupe(candidate.url) !== normalizedEntryUrl) {
       return false;
@@ -16874,7 +18047,53 @@ function manifestUrlIsSharedAcrossBaBsVariants(entry) {
   });
 }
 
+function manifestEntryMentionsDifferentMajor(entry) {
+  const sourceRole = classifyRequirementSourceRole(entry);
+  if (!entry?.isPrimaryDegreeRequirementsLink && PARSEABLE_SUPPORT_ROLES.has(sourceRole)) {
+    return false;
+  }
+
+  return uniqueInOrder([
+    entry?.label,
+    entry?.sourceLabel,
+    entry?.ownerTitle,
+  ]).some((candidate) => {
+    const normalizedCandidate = normalizeTransferPlannerText(candidate).toLowerCase();
+    const matchesCatalogScopeAlias = getCatalogOwnerScopeTitles(entry).some((title) => {
+      const normalizedTitle = normalizeTransferPlannerText(title).toLowerCase();
+      return normalizedTitle && normalizedCandidate.includes(normalizedTitle);
+    });
+    const matchesOwnPathwayIdentity = manifestEntryCandidateMatchesOwnPathwayIdentity(
+      entry,
+      candidate
+    );
+    return (
+      !matchesCatalogScopeAlias &&
+      !matchesOwnPathwayIdentity &&
+      pathwayLabelMentionsDifferentMajor(entry, candidate)
+    );
+  });
+}
+
+function manifestEntryCandidateMatchesOwnPathwayIdentity(entry, candidate) {
+  if (!entry?.pathwayId || !candidate) {
+    return false;
+  }
+
+  const pathwayTokens = normalizeSpecializedPlanToken(entry.pathwayId);
+  if (!pathwayTokens.length) {
+    return false;
+  }
+
+  const candidateTokens = new Set(normalizeSpecializedPlanCandidateToken(candidate));
+  return pathwayTokens.every((token) => candidateTokens.has(token));
+}
+
 function manifestEntryMatchesSpecializedPlanTitle(entry) {
+  if (manifestEntryMentionsDifferentMajor(entry)) {
+    return false;
+  }
+
   const planTitle = BOOTSTRAP_PLAN_TITLES_BY_ID.get(entry.planId);
   const planTokens = getSpecializedPlanTitleTokens(planTitle);
   if (!entry?.pathwayId) {
@@ -16907,13 +18126,18 @@ function manifestEntryMatchesSpecializedPlanTitle(entry) {
   }
 
   const planDegreeKind = getBaBsDegreeKind(planTitle);
-  const pathwayText = `${entry.pathwayId ?? ""} ${entry.label ?? ""}`;
-  const pathwayDegreeKind =
-    /\bB\.?\s*A\.?\b|\bba[-\s]/i.test(pathwayText)
-      ? "ba"
-      : /\bB\.?\s*S\.?\b|\bbs[-\s]/i.test(pathwayText)
-        ? "bs"
-        : null;
+  const pathwayText = `${entry.pathwayId ?? ""} ${entry.ownerTitle ?? ""} ${entry.ownerId ?? ""}`;
+  const sourceDegreeKind = getBaBsDegreeKind(`${entry.label ?? ""} ${entry.url ?? ""}`);
+  const pathwayDegreeKind = getBaBsDegreeKind(pathwayText);
+
+  if (
+    pathwayDegreeKind &&
+    sourceDegreeKind &&
+    pathwayDegreeKind !== sourceDegreeKind &&
+    !manifestUrlIsSharedAcrossBaBsVariants(entry)
+  ) {
+    return false;
+  }
 
   if (planDegreeKind && pathwayDegreeKind && planDegreeKind !== pathwayDegreeKind) {
     return false;
@@ -16931,7 +18155,7 @@ function manifestEntryMatchesSpecializedPlanTitle(entry) {
 
 function getParseablePrimaryEntries(targetPlanIds = null) {
   const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
-  const entries = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  const entries = TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) =>
       (entry.ownerType === "major" || entry.ownerType === "pathway") &&
       entry.campusId &&
@@ -17342,12 +18566,71 @@ function removeQualitySignal(owner, code) {
   };
 }
 
-function normalizeParsedOwnersForReport(owners) {
-  return (owners ?? []).map((owner) =>
-    parsedOwnerIsCoveredByChildPathwayRequirements(owner, owners)
-      ? removeQualitySignal(owner, "no-parsed-uw-course-codes")
-      : owner
+const CROSS_OWNER_STRUCTURED_COVERAGE_SIGNAL_CODES = new Set([
+  "material-source-structured-drift",
+  "large-structured-only-course-gap",
+  "high-confidence-low-course-coverage",
+]);
+
+function removeQualitySignals(owner, codes) {
+  const codeSet = new Set(codes ?? []);
+  const qualitySignals = (owner.qualitySignals ?? []).filter(
+    (signal) => !codeSet.has(signal?.code)
   );
+  if (qualitySignals.length === (owner.qualitySignals ?? []).length) {
+    return owner;
+  }
+  return {
+    ...owner,
+    qualitySignals,
+  };
+}
+
+function parsedOwnerStructuredOnlyCodesCoveredBySamePlanSources(owner, owners) {
+  const structuredOnlyCodes = uniqueSorted(
+    (owner?.structuredOnlyUwCourseCodes ?? []).map((courseCode) =>
+      normalizeCourseCode(courseCode)
+    ).filter(Boolean)
+  );
+  if (!owner?.ok || !structuredOnlyCodes.length || !owner.planId) {
+    return false;
+  }
+
+  const samePlanParsedCodes = new Set(
+    (owners ?? [])
+      .filter(
+        (candidate) =>
+          candidate?.ownerId !== owner.ownerId &&
+          candidate?.planId === owner.planId &&
+          candidate?.ok &&
+          parsedOwnerCanCreateSchedulableRows(candidate)
+      )
+      .flatMap((candidate) => candidate.parsedUwCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  if (!samePlanParsedCodes.size) {
+    return false;
+  }
+
+  return structuredOnlyCodes.every((courseCode) => samePlanParsedCodes.has(courseCode));
+}
+
+function normalizeParsedOwnersForReport(owners) {
+  return (owners ?? []).map((owner) => {
+    let normalizedOwner = parsedOwnerIsCoveredByChildPathwayRequirements(owner, owners)
+      ? removeQualitySignal(owner, "no-parsed-uw-course-codes")
+      : owner;
+
+    if (parsedOwnerStructuredOnlyCodesCoveredBySamePlanSources(normalizedOwner, owners)) {
+      normalizedOwner = removeQualitySignals(
+        normalizedOwner,
+        CROSS_OWNER_STRUCTURED_COVERAGE_SIGNAL_CODES
+      );
+    }
+
+    return normalizedOwner;
+  });
 }
 
 function buildParseReport(owners, options = {}) {
@@ -17482,98 +18765,6 @@ function buildParserRecoveryReport(owners) {
   };
 }
 
-function buildParserRecoveryMarkdownReport(report) {
-  const lines = [
-    "# Transfer Planner Parser Recovery Report",
-    "",
-    `Generated: ${report.generatedAt}`,
-    "",
-    `- Owners triggering parser recovery: ${report.triggeredOwnerCount}`,
-    `- Owners recovered: ${report.successfulOwnerCount}`,
-    `- Owners unrecovered: ${report.unrecoveredOwnerCount}`,
-    `- Owners with recovered schedulable sources: ${report.recoveredScheduledSourceOwnerCount}`,
-    `- Owners with recovered support sources: ${report.recoveredSupportSourceOwnerCount}`,
-    "",
-    "## Trigger Codes",
-    "",
-    ...Object.entries(report.countsByTriggerCode ?? {})
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([code, count]) => `- ${code}: ${count}`),
-    "",
-    "## Attempted Strategies",
-    "",
-    ...Object.entries(report.countsByAttemptedStrategy ?? {})
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([strategy, count]) => `- ${strategy}: ${count}`),
-    "",
-    "## Unrecovered Blockers",
-    "",
-    ...Object.entries(report.countsByBlockerType ?? {})
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([blockerType, count]) => `- ${blockerType}: ${count}`),
-    "",
-  ];
-
-  const recoveredOwners = (report.owners ?? []).filter((owner) => owner.succeeded);
-  if (recoveredOwners.length) {
-    lines.push("## Recovered Owners", "");
-    for (const owner of recoveredOwners.slice(0, 80)) {
-      lines.push(`### ${owner.ownerTitle}`);
-      lines.push("");
-      lines.push(`- Owner id: ${owner.ownerId}`);
-      lines.push(`- Original source: ${owner.originalSourceUrl}`);
-      lines.push(`- Trigger: ${(owner.triggerCodes ?? []).join(", ") || "n/a"}`);
-      lines.push(`- Attempted strategies: ${(owner.attemptedStrategies ?? []).join(", ") || "n/a"}`);
-      lines.push(
-        `- Before/after parsed UW course count: ${
-          owner.before?.parsedUwCourseCodeCount ?? 0
-        } -> ${owner.after?.parsedUwCourseCodeCount ?? 0}`
-      );
-      lines.push(
-        `- Before/after warnings: ${(owner.before?.qualityWarningCodes ?? []).join(", ") || "none"} -> ${(owner.after?.qualityWarningCodes ?? []).join(", ") || "none"}`
-      );
-      for (const source of owner.recoveredSources ?? []) {
-        lines.push(
-          `- Recovered source: ${source.strategy}; ${source.sourceUrl}; parsed=${source.parsedUwCourseCodeCount}; fingerprint=${source.sourceEvidenceFingerprint}`
-        );
-      }
-      for (const source of owner.supportSources ?? []) {
-        lines.push(
-          `- Support source: ${source.strategy}; ${source.sourceUrl}; accepted=${source.acceptedUwCourseCodeCount}; fingerprint=${source.sourceEvidenceFingerprint}`
-        );
-      }
-      lines.push("");
-    }
-  }
-
-  const unrecoveredOwners = (report.owners ?? []).filter((owner) => !owner.succeeded);
-  if (unrecoveredOwners.length) {
-    lines.push("## Unrecovered Owners", "");
-    for (const owner of unrecoveredOwners.slice(0, 120)) {
-      lines.push(`### ${owner.ownerTitle}`);
-      lines.push("");
-      lines.push(`- Owner id: ${owner.ownerId}`);
-      lines.push(`- Original source: ${owner.originalSourceUrl}`);
-      lines.push(`- Trigger: ${(owner.triggerCodes ?? []).join(", ") || "n/a"}`);
-      lines.push(`- Blocker: ${owner.blockerType ?? "unknown"}`);
-      lines.push(`- Attempted strategies: ${(owner.attemptedStrategies ?? []).join(", ") || "none"}`);
-      lines.push(
-        `- Before/after parsed UW course count: ${
-          owner.before?.parsedUwCourseCodeCount ?? 0
-        } -> ${owner.after?.parsedUwCourseCodeCount ?? 0}`
-      );
-      lines.push("");
-    }
-  }
-
-  return `${lines.join("\n")}\n`;
-}
-
-function writeParserRecoveryReport(report) {
-  fs.writeFileSync(RECOVERY_OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
-  fs.writeFileSync(RECOVERY_OUTPUT_MD_PATH, buildParserRecoveryMarkdownReport(report));
-}
-
 function addQualitySignal(signals, severity, code, message, details = null) {
   signals.push({
     severity,
@@ -17591,13 +18782,82 @@ function getStructuredCoverageCount(owner) {
   return overlapCount + structuredOnlyCount;
 }
 
+const NON_ACTIONABLE_STRUCTURED_ONLY_HINT_PATTERN =
+  /\b(?:advis(?:e|er|or|ing)|if\s+completing|excludes?|excluded|not\s+accepted|not\s+count|cannot\s+count|may\s+not\s+count|for\s+major\s+planning\s+only)\b|\b(?:suggested|recommended)\b.{0,80}\b(?:first|second|college|courses?)\b/i;
+
+function sourceLineMentionsCourseCodeOrAbbreviatedSequence(line, courseCode) {
+  const normalizedLine = normalizeWhitespace(line).toUpperCase();
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  if (!normalizedLine || !normalizedCourseCode) {
+    return false;
+  }
+  if (normalizedLine.includes(normalizedCourseCode)) {
+    return true;
+  }
+
+  const match = normalizedCourseCode.match(/^([A-Z& ]+)\s+(\d{3}[A-Z]?)$/);
+  if (!match) {
+    return false;
+  }
+
+  const subject = match[1];
+  const number = match[2];
+  const subjectIndex = normalizedLine.indexOf(subject);
+  if (subjectIndex < 0) {
+    return false;
+  }
+
+  return new RegExp(`\\b${number}\\b`).test(normalizedLine.slice(subjectIndex + subject.length));
+}
+
+function getActionableStructuredOnlyCourseCodes(owner) {
+  const structuredOnlyCodes = uniqueSorted(
+    (owner.structuredOnlyUwCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  if (!structuredOnlyCodes.length) {
+    return [];
+  }
+
+  const evidenceLines = uniqueInOrder([
+    ...(owner.requirementCueLines ?? []),
+    ...(owner.chooseStatements ?? []),
+  ]).map((line) => normalizeWhitespace(line));
+  if (!evidenceLines.length) {
+    return structuredOnlyCodes;
+  }
+
+  return structuredOnlyCodes.filter(
+    (courseCode) =>
+      !evidenceLines.some(
+        (line) =>
+          NON_ACTIONABLE_STRUCTURED_ONLY_HINT_PATTERN.test(line) &&
+          sourceLineMentionsCourseCodeOrAbbreviatedSequence(line, courseCode)
+      )
+  );
+}
+
 function buildParseQualitySignals(owner) {
   const signals = [];
   const parsedCount = owner.parsedUwCourseCodes.length;
   const sourceOnlyCount = owner.sourceOnlyUwCourseCodes.length;
-  const structuredOnlyCount = owner.structuredOnlyUwCourseCodes.length;
-  const structuredCoverageCount = getStructuredCoverageCount(owner);
+  const actionableStructuredOnlyCodes = getActionableStructuredOnlyCourseCodes(owner);
+  const structuredOnlyCount = actionableStructuredOnlyCodes.length;
+  const structuredCoverageCount =
+    getStructuredCoverageCount(owner) -
+    Math.max(0, (owner.structuredOnlyUwCourseCodes ?? []).length - structuredOnlyCount);
   const canScheduleFromSource = owner.canCreateSchedulableRows !== false;
+
+  if (owner.sourceInactiveMajor === true) {
+    addQualitySignal(
+      signals,
+      "note",
+      "inactive-major-source",
+      "The official source says this major is not currently accepting students, so missing schedulable course rows are not actionable parser debt.",
+      `source-role=${owner.sourceRole ?? "ignored"}; requirement-cues=${owner.requirementCueLines?.length ?? 0}`
+    );
+  }
 
   if (owner.ok && parsedCount === 0 && canScheduleFromSource) {
     addQualitySignal(
@@ -17723,7 +18983,7 @@ function enrichParsedOwnerWithQualitySignals(owner) {
 
 function writeGeneratedRequirementSourceAdapters(report) {
   const blocks = report.owners.map((owner) => ({
-    id: `${owner.ownerId}:source-block:${slugify(owner.adapterId)}`,
+    id: buildRequirementSourceBlockId(owner),
     ownerId: owner.ownerId,
     ownerTitle: owner.ownerTitle,
     planId: owner.planId,
@@ -17795,11 +19055,6 @@ function writeGeneratedRequirementSourceAdapters(report) {
   }));
   const fullOwners = report.owners ?? [];
 
-  const chunks = [];
-  for (let index = 0; index < blocks.length; index += GENERATED_CHUNK_SIZE) {
-    chunks.push(blocks.slice(index, index + GENERATED_CHUNK_SIZE));
-  }
-
   const summary = {
     generatedAt: report.generatedAt,
     totalOwners: fullOwners.length,
@@ -17857,10 +19112,41 @@ function writeGeneratedRequirementSourceAdapters(report) {
     ),
   };
 
-  const chunkModules = chunks.map((_, index) => ({
-    exportName: `TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_${index}`,
-    fileStem: `blocks-${String(index).padStart(3, "0")}.generated`,
-  }));
+  const blockPartitions = blocks.map((block, index) => {
+    const planId = normalizeWhitespace(block.planId) || "unknown";
+    return {
+      block,
+      fileStem: `blocks-by-block-id/block-${String(index).padStart(3, "0")}.generated`,
+      planId,
+    };
+  });
+  const blocksByPlanId = new Map();
+  for (const partition of blockPartitions) {
+    blocksByPlanId.set(partition.planId, [
+      ...(blocksByPlanId.get(partition.planId) ?? []),
+      partition,
+    ]);
+  }
+  const planIds = [...blocksByPlanId.keys()].sort((left, right) => left.localeCompare(right));
+  const blockPartitionKeyLines = blockPartitions.map(
+    (partition) => `  ${JSON.stringify(partition.fileStem)},`
+  );
+  const planPartitionLines = planIds.map((planId) => {
+    const partitionLines = (blocksByPlanId.get(planId) ?? []).map(
+      (partition) => `    ${JSON.stringify(partition.fileStem)},`
+    );
+    return [
+      `  ${JSON.stringify(planId)}: [`,
+      partitionLines.join("\n"),
+      "  ],",
+    ].join("\n");
+  });
+  const partitionLoaderCases = blockPartitions.map((partition) =>
+    [
+      `    case ${JSON.stringify(partition.fileStem)}:`,
+      `      return require("./requirement-source-adapters.generated/${partition.fileStem}.json") as TransferPlannerParsedRequirementSourceBlock[];`,
+    ].join("\n")
+  );
 
   const lines = [
     "/* eslint-disable */",
@@ -17871,47 +19157,70 @@ function writeGeneratedRequirementSourceAdapters(report) {
     "  TransferPlannerRequirementSourceAdapterSummary,",
     '} from "./schema";',
     "",
-    ...chunkModules.map(
-      (chunkModule) =>
-        `const { ${chunkModule.exportName} } = require("./requirement-source-adapters.generated/${chunkModule.fileStem}.ts");`
-    ),
+    'const { createLazyGeneratedValue } = require("./generated-lazy") as typeof import("./generated-lazy");',
     "",
-    `export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = ${JSON.stringify(
+    `export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY = ${JSON.stringify(
       summary,
       null,
       2
     )} as TransferPlannerRequirementSourceAdapterSummary;`,
     "",
+    "const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITION_KEYS = [",
+    blockPartitionKeyLines.join("\n"),
+    "] as const;",
+    "",
+    "const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {",
+    planPartitionLines.join("\n"),
+    "} as const;",
+    "",
+    "function loadTransferPlannerParsedRequirementBlockPartition(partitionKey: string) {",
+    "  switch (partitionKey) {",
+    partitionLoaderCases.join("\n"),
+    "    default:",
+    "      return [] as TransferPlannerParsedRequirementSourceBlock[];",
+    "  }",
+    "}",
+    "",
+    "function loadTransferPlannerParsedRequirementBlocksForPlanIdPartition(planId: string) {",
+    "  const partitionKeys =",
+    "    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID[",
+    "      planId as keyof typeof TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID",
+    "    ] ?? [];",
+    "  return partitionKeys.flatMap((partitionKey) =>",
+    "    loadTransferPlannerParsedRequirementBlockPartition(partitionKey)",
+    "  ) as TransferPlannerParsedRequirementSourceBlock[];",
+    "}",
+    "",
+    "function loadTransferPlannerParsedRequirementBlocks() {",
+    "  return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITION_KEYS.flatMap((partitionKey) =>",
+    "    loadTransferPlannerParsedRequirementBlockPartition(partitionKey)",
+    "  ) as TransferPlannerParsedRequirementSourceBlock[];",
+    "}",
+    "",
+    "export const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS =",
+    "  createLazyGeneratedValue<TransferPlannerParsedRequirementSourceBlock[]>(",
+    "    loadTransferPlannerParsedRequirementBlocks,",
+    "    [] as TransferPlannerParsedRequirementSourceBlock[]",
+    "  );",
+    "",
+    "export function getTransferPlannerParsedRequirementBlocksForPlanId(planId: string) {",
+    "  return loadTransferPlannerParsedRequirementBlocksForPlanIdPartition(String(planId ?? \"\"));",
+    "}",
+    "",
   ];
 
-  fs.rmSync(OUTPUT_TS_CHUNK_DIR, { recursive: true, force: true });
-  fs.mkdirSync(OUTPUT_TS_CHUNK_DIR, { recursive: true });
+  fs.rmSync(OUTPUT_BLOCK_VALUE_DIR, { recursive: true, force: true });
+  fs.mkdirSync(OUTPUT_BLOCK_VALUE_DIR, { recursive: true });
 
-  chunks.forEach((chunk, index) => {
-    const chunkModule = chunkModules[index];
-    const chunkFilePath = path.join(OUTPUT_TS_CHUNK_DIR, `${chunkModule.fileStem}.ts`);
-    const chunkLines = [
-      "/* eslint-disable */",
-      "/* auto-generated by scripts/planner/parse-transfer-planner-requirement-sources.cjs */",
-      "",
-      `export const ${chunkModule.exportName}: unknown[] = ${JSON.stringify(chunk, null, 2)};`,
-      "",
-    ];
-    fs.writeFileSync(chunkFilePath, `${chunkLines.join("\n")}\n`);
-  });
-
-  const chunkNames = chunks.map(
-    (_, index) => `  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_${index}`
-  );
-  lines.push(
-    "const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW: unknown[] = ([] as unknown[]).concat(",
-    `${chunkNames.join(",\n")}`,
-    ");",
-    "",
-    "export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS =",
-    "  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW as TransferPlannerParsedRequirementSourceBlock[];",
-    ""
-  );
+  for (const partition of blockPartitions) {
+    const blockFilePath = path.join(OUTPUT_BLOCK_VALUE_DIR, `${partition.fileStem}.json`);
+    fs.mkdirSync(path.dirname(blockFilePath), { recursive: true });
+    fs.writeFileSync(
+      blockFilePath,
+      `${JSON.stringify([partition.block])}\n`,
+      "utf8"
+    );
+  }
 
   fs.writeFileSync(OUTPUT_TS_PATH, `${lines.join("\n")}\n`);
 }
@@ -17996,12 +19305,27 @@ function getOwnerSnapshotLinesForGeneratedFilter(owner) {
   if (Array.isArray(owner.snapshotLines) && owner.snapshotLines.length) {
     return owner.snapshotLines.map((line) => normalizeWhitespace(line)).filter(Boolean);
   }
-  if (!owner.snapshotPath || !fs.existsSync(owner.snapshotPath)) {
-    return [];
+
+  const snapshotPaths = uniqueInOrder(
+    [
+      owner.snapshotPath,
+      owner.snapshotPath ? path.join(SNAPSHOT_DIR, path.basename(owner.snapshotPath)) : null,
+    ]
+      .filter(Boolean)
+      .map((snapshotPath) => path.resolve(snapshotPath))
+  );
+
+  for (const snapshotPath of snapshotPaths) {
+    if (!fs.existsSync(snapshotPath)) {
+      continue;
+    }
+    const snapshot = readSnapshotFile(snapshotPath, owner.sourceUrl) ?? readSnapshotFile(snapshotPath);
+    if (snapshot?.snapshotLines?.length) {
+      return snapshot.snapshotLines;
+    }
   }
 
-  const snapshot = readSnapshotFile(owner.snapshotPath, owner.sourceUrl) ?? readSnapshotFile(owner.snapshotPath);
-  return snapshot?.snapshotLines ?? [];
+  return [];
 }
 
 function buildApprovedFilterCandidateRecords(report) {
@@ -18346,279 +19670,6 @@ function writeGeneratedProgramApprovedCourseFilters(report) {
   return filters;
 }
 
-function buildMarkdownReport(report) {
-  const lines = [
-    "# Transfer Planner Requirement Source Parse Report",
-    "",
-    `Generated: ${report.generatedAt}`,
-    "",
-    `- Primary degree sources parsed: ${report.totalOwners}`,
-    `- Parsed successfully: ${report.okCount}`,
-    `- Parse failures: ${report.failedCount}`,
-    `- Parsed requirement source adapter blocks: ${report.parsedRequirementSourceBlockCount}`,
-    `- Parsed requirement atom candidates: ${report.parsedRequirementAtomCandidateCount}`,
-    `- Parsed degree-map block candidates: ${report.parsedDegreeMapBlockCandidateCount}`,
-    `- Parsed structured requirement course entries: ${report.parsedRequirementCourseCount}`,
-    `- Parsed from cached snapshots after live-source failures: ${report.snapshotFallbackCount}`,
-    `- Parsed from alternate official source URLs: ${report.countsByResolutionStrategy["alternate-official-source"] ?? 0}`,
-    `- Owners with parsed UW course codes: ${report.withParsedCourseCodesCount}`,
-    `- Owners with source-only UW course codes not currently in structured degree-map blocks: ${report.withSourceOnlyCourseCodesCount}`,
-    `- Owners with no parsed UW course codes: ${report.withNoParsedCourseCodesCount}`,
-    `- Owners with parser-quality warnings: ${report.ownersWithQualityWarningsCount}`,
-    `- Owners with parser-quality notes: ${report.ownersWithQualityNotesCount}`,
-    `- Owners triggering parser auto-recovery: ${report.parserRecoveryReport?.triggeredOwnerCount ?? 0}`,
-    `- Owners recovered by parser auto-recovery: ${report.parserRecoveryReport?.successfulOwnerCount ?? 0}`,
-    "",
-    "## Parser Adapters",
-    "",
-    ...Object.entries(report.countsByAdapterId)
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([adapterId, count]) => `- ${adapterId}: ${count}`),
-    "",
-    "## Resolution Strategies",
-    "",
-    ...Object.entries(report.countsByResolutionStrategy)
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([resolutionStrategy, count]) => `- ${resolutionStrategy}: ${count}`),
-    "",
-    "## Source Roles",
-    "",
-    ...Object.entries(report.countsBySourceRole ?? {})
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([sourceRole, count]) => `- ${sourceRole}: ${count}`),
-    "",
-    "## Source Role Statuses",
-    "",
-    ...Object.entries(report.countsBySourceRoleStatus ?? {})
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([sourceRoleStatus, count]) => `- ${sourceRoleStatus}: ${count}`),
-    `- can-create-schedulable-rows: ${report.canCreateSchedulableRowCount ?? 0}`,
-    `- can-create-required-rows: ${report.canCreateRequiredRowCount ?? 0}`,
-    `- can-create-option-groups: ${report.canCreateOptionGroupCount ?? 0}`,
-    `- can-create-approved-filters: ${report.canCreateApprovedFilterCount ?? 0}`,
-    `- can-create-elective-lists: ${report.canCreateElectiveListCount ?? 0}`,
-    `- support-only sources: ${report.supportOnlySourceCount ?? 0}`,
-    `- non-schedulable sources: ${report.nonSchedulableSourceCount ?? 0}`,
-    "",
-    "## Parser Quality Signals",
-    "",
-    ...Object.entries(report.countsByQualitySignalCode)
-      .sort(([left], [right]) => left.localeCompare(right))
-      .map(([code, count]) => `- ${code}: ${count}`),
-    "",
-    "## Parser Auto-Recovery",
-    "",
-    `- Triggered owners: ${report.parserRecoveryReport?.triggeredOwnerCount ?? 0}`,
-    `- Successful recoveries: ${report.parserRecoveryReport?.successfulOwnerCount ?? 0}`,
-    `- Unrecovered owners: ${report.parserRecoveryReport?.unrecoveredOwnerCount ?? 0}`,
-    `- Recovered schedulable source owners: ${report.parserRecoveryReport?.recoveredScheduledSourceOwnerCount ?? 0}`,
-    `- Recovered support source owners: ${report.parserRecoveryReport?.recoveredSupportSourceOwnerCount ?? 0}`,
-    `- Detailed report: ${RECOVERY_OUTPUT_MD_PATH}`,
-    "",
-  ];
-
-  if (report.uwMseCourseExtractionAudit) {
-    const audit = report.uwMseCourseExtractionAudit;
-    lines.push("## UW MSE Course Extraction Audit", "");
-    lines.push(`- Total parsed official entries: ${audit.totalParsedOfficialEntries}`);
-    lines.push(
-      `- Required / option / alias / note-only counts: ${audit.requiredVsOptionCounts.required} / ${audit.requiredVsOptionCounts.option} / ${audit.requiredVsOptionCounts.alias} / ${audit.requiredVsOptionCounts.noteOnly}`
-    );
-    lines.push(
-      `- Missing expected courses: ${audit.missingExpectedCourses.length ? audit.missingExpectedCourses.join(", ") : "none"}`
-    );
-    lines.push(
-      `- Duplicate normalized course codes: ${audit.duplicateNormalizedCourseCodes.length ? audit.duplicateNormalizedCourseCodes.join(", ") : "none"}`
-    );
-    lines.push(
-      `- Unclassified course codes: ${audit.unclassifiedCourseCodes.length ? audit.unclassifiedCourseCodes.join(", ") : "none"}`
-    );
-    lines.push(
-      `- Courses missing group/type/source metadata: ${audit.coursesMissingRequiredMetadata.length ? audit.coursesMissingRequiredMetadata.join(", ") : "none"}`
-    );
-    lines.push("- Grouped counts by category:");
-    for (const [category, count] of Object.entries(audit.groupedCountsByCategory).sort(([left], [right]) =>
-      left.localeCompare(right)
-    )) {
-      lines.push(`  - ${category}: ${count}`);
-    }
-    if (audit.noteOrRestrictionEntries.length) {
-      lines.push("- Courses with notes or restrictions:");
-      for (const entry of audit.noteOrRestrictionEntries.slice(0, 25)) {
-        lines.push(
-          `  - ${entry.normalizedCourseCode}: ${(entry.notes ?? []).join(" | ")}`
-        );
-      }
-    }
-    lines.push("");
-  }
-
-  if ((report.sourceSectionAuditLines ?? []).length) {
-    lines.push("## Source Section Audit", "");
-    for (const auditLine of report.sourceSectionAuditLines) {
-      lines.push(`- ${auditLine}`);
-    }
-    lines.push("");
-  }
-
-  if ((report.sourceSectionFilterAuditLines ?? []).length) {
-    lines.push("## Parser Prerequisite Filter Audit", "");
-    for (const auditLine of report.sourceSectionFilterAuditLines.slice(0, 400)) {
-      lines.push(`- ${auditLine}`);
-    }
-    if (report.sourceSectionFilterAuditLines.length > 400) {
-      lines.push(
-        `- ... ${report.sourceSectionFilterAuditLines.length - 400} additional parser prerequisite filter audit rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.parserSequenceChoiceAuditLines ?? []).length) {
-    lines.push("## Parser Sequence-Choice Audit", "");
-    for (const auditLine of report.parserSequenceChoiceAuditLines.slice(0, 400)) {
-      lines.push(`- ${auditLine}`);
-    }
-    if (report.parserSequenceChoiceAuditLines.length > 400) {
-      lines.push(
-        `- ... ${report.parserSequenceChoiceAuditLines.length - 400} additional parser sequence-choice audit rows omitted from markdown.`
-      );
-    }
-    lines.push("");
-  }
-
-  if ((report.sourceScopeAuditLines ?? []).length) {
-    lines.push("## Source Scope Audit", "");
-    for (const auditLine of report.sourceScopeAuditLines.slice(0, 400)) {
-      lines.push(`- ${auditLine}`);
-    }
-    if (report.sourceScopeAuditLines.length > 400) {
-      lines.push(`- ... ${report.sourceScopeAuditLines.length - 400} additional source-scope audit rows omitted from markdown.`);
-    }
-    lines.push("");
-  }
-
-  for (const campusId of CAMPUS_ORDER) {
-    const campusOwners = report.owners.filter((owner) => owner.campusId === campusId);
-    if (!campusOwners.length) {
-      continue;
-    }
-
-    lines.push(`## ${campusId}`, "");
-
-    const qualityOwners = campusOwners.filter((owner) =>
-      (owner.qualitySignals ?? []).some((signal) => signal.severity === "warning")
-    );
-    if (qualityOwners.length) {
-      lines.push("### Parser-quality warnings", "");
-      qualityOwners.slice(0, 50).forEach((owner) => {
-        lines.push(`#### ${owner.ownerTitle}`);
-        lines.push("");
-        lines.push(`- Source: ${owner.sourceUrl}`);
-        lines.push(`- Parse confidence: ${owner.parseConfidence}`);
-        lines.push(
-          `- Quality warnings: ${owner.qualitySignals
-            .filter((signal) => signal.severity === "warning")
-            .map((signal) => `${signal.code}${signal.details ? ` (${signal.details})` : ""}`)
-            .join(" | ")}`
-        );
-        if (owner.primarySourceUrl !== owner.sourceUrl) {
-          lines.push(`- Primary source: ${owner.primarySourceUrl}`);
-        }
-        lines.push("");
-      });
-    }
-
-    const driftOwners = campusOwners.filter((owner) => owner.sourceOnlyUwCourseCodes.length > 0);
-    if (driftOwners.length) {
-      lines.push("### Possible source-vs-structured drift", "");
-      driftOwners.slice(0, 50).forEach((owner) => {
-        lines.push(`#### ${owner.ownerTitle}`);
-        lines.push("");
-        lines.push(`- Source: ${owner.sourceUrl}`);
-        if (owner.primarySourceUrl !== owner.sourceUrl) {
-          lines.push(`- Primary source: ${owner.primarySourceUrl}`);
-        }
-        lines.push(`- Parser type: ${owner.parserType}`);
-        lines.push(`- Source role: ${owner.sourceRole ?? "ignored"}`);
-        lines.push(
-          `- Source role status: ${
-            owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
-          }`
-        );
-        lines.push(
-          `- Can create schedulable rows: ${owner.canCreateSchedulableRows !== false ? "yes" : "no"}`
-        );
-        lines.push(`- Parser adapter: ${owner.adapterId}`);
-        lines.push(`- Resolution strategy: ${owner.resolutionStrategy}`);
-        lines.push(`- Parse confidence: ${owner.parseConfidence}`);
-        if (owner.usedSnapshotFallback) {
-          lines.push(`- Snapshot fallback: ${owner.snapshotFallbackReason ?? "used cached source snapshot"}`);
-        }
-        lines.push(`- Source-only UW course codes: ${owner.sourceOnlyUwCourseCodes.join(", ")}`);
-        if (owner.structuredOnlyUwCourseCodes.length) {
-          lines.push(
-            `- Structured-only UW course codes not seen in the parsed source: ${owner.structuredOnlyUwCourseCodes.join(", ")}`
-          );
-        }
-        if (owner.requirementCueLines.length) {
-          lines.push(`- Requirement cues: ${owner.requirementCueLines.slice(0, 3).join(" | ")}`);
-        }
-        if (owner.sourceSectionAudit?.line) {
-          lines.push(`- ${owner.sourceSectionAudit.line}`);
-        }
-        lines.push(`- Snapshot: ${owner.snapshotPath ?? "n/a"}`);
-        lines.push("");
-      });
-    }
-
-    const noCourseOwners = campusOwners.filter(
-      (owner) => owner.ok && owner.parsedUwCourseCodes.length === 0
-    );
-    if (noCourseOwners.length) {
-      lines.push("### Parsed but no UW course codes found", "");
-      noCourseOwners.slice(0, 50).forEach((owner) => {
-        lines.push(`- ${owner.ownerTitle}`);
-        lines.push(`  - Source: ${owner.sourceUrl}`);
-        lines.push(`  - Source role: ${owner.sourceRole ?? "ignored"}`);
-        lines.push(
-          `  - Source role status: ${
-            owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
-          }`
-        );
-        lines.push(
-          `  - Can create schedulable rows: ${owner.canCreateSchedulableRows !== false ? "yes" : "no"}`
-        );
-        lines.push(`  - Parser type: ${owner.parserType}`);
-        if (owner.sourceSectionAudit?.line) {
-          lines.push(`  - ${owner.sourceSectionAudit.line}`);
-        }
-        lines.push(`  - Requirement cues found: ${owner.requirementCueLines.length}`);
-      });
-      lines.push("");
-    }
-
-    const failedOwners = campusOwners.filter((owner) => !owner.ok);
-    if (failedOwners.length) {
-      lines.push("### Parse failures", "");
-      failedOwners.slice(0, 50).forEach((owner) => {
-        lines.push(`- ${owner.ownerTitle}`);
-        lines.push(`  - Source: ${owner.sourceUrl}`);
-        lines.push(`  - Source role: ${owner.sourceRole ?? "ignored"}`);
-        lines.push(
-          `  - Source role status: ${
-            owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
-          }`
-        );
-        lines.push(`  - Error: ${owner.error ?? "unknown error"}`);
-      });
-      lines.push("");
-    }
-  }
-
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
-}
-
 async function main() {
   ensureDir(TMP_DIR);
   ensureDir(SNAPSHOT_DIR);
@@ -18675,11 +19726,18 @@ async function main() {
     targetPlanIds: effectiveTargetPlanIds,
   });
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writeJsonReport(OUTPUT_JSON_PATH, report);
   const generatedProgramApprovedCourseFilters = writeGeneratedProgramApprovedCourseFilters(report);
   writeGeneratedRequirementSourceAdapters(report);
-  writeParserRecoveryReport(report.parserRecoveryReport);
-  buildMarkdownReport(report);
+  writeParserRecoveryReport(report.parserRecoveryReport, {
+    jsonPath: RECOVERY_OUTPUT_JSON_PATH,
+    markdownPath: RECOVERY_OUTPUT_MD_PATH,
+  });
+  writeRequirementSourceParseMarkdownReport(report, {
+    campusOrder: CAMPUS_ORDER,
+    markdownPath: OUTPUT_MD_PATH,
+    recoveryMarkdownPath: RECOVERY_OUTPUT_MD_PATH,
+  });
 
   console.log(`Parsed successfully: ${report.okCount}/${report.totalOwners}`);
   console.log(
@@ -18742,6 +19800,7 @@ module.exports = {
   buildParserRecoveryReportForTest: buildParserRecoveryReport,
   buildGeneratedProgramApprovedCourseFiltersForTest: buildGeneratedProgramApprovedCourseFilters,
   buildParserRecoveryArtifactsFromSnapshotForTest: buildParserRecoveryArtifactsFromSnapshot,
+  buildParserRecoveryCandidateEntryForTest: buildParserRecoveryCandidateEntry,
   buildParserRecoverySectionCandidatesForTest: buildParserRecoverySectionCandidates,
   buildParserPrerequisiteFilterAuditRowsForTest: buildParserPrerequisiteFilterAuditRows,
   buildRequirementSourceScope,
@@ -18753,6 +19812,7 @@ module.exports = {
   extractParserRecoveryLinkCandidatesForTest: extractParserRecoveryLinkCandidates,
   extractSupplementalDocumentLinkCandidatesForTest: extractSupplementalDocumentLinkCandidates,
   extractSupplementalHtmlLinkCandidatesForTest: extractSupplementalHtmlLinkCandidates,
+  getAlternateParseableManifestEntriesForTest: getAlternateParseableManifestEntries,
   getStructuredUwCourseCodesForTest: getStructuredUwCourseCodes,
   getParseablePrimaryEntries,
   getOwnerProgramAcronymTokensForTest: getOwnerProgramAcronymTokens,
@@ -18761,6 +19821,11 @@ module.exports = {
   mergeRecoveredSupportSourcesForTest: mergeRecoveredSupportSources,
   orderPdfLineSegmentsForTest: orderPdfLineSegments,
   parseHtmlSourceFromArtifactsForTest,
+  parserRecoveryCandidateConflictsWithPathwayForTest: parserRecoveryCandidateConflictsWithPathway,
+  parserRecoveryCandidateConflictsWithProgramSiblingForTest:
+    parserRecoveryCandidateConflictsWithProgramSibling,
+  parserRecoverySnapshotConflictsWithBaseOwnerScopeForTest:
+    parserRecoverySnapshotConflictsWithBaseOwnerScope,
   readSnapshotFileForTest: readSnapshotFile,
   scopeHtmlLinesForTest: scopeHtmlLines,
   scopeCatalogHtmlByAnchor,

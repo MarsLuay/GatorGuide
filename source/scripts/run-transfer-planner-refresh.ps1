@@ -12,31 +12,32 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "transfer-planner-maintenance-common.ps1")
+. (Join-Path $PSScriptRoot "transfer-planner-tmp-layout.ps1")
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$tmpDir = Join-Path $projectRoot ".tmp"
-$logDir = Join-Path $tmpDir "planner-refresh-logs"
+$tmpLayout = Initialize-GatorGuideTmpLayout -ProjectRoot $projectRoot
+$tmpDir = $tmpLayout.root
+$logDir = Join-Path $tmpLayout.logs "planner-refresh-logs"
 
-New-Item -ItemType Directory -Force -Path $tmpDir | Out-Null
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 
 $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $modeLabel = if ($SkipDownloads) { "skip-downloads" } else { "full" }
 $logPath = Join-Path $logDir "planner-refresh-$modeLabel-$timestamp.log"
-$sourceSummaryPath = Join-Path $tmpDir "transfer-planner-source-link-summary.md"
-$primarySourceGapPath = Join-Path $tmpDir "transfer-planner-primary-source-review-queue.md"
-$sourceGapPath = Join-Path $tmpDir "transfer-planner-source-gaps.md"
-$autoRepairPath = Join-Path $tmpDir "transfer-planner-auto-repair-plan.md"
-$sourceFingerprintPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.md"
-$sourceChangeClassificationPath = Join-Path $tmpDir "transfer-planner-source-change-classification.md"
-$requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.md"
-$requirementSourceParsePath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.md"
-$parserRecoveryPath = Join-Path $tmpDir "transfer-planner-parser-recovery-report.md"
-$ownerAuditPath = Join-Path $tmpDir "transfer-planner-owner-audit.md"
-$equivalencyGuidePath = Join-Path $tmpDir "transfer-planner-equivalency-guide-parse.md"
-$grcCatalogPath = Join-Path $tmpDir "transfer-planner-grc-catalog-ingest.md"
-$uwCatalogPath = Join-Path $tmpDir "transfer-planner-uw-catalog-ingest.md"
-$deadlineRefreshPath = Join-Path $tmpDir "deadline-refresh-report.md"
+$sourceSummaryPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-link-summary.md"
+$primarySourceGapPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-primary-source-review-queue.md"
+$sourceGapPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-gaps.md"
+$autoRepairPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-auto-repair-plan.md"
+$sourceFingerprintPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-fingerprints.md"
+$sourceChangeClassificationPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-source-change-classification.md"
+$requirementDiffReportPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-requirement-diff-promotion-report.md"
+$requirementSourceParsePath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-requirement-source-parse-report.md"
+$parserRecoveryPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-parser-recovery-report.md"
+$ownerAuditPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-owner-audit.md"
+$equivalencyGuidePath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-equivalency-guide-parse.md"
+$grcCatalogPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-grc-catalog-ingest.md"
+$uwCatalogPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "transfer-planner-uw-catalog-ingest.md"
+$deadlineRefreshPath = Get-GatorGuideTmpPath -Layout $tmpLayout -Name "deadline-refresh-report.md"
 
 function Write-Section {
   param([string]$Message)

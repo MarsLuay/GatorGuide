@@ -1,5 +1,12 @@
 const fs = require("fs");
-const path = require("path");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -11,10 +18,10 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  TRANSFER_PLANNER_PRIMARY_PROMOTIONS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_MANIFEST_REGISTRY,
   getTransferPlannerPathwaysForPlan,
   getTransferPlannerMajorPlan,
   getTransferPlannerPrimaryDegreeRequirementsSource,
@@ -25,7 +32,7 @@ const {
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } = require("../../constants/transfer-planner-source");
 const {
-  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+  TRANSFER_PLANNER_GAP_ENTRIES,
 } = require("../../constants/transfer-planner-source/source-gaps.generated");
 const {
   normalizeTransferPlannerSemanticPathwayLabel,
@@ -34,11 +41,11 @@ const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require("../../constants/transfer-planner-source/student-runtime");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.md");
-const SUPPORT_ONLY_PRIMARY_SOURCE_ROLES = new Set([
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-owner-audit.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-owner-audit.md");
+const SUPPORT_ONLY_PRIMARY_ROLES = new Set([
   "admission-prerequisite-source",
   "admissions",
   "approved-course-list",
@@ -56,29 +63,8 @@ const NON_ACTIONABLE_NON_SCHEDULABLE_SYMPTOM_CODES = new Set([
   "no-parsed-uw-course-codes",
 ]);
 
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
 function ensureTmpDir() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 }
 
 function buildOwnerKey(planId, pathwayId) {
@@ -97,21 +83,21 @@ function buildManifestPlanSourceKey(entry) {
   return `${entry.planId ?? entry.ownerId}::${entry.url}`;
 }
 
-const SOURCE_GAP_OWNER_IDS = new Set(
-  (TRANSFER_PLANNER_SOURCE_GAP_ENTRIES ?? []).map((entry) =>
+const GAP_OWNER_IDS = new Set(
+  (TRANSFER_PLANNER_GAP_ENTRIES ?? []).map((entry) =>
     buildParsedBlockOwnerId(entry.planId, entry.pathwayId ?? null)
   )
 );
-const SOURCE_GAP_PLAN_IDS = new Set(
-  (TRANSFER_PLANNER_SOURCE_GAP_ENTRIES ?? [])
+const GAP_PLAN_IDS = new Set(
+  (TRANSFER_PLANNER_GAP_ENTRIES ?? [])
     .filter((entry) => !entry.pathwayId)
     .map((entry) => entry.planId)
 );
 
 function isCoveredBySourceGap(owner) {
   return (
-    SOURCE_GAP_OWNER_IDS.has(owner.ownerId) ||
-    Boolean(owner.pathwayId && SOURCE_GAP_PLAN_IDS.has(owner.planId))
+    GAP_OWNER_IDS.has(owner.ownerId) ||
+    Boolean(owner.pathwayId && GAP_PLAN_IDS.has(owner.planId))
   );
 }
 
@@ -210,7 +196,7 @@ function findPathwayOwnerAliases(owner, planTitle) {
   }
 
   const aliasOwnerIds = new Set(
-    TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
       (entry) => entry.planId === owner.planId && entry.ownerType === "pathway"
     )
       .filter((entry) => {
@@ -345,7 +331,7 @@ function findPlanOwnerPathwayAliasCoverage(owner, parsedBlocksByOwnerId) {
   const ownerTokenSet = new Set(ownerTokens);
   let best = null;
 
-  for (const candidatePlan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const candidatePlan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     if (candidatePlan.id === owner.planId || candidatePlan.campusId !== owner.campusId) {
       continue;
     }
@@ -363,7 +349,7 @@ function findPlanOwnerPathwayAliasCoverage(owner, parsedBlocksByOwnerId) {
       }
 
       const aliasOwnerId = buildParsedBlockOwnerId(candidatePlan.id, candidatePathway.id);
-      const manifestEntries = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+      const manifestEntries = TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
         (entry) => entry.ownerId === aliasOwnerId
       );
       const parsedBlock = parsedBlocksByOwnerId.get(aliasOwnerId) ?? null;
@@ -658,7 +644,7 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner, isKnow
 function buildOwners(targetPlanId = null) {
   const owners = [];
 
-  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     if (targetPlanId && plan.id !== targetPlanId) {
       continue;
     }
@@ -690,8 +676,8 @@ function buildOwners(targetPlanId = null) {
   return owners.sort((left, right) => left.ownerId.localeCompare(right.ownerId));
 }
 
-const AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS = new Set(
-  (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)
+const AUTO_PROMOTED_PRIMARY_OWNER_IDS = new Set(
+  (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []).map((entry) => entry.ownerId)
 );
 const PROMOTED_OWNER_INVARIANT_VIOLATION_CODES = new Set([
   "canonical-source-registry-missing-owner",
@@ -800,7 +786,7 @@ function writeMarkdown(report) {
     );
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function main() {
@@ -808,10 +794,10 @@ function main() {
   const targetPlanId = getArgValue("--target-plan-id");
 
   const parsedBlocksByOwnerId = new Map(
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [block.ownerId, block])
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.map((block) => [block.ownerId, block])
   );
   const parsedBlocksByPlanSourceKey = new Map(
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.map((block) => [
       buildParsedBlockPlanSourceKey(block),
       block,
     ])
@@ -820,13 +806,13 @@ function main() {
   const owners = buildOwners(targetPlanId).map((owner) => {
     const symptomIssues = [];
     let sourceOnlyUwCourseCodeCount = 0;
-    const isAutoPromotedPrimarySource = AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(owner.ownerId);
+    const isAutoPromotedPrimarySource = AUTO_PROMOTED_PRIMARY_OWNER_IDS.has(owner.ownerId);
     const basePlan = getTransferPlannerMajorPlan(owner.planId);
     const aliasOwnerIds = owner.pathwayId && basePlan
       ? findPathwayOwnerAliases(owner, basePlan.title)
       : [];
     const aliasManifestEntries = aliasOwnerIds.flatMap((aliasOwnerId) =>
-      TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter((entry) => entry.ownerId === aliasOwnerId)
+      TRANSFER_PLANNER_MANIFEST_REGISTRY.filter((entry) => entry.ownerId === aliasOwnerId)
     );
     const planOwnerAliasCoverage = findPlanOwnerPathwayAliasCoverage(owner, parsedBlocksByOwnerId);
     const planOwnerAliasManifestEntries = planOwnerAliasCoverage?.manifestEntries ?? [];
@@ -919,7 +905,7 @@ function main() {
       ? getTransferPlannerSourceManifestEntriesForPlan(owner.planId, null).filter(
           (entry) =>
             entry.isPrimaryDegreeRequirementsLink &&
-            !SUPPORT_ONLY_PRIMARY_SOURCE_ROLES.has(entry.role)
+            !SUPPORT_ONLY_PRIMARY_ROLES.has(entry.role)
         )
       : [];
     const directOrAliasManifestEntries =
@@ -1031,7 +1017,7 @@ function main() {
       const supportOnlyPrimaryEntry = effectiveManifestEntries.find(
         (entry) =>
           entry.isPrimaryDegreeRequirementsLink &&
-          SUPPORT_ONLY_PRIMARY_SOURCE_ROLES.has(entry.role)
+          SUPPORT_ONLY_PRIMARY_ROLES.has(entry.role)
       );
       if (supportOnlyPrimaryEntry) {
         addIssue(
@@ -1159,7 +1145,7 @@ function main() {
     owners,
   };
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writePlannerJsonReport(OUTPUT_JSON_PATH, report);
   writeMarkdown(report);
 
   console.log(`Owners audited: ${report.totalOwners}`);

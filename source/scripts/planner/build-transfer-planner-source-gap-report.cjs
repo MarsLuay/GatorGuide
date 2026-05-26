@@ -1,21 +1,23 @@
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  hasArg,
+  runNodeScript,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const DISCOVERY_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.json"
-);
-const REVIEW_QUEUE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-review-queue.json"
-);
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-source-gaps.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-source-gaps.md");
+const TMP_DIR = ensurePlannerTmpLayout().root;
+const DISCOVERY_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const REVIEW_QUEUE_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-review-queue.json");
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-source-gaps.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-source-gaps.md");
 const GENERATED_OUTPUT_PATH = path.resolve(
-  REPO_ROOT,
+  SOURCE_ROOT,
   "constants",
   "transfer-planner-source",
   "source-gaps.generated.ts"
@@ -32,83 +34,61 @@ require("ts-node").register({
 require("tsconfig-paths/register");
 
 const {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS,
 } = require(path.resolve(
-  REPO_ROOT,
+  SOURCE_ROOT,
   "constants",
   "transfer-planner-source",
   "requirement-source-adapters.generated.ts"
 ));
 const {
   TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
   getTransferPlannerStudentRuntimeMajorPlan,
   getTransferPlannerStudentRuntimePathwaysForPlan,
-} = require(path.resolve(REPO_ROOT, "constants", "transfer-planner-source"));
+} = require(path.resolve(SOURCE_ROOT, "constants", "transfer-planner-source"));
+const {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} = require(path.resolve(
+  SOURCE_ROOT,
+  "constants",
+  "transfer-planner-source",
+  "pathway-id-normalization"
+));
 const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require(path.resolve(
-  REPO_ROOT,
+  SOURCE_ROOT,
   "constants",
   "transfer-planner-source",
   "student-runtime"
 ));
 
 const ACTIVE_PATHWAY_OWNER_KEYS = new Set(
-  (TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []).map((entry) => entry.id)
+  (TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []).map((entry) =>
+    buildOwnerKey({
+      ownerType: "pathway",
+      ownerKey: entry.id,
+      planId: entry.planId,
+      pathwayId: entry.pathwayId,
+    })
+  )
 );
 
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
 function runDiscovery() {
-  const result = spawnSync("node", ["scripts/planner/discover-transfer-planner-primary-sources.cjs"], {
-    cwd: REPO_ROOT,
-    stdio: "inherit",
-    shell: false,
+  runNodeScript("scripts/planner/discover-transfer-planner-primary-sources.cjs", [], {
+    cwd: SOURCE_ROOT,
+    errorMessage: "Primary-source discovery failed, so source-gap reporting could not continue.",
   });
-
-  if (result.status !== 0) {
-    throw new Error("Primary-source discovery failed, so source-gap reporting could not continue.");
-  }
 }
 
 function runReviewQueue() {
-  const result = spawnSync(
-    "node",
-    ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"],
-    {
-      cwd: REPO_ROOT,
-      stdio: "inherit",
-      shell: false,
-    }
-  );
-
-  if (result.status !== 0) {
-    throw new Error("Primary-source review queue failed, so source-gap reporting could not continue.");
-  }
+  runNodeScript("scripts/planner/build-transfer-planner-primary-source-review-queue.cjs", [], {
+    cwd: SOURCE_ROOT,
+    errorMessage: "Primary-source review queue failed, so source-gap reporting could not continue.",
+  });
 }
 
 function normalizeCampusLabel(campusId) {
@@ -219,7 +199,16 @@ function getReviewQueueEntries(reviewQueue) {
 }
 
 function buildOwnerKey(owner) {
-  return `${owner.ownerType}:${owner.ownerKey}`;
+  const ownerType = String(owner?.ownerType ?? "").trim();
+  if (ownerType === "pathway") {
+    return `pathway:${normalizeTransferPlannerOwnerId(
+      owner?.ownerKey ?? owner?.ownerId ?? null,
+      owner?.planId ?? null,
+      owner?.pathwayId ?? null
+    )}`;
+  }
+
+  return `${ownerType || "major"}:${String(owner?.ownerKey ?? owner?.ownerId ?? owner?.planId ?? "").trim()}`;
 }
 
 function canParsedRequirementSourceBlockCreateRequiredScheduleRows(block) {
@@ -255,14 +244,24 @@ function canParsedRequirementSourceBlockCreateRequiredScheduleRows(block) {
 
 function buildParserBackedOwnerKeys() {
   const keys = new Set();
-  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []) {
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS ?? []) {
     if (!block?.ok || !block.planId || !canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
       continue;
     }
 
     keys.add(`major:${block.planId}`);
     if (block.pathwayId) {
-      keys.add(`pathway:${block.ownerId || `${block.planId}:pathway:${block.pathwayId}`}`);
+      keys.add(
+        buildOwnerKey({
+          ownerType: "pathway",
+          ownerKey: block.ownerId || `${block.planId}:pathway:${block.pathwayId}`,
+          planId: block.planId,
+          pathwayId: block.pathwayId,
+        })
+      );
+    }
+    for (const ownerKey of getParserBackedPathwayKeysFromLabels(block)) {
+      keys.add(ownerKey);
     }
   }
 
@@ -283,7 +282,46 @@ function isInactivePathwaySourceGapOwner(owner) {
     return false;
   }
 
-  return !ACTIVE_PATHWAY_OWNER_KEYS.has(String(owner.ownerKey ?? ""));
+  return !ACTIVE_PATHWAY_OWNER_KEYS.has(buildOwnerKey(owner));
+}
+
+function slugifyPathwayId(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getParserBackedPathwayKeysFromLabels(block) {
+  if (!block?.planId || !Array.isArray(block.pathwayLabels)) {
+    return [];
+  }
+
+  const keys = new Set();
+  for (const label of block.pathwayLabels) {
+    const normalizedPathwayId = normalizeTransferPlannerPathwayId(
+      block.planId,
+      slugifyPathwayId(label)
+    );
+    if (!normalizedPathwayId) {
+      continue;
+    }
+
+    const ownerId = buildTransferPlannerOwnerId(block.planId, normalizedPathwayId);
+    const ownerKey = buildOwnerKey({
+      ownerType: "pathway",
+      ownerKey: ownerId,
+      planId: block.planId,
+      pathwayId: normalizedPathwayId,
+    });
+    if (ACTIVE_PATHWAY_OWNER_KEYS.has(ownerKey)) {
+      keys.add(ownerKey);
+    }
+  }
+
+  return [...keys];
 }
 
 function normalizeAliasMatchText(value) {
@@ -350,7 +388,7 @@ function hasDerivedParentPathwayRuntimeCoverage(owner) {
   }
 
   const campusId = String(owner.campusId ?? "").trim();
-  const parentPlans = (TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS ?? []).filter(
+  const parentPlans = (TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? []).filter(
     (plan) =>
       (!campusId || String(plan?.campusId ?? "").trim() === campusId) &&
       titlesMatch(plan?.title, aliasTitle.parentTitle)
@@ -466,7 +504,7 @@ function buildGeneratedFile(report) {
     'import type { TransferPlannerSourceGapEntry } from "./schema";',
     "",
     "// Generated by scripts/planner/build-transfer-planner-source-gap-report.cjs",
-    `export const TRANSFER_PLANNER_SOURCE_GAP_ENTRIES: TransferPlannerSourceGapEntry[] = ${JSON.stringify(report.entries, null, 2)};`,
+    `export const TRANSFER_PLANNER_GAP_ENTRIES: TransferPlannerSourceGapEntry[] = ${JSON.stringify(report.entries, null, 2)};`,
     "",
   ].join("\n");
 }
@@ -525,7 +563,7 @@ function writeMarkdown(report, options = {}) {
     }
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function main() {
@@ -561,7 +599,7 @@ function main() {
     parserBackedOwnerKeys: buildParserBackedOwnerKeys(),
   });
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(sourceGapReport, null, 2)}\n`);
+  writePlannerJsonReport(OUTPUT_JSON_PATH, sourceGapReport);
   fs.writeFileSync(GENERATED_OUTPUT_PATH, buildGeneratedFile(sourceGapReport));
   writeMarkdown(sourceGapReport, { targetPlanId });
 

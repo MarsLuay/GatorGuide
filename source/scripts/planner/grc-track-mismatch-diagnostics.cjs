@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 process.env.TS_NODE_TRANSPILE_ONLY = "true";
 process.env.TS_NODE_BASEURL = process.env.TS_NODE_BASEURL || ".";
@@ -22,10 +23,10 @@ const {
 } = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const GENERATION_REPORT_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-associate-tracks.json");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-track-mismatch-report.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-track-mismatch-report.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const GENERATION_REPORT_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-associate-tracks.json");
+const OUTPUT_JSON_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-track-mismatch-report.json");
+const OUTPUT_MD_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-track-mismatch-report.md");
 
 const CREDIT_PER_PLACEHOLDER = 5;
 const ISSUE_METADATA = {

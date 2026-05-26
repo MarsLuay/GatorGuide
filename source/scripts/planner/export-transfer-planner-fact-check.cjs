@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
 const path = require("path");
+const {
+  SOURCE_ROOT,
+  getArgValue,
+  getPlannerTmpPath,
+  hasArg,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 process.env.TS_NODE_TRANSPILE_ONLY = "true";
 process.env.TS_NODE_BASEURL = process.env.TS_NODE_BASEURL || ".";
@@ -32,37 +39,10 @@ const {
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } = require("../../constants/transfer-planner-source/student-runtime");
 
-const SOURCE_ROOT = path.resolve(__dirname, "../..");
-const TMP_DIR = path.resolve(SOURCE_ROOT, ".tmp");
 const DEFAULT_BASENAME = "transfer-planner-ai-fact-check-export";
-const DEFAULT_MD_PATH = path.resolve(TMP_DIR, `${DEFAULT_BASENAME}.md`);
-const DEFAULT_JSON_PATH = path.resolve(TMP_DIR, `${DEFAULT_BASENAME}.json`);
+const DEFAULT_MD_PATH = getPlannerTmpPath(`${DEFAULT_BASENAME}.md`);
+const DEFAULT_JSON_PATH = getPlannerTmpPath(`${DEFAULT_BASENAME}.json`);
 const MAX_MARKDOWN_CUE_LINES_PER_BLOCK = 40;
-
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
 
 function normalizeText(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
@@ -805,14 +785,14 @@ function main() {
     return;
   }
 
-  const outDir = path.resolve(SOURCE_ROOT, getArgValue("--out-dir") || ".tmp");
+  const outDirArg = getArgValue("--out-dir");
+  const outDir = outDirArg ? path.resolve(SOURCE_ROOT, outDirArg) : getPlannerTmpPath("exports");
   const mdPath = path.resolve(outDir, `${DEFAULT_BASENAME}.md`);
   const jsonPath = path.resolve(outDir, `${DEFAULT_BASENAME}.json`);
-  fs.mkdirSync(outDir, { recursive: true });
 
   const report = buildExport();
-  fs.writeFileSync(jsonPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
-  fs.writeFileSync(mdPath, buildMarkdown(report, jsonPath), "utf8");
+  writePlannerJsonReport(jsonPath, report);
+  writePlannerMarkdownReport(mdPath, buildMarkdown(report, jsonPath));
 
   console.log("Transfer planner AI fact-check export written.");
   console.log(`Markdown: ${normalizeDisplayPath(mdPath)}`);

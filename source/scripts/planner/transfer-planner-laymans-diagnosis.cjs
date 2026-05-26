@@ -1,30 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
+const { getTmpPath } = require("../lib/tmp-layout.cjs");
+const { SOURCE_ROOT, getArgValue, hasArg } = require("./lib/script-harness.cjs");
 
 function readJsonIfExists(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -92,7 +69,7 @@ function formatWhereToLookPath(projectRoot, targetPath) {
 }
 
 function formatTmpReportPath(projectRoot, fileName) {
-  return formatWhereToLookPath(projectRoot, path.join(".tmp", fileName));
+  return formatWhereToLookPath(projectRoot, getTmpPath(projectRoot, fileName));
 }
 
 function addDiagnosis(target, diagnosis) {
@@ -440,29 +417,28 @@ function buildReportDiagnoses(reports, projectRoot, options = {}) {
 }
 
 function loadReports(projectRoot) {
-  const tmpDir = path.resolve(projectRoot, ".tmp");
   return {
-    sourceGap: readJsonIfExists(path.resolve(tmpDir, "transfer-planner-source-gaps.json")),
+    sourceGap: readJsonIfExists(getTmpPath(projectRoot, "transfer-planner-source-gaps.json")),
     requirementParse: readJsonIfExists(
-      path.resolve(tmpDir, "transfer-planner-requirement-source-parse-report.json")
+      getTmpPath(projectRoot, "transfer-planner-requirement-source-parse-report.json")
     ),
     requirementDiff: readJsonIfExists(
-      path.resolve(tmpDir, "transfer-planner-requirement-diff-promotion-report.json")
+      getTmpPath(projectRoot, "transfer-planner-requirement-diff-promotion-report.json")
     ),
-    ownerAudit: readJsonIfExists(path.resolve(tmpDir, "transfer-planner-owner-audit.json")),
-    hardening: readJsonIfExists(path.resolve(tmpDir, "transfer-planner-hardening-report.json")),
+    ownerAudit: readJsonIfExists(getTmpPath(projectRoot, "transfer-planner-owner-audit.json")),
+    hardening: readJsonIfExists(getTmpPath(projectRoot, "transfer-planner-hardening-report.json")),
     sourceYearCoverage: readJsonIfExists(
-      path.resolve(tmpDir, "transfer-planner-source-year-coverage.json")
+      getTmpPath(projectRoot, "transfer-planner-source-year-coverage.json")
     ),
     sourcePipelineValidation: readJsonIfExists(
-      path.resolve(tmpDir, "transfer-planner-source-pipeline-validation.json")
+      getTmpPath(projectRoot, "transfer-planner-source-pipeline-validation.json")
     ),
-    status: readJsonIfExists(path.resolve(tmpDir, "transfer-planner-status.json")),
+    status: readJsonIfExists(getTmpPath(projectRoot, "transfer-planner-status.json")),
   };
 }
 
 function buildLaymansDiagnosis(options = {}) {
-  const projectRoot = path.resolve(options.projectRoot ?? path.resolve(__dirname, "..", ".."));
+  const projectRoot = path.resolve(options.projectRoot ?? SOURCE_ROOT);
   const reports = loadReports(projectRoot);
   const diagnoses = [];
 

@@ -190,7 +190,7 @@ const PROMPT_TEMPLATES = {
             "Create a normalized opportunity record for the app.",
             "The opportunity can be an internship, scholarship, or college deadline.",
             "Use only information supported by the source material and structured context.",
-            "Return STRICT JSON with keys: type, title, provider, dueDate, yearly, deadlineType, financialAidTags, suggestedMajors, hasToBeMajor, gpaMin, residencyTypes, transferOnly, needsRecommendations, recommendationCountMin, essayCount, awardAmountMin, awardAmountMax, awardCurrency, awardAmountText, sourceUrl, notes.",
+            "Return STRICT JSON with keys: type, title, provider, dueDate, yearly, deadlineType, financialAidTags, suggestedMajors, hasToBeMajor, gpaMin, residencyTypes, communityTags, transferOnly, needsRecommendations, recommendationCountMin, essayCount, awardAmountMin, awardAmountMax, awardCurrency, awardAmountText, sourceUrl, notes.",
             "If a field is unknown, set it to null instead of guessing.",
           ].join("\n")
         ),

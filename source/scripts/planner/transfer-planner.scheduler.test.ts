@@ -71,8 +71,8 @@ import {
   resolveTransferPlannerStudentRuntimeMajorPlan,
   test,
   TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS,
 } from "./transfer-planner.test-support";
 import type {
   TranscriptCourseEntry,
@@ -600,9 +600,7 @@ test("UW-transfer-only planning keeps required Computer Engineering Areas-of-Inq
   );
 });
 
-test("Manual current-course selections move one duplicate Gen-Ed placeholder by instance key", () => {
-  const plan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
-  assert.ok(plan, "Expected the Seattle Computer Engineering runtime plan.");
+test("Manual current-course selections ignore duplicate Gen-Ed placeholder instance keys", () => {
   const track = {
     id: "test-duplicate-ssc-current-placeholders",
     code: "TEST",
@@ -612,19 +610,22 @@ test("Manual current-course selections move one duplicate Gen-Ed placeholder by 
     terms: [
       {
         label: "Year 1 Fall",
-        courses: ["Humanities", "Social Science", "Humanities or Social Science"],
+        courses: ["Social Science", "Social Science"],
       },
     ],
     notes: [],
   };
   const buildPlan = (currentCourseKeys: string[] = []) =>
     buildSuggestedQuarterPlan({
-      plan,
-      ...buildStatuses(plan, []),
+      plan: null,
+      plannerCollegeId: "grc",
+      applicationStatuses: [],
+      beforeEnrollmentStatuses: [],
+      stayAtGrcStatuses: [],
       completedCourses: [],
       track,
       currentCourseKeys,
-      includeStayAtGrcCourses: false,
+      includeStayAtGrcCourses: true,
       referenceDate: new Date("2026-01-15T12:00:00.000Z"),
     });
 
@@ -661,18 +662,15 @@ test("Manual current-course selections move one duplicate Gen-Ed placeholder by 
       status: course.status,
       instanceKey: course.instanceKey,
     })),
-    [
-      {
-        label: "5 credits of Social Science",
-        status: "current",
-        instanceKey: selectedKey,
-      },
-    ]
+    []
   );
-  assert.equal(futureSocialSciencePlaceholders.length, 1);
-  assert.equal(
-    futureSocialSciencePlaceholders[0]?.instanceKey,
-    remainingSocialSciencePlaceholder.instanceKey
+  assert.equal(futureSocialSciencePlaceholders.length, 2);
+  assert.deepEqual(
+    futureSocialSciencePlaceholders.map((course) => course.instanceKey),
+    [
+      selectedSocialSciencePlaceholder.instanceKey,
+      remainingSocialSciencePlaceholder.instanceKey,
+    ]
   );
 });
 
@@ -821,7 +819,7 @@ test("Seattle Aeronautics runtime planning uses the authored 24-credit breadth t
 });
 
 test("Seattle Computer Engineering parsed source blocks and runtime planning no longer leak Allen School recommendation spillover", () => {
-  const parsedBlock = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.find(
+  const parsedBlock = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS.find(
     (entry) =>
       entry.ownerId === "uw-seattle-computer-engineering" &&
       entry.sourceRole === "primary-degree-requirements"
@@ -872,13 +870,114 @@ test("Seattle Computer Engineering parsed source blocks and runtime planning no 
       "3-6 additional Math/Science",
       "PHYS 121",
       "PHYS 122",
+      "ENGL 131",
       "MATH 208",
     ]
   );
   assert.equal(checklistCoverage.length <= runtimeCourseList.length, true);
 });
 
-test("Seattle Computer Engineering source-backed required-course summary stays aligned with the quarter planner", () => {
+test("Seattle Computer Engineering requirement choices omit UW-only options without Green River equivalents", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    includeStayAtGrcCourses: true,
+  });
+  const eeChoiceGroup = collectVisibleOptionGroupsForTitleAudit(suggestedPlan).find(
+    (group) =>
+      group.id === "uw-seattle-computer-engineering:requirement-group:ee-205-or-ee-215"
+  );
+
+  assert.ok(eeChoiceGroup, "Expected the EE 205 / EE 215 requirement choice group.");
+  assert.deepEqual(eeChoiceGroup.options.map((option) => option.id), [
+    "uw-seattle-computer-engineering:requirement-option:ee-215",
+  ]);
+  assert.deepEqual(eeChoiceGroup.options.flatMap((option) => option.courseLabels), [
+    "ENGR& 204",
+  ]);
+  assert.deepEqual(eeChoiceGroup.selectedOptionIds, [
+    "uw-seattle-computer-engineering:requirement-option:ee-215",
+  ]);
+  assert.equal(
+    eeChoiceGroup.options.some((option) =>
+      [option.id, option.label, option.selectedLabel, ...option.courseLabels]
+        .join(" ")
+        .includes("EE 205")
+    ),
+    false
+  );
+  assert.equal(
+    eeChoiceGroup.options.some((option) =>
+      /No current Green River equivalent/i.test(option.guidanceSummary ?? "")
+    ),
+    false
+  );
+});
+
+test("Seattle Computer Engineering credit choice remainder option reflects selected credits", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  const optionGroupId =
+    "uw-seattle-computer-engineering:requirement-group:approved-natural-science-10-credits";
+  const placeholderOptionId =
+    "uw-seattle-computer-engineering:requirement-option:approved-natural-science-placeholder";
+  const chem142OptionId =
+    "uw-seattle-computer-engineering:requirement-option:approved-natural-science-chem-142";
+
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {
+      [optionGroupId]: [chem142OptionId],
+    },
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+  });
+  const optionGroup = collectVisibleOptionGroupsForTitleAudit(suggestedPlan).find(
+    (group) => group.id === optionGroupId
+  );
+  const placeholderOption = optionGroup?.options.find(
+    (option) => option.id === placeholderOptionId
+  );
+  const relatedCourses = suggestedPlan
+    .flatMap((quarter) => quarter.courses)
+    .filter(
+      (course) =>
+        course.optionGroup?.id === optionGroupId ||
+        course.sourceRequirementGroupId === optionGroupId
+    );
+
+  assert.ok(optionGroup, "Expected the approved natural science requirement choice group.");
+  assert.ok(placeholderOption, "Expected the approved natural science placeholder option.");
+  assert.equal(optionGroup.displayedCreditProgress, "6/10");
+  assert.equal(
+    placeholderOption.label,
+    "4 credits of approved Computer Engineering Natural Science"
+  );
+  assert.equal(placeholderOption.creditAmount, 4);
+  assert.equal(placeholderOption.creditMin, 4);
+  assert.equal(placeholderOption.creditMax, 4);
+  assert.equal(
+    relatedCourses.some(
+      (course) =>
+        course.label === "4 credits of approved Computer Engineering Natural Science remaining" &&
+        course.creditAmount === 4
+    ),
+    true
+  );
+});
+
+test("Seattle Computer Engineering required-course summary stays aligned with the quarter planner", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
 
   assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
@@ -909,7 +1008,7 @@ test("Seattle Computer Engineering source-backed required-course summary stays a
     assert.equal(
       plannedCourseCodes.has(courseCode),
       true,
-      `Expected the suggested quarter plan to include ${courseCode} because it appears in the source-backed required-course summary.`
+      `Expected the suggested quarter plan to include ${courseCode} because it appears in the required-course summary.`
     );
   }
 });
@@ -960,6 +1059,50 @@ test("Seattle Computer Engineering selected CSE 143 path schedules CS 145 with l
   assert.equal(cs141?.courseRole, "local_grc_prerequisite");
   assert.equal(programmingAudit?.satisfiedBy, "user-selected");
   assert.equal(programmingAudit?.issue, null);
+});
+
+test("Planner schedules available gen-ed rows into the current quarter when no current courses are selected", () => {
+  const track = {
+    id: "test-current-quarter-gen-ed-placeholders",
+    code: "TEST",
+    title: "Test current-quarter gen-ed placeholders",
+    summary: "Synthetic placeholder-only track for current-quarter scheduling tests.",
+    bestFor: ["testing"],
+    terms: [
+      {
+        label: "Year 1 Fall",
+        courses: ["Humanities", "Humanities", "Humanities"],
+      },
+    ],
+    notes: [],
+  };
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    plannerCollegeId: "grc",
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-04-23T12:00:00.000Z"),
+  });
+  const spring2026Quarter = quarterPlan.find((quarter) => quarter.label === "Spring 2026");
+  const fall2026Quarter = quarterPlan.find((quarter) => quarter.label === "Fall 2026");
+
+  assert.equal(spring2026Quarter?.phase, "planned");
+  assert.deepEqual(
+    spring2026Quarter?.courses.map((course) => course.label),
+    [
+      "5 credits of Humanities",
+      "5 credits of Humanities",
+      "5 credits of Humanities",
+    ]
+  );
+  assert.equal(
+    fall2026Quarter?.courses.some((course) => course.label === "5 credits of Humanities") ?? false,
+    false
+  );
 });
 
 test("Manual current-course selections stay per-course while still unlocking future planner sequencing", () => {
@@ -1058,7 +1201,7 @@ test("Seattle Computer Engineering manual current MATH& 141 selection does not r
   assert.equal(fall2026Labels.includes("CS 121:planned"), true);
 });
 
-test("UW-only planning keeps representative source-backed required-course summaries aligned", () => {
+test("UW-only planning keeps representative required-course summaries aligned", () => {
   const representativePlanIds = [
     "uw-seattle-aquatic-conservation-and-ecology",
     "uw-seattle-american-ethnic-studies",
@@ -1090,7 +1233,7 @@ test("UW-only planning keeps representative source-backed required-course summar
       assert.equal(
         plannedCourseCodes.has(courseCode),
         true,
-        `Expected ${planId} UW-only planning to keep ${courseCode} because it appears in the source-backed required-course summary.`
+        `Expected ${planId} UW-only planning to keep ${courseCode} because it appears in the required-course summary.`
       );
     }
   }
@@ -1514,7 +1657,7 @@ test("Planner-tracked Green River courses now expose annual-schedule availabilit
   assert.equal(Object.hasOwn(catalogOnlyAvailability, "note"), false);
 });
 
-test.skip("Phase 7 planning graph derives prerequisite paths from source-backed course metadata", () => {
+test.skip("Phase 7 planning graph derives prerequisite paths from course metadata", () => {
   const graph = buildTransferPlannerCoursePlanningGraph({
     plan: null,
     actionableCourseCodes: ["MATH& 153", "MATH& 163", "MATH& 254", "MATH 238", "MATH 240"],
@@ -2037,7 +2180,7 @@ test("Quarter-plan synthesis gives Seattle Mechanical Engineering structured run
   );
 });
 
-test("Seattle Mechanical Engineering transfer-only planning includes source-backed GRC enrollment rows in prerequisite order", () => {
+test("Seattle Mechanical Engineering transfer-only planning includes GRC enrollment rows in prerequisite order", () => {
   const { resolvedPlan, suggestedPlan, plannedLabels } =
     buildSeattleMechanicalSuggestedPlanForTest();
   const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(resolvedPlan);
@@ -2138,7 +2281,7 @@ test("Seattle Mechanical Engineering transfer-only planning includes source-back
   );
 });
 
-test("Seattle Bioengineering transfer-only planning includes source-backed lower-division GRC rows and gen-ed targets", () => {
+test("Seattle Bioengineering transfer-only planning includes lower-division GRC rows and gen-ed targets", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-bioengineering");
   assert.ok(runtimePlan, "Expected runtime Seattle Bioengineering plan.");
 
@@ -2257,28 +2400,29 @@ test("Seattle Bioengineering transfer-only planning includes source-backed lower
   );
   assert.match(
     auditByRequirement.get("STAT 311, STAT 390, IND E 315, or Q SCI 381")?.hiddenReason ?? "",
-    /No source-backed Green River equivalent/
+    /No Green River equivalent/
   );
   assert.match(
     auditByRequirement.get("STAT 311, STAT 390, IND E 315, or Q SCI 381")
       ?.copyOnlyDebugText ?? "",
-    /^\[copy-only source-backed requirement audit\]/
+    /^\[copy-only requirement audit\]/
   );
 
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(resolvedPlan), {
     ahCredits: 10,
     sscCredits: 10,
-    nscCredits: null,
+    nscCredits: 40,
     breadthCredits: 4,
     electiveCredits: 8,
   });
   const genEdSection = buildSourceBackedMajorGeneralEducationRequirementSection(resolvedPlan);
-  assert.ok(genEdSection, "Expected Bioengineering source-backed Gen-Ed section.");
+  assert.ok(genEdSection, "Expected Bioengineering Gen-Ed section.");
   assert.deepEqual(
     genEdSection.items.map((item) => `${item.label}: ${item.valueText}`),
     [
       "Arts & Humanities: 10 credits",
       "Social Sciences: 10 credits",
+      "Natural Sciences: 40 credits",
       "Additional Arts & Humanities / Social Sciences: 4 credits",
       "Diversity: 3 credits",
       "Additional Areas of Inquiry: 8 credits",
@@ -2592,7 +2736,7 @@ test("Seattle Civil Engineering transfer-only planning includes CHEM 152 and kee
   assert.match(
     auditByRequirement.get("Statistics: IND E 315, QSCI 381, STAT 290, or STAT 390")
       ?.hiddenUnmappedReason ?? "",
-    /No source-backed Green River equivalent/
+    /No Green River equivalent/
   );
 });
 
@@ -2832,7 +2976,7 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
   );
   assert.ok(businessPlan, "Expected the SBSE Business Option runtime plan.");
   const parsedSbseBaseCourseCodes = new Set(
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY
       .filter(
         (block) =>
           block.planId === "uw-seattle-sustainable-bioresource-systems-engineering" &&
@@ -3034,7 +3178,7 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
       (entry) =>
         entry.course === "PHYS& 221" &&
         entry.currentSbseSourceBacked &&
-        /current SBSE source-backed requirement/i.test(entry.reason)
+        /current SBSE requirement/i.test(entry.reason)
     )
   );
   assert.ok(
@@ -3380,7 +3524,7 @@ test("SBSE computation/data science options satisfy from completed CS 122 withou
   assert.equal(
     businessPlan.requirementGroups?.some((group) => group.id.endsWith(":cse-123-or-cse-143")),
     false,
-    "Expected the narrow CSE 123/CSE 143 group to be replaced by the source-backed broad option group."
+    "Expected the narrow CSE 123/CSE 143 group to be replaced by the broad option group."
   );
 
   const acceptedUwCodes = new Set(

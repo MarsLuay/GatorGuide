@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { Ionicons } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
 import { useGlobalSearchParams, usePathname, useSegments } from "expo-router";
@@ -21,7 +21,7 @@ import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import {
   TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
-  TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/constants/planner-storage";
 import { aiService } from "@/services/ai/ai.service";
@@ -336,6 +336,23 @@ type RecentWebLoadError = {
   as: string | null;
 };
 
+type WebFontFaceDiagnosticSource = {
+  family?: unknown;
+  status?: unknown;
+  style?: unknown;
+  weight?: unknown;
+};
+
+type WebFontFaceSetDiagnosticSource = {
+  check?: (font: string) => boolean;
+  size?: unknown;
+  status?: unknown;
+  [Symbol.iterator]?: () => Iterator<WebFontFaceDiagnosticSource>;
+};
+
+type IterableWebFontFaceSetDiagnosticSource = WebFontFaceSetDiagnosticSource &
+  Iterable<WebFontFaceDiagnosticSource>;
+
 const recentWebLoadErrors: RecentWebLoadError[] = [];
 
 function isRTL(language: string) {
@@ -434,6 +451,12 @@ function roundMetric(value: unknown) {
   return Math.round(value * 100) / 100;
 }
 
+function hasFontFaceIterator(
+  fontSet: WebFontFaceSetDiagnosticSource | undefined
+): fontSet is IterableWebFontFaceSetDiagnosticSource {
+  return !!fontSet && typeof fontSet[Symbol.iterator] === "function";
+}
+
 function getWebIconFontDiagnostics() {
   if (typeof document === "undefined") {
     return {
@@ -449,7 +472,7 @@ function getWebIconFontDiagnostics() {
     };
   }
 
-  const fontSet = (document as Document & { fonts?: any }).fonts;
+  const fontSet = (document as Document & { fonts?: WebFontFaceSetDiagnosticSource }).fonts;
   const checks = ICON_FONT_FAMILIES.map((family) => {
     if (!fontSet || typeof fontSet.check !== "function") {
       return { family, available: null };
@@ -462,9 +485,9 @@ function getWebIconFontDiagnostics() {
   });
 
   const matchingFaces =
-    fontSet && typeof fontSet[Symbol.iterator] === "function"
+    hasFontFaceIterator(fontSet)
       ? Array.from(fontSet)
-          .map((face: any) => ({
+          .map((face) => ({
             family:
               typeof face?.family === "string"
                 ? face.family.replace(/^["']|["']$/g, "")
@@ -632,7 +655,7 @@ export function UniversalDevMode() {
     const englishTranslationKeys = Object.keys(translations.English).sort((left, right) =>
       left.localeCompare(right)
     );
-    const asyncStorageKeys = await AsyncStorage.getAllKeys().catch(() => []);
+    const asyncStorageKeys = await localStorageService.getAllKeys().catch(() => []);
     const autoClearEnabled = await cacheManagerService.getAutoClearEnabled().catch(() => null);
     const notificationPermissionStatus = await notificationsService
       .getPermissionStatus()
@@ -874,7 +897,7 @@ export function UniversalDevMode() {
         userTranscriptUrlLength: state.user?.transcript ? state.user.transcript.length : null,
         storedTranscriptSource:
           String(
-            state.questionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD] ?? ""
+            state.questionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_FIELD] ?? ""
           ).trim() || null,
         storedTranscriptUploadedAt:
           String(

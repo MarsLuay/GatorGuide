@@ -41,21 +41,27 @@ jobs:
       - name: Ensure local env file exists
         shell: pwsh
         run: |
-          if (!(Test-Path ".env") -and (Test-Path "env.example")) {
-            Copy-Item "env.example" ".env"
+          if (!(Test-Path ".env") -and (Test-Path ".env.example")) {
+            Copy-Item ".env.example" ".env"
           }
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Check repo health
+        run: npm run health:repo
+
+      - name: Run app checks
+        run: npm run check
+
+      - name: Audit touch targets
+        run: npm run qa:touch-targets
+
+      - name: Audit app production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
       - name: Install Playwright Chromium
         run: npx playwright install chromium
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Typecheck
-        run: npx tsc --noEmit
 
       - name: Run Windows QA harness
         run: npm run qa:windows:ci
@@ -70,3 +76,87 @@ jobs:
             source/.tools/qa-results-*/**
             source/.tools/qa-web/**
           if-no-files-found: warn
+
+  firebase-rules:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: source/package-lock.json
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Firebase rules tests
+        run: npm run test:firebase-rules
+
+  functions:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source/functions
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: source/functions/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint Functions
+        run: npm run lint
+
+      - name: Test Functions
+        run: npm test
+
+      - name: Audit Functions production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+  planner-safe-gates:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: source
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: source/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run planner harness tests
+        run: npm run planner:test:harness
+
+      - name: Run safe planner pipeline gates
+        run: npm run planner:validate:safe -- pipeline

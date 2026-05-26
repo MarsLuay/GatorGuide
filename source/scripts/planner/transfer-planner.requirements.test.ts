@@ -217,7 +217,7 @@ import {
   TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
 } from "./transfer-planner.test-support";
 import type {
   TranscriptCourseEntry,
@@ -824,7 +824,7 @@ test("Seattle ISE and MSE expose deeper degree-map data from the latest extracti
 });
 
 test("Master-generated partial majors also materialize a Green River course list", () => {
-  const sourceGeneratedFallbackPlan = TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS[0] ?? null;
+  const sourceGeneratedFallbackPlan = TRANSFER_PLANNER_GENERATED_MAJOR_PLANS[0] ?? null;
   const candidatePlan = generatedPlan ?? sourceGeneratedFallbackPlan;
   assert.ok(candidatePlan, "Expected at least one source-generated planner row.");
 
@@ -1098,7 +1098,7 @@ test("Seattle art sibling-choice families now recover the art-history track with
   );
   assert.ok(
     artHistoryCreditBucket,
-    "Expected Seattle Art to preserve the source-backed art-history credit bucket instead of flattening it away."
+    "Expected Seattle Art to preserve the art-history credit bucket instead of flattening it away."
   );
   assert.deepEqual(artHistoryCreditBucket?.grcCourses, []);
 
@@ -1108,7 +1108,7 @@ test("Seattle art sibling-choice families now recover the art-history track with
   assert.equal(
     artHistoryBuckets.length,
     4,
-    "Expected Seattle Art History to preserve each source-backed ART H credit bucket."
+    "Expected Seattle Art History to preserve each ART H credit bucket."
   );
   assert.ok(
     artHistoryBuckets.every((item) => item.grcCourses.length === 0),
@@ -1144,7 +1144,7 @@ test("Seattle Asian Languages preserves language and approved-list credit bucket
   const primaryLanguageBucket = creditBuckets.find((group) =>
     /15 credits Primary Language/i.test(group.label)
   );
-  assert.ok(primaryLanguageBucket, "Expected the source-backed 15-credit primary language bucket.");
+  assert.ok(primaryLanguageBucket, "Expected the 15-credit primary language bucket.");
   assert.equal(primaryLanguageBucket?.options.length, 0);
 
   const approvedCourseBucket = creditBuckets.find((group) =>
@@ -2492,7 +2492,7 @@ test("Materials NME breadth renders the shared A&H/SSc/DIV bucket without invent
   assert.ok(nmePlan, "Expected the Materials NME source plan.");
 
   const section = buildSourceBackedMajorGeneralEducationRequirementSection(nmePlan);
-  assert.ok(section, "Expected Materials NME source-backed gen-ed summary items.");
+  assert.ok(section, "Expected Materials NME gen-ed summary items.");
 
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(nmePlan), {
     ahCredits: 10,
@@ -2584,7 +2584,7 @@ test("Materials NME planning does not duplicate official breadth with matched-tr
         course.optionGroup?.title ?? ""
       )
     ),
-    "Expected unresolved source-backed option prompts instead of auto-filled breadth rows."
+    "Expected unresolved option prompts instead of auto-filled breadth rows."
   );
   assert.equal(
     ahSscPlaceholderCourses.some((course) =>
@@ -2656,13 +2656,13 @@ test("Materials NME planning separates UW-major rows from official AST-2 track r
   assert.equal(cs122?.sourceKind, "uw-major-requirement");
   assert.doesNotMatch(
     cs122?.guidanceSummary ?? "",
-    /Source-backed UW Materials Science & Engineering/i
+    /UW Materials Science & Engineering/i
   );
   assert.doesNotMatch(cs122?.guidanceSummary ?? "", /Official Green River AST-2/i);
   assert.equal(engr140?.sourceKind, "uw-major-requirement");
   assert.doesNotMatch(
     engr140?.guidanceSummary ?? "",
-    /Source-backed UW Materials Science & Engineering/i
+    /UW Materials Science & Engineering/i
   );
 
   assert.equal(math141?.sourceKind, "official-grc-track");
@@ -2989,7 +2989,7 @@ test("Materials NME filler placeholders are not labeled as official AST-2 track 
   );
   assert.ok(
     plannedCourses.some((course) => /Science Electives/i.test(course.optionGroup?.title ?? "")),
-    "Expected the unresolved source-backed Science Electives option group to remain visible."
+    "Expected the unresolved Science Electives option group to remain visible."
   );
 });
 
@@ -3016,11 +3016,11 @@ test("Computer Engineering planning gets the same UW-major versus official GRC t
 
   assert.equal(cs121?.sourceKind, "official-grc-track");
   assert.equal(cs121?.courseRole, "local_grc_prerequisite");
-  assert.doesNotMatch(cs121?.guidanceSummary ?? "", /Source-backed UW Computer Engineering/i);
+  assert.doesNotMatch(cs121?.guidanceSummary ?? "", /UW Computer Engineering/i);
   assert.equal(cs123?.sourceKind, "uw-major-requirement");
-  assert.match(cs123?.guidanceSummary ?? "", /Source-backed UW Computer Engineering/i);
+  assert.match(cs123?.guidanceSummary ?? "", /UW Computer Engineering/i);
   assert.equal(phys221?.sourceKind, "uw-major-requirement");
-  assert.match(phys221?.guidanceSummary ?? "", /Source-backed UW Computer Engineering/i);
+  assert.match(phys221?.guidanceSummary ?? "", /UW Computer Engineering/i);
   assert.equal(math141?.sourceKind, "official-grc-track");
   assert.doesNotMatch(math141?.guidanceSummary ?? "", /Official Green River AST-2\/MRP/i);
 });
@@ -3093,7 +3093,7 @@ test("Bothell Applied Computing category-first breadth lines recover separate A&
     breadthCredits: null,
     electiveCredits: null,
   });
-  assert.ok(section, "Expected Applied Computing source-backed gen-ed summary items.");
+  assert.ok(section, "Expected Applied Computing gen-ed summary items.");
   assert.deepEqual(
     section?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
     [
@@ -3188,6 +3188,39 @@ test("Seattle Mechanical Engineering expands A&H/SSc reach-total gen-ed text int
       "Diversity: 5 credits (May also apply to an Area of Inquiry requirement.)",
     ]
   );
+});
+
+test("UW-only schedules do not materialize campus fallback NSc buckets as UW major rows", () => {
+  for (const planId of [
+    "uw-seattle-aeronautics-astronautics",
+    "uw-seattle-computer-engineering",
+    "uw-seattle-electrical-computer-engineering",
+    "uw-seattle-mechanical-engineering",
+  ]) {
+    const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(planId);
+    assert.ok(runtimePlan, `Expected ${planId} runtime plan.`);
+
+    const quarterPlan = buildSuggestedQuarterPlan({
+      plan: runtimePlan,
+      ...buildStatuses(runtimePlan, []),
+      completedCourses: [],
+      track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+      includeStayAtGrcCourses: false,
+      includeStemPrepCourses: false,
+      includeSummerQuarter: false,
+      referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    });
+    const scheduledMajorBreadthLabels = quarterPlan
+      .flatMap((quarter) => quarter.courses)
+      .filter((course) => course.sourceKind === "uw-major-breadth")
+      .map((course) => course.label);
+
+    assert.equal(
+      scheduledMajorBreadthLabels.some((label) => /Natural Sciences/i.test(label)),
+      false,
+      `${planId} should not schedule College of Engineering 40+ NSc fallback placeholders in UW-only mode.`
+    );
+  }
 });
 
 test("Seattle Jewish Studies uses college-level gen-ed targets without using 300-400-level elective prose", () => {
@@ -3594,7 +3627,7 @@ test("Generic UW transfer milestone stays hidden for engineering and capacity-co
 
   assert.equal(csDecision.allowed, false);
   assert.equal(csDecision.majorSpecificAdmissionMetadataFound, true);
-  assert.match(csDecision.reason, /source-backed major guidance/);
+  assert.match(csDecision.reason, /major guidance/);
   assert.equal(csSummary, null);
 
   const nursingRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-nursing");
@@ -3623,7 +3656,7 @@ test("Generic UW transfer milestone stays hidden for engineering and capacity-co
 
   assert.equal(businessDecision.allowed, false);
   assert.equal(businessDecision.majorSpecificAdmissionMetadataFound, true);
-  assert.match(businessDecision.reason, /source-backed major guidance/);
+  assert.match(businessDecision.reason, /major guidance/);
 });
 
 test("Seattle American Ethnic Studies now keeps official transfer policy separate from major-specific and planner-guidance layers", () => {
@@ -4882,7 +4915,7 @@ test("Seattle CS Data Science option keeps ACS track breadth generic and out of 
   assert.ok(dataScienceSourceBlock?.parsedUwCourseCodes.includes("CSE 143"));
   assert.ok(
     dataScienceApprovedScienceSupportLists.length > 0,
-    "Expected CS Data Science to inherit source-backed CS approved-science support metadata."
+    "Expected CS Data Science to inherit CS approved-science support metadata."
   );
   assert.ok(
     dataScienceApprovedScienceSupportLists.every(

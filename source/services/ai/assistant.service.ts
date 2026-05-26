@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorageService } from "@/services/storage/local-storage.service";
 
 import { isStubMode } from '@/services/app/config';
 import { errorLoggingService } from '@/services/logging/error-logging.service';
@@ -269,7 +269,7 @@ export class AiAssistantService {
       };
 
       try {
-        const raw = await AsyncStorage.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
+        const raw = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
         const map = raw ? JSON.parse(raw) as Record<string, ChatAssistantResponse> : {};
         map[cacheSignature] = payload;
         const MAX_CACHED_RESPONSES = 50;
@@ -280,7 +280,7 @@ export class AiAssistantService {
           const [oldKey] = entries.shift()!;
           delete map[oldKey];
         }
-        await AsyncStorage.setItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY, JSON.stringify(map));
+        await localStorageService.setItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY, JSON.stringify(map));
       } catch (cacheError) {
         void errorLoggingService.captureException(cacheError, {
           category: 'ai',
@@ -298,7 +298,7 @@ export class AiAssistantService {
       }
 
       try {
-        await AsyncStorage.setItem(AI_LAST_ASSISTANT_RESPONSE_KEY, JSON.stringify(payload));
+        await localStorageService.setItem(AI_LAST_ASSISTANT_RESPONSE_KEY, JSON.stringify(payload));
       } catch (cacheError) {
         void errorLoggingService.captureException(cacheError, {
           category: 'ai',
@@ -324,7 +324,7 @@ export class AiAssistantService {
       };
 
       try {
-        const raw = await AsyncStorage.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
+        const raw = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
         const map = raw ? JSON.parse(raw) as Record<string, ChatAssistantResponse> : {};
         const cached = map && map[cacheSignature];
         if (cached?.message) {
@@ -363,7 +363,7 @@ export class AiAssistantService {
       }
 
       try {
-        const rawLast = await AsyncStorage.getItem(AI_LAST_ASSISTANT_RESPONSE_KEY);
+        const rawLast = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_KEY);
         if (rawLast) {
           const parsed = JSON.parse(rawLast) as ChatAssistantResponse;
           if (parsed?.message) {
@@ -449,7 +449,7 @@ export class AiAssistantService {
       // Cache by request signature so stale replies from other prompts are not reused.
       const sig = this.makeCacheSignature(message, serializedContext);
       try {
-        const raw = await AsyncStorage.getItem(AI_LAST_RESPONSE_MAP_KEY);
+        const raw = await localStorageService.getItem(AI_LAST_RESPONSE_MAP_KEY);
         const map = raw ? JSON.parse(raw) as Record<string, ChatMessage> : {};
         map[sig] = payload;
         // cap the map size to keep only the most recent N entries
@@ -461,7 +461,7 @@ export class AiAssistantService {
           const [oldKey] = entries.shift()!;
           delete map[oldKey];
         }
-        await AsyncStorage.setItem(AI_LAST_RESPONSE_MAP_KEY, JSON.stringify(map));
+        await localStorageService.setItem(AI_LAST_RESPONSE_MAP_KEY, JSON.stringify(map));
       } catch (cacheError) {
         void errorLoggingService.captureException(cacheError, {
           category: 'ai',
@@ -479,7 +479,7 @@ export class AiAssistantService {
 
       // Keep a global fallback response for offline/error recovery.
       try {
-        await AsyncStorage.setItem(AI_LAST_RESPONSE_KEY, JSON.stringify(payload));
+        await localStorageService.setItem(AI_LAST_RESPONSE_KEY, JSON.stringify(payload));
       } catch (cacheError) {
         void errorLoggingService.captureException(cacheError, {
           category: 'ai',
@@ -502,7 +502,7 @@ export class AiAssistantService {
       };
       const sig = this.makeCacheSignature(message, serializedContext);
       try {
-        const raw = await AsyncStorage.getItem(AI_LAST_RESPONSE_MAP_KEY);
+        const raw = await localStorageService.getItem(AI_LAST_RESPONSE_MAP_KEY);
         const map = raw ? JSON.parse(raw) as Record<string, ChatMessage> : {};
         const cached = map && map[sig];
         if (cached) {
@@ -534,7 +534,7 @@ export class AiAssistantService {
       }
 
       try {
-        const rawLast = await AsyncStorage.getItem(AI_LAST_RESPONSE_KEY);
+        const rawLast = await localStorageService.getItem(AI_LAST_RESPONSE_KEY);
         if (rawLast) {
           const parsed = JSON.parse(rawLast) as ChatMessage;
           void errorLoggingService.captureException(error, {

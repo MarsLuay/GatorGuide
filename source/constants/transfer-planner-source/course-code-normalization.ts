@@ -1,12 +1,15 @@
-import { TRANSFER_PLANNER_GENERATED_COURSE_METADATA } from "./course-metadata.generated";
+import { getTransferPlannerGeneratedCourseSubjectCodes } from "./course-metadata.generated";
 
-const KNOWN_TRANSFER_PLANNER_SUBJECT_CODES = new Set(
-  TRANSFER_PLANNER_GENERATED_COURSE_METADATA.map((entry) =>
-    String(entry.code ?? "").match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/)
-  )
-    .map((match) => match?.[1] ?? null)
-    .filter((subjectCode): subjectCode is string => Boolean(subjectCode))
-);
+let knownTransferPlannerSubjectCodes: Set<string> | null = null;
+
+function getKnownTransferPlannerSubjectCodes() {
+  if (knownTransferPlannerSubjectCodes) {
+    return knownTransferPlannerSubjectCodes;
+  }
+
+  knownTransferPlannerSubjectCodes = new Set(getTransferPlannerGeneratedCourseSubjectCodes());
+  return knownTransferPlannerSubjectCodes;
+}
 
 const EXPLICIT_SPACED_SUBJECT_ALIASES = new Map<string, string>([
   ["A A", "AA"],
@@ -48,8 +51,8 @@ export function normalizeTransferPlannerCourseCode(value: string) {
     const candidateSpacedSubject = candidateTokens.join(" ");
     const candidateCollapsedSubject = candidateTokens.join("");
     if (
-      KNOWN_TRANSFER_PLANNER_SUBJECT_CODES.has(candidateSpacedSubject) ||
-      KNOWN_TRANSFER_PLANNER_SUBJECT_CODES.has(candidateCollapsedSubject)
+      getKnownTransferPlannerSubjectCodes().has(candidateSpacedSubject) ||
+      getKnownTransferPlannerSubjectCodes().has(candidateCollapsedSubject)
     ) {
       subjectTokens = candidateTokens;
       continue;
@@ -67,8 +70,8 @@ export function normalizeTransferPlannerCourseCode(value: string) {
   const normalizedSubject =
     subjectTokens.every((token) => token.length === 1) ||
     (subjectTokens.length > 1 &&
-      KNOWN_TRANSFER_PLANNER_SUBJECT_CODES.has(collapsedSubject) &&
-      !KNOWN_TRANSFER_PLANNER_SUBJECT_CODES.has(spacedSubject))
+      getKnownTransferPlannerSubjectCodes().has(collapsedSubject) &&
+      !getKnownTransferPlannerSubjectCodes().has(spacedSubject))
       ? collapsedSubject
       : spacedSubject;
 

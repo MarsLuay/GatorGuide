@@ -1,6 +1,15 @@
+/* global __dirname */
 const assert = require("assert/strict");
 const fs = require("fs");
 const path = require("path");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValues,
+  getPlannerTmpPath,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -12,9 +21,11 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  TRANSFER_PLANNER_MANIFEST_REGISTRY,
   TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY,
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
+  getTransferPlannerStudentRuntimeMajorPlan,
+  getTransferPlannerStudentRuntimePathwaysForPlan,
 } = require("../../constants/transfer-planner-source");
 const {
   analyzeOwner,
@@ -24,17 +35,18 @@ const {
   scoreCandidate,
 } = require("./discover-transfer-planner-primary-sources.cjs");
 const {
-  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
+  TRANSFER_PLANNER_PRIMARY_PROMOTIONS,
 } = require("../../constants/transfer-planner-source/primary-source-promotions.generated");
 const {
-  TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
+  TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS,
 } = require("../../constants/transfer-planner-source/source-fingerprints.generated");
 const {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS,
 } = require("../../constants/transfer-planner-source/requirement-source-adapters.generated");
 const {
   buildTransferPlannerOwnerId,
   normalizeTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
 const {
   isSuspiciousStructuralPathwayId,
@@ -46,26 +58,20 @@ const {
 const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require("../../constants/transfer-planner-source/student-runtime");
+const {
+  shouldSkipTransferPlannerAutoPromotedPrimarySource,
+} = require("../../constants/transfer-planner-source/manual-source-link-overrides");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const DISCOVERY_REPORT_PATH = path.resolve(TMP_DIR, "transfer-planner-primary-source-discovery.json");
-const REVIEW_QUEUE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-review-queue.json"
-);
-const PROMOTION_REPORT_PATH = path.resolve(TMP_DIR, "transfer-planner-primary-source-promotions.json");
-const SOURCE_GAP_REPORT_PATH = path.resolve(TMP_DIR, "transfer-planner-source-gaps.json");
-const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-requirement-source-parse-report.json"
-);
-const SOURCE_FINGERPRINT_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-fingerprints.json"
-);
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-source-pipeline-validation.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-source-pipeline-validation.md");
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const DISCOVERY_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const REVIEW_QUEUE_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-review-queue.json");
+const PROMOTION_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-promotions.json");
+const GAP_REPORT_PATH = getPlannerTmpPath("transfer-planner-source-gaps.json");
+const REQUIREMENT_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
+const FINGERPRINT_REPORT_PATH = getPlannerTmpPath("transfer-planner-source-fingerprints.json");
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-source-pipeline-validation.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-source-pipeline-validation.md");
 
 const PARSEABLE_PARSER_TYPES = new Set([
   "html-degree-page",
@@ -77,6 +83,8 @@ const PARSEABLE_PARSER_TYPES = new Set([
   "pdf-worksheet",
   "generic-pdf",
 ]);
+const CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN =
+  /\b(advising|adviser|advisor|study abroad|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 
 function readJson(filePath, label) {
   if (!fs.existsSync(filePath)) {
@@ -86,12 +94,15 @@ function readJson(filePath, label) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
-function ensureDir(directoryPath) {
-  fs.mkdirSync(directoryPath, { recursive: true });
-}
-
 function uniqueSorted(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((left, right) => left.localeCompare(right));
+}
+
+function parseTargetPlanIdsFromArgs() {
+  return uniqueSorted([
+    ...getArgValues(["--target-plan-id", "--plan-id"]),
+    ...getArgValues("--target-plan-ids").flatMap((value) => value.split(",")),
+  ].map((value) => String(value ?? "").trim()));
 }
 
 function buildOwnerId(planId, pathwayId) {
@@ -164,9 +175,47 @@ function canParsedRequirementSourceBlockCreateRequiredScheduleRows(block) {
   ].includes(String(block.sourceRole ?? ""));
 }
 
+function slugifyPathwayId(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getParserBackedReviewOwnerKeysFromLabels(block) {
+  if (!block?.planId || !Array.isArray(block.pathwayLabels)) {
+    return [];
+  }
+
+  const keys = new Set();
+  for (const label of block.pathwayLabels) {
+    const normalizedPathwayId = normalizeTransferPlannerPathwayId(
+      block.planId,
+      slugifyPathwayId(label)
+    );
+    if (!normalizedPathwayId) {
+      continue;
+    }
+
+    const ownerId = buildTransferPlannerOwnerId(block.planId, normalizedPathwayId);
+    const ownerKey = normalizeTransferPlannerOwnerId(
+      ownerId,
+      block.planId,
+      normalizedPathwayId
+    );
+    if (ACTIVE_PATHWAY_OWNER_KEYS.has(ownerKey)) {
+      keys.add(ownerKey);
+    }
+  }
+
+  return [...keys];
+}
+
 function buildParserBackedReviewOwnerKeys() {
   const keys = new Set();
-  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []) {
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS ?? []) {
     if (!block?.ok || !block.planId || !canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
       continue;
     }
@@ -180,6 +229,9 @@ function buildParserBackedReviewOwnerKeys() {
           block.pathwayId
         )
       );
+    }
+    for (const ownerKey of getParserBackedReviewOwnerKeysFromLabels(block)) {
+      keys.add(ownerKey);
     }
   }
 
@@ -200,23 +252,104 @@ function isInactivePathwayReviewOwner(owner) {
   return !ACTIVE_PATHWAY_OWNER_KEYS.has(buildOwnerKey(owner));
 }
 
+function normalizeAliasMatchText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function parseDerivedOptionAliasTitle(title) {
+  const normalizedTitle = String(title ?? "").trim();
+  const match = normalizedTitle.match(/^(.+?):\s*(.+?)(?:\s+(\([^)]+\)))?$/);
+  if (!match) {
+    return null;
+  }
+
+  const parentBaseTitle = String(match[1] ?? "").trim();
+  const optionTitle = String(match[2] ?? "").trim();
+  const credentialSuffix = String(match[3] ?? "").trim();
+  if (!parentBaseTitle || !optionTitle || !credentialSuffix) {
+    return null;
+  }
+
+  return {
+    parentTitle: `${parentBaseTitle} ${credentialSuffix}`,
+    optionTitle,
+  };
+}
+
+function titlesMatch(left, right) {
+  return normalizeAliasMatchText(left) === normalizeAliasMatchText(right);
+}
+
+function pathwayMatchesOptionAlias(pathway, optionTitle) {
+  const normalizedOptionTitle = normalizeAliasMatchText(optionTitle);
+  const normalizedPathwayText = normalizeAliasMatchText(
+    [pathway?.id, pathway?.label, pathway?.title].filter(Boolean).join(" ")
+  );
+  if (!normalizedOptionTitle || !normalizedPathwayText) {
+    return false;
+  }
+
+  if (normalizedPathwayText.includes(normalizedOptionTitle)) {
+    return true;
+  }
+
+  const optionTokens = normalizedOptionTitle
+    .split(/\s+/)
+    .filter((token) => token && !["option", "route", "track", "degree"].includes(token));
+  return optionTokens.length > 0 && optionTokens.every((token) => normalizedPathwayText.includes(token));
+}
+
+function hasDerivedParentPathwayRuntimeCoverage(owner) {
+  if (owner?.ownerType !== "major") {
+    return false;
+  }
+
+  const aliasTitle = parseDerivedOptionAliasTitle(owner.title);
+  if (!aliasTitle) {
+    return false;
+  }
+
+  const campusId = String(owner.campusId ?? "").trim();
+  const parentPlans = (TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? []).filter(
+    (plan) =>
+      (!campusId || String(plan?.campusId ?? "").trim() === campusId) &&
+      titlesMatch(plan?.title, aliasTitle.parentTitle)
+  );
+
+  for (const parentPlan of parentPlans) {
+    const parentRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(parentPlan.id);
+    if (!parentRuntimePlan) {
+      continue;
+    }
+
+    const parentPathways = getTransferPlannerStudentRuntimePathwaysForPlan(parentRuntimePlan);
+    if (parentPathways.some((pathway) => pathwayMatchesOptionAlias(pathway, aliasTitle.optionTitle))) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function hasStudentRuntimeAliasCoverage(owner) {
   if (!owner?.planId) {
     return false;
   }
 
-  return Boolean(
-    getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)
+  return (
+    Boolean(getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)) ||
+    hasDerivedParentPathwayRuntimeCoverage(owner)
   );
 }
 
-function getDiscoveryReportTargetPlanId(discoveryReport) {
-  return discoveryReport?.targetPlanId ?? null;
-}
-
-function getValidationScopedDiscoveryOwners(discoveryReport, fieldName) {
+function getValidationScopedDiscoveryOwners(discoveryReport, fieldName, targetPlanId = null) {
   const owners = discoveryReport?.[fieldName] ?? [];
-  const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
   if (!targetPlanId) {
     return owners;
   }
@@ -224,8 +357,8 @@ function getValidationScopedDiscoveryOwners(discoveryReport, fieldName) {
   return owners.filter((owner) => owner?.planId === targetPlanId);
 }
 
-function getValidationScopedDiscoveryOwnerCount(discoveryReport) {
-  return getValidationScopedDiscoveryOwners(discoveryReport, "owners").length;
+function getValidationScopedDiscoveryOwnerCount(discoveryReport, targetPlanId = null) {
+  return getValidationScopedDiscoveryOwners(discoveryReport, "owners", targetPlanId).length;
 }
 
 function isSchedulablePrimarySuggestion(candidate) {
@@ -240,8 +373,8 @@ function isSchedulablePrimarySuggestion(candidate) {
   );
 }
 
-const SOURCE_GENERATED_PLANS_BY_ID = new Map(
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
+const GENERATED_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
 );
 
 function normalizePromotionUrlForComparison(value) {
@@ -278,7 +411,7 @@ function getSingleSpecializedPlanOfficialUrl(plan) {
 
 function suggestedPrimaryMatchesSpecializedPlanSource(owner) {
   const officialUrl = getSingleSpecializedPlanOfficialUrl(
-    SOURCE_GENERATED_PLANS_BY_ID.get(owner?.planId)
+    GENERATED_PLANS_BY_ID.get(owner?.planId)
   );
   if (!officialUrl) {
     return true;
@@ -299,7 +432,7 @@ function normalizeCatalogCredentialMajorName(value) {
 }
 
 function getPromotionPlanBaseTitle(entry) {
-  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  const planTitle = GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
   return String(planTitle)
     .split(/\s+-\s+/u)[0]
     .replace(/\([^)]*\)/g, " ")
@@ -307,8 +440,26 @@ function getPromotionPlanBaseTitle(entry) {
     .trim();
 }
 
+const PROMOTION_PLAN_TITLE_ALIASES_BY_PLAN_ID = new Map([
+  ["uw-seattle-european-studies", ["International Studies: Europe"]],
+]);
+
+function getPromotionPlanComparableTitles(entry) {
+  return [
+    getPromotionPlanBaseTitle(entry),
+    ...(PROMOTION_PLAN_TITLE_ALIASES_BY_PLAN_ID.get(entry?.planId) ?? []),
+  ]
+    .map(normalizeCatalogCredentialMajorName)
+    .filter(Boolean);
+}
+
 function extractCatalogCredentialMajorName(label) {
   const match = String(label ?? "").match(/\bmajor\s+in\s+([^:()]+?)(?::|$)/i);
+  return match ? match[1].trim() : null;
+}
+
+function extractCatalogProgramMajorName(label) {
+  const match = String(label ?? "").match(/^Program of Study:\s*Major:\s*(.+)$/i);
   return match ? match[1].trim() : null;
 }
 
@@ -324,8 +475,63 @@ function isCatalogCredentialPromotionForDifferentMajor(entry) {
   const candidateMajor = normalizeCatalogCredentialMajorName(
     extractCatalogCredentialMajorName(entry?.label)
   );
-  const targetMajor = normalizeCatalogCredentialMajorName(getPromotionPlanBaseTitle(entry));
-  return Boolean(candidateMajor && targetMajor && candidateMajor !== targetMajor);
+  const targetMajors = getPromotionPlanComparableTitles(entry);
+  return Boolean(candidateMajor && targetMajors.length && !targetMajors.includes(candidateMajor));
+}
+
+function isCatalogProgramPromotionEntry(entry) {
+  return /#program-/i.test(String(entry?.url ?? "")) &&
+    /^Program of Study:\s*Major:/i.test(String(entry?.label ?? ""));
+}
+
+function isCatalogProgramPromotionForDifferentMajor(entry) {
+  if (!isCatalogProgramPromotionEntry(entry)) {
+    return false;
+  }
+
+  const candidateMajor = normalizeCatalogCredentialMajorName(
+    extractCatalogProgramMajorName(entry?.label)
+  );
+  const targetMajors = getPromotionPlanComparableTitles(entry);
+  return Boolean(candidateMajor && targetMajors.length && !targetMajors.includes(candidateMajor));
+}
+
+function isLikelyCatalogProgramTitleLabel(label) {
+  const normalized = normalizeCatalogCredentialMajorName(label);
+  if (!normalized) {
+    return false;
+  }
+
+  const tokens = normalized.split(/\s+/).filter(Boolean);
+  return (
+    tokens.length >= 2 &&
+    tokens.length <= 6 &&
+    !/\b(requirements?|options?|routes?|degree|scoped|section|home|program|credential)\b/i.test(
+      String(label ?? "")
+    )
+  );
+}
+
+function isCatalogProgramPagePromotionForDifferentMajor(entry) {
+  if (!/\/students\/gencat\/program\//i.test(String(entry?.url ?? ""))) {
+    return false;
+  }
+  if (!isLikelyCatalogProgramTitleLabel(entry?.label)) {
+    return false;
+  }
+
+  const candidateMajor = normalizeCatalogCredentialMajorName(entry?.label);
+  const targetMajors = getPromotionPlanComparableTitles(entry);
+  return Boolean(
+    candidateMajor &&
+      targetMajors.length &&
+      !targetMajors.some(
+        (targetMajor) =>
+          targetMajor === candidateMajor ||
+          targetMajor.includes(candidateMajor) ||
+          candidateMajor.includes(targetMajor)
+      )
+  );
 }
 
 function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
@@ -333,12 +539,68 @@ function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
     return false;
   }
 
-  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  const planTitle = GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
   return !String(planTitle ?? "").includes(":") && /\bmajor\s+in\s+[^:()]+:\s*\S/i.test(String(entry?.label ?? ""));
 }
 
 function hasDocumentUrlWithAppendedPath(entry) {
   return /\.(?:pdf|docx?)(?:\/|%2f)[^?#]/i.test(String(entry?.url ?? ""));
+}
+
+function isMinorCredentialPromotionForMajorOwner(entry) {
+  if (entry?.ownerType !== "major" || entry?.pathwayId) {
+    return false;
+  }
+  return /#(?:credential|program)-/i.test(String(entry?.url ?? "")) && /\bminor\b/i.test(String(entry?.label ?? ""));
+}
+
+function getBaBsDegreeKind(...values) {
+  const searchable = values
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  if (/\b(?:b\s*a|ba|bachelor\s+of\s+arts)\b/.test(searchable)) {
+    return "ba";
+  }
+  if (/\b(?:b\s*s|bs|bachelor\s+of\s+science)\b/.test(searchable)) {
+    return "bs";
+  }
+  return null;
+}
+
+function pathwayHasExplicitBaBsDegreeRoute(pathway) {
+  const text = `${pathway?.id ?? ""} ${pathway?.label ?? ""}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  return /\b(?:ba|bs|bachelor of arts|bachelor of science)\s+route\b/.test(text) ||
+    /\bbachelor of (?:arts|science)\b/.test(text) ||
+    /\b(?:ba|bs)\s+option\b/.test(text) ||
+    /^(?:ba|bs|bachelor of arts|bachelor of science)$/.test(text.trim());
+}
+
+function planHasExplicitBaBsPathwayRoutes(planId) {
+  return Boolean(
+    GENERATED_PLANS_BY_ID.get(planId)?.pathways?.some(pathwayHasExplicitBaBsDegreeRoute)
+  );
+}
+
+function isBaBsRoutePromotionForBroadMajorOwner(entry) {
+  return (
+    entry?.ownerType === "major" &&
+    !entry?.pathwayId &&
+    planHasExplicitBaBsPathwayRoutes(entry?.planId) &&
+    getBaBsDegreeKind(entry?.label, entry?.url) !== null
+  );
+}
+
+function isSkipNavigationPromotionEntry(entry) {
+  const text = `${entry?.label ?? ""} ${entry?.url ?? ""}`.toLowerCase();
+  return /\bskip\s+to\s+(?:main\s+)?content\b/.test(text) || /#content(?:$|[?&])/i.test(String(entry?.url ?? ""));
+}
+
+function isClearlySupportOnlyPromotionEntry(entry) {
+  return CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN.test(`${entry?.label ?? ""} ${entry?.url ?? ""}`);
 }
 
 function isSuspiciousStructuralPathwayPromotionEntry(entry) {
@@ -353,10 +615,25 @@ function isSuspiciousStructuralPathwayPromotionEntry(entry) {
   );
 }
 
+function isManualOverrideSkippedPromotionEntry(entry) {
+  return shouldSkipTransferPlannerAutoPromotedPrimarySource(
+    entry?.planId,
+    entry?.pathwayId ?? null,
+    entry?.url
+  );
+}
+
 function isUnsafeAutomaticPromotionEntry(entry) {
-  return isCatalogCredentialPromotionForDifferentMajor(entry) ||
+  return isClearlySupportOnlyPromotionEntry(entry) ||
+    isMinorCredentialPromotionForMajorOwner(entry) ||
+    isBaBsRoutePromotionForBroadMajorOwner(entry) ||
+    isCatalogCredentialPromotionForDifferentMajor(entry) ||
+    isCatalogProgramPromotionForDifferentMajor(entry) ||
+    isCatalogProgramPagePromotionForDifferentMajor(entry) ||
     isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
     isSuspiciousStructuralPathwayPromotionEntry(entry) ||
+    isSkipNavigationPromotionEntry(entry) ||
+    isManualOverrideSkippedPromotionEntry(entry) ||
     hasDocumentUrlWithAppendedPath(entry);
 }
 
@@ -410,9 +687,13 @@ function getMissingPrimaryAutoPromotionBlockReason(owner) {
   return null;
 }
 
-function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue) {
+function getEligibleMissingPrimaryAutoPromotionOwners(
+  discoveryReport,
+  reviewQueue,
+  targetPlanId = null
+) {
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
-  return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
+  return getValidationScopedDiscoveryOwners(discoveryReport, "owners", targetPlanId)
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
@@ -427,9 +708,13 @@ function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQue
     }));
 }
 
-function getBlockedMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue) {
+function getBlockedMissingPrimaryAutoPromotionOwners(
+  discoveryReport,
+  reviewQueue,
+  targetPlanId = null
+) {
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
-  return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
+  return getValidationScopedDiscoveryOwners(discoveryReport, "owners", targetPlanId)
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .filter((owner) => !reviewOwnerKeys.has(buildOwnerKey(owner)))
@@ -443,9 +728,13 @@ function getBlockedMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueu
     .filter((owner) => owner.blockReason);
 }
 
-function getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue = null) {
+function getEligibleWeakExistingReplacementOwners(
+  discoveryReport,
+  reviewQueue = null,
+  targetPlanId = null
+) {
   const reviewOwnerKeys = reviewQueue ? buildReviewOwnerKeySet(reviewQueue) : new Set();
-  return getValidationScopedDiscoveryOwners(discoveryReport, "weakExistingOwners")
+  return getValidationScopedDiscoveryOwners(discoveryReport, "weakExistingOwners", targetPlanId)
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
     .filter((owner) => !hasStudentRuntimeAliasCoverage(owner))
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
@@ -464,10 +753,10 @@ function getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue =
 
 }
 
-function getEligibleAutoPromotionOwners(discoveryReport, reviewQueue) {
+function getEligibleAutoPromotionOwners(discoveryReport, reviewQueue, targetPlanId = null) {
   return uniqueByOwnerId([
-    ...getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue),
-    ...getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue),
+    ...getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue, targetPlanId),
+    ...getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue, targetPlanId),
   ]).sort((left, right) =>
     left.ownerId.localeCompare(right.ownerId)
   );
@@ -479,7 +768,7 @@ function uniqueByOwnerId(entries) {
 
 function buildPrimaryManifestOwnerMap() {
   return new Map(
-    TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
       (entry) =>
         (entry.ownerType === "major" || entry.ownerType === "pathway") &&
         entry.campusId &&
@@ -491,7 +780,7 @@ function buildPrimaryManifestOwnerMap() {
 
 function buildParseablePrimaryManifestOwnerMap() {
   return new Map(
-    TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
       (entry) =>
         (entry.ownerType === "major" || entry.ownerType === "pathway") &&
         entry.campusId &&
@@ -857,8 +1146,8 @@ function escapeMarkdown(value) {
 }
 
 function writeReports(report) {
-  ensureDir(TMP_DIR);
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  ensurePlannerTmpLayout();
+  writePlannerJsonReport(OUTPUT_JSON_PATH, report);
 
   const lines = [
     "# Transfer Planner Source Pipeline Validation",
@@ -868,6 +1157,7 @@ function writeReports(report) {
     `- Outcome: ${report.outcome}`,
     `- Passed checks: ${report.passedCount}`,
     `- Failed checks: ${report.failedCount}`,
+    `- Validation target: ${report.metrics.validationTargetPlanId ?? "all owners"}`,
     `- Eligible auto-promotions from discovery: ${report.metrics.eligibleAutoPromotionOwnerCount}`,
     `- Weak existing primaries re-evaluated: ${report.metrics.weakExistingOwnerCount}`,
     `- High-confidence replacements: ${report.metrics.highConfidenceReplacementOwnerCount}`,
@@ -887,34 +1177,50 @@ function writeReports(report) {
     "",
   ];
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 async function main() {
+  const requestedTargetPlanIds = parseTargetPlanIdsFromArgs();
+  if (requestedTargetPlanIds.length > 1) {
+    throw new Error(
+      `Source pipeline validation supports one target plan at a time; received ${requestedTargetPlanIds.join(", ")}.`
+    );
+  }
+  const validationTargetPlanId = requestedTargetPlanIds[0] ?? null;
   const discoveryReport = readJson(DISCOVERY_REPORT_PATH, "primary-source discovery report");
   const reviewQueue = readJson(REVIEW_QUEUE_REPORT_PATH, "primary-source review queue");
   const promotionReport = readJson(PROMOTION_REPORT_PATH, "primary-source promotion report");
-  const sourceGapReport = readJson(SOURCE_GAP_REPORT_PATH, "source-gap report");
+  const sourceGapReport = readJson(GAP_REPORT_PATH, "source-gap report");
   const requirementParseReport = readJson(
     REQUIREMENT_PARSE_REPORT_PATH,
     "requirement source parse report"
   );
   const sourceFingerprintReport = readJson(
-    SOURCE_FINGERPRINT_REPORT_PATH,
+    FINGERPRINT_REPORT_PATH,
     "source fingerprint report"
   );
 
-  const eligibleAutoPromotionOwners = getEligibleAutoPromotionOwners(discoveryReport, reviewQueue);
+  const eligibleAutoPromotionOwners = getEligibleAutoPromotionOwners(
+    discoveryReport,
+    reviewQueue,
+    validationTargetPlanId
+  );
   const eligibleMissingPrimaryAutoPromotionOwners = getEligibleMissingPrimaryAutoPromotionOwners(
     discoveryReport,
-    reviewQueue
+    reviewQueue,
+    validationTargetPlanId
   );
   const blockedMissingPrimaryAutoPromotionOwners = getBlockedMissingPrimaryAutoPromotionOwners(
     discoveryReport,
-    reviewQueue
+    reviewQueue,
+    validationTargetPlanId
   );
-  const eligibleWeakExistingReplacementOwners =
-    getEligibleWeakExistingReplacementOwners(discoveryReport, reviewQueue);
+  const eligibleWeakExistingReplacementOwners = getEligibleWeakExistingReplacementOwners(
+    discoveryReport,
+    reviewQueue,
+    validationTargetPlanId
+  );
   const eligibleAutoPromotionOwnerIds = new Set(
     eligibleAutoPromotionOwners.map((owner) => owner.ownerId)
   );
@@ -922,15 +1228,15 @@ async function main() {
     eligibleAutoPromotionOwners.map((owner) => owner.ownerKey)
   );
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
-  const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
+  const targetPlanId = validationTargetPlanId;
   const validationScopedDiscoveryOwnerKeys = new Set(
-    getValidationScopedDiscoveryOwners(discoveryReport, "owners").map((owner) =>
+    getValidationScopedDiscoveryOwners(discoveryReport, "owners", targetPlanId).map((owner) =>
       buildOwnerKey(owner)
     )
   );
   const parserBackedReviewOwnerKeys = buildParserBackedReviewOwnerKeys();
   const validationScopedSourceGapDiscoveryOwnerKeys = new Set(
-    getValidationScopedDiscoveryOwners(discoveryReport, "owners")
+    getValidationScopedDiscoveryOwners(discoveryReport, "owners", targetPlanId)
       .filter((owner) => !parserBackedReviewOwnerKeys.has(buildOwnerKey(owner)))
       .filter((owner) => !isStructuralPlaceholderReviewOwner(owner))
       .filter((owner) => !isInactivePathwayReviewOwner(owner))
@@ -958,10 +1264,10 @@ async function main() {
     validationScopedSourceGapEntries.map((entry) => buildOwnerKey(entry))
   );
   const promotedOwnerIds = new Set(
-    (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)
+    (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []).map((entry) => entry.ownerId)
   );
   const promotedOwnerKeys = new Set(
-    (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerKey)
+    (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []).map((entry) => entry.ownerKey)
   );
   const primaryManifestOwners = buildPrimaryManifestOwnerMap();
   const parseablePrimaryManifestOwners = buildParseablePrimaryManifestOwnerMap();
@@ -974,15 +1280,15 @@ async function main() {
     (requirementParseReport.owners ?? []).flatMap(buildReportPlanSourceKeys)
   );
   const generatedParsedRequirementSourceKeys = new Set(
-    (TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []).flatMap(buildReportParseKeys)
+    (TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS ?? []).flatMap(buildReportParseKeys)
   );
   const generatedParsedRequirementPlanSourceKeys = new Set(
-    (TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []).flatMap(buildReportPlanSourceKeys)
+    (TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS ?? []).flatMap(buildReportPlanSourceKeys)
   );
   const requirementFingerprintOwnerIds = new Set(
-    (TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS ?? []).map((entry) => entry.ownerId)
+    (TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS ?? []).map((entry) => entry.ownerId)
   );
-  const promotedSourceEntries = TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? [];
+  const promotedSourceEntries = TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? [];
   const missingPromotedParsedOwners = promotedSourceEntries.filter(
     (entry) => !parsedOwnerIds.has(entry.ownerId)
   );
@@ -1053,7 +1359,7 @@ async function main() {
       () => {
         assert.equal(
           promotionReport.totalPromotions,
-          TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.length,
+          TRANSFER_PLANNER_PRIMARY_PROMOTIONS.length,
           "Promotion report count should match the generated promotion registry."
         );
         return `Promoted owners: ${promotionReport.totalPromotions}`;
@@ -1063,9 +1369,8 @@ async function main() {
       "eligible-discoveries-promoted",
       "Eligible high-confidence discoveries are promoted unless they remain in the review queue",
       () => {
-        const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
         if (targetPlanId) {
-          return `Skipped canonical promotion check for target-scoped discovery report: ${targetPlanId}`;
+          return `Skipped canonical promotion check for requested target plan: ${targetPlanId}`;
         }
 
         const missingPromotions = eligibleAutoPromotionOwners.filter(
@@ -1099,11 +1404,11 @@ async function main() {
       "promotions-materialized-in-canonical-registry",
       "Auto-promoted owners are materialized in the canonical primary-source registry",
       () => {
-        const missingCanonicalPrimaryEntries = (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).filter(
+        const missingCanonicalPrimaryEntries = (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []).filter(
           (entry) => !primaryManifestOwners.has(entry.ownerId)
         );
         const promotionReviewIntersection = uniqueSorted(
-          (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? [])
+          (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? [])
             .filter((entry) => {
               if (!reviewOwnerKeys.has(entry.ownerKey)) {
                 return false;
@@ -1117,7 +1422,7 @@ async function main() {
             .map((entry) => entry.ownerId)
         );
         const promotionGapIntersection = uniqueSorted(
-          (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? [])
+          (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? [])
             .filter((entry) => sourceGapOwnerKeys.has(entry.ownerKey))
             .map((entry) => entry.ownerId)
         );
@@ -1141,7 +1446,7 @@ async function main() {
           `Promoted owners should not remain hidden as source gaps: ${promotionGapIntersection.join(", ")}`
         );
         return [
-          `Promoted owners: ${TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.length}`,
+          `Promoted owners: ${TRANSFER_PLANNER_PRIMARY_PROMOTIONS.length}`,
           `Canonical primary owners: ${primaryManifestOwners.size}`,
         ];
       }
@@ -1207,7 +1512,7 @@ async function main() {
           `Parseable requirement sources: ${parseableRequirementSourceEntries.length}`,
           `Canonical parseable owner/source keys: ${canonicalParseableSourceKeyCount}`,
           `Parsed source blocks: ${requirementParseReport.totalOwners}`,
-          `Generated parsed source blocks: ${TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.length}`,
+          `Generated parsed source blocks: ${TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS.length}`,
           `Exact parser/registry source delta: registry-only=${parserOutputDiff.leftOnly.length}, parsed-only=${parserOutputDiff.rightOnly.length}`,
         ];
       }
@@ -1232,7 +1537,7 @@ async function main() {
             .slice(0, 12)
             .join(", ")}`
         );
-        return `Promoted owners verified end-to-end: ${TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.length}`;
+        return `Promoted owners verified end-to-end: ${TRANSFER_PLANNER_PRIMARY_PROMOTIONS.length}`;
       }
     ),
     runCheck(
@@ -1712,6 +2017,7 @@ async function main() {
     passedCount: checks.length - failedChecks.length,
     failedCount: failedChecks.length,
     metrics: {
+      validationTargetPlanId,
       eligibleAutoPromotionOwnerCount: eligibleAutoPromotionOwnerIds.size,
       eligibleAutoPromotionOwnerIds: [...eligibleAutoPromotionOwnerIds].sort(),
       eligibleAutoPromotionOwnerKeys: [...eligibleAutoPromotionOwnerKeys].sort(),

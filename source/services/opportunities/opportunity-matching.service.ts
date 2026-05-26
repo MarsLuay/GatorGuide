@@ -1,12 +1,14 @@
 import type { User, QuestionnaireAnswers } from "@/hooks/use-app-data";
 import {
   type Opportunity,
+  type OpportunityCommunityTag,
   type UserOpportunityStatus,
   type OpportunityFinancialAidTag,
   type OpportunityProgressState,
   isOpportunityDoneForCurrentCycle,
   normalizeMajorTag,
   normalizeResidencyTag,
+  OPPORTUNITY_COMMUNITY_TAGS,
   OPPORTUNITY_FINANCIAL_AID_TAGS,
   OPPORTUNITY_DEADLINE_TYPES,
   OPPORTUNITY_PROGRESS_STATES,
@@ -149,6 +151,20 @@ function getFinancialAidMatchTags(input: MatchInput): OpportunityFinancialAidTag
   return uniqueStrings(tags) as OpportunityFinancialAidTag[];
 }
 
+function getCommunityMatchTags(input: MatchInput): OpportunityCommunityTag[] {
+  const rawLgbtqAnswer = String(
+    input.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.lgbtqCommunity] ?? ""
+  )
+    .trim()
+    .toLowerCase();
+
+  if (rawLgbtqAnswer === "yes") {
+    return [OPPORTUNITY_COMMUNITY_TAGS.lgbtq];
+  }
+
+  return [];
+}
+
 function isDeadlineOpportunityType(type: Opportunity["type"]) {
   return (
     type === OPPORTUNITY_TYPES.collegeDeadline ||
@@ -164,9 +180,12 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
   const status = input.statusById[opportunity.opportunityId];
   const progress = resolveOpportunityProgress(opportunity, status ?? null);
   const isDone = isOpportunityDoneForCurrentCycle(opportunity, status ?? null);
-  const userMajor = normalizeMajorTag(input.user?.major);
+  const userMajor = normalizeMajorTag(
+    input.user?.major || input.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.major]
+  );
   const userGpa = parseUserGpa(input);
   const userResidency = getUserResidency(input);
+  const communityTags = getCommunityMatchTags(input);
   const suggestedMajors = opportunity.matching.suggestedMajors.map(normalizeMajorTag);
   const dueDate = resolveOpportunityDueDate(opportunity);
   const greenRiverEnrollmentBucket =
@@ -230,6 +249,21 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
   if (opportunity.eligibility.transferOnly) {
     score += 8;
     matchReasons.push("Transfer fit");
+  }
+
+  if (opportunity.eligibility.communityTags.length) {
+    const hasCommunityMatch = opportunity.eligibility.communityTags.some((tag) =>
+      communityTags.includes(tag as OpportunityCommunityTag)
+    );
+    if (!hasCommunityMatch) {
+      return null;
+    }
+    score += 20;
+    if (opportunity.eligibility.communityTags.includes(OPPORTUNITY_COMMUNITY_TAGS.lgbtq)) {
+      matchReasons.push("LGBTQ+ scholarship fit");
+    } else {
+      matchReasons.push("Community eligibility fit");
+    }
   }
 
   if (opportunity.matching.hasToBeMajor) {

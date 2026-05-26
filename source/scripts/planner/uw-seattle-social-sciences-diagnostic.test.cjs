@@ -297,7 +297,7 @@ const PARSER_EXPECTATIONS = [
   },
 ];
 
-const SOURCE_SCOPE_LEAKAGE_EXPECTATIONS = [
+const SCOPE_LEAKAGE_EXPECTATIONS = [
   {
     owner: "Anthropology",
     planId: "uw-seattle-anthropology",
@@ -381,7 +381,7 @@ for (const fixture of PARSER_EXPECTATIONS) {
   });
 }
 
-for (const fixture of SOURCE_SCOPE_LEAKAGE_EXPECTATIONS) {
+for (const fixture of SCOPE_LEAKAGE_EXPECTATIONS) {
   test(`diagnostic: ${fixture.owner} undergraduate planner excludes sibling graduate requirements`, () => {
     assertExcludesAll(
       getParsedUwCourseCodes(fixture.planId),

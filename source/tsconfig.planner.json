@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "constants/**/*.ts",
+    "components/transfer-planner/**/*.ts",
+    "services/planning/**/*.ts",
+    "scripts/lib/**/*.ts",
+    "scripts/planner/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".tmp",
+    ".tools",
+    "functions"
+  ]
+}

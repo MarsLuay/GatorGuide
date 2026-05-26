@@ -17,6 +17,12 @@ import {
   roadmapService,
   type UserRoadmapDocument,
 } from "@/services/planning/roadmap.service";
+import {
+  clamp,
+  formatGroupDate,
+  formatMonthTitle,
+  formatRelativeDate,
+} from "@/components/pages/deadline-calendar/deadline-calendar-view-utils";
 
 const LANGUAGE_TO_LOCALE: Record<Language, string> = {
   English: "en-US",
@@ -39,10 +45,6 @@ const LANGUAGE_TO_LOCALE: Record<Language, string> = {
 
 type Translate = (key: string, params?: Record<string, string | number>) => string;
 
-function clamp(value: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, value));
-}
-
 function getMonthStart(date: Date) {
   return new Date(date.getFullYear(), date.getMonth(), 1);
 }
@@ -63,67 +65,6 @@ function isDateKeyInMonth(dateKey: string, month: Date) {
 
 function getLocalDateKey(date: Date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-}
-
-function formatMonthTitle(value: Date, locale: string) {
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      month: "long",
-      year: "numeric",
-    }).format(value);
-  } catch {
-    return value.toDateString();
-  }
-}
-
-function formatGroupDate(value: string, locale: string) {
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return value;
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      weekday: "short",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(parsed);
-  } catch {
-    return parsed.toDateString();
-  }
-}
-
-function formatRelativeDate(value: string, locale: string) {
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return "";
-
-  const today = new Date();
-  const startToday = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
-  const startTarget = new Date(
-    parsed.getFullYear(),
-    parsed.getMonth(),
-    parsed.getDate()
-  );
-  const diffDays = Math.round(
-    (startTarget.getTime() - startToday.getTime()) / (1000 * 60 * 60 * 24)
-  );
-
-  if (diffDays < -14 || diffDays > 14) return "";
-
-  try {
-    return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
-      diffDays,
-      "day"
-    );
-  } catch {
-    if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "Tomorrow";
-    if (diffDays === -1) return "Yesterday";
-    if (diffDays > 1) return `In ${diffDays} days`;
-    return `${Math.abs(diffDays)} days ago`;
-  }
 }
 
 function buildWeekdayLabels(locale: string, wide: boolean) {
@@ -553,7 +494,7 @@ export function useDeadlineCalendarController({
       : fallbackUpcomingGroups.length
         ? t("deadlineCalendar.upcomingDeadlines")
         : fallbackHistoricalGroups.length
-          ? "Past deadlines"
+          ? t("deadlineCalendar.pastDeadlines")
           : t("deadlineCalendar.upcomingDeadlines");
 
   const selectedItemLabel =
@@ -594,7 +535,7 @@ export function useDeadlineCalendarController({
         : t("deadlineCalendar.noDatedItemsMessage");
 
   const focusPreviewItems = focusGroup?.items.slice(0, layout.focusPreviewCount) ?? [];
-  const focusRelativeLabel = focusGroup ? formatRelativeDate(focusGroup.dueAt, locale) : "";
+  const focusRelativeLabel = focusGroup ? formatRelativeDate(focusGroup.dueAt, locale, t) : "";
   const focusSummary = focusGroup
     ? selectedGroup
       ? t("deadlineCalendar.selectedDateSummary", {

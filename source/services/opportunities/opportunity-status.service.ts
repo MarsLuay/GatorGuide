@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import {
   collection,
   doc,
@@ -18,11 +18,13 @@ import {
 import {
   FIRESTORE_COLLECTIONS,
   FIRESTORE_USER_SUBCOLLECTIONS,
-  getOpportunityPendingStorageKey,
-  getOpportunityStatusesStorageKey,
-  STORAGE_KEYS,
 } from "@/constants/schema";
 import { db } from "@/services/firebase/firebase";
+import {
+  GUEST_OPPORTUNITY_USER_KEY,
+  getOpportunityPendingStorageKey,
+  getOpportunityStatusesStorageKey,
+} from "@/services/storage/local-storage-contracts";
 
 export type OpportunityStatusMap = Record<string, UserOpportunityStatus>;
 
@@ -31,7 +33,7 @@ type PendingOpportunityStatusMutation = {
   status: UserOpportunityStatus;
 };
 
-const GUEST_USER_KEY = "guest";
+const GUEST_USER_KEY = GUEST_OPPORTUNITY_USER_KEY;
 
 function compareClientUpdatedAt(
   left: Pick<UserOpportunityStatus, "clientUpdatedAt"> | null | undefined,
@@ -48,20 +50,16 @@ class OpportunityStatusService {
   }
 
   private getStatusesStorageKey(userKey: string) {
-    return userKey === GUEST_USER_KEY
-      ? STORAGE_KEYS.opportunitiesGuestStatuses
-      : getOpportunityStatusesStorageKey(userKey);
+    return getOpportunityStatusesStorageKey(userKey);
   }
 
   private getPendingStorageKey(userKey: string) {
-    return userKey === GUEST_USER_KEY
-      ? STORAGE_KEYS.opportunitiesGuestPending
-      : getOpportunityPendingStorageKey(userKey);
+    return getOpportunityPendingStorageKey(userKey);
   }
 
   async readLocalStatuses(userKey: string): Promise<OpportunityStatusMap> {
     try {
-      const raw = await AsyncStorage.getItem(this.getStatusesStorageKey(userKey));
+      const raw = await localStorageService.getItem(this.getStatusesStorageKey(userKey));
       if (!raw) return {};
       const parsed = JSON.parse(raw) as OpportunityStatusMap;
       const entries = Object.entries(parsed ?? {}).map(([opportunityId, status]) => [
@@ -75,14 +73,14 @@ class OpportunityStatusService {
   }
 
   async writeLocalStatuses(userKey: string, statuses: OpportunityStatusMap) {
-    await AsyncStorage.setItem(
+    await localStorageService.setItem(
       this.getStatusesStorageKey(userKey),
       JSON.stringify(statuses)
     );
   }
 
   async clearLocalStatuses(userKey: string) {
-    await AsyncStorage.removeItem(this.getStatusesStorageKey(userKey));
+    await localStorageService.removeItem(this.getStatusesStorageKey(userKey));
   }
 
   private reducePendingMutations(mutations: PendingOpportunityStatusMutation[]) {
@@ -104,7 +102,7 @@ class OpportunityStatusService {
 
   async readPendingMutations(userKey: string) {
     try {
-      const raw = await AsyncStorage.getItem(this.getPendingStorageKey(userKey));
+      const raw = await localStorageService.getItem(this.getPendingStorageKey(userKey));
       if (!raw) return [];
       const parsed = JSON.parse(raw) as PendingOpportunityStatusMutation[];
       return this.reducePendingMutations(Array.isArray(parsed) ? parsed : []);
@@ -120,10 +118,10 @@ class OpportunityStatusService {
     const reduced = this.reducePendingMutations(mutations);
     const storageKey = this.getPendingStorageKey(userKey);
     if (!reduced.length) {
-      await AsyncStorage.removeItem(storageKey);
+      await localStorageService.removeItem(storageKey);
       return;
     }
-    await AsyncStorage.setItem(storageKey, JSON.stringify(reduced));
+    await localStorageService.setItem(storageKey, JSON.stringify(reduced));
   }
 
   async queueStatusMutation(userKey: string, status: UserOpportunityStatus) {
@@ -144,7 +142,7 @@ class OpportunityStatusService {
   }
 
   async clearPendingMutations(userKey: string) {
-    await AsyncStorage.removeItem(this.getPendingStorageKey(userKey));
+    await localStorageService.removeItem(this.getPendingStorageKey(userKey));
   }
 
   mergeStatusMaps(

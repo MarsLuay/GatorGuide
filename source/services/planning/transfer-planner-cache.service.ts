@@ -1,4 +1,8 @@
 import type { ParsedTranscriptCourse } from "@/services/documents/transcript-pdf.service";
+import {
+  normalizeQuestionnaireAnswers,
+  type QuestionnaireAnswers,
+} from "@/services/app/questionnaire.enums";
 import type { UploadedFile } from "@/services/storage/storage.service";
 import {
   TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
@@ -6,12 +10,12 @@ import {
   TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_EARNED_CREDITS_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD,
-  TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/constants/planner-storage";
 
 export const TRANSCRIPT_COURSES_FIELD = TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD;
-export const TRANSCRIPT_SOURCE_FIELD = TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD;
+export const TRANSCRIPT_FIELD = TRANSFER_PLANNER_TRANSCRIPT_FIELD;
 export const TRANSCRIPT_UPLOADED_AT_FIELD =
   TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD;
 export const TRANSCRIPT_PARSER_VERSION_FIELD =
@@ -319,11 +323,9 @@ export function estimateTransferPlannerTranscriptCurrentCredits(
 }
 
 export function clearTransferPlannerTranscriptCache(
-  questionnaireAnswers: Record<string, unknown> | null | undefined
+  questionnaireAnswers: QuestionnaireAnswers | Record<string, unknown> | null | undefined
 ) {
-  const nextQuestionnaireAnswers: Record<string, unknown> = {
-    ...(questionnaireAnswers ?? {}),
-  };
+  const nextQuestionnaireAnswers = normalizeQuestionnaireAnswers(questionnaireAnswers);
 
   delete nextQuestionnaireAnswers[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
 
@@ -352,7 +354,7 @@ export function buildTransferPlannerTranscriptCachePatch(
     [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: completedCourses.map(
       (course) => course.label
     ),
-    [TRANSCRIPT_SOURCE_FIELD]: document.url,
+    [TRANSCRIPT_FIELD]: document.url,
     [TRANSCRIPT_PARSER_VERSION_FIELD]: TRANSCRIPT_PARSER_VERSION,
     [TRANSCRIPT_UPLOADED_AT_FIELD]: document.uploadedAt || new Date().toISOString(),
     [TRANSCRIPT_EARNED_CREDITS_FIELD]:

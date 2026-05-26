@@ -44,7 +44,7 @@ const COMPUTER_SCIENCE_APPROVED_SCIENCE_GENERATED_FILTER =
       definition.filterId === COMPUTER_SCIENCE_APPROVED_SCIENCE_FILTER_ID
   );
 
-export const COMPUTER_SCIENCE_APPROVED_SCIENCE_SOURCE_URL =
+export const COMPUTER_SCIENCE_APPROVED_SCIENCE_URL =
   COMPUTER_SCIENCE_APPROVED_SCIENCE_GENERATED_FILTER?.officialSourceUrl ??
   "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science";
 

@@ -9,7 +9,7 @@ const auditOwners = [
     ],
     knownMismatchSummary: [
       "CSE 143/CS 145 is parsed and generated but not student-visible for base CS and the Data Science option.",
-      "SOC 225 is parsed for the Data Science option but has no source-backed Green River mapping.",
+      "SOC 225 is parsed for the Data Science option but has no Green River mapping.",
       "The Data Science option still reports source-scope contamination from the broad Allen natural-science page.",
     ],
   },
@@ -23,7 +23,7 @@ const auditOwners = [
     ],
     knownMismatchSummary: [
       "CSE 143/CS 145 is parsed and generated but not visible in the transfer-only quarter plan.",
-      "EE 205 is parsed from the Fundamentals section but has no source-backed Green River mapping.",
+      "EE 205 is parsed from the Fundamentals section but has no Green River mapping.",
     ],
   },
   {
@@ -61,7 +61,7 @@ const auditOwners = [
     knownMismatchSummary: [
       "ESS 101 is parsed with a known equivalent but is not student-visible.",
       "ESS 106 is parsed in the basic science elective list but has no mapped Green River equivalent.",
-      "The statistics option bucket is parsed but missing source-backed mapping/materialization.",
+      "The statistics option bucket is parsed but missing mapping/materialization.",
     ],
   },
   {
@@ -122,7 +122,7 @@ const auditOwners = [
       "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
     ],
     knownMismatchSummary: [
-      "BIOEN 215 is parsed from the Bioengineering core but has no source-backed Green River mapping.",
+      "BIOEN 215 is parsed from the Bioengineering core but has no Green River mapping.",
     ],
   },
   {

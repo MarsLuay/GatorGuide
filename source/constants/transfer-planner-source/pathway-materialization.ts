@@ -5,7 +5,7 @@ import type {
 } from "../transfer-planner-types";
 import type { TransferPlannerParsedRequirementSourceBlock } from "./schema";
 import { TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS } from "./bootstrap.generated";
-import { TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS } from "./primary-source-promotions.generated";
+import { TRANSFER_PLANNER_PRIMARY_PROMOTIONS } from "./primary-source-promotions.generated";
 import {
   buildTransferPlannerOwnerId,
   normalizeTransferPlannerPathwayId,
@@ -44,7 +44,7 @@ const DERIVED_PATHWAY_SMALL_WORDS = new Set([
   "to",
   "with",
 ]);
-const DERIVED_PATHWAY_SOURCE_LINK_STOPWORDS = new Set([
+const DERIVED_PATHWAY_LINK_STOPWORDS = new Set([
   ...DERIVED_PATHWAY_SMALL_WORDS,
   "arts",
   "ba",
@@ -89,7 +89,7 @@ function buildDerivedPathwaySourceLinkTokens(...values: Array<string | null | un
         )
         .filter(
           (token) =>
-            token.length >= 2 && !DERIVED_PATHWAY_SOURCE_LINK_STOPWORDS.has(token)
+            token.length >= 2 && !DERIVED_PATHWAY_LINK_STOPWORDS.has(token)
         )
     )
   );
@@ -138,6 +138,13 @@ function getDerivedPathwayOfficialLinks(
     return uniqueDerivedPathwaySourceLinks(matchingPathwayLinks);
   }
 
+  const matchingOwnerLinks = officialLinks.filter((link) =>
+    sourceLinkMatchesDerivedPathway(link, pathway)
+  );
+  if (matchingOwnerLinks.length) {
+    return uniqueDerivedPathwaySourceLinks(matchingOwnerLinks);
+  }
+
   return pathwaySpecificLinks.length ? [] : officialLinks;
 }
 const PATHWAY_CHOICE_COUNT_BY_WORD = new Map([
@@ -174,6 +181,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:provides|emphasizes|requires)\b/i,
   /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:is|prepares)\b/i,
   /^if you enrolled\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^if\s+adding\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^and\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:is|prepares)\b/i,
   /^\d+\s+of\s+the\s+\d+\s+credits?\s+required\s+for\s+the\s+(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^\(?\d+\)?\s+second\b.*\blanguage\b.*\bconcentration\b/i,
@@ -431,7 +439,7 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^route-menu-active-trails(?:$|[-:])/i,
   /^route-name-is-layout-builder-ui(?:$|[-:])/i,
 ];
-const DERIVED_PATHWAY_GUIDANCE_SOURCE_LINE_PATTERNS = [
+const DERIVED_PATHWAY_GUIDANCE_LINE_PATTERNS = [
   /\bfor advice on choosing\b/i,
   /\bhelp students acquire and articulate\b/i,
   /\bmay benefit from completing\b/i,
@@ -469,6 +477,7 @@ const DERIVED_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN =
   /\s+[-\u2013\u2014]\s+(?:UW|University of Washington)\b.*$/i;
 const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "track" | "route">> = {
   "uw-tacoma-bachelor-of-arts-in-business-administration": "option",
+  "uw-tacoma-information-technology": "option",
   "uw-tacoma-sustainable-urban-development": "option",
   "uw-tacoma-urban-studies": "option",
   "uw-tacoma-writing-studies": "track",
@@ -483,10 +492,33 @@ const CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN: Partial<
     { id: "management-option", label: "Management option", summary: "" },
     { id: "marketing-option", label: "Marketing option", summary: "" },
   ],
+  "uw-tacoma-criminal-justice": [
+    { id: "campus-pathway", label: "Campus pathway", summary: "" },
+    { id: "online-pathway", label: "Online pathway", summary: "" },
+  ],
   "uw-tacoma-environmental-science": [
     { id: "general-environmental-science-option", label: "General Environmental Science option", summary: "" },
     { id: "conservation-biology-and-ecology-option", label: "Conservation Biology and Ecology option", summary: "" },
     { id: "geoscience-option", label: "Geoscience option", summary: "" },
+  ],
+  "uw-tacoma-history": [
+    { id: "general-history-option", label: "General History option", summary: "" },
+    { id: "arts-culture-and-society-option", label: "Arts, Culture and Society option", summary: "" },
+    { id: "global-history-option", label: "Global History option", summary: "" },
+    { id: "labor-and-social-movements-option", label: "Labor and Social Movements option", summary: "" },
+    { id: "power-gender-and-identity-option", label: "Power, Gender and Identity option", summary: "" },
+  ],
+  "uw-tacoma-information-technology": [
+    {
+      id: "information-assurance-cybersecurity-option",
+      label: "Information Assurance and Cybersecurity option",
+      summary: "",
+    },
+    {
+      id: "digital-mobile-forensics-option",
+      label: "Digital Mobile Forensics option",
+      summary: "",
+    },
   ],
   "uw-tacoma-writing-studies": [
     { id: "creative-writing-track", label: "Creative Writing Track", summary: "" },
@@ -497,6 +529,52 @@ const CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN: Partial<
 const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
   Record<string, Array<{ pattern: RegExp; id: string; label: string }>>
 > = {
+  "uw-seattle-geography": [
+    {
+      pattern:
+        /^(?:cities,?\s*)?citizenship\s+and\s+migration(?:\s+\(?ccm\)?)?(?:\s+track)?$/i,
+      id: "cities-citizenship-and-migration-track",
+      label: "Cities, Citizenship, and Migration track",
+    },
+    {
+      pattern:
+        /^(?:environment,?\s*)?economy\s+and\s+sustainability(?:\s+\(?ees\)?)?(?:\s+track)?$/i,
+      id: "environment-economy-and-sustainability-track",
+      label: "Environment, Economy, and Sustainability track",
+    },
+    {
+      pattern:
+        /^(?:globalization,?\s*)?health\s+and\s+development(?:\s+\(?ghd\)?)?(?:\s+track)?$/i,
+      id: "globalization-health-and-development-track",
+      label: "Globalization, Health, and Development track",
+    },
+    {
+      pattern:
+        /^(?:gis,?\s*)?mapping\s+and\s+society(?:\s+\(?gms\)?)?(?:\s+track)?$/i,
+      id: "gis-mapping-and-society-track",
+      label: "GIS, Mapping, and Society track",
+    },
+    {
+      pattern:
+        /^(?:b\.?\s*a\.?\s+in\s+geography(?::|\s+with)?\s+)?(?:geography\s+major\s+)?data\s+science(?:\s+option)?$/i,
+      id: "geography-major-data-science-option",
+      label: "Geography Major Data Science Option",
+    },
+    {
+      pattern:
+        /^the\s+requirements\s+for\s+geography\s+majors\s+with\s+the\s+option\s+in\s+data\s+science\s+are\s+as\s+follows:?$/i,
+      id: "geography-major-data-science-option",
+      label: "Geography Major Data Science Option",
+    },
+  ],
+  "uw-bothell-educational-studies-elementary-education": [
+    {
+      pattern:
+        /^(?:m\.?\s*ed\.?\s+with\s+)?(?:english\s+to\s+speakers\s+of\s+other\s+languages\s*)?\(?esol\)?\s+concentration$/i,
+      id: "esol-concentration",
+      label: "ESOL Concentration",
+    },
+  ],
   "uw-seattle-english-creative-writing": [
     {
       pattern: /^creative writing$/i,
@@ -557,29 +635,41 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
   ],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [
     {
-      pattern: /^accounting(?: option)?$/i,
+      pattern: /^(?:baba\s+)?accounting(?:\s+baba)?(?: option)?$/i,
       id: "accounting-option",
       label: "Accounting option",
     },
     {
-      pattern: /^finance(?: option)?$/i,
+      pattern: /^(?:baba\s+)?finance(?:\s+baba)?(?: option)?$/i,
       id: "finance-option",
       label: "Finance option",
     },
     {
-      pattern: /^general business(?: option)?$/i,
+      pattern: /^(?:baba\s+)?general business(?:\s+baba)?(?: option)?$/i,
       id: "general-business-option",
       label: "General Business option",
     },
     {
-      pattern: /^management(?: option)?$/i,
+      pattern: /^(?:baba\s+)?management(?:\s+baba)?(?: option)?$/i,
       id: "management-option",
       label: "Management option",
     },
     {
-      pattern: /^marketing(?: option)?$/i,
+      pattern: /^(?:baba\s+)?marketing(?:\s+baba)?(?: option)?$/i,
       id: "marketing-option",
       label: "Marketing option",
+    },
+  ],
+  "uw-tacoma-criminal-justice": [
+    {
+      pattern: /^(?:campus|on[-\s]?campus|in[-\s]?person)(?:\s+(?:pathway|curriculum|route|option))?$/i,
+      id: "campus-pathway",
+      label: "Campus pathway",
+    },
+    {
+      pattern: /^online(?:\s+(?:pathway|curriculum|route|option))?$/i,
+      id: "online-pathway",
+      label: "Online pathway",
     },
   ],
   "uw-tacoma-history": [
@@ -626,7 +716,18 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "Creative Writing Track",
     },
     {
+      pattern: /^to complete a b\.?\s*a\.?\s+in the creative writing track(?: of writing studies)?$/i,
+      id: "creative-writing-track",
+      label: "Creative Writing Track",
+    },
+    {
       pattern: /^technical communication(?: track)?$/i,
+      id: "technical-communication-track",
+      label: "Technical Communication Track",
+    },
+    {
+      pattern:
+        /^to complete a b\.?\s*a\.?\s+in the technical communication track(?: of writing studies)?$/i,
       id: "technical-communication-track",
       label: "Technical Communication Track",
     },
@@ -662,6 +763,19 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "GIS option",
     },
   ],
+  "uw-tacoma-information-technology": [
+    {
+      pattern:
+        /^(?:information assurance(?:\s+(?:and|&)\s+cybersecurity)?|cybersecurity|iac)(?:\s+option)?$/i,
+      id: "information-assurance-cybersecurity-option",
+      label: "Information Assurance and Cybersecurity option",
+    },
+    {
+      pattern: /^(?:digital mobile forensics|mobile forensics|dmf)(?:\s+option)?$/i,
+      id: "digital-mobile-forensics-option",
+      label: "Digital Mobile Forensics option",
+    },
+  ],
 };
 const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, RegExp[]>> = {
   "uw-bothell-chemistry-ba": [
@@ -685,6 +799,7 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
   "uw-bothell-educational-studies-elementary-education": [/^elementary education option$/i],
   "uw-tacoma-arts-media-culture": [/^B\.?\s*A\.?\s+route$/i],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [/^B\.?\s*A\.?\s+route$/i],
+  "uw-tacoma-criminal-justice": [/^B\.?\s*A\.?\s+route$/i],
   "uw-tacoma-environmental-science": [
     /^list [a-z]:?\s+/i,
     /^additional courses for geoscience option$/i,
@@ -702,13 +817,18 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
     /^(?:adult|pediatric) track$/i,
     /^speech language pathology$/i,
   ],
+  "uw-tacoma-writing-studies": [
+    /^grassroots activism and community organizing\b/i,
+    /^post-graduate studies track$/i,
+    /^user experience and usability track$/i,
+  ],
 };
 const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
   TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan.title] as const)
 );
-const SOURCE_LINE_DIFFERENT_MAJOR_CACHE = new Map<string, boolean>();
-const AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS = new Set(
-  (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)
+const LINE_DIFFERENT_MAJOR_CACHE = new Map<string, boolean>();
+const AUTO_PROMOTED_PRIMARY_OWNER_IDS = new Set(
+  (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []).map((entry) => entry.ownerId)
 );
 
 type AutoPromotedPathwaySupportEntry = {
@@ -743,7 +863,7 @@ function buildFallbackPathwayLabel(pathwayId: string) {
 const AUTO_PROMOTED_PATHWAY_SUPPORT_BY_PLAN_ID = (() => {
   const supportByPlanId = new Map<string, AutoPromotedPathwaySupport>();
 
-  for (const entry of TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []) {
+  for (const entry of TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []) {
     if (entry.ownerType !== "pathway" || !entry.planId || !entry.pathwayId) {
       continue;
     }
@@ -988,7 +1108,7 @@ function isAutoPromotedPathway(
   const canonicalEntry = resolveAutoPromotedPathwaySupportEntry(plan, pathway);
   return Boolean(
     canonicalEntry &&
-      AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(`${plan.id}:pathway:${canonicalEntry.pathwayId}`)
+      AUTO_PROMOTED_PRIMARY_OWNER_IDS.has(`${plan.id}:pathway:${canonicalEntry.pathwayId}`)
   );
 }
 
@@ -1000,10 +1120,29 @@ function normalizeDerivedPathwayText(value: string | null | undefined) {
   return decodeDerivedPathwayHtmlEntities(String(value ?? ""));
 }
 
+function sourceLineLooksGraduateOnlyForUndergraduatePlan(
+  planTitle: string | null | undefined,
+  value: string | null | undefined
+) {
+  const normalizedPlanTitle = normalizeDerivedPathwayText(planTitle);
+  if (
+    !/\b(?:b\.?\s*a\.?|b\.?\s*s\.?|ba|bs|bachelor\s+of\s+(?:arts|science))\b/i.test(
+      normalizedPlanTitle
+    )
+  ) {
+    return false;
+  }
+
+  const normalized = normalizeDerivedPathwayText(value);
+  return /^(?:m\.?\s*ed\.?|m\.?\s*a\.?|m\.?\s*s\.?|master(?:\s+of)?|doctor(?:\s+of)?|ph\.?\s*d\.?|p\.?\s*h\.?\s*d\.?)\b/i.test(
+    normalized
+  );
+}
+
 function selectDerivedPathwayKindSegment(value: string) {
   const normalized = normalizeDerivedPathwayText(value);
   const segments = normalized
-    .split(/\s+(?:[-\u2013\u2014]|:)\s+|,\s+/)
+    .split(/\s+(?:[-\u2013\u2014])\s+|\s*:\s+|,\s+/)
     .map((segment) => normalizeDerivedPathwayText(segment))
     .filter(Boolean);
 
@@ -1114,7 +1253,7 @@ function isGuidanceOnlyDerivedPathwaySourceLine(value: string | null | undefined
     return false;
   }
 
-  return DERIVED_PATHWAY_GUIDANCE_SOURCE_LINE_PATTERNS.some((pattern) => pattern.test(normalized));
+  return DERIVED_PATHWAY_GUIDANCE_LINE_PATTERNS.some((pattern) => pattern.test(normalized));
 }
 
 function getPlanTitlesForCrossMajorDetection(
@@ -1136,7 +1275,7 @@ function sourceLineMentionsDifferentMajor(
   const normalizedPlanTitle = normalizeTransferPlannerText(planTitle);
   const normalizedValue = normalizeTransferPlannerText(value);
   const cacheKey = `${planId}\u0000${normalizedPlanTitle}\u0000${normalizedValue}`;
-  const cached = SOURCE_LINE_DIFFERENT_MAJOR_CACHE.get(cacheKey);
+  const cached = LINE_DIFFERENT_MAJOR_CACHE.get(cacheKey);
   if (cached != null) {
     return cached;
   }
@@ -1146,7 +1285,7 @@ function sourceLineMentionsDifferentMajor(
     normalizedValue,
     getPlanTitlesForCrossMajorDetection(planId, planTitle)
   );
-  SOURCE_LINE_DIFFERENT_MAJOR_CACHE.set(cacheKey, result);
+  LINE_DIFFERENT_MAJOR_CACHE.set(cacheKey, result);
   return result;
 }
 
@@ -1610,18 +1749,26 @@ function canonicalizeBasePathwayDerivedIdentity(
   planId: string,
   pathway: TransferPlannerMajorPathway
 ) {
-  const labelText = normalizeDerivedPathwayText(pathway.label);
-  const idText = normalizeTransferPlannerText(pathway.id).replace(/-/g, " ");
+  const normalizedPathwayId = normalizeTransferPlannerPathwayId(planId, pathway.id);
+  const pathwayWithCanonicalId =
+    normalizedPathwayId && normalizedPathwayId !== pathway.id
+      ? ({
+          ...pathway,
+          id: normalizedPathwayId,
+        } satisfies TransferPlannerMajorPathway)
+      : pathway;
+  const labelText = normalizeDerivedPathwayText(pathwayWithCanonicalId.label);
+  const idText = normalizeTransferPlannerText(pathwayWithCanonicalId.id).replace(/-/g, " ");
   const aliased = applyDerivedPathwayAlias(planId, labelText) ?? applyDerivedPathwayAlias(planId, idText);
   const basePathway = aliased
     ? ({
-        ...pathway,
+        ...pathwayWithCanonicalId,
         id: aliased.id,
         label: aliased.label,
       } satisfies TransferPlannerMajorPathway)
     : ({
-        ...pathway,
-        label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
+        ...pathwayWithCanonicalId,
+        label: normalizeMaterializedTransferPlannerPathwayLabel(pathwayWithCanonicalId.label),
       } satisfies TransferPlannerMajorPathway);
 
   const canonicalLabelText = normalizeDerivedPathwayText(basePathway.label);
@@ -1721,6 +1868,10 @@ function canonicalizeDerivedPathwayCandidate(
     allowBareLabel?: boolean;
   } = {}
 ) {
+  if (sourceLineLooksGraduateOnlyForUndergraduatePlan(planTitle, value)) {
+    return null;
+  }
+
   let normalized = normalizeDerivedPathwayCandidate(planTitle, String(value ?? ""));
   if (!normalized) {
     return null;
@@ -1808,6 +1959,15 @@ function extractDerivedPathwayCandidateFromLine(
     return null;
   }
 
+  const aliasedLine = applyDerivedPathwayAlias(planId, normalized);
+  if (aliasedLine) {
+    return aliasedLine;
+  }
+
+  if (sourceLineLooksGraduateOnlyForUndergraduatePlan(planTitle, normalized)) {
+    return null;
+  }
+
   if (/^(?:Doctor|Master)\s+Of\b|^(?:Doctor|Master)\b/i.test(normalized)) {
     return null;
   }
@@ -1818,6 +1978,21 @@ function extractDerivedPathwayCandidateFromLine(
   );
   if (credentialPathwayCandidate) {
     return credentialPathwayCandidate;
+  }
+
+  const inlineLabelMatch = normalized.match(
+    /^([^:]{1,100}\b(?:track|option|route|pathway|certificate|concentration)\b(?:\s*\([^)]{1,40}\))?)\s*:/i
+  );
+  if (inlineLabelMatch) {
+    const candidate = canonicalizeDerivedPathwayCandidate(
+      planId,
+      planTitle,
+      inlineLabelMatch[1],
+      defaultKind
+    );
+    if (candidate) {
+      return candidate;
+    }
   }
 
   const shouldCheckForForeignMajor =
@@ -1911,13 +2086,6 @@ function extractDerivedPathwayCandidateFromLine(
       defaultKind,
       { allowBareLabel: true }
     );
-  }
-
-  const inlineLabelMatch = normalized.match(
-    /^([^:]{1,100}\b(?:track|option|route|pathway|certificate|concentration)\b(?:\s*\([^)]{1,40}\))?)\s*:/i
-  );
-  if (inlineLabelMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, planTitle, inlineLabelMatch[1], defaultKind);
   }
 
   if (!DERIVED_PATHWAY_LABEL_PATTERN.test(normalized)) {
@@ -2355,9 +2523,86 @@ function buildDerivedPathwaySeeds(
     });
   }
 
+  function buildSeedsFromDedicatedPathwayBlocks() {
+    const seedById = new Map<string, TransferPlannerDerivedPathwaySeed>();
+
+    for (const block of stableParsedSourceBlocks) {
+      const pathwayId = normalizeTransferPlannerText(block.pathwayId);
+      if (
+        !pathwayId ||
+        block.sourceRoleStatus !== "primary" ||
+        block.canCreateSchedulableRows === false ||
+        isSuspiciousStructuralPathwayId(pathwayId)
+      ) {
+        continue;
+      }
+
+      const hasSchedulableEvidence = Boolean(
+        block.parsedUwCourseCodes?.length ||
+          block.parsedRequirementGroups?.length ||
+          block.parsedRequirementCourses?.length ||
+          block.requirementCueLines?.length ||
+          block.chooseStatements?.length ||
+          block.pathwayLabels?.length
+      );
+      if (!hasSchedulableEvidence) {
+        continue;
+      }
+
+      const defaultKind = inferDerivedPathwayKind(plan.id, [block]);
+      const candidateLines = [
+        block.ownerTitle,
+        block.sourceLabel,
+        block.primarySourceLabel,
+        ...(block.pathwayLabels ?? []),
+      ];
+      const candidate =
+        candidateLines
+          .map((line) => extractDerivedPathwayCandidateFromLine(plan.id, plan.title, line, defaultKind))
+          .find(Boolean) ??
+        (!pathwayId.includes(":")
+          ? canonicalizeDerivedPathwayCandidate(
+              plan.id,
+              plan.title,
+              buildFallbackPathwayLabel(pathwayId),
+              defaultKind,
+              { allowBareLabel: true }
+            )
+          : null);
+      if (
+        !candidate ||
+        isSuspiciousStructuralPathwayLabel(candidate.label) ||
+        isPlanExcludedDerivedPathway(plan.id, candidate) ||
+        isMismatchedBachelorCredentialPathway(plan.title, candidate)
+      ) {
+        continue;
+      }
+
+      if (!seedById.has(pathwayId)) {
+        seedById.set(pathwayId, {
+          id: pathwayId,
+          label: candidate.label,
+          summary: "",
+        });
+      }
+    }
+
+    return [...seedById.values()];
+  }
+
+  const parsedSeedsById = new Map<string, TransferPlannerDerivedPathwaySeed>();
+  for (const seed of [
+    ...buildSeedsFromBlocks(planLevelBlocks.length ? planLevelBlocks : stableParsedSourceBlocks),
+    ...buildSeedsFromDedicatedPathwayBlocks(),
+  ]) {
+    if (!parsedSeedsById.has(seed.id)) {
+      parsedSeedsById.set(seed.id, seed);
+    }
+  }
+
   return mergeCuratedDerivedPathwaySeeds(
     plan,
-    buildSeedsFromBlocks(planLevelBlocks.length ? planLevelBlocks : stableParsedSourceBlocks),
+    [...parsedSeedsById.values()],
     stableParsedSourceBlocks
   );
 }
@@ -2501,6 +2746,10 @@ function filterUnsupportedBasePathways(
     ...(block.requirementCueLines ?? []),
     ...(block.chooseStatements ?? []),
   ]);
+  const allSourcePathwayLines = parsedSourceBlocks.flatMap((block) => [
+    ...(block.pathwayLabels ?? []),
+    ...(block.chooseStatements ?? []),
+  ]);
   const nonHonorsDerivedPathwayCount = derivedPathways.filter(
     (pathway) => !/\bhonou?rs?\s+thesis\b/i.test(normalizeDerivedPathwayText(pathway.label))
   ).length;
@@ -2527,7 +2776,7 @@ function filterUnsupportedBasePathways(
 
   return basePathways.filter((pathway) => {
     const ownerId = `${plan.id}:pathway:${pathway.id}`;
-    if (AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(ownerId)) {
+    if (AUTO_PROMOTED_PRIMARY_OWNER_IDS.has(ownerId)) {
       return true;
     }
 
@@ -2547,10 +2796,11 @@ function filterUnsupportedBasePathways(
     const pathwayBlocks = parsedSourceBlocks.filter((block) => block.pathwayId === pathway.id);
     if (!pathwayBlocks.length) {
       return (
-        basePathways.length === 1 &&
         !isSuspiciousStructuralPathwayId(pathway.id) &&
         !isSuspiciousStructuralPathwayLabel(pathway.label) &&
-        planLevelLines.some((line) => sourceLineContainsPathwayFamily(plan, pathway, line))
+        [...planLevelLines, ...allSourcePathwayLines].some((line) =>
+          sourceLineContainsPathwayFamily(plan, pathway, line)
+        )
       );
     }
 
@@ -2648,6 +2898,10 @@ function shouldPreferDerivedPathways(
     const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
     return supportKey && !semanticBaseFamilySet.has(supportKey) && isAutoPromotedPathway(plan, pathway);
   });
+  const hasSemanticDerivedExpansion = semanticDerivedPathways.some((pathway) => {
+    const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
+    return supportKey && !semanticBaseFamilySet.has(supportKey);
+  });
   const hasSupportedDerivedExpansion =
     semanticBasePathways.length <= 2 &&
     semanticDerivedPathways.length > semanticBaseFamilyCount &&
@@ -2690,7 +2944,7 @@ function shouldPreferDerivedPathways(
   }
 
   if (semanticDerivedPathways.length < 2) {
-    return shouldCollapseToSingleSemanticDerivedPathway;
+    return hasSemanticDerivedExpansion || shouldCollapseToSingleSemanticDerivedPathway;
   }
 
   if (hasAutoPromotedDerivedExpansion) {
@@ -2891,7 +3145,7 @@ function hasDedicatedSourceBackedPathwayBlock(
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ) {
   const ownerId = `${plan.id}:pathway:${pathway.id}`;
-  if (AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(ownerId)) {
+  if (AUTO_PROMOTED_PRIMARY_OWNER_IDS.has(ownerId)) {
     return true;
   }
 
@@ -2912,7 +3166,6 @@ function hasDedicatedSourceBackedPathwayBlock(
 
   return parsedSourceBlocks.some(
     (block) =>
-      !block.pathwayId &&
       (block.pathwayLabels ?? []).some((line) =>
         sourceLineSupportsPathwayFamily(plan, pathway, line)
       )
@@ -2943,12 +3196,16 @@ function mergeDerivedAndSourceBackedBasePathways(
   };
 
   for (const pathway of derivedPathways) {
+    const sourceBackedBasePathway = supportedBasePathways.find(
+      (basePathway) => basePathway.id === pathway.id
+    );
     pushMaterializedPathway({
       id: pathway.id,
       label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
       summary: pathway.summary,
       officialLinks:
         pathway.officialLinks ??
+        sourceBackedBasePathway?.officialLinks ??
         getDerivedPathwayOfficialLinks(plan, {
           id: pathway.id,
           label: pathway.label,

@@ -2,46 +2,15 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
+const { fetchTextWithHandling } = require("../lib/fetch-with-handling.cjs");
+const {
+  SOURCE_ROOT,
+  getArgValue,
+  getArgValues,
+  hasArg,
+} = require("./lib/script-harness.cjs");
 
 const parser = require("./parse-transfer-planner-requirement-sources.cjs");
-
-function getArgValue(...names) {
-  const args = process.argv.slice(2);
-  for (const name of names) {
-    const index = args.indexOf(name);
-    if (index >= 0) {
-      return args[index + 1] ?? null;
-    }
-    const prefix = `${name}=`;
-    const inline = args.find((arg) => arg.startsWith(prefix));
-    if (inline) {
-      return inline.slice(prefix.length);
-    }
-  }
-  return null;
-}
-
-function getArgValues(...names) {
-  const args = process.argv.slice(2);
-  const values = [];
-  for (let index = 0; index < args.length; index += 1) {
-    const arg = args[index];
-    for (const name of names) {
-      if (arg === name && args[index + 1] != null) {
-        values.push(args[index + 1]);
-      }
-      const prefix = `${name}=`;
-      if (arg.startsWith(prefix)) {
-        values.push(arg.slice(prefix.length));
-      }
-    }
-  }
-  return values;
-}
-
-function hasArg(name) {
-  return process.argv.slice(2).includes(name);
-}
 
 function splitValues(values) {
   return values.flatMap((value) =>
@@ -109,27 +78,16 @@ function selectEntry(input) {
 }
 
 async function fetchText(url, timeoutMs) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      headers: {
-        "user-agent": "GatorGuide planner source probe",
-      },
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status} ${response.statusText}`);
-    }
-    return await response.text();
-  } finally {
-    clearTimeout(timeout);
-  }
+  return fetchTextWithHandling(url, {
+    operation: "Probe transfer planner owner source",
+    timeoutMs,
+    userAgent: "GatorGuide planner source probe",
+  });
 }
 
 async function readHtml(input, sourceUrl) {
   if (input.htmlFile) {
-    return fs.readFileSync(path.resolve(input.htmlFile), "utf8");
+    return fs.readFileSync(path.resolve(SOURCE_ROOT, input.htmlFile), "utf8");
   }
   return fetchText(sourceUrl, input.timeoutMs);
 }
@@ -145,7 +103,7 @@ async function main() {
 
   const input = {
     ownerId: getArgValue("--owner-id"),
-    targetPlanId: getArgValue("--target-plan-id", "--plan-id", "--target"),
+    targetPlanId: getArgValue(["--target-plan-id", "--plan-id", "--target"]),
     pathwayId: getArgValue("--pathway-id"),
     sourceUrl: getArgValue("--source-url"),
     htmlFile: getArgValue("--html-file"),

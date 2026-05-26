@@ -1,6 +1,14 @@
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  hasArg,
+  runCommand,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -12,7 +20,7 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
   getTransferPlannerPathwaysForPlan,
 } = require("../../constants/transfer-planner-source");
 const {
@@ -24,46 +32,36 @@ const {
   isSuspiciousStructuralPathwayId,
   isSuspiciousStructuralPathwayLabel,
 } = require("../../constants/transfer-planner-source/pathway-materialization");
+const {
+  shouldSkipTransferPlannerAutoPromotedPrimarySource,
+} = require("../../constants/transfer-planner-source/manual-source-link-overrides");
 const discovery = require("./discover-transfer-planner-primary-sources.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const DISCOVERY_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.json"
-);
-const REVIEW_QUEUE_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-review-queue.json"
-);
-const OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-promotions.json"
-);
-const OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-promotions.md"
-);
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const DISCOVERY_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const REVIEW_QUEUE_PATH = getPlannerTmpPath("transfer-planner-primary-source-review-queue.json");
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-primary-source-promotions.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-primary-source-promotions.md");
 const GENERATED_OUTPUT_PATH = path.resolve(
   REPO_ROOT,
   "constants",
   "transfer-planner-source",
   "primary-source-promotions.generated.ts"
 );
-const WEAK_SOURCE_REPLACEMENT_REASON_PATTERN = /Replaces existing primary .*weak-source re-evaluation/i;
-const LEGACY_HARDCODED_SOURCE_REASON_PATTERN =
+const WEAK_REPLACEMENT_REASON_PATTERN = /Replaces existing primary .*weak-source re-evaluation/i;
+const LEGACY_HARDCODED_REASON_PATTERN =
   /\bhardcoded official source candidate for source-gap resolution\b/i;
-const LEGACY_HARDCODED_SOURCE_REASON_REPLACEMENT =
+const LEGACY_HARDCODED_REASON_REPLACEMENT =
   "verified against an official source candidate";
 const CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN =
-  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
-const SOURCE_GENERATED_PLANS_BY_ID = new Map(
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
+  /\b(advising|adviser|advisor|study abroad|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
+const GENERATED_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
 );
-
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
+const PROMOTION_PLAN_TITLE_ALIASES_BY_PLAN_ID = new Map([
+  ["uw-seattle-european-studies", ["International Studies: Europe"]],
+]);
 
 function runReviewQueue(discoverFirst) {
   const args = ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"];
@@ -71,15 +69,10 @@ function runReviewQueue(discoverFirst) {
     args.push("--discover-first");
   }
 
-  const result = spawnSync("node", args, {
+  runCommand(process.execPath, args, {
     cwd: REPO_ROOT,
-    stdio: "inherit",
-    shell: false,
+    errorMessage: "Primary-source review queue generation failed, so promotion could not continue.",
   });
-
-  if (result.status !== 0) {
-    throw new Error("Primary-source review queue generation failed, so promotion could not continue.");
-  }
 }
 
 function buildOwnerId(planId, pathwayId) {
@@ -98,10 +91,10 @@ function normalizePromotionReasons(reasons) {
   const normalizedReasons = [];
 
   for (const reason of reasons ?? []) {
-    const normalizedReason = LEGACY_HARDCODED_SOURCE_REASON_PATTERN.test(
+    const normalizedReason = LEGACY_HARDCODED_REASON_PATTERN.test(
       String(reason ?? "")
     )
-      ? LEGACY_HARDCODED_SOURCE_REASON_REPLACEMENT
+      ? LEGACY_HARDCODED_REASON_REPLACEMENT
       : reason;
 
     if (!normalizedReasons.includes(normalizedReason)) {
@@ -186,6 +179,46 @@ function isMinorCredentialPromotionForMajorOwner(entry) {
   return /#(?:credential|program)-/i.test(String(entry?.url ?? "")) && /\bminor\b/i.test(String(entry?.label ?? ""));
 }
 
+function getBaBsDegreeKind(...values) {
+  const searchable = values
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  if (/\b(?:b\s*a|ba|bachelor\s+of\s+arts)\b/.test(searchable)) {
+    return "ba";
+  }
+  if (/\b(?:b\s*s|bs|bachelor\s+of\s+science)\b/.test(searchable)) {
+    return "bs";
+  }
+  return null;
+}
+
+function pathwayHasExplicitBaBsDegreeRoute(pathway) {
+  const text = `${pathway?.id ?? ""} ${pathway?.label ?? ""}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  return /\b(?:ba|bs|bachelor of arts|bachelor of science)\s+route\b/.test(text) ||
+    /\bbachelor of (?:arts|science)\b/.test(text) ||
+    /\b(?:ba|bs)\s+option\b/.test(text) ||
+    /^(?:ba|bs|bachelor of arts|bachelor of science)$/.test(text.trim());
+}
+
+function planHasExplicitBaBsPathwayRoutes(planId) {
+  return Boolean(
+    GENERATED_PLANS_BY_ID.get(planId)?.pathways?.some(pathwayHasExplicitBaBsDegreeRoute)
+  );
+}
+
+function isBaBsRoutePromotionForBroadMajorOwner(entry) {
+  return (
+    entry?.ownerType === "major" &&
+    !entry?.pathwayId &&
+    planHasExplicitBaBsPathwayRoutes(entry?.planId) &&
+    getBaBsDegreeKind(entry?.label, entry?.url) !== null
+  );
+}
+
 function normalizeCatalogCredentialMajorName(value) {
   return String(value ?? "")
     .replace(/\([^)]*\)/g, " ")
@@ -197,7 +230,7 @@ function normalizeCatalogCredentialMajorName(value) {
 }
 
 function getPromotionPlanBaseTitle(entry) {
-  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  const planTitle = GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
   return String(planTitle)
     .split(/\s+-\s+/u)[0]
     .replace(/\([^)]*\)/g, " ")
@@ -205,8 +238,22 @@ function getPromotionPlanBaseTitle(entry) {
     .trim();
 }
 
+function getPromotionPlanComparableTitles(entry) {
+  return [
+    getPromotionPlanBaseTitle(entry),
+    ...(PROMOTION_PLAN_TITLE_ALIASES_BY_PLAN_ID.get(entry?.planId) ?? []),
+  ]
+    .map(normalizeCatalogCredentialMajorName)
+    .filter(Boolean);
+}
+
 function extractCatalogCredentialMajorName(label) {
   const match = String(label ?? "").match(/\bmajor\s+in\s+([^:()]+?)(?::|$)/i);
+  return match ? match[1].trim() : null;
+}
+
+function extractCatalogProgramMajorName(label) {
+  const match = String(label ?? "").match(/^Program of Study:\s*Major:\s*(.+)$/i);
   return match ? match[1].trim() : null;
 }
 
@@ -226,8 +273,63 @@ function isCatalogCredentialPromotionForDifferentMajor(entry) {
   const candidateMajor = normalizeCatalogCredentialMajorName(
     extractCatalogCredentialMajorName(entry?.label)
   );
-  const targetMajor = normalizeCatalogCredentialMajorName(getPromotionPlanBaseTitle(entry));
-  return Boolean(candidateMajor && targetMajor && candidateMajor !== targetMajor);
+  const targetMajors = getPromotionPlanComparableTitles(entry);
+  return Boolean(candidateMajor && targetMajors.length && !targetMajors.includes(candidateMajor));
+}
+
+function isCatalogProgramPromotionEntry(entry) {
+  return /#program-/i.test(String(entry?.url ?? "")) &&
+    /^Program of Study:\s*Major:/i.test(String(entry?.label ?? ""));
+}
+
+function isCatalogProgramPromotionForDifferentMajor(entry) {
+  if (!isCatalogProgramPromotionEntry(entry)) {
+    return false;
+  }
+
+  const candidateMajor = normalizeCatalogCredentialMajorName(
+    extractCatalogProgramMajorName(entry?.label)
+  );
+  const targetMajors = getPromotionPlanComparableTitles(entry);
+  return Boolean(candidateMajor && targetMajors.length && !targetMajors.includes(candidateMajor));
+}
+
+function isLikelyCatalogProgramTitleLabel(label) {
+  const normalized = normalizeCatalogCredentialMajorName(label);
+  if (!normalized) {
+    return false;
+  }
+
+  const tokens = normalized.split(/\s+/).filter(Boolean);
+  return (
+    tokens.length >= 2 &&
+    tokens.length <= 6 &&
+    !/\b(requirements?|options?|routes?|degree|scoped|section|home|program|credential)\b/i.test(
+      String(label ?? "")
+    )
+  );
+}
+
+function isCatalogProgramPagePromotionForDifferentMajor(entry) {
+  if (!/\/students\/gencat\/program\//i.test(String(entry?.url ?? ""))) {
+    return false;
+  }
+  if (!isLikelyCatalogProgramTitleLabel(entry?.label)) {
+    return false;
+  }
+
+  const candidateMajor = normalizeCatalogCredentialMajorName(entry?.label);
+  const targetMajors = getPromotionPlanComparableTitles(entry);
+  return Boolean(
+    candidateMajor &&
+      targetMajors.length &&
+      !targetMajors.some(
+        (targetMajor) =>
+          targetMajor === candidateMajor ||
+          targetMajor.includes(candidateMajor) ||
+          candidateMajor.includes(targetMajor)
+      )
+  );
 }
 
 function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
@@ -235,7 +337,7 @@ function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
     return false;
   }
 
-  const planTitle = SOURCE_GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
+  const planTitle = GENERATED_PLANS_BY_ID.get(entry?.planId)?.title ?? entry?.ownerTitle ?? "";
   if (String(planTitle ?? "").includes(":")) {
     return false;
   }
@@ -245,6 +347,11 @@ function isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) {
 
 function hasDocumentUrlWithAppendedPath(entry) {
   return /\.(?:pdf|docx?)(?:\/|%2f)[^?#]/i.test(String(entry?.url ?? ""));
+}
+
+function isSkipNavigationPromotionEntry(entry) {
+  const text = `${entry?.label ?? ""} ${entry?.url ?? ""}`.toLowerCase();
+  return /\bskip\s+to\s+(?:main\s+)?content\b/.test(text) || /#content(?:$|[?&])/i.test(String(entry?.url ?? ""));
 }
 
 function isSuspiciousStructuralPathwayPromotionEntry(entry) {
@@ -259,12 +366,26 @@ function isSuspiciousStructuralPathwayPromotionEntry(entry) {
   );
 }
 
+function isManualOverrideSkippedPromotionEntry(entry) {
+  return shouldSkipTransferPlannerAutoPromotedPrimarySource(
+    entry?.planId,
+    entry?.pathwayId ?? null,
+    entry?.url
+  );
+}
+
 function isUnsafeAutomaticPromotionEntry(entry) {
   return (
+    isClearlySupportOnlyPromotionEntry(entry) ||
     isMinorCredentialPromotionForMajorOwner(entry) ||
+    isBaBsRoutePromotionForBroadMajorOwner(entry) ||
     isCatalogCredentialPromotionForDifferentMajor(entry) ||
+    isCatalogProgramPromotionForDifferentMajor(entry) ||
+    isCatalogProgramPagePromotionForDifferentMajor(entry) ||
     isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
     isSuspiciousStructuralPathwayPromotionEntry(entry) ||
+    isSkipNavigationPromotionEntry(entry) ||
+    isManualOverrideSkippedPromotionEntry(entry) ||
     hasDocumentUrlWithAppendedPath(entry)
   );
 }
@@ -330,7 +451,7 @@ function previousPromotionMatchesSpecializedPlanSource(entry) {
   }
 
   const officialUrl = getSingleSpecializedPlanOfficialUrl(
-    SOURCE_GENERATED_PLANS_BY_ID.get(entry.planId)
+    GENERATED_PLANS_BY_ID.get(entry.planId)
   );
   if (!officialUrl) {
     return true;
@@ -342,7 +463,7 @@ function previousPromotionMatchesSpecializedPlanSource(entry) {
 
 function suggestedPrimaryMatchesSpecializedPlanSource(owner) {
   const officialUrl = getSingleSpecializedPlanOfficialUrl(
-    SOURCE_GENERATED_PLANS_BY_ID.get(owner?.planId)
+    GENERATED_PLANS_BY_ID.get(owner?.planId)
   );
   if (!officialUrl) {
     return true;
@@ -382,7 +503,7 @@ function loadPreviousPromotions() {
   try {
     delete require.cache[require.resolve(GENERATED_OUTPUT_PATH)];
     const loaded = require(GENERATED_OUTPUT_PATH);
-    return loaded.TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? [];
+    return loaded.TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? [];
   } catch (error) {
     console.log(`Could not load previous promoted primary sources: ${error.message}`);
     return [];
@@ -392,7 +513,7 @@ function loadPreviousPromotions() {
 function buildActiveOwnerIdSet() {
   const ownerIds = new Set();
 
-  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     ownerIds.add(buildOwnerId(plan.id, null));
 
     for (const pathway of getTransferPlannerPathwaysForPlan(plan)) {
@@ -413,7 +534,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
       .filter(
         (entry) =>
           !(entry.reasons ?? []).some((reason) =>
-            WEAK_SOURCE_REPLACEMENT_REASON_PATTERN.test(String(reason ?? ""))
+            WEAK_REPLACEMENT_REASON_PATTERN.test(String(reason ?? ""))
           )
       )
       .filter((entry) => !isClearlySupportOnlyPromotionEntry(entry))
@@ -541,7 +662,7 @@ function buildGeneratedFile(report) {
     'import type { TransferPlannerPrimarySourcePromotionEntry } from "./schema";',
     "",
     "// Generated by scripts/planner/build-transfer-planner-primary-source-promotions.cjs",
-    `export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimarySourcePromotionEntry[] = ${JSON.stringify(report.entries, null, 2)};`,
+    `export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePromotionEntry[] = ${JSON.stringify(report.entries, null, 2)};`,
     "",
   ].join("\n");
 }
@@ -579,7 +700,7 @@ function writeMarkdown(report) {
     }
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function main() {
@@ -590,7 +711,7 @@ function main() {
     !fs.existsSync(DISCOVERY_REPORT_PATH) ||
     !fs.existsSync(REVIEW_QUEUE_PATH);
 
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 
   if (reviewQueueFirst) {
     runReviewQueue(discoverFirst);
@@ -613,7 +734,7 @@ function main() {
   const previousEntries = loadPreviousPromotions();
   const report = buildPromotionReport(discoveryReport, reviewQueue, previousEntries);
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writePlannerJsonReport(OUTPUT_JSON_PATH, report);
   fs.writeFileSync(GENERATED_OUTPUT_PATH, buildGeneratedFile(report));
   writeMarkdown(report);
 

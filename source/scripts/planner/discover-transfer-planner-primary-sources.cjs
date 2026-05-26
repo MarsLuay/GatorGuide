@@ -1,5 +1,17 @@
 const fs = require("fs");
 const path = require("path");
+const { spawnSync } = require("child_process");
+const { fetchWithHandling } = require("../lib/fetch-with-handling.cjs");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getArgValues,
+  getPlannerTmpPath,
+  hasArg,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -11,15 +23,19 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
   getTransferPlannerAutoMatchedTrackRecommendation,
   getTransferPlannerPathwaysForPlan,
   getTransferPlannerParsedRequirementSourceBlocks,
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerRequirementDiffClassifications,
   getTransferPlannerStudentRuntimeMajorPlan,
+  getTransferPlannerStudentRuntimePathwaysForPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } = require("../../constants/transfer-planner-source");
+const {
+  getTransferPlannerStudentRuntimeAliasCoverage,
+} = require("../../constants/transfer-planner-source/student-runtime");
 const {
   getTransferPlannerManualSourceLinkOverride,
 } = require("../../constants/transfer-planner-source/manual-source-link-overrides");
@@ -27,16 +43,9 @@ const {
   buildTransferPlannerOwnerId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.json"
-);
-const OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-primary-source-discovery.md"
-);
+const REPO_ROOT = SOURCE_ROOT;
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.md");
 const DEFAULT_TIMEOUT_MS = 15000;
 const DEFAULT_CONCURRENCY = 4;
 const MAX_DISCOVERED_CANDIDATES_PER_OWNER = 6;
@@ -59,33 +68,37 @@ const FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS = {
   "uw-bothell": ["uwb.edu"],
   "uw-tacoma": ["uw.edu"],
 };
-const FALLBACK_DISCOVERY_SOURCE_PAGES_BY_CAMPUS = {
+const FALLBACK_DISCOVERY_PAGES_BY_CAMPUS = {
   "uw-seattle": [
     "https://hasc.washington.edu/explore-programs/our-majors-minors",
     "https://advising.uw.edu/academic-planning/majors-and-minors/list-of-undergraduate-majors/",
   ],
-  "uw-bothell": [],
+  "uw-bothell": ["https://www.uwb.edu/degrees"],
   "uw-tacoma": ["https://www.tacoma.uw.edu/admissions/majors-degrees"],
 };
 const OFFICIAL_UW_BASE_DOMAINS = uniqueSorted(
   Object.values(FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS).flat()
 );
-const SOURCE_REQUIREMENT_CUE_PATTERN =
+const REQUIREMENT_CUE_PATTERN =
   /\b(degree requirements?|major requirements?|graduation requirements?|major admissions requirements?|program requirements?|curriculum|worksheet|checklist|prerequisites?|bachelor(?:\s+of)?|undergraduate major admission|undergraduate program)\b/i;
-const SOURCE_WEAK_PRIMARY_URL_PATTERN =
+const WEAK_PRIMARY_URL_PATTERN =
   /(?:\/|^)(timeline(?:-and-requirements)?|graduate(?:-program|-admissions)?|phd|research|faculty|news|about)(?:[-/?#]|$)/i;
-const SOURCE_WEAK_PRIMARY_HEADING_PATTERN =
+const WEAK_PRIMARY_HEADING_PATTERN =
   /\b(timeline(?:\s*&\s*requirements)?|graduate program|graduate admissions|ms requirements?|phd requirements?|research|faculty|news)\b/i;
-const SOURCE_OVERVIEW_ONLY_PATTERN = /\boverview\b/i;
-const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
+const OVERVIEW_ONLY_PATTERN = /\boverview\b/i;
+const LEGACY_STUDENT_GENCAT_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
 const UW_GENERAL_CATALOG_PROGRAM_ANCHOR_PATTERN = /#program-/i;
-const PATHWAY_SOURCE_CUE_PATTERN =
+const UW_TACOMA_SET_UNDERGRAD_PROGRAM_URL_PATTERN =
+  /\/\/(?:www\.)?tacoma\.uw\.edu\/set\/programs\/undergrad\/[^/?#]+\/?(?:[?#].*)?$/i;
+const DEGREE_MAP_OR_PLANNING_GRID_CUE_PATTERN =
+  /\b(?:curriculum map|degree map|four[-\s]?year plan|schedule planning grid|schedule grid|planning grid)\b/i;
+const PATHWAY_CUE_PATTERN =
   /\b(track|option|route|pathway|concentration|specialization)\b/i;
-const PATHWAY_HUB_SOURCE_CUE_PATTERN =
+const PATHWAY_HUB_CUE_PATTERN =
   /\b(curriculum|degree requirements?|major requirements?|program requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)\b|\/(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)(?:[/?#-]|$)/i;
 const PATHWAY_HUB_TERMINAL_SEGMENT_PATTERN =
   /^(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)$/i;
@@ -105,13 +118,13 @@ const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
   /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
 const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
   /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?|suggested course pathways?|computing specializations?|capstones?)\b|\/(?:courses?|course-list|course-lists|print\/courses|capstones?|computing-specializations)(?:[-/?#]|$)/i;
-const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+const ADMISSION_PREREQUISITE_CUE_PATTERN =
   /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
-const SUPPORT_SOURCE_CUE_PATTERN =
-  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
+const SUPPORT_CUE_PATTERN =
+  /\b(advising|adviser|advisor|study abroad|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
   /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\brequired courses?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
-const AUTO_PROMOTION_STRONG_SOURCE_ROLES = new Set([
+const AUTO_PROMOTION_STRONG_ROLES = new Set([
   "official-catalog",
   "primary-degree-requirements",
   "pathway-degree-sheet",
@@ -124,7 +137,7 @@ const AUTO_PROMOTION_STRONG_PARSER_TYPES = new Set([
   "pdf-worksheet",
 ]);
 const AUTO_PROMOTION_AUTHORITY_CUE_PATTERN =
-  /\b(degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|worksheet|checklist|degree sheet|requirement sheet|requirements packet|major planning worksheet|program of study|plan of study|study plan|degreq)\b|\/(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?:[-/?#]|$)|\.(?:pdf|docx)(?:[?#]|$)/i;
+  /\b(degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|worksheet|checklist|degree sheet|requirement sheet|requirements packet|major planning worksheet|program of study|plan of study|study plan|degreq)\b|\/set\/programs\/undergrad\/|\/(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?:[-/?#]|$)|\.(?:pdf|docx)(?:[?#]|$)/i;
 const AUTO_PROMOTION_OVERVIEW_PARSER_TYPES = new Set([
   "generic-html",
   "html-overview-page",
@@ -158,7 +171,7 @@ const TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN =
   /\b(degree sheets?|requirements?|curriculum|worksheets?|checklists?|plans? of study|study plans?|approved courses?|approved electives?|course lists?|tracks?|options?|pathways?|concentrations?|specializations?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
 const UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN =
   /\b(faculty|people|staff|directory|news|events?|alumni|donat(?:e|ion|ions)?|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|map|library|privacy|accessibility)\b|\/(?:faculty|people|staff|directory|news|events?|alumni|donate|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|maps?|privacy|accessibility)(?:[/?#]|$)/i;
-const SOURCE_ROLE_METADATA = {
+const ROLE_METADATA = {
   "official-catalog": {
     status: "primary",
     canCreateSchedulableRows: true,
@@ -347,7 +360,7 @@ const BACHELOR_ROUTE_IGNORED_TOKENS = new Set([
   "uwt",
   "washington",
 ]);
-const TARGETED_OFFICIAL_SOURCE_CANDIDATES = {
+const TARGETED_OFFICIAL_CANDIDATES = {
   "uw-seattle-american-indian-studies": [
     {
       label: "UW B.A. in American Indian Studies",
@@ -393,7 +406,7 @@ const TARGETED_OFFICIAL_SOURCE_CANDIDATES = {
 };
 
 function ensureTmpDir() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 }
 
 function normalizeWhitespace(value) {
@@ -407,6 +420,14 @@ function slugifyForSearch(value) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function isSharedUwGeneralCatalogProgramUrl(url) {
+  return UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(String(url ?? ""));
+}
+
+function isUwTacomaSetUndergradProgramUrl(url) {
+  return UW_TACOMA_SET_UNDERGRAD_PROGRAM_URL_PATTERN.test(String(url ?? ""));
 }
 
 function stripHtml(value) {
@@ -445,48 +466,9 @@ function readJsonIfExists(filePath) {
   }
 }
 
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
-function getArgValues(flag) {
-  const args = process.argv.slice(2);
-  const values = [];
-  const directPrefix = `${flag}=`;
-  for (let index = 0; index < args.length; index += 1) {
-    const arg = args[index];
-    if (arg.startsWith(directPrefix)) {
-      values.push(arg.slice(directPrefix.length).trim());
-    } else if (arg === flag) {
-      const nextValue = args[index + 1];
-      if (nextValue && !nextValue.startsWith("--")) {
-        values.push(String(nextValue).trim());
-      }
-    }
-  }
-  return values.filter(Boolean);
-}
-
 function parseTargetPlanIdsFromArgs() {
   return uniqueSorted([
-    ...getArgValues("--target-plan-id"),
+    ...getArgValues(["--target-plan-id", "--plan-id"]),
     ...getArgValues("--target-plan-ids").flatMap((value) => value.split(",")),
   ]);
 }
@@ -685,7 +667,7 @@ function isWorksheetDocumentCandidate(candidateOrLink) {
 function getOfficialLinkRole(link) {
   const searchable = `${link?.label ?? ""} ${link?.url ?? ""}`.toLowerCase();
 
-  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_CUE_PATTERN.test(searchable)) {
     return "pathway-degree-sheet";
   }
 
@@ -705,11 +687,11 @@ function getOfficialLinkRole(link) {
     return "non-schedulable-course-list";
   }
 
-  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
     return "admission-prerequisite-source";
   }
 
-  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (SUPPORT_CUE_PATTERN.test(searchable)) {
     return "support-source";
   }
 
@@ -806,7 +788,7 @@ function getOfficialLinkParserType(link, role) {
 }
 
 function getSourceRoleMetadata(sourceRole) {
-  return SOURCE_ROLE_METADATA[sourceRole] ?? SOURCE_ROLE_METADATA.ignored;
+  return ROLE_METADATA[sourceRole] ?? ROLE_METADATA.ignored;
 }
 
 function getSourceRoleStatus(sourceRole) {
@@ -896,8 +878,23 @@ function hasDurablePromotionAuthorityCue(candidate) {
 function hasPathwayChildPromotionAuthorityCue(candidate) {
   const durableText = buildDurablePromotionAuthorityText(candidate);
   const headingText = (candidate?.pageHeadings ?? []).filter(Boolean).join(" \n");
-  return PATHWAY_SOURCE_CUE_PATTERN.test(durableText) &&
+  return PATHWAY_CUE_PATTERN.test(durableText) &&
     AUTO_PROMOTION_AUTHORITY_CUE_PATTERN.test(headingText);
+}
+
+function hasPathwaySpecificPrimaryChildPromotionCue(candidate) {
+  const reasons = new Set(candidate?.reasons ?? []);
+  const durableText = buildDurablePromotionAuthorityText(candidate);
+  return (
+    candidate?.sourceRole === "primary-degree-requirements" &&
+    reasons.has("pathway-specific official child page matches the selected pathway") &&
+    (
+      PATHWAY_CUE_PATTERN.test(durableText) ||
+      reasons.has("official source path matches the selected pathway") ||
+      reasons.has("official source text matches the selected pathway")
+    ) &&
+    !SUPPORT_CUE_PATTERN.test(durableText)
+  );
 }
 
 function hasStrongPromotionIdentity(candidate) {
@@ -912,6 +909,7 @@ function hasStrongPromotionIdentity(candidate) {
     reasons.has("official source acronym matches the selected major") ||
     reasons.has("explicitly names the selected major") ||
     reasons.has("explicitly names the selected pathway or route") ||
+    reasons.has("UW Tacoma SET undergraduate program page matches the selected major") ||
     reasons.has("same-program requirement source can replace a zero-course primary") ||
     reasons.has("same-program curriculum child can replace a zero-course overview primary") ||
     reasons.has("same-program option/concentration child source matches the selected pathway") ||
@@ -1018,7 +1016,7 @@ function isAutoPromotablePrimaryCandidate(candidate) {
     normalizedCandidate.score < MIN_AUTO_PROMOTION_SCORE ||
     normalizedCandidate.canCreateSchedulableRows === false ||
     normalizedCandidate.sourceRoleStatus !== "primary" ||
-    !AUTO_PROMOTION_STRONG_SOURCE_ROLES.has(normalizedCandidate.sourceRole) ||
+    !AUTO_PROMOTION_STRONG_ROLES.has(normalizedCandidate.sourceRole) ||
     !AUTO_PROMOTION_STRONG_PARSER_TYPES.has(normalizedCandidate.parserType)
   ) {
     return false;
@@ -1035,7 +1033,8 @@ function isAutoPromotablePrimaryCandidate(candidate) {
   if (
     AUTO_PROMOTION_OVERVIEW_PARSER_TYPES.has(normalizedCandidate.parserType) ||
     (!hasDurablePromotionAuthorityCue(normalizedCandidate) &&
-      !hasPathwayChildPromotionAuthorityCue(normalizedCandidate))
+      !hasPathwayChildPromotionAuthorityCue(normalizedCandidate) &&
+      !hasPathwaySpecificPrimaryChildPromotionCue(normalizedCandidate))
   ) {
     return false;
   }
@@ -1096,7 +1095,7 @@ function isSafeWeakExistingReplacementCandidate(candidate, target = null) {
     normalizedCandidate.score < MIN_AUTO_PROMOTION_SCORE ||
     normalizedCandidate.canCreateSchedulableRows === false ||
     normalizedCandidate.sourceRoleStatus !== "primary" ||
-    !AUTO_PROMOTION_STRONG_SOURCE_ROLES.has(normalizedCandidate.sourceRole) ||
+    !AUTO_PROMOTION_STRONG_ROLES.has(normalizedCandidate.sourceRole) ||
     !AUTO_PROMOTION_STRONG_PARSER_TYPES.has(normalizedCandidate.parserType)
   ) {
     return false;
@@ -1129,6 +1128,7 @@ function isSafeWeakExistingReplacementCandidate(candidate, target = null) {
   const hasRequirementAuthorityCue =
     hasDurablePromotionAuthorityCue(normalizedCandidate) ||
     hasPathwayChildPromotionAuthorityCue(normalizedCandidate) ||
+    hasPathwaySpecificPrimaryChildPromotionCue(normalizedCandidate) ||
     (
       usesVerifiedHeadingAuthority &&
       (!target || hasDurableTargetIdentityCue(target, normalizedCandidate))
@@ -1162,6 +1162,20 @@ function classifySourceDiscoveryRole(candidate) {
     return "official-catalog";
   }
 
+  if (isUwTacomaSetUndergradProgramUrl(candidate?.url)) {
+    if (
+      REQUIREMENT_CUE_PATTERN.test(searchable) ||
+      PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+      ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable) ||
+      /\b(?:courses?|curriculum details?|schedule planning|prerequisites?|admission requirements?)\b/i.test(
+        searchable
+      )
+    ) {
+      return "primary-degree-requirements";
+    }
+    return "department-requirements";
+  }
+
   if (/\b(?:archive|archived|retired|old requirements?|prior to|pre-20\d{2})\b/.test(searchable)) {
     return "old-archival";
   }
@@ -1174,11 +1188,19 @@ function classifySourceDiscoveryRole(candidate) {
     return "matched-grc-track";
   }
 
+  if (/\bstudy abroad\b|\/study-abroad(?:[-/?#]|$)/.test(searchable)) {
+    return "support-source";
+  }
+
   if (/\bsample (?:schedule|plan)|\bstudy plan\b|\bplan of study\b/.test(searchable)) {
     return "sample-schedule";
   }
 
-  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (DEGREE_MAP_OR_PLANNING_GRID_CUE_PATTERN.test(searchable)) {
+    return "curriculum-map";
+  }
+
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_CUE_PATTERN.test(searchable)) {
     return "pathway-degree-sheet";
   }
 
@@ -1198,11 +1220,11 @@ function classifySourceDiscoveryRole(candidate) {
     return "non-schedulable-course-list";
   }
 
-  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
     return "admission-prerequisite-source";
   }
 
-  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (SUPPORT_CUE_PATTERN.test(searchable)) {
     return "support-source";
   }
 
@@ -1333,6 +1355,16 @@ function buildIdentitySlug(value) {
   return buildIdentityTokens(value).join("-");
 }
 
+function buildQualifiedRouteIdentitySlug(value) {
+  const normalized = stripDegreeMarkers(value);
+  const routeParts = normalized.split(/\s*:\s*/u).slice(1);
+  if (!routeParts.length) {
+    return "";
+  }
+
+  return buildIdentitySlug(routeParts.join(" "));
+}
+
 function getUrlPathIdentitySlugs(url) {
   try {
     const pathSegments = new URL(url).pathname.split("/").filter(Boolean);
@@ -1445,6 +1477,12 @@ function isCatalogCredentialAnchorCandidate(candidate) {
   return /#credential-/i.test(String(candidate?.sectionAnchor ?? candidate?.url ?? ""));
 }
 
+function isCatalogSectionAnchorCandidate(candidate) {
+  const anchorText = String(candidate?.sectionAnchor ?? candidate?.url ?? "");
+  return isCatalogCredentialAnchorCandidate(candidate) ||
+    UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(anchorText);
+}
+
 function getCandidateLocalScoringText(candidate) {
   return [
     candidate?.url,
@@ -1455,6 +1493,13 @@ function getCandidateLocalScoringText(candidate) {
   ]
     .filter(Boolean)
     .join(" \n");
+}
+
+function getCandidateScoringText(candidate, combinedText = null) {
+  if (isCatalogSectionAnchorCandidate(candidate)) {
+    return getCandidateLocalScoringText(candidate);
+  }
+  return combinedText ?? getCandidateLocalScoringText(candidate);
 }
 
 function hasConflictingBachelorProgramRoute(target, candidate) {
@@ -1487,16 +1532,18 @@ function hasConflictingDegreeRoute(targetText, candidateText) {
 
 function candidateConflictsWithTargetDegreeRoute(target, candidate) {
   const targetText = [target?.title, target?.label].filter(Boolean).join(" ");
-  const candidateText = [
-    candidate?.url,
-    candidate?.label,
-    candidate?.anchorText,
-    candidate?.linkText,
-    candidate?.pageTitle,
-    ...(candidate?.pageHeadings ?? []),
-  ]
-    .filter(Boolean)
-    .join(" \n");
+  const candidateText = isCatalogSectionAnchorCandidate(candidate)
+    ? getCandidateLocalScoringText(candidate)
+    : [
+        candidate?.url,
+        candidate?.label,
+        candidate?.anchorText,
+        candidate?.linkText,
+        candidate?.pageTitle,
+        ...(candidate?.pageHeadings ?? []),
+      ]
+        .filter(Boolean)
+        .join(" \n");
 
   return (
     hasConflictingBachelorProgramRoute(target, candidate) ||
@@ -1529,23 +1576,50 @@ function matchesHyphenDelimitedSlug(text, value) {
 }
 
 function tokenMatchesCandidateText(token, text) {
-  if (matchesSpaceDelimitedSlug(text, token)) {
-    return true;
+  return getIdentityTokenSearchVariants(token).some((variant) =>
+    matchesSpaceDelimitedSlug(text, variant)
+  );
+}
+
+const IDENTITY_TOKEN_VARIANTS = new Map([
+  ["africa", ["african"]],
+  ["african", ["africa"]],
+  ["america", ["american"]],
+  ["american", ["america"]],
+  ["asia", ["asian"]],
+  ["asian", ["asia"]],
+  ["canada", ["canadian"]],
+  ["canadian", ["canada"]],
+  ["china", ["chinese"]],
+  ["chinese", ["china"]],
+  ["europe", ["european"]],
+  ["european", ["europe"]],
+  ["japan", ["japanese"]],
+  ["japanese", ["japan"]],
+  ["korea", ["korean"]],
+  ["korean", ["korea"]],
+]);
+
+function getIdentityTokenSearchVariants(token) {
+  const normalizedToken = String(token ?? "").trim();
+  if (!normalizedToken) {
+    return [];
   }
 
-  if (token.endsWith("ies") && matchesSpaceDelimitedSlug(text, `${token.slice(0, -3)}y`)) {
-    return true;
+  const variants = new Set([normalizedToken]);
+  for (const variant of IDENTITY_TOKEN_VARIANTS.get(normalizedToken) ?? []) {
+    variants.add(variant);
   }
 
-  if (
-    token.endsWith("s") &&
-    token.length > 3 &&
-    matchesSpaceDelimitedSlug(text, token.slice(0, -1))
-  ) {
-    return true;
+  if (normalizedToken.endsWith("ies") && normalizedToken.length > 4) {
+    variants.add(`${normalizedToken.slice(0, -3)}y`);
   }
 
-  return false;
+  if (normalizedToken.endsWith("s") && normalizedToken.length > 3) {
+    variants.add(normalizedToken.slice(0, -1));
+  }
+
+  return [...variants];
 }
 
 function tokensMatchText(tokens, text) {
@@ -1569,19 +1643,7 @@ function getUrlIdentityPathSlug(url) {
 }
 
 function getCandidateIdentityText(candidate, combinedText = null) {
-  return slugifyForSearch(
-    combinedText ??
-      [
-        candidate?.url,
-        candidate?.label,
-        candidate?.anchorText,
-        candidate?.linkText,
-        candidate?.pageTitle,
-        ...(candidate?.pageHeadings ?? []),
-      ]
-        .filter(Boolean)
-        .join(" ")
-  );
+  return slugifyForSearch(getCandidateScoringText(candidate, combinedText));
 }
 
 function getIdentityOverlapScore(identityValue, candidate, combinedText = null) {
@@ -1690,13 +1752,13 @@ function isPathwayIdentityPrimaryPage(target, candidate, sourceRole, combinedTex
     return false;
   }
 
-  if (!PATHWAY_SOURCE_CUE_PATTERN.test(combinedText)) {
+  if (!PATHWAY_CUE_PATTERN.test(combinedText)) {
     return false;
   }
 
   if (
-    SUPPORT_SOURCE_CUE_PATTERN.test(combinedText) ||
-    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(combinedText)
+    SUPPORT_CUE_PATTERN.test(combinedText) ||
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(combinedText)
   ) {
     return false;
   }
@@ -2039,8 +2101,8 @@ function isSameProgramPathwayHubChildSourceCandidate(
   }
 
   if (
-    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(combinedText) ||
-    SUPPORT_SOURCE_CUE_PATTERN.test(combinedText) ||
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(combinedText) ||
+    SUPPORT_CUE_PATTERN.test(combinedText) ||
     APPROVED_COURSE_LIST_CUE_PATTERN.test(combinedText) ||
     ELECTIVE_LIST_CUE_PATTERN.test(combinedText) ||
     /\b(?:sample schedule|four[-\s]?year plan|degree map)\b/i.test(combinedText)
@@ -2055,7 +2117,7 @@ function isSameProgramPathwayHubChildSourceCandidate(
   ].filter(Boolean);
   const sameProgramHubPath = baseUrls.some(
     (baseUrl) =>
-      PATHWAY_HUB_SOURCE_CUE_PATTERN.test(baseUrl) &&
+      PATHWAY_HUB_CUE_PATTERN.test(baseUrl) &&
       isSameProgramChildOrSiblingPage(baseUrl, candidate?.url)
   );
   if (!sameProgramHubPath) {
@@ -2074,7 +2136,7 @@ function isSameProgramPathwayHubChildSourceCandidate(
     return false;
   }
 
-  return PATHWAY_SOURCE_CUE_PATTERN.test(combinedText) || pathwayIdentityScore >= 50;
+  return PATHWAY_CUE_PATTERN.test(combinedText) || pathwayIdentityScore >= 50;
 }
 
 function isSameProgramZeroCourseReplacementCandidate(
@@ -2105,8 +2167,8 @@ function isSameProgramZeroCourseReplacementCandidate(
   }
 
   if (
-    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(combinedText) ||
-    SUPPORT_SOURCE_CUE_PATTERN.test(combinedText) ||
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(combinedText) ||
+    SUPPORT_CUE_PATTERN.test(combinedText) ||
     /\b(?:sample schedule|four[-\s]?year plan|degree map)\b/i.test(combinedText)
   ) {
     return false;
@@ -2135,7 +2197,7 @@ function isSameProgramZeroCourseReplacementCandidate(
 
   if (
     target?.ownerType === "pathway" &&
-    PATHWAY_SOURCE_CUE_PATTERN.test(combinedText) &&
+    PATHWAY_CUE_PATTERN.test(combinedText) &&
     pathwayIdentityScore <= 0
   ) {
     return false;
@@ -2147,7 +2209,7 @@ function isSameProgramZeroCourseReplacementCandidate(
 function hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candidateIdentityText) {
   if (
     target.ownerType !== "major" ||
-    !LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN.test(candidate.url ?? "")
+    !LEGACY_STUDENT_GENCAT_URL_PATTERN.test(candidate.url ?? "")
   ) {
     return false;
   }
@@ -2169,19 +2231,23 @@ function hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candi
 }
 
 function scoreIdentityMatch(target, candidate, combinedText) {
-  const comparisonText = isCatalogCredentialAnchorCandidate(candidate)
-    ? getCandidateLocalScoringText(candidate)
-    : combinedText;
+  const comparisonText = getCandidateScoringText(candidate, combinedText);
   const candidateIdentityText = slugifyForSearch(comparisonText);
   const ownerTokens = buildIdentityTokens(target.title);
   const labelTokens = buildIdentityTokens(target.label);
   const ownerSlug = buildIdentitySlug(target.title);
   const labelSlug = buildIdentitySlug(target.label);
+  const ownerRouteSlug = buildQualifiedRouteIdentitySlug(target.title);
+  const labelRouteSlug = buildQualifiedRouteIdentitySlug(target.label);
   const ownerAcronym = buildIdentityAcronym(ownerTokens);
   const labelAcronym = buildIdentityAcronym(labelTokens);
   const { fullPathSlug, lastPathSlug } = getUrlPathIdentitySlugs(candidate.url);
   const ownerSlugInPath = Boolean(ownerSlug && matchesHyphenDelimitedSlug(fullPathSlug, ownerSlug));
   const labelSlugInPath = Boolean(labelSlug && matchesHyphenDelimitedSlug(fullPathSlug, labelSlug));
+  const routeSlugInPath = Boolean(
+    (ownerRouteSlug && matchesHyphenDelimitedSlug(fullPathSlug, ownerRouteSlug)) ||
+      (labelRouteSlug && matchesHyphenDelimitedSlug(fullPathSlug, labelRouteSlug))
+  );
   const singleOwnerTokenExactPath =
     ownerTokens.length === 1 && lastPathSlug === ownerTokens[0];
   const singleLabelTokenExactPath =
@@ -2217,6 +2283,9 @@ function scoreIdentityMatch(target, candidate, combinedText) {
     score += 34;
     pathwayIdentityMatched = true;
     reasons.push("official source path matches the selected pathway");
+  } else if (target.ownerType === "major" && routeSlugInPath) {
+    score += 32;
+    reasons.push("official source path matches the selected major");
   } else if (ownerSlugInPath || singleOwnerTokenExactPath) {
     score += 32;
     reasons.push("official source path matches the selected major");
@@ -2462,21 +2531,22 @@ function buildWeakExistingPrimarySignals(params) {
     trackRecommendationId,
     noPublicClassificationCount,
     ownerType,
+    campusId,
   } = params;
   const signals = [];
   const sourceText = buildReevaluationSourceText(primarySource, parsedBlock);
-  const hasStrongRequirementCue = SOURCE_REQUIREMENT_CUE_PATTERN.test(sourceText);
+  const hasStrongRequirementCue = REQUIREMENT_CUE_PATTERN.test(sourceText);
   const hasDedicatedRequirementCue =
     PRIMARY_REQUIREMENT_CUE_PATTERN.test(sourceText) ||
     /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b|\brequirements packet\b|\bdegreq\b/i.test(
       sourceText
     );
-  const hasWeakPrimaryUrl = SOURCE_WEAK_PRIMARY_URL_PATTERN.test(primarySource?.url ?? "");
-  const hasWeakHeadings = SOURCE_WEAK_PRIMARY_HEADING_PATTERN.test(
+  const hasWeakPrimaryUrl = WEAK_PRIMARY_URL_PATTERN.test(primarySource?.url ?? "");
+  const hasWeakHeadings = WEAK_PRIMARY_HEADING_PATTERN.test(
     (parsedBlock?.extractedHeadings ?? []).join(" \n")
   );
   const hasOverviewOnlyCue =
-    SOURCE_OVERVIEW_ONLY_PATTERN.test(sourceText) && !hasDedicatedRequirementCue;
+    OVERVIEW_ONLY_PATTERN.test(sourceText) && !hasDedicatedRequirementCue;
   const qualityWarningCodes = (parsedBlock?.qualitySignals ?? [])
     .filter((signal) => signal?.severity === "warning")
     .map((signal) => signal.code)
@@ -2522,6 +2592,11 @@ function buildWeakExistingPrimarySignals(params) {
     ownerType === "major" &&
       /\b(?:option|concentration|track)\b/i.test(sourceIdentityText) &&
       !/\b(?:options|concentrations|tracks)\b/i.test(sourceIdentityText)
+  );
+  const sharedTacomaCatalogPrimaryWithoutGrc = Boolean(
+    campusId === "uw-tacoma" &&
+      isSharedUwGeneralCatalogProgramUrl(primarySource?.url) &&
+      runtimeGrcCourseCount === 0
   );
 
   if (safeIntentionalEmpty) {
@@ -2584,6 +2659,14 @@ function buildWeakExistingPrimarySignals(params) {
     });
   }
 
+  if (sharedTacomaCatalogPrimaryWithoutGrc) {
+    signals.push({
+      code: "shared-uw-tacoma-catalog-primary-with-empty-grc-runtime",
+      reason:
+        "Current UW Tacoma primary is the shared UW General Catalog SET page and the student runtime has no GRC course pool, so discovery should compare it against Tacoma SET program pages.",
+    });
+  }
+
   const downstreamWeak =
     safeIntentionalEmpty || qualityWarningCodes.length > 0 || parsedUwCourseCodeCount === 0;
   const sourceWeak = hasWeakPrimaryUrl || (hasWeakHeadings && !hasStrongRequirementCue) || hasOverviewOnlyCue;
@@ -2594,7 +2677,8 @@ function buildWeakExistingPrimarySignals(params) {
       (downstreamWeak && sourceWeak) ||
       zeroCourseRequirementPrimary ||
       yearSpecificRequirementSource ||
-      majorPrimaryLooksPathwayScoped,
+      majorPrimaryLooksPathwayScoped ||
+      sharedTacomaCatalogPrimaryWithoutGrc,
     signals,
     context: {
       runtimeGrcCourseCount,
@@ -2608,6 +2692,7 @@ function buildWeakExistingPrimarySignals(params) {
       currentSourceLatestYear,
       yearSpecificRequirementSource,
       majorPrimaryLooksPathwayScoped,
+      sharedTacomaCatalogPrimaryWithoutGrc,
     },
   };
 }
@@ -2616,7 +2701,7 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanIds = null }) {
   const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const targets = [];
 
-  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     if (campusFilter && plan.campusId !== campusFilter) {
       continue;
     }
@@ -2719,6 +2804,7 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanIds = null }) {
         trackRecommendationId: trackRecommendation?.trackId ?? null,
         noPublicClassificationCount,
         ownerType: owner.ownerType,
+        campusId: plan.campusId,
         pathwayCount: visiblePathways.length,
       });
       if (!primarySourceMatchesPathwayIdentity(owner, existingPrimary, parsedBlock)) {
@@ -2758,11 +2844,107 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanIds = null }) {
   return targets.sort((left, right) => left.title.localeCompare(right.title));
 }
 
+function normalizeAliasMatchText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function parseDerivedOptionAliasTitle(title) {
+  const normalizedTitle = String(title ?? "").trim();
+  const match = normalizedTitle.match(/^(.+?):\s*(.+?)(?:\s+(\([^)]+\)))?$/);
+  if (!match) {
+    return null;
+  }
+
+  const parentBaseTitle = String(match[1] ?? "").trim();
+  const optionTitle = String(match[2] ?? "").trim();
+  const credentialSuffix = String(match[3] ?? "").trim();
+  if (!parentBaseTitle || !optionTitle || !credentialSuffix) {
+    return null;
+  }
+
+  return {
+    parentTitle: `${parentBaseTitle} ${credentialSuffix}`,
+    optionTitle,
+  };
+}
+
+function titlesMatch(left, right) {
+  return normalizeAliasMatchText(left) === normalizeAliasMatchText(right);
+}
+
+function pathwayMatchesOptionAlias(pathway, optionTitle) {
+  const normalizedOptionTitle = normalizeAliasMatchText(optionTitle);
+  const normalizedPathwayText = normalizeAliasMatchText(
+    [pathway?.id, pathway?.label, pathway?.title].filter(Boolean).join(" ")
+  );
+  if (!normalizedOptionTitle || !normalizedPathwayText) {
+    return false;
+  }
+
+  if (normalizedPathwayText.includes(normalizedOptionTitle)) {
+    return true;
+  }
+
+  const optionTokens = normalizedOptionTitle
+    .split(/\s+/)
+    .filter((token) => token && !["option", "route", "track", "degree"].includes(token));
+  return optionTokens.length > 0 && optionTokens.every((token) => normalizedPathwayText.includes(token));
+}
+
+function hasDerivedParentPathwayRuntimeCoverage(owner) {
+  if (owner?.ownerType !== "major") {
+    return false;
+  }
+
+  const aliasTitle = parseDerivedOptionAliasTitle(owner.title);
+  if (!aliasTitle) {
+    return false;
+  }
+
+  const campusId = String(owner.campusId ?? "").trim();
+  const parentPlans = (TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? []).filter(
+    (plan) =>
+      (!campusId || String(plan?.campusId ?? "").trim() === campusId) &&
+      titlesMatch(plan?.title, aliasTitle.parentTitle)
+  );
+
+  for (const parentPlan of parentPlans) {
+    const parentRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(parentPlan.id);
+    if (!parentRuntimePlan) {
+      continue;
+    }
+
+    const parentPathways = getTransferPlannerStudentRuntimePathwaysForPlan(parentRuntimePlan);
+    if (parentPathways.some((pathway) => pathwayMatchesOptionAlias(pathway, aliasTitle.optionTitle))) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function hasStudentRuntimeAliasCoverage(owner) {
+  if (!owner?.planId) {
+    return false;
+  }
+
+  return (
+    Boolean(getTransferPlannerStudentRuntimeAliasCoverage(owner.planId, owner.pathwayId ?? null)) ||
+    hasDerivedParentPathwayRuntimeCoverage(owner)
+  );
+}
+
 function buildOwnerTargets({ includeExisting, campusFilter, targetPlanIds = null }) {
   const targetPlanIdSet = buildTargetPlanIdSet(targetPlanIds);
   const targets = [];
 
-  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     if (campusFilter && plan.campusId !== campusFilter) {
       continue;
     }
@@ -2772,7 +2954,14 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanIds = null
 
     const visiblePathways = getTransferPlannerPathwaysForPlan(plan);
     const majorPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(plan.id, null);
-    if (includeExisting || !majorPrimary) {
+    const majorOwner = {
+      ownerType: "major",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: plan.campusId,
+      title: plan.title,
+    };
+    if ((includeExisting || !majorPrimary) && !(!majorPrimary && hasStudentRuntimeAliasCoverage(majorOwner))) {
       targets.push(
         buildOwnerTargetRecord({
           analysisMode: majorPrimary ? "weak-existing-primary" : "missing-primary",
@@ -2793,6 +2982,17 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanIds = null
     for (const pathway of visiblePathways) {
       const pathwayPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(plan.id, pathway.id);
       if (!includeExisting && pathwayPrimary) {
+        continue;
+      }
+
+      const pathwayOwner = {
+        ownerType: "pathway",
+        planId: plan.id,
+        pathwayId: pathway.id,
+        campusId: plan.campusId,
+        title: `${plan.title} - ${pathway.label}`,
+      };
+      if (!pathwayPrimary && hasStudentRuntimeAliasCoverage(pathwayOwner)) {
         continue;
       }
 
@@ -2889,21 +3089,84 @@ function buildDiscoveryReport(owners, weakExistingOwners, options = {}) {
   };
 }
 
-async function fetchWithTimeout(url, timeoutMs) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+async function fetchPageWithTimeout(url, timeoutMs) {
+  const response = await fetchWithHandling(url, {
+    operation: "Discover transfer planner primary source",
+    throwOnHttpError: false,
+    timeoutMs,
+    userAgent: USER_AGENT,
+  });
+  const contentType = response.headers.get("content-type");
+  const finalUrl = response.url || url;
+  const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
+  const bodyText = isHtml ? await response.text() : null;
 
-  try {
-    return await fetch(url, {
-      redirect: "follow",
-      signal: controller.signal,
-      headers: {
-        "user-agent": USER_AGENT,
-      },
-    });
-  } finally {
-    clearTimeout(timeoutId);
+  return {
+    url,
+    ok: response.ok,
+    status: response.status,
+    finalUrl,
+    contentType,
+    title: isHtml ? extractTitle(bodyText) : null,
+    headings: isHtml ? extractHeadings(bodyText) : [],
+    contentSnippets: isHtml ? extractRequirementSnippets(bodyText) : [],
+    anchors: isHtml ? extractAnchors(bodyText, finalUrl) : [],
+    error: null,
+  };
+}
+
+const CURL_FALLBACK_META_MARKER = "\n__GATORGUIDE_CURL_META__";
+
+function fetchHtmlWithCurlFallback(url, timeoutMs, fetchError) {
+  const maxTimeSeconds = Math.max(1, Math.ceil(timeoutMs / 1000));
+  const curlExecutable = process.platform === "win32" ? "curl.exe" : "curl";
+  const result = spawnSync(
+    curlExecutable,
+    [
+      "-L",
+      "--silent",
+      "--show-error",
+      "--max-time",
+      String(maxTimeSeconds),
+      "-A",
+      USER_AGENT,
+      "-w",
+      `${CURL_FALLBACK_META_MARKER}%{http_code}\t%{url_effective}\t%{content_type}`,
+      url,
+    ],
+    {
+      encoding: "utf8",
+      maxBuffer: 25 * 1024 * 1024,
+    }
+  );
+
+  if (result.status !== 0) {
+    throw new Error(
+      result.stderr?.trim() ||
+        result.error?.message ||
+        fetchError?.message ||
+        "fetch failed"
+    );
   }
+
+  const stdout = String(result.stdout ?? "");
+  const markerIndex = stdout.lastIndexOf(CURL_FALLBACK_META_MARKER);
+  if (markerIndex < 0) {
+    throw new Error(fetchError?.message || "fetch failed");
+  }
+
+  const bodyText = stdout.slice(0, markerIndex);
+  const metaText = stdout.slice(markerIndex + CURL_FALLBACK_META_MARKER.length);
+  const [rawStatus, finalUrl, contentType] = metaText.split("\t");
+  const status = Number.parseInt(rawStatus, 10);
+
+  return {
+    ok: Number.isFinite(status) && status >= 200 && status < 400,
+    status: Number.isFinite(status) ? status : null,
+    finalUrl: finalUrl || url,
+    contentType: contentType || "text/html",
+    bodyText,
+  };
 }
 
 const pageFetchCache = new Map();
@@ -2931,37 +3194,38 @@ async function inspectPage(url, timeoutMs) {
 
   const fetchPromise = (async () => {
     try {
-      const response = await fetchWithTimeout(normalizedUrl, timeoutMs);
-      const contentType = response.headers.get("content-type");
-      const finalUrl = response.url || normalizedUrl;
-      const isHtml = String(contentType ?? "").toLowerCase().includes("text/html");
-      const bodyText = isHtml ? await response.text() : null;
-
-      return {
-        url: normalizedUrl,
-        ok: response.ok,
-        status: response.status,
-        finalUrl,
-        contentType,
-        title: isHtml ? extractTitle(bodyText) : null,
-        headings: isHtml ? extractHeadings(bodyText) : [],
-        contentSnippets: isHtml ? extractRequirementSnippets(bodyText) : [],
-        anchors: isHtml ? extractAnchors(bodyText, finalUrl) : [],
-        error: null,
-      };
+      return await fetchPageWithTimeout(normalizedUrl, timeoutMs);
     } catch (error) {
-      return {
-        url: normalizedUrl,
-        ok: false,
-        status: null,
-        finalUrl: normalizedUrl,
-        contentType: null,
-        title: null,
-        headings: [],
-        contentSnippets: [],
-        anchors: [],
-        error: error.message,
-      };
+      try {
+        const fallback = fetchHtmlWithCurlFallback(normalizedUrl, timeoutMs, error);
+        const isHtml = String(fallback.contentType ?? "").toLowerCase().includes("text/html");
+
+        return {
+          url: normalizedUrl,
+          ok: fallback.ok,
+          status: fallback.status,
+          finalUrl: fallback.finalUrl,
+          contentType: fallback.contentType,
+          title: isHtml ? extractTitle(fallback.bodyText) : null,
+          headings: isHtml ? extractHeadings(fallback.bodyText) : [],
+          contentSnippets: isHtml ? extractRequirementSnippets(fallback.bodyText) : [],
+          anchors: isHtml ? extractAnchors(fallback.bodyText, fallback.finalUrl) : [],
+          error: null,
+        };
+      } catch (fallbackError) {
+        return {
+          url: normalizedUrl,
+          ok: false,
+          status: null,
+          finalUrl: normalizedUrl,
+          contentType: null,
+          title: null,
+          headings: [],
+          contentSnippets: [],
+          anchors: [],
+          error: fallbackError.message,
+        };
+      }
     }
   })();
 
@@ -3090,6 +3354,39 @@ function isMinorCatalogCredentialAnchorForMajorTarget(target, candidate) {
   return /\bminor\b/i.test(getCandidateLocalScoringText(candidate));
 }
 
+function isUwTacomaSetProgramRequirementCandidate(target, candidate, combinedText) {
+  if (target?.campusId !== "uw-tacoma" || !isUwTacomaSetUndergradProgramUrl(candidate?.url)) {
+    return false;
+  }
+
+  const candidateText = combinedText ?? "";
+  const hasRequirementCue =
+    REQUIREMENT_CUE_PATTERN.test(candidateText) ||
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(candidateText) ||
+    ADMISSION_PREREQUISITE_CUE_PATTERN.test(candidateText) ||
+    /\b(?:courses?|curriculum details?|schedule planning|prerequisites?|admission requirements?)\b/i.test(
+      candidateText
+    );
+  if (!hasRequirementCue) {
+    return false;
+  }
+
+  const majorSlug = slugifyForSearch(target.title);
+  const localIdentitySlug = slugifyForSearch(
+    [
+      candidate?.url,
+      candidate?.label,
+      candidate?.anchorText,
+      candidate?.linkText,
+      candidate?.pageTitle,
+      ...(candidate?.pageHeadings ?? []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  return Boolean(majorSlug && matchesSpaceDelimitedSlug(localIdentitySlug, majorSlug));
+}
+
 function scoreCandidate(target, candidate) {
   if (isBlockedPrimarySourceCandidateUrl(candidate.url)) {
     return {
@@ -3144,6 +3441,14 @@ function scoreCandidate(target, candidate) {
   }
 
   let sourceRole = classifySourceDiscoveryRole(candidate);
+  const uwTacomaSetProgramRequirementCandidate = isUwTacomaSetProgramRequirementCandidate(
+    target,
+    candidate,
+    combinedText
+  );
+  if (uwTacomaSetProgramRequirementCandidate) {
+    sourceRole = "primary-degree-requirements";
+  }
   const sameProgramZeroCourseReplacement =
     isSameProgramZeroCourseReplacementCandidate(
       target,
@@ -3170,7 +3475,7 @@ function scoreCandidate(target, candidate) {
   if (pathwayIdentityPrimaryPage) {
     sourceRole = "primary-degree-requirements";
   }
-  const candidateIdentityText = slugifyForSearch(combinedText);
+  const candidateScoringText = getCandidateScoringText(candidate, combinedText).toLowerCase();
   const candidateYearInfo = buildCandidateYearInfo(candidate);
   const reasons = [];
   let score = 0;
@@ -3234,6 +3539,13 @@ function scoreCandidate(target, candidate) {
   const sourceRoleRule = sourceRoleRules[sourceRole] ?? sourceRoleRules.ignored;
   score += sourceRoleRule.score;
   addReason(reasons, getSourceRoleMetadata(sourceRole).reason);
+  if (uwTacomaSetProgramRequirementCandidate) {
+    score += 120;
+    addReason(
+      reasons,
+      "UW Tacoma SET undergraduate program page matches the selected major"
+    );
+  }
   if (pathwayIdentityPrimaryPage) {
     score += 18;
     hasPathwaySpecificEvidence = true;
@@ -3310,15 +3622,13 @@ function scoreCandidate(target, candidate) {
   ];
 
   for (const rule of positiveRules) {
-    if (rule.pattern.test(combinedText)) {
+    if (rule.pattern.test(candidateScoringText)) {
       score += rule.score;
       addReason(reasons, rule.reason);
     }
   }
 
-  const negativeRuleText = isCatalogCredentialAnchorCandidate(candidate)
-    ? getCandidateLocalScoringText(candidate)
-    : combinedText;
+  const negativeRuleText = candidateScoringText;
   for (const rule of negativeRules) {
     if (rule.pattern.test(negativeRuleText)) {
       score += rule.score;
@@ -3326,7 +3636,7 @@ function scoreCandidate(target, candidate) {
     }
   }
 
-  const identityMatch = scoreIdentityMatch(target, candidate, combinedText);
+  const identityMatch = scoreIdentityMatch(target, candidate, candidateScoringText);
   score += identityMatch.score;
   if (identityMatch.pathwayIdentityMatched) {
     hasPathwaySpecificEvidence = true;
@@ -3335,17 +3645,17 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, reason);
   }
 
-  if (hasMatchingDegreeRoute(`${target.title} ${target.label}`, combinedText)) {
+  if (hasMatchingDegreeRoute(`${target.title} ${target.label}`, candidateScoringText)) {
     score += 8;
     addReason(reasons, "matches the selected degree route");
   }
 
-  if (hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candidateIdentityText)) {
+  if (hasSelectedUndergraduateCatalogMajorCredential(target, candidate, slugifyForSearch(candidateScoringText))) {
     score += 16;
     addReason(reasons, "official catalog credential names the selected undergraduate major");
   }
 
-  if (isSingleDegreeRouteCandidateForMultiPathwayMajor(target, candidate, combinedText)) {
+  if (isSingleDegreeRouteCandidateForMultiPathwayMajor(target, candidate, candidateScoringText)) {
     score -= 10;
     addReason(reasons, "route-specific page may not cover every pathway in the selected major");
   }
@@ -3422,7 +3732,8 @@ function scoreCandidate(target, candidate) {
   }
 
   const majorPhrase = slugifyForSearch(target.title);
-  if (majorPhrase && matchesSpaceDelimitedSlug(candidateIdentityText, majorPhrase)) {
+  const scoringIdentityText = slugifyForSearch(candidateScoringText);
+  if (majorPhrase && matchesSpaceDelimitedSlug(scoringIdentityText, majorPhrase)) {
     score += 10;
     addReason(reasons, "explicitly names the selected major");
   }
@@ -3431,7 +3742,7 @@ function scoreCandidate(target, candidate) {
   if (
     labelPhrase &&
     labelPhrase !== majorPhrase &&
-    matchesSpaceDelimitedSlug(candidateIdentityText, labelPhrase)
+    matchesSpaceDelimitedSlug(scoringIdentityText, labelPhrase)
   ) {
     score += 6;
     hasPathwaySpecificEvidence = true;
@@ -3449,7 +3760,7 @@ function scoreCandidate(target, candidate) {
     target.pathwayId &&
     labelPhrase &&
     labelPhrase !== majorPhrase &&
-    !matchesSpaceDelimitedSlug(candidateIdentityText, labelPhrase)
+    !matchesSpaceDelimitedSlug(scoringIdentityText, labelPhrase)
   ) {
     score -= 14;
     broadDepartmentMissesSelectedPathway = true;
@@ -3457,7 +3768,7 @@ function scoreCandidate(target, candidate) {
   }
 
   for (const token of target.keywordTokens) {
-    if (tokenMatchesCandidateText(token, candidateIdentityText)) {
+    if (tokenMatchesCandidateText(token, scoringIdentityText)) {
       matchedKeywordCount += 1;
       score += 2;
       addReason(reasons, `matches major keyword "${token}"`);
@@ -3615,6 +3926,16 @@ function getCandidateLinkText(candidate) {
   );
 }
 
+function isSkipNavigationCandidate(candidate) {
+  const linkText = getCandidateLinkText(candidate).toLowerCase();
+  const sectionAnchor = String(getUrlSectionAnchor(candidate?.url) ?? "").toLowerCase();
+  return (
+    linkText === "skip to content" ||
+    linkText === "skip to main content" ||
+    sectionAnchor === "#content"
+  );
+}
+
 function buildCandidateDiscoveryMetadata(target, candidate) {
   const sourceRole = candidate.sourceRole ?? classifySourceDiscoveryRole(candidate);
   const sourceRoleStatus = candidate.sourceRoleStatus ?? getSourceRoleStatus(sourceRole);
@@ -3633,6 +3954,7 @@ function buildCandidateDiscoveryMetadata(target, candidate) {
     .filter(Boolean)
     .join(" \n")
     .toLowerCase();
+  const identityText = getCandidateScoringText(candidate, combinedText).toLowerCase();
 
   return {
     discoveredFromUrl,
@@ -3641,8 +3963,8 @@ function buildCandidateDiscoveryMetadata(target, candidate) {
     canBePrimary: canSourceRoleCreateSchedulableRows(sourceRole),
     sectionAnchor: getUrlSectionAnchor(candidate.url),
     sameDepartment: isSameDepartmentUrl(discoveredFromUrl, candidate.url),
-    sameMajorIdentityScore: getSameMajorIdentityScore(target, candidate, combinedText),
-    pathwayIdentityScore: getPathwayIdentityScore(target, candidate, combinedText),
+    sameMajorIdentityScore: getSameMajorIdentityScore(target, candidate, identityText),
+    pathwayIdentityScore: getPathwayIdentityScore(target, candidate, identityText),
   };
 }
 
@@ -3741,11 +4063,9 @@ async function mapWithConcurrency(items, worker, concurrency, options = {}) {
 }
 
 function parseArgs() {
-  const args = process.argv.slice(2);
-  const includeExisting = args.includes("--all");
-  const dryRun = args.includes("--dry-run");
-  const campusArg = args.find((arg) => arg.startsWith("--campus="));
-  const campusFilter = campusArg ? campusArg.slice("--campus=".length) : null;
+  const includeExisting = hasArg("--all");
+  const dryRun = hasArg("--dry-run");
+  const campusFilter = getArgValue("--campus");
   const targetPlanIds = parseTargetPlanIdsFromArgs();
 
   if (campusFilter && !CAMPUS_IDS.has(campusFilter)) {
@@ -3827,6 +4147,7 @@ function buildReplacementDecision(target, candidates) {
     signalCodes.has("primary-url-looks-graduate-or-timeline") ||
     signalCodes.has("page-headings-look-graduate-or-timeline-heavy") ||
     signalCodes.has("no-parsed-uw-course-codes") ||
+    signalCodes.has("shared-uw-tacoma-catalog-primary-with-empty-grc-runtime") ||
     currentPrimaryLooksNonPrimary ||
     currentPrimaryIsMajorLevelCatalogForPathway;
   const currentPrimaryLooksYearSpecific = signalCodes.has("primary-source-appears-year-specific");
@@ -3846,7 +4167,8 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
     replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
     replacementReasons.has("same-program option/concentration child source matches the selected pathway") ||
-    replacementReasons.has("pathway-specific official child page matches the selected pathway");
+    replacementReasons.has("pathway-specific official child page matches the selected pathway") ||
+    replacementReasons.has("UW Tacoma SET undergraduate program page matches the selected major");
   const replacementHasStructuredRequirementPageEvidence =
     replacementReasons.has("checklist-style wording") ||
     replacementReasons.has("explicit degree-requirements wording") ||
@@ -3858,7 +4180,8 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
     replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
     replacementReasons.has("same-program option/concentration child source matches the selected pathway") ||
-    replacementReasons.has("pathway-specific official child page matches the selected pathway");
+    replacementReasons.has("pathway-specific official child page matches the selected pathway") ||
+    replacementReasons.has("UW Tacoma SET undergraduate program page matches the selected major");
   const replacementHasExplicitRequirementEvidence =
     replacementReasons.has("explicit degree-requirements wording") ||
     replacementReasons.has("explicit major-requirements wording") ||
@@ -3880,6 +4203,7 @@ function buildReplacementDecision(target, candidates) {
       replacementReasons.has("official source acronym matches the selected major") ||
       replacementReasons.has("explicitly names the selected major") ||
       replacementReasons.has("explicitly names the selected pathway or route") ||
+      replacementReasons.has("UW Tacoma SET undergraduate program page matches the selected major") ||
       replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
       replacementReasons.has("same-program option/concentration child source matches the selected pathway"));
   const staysOnDepartmentHost = replacementReasons.has(
@@ -3888,6 +4212,7 @@ function buildReplacementDecision(target, candidates) {
   const staysInTrustedReplacementScope =
     staysOnDepartmentHost ||
     replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
+    replacementReasons.has("UW Tacoma SET undergraduate program page matches the selected major") ||
     replacementReasons.has("same-program option/concentration child source matches the selected pathway");
   const currentSourceLatestYear = Number.isFinite(target?.reevaluationContext?.currentSourceLatestYear)
     ? target.reevaluationContext.currentSourceLatestYear
@@ -4031,6 +4356,7 @@ function shouldRunDeeperDiscovery(target, candidateMap) {
 function isPrimaryEligibleCandidate(candidate) {
   return (
     candidate &&
+    !isSkipNavigationCandidate(candidate) &&
     (candidate.requiresVerification !== true || candidate.verified === true) &&
     candidate.canCreateSchedulableRows !== false &&
     candidate.canBePrimary !== false &&
@@ -4104,7 +4430,7 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
     candidate.sameDepartment &&
       target?.ownerType === "pathway" &&
       (candidate.pathwayIdentityScore ?? 0) > 0 &&
-      PATHWAY_SOURCE_CUE_PATTERN.test(searchable)
+      PATHWAY_CUE_PATTERN.test(searchable)
   );
   if (
     UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN.test(searchable) &&
@@ -4298,7 +4624,10 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
   ];
   const baseDomains = (() => {
     const discoveredBaseDomains = getBaseDomains(discoveryLinks.map((link) => link.url));
-    return discoveredBaseDomains.length ? discoveredBaseDomains : getFallbackBaseDomains(target.campusId);
+    return uniqueSorted([
+      ...discoveredBaseDomains,
+      ...getFallbackBaseDomains(target.campusId),
+    ]);
   })();
   const candidateMap = new Map();
   const sourcePages = [];
@@ -4328,7 +4657,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     addScoredCandidate(candidateMap, target, candidate);
   }
 
-  for (const candidate of TARGETED_OFFICIAL_SOURCE_CANDIDATES[target.ownerKey] ?? []) {
+  for (const candidate of TARGETED_OFFICIAL_CANDIDATES[target.ownerKey] ?? []) {
     addScoredCandidate(candidateMap, target, {
       ...candidate,
       sourceKind: "targeted-official-candidate",
@@ -4336,9 +4665,16 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     });
   }
 
+  const shouldUseFallbackSourcePages =
+    discoveryLinks.length === 0 ||
+    (
+      target.campusId === "uw-tacoma" &&
+      target.existingPrimaryUrl &&
+      isSharedUwGeneralCatalogProgramUrl(target.existingPrimaryUrl)
+    );
   const fallbackSourcePages =
-    discoveryLinks.length === 0
-      ? (FALLBACK_DISCOVERY_SOURCE_PAGES_BY_CAMPUS[target.campusId] ?? []).map((url) => ({
+    shouldUseFallbackSourcePages
+      ? (FALLBACK_DISCOVERY_PAGES_BY_CAMPUS[target.campusId] ?? []).map((url) => ({
           url,
           sourceKind: "campus-major-index",
         }))
@@ -4767,7 +5103,7 @@ function writeMarkdownReport(report) {
     }
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 async function main() {
@@ -4829,7 +5165,7 @@ async function main() {
   });
 
   if (!dryRun) {
-    fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+    writePlannerJsonReport(OUTPUT_JSON_PATH, report);
     writeMarkdownReport(report);
   }
 
@@ -4846,6 +5182,7 @@ module.exports = {
   analyzeOwner,
   buildDiscoveryReport,
   buildOwnerTargetRecord,
+  buildOwnerTargetsForTest: buildOwnerTargets,
   buildReplacementDecision,
   buildWeakExistingOwnerTargets,
   buildWeakExistingPrimarySignals,
@@ -4858,6 +5195,7 @@ module.exports = {
   getDiscoveryParserType,
   getOfficialPrimaryScore,
   getSourceRoleStatus,
+  hasStudentRuntimeAliasCoverageForTest: hasStudentRuntimeAliasCoverage,
   inspectPage,
   isAutoPromotablePrimaryCandidate,
   scoreCandidate,

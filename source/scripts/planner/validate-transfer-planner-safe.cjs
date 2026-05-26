@@ -41,7 +41,7 @@ function buildNpxInvocation(args) {
 const STAGES = [
   {
     name: "source-backed-full",
-    layer: "source-backed runtime coverage",
+    layer: "runtime coverage",
     group: "source-backed",
     command: "node scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
     args: ["scripts/planner/audit-transfer-planner-source-backed-coverage.cjs"],
@@ -85,7 +85,7 @@ const STAGES = [
   },
   {
     name: "parser-tests",
-    layer: "parser/source-backed tests",
+    layer: "parser/tests",
     group: "tests",
     command: "npm run planner:test:parser",
     ...buildNpmInvocation(["run", "planner:test:parser"]),

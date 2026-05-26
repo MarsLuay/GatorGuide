@@ -34,7 +34,9 @@ Do not hand-edit:
 
 - `constants/transfer-planner-source/requirement-source-adapters.generated.ts`
 - `constants/transfer-planner-source/student-runtime.generated.ts`
+- `constants/transfer-planner-source/student-runtime.generated/*.generated.json`
 - `constants/transfer-planner-source/course-metadata.generated.ts`
+- `constants/transfer-planner-source/course-metadata.generated.data.json`
 - `constants/transfer-planner-source/equivalency-guide.generated.ts`
 - `constants/transfer-planner-source/source-fingerprints.generated.ts`
 - `constants/transfer-planner-source/bootstrap.generated.ts`
@@ -55,13 +57,13 @@ npm run planner:verify
 npm run planner:full:verify
 ```
 
-Useful planner reports are written under `.tmp/`, especially:
+Useful planner reports are written under `.tmp/reports/`, especially:
 
-- `.tmp/transfer-planner-maintenance-summary.md`
-- `.tmp/transfer-planner-hardening-report.md`
-- `.tmp/transfer-planner-source-backed-coverage-audit.md`
-- `.tmp/transfer-planner-requirement-source-parse-report.md`
-- `.tmp/transfer-planner-primary-source-discovery.md`
+- `.tmp/reports/transfer-planner-maintenance-summary.md`
+- `.tmp/reports/transfer-planner-hardening-report.md`
+- `.tmp/reports/transfer-planner-source-backed-coverage-audit.md`
+- `.tmp/reports/transfer-planner-requirement-source-parse-report.md`
+- `.tmp/reports/transfer-planner-primary-source-discovery.md`
 
 ## Where To Edit
 
@@ -73,8 +75,8 @@ Useful planner reports are written under `.tmp/`, especially:
 - Planner questionnaire storage keys: `constants/planner-storage.ts`
 - Theme values: `constants/theme-tokens.ts`
 - Theme state: `hooks/use-app-theme.tsx`
-- Translation source used by the app: `services/app/translations.ts`
-- Locale JSON references: `constants/locales/`
+- Translation source JSON: `constants/locales/`
+- Translation app adapter: `services/app/translations.ts`
 - AI recommendations and assistant behavior: `services/ai/ai.service.ts`
 - AI gateway client: `services/ai/ai-gateway.service.ts`
 - AI context serialization: `services/ai/ai-context.service.ts`
@@ -110,7 +112,6 @@ These files are human-maintained but large enough that AI agents should inspect 
 
 - `services/planning/transfer-planner/runtime.ts`
 - `services/ai/ai.service.ts`
-- `services/app/translations.ts`
 - `scripts/planner/parse-transfer-planner-requirement-sources.cjs`
 - `scripts/planner/audit-transfer-planner-source-backed-coverage.cjs`
 - `scripts/planner/transfer-planner.service.test.ts`

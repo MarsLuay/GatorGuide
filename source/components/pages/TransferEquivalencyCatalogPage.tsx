@@ -11,31 +11,13 @@ import {
   type SearchableSelectOption,
 } from "@/components/ui/SearchableSelect";
 import {
-  getTransferEquivalencyTagDisplayLabel,
-  getTransferEquivalencyTagLabel,
-  getTransferEquivalencyTagLongLabel,
-  isTransferEquivalencyTrackedTag,
-  normalizeTransferEquivalencyTag,
-  TRANSFER_EQUIVALENCY_TRACKED_TAGS,
-  type TransferEquivalencyTrackedTag,
-} from "@/constants/transfer-equivalency-tags";
-import {
-  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID,
-  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL,
-  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_HEADING,
-  normalizeComputerEngineeringNaturalScienceFilterId,
-} from "@/constants/transfer-planner-source/computer-engineering-natural-science";
-import {
   TRANSFER_EQUIVALENCY_CATALOG_CAMPUSES,
   TRANSFER_EQUIVALENCY_CATALOG_ENTRIES,
-  type TransferEquivalencyCatalogCampus,
-  type TransferEquivalencyCatalogEntry,
 } from "@/constants/transfer-equivalency-catalog.generated";
 import {
   getTransferPlannerStudentRuntimeMajorsForCampus,
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } from "@/constants/transfer-planner-source/student-runtime";
-import type { TransferPlannerCampusId } from "@/constants/transfer-planner-types";
 import { ROUTES } from "@/constants/routes";
 import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -46,175 +28,36 @@ import {
   TRANSCRIPT_COURSES_FIELD,
   TRANSCRIPT_PARSER_VERSION,
   TRANSCRIPT_PARSER_VERSION_FIELD,
-  TRANSCRIPT_SOURCE_FIELD,
+  TRANSCRIPT_FIELD,
 } from "@/services/planning/transfer-planner-cache.service";
+import { parseCompletedTranscriptCourses } from "@/services/planning/transfer-planner.service";
 import {
-  buildEligibleTransferCategorySourceCourseCodesForPlan,
-  getComputerEngineeringApprovedNaturalScienceTransferEntries,
-  buildTransferPlannerGrcTranscriptReadyCourseCodes,
-  extractCourseCodes,
-  isTransferPlannerGrcCourseSetTranscriptReady,
-  parseCompletedTranscriptCourses,
-} from "@/services/planning/transfer-planner.service";
-
-const DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID: TransferPlannerCampusId = "uw-seattle";
-type TransferEquivalencyCatalogCollegeId = "uw" | "grc";
-type TransferEquivalencySpecialFilterId =
-  typeof COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID;
-type TransferEquivalencyCatalogFilterId =
-  | TransferEquivalencyTrackedTag
-  | TransferEquivalencySpecialFilterId;
-type TransferEquivalencyCatalogDisplayEntry = Omit<
-  TransferEquivalencyCatalogEntry,
-  "tags"
-> & {
-  tags: string[];
-  ceApprovedReason?: "approved-uw-equivalent" | "compound-path" | null;
-};
-
-const DEFAULT_TRANSFER_EQUIVALENCY_COLLEGE_ID: TransferEquivalencyCatalogCollegeId =
-  "uw";
-
-function isTransferEquivalencyCollegeId(
-  value: string
-): value is TransferEquivalencyCatalogCollegeId {
-  return value === "uw" || value === "grc";
-}
-
-function normalizeTransferEquivalencyCollegeId(
-  value: string | string[] | undefined
-): TransferEquivalencyCatalogCollegeId {
-  const rawCollege = Array.isArray(value) ? value[0] : value;
-  const normalized = String(rawCollege ?? DEFAULT_TRANSFER_EQUIVALENCY_COLLEGE_ID)
-    .trim()
-    .toLowerCase();
-
-  return isTransferEquivalencyCollegeId(normalized)
-    ? normalized
-    : DEFAULT_TRANSFER_EQUIVALENCY_COLLEGE_ID;
-}
-
-function getTransferEquivalencyCollegeLabel(
-  collegeId: TransferEquivalencyCatalogCollegeId
-) {
-  return collegeId === "grc" ? "Green River College" : "University of Washington";
-}
-
-function isTransferEquivalencyCampusId(
-  value: string,
-  campuses: TransferEquivalencyCatalogCampus[]
-): value is TransferPlannerCampusId {
-  return campuses.some((campus) => campus.id === value);
-}
-
-function normalizeTransferEquivalencyCampusId(
-  value: string | string[] | undefined,
-  campuses: TransferEquivalencyCatalogCampus[]
-): TransferPlannerCampusId {
-  const rawCampus = Array.isArray(value) ? value[0] : value;
-  const normalized = String(rawCampus ?? DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID)
-    .trim()
-    .toLowerCase();
-
-  return isTransferEquivalencyCampusId(normalized, campuses)
-    ? normalized
-    : DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID;
-}
-
-function normalizeSingleSearchParam(value: string | string[] | undefined) {
-  return String(Array.isArray(value) ? value[0] ?? "" : value ?? "").trim();
-}
-
-function normalizeTransferEquivalencyCatalogFilterId(
-  value: string | null | undefined
-): TransferEquivalencyCatalogFilterId | null {
-  const ceApprovedFilterId = normalizeComputerEngineeringNaturalScienceFilterId(value);
-  if (ceApprovedFilterId) {
-    return ceApprovedFilterId;
-  }
-
-  const normalizedTag = normalizeTransferEquivalencyTag(value);
-  return isTransferEquivalencyTrackedTag(normalizedTag) ? normalizedTag : null;
-}
-
-function isTransferEquivalencySpecialFilterId(
-  value: string
-): value is TransferEquivalencySpecialFilterId {
-  return value === COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID;
-}
-
-function hasTranscriptCourseRecords(value: unknown) {
-  return (
-    Array.isArray(value) &&
-    value.some(
-      (entry) => !!entry && typeof entry === "object" && !Array.isArray(entry)
-    )
-  );
-}
-
-function normalizeStoredTranscriptParserVersion(value: unknown) {
-  const parsed =
-    typeof value === "number" ? value : Number.parseInt(String(value ?? "").trim(), 10);
-  return Number.isFinite(parsed) ? parsed : null;
-}
-
-function getEligibleTransferHeading(tag: string) {
-  if (isTransferEquivalencySpecialFilterId(tag)) {
-    return COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_HEADING;
-  }
-
-  const shortLabel = getTransferEquivalencyTagLabel(tag);
-  const longLabel = getTransferEquivalencyTagLongLabel(tag);
-  if (!longLabel || longLabel === shortLabel) {
-    return `${shortLabel} eligible transfers`;
-  }
-  return `${shortLabel} eligible transfers (${longLabel})`;
-}
-
-function normalizeEquivalencySearchValue(value: string) {
-  return String(value ?? "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function getCatalogEntryCurrentSourceCourseCodes(
-  entry: TransferEquivalencyCatalogDisplayEntry
-) {
-  const currentSourceCourseLabel = entry.sourceCourseLabel.split(
-    /\b(?:formerly|see(?:\s+also)?|same as|combined entr(?:y|ies))\b/i
-  )[0];
-  const currentSourceCourseCodes = extractCourseCodes(currentSourceCourseLabel);
-  return currentSourceCourseCodes.length
-    ? currentSourceCourseCodes
-    : extractCourseCodes(entry.sourceCourseLabel);
-}
-
-function doesCatalogEntryMatchEligibleSourceCourseCodes(
-  entry: TransferEquivalencyCatalogDisplayEntry,
-  eligibleSourceCourseCodes: Set<string> | undefined
-) {
-  if (!eligibleSourceCourseCodes) {
-    return true;
-  }
-
-  const currentSourceCourseLabel = entry.sourceCourseLabel.split(
-    /\b(?:formerly|see(?:\s+also)?|same as|combined entr(?:y|ies))\b/i
-  )[0];
-  const currentSourceCourseCodes = extractCourseCodes(currentSourceCourseLabel);
-  if (currentSourceCourseCodes.length) {
-    return currentSourceCourseCodes.every((courseCode) =>
-      eligibleSourceCourseCodes.has(courseCode)
-    );
-  }
-
-  return extractCourseCodes(entry.sourceCourseLabel).some((courseCode) =>
-    eligibleSourceCourseCodes.has(courseCode)
-  );
-}
+  DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID,
+  DEFAULT_TRANSFER_EQUIVALENCY_COLLEGE_ID,
+  buildCeApprovedNaturalScienceRows,
+  buildEligibleCourseCodesByTag,
+  buildEquivalenciesByTag,
+  buildGrcGeneralEducationCatalogRules,
+  buildHighlightedCategoryLabels,
+  buildSourceCourseCodesByTag,
+  buildTranscriptReadyCourseCodesByTag,
+  filterEquivalenciesBySearch,
+  getEligibleTransferHeading,
+  getLatestGrcGeneralEducationCatalogYearLabel,
+  getTransferEquivalencyCollegeLabel,
+  hasTranscriptCourseRecords,
+  isTransferEquivalencyCampusId,
+  isTransferEquivalencyCollegeId,
+  normalizeEquivalencySearchValue,
+  normalizeSingleSearchParam,
+  normalizeStoredTranscriptParserVersion,
+  normalizeTransferEquivalencyCampusId,
+  normalizeTransferEquivalencyCatalogFilterId,
+  normalizeTransferEquivalencyCollegeId,
+  resolveVisibleTransferEquivalencyTags,
+  type TransferEquivalencyCatalogDisplayEntry,
+  type TransferEquivalencyCatalogFilterId,
+} from "@/components/pages/transfer-equivalency-catalog/transfer-equivalency-catalog-logic";
 
 export default function TransferEquivalencyCatalogPage() {
   const goBack = useBack(ROUTES.transferPlanner);
@@ -246,6 +89,10 @@ export default function TransferEquivalencyCatalogPage() {
   const campuses = TRANSFER_EQUIVALENCY_CATALOG_CAMPUSES;
   const equivalencyRules =
     TRANSFER_EQUIVALENCY_CATALOG_ENTRIES as TransferEquivalencyCatalogDisplayEntry[];
+  const latestGrcGeneralEducationCatalogYearLabel = useMemo(
+    () => getLatestGrcGeneralEducationCatalogYearLabel(),
+    []
+  );
 
   const backLabel = useMemo(() => {
     const translated = t("general.back");
@@ -298,10 +145,15 @@ export default function TransferEquivalencyCatalogPage() {
   const selectedCollegeLabel =
     collegeOptions.find((option) => option.id === selectedCollegeId)?.label ??
     getTransferEquivalencyCollegeLabel(selectedCollegeId);
+  const isGreenRiverCollegeMode = selectedCollegeId === "grc";
 
   const selectedCampusId = useMemo(() => {
+    if (isGreenRiverCollegeMode) {
+      return DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID;
+    }
+
     return normalizeTransferEquivalencyCampusId(params.campusId, campuses);
-  }, [campuses, params.campusId]);
+  }, [campuses, isGreenRiverCollegeMode, params.campusId]);
 
   const campusOptions = useMemo<SearchableSelectOption[]>(
     () =>
@@ -316,6 +168,9 @@ export default function TransferEquivalencyCatalogPage() {
   const selectedCampus =
     campuses.find((campus) => campus.id === selectedCampusId) ?? null;
   const selectedCampusLabel = selectedCampus?.title ?? "UW Seattle";
+  const visibleCampusLabel = isGreenRiverCollegeMode
+    ? selectedCollegeLabel
+    : selectedCampusLabel;
   const selectedMajorId = useMemo(
     () => normalizeSingleSearchParam(params.majorId),
     [params.majorId]
@@ -325,7 +180,7 @@ export default function TransferEquivalencyCatalogPage() {
     [params.pathwayId]
   );
   const selectedMajorPlan = useMemo(() => {
-    if (selectedCollegeId !== "uw") return null;
+    if (isGreenRiverCollegeMode) return null;
     if (!selectedMajorId) return null;
 
     const basePlan =
@@ -338,23 +193,23 @@ export default function TransferEquivalencyCatalogPage() {
       basePlan,
       selectedPathwayId || null
     );
-  }, [selectedCampusId, selectedCollegeId, selectedMajorId, selectedPathwayId]);
-  const eligibleCourseCodesByTag = useMemo(() => {
-    const entries: Partial<Record<TransferEquivalencyTrackedTag, Set<string>>> = {};
-    if (!selectedMajorPlan) return entries;
-
-    for (const tag of TRANSFER_EQUIVALENCY_TRACKED_TAGS) {
-      const eligibleCourseCodes = buildEligibleTransferCategorySourceCourseCodesForPlan(
-        selectedMajorPlan,
-        tag
-      );
-      if (eligibleCourseCodes?.length) {
-        entries[tag] = new Set(eligibleCourseCodes);
-      }
+  }, [isGreenRiverCollegeMode, selectedCampusId, selectedMajorId, selectedPathwayId]);
+  const eligibleCourseCodesByTag = useMemo(
+    () => buildEligibleCourseCodesByTag(selectedMajorPlan),
+    [selectedMajorPlan]
+  );
+  const grcGeneralEducationRules = useMemo(() => {
+    if (!isGreenRiverCollegeMode || !latestGrcGeneralEducationCatalogYearLabel) {
+      return [] as TransferEquivalencyCatalogDisplayEntry[];
     }
 
-    return entries;
-  }, [selectedMajorPlan]);
+    return buildGrcGeneralEducationCatalogRules(
+      latestGrcGeneralEducationCatalogYearLabel
+    );
+  }, [isGreenRiverCollegeMode, latestGrcGeneralEducationCatalogYearLabel]);
+  const catalogRules = isGreenRiverCollegeMode
+    ? grcGeneralEducationRules
+    : equivalencyRules;
   const storedDetailedTranscriptCourses =
     state.questionnaireAnswers?.[TRANSCRIPT_COURSES_FIELD];
   const hasDetailedTranscriptCourses = hasTranscriptCourseRecords(
@@ -370,7 +225,7 @@ export default function TransferEquivalencyCatalogPage() {
     () =>
       Boolean(
         String(state.user?.transcript ?? "").trim() ||
-          String(state.questionnaireAnswers?.[TRANSCRIPT_SOURCE_FIELD] ?? "").trim()
+          String(state.questionnaireAnswers?.[TRANSCRIPT_FIELD] ?? "").trim()
       ),
     [state.questionnaireAnswers, state.user?.transcript]
   );
@@ -392,107 +247,39 @@ export default function TransferEquivalencyCatalogPage() {
     state.questionnaireAnswers,
     storedDetailedTranscriptCourses,
   ]);
-  const sourceCourseCodesByTag = useMemo(() => {
-    const entries: Partial<Record<TransferEquivalencyTrackedTag, Set<string>>> = {};
-
-    for (const rule of equivalencyRules) {
-      if (!rule.targetSchoolIds.includes(selectedCampusId)) continue;
-
-      for (const rawTag of rule.tags) {
-        const tag = normalizeTransferEquivalencyTag(rawTag);
-        if (!isTransferEquivalencyTrackedTag(tag)) {
-          continue;
-        }
-        if (
-          !doesCatalogEntryMatchEligibleSourceCourseCodes(
-            rule,
-            eligibleCourseCodesByTag[tag]
-          )
-        ) {
-          continue;
-        }
-
-        const currentSourceCourseCodes = getCatalogEntryCurrentSourceCourseCodes(rule);
-        if (!currentSourceCourseCodes.length) {
-          continue;
-        }
-
-        const existing = entries[tag] ?? new Set<string>();
-        for (const courseCode of currentSourceCourseCodes) {
-          existing.add(courseCode);
-        }
-        entries[tag] = existing;
-      }
-    }
-
-    return entries;
-  }, [eligibleCourseCodesByTag, equivalencyRules, selectedCampusId]);
-  const transcriptReadyCourseCodesByTag = useMemo(() => {
-    const entries: Partial<Record<TransferEquivalencyTrackedTag, Set<string>>> = {};
-    if (!hasUnofficialTranscript) {
-      return entries;
-    }
-
-    for (const tag of TRANSFER_EQUIVALENCY_TRACKED_TAGS) {
-      const candidateCourseCodes = sourceCourseCodesByTag[tag];
-      if (!candidateCourseCodes?.size) {
-        continue;
-      }
-
-      entries[tag] = new Set(
-        buildTransferPlannerGrcTranscriptReadyCourseCodes({
-          candidateCourseCodes,
-          completedCourseCodes: transcriptCompletedCourseCodes,
-        })
-      );
-    }
-
-    return entries;
-  }, [
-    hasUnofficialTranscript,
-    sourceCourseCodesByTag,
-    transcriptCompletedCourseCodes,
-  ]);
-  const ceApprovedNaturalScienceRows = useMemo(() => {
-    if (selectedCampusId !== "uw-seattle") {
-      return [] as TransferEquivalencyCatalogDisplayEntry[];
-    }
-
-    const rows = getComputerEngineeringApprovedNaturalScienceTransferEntries().map(
-      (entry) =>
-        ({
-          id: entry.id,
-          targetSchoolIds: ["uw-seattle"],
-          sourceCourseLabel: entry.sourceCourseCodes.join(" + "),
-          sourceCourseTitle: entry.sourceCourseTitle,
-          targetOutcome: entry.targetOutcome || entry.uwEquivalentCourseCodes.join(", "),
-          tags: ["NSC", COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID],
-          ceApprovedReason: entry.inclusionReason,
-        }) satisfies TransferEquivalencyCatalogDisplayEntry
-    );
-
-    if (!hasUnofficialTranscript) {
-      return rows;
-    }
-
-    const candidateCourseCodes = new Set(
-      rows.flatMap((row) => getCatalogEntryCurrentSourceCourseCodes(row))
-    );
-    const readyCourseCodes = new Set(
-      buildTransferPlannerGrcTranscriptReadyCourseCodes({
-        candidateCourseCodes,
+  const sourceCourseCodesByTag = useMemo(
+    () =>
+      buildSourceCourseCodesByTag({
+        catalogRules,
+        eligibleCourseCodesByTag,
+        selectedCampusId,
+      }),
+    [catalogRules, eligibleCourseCodesByTag, selectedCampusId]
+  );
+  const transcriptReadyCourseCodesByTag = useMemo(
+    () =>
+      buildTranscriptReadyCourseCodesByTag({
         completedCourseCodes: transcriptCompletedCourseCodes,
-      })
-    );
-
-    return rows.filter((row) =>
-      isTransferPlannerGrcCourseSetTranscriptReady({
-        sourceCourseCodes: getCatalogEntryCurrentSourceCourseCodes(row),
+        hasUnofficialTranscript,
+        sourceCourseCodesByTag,
+      }),
+    [hasUnofficialTranscript, sourceCourseCodesByTag, transcriptCompletedCourseCodes]
+  );
+  const ceApprovedNaturalScienceRows = useMemo(
+    () =>
+      buildCeApprovedNaturalScienceRows({
         completedCourseCodes: transcriptCompletedCourseCodes,
-        readyCourseCodes,
-      })
-    );
-  }, [hasUnofficialTranscript, selectedCampusId, transcriptCompletedCourseCodes]);
+        hasUnofficialTranscript,
+        isGreenRiverCollegeMode,
+        selectedCampusId,
+      }),
+    [
+      hasUnofficialTranscript,
+      isGreenRiverCollegeMode,
+      selectedCampusId,
+      transcriptCompletedCourseCodes,
+    ]
+  );
 
   const handleCollegeSelect = (nextCollegeId: string) => {
     setIsCollegeSelectorOpen(false);
@@ -508,7 +295,10 @@ export default function TransferEquivalencyCatalogPage() {
       pathname: ROUTES.transferEquivalencies,
       params: {
         collegeId: normalizedCollegeId,
-        campusId: selectedCampusId,
+        campusId:
+          normalizedCollegeId === "grc"
+            ? DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID
+            : selectedCampusId,
         ...(selectedTags.length ? { tag: selectedTags.join(",") } : {}),
         ...(normalizedCollegeId === "uw" && selectedMajorId
           ? { majorId: selectedMajorId }
@@ -545,126 +335,49 @@ export default function TransferEquivalencyCatalogPage() {
     });
   };
 
-  const equivalenciesByTag = useMemo(() => {
-    const grouped = new Map<string, TransferEquivalencyCatalogDisplayEntry[]>();
+  const equivalenciesByTag = useMemo(
+    () =>
+      buildEquivalenciesByTag({
+        catalogRules,
+        ceApprovedNaturalScienceRows,
+        completedCourseCodes: transcriptCompletedCourseCodes,
+        eligibleCourseCodesByTag,
+        hasUnofficialTranscript,
+        selectedCampusId,
+        transcriptReadyCourseCodesByTag,
+      }),
+    [
+      ceApprovedNaturalScienceRows,
+      catalogRules,
+      eligibleCourseCodesByTag,
+      hasUnofficialTranscript,
+      selectedCampusId,
+      transcriptCompletedCourseCodes,
+      transcriptReadyCourseCodesByTag,
+    ]
+  );
 
-    for (const rule of equivalencyRules) {
-      if (!rule.targetSchoolIds.includes(selectedCampusId)) continue;
-
-      for (const rawTag of rule.tags) {
-        const tag = normalizeTransferEquivalencyTag(rawTag);
-        if (!isTransferEquivalencyTrackedTag(tag)) {
-          continue;
-        }
-        if (
-          !doesCatalogEntryMatchEligibleSourceCourseCodes(
-            rule,
-            eligibleCourseCodesByTag[tag]
-          )
-        ) {
-          continue;
-        }
-
-        if (
-          hasUnofficialTranscript &&
-          !isTransferPlannerGrcCourseSetTranscriptReady({
-            sourceCourseCodes: getCatalogEntryCurrentSourceCourseCodes(rule),
-            completedCourseCodes: transcriptCompletedCourseCodes,
-            readyCourseCodes: transcriptReadyCourseCodesByTag[tag],
-          })
-        ) {
-          continue;
-        }
-
-        const existing = grouped.get(tag) ?? [];
-        existing.push(rule);
-        grouped.set(tag, existing);
-      }
-    }
-
-    if (ceApprovedNaturalScienceRows.length) {
-      grouped.set(
-        COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID,
-        ceApprovedNaturalScienceRows
-      );
-    }
-
-    for (const [tag, entries] of grouped.entries()) {
-      grouped.set(
-        tag,
-        [...entries].sort((left, right) => left.sourceCourseLabel.localeCompare(right.sourceCourseLabel))
-      );
-    }
-
-    return grouped;
-  }, [
-    ceApprovedNaturalScienceRows,
-    eligibleCourseCodesByTag,
-    equivalencyRules,
-    hasUnofficialTranscript,
-    selectedCampusId,
-    transcriptCompletedCourseCodes,
-    transcriptReadyCourseCodesByTag,
-  ]);
-
-  const visibleTags = useMemo(() => {
-    if (selectedTags.length) return selectedTags;
-    const trackedTags = TRANSFER_EQUIVALENCY_TRACKED_TAGS.filter(
-      (tag) => (equivalenciesByTag.get(tag)?.length ?? 0) > 0
-    ) as TransferEquivalencyCatalogFilterId[];
-    return ceApprovedNaturalScienceRows.length
-      ? [...trackedTags, COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID]
-      : trackedTags;
-  }, [ceApprovedNaturalScienceRows.length, equivalenciesByTag, selectedTags]);
+  const visibleTags = useMemo(
+    () =>
+      resolveVisibleTransferEquivalencyTags({
+        ceApprovedNaturalScienceRowCount: ceApprovedNaturalScienceRows.length,
+        equivalenciesByTag,
+        selectedTags,
+      }),
+    [ceApprovedNaturalScienceRows.length, equivalenciesByTag, selectedTags]
+  );
   const normalizedSearchQuery = normalizeEquivalencySearchValue(searchQuery);
   const isSearching = normalizedSearchQuery.length > 0;
-  const filteredEquivalenciesByTag = useMemo(() => {
-    if (!normalizedSearchQuery) {
-      return equivalenciesByTag;
-    }
-
-    const filtered = new Map<string, TransferEquivalencyCatalogDisplayEntry[]>();
-
-    for (const tag of visibleTags) {
-      const rows = equivalenciesByTag.get(tag) ?? [];
-      const tagSearchText = normalizeEquivalencySearchValue(
-        [
-          tag,
-          getEligibleTransferHeading(tag),
-          isTransferEquivalencySpecialFilterId(tag)
-            ? COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL
-            : "",
-          getTransferEquivalencyTagLabel(tag),
-          getTransferEquivalencyTagLongLabel(tag),
-        ]
-          .filter(Boolean)
-          .join(" ")
-      );
-
-      if (tagSearchText.includes(normalizedSearchQuery)) {
-        filtered.set(tag, rows);
-        continue;
-      }
-
-      const matchingRows = rows.filter((row) =>
-        normalizeEquivalencySearchValue(
-          [
-            row.sourceCourseLabel,
-            row.sourceCourseTitle ?? "",
-            row.targetOutcome,
-            ...row.tags,
-            row.ceApprovedReason ?? "",
-          ].join(" ")
-        ).includes(normalizedSearchQuery)
-      );
-
-      if (matchingRows.length) {
-        filtered.set(tag, matchingRows);
-      }
-    }
-
-    return filtered;
-  }, [equivalenciesByTag, normalizedSearchQuery, visibleTags]);
+  const filteredEquivalenciesByTag = useMemo(
+    () =>
+      filterEquivalenciesBySearch({
+        equivalenciesByTag,
+        isGreenRiverCollegeMode,
+        normalizedSearchQuery,
+        visibleTags,
+      }),
+    [equivalenciesByTag, isGreenRiverCollegeMode, normalizedSearchQuery, visibleTags]
+  );
   const displayedTags = useMemo(
     () =>
       visibleTags.filter(
@@ -675,15 +388,11 @@ export default function TransferEquivalencyCatalogPage() {
 
   const campusLabel = selectedCampusLabel;
   const highlightedCategoryLabels = useMemo(
-    () =>
-      ["AH", "SSC", "NSC"]
-        .map((tag) => getTransferEquivalencyTagDisplayLabel(tag))
-        .concat(COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL)
-        .join(", "),
-    []
+    () => buildHighlightedCategoryLabels(isGreenRiverCollegeMode),
+    [isGreenRiverCollegeMode]
   );
   const pageDescription =
-    selectedCollegeId === "grc"
+    isGreenRiverCollegeMode
       ? t("transferEquivalencies.pageDescriptionGrc", {
           campus: campusLabel,
           categories: highlightedCategoryLabels,
@@ -693,11 +402,11 @@ export default function TransferEquivalencyCatalogPage() {
           categories: highlightedCategoryLabels,
         });
   const campusHelperText =
-    selectedCollegeId === "grc"
+    isGreenRiverCollegeMode
       ? t("transferEquivalencies.campusHelperGrc")
       : t("transferEquivalencies.campusHelperUw");
   const searchHelperText =
-    selectedCollegeId === "grc"
+    isGreenRiverCollegeMode
       ? t("transferEquivalencies.searchHelperGrc")
       : t("transferEquivalencies.searchHelperUw");
   const isDesktop = width >= 1024;
@@ -740,7 +449,7 @@ export default function TransferEquivalencyCatalogPage() {
             <View className={`rounded-2xl border ${borderClass} px-4 py-3 ${isDesktop ? "min-w-[190px]" : ""}`}>
               <Text className={`${secondaryTextClass} text-xs`}>{t("transferEquivalencies.showing")}</Text>
               <Text className={`${textClass} text-sm font-semibold mt-1`}>
-                {selectedCampusLabel}
+                {visibleCampusLabel}
               </Text>
             </View>
           </View>
@@ -781,25 +490,36 @@ export default function TransferEquivalencyCatalogPage() {
                   {campusHelperText}
                 </Text>
                 <View className="mt-3">
-                  <SearchableSelect
-                    value={selectedCampusLabel}
-                    open={isCampusSelectorOpen}
-                    onToggle={() => {
-                      setIsCollegeSelectorOpen(false);
-                      setIsCampusSelectorOpen((current) => !current);
-                    }}
-                    onDismiss={() => {
-                      setIsCampusSelectorOpen(false);
-                    }}
-                    options={campusOptions}
-                    onSelect={handleCampusSelect}
-                    selectedOptionId={selectedCampusId}
-                    textClass={textClass}
-                    secondaryTextClass={secondaryTextClass}
-                    borderClass={borderClass}
-                    dropdownBackgroundColor={dropdownSurfaceColor}
-                    overlayStrategy="modal"
-                  />
+                  {isGreenRiverCollegeMode ? (
+                    <View className={`border ${borderClass} rounded-2xl px-4 py-4 flex-row items-center justify-between`}>
+                      <View className="flex-1 min-w-0 pr-3">
+                        <Text className={`${textClass} font-semibold`} numberOfLines={1}>
+                          {visibleCampusLabel}
+                        </Text>
+                      </View>
+                      <MaterialIcons name="school" size={21} color="#10B981" />
+                    </View>
+                  ) : (
+                    <SearchableSelect
+                      value={visibleCampusLabel}
+                      open={isCampusSelectorOpen}
+                      onToggle={() => {
+                        setIsCollegeSelectorOpen(false);
+                        setIsCampusSelectorOpen((current) => !current);
+                      }}
+                      onDismiss={() => {
+                        setIsCampusSelectorOpen(false);
+                      }}
+                      options={campusOptions}
+                      onSelect={handleCampusSelect}
+                      selectedOptionId={selectedCampusId}
+                      textClass={textClass}
+                      secondaryTextClass={secondaryTextClass}
+                      borderClass={borderClass}
+                      dropdownBackgroundColor={dropdownSurfaceColor}
+                      overlayStrategy="modal"
+                    />
+                  )}
                 </View>
               </View>
             </View>
@@ -889,7 +609,7 @@ export default function TransferEquivalencyCatalogPage() {
                         </View>
                         <View className="flex-1 min-w-0">
                           <Text className={`${textClass} font-semibold`}>
-                            {getEligibleTransferHeading(tag)}
+                            {getEligibleTransferHeading(tag, isGreenRiverCollegeMode)}
                           </Text>
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
                             {isSearching && rows.length !== sourceRowCount
@@ -936,8 +656,10 @@ export default function TransferEquivalencyCatalogPage() {
                             </View>
                             <View className={`${isDesktop ? "max-w-[420px] items-end" : "mt-2"}`}>
                               <Text className={`${secondaryTextClass} text-xs ${isDesktop ? "text-right" : ""}`}>
-                                {selectedCollegeId === "grc"
-                                  ? t("transferEquivalencies.uwOutcome", { outcome: row.targetOutcome })
+                                {isGreenRiverCollegeMode
+                                  ? t("transferEquivalencies.grcRequirement", {
+                                      requirement: row.targetOutcome,
+                                    })
                                   : row.targetOutcome}
                               </Text>
                             </View>

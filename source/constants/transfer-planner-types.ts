@@ -1,8 +1,25 @@
-import type { TransferPlannerGrcCourseAvailabilityEntry } from "./transfer-planner-grc-availability.generated";
-
 export type TransferPlannerCampusId = "uw-seattle" | "uw-bothell" | "uw-tacoma";
 export type TransferPlannerCoverage = "detailed" | "partial";
 export type TransferPlannerSourceType = "detailed" | "master-generated";
+export type TransferPlannerGrcCourseAvailabilityQuarter =
+  | "summer"
+  | "fall"
+  | "winter"
+  | "spring";
+export type TransferPlannerGrcCourseAvailabilityStatus =
+  | "published-in-latest-schedule"
+  | "published-in-recent-history-not-latest"
+  | "catalog-listed-not-in-latest-schedules"
+  | "planner-course-no-current-public-source"
+  | "legacy-track-only-no-current-public-source";
+export type TransferPlannerGrcCourseAvailabilityEntry = {
+  status: TransferPlannerGrcCourseAvailabilityStatus;
+  years: {
+    label: string;
+    quarters: TransferPlannerGrcCourseAvailabilityQuarter[];
+  }[];
+  latestPublishedQuarters: TransferPlannerGrcCourseAvailabilityQuarter[];
+};
 
 export type TransferPlannerLink = {
   label: string;

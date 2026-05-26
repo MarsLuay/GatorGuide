@@ -2,51 +2,17 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-
-const SOURCE_ROOT = path.resolve(__dirname, "../..");
-const DEFAULT_REPORT_PATH = path.join(
+const {
   SOURCE_ROOT,
-  ".tmp",
+  getArgValue,
+  getArgValues,
+  getPlannerTmpPath,
+  hasArg,
+} = require("./lib/script-harness.cjs");
+
+const DEFAULT_REPORT_PATH = getPlannerTmpPath(
   "transfer-planner-requirement-source-parse-report.json"
 );
-
-function getArgValue(...names) {
-  const args = process.argv.slice(2);
-  for (const name of names) {
-    const index = args.indexOf(name);
-    if (index >= 0) {
-      return args[index + 1] ?? null;
-    }
-    const prefix = `${name}=`;
-    const inline = args.find((arg) => arg.startsWith(prefix));
-    if (inline) {
-      return inline.slice(prefix.length);
-    }
-  }
-  return null;
-}
-
-function getArgValues(...names) {
-  const args = process.argv.slice(2);
-  const values = [];
-  for (let index = 0; index < args.length; index += 1) {
-    const arg = args[index];
-    for (const name of names) {
-      if (arg === name && args[index + 1] != null) {
-        values.push(args[index + 1]);
-      }
-      const prefix = `${name}=`;
-      if (arg.startsWith(prefix)) {
-        values.push(arg.slice(prefix.length));
-      }
-    }
-  }
-  return values;
-}
-
-function hasArg(name) {
-  return process.argv.slice(2).includes(name);
-}
 
 function printUsageAndExit(exitCode = 1) {
   console.log(`Usage:
@@ -64,7 +30,7 @@ Checks:
   --expect-any-owner-snapshot-contains "B EE"   Search all snapshot files for this owner id.
   --expect-resolution-strategy primary-source   Require a specific resolution strategy.
   --expect-no-quality-warnings                  Fail if warning-severity quality signals are present.
-  --report .tmp/custom-report.json              Read a non-default parse report.
+  --report .tmp/reports/custom-report.json      Read a non-default parse report.
 
 Examples:
   npm run planner:assert-owner-source -- --target-plan-id uw-bothell-electrical-engineering --expect-prefixes BEE:1,BPHYS:1,STMATH:1
@@ -144,11 +110,7 @@ function getOwnerSnapshotSearchText(owner) {
 }
 
 function getAnyOwnerSnapshotSearchText(owner) {
-  const snapshotDir = path.join(
-    SOURCE_ROOT,
-    ".tmp",
-    "transfer-planner-requirement-source-snapshots"
-  );
+  const snapshotDir = getPlannerTmpPath("transfer-planner-requirement-source-snapshots");
   if (!fs.existsSync(snapshotDir)) {
     return "";
   }
@@ -224,7 +186,7 @@ function main() {
 
   const input = {
     ownerId: getArgValue("--owner-id"),
-    targetPlanId: getArgValue("--target-plan-id", "--plan-id", "--target"),
+    targetPlanId: getArgValue(["--target-plan-id", "--plan-id", "--target"]),
     pathwayId: getArgValue("--pathway-id"),
     expectCodes: splitList(getArgValue("--expect-codes")),
     expectPrefixes: parsePrefixSpecs(getArgValue("--expect-prefixes")),

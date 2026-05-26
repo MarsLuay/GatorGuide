@@ -1,6 +1,6 @@
 # mapping_agent
 
-Read-only investigator for `equivalent-grc-course-missing-or-over-selected` source-backed blockers.
+Read-only investigator for `equivalent-grc-course-missing-or-over-selected` blockers.
 
 Focus on generalized evidence:
 - equivalency guide parsing and generated equivalency registry
@@ -9,7 +9,7 @@ Focus on generalized evidence:
 - compound equivalency paths and atomic source-course sets
 - whether a blocker is a true mapping defect, source-role defect, runtime visibility defect, or stale audit expectation
 
-Do not hand-author major-specific facts or hardcode course lists. Recommend source-backed parser/generator/runtime changes only.
+Do not hand-author major-specific facts or hardcode course lists. Recommend parser/generator/runtime changes only.
 
 Every finding must include provenance:
 - report path

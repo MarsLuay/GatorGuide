@@ -5,6 +5,7 @@ const path = require("node:path");
 const http = require("node:http");
 const { spawn } = require("node:child_process");
 const { chromium } = require("playwright");
+const { getTmpPath } = require("../lib/tmp-layout.cjs");
 
 const mime = {
   ".html": "text/html; charset=utf-8",
@@ -27,7 +28,7 @@ const mime = {
 
 const rootDir = process.cwd();
 const exportDir = path.join(rootDir, ".tools", "qa-web");
-const outputDir = path.join(rootDir, ".tmp", "mobile-qa");
+const outputDir = getTmpPath(rootDir, "mobile-qa");
 const requestedPort = Number.parseInt(process.env.QA_MOBILE_BASE_PORT || "4183", 10);
 const providedBaseUrl = process.env.QA_BASE_URL
   ? String(process.env.QA_BASE_URL).replace(/\/+$/, "")

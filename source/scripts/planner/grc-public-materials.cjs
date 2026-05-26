@@ -1,10 +1,18 @@
 const fs = require("fs");
-const path = require("path");
+const { fetchTextWithHandling } = require("../lib/fetch-with-handling.cjs");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  hasArg,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-public-materials.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-public-materials.md");
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-grc-public-materials.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-grc-public-materials.md");
 
 const GRC_CLASS_SCHEDULES_URL =
   "https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html";
@@ -14,7 +22,7 @@ const GRC_CATALOG_ROOT_URL = "https://catalog.greenriver.edu/";
 const USER_AGENT = "GatorGuideTransferPlannerGrcDiscovery/1.0";
 
 function ensureTmpDir() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 }
 
 const HTML_ENTITY_DECODERS = {
@@ -95,22 +103,15 @@ function slugifyAcademicYear(label) {
 }
 
 function buildAnnualScheduleSnapshotPath(label) {
-  return path.resolve(TMP_DIR, `${label}-Annual-Schedule.pdf`);
+  return getPlannerTmpPath(`${label}-Annual-Schedule.pdf`);
 }
 
 async function fetchText(url) {
-  const response = await fetch(url, {
-    redirect: "follow",
-    headers: {
-      "user-agent": USER_AGENT,
-    },
+  return fetchTextWithHandling(url, {
+    operation: "GRC public materials fetch",
+    timeoutMs: 30000,
+    userAgent: USER_AGENT,
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-
-  return response.text();
 }
 
 function extractAnchorMatches(html) {
@@ -283,7 +284,7 @@ function writeMarkdown(materials) {
     "",
   ];
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`, "utf8");
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 async function discoverLiveGrcPublicMaterials() {
@@ -350,7 +351,7 @@ async function loadGrcPublicMaterials(options = {}) {
 
   try {
     const materials = await discoverLiveGrcPublicMaterials();
-    fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(materials, null, 2)}\n`, "utf8");
+    writePlannerJsonReport(OUTPUT_JSON_PATH, materials);
     writeMarkdown(materials);
     return materials;
   } catch (error) {
@@ -369,17 +370,16 @@ async function loadGrcPublicMaterials(options = {}) {
       usedSnapshotFallback: true,
       snapshotFallbackReason: error.message,
     };
-    fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(fallback, null, 2)}\n`, "utf8");
+    writePlannerJsonReport(OUTPUT_JSON_PATH, fallback);
     writeMarkdown(fallback);
     return fallback;
   }
 }
 
 async function main() {
-  const args = new Set(process.argv.slice(2));
   const materials = await loadGrcPublicMaterials({
-    forceRefresh: args.has("--refresh"),
-    allowSnapshotFallback: !args.has("--no-snapshot-fallback"),
+    forceRefresh: hasArg("--refresh"),
+    allowSnapshotFallback: !hasArg("--no-snapshot-fallback"),
   });
 
   console.log(

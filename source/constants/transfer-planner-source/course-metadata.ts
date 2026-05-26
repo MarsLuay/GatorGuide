@@ -4,7 +4,11 @@ import type {
   TransferPlannerSourceSchoolId,
 } from "./schema";
 import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
-import { TRANSFER_PLANNER_GENERATED_COURSE_METADATA } from "./course-metadata.generated";
+import {
+  getTransferPlannerGeneratedCourseMetadata,
+  getTransferPlannerGeneratedCourseMetadataEntry,
+} from "./course-metadata.generated";
+import { createLazyGeneratedValue } from "./generated-lazy";
 
 export type TransferPlannerNormalizedCourseMetadataEntry = {
   schoolId: TransferPlannerSourceSchoolId;
@@ -13,6 +17,7 @@ export type TransferPlannerNormalizedCourseMetadataEntry = {
   creditValue?: number | null;
   creditLabel?: string | null;
   catalogDescription?: string | null;
+  grcGeneralEducationCategories?: TransferPlannerGrcGeneralEducationCategory[];
   prerequisiteCourseCodes?: string[];
   prerequisiteAlternativeCourseCodeSets?: string[][];
   prerequisiteNotes?: string[];
@@ -22,6 +27,12 @@ export type TransferPlannerNormalizedCourseMetadataEntry = {
   effectiveYearRanges?: TransferPlannerEffectiveYearRange[];
   sourceLinks?: TransferPlannerSourceLink[];
   notes?: string[];
+};
+
+export type TransferPlannerGrcGeneralEducationCategory = {
+  catalogYearLabel: string;
+  label: string;
+  tags: string[];
 };
 
 export type TransferPlannerCourseMetadataField =
@@ -97,16 +108,6 @@ const GRC_EQUIVALENT_COURSE_CODES_BY_CODE = GRC_EQUIVALENT_COURSE_CODE_SETS.redu
     return lookup;
   },
   new Map<string, string[]>()
-);
-
-const TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA_BY_LOOKUP_KEY = new Map<
-  string,
-  TransferPlannerNormalizedCourseMetadataEntry
->(
-  TRANSFER_PLANNER_GENERATED_COURSE_METADATA.map((entry) => [
-    `${entry.schoolId}|${normalizeCourseMetadataLookupCode(entry.code)}`,
-    entry,
-  ])
 );
 
 function hasMetadataFieldValue(
@@ -185,6 +186,10 @@ export function getTransferPlannerEquivalentCourseCodes(
   return getEquivalentCourseCodes(schoolId, code);
 }
 
+export function getTransferPlannerNormalizedCourseMetadataEntries() {
+  return getTransferPlannerGeneratedCourseMetadata();
+}
+
 export function getTransferPlannerNormalizedCourseMetadataEntry(
   schoolId: TransferPlannerSourceSchoolId,
   code: string
@@ -193,11 +198,8 @@ export function getTransferPlannerNormalizedCourseMetadataEntry(
   const requestedCode = normalizeCourseMetadataLookupCode(code);
 
   const metadataCandidates = candidateCodes
-    .map(
-      (candidateCode) =>
-        TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA_BY_LOOKUP_KEY.get(
-          `${schoolId}|${candidateCode}`
-        ) ?? null
+    .map((candidateCode) =>
+      getTransferPlannerGeneratedCourseMetadataEntry(schoolId, candidateCode)
     )
     .filter(
       (
@@ -247,13 +249,22 @@ function buildMetadataFieldGapEntry(
 }
 
 export const TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES: TransferPlannerCourseMetadataFieldGapEntry[] =
-  TRANSFER_PLANNER_GENERATED_COURSE_METADATA.map(buildMetadataFieldGapEntry);
-
-export const TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAPS: TransferPlannerCourseMetadataFieldGapEntry[] =
-  TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES.filter(
-    (entry) => entry.missingFields.length > 0
+  createLazyGeneratedValue<TransferPlannerCourseMetadataFieldGapEntry[]>(
+    () => getTransferPlannerGeneratedCourseMetadata().map(buildMetadataFieldGapEntry),
+    []
   );
 
-export const TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA: TransferPlannerNormalizedCourseMetadataEntry[] = [
-  ...TRANSFER_PLANNER_GENERATED_COURSE_METADATA,
-];
+export const TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAPS: TransferPlannerCourseMetadataFieldGapEntry[] =
+  createLazyGeneratedValue<TransferPlannerCourseMetadataFieldGapEntry[]>(
+    () =>
+      TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES.filter(
+        (entry) => entry.missingFields.length > 0
+      ),
+    []
+  );
+
+export const TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA: TransferPlannerNormalizedCourseMetadataEntry[] =
+  createLazyGeneratedValue<TransferPlannerNormalizedCourseMetadataEntry[]>(
+    () => [...getTransferPlannerGeneratedCourseMetadata()],
+    []
+  );

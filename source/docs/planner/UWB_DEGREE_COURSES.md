@@ -51,6 +51,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### American &amp; Ethnic Studies (BA) parsed choices and pathway notes
 
 - Additional AES courses (15 credits) – choose from Historical and Social Inquiry course list, Textual Analysis and Interpretation list, or Critical Theory and Practice list
+- Classes in this option are offered primarily during daytime hours.
 
 #### GRC Equivalent Courses
 
@@ -63,10 +64,10 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: AES Courses (30 credits) – from the approved subject areas below. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: BIS 312 Approaches to Social Research OR BIS 340 Approaches to Cultural Research (5 credits) – minimum 2.0 GPA required. complete at least 1 course from this set
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-american-and-ethnic-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-american-and-ethnic-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Applied Computing (BA)
@@ -80,34 +81,34 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Bothell Applied Computing curriculum](https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum)
-- [UW Bothell Applied Computing curriculum](https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: All UW students must complete a common set of general education requirements . As an Applied Computing major, you will a](https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum)
+- [Scoped section: All UW students must complete a common set of general education requirements . As an Applied Computing major, you will a](https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Applied Computing (BA) parsed official source requirements
 
-- Elective Courses
-- Teaching Track Faculty
-- Elective courses
-- Visit the admissions page for information on prerequisite coursework.
 - All UW students must complete a common set of general education requirements . As an Applied Computing major, you will already have completed the English Composition (C) , Additional Writing (W) , Natural Science (NSc) , and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
 - Diversity (DIV) – 5 credits (almost always also fulfills A&amp;H or SSc)
 - Arts &amp; Humanities (A&amp;H) – 15 credits (cannot overlap with SSc)
 - Social Sciences (SSc) – 15 credits (cannot overlap with A&amp;H)
 - In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.
 - CSS 301: Technical Writing
+- CSS 340: Applied Algorithmics; or
+- CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I; or
+- Both courses (one would count as a CSS Elective instead)
+- CSS 350: Management for Computing Professionals; or
 
 ##### Applied Computing (BA) parsed official requirement cues
 
-- Elective Courses
-- Teaching Track Faculty
-- Elective courses
-- Visit the admissions page for information on prerequisite coursework.
 - All UW students must complete a common set of general education requirements . As an Applied Computing major, you will already have completed the English Composition (C) , Additional Writing (W) , Natural Science (NSc) , and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
 - Diversity (DIV) – 5 credits (almost always also fulfills A&amp;H or SSc)
 - Arts &amp; Humanities (A&amp;H) – 15 credits (cannot overlap with SSc)
 - Social Sciences (SSc) – 15 credits (cannot overlap with A&amp;H)
 - In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.
 - CSS 301: Technical Writing
+- CSS 340: Applied Algorithmics; or
+- CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I; or
+- Both courses (one would count as a CSS Elective instead)
+- CSS 350: Management for Computing Professionals; or
 
 ##### Applied Computing (BA) parsed choices and pathway notes
 
@@ -122,10 +123,10 @@ On To Do list.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: An approved custom cluster of interrelated courses in a non-computing discipline, totaling at least 25 credits. note: Credit bucket placeholder extracted from source text.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-applied-computing:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-applied-computing:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Biology (BS)
@@ -195,17 +196,17 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Auto-promoted because BPHYS 121 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
-- Source-backed note: Added the Green River course path PHYS&amp; 221 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS&amp; 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
-- Source-backed note: Course-family consensus: 3/3 samples for PHYS 121.
-- Source-backed note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Supporting UW course codes: PHYS 121.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-biology:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Added the Green River course path PHYS&amp; 221 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS&amp; 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 3/3 samples for PHYS 121.
+- note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
+- note: Source parse confidence: high.
+- note: Supporting UW course codes: PHYS 121.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-biology:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Business Administration (BA)
@@ -219,284 +220,42 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Accounting Option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting)
-- [Scoped current requirements: Required Accounting Courses (prerequisites in parentheses)](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting) - Alternate official source used for parser-backed UW requirement extraction.
+- [Accounting Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting)
 - [Scoped section: Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade poi](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses) - Supporting admissions prerequisite context only. Keep lower-division requirement extraction conservative and route-specific.
 - [UW Bothell BBA admissions hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions) - Supporting admissions context only. Use this alongside the dedicated route pages rather than as a blanket degree-requirements replacement.
 - [UW Bothell BBA curriculum hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum) - Supporting route hub only. Keep the dedicated option and concentration pages as the stronger requirement sources for specific BBA pathways.
 - [UW Bothell BBA curriculum hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum) - Primary source used for parser-backed UW requirement extraction.
 - [UW Bothell BBA how to apply](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply) - Supporting admissions process context only. Do not treat this page as a degree-requirements source.
+- [UW Bothell Supply Chain Management option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain)
+- [Cached source: Supply Chain Management Option - School of Business](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain) - Alternate official source used for parser-backed UW requirement extraction.
 
 ##### Business Administration (BA) parsed official source requirements
 
-- Required Accounting Courses (prerequisites in parentheses)
-- BBUS 361 – Intermediate Accounting 1\*
-- BBUS 362 – Intermediate Accounting 2 (361)
-- BBUS 363 – Intermediate Accounting 3 (362)
-- BBUS 373 – Cost Accounting\*
-- BBUS 411 – Auditing Theory &amp; Practice (362)
-- BBUS 435 – Accounting Information Systems (361)
-- BBUS 450 – Federal Income Taxation (361)
-- 10 credits – Complete 2 courses from this list:
-- BBUS 412 – Advanced Business Law
+- Supply Chain Management Option - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
 
 ##### Business Administration (BA) parsed official requirement cues
 
-- Required Accounting Courses (prerequisites in parentheses)
-- BBUS 361 – Intermediate Accounting 1\*
-- BBUS 362 – Intermediate Accounting 2 (361)
-- BBUS 363 – Intermediate Accounting 3 (362)
-- BBUS 373 – Cost Accounting\*
-- BBUS 411 – Auditing Theory &amp; Practice (362)
-- BBUS 435 – Accounting Information Systems (361)
-- BBUS 450 – Federal Income Taxation (361)
-- 10 credits – Complete 2 courses from this list:
-- BBUS 412 – Advanced Business Law
+- Supply Chain Management Option - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
 
 ##### Business Administration (BA) parsed choices and pathway notes
-
-- Accounting Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
-- Management Concentration
-- Management Information Systems (MIS) Concentration
-- Marketing Option and Concentration
-- Retail Management Concentration
-- Supply Chain Management Option
-- Technology &amp; Innovation Management (TIM) Concentration
-
-#### GRC Equivalent Courses
-
-- `ECON& 201`
-
-#### Required sequences for specific credits
-
-- Required before enrollment: ECON&amp; 201 -> `ECON& 201`
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
-
-
-### Business Administration: Accounting (BA)
-
-#### Summary
-
-Planner coverage: `partial`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Accounting Option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting)
-
-On To Do list.
-
-#### GRC Equivalent Courses
-
-- `MATH& 148`
-
-#### Required sequences for specific credits
-
-- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
-
-
-### Business Administration: Finance (BA)
-
-#### Summary
-
-Planner coverage: `partial`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Finance Option and Concentration](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option)
-
-On To Do list.
-
-#### GRC Equivalent Courses
-
-- `MATH& 148`
-
-#### Required sequences for specific credits
-
-- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
-
-
-### Business Administration: Leadership & Strategic Innovation (BA)
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Leadership & Strategic Innovation Option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership)
-- [Leadership & Strategic Innovation Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership) - Source used for parser-backed UW requirement extraction.
-
-##### Business Administration: Leadership &amp; Strategic Innovation (BA) - Leadership &amp; Strategic Innovation Option parsed official source requirements
-
-- 10 credits – Complete 2 courses from this list:
-- 15 credits
-- 90 credits
-- Accounting Option
-- B BUS 402 – Managing Work Teams
-- B BUS 441 – Business Project Management (340)
-- B BUS 443 – Entrepreneurship Seminar
-- B BUS 444 – Product Development Lab
-- B BUS 460 – Sustainable Business
-- B BUS 461 – Business, Government, and Society ( 300, 310 )
-
-##### Business Administration: Leadership &amp; Strategic Innovation (BA) - Leadership &amp; Strategic Innovation Option parsed official requirement cues
-
-- 10 credits – Complete 2 courses from this list:
-- 15 credits
-- 90 credits
-- Accounting Option
-- B BUS 402 – Managing Work Teams
-- B BUS 441 – Business Project Management (340)
-- B BUS 443 – Entrepreneurship Seminar
-- B BUS 444 – Product Development Lab
-- B BUS 460 – Sustainable Business
-- B BUS 461 – Business, Government, and Society ( 300, 310 )
-
-##### Business Administration: Leadership &amp; Strategic Innovation (BA) - Leadership &amp; Strategic Innovation Option parsed choices and pathway notes
-
-- Complete one of the following:
-- Accounting Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
-- Management Concentration
-- Management Information Systems (MIS) Concentration
-- Marketing Option and Concentration
-- Retail Management Concentration
-- Supply Chain Management Option
-
-#### GRC Equivalent Courses
-
-- `MATH& 148`
-
-#### Required sequences for specific credits
-
-- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:leadership-and-strategic-innovation-option:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
-
-
-### Business Administration: Marketing (BA)
-
-#### Summary
-
-Planner coverage: `partial`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Marketing Option and Concentration](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing)
-
-On To Do list.
-
-#### GRC Equivalent Courses
-
-- `MATH& 148`
-
-#### Required sequences for specific credits
-
-- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
-
-
-### Business Administration: Supply Chain Management (BA)
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Scoped section: Supply Chain Management curriculum](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain)
-- [Supply Chain Management Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain) - Source used for parser-backed UW requirement extraction.
-
-##### Business Administration: Supply Chain Management (BA) - Management Concentration parsed official source requirements
-
-- (\*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-- 10 credits
-- 10 credits – 2 courses from the list below:
-- 90 credits
-- Accounting Option
-- BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
-- BBUS 307 – Business Writing, Writing Designated Course
-- BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
-- BBUS 320 – Marketing Management
-- BBUS 340 – Operations &amp; Project Management
-
-##### Business Administration: Supply Chain Management (BA) - Supply Chain Management Option parsed official source requirements
-
-- (\*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-- 10 credits
-- 10 credits – 2 courses from the list below:
-- 90 credits
-- Accounting Option
-- BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
-- BBUS 307 – Business Writing, Writing Designated Course
-- BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
-- BBUS 320 – Marketing Management
-- BBUS 340 – Operations &amp; Project Management
-
-##### Business Administration: Supply Chain Management (BA) - Management Concentration parsed official requirement cues
-
-- (\*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-- 10 credits
-- 10 credits – 2 courses from the list below:
-- 90 credits
-- Accounting Option
-- BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
-- BBUS 307 – Business Writing, Writing Designated Course
-- BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
-- BBUS 320 – Marketing Management
-- BBUS 340 – Operations &amp; Project Management
-
-##### Business Administration: Supply Chain Management (BA) - Supply Chain Management Option parsed official requirement cues
-
-- (\*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-- 10 credits
-- 10 credits – 2 courses from the list below:
-- 90 credits
-- Accounting Option
-- BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
-- BBUS 307 – Business Writing, Writing Designated Course
-- BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
-- BBUS 320 – Marketing Management
-- BBUS 340 – Operations &amp; Project Management
-
-##### Business Administration: Supply Chain Management (BA) - Management Concentration parsed choices and pathway notes
-
-- Accounting Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
-- Management Concentration
-- Management Information Systems (MIS) Concentration
-- Marketing Option and Concentration
-- Retail Management Concentration
-- Supply Chain Management Option
-- Technology &amp; Innovation Management (TIM) Concentration
-
-##### Business Administration: Supply Chain Management (BA) - Supply Chain Management Option parsed choices and pathway notes
 
 - Accounting Option
 - Entrepreneurship Concentration
@@ -516,11 +275,339 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: BBUS 441 or BBUS 482 or BBUS 483 or BBUS 486 or BBUS 487 or BBUS 491 or BBUS 492 or BBUS 497 or BBUS 499. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration-supply-chain-management:pathway:management-concentration:source-degree-map:.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Business Administration: Accounting (BA)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [Accounting Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting)
+- [Accounting Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting) - Source used for parser-backed UW requirement extraction.
+
+##### Business Administration: Accounting (BA) parsed official source requirements
+
+- Accounting Option - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+
+##### Business Administration: Accounting (BA) parsed official requirement cues
+
+- Accounting Option - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+
+##### Business Administration: Accounting (BA) parsed choices and pathway notes
+
+- Accounting Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Marketing Option and Concentration
+- Retail Management Concentration
+- Technology &amp; Innovation Management (TIM) Concentration
+- the Accounting Option will thoroughly prepare students for careers in private
+
+#### GRC Equivalent Courses
+
+- `MATH& 148`
+
+#### Required sequences for specific credits
+
+- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-business-administration-accounting:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Business Administration: Finance (BA)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [Finance Option and Concentration major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option)
+- [Finance Option and Concentration major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option) - Source used for parser-backed UW requirement extraction.
+
+##### Business Administration: Finance (BA) parsed official source requirements
+
+- Finance Option and Concentration - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+
+##### Business Administration: Finance (BA) parsed official requirement cues
+
+- Finance Option and Concentration - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+
+##### Business Administration: Finance (BA) parsed choices and pathway notes
+
+- Accounting Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Marketing Option and Concentration
+- Only counts when approved for concentration; see your advisor before registering.
+- Retail Management Concentration
+- Technology &amp; Innovation Management (TIM) Concentration
+
+#### GRC Equivalent Courses
+
+- `MATH& 148`
+
+#### Required sequences for specific credits
+
+- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-business-administration-finance:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Business Administration: Leadership & Strategic Innovation (BA)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [Leadership & Strategic Innovation Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership)
+- [Leadership & Strategic Innovation Option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership) - Source used for parser-backed UW requirement extraction.
+
+##### Business Administration: Leadership &amp; Strategic Innovation (BA) parsed official source requirements
+
+- 10 credits – Complete 2 courses from this list:
+- 15 credits
+- 90 credits
+- Accounting Option
+- B BUS 402 – Managing Work Teams
+- B BUS 441 – Business Project Management (340)
+- B BUS 443 – Entrepreneurship Seminar
+- B BUS 444 – Product Development Lab
+- B BUS 460 – Sustainable Business
+- B BUS 461 – Business, Government, and Society ( 300, 310 )
+
+##### Business Administration: Leadership &amp; Strategic Innovation (BA) parsed official requirement cues
+
+- 10 credits – Complete 2 courses from this list:
+- 15 credits
+- 90 credits
+- Accounting Option
+- B BUS 402 – Managing Work Teams
+- B BUS 441 – Business Project Management (340)
+- B BUS 443 – Entrepreneurship Seminar
+- B BUS 444 – Product Development Lab
+- B BUS 460 – Sustainable Business
+- B BUS 461 – Business, Government, and Society ( 300, 310 )
+
+##### Business Administration: Leadership &amp; Strategic Innovation (BA) parsed choices and pathway notes
+
+- Complete one of the following:
+- Accounting Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Leadership &amp; Strategic Innovation Option
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Marketing Option and Concentration
+- Retail Management Concentration
+- Technology &amp; Innovation Management (TIM) Concentration
+
+#### GRC Equivalent Courses
+
+- `MATH& 148`
+
+#### Required sequences for specific credits
+
+- Required before enrollment: MATH&amp; 148 -> `MATH& 148`
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-business-administration-leadership-and-strategic-innovation:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Business Administration: Marketing (BA)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [Marketing Option and Concentration major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing)
+- [Marketing Option and Concentration major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing) - Source used for parser-backed UW requirement extraction.
+
+##### Business Administration: Marketing (BA) parsed official source requirements
+
+- Marketing Option and Concentration - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+
+##### Business Administration: Marketing (BA) parsed official requirement cues
+
+- Marketing Option and Concentration - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+
+##### Business Administration: Marketing (BA) parsed choices and pathway notes
+
+- BBUS 438 – Marketing Management Lab (320, and one of the following: 421, 423, 426, 427, 429, or 431)
+- Accounting Option
+- Business Consulting . Only counts when approved for concentration; see your advisor before registering.
+- Business Consulting . Only counts when approved for option; see your advisor before registering.
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Marketing Option and Concentration
+- Retail Management Concentration
+
+#### GRC Equivalent Courses
+
+- `MATH& 148`
+
+#### Required sequences for specific credits
+
+- Required before enrollment: BBUS 438 – Marketing Management Lab (320, and one of the following: 421, 423, 426, 427, 429, or 431). complete at least 1 course from this set
+- Required before enrollment: BBUS 300 or BBUS 310 or BBUS 490. complete at least 1 course from this set
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-business-administration-marketing:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Business Administration: Supply Chain Management (BA)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [UW Bothell Supply Chain Management option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain)
+- [UW Bothell Supply Chain Management option major requirements](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain) - Source used for parser-backed UW requirement extraction.
+
+##### Business Administration: Supply Chain Management (BA) parsed official source requirements
+
+- (\*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
+- (330; CSS 173 or CSS 143 and corequisite CSSSKL 143; CSS 360)
+- (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
+- (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
+- (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
+- \* A minimum grade of 2.7 in either course is required.
+- 10 credits
+- 10 credits – 2 courses from the list below:
+- 10 credits – Complete 2 courses from this list:
+- 30 credits
+
+##### Business Administration: Supply Chain Management (BA) parsed official requirement cues
+
+- (\*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
+- (330; CSS 173 or CSS 143 and corequisite CSSSKL 143; CSS 360)
+- (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
+- (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
+- (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
+- \* A minimum grade of 2.7 in either course is required.
+- 10 credits
+- 10 credits – 2 courses from the list below:
+- 10 credits – Complete 2 courses from this list:
+- 30 credits
+
+##### Business Administration: Supply Chain Management (BA) parsed choices and pathway notes
+
+- Accounting Option
+- Business Finance to declare the Technology and Innovation Management concentration.
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Marketing Option and Concentration
+- Only counts when approved for concentration; see your advisor before registering.
+- Retail Management Concentration
+- Supply Chain Management Option
+
+#### GRC Equivalent Courses
+
+- `MATH& 148`
+
+#### Required sequences for specific credits
+
+- Required before enrollment: BBUS 441 or BBUS 482 or BBUS 483 or BBUS 486 or BBUS 487 or BBUS 491 or BBUS 492 or BBUS 497 or BBUS 499. complete at least 1 course from this set
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-business-administration-supply-chain-management:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Chemistry (BA)
@@ -534,7 +621,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: B.A. in Chemistry requirements](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
+- [Scoped section: B.S. in Chemistry (general option) requirements major requirements](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
 - [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
 - [Scoped section: B.A. in Chemistry requirements](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum) - Source used for parser-backed UW requirement extraction.
 
@@ -597,59 +684,126 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: STMATH 207 -> `MATH 238`. note: Auto-promoted because STMATH 207 has a clean single-sample exact-title consensus with no conflicting planner mapping.
 - Required before enrollment: STMATH 208 -> `MATH 240`. note: Auto-promoted because STMATH 208 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
 - Required before enrollment: STMATH 224 -> `MATH& 264`. note: Auto-promoted because STMATH 224 has a clean single-sample exact-title consensus with no conflicting planner mapping.
-- Source-backed note: Added the Green River course path PHYS&amp; 221 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS&amp; 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
-- Source-backed note: Course-family consensus: 3/3 samples for PHYS 121.
-- Source-backed note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Supporting UW course codes: PHYS 121.
-- Source-backed note: Added the Green River course path PHYS&amp; 223 because the current planner rows did not expose it yet.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS&amp; 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
-- Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
-- Source-backed note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
-- Source-backed note: Supporting UW course codes: PHYS 123, T PHYS 123.
-- Source-backed note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-- Source-backed note: Requirement cue lines: STMATH 207 Differential Equations (5) | STMATH 207 Introduction to Differential Equations (5 credits) | STMATH 207: Introduction to Differential Equations (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 207.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
-- Source-backed note: Course-family consensus: 12/12 samples for MATH 208.
-- Source-backed note: Requirement cue lines: STMATH 208 Matrix Algebra (5) | STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra with Applications (5 credits)
-- Source-backed note: Supporting UW course codes: MATH 208, TMATH 208.
-- Source-backed note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH&amp; 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-- Source-backed note: Requirement cue lines: STMATH 224 Multivariable Calculus (5 credits) | STMATH 224 Multivariable Calculus (5) | STMATH 224: Multivariable Calculus (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-chemistry-ba:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Added the Green River course path PHYS&amp; 221 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS&amp; 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 3/3 samples for PHYS 121.
+- note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
+- note: Source parse confidence: high.
+- note: Supporting UW course codes: PHYS 121.
+- note: Added the Green River course path PHYS&amp; 223 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS&amp; 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 5/5 samples for PHYS 123.
+- note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
+- note: Supporting UW course codes: PHYS 123, T PHYS 123.
+- note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
+- note: Requirement cue lines: STMATH 207 Differential Equations (5) | STMATH 207 Introduction to Differential Equations (5 credits) | STMATH 207: Introduction to Differential Equations (5 credits)
+- note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 207.
+- note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 12/12 samples for MATH 208.
+- note: Requirement cue lines: STMATH 208 Matrix Algebra (5) | STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra with Applications (5 credits)
+- note: Supporting UW course codes: MATH 208, TMATH 208.
+- note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH&amp; 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
+- note: Requirement cue lines: STMATH 224 Multivariable Calculus (5 credits) | STMATH 224 Multivariable Calculus (5) | STMATH 224: Multivariable Calculus (5 credits)
+- note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-chemistry-ba:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Chemistry (BS)
 
 #### Summary
 
-Planner coverage: `partial`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [Scoped section: B.A. in Chemistry requirements](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
+- [Cached source: Chemistry Curriculum - School of Science, Technology, Engineering & Mathematics](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#bs-general)
+- [Cached source: Chemistry Curriculum - School of Science, Technology, Engineering & Mathematics](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum#bs-general) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: B.A. in Chemistry requirements](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum) - Primary source used for parser-backed UW requirement extraction.
+- [UW Bothell Chemistry curriculum](https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum)
 
-On To Do list.
+##### Chemistry (BS) before-enrollment degree head starts
+
+- BPHYS 121
+- BPHYS 123
+
+##### Chemistry (BS) parsed official source requirements
+
+- Chemistry Electives can be fulfilled by any 300-level or higher “BCHEM” course that is not already required for your degree option.
+- We strongly recommend taking Analytical Chemistry (BCHEM 316+317 and 426) in your Junior year, followed by Physical Chemistry (BCHEM 401, 402, 404) in your senior year, because:
+- General education requirements
+- All UW students must complete a common set of general education requirements . As a Chemistry major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry, physics, and math classes, but make sure to plan for completion of the following:
+- English Composition (C) – 5 credits
+- Additional Writing (W) – 10 credits
+- Diversity (DIV) – 5 credits (almost always also fulfills A&amp;H or SSc; was only 3 credits prior to autumn 2023)
+- Arts &amp; Humanities (A&amp;H) – 15 credits (cannot overlap with SSc)
+- Social Sciences (SSc) – 15 credits (cannot overlap with A&amp;H)
+- Visit our Admissions page for information on prerequisite coursework.
+
+##### Chemistry (BS) parsed official requirement cues
+
+- Chemistry Electives can be fulfilled by any 300-level or higher “BCHEM” course that is not already required for your degree option.
+- We strongly recommend taking Analytical Chemistry (BCHEM 316+317 and 426) in your Junior year, followed by Physical Chemistry (BCHEM 401, 402, 404) in your senior year, because:
+- General education requirements
+- All UW students must complete a common set of general education requirements . As a Chemistry major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry, physics, and math classes, but make sure to plan for completion of the following:
+- English Composition (C) – 5 credits
+- Additional Writing (W) – 10 credits
+- Diversity (DIV) – 5 credits (almost always also fulfills A&amp;H or SSc; was only 3 credits prior to autumn 2023)
+- Arts &amp; Humanities (A&amp;H) – 15 credits (cannot overlap with SSc)
+- Social Sciences (SSc) – 15 credits (cannot overlap with A&amp;H)
+- Visit our Admissions page for information on prerequisite coursework.
+
+##### Chemistry (BS) parsed choices and pathway notes
+
+- Choose one of the following three-course series options:
+- Any ONE of the following courses to be selected:
+- Students can choose any 300- or 400-level course listed in the School of STEM time schedule as an elective. If the course is from UW Seattle or is outside of a STEM major, students must submit a to the department using the Chemistry Major or Minor Requirement Petition form.
+- B.S. in Chemistry (biochemistry option)
+- B.S. in Chemistry (general option)
+- Chemistry series option
+- Organic Chemistry series option
+- Upper division Chemistry electives option
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
+- `PHYS& 221`
+- `PHYS& 223`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: Upper division Chemistry electives. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Approved Independent Study in Chemistry (B CHEM 498) (1–5 credits, maximum 10) Approved Undergraduate Research in Chemistry (B CHEM 499) (1–5 credits, maximum 10). note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Approved Undergraduate Research in Chemistry (B CHEM 499) (1–5 credits, maximum 10). note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: BPHYS 121 -> `PHYS& 221`. note: Auto-promoted because BPHYS 121 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
+- Required before enrollment: BPHYS 123 -> `PHYS& 223`. note: Auto-promoted because BPHYS 123 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
+- note: Added the Green River course path PHYS&amp; 221 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 121 falls under the existing PHYS 121 lower-division UW course family, which already maps consistently to PHYS&amp; 221 across 3/3 planner samples. Supporting UW course codes: PHYS 121. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 3/3 samples for PHYS 121.
+- note: Requirement cue lines: Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
+- note: Source parse confidence: high.
+- note: Supporting UW course codes: PHYS 121.
+- note: Added the Green River course path PHYS&amp; 223 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. BPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS&amp; 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 5/5 samples for PHYS 123.
+- note: Requirement cue lines: Note on Physics III: The third course in the above two series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123 (Calculus-based Physics III + Lab) . These are not required for your Biology degree, but may be needed to apply to some graduate programs.
+- note: Supporting UW course codes: PHYS 123, T PHYS 123.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-chemistry-bs:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Computer Engineering
@@ -707,23 +861,25 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before application: STMATH 207 -> `MATH 238`. note: Auto-promoted because STMATH 207 has a clean single-sample exact-title consensus with no conflicting planner mapping.
 - Required before application: STMATH 224 -> `MATH& 264`. note: Auto-promoted because STMATH 224 has a clean single-sample exact-title consensus with no conflicting planner mapping.
+- Required before enrollment: Writing/Composition: 15 credits. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Mathematics: 35 credits. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 5 Free Electives to reach 180 credits required for degree. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 16 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
-- Source-backed note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
-- Source-backed note: Requirement cue lines: STMATH 207: Introduction to Differential Equations (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 207.
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH&amp; 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
-- Source-backed note: Requirement cue lines: STMATH 224: Multivariable Calculus (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-computer-engineering:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Added the Green River course path MATH 238 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 207 to MATH 238. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
+- note: Requirement cue lines: STMATH 207: Introduction to Differential Equations (5 credits)
+- note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 207.
+- note: Source parse confidence: high.
+- note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH&amp; 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
+- note: Requirement cue lines: STMATH 224: Multivariable Calculus (5 credits)
+- note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-computer-engineering:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Conservation & Restoration Science (BS)
@@ -791,15 +947,15 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: BIS 356 or BIS 456. complete at least 1 course from this set
 - Required before enrollment: BIS 386 Climate Change Adaptation (WIN or SPR quarter) OR BEARTH 320 Impacts of Climate Change (SPR quarter) (5 credits). complete at least 1 course from this set
 - Required before enrollment: MATH 120 -> `MATH& 142`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for MATH 120.
-- Source-backed note: Added the Green River course path MATH&amp; 142 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the source-backed Green River course path MATH&amp; 142 for this UW requirement.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104.
-- Source-backed note: Requirement cue lines: B MATH 123 Precalculus II or MATH 120 Precalculus (5 credits)
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-conservation-and-restoration-science:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Added the Green River course path MATH&amp; 142 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 120 under uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104. The planner was missing the Green River course path MATH&amp; 142 for this UW requirement.
+- note: Guide-backed rule: uw-grc-guide:0787:mathematics:mathand-142-5-formerly-math-104.
+- note: Requirement cue lines: B MATH 123 Precalculus II or MATH 120 Precalculus (5 credits)
+- note: Source parse confidence: high.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-conservation-and-restoration-science:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Computer Science & Software Engineering
@@ -813,7 +969,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (](https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum)
+- [Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering ( major requirements](https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum)
 - [Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (](https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Computer Science &amp; Software Engineering parsed official source requirements
@@ -847,6 +1003,7 @@ Source-generated from parsed UW requirement-source registries.
 - Statistics (choose one course)
 - This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
 - Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
+- Information Assurance and Cybersecurity (IAC) option
 
 #### GRC Equivalent Courses
 
@@ -860,10 +1017,10 @@ On To Do list.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research). complete at least 1 course from this set
 - Required before enrollment: Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-csse:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-csse:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)
@@ -877,7 +1034,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (](https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum)
+- [Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering ( major requirements](https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum)
 
 On To Do list.
 
@@ -887,7 +1044,7 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: major preparation. note: Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 
 
 ### Culture, Literature & the Arts (BA)
@@ -938,9 +1095,9 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: BISCLA 380 or BISCLA 384- Students who enter the major Autumn 2025 or prior. complete at least 1 course from this set
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-culture-literature-and-the-arts:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-culture-literature-and-the-arts:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Data Visualization (BA)
@@ -1017,10 +1174,10 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Either STMATH 126 or MATH 126 Calculus 3 (5 credits) -> `MATH& 163`. complete at least 1 course from this set
 - Required before enrollment: Either BIS 231 Linear Algebra or STMATH 208 Matrix Algebra (5 credits). complete at least 1 course from this set
 - Required before enrollment: B MATH 144 Calculus for the Life Sciences (no credit if taken STMATH 124 or MATH 124) -> `MATH& 151`. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-data-visualization-ba:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-data-visualization-ba:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Data Visualization (BS)
@@ -1097,10 +1254,10 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Either STMATH 126 or MATH 126 Calculus 3 (5 credits) -> `MATH& 163`. complete at least 1 course from this set
 - Required before enrollment: Either BIS 231 Linear Algebra or STMATH 208 Matrix Algebra (5 credits). complete at least 1 course from this set
 - Required before enrollment: B MATH 144 Calculus for the Life Sciences (no credit if taken STMATH 124 or MATH 124) -> `MATH& 151`. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-data-visualization-bs:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-data-visualization-bs:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Developmental and Youth Studies (BA)
@@ -1149,16 +1306,15 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Major Requirements. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 15 credits from list – Electives. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 3 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: 15 credits from list – Electives. note: Credit bucket placeholder extracted from source text.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-developmental-and-youth-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-developmental-and-youth-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Earth System Science (BS)
@@ -1217,20 +1373,21 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Degree Requirements. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Introductory Chemistry (5-6 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Introductory Environmental Courses (15 credits) NOTE: Selected courses should not overlap with a prerequisite. Transfer courses must be approved by an Academic Advisor.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: BES 301 Science Methods &amp; Practices or BST 301 Scientific Writing. complete at least 1 course from this set
 - Required before enrollment: STMATH 126 -> `MATH& 153`. alternate path `MATH& 163`. note: Auto-promoted because STMATH 126 has multiple clean exact-title Green River matches, and the planner now exposes all of those published paths instead of dropping the requirement.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 126 has multiple clean exact-title Green River matches for Calculus III. The planner now exposes each published Green River alternative path instead of dropping that source-backed requirement row.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched source title: Calculus III.
-- Source-backed note: Published Green River alternatives: MATH&amp; 153 | MATH&amp; 163.
-- Source-backed note: Requirement cue lines: STMATH 126 Calculus III
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-earth-system-science:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 126 has multiple clean exact-title Green River matches for Calculus III. The planner now exposes each published Green River alternative path instead of dropping that requirement row.
+- note: Exact-title match source: catalog-metadata.
+- note: Matched source title: Calculus III.
+- note: Published Green River alternatives: MATH&amp; 153 | MATH&amp; 163.
+- note: Requirement cue lines: STMATH 126 Calculus III
+- note: Source parse confidence: high.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-earth-system-science:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Economics (BS)
@@ -1278,12 +1435,10 @@ Source-generated from parsed UW requirement-source registries.
 - Accounting Option
 - Entrepreneurship Concentration
 - Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
 - Management Concentration
 - Management Information Systems (MIS) Concentration
 - Marketing Option and Concentration
 - Retail Management Concentration
-- Supply Chain Management Option
 - Technology &amp; Innovation Management (TIM) Concentration
 
 #### GRC Equivalent Courses
@@ -1299,34 +1454,96 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: B BUS 221/BIS 201: Principles of Macroeconomics (BBUS 220, or BIS 200, or B CUSP 200). complete at least 1 course from this set
 - Required before enrollment: B BUS 301: Data Management ( BIS 215, or BBUS 215, or B MATH 215, or STMATH 341). complete at least 1 course from this set
 - Required before enrollment: B BECN 460: Financial Economics ( BECN 302 and either B BECN 458, or STMATH 330 and STMATH 392). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
-### Educational Studies: Elementary Education (BA) - Education Studies: Elementary Education Option
+### Educational Studies: Elementary Education (BA)
 
 #### Summary
 
-Planner coverage: `partial`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AST-2`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
 
 ##### Links Used
 
-- [Scoped pathway section: M.Ed. with English to Speakers of Other Languages (ESOL) Concentration](https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements)
+- [Scoped pathway section: M.Ed. with English to Speakers of Other Languages (ESOL) Concentration major requirements](https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements)
+- [Degree Requirements](https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements) - Source used for parser-backed UW requirement extraction.
 
-On To Do list.
+##### Educational Studies: Elementary Education (BA) parsed official source requirements
+
+- Degree Requirements - School of Educational Studies
+- Degree Requirements
+- Education Studies: Elementary Education Option
+- Diversity Studies Minor
+- M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
+- Degree Completion Requirements
+- M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
+- M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
+- M.Ed. with Leadership Development for Educators (LEDE) Concentration
+- Program Requirements
+
+##### Educational Studies: Elementary Education (BA) parsed official requirement cues
+
+- Degree Requirements - School of Educational Studies
+- Degree Requirements
+- Education Studies: Elementary Education Option
+- Diversity Studies Minor
+- M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
+- Degree Completion Requirements
+- M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
+- M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
+- M.Ed. with Leadership Development for Educators (LEDE) Concentration
+- Program Requirements
+
+##### Educational Studies: Elementary Education (BA) parsed choices and pathway notes
+
+- Elementary Education Option
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ANTH& 205`
+- `ASTR& 101`
+- `BIOL& 100`
+- `BIOL& 211`
+- `BIOL& 241`
+- `BIOL& 242`
+- `CHEM& 121`
+- `CHEM& 161`
+- `CHEM& 163`
+- `DRMA 151`
+- `ECON 100`
+- `ECON& 201`
+- `ENGL 181`
+- `ENGL 248`
+- `ENGL& 101`
+- `ENGL& 227`
+- `ENGL& 244`
+- `ENGL& 245`
+- `ENGL& 255`
+- `ENGL& 256`
+- `GEOG& 200`
+- `GEOL 206`
+- `HIST& 136`
+- `HIST& 137`
+- `NATRS 210`
+- `OCEA& 101`
+- `PHYS& 110`
+- `PHYS& 114`
+- `POLS& 101`
+- `POLS& 202`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ANTH&amp; 205 -> `ANTH& 205`
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-educational-studies-elementary-education:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Electrical Engineering (BS)
@@ -1350,8 +1567,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Electrical Engineering (BS) parsed official source requirements
 
-- Elective Courses
-- Teaching Track Faculty
 - The Electrical Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 - Major requirements
 - All students who enter the BSEE program in autumn 2012 or after must complete these requirements to earn their degree. Learn more about the EE admissions process. Students need to complete each course with a minimum grade of 2.0.
@@ -1360,11 +1575,11 @@ Source-generated from parsed UW requirement-source registries.
 - B EE 200 Electric Circuits Lab (2)
 - B EE 215 Fundamentals of Electrical Engineering (4)
 - B EE 233 Circuit Theory (4)
+- B EE 235 Continuous Time Linear Systems (5)
+- B EE 271 Digital Circuits and Systems (5)
 
 ##### Electrical Engineering (BS) parsed official requirement cues
 
-- Elective Courses
-- Teaching Track Faculty
 - The Electrical Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 - Major requirements
 - All students who enter the BSEE program in autumn 2012 or after must complete these requirements to earn their degree. Learn more about the EE admissions process. Students need to complete each course with a minimum grade of 2.0.
@@ -1373,6 +1588,8 @@ Source-generated from parsed UW requirement-source registries.
 - B EE 200 Electric Circuits Lab (2)
 - B EE 215 Fundamentals of Electrical Engineering (4)
 - B EE 233 Circuit Theory (4)
+- B EE 235 Continuous Time Linear Systems (5)
+- B EE 271 Digital Circuits and Systems (5)
 
 ##### Electrical Engineering (BS) parsed choices and pathway notes
 
@@ -1393,17 +1610,17 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: \* B WRIT 134 Composition (5) (or both B WRIT 132 (5) and 133 (5) or ENGL 131 Composition: Exposition (5)) -> `ENGL& 101`. complete at least 1 course from this set
 - Required before enrollment: B WRIT 135 Research Writing (5) or ENGL 141 The Research Paper (5). complete at least 1 course from this set
 - Required before enrollment: STMATH 208 -> `MATH 240`. note: Auto-promoted because STMATH 208 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
-- Source-backed note: Course-family consensus: 12/12 samples for MATH 208.
-- Source-backed note: Requirement cue lines: STMATH 208 Matrix Algebra (5) | STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra with Applications (5 credits)
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Supporting UW course codes: MATH 208, TMATH 208.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-electrical-engineering:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 12/12 samples for MATH 208.
+- note: Requirement cue lines: STMATH 208 Matrix Algebra (5) | STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra with Applications (5 credits)
+- note: Source parse confidence: high.
+- note: Supporting UW course codes: MATH 208, TMATH 208.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-electrical-engineering:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Environmental Studies (BA)
@@ -1457,9 +1674,9 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: BIS 242 Environmental Geography (AUT quarter) OR BIS 243 Intro to Environmental Issues (WIN quarter) (5 credits). complete at least 1 course from this set
 - Required before enrollment: BIS 356 or BIS 386. complete at least 1 course from this set
 - Required before enrollment: BES 301 Science Methods &amp; Practice OR BST 301 Scientific Writing (5 Credits). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-environmental-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-environmental-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Gender, Women, & Sexuality Studies (BA)
@@ -1512,9 +1729,9 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: GWSS faculty HIGHLY recommend students take both BISGWS 302 &amp; 303. If a student completes both BISGWS 302 and BISGWS 303, 5 credits from these courses can be applied toward the student’s GWSS coursework requirement.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: BISGWS 302 Histories and Movements of Gender and Sexuality OR BISGWS 303 Approaches to Feminist Inquiry (5 credits)\*\*. complete at least 1 course from this set
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-gender-women-and-sexuality-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-gender-women-and-sexuality-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Global Studies (BA)
@@ -1564,9 +1781,9 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-global-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-global-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Health Studies (BA)
@@ -1580,38 +1797,35 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
+- [Health Studies Major Checklist (2025-2026)](https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2026/04/25-26-hs-major-checklist.docx)
+- [Health Studies Major Checklist (2025-2026)](https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2026/04/25-26-hs-major-checklist.docx) - Source used for parser-backed UW requirement extraction.
 - [Scoped section: 2025-26 Health Studies (BA) Major Checklist - 90 credits](https://www.uwb.edu/nhs/undergraduate/health-studies/overview)
-- [Scoped section: 2025-26 Health Studies (BA) Major Checklist - 90 credits](https://www.uwb.edu/nhs/undergraduate/health-studies/overview) - Source used for parser-backed UW requirement extraction.
 
 ##### Health Studies (BA) parsed official source requirements
 
-- (minimum of 180 college-level credits required for graduation)
-- (minimum of 45 UW credits required for graduation)
-- (prelco-req) BHS 201
-- \*BHS 496 can be taken concurrently with BHS 403; need senior standing
-- / 180 credits completed; Need credits
-- / 45 credits completed; Need credits
+- 2025-26 Health Studies (BA) Major Checklist - 90 credits
+- CREDITS
+- STATISTICS -1.75 or higher required
+- D BMATH 215, BIS 215, BBUS 215, Transfer
+- CORE COURSES - 2.0 or higher required
 - □ BHS 201 Intro to Public Health
 - □ BHS 210 Community Health Promotion &amp; Communication
+- (prelco-req) BHS 201
 - □ BHS 300 Principles of Health Research
-- □ BHS 305 Intro to Healthcare Policy &amp; Systems
+- BHS 201, (co-req) 210
 
 ##### Health Studies (BA) parsed official requirement cues
 
-- (minimum of 180 college-level credits required for graduation)
-- (minimum of 45 UW credits required for graduation)
-- (prelco-req) BHS 201
-- \*BHS 496 can be taken concurrently with BHS 403; need senior standing
-- / 180 credits completed; Need credits
-- / 45 credits completed; Need credits
+- 2025-26 Health Studies (BA) Major Checklist - 90 credits
+- CREDITS
+- STATISTICS -1.75 or higher required
+- D BMATH 215, BIS 215, BBUS 215, Transfer
+- CORE COURSES - 2.0 or higher required
 - □ BHS 201 Intro to Public Health
 - □ BHS 210 Community Health Promotion &amp; Communication
+- (prelco-req) BHS 201
 - □ BHS 300 Principles of Health Research
-- □ BHS 305 Intro to Healthcare Policy &amp; Systems
-
-##### Health Studies (BA) parsed choices and pathway notes
-
-- The Health Studies faculty select electives each year, based on UW-Bothell’s catalog of courses. The approved electives are categorized into four areas of interest: 1) Health &amp; Life Sciences, 2) Community Health Intervention &amp; Practice, 3) Health &amp; Society, and 4) Health Policy, Leadership, &amp; Ethics.
+- BHS 201, (co-req) 210
 
 #### GRC Equivalent Courses
 
@@ -1619,14 +1833,12 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Approved Health Studies Electives, with at least 10 credits in B HLTH course offerings. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-health-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-health-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Interactive Media Design (BA)
@@ -1687,10 +1899,10 @@ On To Do list.
 - Required before enrollment: 3 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: \[Page 1\] (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209). complete at least 1 course from this set
 - Required before enrollment: \[Page 1\] (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-interactive-media-design:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-interactive-media-design:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Interdisciplinary Arts (BA)
@@ -1742,9 +1954,9 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Core Course. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: B WRIT 133 or B WRIT 134 or ENGL 131 or equivalent (5 credits) -> `ENGL& 101`. complete at least 1 course from this set
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-interdisciplinary-arts:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-interdisciplinary-arts:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Law, Economics & Public Policy (BA)
@@ -1766,6 +1978,19 @@ Source-generated from parsed UW requirement-source registries.
 ##### Law, Economics &amp; Public Policy (BA) before-enrollment degree head starts
 
 - STAT 220
+
+##### Law, Economics &amp; Public Policy (BA) - B.A. route parsed official source requirements
+
+- Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Arts in Law, Economics, and Public Policy major. Once all have been completed you can submit a declaration form using the online Major Declaration Form .
+- English Composition Coursework
+- B WRIT 133 OR B WRIT 134 OR ENGL 131 or equivalent Composition course (5 credits)
+- B WRIT 135 OR ENGL 141 or equivalent Composition course (5 credits)
+- BIS 200/B BUS 220, ECON 200 or equivalent Microeconomics course (5 credits)
+- Introduction to American Government or American Politics (5 credits)
+- BIS 175, BIS 280, POL S 202 or equivalent American Government/Politics course
+- Major Requirements
+- Degree Requirements
+- The following degree requirements are required as of Autumn 2024 quarter. Students who entered the Law, Economics, and Public Policy (LEPP) major prior to Autumn 2024 have different requirements. Please see your Academic Advisor for questions and academic planning.
 
 ##### Law, Economics &amp; Public Policy (BA) parsed official source requirements
 
@@ -1793,7 +2018,25 @@ Source-generated from parsed UW requirement-source registries.
 - English Composition Coursework
 - B WRIT 133 OR B WRIT 134 OR ENGL 131 or equivalent Composition course (5 credits)
 
+##### Law, Economics &amp; Public Policy (BA) - B.A. route parsed official requirement cues
+
+- Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Arts in Law, Economics, and Public Policy major. Once all have been completed you can submit a declaration form using the online Major Declaration Form .
+- English Composition Coursework
+- B WRIT 133 OR B WRIT 134 OR ENGL 131 or equivalent Composition course (5 credits)
+- B WRIT 135 OR ENGL 141 or equivalent Composition course (5 credits)
+- BIS 200/B BUS 220, ECON 200 or equivalent Microeconomics course (5 credits)
+- Introduction to American Government or American Politics (5 credits)
+- BIS 175, BIS 280, POL S 202 or equivalent American Government/Politics course
+- Major Requirements
+- Degree Requirements
+- The following degree requirements are required as of Autumn 2024 quarter. Students who entered the Law, Economics, and Public Policy (LEPP) major prior to Autumn 2024 have different requirements. Please see your Academic Advisor for questions and academic planning.
+
 ##### Law, Economics &amp; Public Policy (BA) parsed choices and pathway notes
+
+- Students choose from one of the Statistics courses
+- Students choose from one of the Skills and Methods courses
+
+##### Law, Economics &amp; Public Policy (BA) - B.A. route parsed choices and pathway notes
 
 - Students choose from one of the Statistics courses
 - Students choose from one of the Skills and Methods courses
@@ -1812,16 +2055,17 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: BIS 200/B BUS 220, ECON 200 or equivalent Microeconomics course (5 credits) -> `ECON& 201`. complete at least 1 course from this set
 - Required before enrollment: BIS 175, BIS 280, POL S 202 or equivalent American Government/Politics course -> `POLS& 202`. complete at least 1 course from this set
 - Required before enrollment: STAT 220 -> `MATH& 146`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for STAT 220.
-- Source-backed note: Added the Green River course path MATH&amp; 146 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the source-backed Green River course path MATH&amp; 146 for this UW requirement.
-- Source-backed note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
-- Source-backed note: Requirement cue lines: STAT 220 Statistical Reasoning
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-law-economics-and-public-policy:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Added the Green River course path MATH&amp; 146 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes STAT 220 under uw-grc-guide:0788:mathematics:mathand-146-5. The planner was missing the Green River course path MATH&amp; 146 for this UW requirement.
+- note: Guide-backed rule: uw-grc-guide:0788:mathematics:mathand-146-5.
+- note: Requirement cue lines: STAT 220 Statistical Reasoning
+- note: Source parse confidence: high.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-law-economics-and-public-policy:pathway:ba-route:source-degree-map:.
+- note: Parsed degree-map block candidate: uw-bothell-law-economics-and-public-policy:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Mathematical Thinking & Visualization (BA)
@@ -1837,6 +2081,19 @@ Source-generated from parsed UW requirement-source registries.
 
 - [UW Bothell Mathematical Thinking & Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization)
 - [UW Bothell Mathematical Thinking & Visualization requirements](https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization) - Source used for parser-backed UW requirement extraction.
+
+##### Mathematical Thinking &amp; Visualization (BA) - B.A. route parsed official source requirements
+
+- Diversity and Equity
+- Diversity Plan
+- Interdisciplinary Social Sciences
+- Minor in Diversity Studies
+- Beginning Autumn 2024 Quarter, the MTV major will be changing its name to Data Visualization. With this name change, degree requirements will be changing. An updated website will be posted in Spring Quarter with the new program and degree requirements. Please contact an IAS Academic Advisor for questions.
+- On this page: Major Description | Requirements | Learning Objectives | Faculty &amp; Staff | Courses
+- Major requirements
+- CSS 107 Introduction to Programming through Animated Storytelling
+- CSS 142 Computer Programming I
+- CSS 143 Computer Programming II
 
 ##### Mathematical Thinking &amp; Visualization (BA) parsed official source requirements
 
@@ -1864,7 +2121,27 @@ Source-generated from parsed UW requirement-source registries.
 - CSS 142 Computer Programming I
 - CSS 143 Computer Programming II
 
+##### Mathematical Thinking &amp; Visualization (BA) - B.A. route parsed official requirement cues
+
+- Diversity and Equity
+- Diversity Plan
+- Interdisciplinary Social Sciences
+- Minor in Diversity Studies
+- Beginning Autumn 2024 Quarter, the MTV major will be changing its name to Data Visualization. With this name change, degree requirements will be changing. An updated website will be posted in Spring Quarter with the new program and degree requirements. Please contact an IAS Academic Advisor for questions.
+- On this page: Major Description | Requirements | Learning Objectives | Faculty &amp; Staff | Courses
+- Major requirements
+- CSS 107 Introduction to Programming through Animated Storytelling
+- CSS 142 Computer Programming I
+- CSS 143 Computer Programming II
+
 ##### Mathematical Thinking &amp; Visualization (BA) parsed choices and pathway notes
+
+- Generate reliable data and choose appropriate methods to apply to a given data set.
+- Students will choose one course that allows them to explore visual art forms or design as a means to communicate information to an audience.
+- Students will choose at least two courses that will help them develop the mathematical tools gained in their prerequisite and core courses. This list will evolve as curricula across UW Bothell change; courses in this category explicitly study mathematical principles. That emphasis is manifest in their readings, assignments, and evaluation. This criterion does not exclude courses with substantial application, but a student finishing a course in this category should be able to reflect critically on the mathematical principles learned, in a way that aids their thoughtful application elsewhere.
+- Students will choose at least two courses that extend their capacities in visualization and communication. Visualization practices and methods may include modeling and tools for exploring and examining data sets. It includes interactive presentation through the simultaneous display of multimedia data such as numbers, words, and images, and informal modes of communication, along with polished presentations to specific audiences. Courses in this category develop means of representing, and critically examining data and arguments.
+
+##### Mathematical Thinking &amp; Visualization (BA) - B.A. route parsed choices and pathway notes
 
 - Generate reliable data and choose appropriate methods to apply to a given data set.
 - Students will choose one course that allows them to explore visual art forms or design as a means to communicate information to an audience.
@@ -1880,10 +2157,11 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: MTV: VPM- Visualization Practice and Methods Courses (10 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: BIS 231 Linear Algebra or STMATH 208 Matrix Algebra (5 credits). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-mathematical-thinking-and-visualization:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-mathematical-thinking-and-visualization:pathway:ba-route:source-degree-map:.
+- note: Parsed degree-map block candidate: uw-bothell-mathematical-thinking-and-visualization:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Mathematics (BS)
@@ -1897,14 +2175,11 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Bothell Mathematics curriculum](https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum)
-- [UW Bothell Mathematics curriculum](https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: All UW students must complete a common set of general education requirements . As a Mathematics major, you will already](https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum)
+- [Scoped section: All UW students must complete a common set of general education requirements . As a Mathematics major, you will already ](https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Mathematics (BS) parsed official source requirements
 
-- Elective Courses
-- Teaching Track Faculty
-- Elective courses
 - All UW students must complete a common set of general education requirements . As a Mathematics major, you will already be completing the Natural Science (NSc) and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
 - English Composition (C) – 5 credits ( BWRIT 134 recommended)
 - Additional Writing (W) – 10 credits (consider BWRIT 135 , BST 301 , and/or CSS 301 )
@@ -1912,12 +2187,12 @@ Source-generated from parsed UW requirement-source registries.
 - Arts &amp; Humanities (A&amp;H) – 15 credits (cannot overlap with SSc)
 - Social Sciences (SSc) – 15 credits (cannot overlap with A&amp;H)
 - In general, these general education courses can overlap with the Elective courses for your major.
+- Core course requirements
+- A minimum grade of 2.0 is required in each of the following ten core courses. All courses are 5 credits unless otherwise noted.
+- CSS 123 + CSSKL 123: Programming for Data Science + Skills Lab ( Note: CSS 112 \[Programming for Scientific Applications\] can be used as the prerequisite for CSS 123)
 
 ##### Mathematics (BS) parsed official requirement cues
 
-- Elective Courses
-- Teaching Track Faculty
-- Elective courses
 - All UW students must complete a common set of general education requirements . As a Mathematics major, you will already be completing the Natural Science (NSc) and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
 - English Composition (C) – 5 credits ( BWRIT 134 recommended)
 - Additional Writing (W) – 10 credits (consider BWRIT 135 , BST 301 , and/or CSS 301 )
@@ -1925,6 +2200,9 @@ Source-generated from parsed UW requirement-source registries.
 - Arts &amp; Humanities (A&amp;H) – 15 credits (cannot overlap with SSc)
 - Social Sciences (SSc) – 15 credits (cannot overlap with A&amp;H)
 - In general, these general education courses can overlap with the Elective courses for your major.
+- Core course requirements
+- A minimum grade of 2.0 is required in each of the following ten core courses. All courses are 5 credits unless otherwise noted.
+- CSS 123 + CSSKL 123: Programming for Data Science + Skills Lab ( Note: CSS 112 \[Programming for Scientific Applications\] can be used as the prerequisite for CSS 123)
 
 ##### Mathematics (BS) parsed choices and pathway notes
 
@@ -1932,7 +2210,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
@@ -1942,10 +2220,10 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Additional Writing (W) – 10 credits (consider BWRIT 135 , BST 301 , and/or CSS 301 ). complete at least 1 course from this set
 - Required before enrollment: STMATH 341 or STMATH 390 or STMATH 392. complete at least 1 course from this set
 - Required before enrollment: STMATH 392: Probability (only counts as elective if STMATH 341 or 390 used for core requirement). complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-mathematics:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-mathematics:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Mechanical Engineering
@@ -1998,13 +2276,14 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: Electives - Maximum of 4 credits of. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Mathematics: 30 credits. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Thermal Fluid Systems Analysis. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 21 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: AMATH 301 / STMATH 208 -> `ENGR 250`. complete at least 1 course from this set
 - Required before enrollment: \[Page 1\] Additional Writing (W): BWRIT135 (or ENGL141,. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-mechanical-engineering:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-mechanical-engineering:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Media & Communication Studies (BA)
@@ -2018,7 +2297,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Bothell Media & Communication Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/media-communication)
 - [UW Bothell Media & Communication Studies requirements](https://www.uwb.edu/ias/undergraduate/majors/media-communication) - Source used for parser-backed UW requirement extraction.
 
 ##### Media &amp; Communications Studies (BA) parsed official source requirements
@@ -2055,9 +2333,9 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Additional School of IAS Coursework (20 credits) -> `ENGL& 101`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-media-and-communications-studies:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-media-and-communications-studies:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Nursing (BS), First Year RN to BSN (Direct Entry)
@@ -2071,8 +2349,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview)
-- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview) - Source used for parser-backed UW requirement extraction.
+- [Scoped current requirements: Overview - School of Nursing & Health Studies](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview) - Source used for parser-backed UW requirement extraction.
 
 ##### Nursing (BS), First Year RN to BSN (Direct Entry) parsed official source requirements
 
@@ -2106,10 +2383,10 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-nursing-first-year-rn-to-bsn:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- Required before enrollment: major preparation. note: Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-nursing-first-year-rn-to-bsn:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Nursing (BS), RN to BSN
@@ -2123,34 +2400,33 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview)
-- [UW Bothell RN to BSN overview](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview) - Source used for parser-backed UW requirement extraction.
+- [Scoped current requirements: Overview - School of Nursing & Health Studies](https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview) - Source used for parser-backed UW requirement extraction.
 
 ##### Nursing (BS), RN to BSN parsed official source requirements
 
-- 10 – 15 credits a quarter
-- 5 credits a quarter – one quarter 10 credits
-- A Bachelor’s Degree requires 180 applicable credits. Students typically transfer in 90 lower division credits. Those who do not will need to complete the missing credits to reach the 180 required for the undergraduate degree.
-- Admitted applicants complete a background check which has a fee of $54.00 and must purchase a
-- All students must pay the required fee for this service, waivers are not available.
-- As a student in the program, you will complete a minimum of 100 practice hours. These practice hours are integrated into two courses, BNURS 460 (35 hours) Translating Scholarly Knowledge to Nursing Practice, and BNURS 424 (65 hours) Population-based Health in Community Practice.
+- Diversity statement
+- Tenure Track
+- \[Supplemental official source\] Student Requirements
 - Before applying to our program, prospective Nursing students should review the student requirements outlined below. Undergraduate Nursing students are required to complete a National and Washington State background check, a set of immunizations &amp; trainings, have an active RN License (or pending) in the State of Washington, and satisfy all grade and credit requirements.
-- BNURS 360 Critical Thinking in Nursing
-- BNURS 420 Health Policy and the Organization of Healthcare
-- BNURS 421 Social Justice in Health
+- Licensure as a registered nurse in the state of Washington is required. Students who have not yet completed the NCLEX are admitted conditionally for two quarters. A student without an active RN license by the end of the second quarter will need to pause their studies. Students may return to the program, upon passage of the NCLEX.
+- Newly admitted and returning undergraduate Nursing students are required to complete a National and Washington State background check. Current Nursing students are required to complete a Washington State-only background check annually if their initial background check expires while in the program. Every background check completed is valid for one calendar year from the date of purchase.
+- All students must pay the required fee for this service, waivers are not available.
+- Credits &amp; grade requirements
+- Students must earn a 2.0 or higher in all Nursing (BNURS) coursework. Students who earn less than 2.0 will be required to repeat the coursework.
+- Credits
 
 ##### Nursing (BS), RN to BSN parsed official requirement cues
 
-- 10 – 15 credits a quarter
-- 5 credits a quarter – one quarter 10 credits
-- A Bachelor’s Degree requires 180 applicable credits. Students typically transfer in 90 lower division credits. Those who do not will need to complete the missing credits to reach the 180 required for the undergraduate degree.
-- Admitted applicants complete a background check which has a fee of $54.00 and must purchase a
-- All students must pay the required fee for this service, waivers are not available.
-- As a student in the program, you will complete a minimum of 100 practice hours. These practice hours are integrated into two courses, BNURS 460 (35 hours) Translating Scholarly Knowledge to Nursing Practice, and BNURS 424 (65 hours) Population-based Health in Community Practice.
+- Diversity statement
+- Tenure Track
+- \[Supplemental official source\] Student Requirements
 - Before applying to our program, prospective Nursing students should review the student requirements outlined below. Undergraduate Nursing students are required to complete a National and Washington State background check, a set of immunizations &amp; trainings, have an active RN License (or pending) in the State of Washington, and satisfy all grade and credit requirements.
-- BNURS 360 Critical Thinking in Nursing
-- BNURS 420 Health Policy and the Organization of Healthcare
-- BNURS 421 Social Justice in Health
+- Licensure as a registered nurse in the state of Washington is required. Students who have not yet completed the NCLEX are admitted conditionally for two quarters. A student without an active RN license by the end of the second quarter will need to pause their studies. Students may return to the program, upon passage of the NCLEX.
+- Newly admitted and returning undergraduate Nursing students are required to complete a National and Washington State background check. Current Nursing students are required to complete a Washington State-only background check annually if their initial background check expires while in the program. Every background check completed is valid for one calendar year from the date of purchase.
+- All students must pay the required fee for this service, waivers are not available.
+- Credits &amp; grade requirements
+- Students must earn a 2.0 or higher in all Nursing (BNURS) coursework. Students who earn less than 2.0 will be required to repeat the coursework.
+- Credits
 
 #### GRC Equivalent Courses
 
@@ -2158,10 +2434,10 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-nursing-rn-to-bsn:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- Required before enrollment: major preparation. note: Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-nursing-rn-to-bsn:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Physics (BA)
@@ -2175,8 +2451,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
+- [Scoped section: Physics core courses (a total of 64 credits)](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum)
 - [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum)
-- [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: Physics core courses (a total of 64 credits)](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Physics (BA) before-enrollment degree head starts
 
@@ -2222,9 +2499,10 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Elective Physics courses (10 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Complete all of the following. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Upper Division Physics Electives — Choose 20 credits from the following courses. Each elective course is 5 credits unless otherwise noted. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Mathematics (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Mathematics courses (a total of 34 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Physics core courses (a total of 64 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Program Elective Credit (20 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 10 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
@@ -2232,21 +2510,21 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Approved B PHYS 499 Research (1-5 credits, max. 10). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: STMATH 208 -> `MATH 240`. note: Auto-promoted because STMATH 208 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
 - Required before enrollment: STMATH 224 -> `MATH& 264`. note: Auto-promoted because STMATH 224 has a clean single-sample exact-title consensus with no conflicting planner mapping.
-- Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
-- Source-backed note: Course-family consensus: 12/12 samples for MATH 208.
-- Source-backed note: Requirement cue lines: STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra | STMATH 208: Matrix Algebra with Applications (5 credits)
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Supporting UW course codes: MATH 208, TMATH 208.
-- Source-backed note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH&amp; 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
-- Source-backed note: Requirement cue lines: STMATH 224 Multivariable Calculus (5 credits) | STMATH 224: Multivariable Calculus | STMATH 224: Multivariable Calculus (5 credits)
-- Source-backed note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-physics-ba:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. STMATH 208 falls under the existing MATH 208 lower-division UW course family, which already maps consistently to MATH 240 across 12/12 planner samples. Supporting UW course codes: MATH 208, TMATH 208. The current planner rows were still missing that stable Green River course path for this major.
+- note: Course-family consensus: 12/12 samples for MATH 208.
+- note: Requirement cue lines: STMATH 208 Matrix Algebra with Applications (5 credits) | STMATH 208: Matrix Algebra | STMATH 208: Matrix Algebra with Applications (5 credits)
+- note: Source parse confidence: high.
+- note: Supporting UW course codes: MATH 208, TMATH 208.
+- note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 1/1 exact-title requirement samples mapping STMATH 224 to MATH&amp; 264. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-enrollment.
+- note: Requirement cue lines: STMATH 224 Multivariable Calculus (5 credits) | STMATH 224: Multivariable Calculus | STMATH 224: Multivariable Calculus (5 credits)
+- note: Requirement-mapping consensus: 1/1 exact-title samples for STMATH 224.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-physics-ba:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Physics (BS)
@@ -2260,8 +2538,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum)
-- [UW Bothell Physics curriculum](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: Physics core courses (a total of 64 credits)](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum)
+- [Scoped section: Physics core courses (a total of 64 credits)](https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Physics (BS) parsed official source requirements
 
@@ -2300,18 +2578,19 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Elective Physics courses (10 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Complete all of the following. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Upper Division Physics Electives — Choose 20 credits from the following courses. Each elective course is 5 credits unless otherwise noted. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Mathematics (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Mathematics courses (a total of 34 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Physics core courses (a total of 64 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Program Elective Credit (20 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 10 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Approved B PHYS 498 Independent Study (1-5 credits, max. 10) Approved B PHYS 499 Research (1-5 credits, max. 10). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Approved B PHYS 499 Research (1-5 credits, max. 10). note: Credit bucket placeholder extracted from source text.
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-physics-bs:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-physics-bs:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Psychology (BA)
@@ -2362,16 +2641,13 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Degree Requirements. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: E. Psychology electives (15 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: BIS 170 / PSYCH 101 -> `PSYC& 100`. complete at least 1 course from this set
 - Required before enrollment: B WRIT 133, B WRIT 134, ENGL 131, or equivalent composition course -> `ENGL& 101`. complete at least 1 course from this set
 - Required before enrollment: BWRIT 135 / ENGL 141. complete at least 1 course from this set
-- Required before enrollment: BIS 438 or BIS 490. complete at least 1 course from this set
-- Required before enrollment: BIS 449 or BIS 490. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-psychology:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-psychology:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Science, Technology & Society (BA)
@@ -2431,10 +2707,10 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: BIS 312 Approaches to Social Research OR BIS 340 Approaches to Cultural Research (5 credits) – minimum 2.0 GPA required. complete at least 1 course from this set
 - Required before enrollment: BES 301 or BIS 315 or BISSTS 307. complete at least 1 course from this set
 - Required before enrollment: BIS 300 or BIS 499. complete at least 1 course from this set
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-science-technology-and-society:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-science-technology-and-society:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Society, Ethics & Human Behavior (BA)
@@ -2492,21 +2768,21 @@ Source-generated from parsed UW requirement-source registries.
 - Required before application: BIS 225 -> `PSYC 240`. note: Auto-promoted because BIS 225 has a single clean exact-title match in the current Green River course catalog metadata.
 - Required before application: BIS 282 -> `GEOG 123`. note: Auto-promoted because BIS 282 has a single clean exact-title match in the current Green River course catalog metadata.
 - Required before enrollment: BIS 215, BIS 312 or BIS 410 – min. 2.0 grade (5 credits). complete at least 1 course from this set
-- Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 225 (Social Psychology) and PSYC 240 (Social Psychology). That exact-title Green River path was not already exposed in the current planner rows.
-- Source-backed note: Exact-title match source: catalog-metadata.
-- Source-backed note: Matched Green River title: Social Psychology.
-- Source-backed note: Matched source title: Social Psychology.
-- Source-backed note: Requirement cue lines: BIS 225 Social Psychology
-- Source-backed note: Source parse confidence: high.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 282 (Globalization) and GEOG 123 (Globalization). That exact-title Green River path was not already exposed in the current planner rows.
-- Source-backed note: Exact-title match source: parsed-source-cue.
-- Source-backed note: Matched Green River title: Globalization.
-- Source-backed note: Matched source title: Globalization.
-- Source-backed note: Requirement cue lines: BIS 282 Globalization
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-society-ethics-and-human-behavior:source-degree-map:.
-- Source-backed note: Parsed requirement cues extracted from the current official source.
+- note: Auto-promoted Green River coverage gap on April 12, 2026.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 225 (Social Psychology) and PSYC 240 (Social Psychology). That exact-title Green River path was not already exposed in the current planner rows.
+- note: Exact-title match source: catalog-metadata.
+- note: Matched Green River title: Social Psychology.
+- note: Matched source title: Social Psychology.
+- note: Requirement cue lines: BIS 225 Social Psychology
+- note: Source parse confidence: high.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between BIS 282 (Globalization) and GEOG 123 (Globalization). That exact-title Green River path was not already exposed in the current planner rows.
+- note: Exact-title match source: parsed-source-cue.
+- note: Matched Green River title: Globalization.
+- note: Matched source title: Globalization.
+- note: Requirement cue lines: BIS 282 Globalization
+- note: Parser confidence: high.
+- note: Parsed degree-map block candidate: uw-bothell-society-ethics-and-human-behavior:source-degree-map:.
+- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Chemistry: Biochemistry (BS)

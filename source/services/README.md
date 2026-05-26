@@ -9,7 +9,7 @@ The `services/` folder contains the integration logic for Firebase, college data
 All API keys and settings are in [`config.ts`](./app/config.ts). The current config reads these environment variables:
 
 ```bash
-# .env file (create from env.example)
+# .env file (create from .env.example)
 EXPO_PUBLIC_FIREBASE_API_KEY=your_key_here
 EXPO_PUBLIC_COLLEGE_SCORECARD_KEY=your_key_here
 EXPO_PUBLIC_FIREBASE_FUNCTIONS_REGION=us-central1
@@ -18,7 +18,7 @@ EXPO_PUBLIC_AI_GATEWAY_FUNCTION_NAME=geminiGateway
 
 Important:
 
-- `EXPO_PUBLIC_USE_STUB_DATA` is legacy and is **not** used by the current app config
+- `EXPO_PUBLIC_USE_STUB_DATA` is legacy, intentionally omitted from `.env.example`, and is **not** used by the current app config
 - if you see that variable in an old local `.env`, it does not currently switch the app into stub mode
 
 Gemini itself is now configured server-side in [`../functions/.env.example`](../functions/.env.example), not in the client app env file. Versioned AI prompt templates now live in [`../functions/promptTemplates.js`](../functions/promptTemplates.js) so prompts stay reusable instead of being hardcoded across features.

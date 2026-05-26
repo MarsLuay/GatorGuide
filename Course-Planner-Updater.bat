@@ -176,6 +176,7 @@ exit /b 0
 
 :finish
 set "EXIT_CODE=%ERRORLEVEL%"
+if exist "%APP_ROOT%\scripts\organize-tmp-artifacts.cjs" node "%APP_ROOT%\scripts\organize-tmp-artifacts.cjs" --quiet >nul 2>&1
 if "%EXIT_CODE%"=="%BACK_EXIT_CODE%" if not "%HOSTED_BACK_TARGET%"=="" goto %HOSTED_BACK_TARGET%
 echo.
 if "%EXIT_CODE%"=="0" (

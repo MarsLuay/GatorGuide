@@ -25,6 +25,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { PageBackButton } from "@/components/ui/PageBackButton";
 import { authService } from "@/services/auth/auth.service";
+import { getAuthErrorCode } from "@/services/auth/auth-error";
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 
@@ -78,15 +79,16 @@ export default function ForgotPasswordPage() {
       await authService.sendPasswordReset(e);
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       setIsSuccess(true);
-    } catch (error: any) {
+    } catch (error: unknown) {
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      const code = getAuthErrorCode(error);
       
       let message = t("auth.validation.failed_message");
-      if (error?.code === 'auth/user-not-found' || error?.code === 'auth/invalid-credential') {
+      if (code === 'auth/user-not-found' || code === 'auth/invalid-credential') {
         message = t("auth.no_matches");
-      } else if (error?.code === 'auth/too-many-requests') {
+      } else if (code === 'auth/too-many-requests') {
         message = t("auth.tooManyAttempts");
-      } else if (error?.code === 'auth/invalid-email') {
+      } else if (code === 'auth/invalid-email') {
         message = t("auth.validation.invalid_email");
       }
       

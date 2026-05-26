@@ -20,125 +20,20 @@ import { PageBackButton } from "@/components/ui/PageBackButton";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import useBack from "@/hooks/use-back";
-import type { DeadlineCalendarEntry } from "@/services/deadlines/deadline-calendar.service";
 import { useDeadlineCalendarController } from "@/components/pages/deadline-calendar/useDeadlineCalendarController";
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, value));
-}
-
-function addMonths(date: Date, amount: number) {
-  return new Date(date.getFullYear(), date.getMonth() + amount, 1);
-}
-
-function formatMonthTitle(value: Date, locale: string) {
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      month: "long",
-      year: "numeric",
-    }).format(value);
-  } catch {
-    return value.toDateString();
-  }
-}
-
-function formatGroupDate(value: string, locale: string) {
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return value;
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      weekday: "short",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(parsed);
-  } catch {
-    return parsed.toDateString();
-  }
-}
-
-function formatRelativeDate(value: string, locale: string) {
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return "";
-
-  const today = new Date();
-  const startToday = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
-  const startTarget = new Date(
-    parsed.getFullYear(),
-    parsed.getMonth(),
-    parsed.getDate()
-  );
-  const diffDays = Math.round(
-    (startTarget.getTime() - startToday.getTime()) / (1000 * 60 * 60 * 24)
-  );
-
-  if (diffDays < -14 || diffDays > 14) return "";
-
-  try {
-    return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
-      diffDays,
-      "day"
-    );
-  } catch {
-    if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "Tomorrow";
-    if (diffDays === -1) return "Yesterday";
-    if (diffDays > 1) return `In ${diffDays} days`;
-    return `${Math.abs(diffDays)} days ago`;
-  }
-}
-
-function normalizeAgendaText(value: string | null | undefined) {
-  if (!value) return "";
-  return value.replace(/\s+/g, " ").trim();
-}
-
-function buildAgendaPreviewText(
-  value: string | null | undefined,
-  maxChars: number
-) {
-  const normalized = normalizeAgendaText(value);
-  if (!normalized) return "";
-  if (normalized.length <= maxChars) return normalized;
-  return `${normalized.slice(0, Math.max(0, maxChars - 1)).trimEnd()}...`;
-}
-
-function formatKindLabel(
-  item: DeadlineCalendarEntry,
-  t: (key: string, params?: Record<string, string | number>) => string
-) {
-  if (item.kind === "scholarship") return t("deadlineCalendar.kindScholarship");
-  if (item.kind === "internship") return t("deadlineCalendar.kindOpportunity");
-  if (item.kind === "college_deadline") return t("deadlineCalendar.kindCollegeDeadline");
-  if (item.kind === "quarter-start") return "Quarter Start";
-  if (item.kind === "quarter-end") return "Quarter End";
-  if (item.kind === "general_deadline") return "General deadline";
-  return t("deadlineCalendar.kindRoadmapTask");
-}
-
-function getItemIcon(item: DeadlineCalendarEntry): keyof typeof MaterialIcons.glyphMap {
-  if (item.kind === "scholarship") return "attach-money";
-  if (item.kind === "internship") return "work-outline";
-  if (item.kind === "college_deadline") return "school";
-  if (item.kind === "quarter-start") return "event-available";
-  if (item.kind === "quarter-end") return "event-note";
-  if (item.kind === "general_deadline") return "event";
-  return "checklist";
-}
-
-function getPrimaryActionLabel(
-  item: DeadlineCalendarEntry,
-  t: (key: string, params?: Record<string, string | number>) => string
-) {
-  if (item.target.type === "college") return t("deadlineCalendar.actionOpenCollege");
-  if (item.target.type === "roadmap") return "Shown here";
-  if (item.target.type === "resources") return t("deadlineCalendar.actionViewOpportunity");
-  return t("deadlineCalendar.actionOpenLink");
-}
+import {
+  addMonths,
+  buildAgendaPreviewText,
+  clamp,
+  formatGroupDate,
+  formatKindLabel,
+  formatMonthTitle,
+  formatRelativeDate,
+  getEntrySourceLabel,
+  getEntrySubtitle,
+  getItemIcon,
+  getPrimaryActionLabel,
+} from "@/components/pages/deadline-calendar/deadline-calendar-view-utils";
 
 export default function DeadlineCalendarPage() {
   const back = useBack();
@@ -595,7 +490,7 @@ export default function DeadlineCalendarPage() {
                             </Text>
                             <Text className={`${secondaryTextClass} text-sm`} numberOfLines={1}>
                               {buildAgendaPreviewText(
-                                item.subtitle || item.description,
+                                getEntrySubtitle(item, t) || item.description,
                                 layout.isDesktop ? 84 : 60
                               )}
                             </Text>
@@ -750,7 +645,7 @@ export default function DeadlineCalendarPage() {
                   }}
                 >
                   {displayedGroups.map((group) => {
-                    const relativeLabel = formatRelativeDate(group.dueAt, locale);
+                    const relativeLabel = formatRelativeDate(group.dueAt, locale, t);
 
                     return (
                       <View
@@ -803,7 +698,7 @@ export default function DeadlineCalendarPage() {
 
                         {group.items.map((item, index) => {
                           const subtitlePreview = buildAgendaPreviewText(
-                            item.subtitle || item.sourceLabel,
+                            getEntrySubtitle(item, t) || getEntrySourceLabel(item, t),
                             layout.isDenseAgenda ? 60 : layout.isDesktop ? 90 : 72
                           );
                           const descriptionPreview = buildAgendaPreviewText(

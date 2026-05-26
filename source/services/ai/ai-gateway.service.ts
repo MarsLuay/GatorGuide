@@ -1,10 +1,9 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { httpsCallable } from "firebase/functions";
 import { API_CONFIG } from "@/services/app/config";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { functionsClient } from "@/services/firebase/firebase";
-
-const AI_GATEWAY_CLIENT_ID_KEY = "ai:gateway:clientId:v1";
+import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
 
 type AiGatewayQuota = {
   scope: "user" | "guest";
@@ -98,10 +97,10 @@ class AiGatewayService {
   private async getClientInstanceId() {
     if (!this.clientIdPromise) {
       this.clientIdPromise = (async () => {
-        const cached = await AsyncStorage.getItem(AI_GATEWAY_CLIENT_ID_KEY);
+        const cached = await localStorageService.getItem(LOCAL_STORAGE_KEYS.aiGatewayClientId);
         if (cached?.trim()) return cached.trim();
         const next = this.makeClientId();
-        await AsyncStorage.setItem(AI_GATEWAY_CLIENT_ID_KEY, next);
+        await localStorageService.setItem(LOCAL_STORAGE_KEYS.aiGatewayClientId, next);
         return next;
       })().catch(async () => this.makeClientId());
     }

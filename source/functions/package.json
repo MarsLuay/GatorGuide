@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "firebase deploy --only functions",
-    "lint": "node --check index.js && node --check supportEmail.js && node --check supportEmail.test.js && node --check geminiGateway.js && node --check opportunityGateway.js && node --check promptTemplates.js",
+    "lint": "node scripts/static-check.cjs",
     "test": "node --test",
     "serve": "firebase emulators:start --only functions"
   },

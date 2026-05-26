@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import * as WebBrowser from "expo-web-browser";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import Constants from "expo-constants";
 import { makeRedirectUri, useAuthRequest, useAutoDiscovery, ResponseType } from "expo-auth-session";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -22,12 +22,16 @@ import { authService } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { API_CONFIG } from "@/services/app/config";
 import { SUPPORT_MAILTO } from "@/constants/support";
+import { getAuthErrorCode, getAuthErrorMessage, isAuthErrorCode } from "@/services/auth/auth-error";
+import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 
 WebBrowser.maybeCompleteAuthSession();
 
 const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.trim());
 const PENDING_DELETE_ACCOUNT_KEY = STORAGE_KEYS.pendingDeleteAccount;
 const ONBOARDING_DEBUG_LOG_KEY = STORAGE_KEYS.onboardingDebugLog;
+const optionalString = (value: unknown) =>
+  typeof value === "string" ? value : undefined;
 
 export default function AuthPage() {
   const { isHydrated, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
@@ -53,10 +57,10 @@ export default function AuthPage() {
       return next.slice(-300);
     });
     try {
-      const raw = await AsyncStorage.getItem(ONBOARDING_DEBUG_LOG_KEY);
+      const raw = await localStorageService.getItem(ONBOARDING_DEBUG_LOG_KEY);
       const arr = raw ? (JSON.parse(raw) as string[]) : [];
       const next = [...arr, line].slice(-500);
-      await AsyncStorage.setItem(ONBOARDING_DEBUG_LOG_KEY, JSON.stringify(next));
+      await localStorageService.setItem(ONBOARDING_DEBUG_LOG_KEY, JSON.stringify(next));
     } catch {
       // ignore debug persistence errors
     }
@@ -65,7 +69,7 @@ export default function AuthPage() {
   const clearOnboardingDebugLogs = useCallback(async () => {
     setOnboardingDebugLogs([]);
     setOnboardingCopyStatus("");
-    await AsyncStorage.removeItem(ONBOARDING_DEBUG_LOG_KEY).catch(() => {});
+    await localStorageService.removeItem(ONBOARDING_DEBUG_LOG_KEY).catch(() => {});
   }, []);
 
   const copyOnboardingDebugLogs = useCallback(async () => {
@@ -90,22 +94,8 @@ export default function AuthPage() {
         provider?: "google" | "microsoft";
       } = {}
     ): string | null => {
-      const code =
-        typeof error === "object" &&
-        error !== null &&
-        "code" in error &&
-        typeof (error as { code?: unknown }).code === "string"
-          ? (error as { code: string }).code
-          : undefined;
-      const message =
-        error instanceof Error
-          ? error.message
-          : typeof error === "object" &&
-              error !== null &&
-              "message" in error &&
-              typeof (error as { message?: unknown }).message === "string"
-            ? (error as { message: string }).message
-            : "";
+      const code = getAuthErrorCode(error);
+      const message = getAuthErrorMessage(error) ?? "";
 
       if (code === "auth/popup-closed-by-user" || /cancelled|canceled|dismissed by user/i.test(message)) {
         return null;
@@ -160,19 +150,19 @@ export default function AuthPage() {
 
   const handlePostAuthRoute = useCallback(async () => {
     await appendOnboardingDebugLog("Post-auth route check started.");
-    const pendingDelete = await AsyncStorage.getItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => null);
+    const pendingDelete = await localStorageService.getItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => null);
     if (pendingDelete === "true") {
       await appendOnboardingDebugLog("Pending delete flag found. Executing deleteAccount after auth.");
-      await AsyncStorage.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
+      await localStorageService.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
       try {
         await deleteAccount();
         await appendOnboardingDebugLog(`Post-auth deleteAccount succeeded. Redirecting to ${ROUTES.login}.`);
         Alert.alert(t("auth.presentation.accountDeletedTitle"), t("auth.presentation.accountDeletedMessage"));
         router.replace(ROUTES.login);
         return;
-      } catch (err: any) {
-        const code = err?.code as string | undefined;
-        await appendOnboardingDebugLog(`Post-auth deleteAccount failed. code=${code ?? "none"} message=${String(err?.message ?? "unknown")}`);
+      } catch (err: unknown) {
+        const code = getAuthErrorCode(err);
+        await appendOnboardingDebugLog(`Post-auth deleteAccount failed. code=${code ?? "none"} message=${getAuthErrorMessage(err) ?? "unknown"}`);
         const friendly = getFriendlyAuthMessage(err, { flow: "account-delete" });
         if (friendly) {
           Alert.alert(t("general.error"), friendly);
@@ -201,7 +191,7 @@ export default function AuthPage() {
 
   useEffect(() => {
     if (!__DEV__) return;
-    AsyncStorage.getItem(ONBOARDING_DEBUG_LOG_KEY)
+    localStorageService.getItem(ONBOARDING_DEBUG_LOG_KEY)
       .then((raw) => {
         if (!raw) return;
         const parsed = JSON.parse(raw) as string[];
@@ -285,21 +275,29 @@ export default function AuthPage() {
       // On signup, migrate any guest-mode progress into the new account.
       if (isSignUp) {
         try {
-          const pendingData = await AsyncStorage.getItem(STORAGE_KEYS.pendingAccountData);
+          const pendingData = await localStorageService.getItem(STORAGE_KEYS.pendingAccountData);
           if (pendingData) {
-            const parsed = JSON.parse(pendingData);
+            const parsed = JSON.parse(pendingData) as {
+              questionnaireAnswers?: Record<string, unknown>;
+              user?: {
+                gpa?: unknown;
+                major?: unknown;
+                resume?: unknown;
+                transcript?: unknown;
+              };
+            };
             if (parsed.user) {
               await updateUser({
-                major: parsed.user.major,
-                gpa: parsed.user.gpa,
-                resume: parsed.user.resume,
-                transcript: parsed.user.transcript,
+                major: optionalString(parsed.user.major),
+                gpa: optionalString(parsed.user.gpa),
+                resume: optionalString(parsed.user.resume),
+                transcript: optionalString(parsed.user.transcript),
               });
             }
             if (parsed.questionnaireAnswers) {
-              await setQuestionnaireAnswers(parsed.questionnaireAnswers);
+              await setQuestionnaireAnswers(normalizeQuestionnaireAnswers(parsed.questionnaireAnswers));
             }
-            await AsyncStorage.removeItem(STORAGE_KEYS.pendingAccountData);
+            await localStorageService.removeItem(STORAGE_KEYS.pendingAccountData);
           }
         } catch {
           void errorLoggingService.captureMessage("Pending account data migration failed after signup.", {
@@ -318,7 +316,7 @@ export default function AuthPage() {
       }
 
       await handlePostAuthRoute();
-    } catch (err: any) {
+    } catch (err: unknown) {
       void errorLoggingService.captureException(err, {
         category: "auth",
         operation: isSignUp ? "email-password-sign-up" : "email-password-log-in",
@@ -329,15 +327,15 @@ export default function AuthPage() {
         route: ROUTES.login,
         metadata: {
           isSignUp,
-          code: err?.code ?? null,
+          code: getAuthErrorCode(err) ?? null,
         },
       });
-      await appendOnboardingDebugLog(`signIn() rejected. code=${String(err?.code ?? "none")} message=${String(err?.message ?? "unknown")}`);
+      await appendOnboardingDebugLog(`signIn() rejected. code=${getAuthErrorCode(err) ?? "none"} message=${getAuthErrorMessage(err) ?? "unknown"}`);
 
       const friendly = getFriendlyAuthMessage(err, { flow: "sign-in" });
       if (friendly) {
         Alert.alert(t('general.error'), friendly);
-        if (err?.code === 'auth/email-already-in-use' && isSignUp) {
+        if (isAuthErrorCode(err, 'auth/email-already-in-use') && isSignUp) {
           setIsSignUp(false);
         }
       }
@@ -348,7 +346,7 @@ export default function AuthPage() {
 
   const handleGuestSignIn = async () => {
     if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    await AsyncStorage.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
+    await localStorageService.removeItem(PENDING_DELETE_ACCOUNT_KEY).catch(() => {});
     await signInAsGuest();
     setTimeout(() => router.replace("/"), 50);
   };
@@ -785,9 +783,9 @@ export default function AuthPage() {
           </View>
 
           <View className="flex-row justify-center items-center mt-6">
-            <Text className={`${styles.secondaryTextClass} text-xs text-center mr-2`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
+            <Text className={`${styles.secondaryTextClass} text-xs text-center mr-2`}>{t("general.needHelpQuestion")}</Text>
             <AnimatedIconPressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
-              <Text className={`text-xs ${isDark ? "text-emerald-200" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
+              <Text className={`text-xs ${isDark ? "text-emerald-200" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs")}</Text>
             </AnimatedIconPressable>
           </View>
         </View>

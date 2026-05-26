@@ -1,6 +1,6 @@
 # runtime_schedule_agent
 
-Read-only investigator for `selected-option-not-scheduled` and runtime-layer source-backed blockers.
+Read-only investigator for `selected-option-not-scheduled` and runtime-layer blockers.
 
 Focus on generalized evidence:
 - selected option/default option scheduling

@@ -18,13 +18,13 @@ Or double-click the repo-root launcher for your system:
 
 This executes refresh + verification + hardening + Windows QA and writes a summary to:
 
-- `.tmp/transfer-planner-maintenance-summary.md`
+- `.tmp/reports/transfer-planner-maintenance-summary.md`
 
 If a run fails because of temporary source-download/network issues, use the updater's built-in no-download option:
 
 Run `..\Course-Planner-Updater.bat refresh-no-downloads` on Windows, or run the bundled `course-planner-updater.sh refresh-no-downloads` from the macOS/Linux launcher app resources when using a terminal.
 
-No-download mode reuses the local `.tmp` source artifacts and generated source outputs that are already on the machine. It skips live source checks, primary-source discovery, requirement-source parsing, deadline refresh, online catalog/equivalency ingests, Green River associate-track web refresh, and annual schedule PDF downloads. Run the normal Course updates + tests command once network access is stable if those cached source artifacts are missing or stale.
+No-download mode reuses the local `.tmp` source artifacts and generated source outputs that are already on the machine. Reports live under `.tmp/reports/`, source snapshots under `.tmp/snapshots/`, downloads under `.tmp/downloads/`, and logs under `.tmp/logs/`. It skips live source checks, primary-source discovery, requirement-source parsing, deadline refresh, online catalog/equivalency ingests, Green River associate-track web refresh, and annual schedule PDF downloads. Run the normal Course updates + tests command once network access is stable if those cached source artifacts are missing or stale.
 
 ## Planner launchers
 
@@ -58,7 +58,7 @@ If any of those inputs change, the run output reports exactly where automation c
 
 After `planner:full:verify`, open:
 
-- `.tmp/transfer-planner-maintenance-summary.md`
+- `.tmp/reports/transfer-planner-maintenance-summary.md`
 
 The summary now includes:
 
@@ -67,11 +67,11 @@ The summary now includes:
 
 Use the linked reports in that summary for details:
 
-- `.tmp/transfer-planner-source-gaps.md`
-- `.tmp/transfer-planner-requirement-source-parse-report.md`
-- `.tmp/transfer-planner-requirement-diff-promotion-report.md`
-- `.tmp/transfer-planner-owner-audit.md`
-- `.tmp/transfer-planner-hardening-report.md`
+- `.tmp/reports/transfer-planner-source-gaps.md`
+- `.tmp/reports/transfer-planner-requirement-source-parse-report.md`
+- `.tmp/reports/transfer-planner-requirement-diff-promotion-report.md`
+- `.tmp/reports/transfer-planner-owner-audit.md`
+- `.tmp/reports/transfer-planner-hardening-report.md`
 
 ## PowerShell helpers
 

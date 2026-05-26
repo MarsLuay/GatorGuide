@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 process.env.TS_NODE_TRANSPILE_ONLY = "true";
 process.env.TS_NODE_BASEURL = process.env.TS_NODE_BASEURL || ".";
@@ -24,17 +25,11 @@ const {
 } = require("../../services/planning/transfer-planner.service");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-grc-gen-ed-placeholder-audit.json"
-);
-const OUTPUT_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-grc-gen-ed-placeholder-audit.md"
-);
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const OUTPUT_JSON_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-gen-ed-placeholder-audit.json");
+const OUTPUT_MD_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-gen-ed-placeholder-audit.md");
 const GENERAL_ED_PLACEHOLDER_CREDITS = 5;
-const TARGET_SOURCE_KIND = "official-grc-track-breadth";
+const TARGET_KIND = "official-grc-track-breadth";
 
 const CATEGORY_LABELS = {
   ah: "Arts & Humanities Classes",
@@ -185,7 +180,7 @@ function buildScheduledPlaceholderEntries(track) {
     .filter((quarter) => quarter.phase === "planned")
     .flatMap((quarter) => quarter.courses);
   const entries = plannedCourses
-    .filter((course) => course.sourceKind === TARGET_SOURCE_KIND)
+    .filter((course) => course.sourceKind === TARGET_KIND)
     .map((course) => {
       const category = classifyGeneralEducationLabel(course.label) ?? "elective";
       return {

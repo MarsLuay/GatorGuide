@@ -3,7 +3,7 @@ const test = require("node:test");
 
 const safeValidate = require("./validate-transfer-planner-safe.cjs");
 
-test("safe planner validation selects source-backed stages", () => {
+test("safe planner validation selects stages", () => {
   const stages = safeValidate.selectStages({ only: "source-backed", startAt: null });
   assert.deepEqual(
     stages.map((stage) => stage.name),

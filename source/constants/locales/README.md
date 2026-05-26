@@ -1,5 +1,5 @@
-# Generated Locale Snapshots
+# Locale JSON
 
-`services/app/translations.ts` is the source of truth for app copy because it has the most complete language coverage.
+These per-locale JSON files are the source of truth for app copy. `services/app/translations.ts` loads them and exposes the flattened typed translation dictionaries used by the app.
 
-Run `npm run i18n:generate` from `source/` to regenerate these JSON snapshots. Run `npm run i18n:check` to verify generated files are current, every locale has the English key set, translated strings do not contain common mojibake sequences, app `t("...")` usages point to real keys, and high-confidence user-facing UI strings are routed through translations.
+Run `npm run i18n:generate` from `source/` to normalize these JSON files. Run `npm run i18n:check` to verify every locale has the English key set, translated strings do not contain common mojibake sequences, app `t("...")` usages point to real keys, and high-confidence user-facing UI strings are routed through translations.

@@ -1,6 +1,11 @@
-const fs = require("fs");
-const path = require("path");
 const assert = require("assert/strict");
+const {
+  SOURCE_ROOT: REPO_ROOT,
+  ensurePlannerTmpLayout,
+  getArgValue,
+  getPlannerTmpPath,
+  writePlannerReportPair,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -16,35 +21,8 @@ const {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } = require("../../constants/transfer-planner-source/requirement-diff-classifications.generated");
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-diff-promotion-report.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-diff-promotion-report.md");
-
-function getArgValue(flag) {
-  const args = process.argv.slice(2);
-  const directPrefix = `${flag}=`;
-  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
-  if (directMatch) {
-    return directMatch.slice(directPrefix.length).trim() || null;
-  }
-
-  const flagIndex = args.indexOf(flag);
-  if (flagIndex === -1) {
-    return null;
-  }
-
-  const nextValue = args[flagIndex + 1];
-  if (!nextValue || nextValue.startsWith("--")) {
-    return null;
-  }
-
-  return String(nextValue).trim() || null;
-}
-
-function ensureTmpDir() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
-}
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-requirement-diff-promotion-report.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-requirement-diff-promotion-report.md");
 
 function escapeMarkdown(value) {
   return String(value ?? "")
@@ -148,7 +126,7 @@ function buildReport(options = {}) {
   };
 }
 
-function writeMarkdown(report) {
+function buildMarkdown(report) {
   const lines = [
     "# Transfer Planner Requirement Diff Promotion Report",
     "",
@@ -174,16 +152,20 @@ function writeMarkdown(report) {
     "",
   ];
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  return lines;
 }
 
 function main() {
-  ensureTmpDir();
+  ensurePlannerTmpLayout();
   const report = buildReport({
     targetPlanId: getArgValue("--target-plan-id"),
   });
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
-  writeMarkdown(report);
+  writePlannerReportPair({
+    jsonPath: OUTPUT_JSON_PATH,
+    markdownPath: OUTPUT_MD_PATH,
+    report,
+    markdown: buildMarkdown(report),
+  });
 
   console.log(`Requirement-diff classifications: ${report.classifiedCount}`);
   console.log(`Auto-promoted classifications: ${report.promotedCount}`);

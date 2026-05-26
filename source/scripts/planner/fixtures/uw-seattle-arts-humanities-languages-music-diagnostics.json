@@ -2,7 +2,7 @@
   "campusId": "uw-seattle",
   "notes": [
     "Diagnostic-only fixture for UW Seattle arts, humanities, languages, and music planner audits.",
-    "These expectations represent official-source behavior that should eventually flow from source snapshots into parsed blocks and source-backed planner rows.",
+    "These expectations represent official-source behavior that should eventually flow from source snapshots into parsed blocks and planner rows.",
     "Do not use this fixture as a manual override source for generated planner data."
   ],
   "scopeOwnerIds": [

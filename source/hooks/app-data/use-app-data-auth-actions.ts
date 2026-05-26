@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import {
   useCallback,
   type Dispatch,
@@ -170,7 +170,7 @@ export function useAppDataAuthActions({
     await notificationsService.clearManagedNotifications().catch(() => {});
     setState(initialState);
     reconciledSavedCollegesUidRef.current = null;
-    await AsyncStorage.removeItem(STORAGE_KEY);
+    await localStorageService.removeItem(STORAGE_KEY);
   }, [reconciledSavedCollegesUidRef, setState]);
 
   const deleteAccount = useCallback(async () => {
@@ -184,7 +184,7 @@ export function useAppDataAuthActions({
       await notificationsService.clearManagedNotifications().catch(() => {});
       setState(initialState);
       reconciledSavedCollegesUidRef.current = null;
-      await AsyncStorage.multiRemove([STORAGE_KEY, STORAGE_KEYS.guestProfileShow]);
+      await localStorageService.multiRemove([STORAGE_KEY, STORAGE_KEYS.guestProfileShow]);
     }
   }, [reconciledSavedCollegesUidRef, setState, stateRef]);
 

@@ -10,7 +10,7 @@ Focus on generalized evidence:
 - pathway/track identity and primary source quality
 - parser source provenance
 
-Do not weaken parser or source-backed gates to hide real failures. Recommend generalized parser, source-role, or confidence improvements only.
+Do not weaken parser or gates to hide real failures. Recommend generalized parser, source-role, or confidence improvements only.
 
 Every finding must include provenance:
 - report path

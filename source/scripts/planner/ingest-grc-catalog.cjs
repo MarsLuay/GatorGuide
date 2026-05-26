@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { fetchWithHandling } = require("../lib/fetch-with-handling.cjs");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 const {
   buildPagedGrcCourseDescriptionsUrl,
   compareAcademicYearLabels,
@@ -9,10 +11,22 @@ const {
 } = require("./grc-public-materials.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-catalog-snapshots");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-catalog-ingest.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-catalog-ingest.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const SNAPSHOT_DIR = getTmpPath(
+  REPO_ROOT,
+  "snapshots",
+  "transfer-planner-catalog-snapshots"
+);
+const OUTPUT_JSON_PATH = getTmpPath(
+  REPO_ROOT,
+  "reports",
+  "transfer-planner-grc-catalog-ingest.json"
+);
+const OUTPUT_MD_PATH = getTmpPath(
+  REPO_ROOT,
+  "reports",
+  "transfer-planner-grc-catalog-ingest.md"
+);
 const DEFAULT_TIMEOUT_MS = 20000;
 const HOST_MIN_DELAY_MS = 900;
 const RETRYABLE_STATUS_CODES = new Set([429]);
@@ -62,6 +76,7 @@ const COURSE_CODE_LEADING_STOPWORDS = new Set([
 const LEGACY_GRC_CODE_ALIASES = new Map([
   ["MATH& 254", "MATH& 264"],
 ]);
+const GRC_GENERAL_ED_TAG_ORDER = ["COMM", "QSR", "AH", "SSC", "NSC", "DIV"];
 
 function decodeHtmlEntities(value) {
   return String(value ?? "").replace(/&(?:amp|apos|nbsp|quot|#39|#160|#8211|#8212|#8217);/gi, (match) => {
@@ -95,6 +110,31 @@ function sortCourseCodes(values) {
 function uniqueStrings(values) {
   return [...new Set((values ?? []).filter(Boolean))].sort((left, right) =>
     left.localeCompare(right)
+  );
+}
+
+function uniqueGrcGeneralEducationCategories(values = []) {
+  const byKey = new Map();
+  for (const category of values) {
+    const catalogYearLabel = normalizeWhitespace(category?.catalogYearLabel);
+    const label = normalizeWhitespace(category?.label);
+    const tags = GRC_GENERAL_ED_TAG_ORDER.filter((tag) =>
+      (category?.tags ?? []).includes(tag)
+    );
+    if (!catalogYearLabel || !label || !tags.length) {
+      continue;
+    }
+    byKey.set(`${catalogYearLabel}|${label}|${tags.join(",")}`, {
+      catalogYearLabel,
+      label,
+      tags,
+    });
+  }
+
+  return [...byKey.values()].sort(
+    (left, right) =>
+      compareAcademicYearLabels(left.catalogYearLabel, right.catalogYearLabel) ||
+      left.label.localeCompare(right.label)
   );
 }
 
@@ -618,20 +658,12 @@ function parseRetryAfterMs(value) {
 }
 
 async function fetchWithTimeout(url, timeoutMs) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-  try {
-    return await fetch(url, {
-      redirect: "follow",
-      signal: controller.signal,
-      headers: {
-        "user-agent": USER_AGENT,
-      },
-    });
-  } finally {
-    clearTimeout(timeoutId);
-  }
+  return fetchWithHandling(url, {
+    operation: "Fetch GRC catalog source",
+    throwOnHttpError: false,
+    timeoutMs,
+    userAgent: USER_AGENT,
+  });
 }
 
 function createFetchError(url, message, status = null, retryAfterMs = null) {
@@ -778,6 +810,22 @@ function readSnapshotFallback(snapshotPath, error) {
   };
 }
 
+function readCatalogSnapshot(snapshotPath, fallbackReason) {
+  if (!fs.existsSync(snapshotPath)) {
+    throw new Error(
+      `Cached Green River catalog snapshot is required in no-download mode, but ${snapshotPath} was not found.`
+    );
+  }
+
+  const html = fs.readFileSync(snapshotPath, "utf8");
+  return {
+    html,
+    pageCount: detectCatalogPageNumbers(html).length,
+    usedSnapshotFallback: true,
+    snapshotFallbackReason: fallbackReason,
+  };
+}
+
 async function fetchCatalogHtml(courseDescriptionsExpandedUrl, snapshotPath) {
   try {
     const firstPageHtml = await fetchText(courseDescriptionsExpandedUrl, {
@@ -860,9 +908,38 @@ function extractCredits(rawBody) {
 
 function extractCourseDescription(rawBody) {
   const withoutCredits = rawBody.replace(/^\s*Credits:\s*[^<\r\n]+/i, "");
-  const beforeRequirement = withoutCredits.split(/<br\s*\/?>\s*<br\s*\/?>\s*<strong>\s*(?:Enrollment Requirement|Course Fee|Course Outcomes|Program Outcomes|College-wide Outcomes)\s*:/i)[0];
+  const beforeRequirement = withoutCredits.split(/<br\s*\/?>\s*<br\s*\/?>\s*<strong>\s*(?:Enrollment Requirement|Satisfies Requirement|Course Fee|Course Outcomes|Program Outcomes|College-wide Outcomes)\s*:/i)[0];
   const description = stripHtml(beforeRequirement);
   return description || null;
+}
+
+function classifyGrcGeneralEducationRequirementTags(value) {
+  const normalized = normalizeWhitespace(value).toLowerCase();
+  if (!normalized) {
+    return [];
+  }
+
+  const tags = new Set();
+  if (/\bbasic skills\s*\/\s*communication\b|\bwritten communication\b/.test(normalized)) {
+    tags.add("COMM");
+  }
+  if (/\bquantitative\b|\bsymbolic reasoning\b|\bquantitative skills\b|\bbasic skills requirement\b/.test(normalized)) {
+    tags.add("QSR");
+  }
+  if (/\bhumanities\b|\bfine arts\b|\benglish\b/.test(normalized)) {
+    tags.add("AH");
+  }
+  if (/\bsocial science\b|\bsocial sciences\b/.test(normalized)) {
+    tags.add("SSC");
+  }
+  if (/\bnatural science\b|\bnatural sciences\b|\blab science\b/.test(normalized)) {
+    tags.add("NSC");
+  }
+  if (/\bdiversity\b/.test(normalized)) {
+    tags.add("DIV");
+  }
+
+  return GRC_GENERAL_ED_TAG_ORDER.filter((tag) => tags.has(tag));
 }
 
 function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl) {
@@ -892,9 +969,12 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
     const credits = extractCredits(rawBody);
     const enrollmentRequirement = extractLabeledSectionText(rawBody, "Enrollment Requirement");
     const corequisiteRequirement = extractLabeledSectionText(rawBody, "Corequisite");
+    const satisfiesRequirement = extractLabeledSectionText(rawBody, "Satisfies Requirement");
     const description = extractCourseDescription(rawBody);
     const parsedEnrollmentRequirement = parseGrcEnrollmentRequirementText(enrollmentRequirement);
     const parsedCorequisiteRequirement = parseGrcCorequisiteText(corequisiteRequirement);
+    const grcGeneralEducationTags =
+      classifyGrcGeneralEducationRequirementTags(satisfiesRequirement);
     const hasStructuredRequirementFields =
       parsedEnrollmentRequirement.hasStructuredRequirementFields ||
       parsedCorequisiteRequirement.hasStructuredRequirementFields;
@@ -910,6 +990,17 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
       creditValue: credits.creditValue,
       creditLabel: credits.creditLabel,
       catalogDescription: description,
+      ...(grcGeneralEducationTags.length
+        ? {
+            grcGeneralEducationCategories: [
+              {
+                catalogYearLabel,
+                label: satisfiesRequirement,
+                tags: grcGeneralEducationTags,
+              },
+            ],
+          }
+        : {}),
       prerequisiteCourseCodes: uniqueStrings([
         ...(parsedEnrollmentRequirement.prerequisiteCourseCodes ?? []),
       ]),
@@ -922,7 +1013,7 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
             `Official Green River enrollment requirement text: ${enrollmentRequirement}`,
             ...(!hasStructuredRequirementFields
               ? [
-                  "Source-backed requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites.",
+                  "requirement text is preserved as a note until a parser can safely normalize AND/OR/instructor-consent semantics into graph prerequisites.",
                 ]
               : []),
           ]
@@ -953,7 +1044,7 @@ function buildCourseEntries(html, catalogYearLabel, courseDescriptionsSourceUrl)
         },
       ],
       notes: [
-        "Source-backed Green River catalog metadata parsed from the official online course descriptions.",
+        "Green River catalog metadata parsed from the official online course descriptions.",
       ],
     });
   }
@@ -999,6 +1090,9 @@ function mergeCourseEntries(entries) {
         ...entry,
         ...normalizedPrerequisiteFields,
         prerequisiteNotes: [...(entry.prerequisiteNotes ?? [])],
+        grcGeneralEducationCategories: uniqueGrcGeneralEducationCategories(
+          entry.grcGeneralEducationCategories
+        ),
         ...normalizedCorequisiteFields,
         corequisiteNotes: [...(entry.corequisiteNotes ?? [])],
         effectiveYearRanges: [...(entry.effectiveYearRanges ?? [])],
@@ -1033,6 +1127,10 @@ function mergeCourseEntries(entries) {
         ...(existing.prerequisiteNotes ?? []),
         ...(entry.prerequisiteNotes ?? []),
       ]),
+      grcGeneralEducationCategories: uniqueGrcGeneralEducationCategories([
+        ...(existing.grcGeneralEducationCategories ?? []),
+        ...(entry.grcGeneralEducationCategories ?? []),
+      ]),
       ...mergedCorequisiteFields,
       corequisiteNotes: uniqueStrings([
         ...(existing.corequisiteNotes ?? []),
@@ -1066,6 +1164,12 @@ function writeMarkdown(report) {
     `- Courses with credit labels: ${report.coursesWithCreditLabels}`,
     `- Courses with enrollment requirement notes: ${report.coursesWithEnrollmentRequirementNotes}`,
     `- Courses with structured prerequisite paths: ${report.coursesWithStructuredPrerequisitePaths}`,
+    `- Courses with GRC general-education categories: ${report.coursesWithGrcGeneralEducationCategories}`,
+    `- GRC general-education category counts: ${Object.entries(
+      report.grcGeneralEducationCategoryCounts ?? {}
+    )
+      .map(([tag, count]) => `${tag}: ${count}`)
+      .join(", ")}`,
     `- Courses with corequisite notes: ${report.coursesWithCorequisiteNotes}`,
     `- Courses with structured corequisite paths: ${report.coursesWithStructuredCorequisitePaths}`,
     "",
@@ -1074,14 +1178,71 @@ function writeMarkdown(report) {
   fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
 }
 
-async function fetchCatalogDefinitions(grcPublicMaterials) {
+function loadCachedCatalogIngestReport() {
+  if (!fs.existsSync(OUTPUT_JSON_PATH)) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(fs.readFileSync(OUTPUT_JSON_PATH, "utf8"));
+  } catch (_error) {
+    return null;
+  }
+}
+
+function getCachedCatalogIngestSource(cachedReport, catalogEntry, fieldName) {
+  const labels = Array.isArray(cachedReport?.catalogYearLabels)
+    ? cachedReport.catalogYearLabels
+    : [];
+  const values = Array.isArray(cachedReport?.[fieldName])
+    ? cachedReport[fieldName]
+    : [];
+  const index = labels.indexOf(catalogEntry.label);
+  return index >= 0 ? values[index] ?? null : null;
+}
+
+async function fetchCatalogDefinitions(grcPublicMaterials, options = {}) {
+  const { cacheOnly = false } = options;
   const catalogEntries = [...(grcPublicMaterials.catalogEntries ?? [])]
     .filter((entry) => /^20\d{2}-20\d{2}$/.test(String(entry?.label ?? "")))
     .filter((entry) => /^https?:\/\/catalog\.greenriver\.edu\//i.test(String(entry?.url ?? "")))
     .sort((left, right) => compareAcademicYearLabels(left.label, right.label));
 
+  const cachedReport = cacheOnly ? loadCachedCatalogIngestReport() : null;
   const definitions = [];
   for (const catalogEntry of catalogEntries) {
+    if (cacheOnly) {
+      const snapshotPath = getCatalogSnapshotPath(catalogEntry.label);
+      const currentCatalog =
+        grcPublicMaterials.currentCatalog?.label === catalogEntry.label
+          ? grcPublicMaterials.currentCatalog
+          : null;
+      const sourceUrl =
+        getCachedCatalogIngestSource(cachedReport, catalogEntry, "sourceUrls") ??
+        currentCatalog?.courseDescriptionsUrl ??
+        catalogEntry.url;
+      const expandedSourceUrl =
+        getCachedCatalogIngestSource(cachedReport, catalogEntry, "expandedSourceUrls") ??
+        currentCatalog?.courseDescriptionsExpandedUrl ??
+        sourceUrl;
+      const catalogHtml = readCatalogSnapshot(
+        snapshotPath,
+        "No-download mode used cached Green River catalog snapshot."
+      );
+
+      definitions.push({
+        label: catalogEntry.label,
+        courseDescriptionsUrl: sourceUrl,
+        courseDescriptionsExpandedUrl: expandedSourceUrl,
+        snapshotPath,
+        html: catalogHtml.html,
+        pageCount: catalogHtml.pageCount,
+        usedSnapshotFallback: catalogHtml.usedSnapshotFallback,
+        snapshotFallbackReason: catalogHtml.snapshotFallbackReason,
+      });
+      continue;
+    }
+
     const rootHtml = await fetchText(catalogEntry.url, {
       label: `Green River catalog root ${catalogEntry.label}`,
     });
@@ -1112,13 +1273,19 @@ async function fetchCatalogDefinitions(grcPublicMaterials) {
 }
 
 async function main() {
+  const args = new Set(process.argv.slice(2));
+  const cacheOnly =
+    args.has("--cache-only") || process.env.GATORGUIDE_PLANNER_CACHE_ONLY === "1";
   const grcPublicMaterials = await loadGrcPublicMaterials({
     forceRefresh: false,
     allowSnapshotFallback: true,
+    cacheOnly,
   });
   fs.mkdirSync(SNAPSHOT_DIR, { recursive: true });
 
-  const catalogDefinitions = await fetchCatalogDefinitions(grcPublicMaterials);
+  const catalogDefinitions = await fetchCatalogDefinitions(grcPublicMaterials, {
+    cacheOnly,
+  });
   const rawEntries = catalogDefinitions.flatMap((catalogDefinition) =>
     buildCourseEntries(
       catalogDefinition.html,
@@ -1168,6 +1335,17 @@ async function main() {
         (entry.prerequisiteCourseCodes ?? []).length > 0 ||
         (entry.prerequisiteAlternativeCourseCodeSets ?? []).length > 0
     ).length,
+    coursesWithGrcGeneralEducationCategories: entries.filter(
+      (entry) => (entry.grcGeneralEducationCategories ?? []).length > 0
+    ).length,
+    grcGeneralEducationCategoryCounts: GRC_GENERAL_ED_TAG_ORDER.reduce((counts, tag) => {
+      counts[tag] = entries.filter((entry) =>
+        (entry.grcGeneralEducationCategories ?? []).some((category) =>
+          category.tags.includes(tag)
+        )
+      ).length;
+      return counts;
+    }, {}),
     coursesWithCorequisiteNotes: entries.filter((entry) => (entry.corequisiteNotes ?? []).length > 0)
       .length,
     coursesWithStructuredCorequisitePaths: entries.filter(
@@ -1191,6 +1369,7 @@ async function main() {
 module.exports = {
   parseGrcEnrollmentRequirementText,
   parseGrcCorequisiteText,
+  classifyGrcGeneralEducationRequirementTags,
   buildCourseEntries,
 };
 

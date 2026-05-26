@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorageService } from "@/services/storage/local-storage.service";
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 import {
@@ -538,7 +538,7 @@ class NotificationsService {
 
   private async loadManagedNotificationNamespaces(): Promise<ManagedNotificationNamespaces> {
     try {
-      const raw = await AsyncStorage.getItem(MANAGED_NOTIFICATIONS_STORAGE_KEY);
+      const raw = await localStorageService.getItem(MANAGED_NOTIFICATIONS_STORAGE_KEY);
       if (!raw) return {};
 
       const parsed = JSON.parse(raw) as unknown;
@@ -606,11 +606,11 @@ class NotificationsService {
   ) {
     try {
       if (Object.keys(namespaces).length === 0) {
-        await AsyncStorage.removeItem(MANAGED_NOTIFICATIONS_STORAGE_KEY);
+        await localStorageService.removeItem(MANAGED_NOTIFICATIONS_STORAGE_KEY);
         return;
       }
 
-      await AsyncStorage.setItem(
+      await localStorageService.setItem(
         MANAGED_NOTIFICATIONS_STORAGE_KEY,
         JSON.stringify(namespaces)
       );

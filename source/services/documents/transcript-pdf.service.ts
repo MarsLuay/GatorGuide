@@ -1,5 +1,6 @@
 import { inflate } from "pako";
 import { Platform } from "react-native";
+import { fetchArrayBufferWithHandling } from "@/services/network/fetch-with-handling";
 import { readBase64File } from "@/services/storage/file-system-adapter.service";
 
 export type ParsedTranscriptCourse = {
@@ -250,20 +251,6 @@ async function readPdfBytes(fileUri: string) {
     throw new Error("Transcript file URL is missing.");
   }
 
-  if (
-    normalizedUri.startsWith("data:") &&
-    Platform.OS === "web" &&
-    typeof fetch === "function"
-  ) {
-    try {
-      const response = await fetch(normalizedUri);
-      const arrayBuffer = await response.arrayBuffer();
-      return new Uint8Array(arrayBuffer);
-    } catch {
-      // Fall back to the JS decoder below if a browser rejects data URL fetches.
-    }
-  }
-
   if (normalizedUri.startsWith("data:")) {
     return decodeDataUrlToBytes(normalizedUri);
   }
@@ -274,8 +261,10 @@ async function readPdfBytes(fileUri: string) {
     normalizedUri.startsWith("https://") ||
     normalizedUri.startsWith("blob:")
   ) {
-    const response = await fetch(normalizedUri);
-    const arrayBuffer = await response.arrayBuffer();
+    const arrayBuffer = await fetchArrayBufferWithHandling(normalizedUri, {
+      operation: "Transcript PDF read",
+      timeoutMs: 15000,
+    });
     return new Uint8Array(arrayBuffer);
   }
 

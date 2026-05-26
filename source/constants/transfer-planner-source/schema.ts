@@ -326,6 +326,7 @@ export type TransferPlannerRequirementParseQualitySignalCode =
   | "material-source-structured-drift"
   | "large-structured-only-course-gap"
   | "high-confidence-low-course-coverage"
+  | "inactive-major-source"
   | "snapshot-fallback-used"
   | "snapshot-fallback-heading-context-missing"
   | "alternate-official-source-used"

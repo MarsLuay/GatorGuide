@@ -4,83 +4,36 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useDataPortabilityActions } from "@/hooks/use-data-portability-actions";
-import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useMemo, useState, useCallback, useEffect } from "react";
-import { Pressable, ScrollView, Text, View, Alert, Platform, Linking, TextInput, KeyboardAvoidingView, Modal, useWindowDimensions, type ViewStyle } from "react-native";
+import { ScrollView, Text, View, Alert, Platform, TextInput, useWindowDimensions, type ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { notificationsService } from "@/services/notifications/notifications.service";
 import { cacheManagerService } from "@/services/storage/cache-manager.service";
 import { APP_VERSION } from "@/constants/app-version";
 import { ROUTES, routeWithDefaultReturnTo } from "@/constants/routes";
-import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
 import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
 import {
-  TouchCard,
-  TouchIconButton,
-  TouchOptionRow,
-} from "@/components/ui/TouchPrimitives";
-import {
-  AdvancedSettingsRows,
   NotificationPreferenceRows,
-  SettingsRows,
-  SettingsSectionCard,
   type AdvancedSettingsItem,
   type NotificationPreferenceItem,
   type SettingsItem,
 } from "@/components/pages/settings/SettingsRows";
-import * as Haptics from "expo-haptics";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { STORAGE_KEYS } from "@/constants/schema";
-
-const SUPPORT_MESSAGE_WEBHOOK =
-  process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
-  "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
-
-function buildSupportMailtoUrl(message: string, userEmail?: string | null) {
-  const subject = encodeURIComponent("GatorGuide Support Request");
-  const userLine = userEmail ? `User: ${userEmail}\n` : "";
-  const body = encodeURIComponent(`${userLine}\n${message}`);
-  return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
-}
-
-function openMailtoUrlOnWeb(mailtoUrl: string) {
-  if (Platform.OS !== "web" || typeof window === "undefined") return false;
-
-  try {
-    window.location.href = mailtoUrl;
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function openExternalMailtoUrl(mailtoUrl: string) {
-  if (openMailtoUrlOnWeb(mailtoUrl)) return true;
-
-  const canOpen = await Linking.canOpenURL(mailtoUrl);
-  if (!canOpen) return false;
-
-  await Linking.openURL(mailtoUrl);
-  return true;
-}
+import { SettingsDialog } from "@/components/pages/settings/SettingsDialog";
+import { SettingsSections } from "@/components/pages/settings/SettingsSections";
+import { useAccountDeletion } from "@/components/pages/settings/useAccountDeletion";
+import { useSupportContact } from "@/components/pages/settings/useSupportContact";
 
 export default function SettingsPage() {
   const router = useRouter();
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showClearCacheConfirm, setShowClearCacheConfirm] = useState(false);
   const [showCacheClearedPopup, setShowCacheClearedPopup] = useState(false);
   const [cacheClearedCount, setCacheClearedCount] = useState(0);
   const [isClearingCache, setIsClearingCache] = useState(false);
   const [autoClearCacheEnabled, setAutoClearCacheEnabled] = useState(false);
-  const [showSupportComposer, setShowSupportComposer] = useState(false);
-  const [supportMessage, setSupportMessage] = useState("");
-  const [isSendingSupport, setIsSendingSupport] = useState(false);
-  const [supportStatus, setSupportStatus] = useState<"" | "sent" | "error">("");
-  const [supportStatusText, setSupportStatusText] = useState("");
   const [isAdvancedSettingsOpen, setIsAdvancedSettingsOpen] = useState(false);
   const [showNotificationPreferences, setShowNotificationPreferences] = useState(false);
 
@@ -119,6 +72,31 @@ export default function SettingsPage() {
   const isRTL = language === "Arabic" || language === "Persian";
   const flexDirection = isRTL ? "flex-row-reverse" : "flex-row";
   const user = state.user;
+  const {
+    isSendingSupport,
+    openSupportComposer,
+    openSupportEmail,
+    sendSupportMessage,
+    setShowSupportComposer,
+    setSupportMessage,
+    showSupportComposer,
+    supportMessage,
+    supportStatus,
+    supportStatusText,
+  } = useSupportContact({ t, user });
+  const {
+    handleDeleteConfirm,
+    handleLogout,
+    setShowDeleteConfirm,
+    showDeleteConfirm,
+  } = useAccountDeletion({
+    deleteAccount,
+    isHydrated,
+    router,
+    signOut,
+    state,
+    t,
+  });
   const isCompactPhone = width < 390;
   const isTablet = width >= 768;
   const isWideLayout = width >= 1120;
@@ -254,18 +232,6 @@ export default function SettingsPage() {
 
   // removed hasExportableData (unused) to satisfy linter
 
-  const handleLogout = useCallback(async () => {
-    // Simplified logout: directly sign out and navigate to login
-    try {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      await signOut();
-    } catch {
-      // ignore signOut errors for now
-    } finally {
-      router.replace(ROUTES.login);
-    }
-  }, [signOut, router]);
-
   const loadAutoClearSetting = useCallback(async () => {
     const enabled = await cacheManagerService.getAutoClearEnabled();
     setAutoClearCacheEnabled(enabled);
@@ -312,93 +278,6 @@ export default function SettingsPage() {
       setIsClearingCache(false);
     }
   }, [patchUserLocally, setQuestionnaireAnswers, updateUser, user]);
-
-  const openSupportEmail = async (mailtoUrl = SUPPORT_MAILTO) => {
-    try {
-      const opened = await openExternalMailtoUrl(mailtoUrl);
-      if (!opened) {
-        Alert.alert(t("settings.support"), t("settings.supportEmailAppUnavailable"));
-        return false;
-      }
-
-      return true;
-    } catch {
-      Alert.alert(t("settings.support"), t("settings.supportEmailAppUnavailable"));
-      return false;
-    }
-  };
-
-  const sendSupportMessage = async () => {
-    const message = supportMessage.trim();
-    if (!message) {
-      Alert.alert(t("settings.support"), t("settings.supportEmptyMessage"));
-      return;
-    }
-
-    const mailtoUrl = buildSupportMailtoUrl(message, user?.email);
-    const fallbackToMailto = async () => {
-      const opened = await openSupportEmail(mailtoUrl);
-      if (opened) {
-        setSupportStatus("sent");
-        setSupportStatusText(t("settings.supportOpenedEmailApp"));
-      }
-    };
-
-    setSupportStatus("");
-    setSupportStatusText("");
-
-    if (Platform.OS === "web") {
-      await fallbackToMailto();
-      return;
-    }
-
-    setIsSendingSupport(true);
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    try {
-      if (!SUPPORT_MESSAGE_WEBHOOK) {
-        await fallbackToMailto();
-        return;
-      }
-
-      const controller = new AbortController();
-      timer = setTimeout(() => controller.abort(), 12000);
-      const res = await fetch(SUPPORT_MESSAGE_WEBHOOK, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: controller.signal,
-        body: JSON.stringify({
-          app: "GatorGuide",
-          timestamp: new Date().toISOString(),
-          platform: Platform.OS,
-          userName: user?.name || "",
-          userEmail: user?.email || "",
-          userUid: user?.uid || "",
-          message,
-        }),
-      });
-      if (timer) clearTimeout(timer);
-
-      if (!res.ok) {
-        setSupportStatus("error");
-        setSupportStatusText(t("settings.supportFallbackEmail"));
-        await fallbackToMailto();
-        return;
-      }
-
-      setSupportMessage("");
-      setShowSupportComposer(false);
-      setSupportStatus("sent");
-      setSupportStatusText(t("settings.supportMessageSent"));
-      Alert.alert(t("settings.support"), t("settings.supportMessageSent"));
-    } catch {
-      setSupportStatus("error");
-      setSupportStatusText(t("settings.supportFallbackEmail"));
-      await fallbackToMailto();
-    } finally {
-      if (timer) clearTimeout(timer);
-      setIsSendingSupport(false);
-    }
-  };
 
   const openSettingsSubpage = useCallback(
     (pathname: string) => {
@@ -475,11 +354,7 @@ export default function SettingsPage() {
             icon: "help-circle-outline",
             label: t("settings.support"),
             type: "nav",
-            onPress: () => {
-              setSupportStatus("");
-              setSupportStatusText("");
-              setShowSupportComposer(true);
-            },
+            onPress: openSupportComposer,
           },
           {
             icon: "information-circle-outline",
@@ -503,7 +378,7 @@ export default function SettingsPage() {
         ] as SettingsItem[],
       },
     ],
-    [currentThemeLabel, theme, notificationsEnabled, notificationPreferenceSummary, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, openSettingsSubpage, t]
+    [currentThemeLabel, theme, notificationsEnabled, notificationPreferenceSummary, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, openSettingsSubpage, openSupportComposer, t]
   );
 
   const [settingsSection, , aboutSection] = sections;
@@ -563,85 +438,6 @@ export default function SettingsPage() {
     (item) => item.key === "auto-clear" || item.key === "clear-cache"
   );
 
-  const handleDeleteConfirm = async () => {
-    if (!isHydrated) return;
-    try {
-      if (state.user?.isGuest) {
-        await signOut();
-      } else {
-        await deleteAccount();
-      }
-      await AsyncStorage.removeItem(STORAGE_KEYS.guestProfileShow).catch(() => {});
-      router.replace(ROUTES.login);
-    } catch {
-      Alert.alert(
-        t("general.error"),
-        t("settings.deleteWarning") || "Account deletion failed. You may need to sign in again and try again."
-      );
-    }
-  };
-
-  const renderOverlay = (
-    visible: boolean,
-    onRequestClose: () => void,
-    content: React.ReactNode,
-    options?: { allowBackdropDismiss?: boolean }
-  ) => {
-    const allowBackdropDismiss = options?.allowBackdropDismiss ?? true;
-
-    return (
-      <Modal
-        visible={visible}
-        transparent
-        animationType="fade"
-        presentationStyle="overFullScreen"
-        statusBarTranslucent
-        onRequestClose={onRequestClose}
-      >
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === "ios" ? "padding" : Platform.OS === "android" ? "height" : undefined}
-          keyboardVerticalOffset={Platform.OS === "ios" ? insets.top : 0}
-        >
-          <View className="bg-black/55" style={{ flex: 1 }}>
-            <ScrollView
-              className="flex-1"
-              contentContainerStyle={{
-                flexGrow: 1,
-              }}
-              contentInsetAdjustmentBehavior="automatic"
-              keyboardShouldPersistTaps="handled"
-            >
-              {/* touch-audit-ignore: settings modal backdrop is a full-screen dismiss surface, not a product control. */}
-              <Pressable
-                accessible={false}
-                disabled={!allowBackdropDismiss}
-                onPress={onRequestClose}
-                style={{
-                  flexGrow: 1,
-                  justifyContent: "center",
-                  paddingHorizontal: dialogHorizontalPadding,
-                  paddingTop: modalTopPadding,
-                  paddingBottom: modalBottomPadding,
-                }}
-              >
-                {/* touch-audit-ignore: inner modal shell only stops backdrop dismissal so form controls can receive taps. */}
-                <Pressable
-                  accessible={false}
-                  onPress={(event) => event.stopPropagation()}
-                  className={`w-full self-center ${cardBgClass} border rounded-3xl`}
-                  style={{ maxWidth: dialogMaxWidth, padding: dialogPadding }}
-                >
-                  {content}
-                </Pressable>
-              </Pressable>
-            </ScrollView>
-          </View>
-        </KeyboardAvoidingView>
-      </Modal>
-    );
-  };
-
   useEffect(() => {
     void loadAutoClearSetting();
   }, [loadAutoClearSetting]);
@@ -663,165 +459,6 @@ export default function SettingsPage() {
       </ScreenBackground>
     );
   }
-
-  const desktopDashboard = useDesktopSettingsLayout ? (
-    <>
-      <View
-        style={{
-          flexDirection: isRTL ? "row-reverse" : "row",
-          alignItems: "stretch",
-          gap: 24,
-        }}
-      >
-        <View className={desktopPanelClass} style={{ flex: 1, minHeight: 0 }}>
-          <View className={`${flexDirection} items-start mb-5`}>
-            <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-              <Ionicons name="settings-outline" size={20} color={accentColor} />
-            </View>
-            <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-              <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                {settingsSection.title}
-              </Text>
-              <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                {t("settings.desktopSettingsDescription")}
-              </Text>
-            </View>
-          </View>
-
-          <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`}>
-            <SettingsRows
-              {...settingsRowChrome}
-              items={settingsSection.items}
-              valueMaxWidth={260}
-              rowPaddingVertical={18}
-            />
-          </View>
-        </View>
-
-        <View className={desktopPanelClass} style={{ flex: 1, minHeight: 0 }}>
-          <View className={`${flexDirection} items-start mb-5`}>
-            <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-              <Ionicons name="information-circle-outline" size={20} color={accentColor} />
-            </View>
-            <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-              <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                {aboutSection.title}
-              </Text>
-              <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                {t("settings.desktopAboutDescription")}
-              </Text>
-            </View>
-          </View>
-
-          <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ flex: 1, minHeight: 0 }}>
-            <ScrollView
-              style={{ flex: 1 }}
-              contentContainerStyle={{ flexGrow: 1 }}
-              nestedScrollEnabled
-              showsVerticalScrollIndicator
-            >
-              <SettingsRows
-                {...settingsRowChrome}
-                items={aboutSection.items}
-                valueMaxWidth={260}
-                rowPaddingVertical={18}
-              />
-            </ScrollView>
-          </View>
-        </View>
-      </View>
-
-      <View className={desktopPanelClass} style={{ marginTop: 24 }}>
-        <TouchOptionRow
-          onPress={toggleAdvancedSettings}
-          accessibilityLabel={t("settings.advanced")}
-          expanded={isAdvancedSettingsOpen}
-        >
-          <View className={`${flexDirection} items-start justify-between gap-4`}>
-            <View className={`${flexDirection} items-start flex-1`}>
-              <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-                <Ionicons name="construct-outline" size={20} color={accentColor} />
-              </View>
-              <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-                <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-                  {t("settings.advanced")}
-                </Text>
-                <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-                  {isAdvancedSettingsOpen
-                    ? t("settings.desktopAdvancedDescription")
-                    : t("settings.desktopAdvancedCollapsedDescription")}
-                </Text>
-              </View>
-            </View>
-            <Ionicons
-              name={isAdvancedSettingsOpen ? "chevron-up" : "chevron-down"}
-              size={22}
-              color={accessoryIconColor}
-            />
-          </View>
-        </TouchOptionRow>
-
-        {isAdvancedSettingsOpen ? (
-          <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ marginTop: 20, maxHeight: 320 }}>
-            <ScrollView nestedScrollEnabled showsVerticalScrollIndicator>
-              <AdvancedSettingsRows
-                {...settingsRowChrome}
-                items={advancedDesktopItems}
-                dangerTextClass={dangerTextClass}
-                dangerIconColor={dangerIconColor}
-              />
-            </ScrollView>
-          </View>
-        ) : null}
-      </View>
-
-      <View className={desktopPanelClass} style={{ marginTop: 24 }}>
-        <View className={`${flexDirection} items-start justify-between`} style={{ gap: 16, flexWrap: "wrap" }}>
-          <View style={{ flex: 1, minWidth: 280 }}>
-            <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-              {t("settings.accountActions")}
-            </Text>
-            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-              {t("settings.accountActionsDescription")}
-            </Text>
-          </View>
-
-          <View
-            style={{
-              flexDirection: isRTL ? "row-reverse" : "row",
-              gap: 16,
-              minWidth: 360,
-              flex: 1,
-            }}
-          >
-            <TouchCard
-              onPress={handleLogout}
-              disabled={!isHydrated}
-              accessibilityLabel={t("settings.logout")}
-              className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
-              containerStyle={{ flex: 1 }}
-              style={dangerSurfaceStyle}
-            >
-              <Ionicons name="log-out-outline" size={20} color={dangerIconColor} />
-              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
-            </TouchCard>
-
-            <TouchCard
-              onPress={() => setShowDeleteConfirm(true)}
-              disabled={!isHydrated}
-              accessibilityLabel={t("settings.deleteAccount")}
-              className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
-              containerStyle={{ flex: 1 }}
-              style={dangerSurfaceStyle}
-            >
-              <Ionicons name="trash-outline" size={20} color={dangerIconColor} />
-              <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
-            </TouchCard>
-          </View>
-        </View>
-      </View>
-    </>
-  ) : null;
 
   return (
     <ScreenBackground includeBottomInset={false}>
@@ -861,127 +498,54 @@ export default function SettingsPage() {
             </Text>
           </View>
 
-          {useDesktopSettingsLayout ? (
-            desktopDashboard
-          ) : (
-            <>
-              <View
-                style={{
-                  flexDirection: showSectionGrid ? "row" : "column",
-                  flexWrap: showSectionGrid ? "wrap" : "nowrap",
-                  gap: 24,
-                }}
-              >
-                {sections.map((section) => (
-                  <SettingsSectionCard
-                    key={section.title}
-                    {...settingsRowChrome}
-                    section={section}
-                    sectionCardWidth={sectionCardWidth}
-                    cardBgClass={cardBgClass}
-                  />
-                ))}
-
-                <View style={{ width: sectionCardWidth }}>
-                  <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-                    <TouchOptionRow
-                      onPress={toggleAdvancedSettings}
-                      accessibilityLabel={t("settings.advanced")}
-                      expanded={isAdvancedSettingsOpen}
-                      className="px-4 py-4"
-                    >
-                      <View className={`${flexDirection} items-start justify-between gap-3`}>
-                        <View className={`${flexDirection} items-start flex-1`}>
-                          <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center">
-                            <Ionicons name="construct-outline" size={18} color={accentColor} />
-                          </View>
-                          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                            <Text className={`text-sm font-medium ${secondaryTextClass} ${isRTL ? "text-right" : ""}`}>
-                              {t("settings.advanced")}
-                            </Text>
-                            <Text className={`${secondaryTextClass} text-sm mt-1 ${isRTL ? "text-right" : ""}`}>
-                              {isAdvancedSettingsOpen
-                                ? t("settings.desktopAdvancedDescription")
-                                : t("settings.desktopAdvancedCollapsedDescription")}
-                            </Text>
-                          </View>
-                        </View>
-                        <Ionicons
-                          name={isAdvancedSettingsOpen ? "chevron-up" : "chevron-down"}
-                          size={20}
-                          color={accessoryIconColor}
-                        />
-                      </View>
-                    </TouchOptionRow>
-                    {isAdvancedSettingsOpen ? (
-                      <AdvancedSettingsRows
-                        {...settingsRowChrome}
-                        items={advancedMobileItems}
-                        dangerTextClass={dangerTextClass}
-                        dangerIconColor={dangerIconColor}
-                        rowPaddingVertical={20}
-                      />
-                    ) : null}
-                  </View>
-                </View>
-              </View>
-
-              <View
-                style={{
-                  flexDirection: showSectionGrid ? (isRTL ? "row-reverse" : "row") : "column",
-                  gap: 16,
-                  marginTop: 24,
-                }}
-              >
-                <TouchCard
-                  onPress={handleLogout}
-                  disabled={!isHydrated}
-                  accessibilityLabel={t("settings.logout")}
-                  className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
-                  containerStyle={{ flex: showSectionGrid ? 1 : undefined }}
-                  style={dangerSurfaceStyle}
-                >
-                  <Ionicons name="log-out-outline" size={20} color={dangerIconColor} />
-                  <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
-                </TouchCard>
-
-                <TouchCard
-                  onPress={() => setShowDeleteConfirm(true)}
-                  disabled={!isHydrated}
-                  accessibilityLabel={t("settings.deleteAccount")}
-                  className={`${dangerActionClassName} ${!isHydrated ? "opacity-60" : ""}`}
-                  containerStyle={{ flex: showSectionGrid ? 1 : undefined }}
-                  style={dangerSurfaceStyle}
-                >
-                  <Ionicons name="trash-outline" size={20} color={dangerIconColor} />
-                  <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
-                </TouchCard>
-              </View>
-
-              <Text className={`text-center text-sm ${isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : "text-gray-500"} mt-4`}>
-                {t("settings.appVersion")}: {APP_VERSION}
-              </Text>
-              <View className="mt-4 mb-2">
-                <View className={`${flexDirection} justify-center items-center`} style={{ flexWrap: "wrap" }}>
-                  <Text className={`text-center text-sm ${secondaryTextClass} ${isRTL ? "ml-2" : "mr-2"}`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-                  <TouchIconButton
-                    onPress={() => {
-                      void openSupportEmail();
-                    }}
-                    accessibilityRole="link"
-                    accessibilityLabel={t("general.emailUs") ?? "Email Us!"}
-                  >
-                    <Text className={`text-sm ${isDark ? "text-emerald-200" : isGreen ? "text-emerald-100" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
-                  </TouchIconButton>
-                </View>
-              </View>
-            </>
-          )}
+          <SettingsSections
+            aboutSection={aboutSection}
+            accentColor={accentColor}
+            accessoryIconColor={accessoryIconColor}
+            advancedDesktopItems={advancedDesktopItems}
+            advancedMobileItems={advancedMobileItems}
+            cardBgClass={cardBgClass}
+            dangerActionClassName={dangerActionClassName}
+            dangerIconColor={dangerIconColor}
+            dangerSurfaceStyle={dangerSurfaceStyle}
+            dangerTextClass={dangerTextClass}
+            desktopPanelClass={desktopPanelClass}
+            flexDirection={flexDirection}
+            handleLogout={handleLogout}
+            isAdvancedSettingsOpen={isAdvancedSettingsOpen}
+            isDark={isDark}
+            isGreen={isGreen}
+            isHydrated={isHydrated}
+            isRTL={isRTL}
+            nestedPanelClass={nestedPanelClass}
+            onDeleteAccountPress={() => setShowDeleteConfirm(true)}
+            onOpenSupportEmail={() => {
+              void openSupportEmail();
+            }}
+            sectionCardWidth={sectionCardWidth}
+            sections={sections}
+            secondaryTextClass={secondaryTextClass}
+            settingsRowChrome={settingsRowChrome}
+            settingsSection={settingsSection}
+            showSectionGrid={showSectionGrid}
+            t={t}
+            textClass={textClass}
+            toggleAdvancedSettings={toggleAdvancedSettings}
+            useDesktopSettingsLayout={useDesktopSettingsLayout}
+          />
         </View>
       </ScrollView>
-      {renderOverlay(
-        showNotificationPreferences,
-        () => setShowNotificationPreferences(false),
+      <SettingsDialog
+        visible={showNotificationPreferences}
+        onRequestClose={() => setShowNotificationPreferences(false)}
+        bottomPadding={modalBottomPadding}
+        cardBgClass={cardBgClass}
+        dialogHorizontalPadding={dialogHorizontalPadding}
+        dialogMaxWidth={dialogMaxWidth}
+        dialogPadding={dialogPadding}
+        keyboardVerticalOffset={insets.top}
+        topPadding={modalTopPadding}
+      >
         <>
           <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>
             {t("settings.automaticNotifications")}
@@ -1015,10 +579,19 @@ export default function SettingsPage() {
             </Text>
           </AnimatedChipPressable>
         </>
-      )}
-      {renderOverlay(
-        showSupportComposer,
-        () => setShowSupportComposer(false),
+      </SettingsDialog>
+      <SettingsDialog
+        visible={showSupportComposer}
+        onRequestClose={() => setShowSupportComposer(false)}
+        allowBackdropDismiss={!isSendingSupport}
+        bottomPadding={modalBottomPadding}
+        cardBgClass={cardBgClass}
+        dialogHorizontalPadding={dialogHorizontalPadding}
+        dialogMaxWidth={dialogMaxWidth}
+        dialogPadding={dialogPadding}
+        keyboardVerticalOffset={insets.top}
+        topPadding={modalTopPadding}
+      >
         <>
           <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>{t("settings.support")}</Text>
           <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-4`}>
@@ -1073,12 +646,19 @@ export default function SettingsPage() {
               </Text>
             </AnimatedChipPressable>
           </View>
-        </>,
-        { allowBackdropDismiss: !isSendingSupport }
-      )}
-      {renderOverlay(
-        showDeleteConfirm,
-        () => setShowDeleteConfirm(false),
+        </>
+      </SettingsDialog>
+      <SettingsDialog
+        visible={showDeleteConfirm}
+        onRequestClose={() => setShowDeleteConfirm(false)}
+        bottomPadding={modalBottomPadding}
+        cardBgClass={cardBgClass}
+        dialogHorizontalPadding={dialogHorizontalPadding}
+        dialogMaxWidth={dialogMaxWidth}
+        dialogPadding={dialogPadding}
+        keyboardVerticalOffset={insets.top}
+        topPadding={modalTopPadding}
+      >
         <>
           <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-4`}>{t("settings.deleteAccount")}</Text>
           <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
@@ -1110,10 +690,19 @@ export default function SettingsPage() {
             </AnimatedChipPressable>
           </View>
         </>
-      )}
-      {renderOverlay(
-        showClearCacheConfirm,
-        () => setShowClearCacheConfirm(false),
+      </SettingsDialog>
+      <SettingsDialog
+        visible={showClearCacheConfirm}
+        onRequestClose={() => setShowClearCacheConfirm(false)}
+        allowBackdropDismiss={!isClearingCache}
+        bottomPadding={modalBottomPadding}
+        cardBgClass={cardBgClass}
+        dialogHorizontalPadding={dialogHorizontalPadding}
+        dialogMaxWidth={dialogMaxWidth}
+        dialogPadding={dialogPadding}
+        keyboardVerticalOffset={insets.top}
+        topPadding={modalTopPadding}
+      >
         <>
           <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>{t("settings.clearCacheConfirmTitle")}</Text>
           <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
@@ -1144,12 +733,19 @@ export default function SettingsPage() {
               <Text className="text-white font-semibold">{isClearingCache ? t("settings.clearingCache") : t("settings.clearCacheAction")}</Text>
             </AnimatedChipPressable>
           </View>
-        </>,
-        { allowBackdropDismiss: !isClearingCache }
-      )}
-      {renderOverlay(
-        showCacheClearedPopup,
-        () => setShowCacheClearedPopup(false),
+        </>
+      </SettingsDialog>
+      <SettingsDialog
+        visible={showCacheClearedPopup}
+        onRequestClose={() => setShowCacheClearedPopup(false)}
+        bottomPadding={modalBottomPadding}
+        cardBgClass={cardBgClass}
+        dialogHorizontalPadding={dialogHorizontalPadding}
+        dialogMaxWidth={dialogMaxWidth}
+        dialogPadding={dialogPadding}
+        keyboardVerticalOffset={insets.top}
+        topPadding={modalTopPadding}
+      >
         <>
           <Text className={`text-xl ${isRTL ? "text-right" : ""} ${textClass} mb-3`}>{t("settings.cacheClearedTitle")}</Text>
           <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mb-6`}>
@@ -1162,7 +758,7 @@ export default function SettingsPage() {
             <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>{t("general.ok")}</Text>
           </AnimatedChipPressable>
         </>
-      )}
+      </SettingsDialog>
     </ScreenBackground>
   );
 }

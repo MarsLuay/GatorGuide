@@ -11,14 +11,14 @@ require("ts-node").register({
 });
 
 const {
-  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
-  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  TRANSFER_PLANNER_GENERATED_MAJOR_PLANS,
+  TRANSFER_PLANNER_MANIFEST_REGISTRY,
 } = require("../../constants/transfer-planner-source");
 const {
   TRANSFER_PLANNER_BOOTSTRAP_TRACKS,
 } = require("../../constants/transfer-planner-source/bootstrap.generated");
 const {
-  TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES,
+  TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES,
   getTransferPlannerManualPreferredPrimaryUrl,
   getTransferPlannerManualSourceLinkOverride,
   getTransferPlannerManualSourceOwnerKey,
@@ -142,7 +142,7 @@ function compareByPreferredOrder(left, right, preferredOrder) {
 }
 
 function getSourceManifestEntriesForOwner(ownerId, ownerType) {
-  return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  return TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) =>
       entry.ownerId === ownerId &&
       entry.ownerType === ownerType &&
@@ -182,10 +182,10 @@ function getGreenRiverProgramGroupLabel(groupId) {
 function buildFlatInventoryItems() {
   const items = [];
   const planById = new Map(
-    TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
+    TRANSFER_PLANNER_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
   );
   const supplementalMajorOwnersById = new Map(
-    TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
       (entry) =>
         entry.ownerType === "major" &&
         !normalizeText(entry.pathwayId) &&
@@ -193,7 +193,7 @@ function buildFlatInventoryItems() {
     ).map((entry) => [entry.ownerId, entry])
   );
 
-  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+  for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
     items.push({
       planId: plan.id,
       title: normalizeText(plan.title),
@@ -338,7 +338,7 @@ function getPlanDetails(planId) {
   const inventoryEntry = buildMajorInventory().institutions
     .flatMap((institution) => institution.groups.flatMap((group) => group.items))
     .find((item) => item.planId === planId);
-  const plan = TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.find((entry) => entry.id === planId);
+  const plan = TRANSFER_PLANNER_GENERATED_MAJOR_PLANS.find((entry) => entry.id === planId);
   const track = TRANSFER_PLANNER_BOOTSTRAP_TRACKS.find((entry) => entry.id === planId);
   const ownerType = inventoryEntry?.ownerType ?? (track ? "track" : "major");
   const manualOverride = getTransferPlannerManualSourceLinkOverride(planId, null);
@@ -408,7 +408,7 @@ function getPlanDetails(planId) {
 }
 
 function cloneOverrides() {
-  return JSON.parse(JSON.stringify(TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES ?? []));
+  return JSON.parse(JSON.stringify(TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES ?? []));
 }
 
 function sortOverrides(overrides) {
@@ -480,7 +480,7 @@ export type TransferPlannerManualSourceLinkOverride = {
   links?: TransferPlannerSourceLink[];
 };
 
-export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManualSourceLinkOverride[] =
+export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSourceLinkOverride[] =
   ${JSON.stringify(cleanedOverrides, null, 2)};
 `;
 }

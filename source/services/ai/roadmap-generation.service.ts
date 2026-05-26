@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { localStorageService } from "@/services/storage/local-storage.service";
 
 import { isStubMode } from '@/services/app/config';
 import { aiGatewayService } from '@/services/ai/ai-gateway.service';
@@ -20,10 +20,10 @@ export class AiRoadmapGenerationService {
         : [];
       const normalizedTasks = tasks.length ? tasks : DEFAULT_ROADMAP_TASKS;
 
-      await AsyncStorage.setItem(AI_LAST_ROADMAP_KEY, JSON.stringify(normalizedTasks));
+      await localStorageService.setItem(AI_LAST_ROADMAP_KEY, JSON.stringify(normalizedTasks));
       return normalizedTasks;
     } catch (error) {
-      const cached = await AsyncStorage.getItem(AI_LAST_ROADMAP_KEY);
+      const cached = await localStorageService.getItem(AI_LAST_ROADMAP_KEY);
       if (cached) {
         void errorLoggingService.captureException(error, {
           category: 'ai',

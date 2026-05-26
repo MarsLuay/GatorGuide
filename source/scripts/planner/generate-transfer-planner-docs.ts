@@ -151,14 +151,14 @@ function sanitizePlannerDocText(value: string) {
     )
     .replace(
       /support-only but strong /gi,
-      "supplemental source-backed prep only; strong "
+      "supplemental prep only; strong "
     )
     .replace(
       /support-only with strong /gi,
-      "supplemental source-backed prep only; strong "
+      "supplemental prep only; strong "
     )
-    .replace(/support-only;/gi, "supplemental source-backed prep only;")
-    .replace(/support-only/gi, "supplemental source-backed prep only")
+    .replace(/support-only;/gi, "supplemental prep only;")
+    .replace(/support-only/gi, "supplemental prep only")
     .replace(/review-needed/gi, "source-unverified-hidden");
 
   return escapePlannerDocMarkdown(
@@ -283,7 +283,7 @@ function formatRequiredSequences(plan: TransferPlannerMajorPlan) {
   });
 
   (plan.validationNotes ?? []).forEach((note) => {
-    sequenceLines.push(`- Source-backed note: ${sanitizePlannerDocText(note)}`);
+    sequenceLines.push(`- note: ${sanitizePlannerDocText(note)}`);
   });
 
   const dedupedSequenceLines = dedupeLines(sequenceLines);

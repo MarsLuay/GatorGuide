@@ -5,13 +5,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useAudioPlayer } from "expo-audio";
 import ConfettiCannon from "react-native-confetti-cannon";
-import * as DocumentPicker from "expo-document-picker";
 import { deleteField, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ROUTES } from "@/constants/routes";
 import { FIRESTORE_COLLECTIONS } from "@/constants/schema";
 import { db } from "@/services/firebase/firebase";
-import { storageService } from "@/services/storage/storage.service";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
@@ -24,39 +22,22 @@ import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/An
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PageBackButton } from "@/components/ui/PageBackButton";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
+import type { DocumentExtractionReview } from "@/services/documents/document-reader.service";
 import {
-  documentReaderService,
-  type DocumentExtractionReview,
-} from "@/services/documents/document-reader.service";
+  ensureProfileSetupRoadmap,
+  extractProfileTranscriptDocumentReview,
+  pickProfileTranscriptDocument,
+  prepareTranscriptDocumentReview,
+  uploadProfileTranscriptDocument,
+  type SelectedProfileDocument,
+} from "@/components/pages/profile/profile-document-workflow";
+import {
+  formatProfileGpaDisplay,
+  getProfileGpaInputState,
+  hasProfileGpaValue,
+  omitProfileReviewField,
+} from "@/components/pages/profile/profile-state-utils";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
-import { roadmapService } from "@/services/planning/roadmap.service";
-
-type SelectedDocument = {
-  uri: string;
-  name: string;
-  mimeType?: string | null;
-  size?: number | null;
-};
-
-function hasProfileGpaValue(value: string | undefined | null) {
-  return String(value ?? "").trim().length > 0;
-}
-
-function omitProfileReviewField(
-  review: DocumentExtractionReview,
-  fieldId: string
-): DocumentExtractionReview {
-  const userPatch = { ...review.userPatch };
-  delete userPatch[fieldId];
-
-  return {
-    ...review,
-    userPatch,
-    items: review.items.filter(
-      (item) => !(item.target === "profile" && item.id === fieldId)
-    ),
-  };
-}
 
 export default function ProfileSetupPage() {
   const router = useRouter();
@@ -73,7 +54,7 @@ export default function ProfileSetupPage() {
 
   const [step, setStep] = useState(1);
   const [major, setMajor] = useState("");
-  const [transcriptDoc, setTranscriptDoc] = useState<SelectedDocument | null>(null);
+  const [transcriptDoc, setTranscriptDoc] = useState<SelectedProfileDocument | null>(null);
   const [gpa, setGpa] = useState("");
   const latestGpaRef = useRef("");
   latestGpaRef.current = gpa;
@@ -110,53 +91,16 @@ export default function ProfileSetupPage() {
     setTranscriptReview(null);
   };
 
-  function formatGpaDisplay(value: string | undefined | null) {
-    const raw = String(value ?? "").trim();
-    if (!raw) return "";
-    const match = raw.match(/-?\d+(?:\.\d+)?/);
-    if (!match) return raw;
-    const num = Number.parseFloat(match[0]);
-    if (!Number.isFinite(num)) return raw;
-    const clamped = Math.max(0, Math.min(num, 4.0));
-    const truncated = Math.floor(clamped * 100) / 100;
-    return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
-  }
-
   const handlePickTranscript = async () => {
     try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: [
-          "application/pdf",
-          "application/msword",
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          "text/plain",
-          "image/png",
-          "image/jpeg",
-          "image/webp",
-        ],
-        copyToCacheDirectory: true,
-      });
-
-      if (result.canceled || !result.assets?.length) return;
-
-      const asset = result.assets[0];
-      const selected: SelectedDocument = {
-        uri: asset.uri,
-        name: asset.name || asset.uri.split("/").pop() || `transcript_${Date.now()}`,
-        mimeType: asset.mimeType,
-        size: asset.size,
-      };
-
+      const selected = await pickProfileTranscriptDocument();
+      if (!selected) return;
       setTranscriptDoc(selected);
 
       setIsTranscriptAnalysisActive(true);
       try {
-        const review = await documentReaderService.extractDocumentReview({
-          documentType: "transcript",
-          fileUri: selected.uri,
-          fileName: selected.name,
-          mimeType: selected.mimeType,
-          size: selected.size,
+        const review = await extractProfileTranscriptDocumentReview({
+          document: selected,
           currentProfile: {
             major,
             gpa,
@@ -165,17 +109,26 @@ export default function ProfileSetupPage() {
         });
         const transcriptGpa = review.userPatch.gpa;
         if (transcriptGpa) {
-          const nextReview = omitProfileReviewField(review, "gpa");
           if (!hasProfileGpaValue(latestGpaRef.current)) {
-            const formattedTranscriptGpa = formatGpaDisplay(transcriptGpa);
+            const formattedTranscriptGpa = formatProfileGpaDisplay(transcriptGpa);
             if (formattedTranscriptGpa) {
               latestGpaRef.current = formattedTranscriptGpa;
               setGpa(formattedTranscriptGpa);
             }
           }
-          setTranscriptReview(nextReview.items.length ? nextReview : null);
+          setTranscriptReview(
+            prepareTranscriptDocumentReview({
+              removeGpa: true,
+              review,
+            })
+          );
         } else {
-          setTranscriptReview(review);
+          setTranscriptReview(
+            prepareTranscriptDocumentReview({
+              hideEmpty: false,
+              review,
+            })
+          );
         }
       } catch (error) {
         Alert.alert(
@@ -208,7 +161,8 @@ export default function ProfileSetupPage() {
 
   const handleGpaChange = (value: string) => {
     // Allow digits and at most one decimal point
-    if (value === "" || /^\d*\.?\d*$/.test(value)) {
+    const gpaInput = getProfileGpaInputState(value);
+    if (gpaInput.accepted) {
       const parts = value.split('.');
       const intPart = parts[0] ?? '';
       const fracPart = parts[1] ?? '';
@@ -219,7 +173,7 @@ export default function ProfileSetupPage() {
       // Disallow fractional values that reach 4.00 — decimals max at 3.99
       if (intPart === '4' && value.includes('.')) return;
 
-      const num = Number(value);
+      const num = gpaInput.numericValue ?? Number(value);
       const isEmptyOrZeroish = value === '' || value === '0' || value === '0.';
 
       if (
@@ -255,7 +209,7 @@ export default function ProfileSetupPage() {
 
     if (review.userPatch.major) setMajor(review.userPatch.major);
     if (review.userPatch.gpa && !hasProfileGpaValue(latestGpaRef.current)) {
-      const formattedGpa = formatGpaDisplay(review.userPatch.gpa);
+      const formattedGpa = formatProfileGpaDisplay(review.userPatch.gpa);
       latestGpaRef.current = formattedGpa;
       setGpa(formattedGpa);
     }
@@ -277,15 +231,10 @@ export default function ProfileSetupPage() {
 
   const uploadTranscriptDocument = async (
     userId: string,
-    selectedDoc: SelectedDocument | null
+    selectedDoc: SelectedProfileDocument | null
   ): Promise<string> => {
-    if (!selectedDoc?.uri) return "";
-    const localFile = await storageService.uploadTranscript(userId, selectedDoc.uri, {
-      fileName: selectedDoc.name,
-      mimeType: selectedDoc.mimeType,
-      sizeBytes: selectedDoc.size,
-    });
-    return localFile.url;
+    const uploaded = await uploadProfileTranscriptDocument(userId, selectedDoc);
+    return uploaded?.url ?? "";
   };
 
   const handleContinue = async () => {
@@ -300,7 +249,7 @@ export default function ProfileSetupPage() {
 
       const finalTranscriptUrl = await uploadTranscriptDocument(userId, transcriptDoc);
 
-      const sanitizedGpa = formatGpaDisplay(gpa);
+      const sanitizedGpa = formatProfileGpaDisplay(gpa);
 
       const flatData = {
         major,
@@ -333,20 +282,13 @@ export default function ProfileSetupPage() {
       setGpa(sanitizedGpa);
 
       try {
-        await roadmapService.ensureUserRoadmap(userId, {
-          major,
+        await ensureProfileSetupRoadmap({
           gpa,
+          major,
           questionnaireAnswers: state.questionnaireAnswers,
-          targetSchools: (state.savedColleges ?? []).map((college) => college.name),
-          documents: {
-            ...(finalTranscriptUrl
-              ? {
-                  transcripts: {
-                    fileName: transcriptDoc?.name || "",
-                  },
-                }
-              : {}),
-          },
+          savedCollegeNames: (state.savedColleges ?? []).map((college) => college.name),
+          transcriptFileName: finalTranscriptUrl ? transcriptDoc?.name : null,
+          userId,
         });
       } catch {
         void errorLoggingService.captureMessage("Planning data generation failed, but profile saved.", {
@@ -384,7 +326,7 @@ export default function ProfileSetupPage() {
   const renderUploadCard = (
     label: string,
     placeholder: string,
-    selectedDoc: SelectedDocument | null,
+    selectedDoc: SelectedProfileDocument | null,
     onPick: () => void,
     onClear: () => void
   ) => (

@@ -20,6 +20,7 @@ import {
   TRANSCRIPT_COURSES_FIELD,
   TRANSCRIPT_EARNED_CREDITS_FIELD,
 } from "@/services/planning/transfer-planner-cache.service";
+import { QUESTIONNAIRE_FIELD_IDS } from "@/constants/schema";
 
 function buildGreenRiverEnrollmentOpportunity(bucket: string): Opportunity {
   return normalizeOpportunity({
@@ -48,6 +49,7 @@ function buildGreenRiverEnrollmentOpportunity(bucket: string): Opportunity {
     eligibility: {
       gpaMin: null,
       residencyTypes: [],
+      communityTags: [],
       transferOnly: false,
     },
     requirements: {
@@ -114,6 +116,7 @@ function buildDeadlineBoundaryOpportunity(
     eligibility: {
       gpaMin: null,
       residencyTypes: [],
+      communityTags: [],
       transferOnly: false,
     },
     requirements: {
@@ -332,6 +335,34 @@ test("Green River current/returning enrollment deadlines use projected transcrip
     matched[0]?.matchReasons.join(" ") ?? "",
     /Estimated credits by enrollment date: 75 \(45 transcript \+ 30 projected\)/
   );
+});
+
+test("LGBTQ+ scholarship opportunities require the matching questionnaire answer", () => {
+  const prideScholarship = normalizeOpportunity(
+    STARTER_OPPORTUNITIES.find(
+      (opportunity) => opportunity.opportunityId === "pride-foundation-scholarships"
+    ) ?? {}
+  );
+
+  const unmatched = opportunityMatchingService.matchOpportunities([prideScholarship], {
+    user: null,
+    questionnaireAnswers: {},
+    statusById: {},
+  });
+  const matched = opportunityMatchingService.matchOpportunities([prideScholarship], {
+    user: null,
+    questionnaireAnswers: {
+      [QUESTIONNAIRE_FIELD_IDS.lgbtqCommunity]: "yes",
+    },
+    statusById: {},
+  });
+
+  assert.deepEqual(unmatched.map((opportunity) => opportunity.opportunityId), []);
+  assert.deepEqual(
+    matched.map((opportunity) => opportunity.opportunityId),
+    ["pride-foundation-scholarships"]
+  );
+  assert.match(matched[0]?.matchReasons.join(" ") ?? "", /LGBTQ\+ scholarship fit/);
 });
 
 test("Green River Summer/Fall class enrollment starter deadlines are combined and yearly", () => {

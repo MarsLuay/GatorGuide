@@ -6,100 +6,2240 @@ import type {
   TransferPlannerRequirementSourceAdapterSummary,
 } from "./schema";
 
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_0 } = require("./requirement-source-adapters.generated/blocks-000.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_1 } = require("./requirement-source-adapters.generated/blocks-001.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_2 } = require("./requirement-source-adapters.generated/blocks-002.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_3 } = require("./requirement-source-adapters.generated/blocks-003.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_4 } = require("./requirement-source-adapters.generated/blocks-004.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_5 } = require("./requirement-source-adapters.generated/blocks-005.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_6 } = require("./requirement-source-adapters.generated/blocks-006.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7 } = require("./requirement-source-adapters.generated/blocks-007.generated.ts");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8 } = require("./requirement-source-adapters.generated/blocks-008.generated.ts");
+const { createLazyGeneratedValue } = require("./generated-lazy") as typeof import("./generated-lazy");
 
-export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-22T12:33:31.945Z",
-  "totalOwners": 360,
-  "okCount": 360,
+export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY = {
+  "generatedAt": "2026-05-25T23:56:29.166Z",
+  "totalOwners": 435,
+  "okCount": 435,
   "failedCount": 0,
-  "parsedRequirementSourceBlockCount": 360,
-  "parsedRequirementAtomCandidateCount": 6494,
-  "parsedDegreeMapBlockCandidateCount": 355,
-  "parsedRequirementGroupCount": 1956,
-  "parsedRequirementCourseCount": 7702,
+  "parsedRequirementSourceBlockCount": 435,
+  "parsedRequirementAtomCandidateCount": 8992,
+  "parsedDegreeMapBlockCandidateCount": 415,
+  "parsedRequirementGroupCount": 2226,
+  "parsedRequirementCourseCount": 8852,
   "snapshotFallbackCount": 0,
   "countsByAdapterId": {
-    "uw-seattle-html-degree-page": 119,
-    "uw-bothell-html-degree-page": 62,
-    "generic-official-html-page": 38,
-    "uw-seattle-catalog-page": 60,
-    "generic-official-pdf-degree-sheet": 19,
-    "uw-tacoma-html-degree-page": 57,
+    "uw-seattle-html-degree-page": 130,
+    "uw-bothell-html-degree-page": 69,
+    "generic-official-html-page": 56,
+    "uw-seattle-catalog-page": 71,
+    "generic-official-pdf-degree-sheet": 21,
+    "uw-tacoma-html-degree-page": 71,
     "uw-bothell-pdf-worksheet": 3,
-    "uw-tacoma-catalog-page": 2
+    "uw-tacoma-catalog-page": 13,
+    "generic-official-docx-degree-sheet": 1
   },
   "countsByAdapterFamily": {
-    "UW Seattle HTML degree pages": 119,
-    "UW Bothell HTML degree pages": 62,
-    "Generic official HTML pages": 38,
-    "UW Seattle catalog pages": 60,
-    "Generic official PDF degree sheets": 19,
-    "UW Tacoma HTML degree pages": 57,
+    "UW Seattle HTML degree pages": 130,
+    "UW Bothell HTML degree pages": 69,
+    "Generic official HTML pages": 56,
+    "UW Seattle catalog pages": 71,
+    "Generic official PDF degree sheets": 21,
+    "UW Tacoma HTML degree pages": 71,
     "UW Bothell PDF worksheets": 3,
-    "UW Tacoma catalog pages": 2
+    "UW Tacoma catalog pages": 13,
+    "Generic official DOCX degree sheets": 1
   },
   "countsByCampus": {
-    "uw-seattle": 224,
-    "uw-bothell": 67,
-    "uw-tacoma": 69
+    "uw-seattle": 245,
+    "uw-bothell": 92,
+    "uw-tacoma": 98
   },
   "countsByResolutionStrategy": {
-    "primary-source": 342,
-    "alternate-official-source": 18
+    "primary-source": 425,
+    "alternate-official-source": 10
   },
   "countsBySourceRole": {
-    "primary-degree-requirements": 249,
-    "department-requirements": 34,
-    "official-catalog": 69,
+    "primary-degree-requirements": 276,
+    "department-requirements": 37,
+    "official-catalog": 87,
+    "admission-prerequisite-source": 15,
+    "admissions-preparation": 7,
+    "support-source": 3,
+    "elective-list": 4,
     "non-schedulable-course-list": 2,
     "approved-course-list": 3,
-    "pathway-degree-sheet": 1,
-    "admission-prerequisite-source": 2
+    "pathway-degree-sheet": 1
   },
   "countsBySourceRoleStatus": {
-    "primary": 353,
-    "non-schedulable": 2,
-    "support": 5
+    "primary": 401,
+    "support": 32,
+    "non-schedulable": 2
   },
-  "canCreateSchedulableRowCount": 353,
-  "canCreateRequiredRowCount": 353,
-  "canCreateOptionGroupCount": 353,
+  "canCreateSchedulableRowCount": 401,
+  "canCreateRequiredRowCount": 401,
+  "canCreateOptionGroupCount": 401,
   "canCreateApprovedFilterCount": 3,
-  "canCreateElectiveListCount": 0,
-  "supportOnlySourceCount": 5,
+  "canCreateElectiveListCount": 4,
+  "supportOnlySourceCount": 32,
   "nonSchedulableSourceCount": 2,
-  "qualityWarningCount": 101,
-  "qualityNoteCount": 18,
+  "qualityWarningCount": 50,
+  "qualityNoteCount": 11,
   "countsByQualitySignalCode": {
-    "material-source-structured-drift": 45,
-    "large-structured-only-course-gap": 40,
-    "high-confidence-low-course-coverage": 15,
-    "alternate-official-source-used": 18,
+    "alternate-official-source-used": 10,
+    "material-source-structured-drift": 24,
+    "large-structured-only-course-gap": 22,
+    "high-confidence-low-course-coverage": 3,
+    "inactive-major-source": 1,
     "uw-mse-expected-course-option-missing": 1
   }
 } as TransferPlannerRequirementSourceAdapterSummary;
 
-const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW: unknown[] = ([] as unknown[]).concat(
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_0,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_1,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_2,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_3,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_4,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_5,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_6,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8
-);
+const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITION_KEYS = [
+  "blocks-by-block-id/block-000.generated",
+  "blocks-by-block-id/block-001.generated",
+  "blocks-by-block-id/block-002.generated",
+  "blocks-by-block-id/block-003.generated",
+  "blocks-by-block-id/block-004.generated",
+  "blocks-by-block-id/block-005.generated",
+  "blocks-by-block-id/block-006.generated",
+  "blocks-by-block-id/block-007.generated",
+  "blocks-by-block-id/block-008.generated",
+  "blocks-by-block-id/block-009.generated",
+  "blocks-by-block-id/block-010.generated",
+  "blocks-by-block-id/block-011.generated",
+  "blocks-by-block-id/block-012.generated",
+  "blocks-by-block-id/block-013.generated",
+  "blocks-by-block-id/block-014.generated",
+  "blocks-by-block-id/block-015.generated",
+  "blocks-by-block-id/block-016.generated",
+  "blocks-by-block-id/block-017.generated",
+  "blocks-by-block-id/block-018.generated",
+  "blocks-by-block-id/block-019.generated",
+  "blocks-by-block-id/block-020.generated",
+  "blocks-by-block-id/block-021.generated",
+  "blocks-by-block-id/block-022.generated",
+  "blocks-by-block-id/block-023.generated",
+  "blocks-by-block-id/block-024.generated",
+  "blocks-by-block-id/block-025.generated",
+  "blocks-by-block-id/block-026.generated",
+  "blocks-by-block-id/block-027.generated",
+  "blocks-by-block-id/block-028.generated",
+  "blocks-by-block-id/block-029.generated",
+  "blocks-by-block-id/block-030.generated",
+  "blocks-by-block-id/block-031.generated",
+  "blocks-by-block-id/block-032.generated",
+  "blocks-by-block-id/block-033.generated",
+  "blocks-by-block-id/block-034.generated",
+  "blocks-by-block-id/block-035.generated",
+  "blocks-by-block-id/block-036.generated",
+  "blocks-by-block-id/block-037.generated",
+  "blocks-by-block-id/block-038.generated",
+  "blocks-by-block-id/block-039.generated",
+  "blocks-by-block-id/block-040.generated",
+  "blocks-by-block-id/block-041.generated",
+  "blocks-by-block-id/block-042.generated",
+  "blocks-by-block-id/block-043.generated",
+  "blocks-by-block-id/block-044.generated",
+  "blocks-by-block-id/block-045.generated",
+  "blocks-by-block-id/block-046.generated",
+  "blocks-by-block-id/block-047.generated",
+  "blocks-by-block-id/block-048.generated",
+  "blocks-by-block-id/block-049.generated",
+  "blocks-by-block-id/block-050.generated",
+  "blocks-by-block-id/block-051.generated",
+  "blocks-by-block-id/block-052.generated",
+  "blocks-by-block-id/block-053.generated",
+  "blocks-by-block-id/block-054.generated",
+  "blocks-by-block-id/block-055.generated",
+  "blocks-by-block-id/block-056.generated",
+  "blocks-by-block-id/block-057.generated",
+  "blocks-by-block-id/block-058.generated",
+  "blocks-by-block-id/block-059.generated",
+  "blocks-by-block-id/block-060.generated",
+  "blocks-by-block-id/block-061.generated",
+  "blocks-by-block-id/block-062.generated",
+  "blocks-by-block-id/block-063.generated",
+  "blocks-by-block-id/block-064.generated",
+  "blocks-by-block-id/block-065.generated",
+  "blocks-by-block-id/block-066.generated",
+  "blocks-by-block-id/block-067.generated",
+  "blocks-by-block-id/block-068.generated",
+  "blocks-by-block-id/block-069.generated",
+  "blocks-by-block-id/block-070.generated",
+  "blocks-by-block-id/block-071.generated",
+  "blocks-by-block-id/block-072.generated",
+  "blocks-by-block-id/block-073.generated",
+  "blocks-by-block-id/block-074.generated",
+  "blocks-by-block-id/block-075.generated",
+  "blocks-by-block-id/block-076.generated",
+  "blocks-by-block-id/block-077.generated",
+  "blocks-by-block-id/block-078.generated",
+  "blocks-by-block-id/block-079.generated",
+  "blocks-by-block-id/block-080.generated",
+  "blocks-by-block-id/block-081.generated",
+  "blocks-by-block-id/block-082.generated",
+  "blocks-by-block-id/block-083.generated",
+  "blocks-by-block-id/block-084.generated",
+  "blocks-by-block-id/block-085.generated",
+  "blocks-by-block-id/block-086.generated",
+  "blocks-by-block-id/block-087.generated",
+  "blocks-by-block-id/block-088.generated",
+  "blocks-by-block-id/block-089.generated",
+  "blocks-by-block-id/block-090.generated",
+  "blocks-by-block-id/block-091.generated",
+  "blocks-by-block-id/block-092.generated",
+  "blocks-by-block-id/block-093.generated",
+  "blocks-by-block-id/block-094.generated",
+  "blocks-by-block-id/block-095.generated",
+  "blocks-by-block-id/block-096.generated",
+  "blocks-by-block-id/block-097.generated",
+  "blocks-by-block-id/block-098.generated",
+  "blocks-by-block-id/block-099.generated",
+  "blocks-by-block-id/block-100.generated",
+  "blocks-by-block-id/block-101.generated",
+  "blocks-by-block-id/block-102.generated",
+  "blocks-by-block-id/block-103.generated",
+  "blocks-by-block-id/block-104.generated",
+  "blocks-by-block-id/block-105.generated",
+  "blocks-by-block-id/block-106.generated",
+  "blocks-by-block-id/block-107.generated",
+  "blocks-by-block-id/block-108.generated",
+  "blocks-by-block-id/block-109.generated",
+  "blocks-by-block-id/block-110.generated",
+  "blocks-by-block-id/block-111.generated",
+  "blocks-by-block-id/block-112.generated",
+  "blocks-by-block-id/block-113.generated",
+  "blocks-by-block-id/block-114.generated",
+  "blocks-by-block-id/block-115.generated",
+  "blocks-by-block-id/block-116.generated",
+  "blocks-by-block-id/block-117.generated",
+  "blocks-by-block-id/block-118.generated",
+  "blocks-by-block-id/block-119.generated",
+  "blocks-by-block-id/block-120.generated",
+  "blocks-by-block-id/block-121.generated",
+  "blocks-by-block-id/block-122.generated",
+  "blocks-by-block-id/block-123.generated",
+  "blocks-by-block-id/block-124.generated",
+  "blocks-by-block-id/block-125.generated",
+  "blocks-by-block-id/block-126.generated",
+  "blocks-by-block-id/block-127.generated",
+  "blocks-by-block-id/block-128.generated",
+  "blocks-by-block-id/block-129.generated",
+  "blocks-by-block-id/block-130.generated",
+  "blocks-by-block-id/block-131.generated",
+  "blocks-by-block-id/block-132.generated",
+  "blocks-by-block-id/block-133.generated",
+  "blocks-by-block-id/block-134.generated",
+  "blocks-by-block-id/block-135.generated",
+  "blocks-by-block-id/block-136.generated",
+  "blocks-by-block-id/block-137.generated",
+  "blocks-by-block-id/block-138.generated",
+  "blocks-by-block-id/block-139.generated",
+  "blocks-by-block-id/block-140.generated",
+  "blocks-by-block-id/block-141.generated",
+  "blocks-by-block-id/block-142.generated",
+  "blocks-by-block-id/block-143.generated",
+  "blocks-by-block-id/block-144.generated",
+  "blocks-by-block-id/block-145.generated",
+  "blocks-by-block-id/block-146.generated",
+  "blocks-by-block-id/block-147.generated",
+  "blocks-by-block-id/block-148.generated",
+  "blocks-by-block-id/block-149.generated",
+  "blocks-by-block-id/block-150.generated",
+  "blocks-by-block-id/block-151.generated",
+  "blocks-by-block-id/block-152.generated",
+  "blocks-by-block-id/block-153.generated",
+  "blocks-by-block-id/block-154.generated",
+  "blocks-by-block-id/block-155.generated",
+  "blocks-by-block-id/block-156.generated",
+  "blocks-by-block-id/block-157.generated",
+  "blocks-by-block-id/block-158.generated",
+  "blocks-by-block-id/block-159.generated",
+  "blocks-by-block-id/block-160.generated",
+  "blocks-by-block-id/block-161.generated",
+  "blocks-by-block-id/block-162.generated",
+  "blocks-by-block-id/block-163.generated",
+  "blocks-by-block-id/block-164.generated",
+  "blocks-by-block-id/block-165.generated",
+  "blocks-by-block-id/block-166.generated",
+  "blocks-by-block-id/block-167.generated",
+  "blocks-by-block-id/block-168.generated",
+  "blocks-by-block-id/block-169.generated",
+  "blocks-by-block-id/block-170.generated",
+  "blocks-by-block-id/block-171.generated",
+  "blocks-by-block-id/block-172.generated",
+  "blocks-by-block-id/block-173.generated",
+  "blocks-by-block-id/block-174.generated",
+  "blocks-by-block-id/block-175.generated",
+  "blocks-by-block-id/block-176.generated",
+  "blocks-by-block-id/block-177.generated",
+  "blocks-by-block-id/block-178.generated",
+  "blocks-by-block-id/block-179.generated",
+  "blocks-by-block-id/block-180.generated",
+  "blocks-by-block-id/block-181.generated",
+  "blocks-by-block-id/block-182.generated",
+  "blocks-by-block-id/block-183.generated",
+  "blocks-by-block-id/block-184.generated",
+  "blocks-by-block-id/block-185.generated",
+  "blocks-by-block-id/block-186.generated",
+  "blocks-by-block-id/block-187.generated",
+  "blocks-by-block-id/block-188.generated",
+  "blocks-by-block-id/block-189.generated",
+  "blocks-by-block-id/block-190.generated",
+  "blocks-by-block-id/block-191.generated",
+  "blocks-by-block-id/block-192.generated",
+  "blocks-by-block-id/block-193.generated",
+  "blocks-by-block-id/block-194.generated",
+  "blocks-by-block-id/block-195.generated",
+  "blocks-by-block-id/block-196.generated",
+  "blocks-by-block-id/block-197.generated",
+  "blocks-by-block-id/block-198.generated",
+  "blocks-by-block-id/block-199.generated",
+  "blocks-by-block-id/block-200.generated",
+  "blocks-by-block-id/block-201.generated",
+  "blocks-by-block-id/block-202.generated",
+  "blocks-by-block-id/block-203.generated",
+  "blocks-by-block-id/block-204.generated",
+  "blocks-by-block-id/block-205.generated",
+  "blocks-by-block-id/block-206.generated",
+  "blocks-by-block-id/block-207.generated",
+  "blocks-by-block-id/block-208.generated",
+  "blocks-by-block-id/block-209.generated",
+  "blocks-by-block-id/block-210.generated",
+  "blocks-by-block-id/block-211.generated",
+  "blocks-by-block-id/block-212.generated",
+  "blocks-by-block-id/block-213.generated",
+  "blocks-by-block-id/block-214.generated",
+  "blocks-by-block-id/block-215.generated",
+  "blocks-by-block-id/block-216.generated",
+  "blocks-by-block-id/block-217.generated",
+  "blocks-by-block-id/block-218.generated",
+  "blocks-by-block-id/block-219.generated",
+  "blocks-by-block-id/block-220.generated",
+  "blocks-by-block-id/block-221.generated",
+  "blocks-by-block-id/block-222.generated",
+  "blocks-by-block-id/block-223.generated",
+  "blocks-by-block-id/block-224.generated",
+  "blocks-by-block-id/block-225.generated",
+  "blocks-by-block-id/block-226.generated",
+  "blocks-by-block-id/block-227.generated",
+  "blocks-by-block-id/block-228.generated",
+  "blocks-by-block-id/block-229.generated",
+  "blocks-by-block-id/block-230.generated",
+  "blocks-by-block-id/block-231.generated",
+  "blocks-by-block-id/block-232.generated",
+  "blocks-by-block-id/block-233.generated",
+  "blocks-by-block-id/block-234.generated",
+  "blocks-by-block-id/block-235.generated",
+  "blocks-by-block-id/block-236.generated",
+  "blocks-by-block-id/block-237.generated",
+  "blocks-by-block-id/block-238.generated",
+  "blocks-by-block-id/block-239.generated",
+  "blocks-by-block-id/block-240.generated",
+  "blocks-by-block-id/block-241.generated",
+  "blocks-by-block-id/block-242.generated",
+  "blocks-by-block-id/block-243.generated",
+  "blocks-by-block-id/block-244.generated",
+  "blocks-by-block-id/block-245.generated",
+  "blocks-by-block-id/block-246.generated",
+  "blocks-by-block-id/block-247.generated",
+  "blocks-by-block-id/block-248.generated",
+  "blocks-by-block-id/block-249.generated",
+  "blocks-by-block-id/block-250.generated",
+  "blocks-by-block-id/block-251.generated",
+  "blocks-by-block-id/block-252.generated",
+  "blocks-by-block-id/block-253.generated",
+  "blocks-by-block-id/block-254.generated",
+  "blocks-by-block-id/block-255.generated",
+  "blocks-by-block-id/block-256.generated",
+  "blocks-by-block-id/block-257.generated",
+  "blocks-by-block-id/block-258.generated",
+  "blocks-by-block-id/block-259.generated",
+  "blocks-by-block-id/block-260.generated",
+  "blocks-by-block-id/block-261.generated",
+  "blocks-by-block-id/block-262.generated",
+  "blocks-by-block-id/block-263.generated",
+  "blocks-by-block-id/block-264.generated",
+  "blocks-by-block-id/block-265.generated",
+  "blocks-by-block-id/block-266.generated",
+  "blocks-by-block-id/block-267.generated",
+  "blocks-by-block-id/block-268.generated",
+  "blocks-by-block-id/block-269.generated",
+  "blocks-by-block-id/block-270.generated",
+  "blocks-by-block-id/block-271.generated",
+  "blocks-by-block-id/block-272.generated",
+  "blocks-by-block-id/block-273.generated",
+  "blocks-by-block-id/block-274.generated",
+  "blocks-by-block-id/block-275.generated",
+  "blocks-by-block-id/block-276.generated",
+  "blocks-by-block-id/block-277.generated",
+  "blocks-by-block-id/block-278.generated",
+  "blocks-by-block-id/block-279.generated",
+  "blocks-by-block-id/block-280.generated",
+  "blocks-by-block-id/block-281.generated",
+  "blocks-by-block-id/block-282.generated",
+  "blocks-by-block-id/block-283.generated",
+  "blocks-by-block-id/block-284.generated",
+  "blocks-by-block-id/block-285.generated",
+  "blocks-by-block-id/block-286.generated",
+  "blocks-by-block-id/block-287.generated",
+  "blocks-by-block-id/block-288.generated",
+  "blocks-by-block-id/block-289.generated",
+  "blocks-by-block-id/block-290.generated",
+  "blocks-by-block-id/block-291.generated",
+  "blocks-by-block-id/block-292.generated",
+  "blocks-by-block-id/block-293.generated",
+  "blocks-by-block-id/block-294.generated",
+  "blocks-by-block-id/block-295.generated",
+  "blocks-by-block-id/block-296.generated",
+  "blocks-by-block-id/block-297.generated",
+  "blocks-by-block-id/block-298.generated",
+  "blocks-by-block-id/block-299.generated",
+  "blocks-by-block-id/block-300.generated",
+  "blocks-by-block-id/block-301.generated",
+  "blocks-by-block-id/block-302.generated",
+  "blocks-by-block-id/block-303.generated",
+  "blocks-by-block-id/block-304.generated",
+  "blocks-by-block-id/block-305.generated",
+  "blocks-by-block-id/block-306.generated",
+  "blocks-by-block-id/block-307.generated",
+  "blocks-by-block-id/block-308.generated",
+  "blocks-by-block-id/block-309.generated",
+  "blocks-by-block-id/block-310.generated",
+  "blocks-by-block-id/block-311.generated",
+  "blocks-by-block-id/block-312.generated",
+  "blocks-by-block-id/block-313.generated",
+  "blocks-by-block-id/block-314.generated",
+  "blocks-by-block-id/block-315.generated",
+  "blocks-by-block-id/block-316.generated",
+  "blocks-by-block-id/block-317.generated",
+  "blocks-by-block-id/block-318.generated",
+  "blocks-by-block-id/block-319.generated",
+  "blocks-by-block-id/block-320.generated",
+  "blocks-by-block-id/block-321.generated",
+  "blocks-by-block-id/block-322.generated",
+  "blocks-by-block-id/block-323.generated",
+  "blocks-by-block-id/block-324.generated",
+  "blocks-by-block-id/block-325.generated",
+  "blocks-by-block-id/block-326.generated",
+  "blocks-by-block-id/block-327.generated",
+  "blocks-by-block-id/block-328.generated",
+  "blocks-by-block-id/block-329.generated",
+  "blocks-by-block-id/block-330.generated",
+  "blocks-by-block-id/block-331.generated",
+  "blocks-by-block-id/block-332.generated",
+  "blocks-by-block-id/block-333.generated",
+  "blocks-by-block-id/block-334.generated",
+  "blocks-by-block-id/block-335.generated",
+  "blocks-by-block-id/block-336.generated",
+  "blocks-by-block-id/block-337.generated",
+  "blocks-by-block-id/block-338.generated",
+  "blocks-by-block-id/block-339.generated",
+  "blocks-by-block-id/block-340.generated",
+  "blocks-by-block-id/block-341.generated",
+  "blocks-by-block-id/block-342.generated",
+  "blocks-by-block-id/block-343.generated",
+  "blocks-by-block-id/block-344.generated",
+  "blocks-by-block-id/block-345.generated",
+  "blocks-by-block-id/block-346.generated",
+  "blocks-by-block-id/block-347.generated",
+  "blocks-by-block-id/block-348.generated",
+  "blocks-by-block-id/block-349.generated",
+  "blocks-by-block-id/block-350.generated",
+  "blocks-by-block-id/block-351.generated",
+  "blocks-by-block-id/block-352.generated",
+  "blocks-by-block-id/block-353.generated",
+  "blocks-by-block-id/block-354.generated",
+  "blocks-by-block-id/block-355.generated",
+  "blocks-by-block-id/block-356.generated",
+  "blocks-by-block-id/block-357.generated",
+  "blocks-by-block-id/block-358.generated",
+  "blocks-by-block-id/block-359.generated",
+  "blocks-by-block-id/block-360.generated",
+  "blocks-by-block-id/block-361.generated",
+  "blocks-by-block-id/block-362.generated",
+  "blocks-by-block-id/block-363.generated",
+  "blocks-by-block-id/block-364.generated",
+  "blocks-by-block-id/block-365.generated",
+  "blocks-by-block-id/block-366.generated",
+  "blocks-by-block-id/block-367.generated",
+  "blocks-by-block-id/block-368.generated",
+  "blocks-by-block-id/block-369.generated",
+  "blocks-by-block-id/block-370.generated",
+  "blocks-by-block-id/block-371.generated",
+  "blocks-by-block-id/block-372.generated",
+  "blocks-by-block-id/block-373.generated",
+  "blocks-by-block-id/block-374.generated",
+  "blocks-by-block-id/block-375.generated",
+  "blocks-by-block-id/block-376.generated",
+  "blocks-by-block-id/block-377.generated",
+  "blocks-by-block-id/block-378.generated",
+  "blocks-by-block-id/block-379.generated",
+  "blocks-by-block-id/block-380.generated",
+  "blocks-by-block-id/block-381.generated",
+  "blocks-by-block-id/block-382.generated",
+  "blocks-by-block-id/block-383.generated",
+  "blocks-by-block-id/block-384.generated",
+  "blocks-by-block-id/block-385.generated",
+  "blocks-by-block-id/block-386.generated",
+  "blocks-by-block-id/block-387.generated",
+  "blocks-by-block-id/block-388.generated",
+  "blocks-by-block-id/block-389.generated",
+  "blocks-by-block-id/block-390.generated",
+  "blocks-by-block-id/block-391.generated",
+  "blocks-by-block-id/block-392.generated",
+  "blocks-by-block-id/block-393.generated",
+  "blocks-by-block-id/block-394.generated",
+  "blocks-by-block-id/block-395.generated",
+  "blocks-by-block-id/block-396.generated",
+  "blocks-by-block-id/block-397.generated",
+  "blocks-by-block-id/block-398.generated",
+  "blocks-by-block-id/block-399.generated",
+  "blocks-by-block-id/block-400.generated",
+  "blocks-by-block-id/block-401.generated",
+  "blocks-by-block-id/block-402.generated",
+  "blocks-by-block-id/block-403.generated",
+  "blocks-by-block-id/block-404.generated",
+  "blocks-by-block-id/block-405.generated",
+  "blocks-by-block-id/block-406.generated",
+  "blocks-by-block-id/block-407.generated",
+  "blocks-by-block-id/block-408.generated",
+  "blocks-by-block-id/block-409.generated",
+  "blocks-by-block-id/block-410.generated",
+  "blocks-by-block-id/block-411.generated",
+  "blocks-by-block-id/block-412.generated",
+  "blocks-by-block-id/block-413.generated",
+  "blocks-by-block-id/block-414.generated",
+  "blocks-by-block-id/block-415.generated",
+  "blocks-by-block-id/block-416.generated",
+  "blocks-by-block-id/block-417.generated",
+  "blocks-by-block-id/block-418.generated",
+  "blocks-by-block-id/block-419.generated",
+  "blocks-by-block-id/block-420.generated",
+  "blocks-by-block-id/block-421.generated",
+  "blocks-by-block-id/block-422.generated",
+  "blocks-by-block-id/block-423.generated",
+  "blocks-by-block-id/block-424.generated",
+  "blocks-by-block-id/block-425.generated",
+  "blocks-by-block-id/block-426.generated",
+  "blocks-by-block-id/block-427.generated",
+  "blocks-by-block-id/block-428.generated",
+  "blocks-by-block-id/block-429.generated",
+  "blocks-by-block-id/block-430.generated",
+  "blocks-by-block-id/block-431.generated",
+  "blocks-by-block-id/block-432.generated",
+  "blocks-by-block-id/block-433.generated",
+  "blocks-by-block-id/block-434.generated",
+] as const;
 
-export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS =
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW as TransferPlannerParsedRequirementSourceBlock[];
+const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
+  "uw-bothell-american-and-ethnic-studies": [
+    "blocks-by-block-id/block-000.generated",
+  ],
+  "uw-bothell-applied-computing": [
+    "blocks-by-block-id/block-001.generated",
+  ],
+  "uw-bothell-biology": [
+    "blocks-by-block-id/block-002.generated",
+  ],
+  "uw-bothell-business-administration": [
+    "blocks-by-block-id/block-003.generated",
+    "blocks-by-block-id/block-004.generated",
+    "blocks-by-block-id/block-005.generated",
+    "blocks-by-block-id/block-006.generated",
+    "blocks-by-block-id/block-007.generated",
+    "blocks-by-block-id/block-008.generated",
+    "blocks-by-block-id/block-009.generated",
+    "blocks-by-block-id/block-010.generated",
+    "blocks-by-block-id/block-011.generated",
+    "blocks-by-block-id/block-012.generated",
+    "blocks-by-block-id/block-013.generated",
+    "blocks-by-block-id/block-014.generated",
+    "blocks-by-block-id/block-015.generated",
+    "blocks-by-block-id/block-016.generated",
+    "blocks-by-block-id/block-017.generated",
+    "blocks-by-block-id/block-018.generated",
+    "blocks-by-block-id/block-019.generated",
+    "blocks-by-block-id/block-020.generated",
+    "blocks-by-block-id/block-021.generated",
+    "blocks-by-block-id/block-022.generated",
+    "blocks-by-block-id/block-023.generated",
+    "blocks-by-block-id/block-024.generated",
+    "blocks-by-block-id/block-025.generated",
+    "blocks-by-block-id/block-026.generated",
+    "blocks-by-block-id/block-027.generated",
+    "blocks-by-block-id/block-028.generated",
+    "blocks-by-block-id/block-029.generated",
+    "blocks-by-block-id/block-030.generated",
+    "blocks-by-block-id/block-031.generated",
+    "blocks-by-block-id/block-032.generated",
+    "blocks-by-block-id/block-033.generated",
+    "blocks-by-block-id/block-034.generated",
+    "blocks-by-block-id/block-035.generated",
+  ],
+  "uw-bothell-business-administration-accounting": [
+    "blocks-by-block-id/block-036.generated",
+    "blocks-by-block-id/block-037.generated",
+  ],
+  "uw-bothell-business-administration-finance": [
+    "blocks-by-block-id/block-038.generated",
+    "blocks-by-block-id/block-039.generated",
+  ],
+  "uw-bothell-business-administration-leadership-and-strategic-innovation": [
+    "blocks-by-block-id/block-040.generated",
+    "blocks-by-block-id/block-041.generated",
+  ],
+  "uw-bothell-business-administration-marketing": [
+    "blocks-by-block-id/block-042.generated",
+    "blocks-by-block-id/block-043.generated",
+  ],
+  "uw-bothell-business-administration-supply-chain-management": [
+    "blocks-by-block-id/block-044.generated",
+    "blocks-by-block-id/block-045.generated",
+    "blocks-by-block-id/block-046.generated",
+  ],
+  "uw-bothell-chemistry-ba": [
+    "blocks-by-block-id/block-047.generated",
+  ],
+  "uw-bothell-chemistry-bs": [
+    "blocks-by-block-id/block-048.generated",
+    "blocks-by-block-id/block-049.generated",
+    "blocks-by-block-id/block-050.generated",
+  ],
+  "uw-bothell-computer-engineering": [
+    "blocks-by-block-id/block-051.generated",
+  ],
+  "uw-bothell-conservation-and-restoration-science": [
+    "blocks-by-block-id/block-052.generated",
+  ],
+  "uw-bothell-csse": [
+    "blocks-by-block-id/block-053.generated",
+    "blocks-by-block-id/block-054.generated",
+  ],
+  "uw-bothell-csse-information-assurance-and-cybersecurity": [
+    "blocks-by-block-id/block-055.generated",
+  ],
+  "uw-bothell-culture-literature-and-the-arts": [
+    "blocks-by-block-id/block-056.generated",
+  ],
+  "uw-bothell-data-visualization-ba": [
+    "blocks-by-block-id/block-057.generated",
+    "blocks-by-block-id/block-058.generated",
+  ],
+  "uw-bothell-data-visualization-bs": [
+    "blocks-by-block-id/block-059.generated",
+    "blocks-by-block-id/block-060.generated",
+  ],
+  "uw-bothell-developmental-and-youth-studies": [
+    "blocks-by-block-id/block-061.generated",
+    "blocks-by-block-id/block-062.generated",
+    "blocks-by-block-id/block-063.generated",
+    "blocks-by-block-id/block-064.generated",
+  ],
+  "uw-bothell-earth-system-science": [
+    "blocks-by-block-id/block-065.generated",
+  ],
+  "uw-bothell-economics": [
+    "blocks-by-block-id/block-066.generated",
+  ],
+  "uw-bothell-educational-studies-elementary-education": [
+    "blocks-by-block-id/block-067.generated",
+  ],
+  "uw-bothell-electrical-engineering": [
+    "blocks-by-block-id/block-068.generated",
+  ],
+  "uw-bothell-environmental-studies": [
+    "blocks-by-block-id/block-069.generated",
+  ],
+  "uw-bothell-gender-women-and-sexuality-studies": [
+    "blocks-by-block-id/block-070.generated",
+  ],
+  "uw-bothell-global-studies": [
+    "blocks-by-block-id/block-071.generated",
+  ],
+  "uw-bothell-health-studies": [
+    "blocks-by-block-id/block-072.generated",
+  ],
+  "uw-bothell-interactive-media-design": [
+    "blocks-by-block-id/block-073.generated",
+  ],
+  "uw-bothell-interdisciplinary-arts": [
+    "blocks-by-block-id/block-074.generated",
+  ],
+  "uw-bothell-law-economics-and-public-policy": [
+    "blocks-by-block-id/block-075.generated",
+    "blocks-by-block-id/block-076.generated",
+  ],
+  "uw-bothell-mathematical-thinking-and-visualization": [
+    "blocks-by-block-id/block-077.generated",
+    "blocks-by-block-id/block-078.generated",
+  ],
+  "uw-bothell-mathematics": [
+    "blocks-by-block-id/block-079.generated",
+  ],
+  "uw-bothell-mechanical-engineering": [
+    "blocks-by-block-id/block-080.generated",
+  ],
+  "uw-bothell-media-and-communications-studies": [
+    "blocks-by-block-id/block-081.generated",
+  ],
+  "uw-bothell-nursing-first-year-rn-to-bsn": [
+    "blocks-by-block-id/block-082.generated",
+  ],
+  "uw-bothell-nursing-rn-to-bsn": [
+    "blocks-by-block-id/block-083.generated",
+  ],
+  "uw-bothell-physics-ba": [
+    "blocks-by-block-id/block-084.generated",
+    "blocks-by-block-id/block-085.generated",
+  ],
+  "uw-bothell-physics-bs": [
+    "blocks-by-block-id/block-086.generated",
+  ],
+  "uw-bothell-psychology": [
+    "blocks-by-block-id/block-087.generated",
+    "blocks-by-block-id/block-088.generated",
+    "blocks-by-block-id/block-089.generated",
+  ],
+  "uw-bothell-science-technology-and-society": [
+    "blocks-by-block-id/block-090.generated",
+  ],
+  "uw-bothell-society-ethics-and-human-behavior": [
+    "blocks-by-block-id/block-091.generated",
+  ],
+  "uw-seattle-aeronautics-astronautics": [
+    "blocks-by-block-id/block-092.generated",
+  ],
+  "uw-seattle-american-ethnic-studies": [
+    "blocks-by-block-id/block-093.generated",
+    "blocks-by-block-id/block-094.generated",
+    "blocks-by-block-id/block-095.generated",
+    "blocks-by-block-id/block-096.generated",
+    "blocks-by-block-id/block-097.generated",
+  ],
+  "uw-seattle-american-indian-studies": [
+    "blocks-by-block-id/block-098.generated",
+    "blocks-by-block-id/block-099.generated",
+  ],
+  "uw-seattle-anthropology": [
+    "blocks-by-block-id/block-100.generated",
+    "blocks-by-block-id/block-101.generated",
+    "blocks-by-block-id/block-102.generated",
+    "blocks-by-block-id/block-103.generated",
+    "blocks-by-block-id/block-104.generated",
+    "blocks-by-block-id/block-105.generated",
+    "blocks-by-block-id/block-106.generated",
+    "blocks-by-block-id/block-107.generated",
+    "blocks-by-block-id/block-108.generated",
+  ],
+  "uw-seattle-applied-and-computational-mathematical-sciences": [
+    "blocks-by-block-id/block-109.generated",
+    "blocks-by-block-id/block-110.generated",
+    "blocks-by-block-id/block-111.generated",
+    "blocks-by-block-id/block-112.generated",
+    "blocks-by-block-id/block-113.generated",
+  ],
+  "uw-seattle-applied-mathematics": [
+    "blocks-by-block-id/block-114.generated",
+    "blocks-by-block-id/block-115.generated",
+    "blocks-by-block-id/block-116.generated",
+    "blocks-by-block-id/block-117.generated",
+    "blocks-by-block-id/block-118.generated",
+  ],
+  "uw-seattle-aquatic-conservation-and-ecology": [
+    "blocks-by-block-id/block-119.generated",
+    "blocks-by-block-id/block-120.generated",
+  ],
+  "uw-seattle-architectural-design": [
+    "blocks-by-block-id/block-121.generated",
+  ],
+  "uw-seattle-architectural-studies": [
+    "blocks-by-block-id/block-122.generated",
+  ],
+  "uw-seattle-art": [
+    "blocks-by-block-id/block-123.generated",
+  ],
+  "uw-seattle-art-history": [
+    "blocks-by-block-id/block-124.generated",
+  ],
+  "uw-seattle-asian-languages-and-cultures": [
+    "blocks-by-block-id/block-125.generated",
+  ],
+  "uw-seattle-asian-studies": [
+    "blocks-by-block-id/block-126.generated",
+    "blocks-by-block-id/block-127.generated",
+    "blocks-by-block-id/block-128.generated",
+  ],
+  "uw-seattle-astronomy": [
+    "blocks-by-block-id/block-129.generated",
+  ],
+  "uw-seattle-atmospheric-and-climate-science": [
+    "blocks-by-block-id/block-130.generated",
+    "blocks-by-block-id/block-131.generated",
+    "blocks-by-block-id/block-132.generated",
+    "blocks-by-block-id/block-133.generated",
+    "blocks-by-block-id/block-134.generated",
+  ],
+  "uw-seattle-biochemistry": [
+    "blocks-by-block-id/block-135.generated",
+  ],
+  "uw-seattle-bioengineering": [
+    "blocks-by-block-id/block-136.generated",
+    "blocks-by-block-id/block-137.generated",
+    "blocks-by-block-id/block-138.generated",
+  ],
+  "uw-seattle-biology": [
+    "blocks-by-block-id/block-139.generated",
+    "blocks-by-block-id/block-140.generated",
+    "blocks-by-block-id/block-141.generated",
+    "blocks-by-block-id/block-142.generated",
+    "blocks-by-block-id/block-143.generated",
+  ],
+  "uw-seattle-business-administration": [
+    "blocks-by-block-id/block-144.generated",
+    "blocks-by-block-id/block-145.generated",
+    "blocks-by-block-id/block-146.generated",
+  ],
+  "uw-seattle-chemical-engineering": [
+    "blocks-by-block-id/block-147.generated",
+    "blocks-by-block-id/block-148.generated",
+    "blocks-by-block-id/block-149.generated",
+    "blocks-by-block-id/block-150.generated",
+    "blocks-by-block-id/block-151.generated",
+  ],
+  "uw-seattle-chemistry": [
+    "blocks-by-block-id/block-152.generated",
+    "blocks-by-block-id/block-153.generated",
+  ],
+  "uw-seattle-chinese": [
+    "blocks-by-block-id/block-154.generated",
+    "blocks-by-block-id/block-155.generated",
+  ],
+  "uw-seattle-cinema-and-media-studies": [
+    "blocks-by-block-id/block-156.generated",
+    "blocks-by-block-id/block-157.generated",
+    "blocks-by-block-id/block-158.generated",
+  ],
+  "uw-seattle-civil-engineering": [
+    "blocks-by-block-id/block-159.generated",
+  ],
+  "uw-seattle-classical-studies": [
+    "blocks-by-block-id/block-160.generated",
+  ],
+  "uw-seattle-classics": [
+    "blocks-by-block-id/block-161.generated",
+  ],
+  "uw-seattle-communication": [
+    "blocks-by-block-id/block-162.generated",
+    "blocks-by-block-id/block-163.generated",
+  ],
+  "uw-seattle-community-environment-and-planning": [
+    "blocks-by-block-id/block-164.generated",
+  ],
+  "uw-seattle-comparative-history-of-ideas": [
+    "blocks-by-block-id/block-165.generated",
+    "blocks-by-block-id/block-166.generated",
+    "blocks-by-block-id/block-167.generated",
+    "blocks-by-block-id/block-168.generated",
+  ],
+  "uw-seattle-comparative-literature": [
+    "blocks-by-block-id/block-169.generated",
+  ],
+  "uw-seattle-comparative-religion": [
+    "blocks-by-block-id/block-170.generated",
+  ],
+  "uw-seattle-computational-finance-and-risk-management": [
+    "blocks-by-block-id/block-171.generated",
+    "blocks-by-block-id/block-172.generated",
+  ],
+  "uw-seattle-computer-engineering": [
+    "blocks-by-block-id/block-173.generated",
+    "blocks-by-block-id/block-174.generated",
+  ],
+  "uw-seattle-computer-science": [
+    "blocks-by-block-id/block-175.generated",
+    "blocks-by-block-id/block-176.generated",
+    "blocks-by-block-id/block-177.generated",
+    "blocks-by-block-id/block-178.generated",
+  ],
+  "uw-seattle-construction-management": [
+    "blocks-by-block-id/block-179.generated",
+    "blocks-by-block-id/block-180.generated",
+    "blocks-by-block-id/block-181.generated",
+    "blocks-by-block-id/block-182.generated",
+  ],
+  "uw-seattle-dance": [
+    "blocks-by-block-id/block-183.generated",
+  ],
+  "uw-seattle-danish": [
+    "blocks-by-block-id/block-184.generated",
+  ],
+  "uw-seattle-design": [
+    "blocks-by-block-id/block-185.generated",
+  ],
+  "uw-seattle-disability-studies": [
+    "blocks-by-block-id/block-186.generated",
+  ],
+  "uw-seattle-drama": [
+    "blocks-by-block-id/block-187.generated",
+    "blocks-by-block-id/block-188.generated",
+    "blocks-by-block-id/block-189.generated",
+  ],
+  "uw-seattle-early-childhood-and-family-studies": [
+    "blocks-by-block-id/block-190.generated",
+  ],
+  "uw-seattle-earth-and-space-sciences": [
+    "blocks-by-block-id/block-191.generated",
+    "blocks-by-block-id/block-192.generated",
+    "blocks-by-block-id/block-193.generated",
+    "blocks-by-block-id/block-194.generated",
+    "blocks-by-block-id/block-195.generated",
+  ],
+  "uw-seattle-economics": [
+    "blocks-by-block-id/block-196.generated",
+    "blocks-by-block-id/block-197.generated",
+    "blocks-by-block-id/block-198.generated",
+    "blocks-by-block-id/block-199.generated",
+    "blocks-by-block-id/block-200.generated",
+  ],
+  "uw-seattle-education-communities-and-organizations": [
+    "blocks-by-block-id/block-201.generated",
+  ],
+  "uw-seattle-education-studies": [
+    "blocks-by-block-id/block-202.generated",
+    "blocks-by-block-id/block-203.generated",
+    "blocks-by-block-id/block-204.generated",
+    "blocks-by-block-id/block-205.generated",
+    "blocks-by-block-id/block-206.generated",
+    "blocks-by-block-id/block-207.generated",
+    "blocks-by-block-id/block-208.generated",
+  ],
+  "uw-seattle-electrical-computer-engineering": [
+    "blocks-by-block-id/block-209.generated",
+    "blocks-by-block-id/block-210.generated",
+    "blocks-by-block-id/block-211.generated",
+    "blocks-by-block-id/block-212.generated",
+    "blocks-by-block-id/block-213.generated",
+    "blocks-by-block-id/block-214.generated",
+    "blocks-by-block-id/block-215.generated",
+    "blocks-by-block-id/block-216.generated",
+    "blocks-by-block-id/block-217.generated",
+    "blocks-by-block-id/block-218.generated",
+    "blocks-by-block-id/block-219.generated",
+    "blocks-by-block-id/block-220.generated",
+    "blocks-by-block-id/block-221.generated",
+    "blocks-by-block-id/block-222.generated",
+  ],
+  "uw-seattle-english-creative-writing": [
+    "blocks-by-block-id/block-223.generated",
+    "blocks-by-block-id/block-224.generated",
+  ],
+  "uw-seattle-english-language-literature-and-culture": [
+    "blocks-by-block-id/block-225.generated",
+    "blocks-by-block-id/block-226.generated",
+    "blocks-by-block-id/block-227.generated",
+    "blocks-by-block-id/block-228.generated",
+  ],
+  "uw-seattle-environmental-design-and-sustainability": [
+    "blocks-by-block-id/block-229.generated",
+    "blocks-by-block-id/block-230.generated",
+  ],
+  "uw-seattle-environmental-engineering": [
+    "blocks-by-block-id/block-231.generated",
+  ],
+  "uw-seattle-environmental-public-health": [
+    "blocks-by-block-id/block-232.generated",
+  ],
+  "uw-seattle-environmental-science-and-terrestrial-resource-management": [
+    "blocks-by-block-id/block-233.generated",
+    "blocks-by-block-id/block-234.generated",
+    "blocks-by-block-id/block-235.generated",
+    "blocks-by-block-id/block-236.generated",
+    "blocks-by-block-id/block-237.generated",
+  ],
+  "uw-seattle-environmental-studies": [
+    "blocks-by-block-id/block-238.generated",
+  ],
+  "uw-seattle-european-studies": [
+    "blocks-by-block-id/block-239.generated",
+  ],
+  "uw-seattle-finnish": [
+    "blocks-by-block-id/block-240.generated",
+  ],
+  "uw-seattle-food-systems-nutrition-and-health": [
+    "blocks-by-block-id/block-241.generated",
+  ],
+  "uw-seattle-french": [
+    "blocks-by-block-id/block-242.generated",
+    "blocks-by-block-id/block-243.generated",
+  ],
+  "uw-seattle-gender-women-and-sexuality-studies": [
+    "blocks-by-block-id/block-244.generated",
+  ],
+  "uw-seattle-geography": [
+    "blocks-by-block-id/block-245.generated",
+    "blocks-by-block-id/block-246.generated",
+    "blocks-by-block-id/block-247.generated",
+  ],
+  "uw-seattle-german": [
+    "blocks-by-block-id/block-248.generated",
+    "blocks-by-block-id/block-249.generated",
+    "blocks-by-block-id/block-250.generated",
+  ],
+  "uw-seattle-global-literary-studies": [
+    "blocks-by-block-id/block-251.generated",
+  ],
+  "uw-seattle-greek": [
+    "blocks-by-block-id/block-252.generated",
+  ],
+  "uw-seattle-guitar-b-m": [
+    "blocks-by-block-id/block-253.generated",
+  ],
+  "uw-seattle-history": [
+    "blocks-by-block-id/block-254.generated",
+  ],
+  "uw-seattle-history-and-philosophy-of-science": [
+    "blocks-by-block-id/block-255.generated",
+    "blocks-by-block-id/block-256.generated",
+  ],
+  "uw-seattle-human-centered-design-engineering": [
+    "blocks-by-block-id/block-257.generated",
+  ],
+  "uw-seattle-individualized-studies": [
+    "blocks-by-block-id/block-258.generated",
+  ],
+  "uw-seattle-industrial-systems-engineering": [
+    "blocks-by-block-id/block-259.generated",
+  ],
+  "uw-seattle-informatics": [
+    "blocks-by-block-id/block-260.generated",
+    "blocks-by-block-id/block-261.generated",
+    "blocks-by-block-id/block-262.generated",
+    "blocks-by-block-id/block-263.generated",
+    "blocks-by-block-id/block-264.generated",
+  ],
+  "uw-seattle-international-studies": [
+    "blocks-by-block-id/block-265.generated",
+    "blocks-by-block-id/block-266.generated",
+    "blocks-by-block-id/block-267.generated",
+    "blocks-by-block-id/block-268.generated",
+    "blocks-by-block-id/block-269.generated",
+    "blocks-by-block-id/block-270.generated",
+    "blocks-by-block-id/block-271.generated",
+  ],
+  "uw-seattle-italian": [
+    "blocks-by-block-id/block-272.generated",
+  ],
+  "uw-seattle-japanese": [
+    "blocks-by-block-id/block-273.generated",
+  ],
+  "uw-seattle-jazz-studies-b-m": [
+    "blocks-by-block-id/block-274.generated",
+  ],
+  "uw-seattle-jewish-studies": [
+    "blocks-by-block-id/block-275.generated",
+  ],
+  "uw-seattle-korean": [
+    "blocks-by-block-id/block-276.generated",
+  ],
+  "uw-seattle-landscape-architecture": [
+    "blocks-by-block-id/block-277.generated",
+  ],
+  "uw-seattle-latin": [
+    "blocks-by-block-id/block-278.generated",
+  ],
+  "uw-seattle-latin-american-and-caribbean-studies": [
+    "blocks-by-block-id/block-279.generated",
+    "blocks-by-block-id/block-280.generated",
+  ],
+  "uw-seattle-law-societies-and-justice": [
+    "blocks-by-block-id/block-281.generated",
+    "blocks-by-block-id/block-282.generated",
+  ],
+  "uw-seattle-linguistics": [
+    "blocks-by-block-id/block-283.generated",
+  ],
+  "uw-seattle-marine-biology": [
+    "blocks-by-block-id/block-284.generated",
+  ],
+  "uw-seattle-materials-science-engineering": [
+    "blocks-by-block-id/block-285.generated",
+    "blocks-by-block-id/block-286.generated",
+  ],
+  "uw-seattle-mathematics": [
+    "blocks-by-block-id/block-287.generated",
+  ],
+  "uw-seattle-mechanical-engineering": [
+    "blocks-by-block-id/block-288.generated",
+  ],
+  "uw-seattle-medical-laboratory-science": [
+    "blocks-by-block-id/block-289.generated",
+  ],
+  "uw-seattle-microbiology": [
+    "blocks-by-block-id/block-290.generated",
+  ],
+  "uw-seattle-middle-eastern-languages-and-cultures": [
+    "blocks-by-block-id/block-291.generated",
+    "blocks-by-block-id/block-292.generated",
+    "blocks-by-block-id/block-293.generated",
+    "blocks-by-block-id/block-294.generated",
+  ],
+  "uw-seattle-music-b-a": [
+    "blocks-by-block-id/block-295.generated",
+    "blocks-by-block-id/block-296.generated",
+    "blocks-by-block-id/block-297.generated",
+  ],
+  "uw-seattle-music-composition-b-m": [
+    "blocks-by-block-id/block-298.generated",
+  ],
+  "uw-seattle-music-education-b-m": [
+    "blocks-by-block-id/block-299.generated",
+  ],
+  "uw-seattle-neuroscience": [
+    "blocks-by-block-id/block-300.generated",
+  ],
+  "uw-seattle-norwegian": [
+    "blocks-by-block-id/block-301.generated",
+  ],
+  "uw-seattle-nursing": [
+    "blocks-by-block-id/block-302.generated",
+  ],
+  "uw-seattle-oceanography": [
+    "blocks-by-block-id/block-303.generated",
+  ],
+  "uw-seattle-orchestral-instruments-b-m": [
+    "blocks-by-block-id/block-304.generated",
+  ],
+  "uw-seattle-organ-b-m": [
+    "blocks-by-block-id/block-305.generated",
+  ],
+  "uw-seattle-percussion-performance-b-m": [
+    "blocks-by-block-id/block-306.generated",
+  ],
+  "uw-seattle-philosophy": [
+    "blocks-by-block-id/block-307.generated",
+  ],
+  "uw-seattle-physics": [
+    "blocks-by-block-id/block-308.generated",
+    "blocks-by-block-id/block-309.generated",
+    "blocks-by-block-id/block-310.generated",
+    "blocks-by-block-id/block-311.generated",
+  ],
+  "uw-seattle-piano-b-m": [
+    "blocks-by-block-id/block-312.generated",
+  ],
+  "uw-seattle-political-science": [
+    "blocks-by-block-id/block-313.generated",
+    "blocks-by-block-id/block-314.generated",
+    "blocks-by-block-id/block-315.generated",
+  ],
+  "uw-seattle-psychology": [
+    "blocks-by-block-id/block-316.generated",
+  ],
+  "uw-seattle-public-health-global-health": [
+    "blocks-by-block-id/block-317.generated",
+    "blocks-by-block-id/block-318.generated",
+  ],
+  "uw-seattle-public-service-and-policy": [
+    "blocks-by-block-id/block-319.generated",
+  ],
+  "uw-seattle-real-estate": [
+    "blocks-by-block-id/block-320.generated",
+  ],
+  "uw-seattle-slavic-languages-and-literatures": [
+    "blocks-by-block-id/block-321.generated",
+    "blocks-by-block-id/block-322.generated",
+  ],
+  "uw-seattle-social-welfare": [
+    "blocks-by-block-id/block-323.generated",
+  ],
+  "uw-seattle-sociology": [
+    "blocks-by-block-id/block-324.generated",
+  ],
+  "uw-seattle-south-asian-languages-and-cultures": [
+    "blocks-by-block-id/block-325.generated",
+  ],
+  "uw-seattle-spanish": [
+    "blocks-by-block-id/block-326.generated",
+  ],
+  "uw-seattle-speech-and-hearing-sciences": [
+    "blocks-by-block-id/block-327.generated",
+  ],
+  "uw-seattle-statistics": [
+    "blocks-by-block-id/block-328.generated",
+    "blocks-by-block-id/block-329.generated",
+    "blocks-by-block-id/block-330.generated",
+    "blocks-by-block-id/block-331.generated",
+    "blocks-by-block-id/block-332.generated",
+    "blocks-by-block-id/block-333.generated",
+  ],
+  "uw-seattle-sustainable-bioresource-systems-engineering": [
+    "blocks-by-block-id/block-334.generated",
+  ],
+  "uw-seattle-swedish": [
+    "blocks-by-block-id/block-335.generated",
+  ],
+  "uw-seattle-voice-b-m": [
+    "blocks-by-block-id/block-336.generated",
+  ],
+  "uw-tacoma-arts-media-culture": [
+    "blocks-by-block-id/block-337.generated",
+    "blocks-by-block-id/block-338.generated",
+    "blocks-by-block-id/block-339.generated",
+    "blocks-by-block-id/block-340.generated",
+    "blocks-by-block-id/block-341.generated",
+    "blocks-by-block-id/block-342.generated",
+  ],
+  "uw-tacoma-bachelor-of-arts-in-business-administration": [
+    "blocks-by-block-id/block-343.generated",
+    "blocks-by-block-id/block-344.generated",
+    "blocks-by-block-id/block-345.generated",
+    "blocks-by-block-id/block-346.generated",
+    "blocks-by-block-id/block-347.generated",
+    "blocks-by-block-id/block-348.generated",
+  ],
+  "uw-tacoma-biomedical-sciences": [
+    "blocks-by-block-id/block-349.generated",
+  ],
+  "uw-tacoma-civil-engineering": [
+    "blocks-by-block-id/block-350.generated",
+  ],
+  "uw-tacoma-communications": [
+    "blocks-by-block-id/block-351.generated",
+    "blocks-by-block-id/block-352.generated",
+    "blocks-by-block-id/block-353.generated",
+  ],
+  "uw-tacoma-computer-engineering": [
+    "blocks-by-block-id/block-354.generated",
+  ],
+  "uw-tacoma-computer-science-and-systems": [
+    "blocks-by-block-id/block-355.generated",
+    "blocks-by-block-id/block-356.generated",
+    "blocks-by-block-id/block-357.generated",
+  ],
+  "uw-tacoma-computer-science-and-systems-ba": [
+    "blocks-by-block-id/block-358.generated",
+  ],
+  "uw-tacoma-computer-science-and-systems-bs": [
+    "blocks-by-block-id/block-359.generated",
+  ],
+  "uw-tacoma-criminal-justice": [
+    "blocks-by-block-id/block-360.generated",
+    "blocks-by-block-id/block-361.generated",
+    "blocks-by-block-id/block-362.generated",
+  ],
+  "uw-tacoma-economics-and-policy-analysis": [
+    "blocks-by-block-id/block-363.generated",
+    "blocks-by-block-id/block-364.generated",
+  ],
+  "uw-tacoma-education": [
+    "blocks-by-block-id/block-365.generated",
+    "blocks-by-block-id/block-366.generated",
+  ],
+  "uw-tacoma-electrical-engineering": [
+    "blocks-by-block-id/block-367.generated",
+  ],
+  "uw-tacoma-environmental-science": [
+    "blocks-by-block-id/block-368.generated",
+    "blocks-by-block-id/block-369.generated",
+    "blocks-by-block-id/block-370.generated",
+    "blocks-by-block-id/block-371.generated",
+  ],
+  "uw-tacoma-environmental-sustainability": [
+    "blocks-by-block-id/block-372.generated",
+    "blocks-by-block-id/block-373.generated",
+    "blocks-by-block-id/block-374.generated",
+    "blocks-by-block-id/block-375.generated",
+    "blocks-by-block-id/block-376.generated",
+  ],
+  "uw-tacoma-ethnic-gender-and-labor-studies": [
+    "blocks-by-block-id/block-377.generated",
+    "blocks-by-block-id/block-378.generated",
+    "blocks-by-block-id/block-379.generated",
+    "blocks-by-block-id/block-380.generated",
+  ],
+  "uw-tacoma-healthcare-leadership": [
+    "blocks-by-block-id/block-381.generated",
+  ],
+  "uw-tacoma-history": [
+    "blocks-by-block-id/block-382.generated",
+    "blocks-by-block-id/block-383.generated",
+    "blocks-by-block-id/block-384.generated",
+    "blocks-by-block-id/block-385.generated",
+    "blocks-by-block-id/block-386.generated",
+    "blocks-by-block-id/block-387.generated",
+    "blocks-by-block-id/block-388.generated",
+    "blocks-by-block-id/block-389.generated",
+    "blocks-by-block-id/block-390.generated",
+    "blocks-by-block-id/block-391.generated",
+    "blocks-by-block-id/block-392.generated",
+  ],
+  "uw-tacoma-information-technology": [
+    "blocks-by-block-id/block-393.generated",
+    "blocks-by-block-id/block-394.generated",
+    "blocks-by-block-id/block-395.generated",
+  ],
+  "uw-tacoma-interdisciplinary-arts-and-sciences": [
+    "blocks-by-block-id/block-396.generated",
+    "blocks-by-block-id/block-397.generated",
+  ],
+  "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed": [
+    "blocks-by-block-id/block-398.generated",
+    "blocks-by-block-id/block-399.generated",
+    "blocks-by-block-id/block-400.generated",
+    "blocks-by-block-id/block-401.generated",
+    "blocks-by-block-id/block-402.generated",
+    "blocks-by-block-id/block-403.generated",
+    "blocks-by-block-id/block-404.generated",
+    "blocks-by-block-id/block-405.generated",
+    "blocks-by-block-id/block-406.generated",
+    "blocks-by-block-id/block-407.generated",
+    "blocks-by-block-id/block-408.generated",
+    "blocks-by-block-id/block-409.generated",
+  ],
+  "uw-tacoma-law-and-policy": [
+    "blocks-by-block-id/block-410.generated",
+    "blocks-by-block-id/block-411.generated",
+  ],
+  "uw-tacoma-mathematics": [
+    "blocks-by-block-id/block-412.generated",
+  ],
+  "uw-tacoma-mechanical-engineering": [
+    "blocks-by-block-id/block-413.generated",
+  ],
+  "uw-tacoma-nursing": [
+    "blocks-by-block-id/block-414.generated",
+  ],
+  "uw-tacoma-politics-philosophy-and-economics": [
+    "blocks-by-block-id/block-415.generated",
+    "blocks-by-block-id/block-416.generated",
+  ],
+  "uw-tacoma-psychology": [
+    "blocks-by-block-id/block-417.generated",
+    "blocks-by-block-id/block-418.generated",
+  ],
+  "uw-tacoma-social-welfare": [
+    "blocks-by-block-id/block-419.generated",
+    "blocks-by-block-id/block-420.generated",
+  ],
+  "uw-tacoma-spanish-language-and-cultures": [
+    "blocks-by-block-id/block-421.generated",
+  ],
+  "uw-tacoma-sustainable-urban-development": [
+    "blocks-by-block-id/block-422.generated",
+    "blocks-by-block-id/block-423.generated",
+    "blocks-by-block-id/block-424.generated",
+    "blocks-by-block-id/block-425.generated",
+  ],
+  "uw-tacoma-urban-design": [
+    "blocks-by-block-id/block-426.generated",
+  ],
+  "uw-tacoma-urban-studies": [
+    "blocks-by-block-id/block-427.generated",
+    "blocks-by-block-id/block-428.generated",
+    "blocks-by-block-id/block-429.generated",
+    "blocks-by-block-id/block-430.generated",
+  ],
+  "uw-tacoma-writing-studies": [
+    "blocks-by-block-id/block-431.generated",
+    "blocks-by-block-id/block-432.generated",
+    "blocks-by-block-id/block-433.generated",
+    "blocks-by-block-id/block-434.generated",
+  ],
+} as const;
+
+function loadTransferPlannerParsedRequirementBlockPartition(partitionKey: string) {
+  switch (partitionKey) {
+    case "blocks-by-block-id/block-000.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-000.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-001.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-001.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-002.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-002.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-003.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-003.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-004.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-004.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-005.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-005.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-006.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-006.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-007.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-007.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-008.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-008.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-009.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-009.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-010.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-010.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-011.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-011.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-012.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-012.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-013.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-013.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-014.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-014.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-015.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-015.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-016.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-016.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-017.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-017.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-018.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-018.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-019.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-019.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-020.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-020.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-021.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-021.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-022.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-022.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-023.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-023.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-024.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-024.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-025.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-025.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-026.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-026.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-027.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-027.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-028.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-028.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-029.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-029.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-030.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-030.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-031.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-031.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-032.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-032.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-033.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-033.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-034.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-034.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-035.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-035.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-036.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-036.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-037.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-037.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-038.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-038.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-039.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-039.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-040.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-040.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-041.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-041.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-042.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-042.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-043.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-043.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-044.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-044.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-045.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-045.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-046.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-046.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-047.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-047.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-048.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-048.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-049.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-049.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-050.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-050.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-051.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-051.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-052.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-052.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-053.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-053.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-054.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-054.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-055.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-055.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-056.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-056.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-057.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-057.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-058.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-058.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-059.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-059.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-060.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-060.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-061.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-061.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-062.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-062.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-063.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-063.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-064.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-064.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-065.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-065.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-066.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-066.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-067.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-067.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-068.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-068.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-069.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-069.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-070.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-070.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-071.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-071.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-072.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-072.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-073.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-073.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-074.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-074.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-075.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-075.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-076.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-076.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-077.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-077.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-078.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-078.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-079.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-079.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-080.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-080.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-081.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-081.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-082.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-082.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-083.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-083.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-084.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-084.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-085.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-085.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-086.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-086.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-087.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-087.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-088.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-088.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-089.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-089.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-090.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-090.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-091.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-091.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-092.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-092.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-093.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-093.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-094.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-094.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-095.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-095.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-096.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-096.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-097.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-097.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-098.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-098.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-099.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-099.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-100.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-100.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-101.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-101.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-102.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-102.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-103.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-103.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-104.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-104.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-105.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-105.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-106.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-106.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-107.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-107.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-108.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-108.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-109.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-109.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-110.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-110.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-111.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-111.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-112.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-112.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-113.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-113.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-114.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-114.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-115.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-115.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-116.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-116.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-117.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-117.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-118.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-118.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-119.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-119.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-120.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-120.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-121.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-121.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-122.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-122.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-123.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-123.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-124.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-124.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-125.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-125.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-126.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-126.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-127.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-127.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-128.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-128.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-129.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-129.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-130.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-130.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-131.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-131.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-132.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-132.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-133.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-133.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-134.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-134.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-135.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-135.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-136.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-136.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-137.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-137.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-138.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-138.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-139.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-139.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-140.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-140.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-141.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-141.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-142.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-142.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-143.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-143.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-144.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-144.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-145.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-145.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-146.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-146.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-147.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-147.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-148.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-148.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-149.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-149.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-150.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-150.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-151.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-151.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-152.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-152.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-153.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-153.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-154.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-154.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-155.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-155.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-156.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-156.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-157.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-157.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-158.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-158.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-159.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-159.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-160.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-160.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-161.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-161.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-162.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-162.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-163.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-163.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-164.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-164.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-165.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-165.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-166.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-166.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-167.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-167.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-168.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-168.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-169.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-169.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-170.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-170.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-171.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-171.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-172.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-172.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-173.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-173.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-174.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-174.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-175.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-175.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-176.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-176.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-177.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-177.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-178.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-178.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-179.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-179.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-180.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-180.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-181.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-181.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-182.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-182.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-183.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-183.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-184.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-184.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-185.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-185.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-186.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-186.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-187.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-187.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-188.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-188.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-189.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-189.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-190.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-190.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-191.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-191.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-192.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-192.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-193.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-193.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-194.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-194.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-195.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-195.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-196.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-196.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-197.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-197.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-198.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-198.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-199.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-199.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-200.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-200.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-201.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-201.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-202.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-202.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-203.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-203.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-204.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-204.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-205.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-205.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-206.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-206.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-207.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-207.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-208.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-208.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-209.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-209.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-210.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-210.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-211.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-211.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-212.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-212.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-213.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-213.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-214.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-214.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-215.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-215.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-216.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-216.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-217.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-217.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-218.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-218.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-219.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-219.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-220.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-220.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-221.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-221.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-222.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-222.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-223.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-223.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-224.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-224.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-225.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-225.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-226.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-226.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-227.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-227.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-228.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-228.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-229.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-229.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-230.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-230.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-231.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-231.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-232.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-232.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-233.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-233.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-234.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-234.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-235.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-235.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-236.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-236.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-237.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-237.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-238.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-238.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-239.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-239.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-240.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-240.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-241.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-241.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-242.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-242.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-243.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-243.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-244.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-244.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-245.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-245.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-246.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-246.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-247.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-247.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-248.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-248.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-249.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-249.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-250.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-250.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-251.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-251.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-252.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-252.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-253.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-253.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-254.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-254.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-255.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-255.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-256.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-256.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-257.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-257.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-258.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-258.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-259.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-259.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-260.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-260.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-261.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-261.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-262.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-262.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-263.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-263.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-264.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-264.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-265.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-265.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-266.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-266.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-267.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-267.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-268.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-268.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-269.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-269.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-270.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-270.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-271.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-271.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-272.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-272.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-273.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-273.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-274.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-274.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-275.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-275.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-276.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-276.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-277.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-277.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-278.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-278.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-279.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-279.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-280.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-280.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-281.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-281.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-282.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-282.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-283.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-283.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-284.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-284.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-285.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-285.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-286.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-286.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-287.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-287.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-288.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-288.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-289.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-289.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-290.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-290.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-291.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-291.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-292.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-292.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-293.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-293.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-294.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-294.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-295.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-295.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-296.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-296.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-297.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-297.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-298.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-298.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-299.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-299.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-300.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-300.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-301.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-301.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-302.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-302.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-303.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-303.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-304.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-304.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-305.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-305.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-306.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-306.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-307.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-307.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-308.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-308.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-309.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-309.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-310.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-310.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-311.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-311.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-312.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-312.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-313.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-313.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-314.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-314.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-315.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-315.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-316.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-316.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-317.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-317.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-318.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-318.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-319.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-319.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-320.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-320.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-321.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-321.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-322.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-322.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-323.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-323.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-324.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-324.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-325.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-325.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-326.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-326.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-327.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-327.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-328.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-328.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-329.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-329.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-330.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-330.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-331.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-331.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-332.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-332.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-333.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-333.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-334.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-334.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-335.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-335.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-336.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-336.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-337.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-337.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-338.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-338.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-339.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-339.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-340.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-340.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-341.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-341.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-342.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-342.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-343.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-343.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-344.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-344.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-345.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-345.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-346.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-346.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-347.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-347.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-348.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-348.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-349.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-349.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-350.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-350.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-351.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-351.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-352.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-352.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-353.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-353.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-354.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-354.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-355.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-355.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-356.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-356.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-357.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-357.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-358.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-358.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-359.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-359.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-360.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-360.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-361.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-361.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-362.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-362.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-363.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-363.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-364.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-364.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-365.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-365.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-366.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-366.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-367.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-367.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-368.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-368.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-369.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-369.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-370.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-370.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-371.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-371.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-372.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-372.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-373.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-373.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-374.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-374.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-375.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-375.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-376.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-376.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-377.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-377.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-378.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-378.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-379.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-379.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-380.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-380.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-381.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-381.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-382.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-382.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-383.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-383.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-384.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-384.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-385.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-385.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-386.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-386.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-387.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-387.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-388.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-388.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-389.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-389.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-390.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-390.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-391.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-391.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-392.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-392.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-393.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-393.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-394.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-394.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-395.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-395.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-396.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-396.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-397.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-397.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-398.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-398.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-399.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-399.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-400.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-400.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-401.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-401.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-402.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-402.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-403.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-403.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-404.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-404.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-405.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-405.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-406.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-406.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-407.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-407.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-408.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-408.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-409.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-409.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-410.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-410.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-411.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-411.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-412.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-412.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-413.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-413.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-414.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-414.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-415.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-415.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-416.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-416.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-417.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-417.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-418.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-418.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-419.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-419.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-420.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-420.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-421.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-421.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-422.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-422.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-423.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-423.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-424.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-424.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-425.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-425.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-426.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-426.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-427.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-427.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-428.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-428.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-429.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-429.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-430.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-430.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-431.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-431.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-432.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-432.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-433.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-433.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    case "blocks-by-block-id/block-434.generated":
+      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-434.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
+    default:
+      return [] as TransferPlannerParsedRequirementSourceBlock[];
+  }
+}
+
+function loadTransferPlannerParsedRequirementBlocksForPlanIdPartition(planId: string) {
+  const partitionKeys =
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID[
+      planId as keyof typeof TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID
+    ] ?? [];
+  return partitionKeys.flatMap((partitionKey) =>
+    loadTransferPlannerParsedRequirementBlockPartition(partitionKey)
+  ) as TransferPlannerParsedRequirementSourceBlock[];
+}
+
+function loadTransferPlannerParsedRequirementBlocks() {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITION_KEYS.flatMap((partitionKey) =>
+    loadTransferPlannerParsedRequirementBlockPartition(partitionKey)
+  ) as TransferPlannerParsedRequirementSourceBlock[];
+}
+
+export const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS =
+  createLazyGeneratedValue<TransferPlannerParsedRequirementSourceBlock[]>(
+    loadTransferPlannerParsedRequirementBlocks,
+    [] as TransferPlannerParsedRequirementSourceBlock[]
+  );
+
+export function getTransferPlannerParsedRequirementBlocksForPlanId(planId: string) {
+  return loadTransferPlannerParsedRequirementBlocksForPlanIdPartition(String(planId ?? ""));
+}
 

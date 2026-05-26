@@ -192,12 +192,12 @@ ensure_env_file() {
     return
   fi
 
-  if [ ! -f "$APP_DIR/env.example" ]; then
+  if [ ! -f "$APP_DIR/.env.example" ]; then
     return
   fi
 
-  cp "$APP_DIR/env.example" "$APP_DIR/.env"
-  log "Created source/.env from env.example."
+  cp "$APP_DIR/.env.example" "$APP_DIR/.env"
+  log "Created source/.env from .env.example."
 }
 
 ensure_app_dependencies() {
@@ -300,6 +300,12 @@ open_browser_when_server_ready() {
   ) &
 }
 
+organize_tmp() {
+  if [ -f "$APP_DIR/scripts/organize-tmp-artifacts.cjs" ] && command_exists node; then
+    node "$APP_DIR/scripts/organize-tmp-artifacts.cjs" --quiet >/dev/null 2>&1 || true
+  fi
+}
+
 main() {
   log "Preparing Gator Guide for launch..."
   locate_or_clone_repo
@@ -315,11 +321,13 @@ main() {
     cd "$APP_DIR"
     EXPO_START_PORT="$SERVER_PORT" npm run start
   ) || {
+    organize_tmp
     printf '%s %s\n' "$LOG_PREFIX" "Failed to start Expo." >&2
     printf '%s %s\n' "$LOG_PREFIX" "Run \`npm run start\` manually from:" >&2
     printf '%s %s\n' "$LOG_PREFIX" "$APP_DIR" >&2
     exit 1
   }
+  organize_tmp
 }
 
 main "$@"

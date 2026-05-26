@@ -14,78 +14,35 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import useBack from "@/hooks/use-back";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import {
-  QUESTIONNAIRE_FIELD_IDS,
-  QUESTIONNAIRE_SECTION_IDS,
-  type QuestionnaireFieldId,
-  type QuestionnaireSectionId,
-} from "@/constants/schema";
-import { collegeService } from "@/services/colleges/college.service";
-import { errorLoggingService } from "@/services/logging/error-logging.service";
-import {
   buildOtherLocationPreference,
   buildRegionLocationPreference,
   buildStateLocationPreference,
-  LOCATION_PRIMARY_OPTIONS,
-  LOCATION_REGION_OPTIONS,
+  getQuestionnaireAnswerText,
   normalizeQuestionnaireAnswers,
   parseLocationPreference,
+  type QuestionnaireAnswers,
   type LocationPrimaryOptionKey,
   US_STATE_OPTIONS,
 } from "@/services/app/questionnaire.enums";
-
-type Question =
-  | { id: QuestionnaireSectionId; question: string; type: "section" }
-  | { id: QuestionnaireFieldId; question: string; type: "text" | "textarea"; placeholder: string }
-  | { id: QuestionnaireFieldId; question: string; type: "radio"; options: string[] }
-  | {
-      id: QuestionnaireFieldId;
-      question: string;
-      type: "location";
-      options: { key: LocationPrimaryOptionKey; label: string }[];
-      regionOptions: { key: string; label: string }[];
-    };
-
-type QuestionnaireSectionSummary = {
-  id: QuestionnaireSectionId;
-  title: string;
-  startIndex: number;
-  endIndex: number;
-};
-
-function getLocationPrimarySelection(value: string, language: ReturnType<typeof useAppLanguage>["language"]): LocationPrimaryOptionKey | null {
-  const parsed = parseLocationPreference(value, language);
-
-  switch (parsed.kind) {
-    case "washington_only":
-    case "near_current_location":
-    case "no_preference":
-      return parsed.kind;
-    case "state":
-      return "specific_state";
-    case "region":
-      return "specific_region";
-    case "other":
-      return "other";
-    default:
-      return null;
-  }
-}
-
-function getQuestionIconName(question: Question): keyof typeof MaterialIcons.glyphMap {
-  switch (question.type) {
-    case "location":
-      return "place";
-    case "radio":
-      return "check-circle-outline";
-    case "section":
-      return "assignment";
-    case "textarea":
-      return "notes";
-    case "text":
-    default:
-      return "edit";
-  }
-}
+import { collegeService } from "@/services/colleges/college.service";
+import { errorLoggingService } from "@/services/logging/error-logging.service";
+import {
+  buildBlankQuestionnaireAnswers,
+  buildQuestionnaireQuestions,
+  buildQuestionnaireSectionSummaries,
+  countAnsweredQuestionnaireQuestions,
+  filterQuestionnaireQuestionsForMode,
+  findCurrentQuestionnaireSection,
+  getAnswerableQuestionnaireQuestions,
+  getCurrentSectionPreviewQuestions,
+  getLocationPrimarySelection,
+  getQuestionIconName,
+  getRadioOptionLabel,
+  getRadioOptionValue,
+  type Question,
+  type QuestionnaireMode,
+  type QuestionnaireSectionSummary,
+} from "@/components/pages/questionnaire/questionnaire-logic";
 
 export default function QuestionnairePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
@@ -95,77 +52,26 @@ export default function QuestionnairePage() {
   const { getScrollContentPadding } = useResponsiveLayout();
   const back = useBack(ROUTES.tabs);
   const questionnaireScrollRef = useRef<ScrollView>(null);
+  const [questionnaireMode, setQuestionnaireMode] =
+    useState<QuestionnaireMode>("basic");
 
-  // Questionnaire is translation-driven so prompts/options update when language changes.
-  const questions = useMemo<Question[]>(
-    () => [
-      { id: QUESTIONNAIRE_SECTION_IDS.data, question: t("questionnaire.sectionDataWeNeed"), type: "section" },
-      { id: QUESTIONNAIRE_FIELD_IDS.advisor, question: t("questionnaire.advisor"), placeholder: t("questionnaire.advisorPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.gpa, question: t("questionnaire.gpa"), placeholder: t("questionnaire.gpaPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.weather, question: t("questionnaire.weather"), options: [t("questionnaire.weatherWarm"), t("questionnaire.weatherCold"), t("questionnaire.weatherMild"), t("questionnaire.noPreference")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.costOfAttendance, question: t("questionnaire.costOfAttendance"), options: [t("questionnaire.under20k"), t("questionnaire.20to40k"), t("questionnaire.40to60k"), t("questionnaire.over60k"), t("questionnaire.needFinancialAid")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.graduationRate, question: t("questionnaire.graduationRate"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.acceptanceRate, question: t("questionnaire.acceptanceRate"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
-      {
-        id: QUESTIONNAIRE_FIELD_IDS.location,
-        question: t("questionnaire.location"),
-        options: LOCATION_PRIMARY_OPTIONS.map((option) => ({ key: option.key, label: t(option.labelKey) })),
-        regionOptions: LOCATION_REGION_OPTIONS.map((option) => ({ key: option.key, label: t(option.labelKey) })),
-        type: "location",
-      },
-      { id: QUESTIONNAIRE_FIELD_IDS.collegeVibe, question: t("questionnaire.collegeVibe"), placeholder: t("questionnaire.collegeVibePlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.transportation, question: t("questionnaire.transportation"), options: [t("questionnaire.transportCar"), t("questionnaire.transportTransit"), t("questionnaire.transportBike"), t("questionnaire.transportWalk"), t("questionnaire.noPreference")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.companiesNearby, question: t("questionnaire.companiesNearby"), placeholder: t("questionnaire.companiesNearbyPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.inStateOutOfState, question: t("questionnaire.inStateOutOfState"), options: [t("questionnaire.inState"), t("questionnaire.outOfState"), t("questionnaire.noPreference")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.housing, question: t("questionnaire.housingPreference"), options: [t("questionnaire.onCampus"), t("questionnaire.offCampus"), t("questionnaire.commute"), t("questionnaire.noPreference")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.studentStaffRatio, question: t("questionnaire.studentStaffRatio"), placeholder: t("questionnaire.studentStaffRatioPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.internationalStudentRatio, question: t("questionnaire.internationalStudentRatio"), placeholder: t("questionnaire.ratioPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.taxRates, question: t("questionnaire.taxRates"), placeholder: t("questionnaire.taxRatesPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.ranking, question: t("questionnaire.ranking"), options: [t("questionnaire.veryImportant"), t("questionnaire.somewhatImportant"), t("questionnaire.notImportant")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.researchOpportunities, question: t("questionnaire.researchOpportunities"), placeholder: t("questionnaire.researchOpportunitiesPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.major, question: t("questionnaire.major"), placeholder: t("questionnaire.majorPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.continueEducation, question: t("questionnaire.continueEducation"), options: [t("questionnaire.yes"), t("questionnaire.no"), t("questionnaire.maybe")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.graduationDate, question: t("questionnaire.graduationDate"), placeholder: t("questionnaire.graduationDatePlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.quarterSemesterSystem, question: t("questionnaire.quarterSemesterSystem"), options: [t("questionnaire.quarter"), t("questionnaire.semester"), t("questionnaire.noPreference")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.transferStudentRate, question: t("questionnaire.transferStudentRate"), placeholder: t("questionnaire.ratioPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.extracurriculars, question: t("questionnaire.extracurriculars"), placeholder: t("questionnaire.extracurricularsPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.timeZone, question: t("questionnaire.timeZone"), placeholder: t("questionnaire.timeZonePlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.deadline, question: t("questionnaire.deadline"), placeholder: t("questionnaire.deadlinePlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.majorExploration, question: t("questionnaire.majorExploration"), placeholder: t("questionnaire.majorExplorationPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.certifications, question: t("questionnaire.certifications"), placeholder: t("questionnaire.certificationsPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.associatesForTransfer, question: t("questionnaire.associatesForTransfer"), options: [t("questionnaire.yes"), t("questionnaire.no"), t("questionnaire.considering")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.salary, question: t("questionnaire.salary"), placeholder: t("questionnaire.salaryPlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.workEnvironment, question: t("questionnaire.workEnvironment"), placeholder: t("questionnaire.workEnvironmentPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.yearsToComplete, question: t("questionnaire.yearsToComplete"), placeholder: t("questionnaire.yearsToCompletePlaceholder"), type: "text" },
-      { id: QUESTIONNAIRE_FIELD_IDS.demand, question: t("questionnaire.demand"), options: [t("questionnaire.demandHigh"), t("questionnaire.demandMedium"), t("questionnaire.demandLow"), t("questionnaire.unsure")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.howCompetitive, question: t("questionnaire.howCompetitive"), options: [t("questionnaire.veryCompetitive"), t("questionnaire.moderate"), t("questionnaire.lessCompetitive"), t("questionnaire.unsure")], type: "radio" },
-      { id: QUESTIONNAIRE_FIELD_IDS.personalInterest, question: t("questionnaire.personalInterest"), placeholder: t("questionnaire.personalInterestPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.typesOfOccupation, question: t("questionnaire.typesOfOccupation"), placeholder: t("questionnaire.typesOfOccupationPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.opportunitiesToExpatriate, question: t("questionnaire.opportunitiesToExpatriate"), options: [t("questionnaire.yes"), t("questionnaire.no"), t("questionnaire.maybe")], type: "radio" },
-      { id: QUESTIONNAIRE_SECTION_IDS.academicPlan, question: t("questionnaire.sectionAcademicPlan"), type: "section" },
-      { id: QUESTIONNAIRE_FIELD_IDS.requiredCourses, question: t("questionnaire.requiredCourses"), placeholder: t("questionnaire.requiredCoursesPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.recommendedCourses, question: t("questionnaire.recommendedCourses"), placeholder: t("questionnaire.recommendedCoursesPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.resourcesOnCampus, question: t("questionnaire.resourcesOnCampus"), placeholder: t("questionnaire.resourcesOnCampusPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_SECTION_IDS.personalStatement, question: t("questionnaire.sectionPersonalStatement"), type: "section" },
-      { id: QUESTIONNAIRE_FIELD_IDS.personalStatementFocus, question: t("questionnaire.personalStatementFocus"), options: [t("questionnaire.grammar"), t("questionnaire.spelling"), t("questionnaire.punctuation"), t("questionnaire.allOfTheAbove")], type: "radio" },
-      { id: QUESTIONNAIRE_SECTION_IDS.occupation, question: t("questionnaire.sectionOccupation"), type: "section" },
-      { id: QUESTIONNAIRE_FIELD_IDS.internships, question: t("questionnaire.internships"), placeholder: t("questionnaire.internshipsPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.entryLevelPosition, question: t("questionnaire.entryLevelPosition"), placeholder: t("questionnaire.entryLevelPositionPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.resumeSkills, question: t("questionnaire.resumeSkills"), placeholder: t("questionnaire.resumeSkillsPlaceholder"), type: "textarea" },
-      { id: QUESTIONNAIRE_FIELD_IDS.platforms, question: t("questionnaire.platforms"), placeholder: t("questionnaire.platformsPlaceholder"), type: "textarea" },
-    ],
+  const allQuestions = useMemo<Question[]>(
+    () => buildQuestionnaireQuestions(t),
     [t]
   );
 
-  const blankAnswers = useMemo(() => {
-    // Pre-seed non-section question ids so input bindings always have stable keys.
-    const init: Record<string, string> = {};
-    for (const q of questions) if (q.type !== "section") init[q.id] = "";
-    return init;
-  }, [questions]);
+  const questions = useMemo<Question[]>(
+    () => filterQuestionnaireQuestionsForMode(allQuestions, questionnaireMode),
+    [allQuestions, questionnaireMode]
+  );
+
+  const blankAnswers = useMemo(
+    () => buildBlankQuestionnaireAnswers(allQuestions),
+    [allQuestions]
+  );
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>(() => blankAnswers);
+  const [answers, setAnswers] = useState<QuestionnaireAnswers>(() => blankAnswers);
   const [locationModeDraft, setLocationModeDraft] = useState<LocationPrimaryOptionKey | null>(null);
   const [isActionLocked, setIsActionLocked] = useState(false);
 
@@ -175,51 +81,43 @@ export default function QuestionnairePage() {
   }, [isHydrated, blankAnswers, state.questionnaireAnswers]);
 
   useEffect(() => {
-    const derived = getLocationPrimarySelection(answers.location ?? "", language);
+    const locationAnswer = getQuestionnaireAnswerText(answers, "location");
+    const derived = getLocationPrimarySelection(locationAnswer, language);
     if (derived) setLocationModeDraft(derived);
-  }, [answers.location, language]);
+  }, [answers, language]);
 
   const currentQuestion = questions[currentStep];
   const progress = Math.round(((currentStep + 1) / questions.length) * 100);
-  const parsedLocation = useMemo(() => parseLocationPreference(answers.location ?? "", language), [answers.location, language]);
-  const selectedLocationMode = locationModeDraft ?? getLocationPrimarySelection(answers.location ?? "", language);
-  const sectionSummaries = useMemo<QuestionnaireSectionSummary[]>(() => {
-    const sectionEntries = questions.flatMap((question, index) =>
-      question.type === "section" ? [{ question, index }] : []
-    );
-
-    return sectionEntries.map((entry, index) => {
-      const nextSectionStart = sectionEntries[index + 1]?.index ?? questions.length;
-
-      return {
-        id: entry.question.id,
-        title: entry.question.question,
-        startIndex: entry.index,
-        endIndex: nextSectionStart - 1,
-      };
-    });
-  }, [questions]);
+  const locationAnswer = getQuestionnaireAnswerText(answers, "location");
+  const parsedLocation = useMemo(() => parseLocationPreference(locationAnswer, language), [locationAnswer, language]);
+  const selectedLocationMode = locationModeDraft ?? getLocationPrimarySelection(locationAnswer, language);
+  const sectionSummaries = useMemo<QuestionnaireSectionSummary[]>(
+    () => buildQuestionnaireSectionSummaries(questions),
+    [questions]
+  );
   const currentSection = useMemo(
-    () =>
-      [...sectionSummaries].reverse().find((section) => currentStep >= section.startIndex) ??
-      sectionSummaries[0] ??
-      null,
+    () => findCurrentQuestionnaireSection(sectionSummaries, currentStep),
     [currentStep, sectionSummaries]
   );
   const currentSectionIndex = currentSection ? sectionSummaries.findIndex((section) => section.id === currentSection.id) : -1;
   const answerableQuestions = useMemo(
-    () => questions.filter((question): question is Exclude<Question, { type: "section" }> => question.type !== "section"),
+    () => getAnswerableQuestionnaireQuestions(questions),
     [questions]
   );
   const answeredQuestionCount = useMemo(
-    () => answerableQuestions.filter((question) => String(answers[question.id] ?? "").trim().length > 0).length,
+    () => countAnsweredQuestionnaireQuestions(answerableQuestions, answers),
     [answerableQuestions, answers]
   );
   const completionLabel = `${answeredQuestionCount}/${answerableQuestions.length}`;
   const currentSectionPreviewQuestions = useMemo(() => {
-    if (!currentQuestion || currentQuestion.type !== "section" || currentSectionIndex < 0) return [];
-    const nextSectionStart = sectionSummaries[currentSectionIndex + 1]?.startIndex ?? questions.length;
-    return questions.slice(currentStep + 1, nextSectionStart).filter((question) => question.type !== "section").slice(0, width >= 820 ? 4 : 2);
+    return getCurrentSectionPreviewQuestions({
+      currentQuestion,
+      currentSectionIndex,
+      currentStep,
+      questions,
+      sectionSummaries,
+      previewLimit: width >= 820 ? 4 : 2,
+    });
   }, [currentQuestion, currentSectionIndex, currentStep, questions, sectionSummaries, width]);
 
   const isCompactPhone = width < 390;
@@ -328,6 +226,14 @@ export default function QuestionnairePage() {
   }
 
   const handleAnswer = (id: string, value: string) => setAnswers((p) => ({ ...p, [id]: value }));
+
+  const handleQuestionnaireModeSelect = (nextMode: QuestionnaireMode) => {
+    if (nextMode === questionnaireMode || isActionLocked) return;
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    setQuestionnaireMode(nextMode);
+    setCurrentStep(0);
+    questionnaireScrollRef.current?.scrollTo({ y: 0, animated: false });
+  };
 
   const persistQuestionnaireDraft = async () => {
     const normalized = normalizeQuestionnaireAnswers(answers, language);
@@ -536,7 +442,7 @@ export default function QuestionnairePage() {
     if (currentQuestion.type === "textarea") {
       return (
         <TextInput
-          value={answers[currentQuestion.id]}
+          value={getQuestionnaireAnswerText(answers, currentQuestion.id)}
           onChangeText={(value) => handleAnswer(currentQuestion.id, value)}
           placeholder={currentQuestion.placeholder}
           placeholderTextColor={placeholderColor}
@@ -551,7 +457,7 @@ export default function QuestionnairePage() {
     if (currentQuestion.type === "text") {
       return (
         <TextInput
-          value={answers[currentQuestion.id]}
+          value={getQuestionnaireAnswerText(answers, currentQuestion.id)}
           onChangeText={(value) => handleAnswer(currentQuestion.id, value)}
           placeholder={currentQuestion.placeholder}
           placeholderTextColor={placeholderColor}
@@ -721,14 +627,16 @@ export default function QuestionnairePage() {
           }}
         >
           {currentQuestion.options.map((option) => {
-            const isSelected = answers[currentQuestion.id] === option;
+            const optionValue = getRadioOptionValue(option);
+            const optionLabel = getRadioOptionLabel(option);
+            const isSelected = getQuestionnaireAnswerText(answers, currentQuestion.id) === optionValue;
 
             return (
               <AnimatedChipPressable
-                key={option}
+                key={optionValue}
                 onPress={() => {
                   void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  handleAnswer(currentQuestion.id, option);
+                  handleAnswer(currentQuestion.id, optionValue);
                 }}
                 className={`rounded-lg border px-3 py-2 ${
                   isSelected ? selectedOptionClass : idleOptionClass
@@ -757,7 +665,7 @@ export default function QuestionnairePage() {
                     className={isSelected ? `${selectedOptionTextClass} font-semibold` : textClass}
                     style={[optionTextStyle, { textAlign: "center", flexShrink: 1 }]}
                   >
-                    {option}
+                    {optionLabel}
                   </Text>
                   {isSelected ? <MaterialIcons name="check-circle" size={18} color={selectedOptionIconColor} /> : null}
                 </View>
@@ -813,6 +721,57 @@ export default function QuestionnairePage() {
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
                 {currentSection?.title ?? t("questionnaire.stepOf", { step: currentStep + 1, total: questions.length })}
               </Text>
+            </View>
+
+            <View
+              className={`${cardBgClass} border rounded-2xl p-2 mb-3`}
+              style={{
+                flexDirection: usePhoneQuestionLayout ? "column" : "row",
+                gap: 8,
+              }}
+            >
+              {(["basic", "full"] as const).map((mode) => {
+                const isSelected = questionnaireMode === mode;
+                const label =
+                  mode === "basic"
+                    ? t("questionnaire.modeBasic")
+                    : t("questionnaire.modeFull");
+                const description =
+                  mode === "basic"
+                    ? t("questionnaire.modeBasicDescription")
+                    : t("questionnaire.modeFullDescription");
+
+                return (
+                  <AnimatedChipPressable
+                    key={mode}
+                    onPress={() => handleQuestionnaireModeSelect(mode)}
+                    className={`rounded-xl border px-4 py-3 ${
+                      isSelected ? selectedOptionClass : idleOptionClass
+                    }`}
+                    containerStyle={{
+                      flex: usePhoneQuestionLayout ? undefined : 1,
+                      width: usePhoneQuestionLayout ? "100%" : undefined,
+                    }}
+                    disabled={isActionLocked}
+                  >
+                    <View className="flex-row items-center" style={{ gap: 10 }}>
+                      <MaterialIcons
+                        name={isSelected ? "radio-button-checked" : "radio-button-unchecked"}
+                        size={18}
+                        color={isSelected ? selectedOptionIconColor : placeholderColor}
+                      />
+                      <View className="flex-1 min-w-0">
+                        <Text className={`${isSelected ? selectedOptionTextClass : textClass} text-sm font-semibold`}>
+                          {label}
+                        </Text>
+                        <Text className={`${isSelected ? selectedOptionTextClass : secondaryTextClass} text-xs mt-1`}>
+                          {description}
+                        </Text>
+                      </View>
+                    </View>
+                  </AnimatedChipPressable>
+                );
+              })}
             </View>
 
             <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>

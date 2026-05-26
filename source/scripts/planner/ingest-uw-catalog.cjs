@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
+const { fetchTextWithHandling } = require("../lib/fetch-with-handling.cjs");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -16,10 +18,22 @@ const {
 } = require("../../constants/transfer-planner-source");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SNAPSHOT_DIR = path.resolve(TMP_DIR, "transfer-planner-catalog-snapshots");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-uw-catalog-ingest.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-uw-catalog-ingest.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const SNAPSHOT_DIR = getTmpPath(
+  REPO_ROOT,
+  "snapshots",
+  "transfer-planner-catalog-snapshots"
+);
+const OUTPUT_JSON_PATH = getTmpPath(
+  REPO_ROOT,
+  "reports",
+  "transfer-planner-uw-catalog-ingest.json"
+);
+const OUTPUT_MD_PATH = getTmpPath(
+  REPO_ROOT,
+  "reports",
+  "transfer-planner-uw-catalog-ingest.md"
+);
 const CATALOG_YEAR_LABEL = "current-uw-course-catalog";
 const COURSE_CODE_PATTERN = /\b[A-Z][A-Z &]{0,14}\s+\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const CAMPUS_CONFIGS = [
@@ -179,18 +193,11 @@ function sha256Text(value) {
 }
 
 async function fetchText(url) {
-  const response = await fetch(url, {
-    redirect: "follow",
-    headers: {
-      "user-agent": "GatorGuideTransferPlannerCatalogIngest/1.0",
-    },
+  return fetchTextWithHandling(url, {
+    operation: "UW catalog fetch",
+    timeoutMs: 30000,
+    userAgent: "GatorGuideTransferPlannerCatalogIngest/1.0",
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-
-  return response.text();
 }
 
 function readSnapshotFallback(snapshotPath, error, label) {
@@ -272,7 +279,7 @@ function extractRequirementNotes(bodyText) {
   if (prerequisiteMatch) {
     notes.push(
       `Official UW prerequisite text: ${normalizeWhitespace(prerequisiteMatch[1])}`,
-      "Source-backed prerequisite text is preserved as a note until a parser can safely normalize AND/OR/minimum-grade semantics into graph prerequisites."
+      "prerequisite text is preserved as a note until a parser can safely normalize AND/OR/minimum-grade semantics into graph prerequisites."
     );
   }
 
@@ -360,7 +367,7 @@ function parseSubjectPage(html, config, subjectInfo, wantedCourseCodes) {
         },
       ],
       notes: [
-        `Source-backed ${config.label} catalog metadata parsed from the official UW course descriptions.`,
+        `${config.label} catalog metadata parsed from the official UW course descriptions.`,
       ],
     });
   }

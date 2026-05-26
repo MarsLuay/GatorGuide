@@ -11,6 +11,9 @@ export type { TranscriptCourseEntry } from "./transfer-planner/course-code";
 export {
   buildRequirementStatuses,
   countCompletedRequirements,
+  isUserUnselectedRequirementOptionMarker,
+  markUserUnselectedRequirementOptionId,
+  normalizeUserUnselectedRequirementOptionIds,
 } from "./transfer-planner/requirement-status";
 export type { TransferRequirementStatus } from "./transfer-planner/requirement-status";
 export * from "./transfer-planner/source-backed-requirements";

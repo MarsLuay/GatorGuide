@@ -1,12 +1,12 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { collection, deleteDoc, deleteField, doc, getDocs, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import {
   FIRESTORE_COLLECTIONS,
   FIRESTORE_USER_SUBCOLLECTIONS,
-  getSavedCollegesPendingStorageKey,
 } from "@/constants/schema";
 import { collegeService, type College } from "./college.service";
 import { db } from "@/services/firebase/firebase";
+import { getSavedCollegesPendingStorageKey } from "@/services/storage/local-storage-contracts";
 import { normalizeRateValue } from "@/utils/locale-format";
 
 type SavedCollegeSnapshot = Omit<College, "raw"> & {
@@ -189,7 +189,7 @@ class SavedCollegesService {
     if (!uid) return [];
 
     try {
-      const raw = await AsyncStorage.getItem(this.getPendingMutationsStorageKey(uid));
+      const raw = await localStorageService.getItem(this.getPendingMutationsStorageKey(uid));
       if (!raw) return [];
       const parsed = JSON.parse(raw) as PendingSavedCollegeMutation[];
       return this.reducePendingMutations(Array.isArray(parsed) ? parsed : []);
@@ -205,11 +205,11 @@ class SavedCollegesService {
     const storageKey = this.getPendingMutationsStorageKey(uid);
 
     if (reduced.length === 0) {
-      await AsyncStorage.removeItem(storageKey);
+      await localStorageService.removeItem(storageKey);
       return;
     }
 
-    await AsyncStorage.setItem(storageKey, JSON.stringify(reduced));
+    await localStorageService.setItem(storageKey, JSON.stringify(reduced));
   }
 
   private applyPendingMutations(base: College[], pendingMutations: PendingSavedCollegeMutation[]) {
@@ -351,7 +351,7 @@ class SavedCollegesService {
 
   async clearPendingSyncState(uid: string): Promise<void> {
     if (!uid) return;
-    await AsyncStorage.removeItem(this.getPendingMutationsStorageKey(uid));
+    await localStorageService.removeItem(this.getPendingMutationsStorageKey(uid));
   }
 
   async clearLegacySavedCollegesField(uid: string): Promise<void> {

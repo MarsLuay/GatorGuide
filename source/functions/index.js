@@ -4,6 +4,9 @@ const admin = require("firebase-admin");
 const { geminiGateway } = require("./geminiGateway");
 const { opportunityGateway } = require("./opportunityGateway");
 const {
+  fetchWithTimeout,
+} = require("./fetchWithTimeout");
+const {
   FirestoreRateLimitStore,
   assertBodySize,
   buildEmailPayload,
@@ -24,6 +27,7 @@ setGlobalOptions({ maxInstances: 10, region: "us-central1" });
 const SUPPORT_TO_EMAIL = "gatorguide@outlook.com";
 const SUPPORT_FROM_EMAIL = process.env.SUPPORT_FROM_EMAIL || "onboarding@resend.dev";
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
+const RESEND_TIMEOUT_MS = 10000;
 const supportRateLimitStore = new FirestoreRateLimitStore(admin.firestore());
 const supportHttpOptions = {
   cors: true,
@@ -39,13 +43,20 @@ async function sendWithResend(payload) {
     throw error;
   }
 
-  const sendRes = await fetch(RESEND_ENDPOINT, {
+  const sendRes = await fetchWithTimeout(RESEND_ENDPOINT, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
+    operation: "Email provider request",
+    timeoutErrorFactory: () => {
+      const timeoutError = new Error("Email provider request timed out");
+      timeoutError.status = 504;
+      return timeoutError;
+    },
+    timeoutMs: RESEND_TIMEOUT_MS,
   });
 
   if (!sendRes.ok) {

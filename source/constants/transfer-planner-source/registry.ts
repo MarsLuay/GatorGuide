@@ -16,11 +16,12 @@ import {
   TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES,
 } from "./equivalency-guide.generated";
 import {
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
-  TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY,
+  getTransferPlannerParsedRequirementBlocksForPlanId,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS,
+  TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY,
 } from "./requirement-source-adapters.generated";
 import {
-  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
+  TRANSFER_PLANNER_PRIMARY_PROMOTIONS,
 } from "./primary-source-promotions.generated";
 import {
   buildTransferPlannerOwnerId,
@@ -31,11 +32,11 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } from "./requirement-diff-classifications.generated";
 import {
-  TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
+  TRANSFER_PLANNER_GAP_ENTRIES,
 } from "./source-gaps.generated";
 import {
-  TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
-  TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
+  TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS,
+  TRANSFER_PLANNER_FINGERPRINTS,
 } from "./source-fingerprints.generated";
 import {
   materializeTransferPlannerPathways,
@@ -45,7 +46,7 @@ import {
   normalizeTransferPlannerText,
   stripTransferPlannerPlanTitlePrefix,
 } from "./pathway-title-normalization";
-import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
+import { TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES } from "./derived-shared-source-plans";
 import {
   applyTransferPlannerManualSourceLinkOverride,
   getTransferPlannerManualPreferredPrimaryUrl,
@@ -186,13 +187,13 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
 for (const supplementalSubject of ["THLEAD", "TSTAT"]) {
   KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.add(supplementalSubject);
 }
-const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
+const INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
   /Auto-promotion was intentionally skipped/i;
-const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
+const NON_REQUIREMENT_CUE_PATTERN =
   /\b(suggested general education|not required for transferring|approved list|highly recommended|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?)\b/i;
 const DATE_PATTERN =
   /\b(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}\b/;
-const GRC_AVAILABILITY_SOURCE_LINKS: TransferPlannerSourceLink[] = [
+const GRC_AVAILABILITY_LINKS: TransferPlannerSourceLink[] = [
   {
     label: "Green River annual schedule 2024-2025",
     url: "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
@@ -241,7 +242,7 @@ const TACOMA_BABA_SUPPLEMENTAL_PATHWAY_SOURCES =
         planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
         pathwayId,
         campusId: "uw-tacoma",
-        majorTitle: "Bachelor of Arts in Business Administration (BABA)",
+        majorTitle: "Business Administration (BA)",
         label,
         links: [
           {
@@ -251,6 +252,47 @@ const TACOMA_BABA_SUPPLEMENTAL_PATHWAY_SOURCES =
         ],
         validationNotes: [
           "Supplemental parser-backed pathway metadata retained until Tacoma BABA option sections are emitted canonically.",
+        ],
+      }) satisfies SupplementalParserOnlyPathwaySource
+  );
+const TACOMA_CRIMINAL_JUSTICE_SUPPLEMENTAL_PATHWAY_SOURCES =
+  [
+    [
+      "campus-pathway",
+      "Campus pathway",
+      "UW Tacoma Criminal Justice campus curriculum",
+      "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
+    ],
+    [
+      "online-pathway",
+      "Online pathway",
+      "UW Tacoma Criminal Justice online curriculum",
+      "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+    ],
+  ].map(
+    ([pathwayId, label, linkLabel, url]) =>
+      ({
+        planId: "uw-tacoma-criminal-justice",
+        pathwayId,
+        campusId: "uw-tacoma",
+        majorTitle: "Criminal Justice (BA)",
+        label,
+        links: [
+          {
+            label: linkLabel,
+            url,
+          },
+          ...(pathwayId === "online-pathway"
+            ? [
+                {
+                  label: "UW Tacoma Criminal Justice online admission requirements",
+                  url: "https://www.tacoma.uw.edu/swcj/criminal-justice-online-admission-requirements-and-how-apply",
+                },
+              ]
+            : []),
+        ],
+        validationNotes: [
+          "Supplemental parser-backed pathway metadata separates Tacoma Criminal Justice campus and online curricula.",
         ],
       }) satisfies SupplementalParserOnlyPathwaySource
   );
@@ -309,6 +351,39 @@ const TACOMA_HISTORY_SUPPLEMENTAL_PATHWAY_SOURCES =
         ],
       }) satisfies SupplementalParserOnlyPathwaySource
   );
+const TACOMA_INFORMATION_TECHNOLOGY_SUPPLEMENTAL_PATHWAY_SOURCES =
+  [
+    [
+      "information-assurance-cybersecurity-option",
+      "Information Assurance and Cybersecurity option",
+      "UW Tacoma Information Technology degree options",
+    ],
+    [
+      "digital-mobile-forensics-option",
+      "Digital Mobile Forensics option",
+      "UW Tacoma Information Technology degree options",
+    ],
+  ].map(
+    ([pathwayId, label, linkLabel]) =>
+      ({
+        planId: "uw-tacoma-information-technology",
+        pathwayId,
+        campusId: "uw-tacoma",
+        majorTitle: "Information Technology (BS)",
+        label,
+        links: [
+          {
+            label: linkLabel,
+            url: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+          },
+        ],
+        validationNotes: [
+          pathwayId === "digital-mobile-forensics-option"
+            ? "Digital Mobile Forensics is modeled as a suspended option; the Information Technology major remains active."
+            : "Supplemental parser-backed pathway metadata separates Tacoma IT degree options.",
+        ],
+      }) satisfies SupplementalParserOnlyPathwaySource
+  );
 const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[] = [
   {
     planId: "uw-seattle-classical-studies",
@@ -336,6 +411,42 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
     ],
     validationNotes: [
       "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-computer-science-and-systems",
+    campusId: "uw-tacoma",
+    ownerTitle: "Computer Science and Systems",
+    links: [
+      {
+        label: "UW Tacoma Computer Science and Systems program",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BA degree requirements",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BS degree requirements",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed parent metadata models Tacoma CSS BA/BS degree pages as pathways under one canonical program.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-computer-science-and-systems-ba",
+    campusId: "uw-tacoma",
+    ownerTitle: "Computer Science and Systems (BA)",
+    links: [
+      {
+        label: "UW Tacoma Computer Science and Systems BA degree requirements",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed BA alias retained while the canonical Tacoma CSS parent models BA/BS degree pages as child pathways.",
     ],
   },
   {
@@ -383,6 +494,7 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
 ];
 const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySource[] = [
   ...TACOMA_BABA_SUPPLEMENTAL_PATHWAY_SOURCES,
+  ...TACOMA_CRIMINAL_JUSTICE_SUPPLEMENTAL_PATHWAY_SOURCES,
   {
     planId: "uw-bothell-chemistry-bs",
     pathwayId: "b-s-in-chemistry-general-option",
@@ -644,6 +756,7 @@ const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySou
     ],
   },
   ...TACOMA_HISTORY_SUPPLEMENTAL_PATHWAY_SOURCES,
+  ...TACOMA_INFORMATION_TECHNOLOGY_SUPPLEMENTAL_PATHWAY_SOURCES,
   {
     planId: "uw-tacoma-writing-studies",
     pathwayId: "creative-writing-track",
@@ -669,7 +782,7 @@ const SUPPLEMENTAL_DERIVED_PATHWAY_GRC_COURSES_BY_KEY: Partial<Record<string, st
   "uw-tacoma-sustainable-urban-development::gis-option": ["GIS 260"],
   "uw-tacoma-urban-studies::gis-option": ["GIS 202"],
 };
-const INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS = new Set([
+const INTERNAL_GENERATED_BASE_PLAN_IDS = new Set([
   ...TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => plan.id),
   ...SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES.map((entry) => entry.planId),
 ]);
@@ -1014,7 +1127,7 @@ function toSourceLinks(links?: TransferPlannerLink[]) {
   );
 }
 
-const SOURCE_LINK_IDENTITY_STOP_TOKENS = new Set([
+const LINK_IDENTITY_STOP_TOKENS = new Set([
   "and",
   "the",
   "of",
@@ -1043,7 +1156,7 @@ function buildSourceLinkIdentityTokens(...values: Array<string | null | undefine
       .filter(
         (token) =>
           token.length >= 2 &&
-          !SOURCE_LINK_IDENTITY_STOP_TOKENS.has(token)
+          !LINK_IDENTITY_STOP_TOKENS.has(token)
       )
   );
 }
@@ -1064,10 +1177,41 @@ function sourceIdentityTokenMatches(token: string, candidateTokens: Set<string>)
   return false;
 }
 
+function getSourceLinkBaBsDegreeKind(...values: Array<string | null | undefined>) {
+  const searchable = normalizeTransferPlannerText(values.filter(Boolean).join(" "))
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  if (/\b(?:b\s*a|ba|bachelor\s+of\s+arts)\b/.test(searchable)) {
+    return "ba";
+  }
+  if (/\b(?:b\s*s|bs|bachelor\s+of\s+science)\b/.test(searchable)) {
+    return "bs";
+  }
+  return null;
+}
+
+function pathwayHasExplicitBaBsDegreeRoute(pathway: TransferPlannerMajorPathway) {
+  const pathwayText = normalizeTransferPlannerText(`${pathway.id} ${pathway.label}`)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  return /\b(?:ba|bs|bachelor of arts|bachelor of science)\s+route\b/.test(pathwayText) ||
+    /\bbachelor of (?:arts|science)\b/.test(pathwayText) ||
+    /\b(?:ba|bs)\s+option\b/.test(pathwayText) ||
+    /^(?:ba|bs|bachelor of arts|bachelor of science)$/.test(pathwayText.trim());
+}
+
 function sourceLinkMatchesPathwayIdentity(
   link: TransferPlannerSourceLink,
   pathway: TransferPlannerMajorPathway
 ) {
+  const pathwayDegreeKind = pathwayHasExplicitBaBsDegreeRoute(pathway)
+    ? getSourceLinkBaBsDegreeKind(pathway.id, pathway.label)
+    : null;
+  const linkDegreeKind = getSourceLinkBaBsDegreeKind(link.label, link.url, link.note);
+  if (pathwayDegreeKind && linkDegreeKind) {
+    return pathwayDegreeKind === linkDegreeKind;
+  }
+
   const pathwayTokens = buildSourceLinkIdentityTokens(pathway.id, pathway.label);
   if (!pathwayTokens.length) {
     return false;
@@ -1081,8 +1225,28 @@ function sourceLinkMatchesPathwayIdentity(
   );
 }
 
-function isPathwaySpecificSourceLink(link: TransferPlannerSourceLink) {
-  return PATHWAY_SOURCE_CUE_PATTERN.test(`${link.label} ${link.url}`);
+function planHasBaBsPathwayRoutes(planId?: string | null) {
+  if (!planId) {
+    return false;
+  }
+
+  const plan = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.find(
+    (entry) => entry.id === planId
+  );
+  return Boolean(
+    plan?.pathways?.some((pathway) => pathwayHasExplicitBaBsDegreeRoute(pathway))
+  );
+}
+
+function isPathwaySpecificSourceLink(
+  link: TransferPlannerSourceLink,
+  planId?: string | null
+) {
+  const linkDegreeKind = getSourceLinkBaBsDegreeKind(link.label, link.url, link.note);
+  return (
+    PATHWAY_CUE_PATTERN.test(`${link.label} ${link.url}`) ||
+    (linkDegreeKind !== null && (!planId || planHasBaBsPathwayRoutes(planId)))
+  );
 }
 
 function materializeMatchedPathwayRequirementSourceLink(link: TransferPlannerSourceLink) {
@@ -1119,9 +1283,13 @@ function isCleanTacomaTrackPathwayForSiblingInference(pathway: TransferPlannerMa
 
 function buildTacomaSiblingPathwaySourceUrl(
   parentLink: TransferPlannerSourceLink,
+  planId: string,
   pathway: TransferPlannerMajorPathway
 ) {
-  if (!isOfficialTacomaSourceLink(parentLink) || isPathwaySpecificSourceLink(parentLink)) {
+  if (
+    !isOfficialTacomaSourceLink(parentLink) ||
+    isPathwaySpecificSourceLink(parentLink, planId)
+  ) {
     return null;
   }
 
@@ -1158,7 +1326,7 @@ function inferTacomaSiblingPathwaySourceLinks(
 
   return dedupeLinks(
     parentSourceLinks
-      .map((link) => buildTacomaSiblingPathwaySourceUrl(link, pathway))
+      .map((link) => buildTacomaSiblingPathwaySourceUrl(link, plan.id, pathway))
       .filter((url): url is string => Boolean(url))
       .map((url) => ({
         label: `${normalizeTransferPlannerText(pathway.label)} degree requirements`,
@@ -1173,8 +1341,8 @@ function getSourceManifestOwnerId(planId: string, pathwayId?: string | null) {
   return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
 }
 
-const AUTO_PROMOTED_PRIMARY_SOURCE_LINKS_BY_OWNER_ID = new Map(
-  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.map((entry) => [
+const AUTO_PROMOTED_PRIMARY_LINKS_BY_OWNER_ID = new Map(
+  TRANSFER_PLANNER_PRIMARY_PROMOTIONS.map((entry) => [
     entry.ownerId,
     {
       label: entry.label,
@@ -1182,10 +1350,46 @@ const AUTO_PROMOTED_PRIMARY_SOURCE_LINKS_BY_OWNER_ID = new Map(
     } satisfies TransferPlannerSourceLink,
   ])
 );
-const SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID = new Map<
+const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
   string,
   TransferPlannerSourceLink[]
 >([
+  [
+    "uw-tacoma-bachelor-of-arts-in-business-administration",
+    [
+      {
+        label: "UW Tacoma Business Administration degree options",
+        url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+        note:
+          "Canonical Tacoma Business Administration parent source; BABA remains a source/search alias while options are modeled as child pathways.",
+      },
+      {
+        label: "UW Tacoma BA in Business Administration",
+        url: "https://www.tacoma.uw.edu/business/baba",
+        note:
+          "Supporting admissions/program source for the canonical Business Administration parent.",
+      },
+    ],
+  ],
+  [
+    "uw-tacoma-computer-science-and-systems",
+    [
+      {
+        label: "UW Tacoma Computer Science and Systems program",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+        note:
+          "Canonical Tacoma CSS parent source; BA and BS degree pages are modeled as child pathways.",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BA degree requirements",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BS degree requirements",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+    ],
+  ],
   [
     "uw-tacoma-computer-science-and-systems-bs",
     [
@@ -1270,7 +1474,7 @@ function mergeAutoPromotedPrimarySourceLink(
   planId: string,
   pathwayId?: string | null
 ) {
-  const promotedLink = AUTO_PROMOTED_PRIMARY_SOURCE_LINKS_BY_OWNER_ID.get(
+  const promotedLink = AUTO_PROMOTED_PRIMARY_LINKS_BY_OWNER_ID.get(
     getSourceManifestOwnerId(planId, pathwayId)
   );
   return promotedLink ? dedupeLinks([promotedLink, ...links]) : dedupeLinks(links);
@@ -1289,7 +1493,7 @@ function getOwnerSourceLinks(
 }
 
 function getSupplementalManifestSourceLinks(planId: string, pathwayId?: string | null) {
-  return SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID.get(
+  return SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID.get(
     getSourceManifestOwnerId(planId, pathwayId)
   ) ?? [];
 }
@@ -1329,8 +1533,8 @@ function getLastValidatedOn(validationNotes: string[]) {
 const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
-const PATHWAY_SOURCE_CUE_PATTERN =
-  /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_CUE_PATTERN =
+  /\b(track|option|route|pathway|concentration|specialization|campus|online)\b/i;
 const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
   /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
 const APPROVED_COURSE_LIST_CUE_PATTERN =
@@ -1341,12 +1545,12 @@ const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
   /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
 const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
   /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?|suggested course pathways?|computing specializations?|capstones?)\b|\/(?:courses?|course-list|course-lists|print\/courses|capstones?|computing-specializations)(?:[-/?#]|$)/i;
-const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+const ADMISSION_PREREQUISITE_CUE_PATTERN =
   /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
-const SUPPORT_SOURCE_CUE_PATTERN =
-  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
+const SUPPORT_CUE_PATTERN =
+  /\b(advising|adviser|advisor|study abroad|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
-  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|degreq/i;
 
 function isLinkedDocumentSourceUrl(url: unknown) {
   return /\.(?:pdf|docx)(?:$|[?#])/i.test(String(url ?? ""));
@@ -1387,7 +1591,7 @@ function canSourceManifestRoleCreateSchedulableRows(role: TransferPlannerSourceM
 function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlannerSourceManifestRole {
   const searchable = `${link.label} ${link.url}`.toLowerCase();
 
-  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_CUE_PATTERN.test(searchable)) {
     return "pathway-degree-sheet";
   }
 
@@ -1414,11 +1618,11 @@ function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlanner
     return "non-schedulable-course-list";
   }
 
-  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (ADMISSION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
     return "admission-prerequisite-source";
   }
 
-  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+  if (SUPPORT_CUE_PATTERN.test(searchable)) {
     return "support-source";
   }
 
@@ -1532,7 +1736,7 @@ function isTransferPlannerSourceManifestParserType(
 }
 
 function getAutoPromotedSourceManifestRole(
-  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number],
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_PROMOTIONS)[number],
   fallbackRole: TransferPlannerSourceManifestRole
 ): TransferPlannerSourceManifestRole {
   switch (promotion.sourceRole) {
@@ -1573,7 +1777,7 @@ function getAutoPromotedSourceManifestRole(
 }
 
 function getAutoPromotedSourceManifestParserType(
-  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number],
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_PROMOTIONS)[number],
   link: TransferPlannerSourceLink,
   role: TransferPlannerSourceManifestRole
 ): TransferPlannerSourceManifestParserType {
@@ -1658,7 +1862,7 @@ const PATHWAY_TITLE_SUFFIX_PATTERNS = [
   /\s+degree preparation and admissions$/i,
   /\s+before-enrollment degree head starts$/i,
   /\s+stay-at-green-river degree support$/i,
-  /\s+source-backed degree planning$/i,
+  /\s+degree planning$/i,
   /\s+parsed official source requirements$/i,
   /\s+parsed official requirement cues$/i,
   /\s+parsed choices and pathway notes$/i,
@@ -1882,7 +2086,7 @@ function resolveRegistryPathwayLabel(
   const scopedDegreeMapBlocks = TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter(
     (entry) => entry.planId === plan.id && entry.pathwayId === pathway.id
   );
-  const scopedParsedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+  const scopedParsedBlocks = getTransferPlannerParsedRequirementBlocksForPlanId(plan.id).filter(
     (entry) => entry.planId === plan.id && entry.pathwayId === pathway.id
   );
 
@@ -1947,11 +2151,11 @@ function resolveRegistryPathwayLabel(
   return resolvedLabel;
 }
 
-const BLOCKED_PRIMARY_SOURCE_URL_PATTERN =
+const BLOCKED_PRIMARY_URL_PATTERN =
   /\/saml\/login|shibboleth\.sso\/login|\/print\/courses|\/wp-login/i;
 
 function isBlockedPrimarySourceUrl(url: string) {
-  return BLOCKED_PRIMARY_SOURCE_URL_PATTERN.test(String(url ?? ""));
+  return BLOCKED_PRIMARY_URL_PATTERN.test(String(url ?? ""));
 }
 
 function isSafeFallbackPrimaryRole(role: TransferPlannerSourceManifestRole) {
@@ -2149,7 +2353,7 @@ function buildEffectiveYearRangesFromLabels(labels: string[]) {
         note:
           currentStart.label === currentEnd.label
             ? undefined
-            : "Continuous source-backed coverage across adjacent academic years.",
+            : "Continuous coverage across adjacent academic years.",
       });
       currentStart = label;
       currentEnd = label;
@@ -2161,7 +2365,7 @@ function buildEffectiveYearRangesFromLabels(labels: string[]) {
       note:
         currentStart.label === currentEnd.label
           ? undefined
-          : "Continuous source-backed coverage across adjacent academic years.",
+          : "Continuous coverage across adjacent academic years.",
     });
   }
 
@@ -2248,7 +2452,7 @@ function getPathwaySources(
   const parentSourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
   const pathwaySourceLinks = getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks);
   const broadParentSourceLinks = parentSourceLinks.filter(
-    (link) => !isPathwaySpecificSourceLink(link)
+    (link) => !isPathwaySpecificSourceLink(link, plan.id)
   );
   const matchingPathwayLinks = pathwaySourceLinks
     .filter((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
@@ -2296,7 +2500,7 @@ function filterPathwaySpecificLinksForMajorManifest(
     return links;
   }
 
-  return links.filter((link) => !isPathwaySpecificSourceLink(link));
+  return links.filter((link) => !isPathwaySpecificSourceLink(link, planId));
 }
 
 function addPlanChecklistCourses(
@@ -2421,7 +2625,7 @@ function addParsedRequirementSourceCourses(
     : `${block.planId}:parsed-source:${block.id}`;
   const sourceLinks = getParsedRequirementSourceLinks(block);
   const notes = compact([
-    `Source-backed UW requirement parser (${block.adapterId}) for ${block.ownerTitle}.`,
+    `UW requirement parser (${block.adapterId}) for ${block.ownerTitle}.`,
   ]);
 
   for (const code of parsedCourseCodes) {
@@ -2518,7 +2722,7 @@ function finalizeCourseRegistryEntry(
   if (availabilityEntry) {
     entry.sourceKinds.add("availability");
     entry.sourceContexts.add("grc-annual-schedule-history");
-    for (const link of GRC_AVAILABILITY_SOURCE_LINKS) {
+    for (const link of GRC_AVAILABILITY_LINKS) {
       entry.sourceLinks.set(link.url, link);
     }
     entry.latestAvailabilitySummary = formatAvailabilitySummary(availabilityEntry);
@@ -2660,7 +2864,7 @@ function buildCourseRegistry() {
     }
   }
 
-  for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+  for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS) {
     addParsedRequirementSourceCourses(registry, parsedSource);
   }
 
@@ -2760,7 +2964,7 @@ function hasUnsafeSourceBackedClassificationValidationNote(
   classification: TransferPlannerRequirementDiffClassificationEntry
 ) {
   return (classification.validationNotes ?? []).some((note) =>
-    SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN.test(String(note ?? ""))
+    INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN.test(String(note ?? ""))
   );
 }
 
@@ -2841,7 +3045,7 @@ function parsedRequirementSourceBlockMatchesClassificationScope(
 function isClassificationBackedBySchedulableParsedRequirementSource(
   classification: TransferPlannerRequirementDiffClassificationEntry
 ) {
-  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.some(
+  return getTransferPlannerParsedRequirementBlocksForPlanId(classification.planId).some(
     (block) =>
       block.ok &&
       parsedRequirementSourceBlockMatchesClassificationScope(block, classification) &&
@@ -2881,7 +3085,7 @@ function shouldIncludeStudentFacingSourceBackedClassification(
   }
 
   return requirementCueLines.some(
-    (line) => !SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(String(line ?? ""))
+    (line) => !NON_REQUIREMENT_CUE_PATTERN.test(String(line ?? ""))
   );
 }
 
@@ -2910,7 +3114,7 @@ function getPhaseDegreeMapTitle(
     case "stay-at-grc":
       return `${majorTitle} stay-at-Green-River degree support`;
     default:
-      return `${majorTitle} source-backed degree planning`;
+      return `${majorTitle} degree planning`;
   }
 }
 
@@ -3110,7 +3314,7 @@ function buildDegreeMapBlockRegistry() {
     });
   }
 
-  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS) {
     if (!block.ok || !canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
       continue;
     }
@@ -3382,7 +3586,7 @@ function pushSourceManifestEntries(
 
 function upsertAutoPromotedPrimarySourceManifestEntry(
   entries: TransferPlannerSourceManifestEntry[],
-  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_PROMOTIONS)[number]
 ) {
   const canonicalPromotion = normalizeAutoPromotedPrimarySourceOwner(promotion);
   if (
@@ -3457,7 +3661,7 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
 }
 
 function normalizeAutoPromotedPrimarySourceOwner(
-  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_PROMOTIONS)[number]
 ) {
   if (promotion.ownerType !== "pathway" || !promotion.planId || !promotion.pathwayId) {
     return promotion;
@@ -3481,9 +3685,19 @@ function normalizeAutoPromotedPrimarySourceOwner(
 }
 
 function hasActiveSourceManifestOwner(
-  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_PROMOTIONS)[number]
 ) {
   const canonicalPromotion = normalizeAutoPromotedPrimarySourceOwner(promotion);
+  if (
+    canonicalPromotion.planId &&
+    canonicalPromotion.ownerId &&
+    canonicalPromotion.campusId &&
+    canonicalPromotion.ownerTitle &&
+    canonicalPromotion.url
+  ) {
+    return true;
+  }
+
   switch (canonicalPromotion.ownerType) {
     case "major":
       return (
@@ -3584,7 +3798,7 @@ function buildSourceManifestRegistry() {
     ownerId: "grc-annual-schedules",
     ownerTitle: "Green River annual schedules",
     campusId: "grc",
-    links: GRC_AVAILABILITY_SOURCE_LINKS,
+    links: GRC_AVAILABILITY_LINKS,
     validationNotes: [
       "Used by the generated Green River availability and schedule-metadata scripts.",
     ],
@@ -3596,11 +3810,11 @@ function buildSourceManifestRegistry() {
     campusId: "grc",
     links: [UW_GRC_EQUIVALENCY_LINK],
     validationNotes: [
-      "Used by the generated UW Green River equivalency parser and source-backed transfer mapping.",
+      "Used by the generated UW Green River equivalency parser and transfer mapping.",
     ],
   });
 
-  for (const promotion of TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS) {
+  for (const promotion of TRANSFER_PLANNER_PRIMARY_PROMOTIONS) {
     if (!hasActiveSourceManifestOwner(promotion)) {
       continue;
     }
@@ -3779,37 +3993,37 @@ export const TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY = buildRequirementAtomR
 export const TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY = buildDegreeMapBlockRegistry();
 export const TRANSFER_PLANNER_POLICY_REGISTRY = buildPolicyRegistry();
 export const TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY = buildPathwayRegistry();
-export const TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY = buildSourceManifestRegistry();
-export const TRANSFER_PLANNER_SOURCE_GAP_REGISTRY = TRANSFER_PLANNER_SOURCE_GAP_ENTRIES;
-export const TRANSFER_PLANNER_SOURCE_FINGERPRINT_REGISTRY = TRANSFER_PLANNER_SOURCE_FINGERPRINTS;
-export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY =
-  TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS;
-export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY =
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS;
-export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY =
-  TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY;
+export const TRANSFER_PLANNER_MANIFEST_REGISTRY = buildSourceManifestRegistry();
+export const TRANSFER_PLANNER_GAP_REGISTRY = TRANSFER_PLANNER_GAP_ENTRIES;
+export const TRANSFER_PLANNER_FINGERPRINT_REGISTRY = TRANSFER_PLANNER_FINGERPRINTS;
+export const TRANSFER_PLANNER_REQUIREMENT_FINGERPRINT_REGISTRY =
+  TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS;
+export const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY =
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS;
+export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_REGISTRY_SUMMARY =
+  TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY;
 export const TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY =
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS;
 export const TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY =
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY;
 
-const HIDDEN_SOURCE_GAP_PLAN_IDS = new Set(
-  TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.filter(
+const HIDDEN_GAP_PLAN_IDS = new Set(
+  TRANSFER_PLANNER_GAP_REGISTRY.filter(
     (entry) => entry.studentVisibility === "hidden" && !entry.pathwayId
   ).map((entry) => entry.planId)
 );
-const HIDDEN_SOURCE_GAP_PATHWAY_KEYS = new Set(
-  TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.filter(
+const HIDDEN_GAP_PATHWAY_KEYS = new Set(
+  TRANSFER_PLANNER_GAP_REGISTRY.filter(
     (entry) => entry.studentVisibility === "hidden" && entry.pathwayId
   ).map((entry) => `${entry.planId}::${entry.pathwayId}`)
 );
-const ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES =
-  TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter((alias) =>
-    INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS.has(alias.sourcePlanId)
+const ACTIVE_DERIVED_SHARED_PLAN_ALIASES =
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.filter((alias) =>
+    INTERNAL_GENERATED_BASE_PLAN_IDS.has(alias.sourcePlanId)
   );
-const VISIBLE_INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS = new Set(
-  [...INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS].filter(
-    (planId) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(planId)
+const VISIBLE_INTERNAL_GENERATED_BASE_PLAN_IDS = new Set(
+  [...INTERNAL_GENERATED_BASE_PLAN_IDS].filter(
+    (planId) => !HIDDEN_GAP_PLAN_IDS.has(planId)
   )
 );
 
@@ -3847,12 +4061,81 @@ function canParsedRequirementSourceBlockCreateRequiredScheduleRows(
 }
 
 function getPlanMaterializationParsedRequirementSourceBlocks(planId: string) {
-  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+  return getTransferPlannerParsedRequirementBlocksForPlanId(planId).filter(
     (entry) =>
       entry.planId === planId &&
       entry.ok &&
       canParsedRequirementSourceBlockCreateRequiredScheduleRows(entry)
   );
+}
+
+function getParsedRequirementBlockPathwayIdFromOwnerId(
+  planId: string | null | undefined,
+  ownerId: string | null | undefined
+) {
+  const normalizedPlanId = String(planId ?? "").trim();
+  const normalizedOwnerId = String(ownerId ?? "").trim();
+  const pathwayMarker = ":pathway:";
+  const pathwayMarkerIndex = normalizedOwnerId.indexOf(pathwayMarker);
+  if (!normalizedPlanId || pathwayMarkerIndex < 0) {
+    return null;
+  }
+
+  const ownerPlanId = normalizedOwnerId.slice(0, pathwayMarkerIndex);
+  if (ownerPlanId !== normalizedPlanId) {
+    return null;
+  }
+
+  const pathwayId = normalizedOwnerId.slice(pathwayMarkerIndex + pathwayMarker.length);
+  return pathwayId ? normalizeTransferPlannerPathwayId(normalizedPlanId, pathwayId) : null;
+}
+
+function getParsedRequirementSourceBlockScopePathwayId(
+  block: Pick<TransferPlannerParsedRequirementSourceBlock, "planId" | "pathwayId" | "ownerId">
+) {
+  const explicitPathwayId = block.pathwayId
+    ? normalizeTransferPlannerPathwayId(block.planId, block.pathwayId)
+    : null;
+  return (
+    explicitPathwayId ??
+    getParsedRequirementBlockPathwayIdFromOwnerId(block.planId, block.ownerId)
+  );
+}
+
+function getStoredParsedRequirementSourceBlockPathwayId(
+  block: Pick<TransferPlannerParsedRequirementSourceBlock, "planId" | "pathwayId" | "ownerId">
+) {
+  const explicitPathwayId = String(block.pathwayId ?? "").trim();
+  return (
+    explicitPathwayId ||
+    getParsedRequirementBlockPathwayIdFromOwnerId(block.planId, block.ownerId)
+  );
+}
+
+function parsedRequirementSourceBlockMatchesScope(
+  block: Pick<TransferPlannerParsedRequirementSourceBlock, "planId" | "pathwayId" | "ownerId">,
+  planId: string,
+  pathwayId?: string | null
+) {
+  if (block.planId !== planId) {
+    return false;
+  }
+
+  const blockPathwayId = getParsedRequirementSourceBlockScopePathwayId(block);
+  const normalizedPathwayId =
+    pathwayId === undefined ? undefined : normalizeTransferPlannerPathwayId(planId, pathwayId);
+  return normalizedPathwayId === undefined
+    ? true
+    : normalizedPathwayId === null
+      ? !blockPathwayId
+      : blockPathwayId === normalizedPathwayId;
+}
+
+function normalizeParsedRequirementSourceBlockPathway(
+  block: TransferPlannerParsedRequirementSourceBlock
+) {
+  const pathwayId = getStoredParsedRequirementSourceBlockPathwayId(block);
+  return pathwayId === (block.pathwayId ?? null) ? block : { ...block, pathwayId };
 }
 
 function buildSummaryRegistryBackedBasePathways(plan: TransferPlannerMajorPlan) {
@@ -3889,7 +4172,7 @@ function countMaterializedPathwaysForPlan(
   }
 
   return materializedPathways.filter(
-    (pathway) => !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${hiddenGapPlanId}::${pathway.id}`)
+    (pathway) => !HIDDEN_GAP_PATHWAY_KEYS.has(`${hiddenGapPlanId}::${pathway.id}`)
   ).length;
 }
 
@@ -3898,8 +4181,8 @@ const BOOTSTRAP_PLANS_BY_ID = new Map(
 );
 
 function countDerivedSharedSourceAliasPathways(includeHiddenSourceGaps = true) {
-  return ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.reduce((count, alias) => {
-    if (!includeHiddenSourceGaps && HIDDEN_SOURCE_GAP_PLAN_IDS.has(alias.derivedPlanId)) {
+  return ACTIVE_DERIVED_SHARED_PLAN_ALIASES.reduce((count, alias) => {
+    if (!includeHiddenSourceGaps && HIDDEN_GAP_PLAN_IDS.has(alias.derivedPlanId)) {
       return count;
     }
 
@@ -3916,32 +4199,32 @@ function countDerivedSharedSourceAliasPathways(includeHiddenSourceGaps = true) {
   }, 0);
 }
 
-const SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
+const GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
   (count, plan) => count + countMaterializedPathwaysForPlan(plan),
   0
 ) + countDerivedSharedSourceAliasPathways();
 
-const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
+const STUDENT_VISIBLE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
   (count, plan) => {
-    if (HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)) return count;
+    if (HIDDEN_GAP_PLAN_IDS.has(plan.id)) return count;
     return count + countMaterializedPathwaysForPlan(plan, { includeHiddenSourceGaps: false });
   },
   countDerivedSharedSourceAliasPathways(false)
 );
 
-export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
+export const TRANSFER_PLANNER_SUMMARY = {
   generatedOn: "2026-04-02",
   sourceGeneratedMajorPlanCount:
-    INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS.size + ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.length,
+    INTERNAL_GENERATED_BASE_PLAN_IDS.size + ACTIVE_DERIVED_SHARED_PLAN_ALIASES.length,
   studentVisibleMajorPlanCount:
-    VISIBLE_INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS.size +
-    ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter(
-      (alias) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(alias.derivedPlanId)
+    VISIBLE_INTERNAL_GENERATED_BASE_PLAN_IDS.size +
+    ACTIVE_DERIVED_SHARED_PLAN_ALIASES.filter(
+      (alias) => !HIDDEN_GAP_PLAN_IDS.has(alias.derivedPlanId)
     ).length,
-  hiddenSourceGapMajorPlanCount: HIDDEN_SOURCE_GAP_PLAN_IDS.size,
-  sourceGeneratedPathwayCount: SOURCE_GENERATED_PATHWAY_COUNT,
-  studentVisiblePathwayCount: STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT,
-  hiddenSourceGapPathwayCount: HIDDEN_SOURCE_GAP_PATHWAY_KEYS.size,
+  hiddenSourceGapMajorPlanCount: HIDDEN_GAP_PLAN_IDS.size,
+  sourceGeneratedPathwayCount: GENERATED_PATHWAY_COUNT,
+  studentVisiblePathwayCount: STUDENT_VISIBLE_GENERATED_PATHWAY_COUNT,
+  hiddenSourceGapPathwayCount: HIDDEN_GAP_PATHWAY_KEYS.size,
   canonicalCourseCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.length,
   canonicalCourseTitleCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
     (entry) => Boolean(entry.title)
@@ -3985,34 +4268,34 @@ export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   degreeMapBlockCount: TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.length,
   policyEntryCount: TRANSFER_PLANNER_POLICY_REGISTRY.length,
   majorPathwayCount: TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.length,
-  sourceManifestCount: TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.length,
-  sourceManifestPrimaryCount: TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  sourceManifestCount: TRANSFER_PLANNER_MANIFEST_REGISTRY.length,
+  sourceManifestPrimaryCount: TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) => entry.isPrimaryDegreeRequirementsLink
   ).length,
-  sourceManifestHighConfidenceCount: TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  sourceManifestHighConfidenceCount: TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) => entry.confidence === "high"
   ).length,
-  sourceGapCount: TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.length,
-  sourceGapCountsByStatus: TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.reduce(
+  sourceGapCount: TRANSFER_PLANNER_GAP_REGISTRY.length,
+  sourceGapCountsByStatus: TRANSFER_PLANNER_GAP_REGISTRY.reduce(
     (counts, entry) => {
       counts[entry.sourceCoverageStatus] = (counts[entry.sourceCoverageStatus] ?? 0) + 1;
       return counts;
     },
     {} as Record<string, number>
   ),
-  sourceFingerprintCount: TRANSFER_PLANNER_SOURCE_FINGERPRINT_REGISTRY.length,
+  sourceFingerprintCount: TRANSFER_PLANNER_FINGERPRINT_REGISTRY.length,
   requirementSourceFingerprintCount:
-    TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY.length,
+    TRANSFER_PLANNER_REQUIREMENT_FINGERPRINT_REGISTRY.length,
   parsedRequirementSourceBlockCount:
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.length,
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.length,
   parsedRequirementAtomCandidateCount:
-    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY
+    TRANSFER_PLANNER_REQUIREMENT_ADAPTER_REGISTRY_SUMMARY
       .parsedRequirementAtomCandidateCount,
   parsedDegreeMapBlockCandidateCount:
-    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY
+    TRANSFER_PLANNER_REQUIREMENT_ADAPTER_REGISTRY_SUMMARY
       .parsedDegreeMapBlockCandidateCount,
   requirementSourceAdapterCountsById:
-    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_REGISTRY_SUMMARY.countsByAdapterId,
+    TRANSFER_PLANNER_REQUIREMENT_ADAPTER_REGISTRY_SUMMARY.countsByAdapterId,
   catalogDescriptionCount: TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.filter(
     (entry) => Boolean(entry.catalogDescription)
   ).length,
@@ -4047,7 +4330,7 @@ export function getTransferPlannerSourceManifestEntriesForPlan(
   planId: string,
   pathwayId?: string | null
 ) {
-  return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+  return TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) =>
       entry.planId === planId &&
       (pathwayId === undefined
@@ -4088,15 +4371,9 @@ export function getTransferPlannerParsedRequirementSourceBlocks(
   planId: string,
   pathwayId?: string | null
 ) {
-  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
-    (entry) =>
-      entry.planId === planId &&
-      (pathwayId === undefined
-        ? true
-        : pathwayId === null
-          ? !entry.pathwayId
-          : entry.pathwayId === pathwayId)
-  );
+  return getTransferPlannerParsedRequirementBlocksForPlanId(planId).filter(
+    (entry) => parsedRequirementSourceBlockMatchesScope(entry, planId, pathwayId)
+  ).map(normalizeParsedRequirementSourceBlockPathway);
 }
 
 export function getTransferPlannerCanonicalCourse(

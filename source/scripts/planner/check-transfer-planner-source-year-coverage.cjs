@@ -1,11 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const MATERIALS_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-public-materials.json");
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-source-year-coverage.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-source-year-coverage.md");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
+const MATERIALS_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-public-materials.json");
+const OUTPUT_JSON_PATH = getTmpPath(REPO_ROOT, "transfer-planner-source-year-coverage.json");
+const OUTPUT_MD_PATH = getTmpPath(REPO_ROOT, "transfer-planner-source-year-coverage.md");
 
 const CURRENT_ACADEMIC_START_MONTH = 7; // July
 const FUTURE_COVERAGE_EXPECTED_MONTH = 10; // October

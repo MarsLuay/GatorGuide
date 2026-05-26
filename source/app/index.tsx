@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { localStorageService } from "@/services/storage/local-storage.service";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ROUTES } from "@/constants/routes";
 import { STORAGE_KEYS } from "@/constants/schema";
@@ -23,10 +23,10 @@ export default function Index() {
         if (!__DEV__) return;
         const line = `${new Date().toISOString()} | [Index] ${message}`;
         try {
-          const raw = await AsyncStorage.getItem(ONBOARDING_DEBUG_LOG_KEY);
+          const raw = await localStorageService.getItem(ONBOARDING_DEBUG_LOG_KEY);
           const arr = raw ? (JSON.parse(raw) as string[]) : [];
           const next = [...arr, line].slice(-500);
-          await AsyncStorage.setItem(ONBOARDING_DEBUG_LOG_KEY, JSON.stringify(next));
+          await localStorageService.setItem(ONBOARDING_DEBUG_LOG_KEY, JSON.stringify(next));
         } catch {
           // ignore debug persistence errors
         }

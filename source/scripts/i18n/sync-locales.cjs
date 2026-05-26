@@ -5,7 +5,7 @@ const path = require("path");
 
 const rootDir = path.resolve(__dirname, "../..");
 const localesDir = path.join(rootDir, "constants", "locales");
-const translationsPath = path.join(rootDir, "services", "app", "translations.ts");
+const localeSourceDescription = "constants/locales/*.json";
 const isCheckMode = process.argv.includes("--check");
 
 const localeFilesByLanguage = {
@@ -151,34 +151,29 @@ function validateBundles(translations) {
   return errors;
 }
 
-function validateSourceText() {
-  const errors = [];
-  const relativePath = path.relative(rootDir, translationsPath).replace(/\\/g, "/");
-  const lines = fs.readFileSync(translationsPath, "utf8").split(/\r?\n/);
+function loadTranslations() {
+  const translations = {};
 
-  for (let index = 0; index < lines.length; index += 1) {
-    const line = lines[index];
-    const mojibakeReasons = findMojibake(line);
-    if (mojibakeReasons.length > 0) {
-      errors.push(`${relativePath}:${index + 1} looks mojibaked (${mojibakeReasons.join(", ")}): ${line.trim().slice(0, 180)}`);
+  for (const [language, fileName] of Object.entries(localeFilesByLanguage)) {
+    const filePath = path.join(localesDir, fileName);
+    if (!fs.existsSync(filePath)) {
+      translations[language] = undefined;
+      continue;
+    }
+
+    try {
+      translations[language] = flatten(JSON.parse(fs.readFileSync(filePath, "utf8")));
+    } catch (error) {
+      throw new Error(`Failed to read ${fileName}: ${error.message}`);
     }
   }
 
-  return errors;
-}
-
-function loadTranslations() {
-  process.chdir(rootDir);
-  require("ts-node/register/transpile-only");
-  return require(translationsPath).translations;
+  return translations;
 }
 
 function main() {
   const translations = loadTranslations();
-  const bundleErrors = [
-    ...validateSourceText(),
-    ...validateBundles(translations),
-  ];
+  const bundleErrors = validateBundles(translations);
   if (bundleErrors.length > 0) {
     fail("Translation validation failed.", bundleErrors);
     return;
@@ -211,7 +206,7 @@ function main() {
         }
       }
       if (actualMojibake.length > 0) {
-        fail("Generated locale mojibake check failed.", actualMojibake);
+        fail("Locale JSON mojibake check failed.", actualMojibake);
         return;
       }
       const actual = stableStringify(actualJson);
@@ -235,7 +230,7 @@ function main() {
       return;
     }
     if (changedFiles.length > 0) {
-      fail("Generated locale files are out of sync. Run npm run i18n:generate.", changedFiles);
+      fail("Locale JSON files need normalization. Run npm run i18n:generate.", changedFiles);
       return;
     }
     console.log(`i18n check passed: ${Object.keys(localeFilesByLanguage).length} locales, ${Object.keys(translations.English).length} keys each.`);
@@ -246,7 +241,7 @@ function main() {
     fs.unlinkSync(path.join(localesDir, fileName));
   }
 
-  console.log(`Generated ${Object.keys(localeFilesByLanguage).length} locale files from services/app/translations.ts (${Object.keys(translations.English).length} keys each).`);
+  console.log(`Normalized ${Object.keys(localeFilesByLanguage).length} locale files from ${localeSourceDescription} (${Object.keys(translations.English).length} keys each).`);
 }
 
 main();

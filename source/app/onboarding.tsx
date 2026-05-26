@@ -6,7 +6,6 @@ export default function Onboarding() {
   return (
     <RouteAccessBoundary
       allowGuest={false}
-      loadingMessage="Preparing your data"
       resolveRedirect={(user) => {
         if (user?.hasSeenOnboarding === true) {
           return hasCompletedProfileSetup(user) ? ROUTES.tabs : ROUTES.profileSetup;

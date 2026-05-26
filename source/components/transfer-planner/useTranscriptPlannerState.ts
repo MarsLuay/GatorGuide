@@ -13,7 +13,7 @@ import {
   TRANSCRIPT_EARNED_CREDITS_FIELD,
   TRANSCRIPT_PARSER_VERSION,
   TRANSCRIPT_PARSER_VERSION_FIELD,
-  TRANSCRIPT_SOURCE_FIELD,
+  TRANSCRIPT_FIELD,
   TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/services/planning/transfer-planner-cache.service";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
@@ -53,6 +53,14 @@ type UseTranscriptPlannerStateInput = {
   updateUser: (patch: Partial<User>) => Promise<void>;
   setQuestionnaireAnswers: SetQuestionnaireAnswers;
 };
+
+function getDocumentPickerSourceFile(asset: DocumentPicker.DocumentPickerAsset) {
+  const maybeFile = (asset as DocumentPicker.DocumentPickerAsset & { file?: Blob | null })
+    .file;
+  return Platform.OS === "web" && typeof Blob !== "undefined" && maybeFile instanceof Blob
+    ? maybeFile
+    : null;
+}
 
 export function useTranscriptPlannerState({
   user,
@@ -94,7 +102,7 @@ export function useTranscriptPlannerState({
     [storedDetailedTranscriptCourses]
   );
   const storedTranscriptSource = String(
-    questionnaireAnswers[TRANSCRIPT_SOURCE_FIELD] ?? ""
+    questionnaireAnswers[TRANSCRIPT_FIELD] ?? ""
   ).trim();
   const storedTranscriptUploadedAt = useMemo(() => {
     const raw = String(questionnaireAnswers[TRANSCRIPT_UPLOADED_AT_FIELD] ?? "").trim();
@@ -465,6 +473,7 @@ export function useTranscriptPlannerState({
         uriLength: String(asset.uri ?? "").length,
         mimeType: asset.mimeType ?? null,
         sizeBytes: asset.size ?? null,
+        hasWebSourceFile: !!getDocumentPickerSourceFile(asset),
       });
 
       const localPersistStartedAt = getDebugNowMs();
@@ -472,6 +481,7 @@ export function useTranscriptPlannerState({
         fileName: asset.name,
         mimeType: asset.mimeType,
         sizeBytes: asset.size,
+        sourceFile: getDocumentPickerSourceFile(asset),
       });
       appendTranscriptDebugEvent("transcript-local-persist-complete", uploadFlowStartedAt, {
         localPersistMs: getDebugElapsedMs(localPersistStartedAt),

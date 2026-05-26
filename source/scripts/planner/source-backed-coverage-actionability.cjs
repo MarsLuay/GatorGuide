@@ -1,7 +1,7 @@
-const SOURCE_BACKED_COVERAGE_GATE_LABEL = "source-backed-runtime-coverage";
-const SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION =
+const COVERAGE_GATE_LABEL = "source-backed-runtime-coverage";
+const COVERAGE_GATE_DESCRIPTION =
   "Blocking gate from official source parse through generated data to the student-visible runtime.";
-const HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES = [
+const HIGH_RISK_AUDIT_CATEGORIES = [
   "CE/CS approved-course-list support sources",
   "credit buckets",
   "option groups",
@@ -11,7 +11,7 @@ const HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES = [
   "owners with source-role/fingerprint deltas",
 ];
 
-const SOURCE_BACKED_AUDIT_ROW_COLLECTIONS = [
+const AUDIT_ROW_COLLECTIONS = [
   "requirementCoverageRows",
   "sourceScopeAuditRows",
   "generatedSourceSeedAuditRows",
@@ -176,6 +176,10 @@ function getActionableIssueClass(row) {
     return "source-role-misclassified";
   }
 
+  if (issueType === "internal-error") {
+    return "internal-planner-error";
+  }
+
   return issueType;
 }
 
@@ -279,6 +283,10 @@ function getSuspectedLayerForActionableIssue(row) {
     return row.generatedArtifact || row.generatedFile || row.generatedRuntimeRow ? "generator" : "parser";
   }
 
+  if (actionableClass === "internal-planner-error") {
+    return row.suspectedLayer ?? "runtime";
+  }
+
   return "audit expectation";
 }
 
@@ -321,7 +329,7 @@ function getRecommendedFixForLayer(layer, row) {
       return {
         recommendedFixPath: "source/services/planning/transfer-planner.service.ts",
         recommendedNonManualFix:
-          "Fix runtime visibility, option selection, or scheduling logic so generated source-backed rows surface accurately.",
+          "Fix runtime visibility, option selection, or scheduling logic so generated rows surface accurately.",
       };
     case "mapping":
       return {
@@ -443,7 +451,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown", opti
     ? options.planContextResolver(row)
     : getDefaultPlanContextForAuditRow(row);
   const metadata = {
-    blockingGate: SOURCE_BACKED_COVERAGE_GATE_LABEL,
+    blockingGate: COVERAGE_GATE_LABEL,
     auditCollection: collectionName,
     issueTypeNormalized: issueType,
     actionableIssueClass,
@@ -458,7 +466,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown", opti
     runtimeVisibilityStatus: getRuntimeVisibilityStatus(row),
   };
   const actionableText = [
-    "[actionable source-backed gate]",
+    "[actionable gate]",
     `Class: ${actionableIssueClass}`,
     `Layer: ${suspectedLayer}`,
     `Generated row id: ${metadata.generatedRowId ?? "none"}`,
@@ -468,7 +476,7 @@ function buildActionableAuditIssueMetadata(row, collectionName = "unknown", opti
 
   if (
     row.copyOnlyDebugText &&
-    !String(row.copyOnlyDebugText).includes("[actionable source-backed gate]")
+    !String(row.copyOnlyDebugText).includes("[actionable gate]")
   ) {
     metadata.copyOnlyDebugText = `${row.copyOnlyDebugText} ${actionableText}`;
   }
@@ -486,7 +494,7 @@ function enrichAuditRowsInPlace(rows, collectionName, options = {}) {
 }
 
 function collectActionableIssueRows(report) {
-  return SOURCE_BACKED_AUDIT_ROW_COLLECTIONS.flatMap((collectionName) =>
+  return AUDIT_ROW_COLLECTIONS.flatMap((collectionName) =>
     (report[collectionName] ?? []).filter(hasAuditIssue)
   );
 }
@@ -502,16 +510,16 @@ function countBy(values) {
 }
 
 function enrichSourceBackedCoverageReport(report, options = {}) {
-  for (const collectionName of SOURCE_BACKED_AUDIT_ROW_COLLECTIONS) {
+  for (const collectionName of AUDIT_ROW_COLLECTIONS) {
     enrichAuditRowsInPlace(report[collectionName] ?? [], collectionName, options);
   }
   const actionableIssueRows = collectActionableIssueRows(report);
   report.summary = {
     ...report.summary,
-    blockingGate: SOURCE_BACKED_COVERAGE_GATE_LABEL,
-    blockingGateDescription: SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION,
+    blockingGate: COVERAGE_GATE_LABEL,
+    blockingGateDescription: COVERAGE_GATE_DESCRIPTION,
     blockingGateIssueCount: actionableIssueRows.length,
-    highRiskAuditCategories: HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
+    highRiskAuditCategories: HIGH_RISK_AUDIT_CATEGORIES,
     issueCountsBySuspectedLayer: countBy(
       actionableIssueRows.map((row) => row.suspectedLayer ?? "audit expectation")
     ),
@@ -523,10 +531,10 @@ function enrichSourceBackedCoverageReport(report, options = {}) {
 }
 
 module.exports = {
-  SOURCE_BACKED_COVERAGE_GATE_LABEL,
-  SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION,
-  HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
-  SOURCE_BACKED_AUDIT_ROW_COLLECTIONS,
+  COVERAGE_GATE_LABEL,
+  COVERAGE_GATE_DESCRIPTION,
+  HIGH_RISK_AUDIT_CATEGORIES,
+  AUDIT_ROW_COLLECTIONS,
   getRowIssueType,
   hasAuditIssue,
   getActionableIssueClass,

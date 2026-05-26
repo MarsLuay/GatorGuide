@@ -4,9 +4,14 @@ import {
   STORAGE_KEYS,
   type FirestoreSyncableProfileFieldKey,
 } from "@/constants/schema";
-import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
+import {
+  normalizeQuestionnaireAnswers,
+  type QuestionnaireAnswers,
+} from "@/services/app/questionnaire.enums";
 import type { College } from "@/services/colleges/college.service";
 import { savedCollegesService } from "@/services/colleges/saved-colleges.service";
+
+export type { QuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 
 export type User = {
   uid: string;
@@ -26,8 +31,6 @@ export type User = {
   /** Whether the user has seen the onboarding/tutorial */
   hasSeenOnboarding?: boolean;
 };
-
-export type QuestionnaireAnswers = Record<string, any>;
 
 export type NotificationPreferences = {
   transferDeadlines: boolean;

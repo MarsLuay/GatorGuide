@@ -1,7 +1,15 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
-const { spawnSync } = require("child_process");
+const {
+  SOURCE_ROOT,
+  ensurePlannerTmpLayout,
+  getPlannerTmpPath,
+  hasArg,
+  runCommand,
+  writePlannerJsonReport,
+  writePlannerMarkdownReport,
+} = require("./lib/script-harness.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -12,23 +20,14 @@ require("ts-node").register({
   },
 });
 
-const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
-const SOURCE_LINK_SNAPSHOT_PATH = path.resolve(TMP_DIR, "transfer-planner-source-link-snapshot.json");
-const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-requirement-source-parse-report.json"
-);
-const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-source-fingerprints.json");
-const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-source-fingerprints.md");
-const SOURCE_CHANGE_CLASSIFICATION_JSON_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-change-classification.json"
-);
-const SOURCE_CHANGE_CLASSIFICATION_MD_PATH = path.resolve(
-  TMP_DIR,
-  "transfer-planner-source-change-classification.md"
-);
+const REPO_ROOT = SOURCE_ROOT;
+ensurePlannerTmpLayout();
+const LINK_SNAPSHOT_PATH = getPlannerTmpPath("transfer-planner-source-link-snapshot.json");
+const REQUIREMENT_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
+const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-source-fingerprints.json");
+const OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-source-fingerprints.md");
+const CHANGE_CLASSIFICATION_JSON_PATH = getPlannerTmpPath("transfer-planner-source-change-classification.json");
+const CHANGE_CLASSIFICATION_MD_PATH = getPlannerTmpPath("transfer-planner-source-change-classification.md");
 const GENERATED_OUTPUT_PATH = path.resolve(
   REPO_ROOT,
   "constants",
@@ -39,22 +38,10 @@ const {
   normalizeTransferPlannerOwnerId,
   normalizeTransferPlannerPathwayId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
-
-function hasArg(flag) {
-  return process.argv.slice(2).includes(flag);
-}
-
-function runCommand(command, args) {
-  const result = spawnSync(command, args, {
-    cwd: REPO_ROOT,
-    stdio: "inherit",
-    shell: false,
-  });
-
-  if (result.status !== 0) {
-    throw new Error(`Command failed: ${command} ${args.join(" ")}`);
-  }
-}
+const {
+  labelMentionsDifferentTransferPlannerMajor,
+  normalizeTransferPlannerText,
+} = require("../../constants/transfer-planner-source/pathway-title-normalization");
 
 function stableForHash(value) {
   if (Array.isArray(value)) {
@@ -102,9 +89,9 @@ function loadPreviousFingerprints() {
     delete require.cache[require.resolve(GENERATED_OUTPUT_PATH)];
     const loaded = require(GENERATED_OUTPUT_PATH);
     return {
-      sourceFingerprints: loaded.TRANSFER_PLANNER_SOURCE_FINGERPRINTS ?? [],
+      sourceFingerprints: loaded.TRANSFER_PLANNER_FINGERPRINTS ?? [],
       requirementSourceFingerprints:
-        loaded.TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS ?? [],
+        loaded.TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS ?? [],
     };
   } catch (error) {
     console.log(`Could not load previous source fingerprints: ${error.message}`);
@@ -115,7 +102,7 @@ function loadPreviousFingerprints() {
   }
 }
 
-function buildSourceFingerprintEntry(source) {
+function buildSourceFingerprintEntry(source, titlesByPlanId = new Map()) {
   const fingerprintInput = {
     ok: source.ok,
     status: source.status,
@@ -134,7 +121,7 @@ function buildSourceFingerprintEntry(source) {
     url: source.url,
     finalUrl: source.finalUrl ?? null,
     labels: source.labels ?? [],
-    ownerIds: normalizeSourceOwnerIds(source.ownerIds),
+    ownerIds: normalizeAndFilterSourceOwnerIds(source.ownerIds, source, titlesByPlanId),
     kinds: source.kinds ?? [],
     ok: Boolean(source.ok),
     status: source.status ?? null,
@@ -170,6 +157,94 @@ function normalizeSourceOwnerId(value) {
 
 function normalizeSourceOwnerIds(values) {
   return uniqueSorted((values ?? []).map(normalizeSourceOwnerId).filter(Boolean));
+}
+
+function getPlanIdFromOwnerId(ownerId) {
+  const normalizedOwnerId = String(ownerId ?? "").trim();
+  const pathwaySeparator = ":pathway:";
+  const pathwayIndex = normalizedOwnerId.indexOf(pathwaySeparator);
+  return pathwayIndex === -1 ? normalizedOwnerId : normalizedOwnerId.slice(0, pathwayIndex);
+}
+
+function getPathwayIdFromOwnerId(ownerId) {
+  const normalizedOwnerId = String(ownerId ?? "").trim();
+  const pathwaySeparator = ":pathway:";
+  const pathwayIndex = normalizedOwnerId.indexOf(pathwaySeparator);
+  return pathwayIndex === -1
+    ? null
+    : normalizedOwnerId.slice(pathwayIndex + pathwaySeparator.length);
+}
+
+function getBaBsDegreeKind(value) {
+  const text = normalizeTransferPlannerText(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  if (/\b(?:b\s*a|ba|bachelor\s+of\s+arts)\b/.test(text)) return "ba";
+  if (/\b(?:b\s*s|bs|bachelor\s+of\s+science)\b/.test(text)) return "bs";
+  return null;
+}
+
+function buildSourceOwnerIdentityText(source) {
+  return [
+    ...(source?.labels ?? []),
+    source?.title,
+    source?.url,
+    source?.finalUrl,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function sourceOwnerIdConflictsWithSource(ownerId, source, titlesByPlanId) {
+  const planId = getPlanIdFromOwnerId(ownerId);
+  if (!planId) {
+    return false;
+  }
+
+  const identityCandidates = [
+    ...(source?.labels ?? []),
+    source?.title,
+  ].filter(Boolean);
+  if (
+    identityCandidates.some((candidate) =>
+      labelMentionsDifferentTransferPlannerMajor(planId, candidate, titlesByPlanId)
+    )
+  ) {
+    return true;
+  }
+
+  const pathwayId = getPathwayIdFromOwnerId(ownerId);
+  const ownerDegreeKind = getBaBsDegreeKind(`${ownerId} ${pathwayId ?? ""}`);
+  const sourceDegreeKind = getBaBsDegreeKind(buildSourceOwnerIdentityText(source));
+  return Boolean(ownerDegreeKind && sourceDegreeKind && ownerDegreeKind !== sourceDegreeKind);
+}
+
+function normalizeAndFilterSourceOwnerIds(values, source, titlesByPlanId = new Map()) {
+  return uniqueSorted(
+    normalizeSourceOwnerIds(values).filter(
+      (ownerId) => !sourceOwnerIdConflictsWithSource(ownerId, source, titlesByPlanId)
+    )
+  );
+}
+
+function buildRequirementReportTitlesByPlanId(requirementOwners) {
+  const titlesByPlanId = new Map();
+
+  for (const owner of requirementOwners ?? []) {
+    const planId = String(owner?.planId ?? getPlanIdFromOwnerId(owner?.ownerId)).trim();
+    const ownerTitle = String(owner?.ownerTitle ?? "").trim();
+    if (!planId || !ownerTitle) {
+      continue;
+    }
+
+    const existing = titlesByPlanId.get(planId);
+    const ownerHasPathway = Boolean(String(owner?.pathwayId ?? "").trim());
+    if (!existing || !ownerHasPathway) {
+      titlesByPlanId.set(planId, ownerHasPathway ? ownerTitle.replace(/\s+-\s+.+$/, "") : ownerTitle);
+    }
+  }
+
+  return titlesByPlanId;
 }
 
 function mergeUniqueStrings(existing, values) {
@@ -230,7 +305,7 @@ function readRequirementSnapshotHash(owner) {
   return sha256Text(fs.readFileSync(snapshotPath, "utf8"));
 }
 
-function buildRequirementBackedSourceFingerprintEntry(owner) {
+function buildRequirementBackedSourceFingerprintEntry(owner, ownerIds = normalizeSourceOwnerIds([owner.ownerId])) {
   const snapshotHash = readRequirementSnapshotHash(owner);
   const fingerprintInput = {
     ok: owner.ok,
@@ -249,7 +324,7 @@ function buildRequirementBackedSourceFingerprintEntry(owner) {
     url: owner.sourceUrl,
     finalUrl: owner.sourceUrl,
     labels: [owner.sourceLabel].filter(Boolean),
-    ownerIds: normalizeSourceOwnerIds([owner.ownerId]),
+    ownerIds,
     kinds: [owner.pathwayId ? "pathway" : "major"],
     ok: Boolean(owner.ok),
     status: null,
@@ -263,7 +338,7 @@ function buildRequirementBackedSourceFingerprintEntry(owner) {
   };
 }
 
-function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementOwners) {
+function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementOwners, titlesByPlanId = new Map()) {
   const entries = [...sourceFingerprints];
   const entryByUrl = new Map();
 
@@ -285,16 +360,29 @@ function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementO
     if (!normalizedSourceUrl) {
       continue;
     }
+    const normalizedOwnerIds = normalizeAndFilterSourceOwnerIds(
+      [owner.ownerId],
+      {
+        url: owner.sourceUrl,
+        finalUrl: owner.sourceUrl,
+        labels: [owner.sourceLabel].filter(Boolean),
+        title: owner.extractedTitle,
+      },
+      titlesByPlanId
+    );
+    if (!normalizedOwnerIds.length) {
+      continue;
+    }
 
     let entry = entryByUrl.get(normalizedSourceUrl);
     if (!entry) {
-      entry = buildRequirementBackedSourceFingerprintEntry(owner);
+      entry = buildRequirementBackedSourceFingerprintEntry(owner, normalizedOwnerIds);
       entries.push(entry);
       addLookup(entry);
     }
 
     entry.labels = mergeUniqueStrings(entry.labels, [owner.sourceLabel]);
-    entry.ownerIds = mergeUniqueStrings(entry.ownerIds, normalizeSourceOwnerIds([owner.ownerId]));
+    entry.ownerIds = mergeUniqueStrings(entry.ownerIds, normalizedOwnerIds);
     entry.kinds = mergeUniqueStrings(entry.kinds, [owner.pathwayId ? "pathway" : "major"]);
   }
 
@@ -382,16 +470,39 @@ function buildRequirementFingerprintEntry(owner) {
   };
 }
 
-function compareFingerprints(previousEntries, currentEntries, keyName, hashName) {
-  const previousByKey = new Map(previousEntries.map((entry) => [entry[keyName], entry]));
-  const currentByKey = new Map(currentEntries.map((entry) => [entry[keyName], entry]));
+function getRequirementFingerprintCompareKey(entry) {
+  const ownerId = getEntryKey(entry, "ownerId");
+  const sourceUrl =
+    normalizeSourceUrlKey(entry?.sourceUrl) ||
+    normalizeSourceUrlKey(entry?.primarySourceUrl) ||
+    "unknown-source";
+  const parserType = getEntryKey(entry, "parserType") || "unknown-parser";
+  const sourceRole = getEntryKey(entry, "sourceRole") || "unknown-role";
+  return ownerId ? [ownerId, sourceUrl, parserType, sourceRole].join("\u0000") : "";
+}
+
+function getCompareKey(entry, keyNameOrGetter) {
+  if (typeof keyNameOrGetter === "function") {
+    return String(keyNameOrGetter(entry) ?? "").trim();
+  }
+  return getEntryKey(entry, keyNameOrGetter);
+}
+
+function compareFingerprints(previousEntries, currentEntries, keyNameOrGetter, hashName) {
+  const previousByKey = new Map(
+    previousEntries.map((entry) => [getCompareKey(entry, keyNameOrGetter), entry])
+  );
+  const currentByKey = new Map(
+    currentEntries.map((entry) => [getCompareKey(entry, keyNameOrGetter), entry])
+  );
   const added = [];
   const changed = [];
   const unchanged = [];
   const removed = [];
 
   for (const current of currentEntries) {
-    const previous = previousByKey.get(current[keyName]);
+    const key = getCompareKey(current, keyNameOrGetter);
+    const previous = previousByKey.get(key);
     if (!previous) {
       added.push(current);
       continue;
@@ -405,7 +516,7 @@ function compareFingerprints(previousEntries, currentEntries, keyName, hashName)
   }
 
   for (const previous of previousEntries) {
-    if (!currentByKey.has(previous[keyName])) {
+    if (!currentByKey.has(getCompareKey(previous, keyNameOrGetter))) {
       removed.push(previous);
     }
   }
@@ -889,7 +1000,7 @@ function buildRequirementChangeRecords(input) {
         currentSourceResource,
         courseDelta,
         signalDelta,
-        reason: "Previously source-backed UW course code(s) disappeared from the parsed official source.",
+        reason: "Previously UW course code(s) disappeared from the parsed official source.",
       })
     );
   }
@@ -1040,7 +1151,7 @@ function buildSourceChangeClassificationReport(input) {
     compareFingerprints(
       previousFingerprints.requirementSourceFingerprints,
       requirementSourceFingerprints,
-      "ownerId",
+      getRequirementFingerprintCompareKey,
       "requirementFingerprint"
     );
   const previousRequirementByOwnerId = mapBy(
@@ -1158,9 +1269,13 @@ function countBy(values, getKey) {
 }
 
 function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
+  const titlesByPlanId = buildRequirementReportTitlesByPlanId(requirementReport.owners ?? []);
   const sourceFingerprints = addRequirementBackedSourceFingerprints(
-    (sourceSnapshot.sources ?? []).map(buildSourceFingerprintEntry),
-    requirementReport.owners ?? []
+    (sourceSnapshot.sources ?? []).map((source) =>
+      buildSourceFingerprintEntry(source, titlesByPlanId)
+    ),
+    requirementReport.owners ?? [],
+    titlesByPlanId
   );
   const requirementSourceFingerprints = (requirementReport.owners ?? []).map(
     buildRequirementFingerprintEntry
@@ -1174,7 +1289,7 @@ function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
   const requirementDiff = compareFingerprints(
     previousFingerprints.requirementSourceFingerprints,
     requirementSourceFingerprints,
-    "ownerId",
+    getRequirementFingerprintCompareKey,
     "requirementFingerprint"
   );
   const addedSourceOwnerIds = collectSourceDiffOwnerIds(sourceDiff.added);
@@ -1226,8 +1341,8 @@ function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
       ...removedRequirementOwnerIds,
     ]),
     sourceChangeClassificationSummary: {
-      reportJsonPath: SOURCE_CHANGE_CLASSIFICATION_JSON_PATH,
-      reportMarkdownPath: SOURCE_CHANGE_CLASSIFICATION_MD_PATH,
+      reportJsonPath: CHANGE_CLASSIFICATION_JSON_PATH,
+      reportMarkdownPath: CHANGE_CLASSIFICATION_MD_PATH,
       totalChangeCount: sourceChangeClassification.totalChangeCount,
       affectedOwnerCount: sourceChangeClassification.affectedOwnerCount,
       affectedPlanCount: sourceChangeClassification.affectedPlanCount,
@@ -1247,9 +1362,9 @@ function buildGeneratedFile(report) {
     'import type { TransferPlannerRequirementSourceFingerprintEntry, TransferPlannerSourceFingerprintEntry } from "./schema";',
     "",
     "// Generated by scripts/planner/build-transfer-planner-source-fingerprints.cjs",
-    `export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerprintEntry[] = ${JSON.stringify(report.sourceFingerprints, null, 2)};`,
+    `export const TRANSFER_PLANNER_FINGERPRINTS: TransferPlannerSourceFingerprintEntry[] = ${JSON.stringify(report.sourceFingerprints, null, 2)};`,
     "",
-    `export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRequirementSourceFingerprintEntry[] = ${JSON.stringify(report.requirementSourceFingerprints, null, 2)};`,
+    `export const TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS: TransferPlannerRequirementSourceFingerprintEntry[] = ${JSON.stringify(report.requirementSourceFingerprints, null, 2)};`,
     "",
   ].join("\n");
 }
@@ -1273,7 +1388,7 @@ function writeMarkdown(report) {
     `- Touched source owners: ${report.touchedSourceOwnerIds.length}`,
     `- Touched requirement owners: ${report.touchedRequirementOwnerIds.length}`,
     `- Classified source changes: ${report.sourceChangeClassificationSummary.totalChangeCount}`,
-    `- Source-change report: ${SOURCE_CHANGE_CLASSIFICATION_MD_PATH}`,
+    `- Source-change report: ${CHANGE_CLASSIFICATION_MD_PATH}`,
     "",
     "Source resource fingerprints track official URL metadata/body hashes.",
     "Requirement-source fingerprints track parsed requirement facts separately, so cosmetic page changes do not automatically become planner requirement changes.",
@@ -1305,14 +1420,11 @@ function writeMarkdown(report) {
     lines.push("");
   }
 
-  fs.writeFileSync(OUTPUT_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
 }
 
 function writeSourceChangeClassificationReport(report) {
-  fs.writeFileSync(
-    SOURCE_CHANGE_CLASSIFICATION_JSON_PATH,
-    `${JSON.stringify(report.sourceChangeClassification, null, 2)}\n`
-  );
+  writePlannerJsonReport(CHANGE_CLASSIFICATION_JSON_PATH, report.sourceChangeClassification);
 
   const changeReport = report.sourceChangeClassification;
   const lines = [
@@ -1393,26 +1505,26 @@ function writeSourceChangeClassificationReport(report) {
     lines.push("## Classified Changes", "", "- None.", "");
   }
 
-  fs.writeFileSync(SOURCE_CHANGE_CLASSIFICATION_MD_PATH, `${lines.join("\n")}\n`);
+  writePlannerMarkdownReport(CHANGE_CLASSIFICATION_MD_PATH, lines);
 }
 
 function main() {
-  fs.mkdirSync(TMP_DIR, { recursive: true });
+  ensurePlannerTmpLayout();
 
-  if (hasArg("--check-sources-first") || !fs.existsSync(SOURCE_LINK_SNAPSHOT_PATH)) {
-    runCommand("node", ["scripts/planner/check-transfer-planner-sources.cjs"]);
+  if (hasArg("--check-sources-first") || !fs.existsSync(LINK_SNAPSHOT_PATH)) {
+    runCommand(process.execPath, ["scripts/planner/check-transfer-planner-sources.cjs"]);
   }
 
   if (hasArg("--parse-requirements-first") || !fs.existsSync(REQUIREMENT_PARSE_REPORT_PATH)) {
-    runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"]);
+    runCommand(process.execPath, ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"]);
   }
 
-  const sourceSnapshot = readJson(SOURCE_LINK_SNAPSHOT_PATH, "source-link snapshot");
+  const sourceSnapshot = readJson(LINK_SNAPSHOT_PATH, "source-link snapshot");
   const requirementReport = readJson(REQUIREMENT_PARSE_REPORT_PATH, "requirement parse report");
   const previousFingerprints = loadPreviousFingerprints();
   const report = buildReport(sourceSnapshot, requirementReport, previousFingerprints);
 
-  fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
+  writePlannerJsonReport(OUTPUT_JSON_PATH, report);
   fs.writeFileSync(GENERATED_OUTPUT_PATH, buildGeneratedFile(report));
   writeMarkdown(report);
   writeSourceChangeClassificationReport(report);
@@ -1426,7 +1538,7 @@ function main() {
   );
   console.log(`JSON report: ${OUTPUT_JSON_PATH}`);
   console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
-  console.log(`Source-change report: ${SOURCE_CHANGE_CLASSIFICATION_MD_PATH}`);
+  console.log(`Source-change report: ${CHANGE_CLASSIFICATION_MD_PATH}`);
   console.log(`Generated fingerprint registry: ${GENERATED_OUTPUT_PATH}`);
 }
 
@@ -1435,6 +1547,7 @@ module.exports = {
   buildRequirementFingerprintEntryForTest: buildRequirementFingerprintEntry,
   buildSourceChangeClassificationReportForTest: buildSourceChangeClassificationReport,
   compareFingerprintsForTest: compareFingerprints,
+  getRequirementFingerprintCompareKeyForTest: getRequirementFingerprintCompareKey,
 };
 
 if (require.main === module) {

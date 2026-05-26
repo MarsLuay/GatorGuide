@@ -33,10 +33,10 @@ import {
   test,
   tmpdir,
   TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
-  TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_SOURCE_URLS,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+  TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_URLS,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY,
-  TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY,
+  TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY,
   writeFileSync,
 } from "./transfer-planner.test-support";
 
@@ -136,7 +136,7 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
     "scripts/planner/generate-transfer-planner-grc-availability.cjs",
     "scripts/planner/generate-transfer-planner-student-runtime.cjs",
     "scripts/planner/generate-transfer-planner-docs.ts",
-    "scripts/planner/transfer-planner.service.test.ts",
+    "scripts/planner/lib/legacy-service-test-artifacts.cjs",
   ];
 
   for (const scriptPath of requiredPipelineScripts) {
@@ -148,8 +148,12 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
   assert.match(refreshScript, /Refresh summary:/);
   assert.match(refreshScript, /GATORGUIDE_PLANNER_CACHE_ONLY/);
   assert.match(refreshScript, /reuseCachedArtifact/);
-  assert.match(refreshScript, /PRIMARY_SOURCE_DISCOVERY_REPORT_PATH/);
+  assert.match(refreshScript, /PRIMARY_DISCOVERY_REPORT_PATH/);
   assert.match(refreshScript, /REQUIREMENT_PARSE_REPORT_PATH/);
+  assert.match(refreshScript, /Check legacy planner service-test diagnostics/);
+  assert.match(refreshScript, /refreshLegacyServiceTestArtifactStatus/);
+  assert.match(refreshScript, /GATORGUIDE_RUN_LEGACY_TRANSFER_PLANNER_SERVICE_TESTS/);
+  assert.match(refreshScript, /legacy compatibility suite as an opt-in diagnostic/);
 
   const noDownloadPlanProcess = spawnSync(
     "node",
@@ -331,7 +335,7 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(linkManagerScript, /--set-primary/);
   assert.match(linkManagerScript, /--update-current-links/);
   assert.match(linkManagerScript, /manual-source-link-overrides\.data\.ts/);
-  assert.match(manualSourceOverrideData, /TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES/);
+  assert.match(manualSourceOverrideData, /TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES/);
   assert.equal(existsSync("../Course-Planner-Updater.bat"), true);
   assert.equal(existsSync("scripts/run-planner-maintenance.cmd"), false);
   assert.equal(existsSync("scripts/run-planner-maintenance.bat"), false);
@@ -489,25 +493,25 @@ test("Course link manager builds inventory and laymans diagnosis returns plain-l
 
 test("Generated Green River availability sources now include future-year published schedules", () => {
   assert.ok(
-    TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_SOURCE_URLS.some((url) =>
+    TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_URLS.some((url) =>
       /2026-2027.*Annual.*Schedule/i.test(url)
     )
   );
-  assert.ok(TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_SOURCE_URLS.length >= 3);
+  assert.ok(TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY_URLS.length >= 3);
 });
 
 test("Single-pass planner hardening invariants hold across the five robustness fixes", () => {
   const sourceGapReport = JSON.parse(
-    readFileSync(".tmp/transfer-planner-source-gaps.json", "utf8")
+    readFileSync(".tmp/reports/transfer-planner-source-gaps.json", "utf8")
   );
   const requirementParseReport = JSON.parse(
-    readFileSync(".tmp/transfer-planner-requirement-source-parse-report.json", "utf8")
+    readFileSync(".tmp/reports/transfer-planner-requirement-source-parse-report.json", "utf8")
   );
   const requirementDiffReport = JSON.parse(
-    readFileSync(".tmp/transfer-planner-requirement-diff-promotion-report.json", "utf8")
+    readFileSync(".tmp/reports/transfer-planner-requirement-diff-promotion-report.json", "utf8")
   );
   const sourceBackedCoverageAudit = JSON.parse(
-    readFileSync(".tmp/transfer-planner-source-backed-coverage-audit.json", "utf8")
+    readFileSync(".tmp/reports/transfer-planner-source-backed-coverage-audit.json", "utf8")
   );
   const allowedAvailabilityStatuses = new Set([
     "published-in-latest-schedule",
@@ -553,7 +557,7 @@ test("Single-pass planner hardening invariants hold across the five robustness f
 
 test("Owner audit does not surface transient Seattle music/language fetch noise as owner warnings", () => {
   const ownerAuditReport = JSON.parse(
-    readFileSync(".tmp/transfer-planner-owner-audit.json", "utf8")
+    readFileSync(".tmp/reports/transfer-planner-owner-audit.json", "utf8")
   );
   const ownerById = new Map<
     string,
@@ -606,13 +610,13 @@ test("Planner hardening verifier script checks the five robustness contracts in 
   assert.match(docsReadme, /planner:full:verify/);
 });
 
-test("Source-backed coverage maintainer audit guards today's planner regressions", () => {
+test("coverage maintainer audit guards today's planner regressions", () => {
   const auditScript = readFileSync(
     "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
     "utf8"
   );
   const auditReport = JSON.parse(
-    readFileSync(".tmp/transfer-planner-source-backed-coverage-audit.json", "utf8")
+    readFileSync(".tmp/reports/transfer-planner-source-backed-coverage-audit.json", "utf8")
   );
   const requiredIssueTypes = [
     "missing-detected-course",
@@ -660,12 +664,12 @@ test("Source-backed coverage maintainer audit guards today's planner regressions
       (row: { majorId: string; uwRequirementLabel: string; copyOnlyDebugText: string }) =>
         row.majorId === "uw-seattle-bioengineering" &&
         row.uwRequirementLabel === "CHEM 162" &&
-        /^\[copy-only source-backed requirement audit\]/.test(row.copyOnlyDebugText)
+        /^\[copy-only requirement audit\]/.test(row.copyOnlyDebugText)
     )
   );
 });
 
-test("Planner docs now use source-gap and source-backed language instead of review queues", () => {
+test("Planner docs now use source-gap and language instead of review queues", () => {
   const toolSummary = readFileSync("docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md", "utf8");
   const docsReadme = readFileSync("docs/README.md", "utf8");
   const bootstrapSource = readFileSync(
@@ -696,7 +700,7 @@ test("Planner docs now use source-gap and source-backed language instead of revi
   assert.doesNotMatch(bootstrapSource, /before final advisor review/i);
 
   assert.match(docsGenerator, /function sanitizePlannerDocText/);
-  assert.match(docsGenerator, /Source-backed note:/);
+  assert.match(docsGenerator, /note:/);
   assert.doesNotMatch(docsGenerator, /Manual review note:/);
   assert.match(docsGenerator, /confirm the exact timing with an advisor/i);
 
@@ -707,18 +711,18 @@ test("Planner docs now use source-gap and source-backed language instead of revi
 });
 
 test("Phase 10 generated snapshot-fallback metadata stays internally consistent", () => {
-  const fallbackBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+  const fallbackBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS.filter(
     (block) => block.usedSnapshotFallback
   );
-  const alternateBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+  const alternateBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS.filter(
     (block) => block.resolutionStrategy === "alternate-official-source"
   );
-  const failedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+  const failedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS.filter(
     (block) => !block.ok
   );
 
   assert.equal(
-    TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY.snapshotFallbackCount,
+    TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY.snapshotFallbackCount,
     fallbackBlocks.length
   );
   for (const block of fallbackBlocks) {

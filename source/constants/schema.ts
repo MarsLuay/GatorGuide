@@ -95,6 +95,7 @@ export type QuestionnaireSectionId = ValueOf<typeof QUESTIONNAIRE_SECTION_IDS>;
 export const QUESTIONNAIRE_FIELD_IDS = {
   advisor: "advisor",
   gpa: "gpa",
+  lgbtqCommunity: "lgbtqCommunity",
   weather: "weather",
   costOfAttendance: "costOfAttendance",
   graduationRate: "graduationRate",

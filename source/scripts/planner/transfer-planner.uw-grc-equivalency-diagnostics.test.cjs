@@ -163,7 +163,7 @@ for (const pathwayId of ["advanced-data-science-option", "data-science-option"])
       generatedOptionGrcMatches: optionGrcMatches,
       runtimeScheduledGrcCourses: scheduledCourseCodes,
       sourceBackedCoverageIssue:
-        "The source-backed option title contains CSE 123, but generated options omit it and default to the CSE 143 / CS 145 legacy path.",
+        "The option title contains CSE 123, but generated options omit it and default to the CSE 143 / CS 145 legacy path.",
     };
 
     assert.deepEqual(
@@ -207,7 +207,7 @@ for (const planId of [
       generatedOptionGrcMatches: optionGrcMatches,
       runtimeScheduledGrcCourses: scheduledCourseCodes,
       sourceBackedCoverageIssue:
-        "The source-backed option title contains ESS 301, but generated options omit it and default to ESS 305 / GEOL 200.",
+        "The option title contains ESS 301, but generated options omit it and default to ESS 305 / GEOL 200.",
     };
 
     assert.deepEqual(
@@ -222,7 +222,7 @@ for (const planId of [
   });
 }
 
-test("UW-GRC source-backed diagnostic: Seattle Computer Engineering preserves the EE 205 / EE 215 source option", () => {
+test("UW-GRC diagnostic: Seattle Computer Engineering preserves the EE 205 / EE 215 source option", () => {
   const plan = getRequiredRuntimePlan("uw-seattle-computer-engineering");
   const parsedBlocks = source.getTransferPlannerParsedRequirementSourceBlocks(
     "uw-seattle-computer-engineering",
@@ -280,7 +280,7 @@ test("UW-GRC source-backed diagnostic: Seattle Computer Engineering preserves th
   );
 });
 
-test("UW-GRC source-backed diagnostic: Seattle Mathematics turns an excluded/elective MATH 300 line into schedulable upper-division rows", () => {
+test("UW-GRC diagnostic: Seattle Mathematics turns an excluded/elective MATH 300 line into schedulable upper-division rows", () => {
   const plan = getRequiredRuntimePlan("uw-seattle-mathematics");
   const suspectItems = getAllChecklistItems(plan).filter((item) =>
     /Major Option Electives exclude MATH 300/i.test(item.title ?? "")

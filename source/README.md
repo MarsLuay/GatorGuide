@@ -95,10 +95,16 @@ It also writes a planner hardening report that clarifies the current planner con
 source\.tmp\transfer-planner-hardening-report.md
 ```
 
-The hardening pass also runs the source-backed coverage maintainer audit:
+The hardening pass also runs the coverage maintainer audit:
 
 ```text
 source\.tmp\transfer-planner-source-backed-coverage-audit.md
+```
+
+Planner accuracy uses that source-backed coverage audit as the trusted pass/fail signal. Legacy `transfer-planner.service.test.ts` output is kept only as an opt-in diagnostic; stale `legacy-transfer-planner-service-test.*` artifacts are retired and summarized in:
+
+```text
+source\.tmp\reports\legacy-transfer-planner-service-test.status.md
 ```
 
 The Green River discovery pass also writes the current public-material snapshot used by the refresh tool:

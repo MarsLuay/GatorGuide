@@ -1,14 +1,20 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Language, translations } from "@/services/app/translations";
+import { localStorageService } from "@/services/storage/local-storage.service";
+import {
+  getTranslationBundle,
+  isSupportedLanguage,
+  Language,
+  SUPPORTED_LANGUAGES,
+} from "@/services/app/translations";
+import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
 
-const STORAGE_KEY = "app-language";
+const STORAGE_KEY = LOCAL_STORAGE_KEYS.appLanguage;
 const DEFAULT_LANGUAGE: Language = "English";
 
 function normalizeLang(input?: string): Language {
   // Map legacy labels/codes to canonical language keys used by translations.
   if (!input) return DEFAULT_LANGUAGE;
-  const keys = Object.keys(translations) as Language[];
+  const keys = SUPPORTED_LANGUAGES;
   const raw = input.trim().toLowerCase();
 
   if (/^en\b|english/.test(raw)) return "English";
@@ -34,7 +40,7 @@ function normalizeLang(input?: string): Language {
     if (k.toLowerCase().includes(raw)) return k;
   }
 
-  return keys.includes(DEFAULT_LANGUAGE) ? DEFAULT_LANGUAGE : keys[0];
+  return DEFAULT_LANGUAGE;
 }
 
 type AppLanguageContextValue = {
@@ -55,21 +61,21 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
 
     (async () => {
       try {
-        const stored = await AsyncStorage.getItem(STORAGE_KEY);
+        const stored = await localStorageService.getItem(STORAGE_KEY);
         if (!mounted) return;
 
-        if (stored && (Object.keys(translations) as Language[]).includes(stored as Language)) {
+        if (stored && isSupportedLanguage(stored)) {
           setLanguageState(stored as Language);
         } else if (stored) {
           // Rewrite old/partial values into canonical key format.
           const mapped = normalizeLang(stored);
           setLanguageState(mapped);
-          AsyncStorage.setItem(STORAGE_KEY, mapped).catch(() => {});
+          localStorageService.setItem(STORAGE_KEY, mapped).catch(() => {});
         } else {
           // Intentionally do not read the device locale. Fresh installs,
           // new users, and guests always start in English.
           setLanguageState(DEFAULT_LANGUAGE);
-          AsyncStorage.setItem(STORAGE_KEY, DEFAULT_LANGUAGE).catch(() => {});
+          localStorageService.setItem(STORAGE_KEY, DEFAULT_LANGUAGE).catch(() => {});
         }
       } finally {
         if (mounted) setHydrated(true);
@@ -84,13 +90,12 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
   const setLanguage = useCallback((value: Language) => {
     const mapped = normalizeLang(String(value));
     setLanguageState(mapped);
-    AsyncStorage.setItem(STORAGE_KEY, mapped).catch(() => {});
+    localStorageService.setItem(STORAGE_KEY, mapped).catch(() => {});
   }, []);
 
   const t = useCallback((key: string, params?: Record<string, string | number>): string => {
-    const bundle = translations as Record<Language, Record<string, string>>;
-    const langBundle = bundle[language] ?? {};
-    const enBundle = bundle[DEFAULT_LANGUAGE] ?? {};
+    const langBundle = getTranslationBundle(language) ?? {};
+    const enBundle = getTranslationBundle(DEFAULT_LANGUAGE) ?? {};
 
     // Resolve from current language, then English, then the key as a last fallback.
     let str = langBundle[key];

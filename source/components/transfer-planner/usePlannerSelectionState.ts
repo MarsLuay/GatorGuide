@@ -18,7 +18,10 @@ import {
 } from "@/constants/transfer-planner-source/student-runtime";
 import type { QuestionnaireAnswers } from "@/hooks/use-app-data";
 
-import { getSuggestedScheduleUniqueOptionIds } from "./transfer-planner-suggested-schedule";
+import {
+  getNextSuggestedScheduleToggleSelectionIds,
+  getSuggestedScheduleUniqueOptionIds,
+} from "./transfer-planner-suggested-schedule";
 import {
   GRC_PLANNER_CAMPUS_ID,
   getDefaultPlannerCampusId,
@@ -444,15 +447,13 @@ export function usePlannerSelectionState({
               ? []
               : [rawStoredGroupSelection]
         );
-        const currentGroupSelections = hasStoredGroupSelection
-          ? storedGroupSelections
-          : displayedGroupSelections;
-        const nextGroupSelections =
-          normalizedSelectionCount === 1
-            ? [normalizedOptionId]
-            : currentGroupSelections.includes(normalizedOptionId)
-              ? currentGroupSelections.filter((entry) => entry !== normalizedOptionId)
-              : [...currentGroupSelections, normalizedOptionId].slice(-normalizedSelectionCount);
+        const nextGroupSelections = getNextSuggestedScheduleToggleSelectionIds({
+          optionId: normalizedOptionId,
+          selectionCount: normalizedSelectionCount,
+          displayedOptionIds: displayedGroupSelections,
+          storedOptionIds: storedGroupSelections,
+          hasStoredSelection: hasStoredGroupSelection,
+        });
         const nextPathSelections = {
           ...currentPathSelections,
           [normalizedGroupId]: nextGroupSelections,

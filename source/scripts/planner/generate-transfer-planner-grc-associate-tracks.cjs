@@ -1,6 +1,11 @@
 /* global __dirname */
 const fs = require("fs");
 const path = require("path");
+const {
+  fetchJsonWithHandling,
+  fetchTextWithHandling,
+} = require("../lib/fetch-with-handling.cjs");
+const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -12,15 +17,15 @@ require("ts-node").register({
 });
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
+const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
 const OUTPUT_PATH = path.resolve(
   REPO_ROOT,
   "constants",
   "transfer-planner-source",
   "grc-associate-tracks.generated.ts"
 );
-const REPORT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-associate-tracks.json");
-const REPORT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-grc-associate-tracks.md");
+const REPORT_JSON_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-associate-tracks.json");
+const REPORT_MD_PATH = getTmpPath(REPO_ROOT, "transfer-planner-grc-associate-tracks.md");
 
 const GRC_SITEMAP_URL = "https://www.greenriver.edu/sitemap.xml";
 const GRC_WIDGET_API_ROOT_URL = "https://catalog.greenriver.edu/widget-api";
@@ -388,34 +393,22 @@ function sortByName(left, right) {
 }
 
 async function fetchText(url) {
-  const response = await fetch(url, {
-    redirect: "follow",
-    headers: {
-      "user-agent": USER_AGENT,
-    },
+  return fetchTextWithHandling(url, {
+    operation: "Fetch GRC associate track source",
+    timeoutMs: 30000,
+    userAgent: USER_AGENT,
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-
-  return response.text();
 }
 
 async function fetchJson(url) {
-  const response = await fetch(url, {
-    redirect: "follow",
+  return fetchJsonWithHandling(url, {
     headers: {
-      "user-agent": USER_AGENT,
       accept: "application/json",
     },
+    operation: "Fetch GRC associate track JSON",
+    timeoutMs: 30000,
+    userAgent: USER_AGENT,
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-
-  return response.json();
 }
 
 async function mapWithConcurrency(items, concurrency, mapper) {

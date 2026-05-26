@@ -29,11 +29,11 @@ const LANGUAGE_OPTIONS: readonly LanguageOption[] = [
   { key: "Korean", nativeLabel: "\ud55c\uad6d\uc5b4", labelKey: "language.Korean" },
   { key: "Portuguese", nativeLabel: "Portugu\u00eas", labelKey: "language.Portuguese" },
   { key: "Russian", nativeLabel: "\u0420\u0443\u0441\u0441\u043a\u0438\u0439", labelKey: "language.Russian" },
-  { key: "Arabic", nativeLabel: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629", labelKey: "language.Arabic", direction: "rtl" },
+  { key: "Tagalog", nativeLabel: "Tagalog", labelKey: "language.Tagalog" },
   { key: "Hindi", nativeLabel: "\u0939\u093f\u0928\u094d\u0926\u0940", labelKey: "language.Hindi" },
   { key: "Vietnamese", nativeLabel: "Ti\u1ebfng Vi\u1ec7t", labelKey: "language.Vietnamese" },
   { key: "Persian", nativeLabel: "\u0641\u0627\u0631\u0633\u06cc", labelKey: "language.Persian", direction: "rtl" },
-  { key: "Tagalog", nativeLabel: "Tagalog", labelKey: "language.Tagalog" },
+  { key: "Arabic", nativeLabel: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629", labelKey: "language.Arabic", direction: "rtl" },
 ] as const;
 
 export default function LanguagePage() {
