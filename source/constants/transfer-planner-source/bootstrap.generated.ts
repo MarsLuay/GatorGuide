@@ -20166,7 +20166,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW Bioengineering degree requirements",
         "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
         "visibility": "visible",
-        "status": "verified",
+        "status": "partially-verified",
+        "reason": "snapshot-only mode",
         "sourceConfidence": "high"
       }
     ],
@@ -20191,7 +20192,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "UW Bioengineering degree requirements",
             "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
             "visibility": "visible",
-            "status": "verified",
+            "status": "partially-verified",
+            "reason": "snapshot-only mode",
             "sourceConfidence": "high"
           }
         ],
@@ -20235,14 +20237,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) major requirements",
             "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
             "visibility": "visible",
-            "status": "verified",
+            "status": "partially-verified",
+            "reason": "snapshot-only mode",
             "sourceConfidence": "medium"
           },
           {
             "label": "UW Bioengineering degree requirements",
             "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
             "visibility": "visible",
-            "status": "verified",
+            "status": "partially-verified",
+            "reason": "snapshot-only mode",
             "sourceConfidence": "medium"
           }
         ],

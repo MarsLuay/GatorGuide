@@ -1445,19 +1445,26 @@ function extractSourceBackedAlternateCourseCodeSetsFromText(value: string | null
     return [] as string[][];
   }
 
-  return normalizedValue
-    .split(/[.;]/)
-    .flatMap((segment) =>
-      segment.split(/\s+\band\s+(?=[^.;]{0,120}\bor\b)/i)
-    )
-    .map((segment) => {
-      if (!/\bor\b/i.test(segment)) {
-        return [] as string[];
-      }
+  const parentheticalSegments = Array.from(
+    normalizedValue.matchAll(/\(([^)]*\bor\b[^)]*)\)/gi),
+    (match) => match[1] ?? ""
+  );
+  const candidateSegments = unique([normalizedValue, ...parentheticalSegments]);
 
-      return sortCourseCodes(extractCourseCodes(segment));
-    })
-    .filter((courseCodes) => courseCodes.length >= 2 && courseCodes.length <= 4);
+  return uniqueBy(
+    candidateSegments
+      .flatMap((segment) => segment.split(/[.;]/))
+      .flatMap((segment) => segment.split(/\s+\band\s+(?=[^.;]{0,120}\bor\b)/i))
+      .map((segment) => {
+        if (!/\bor\b/i.test(segment)) {
+          return [] as string[];
+        }
+
+        return sortCourseCodes(extractCourseCodes(segment));
+      })
+      .filter((courseCodes) => courseCodes.length >= 2 && courseCodes.length <= 4),
+    (courseCodes) => courseCodes.join("|")
+  );
 }
 
 function getSourceBackedRequirementCandidateUwCourseCodes(
@@ -1579,7 +1586,7 @@ function getSourceBackedRequiredUwAlternateCourseCodeSets(
     (block) =>
       (block.parsedRequirementAtomCandidates ?? []).flatMap((candidate) =>
         (candidate.sourceLineHints ?? [])
-          .filter((line) => !/[,;]/.test(line))
+          .filter((line) => !/[,;]/.test(line) || /\b(?:or|equivalent)\b/i.test(line))
           .flatMap(extractSourceBackedAlternateCourseCodeSetsFromText)
       )
   );
@@ -2814,6 +2821,116 @@ function getRemainingChooseCreditsRangeAfterSelectedOptions(input: {
     creditAmount: remainingCredits,
     creditMin: remainingCredits,
     creditMax: remainingCredits,
+  };
+}
+
+function getCompletedTranscriptCreditAmountForCourseCodes(input: {
+  courseCodes: string[];
+  completedCourses: TranscriptCourseEntry[];
+}) {
+  const completedCourseByCode = new Map(
+    input.completedCourses
+      .map((course) => [normalizeCourseCode(course.code), course] as const)
+      .filter(([courseCode]) => Boolean(courseCode))
+  );
+
+  return input.courseCodes.reduce((total, courseCode) => {
+    const normalizedCourseCode = normalizeCourseCode(courseCode);
+    if (!normalizedCourseCode) {
+      return total;
+    }
+
+    const transcriptCredits = getPositiveCreditAmount(
+      completedCourseByCode.get(normalizedCourseCode)?.credits
+    );
+    const canonicalCredits = getCanonicalGrcCourseCreditAmount(normalizedCourseCode);
+    return total + (transcriptCredits ?? canonicalCredits ?? 0);
+  }, 0);
+}
+
+function getCompletedCategoryOptionTranscriptCredits(input: {
+  status: TransferRequirementStatus;
+  optionId: string;
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  completedCourses: TranscriptCourseEntry[];
+  statuses: TransferRequirementStatus[];
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const option = input.optionGroup.options.find((candidate) => candidate.id === input.optionId);
+  if (!option || !isRequirementCategoryOption(option) || !input.completedCourses.length) {
+    return 0;
+  }
+
+  const consumedCompletedCourseCodes = new Set(
+    (input.status.matchedCourses ?? [])
+      .map((course) => normalizeCourseCode(course.code))
+      .filter(Boolean)
+  );
+  const requiredMatchedReasons = getRequiredMatchedCompletedCourseReasons({
+    statuses: input.statuses,
+    currentGroupId: input.optionGroup.id,
+  });
+  const satisfyingCourseCodes = getCompletedCourseCodesSatisfyingCategoryOption({
+    option,
+    optionGroup: input.optionGroup,
+    plan: input.plan,
+    completedCourses: input.completedCourses,
+    campusId: input.campusId,
+    consumedCompletedCourseCodes,
+  }).filter((courseCode) => !(requiredMatchedReasons.get(courseCode)?.length));
+
+  return getCompletedTranscriptCreditAmountForCourseCodes({
+    courseCodes: satisfyingCourseCodes,
+    completedCourses: input.completedCourses,
+  });
+}
+
+function subtractCompletedCategoryOptionTranscriptCredits(input: {
+  status: TransferRequirementStatus;
+  optionId: string;
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  creditRange: {
+    creditAmount?: number | null;
+    creditMin?: number | null;
+    creditMax?: number | null;
+  };
+  completedCourses: TranscriptCourseEntry[];
+  statuses: TransferRequirementStatus[];
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const completedCredits = getCompletedCategoryOptionTranscriptCredits({
+    status: input.status,
+    optionId: input.optionId,
+    optionGroup: input.optionGroup,
+    completedCourses: input.completedCourses,
+    statuses: input.statuses,
+    campusId: input.campusId,
+    plan: input.plan,
+  });
+  if (completedCredits <= 0) {
+    return input.creditRange;
+  }
+
+  const baseMin =
+    getPositiveCreditAmount(input.creditRange.creditMin) ??
+    getPositiveCreditAmount(input.creditRange.creditAmount) ??
+    getPositiveCreditAmount(input.creditRange.creditMax);
+  const baseMax =
+    getPositiveCreditAmount(input.creditRange.creditMax) ??
+    getPositiveCreditAmount(input.creditRange.creditAmount) ??
+    baseMin;
+  if (baseMin === null || baseMax === null) {
+    return input.creditRange;
+  }
+
+  const remainingMin = Math.max(0, baseMin - completedCredits);
+  const remainingMax = Math.max(remainingMin, baseMax - completedCredits);
+  return {
+    creditAmount: remainingMin === remainingMax ? remainingMin : null,
+    creditMin: remainingMin,
+    creditMax: remainingMax,
   };
 }
 
@@ -4335,6 +4452,10 @@ function shouldAllowSourceScopedRequiredChecklistItem(
   plan: TransferPlannerMajorPlan | null | undefined,
   item: TransferPlannerChecklistItem
 ) {
+  if (item.canCreateScheduleRow === false) {
+    return false;
+  }
+
   if (!isChemicalEngineeringPlan(plan)) {
     return true;
   }
@@ -4684,11 +4805,16 @@ const PREPARATORY_TRACK_TERM_LABEL_PATTERN = /\bquarter 0\b/i;
 const PREPARATORY_TRACK_NOTE_PATTERN =
   /\bonly required if\b|\bdepending on placement\b|\bprogram prerequisite\b/i;
 const STEM_PREP_COURSE_CODE_FALLBACKS = [
+  "CHEM& 121",
   "CHEM& 140",
   "MATH& 141",
   "MATH& 142",
+  "PHYS& 110",
   "PHYS& 114",
   "PHYS& 115",
+  "PHYS& 154",
+  "PHYS& 155",
+  "PHYS& 156",
 ];
 
 function getNormalizedCourseSubjectKey(courseCode: string) {
@@ -5039,6 +5165,34 @@ function filterRedundantStemPrepSuggestedCourses(
 
     return !normalizedCourseCodes.every((courseCode) =>
       directRequirementCourseCodes.has(courseCode)
+    );
+  });
+}
+
+function filterSupersededStemPrepSuggestedCourses(
+  courses: PendingSuggestedCourse[],
+  completedCourseCodes: Set<string>,
+  stemPrepCourseCodes: Set<string>
+) {
+  if (!stemPrepCourseCodes.size || !completedCourseCodes.size) {
+    return courses;
+  }
+
+  return courses.filter((course) => {
+    const normalizedCourseCodes = getNormalizedExplicitSuggestedCourseCodes(course);
+    if (
+      !normalizedCourseCodes.length ||
+      !normalizedCourseCodes.every((courseCode) => stemPrepCourseCodes.has(courseCode))
+    ) {
+      return true;
+    }
+
+    return !normalizedCourseCodes.every((courseCode) =>
+      isTrackCourseLabelSupersededByCompletedProgress({
+        label: courseCode,
+        completedCourseCodes,
+        preparatoryCourseCodes: stemPrepCourseCodes,
+      })
     );
   });
 }
@@ -5426,7 +5580,7 @@ export function getResolvedTrackTermsForStudentProgress(
   const completedCourseCodes = new Set(
     completedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
   );
-  const preparatoryCourseCodes = buildPreparatoryTrackCourseCodeSet(track);
+  const preparatoryCourseCodes = getStemPrepCourseCodeSet(track);
 
   return resolvedTerms
     .map((term) => ({
@@ -15843,10 +15997,12 @@ function buildRemainingSuggestedCourses(
   prerequisiteCourseMap: Map<string, string[][]>,
   corequisiteCourseMap: Map<string, string[][]>,
   selectedRequirementOptionIdsByGroup: Record<string, string[] | string | null | undefined> = {},
+  completedCourses: TranscriptCourseEntry[] = [],
   campusId?: TransferPlannerMajorPlan["campusId"] | null,
   plan?: TransferPlannerMajorPlan | null
 ) {
   const remainingByLabel = new Map<string, PendingSuggestedCourse>();
+  const statuses = sections.flatMap((section) => section.statuses);
   let sourceOrder = 0;
   const majorRequirementGuidanceSummary = buildUwMajorRequirementGuidanceSummary();
   const addRemainingCourse = (nextCourse: PendingSuggestedCourse) => {
@@ -15969,8 +16125,36 @@ function buildRemainingSuggestedCourses(
             !isRequirementCategoryOption(selectedEntry.option)
               ? selectedOptionCreditRange
               : getRemainingChooseCreditsRangeForStatus(status, selectedOptionCreditRange);
+          const categoryAwareRemainingSelectedOptionCreditRange =
+            isRequirementCategoryOption(selectedEntry.option)
+              ? subtractCompletedCategoryOptionTranscriptCredits({
+                  status,
+                  optionId: selectedEntry.optionId,
+                  optionGroup: resolvedOptionGroup,
+                  creditRange: remainingSelectedOptionCreditRange,
+                  completedCourses,
+                  statuses,
+                  campusId,
+                  plan,
+                })
+              : remainingSelectedOptionCreditRange;
 
           if (!selectedCourseLabels.length && isRequirementCategoryOption(selectedEntry.option)) {
+            const remainingCategoryCredits =
+              getPositiveCreditAmount(
+                categoryAwareRemainingSelectedOptionCreditRange.creditMax
+              ) ??
+              getPositiveCreditAmount(
+                categoryAwareRemainingSelectedOptionCreditRange.creditMin
+              ) ??
+              getPositiveCreditAmount(
+                categoryAwareRemainingSelectedOptionCreditRange.creditAmount
+              );
+            if (remainingCategoryCredits !== null && remainingCategoryCredits <= 0) {
+              isFirstSelectedOptionCourse = false;
+              continue;
+            }
+
             const selectedCategoryLabel =
               getRequirementCategoryOptionLabel(selectedEntry.option) ||
               getRequirementOptionDisplayLabel(selectedEntry.option) ||
@@ -15985,7 +16169,7 @@ function buildRemainingSuggestedCourses(
                 option: selectedEntry.option,
                 optionId: selectedEntry.optionId,
                 optionGroup: resolvedOptionGroup,
-                creditRange: remainingSelectedOptionCreditRange,
+                creditRange: categoryAwareRemainingSelectedOptionCreditRange,
                 guidanceSummary,
                 categoryGuidanceSummary,
                 priorityRank: REQUIREMENT_PRIORITY_RANK[section.bucket],
@@ -16014,7 +16198,7 @@ function buildRemainingSuggestedCourses(
               prerequisiteCourseSets: [],
               corequisiteCourseSets: [],
               optionGroup: isFirstSelectedOptionCourse ? resolvedOptionGroup : null,
-              ...remainingSelectedOptionCreditRange,
+              ...categoryAwareRemainingSelectedOptionCreditRange,
             };
 
             addRemainingCourse(nextCourse);
@@ -16235,13 +16419,21 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
   completedCourseCodes: Set<string>,
   prerequisiteCourseMap: Map<string, string[][]>,
   corequisiteCourseMap: Map<string, string[][]>,
+  stemPrepCourseCodes: Set<string>,
   plan?: TransferPlannerMajorPlan | null
 ) {
+  const essentialCourseCodes = new Set(
+    essentialCourses
+      .flatMap((course) => course.explicitCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
   const candidateByCode = new Map<string, PendingSuggestedCourse>();
   for (const course of candidateDependencyCourses) {
     for (const courseCode of course.explicitCourseCodes) {
-      if (!candidateByCode.has(courseCode)) {
-        candidateByCode.set(courseCode, course);
+      const normalizedCourseCode = normalizeCourseCode(courseCode);
+      if (normalizedCourseCode && !candidateByCode.has(normalizedCourseCode)) {
+        candidateByCode.set(normalizedCourseCode, course);
       }
     }
   }
@@ -16295,6 +16487,7 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
     const normalizedCourseCode = normalizeCourseCode(courseCode);
     return Boolean(
       completedCourseCodes.has(normalizedCourseCode) ||
+        essentialCourseCodes.has(normalizedCourseCode) ||
         candidateByCode.has(normalizedCourseCode) ||
         (
           hasConcreteGrcCourseCode(normalizedCourseCode) &&
@@ -16319,19 +16512,40 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
         requirementPaths.find((path) =>
           path.every((courseCode) => completedCourseCodes.has(courseCode))
         ) ??
-        requirementPaths.find((path) =>
-          path.every((courseCode) => canResolveDependencyCourseCode(courseCode))
-        ) ??
+        requirementPaths
+          .filter((path) => path.every((courseCode) => canResolveDependencyCourseCode(courseCode)))
+          .sort((left, right) => {
+            const scorePath = (path: string[]) =>
+              path.reduce((score, courseCode) => {
+                const normalizedCourseCode = normalizeCourseCode(courseCode);
+                if (!normalizedCourseCode) return score;
+                if (selectedCourseCodes.has(normalizedCourseCode)) return score + 8;
+                if (essentialCourseCodes.has(normalizedCourseCode)) return score + 6;
+                if (candidateByCode.has(normalizedCourseCode)) return score + 4;
+                return score;
+              }, 0);
+            return scorePath(right) - scorePath(left);
+          })[0] ??
         requirementPaths.find((path) => path.some((courseCode) => canResolveDependencyCourseCode(courseCode))) ??
         null;
       if (!selectedPath) continue;
 
       for (const courseCode of selectedPath) {
-        if (completedCourseCodes.has(courseCode) || selectedCourseCodes.has(courseCode)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (
+          completedCourseCodes.has(normalizedCourseCode) ||
+          selectedCourseCodes.has(normalizedCourseCode) ||
+          essentialCourseCodes.has(normalizedCourseCode) ||
+          isTrackCourseLabelSupersededByCompletedProgress({
+            label: normalizedCourseCode,
+            completedCourseCodes,
+            preparatoryCourseCodes: stemPrepCourseCodes,
+          })
+        ) {
           continue;
         }
 
-        const dependencyCourse = candidateByCode.get(courseCode);
+        const dependencyCourse = candidateByCode.get(normalizedCourseCode);
         const resolvedDependencyCourse =
           dependencyCourse ??
           buildSyntheticDependencyCourse(courseCode, course);
@@ -16380,7 +16594,10 @@ function buildPrerequisiteDependencyCoursesForEssentialPlan(
         };
         selectedByLabel.set(promotedDependencyCourse.label, promotedDependencyCourse);
         for (const explicitCourseCode of promotedDependencyCourse.explicitCourseCodes) {
-          selectedCourseCodes.add(explicitCourseCode);
+          const normalizedExplicitCourseCode = normalizeCourseCode(explicitCourseCode);
+          if (normalizedExplicitCourseCode) {
+            selectedCourseCodes.add(normalizedExplicitCourseCode);
+          }
         }
         coursesToInspect.push(promotedDependencyCourse);
       }
@@ -16731,6 +16948,7 @@ export function buildSuggestedQuarterPlan(input: {
     prerequisiteCourseMap,
     corequisiteCourseMap,
     input.selectedRequirementOptionIdsByGroup,
+    input.completedCourses,
     input.plan?.campusId,
     input.plan
   );
@@ -16744,6 +16962,7 @@ export function buildSuggestedQuarterPlan(input: {
     prerequisiteCourseMap,
     corequisiteCourseMap,
     input.selectedRequirementOptionIdsByGroup,
+    input.completedCourses,
     input.plan?.campusId,
     input.plan
   );
@@ -16764,6 +16983,7 @@ export function buildSuggestedQuarterPlan(input: {
     planningSatisfiedCourseCodes,
     prerequisiteCourseMap,
     corequisiteCourseMap,
+    stemPrepCourseCodes,
     input.plan
   );
   const essentialDependencySupportCourses = essentialDependencyCourses.filter(
@@ -16796,6 +17016,7 @@ export function buildSuggestedQuarterPlan(input: {
             prerequisiteCourseMap,
             corequisiteCourseMap,
             input.selectedRequirementOptionIdsByGroup,
+            input.completedCourses,
             input.plan?.campusId,
             input.plan
           ),
@@ -16817,9 +17038,14 @@ export function buildSuggestedQuarterPlan(input: {
     stemPrepCourseCodes,
     input.includeStayAtGrcCourses === false ? essentialRemainingCourses : []
   );
+  const remainingCoursesWithoutSupersededStemPrep = filterSupersededStemPrepSuggestedCourses(
+    remainingCoursesWithoutRedundantStemPrep,
+    completedCourseCodes,
+    stemPrepCourseCodes
+  );
   const remainingCourses = filterCompetingPhysicsSequenceCourses(
     filterStemPrepSuggestedCourses(
-      remainingCoursesWithoutRedundantStemPrep,
+      remainingCoursesWithoutSupersededStemPrep,
       stemPrepCourseCodes,
       includeStemPrepCourses
     ),

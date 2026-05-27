@@ -422,6 +422,89 @@ test("Parser ignores Expand All / Collapse All controls before sectioned credit 
   );
 });
 
+test("Sectioned table credit lists do not end technical elective option groups", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-materials-science-engineering",
+    ownerTitle: "Materials Science & Engineering",
+    planId: "uw-seattle-materials-science-engineering",
+    campusId: "uw-seattle",
+    url: "https://mse.washington.edu/current/undergrad/courses",
+    label: "MSE undergraduate courses",
+    sourceLabel: "MSE undergraduate courses",
+  });
+  const snapshotLines = [
+    "Other technical electives",
+    "The courses listed below have been approved to satisfy the maximum of 9 credits of technical electives outside of MSE. If you would like to have any other course satisfy this requirement, you must fill out a Course Substitution Petition Form for review by the MSE Undergraduate Committee.",
+    "Course #",
+    "Course Name",
+    "Credits",
+    "A MATH 352",
+    "Applied Linear Algebra & Numerical Analysis",
+    "3",
+    "A MATH 353",
+    "Partial Differential Equations and Waves",
+    "3",
+    "BIOC 405, 406",
+    "Introduction to Biochemistry",
+    "3, 3",
+    "CHEM 312",
+    "Inorganic Chemistry",
+    "3",
+    "CHEM 455, 456, or 457",
+    "Physical Chemistry",
+    "3, 3, 3",
+    "CHEM E 341",
+    "Energy and Environment",
+    "3",
+    "ENGR 321",
+    "Engineering Internship (can count a maximum of 4 cr. towards degree)",
+    "1-2",
+    "ENVIR 480",
+    "Sustainability Studio",
+    "5",
+    "PHYS 321",
+    "Electromagnetism",
+    "4",
+    "PHYS 324, 325",
+    "Quantum Mechanics",
+    "4, 4",
+    "* ENTRE 370",
+    "Introduction to Entrepreneurship",
+    "4",
+  ];
+
+  const groups = parser.buildParsedRequirementGroupsForTest(entry, [], snapshotLines);
+  const outsideMseGroup = groups.find((group) =>
+    /technical electives outside of MSE/i.test(group.label ?? "")
+  );
+  const codes = new Set(
+    (outsideMseGroup?.options ?? []).flatMap((option) => [
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ])
+  );
+  const missing = [
+    "AMATH 352",
+    "AMATH 353",
+    "BIOC 405",
+    "BIOC 406",
+    "CHEM 312",
+    "CHEM 455",
+    "CHEM 456",
+    "CHEM 457",
+    "CHEME 341",
+    "ENGR 321",
+    "ENVIR 480",
+    "PHYS 321",
+    "PHYS 324",
+    "PHYS 325",
+    "ENTRE 370",
+  ].filter((courseCode) => !codes.has(courseCode));
+
+  assert.ok(outsideMseGroup, "Expected outside-MSE technical elective group.");
+  assert.deepEqual(missing, []);
+});
+
 test("Parser keeps credit-bearing requirement rows schedulable when they include prerequisite notes", () => {
   const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
     ownerId: "uw-seattle-aquatic-conservation-and-ecology",
@@ -636,6 +719,88 @@ test("Parser groups titled credit sections without core/elective cue words", () 
       `Did not expect prerequisite-only ${prerequisiteOnlyCode} to become a section option.`
     );
   }
+});
+
+test("Focused ACE requirement pages stop before the retired AFS section", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "test-aquatic-conservation-and-ecology",
+    ownerTitle: "Aquatic Conservation & Ecology",
+    planId: "test-aquatic-conservation-and-ecology",
+    campusId: "uw-seattle",
+    parserType: "html-degree-page",
+    url: "https://example.edu/test-ace-major-requirements",
+    label: "Test Aquatic Conservation and Ecology major requirements",
+    sourceLabel: "Test Aquatic Conservation and Ecology major requirements",
+  });
+  const owner = buildParsedBlockFixture(
+    entry,
+    `
+      <main>
+        <h1>Major Requirements</h1>
+        <h2>Aquatic Conservation and Ecology (ACE) Degree Overview</h2>
+        <h3>ACE Departmental Degree Requirements</h3>
+        <h4>Basic Science Courses</h4>
+        <p>Q SCI 291, 292 or MATH 124, 125 (calculus)</p>
+        <p>Q SCI 381 or STAT 311 (statistics)</p>
+        <p>CHEM 120 or both CHEM 142, 152 (general chemistry)</p>
+        <p>CHEM 220, OCEAN 295, CHEM 223, or CHEM 237 (organic chemistry)</p>
+        <p>BIOL 180, 200</p>
+        <p>BIOL 220 or FISH 270</p>
+        <h4>Introductory Courses</h4>
+        <h5>People and the Environment</h5>
+        <p>ANTH 210 (5) Intro to Environmental Anthropology</p>
+        <p>ENVIR 235 (5) Intro to Environmental Economics</p>
+        <p>FISH 230 (5) Economics of Fisheries & Oceans</p>
+        <h4>Core Knowledge & Skills Courses</h4>
+        <p>FISH 312 (5; prereq BIOL 220/FISH 270) Fisheries Ecology</p>
+        <p>FISH 323 (5) Conservation & Management of Aquatic Resources</p>
+        <p>FISH 340 (5; prereq BIOL 200) Genetics & Molecular Ecology</p>
+        <p>FISH 370 (5; prereq BIOL 220/FISH 270) Marine Evolutionary Biology</p>
+        <h3>AFS Departmental Degree requirements</h3>
+        <h4>Physics</h4>
+        <p>PHYS 114 (4) or PHYS 121 (5)</p>
+        <h4>Natural History</h4>
+        <p>FISH 310 (5) Biology of Shellfish</p>
+        <p>FISH 311 (5) Biology of Fishes</p>
+        <h4>Physical World</h4>
+        <p>ATMOS 211 (5) Climate and Climate Change</p>
+        <h4>Capstone Research</h4>
+        <p>FISH 493 (1; prereq FISH 290) Capstone 1: Proposal</p>
+      </main>
+    `,
+    [
+      "MATH 124",
+      "MATH 125",
+      "QSCI 291",
+      "QSCI 292",
+      "QSCI 381",
+      "STAT 311",
+      "CHEM 120",
+      "CHEM 142",
+      "CHEM 152",
+      "CHEM 220",
+      "OCEAN 295",
+      "CHEM 223",
+      "CHEM 237",
+      "BIOL 180",
+      "BIOL 200",
+      "BIOL 220",
+      "ANTH 210",
+      "ENVIR 235",
+      "FISH 230",
+      "FISH 270",
+      "FISH 312",
+      "FISH 323",
+      "FISH 340",
+      "FISH 370",
+    ]
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("ANTH 210"));
+  assert.ok(owner.parsedUwCourseCodes.includes("FISH 312"));
+  assert.equal(owner.parsedUwCourseCodes.includes("PHYS 114"), false);
+  assert.equal(owner.parsedUwCourseCodes.includes("FISH 310"), false);
+  assert.equal(owner.parsedUwCourseCodes.includes("ATMOS 211"), false);
 });
 
 test("Course-code parser ignores prose-only 300-level requirement references", () => {
@@ -1452,6 +1617,94 @@ test("Focused HTML degree pages keep full requirement pages", () => {
   assert.ok(parsed.courseCodes.includes("BIOEN 400"));
   assert.ok(parsed.courseCodes.includes("BIOEN 424"));
   assert.ok(parsed.courseCodes.includes("BIOEN 405"));
+});
+
+test("Parser skips category total placeholders when nearby rows already declare specific courses", () => {
+  const owner = buildParsedBlockFixture(
+    buildRecoveryEntryFixture({
+      ownerId: "uw-seattle-bioengineering",
+      ownerTitle: "Bioengineering",
+      planId: "uw-seattle-bioengineering",
+      campusId: "uw-seattle",
+      parserType: "html-degree-page",
+      url: "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+      label: "UW Bioengineering undergraduate degree requirements",
+    }),
+    `
+      <main>
+        <h1>Undergraduate Degree Requirements</h1>
+        <h4>Natural Science (44 credits)</h4>
+        <p>Course</p>
+        <p>Topic</p>
+        <p>Credits</p>
+        <p>CHEM 142, 152, 162</p>
+        <p>General Chemistry</p>
+        <p>15</p>
+        <p>CHEM 223 or 237</p>
+        <p>Organic Chemistry</p>
+        <p>4</p>
+        <p>PHYS 121</p>
+        <p>Mechanics, with Lab</p>
+        <p>5</p>
+        <p>PHYS 122</p>
+        <p>Electromagnetism and Oscillatory Motion, with Lab</p>
+        <p>5</p>
+        <p>BIOL 180, 200, 220</p>
+        <p>Introductory Biology</p>
+        <p>15</p>
+      </main>
+    `
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("CHEM 142"));
+  assert.ok(owner.parsedUwCourseCodes.includes("BIOL 220"));
+  assert.equal(
+    owner.parsedRequirementGroups.some(
+      (group) =>
+        group.detectedOptionCue === "credit bucket" &&
+        /Natural Science \(44 credits\)/i.test(group.sourceRowText ?? "")
+    ),
+    false
+  );
+});
+
+test("Parser skips aggregate gen-ed summaries when specific category minimums follow", () => {
+  const owner = buildParsedBlockFixture(
+    buildRecoveryEntryFixture({
+      ownerId: "uw-seattle-chemical-engineering",
+      ownerTitle: "Chemical Engineering",
+      planId: "uw-seattle-chemical-engineering",
+      campusId: "uw-seattle",
+      parserType: "html-degree-page",
+      url: "https://www.cheme.washington.edu/undergraduate_students/curriculum",
+      label: "UW Chemical Engineering curriculum",
+    }),
+    `
+      <main>
+        <h2>General education requirements</h2>
+        <p>ChemE undergraduate students complete 94 credits of general education requirements, which includes 5 credits of written and oral communication, 24 credits in Arts and Humanities and Social Sciences, and 65 credits of natural world courses.</p>
+        <h3>Arts and Humanities and Social Sciences (24 credits)</h3>
+        <p>Of the 24 credits, minimum 10 credits in Arts and Humanities (A&H)</p>
+        <p>Of the 24 credits, minimum 10 credits in Social Sciences (Ssc)</p>
+        <p>At least 5 credits must be in Diversity (DIV).</p>
+        <h3>Natural World (65 credits)</h3>
+        <p>Mathematics (24 credits):</p>
+        <p>MATH 124 (5): Calculus with Analytic Geometry I</p>
+        <p>MATH 125 (5): Calculus with Analytic Geometry II</p>
+        <p>Chemistry (26 credits):</p>
+        <p>CHEM 142 (5): General Chemistry, with lab</p>
+      </main>
+    `
+  );
+  const labels = owner.parsedRequirementGroups.map((group) => group.label);
+
+  assert.ok(owner.parsedUwCourseCodes.includes("MATH 124"));
+  assert.ok(owner.parsedUwCourseCodes.includes("CHEM 142"));
+  assert.equal(labels.some((label) => /94 credits/i.test(label)), false);
+  assert.equal(labels.some((label) => /24 credits of Arts and Humanities/i.test(label)), false);
+  assert.equal(labels.some((label) => /24 credits of Social Sciences/i.test(label)), false);
+  assert.equal(labels.some((label) => /10 credits of Arts and Humanities/i.test(label)), true);
+  assert.equal(labels.some((label) => /10 credits of Social Sciences/i.test(label)), true);
 });
 
 test("Structured UW course code reader filters prose-derived level references", () => {
@@ -4330,6 +4583,126 @@ test("Catalog parser blocks graduate degree sections on shared undergraduate cat
     assert.equal(owner.parsedUwCourseCodes.includes(graduateCourseCode), false);
     assert.equal(auditRowsByCourse.get(graduateCourseCode)?.schedulable, false);
   }
+});
+
+test("Catalog snapshot heading metadata does not suppress undergraduate requirement rows", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-seattle-cinema-and-media-studies",
+    sourceUrl:
+      "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+    sourceRole: "official-catalog",
+    snapshotLines: [
+      "Owner: uw-seattle-cinema-and-media-studies",
+      "Source: https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+      "Title:",
+      'Headings: ["Bachelor of Arts degree with a major in Cinema and Media Studies","Graduate Programs","Program of Study: Doctor Of Philosophy (Cinema and Media Studies)"]',
+      "",
+      "Graduate Programs",
+      "Program of Study: Doctor Of Philosophy (Cinema and Media Studies)",
+      "Undergraduate Programs",
+      "Program of Study: Major: Cinema and Media Studies",
+      "Program Overview",
+      "Cinema and media studies majors may pursue work at the MA and PhD levels in allied curricula in the humanities and the arts. Students may aim for a broad range of careers including advertising, education, entertainment law, information technology, media archiving, museum work or public relations.",
+      "Bachelor of Arts degree with a major in Cinema and Media Studies",
+      "Completion Requirements",
+      "60 credits",
+      "Core courses (10 credits): CMS 301, CMS 480",
+      "one of CMS 302, CMS 303, or CMS 304",
+    ],
+  });
+  const rowsByRawLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  assert.equal(rowsByRawLine.get("Core courses (10 credits): CMS 301, CMS 480")?.schedulable, true);
+  assert.equal(
+    rowsByRawLine.get("one of CMS 302, CMS 303, or CMS 304")?.detectedSectionRole,
+    "primary-requirement-section"
+  );
+});
+
+test("Approved academic breadth course lists stay non-schedulable under subject subheadings", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-bothell-educational-studies-elementary-education",
+    sourceUrl:
+      "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    sourceRole: "primary-degree-requirements",
+    snapshotLines: [
+      "Elementary Education Endorsement Academic Breadth Courses",
+      "Physical Science",
+      "CHEM 120 Principles of Chemistry I NSc, RSN LAB",
+      "PHYS 114 Mechanics NSc, RSN",
+    ],
+  });
+  const rowsByRawLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  assert.equal(
+    rowsByRawLine.get("Physical Science")?.detectedSectionRole,
+    "approved-course-list"
+  );
+  assert.equal(
+    rowsByRawLine.get("CHEM 120 Principles of Chemistry I NSc, RSN LAB")?.schedulable,
+    false
+  );
+  assert.equal(
+    rowsByRawLine.get("PHYS 114 Mechanics NSc, RSN")?.schedulable,
+    false
+  );
+});
+
+test("Parser ignores table-adjacent text fragments as sectioned course titles", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-mechanical-engineering",
+    ownerTitle: "Mechanical Engineering",
+    planId: "uw-bothell-mechanical-engineering",
+    campusId: "uw-bothell",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/mechanical-engineering/requirements",
+    label: "Mechanical Engineering degree requirements",
+  });
+  const snapshotLines = [
+    "Mathematics: 30 credits",
+    "STMATH 124: Calculus I",
+    "other disciplines require the",
+    "STMATH 125: Calculus II",
+    "department's approval.",
+    "STMATH 207: Intro to Differential Equations 5",
+    "Diversity, Natural World, and QSR",
+  ];
+
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    entry,
+    parser.extractCourseCodesFromLinesForTest(snapshotLines, []),
+    snapshotLines
+  );
+  const optionTitles = groups.flatMap((group) =>
+    (group.options ?? []).map((option) => option.title).filter(Boolean)
+  );
+
+  assert.doesNotMatch(
+    optionTitles.join("\n"),
+    /other disciplines require the|department's approval|Diversity, Natural World, and QSR/
+  );
+});
+
+test("Credit bucket category labels ignore cannot-overlap category references", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-physics-bs",
+    ownerTitle: "Physics",
+    planId: "uw-bothell-physics-bs",
+    campusId: "uw-bothell",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/physics/requirements",
+    label: "Physics degree requirements",
+  });
+  const snapshotLines = [
+    "Degree Requirements",
+    "Social Sciences (SSc) - 10 more credits (cannot overlap with A&H)",
+  ];
+
+  const groups = parser.buildParsedRequirementGroupsForTest(entry, [], snapshotLines);
+  const socialScienceGroup = groups.find((group) =>
+    /Social Sciences/.test(group.sourceHeading ?? "")
+  );
+
+  assert.equal(socialScienceGroup?.label, "10 credits of Social Sciences");
+  assert.equal(socialScienceGroup?.category, "ssc");
 });
 
 test("Graduate career-planning prose does not suppress undergraduate catalog requirements", () => {

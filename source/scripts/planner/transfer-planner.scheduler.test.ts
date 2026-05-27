@@ -117,6 +117,178 @@ test("Seattle Public Health chemistry choice accepts completed CHEM& 161 without
   );
 });
 
+test("Seattle Public Health natural science bucket respects completed NSc before scheduling generic placeholders", () => {
+  assert.ok(sourceGeneratedPhghPlan, "Expected source-generated Public Health - Global Health plan.");
+  const plan = resolveTransferPlannerMajorPlan(
+    sourceGeneratedPhghPlan,
+    "health-education-and-promotion-ba-option"
+  );
+  assert.ok(plan, "Expected the Health Education & Promotion BA option.");
+
+  const completedCourses = buildTranscriptCourses(
+    "ENGL& 101",
+    "SOC& 101",
+    "CHEM& 140",
+    "DANCE 101",
+    "MUSC 102",
+    "CMST& 230",
+    "ENGL 126",
+    "MATH& 141",
+    "POLS 207",
+    "ART 114",
+    "CHEM& 161",
+    "HIST 135",
+    "ANTH& 100",
+    "CHEM& 162",
+    "MATH& 142",
+    "PHIL& 115",
+    "ANTH& 206",
+    "JOURN 125",
+    "MATH 256"
+  );
+  const microbiologyItem = [
+    ...plan.applicationChecklist,
+    ...plan.beforeEnrollmentChecklist,
+    ...plan.stayAtGrcChecklist,
+  ].find((item) =>
+    item.requirementGroup?.id.endsWith(
+      "inline-choice-select-biol-1-biol-118-biol-180-microm-301-microm-302"
+    )
+  );
+  assert.ok(microbiologyItem?.requirementGroup, "Expected the PH-GH Select BIOL group.");
+  const microbiologyOption = microbiologyItem.requirementGroup.options.find((option) =>
+    String(option.id ?? "").endsWith(":option:microm-301")
+  );
+  assert.ok(microbiologyOption?.id, "Expected the MICROM 301 option in Select BIOL.");
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan,
+    ...buildStatuses(plan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {
+      [microbiologyItem.requirementGroup.id]: [microbiologyOption.id],
+    },
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+
+  const plannedCourseCodes = getPlannedCourseCodeSet(quarterPlan);
+  assert.equal(plannedCourseCodes.has("BIOL& 260"), true);
+  assert.equal(plannedCourseCodes.has("BIOL& 241"), false);
+  assert.equal(plannedCourseCodes.has("BIOL& 242"), false);
+
+  const genericNaturalScienceRows = quarterPlan
+    .filter((quarter) => quarter.phase === "planned" || quarter.phase === "current")
+    .flatMap((quarter) => quarter.courses)
+    .filter(
+      (course) =>
+        course.courseRole === "unresolved-credit-bucket-remainder" &&
+        /Natural Sciences/i.test(course.label)
+    );
+  assert.deepEqual(
+    genericNaturalScienceRows.map((course) => course.label),
+    [],
+    "Completed transcript NSc courses should satisfy the PH-GH category bucket before generic NSc placeholders are scheduled."
+  );
+});
+
+function buildStemPrepRuntimeSuggestedPlan(
+  plan: TransferPlannerMajorPlan,
+  completedCourses: TranscriptCourseEntry[]
+) {
+  return buildSuggestedQuarterPlan({
+    plan,
+    ...buildStatuses(plan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+}
+
+test("Seattle Aeronautics STEM prep respects completed higher placement courses", () => {
+  const plan = getRequiredRuntimeSequencePlan("uw-seattle-aeronautics-astronautics", null);
+  const completedCourses = buildTranscriptCourses("MATH& 151", "CHEM& 161");
+  const plannedCodes = getPlannedCourseCodeSet(
+    buildStemPrepRuntimeSuggestedPlan(plan, completedCourses)
+  );
+
+  assert.equal(plannedCodes.has("MATH& 141"), false);
+  assert.equal(plannedCodes.has("MATH& 142"), false);
+  assert.equal(plannedCodes.has("CHEM& 140"), false);
+});
+
+test("Tacoma engineering STEM prep respects completed higher math courses", () => {
+  const completedCourses = buildTranscriptCourses(
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 153",
+    "PHYS& 221",
+    "PHYS& 222",
+    "PHYS& 223",
+    "BIOL& 211",
+    "BIOL& 212",
+    "BIOL& 213"
+  );
+
+  for (const planId of [
+    "uw-tacoma-civil-engineering",
+    "uw-tacoma-mechanical-engineering",
+  ]) {
+    const plan = getRequiredRuntimeSequencePlan(planId, null);
+    const plannedCodes = getPlannedCourseCodeSet(
+      buildStemPrepRuntimeSuggestedPlan(plan, completedCourses)
+    );
+
+    assert.equal(plannedCodes.has("MATH& 141"), false, `${planId} should not plan MATH& 141`);
+    assert.equal(plannedCodes.has("MATH& 142"), false, `${planId} should not plan MATH& 142`);
+  }
+});
+
+test("Bothell Conservation chemistry choice accepts completed CHEM& 161 without CHEM& 121", () => {
+  const plan = getRequiredRuntimeSequencePlan(
+    "uw-bothell-conservation-and-restoration-science",
+    null
+  );
+  const completedCourses = buildTranscriptCourses("CHEM& 161");
+  const plannedCodes = getPlannedCourseCodeSet(
+    buildStemPrepRuntimeSuggestedPlan(plan, completedCourses)
+  );
+
+  assert.equal(
+    plannedCodes.has("CHEM& 121"),
+    false,
+    "CHEM& 161 should satisfy the Bothell CRS chemistry choice without adding CHEM& 121."
+  );
+});
+
+test("Bothell Elementary Education ESOL suppresses completed higher STEM prep", () => {
+  const plan = getRequiredRuntimeSequencePlan(
+    "uw-bothell-educational-studies-elementary-education",
+    "esol-concentration"
+  );
+  const completedCourses = buildTranscriptCourses("MATH& 151", "CHEM& 161", "PHYS& 221");
+  const plannedCodes = getPlannedCourseCodeSet(
+    buildStemPrepRuntimeSuggestedPlan(plan, completedCourses)
+  );
+
+  assert.equal(plannedCodes.has("CHEM& 121"), false);
+  assert.equal(plannedCodes.has("PHYS& 110"), false);
+  assert.equal(plannedCodes.has("PHYS& 114"), false);
+  assert.equal(plannedCodes.has("PHYS& 154"), false);
+});
+
 test("Planner keeps chained series courses in different quarters instead of stacking them together", () => {
   const sequencePlan: TransferPlannerMajorPlan = {
     id: "test-physics-sequence-plan",

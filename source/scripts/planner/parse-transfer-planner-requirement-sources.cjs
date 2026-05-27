@@ -2954,6 +2954,12 @@ function sectionRoleCanCreateScheduleRows(sectionRole) {
   );
 }
 
+function isNonSchedulableCourseListSubheading(text) {
+  return /^(?:physical science|life science|earth\/space science|earth\s+and\s+space science|english language arts(?::\s*literature)?|social studies|mathematics|science)$/i.test(
+    normalizeWhitespace(text)
+  );
+}
+
 function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   const text = normalizeSourceSectionLine(line);
   const courseCodes = extractCourseCodesFromLine(text).filter(
@@ -3120,6 +3126,18 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   }
 
   if (
+    inheritedRole &&
+    NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
+    courseCodes.length === 0 &&
+    isNonSchedulableCourseListSubheading(text)
+  ) {
+    return {
+      sectionRole: inheritedRole,
+      reason: "inherits non-schedulable source-section role from nearby heading",
+    };
+  }
+
+  if (
     looksLikeStandaloneRequirementTitleLine(text) &&
     !electiveListCue &&
     !approvedCourseListCue &&
@@ -3184,6 +3202,18 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   if (
     inheritedRole &&
     NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
+    courseCodes.length === 0 &&
+    isNonSchedulableCourseListSubheading(text)
+  ) {
+    return {
+      sectionRole: inheritedRole,
+      reason: "inherits non-schedulable source-section role from nearby heading",
+    };
+  }
+
+  if (
+    inheritedRole &&
+    NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
     courseCodes.length > 0 &&
     /^[^:]{2,90}:\s+/.test(text)
   ) {
@@ -3206,6 +3236,19 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
     return {
       sectionRole: "primary-requirement-section",
       reason: "lower-division credit-bearing requirement row overrides nearby non-schedulable heading",
+    };
+  }
+
+  if (
+    inheritedRole &&
+    NON_SCHEDULABLE_SECTION_ROLES.has(inheritedRole) &&
+    courseCodes.length > 0 &&
+    primaryCue &&
+    !explicitChoiceRequirementCue
+  ) {
+    return {
+      sectionRole: inheritedRole,
+      reason: "inherits non-schedulable source-section role from nearby heading",
     };
   }
 
@@ -3339,6 +3382,10 @@ function buildParserPrerequisiteFilterAuditRows(input) {
           isLikelySourceSectionHeadingLine(normalizedLine)) ||
         parserRules.hasOptionReplacementRequirementCue(normalizedLine) ||
         hasPrimaryRequirementSectionCue(normalizedLine) ||
+        (
+          NON_SCHEDULABLE_SECTION_ROLES.has(currentRole) &&
+          isNonSchedulableCourseListSubheading(normalizedLine)
+        ) ||
         hasAdmissionPrepHeadingCue(normalizedLine) ||
         hasPostAdmissionDegreeCompletionCue(normalizedLine));
     const lineLooksLikeStandaloneRequirementTitle =
@@ -5522,6 +5569,28 @@ function isStandaloneSectionChoiceCueLine(line) {
   );
 }
 
+function looksLikeNearbySectionCourseTitle(candidate) {
+  const normalizedCandidate = normalizeWhitespace(candidate);
+  if (!normalizedCandidate) {
+    return false;
+  }
+  if (extractCourseCodesFromLine(normalizedCandidate).length > 0) {
+    return false;
+  }
+  if (/^[a-z]/.test(normalizedCandidate)) {
+    return false;
+  }
+  if (
+    /\b(?:credits?|free electives?|requirements?|degree|minimum|maximum|department'?s approval|other disciplines|can be counted as|diversity|natural world|qsr)\b/i.test(
+      normalizedCandidate
+    )
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 function getNearbySectionCourseTitle(snapshotLines, courseLineIndex) {
   for (
     let index = courseLineIndex + 1;
@@ -5542,7 +5611,7 @@ function getNearbySectionCourseTitle(snapshotLines, courseLineIndex) {
     ) {
       return null;
     }
-    return candidate;
+    return looksLikeNearbySectionCourseTitle(candidate) ? candidate : null;
   }
 
   return null;
@@ -5618,6 +5687,10 @@ function getNearbySectionCourseCredits(snapshotLines, courseLineIndex, courseCod
     }
     if (isCourseContinuationLine(candidate)) {
       continue;
+    }
+    const creditListRange = parseSectionedCourseCreditListLine(candidate);
+    if (creditListRange) {
+      return creditListRange;
     }
     if (/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(candidate)) {
       const range = parseRequirementCreditRange(`${candidate} credits`);
@@ -6081,6 +6154,17 @@ function buildParserRuleRequirementReplacements(owner, snapshotLines) {
 function isGraduateCareerPlanningNote(line) {
   const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
   if (
+    /\b(?:may|can|could|often|typically)?\s*(?:pursu(?:e|ing)|seek|continue|go\s+on)\b.{0,180}\b(?:graduate|master(?:'s|s)?|m\.?\s*a\.?|m\.?\s*s\.?|ph\.?\s*d\.?)\b/i.test(
+      normalizedLine
+    ) &&
+    /\b(?:careers?|employment|jobs?|positions?|professional|work)\b/i.test(normalizedLine) &&
+    !/\b(?:graduate\s+(?:programs?|admissions?|requirements?|curriculum|coursework)|master(?:'s|s)?\s+program|degree\s+requirements?)\b/i.test(
+      normalizedLine
+    )
+  ) {
+    return true;
+  }
+  if (
     /\b(?:plan(?:s)?\s+to\s+pursue|pursu(?:e|ing)|prepar(?:e|es|ing)?\s+for|good\s+choice\s+for|careers?)\b.{0,160}\b(?:graduate\s+degree|graduate\s+school|professional\s+school|post[-\s]?graduate\s+work)\b/i.test(
       normalizedLine
     ) &&
@@ -6107,6 +6191,10 @@ function isUndergraduateCatalogRequirementResetLine(line) {
       normalizedLine
     ) && !GRADUATE_DEGREE_CONTEXT_PATTERN.test(normalizedLine)
   );
+}
+
+function isSnapshotHeaderMetadataLine(line) {
+  return /^(?:owner|source|headings):\s*/i.test(normalizeWhitespace(line));
 }
 
 function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [], index = 0) {
@@ -6140,7 +6228,7 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
   const priorContextLines = (snapshotLines ?? [])
     .slice(Math.max(0, index - 24), index + 1)
     .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
-    .filter(Boolean);
+    .filter((line) => line && !isSnapshotHeaderMetadataLine(line));
   for (let lineIndex = priorContextLines.length - 1; lineIndex >= 0; lineIndex -= 1) {
     const line = priorContextLines[lineIndex];
     if (isGraduateCareerPlanningNote(line)) {
@@ -6160,12 +6248,13 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
     }
   }
 
-  const graduateContextLines = localLines.filter(
+  const localContentLines = localLines.filter((line) => !isSnapshotHeaderMetadataLine(line));
+  const graduateContextLines = localContentLines.filter(
     (line) => GRADUATE_DEGREE_CONTEXT_PATTERN.test(line) && !isGraduateCareerPlanningNote(line)
   );
   return (
     graduateContextLines.length > 0 &&
-    !localLines.some((line) => /\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line))
+    !localContentLines.some((line) => /\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line))
   );
 }
 
@@ -6293,6 +6382,54 @@ function buildSectionedCourseCategory(line) {
   return slugify(cleaned || line).replace(/-/g, "_") || "sectioned_course_group";
 }
 
+function parseSectionedCourseCreditListLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  if (!normalizedLine) {
+    return null;
+  }
+
+  const parts = normalizedLine.split(/\s*,\s*/).filter(Boolean);
+  if (!parts.length) {
+    return null;
+  }
+
+  const ranges = parts.map((part) => {
+    const match = part.match(/^(\d+(?:\.\d+)?)(?:\s*(?:-|to)\s*(\d+(?:\.\d+)?))?$/i);
+    if (!match) {
+      return null;
+    }
+    const minCredits = Number.parseFloat(match[1] ?? "");
+    const maxCredits = Number.parseFloat(match[2] ?? "");
+    const creditMax =
+      Number.isFinite(maxCredits) && maxCredits >= minCredits ? maxCredits : minCredits;
+    if (
+      !Number.isFinite(minCredits) ||
+      minCredits <= 0 ||
+      minCredits > 30 ||
+      creditMax > 30
+    ) {
+      return null;
+    }
+    return { minCredits, maxCredits: creditMax };
+  });
+
+  if (ranges.some((range) => !range)) {
+    return null;
+  }
+
+  const firstRange = ranges[0];
+  return {
+    credits: firstRange.minCredits,
+    creditMin: firstRange.minCredits,
+    creditMax: firstRange.maxCredits,
+    creditText: parts.join(", "),
+  };
+}
+
+function isSectionedCourseCreditListLine(line) {
+  return Boolean(parseSectionedCourseCreditListLine(line));
+}
+
 function hasUpcomingSectionedCourseRows(snapshotLines, startIndex, minimumCount = 2) {
   let courseRowCount = 0;
   for (
@@ -6312,6 +6449,41 @@ function hasUpcomingSectionedCourseRows(snapshotLines, startIndex, minimumCount 
       if (courseRowCount >= minimumCount) {
         return true;
       }
+    }
+  }
+
+  return false;
+}
+
+function hasImmediateSectionedCourseRowsAfterHeading(snapshotLines, startIndex, minimumCount = 1) {
+  let courseRowCount = 0;
+  for (
+    let index = startIndex + 1;
+    index < Math.min((snapshotLines ?? []).length, startIndex + 14);
+    index += 1
+  ) {
+    const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    if (!line) {
+      continue;
+    }
+    if (/^(?:Course|Courses|Topic|Credits?|Department|Dept\.?|TOTAL)$/i.test(line)) {
+      continue;
+    }
+    if (isSectionedOptionCourseBoundary(line) || looksLikeSectionedCourseHeadingLine(line)) {
+      break;
+    }
+
+    const courseLine = getSectionedOptionCourseLine(line);
+    if (courseLine) {
+      courseRowCount += 1;
+      if (courseRowCount >= minimumCount) {
+        return true;
+      }
+      continue;
+    }
+
+    if (!courseRowCount) {
+      break;
     }
   }
 
@@ -6339,6 +6511,7 @@ function looksLikeShortNamedCourseSectionHeading(line) {
     normalizedLine.length <= 90 &&
     /^[A-Z0-9]/.test(normalizedLine) &&
     !/[.;]$/.test(normalizedLine) &&
+    !isSectionedCourseCreditListLine(normalizedLine) &&
     !sourceLineStartsWithCourseCode(normalizedLine) &&
     !extractCourseCodesFromLine(normalizedLine).length &&
     !/\b(?:advising|admission|apply|application|contact|scholarships?|tuition|sample|planning|overview|objectives?|outcomes?|learn by doing|recommended preparation)\b/i.test(
@@ -6446,7 +6619,7 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   }
   if (
     /^\(?\s*\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:credits?|cr\.?)\b/i.test(rawLine) ||
-    /^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(rawLine) ||
+    isSectionedCourseCreditListLine(rawLine) ||
     /^TOTAL\b/i.test(rawLine)
   ) {
     return null;
@@ -6814,7 +6987,7 @@ function isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollected
   if (!hasCollectedCourses || getSectionedOptionCourseLine(line)) {
     return false;
   }
-  if (/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(line)) {
+  if (isSectionedCourseCreditListLine(line)) {
     return false;
   }
   if (/^TOTAL\b/i.test(line)) {
@@ -8258,8 +8431,17 @@ function getApprovedListKeyFromCreditBucketText(owner, text, descriptor = null) 
   return null;
 }
 
-function getGenericCategoryOptionDescriptorsFromCreditBucketText(text) {
+function getPositiveCreditBucketCategoryText(text) {
   const normalizedText = normalizeWhitespace(text);
+  return normalizeWhitespace(
+    normalizedText
+      .replace(/\([^)]*\b(?:cannot\s+overlap|also\s+fulfills?|fulfills?)\b[^)]*\)?/gi, "")
+      .replace(/\b(?:cannot\s+overlap\s+with|almost\s+always\s+also\s+fulfills?|also\s+fulfills?|fulfills?)\b.*$/i, "")
+  ) || normalizedText;
+}
+
+function getGenericCategoryOptionDescriptorsFromCreditBucketText(text) {
+  const normalizedText = getPositiveCreditBucketCategoryText(text);
   return CATEGORY_OPTION_DEFINITIONS.filter((definition) => definition.pattern.test(normalizedText));
 }
 
@@ -8347,6 +8529,51 @@ function looksLikeDegreeTotalGeneralElectiveProse(text) {
   );
 }
 
+function looksLikeAggregateGeneralEducationCreditSummary(text) {
+  const normalizedText = normalizeWhitespace(text);
+  const creditMentions = normalizedText.match(/\b\d+(?:\.\d+)?\s+credits?\b/gi) ?? [];
+  const categoryCount = CATEGORY_OPTION_DEFINITIONS.filter((definition) =>
+    definition.pattern.test(normalizedText)
+  ).length;
+  return (
+    creditMentions.length >= 2 &&
+    categoryCount >= 2 &&
+    /\bgeneral education requirements?\b/i.test(normalizedText) &&
+    /\b(?:which includes|including|includes)\b/i.test(normalizedText)
+  );
+}
+
+function hasFollowingSpecificHumanitiesSocialMinimums(snapshotLines, index) {
+  const followingText = normalizeWhitespace(
+    (snapshotLines ?? [])
+      .slice(index + 1, index + 5)
+      .map((line) => stripChoiceListLine(line))
+      .join(" ")
+  );
+  return (
+    /\b(?:minimum|no fewer than)\b.{0,80}\b(?:Arts?\s+(?:and|&)\s+Humanities|A\s*&\s*H|VLPA|Visual,\s*Literary,\s*and\s*Performing\s*Arts)\b/i.test(
+      followingText
+    ) &&
+    /\b(?:minimum|no fewer than)\b.{0,80}\b(?:Social Sciences?|S\s*Sc|I\s*&\s*S|Individuals\s+(?:and|&)\s+Societies)\b/i.test(
+      followingText
+    )
+  );
+}
+
+function looksLikeSharedHumanitiesSocialCreditHeading(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return (
+    parseRequirementCreditRange(normalizedText) &&
+    (
+      /\bArts?\s+(?:and|&)\s+Humanities\s+(?:and|&)\s+Social Sciences?\b/i.test(normalizedText) ||
+      /\bVLPA\s+(?:and|&)\s+I\s*&\s*S\b/i.test(normalizedText) ||
+      /\bVisual,\s*Literary,\s*and\s*Performing\s*Arts\b.{0,80}\bIndividuals\s+(?:and|&)\s+Societies\b/i.test(
+        normalizedText
+      )
+    )
+  );
+}
+
 function looksLikeElectiveTimingOrSamplePlanNote(text) {
   const normalizedText = normalizeWhitespace(text);
   return (
@@ -8367,8 +8594,23 @@ function shouldSkipCreditBucketLine(snapshotLines, index, text) {
 
   if (
     looksLikeDegreeTotalGeneralElectiveProse(normalizedText) ||
+    looksLikeAggregateGeneralEducationCreditSummary(normalizedText) ||
     looksLikeCreditSummaryForNamedRequirementSection(normalizedText) ||
     looksLikeElectiveTimingOrSamplePlanNote(normalizedText)
+  ) {
+    return true;
+  }
+
+  if (
+    isGenericCategoryCreditBucketHeading(normalizedText) &&
+    hasImmediateSectionedCourseRowsAfterHeading(snapshotLines, index, 1)
+  ) {
+    return true;
+  }
+
+  if (
+    looksLikeSharedHumanitiesSocialCreditHeading(normalizedText) &&
+    hasFollowingSpecificHumanitiesSocialMinimums(snapshotLines, index)
   ) {
     return true;
   }
@@ -9656,6 +9898,38 @@ function findDifferentOwnerAcronymDepartmentalBoundaryIndex(entry, lines) {
   }
 
   return -1;
+}
+
+function removeFollowingDifferentOwnerAcronymDepartmentalSections(entry, lines) {
+  const ownerAcronyms = new Set(getOwnerProgramAcronymTokens(entry));
+  if (!ownerAcronyms.size || !Array.isArray(lines)) {
+    return lines;
+  }
+
+  let foundOwnerBoundary = false;
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    const boundaryMatch = line.match(
+      /^([A-Z][A-Z0-9&]{1,8})\s+Departmental\s+Degree\s+requirements?\b/i
+    );
+    if (!boundaryMatch) {
+      continue;
+    }
+
+    const boundaryAcronym = normalizeMatcherText(boundaryMatch[1]).replace(/\s+/g, "");
+    if (!boundaryAcronym) {
+      continue;
+    }
+    if (ownerAcronyms.has(boundaryAcronym)) {
+      foundOwnerBoundary = true;
+      continue;
+    }
+    if (foundOwnerBoundary) {
+      return lines.slice(0, index);
+    }
+  }
+
+  return lines;
 }
 
 function hasOwnerAcronymDepartmentalBoundary(entry, lines) {
@@ -11959,6 +12233,12 @@ function shouldUseFullFocusedDegreeHtmlScope(entry, title, headings, lines) {
   if (entry?.pathwayId) {
     return false;
   }
+  if (
+    hasOwnerAcronymDepartmentalBoundary(entry, lines) &&
+    findDifferentOwnerAcronymDepartmentalBoundaryIndex(entry, lines) > 0
+  ) {
+    return false;
+  }
 
   const sampledText = normalizeMatcherText(
     [
@@ -12362,7 +12642,10 @@ function isBothellIasUndergraduateMajorSource(entry) {
 
 function scopeHtmlLines(entry, title, headings, lines) {
   const currentCatalogLines = removePriorAdmitCurriculumSectionsFromCurrentScope(lines);
-  const sourceLines = currentCatalogLines;
+  const sourceLines = removeFollowingDifferentOwnerAcronymDepartmentalSections(
+    entry,
+    currentCatalogLines
+  );
 
   const bothellChemistryCurriculumLines = scopeBothellChemistryCurriculumLines(entry, sourceLines);
   if (bothellChemistryCurriculumLines) {
@@ -13945,6 +14228,13 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
     return enrichedScopedParsed;
   }
   if (scopedParsed.sourceSectionAudit?.anchorFound) {
+    return enrichedScopedParsed;
+  }
+  if (
+    scopedCourseCount >= 4 &&
+    hasOwnerAcronymDepartmentalBoundary(entry, fullParsed.snapshotLines) &&
+    findDifferentOwnerAcronymDepartmentalBoundaryIndex(entry, fullParsed.snapshotLines) > 0
+  ) {
     return enrichedScopedParsed;
   }
   if (
@@ -16299,7 +16589,10 @@ function isParserRecoverySectionBoundaryLine(line) {
 
 function buildParserRecoverySectionCandidates(entry, artifacts) {
   const rawLines = artifacts?.lines ?? [];
-  const lines = removePriorAdmitCurriculumSectionsFromCurrentScope(rawLines);
+  const lines = removeFollowingDifferentOwnerAcronymDepartmentalSections(
+    entry,
+    removePriorAdmitCurriculumSectionsFromCurrentScope(rawLines)
+  );
   if (GRADUATE_SUPPLEMENTAL_PATTERN.test(`${entry.label ?? ""} ${entry.url ?? ""}`)) {
     return [];
   }

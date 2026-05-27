@@ -3,7 +3,7 @@ import { Alert, Linking } from "react-native";
 import { translations } from "@/services/app/translations";
 
 export const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
-  "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
+  "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/s/WEBLIB_HCX_RE.H_VW_UNOFF_TRANSCR.FieldFormula.IScript_Main?";
 
 export async function openExternalLink(url: string) {
   const safeUrl =

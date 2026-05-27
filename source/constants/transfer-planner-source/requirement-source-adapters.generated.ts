@@ -9,19 +9,19 @@ import type {
 const { createLazyGeneratedValue } = require("./generated-lazy") as typeof import("./generated-lazy");
 
 export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-27T04:00:03.720Z",
-  "totalOwners": 417,
-  "okCount": 417,
+  "generatedAt": "2026-05-27T05:14:09.414Z",
+  "totalOwners": 416,
+  "okCount": 416,
   "failedCount": 0,
-  "parsedRequirementSourceBlockCount": 417,
-  "parsedRequirementAtomCandidateCount": 7344,
-  "parsedDegreeMapBlockCandidateCount": 449,
-  "parsedRequirementGroupCount": 2333,
-  "parsedRequirementCourseCount": 9221,
-  "snapshotFallbackCount": 0,
+  "parsedRequirementSourceBlockCount": 416,
+  "parsedRequirementAtomCandidateCount": 7277,
+  "parsedDegreeMapBlockCandidateCount": 448,
+  "parsedRequirementGroupCount": 2317,
+  "parsedRequirementCourseCount": 9155,
+  "snapshotFallbackCount": 18,
   "countsByAdapterId": {
     "uw-seattle-html-degree-page": 138,
-    "uw-bothell-html-degree-page": 70,
+    "uw-bothell-html-degree-page": 69,
     "generic-official-html-page": 57,
     "uw-seattle-catalog-page": 65,
     "generic-official-pdf-degree-sheet": 22,
@@ -32,7 +32,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY = {
   },
   "countsByAdapterFamily": {
     "UW Seattle HTML degree pages": 138,
-    "UW Bothell HTML degree pages": 70,
+    "UW Bothell HTML degree pages": 69,
     "Generic official HTML pages": 57,
     "UW Seattle catalog pages": 65,
     "Generic official PDF degree sheets": 22,
@@ -43,15 +43,16 @@ export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY = {
   },
   "countsByCampus": {
     "uw-seattle": 249,
-    "uw-bothell": 88,
+    "uw-bothell": 87,
     "uw-tacoma": 80
   },
   "countsByResolutionStrategy": {
-    "primary-source": 406,
-    "alternate-official-source": 11
+    "primary-source": 388,
+    "alternate-official-source": 10,
+    "cached-snapshot": 18
   },
   "countsBySourceRole": {
-    "primary-degree-requirements": 281,
+    "primary-degree-requirements": 280,
     "department-requirements": 35,
     "official-catalog": 70,
     "admission-prerequisite-source": 15,
@@ -65,26 +66,24 @@ export const TRANSFER_PLANNER_REQUIREMENT_ADAPTER_SUMMARY = {
     "transfer-equivalency": 2
   },
   "countsBySourceRoleStatus": {
-    "primary": 387,
+    "primary": 386,
     "support": 26,
     "non-schedulable": 3,
     "ignored": 1
   },
-  "canCreateSchedulableRowCount": 387,
-  "canCreateRequiredRowCount": 387,
-  "canCreateOptionGroupCount": 387,
+  "canCreateSchedulableRowCount": 386,
+  "canCreateRequiredRowCount": 386,
+  "canCreateOptionGroupCount": 386,
   "canCreateApprovedFilterCount": 3,
   "canCreateElectiveListCount": 3,
   "supportOnlySourceCount": 26,
   "nonSchedulableSourceCount": 4,
-  "qualityWarningCount": 4,
-  "qualityNoteCount": 13,
+  "qualityWarningCount": 0,
+  "qualityNoteCount": 30,
   "countsByQualitySignalCode": {
-    "alternate-official-source-used": 11,
-    "material-source-structured-drift": 2,
-    "large-structured-only-course-gap": 1,
-    "inactive-major-source": 2,
-    "uw-mse-expected-course-option-missing": 1
+    "alternate-official-source-used": 10,
+    "snapshot-fallback-used": 18,
+    "inactive-major-source": 2
   }
 } as TransferPlannerRequirementSourceAdapterSummary;
 
@@ -505,7 +504,6 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITION_KEYS = [
   "blocks-by-block-id/block-413.generated",
   "blocks-by-block-id/block-414.generated",
   "blocks-by-block-id/block-415.generated",
-  "blocks-by-block-id/block-416.generated",
 ] as const;
 
 const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
@@ -575,111 +573,110 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
     "blocks-by-block-id/block-117.generated",
     "blocks-by-block-id/block-118.generated",
     "blocks-by-block-id/block-119.generated",
-    "blocks-by-block-id/block-120.generated",
   ],
   "uw-bothell-computer-engineering": [
-    "blocks-by-block-id/block-147.generated",
+    "blocks-by-block-id/block-146.generated",
   ],
   "uw-bothell-conservation-and-restoration-science": [
-    "blocks-by-block-id/block-161.generated",
+    "blocks-by-block-id/block-160.generated",
   ],
   "uw-bothell-csse": [
-    "blocks-by-block-id/block-155.generated",
+    "blocks-by-block-id/block-154.generated",
   ],
   "uw-bothell-csse-information-assurance-and-cybersecurity": [
-    "blocks-by-block-id/block-156.generated",
+    "blocks-by-block-id/block-155.generated",
   ],
   "uw-bothell-culture-literature-and-the-arts": [
-    "blocks-by-block-id/block-166.generated",
+    "blocks-by-block-id/block-165.generated",
   ],
   "uw-bothell-data-visualization-ba": [
+    "blocks-by-block-id/block-168.generated",
     "blocks-by-block-id/block-169.generated",
-    "blocks-by-block-id/block-170.generated",
   ],
   "uw-bothell-data-visualization-bs": [
+    "blocks-by-block-id/block-170.generated",
     "blocks-by-block-id/block-171.generated",
-    "blocks-by-block-id/block-172.generated",
   ],
   "uw-bothell-developmental-and-youth-studies": [
+    "blocks-by-block-id/block-173.generated",
     "blocks-by-block-id/block-174.generated",
     "blocks-by-block-id/block-175.generated",
     "blocks-by-block-id/block-176.generated",
-    "blocks-by-block-id/block-177.generated",
   ],
   "uw-bothell-earth-system-science": [
-    "blocks-by-block-id/block-188.generated",
+    "blocks-by-block-id/block-187.generated",
   ],
   "uw-bothell-economics": [
-    "blocks-by-block-id/block-194.generated",
+    "blocks-by-block-id/block-193.generated",
   ],
   "uw-bothell-educational-studies-elementary-education": [
+    "blocks-by-block-id/block-205.generated",
     "blocks-by-block-id/block-206.generated",
-    "blocks-by-block-id/block-207.generated",
   ],
   "uw-bothell-electrical-engineering": [
-    "blocks-by-block-id/block-226.generated",
+    "blocks-by-block-id/block-225.generated",
   ],
   "uw-bothell-environmental-studies": [
-    "blocks-by-block-id/block-247.generated",
+    "blocks-by-block-id/block-246.generated",
   ],
   "uw-bothell-gender-women-and-sexuality-studies": [
-    "blocks-by-block-id/block-263.generated",
+    "blocks-by-block-id/block-262.generated",
   ],
   "uw-bothell-global-studies": [
-    "blocks-by-block-id/block-273.generated",
+    "blocks-by-block-id/block-272.generated",
   ],
   "uw-bothell-health-studies": [
-    "blocks-by-block-id/block-276.generated",
+    "blocks-by-block-id/block-275.generated",
   ],
   "uw-bothell-interactive-media-design": [
-    "blocks-by-block-id/block-296.generated",
+    "blocks-by-block-id/block-295.generated",
   ],
   "uw-bothell-interdisciplinary-arts": [
-    "blocks-by-block-id/block-297.generated",
+    "blocks-by-block-id/block-296.generated",
   ],
   "uw-bothell-interdisciplinary-studies-individualized-study": [
-    "blocks-by-block-id/block-301.generated",
+    "blocks-by-block-id/block-300.generated",
   ],
   "uw-bothell-law-economics-and-public-policy": [
+    "blocks-by-block-id/block-319.generated",
     "blocks-by-block-id/block-320.generated",
-    "blocks-by-block-id/block-321.generated",
   ],
   "uw-bothell-mathematical-thinking-and-visualization": [
+    "blocks-by-block-id/block-327.generated",
     "blocks-by-block-id/block-328.generated",
-    "blocks-by-block-id/block-329.generated",
   ],
   "uw-bothell-mathematics": [
-    "blocks-by-block-id/block-331.generated",
+    "blocks-by-block-id/block-330.generated",
   ],
   "uw-bothell-mechanical-engineering": [
-    "blocks-by-block-id/block-333.generated",
+    "blocks-by-block-id/block-332.generated",
   ],
   "uw-bothell-media-and-communications-studies": [
-    "blocks-by-block-id/block-336.generated",
+    "blocks-by-block-id/block-335.generated",
   ],
   "uw-bothell-nursing-first-year-rn-to-bsn": [
-    "blocks-by-block-id/block-351.generated",
+    "blocks-by-block-id/block-350.generated",
   ],
   "uw-bothell-nursing-rn-to-bsn": [
-    "blocks-by-block-id/block-352.generated",
+    "blocks-by-block-id/block-351.generated",
   ],
   "uw-bothell-physics-ba": [
+    "blocks-by-block-id/block-362.generated",
     "blocks-by-block-id/block-363.generated",
-    "blocks-by-block-id/block-364.generated",
   ],
   "uw-bothell-physics-bs": [
-    "blocks-by-block-id/block-365.generated",
+    "blocks-by-block-id/block-364.generated",
   ],
   "uw-bothell-psychology": [
-    "blocks-by-block-id/block-375.generated",
+    "blocks-by-block-id/block-374.generated",
+    "blocks-by-block-id/block-376.generated",
     "blocks-by-block-id/block-377.generated",
-    "blocks-by-block-id/block-378.generated",
   ],
   "uw-bothell-science-technology-and-society": [
-    "blocks-by-block-id/block-384.generated",
+    "blocks-by-block-id/block-383.generated",
   ],
   "uw-bothell-society-ethics-and-human-behavior": [
-    "blocks-by-block-id/block-391.generated",
+    "blocks-by-block-id/block-390.generated",
   ],
   "uw-seattle-aeronautics-astronautics": [
     "blocks-by-block-id/block-000.generated",
@@ -786,109 +783,110 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
     "blocks-by-block-id/block-114.generated",
   ],
   "uw-seattle-chinese": [
+    "blocks-by-block-id/block-120.generated",
     "blocks-by-block-id/block-121.generated",
-    "blocks-by-block-id/block-122.generated",
   ],
   "uw-seattle-cinema-and-media-studies": [
+    "blocks-by-block-id/block-122.generated",
     "blocks-by-block-id/block-123.generated",
-    "blocks-by-block-id/block-124.generated",
   ],
   "uw-seattle-civil-engineering": [
-    "blocks-by-block-id/block-125.generated",
+    "blocks-by-block-id/block-124.generated",
   ],
   "uw-seattle-classical-studies": [
-    "blocks-by-block-id/block-127.generated",
+    "blocks-by-block-id/block-126.generated",
   ],
   "uw-seattle-classics": [
-    "blocks-by-block-id/block-128.generated",
+    "blocks-by-block-id/block-127.generated",
   ],
   "uw-seattle-communication": [
+    "blocks-by-block-id/block-128.generated",
     "blocks-by-block-id/block-129.generated",
-    "blocks-by-block-id/block-130.generated",
   ],
   "uw-seattle-community-environment-and-planning": [
-    "blocks-by-block-id/block-134.generated",
+    "blocks-by-block-id/block-133.generated",
   ],
   "uw-seattle-comparative-history-of-ideas": [
+    "blocks-by-block-id/block-134.generated",
     "blocks-by-block-id/block-135.generated",
     "blocks-by-block-id/block-136.generated",
     "blocks-by-block-id/block-137.generated",
-    "blocks-by-block-id/block-138.generated",
   ],
   "uw-seattle-comparative-literature": [
-    "blocks-by-block-id/block-139.generated",
+    "blocks-by-block-id/block-138.generated",
   ],
   "uw-seattle-comparative-religion": [
+    "blocks-by-block-id/block-139.generated",
     "blocks-by-block-id/block-140.generated",
     "blocks-by-block-id/block-141.generated",
     "blocks-by-block-id/block-142.generated",
     "blocks-by-block-id/block-143.generated",
-    "blocks-by-block-id/block-144.generated",
   ],
   "uw-seattle-computational-finance-and-risk-management": [
+    "blocks-by-block-id/block-144.generated",
     "blocks-by-block-id/block-145.generated",
-    "blocks-by-block-id/block-146.generated",
   ],
   "uw-seattle-computer-engineering": [
+    "blocks-by-block-id/block-147.generated",
     "blocks-by-block-id/block-148.generated",
-    "blocks-by-block-id/block-149.generated",
   ],
   "uw-seattle-computer-science": [
+    "blocks-by-block-id/block-150.generated",
     "blocks-by-block-id/block-151.generated",
     "blocks-by-block-id/block-152.generated",
     "blocks-by-block-id/block-153.generated",
-    "blocks-by-block-id/block-154.generated",
   ],
   "uw-seattle-construction-management": [
-    "blocks-by-block-id/block-162.generated",
+    "blocks-by-block-id/block-161.generated",
   ],
   "uw-seattle-dance": [
-    "blocks-by-block-id/block-167.generated",
+    "blocks-by-block-id/block-166.generated",
   ],
   "uw-seattle-danish": [
-    "blocks-by-block-id/block-168.generated",
+    "blocks-by-block-id/block-167.generated",
   ],
   "uw-seattle-design": [
-    "blocks-by-block-id/block-173.generated",
+    "blocks-by-block-id/block-172.generated",
   ],
   "uw-seattle-disability-studies": [
-    "blocks-by-block-id/block-178.generated",
+    "blocks-by-block-id/block-177.generated",
   ],
   "uw-seattle-drama": [
+    "blocks-by-block-id/block-178.generated",
     "blocks-by-block-id/block-179.generated",
     "blocks-by-block-id/block-180.generated",
-    "blocks-by-block-id/block-181.generated",
   ],
   "uw-seattle-early-childhood-and-family-studies": [
-    "blocks-by-block-id/block-182.generated",
+    "blocks-by-block-id/block-181.generated",
   ],
   "uw-seattle-earth-and-space-sciences": [
+    "blocks-by-block-id/block-182.generated",
     "blocks-by-block-id/block-183.generated",
     "blocks-by-block-id/block-184.generated",
     "blocks-by-block-id/block-185.generated",
     "blocks-by-block-id/block-186.generated",
-    "blocks-by-block-id/block-187.generated",
   ],
   "uw-seattle-economics": [
+    "blocks-by-block-id/block-188.generated",
     "blocks-by-block-id/block-189.generated",
     "blocks-by-block-id/block-190.generated",
     "blocks-by-block-id/block-191.generated",
     "blocks-by-block-id/block-192.generated",
-    "blocks-by-block-id/block-193.generated",
   ],
   "uw-seattle-education-communities-and-organizations": [
-    "blocks-by-block-id/block-205.generated",
+    "blocks-by-block-id/block-204.generated",
   ],
   "uw-seattle-education-studies": [
+    "blocks-by-block-id/block-197.generated",
     "blocks-by-block-id/block-198.generated",
     "blocks-by-block-id/block-199.generated",
     "blocks-by-block-id/block-200.generated",
     "blocks-by-block-id/block-201.generated",
     "blocks-by-block-id/block-202.generated",
     "blocks-by-block-id/block-203.generated",
-    "blocks-by-block-id/block-204.generated",
   ],
   "uw-seattle-electrical-computer-engineering": [
+    "blocks-by-block-id/block-207.generated",
     "blocks-by-block-id/block-208.generated",
     "blocks-by-block-id/block-209.generated",
     "blocks-by-block-id/block-210.generated",
@@ -905,98 +903,98 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
     "blocks-by-block-id/block-221.generated",
     "blocks-by-block-id/block-222.generated",
     "blocks-by-block-id/block-223.generated",
-    "blocks-by-block-id/block-224.generated",
   ],
   "uw-seattle-english-creative-writing": [
+    "blocks-by-block-id/block-226.generated",
     "blocks-by-block-id/block-227.generated",
-    "blocks-by-block-id/block-228.generated",
   ],
   "uw-seattle-english-language-literature-and-culture": [
+    "blocks-by-block-id/block-228.generated",
     "blocks-by-block-id/block-229.generated",
     "blocks-by-block-id/block-230.generated",
     "blocks-by-block-id/block-231.generated",
-    "blocks-by-block-id/block-232.generated",
   ],
   "uw-seattle-environmental-design-and-sustainability": [
+    "blocks-by-block-id/block-232.generated",
     "blocks-by-block-id/block-233.generated",
-    "blocks-by-block-id/block-234.generated",
   ],
   "uw-seattle-environmental-engineering": [
-    "blocks-by-block-id/block-235.generated",
+    "blocks-by-block-id/block-234.generated",
   ],
   "uw-seattle-environmental-public-health": [
-    "blocks-by-block-id/block-236.generated",
+    "blocks-by-block-id/block-235.generated",
   ],
   "uw-seattle-environmental-science-and-terrestrial-resource-management": [
+    "blocks-by-block-id/block-240.generated",
     "blocks-by-block-id/block-241.generated",
     "blocks-by-block-id/block-242.generated",
     "blocks-by-block-id/block-243.generated",
     "blocks-by-block-id/block-244.generated",
-    "blocks-by-block-id/block-245.generated",
   ],
   "uw-seattle-environmental-studies": [
-    "blocks-by-block-id/block-246.generated",
+    "blocks-by-block-id/block-245.generated",
   ],
   "uw-seattle-european-studies": [
-    "blocks-by-block-id/block-257.generated",
+    "blocks-by-block-id/block-256.generated",
   ],
   "uw-seattle-finnish": [
-    "blocks-by-block-id/block-258.generated",
+    "blocks-by-block-id/block-257.generated",
   ],
   "uw-seattle-food-systems-nutrition-and-health": [
-    "blocks-by-block-id/block-259.generated",
+    "blocks-by-block-id/block-258.generated",
   ],
   "uw-seattle-french": [
+    "blocks-by-block-id/block-259.generated",
     "blocks-by-block-id/block-260.generated",
-    "blocks-by-block-id/block-261.generated",
   ],
   "uw-seattle-gender-women-and-sexuality-studies": [
-    "blocks-by-block-id/block-262.generated",
+    "blocks-by-block-id/block-261.generated",
   ],
   "uw-seattle-geography": [
+    "blocks-by-block-id/block-263.generated",
     "blocks-by-block-id/block-264.generated",
     "blocks-by-block-id/block-265.generated",
     "blocks-by-block-id/block-266.generated",
     "blocks-by-block-id/block-267.generated",
-    "blocks-by-block-id/block-268.generated",
   ],
   "uw-seattle-german": [
+    "blocks-by-block-id/block-268.generated",
     "blocks-by-block-id/block-269.generated",
     "blocks-by-block-id/block-270.generated",
-    "blocks-by-block-id/block-271.generated",
   ],
   "uw-seattle-global-literary-studies": [
-    "blocks-by-block-id/block-272.generated",
+    "blocks-by-block-id/block-271.generated",
   ],
   "uw-seattle-greek": [
-    "blocks-by-block-id/block-274.generated",
+    "blocks-by-block-id/block-273.generated",
   ],
   "uw-seattle-guitar-b-m": [
-    "blocks-by-block-id/block-275.generated",
+    "blocks-by-block-id/block-274.generated",
   ],
   "uw-seattle-history": [
-    "blocks-by-block-id/block-278.generated",
+    "blocks-by-block-id/block-277.generated",
   ],
   "uw-seattle-history-and-philosophy-of-science": [
+    "blocks-by-block-id/block-283.generated",
     "blocks-by-block-id/block-284.generated",
-    "blocks-by-block-id/block-285.generated",
   ],
   "uw-seattle-human-centered-design-engineering": [
-    "blocks-by-block-id/block-286.generated",
+    "blocks-by-block-id/block-285.generated",
   ],
   "uw-seattle-individualized-studies": [
-    "blocks-by-block-id/block-287.generated",
+    "blocks-by-block-id/block-286.generated",
   ],
   "uw-seattle-industrial-systems-engineering": [
-    "blocks-by-block-id/block-288.generated",
+    "blocks-by-block-id/block-287.generated",
   ],
   "uw-seattle-informatics": [
+    "blocks-by-block-id/block-288.generated",
     "blocks-by-block-id/block-289.generated",
     "blocks-by-block-id/block-290.generated",
     "blocks-by-block-id/block-291.generated",
-    "blocks-by-block-id/block-292.generated",
   ],
   "uw-seattle-international-studies": [
+    "blocks-by-block-id/block-301.generated",
     "blocks-by-block-id/block-302.generated",
     "blocks-by-block-id/block-303.generated",
     "blocks-by-block-id/block-304.generated",
@@ -1004,161 +1002,160 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
     "blocks-by-block-id/block-306.generated",
     "blocks-by-block-id/block-307.generated",
     "blocks-by-block-id/block-308.generated",
-    "blocks-by-block-id/block-309.generated",
   ],
   "uw-seattle-italian": [
-    "blocks-by-block-id/block-310.generated",
+    "blocks-by-block-id/block-309.generated",
   ],
   "uw-seattle-japanese": [
-    "blocks-by-block-id/block-311.generated",
+    "blocks-by-block-id/block-310.generated",
   ],
   "uw-seattle-jazz-studies-b-m": [
-    "blocks-by-block-id/block-312.generated",
+    "blocks-by-block-id/block-311.generated",
   ],
   "uw-seattle-jewish-studies": [
-    "blocks-by-block-id/block-313.generated",
+    "blocks-by-block-id/block-312.generated",
   ],
   "uw-seattle-korean": [
-    "blocks-by-block-id/block-314.generated",
+    "blocks-by-block-id/block-313.generated",
   ],
   "uw-seattle-landscape-architecture": [
-    "blocks-by-block-id/block-315.generated",
+    "blocks-by-block-id/block-314.generated",
   ],
   "uw-seattle-latin": [
-    "blocks-by-block-id/block-316.generated",
+    "blocks-by-block-id/block-315.generated",
   ],
   "uw-seattle-latin-american-and-caribbean-studies": [
-    "blocks-by-block-id/block-317.generated",
+    "blocks-by-block-id/block-316.generated",
   ],
   "uw-seattle-law-societies-and-justice": [
+    "blocks-by-block-id/block-321.generated",
     "blocks-by-block-id/block-322.generated",
-    "blocks-by-block-id/block-323.generated",
   ],
   "uw-seattle-linguistics": [
-    "blocks-by-block-id/block-324.generated",
+    "blocks-by-block-id/block-323.generated",
   ],
   "uw-seattle-marine-biology": [
-    "blocks-by-block-id/block-325.generated",
+    "blocks-by-block-id/block-324.generated",
   ],
   "uw-seattle-materials-science-engineering": [
+    "blocks-by-block-id/block-325.generated",
     "blocks-by-block-id/block-326.generated",
-    "blocks-by-block-id/block-327.generated",
   ],
   "uw-seattle-mathematics": [
-    "blocks-by-block-id/block-330.generated",
+    "blocks-by-block-id/block-329.generated",
   ],
   "uw-seattle-mechanical-engineering": [
-    "blocks-by-block-id/block-334.generated",
+    "blocks-by-block-id/block-333.generated",
   ],
   "uw-seattle-medical-laboratory-science": [
-    "blocks-by-block-id/block-337.generated",
+    "blocks-by-block-id/block-336.generated",
   ],
   "uw-seattle-microbiology": [
-    "blocks-by-block-id/block-338.generated",
+    "blocks-by-block-id/block-337.generated",
   ],
   "uw-seattle-middle-eastern-languages-and-cultures": [
+    "blocks-by-block-id/block-338.generated",
     "blocks-by-block-id/block-339.generated",
     "blocks-by-block-id/block-340.generated",
     "blocks-by-block-id/block-341.generated",
-    "blocks-by-block-id/block-342.generated",
   ],
   "uw-seattle-music-b-a": [
+    "blocks-by-block-id/block-344.generated",
     "blocks-by-block-id/block-345.generated",
     "blocks-by-block-id/block-346.generated",
-    "blocks-by-block-id/block-347.generated",
   ],
   "uw-seattle-music-composition-b-m": [
-    "blocks-by-block-id/block-343.generated",
+    "blocks-by-block-id/block-342.generated",
   ],
   "uw-seattle-music-education-b-m": [
-    "blocks-by-block-id/block-344.generated",
+    "blocks-by-block-id/block-343.generated",
   ],
   "uw-seattle-neuroscience": [
-    "blocks-by-block-id/block-348.generated",
+    "blocks-by-block-id/block-347.generated",
   ],
   "uw-seattle-norwegian": [
-    "blocks-by-block-id/block-349.generated",
+    "blocks-by-block-id/block-348.generated",
   ],
   "uw-seattle-nursing": [
-    "blocks-by-block-id/block-350.generated",
+    "blocks-by-block-id/block-349.generated",
   ],
   "uw-seattle-oceanography": [
-    "blocks-by-block-id/block-354.generated",
+    "blocks-by-block-id/block-353.generated",
   ],
   "uw-seattle-orchestral-instruments-b-m": [
-    "blocks-by-block-id/block-355.generated",
+    "blocks-by-block-id/block-354.generated",
   ],
   "uw-seattle-organ-b-m": [
-    "blocks-by-block-id/block-356.generated",
+    "blocks-by-block-id/block-355.generated",
   ],
   "uw-seattle-percussion-performance-b-m": [
-    "blocks-by-block-id/block-357.generated",
+    "blocks-by-block-id/block-356.generated",
   ],
   "uw-seattle-philosophy": [
-    "blocks-by-block-id/block-358.generated",
+    "blocks-by-block-id/block-357.generated",
   ],
   "uw-seattle-physics": [
+    "blocks-by-block-id/block-358.generated",
     "blocks-by-block-id/block-359.generated",
     "blocks-by-block-id/block-360.generated",
     "blocks-by-block-id/block-361.generated",
-    "blocks-by-block-id/block-362.generated",
   ],
   "uw-seattle-piano-b-m": [
-    "blocks-by-block-id/block-366.generated",
+    "blocks-by-block-id/block-365.generated",
   ],
   "uw-seattle-political-science": [
+    "blocks-by-block-id/block-366.generated",
     "blocks-by-block-id/block-367.generated",
     "blocks-by-block-id/block-368.generated",
-    "blocks-by-block-id/block-369.generated",
   ],
   "uw-seattle-psychology": [
-    "blocks-by-block-id/block-374.generated",
+    "blocks-by-block-id/block-373.generated",
   ],
   "uw-seattle-public-health-global-health": [
+    "blocks-by-block-id/block-379.generated",
     "blocks-by-block-id/block-380.generated",
-    "blocks-by-block-id/block-381.generated",
   ],
   "uw-seattle-public-service-and-policy": [
-    "blocks-by-block-id/block-382.generated",
+    "blocks-by-block-id/block-381.generated",
   ],
   "uw-seattle-real-estate": [
-    "blocks-by-block-id/block-383.generated",
+    "blocks-by-block-id/block-382.generated",
   ],
   "uw-seattle-slavic-languages-and-literatures": [
+    "blocks-by-block-id/block-384.generated",
     "blocks-by-block-id/block-385.generated",
     "blocks-by-block-id/block-386.generated",
-    "blocks-by-block-id/block-387.generated",
   ],
   "uw-seattle-social-welfare": [
-    "blocks-by-block-id/block-388.generated",
+    "blocks-by-block-id/block-387.generated",
   ],
   "uw-seattle-sociology": [
-    "blocks-by-block-id/block-392.generated",
+    "blocks-by-block-id/block-391.generated",
   ],
   "uw-seattle-south-asian-languages-and-cultures": [
-    "blocks-by-block-id/block-393.generated",
+    "blocks-by-block-id/block-392.generated",
   ],
   "uw-seattle-spanish": [
-    "blocks-by-block-id/block-394.generated",
+    "blocks-by-block-id/block-393.generated",
   ],
   "uw-seattle-speech-and-hearing-sciences": [
-    "blocks-by-block-id/block-396.generated",
+    "blocks-by-block-id/block-395.generated",
   ],
   "uw-seattle-statistics": [
+    "blocks-by-block-id/block-396.generated",
     "blocks-by-block-id/block-397.generated",
     "blocks-by-block-id/block-398.generated",
     "blocks-by-block-id/block-399.generated",
     "blocks-by-block-id/block-400.generated",
-    "blocks-by-block-id/block-401.generated",
   ],
   "uw-seattle-sustainable-bioresource-systems-engineering": [
-    "blocks-by-block-id/block-402.generated",
+    "blocks-by-block-id/block-401.generated",
   ],
   "uw-seattle-swedish": [
-    "blocks-by-block-id/block-407.generated",
+    "blocks-by-block-id/block-406.generated",
   ],
   "uw-seattle-voice-b-m": [
-    "blocks-by-block-id/block-412.generated",
+    "blocks-by-block-id/block-411.generated",
   ],
   "uw-tacoma-arts-media-culture": [
     "blocks-by-block-id/block-036.generated",
@@ -1180,131 +1177,131 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_PARTITIONS_BY_PLAN_ID = {
     "blocks-by-block-id/block-062.generated",
   ],
   "uw-tacoma-civil-engineering": [
-    "blocks-by-block-id/block-126.generated",
+    "blocks-by-block-id/block-125.generated",
   ],
   "uw-tacoma-communications": [
+    "blocks-by-block-id/block-130.generated",
     "blocks-by-block-id/block-131.generated",
     "blocks-by-block-id/block-132.generated",
-    "blocks-by-block-id/block-133.generated",
   ],
   "uw-tacoma-computer-engineering": [
-    "blocks-by-block-id/block-150.generated",
+    "blocks-by-block-id/block-149.generated",
   ],
   "uw-tacoma-computer-science-and-systems": [
+    "blocks-by-block-id/block-156.generated",
     "blocks-by-block-id/block-157.generated",
-    "blocks-by-block-id/block-158.generated",
   ],
   "uw-tacoma-computer-science-and-systems-ba": [
-    "blocks-by-block-id/block-159.generated",
+    "blocks-by-block-id/block-158.generated",
   ],
   "uw-tacoma-computer-science-and-systems-bs": [
-    "blocks-by-block-id/block-160.generated",
+    "blocks-by-block-id/block-159.generated",
   ],
   "uw-tacoma-criminal-justice": [
+    "blocks-by-block-id/block-162.generated",
     "blocks-by-block-id/block-163.generated",
     "blocks-by-block-id/block-164.generated",
-    "blocks-by-block-id/block-165.generated",
   ],
   "uw-tacoma-economics-and-policy-analysis": [
+    "blocks-by-block-id/block-194.generated",
     "blocks-by-block-id/block-195.generated",
-    "blocks-by-block-id/block-196.generated",
   ],
   "uw-tacoma-education": [
-    "blocks-by-block-id/block-197.generated",
+    "blocks-by-block-id/block-196.generated",
   ],
   "uw-tacoma-electrical-engineering": [
-    "blocks-by-block-id/block-225.generated",
+    "blocks-by-block-id/block-224.generated",
   ],
   "uw-tacoma-environmental-science": [
+    "blocks-by-block-id/block-236.generated",
     "blocks-by-block-id/block-237.generated",
     "blocks-by-block-id/block-238.generated",
     "blocks-by-block-id/block-239.generated",
-    "blocks-by-block-id/block-240.generated",
   ],
   "uw-tacoma-environmental-sustainability": [
+    "blocks-by-block-id/block-247.generated",
     "blocks-by-block-id/block-248.generated",
     "blocks-by-block-id/block-249.generated",
     "blocks-by-block-id/block-250.generated",
     "blocks-by-block-id/block-251.generated",
-    "blocks-by-block-id/block-252.generated",
   ],
   "uw-tacoma-ethnic-gender-and-labor-studies": [
+    "blocks-by-block-id/block-252.generated",
     "blocks-by-block-id/block-253.generated",
     "blocks-by-block-id/block-254.generated",
     "blocks-by-block-id/block-255.generated",
-    "blocks-by-block-id/block-256.generated",
   ],
   "uw-tacoma-healthcare-leadership": [
-    "blocks-by-block-id/block-277.generated",
+    "blocks-by-block-id/block-276.generated",
   ],
   "uw-tacoma-history": [
+    "blocks-by-block-id/block-278.generated",
     "blocks-by-block-id/block-279.generated",
     "blocks-by-block-id/block-280.generated",
     "blocks-by-block-id/block-281.generated",
     "blocks-by-block-id/block-282.generated",
-    "blocks-by-block-id/block-283.generated",
   ],
   "uw-tacoma-information-technology": [
+    "blocks-by-block-id/block-292.generated",
     "blocks-by-block-id/block-293.generated",
     "blocks-by-block-id/block-294.generated",
-    "blocks-by-block-id/block-295.generated",
   ],
   "uw-tacoma-interdisciplinary-arts-and-sciences": [
+    "blocks-by-block-id/block-297.generated",
     "blocks-by-block-id/block-298.generated",
-    "blocks-by-block-id/block-299.generated",
   ],
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed": [
-    "blocks-by-block-id/block-300.generated",
+    "blocks-by-block-id/block-299.generated",
   ],
   "uw-tacoma-law-and-policy": [
+    "blocks-by-block-id/block-317.generated",
     "blocks-by-block-id/block-318.generated",
-    "blocks-by-block-id/block-319.generated",
   ],
   "uw-tacoma-mathematics": [
-    "blocks-by-block-id/block-332.generated",
+    "blocks-by-block-id/block-331.generated",
   ],
   "uw-tacoma-mechanical-engineering": [
-    "blocks-by-block-id/block-335.generated",
+    "blocks-by-block-id/block-334.generated",
   ],
   "uw-tacoma-nursing": [
-    "blocks-by-block-id/block-353.generated",
+    "blocks-by-block-id/block-352.generated",
   ],
   "uw-tacoma-politics-philosophy-and-economics": [
+    "blocks-by-block-id/block-369.generated",
     "blocks-by-block-id/block-370.generated",
     "blocks-by-block-id/block-371.generated",
     "blocks-by-block-id/block-372.generated",
-    "blocks-by-block-id/block-373.generated",
   ],
   "uw-tacoma-psychology": [
-    "blocks-by-block-id/block-376.generated",
-    "blocks-by-block-id/block-379.generated",
+    "blocks-by-block-id/block-375.generated",
+    "blocks-by-block-id/block-378.generated",
   ],
   "uw-tacoma-social-welfare": [
+    "blocks-by-block-id/block-388.generated",
     "blocks-by-block-id/block-389.generated",
-    "blocks-by-block-id/block-390.generated",
   ],
   "uw-tacoma-spanish-language-and-cultures": [
-    "blocks-by-block-id/block-395.generated",
+    "blocks-by-block-id/block-394.generated",
   ],
   "uw-tacoma-sustainable-urban-development": [
+    "blocks-by-block-id/block-402.generated",
     "blocks-by-block-id/block-403.generated",
     "blocks-by-block-id/block-404.generated",
     "blocks-by-block-id/block-405.generated",
-    "blocks-by-block-id/block-406.generated",
   ],
   "uw-tacoma-urban-design": [
-    "blocks-by-block-id/block-408.generated",
+    "blocks-by-block-id/block-407.generated",
   ],
   "uw-tacoma-urban-studies": [
+    "blocks-by-block-id/block-408.generated",
     "blocks-by-block-id/block-409.generated",
     "blocks-by-block-id/block-410.generated",
-    "blocks-by-block-id/block-411.generated",
   ],
   "uw-tacoma-writing-studies": [
+    "blocks-by-block-id/block-412.generated",
     "blocks-by-block-id/block-413.generated",
     "blocks-by-block-id/block-414.generated",
     "blocks-by-block-id/block-415.generated",
-    "blocks-by-block-id/block-416.generated",
   ],
 } as const;
 
@@ -2142,8 +2139,6 @@ function loadTransferPlannerParsedRequirementBlockPartition(partitionKey: string
       return require("./requirement-source-adapters.generated/blocks-by-block-id/block-414.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
     case "blocks-by-block-id/block-415.generated":
       return require("./requirement-source-adapters.generated/blocks-by-block-id/block-415.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
-    case "blocks-by-block-id/block-416.generated":
-      return require("./requirement-source-adapters.generated/blocks-by-block-id/block-416.generated.json") as TransferPlannerParsedRequirementSourceBlock[];
     default:
       return [] as TransferPlannerParsedRequirementSourceBlock[];
   }

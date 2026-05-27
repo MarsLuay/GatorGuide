@@ -64,7 +64,7 @@ const AUDITED_SEATTLE_DEMO_LIVE_SOURCE_SAMPLE = [
   {
     planId: "uw-seattle-aquatic-conservation-and-ecology",
     sourceUrl: "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
-    evidenceCourseCodes: ["ANTH 210", "ATMOS 211", "BIOL 180"],
+    evidenceCourseCodes: ["ANTH 210", "BIOL 180", "FISH 312"],
   },
   {
     planId: "uw-seattle-art",
