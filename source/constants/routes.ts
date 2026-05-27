@@ -127,6 +127,13 @@ export const APP_ROUTE_METADATA = {
     hiddenTab: true,
     returnTo: "/(tabs)/resources",
   },
+  transferPlannerMajor: {
+    href: "/resources/transfer-planner/[college]/[campus]/[major]",
+    tabScreen: "resources/transfer-planner/[college]/[campus]/[major]",
+    primaryTab: TAB_ROUTE_NAMES.resources,
+    hiddenTab: true,
+    returnTo: "/(tabs)/resources",
+  },
   transferPlannerLegacy: {
     href: "/transfer-planner",
     tabScreen: "transfer-planner",
@@ -259,6 +266,24 @@ export const ROUTES = {
   calendar: APP_ROUTE_METADATA.calendar.href,
   opportunityAdmin: APP_ROUTE_METADATA.opportunityAdmin.href,
   transferPlanner: APP_ROUTE_METADATA.transferPlanner.href,
+  transferPlannerMajor({
+    college,
+    campus,
+    major,
+    params,
+  }: {
+    college: string;
+    campus: string;
+    major: string;
+    params?: RouteParams;
+  }): Href {
+    return hrefWithParams(APP_ROUTE_METADATA.transferPlannerMajor.href, {
+      college,
+      campus,
+      major,
+      ...(params ?? {}),
+    });
+  },
   transferEquivalencies: APP_ROUTE_METADATA.transferEquivalencies.href,
   compare: APP_ROUTE_METADATA.compare.href,
   costCalculator: APP_ROUTE_METADATA.costCalculator.href,

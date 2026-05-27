@@ -527,10 +527,10 @@ diagnosticTest("Marine Biology should retain chemistry, biology, statistics, mat
 
 diagnosticTest("Public Health - Global Health should expose BA/BS pathway options and service-learning sequence logic", () => {
   const expectedPathwayLabels = [
-    "BA Global Health option",
-    "BA Health Education & Promotion option",
-    "BS Global Health option",
-    "BS Nutritional Sciences option",
+    "Global Health (BA Option)",
+    "Global Health (BS Option)",
+    "Health Education & Promotion (BA Option)",
+    "Nutritional Sciences (BS Option)",
   ].sort((left, right) => left.localeCompare(right));
 
   assert.deepEqual(getSourcePathwayLabels("uw-seattle-public-health-global-health"), expectedPathwayLabels);

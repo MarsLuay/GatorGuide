@@ -383,8 +383,36 @@ const UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID =
 const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
 const UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID = "uw-seattle-chemical-engineering";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
+const UW_SEATTLE_PHGH_PLAN_ID = "uw-seattle-public-health-global-health";
+const UW_SEATTLE_PHGH_HEALTH_EDUCATION_PATHWAY_ID =
+  "health-education-and-promotion-ba-option";
 const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
+const GRC_PRE_NURSING_TRANSFER_TRACK_ID =
+  "grc-associate-healthcare-wellness-nursing-associate-in-pre-nursing-apren-dta-mrp";
+const UW_SEATTLE_PHGH_ADMISSION_PREREQUISITE_NOTE =
+  "Valid as one PH-GH admission prerequisite option; this does not replace HSERV 100 for the Health Education & Promotion option.";
+type RuntimeAdmissionPrerequisiteOptionRule = {
+  planId: string;
+  pathwayId?: string | null;
+  itemGrcCourseCodes?: string[];
+  itemUwCourseCodes?: string[];
+  note: string;
+  suppressedTrackIds?: string[];
+  suppressedTrackSummary?: string;
+};
+const RUNTIME_ADMISSION_PREREQUISITE_OPTION_RULES: RuntimeAdmissionPrerequisiteOptionRule[] = [
+  {
+    planId: UW_SEATTLE_PHGH_PLAN_ID,
+    pathwayId: UW_SEATTLE_PHGH_HEALTH_EDUCATION_PATHWAY_ID,
+    itemGrcCourseCodes: ["NUTR& 101"],
+    itemUwCourseCodes: ["NUTR 200"],
+    note: UW_SEATTLE_PHGH_ADMISSION_PREREQUISITE_NOTE,
+    suppressedTrackIds: [GRC_PRE_NURSING_TRANSFER_TRACK_ID],
+    suppressedTrackSummary:
+      "No Green River associate path is currently a clean automatic match for the Health Education & Promotion option.",
+  },
+];
 const RUNTIME_AUTO_TRACK_MATCH_EXAMPLE_LIMIT = 4;
 const RUNTIME_AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
   /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
@@ -396,7 +424,7 @@ const UW_SEATTLE_BIOENGINEERING_GEN_ED_SECTION = {
     "English Composition: 5 credits.",
     "Arts and Humanities: 10 credits minimum.",
     "Social Sciences: 10 credits minimum.",
-    "Natural Sciences: 45 credits minimum.",
+    "Natural Sciences: 44 credits minimum.",
     "4 additional credits of Arts and Humanities or Social Sciences.",
     "Diversity: 3 credits; these credits may overlap with Areas of Inquiry.",
     "Additional Areas of Inquiry 8 credits from any area as general electives.",
@@ -1522,6 +1550,124 @@ function refreshRuntimeMatchedTrackCopy<T extends TransferPlannerMajorPlan>(plan
     ...plan,
     recommendedTrackSummary: matchedTrackRecommendation.recommendedTrackSummary,
     whyThisTrack: matchedTrackRecommendation.whyThisTrack,
+  };
+}
+
+function getRuntimeAdmissionPrerequisiteRulesForPlan(
+  plan: TransferPlannerMajorPlan | TransferPlannerResolvedMajorPlan
+) {
+  return RUNTIME_ADMISSION_PREREQUISITE_OPTION_RULES.filter((rule) => {
+    if (plan.id !== rule.planId) {
+      return false;
+    }
+    if (rule.pathwayId === undefined) {
+      return true;
+    }
+    if (!("selectedPathwayId" in plan)) {
+      return false;
+    }
+
+    return (
+      normalizeTransferPlannerPathwayId(plan.id, plan.selectedPathwayId) ===
+      normalizeTransferPlannerPathwayId(plan.id, rule.pathwayId)
+    );
+  });
+}
+
+function runtimeAdmissionPrerequisiteRuleMatchesItem(
+  rule: RuntimeAdmissionPrerequisiteOptionRule,
+  item: TransferPlannerChecklistItem
+) {
+  const itemGrcCourseCodes = new Set(
+    (item.grcCourses ?? [])
+      .flatMap((label) => extractTransferPlannerCourseCodes(label))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+  );
+  const itemTitleCourseCodes = new Set(
+    extractTransferPlannerCourseCodes(item.title ?? "").map((courseCode) =>
+      normalizeCourseCode(courseCode)
+    )
+  );
+
+  return (
+    (rule.itemGrcCourseCodes ?? []).some((courseCode) =>
+      itemGrcCourseCodes.has(normalizeCourseCode(courseCode))
+    ) ||
+    (rule.itemUwCourseCodes ?? []).some((courseCode) =>
+      itemTitleCourseCodes.has(normalizeCourseCode(courseCode))
+    )
+  );
+}
+
+function annotateRuntimeAdmissionPrerequisiteChecklistItems(
+  items: TransferPlannerChecklistItem[],
+  rules: RuntimeAdmissionPrerequisiteOptionRule[]
+) {
+  if (!rules.length) {
+    return items;
+  }
+
+  return items.map((item) => {
+    const matchedRules = rules.filter((rule) =>
+      runtimeAdmissionPrerequisiteRuleMatchesItem(rule, item)
+    );
+    if (!matchedRules.length) {
+      return item;
+    }
+
+    const noteParts = [String(item.note ?? "").trim()];
+    for (const rule of matchedRules) {
+      if (!noteParts.some((part) => part.includes(rule.note))) {
+        noteParts.push(rule.note);
+      }
+    }
+
+    return {
+      ...item,
+      note: noteParts.filter(Boolean).join(" "),
+      reason: matchedRules[0]?.note ?? item.reason ?? null,
+    };
+  });
+}
+
+function normalizeRuntimeAdmissionPrerequisiteOptions<
+  T extends TransferPlannerMajorPlan | TransferPlannerResolvedMajorPlan,
+>(plan: T): T {
+  const rules = getRuntimeAdmissionPrerequisiteRulesForPlan(plan);
+  if (!rules.length) {
+    return plan;
+  }
+
+  const nextPlan = {
+    ...plan,
+    applicationChecklist: annotateRuntimeAdmissionPrerequisiteChecklistItems(
+      plan.applicationChecklist ?? [],
+      rules
+    ),
+    beforeEnrollmentChecklist: annotateRuntimeAdmissionPrerequisiteChecklistItems(
+      plan.beforeEnrollmentChecklist ?? [],
+      rules
+    ),
+    stayAtGrcChecklist: annotateRuntimeAdmissionPrerequisiteChecklistItems(
+      plan.stayAtGrcChecklist ?? [],
+      rules
+    ),
+  };
+
+  const suppressedTrackRule = rules.find((rule) =>
+    (rule.suppressedTrackIds ?? []).includes(nextPlan.bestTrackId ?? "")
+  );
+  if (!suppressedTrackRule) {
+    return nextPlan;
+  }
+
+  return {
+    ...nextPlan,
+    bestTrackId: null,
+    recommendedTrackSummary:
+      suppressedTrackRule.suppressedTrackSummary ??
+      "No Green River associate path is currently a clean automatic match for this selected option.",
+    whyThisTrack: [],
   };
 }
 
@@ -2803,17 +2949,19 @@ function scopeIndependentRuntimePathwayContent<T extends TransferPlannerResolved
 function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
-  return scopeIndependentRuntimePathwayContent(
-    normalizeRequiredForDegreeEitherWayRuntimeChecklistNotes(
-      normalizeRequirementShapesRuntimePlan(
-        normalizeCategoryOptionRuntimePlan(
-          normalizeUwSeattleChemicalEngineeringRuntimePlan(
-            normalizeUwSeattleBioengineeringRuntimePlan(
-              normalizeUwSeattleCivilRuntimePlan(
-                normalizeUwSeattleMechanicalRuntimePlan(
-                  normalizeUwSeattleEceRuntimePlan(
-                    normalizeUwTacomaComputerEngineeringRuntimePlan(
-                      normalizeUwSeattleComputerScienceRuntimePlan(plan)
+  return normalizeRuntimeAdmissionPrerequisiteOptions(
+    scopeIndependentRuntimePathwayContent(
+      normalizeRequiredForDegreeEitherWayRuntimeChecklistNotes(
+        normalizeRequirementShapesRuntimePlan(
+          normalizeCategoryOptionRuntimePlan(
+            normalizeUwSeattleChemicalEngineeringRuntimePlan(
+              normalizeUwSeattleBioengineeringRuntimePlan(
+                normalizeUwSeattleCivilRuntimePlan(
+                  normalizeUwSeattleMechanicalRuntimePlan(
+                    normalizeUwSeattleEceRuntimePlan(
+                      normalizeUwTacomaComputerEngineeringRuntimePlan(
+                        normalizeUwSeattleComputerScienceRuntimePlan(plan)
+                      )
                     )
                   )
                 )

@@ -8,6 +8,8 @@ export type ParsedTranscriptCourse = {
   title: string;
   label: string;
   credits: number | null;
+  grade: string | null;
+  gradeValue: number | null;
   termLabel: string | null;
   termStartDate: string | null;
   termEndDate: string | null;
@@ -158,6 +160,38 @@ function formatExtractedGpa(value: unknown) {
   const clamped = Math.max(0, Math.min(num, 4.0));
   const truncated = Math.floor(clamped * 100) / 100;
   return truncated.toFixed(2).replace(/\.0+$|0+$/g, "");
+}
+
+function formatTranscriptCourseGrade(value: unknown) {
+  const raw = String(value ?? "").replace(/\s+/g, " ").trim();
+  return raw || null;
+}
+
+function parseTranscriptCourseGradeValue(value: unknown) {
+  const raw = String(value ?? "").replace(/\s+/g, "").trim();
+  if (!raw) return null;
+
+  const numeric = Number(raw);
+  if (Number.isFinite(numeric)) {
+    return Math.max(0, Math.min(numeric, 4));
+  }
+
+  const gradeValues: Record<string, number> = {
+    "A+": 4,
+    A: 4,
+    "A-": 3.7,
+    "B+": 3.3,
+    B: 3,
+    "B-": 2.7,
+    "C+": 2.3,
+    C: 2,
+    "C-": 1.7,
+    "D+": 1.3,
+    D: 1,
+    "D-": 0.7,
+    F: 0,
+  };
+  return gradeValues[raw.toUpperCase()] ?? null;
 }
 
 export function inferGrcCatalogYearLabelFromTranscriptTerm(
@@ -325,7 +359,7 @@ function parseTranscriptCourseLines(lines: string[]) {
     const match = line.match(COURSE_LINE_PATTERN);
     if (!match) continue;
 
-    const [, subject, number, rawTitle, attempted, earned, , points] = match;
+    const [, subject, number, rawTitle, attempted, earned, rawGrade, points] = match;
     if (
       !CREDIT_PATTERN.test(attempted) ||
       !CREDIT_PATTERN.test(earned) ||
@@ -350,12 +384,15 @@ function parseTranscriptCourseLines(lines: string[]) {
       continue;
     }
 
+    const grade = formatTranscriptCourseGrade(rawGrade);
     seen.add(code);
     parsed.push({
       code,
       title,
       label: `${code} ${title}`.trim(),
       credits: earnedCredits,
+      grade,
+      gradeValue: parseTranscriptCourseGradeValue(grade),
       termLabel: currentTermLabel,
       termStartDate: currentTermStartDate,
       termEndDate: currentTermEndDate,

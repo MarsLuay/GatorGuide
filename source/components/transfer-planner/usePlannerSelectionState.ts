@@ -37,6 +37,7 @@ import {
   type PlannerCollegeId,
   type PlannerSelectorKey,
 } from "./transfer-planner-storage";
+import type { TransferPlannerRouteSelection } from "./transfer-planner-routing";
 
 type SetQuestionnaireAnswers = (
   answers:
@@ -50,6 +51,7 @@ type UsePlannerSelectionStateInput = {
   setQuestionnaireAnswers: SetQuestionnaireAnswers;
   userMajor?: string | null;
   includeAllUwMajors?: boolean;
+  routeSelection?: TransferPlannerRouteSelection | null;
 };
 
 const SELECTABLE_UW_MAJOR_PLANS_BY_CACHE_KEY = new Map<string, TransferPlannerMajorPlan[]>();
@@ -77,18 +79,59 @@ function getSelectableUwMajorPlansForCampus(
   return majors;
 }
 
+function getInitialPlannerCollegeId(
+  routeSelection?: TransferPlannerRouteSelection | null
+): PlannerCollegeId {
+  return routeSelection?.collegeId === "grc" ? "grc" : "uw";
+}
+
+function getInitialPlannerCampusId(
+  routeSelection?: TransferPlannerRouteSelection | null
+): PlannerCampusSelectionId {
+  if (routeSelection?.collegeId === "grc") return GRC_PLANNER_CAMPUS_ID;
+  if (routeSelection?.collegeId === "uw" && isPlannerUwCampusId(routeSelection.campusId)) {
+    return routeSelection.campusId;
+  }
+  return "uw-seattle";
+}
+
+function getInitialPlannerMajorId(
+  routeSelection: TransferPlannerRouteSelection | null | undefined,
+  includeAllUwMajors: boolean
+) {
+  if (routeSelection?.collegeId === "grc") {
+    return routeSelection.majorId &&
+      TRANSFER_PLANNER_TRACKS.some((entry) => entry.id === routeSelection.majorId)
+      ? routeSelection.majorId
+      : TRANSFER_PLANNER_TRACKS[0]?.id ?? "";
+  }
+
+  const campusId =
+    routeSelection?.collegeId === "uw" && isPlannerUwCampusId(routeSelection.campusId)
+      ? routeSelection.campusId
+      : "uw-seattle";
+  const majors = getSelectableUwMajorPlansForCampus(campusId, { includeAllUwMajors });
+  return routeSelection?.majorId && majors.some((entry) => entry.id === routeSelection.majorId)
+    ? routeSelection.majorId
+    : majors[0]?.id ?? "";
+}
+
 export function usePlannerSelectionState({
   isHydrated,
   questionnaireAnswers,
   setQuestionnaireAnswers,
   userMajor,
   includeAllUwMajors = false,
+  routeSelection = null,
 }: UsePlannerSelectionStateInput) {
-  const [selectedCollegeId, setSelectedCollegeId] = useState<PlannerCollegeId>("uw");
-  const [selectedCampusId, setSelectedCampusId] =
-    useState<PlannerCampusSelectionId>("uw-seattle");
+  const [selectedCollegeId, setSelectedCollegeId] = useState<PlannerCollegeId>(() =>
+    getInitialPlannerCollegeId(routeSelection)
+  );
+  const [selectedCampusId, setSelectedCampusId] = useState<PlannerCampusSelectionId>(() =>
+    getInitialPlannerCampusId(routeSelection)
+  );
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
-    getSelectableUwMajorPlansForCampus("uw-seattle", { includeAllUwMajors })[0]?.id ?? ""
+    () => getInitialPlannerMajorId(routeSelection, includeAllUwMajors)
   );
   const [openSelector, setOpenSelector] = useState<PlannerSelectorKey>(null);
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
@@ -220,6 +263,41 @@ export function usePlannerSelectionState({
     () => selectedOptionsByPath[plannerPathKey] ?? {},
     [plannerPathKey, selectedOptionsByPath]
   );
+  const routeSelectedCollegeId = routeSelection?.collegeId ?? null;
+  const routeSelectedCampusId = routeSelection?.campusId ?? null;
+  const routeSelectedMajorId = routeSelection?.majorId ?? null;
+
+  useEffect(() => {
+    if (!routeSelectedCollegeId) return;
+
+    autoMajorSelectionRef.current = true;
+    if (routeSelectedCollegeId === "grc") {
+      const matchedTrack = routeSelectedMajorId
+        ? TRANSFER_PLANNER_TRACKS.find((entry) => entry.id === routeSelectedMajorId)
+        : null;
+      setSelectedCollegeId("grc");
+      setSelectedCampusId(GRC_PLANNER_CAMPUS_ID);
+      setSelectedMajorId(matchedTrack?.id ?? TRANSFER_PLANNER_TRACKS[0]?.id ?? "");
+      return;
+    }
+
+    if (!routeSelectedCampusId || !isPlannerUwCampusId(routeSelectedCampusId)) return;
+
+    const nextMajors = getSelectableUwMajorPlansForCampus(routeSelectedCampusId, {
+      includeAllUwMajors,
+    });
+    const matchedMajor = routeSelectedMajorId
+      ? nextMajors.find((entry) => entry.id === routeSelectedMajorId)
+      : null;
+    setSelectedCollegeId("uw");
+    setSelectedCampusId(routeSelectedCampusId);
+    setSelectedMajorId(matchedMajor?.id ?? nextMajors[0]?.id ?? "");
+  }, [
+    includeAllUwMajors,
+    routeSelectedCampusId,
+    routeSelectedCollegeId,
+    routeSelectedMajorId,
+  ]);
 
   useEffect(() => {
     if (!isUwPlanner || openSelector !== "campus") return;
@@ -270,6 +348,7 @@ export function usePlannerSelectionState({
     if (!isHydrated || hydratedLastSelectionRef.current) return;
 
     hydratedLastSelectionRef.current = true;
+    if (routeSelection) return;
     if (!storedLastSelectedPlan) return;
 
     if (storedLastSelectedPlan.collegeId === "grc") {
@@ -300,7 +379,7 @@ export function usePlannerSelectionState({
     setSelectedCollegeId("uw");
     setSelectedCampusId(matchedCampus.id);
     setSelectedMajorId(matchedMajor.id);
-  }, [includeAllUwMajors, isHydrated, storedLastSelectedPlan]);
+  }, [includeAllUwMajors, isHydrated, routeSelection, storedLastSelectedPlan]);
 
   useEffect(() => {
     const nextCampusId = getDefaultPlannerCampusId(selectedCollegeId);
@@ -335,6 +414,7 @@ export function usePlannerSelectionState({
   }, [campusMajors, selectedCollegeId, selectedMajorId]);
 
   useEffect(() => {
+    if (routeSelection) return;
     if (autoMajorSelectionRef.current) return;
     const rawMajor = String(userMajor ?? "").trim().toLowerCase();
     if (!rawMajor) return;
@@ -360,7 +440,7 @@ export function usePlannerSelectionState({
     if (!matchedMajor) return;
     autoMajorSelectionRef.current = true;
     setSelectedMajorId(matchedMajor.id);
-  }, [campusMajors, selectedCollegeId, userMajor]);
+  }, [campusMajors, routeSelection, selectedCollegeId, userMajor]);
 
   useEffect(() => {
     if (!isHydrated || !selectedMajorId) return;

@@ -155,7 +155,9 @@ function parseInternalAppUrl(url: string): InternalToolTarget | null {
 }
 
 export function isTransferPlannerResourceUrl(url: string) {
-  return parseInternalAppUrl(url)?.pathname === ROUTES.transferPlanner;
+  const pathname = parseInternalAppUrl(url)?.pathname ?? "";
+  const plannerRoot = String(ROUTES.transferPlanner);
+  return pathname === plannerRoot || pathname.startsWith(`${plannerRoot}/`);
 }
 
 export function preloadTransferPlannerPage() {

@@ -9,6 +9,9 @@ const {
 } = require("./lib/tmp-layout.cjs");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
+const staleLogAgeMs = 1000 * 60 * 60 * 24 * 3;
+const staleLogArchiveDirectoryName = "stale-logs";
+const logExtensions = new Set([".log", ".out", ".err"]);
 const ignoredDirectoryNames = new Set([
   ".git",
   ".expo",
@@ -84,7 +87,91 @@ function moveEntry(sourcePath, destinationPath) {
   return finalDestinationPath;
 }
 
-function organizeTmpRoot(tmpRoot) {
+function walkFiles(rootPath, results = []) {
+  let entries;
+  try {
+    entries = fs.readdirSync(rootPath, { withFileTypes: true });
+  } catch {
+    return results;
+  }
+
+  for (const entry of entries) {
+    const entryPath = path.join(rootPath, entry.name);
+    if (entry.isDirectory()) {
+      walkFiles(entryPath, results);
+      continue;
+    }
+    results.push(entryPath);
+  }
+
+  return results;
+}
+
+function removeEmptyDirectories(rootPath) {
+  let entries;
+  try {
+    entries = fs.readdirSync(rootPath, { withFileTypes: true });
+  } catch {
+    return;
+  }
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+    const entryPath = path.join(rootPath, entry.name);
+    removeEmptyDirectories(entryPath);
+    try {
+      fs.rmdirSync(entryPath);
+    } catch {
+      // Non-empty or locked directories can stay in place.
+    }
+  }
+}
+
+function archiveStaleLogs(tmpRoot, layout, result, options = {}) {
+  const nowMs = options.nowMs ?? Date.now();
+  const maxAgeMs = options.staleLogAgeMs ?? staleLogAgeMs;
+  const archiveRoot = path.join(layout.reports, staleLogArchiveDirectoryName);
+  const activeLogRoots = [layout.logs, layout.error_logs];
+
+  for (const logRoot of activeLogRoots) {
+    const logFiles = walkFiles(logRoot).filter((filePath) =>
+      logExtensions.has(path.extname(filePath).toLowerCase())
+    );
+
+    for (const filePath of logFiles) {
+      let fileStat;
+      try {
+        fileStat = fs.statSync(filePath);
+      } catch {
+        continue;
+      }
+      if (nowMs - fileStat.mtimeMs <= maxAgeMs) {
+        continue;
+      }
+
+      const relativeLogPath = path.relative(tmpRoot, filePath);
+      const destinationPath = path.join(archiveRoot, relativeLogPath);
+      try {
+        const finalDestinationPath = moveEntry(filePath, destinationPath);
+        result.moved.push({
+          from: filePath,
+          to: finalDestinationPath,
+        });
+      } catch (error) {
+        result.skipped.push({
+          path: filePath,
+          reason: error instanceof Error ? error.message : String(error),
+        });
+      }
+    }
+
+    removeEmptyDirectories(logRoot);
+  }
+}
+
+function organizeTmpRoot(tmpRoot, options = {}) {
   const layout = ensureTmpLayout(path.dirname(tmpRoot));
   const result = {
     root: tmpRoot,
@@ -126,6 +213,8 @@ function organizeTmpRoot(tmpRoot) {
     }
   }
 
+  archiveStaleLogs(tmpRoot, layout, result, options);
+
   return result;
 }
 
@@ -146,4 +235,12 @@ function main() {
   // sweep them on the next run instead of failing the caller.
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  archiveStaleLogs,
+  findTmpRoots,
+  organizeTmpRoot,
+};

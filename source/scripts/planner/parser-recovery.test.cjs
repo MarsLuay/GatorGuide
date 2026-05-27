@@ -1707,6 +1707,40 @@ test("Parser skips aggregate gen-ed summaries when specific category minimums fo
   assert.equal(labels.some((label) => /10 credits of Social Sciences/i.test(label)), true);
 });
 
+test("Parser does not turn Disability Studies subfield names into generic DIV placeholders", () => {
+  const owner = buildParsedBlockFixture(
+    buildRecoveryEntryFixture({
+      ownerId: "uw-seattle-disability-studies",
+      ownerTitle: "Disability Studies",
+      planId: "uw-seattle-disability-studies",
+      campusId: "uw-seattle",
+      parserType: "html-degree-page",
+      url: "https://disabilitystudies.washington.edu/DS_major",
+      label: "Disability Studies Major",
+    }),
+    `
+      <main>
+        <h2>Degree Requirements</h2>
+        <p>Completed DIS ST/LSJ/CHID 230: Introduction to Disability Studies with a minimum grade of 2.0</p>
+        <h3>Diversity, Representation, & Identity (5 credits)</h3>
+        <p>DIS ST 335 / GWSS 335 / CHID 335 Sex, Gender, and Disability</p>
+        <p>DIS ST 337 / SOC 337 Social Construction of Madness and Mental Health in the US</p>
+        <h3>Thesis Project</h3>
+        <p>Thesis Project undertaken as either INDIV 493: Senior Study (5 credits) or DIS ST 499: Independent Study (5-15 credits)</p>
+      </main>
+    `
+  );
+  const labels = owner.parsedRequirementGroups.map((group) => group.label);
+  const categoryOptions = owner.parsedRequirementGroups.flatMap((group) => group.options ?? []);
+
+  assert.ok(owner.parsedUwCourseCodes.includes("DISST 335"));
+  assert.equal(labels.some((label) => /5 credits of Diversity/i.test(label)), false);
+  assert.equal(
+    categoryOptions.some((option) => option.optionKind === "category-option" && option.categoryOption?.category === "DIV"),
+    false
+  );
+});
+
 test("Structured UW course code reader filters prose-derived level references", () => {
   const courseCodes = parser.getStructuredUwCourseCodesForTest({
     planId: "uw-bothell-csse",
@@ -2222,6 +2256,57 @@ test("Unscoped ACS-certified supplemental sources cannot create schedulable rows
     false
   );
   assert.equal(parser.classifyRequirementSourceRole(scopedAcsSource), "primary-degree-requirements");
+});
+
+test("Parser stops Chemistry sequence groups at adjacent chemistry section headings", () => {
+  const owner = buildParsedBlockFixture(
+    buildRecoveryEntryFixture({
+      id: "uw-seattle-chemistry:primary",
+      ownerId: "uw-seattle-chemistry",
+      ownerTitle: "Chemistry",
+      planId: "uw-seattle-chemistry",
+      campusId: "uw-seattle",
+      parserType: "html-degree-page",
+      url: "https://chem.washington.edu/ba-chemistry",
+      label: "UW BA in Chemistry requirements",
+      sourceLabel: "UW BA in Chemistry requirements",
+    }),
+    `
+      <main>
+        <h2>Degree Requirements</h2>
+        <h3>Physics (choose one sequence)</h3>
+        <p>Calculus-based: PHYS 121 (5), 122 (5), 123 (5)</p>
+        <p>Algebra-based: PHYS 114 (4), 115 (4), 116 (4)</p>
+        <p>The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus-based physics series. If algebra-based physics is taken, students must take one lab from below:</p>
+        <p>One quarter of physics laboratory: PHYS 117, 118, 119 (1)</p>
+        <h3>Organic Chemistry (choose one sequence)</h3>
+        <p>Regular: CHEM 237 (4), 238 (4), 239 (4)</p>
+        <p>Laboratory: CHEM 241 (3), 242 (3)</p>
+        <p>Honors: CHEM 335 (4), 336 (4), 337 (4)</p>
+        <p>Laboratory: CHEM 346 (3), 347 (3)</p>
+        <h3>Inorganic Chemistry (choose one)</h3>
+        <p>CHEM 312 Lecture (3)</p>
+        <p>CHEM 416 Transition Metals Lecture (3)</p>
+        <h3>Analytical Lab</h3>
+        <p>CHEM 321 (5) Quantitative Analysis</p>
+      </main>
+    `
+  );
+  const labelsAndHeadings = owner.parsedRequirementGroups.map((group) =>
+    `${group.label} ${group.sourceHeading ?? ""}`
+  );
+  const organic = owner.parsedRequirementGroups.find(
+    (group) => group.label === "Organic Chemistry" && group.requirementType === "sequence_choice"
+  );
+  const organicCodes = (organic?.options ?? []).flatMap((option) => option.uwCourses ?? []);
+
+  assert.ok(organic, "Expected Organic Chemistry sequence choice to parse.");
+  assert.equal(organicCodes.includes("CHEM 312"), false);
+  assert.equal(organicCodes.includes("CHEM 416"), false);
+  assert.equal(
+    labelsAndHeadings.some((text) => /calculus-based series is recommended/i.test(text)),
+    false
+  );
 });
 
 test("Supplemental HTML recovery follows same-program approved elective pages", () => {

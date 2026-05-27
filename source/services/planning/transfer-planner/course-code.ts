@@ -9,6 +9,8 @@ export type TranscriptCourseEntry = {
   code: string;
   label: string;
   credits?: number | null;
+  grade?: string | null;
+  gradeValue?: number | null;
   termLabel?: string | null;
   termStartDate?: string | null;
   termEndDate?: string | null;
@@ -74,6 +76,33 @@ export function parseCompletedTranscriptCourses(rawValue: unknown): TranscriptCo
     const credits = Number(value);
     return Number.isFinite(credits) && credits > 0 ? credits : null;
   };
+  const parseGradeValue = (value: unknown) => {
+    const raw = String(value ?? "").trim();
+    if (!raw) return null;
+
+    const numeric = Number(raw);
+    if (Number.isFinite(numeric)) {
+      return Math.max(0, Math.min(numeric, 4));
+    }
+
+    const grade = raw.toUpperCase();
+    const letterValues: Record<string, number> = {
+      "A+": 4,
+      A: 4,
+      "A-": 3.7,
+      "B+": 3.3,
+      B: 3,
+      "B-": 2.7,
+      "C+": 2.3,
+      C: 2,
+      "C-": 1.7,
+      "D+": 1.3,
+      D: 1,
+      "D-": 0.7,
+      F: 0,
+    };
+    return letterValues[grade] ?? null;
+  };
   const pushEntry = (entry: TranscriptCourseEntry) => {
     if (seen.has(entry.code)) return;
     seen.add(entry.code);
@@ -99,12 +128,18 @@ export function parseCompletedTranscriptCourses(rawValue: unknown): TranscriptCo
         const credits = parseCredits(
           record.credits ?? record.earnedCredits ?? record.credit
         );
+        const grade = String(record.grade ?? "").replace(/\s+/g, " ").trim() || null;
+        const gradeValue =
+          parseGradeValue(record.gradeValue) ??
+          parseGradeValue(grade);
 
         for (const code of extractCourseCodes(String(record.code ?? cleaned))) {
           pushEntry({
             code,
             label: cleaned,
             credits,
+            grade,
+            gradeValue,
             termLabel,
             termStartDate,
             termEndDate,

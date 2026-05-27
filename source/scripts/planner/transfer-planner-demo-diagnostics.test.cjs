@@ -324,7 +324,7 @@ const AUDITED_SEATTLE_DEMO_LIVE_SOURCE_SAMPLE = [
   {
     planId: "uw-seattle-history-and-philosophy-of-science",
     sourceUrl: "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
-    evidenceCourseCodes: ["ASTR 313", "ESS 404", "ETHICS 495"],
+    evidenceCourseCodes: ["ASTR 313", "ESS 404", "HSTCMP 311"],
   },
   {
     planId: "uw-seattle-human-centered-design-engineering",
@@ -382,7 +382,7 @@ const AUDITED_REMAINING_SEATTLE_DEMO_LIVE_SOURCE_SAMPLE = [
   { planId: "uw-seattle-orchestral-instruments-b-m", sourceUrl: "https://www.washington.edu/students/gencat/program/S/Music-217.html", evidenceCourseCodes: ["MUSIC 113", "MUSEN 301", "MUSEN 302"] },
   { planId: "uw-seattle-organ-b-m", sourceUrl: "https://www.washington.edu/students/gencat/program/S/Music-217.html", evidenceCourseCodes: ["MUSEN 383", "MUSIC 113", "MUSIC 119"] },
   { planId: "uw-seattle-percussion-performance-b-m", sourceUrl: "https://www.washington.edu/students/gencat/program/S/Music-217.html", evidenceCourseCodes: ["MUHST 210", "MUSEN 300", "MUSEN 301"] },
-  { planId: "uw-seattle-philosophy", sourceUrl: "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html", evidenceCourseCodes: ["ASTR 313", "ESS 404", "HSTCMP 311"] },
+  { planId: "uw-seattle-philosophy", sourceUrl: "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html", evidenceCourseCodes: ["PHIL 115", "PHIL 320", "PHIL 322"] },
   { planId: "uw-seattle-physics", sourceUrl: "https://www.washington.edu/students/crscat/phys.html", evidenceCourseCodes: ["AMATH 301", "AMATH 351", "AMATH 352"] },
   { planId: "uw-seattle-piano-b-m", sourceUrl: "https://www.washington.edu/students/gencat/program/S/Music-217.html", evidenceCourseCodes: ["MUSEN 369", "MUSEN 383", "MUSEN 384"] },
   { planId: "uw-seattle-political-science", sourceUrl: "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements", evidenceCourseCodes: ["POLS 101", "POLS 201", "POLS 202"] },

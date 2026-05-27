@@ -1977,6 +1977,7 @@ const TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY_PARTITION_KEYS = [
   "uw-seattle-dance",
   "uw-seattle-danish",
   "uw-seattle-design",
+  "uw-seattle-disability-studies",
   "uw-seattle-drama",
   "uw-seattle-early-childhood-and-family-studies",
   "uw-seattle-earth-and-space-sciences",
@@ -1991,6 +1992,7 @@ const TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY_PARTITION_KEYS = [
   "uw-seattle-environmental-public-health",
   "uw-seattle-environmental-science-and-terrestrial-resource-management",
   "uw-seattle-environmental-studies",
+  "uw-seattle-european-studies",
   "uw-seattle-finnish",
   "uw-seattle-food-systems-nutrition-and-health",
   "uw-seattle-french",
@@ -2242,6 +2244,8 @@ function loadTransferPlannerRuntimePrimaryDegreeSourcesByKeyPartition(partitionK
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-danish.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-design":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-design.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
+    case "uw-seattle-disability-studies":
+      return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-disability-studies.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-drama":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-drama.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-early-childhood-and-family-studies":
@@ -2270,6 +2274,8 @@ function loadTransferPlannerRuntimePrimaryDegreeSourcesByKeyPartition(partitionK
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-environmental-science-and-terrestrial-resource-management.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-environmental-studies":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-environmental-studies.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
+    case "uw-seattle-european-studies":
+      return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-european-studies.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-finnish":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-finnish.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-food-systems-nutrition-and-health":

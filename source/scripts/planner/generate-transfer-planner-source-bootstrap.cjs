@@ -54,6 +54,7 @@ const PROFILE_MAJOR_OPTIONS_OUTPUT_PATH = path.resolve(
 );
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const SUPPRESS_GENERATED_PATHWAY_CANDIDATE_PLAN_IDS = new Set([
+  "uw-seattle-history-and-philosophy-of-science",
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
 ]);
 const GENERATED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN = new Map([
@@ -841,6 +842,130 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
         {
           "gis-certificate": "gis-option",
           "gis-certificate-option": "gis-option",
+        }
+      )
+    );
+  }
+
+  const educationPlan = plansById.get("uw-tacoma-education");
+  if (educationPlan) {
+    const educationSource = [
+      {
+        label: "UW Tacoma B.A. in Education overview major requirements",
+        url: "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+      },
+    ];
+    plansById.set(
+      educationPlan.id,
+      replacePlanPathwaysWithCanonicalSet(educationPlan, [
+        createEmptyPathway(
+          "special-education-dual-endorsement",
+          "Special Education Dual Endorsement",
+          educationSource
+        ),
+        createEmptyPathway("ba-route", "B.A. route", educationSource),
+        createEmptyPathway(
+          "english-language-learners-dual-endorsement",
+          "English Language Learners (ELL) Dual Endorsement Option",
+          educationSource
+        ),
+      ])
+    );
+  }
+
+  return [...plansById.values()];
+}
+
+function applySeattleCoursePlannerAuditModeling(plans) {
+  const plansById = new Map(plans.map((plan) => [plan.id, plan]));
+
+  const psychologyPlan = plansById.get("uw-seattle-psychology");
+  if (psychologyPlan) {
+    plansById.set(
+      psychologyPlan.id,
+      replacePlanPathwaysWithCanonicalSet(psychologyPlan, [
+        createEmptyPathway("bachelor-of-arts", "Bachelor of Arts", [
+          {
+            label: "UW Psychology Bachelor of Arts graduation requirements",
+            url: "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+          },
+        ]),
+        createEmptyPathway("bachelor-of-science", "Bachelor of Science", [
+          {
+            label: "UW Psychology Bachelor of Science graduation requirements",
+            url: "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+          },
+        ]),
+      ])
+    );
+  }
+
+  const phghPlan = plansById.get("uw-seattle-public-health-global-health");
+  if (phghPlan) {
+    const phghSource = [
+      {
+        label: "UW Public Health-Global Health AUT 2024 curriculum sheet",
+        url: "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+      },
+    ];
+    plansById.set(
+      phghPlan.id,
+      replacePlanPathwaysWithCanonicalSet(
+        phghPlan,
+        [
+          createEmptyPathway("ba-option:global-health", "Global Health (BA Option)", phghSource),
+          createEmptyPathway(
+            "health-education-and-promotion-ba-option",
+            "Health Education & Promotion (BA Option)",
+            phghSource
+          ),
+          createEmptyPathway("bs-option:global-health", "Global Health (BS Option)", phghSource),
+          createEmptyPathway(
+            "nutritional-sciences-bs-option",
+            "Nutritional Sciences (BS Option)",
+            phghSource
+          ),
+        ],
+        {
+          "global-health-ba-option": "ba-option:global-health",
+          "global-health-bs-option": "bs-option:global-health",
+          "bs-nutritional-sciences-option": "nutritional-sciences-bs-option",
+        }
+      )
+    );
+  }
+
+  const slavicPlan = plansById.get("uw-seattle-slavic-languages-and-literatures");
+  if (slavicPlan) {
+    plansById.set(
+      slavicPlan.id,
+      replacePlanPathwaysWithCanonicalSet(
+        slavicPlan,
+        [
+          createEmptyPathway(
+            "eastern-european-languages-literature-and-culture",
+            "Eastern European Languages, Literature, and Culture",
+            [
+              {
+                label: "UW BA in Eastern European Languages, Literature, and Culture",
+                url: "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
+              },
+            ]
+          ),
+          createEmptyPathway(
+            "russian-language-literature-and-culture",
+            "Russian Language, Literature, and Culture",
+            [
+              {
+                label: "UW BA in Russian Language, Literature, and Culture",
+                url: "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
+              },
+            ]
+          ),
+        ],
+        {
+          "russian-language-slavic-languages-or-russian-and-slavic-literatures":
+            "russian-language-literature-and-culture",
         }
       )
     );
@@ -1770,7 +1895,7 @@ function buildMajorPlansFromParsedRegistries() {
     );
   };
 
-  return applyTacomaCoursePlannerAuditModeling(basePlans)
+  return applySeattleCoursePlannerAuditModeling(applyTacomaCoursePlannerAuditModeling(basePlans))
     .map((plan) => ({
       ...plan,
       officialLinks: enrichOfficialLinks(plan.officialLinks ?? [], plan.id, null),

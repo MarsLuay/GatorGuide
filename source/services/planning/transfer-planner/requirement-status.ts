@@ -49,6 +49,141 @@ function uniqueBy<T>(items: T[], getKey: (item: T) => string) {
   return deduped;
 }
 
+type AdmissionPrerequisiteCompletionRule = {
+  id: string;
+  itemNotePattern: RegExp;
+  itemGrcCourseCodes?: string[];
+  satisfyingSubjects: string[];
+  minimumCredits: number;
+  minimumGrade: number;
+};
+
+const ADMISSION_PREREQUISITE_COMPLETION_RULES: AdmissionPrerequisiteCompletionRule[] = [
+  {
+    id: "uw-seattle-phgh-public-health-intro-or-department-course",
+    itemNotePattern: /\bPH-GH admission prerequisite option\b/i,
+    itemGrcCourseCodes: ["NUTR& 101"],
+    satisfyingSubjects: [
+      "AAS",
+      "AES",
+      "AFRAM",
+      "AIS",
+      "ANTH",
+      "CHSTU",
+      "ENVH",
+      "EPI",
+      "GEOG",
+      "GH",
+      "HSERV",
+      "POLS",
+      "PSYC",
+      "PSYCH",
+      "SOC",
+    ],
+    minimumCredits: 5,
+    minimumGrade: 2.5,
+  },
+];
+
+function getCourseSubjectKey(courseCode: string) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const match = normalizedCourseCode.match(/^([A-Z&]+(?:\s+[A-Z&]+)*)\s+\d/);
+  return String(match?.[1] ?? "")
+    .replace(/[&\s]/g, "")
+    .trim();
+}
+
+function parseGradeValue(value: unknown) {
+  const raw = String(value ?? "").replace(/\s+/g, "").trim();
+  if (!raw) return null;
+
+  const numeric = Number(raw);
+  if (Number.isFinite(numeric)) {
+    return Math.max(0, Math.min(numeric, 4));
+  }
+
+  const letterValues: Record<string, number> = {
+    "A+": 4,
+    A: 4,
+    "A-": 3.7,
+    "B+": 3.3,
+    B: 3,
+    "B-": 2.7,
+    "C+": 2.3,
+    C: 2,
+    "C-": 1.7,
+    "D+": 1.3,
+    D: 1,
+    "D-": 0.7,
+    F: 0,
+  };
+  return letterValues[raw.toUpperCase()] ?? null;
+}
+
+function courseMeetsMinimumGrade(course: TranscriptCourseEntry, minimumGrade: number) {
+  const gradeValue =
+    typeof course.gradeValue === "number" && Number.isFinite(course.gradeValue)
+      ? course.gradeValue
+      : parseGradeValue(course.grade);
+  return gradeValue == null || gradeValue >= minimumGrade;
+}
+
+function courseMeetsMinimumCredits(course: TranscriptCourseEntry, minimumCredits: number) {
+  const credits = Number(course.credits);
+  return !Number.isFinite(credits) || credits >= minimumCredits;
+}
+
+function getAdmissionPrerequisiteSubjectSet(rule: AdmissionPrerequisiteCompletionRule) {
+  return new Set(
+    rule.satisfyingSubjects.map((subject) => subject.replace(/[&\s]/g, "").trim())
+  );
+}
+
+function itemMatchesAdmissionPrerequisiteCompletionRule(
+  item: TransferPlannerChecklistItem,
+  rule: AdmissionPrerequisiteCompletionRule
+) {
+  const grcCourseCodes = (item.grcCourses ?? [])
+    .flatMap((label) => extractCourseCodes(label))
+    .map((courseCode) => normalizeCourseCode(courseCode));
+  const ruleGrcCourseCodes = rule.itemGrcCourseCodes ?? [];
+  return (
+    (!ruleGrcCourseCodes.length ||
+      ruleGrcCourseCodes.some((courseCode) =>
+        grcCourseCodes.includes(normalizeCourseCode(courseCode))
+      )) &&
+    rule.itemNotePattern.test(
+      `${item.note ?? ""} ${item.reason ?? ""}`
+    )
+  );
+}
+
+function findCompletedAdmissionPrerequisiteCourse(
+  item: TransferPlannerChecklistItem,
+  completedCourses: TranscriptCourseEntry[]
+) {
+  for (const rule of ADMISSION_PREREQUISITE_COMPLETION_RULES) {
+    if (!itemMatchesAdmissionPrerequisiteCompletionRule(item, rule)) {
+      continue;
+    }
+
+    const satisfyingSubjects = getAdmissionPrerequisiteSubjectSet(rule);
+    const matchedCourse = completedCourses.find((course) => {
+      const subjectKey = getCourseSubjectKey(course.code);
+      return (
+        satisfyingSubjects.has(subjectKey) &&
+        courseMeetsMinimumCredits(course, rule.minimumCredits) &&
+        courseMeetsMinimumGrade(course, rule.minimumGrade)
+      );
+    });
+    if (matchedCourse) {
+      return matchedCourse;
+    }
+  }
+
+  return null;
+}
+
 export function getChecklistChoiceLabels(item: TransferPlannerChecklistItem) {
   const mappedLabels = unique(
     [item.grcCourses, ...(item.alternatives ?? [])]
@@ -683,6 +818,20 @@ export function buildRequirementStatuses(
   }
 
   return items.map<TransferRequirementStatus>((item) => {
+    const admissionPrerequisiteCourse = findCompletedAdmissionPrerequisiteCourse(
+      item,
+      completedCourses
+    );
+    if (admissionPrerequisiteCourse) {
+      return {
+        item,
+        matched: true,
+        matchedCourses: [admissionPrerequisiteCourse],
+        explicitCourseCodes: [admissionPrerequisiteCourse.code],
+        requiredCompletedCount: 1,
+      };
+    }
+
     const creditStatus = buildChooseCreditsRequirementStatus(item, completedByCode);
     if (creditStatus) {
       return creditStatus;

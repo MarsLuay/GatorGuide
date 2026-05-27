@@ -282,6 +282,11 @@ const PRIMARY_TAB_LABELS = [
   { path: "/questionnaire", label: "Questionnaire", primaryTab: "home" },
   { path: "/calendar", label: "Deadline Calendar", primaryTab: "resources" },
   { path: "/resources/transfer-planner", label: "Transfer Planner", primaryTab: "resources" },
+  {
+    path: "/resources/transfer-planner/uw/seattle/computer-science",
+    label: "Transfer Planner: UW Seattle Computer Science",
+    primaryTab: "resources",
+  },
   { path: "/compare", label: "Compare Colleges", primaryTab: "resources" },
   { path: "/cost-calculator", label: "Cost Calculator", primaryTab: "resources" },
   { path: "/saved-colleges", label: "Saved Colleges", primaryTab: "resources" },
@@ -301,6 +306,7 @@ const VISIBLE_PRIMARY_TABS = ["index", "resources/index", "profile", "settings"]
 const HIDDEN_CHILD_ROUTES = [
   "calendar",
   "resources/transfer-planner",
+  "resources/transfer-planner/[college]/[campus]/[major]",
   "transfer-planner",
   "college-search",
   "opportunity-admin",

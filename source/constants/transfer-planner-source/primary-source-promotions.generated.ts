@@ -219,7 +219,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "major",
@@ -286,40 +286,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-05-25T18:12:47.766Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-anthropology:pathway:bs-option-family:human-evolutionary-biology",
-    "ownerKey": "uw-seattle-anthropology:pathway:bs-option-family:human-evolutionary-biology",
-    "planId": "uw-seattle-anthropology",
-    "pathwayId": "bs-option-family:human-evolutionary-biology",
-    "ownerTitle": "Anthropology - B.S. Human Evolutionary Biology option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-60e773ce535b40f724aec04d",
-    "label": "Bachelor of Science degree with a major in Anthropology: Human Evolutionary Biology",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 141,
-    "confidence": "high",
-    "reasons": [
-      "discovered from an official source page",
-      "matches major keyword \"anthropology\"",
-      "matches major keyword \"biology\"",
-      "matches major keyword \"evolutionary\"",
-      "matches major keyword \"human\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "stays on the same department or school page",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -549,7 +515,37 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.cheme.washington.edu/undergraduate_students/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-seattle-chemistry",
+    "ownerKey": "uw-seattle-chemistry",
+    "planId": "uw-seattle-chemistry",
+    "pathwayId": null,
+    "ownerTitle": "Chemistry",
+    "campusId": "uw-seattle",
+    "url": "https://chem.washington.edu/ba-chemistry",
+    "label": "Scoped section: BA Chemistry Checklist (PDF)",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 113,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "checklist-style wording",
+      "explicitly names the selected major",
+      "matches major keyword \"chemistry\"",
+      "official source path matches the selected major",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "major",
@@ -623,6 +619,72 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
+    "ownerId": "uw-seattle-economics:pathway:bs-option-family:data-science",
+    "ownerKey": "uw-seattle-economics:pathway:bs-option-family:data-science",
+    "planId": "uw-seattle-economics",
+    "pathwayId": "bs-option-family:data-science",
+    "ownerTitle": "Economics - B.S. Data Science option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6737c98ea269d097a4b82313",
+    "label": "Bachelor of Science degree with a major in Economics: Data Science major requirements",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 167,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "matches major keyword \"data\"",
+      "matches major keyword \"economics\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Economics-135.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T11:13:28.031Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-economics:pathway:bs-option-family:strategy",
+    "ownerKey": "uw-seattle-economics:pathway:bs-option-family:strategy",
+    "planId": "uw-seattle-economics",
+    "pathwayId": "bs-option-family:strategy",
+    "ownerTitle": "Economics - B.S. Strategy option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",
+    "label": "Bachelor of Science degree with a major in Economics: Strategy major requirements",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 167,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "matches major keyword \"economics\"",
+      "matches major keyword \"strategy\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Economics-135.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T11:13:28.031Z"
+  },
+  {
+    "ownerType": "pathway",
     "ownerId": "uw-seattle-education-studies:pathway:ba-option-family:early-childhood-studies",
     "ownerKey": "uw-seattle-education-studies:pathway:ba-option-family:early-childhood-studies",
     "planId": "uw-seattle-education-studies",
@@ -653,7 +715,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -687,7 +749,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -720,7 +782,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -752,7 +814,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -784,7 +846,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -820,7 +882,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -887,36 +949,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-05-24T03:27:22.033Z"
   },
   {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
-    "ownerKey": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
-    "planId": "uw-seattle-english-language-literature-and-culture",
-    "pathwayId": "language-and-literature-option",
-    "ownerTitle": "English - Language, Literature & Culture - Language and Literature Option",
-    "campusId": "uw-seattle",
-    "url": "https://english.washington.edu/language-and-literature-option-requirements-summer-2019-spring-2022#reqs",
-    "label": "Major requirements",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 121,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "explicitly names the selected pathway or route",
-      "matches major keyword \"english\"",
-      "official source path matches the selected pathway",
-      "primary degree requirements source role",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://english.washington.edu/english-language-literature-and-culture-option after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
-  },
-  {
     "ownerType": "major",
     "ownerId": "uw-seattle-geography",
     "ownerKey": "uw-seattle-geography",
@@ -960,7 +992,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "sourceRoleStatus": "primary",
     "parserType": "html-degree-page",
     "canCreateSchedulableRows": true,
-    "score": 113,
+    "score": 114,
     "confidence": "high",
     "reasons": [
       "already stored as an official source",
@@ -968,6 +1000,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "matches major keyword \"geography\"",
       "matches multiple major keywords",
       "official source path matches the selected pathway",
+      "page title fetched successfully",
       "pathway-specific official child page matches the selected pathway",
       "primary degree requirements source role",
       "stays on an official UW domain",
@@ -975,7 +1008,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://geography.washington.edu/ba-geography after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -1008,7 +1041,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://ischool.uw.edu/programs/informatics/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "pathway",
@@ -1072,7 +1105,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "major",
@@ -1103,36 +1136,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-05-25T07:32:36.399Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-physics:pathway:teaching-physics-track",
-    "ownerKey": "uw-seattle-physics:pathway:teaching-physics-track",
-    "planId": "uw-seattle-physics",
-    "pathwayId": "teaching-physics-track",
-    "ownerTitle": "Physics - Teaching Physics track",
-    "campusId": "uw-seattle",
-    "url": "https://phys.washington.edu/physics-bs-degree-requirements#teaching",
-    "label": "Teaching physics track",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 99,
-    "confidence": "high",
-    "reasons": [
-      "discovered from an official source page",
-      "explicitly names the selected pathway or route",
-      "matches major keyword \"physics\"",
-      "matches major keyword \"teaching\"",
-      "matches multiple major keywords",
-      "official source text matches the selected pathway",
-      "pathway-specific official child page matches the selected pathway",
-      "primary degree requirements source role",
-      "stays on an official UW domain",
-      "stays on the same department or school page"
-    ],
-    "generatedAt": "2026-05-25T05:23:11.889Z"
   },
   {
     "ownerType": "major",
@@ -1170,7 +1173,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-26T23:01:22.084Z"
+    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "major",

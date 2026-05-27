@@ -226,6 +226,16 @@ test("Seattle Aeronautics STEM prep respects completed higher placement courses"
   assert.equal(plannedCodes.has("CHEM& 140"), false);
 });
 
+test("Seattle Disability Studies subfield title does not schedule a generic DIV placeholder", () => {
+  const plan = getRequiredRuntimeSequencePlan("uw-seattle-disability-studies", null);
+  const plannedLabels = getPlannedCourseLabelList(buildStemPrepRuntimeSuggestedPlan(plan, []));
+
+  assert.equal(
+    plannedLabels.some((label) => /credits of Diversity \(DIV\)/i.test(label)),
+    false
+  );
+});
+
 test("Tacoma engineering STEM prep respects completed higher math courses", () => {
   const completedCourses = buildTranscriptCourses(
     "CHEM& 161",

@@ -110,6 +110,98 @@ function normalizeRuntimePathwayId(planId, pathwayId) {
   return pathwayId == null ? null : normalizeTransferPlannerPathwayId(planId, pathwayId);
 }
 
+const RUNTIME_PATHWAY_IDS_TO_HIDE_BY_PLAN_ID = new Map([
+  [
+    "uw-seattle-english-language-literature-and-culture",
+    new Set([
+      "creative-writing-option",
+      "except-for-students-completing-the-creative-writing-concentration",
+    ]),
+  ],
+]);
+
+const RUNTIME_PATHWAY_ORDER_BY_PLAN_ID = new Map([
+  [
+    "uw-seattle-english-language-literature-and-culture",
+    ["culture-option", "language-and-literature-option"],
+  ],
+  [
+    "uw-seattle-geography",
+    [
+      "cities-citizenship-and-migration-track",
+      "environment-economy-and-sustainability-track",
+      "globalization-health-and-development-track",
+      "gis-mapping-and-society-track",
+      "geography-major-data-science-option",
+    ],
+  ],
+]);
+
+const ADDITIONAL_RUNTIME_PATHWAYS_BY_PLAN_ID = new Map([
+  [
+    "uw-seattle-geography",
+    [
+      {
+        id: "globalization-health-and-development-track",
+        label: "Globalization, Health, and Development track",
+        summary: "",
+      },
+    ],
+  ],
+]);
+
+const STRICT_PATHWAY_COURSE_BUCKET_PLAN_IDS = new Set([
+  "uw-seattle-environmental-science-and-terrestrial-resource-management",
+]);
+
+const RUNTIME_PATHWAY_SCOPED_SOURCE_PLAN_IDS = new Set([
+  "uw-seattle-psychology",
+  "uw-seattle-public-health-global-health",
+  "uw-seattle-slavic-languages-and-literatures",
+]);
+
+const RUNTIME_PATHWAY_SOURCE_URL_HINTS_BY_PLAN_ID = new Map([
+  [
+    "uw-seattle-geography",
+    [
+      {
+        sourceUrlIncludes: "/ba-geography-data-science-option",
+      },
+    ],
+  ],
+]);
+
+function normalizeRuntimePathwayDisplayLabel(value) {
+  return String(value ?? "")
+    .replace(/\b(?:B\.?\s*[AS]|option|track|pathway)\b/gi, " ")
+    .replace(/[^a-z0-9]+/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function normalizeRuntimePathwaysForPlan(planId, pathways) {
+  const hiddenPathwayIds = RUNTIME_PATHWAY_IDS_TO_HIDE_BY_PLAN_ID.get(planId) ?? new Set();
+  const order = RUNTIME_PATHWAY_ORDER_BY_PLAN_ID.get(planId) ?? [];
+  const orderRank = new Map(order.map((pathwayId, index) => [pathwayId, index]));
+  const additionalPathways = ADDITIONAL_RUNTIME_PATHWAYS_BY_PLAN_ID.get(planId) ?? [];
+
+  return uniqueBy(
+    [
+      ...(pathways ?? []),
+      ...additionalPathways,
+    ].filter((pathway) => !hiddenPathwayIds.has(pathway.id)),
+    (pathway) => pathway.id
+  ).sort((left, right) => {
+    const leftRank = orderRank.get(left.id) ?? Number.MAX_SAFE_INTEGER;
+    const rightRank = orderRank.get(right.id) ?? Number.MAX_SAFE_INTEGER;
+    if (leftRank !== rightRank) {
+      return leftRank - rightRank;
+    }
+    return 0;
+  });
+}
+
 function getRuntimePathwayIdFromOwnerId(planId, ownerId) {
   const normalizedPlanId = String(planId ?? "").trim();
   const normalizedOwnerId = String(ownerId ?? "").trim();
@@ -1286,42 +1378,169 @@ function appendUniqueRuntimeItems(existingItems = [], addedItems = []) {
   return items;
 }
 
-function mergeResolvedRuntimePathway(resolvedPlan, pathway, pathways) {
-  if (!pathway) {
+function itemLooksLikeUnselectedPathwayCourseBucket(planId, item, selectedPathway, pathways) {
+  if (!selectedPathway) {
+    return false;
+  }
+  if (
+    RUNTIME_PATHWAY_SCOPED_SOURCE_PLAN_IDS.has(planId) &&
+    (item?.generatedFromParser || item?.sourceUrl || item?.sourceRole) &&
+    !item.pathwayId &&
+    !item.requirementGroup?.pathwayId
+  ) {
+    return true;
+  }
+  if (!item?.generatedFromParser || item.pathwayId || item.requirementGroup?.pathwayId) {
+    return false;
+  }
+
+  const itemSourceUrl = String(item.sourceUrl ?? item.requirementGroup?.sourceUrl ?? "");
+  const sourceUrlHints = RUNTIME_PATHWAY_SOURCE_URL_HINTS_BY_PLAN_ID.get(planId) ?? [];
+  if (
+    sourceUrlHints.some((hint) =>
+      itemSourceUrl.includes(hint.sourceUrlIncludes)
+    )
+  ) {
+    return true;
+  }
+
+  if (!STRICT_PATHWAY_COURSE_BUCKET_PLAN_IDS.has(planId)) {
+    return false;
+  }
+
+  const itemTitle = normalizeRuntimePathwayDisplayLabel(
+    `${item.title ?? ""} ${item.requirementGroup?.label ?? ""}`
+  );
+  if (!itemTitle) {
+    return false;
+  }
+
+  const selectedLabel = normalizeRuntimePathwayDisplayLabel(selectedPathway.label);
+  return (pathways ?? []).some((pathway) => {
+    if (!pathway || pathway.id === selectedPathway.id) {
+      return false;
+    }
+
+    const pathwayLabel = normalizeRuntimePathwayDisplayLabel(pathway.label);
+    return (
+      pathwayLabel.length >= 12 &&
+      itemTitle.includes(pathwayLabel) &&
+      (!selectedLabel || !itemTitle.includes(selectedLabel))
+    );
+  });
+}
+
+function filterResolvedRuntimePathwayItems(items = [], planId, selectedPathway, pathways) {
+  if (!selectedPathway) {
+    return items;
+  }
+
+  return items.filter(
+    (item) => !itemLooksLikeUnselectedPathwayCourseBucket(planId, item, selectedPathway, pathways)
+  );
+}
+
+function filterResolvedRuntimePathwayPlan(resolvedPlan, selectedPathway, pathways) {
+  if (!selectedPathway) {
     return resolvedPlan;
   }
 
   return {
     ...resolvedPlan,
-    applicationChecklist: appendUniqueRuntimeItems(
+    applicationChecklist: filterResolvedRuntimePathwayItems(
       resolvedPlan.applicationChecklist,
-      pathway.applicationChecklist
+      resolvedPlan.id,
+      selectedPathway,
+      pathways
+    ),
+    beforeEnrollmentChecklist: filterResolvedRuntimePathwayItems(
+      resolvedPlan.beforeEnrollmentChecklist,
+      resolvedPlan.id,
+      selectedPathway,
+      pathways
+    ),
+    stayAtGrcChecklist: filterResolvedRuntimePathwayItems(
+      resolvedPlan.stayAtGrcChecklist,
+      resolvedPlan.id,
+      selectedPathway,
+      pathways
+    ),
+    requirementGroups: filterResolvedRuntimePathwayItems(
+      resolvedPlan.requirementGroups,
+      resolvedPlan.id,
+      selectedPathway,
+      pathways
+    ),
+  };
+}
+
+function mergeResolvedRuntimePathway(resolvedPlan, pathway, pathways) {
+  if (!pathway) {
+    return resolvedPlan;
+  }
+
+  const filteredResolvedPlan = filterResolvedRuntimePathwayPlan(resolvedPlan, pathway, pathways);
+  const filteredPathway = {
+    ...pathway,
+    applicationChecklist: filterResolvedRuntimePathwayItems(
+      pathway.applicationChecklist,
+      filteredResolvedPlan.id,
+      pathway,
+      pathways
+    ),
+    beforeEnrollmentChecklist: filterResolvedRuntimePathwayItems(
+      pathway.beforeEnrollmentChecklist,
+      filteredResolvedPlan.id,
+      pathway,
+      pathways
+    ),
+    stayAtGrcChecklist: filterResolvedRuntimePathwayItems(
+      pathway.stayAtGrcChecklist,
+      filteredResolvedPlan.id,
+      pathway,
+      pathways
+    ),
+    requirementGroups: filterResolvedRuntimePathwayItems(
+      pathway.requirementGroups,
+      filteredResolvedPlan.id,
+      pathway,
+      pathways
+    ),
+  };
+  return {
+    ...filteredResolvedPlan,
+    applicationChecklist: appendUniqueRuntimeItems(
+      filteredResolvedPlan.applicationChecklist,
+      filteredPathway.applicationChecklist
     ),
     beforeEnrollmentChecklist: appendUniqueRuntimeItems(
-      resolvedPlan.beforeEnrollmentChecklist,
-      pathway.beforeEnrollmentChecklist
+      filteredResolvedPlan.beforeEnrollmentChecklist,
+      filteredPathway.beforeEnrollmentChecklist
     ),
     stayAtGrcChecklist: appendUniqueRuntimeItems(
-      resolvedPlan.stayAtGrcChecklist,
-      pathway.stayAtGrcChecklist
+      filteredResolvedPlan.stayAtGrcChecklist,
+      filteredPathway.stayAtGrcChecklist
     ),
     grcCourseList: uniqueLabels([
-      ...(resolvedPlan.grcCourseList ?? []),
-      ...(pathway.grcCourseList ?? []),
+      ...(filteredResolvedPlan.grcCourseList ?? []),
+      ...(filteredPathway.grcCourseList ?? []),
     ]),
     degreeMapSections: mergeRuntimeDegreeMapSections(
-      resolvedPlan.degreeMapSections,
-      pathway.degreeMapSections
+      filteredResolvedPlan.degreeMapSections,
+      filteredPathway.degreeMapSections ?? []
     ),
     requirementGroups: appendUniqueRuntimeItems(
-      resolvedPlan.requirementGroups,
-      pathway.requirementGroups
+      filteredResolvedPlan.requirementGroups,
+      filteredPathway.requirementGroups
     ),
     requirementReplacements: appendUniqueRuntimeItems(
-      resolvedPlan.requirementReplacements,
-      pathway.requirementReplacements
+      filteredResolvedPlan.requirementReplacements,
+      filteredPathway.requirementReplacements
     ),
-    supportLists: appendUniqueRuntimeItems(resolvedPlan.supportLists, pathway.supportLists),
+    supportLists: appendUniqueRuntimeItems(
+      filteredResolvedPlan.supportLists,
+      filteredPathway.supportLists
+    ),
     pathways,
     selectedPathwayId: pathway.id,
     selectedPathwayLabel: pathway.label,
@@ -1332,9 +1551,12 @@ function mergeResolvedRuntimePathway(resolvedPlan, pathway, pathways) {
 const runtimePathwaysByPlanId = Object.fromEntries(
   runtimeMajorPlans.map((plan) => [
     plan.id,
-    (plan.pathways ?? []).length
-      ? plan.pathways
-      : getTransferPlannerStudentRuntimePathwaysForPlan(plan),
+    normalizeRuntimePathwaysForPlan(
+      plan.id,
+      (plan.pathways ?? []).length
+        ? plan.pathways
+        : getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    ),
   ])
 );
 

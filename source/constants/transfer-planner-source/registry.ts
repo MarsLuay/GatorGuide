@@ -414,6 +414,20 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
     ],
   },
   {
+    planId: "uw-seattle-disability-studies",
+    campusId: "uw-seattle",
+    ownerTitle: "Disability Studies (BA)",
+    links: [
+      {
+        label: "UW Disability Studies major requirements",
+        url: "https://disabilitystudies.washington.edu/DS_major",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+  {
     planId: "uw-bothell-interdisciplinary-studies-individualized-study",
     campusId: "uw-bothell",
     ownerTitle: "Interdisciplinary Social Sciences (BA)",
@@ -1368,6 +1382,17 @@ const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
   string,
   TransferPlannerSourceLink[]
 >([
+  [
+    "uw-seattle-european-studies",
+    [
+      {
+        label: "UW General Catalog International Studies: Europe major requirements",
+        url: "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
+        note:
+          "Dedicated catalog anchor for the European Studies major requirements on the Jackson School page.",
+      },
+    ],
+  ],
   [
     "uw-tacoma-bachelor-of-arts-in-business-administration",
     [

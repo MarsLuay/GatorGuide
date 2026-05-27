@@ -487,6 +487,7 @@ const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "t
   "uw-tacoma-writing-studies": "track",
 };
 const SUPPRESS_MATERIALIZED_PATHWAY_PLAN_IDS = new Set([
+  "uw-seattle-history-and-philosophy-of-science",
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
 ]);
 const CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN: Partial<
@@ -594,13 +595,6 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       pattern: /^b\.?\s*a\.?\s+cultural studies option$/i,
       id: "ba-option-family:cultural-studies",
       label: "B.A. Cultural Studies option",
-    },
-  ],
-  "uw-seattle-history-and-philosophy-of-science": [
-    {
-      pattern: /^ethics$/i,
-      id: "ba-option-family:ethics",
-      label: "B.A. Ethics option",
     },
   ],
   "uw-seattle-materials-science-engineering": [
@@ -827,6 +821,11 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
   ],
   "uw-seattle-latin-american-and-caribbean-studies": [
     /^(?:south(?:east)? asia|southeast asia|china|japan|korea|general) concentration$/i,
+  ],
+  "uw-seattle-international-studies": [
+    /^concentration\s+i\s+themes$/i,
+    /^concentration\s+ii\s+regions$/i,
+    /^the\s+southeast\s+asian\s+studies\s+concentration\s+promotes\b/i,
   ],
   "uw-seattle-speech-and-hearing-sciences": [
     /^(?:adult|pediatric) track$/i,

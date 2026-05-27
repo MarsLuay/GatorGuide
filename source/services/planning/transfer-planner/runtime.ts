@@ -2051,7 +2051,13 @@ function buildSourceBackedRequiredCourseFallbackStatuses(scope: {
     scope.existingStatuses
       .flatMap((status) => {
         const isTrueOptionGroup = requirementGroupLooksLikeTrueOption(status.item.requirementGroup);
-        return status.explicitCourseCodes.filter((courseCode) => {
+        const representedCourseCodes = status.matched
+          ? unique([
+              ...status.explicitCourseCodes,
+              ...(status.item.grcCourses ?? []).flatMap((label) => extractCourseCodes(label)),
+            ])
+          : status.explicitCourseCodes;
+        return representedCourseCodes.filter((courseCode) => {
           if (!isTrueOptionGroup) {
             return true;
           }
@@ -2951,6 +2957,25 @@ function cleanCreditBucketRemainderCategoryLabel(label: string) {
     return "approved credits";
   }
 
+  const [categoryBeforeColon, ...rest] = cleaned.split(":");
+  const trailingDetails = rest.join(":").trim();
+  if (
+    categoryBeforeColon &&
+    trailingDetails &&
+    (
+      cleaned.length > 90 ||
+      /\b(?:courses listed|relevant independent study|see department|minimum|maximum|one course from)\b/i.test(
+        trailingDetails
+      )
+    )
+  ) {
+    return (
+      categoryBeforeColon
+        .replace(/\s*\(\d+(?:\s*-\s*\d+)?\s*credits?\)\s*$/i, "")
+        .trim() || "approved credits"
+    );
+  }
+
   return cleaned || "approved credits";
 }
 
@@ -2965,6 +2990,25 @@ function getCreditBucketRemainderCategoryLabel(input: {
       .find(Boolean) ?? null;
   return cleanCreditBucketRemainderCategoryLabel(
     categoryOptionLabel || input.optionGroup.title || input.status.item.title
+  );
+}
+
+function shouldSuppressCategoryOptionPlaceholderCourse(input: {
+  status: TransferRequirementStatus;
+  option: RequirementGroupOption;
+  categoryLabel: string;
+}) {
+  const requirementGroupId = String(input.status.item.requirementGroup?.id ?? "");
+  const category =
+    input.option.categoryOption?.category ??
+    input.option.categoryOption?.sourceCategoryCode ??
+    input.categoryLabel;
+
+  return (
+    requirementGroupId.includes(
+      "uw-seattle-geography:pathway:geography-major-data-science-option:requirement-group:credit-bucket-science-elective-credit"
+    ) &&
+    /science[_\s-]*elective[_\s-]*credit/i.test(String(category ?? ""))
   );
 }
 
@@ -16109,6 +16153,15 @@ function buildRemainingSuggestedCourses(
           ),
           isSelectionPrompt: false,
         };
+        const getSelectedCourseOptionGroup = (optionId: string) =>
+          isSuggestedQuarterCreditBasedOptionGroup(selectedOptionGroup)
+            ? {
+                ...resolvedOptionGroup,
+                selectedOptionIds: [optionId],
+              }
+            : isFirstSelectedOptionCourse
+              ? resolvedOptionGroup
+              : null;
         let isFirstSelectedOptionCourse = true;
 
         for (const selectedEntry of selectedOptionEntries) {
@@ -16160,6 +16213,16 @@ function buildRemainingSuggestedCourses(
               getRequirementOptionDisplayLabel(selectedEntry.option) ||
               selectedEntry.option.label ||
               status.item.title;
+            if (
+              shouldSuppressCategoryOptionPlaceholderCourse({
+                status,
+                option: selectedEntry.option,
+                categoryLabel: selectedCategoryLabel,
+              })
+            ) {
+              isFirstSelectedOptionCourse = false;
+              continue;
+            }
             const categoryGuidanceSummary = buildCategoryOptionGuidanceSummary(
               selectedEntry.option
             );
@@ -16197,7 +16260,7 @@ function buildRemainingSuggestedCourses(
               explicitCourseCodes: [],
               prerequisiteCourseSets: [],
               corequisiteCourseSets: [],
-              optionGroup: isFirstSelectedOptionCourse ? resolvedOptionGroup : null,
+              optionGroup: getSelectedCourseOptionGroup(selectedEntry.optionId),
               ...categoryAwareRemainingSelectedOptionCreditRange,
             };
 
@@ -16243,7 +16306,7 @@ function buildRemainingSuggestedCourses(
                   (courseCode) => corequisiteCourseMap.get(courseCode) ?? []
                 )
               ).map((courseSet) => [...courseSet]),
-              optionGroup: isFirstSelectedOptionCourse ? resolvedOptionGroup : null,
+              optionGroup: getSelectedCourseOptionGroup(selectedEntry.optionId),
               ...selectedCourseCreditRange,
             };
 
@@ -16346,10 +16409,19 @@ function buildRemainingSuggestedCourses(
                 getRequirementGroupPlaceholderCreditRange(status.item.requirementGroup)
               )
             : null;
+        const scheduledLabel =
+          isOptionlessCreditBucketPlaceholder && optionlessCreditBucketRange
+            ? `${formatCreditRangeValueForProgress(
+                optionlessCreditBucketRange.creditMin ??
+                  optionlessCreditBucketRange.creditAmount,
+                optionlessCreditBucketRange.creditMax ??
+                  optionlessCreditBucketRange.creditAmount
+              )} credits of ${cleanCreditBucketRemainderCategoryLabel(label)} remaining`
+            : label;
         const explicitCourseCodes =
           shouldScheduleAsChoiceBucket || isOptionlessCreditBucketPlaceholder
             ? []
-            : extractCourseCodes(label);
+            : extractCourseCodes(scheduledLabel);
         const promptCreditRange = promptOptionGroup
           ? getRemainingChooseCreditsRangeAfterSelectedOptions({
               status,
@@ -16359,11 +16431,11 @@ function buildRemainingSuggestedCourses(
             })
           : null;
         const nextCourse: PendingSuggestedCourse = {
-          label,
+          label: scheduledLabel,
           type: isCoreCourseLabel(
             shouldScheduleAsChoiceBucket
               ? `${status.item.title} ${getChecklistChoiceLabels(status.item).join(" ")}`
-              : label
+              : scheduledLabel
           )
             ? "core"
             : "elective",

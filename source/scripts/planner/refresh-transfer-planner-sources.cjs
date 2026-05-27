@@ -93,13 +93,14 @@ const REFRESH_SECTION_DEFINITIONS = [
     id: "requirement-parsing",
     title: "Refresh: requirement parsing and fingerprint intelligence",
     description:
-      "Parse UW major requirement sources, rebuild source and parsed-fact fingerprints, classify source changes, and validate canonical source-pipeline invariants.",
+      "Parse UW major requirement sources, rebuild source and parsed-fact fingerprints, refresh parser-backed source gaps, classify source changes, and validate canonical source-pipeline invariants.",
     steps: [
       {
         label: "Parse UW major requirement sources",
         include: (options) => !options.skipRequirementParse && !options.skipDownloads,
       },
       { label: "Build source fingerprints and classify changes" },
+      { label: "Reclassify hidden source gaps after requirement parsing" },
       { label: "Validate source pipeline invariants" },
     ],
   },
@@ -509,10 +510,18 @@ function runRequirementParserRepairForPlans(targetPlanIds) {
   }
 }
 
-function regenerateSourcePipelineRuntimeOutputs() {
+function runSourceGapClassification(targetPlanId = null) {
+  runLargeNode(
+    "scripts/planner/build-transfer-planner-source-gap-report.cjs",
+    [...buildTargetPlanArgs(targetPlanId)]
+  );
+}
+
+function regenerateSourcePipelineRuntimeOutputs(options = {}) {
   console.log(
     "Source-pipeline repair updated parser/source artifacts; regenerating source bootstrap and student runtime."
   );
+  runSourceGapClassification(options.targetPlanId ?? null);
   runCommand("node", ["scripts/planner/generate-transfer-planner-source-bootstrap.cjs"]);
   runCommand("node", ["scripts/planner/generate-transfer-planner-student-runtime.cjs"]);
 }
@@ -583,7 +592,7 @@ function runSourcePipelineValidationWithAutoParseRepair(options = {}) {
         runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"]);
       }
       if (repairPlan.shouldRunParser || repairPlan.shouldRunFingerprintRefresh) {
-        regenerateSourcePipelineRuntimeOutputs();
+        regenerateSourcePipelineRuntimeOutputs({ targetPlanId: options.targetPlanId });
       }
       console.log(
         `Source-pipeline auto-repair pass ${repairPass + 1}/${maxRepairPasses} complete; re-running validation.`
@@ -946,12 +955,7 @@ async function main() {
           runLargeNode("scripts/planner/build-transfer-planner-primary-source-promotions.cjs")
         );
         runTrackedStep("Classify hidden source gaps", () =>
-          runLargeNode(
-            "scripts/planner/build-transfer-planner-source-gap-report.cjs",
-            [
-              ...buildTargetPlanArgs(targetPlanId),
-            ]
-          )
+          runSourceGapClassification(targetPlanId)
         );
         return;
       }
@@ -971,6 +975,9 @@ async function main() {
 
         runTrackedStep("Build source fingerprints and classify changes", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"])
+        );
+        runTrackedStep("Reclassify hidden source gaps after requirement parsing", () =>
+          runSourceGapClassification(targetPlanId)
         );
         runTrackedStep("Validate source pipeline invariants", () =>
           runSourcePipelineValidationWithAutoParseRepair({

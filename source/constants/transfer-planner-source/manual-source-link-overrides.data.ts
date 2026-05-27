@@ -219,4 +219,182 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
         },
       ],
     },
+    {
+      planId: "uw-seattle-marine-biology",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+      links: [
+        {
+          label: "UW Marine Biology major requirements",
+          url: "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-nursing",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://nursing.uw.edu/wp-content/uploads/2025/05/BSN-Prerequisites-Worksheet.pdf",
+      links: [
+        {
+          label: "UW BSN prerequisite courses worksheet",
+          url: "https://nursing.uw.edu/wp-content/uploads/2025/05/BSN-Prerequisites-Worksheet.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW BSN current curriculum grid",
+          url: "https://students.nursing.uw.edu/wp-content/uploads/2025/09/BSN-2025-Curriuculum-Grid.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-philosophy",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-bb3d1eb1-5da8-4e82-b76a-f8ad86d7870d",
+      links: [
+        {
+          label: "UW General Catalog Philosophy requirements",
+          url: "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-bb3d1eb1-5da8-4e82-b76a-f8ad86d7870d",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-philosophy",
+      pathwayId: "ba-option-family:ethics",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-5dced2c349deed2400cc9c25",
+      links: [
+        {
+          label: "UW General Catalog Philosophy: Ethics requirements",
+          url: "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-5dced2c349deed2400cc9c25",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-psychology",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+      links: [
+        {
+          label: "UW General Catalog Psychology requirements",
+          url: "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-psychology",
+      pathwayId: "bachelor-of-arts",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+      links: [
+        {
+          label: "UW General Catalog Psychology BA requirements",
+          url: "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-psychology",
+      pathwayId: "bachelor-of-science",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+      links: [
+        {
+          label: "UW General Catalog Psychology BS requirements",
+          url: "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-slavic-languages-and-literatures",
+      mode: "replace",
+      preferredPrimaryUrl: "https://slavic.washington.edu/undergraduate-programs",
+      links: [
+        {
+          label: "UW Slavic Languages & Literatures undergraduate programs",
+          url: "https://slavic.washington.edu/undergraduate-programs",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-slavic-languages-and-literatures",
+      pathwayId: "eastern-european-languages-literature-and-culture",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
+      links: [
+        {
+          label: "UW BA in Eastern European Languages, Literature, and Culture",
+          url: "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-slavic-languages-and-literatures",
+      pathwayId: "russian-language-literature-and-culture",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
+      links: [
+        {
+          label: "UW BA in Russian Language, Literature, and Culture",
+          url: "https://slavic.washington.edu/ba-russian-language-literature-and-culture",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-south-asian-languages-and-cultures",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
+      links: [
+        {
+          label: "UW South Asian Languages and Cultures BA requirements",
+          url: "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-speech-and-hearing-sciences",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+      links: [
+        {
+          label: "UW General Catalog Speech and Hearing Sciences requirements",
+          url: "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
   ];

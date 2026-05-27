@@ -12,6 +12,10 @@
   ],
   "rewrites": [
     {
+      "source": "/resources/transfer-planner/:college/:campus/:major",
+      "destination": "/resources/transfer-planner/[college]/[campus]/[major]"
+    },
+    {
       "source": "/college/:collegeId",
       "destination": "/college/[collegeId]"
     }

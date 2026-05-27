@@ -6401,6 +6401,32 @@ test("Planner verify step plan includes parser, source-discovery, and source-sco
   assert.ok(stepPlan.labels.includes("Audit UW-GRC mapping regressions"));
 });
 
+test("Full planner refresh reclassifies source gaps after requirement parsing before validation", () => {
+  const refreshScriptPath = path.resolve(
+    __dirname,
+    "refresh-transfer-planner-sources.cjs"
+  );
+  const result = spawnSync(
+    process.execPath,
+    [refreshScriptPath, "--print-step-plan-json"],
+    {
+      cwd: path.resolve(__dirname, "..", ".."),
+      encoding: "utf8",
+    }
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+
+  const stepPlan = JSON.parse(result.stdout);
+  const fingerprintIndex = stepPlan.labels.indexOf("Build source fingerprints and classify changes");
+  const gapIndex = stepPlan.labels.indexOf("Reclassify hidden source gaps after requirement parsing");
+  const validationIndex = stepPlan.labels.indexOf("Validate source pipeline invariants");
+
+  assert.ok(fingerprintIndex >= 0);
+  assert.ok(gapIndex > fingerprintIndex);
+  assert.ok(validationIndex > gapIndex);
+});
+
 test("Generated registry audit passes protected source-to-runtime owners", () => {
   const auditScriptPath = path.resolve(
     __dirname,

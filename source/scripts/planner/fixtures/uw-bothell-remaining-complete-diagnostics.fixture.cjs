@@ -274,7 +274,6 @@ const expectedPathwaysByPlanId = {
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed": [
     "the-concentration-coordinator",
   ],
-  "uw-seattle-history-and-philosophy-of-science": ["ba-option-family:ethics"],
   "uw-bothell-chemistry-biochemistry": ["biochemistry-option"],
 };
 

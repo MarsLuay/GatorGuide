@@ -13,9 +13,16 @@ import {
   getPlannerNoDataMessage,
   isOpenAdmissionMajor,
 } from "@/components/transfer-planner/transfer-planner-formatters";
+import type { TransferPlannerRouteSelection } from "@/components/transfer-planner/transfer-planner-routing";
 import { useAppLanguage } from "@/hooks/use-app-language";
 
-export default function TransferPlannerPage() {
+export type TransferPlannerPageProps = {
+  routeSelection?: TransferPlannerRouteSelection | null;
+};
+
+export default function TransferPlannerPage({
+  routeSelection = null,
+}: TransferPlannerPageProps) {
   const { t } = useAppLanguage();
   const {
     handleGoBack,
@@ -97,7 +104,7 @@ export default function TransferPlannerPage() {
     handleReportBug,
     demoReview,
     plannerHeroContent,
-  } = useTransferPlannerController();
+  } = useTransferPlannerController({ routeSelection });
 
   if (!user) {
     return (

@@ -225,8 +225,10 @@ test("Generated parsed-source registry covers parseable primary, worksheet, and 
       "https://admissions.uwb.edu/register/mpw-DataVis-BS",
     ],
     "uw-seattle-marine-biology": [
-      "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
       "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2026/05/2026.5.7-Marbiol-Major-Sheet.pdf",
+    ],
+    "uw-seattle-disability-studies": [
+      "https://disabilitystudies.washington.edu/DS_major",
     ],
   } as const;
 
@@ -399,21 +401,32 @@ test("UW-only parser requirement rows stay visible without seeding GRC availabil
   );
 });
 
-test("Prompt 2 source discovery keeps multi-route roots from being replaced by single-route pages", () => {
+test("Prompt 2 source discovery keeps Chemistry root source separate from the BA schedulable page", () => {
   const chemistryRootPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(
     "uw-seattle-chemistry",
     null
   );
-  const chemistryBaPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(
+  const chemistryBlocks = getTransferPlannerParsedRequirementSourceBlocks(
     "uw-seattle-chemistry",
-    "ba-route"
+    null
+  );
+  const chemistryBaBlock = chemistryBlocks.find(
+    (block) => block.sourceUrl === "https://chem.washington.edu/ba-chemistry"
+  );
+  const chemistryAcsBlock = chemistryBlocks.find(
+    (block) =>
+      block.sourceUrl ===
+      "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf"
   );
 
   assert.equal(
     chemistryRootPrimary?.url,
     "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf"
   );
-  assert.equal(chemistryBaPrimary?.url, "https://chem.washington.edu/ba-chemistry");
+  assert.equal(chemistryBaBlock?.sourceRoleStatus, "primary");
+  assert.equal(chemistryBaBlock?.canCreateScheduleRows, true);
+  assert.equal(chemistryAcsBlock?.sourceRoleStatus, "non-schedulable");
+  assert.equal(chemistryAcsBlock?.canCreateScheduleRows, false);
 });
 
 test("Prompt 2 source parsers recover exact official course-list evidence without room-number leakage", () => {
@@ -5014,10 +5027,13 @@ test("Pathway materialization filters obvious prose, graduate, navigation, and c
   assert.deepEqual(runtimePathwayLabels("uw-bothell-economics"), []);
   assert.deepEqual(runtimePathwayLabels("uw-seattle-speech-and-hearing-sciences"), []);
   assert.deepEqual(runtimePathwayLabels("uw-seattle-environmental-design-and-sustainability"), [
-    "Project Option",
+    "select one area of concentration",
   ]);
   assert.deepEqual(runtimePathwayLabels("uw-seattle-public-health-global-health"), [
+    "Global Health (BA Option)",
+    "Global Health (BS Option)",
     "Health Education & Promotion (BA Option)",
+    "Nutritional Sciences (BS Option)",
   ]);
   assert.deepEqual(runtimePathwayLabels("uw-bothell-csse"), ["IAC Option"]);
   assert.deepEqual(runtimePathwayLabels("uw-tacoma-writing-studies"), [

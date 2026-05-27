@@ -102,33 +102,56 @@ function classifyTransferCategoryGuidanceInternalError(course, guideBackedNeedle
   };
 }
 
+function buildTransferOnlySuggestedPlan(plan, completedCourses = []) {
+  return planner.buildSuggestedQuarterPlan({
+    plan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      plan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      plan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      plan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: source.getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+}
+
 function buildTransferOnlySuggestedCourses(plan) {
-  const completedCourses = [];
-  return planner
-    .buildSuggestedQuarterPlan({
-      plan,
-      applicationStatuses: planner.buildRequirementStatuses(
-        plan.applicationChecklist ?? [],
-        completedCourses
-      ),
-      beforeEnrollmentStatuses: planner.buildRequirementStatuses(
-        plan.beforeEnrollmentChecklist ?? [],
-        completedCourses
-      ),
-      stayAtGrcStatuses: planner.buildRequirementStatuses(
-        plan.stayAtGrcChecklist ?? [],
-        completedCourses
-      ),
-      completedCourses,
-      track: source.getTransferPlannerTrack(plan.bestTrackId ?? null),
-      plannerCollegeId: "uw",
-      includeStayAtGrcCourses: false,
-      includeStemPrepCourses: false,
-      includeSummerQuarter: false,
-      referenceDate: new Date("2026-05-06T12:00:00.000Z"),
-      selectedRequirementOptionIdsByGroup: {},
-    })
+  return buildTransferOnlySuggestedPlan(plan)
     .flatMap((quarter) => quarter.courses ?? []);
+}
+
+function normalizePlannerTestText(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function collectPlannerVisibleText(plan) {
+  return [
+    ...(plan?.requirementGroups ?? []).flatMap((group) => [
+      group.label,
+      group.sourceHeading,
+      group.sourceRowText,
+    ]),
+    ...buildTransferOnlySuggestedCourses(plan).flatMap((course) => [
+      course.label,
+      course.guidanceSummary,
+    ]),
+  ]
+    .map(normalizePlannerTestText)
+    .filter(Boolean)
+    .join("\n");
 }
 
 test("coverage audit classifies blocking maintainer failures", () => {
@@ -776,19 +799,30 @@ test("UW Bioengineering runtime normalization preserves parser-backed source row
         (item.grcCourses ?? []).includes("CS 121")
     )
   );
-  assert.ok(
-    checklistItems.some(
-      (item) =>
-        item.title === "Approved Engineering Electives (9-12 credits)" &&
-        item.sourceUrl ===
-          "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/" &&
-        item.generatedFromParser === true &&
-        (item.grcCourses ?? []).includes("ENGR& 214")
-    )
+  const approvedEngineeringElectiveBucket = (pathwayPlan.requirementGroups ?? []).find(
+    (group) =>
+      /Approved Engineering Electives \(9-12 credits\)/.test(group.label) &&
+      [
+        "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+        "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
+      ].includes(group.sourceUrl) &&
+      group.requirementType === "choose_credits" &&
+      group.approvedListKey ===
+        "uw-seattle-bioengineering-approved-electives"
+  );
+  assert.ok(approvedEngineeringElectiveBucket);
+  assert.equal(approvedEngineeringElectiveBucket.minCredits, 9);
+  assert.equal(approvedEngineeringElectiveBucket.maxCredits, 12);
+  assert.equal((approvedEngineeringElectiveBucket.options ?? []).length, 0);
+  assert.equal(
+    checklistItems.some((item) =>
+      /^(?:AA 210|CSE 122|ENGR& 214)$/.test(item.title ?? "")
+    ),
+    false
   );
   assert.ok(generatedCourseCodes.has("CS 121"));
-  assert.ok(generatedCourseCodes.has("CS 122"));
-  assert.ok(generatedCourseCodes.has("ENGR& 214"));
+  assert.equal(generatedCourseCodes.has("CS 122"), false);
+  assert.equal(generatedCourseCodes.has("ENGR& 214"), false);
 });
 
 test("UW Bioengineering excludes graduate navigation labels from undergraduate pathways", () => {
@@ -1039,6 +1073,61 @@ test("Runtime option audit does not infer unselected siblings from other option 
 
   assert.equal(row?.scheduledOptionIds.includes("test-plan:requirement-option:cse-123"), false);
   assert.equal(row?.issue, "selected-option-not-scheduled");
+});
+
+test("Runtime transfer-only planning keeps every selected credit-bucket option schedulable", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-atmospheric-and-climate-science"
+  );
+  assert.ok(plan, "Expected the Atmospheric and Climate Science runtime plan.");
+
+  const completedCourses = [];
+  const suggestedPlan = buildTransferOnlySuggestedPlan(plan, completedCourses);
+  const plannedLabels = suggestedPlan.flatMap((quarter) =>
+    (quarter.courses ?? []).map((course) => course.label)
+  );
+  const row = planner
+    .auditRuntimeOptionResolution({
+      plan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+    })
+    .find((entry) => /Advanced Mathematics/.test(entry.requirementTitle));
+
+  assert.equal(plannedLabels.includes("MATH& 264"), true);
+  assert.equal(plannedLabels.includes("MATH 238"), true);
+  assert.equal(plannedLabels.includes("MATH 240"), true);
+  assert.deepEqual(new Set(row?.scheduledOptionIds ?? []), new Set(row?.defaultOptionIds ?? []));
+  assert.equal(row?.issue, "none");
+});
+
+test("Runtime transfer-only planning completes selected compound credit-bucket paths", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-environmental-science-and-terrestrial-resource-management"
+  );
+  assert.ok(plan, "Expected the ESRM runtime plan.");
+
+  const completedCourses = [];
+  const suggestedPlan = buildTransferOnlySuggestedPlan(plan, completedCourses);
+  const plannedLabels = suggestedPlan.flatMap((quarter) =>
+    (quarter.courses ?? []).map((course) => course.label)
+  );
+  const row = planner
+    .auditRuntimeCompoundScheduling({
+      ownerId: plan.id,
+      plan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+    })
+    .find((entry) => entry.uwTarget === "ESRM 368");
+
+  assert.equal(plannedLabels.includes("NATRS 180"), true);
+  assert.equal(plannedLabels.includes("NATRS 182"), true);
+  assert.equal(plannedLabels.includes("NATRS 292"), true);
+  assert.deepEqual(row?.scheduledComponents, ["NATRS 180", "NATRS 292"]);
+  assert.equal(row?.issue, "none");
 });
 
 test("STEM prep filtering preserves official compound equivalency components", () => {
@@ -1425,7 +1514,7 @@ test("Runtime option audit suppresses options scheduled for other requirements",
   }
 });
 
-test("Environmental Studies optionless credit bucket does not suppress schedulable analytical-methods default", () => {
+test("Environmental Studies optionless credit bucket keeps methods default without scheduling PDF prose", () => {
   const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
     "uw-seattle-environmental-studies"
   );
@@ -1456,10 +1545,20 @@ test("Environmental Studies optionless credit bucket does not suppress schedulab
     selectedRequirementOptionIdsByGroup: {},
   });
   const suggestedRows = suggestedPlan.flatMap((quarter) => quarter.courses);
-  const broadPlaceholder = suggestedRows.find((course) =>
-    /^Integrating Disciplines:/.test(course.label)
+  assert.equal(
+    suggestedRows.some((course) =>
+      /Courses listed in multiple categories|Relevant independent study|Environmental Studies adviser/i.test(
+        course.label
+      )
+    ),
+    false,
+    "Expected the broad Integrating Disciplines prose row to stay out of the schedule."
   );
-  assert.deepEqual(broadPlaceholder?.explicitCourseCodes ?? [], []);
+  assert.equal(
+    suggestedRows.some((course) => /^Integrating Disciplines\b/i.test(course.label)),
+    false,
+    "Expected the parser not to schedule a broad Integrating Disciplines bucket when concrete methods/science choices are available."
+  );
   assert.ok(
     suggestedRows.some(
       (course) =>
@@ -1484,9 +1583,14 @@ test("Environmental Studies optionless credit bucket does not suppress schedulab
   assert.equal(analyticalMethodsRow?.issue, "none");
 });
 
-test("Runtime option audit allows unresolved credit bucket remainders", () => {
-  const plan = source.getTransferPlannerMajorPlan(
+test("ESRM selected option does not leak another option's course bucket", () => {
+  const basePlan = studentRuntime.getTransferPlannerMajorPlan(
     "uw-seattle-environmental-science-and-terrestrial-resource-management"
+  );
+  assert.ok(basePlan);
+  const plan = studentRuntime.resolveTransferPlannerMajorPlan(
+    basePlan,
+    "bs-option-family:natural-resource-and-environmental-management"
   );
   assert.ok(plan);
   const completedCourses = [];
@@ -1505,7 +1609,7 @@ test("Runtime option audit allows unresolved credit bucket remainders", () => {
       completedCourses
     ),
     completedCourses,
-    track: source.getTransferPlannerTrack(plan.bestTrackId ?? null),
+    track: studentRuntime.getTransferPlannerTrack(plan.bestTrackId ?? null),
     plannerCollegeId: "uw",
     includeStayAtGrcCourses: false,
     includeStemPrepCourses: false,
@@ -1520,14 +1624,76 @@ test("Runtime option audit allows unresolved credit bucket remainders", () => {
     completedCourses,
     selectedRequirementOptionIdsByGroup: {},
   });
-  const sustainableForestRow = runtimeOptionRows.find((row) =>
-    row.requirementTitle.startsWith("Sustainable Forest Management Courses")
+  const suggestedLabels = suggestedPlan.flatMap((quarter) =>
+    quarter.courses.map((course) => course.label)
   );
-  const unresolvedRemainder = suggestedPlan
-    .flatMap((quarter) => quarter.courses)
-    .find((course) => course.sourceRequirementGroupId === sustainableForestRow?.groupId);
 
-  assert.equal(unresolvedRemainder?.courseRole, "unresolved-credit-bucket-remainder");
+  assert.equal(
+    runtimeOptionRows.some((row) =>
+      row.requirementTitle.startsWith("Sustainable Forest Management Courses")
+    ),
+    false
+  );
+  assert.equal(
+    suggestedLabels.some((label) => /Sustainable Forest Management Courses/i.test(label)),
+    false
+  );
+  assert.ok(
+    runtimeOptionRows.some((row) =>
+      row.requirementTitle.startsWith("Natural Resource and Environmental Management Courses")
+    )
+  );
+});
+
+test("ESRM Sustainable Forest Management option keeps its own mapped course bucket", () => {
+  const basePlan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-environmental-science-and-terrestrial-resource-management"
+  );
+  assert.ok(basePlan);
+  const plan = studentRuntime.resolveTransferPlannerMajorPlan(
+    basePlan,
+    "bs-option-family:sustainable-forest-management"
+  );
+  assert.ok(plan);
+  const completedCourses = [];
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      plan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      plan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      plan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: studentRuntime.getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const sustainableForestRow = planner.auditRuntimeOptionResolution({
+    ownerId: plan.id,
+    plan,
+    suggestedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+  }).find((row) => row.requirementTitle.startsWith("Sustainable Forest Management Courses"));
+  const sustainableForestCourses = suggestedPlan
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.sourceRequirementGroupId === sustainableForestRow?.groupId);
+
+  assert.ok(
+    sustainableForestCourses.some((course) => course.label === "NATRS 180"),
+    "Expected the selected Sustainable Forest Management option to schedule its own mapped course bucket."
+  );
   assert.equal(sustainableForestRow?.issue, "none");
 });
 
@@ -2119,6 +2285,28 @@ test("UW Seattle option-family pathway aliases resolve to parsed pathways", () =
   }
 });
 
+test("UW Seattle English LLC defaults to LLC pathways rather than Creative Writing", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-english-language-literature-and-culture"
+  );
+  assert.ok(plan);
+
+  const pathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    .map((pathway) => pathway.id);
+  assert.deepEqual(pathwayIds, ["culture-option", "language-and-literature-option"]);
+
+  const resolvedPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, null);
+  assert.equal(resolvedPlan?.selectedPathwayId, "culture-option");
+  assert.equal(
+    studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+      plan.id,
+      resolvedPlan?.selectedPathwayId
+    )?.url,
+    "https://english.washington.edu/english-language-literature-and-culture-option"
+  );
+});
+
 test("UW Seattle Geography Data Science materializes parsed official source courses into its generated pathway", () => {
   const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-geography");
   assert.ok(plan);
@@ -2145,6 +2333,72 @@ test("UW Seattle Geography Data Science materializes parsed official source cour
       `Expected Geography Data Science generated pathway to include ${sourceCourseCode}`
     );
   }
+});
+
+test("UW Seattle Geography defaults to a BA track and suppresses the generic Data Science elective placeholder", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-geography");
+  assert.ok(plan);
+
+  const pathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    .map((pathway) => pathway.id);
+  assert.deepEqual(pathwayIds.slice(0, 4), [
+    "cities-citizenship-and-migration-track",
+    "environment-economy-and-sustainability-track",
+    "globalization-health-and-development-track",
+    "gis-mapping-and-society-track",
+  ]);
+
+  const defaultPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, null);
+  assert.equal(defaultPlan?.selectedPathwayId, "cities-citizenship-and-migration-track");
+
+  const dataSciencePlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "geography-major-data-science-option"
+  );
+  assert.ok(dataSciencePlan);
+  const completedCourses = [];
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan: dataSciencePlan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      dataSciencePlan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      dataSciencePlan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      dataSciencePlan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: studentRuntime.getTransferPlannerTrack(dataSciencePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const suggestedLabels = suggestedPlan.flatMap((quarter) =>
+    quarter.courses.map((course) => course.label)
+  );
+  assert.equal(
+    suggestedLabels.includes("37-40 credits of Science Elective Credit (Science Elective Credit)"),
+    false
+  );
+  assert.ok(suggestedLabels.includes("CS 121"));
+});
+
+test("UW Seattle European Studies exposes its official catalog source", () => {
+  const sourceLink = studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-european-studies"
+  );
+  assert.equal(
+    sourceLink?.url,
+    "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR"
+  );
 });
 
 test("UW Seattle Classical Studies uses its own official source instead of inheriting Classics rows", () => {
@@ -2188,6 +2442,18 @@ test("UW Seattle Classical Studies uses its own official source instead of inher
 test("UW catalog sibling-major pathways do not inherit parent major requirements", () => {
   const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-international-studies");
   assert.ok(plan);
+  assert.deepEqual(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+      .map((pathway) => pathway.id)
+      .sort(),
+    [
+      "ba-option-family:asia",
+      "ba-option-family:canada",
+      "ba-option-family:europe",
+      "ba-option-family:latin-america-and-caribbean",
+    ].sort()
+  );
 
   const asiaPlan = studentRuntime.resolveTransferPlannerMajorPlan(
     plan,
@@ -2223,6 +2489,13 @@ test("UW catalog sibling-major pathways do not inherit parent major requirements
     ),
     false,
     "Expected International Studies Asia not to inherit parent International Studies intro group."
+  );
+  assert.equal(
+    /(?:science Elective Credit|Program Elective Credit|ECON& 20[12])/i.test(
+      collectPlannerVisibleText(asiaPlan)
+    ),
+    false,
+    "Expected International Studies Asia schedule not to inherit sibling/minor credit buckets."
   );
 
   const canadaPlan = studentRuntime.resolveTransferPlannerMajorPlan(
@@ -2261,6 +2534,487 @@ test("UW catalog sibling-major pathways do not inherit parent major requirements
     false,
     "Expected International Studies Canada not to inherit parent International Studies capstone group."
   );
+});
+
+test("UW HPS does not materialize Philosophy Ethics as its default pathway", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-history-and-philosophy-of-science"
+  );
+  assert.ok(plan);
+  const pathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    .map((pathway) => pathway.id);
+  assert.equal(
+    pathwayIds.includes("ba-option-family:ethics"),
+    false,
+    "Expected HPS not to inherit the separate Philosophy: Ethics credential."
+  );
+});
+
+test("UW Korean ignores historical pre-Winter 2019 supplemental requirements", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-korean");
+  assert.ok(plan);
+  const plannerText = collectPlannerVisibleText(plan);
+  assert.match(
+    plannerText,
+    /II\. Area-Related Humanities & Social Science Courses/i,
+    "Expected Korean to keep the current area-related humanities/social-science requirement."
+  );
+  assert.doesNotMatch(
+    plannerText,
+    /II\. AREA-RELATED HUMANITIES & SOCIAL SCIENCE COURSES/,
+    "Expected Korean not to merge the historical pre-Winter 2019 supplemental page."
+  );
+});
+
+test("UW LACS does not use a JSIS 201 course description as a requirement label", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-latin-american-and-caribbean-studies"
+  );
+  assert.ok(plan);
+  const plannerText = collectPlannerVisibleText(plan);
+  assert.doesNotMatch(
+    plannerText,
+    /Provides a historical understanding/i,
+    "Expected LACS history choices to be labeled by the LACS History heading, not the JSIS 201 description."
+  );
+  assert.match(
+    plannerText,
+    /LACS History/i,
+    "Expected LACS to keep the official LACS History requirement heading."
+  );
+});
+
+test("UW ISE PDF table fragments do not become planner-visible requirement labels", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-industrial-systems-engineering"
+  );
+  assert.ok(plan);
+  const plannerText = collectPlannerVisibleText(plan);
+  assert.doesNotMatch(
+    plannerText,
+    /Mathematics.*Industrial Engineering Required Core Courses/i,
+    "Expected ISE not to merge the math and core-course PDF columns into one requirement label."
+  );
+  assert.doesNotMatch(
+    plannerText,
+    /Physical Sciences.*Technical Electives/i,
+    "Expected ISE not to merge the physical-science and technical-elective PDF columns into one requirement label."
+  );
+  assert.doesNotMatch(
+    plannerText,
+    /General Engineering\/Computing Courses.*AA 260/i,
+    "Expected ISE not to leave the first course row inside the engineering/computing heading."
+  );
+  assert.doesNotMatch(
+    plannerText,
+    /includes 4 credits free elective/i,
+    "Expected ISE not to schedule the degree-total/free-elective footnote as a requirement."
+  );
+});
+
+test("UW Seattle next-20 manual review majors keep their verified official source URLs", () => {
+  const expectedPrimarySourceUrls = new Map([
+    [
+      "uw-seattle-marine-biology",
+      "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+    ],
+    ["uw-seattle-materials-science-engineering", "https://mse.washington.edu/current/undergrad/courses"],
+    [
+      "uw-seattle-mathematics",
+      "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
+    ],
+    ["uw-seattle-mechanical-engineering", "https://www.me.washington.edu/students/ug/requirements"],
+    ["uw-seattle-medical-laboratory-science", "https://dlmp.uw.edu/education/mls-requirements"],
+    [
+      "uw-seattle-microbiology",
+      "https://microbiology.washington.edu/sites/default/files/2026-04/Microbiology_Degree_UPDATED%20SPR%202026.pdf",
+    ],
+    [
+      "uw-seattle-middle-eastern-languages-and-cultures",
+      "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
+    ],
+    ["uw-seattle-music-composition-b-m", "https://music.washington.edu/bachelor-music-composition"],
+    [
+      "uw-seattle-music-education-b-m",
+      "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
+    ],
+    [
+      "uw-seattle-music-b-a",
+      "https://music.washington.edu/sites/music/files/documents/sample_ba_inst.pdf",
+    ],
+    ["uw-seattle-neuroscience", "https://sites.uw.edu/neusci/about/degree-requirements/"],
+    ["uw-seattle-norwegian", "https://scandinavian.washington.edu/ba-norwegian"],
+    [
+      "uw-seattle-nursing",
+      "https://nursing.uw.edu/wp-content/uploads/2025/05/BSN-Prerequisites-Worksheet.pdf",
+    ],
+    ["uw-seattle-oceanography", "https://www.ocean.washington.edu/files/checklist8ba-20190829030144.pdf"],
+    [
+      "uw-seattle-orchestral-instruments-b-m",
+      "https://music.washington.edu/bachelor-music-orchestral-instruments",
+    ],
+    ["uw-seattle-organ-b-m", "https://music.washington.edu/bachelor-music-organ"],
+    [
+      "uw-seattle-percussion-performance-b-m",
+      "https://music.washington.edu/bachelor-music-percussion-performance",
+    ],
+    [
+      "uw-seattle-philosophy",
+      "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-bb3d1eb1-5da8-4e82-b76a-f8ad86d7870d",
+    ],
+    ["uw-seattle-physics", "https://phys.washington.edu/physics-bs-degree-requirements"],
+    ["uw-seattle-piano-b-m", "https://music.washington.edu/bachelor-music-piano"],
+  ]);
+
+  for (const [planId, expectedUrl] of expectedPrimarySourceUrls) {
+    const sourceLink = studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(planId);
+    assert.equal(sourceLink?.url, expectedUrl, `Expected ${planId} to keep the reviewed UW source.`);
+  }
+});
+
+test("UW Seattle next-14 manual review majors keep their verified official source URLs", () => {
+  const expectedPrimarySourceUrls = new Map([
+    [
+      "uw-seattle-political-science",
+      "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
+    ],
+    [
+      "uw-seattle-psychology",
+      "https://www.washington.edu/students/gencat/program/S/Psychology-262.html",
+    ],
+    [
+      "uw-seattle-public-health-global-health",
+      "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+    ],
+    [
+      "uw-seattle-public-service-and-policy",
+      "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
+    ],
+    [
+      "uw-seattle-real-estate",
+      "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
+    ],
+    ["uw-seattle-slavic-languages-and-literatures", "https://slavic.washington.edu/undergraduate-programs"],
+    [
+      "uw-seattle-social-welfare",
+      "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
+    ],
+    [
+      "uw-seattle-sociology",
+      "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
+    ],
+    [
+      "uw-seattle-south-asian-languages-and-cultures",
+      "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
+    ],
+    ["uw-seattle-spanish", "https://spanport.washington.edu/spanish-major-requirements"],
+    [
+      "uw-seattle-speech-and-hearing-sciences",
+      "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+    ],
+    ["uw-seattle-statistics", "https://stat.uw.edu/academics/undergraduate/statistics-bs/major"],
+    [
+      "uw-seattle-sustainable-bioresource-systems-engineering",
+      "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
+    ],
+    ["uw-seattle-swedish", "https://scandinavian.washington.edu/ba-swedish"],
+  ]);
+
+  for (const [planId, expectedUrl] of expectedPrimarySourceUrls) {
+    const sourceLink = studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(planId);
+    assert.equal(sourceLink?.url, expectedUrl, `Expected ${planId} to keep the reviewed UW source.`);
+  }
+
+  assert.equal(
+    studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+      "uw-seattle-slavic-languages-and-literatures",
+      "eastern-european-languages-literature-and-culture"
+    )?.url,
+    "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture"
+  );
+  assert.equal(
+    studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+      "uw-seattle-slavic-languages-and-literatures",
+      "russian-language-literature-and-culture"
+    )?.url,
+    "https://slavic.washington.edu/ba-russian-language-literature-and-culture"
+  );
+
+  assert.deepEqual(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(
+        studentRuntime.getTransferPlannerMajorPlan("uw-seattle-psychology")
+      )
+      .map((pathway) => pathway.id)
+      .sort(),
+    ["bachelor-of-arts", "bachelor-of-science"]
+  );
+  assert.deepEqual(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(
+        studentRuntime.getTransferPlannerMajorPlan("uw-seattle-public-health-global-health")
+      )
+      .map((pathway) => pathway.id)
+      .sort(),
+    [
+      "ba-option:global-health",
+      "bs-option:global-health",
+      "health-education-and-promotion-ba-option",
+      "nutritional-sciences-bs-option",
+    ].sort()
+  );
+});
+
+test("UW PHGH PDF choice rows do not leak table fragments or overschedule intro chemistry", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-public-health-global-health");
+  assert.ok(plan);
+  const resolvedPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "health-education-and-promotion-ba-option"
+  );
+  assert.ok(resolvedPlan);
+  const plannerText = collectPlannerVisibleText(resolvedPlan);
+  assert.doesNotMatch(plannerText, /\[Page \d+\]/);
+  assert.doesNotMatch(
+    plannerText,
+    /Select BIOL.*Select CHEM.*competency/i,
+    "Expected the PHGH PDF table columns not to merge into one student-visible requirement."
+  );
+
+  const completedCourses = [
+    { code: "CHEM& 161", credits: 5, grade: "4.0", term: "test" },
+  ];
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan: resolvedPlan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      resolvedPlan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      resolvedPlan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      resolvedPlan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: source.getTransferPlannerTrack(resolvedPlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const scheduledText = suggestedPlan
+    .flatMap((quarter) => quarter.courses ?? [])
+    .map((course) => course.label)
+    .join("\n");
+  assert.doesNotMatch(scheduledText, /CHEM& 121/);
+});
+
+test("UW Speech and Hearing Sciences keeps admission credit buckets separate from support prose", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-speech-and-hearing-sciences"
+  );
+  assert.ok(plan);
+  const plannerText = collectPlannerVisibleText(plan);
+  assert.doesNotMatch(
+    plannerText,
+    /Research, Internships, and Service Learning/i,
+    "Expected research opportunity prose not to become a required course group."
+  );
+  assert.doesNotMatch(
+    plannerText,
+    /Social\/Behavioral Science:.*Biological Science:.*Physical Science:.*Statistics:.*Linguistics:/i,
+    "Expected separate admission prerequisite bullets, not one cascading merged label."
+  );
+  for (const label of [
+    "Social/Behavioral Science",
+    "Biological Science",
+    "Physical Science",
+    "Statistics",
+    "Linguistics",
+  ]) {
+    assert.match(plannerText, new RegExp(`${label}:`, "i"));
+  }
+});
+
+test("UW Slavic pathways use the two official BA majors, not the minor fragment", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan(
+    "uw-seattle-slavic-languages-and-literatures"
+  );
+  assert.ok(plan);
+  const pathwayIds = studentRuntime
+    .getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+    .map((pathway) => pathway.id)
+    .sort();
+  assert.deepEqual(pathwayIds, [
+    "eastern-european-languages-literature-and-culture",
+    "russian-language-literature-and-culture",
+  ]);
+
+  const russianPlan = studentRuntime.resolveTransferPlannerMajorPlan(
+    plan,
+    "russian-language-literature-and-culture"
+  );
+  assert.ok(russianPlan);
+  const russianText = collectPlannerVisibleText(russianPlan);
+  assert.match(russianText, /RUSS 301/i);
+  assert.doesNotMatch(russianText, /Russian Language,\s*Slavic Languages,\s*or Russian and Slavic Literatures/i);
+  assert.doesNotMatch(russianText, /Bosnian\/Croatian\/Montenegrin\/Serbian \(BCMS 406 or 410\)/i);
+});
+
+test("UW Microbiology choose-one tables do not duplicate option rows as required courses", () => {
+  const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-microbiology"
+  );
+  assert.ok(blocks.length > 0);
+
+  const groups = blocks.flatMap((block) => block.parsedRequirementGroups ?? []);
+  for (const label of [
+    "BIOCHEMISTRY - Choose One Option",
+    "MATHEMATICS - Choose One Option",
+    "STATISTICS - Choose One Option",
+    "PHYSICS - Choose One Option",
+  ]) {
+    assert.ok(
+      groups.some((group) => group.label === label && group.requirementType === "choose_one"),
+      `Expected Microbiology to preserve ${label} as a choose-one group.`
+    );
+  }
+
+  const duplicateRequiredLabels = groups
+    .filter((group) => group.requirementType === "all_required")
+    .map((group) => group.label);
+  for (const duplicatedOptionLabel of [
+    "BIOC 405 (3), 406 (3)",
+    "BIOC 440 (4), 441 (4), 442 (4)",
+    "PHYS 114 (4), 115 (4)",
+    "PHYS 121 (5), 122 (5)",
+    "PHYS 141 (5), 142 (5)",
+  ]) {
+    assert.equal(
+      duplicateRequiredLabels.includes(duplicatedOptionLabel),
+      false,
+      `Expected ${duplicatedOptionLabel} to stay inside a choose-one option, not become required.`
+    );
+  }
+
+  const parsedCodes = new Set(blocks.flatMap((block) => block.parsedUwCourseCodes ?? []));
+  assert.equal(parsedCodes.has("QSCI 292"), false);
+  assert.equal(parsedCodes.has("MATH 125"), false);
+  assert.doesNotMatch(
+    JSON.stringify(groups),
+    /for students pursuing graduate work|QSCI 292/i
+  );
+});
+
+test("UW Philosophy base major stays scoped to the base credential and keeps Ethics separate", () => {
+  const baseSource = studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-philosophy"
+  );
+  assert.equal(
+    baseSource?.url,
+    "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-bb3d1eb1-5da8-4e82-b76a-f8ad86d7870d"
+  );
+
+  const ethicsSource = studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-philosophy",
+    "ba-option-family:ethics"
+  );
+  assert.equal(
+    ethicsSource?.url,
+    "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html#credential-5dced2c349deed2400cc9c25"
+  );
+
+  const basePlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-philosophy");
+  assert.ok(basePlan);
+  const plannerText = collectPlannerVisibleText(basePlan);
+  assert.match(plannerText, /One course from PHIL 115, PHIL 120/i);
+  assert.match(plannerText, /PHIL 322 or PHIL 332 or PHIL 342/i);
+  assert.doesNotMatch(plannerText, /HSTCMP|History and Philosophy of Science|ethics-laden|Natural World/i);
+});
+
+test("UW Music degree prose does not become student-visible requirement text", () => {
+  for (const planId of [
+    "uw-seattle-music-composition-b-m",
+    "uw-seattle-music-education-b-m",
+    "uw-seattle-music-b-a",
+    "uw-seattle-orchestral-instruments-b-m",
+    "uw-seattle-organ-b-m",
+    "uw-seattle-percussion-performance-b-m",
+    "uw-seattle-piano-b-m",
+  ]) {
+    const plan = studentRuntime.getTransferPlannerMajorPlan(planId);
+    assert.ok(plan, `Expected generated plan ${planId}.`);
+    const plannerText = collectPlannerVisibleText(plan);
+    assert.doesNotMatch(
+      plannerText,
+      /Admission to the Bachelor of Music|minimum of 180 credits|This degree is offered with a major in Music/i,
+      `Expected ${planId} not to expose catalog prose as a requirement.`
+    );
+  }
+});
+
+test("UW Marine Biology, Mathematics, and Nursing reviewed sources avoid known scheduling leak text", () => {
+  const marinePlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-marine-biology");
+  assert.ok(marinePlan);
+  assert.doesNotMatch(
+    collectPlannerVisibleText(marinePlan),
+    /preferential admissions|Other Marine Biology Major electives|Suggested First- and Second-Year College Courses/i
+  );
+
+  const mathematicsPlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-mathematics");
+  assert.ok(mathematicsPlan);
+  assert.doesNotMatch(collectPlannerVisibleText(mathematicsPlan), /exclude MATH 300|CR\/NC/i);
+
+  const nursingPlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-nursing");
+  assert.ok(nursingPlan);
+  const nursingText = collectPlannerVisibleText(nursingPlan);
+  assert.match(nursingText, /MICROM 301/i);
+  assert.match(nursingText, /NURS 301/i);
+  assert.match(nursingText, /NUTR 200/i);
+});
+
+test("UW Neuroscience does not schedule introductory chemistry after completed advanced chemistry", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-neuroscience");
+  assert.ok(plan);
+  const completedCourses = [
+    { code: "CHEM& 161", credits: 5, grade: "4.0", term: "test" },
+    { code: "CHEM& 162", credits: 5, grade: "4.0", term: "test" },
+    { code: "CHEM& 163", credits: 5, grade: "4.0", term: "test" },
+  ];
+  const suggestedPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    applicationStatuses: planner.buildRequirementStatuses(
+      plan.applicationChecklist ?? [],
+      completedCourses
+    ),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      plan.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(
+      plan.stayAtGrcChecklist ?? [],
+      completedCourses
+    ),
+    completedCourses,
+    track: source.getTransferPlannerTrack(plan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const scheduledText = suggestedPlan
+    .flatMap((quarter) => quarter.courses ?? [])
+    .map((course) => course.label)
+    .join("\n");
+  assert.doesNotMatch(scheduledText, /CHEM& 121|CHEM& 131|CHEM& 161|CHEM& 162|CHEM& 163/);
 });
 
 test("UW Comparative Religion materializes every official semicolon-listed track", () => {

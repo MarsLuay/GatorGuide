@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from "react";
-import { useWindowDimensions } from "react-native";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Platform, useWindowDimensions } from "react-native";
 
 import { ROUTES } from "@/constants/routes";
 import {
@@ -23,6 +23,11 @@ import {
   openExternalLink,
 } from "./transfer-planner-linking";
 import { GRC_PLANNER_CAMPUS_ID } from "./transfer-planner-storage";
+import {
+  getTransferPlannerPublicPath,
+  isTransferPlannerPublicPath,
+  type TransferPlannerRouteSelection,
+} from "./transfer-planner-routing";
 import { useCoursePlannerBugReport } from "./useCoursePlannerBugReport";
 import { usePlannerComputation } from "./usePlannerComputation";
 import { usePlannerSelectionState } from "./usePlannerSelectionState";
@@ -32,7 +37,13 @@ import {
   useTransferPlannerDemoReview,
 } from "./useTransferPlannerDemoReview";
 
-export function useTransferPlannerController() {
+type UseTransferPlannerControllerInput = {
+  routeSelection?: TransferPlannerRouteSelection | null;
+};
+
+export function useTransferPlannerController({
+  routeSelection = null,
+}: UseTransferPlannerControllerInput = {}) {
   const handleGoBack = useBack(ROUTES.tabsResources);
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
@@ -45,6 +56,26 @@ export function useTransferPlannerController() {
   const isTablet = width >= 768;
   const shellMaxWidth = isDesktop ? 1280 : isTablet ? 980 : 760;
   const shellHorizontalPadding = width >= 1280 ? 32 : isTablet ? 24 : 20;
+  const [browserPlannerPath, setBrowserPlannerPath] = useState(() => {
+    if (Platform.OS !== "web" || typeof window === "undefined") {
+      return "";
+    }
+
+    return window.location.pathname;
+  });
+  const activeRouteSelection = useMemo(() => {
+    if (Platform.OS !== "web") {
+      return routeSelection;
+    }
+
+    const currentPath = browserPlannerPath.replace(/\/+$/, "") || "/";
+    const plannerRoot = String(ROUTES.transferPlanner);
+    if (currentPath === plannerRoot) {
+      return null;
+    }
+
+    return isTransferPlannerPublicPath(currentPath) ? routeSelection : null;
+  }, [browserPlannerPath, routeSelection]);
   const scrollContentPadding = getScrollContentPadding({
     includeTopInset: true,
     includeBottomTabClearance: true,
@@ -58,6 +89,7 @@ export function useTransferPlannerController() {
     questionnaireAnswers: state.questionnaireAnswers,
     setQuestionnaireAnswers,
     userMajor: user?.major,
+    routeSelection: activeRouteSelection,
   });
   const transcript = useTranscriptPlannerState({
     user,
@@ -145,6 +177,46 @@ export function useTransferPlannerController() {
     selectedRequirementOptionIdsByGroup: selection.selectedRequirementOptionIdsByGroup,
   });
   const demoReview = useTransferPlannerDemoReview(selection.plan?.id ?? null);
+  const plannerPublicPath = useMemo(
+    () =>
+      getTransferPlannerPublicPath({
+        collegeId: selection.selectedCollegeId,
+        campusId: selection.effectiveSelectedCampusId,
+        majorId: selection.plan?.id ?? selection.effectiveSelectedMajorId,
+      }),
+    [
+      selection.effectiveSelectedCampusId,
+      selection.effectiveSelectedMajorId,
+      selection.plan?.id,
+      selection.selectedCollegeId,
+    ]
+  );
+
+  useEffect(() => {
+    if (Platform.OS !== "web" || !isHydrated) return;
+    if (typeof window === "undefined") return;
+
+    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    const nextPath = plannerPublicPath.replace(/\/+$/, "") || "/";
+    if (!isTransferPlannerPublicPath(currentPath)) return;
+    if (currentPath === nextPath) return;
+
+    window.history.replaceState(window.history.state, "", plannerPublicPath);
+    setBrowserPlannerPath(plannerPublicPath);
+  }, [isHydrated, plannerPublicPath]);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" || typeof window === "undefined") return;
+
+    const handlePopState = () => {
+      setBrowserPlannerPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   const collegeOptions = useMemo(
     () => [

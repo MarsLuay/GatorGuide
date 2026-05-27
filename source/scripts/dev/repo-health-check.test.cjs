@@ -8,6 +8,9 @@ const {
   checkGeneratedRenameFallout,
   checkTmpLayout,
 } = require("./repo-health-check.cjs");
+const {
+  organizeTmpRoot,
+} = require("../organize-tmp-artifacts.cjs");
 
 function makeTempProject() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "gatorguide-health-"));
@@ -157,6 +160,42 @@ test("tmp health classifies locked stale logs as active temp artifacts", () => {
 
   assert.equal(result.ok, true);
   assert.match(result.details.join("\n"), /Locked temp artifact/);
+});
+
+test("tmp organizer archives stale logs so repo health can pass", () => {
+  const nowMs = new Date("2026-05-25T12:00:00.000Z").getTime();
+  const root = makeTempProject();
+  const tmpRoot = path.join(root, ".tmp");
+  const staleOutLog = path.join(tmpRoot, "logs", "codex-old.out.log");
+  const staleErrLog = path.join(tmpRoot, "error_logs", "codex-old.err");
+  const recentLog = path.join(tmpRoot, "logs", "codex-active.out.log");
+  writeFile(staleOutLog, "old stdout");
+  writeFile(staleErrLog, "old stderr");
+  writeFile(recentLog, "recent stdout");
+  setMtime(staleOutLog, nowMs - 1000 * 60 * 60 * 24 * 4);
+  setMtime(staleErrLog, nowMs - 1000 * 60 * 60 * 24 * 4);
+  setMtime(recentLog, nowMs - 1000 * 60 * 30);
+
+  const before = checkTmpLayout(root, { nowMs });
+  assert.equal(before.ok, false);
+  assert.match(before.details.join("\n"), /Stale log/);
+
+  const result = organizeTmpRoot(tmpRoot, { nowMs });
+
+  assert.equal(result.skipped.length, 0);
+  assert.equal(result.moved.length, 2);
+  assert.equal(fs.existsSync(staleOutLog), false);
+  assert.equal(fs.existsSync(staleErrLog), false);
+  assert.equal(
+    fs.existsSync(path.join(tmpRoot, "reports", "stale-logs", "logs", "codex-old.out.log")),
+    true
+  );
+  assert.equal(
+    fs.existsSync(path.join(tmpRoot, "reports", "stale-logs", "error_logs", "codex-old.err")),
+    true
+  );
+  assert.equal(fs.existsSync(recentLog), true);
+  assert.equal(checkTmpLayout(root, { nowMs }).ok, true);
 });
 
 test("generated runtime health accepts plan-level partitioned JSON contract", () => {
