@@ -13,6 +13,7 @@ const bothellRemainingPlanIds = [
   "uw-bothell-global-studies",
   "uw-bothell-interactive-media-design",
   "uw-bothell-interdisciplinary-arts",
+  "uw-bothell-interdisciplinary-studies-individualized-study",
   "uw-bothell-science-technology-and-society",
   "uw-bothell-society-ethics-and-human-behavior",
   "uw-bothell-chemistry-biochemistry",
@@ -92,9 +93,10 @@ const equivalentMajorGroups = [
   },
   {
     id: "interdisciplinary-arts",
-    label: "Interdisciplinary Arts and Individualized Studies",
+    label: "Interdisciplinary Arts, Social Sciences, and Individualized Studies",
     planIds: [
       "uw-bothell-interdisciplinary-arts",
+      "uw-bothell-interdisciplinary-studies-individualized-study",
       "uw-tacoma-interdisciplinary-arts-and-sciences",
       "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
       "uw-seattle-individualized-studies",
@@ -198,6 +200,9 @@ const sourceByPlanId = {
   "uw-bothell-interdisciplinary-arts": [
     "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
   ],
+  "uw-bothell-interdisciplinary-studies-individualized-study": [
+    "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-studies",
+  ],
   "uw-tacoma-interdisciplinary-arts-and-sciences": [
     "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
   ],
@@ -239,36 +244,11 @@ const expectedPathwaysByPlanId = {
   "uw-bothell-business-administration-accounting": ["accounting-option"],
   "uw-bothell-business-administration-finance": ["finance-option-and-concentration"],
   "uw-bothell-business-administration-leadership-and-strategic-innovation": [
-    "accounting-option",
-    "entrepreneurship-concentration",
-    "finance-option-and-concentration",
     "leadership-and-strategic-innovation-option",
-    "management-concentration",
-    "marketing-option-and-concentration",
-    "mis-concentration",
-    "retail-management-concentration",
-    "tim-concentration",
   ],
-  "uw-bothell-business-administration-marketing": [
-    "accounting-option",
-    "entrepreneurship-concentration",
-    "finance-option-and-concentration",
-    "management-concentration",
-    "marketing-option-and-concentration",
-    "mis-concentration",
-    "retail-management-concentration",
-    "tim-concentration",
-  ],
+  "uw-bothell-business-administration-marketing": ["marketing-option-and-concentration"],
   "uw-bothell-business-administration-supply-chain-management": [
-    "accounting-option",
-    "entrepreneurship-concentration",
-    "finance-option-and-concentration",
-    "management-concentration",
-    "marketing-option-and-concentration",
-    "mis-concentration",
-    "retail-management-concentration",
     "supply-chain-management-option",
-    "tim-concentration",
   ],
   "uw-seattle-business-administration": ["ba-route"],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [
@@ -295,13 +275,14 @@ const expectedPathwaysByPlanId = {
     "the-concentration-coordinator",
   ],
   "uw-seattle-history-and-philosophy-of-science": ["ba-option-family:ethics"],
+  "uw-bothell-chemistry-biochemistry": ["biochemistry-option"],
 };
 
 const requiredTextByPlanId = {
   "uw-bothell-american-and-ethnic-studies": [
     "American & Ethnic Studies",
-    "Interdisciplinary Practice & Reflection",
-    "Upper Division Credit Policy",
+    "Degree Requirements",
+    "BISAES 305",
   ],
   "uw-bothell-culture-literature-and-the-arts": [
     "Culture, Literature & the Arts",
@@ -310,11 +291,11 @@ const requiredTextByPlanId = {
   ],
   "uw-bothell-data-visualization-ba": [
     "Data Visualization",
-    "General education requirements",
+    "Degree Requirements",
   ],
   "uw-bothell-data-visualization-bs": [
     "Data Visualization",
-    "General education requirements",
+    "Degree Requirements",
   ],
   "uw-seattle-design": [
     "Art, Art History, and Design",
@@ -323,7 +304,7 @@ const requiredTextByPlanId = {
   ],
   "uw-bothell-gender-women-and-sexuality-studies": [
     "Gender, Women, & Sexuality Studies",
-    "Interdisciplinary Practice & Reflection",
+    "Interdisciplinary Practices & Reflection",
   ],
   "uw-seattle-gender-women-and-sexuality-studies": [
     "Gender, Women, and Sexuality Studies",
@@ -344,6 +325,12 @@ const requiredTextByPlanId = {
     "Interdisciplinary Arts",
     "Interdisciplinary Practice & Reflection",
   ],
+  "uw-bothell-interdisciplinary-studies-individualized-study": [
+    "Interdisciplinary Social Sciences",
+    "Degree Requirements",
+    "ISS Research Courses",
+    "BIS 312",
+  ],
   "uw-seattle-individualized-studies": [
     "Individualized Studies",
     "General Studies",
@@ -355,17 +342,29 @@ const requiredTextByPlanId = {
   ],
   "uw-bothell-society-ethics-and-human-behavior": [
     "Society, Ethics & Human Behavior",
-    "Interdisciplinary Practice & Reflection",
+    "Degree requirements",
   ],
   "uw-bothell-chemistry-biochemistry": [
     "B.S. in Chemistry (biochemistry option)",
     "General education requirements",
-    "minimum of 180 credits",
+    "This option also requires a lot of time-consuming lab work",
   ],
   "uw-seattle-biochemistry": [
     "Biochemistry",
     "Science Electives",
     "Physics lab",
+  ],
+};
+
+const titleByPlanId = {
+  "uw-bothell-interdisciplinary-studies-individualized-study":
+    "Interdisciplinary Social Sciences (BA)",
+};
+
+const publicAdmissionsLabelsByPlanId = {
+  "uw-bothell-interdisciplinary-studies-individualized-study": [
+    "Interdisciplinary Social Sciences",
+    "Interdisciplinary Studies: Individualized Study",
   ],
 };
 
@@ -375,8 +374,10 @@ const targetPlanIds = Array.from(
 
 const remainingBothellPrograms = targetPlanIds.map((planId) => ({
   planId,
+  title: titleByPlanId[planId],
   officialSources: sourceByPlanId[planId] || [],
   expectedPathwayIds: expectedPathwaysByPlanId[planId] || [],
+  publicAdmissionsLabels: publicAdmissionsLabelsByPlanId[planId] || [],
   requiredTextSnippets: requiredTextByPlanId[planId] || [],
 }));
 

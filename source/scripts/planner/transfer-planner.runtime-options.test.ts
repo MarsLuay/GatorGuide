@@ -1281,6 +1281,8 @@ test("Tacoma Computer Engineering keeps choice-set-backed prep aligned without l
 test("Tacoma Computer Engineering is treated as having class equivalencies", () => {
   const basePlan = getCompactRuntimeMajorPlan("uw-tacoma-computer-engineering");
   const resolvedPlan = resolveCompactRuntimeMajorPlan(basePlan, null);
+  const expectedTrackId =
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering";
 
   assert.ok(basePlan, "Expected the Tacoma Computer Engineering base plan.");
   assert.ok(resolvedPlan, "Expected the Tacoma Computer Engineering resolved runtime plan.");
@@ -1301,6 +1303,24 @@ test("Tacoma Computer Engineering is treated as having class equivalencies", () 
     ),
     true,
     "Expected Tacoma Computer Engineering to stay visible in the major dropdown."
+  );
+  assert.equal(
+    basePlan.bestTrackId,
+    expectedTrackId,
+    "Expected Tacoma Computer Engineering to expose the matched GRC degree from the selector plan."
+  );
+  assert.equal(
+    resolvedPlan.bestTrackId,
+    expectedTrackId,
+    "Expected Tacoma Computer Engineering to keep the matched GRC degree after resolution."
+  );
+  assert.ok(
+    getCompactRuntimeTrack(resolvedPlan.bestTrackId),
+    "Expected Tacoma Computer Engineering's matched GRC degree to resolve to a track."
+  );
+  assert.match(
+    resolvedPlan.recommendedTrackSummary,
+    /current closest Green River transfer path.*matches 10 of the 11/i
   );
 });
 
@@ -1797,6 +1817,55 @@ test("Seattle Aeronautics selected ME 123 mapped option still schedules ENGR& 11
     scienceChoiceGroup?.resolvedSatisfiedOptionIds?.includes(me123Option.id),
     true
   );
+});
+
+test("Seattle Aeronautics all-required Engineering Fundamentals credit bucket auto-selects all options", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const engineeringFundamentalsGroup = runtimePlan.requirementGroups?.find((group) =>
+    group.id.includes("engineering-fundamentals-16-credits")
+  );
+  assert.ok(engineeringFundamentalsGroup, "Expected A&A Engineering Fundamentals group.");
+
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: true,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = suggestedPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const rawOptionGroup = suggestedPlan
+    .flatMap((quarter) => quarter.courses)
+    .map((course) => course.optionGroup)
+    .find((optionGroup) => optionGroup?.id === engineeringFundamentalsGroup.id);
+  const displayedOptionGroups = collectSuggestedScheduleOptionGroups(suggestedPlan);
+
+  assert.ok(rawOptionGroup, "Expected the selected Engineering Fundamentals group on planned rows.");
+  assert.deepEqual(
+    rawOptionGroup.selectedOptionIds,
+    engineeringFundamentalsGroup.options.map((option) => option.id)
+  );
+  assert.deepEqual(
+    getSuggestedScheduleResolvedOptionIds(rawOptionGroup),
+    engineeringFundamentalsGroup.options.map((option) => option.id)
+  );
+  assert.equal(shouldShowSuggestedScheduleOptionGroup(rawOptionGroup), false);
+  assert.equal(
+    displayedOptionGroups.some((optionGroup) => optionGroup.id === engineeringFundamentalsGroup.id),
+    false
+  );
+
+  for (const label of ["ENGR& 214", "ENGR& 225", "ENGR& 215", "ENGR& 224"]) {
+    assert.equal(plannedLabels.includes(label), true, `Expected ${label} to be planned.`);
+  }
 });
 
 test("Seattle Aeronautics selected NSc category option remains visible and counts category credits", () => {

@@ -83,6 +83,76 @@ function buildParsedBlockFixture(entry, html, structuredCourseCodes = []) {
   );
 }
 
+test("Course extraction expands shared-number slash-prefixed Tacoma course rows", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("TBIOL/TPSYCH 260 Biopsychology"),
+    ["TBIOL 260", "TPSYCH 260"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("TSOCWF/THLTH 355 HIV/AIDS: Global and National Issues"),
+    ["THLTH 355", "TSOCWF 355"]
+  );
+});
+
+test("Parser keeps primary History requirement rows that mention inline prerequisites", () => {
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    buildRecoveryEntryFixture({
+      ownerId: "uw-tacoma-history",
+      ownerTitle: "History (BA)",
+      planId: "uw-tacoma-history",
+      campusId: "uw-tacoma",
+      parserType: "html-degree-page",
+      url: "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+      label: "General History Option",
+      ownerType: "major",
+    }),
+    `
+      <main>
+        <h1>General History Option</h1>
+        <h2>Degree Requirements</h2>
+        <h3>Core Requirements (30 credits)</h3>
+        <p>THIST 150 World History I</p>
+        <p>THIST 151 World History II</p>
+        <p>THIST 200 American History I, 1607-1877</p>
+        <p>THIST 201 American History II, 1877-present</p>
+        <p>THIST 380 Humanities Research and Writing (taken in junior year-recommended prerequisite: THIST 101)</p>
+        <p>THIST 498 History Capstone (2.0 GPA minimum required; taken in your last 1-2 quarters; prerequisite: THIST 380 with a minimum 2.0 GPA)</p>
+      </main>
+    `
+  );
+
+  assert.ok(parsed.courseCodes.includes("THIST 380"));
+  assert.ok(parsed.courseCodes.includes("THIST 498"));
+});
+
+test("Scoped Tacoma generic degree sections recover shared-number direct course rows", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-biomedical-sciences",
+    ownerTitle: "Biomedical Sciences (BS)",
+    planId: "uw-tacoma-biomedical-sciences",
+    campusId: "uw-tacoma",
+    parserType: "generic-html",
+    url: "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
+    label: "Scoped section: Health and Society",
+    sourceLabel: "Scoped section: Health and Society",
+    ownerType: "major",
+  });
+  const owner = buildParsedBlockFixture(
+    entry,
+    `
+      <main>
+        <h1>Biomedical Sciences</h1>
+        <h2>Degree Requirements</h2>
+        <h3>Health and Society</h3>
+        <p>TBIOL/TPSYCH 260 Biopsychology</p>
+      </main>
+    `
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("TBIOL 260"));
+  assert.ok(owner.parsedUwCourseCodes.includes("TPSYCH 260"));
+});
+
 test("Inactive major sources do not trigger parser recovery debt", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-seattle-italian",
@@ -106,10 +176,19 @@ test("Inactive major sources do not trigger parser recovery debt", () => {
 
   const owner = buildParsedBlockFixture(entry, html);
   const qualitySignals = parser.buildParseQualitySignalsForTest(owner);
+  const requirementCueText = owner.requirementCueLines.join(" ");
 
   assert.equal(owner.sourceInactiveMajor, true);
   assert.equal(owner.sourceRole, "non-schedulable-course-list");
   assert.equal(owner.canCreateSchedulableRows, false);
+  assert.match(
+    requirementCueText,
+    /not able to offer the upper level courses for the Italian major/i
+  );
+  assert.match(
+    requirementCueText,
+    /not able to accept students into the Italian major/i
+  );
   assert.equal(
     qualitySignals.some((signal) => signal.code === "inactive-major-source"),
     true
@@ -122,6 +201,110 @@ test("Inactive major sources do not trigger parser recovery debt", () => {
     parser.shouldTriggerParserRecoveryForTest({ ...owner, qualitySignals }),
     false
   );
+});
+
+test("Retired major pages using no-longer-accepting language are non-schedulable", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-community-psychology",
+    ownerTitle: "Community Psychology",
+    planId: "uw-bothell-psychology",
+    campusId: "uw-bothell",
+    url: "https://www.uwb.edu/ias/undergraduate/majors/community-psychology",
+    label: "Community Psychology major requirements",
+    sourceLabel: "Community Psychology major requirements",
+  });
+  const html = `
+    <main>
+      <h1>Community Psychology</h1>
+      <p>The Community Psychology major is no longer accepting new students.</p>
+      <h2>Degree Requirements</h2>
+      <p>BIS 312 Approaches to Social Research</p>
+    </main>
+  `;
+
+  const owner = buildParsedBlockFixture(entry, html, ["BIS 312"]);
+  const qualitySignals = parser.buildParseQualitySignalsForTest(owner);
+
+  assert.equal(owner.sourceInactiveMajor, true);
+  assert.equal(owner.sourceRole, "non-schedulable-course-list");
+  assert.equal(owner.canCreateSchedulableRows, false);
+  assert.equal(
+    qualitySignals.some((signal) => signal.code === "inactive-major-source"),
+    true
+  );
+});
+
+test("Historical requirement primary links are ignored before source scheduling", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-chinese",
+    ownerTitle: "Chinese",
+    planId: "uw-seattle-chinese",
+    campusId: "uw-seattle",
+    parserType: "html-overview-page",
+    url: "https://asian.washington.edu/pre-winter-2019-chinese-major-requirements",
+    label: "Pre-Winter 2019 Chinese Major Requirements",
+    sourceLabel: "Pre-Winter 2019 Chinese Major Requirements",
+    role: "degree-requirements",
+    isPrimaryDegreeRequirementsLink: true,
+  });
+
+  assert.equal(parser.classifyRequirementSourceRole(entry), "old-archival");
+  assert.equal(parser.canRequirementSourceRoleCreateSchedulableRows("old-archival"), false);
+});
+
+test("Default Bothell BA route pages use the full focused IAS degree source", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-psychology:pathway:ba-route",
+    ownerTitle: "Psychology (BA) - B.A. route",
+    planId: "uw-bothell-psychology",
+    pathwayId: "ba-route",
+    campusId: "uw-bothell",
+    parserType: "html-overview-page",
+    url: "https://www.uwb.edu/ias/undergraduate/majors/psychology",
+    label: "Psychology",
+    sourceLabel: "Psychology",
+  });
+  const html = `
+    <main>
+      <h1>Psychology</h1>
+      <h2>BACHELOR OF ARTS</h2>
+      <h2>PURPOSE</h2>
+      <p>Psychology students study human well-being.</p>
+      <h2>PRACTICE</h2>
+      <p>Students learn research methods.</p>
+      <h2>Plan your degree</h2>
+      <h3>Major requirements</h3>
+      <h4>Degree Requirements</h4>
+      <p>One Psychology Core Course - min. 2.0 grade (5 credits)</p>
+      <p>BIS 312 Approaches to Social Research- min. 2.0 grade (5 credits)</p>
+      <h4>Courses</h4>
+      <h5>A. Psychology core courses</h5>
+      <p>BISPSY 337 Risk and Resilience (not offered regularly)</p>
+      <p>BISPSY 343 Community Psychology (Autumn Quarter)</p>
+      <p>BISPSY 350 Intergroup Relations (Spring Quarter)</p>
+      <h5>C. 200-level Psychology courses (10 credits)</h5>
+      <p>BIS 220 Developmental Psychology</p>
+      <p>BIS 270 Abnormal Psychology</p>
+      <h5>E. Psychology electives (15 credits)</h5>
+      <p>B EDUC 451 Early Childhood Development</p>
+      <p>B BIO 480 Neurobiology</p>
+    </main>
+  `;
+  const owner = buildParsedBlockFixture(entry, html, [
+    "BBIO 480",
+    "BEDUC 451",
+    "BIS 220",
+    "BIS 270",
+    "BIS 312",
+    "BISPSY 337",
+    "BISPSY 343",
+    "BISPSY 350",
+  ]);
+
+  for (const courseCode of ["BIS 220", "BIS 312", "BISPSY 337", "BISPSY 343"]) {
+    assert.ok(owner.parsedUwCourseCodes.includes(courseCode), courseCode);
+  }
+  assert.equal(owner.structuredOnlyUwCourseCodes.length, 0);
 });
 
 test("Pathway HTML scoping keeps selected subsection requirements after credit headings", () => {
@@ -268,6 +451,67 @@ test("Parser keeps credit-bearing requirement rows schedulable when they include
       rawLine
     );
   }
+});
+
+test("Parser resets support notes before numbered course requirement headings", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-chinese",
+    ownerTitle: "Chinese",
+    planId: "uw-seattle-chinese",
+    campusId: "uw-seattle",
+    parserType: "html-overview-page",
+    url: "https://asian.washington.edu/ba-chinese",
+    label: "B.A. in Chinese",
+    sourceLabel: "B.A. in Chinese",
+    isPrimaryDegreeRequirementsLink: true,
+  });
+  const expectedCourseCodes = [
+    "CHIN 342",
+    "CHIN 442",
+    "CHIN 451",
+    "CHIN 461",
+    "CHIN 463",
+    "ASIAN 201",
+    "ASIAN 204",
+  ];
+  const html = `
+    <main>
+      <h1>B.A. in Chinese</h1>
+      <h2>Degree Requirements</h2>
+      <h3>I. Modern Language Courses:</h3>
+      <p>Students with advanced skills may alternatively take additional courses in linguistics, literature, culture, and/or classical language beyond the minimum 30 credits required, with approval of program coordinator. Note that no more than 20 credits of modern Chinese language courses may apply toward the major.</p>
+      <h3>II. Linguistics, Literature, Culture and/or Classical Language Courses:</h3>
+      <p>30-35 credits in linguistics, literature, culture and/or classical language. Must include:</p>
+      <p>CHIN 451 Introduction to Classical Chinese (5 credits)</p>
+      <p>CHIN 342 or CHIN 442 The Chinese Language (5 credits)</p>
+      <p>CHIN 461 and CHIN 463 History of Chinese Literature (10 credits)</p>
+      <p>Plus an additional 5-10 credits from among the following courses:</p>
+      <p>ASIAN 201 Literature and Culture of Ancient and Classical China</p>
+      <p>ASIAN 204 Literature and Culture of China from Tradition to Modernity</p>
+    </main>
+  `;
+
+  const owner = buildParsedBlockFixture(entry, html, expectedCourseCodes);
+  const rowsByRawLine = new Map(
+    owner.sourceSectionFilterAuditRows.map((row) => [row.rawLine, row])
+  );
+
+  assert.equal(
+    rowsByRawLine.get(
+      "Students with advanced skills may alternatively take additional courses in linguistics, literature, culture, and/or classical language beyond the minimum 30 credits required, with approval of program coordinator. Note that no more than 20 credits of modern Chinese language courses may apply toward the major."
+    )?.schedulable,
+    false
+  );
+  assert.equal(
+    rowsByRawLine.get("II. Linguistics, Literature, Culture and/or Classical Language Courses:")
+      ?.detectedSectionRole,
+    "primary-requirement-section"
+  );
+  assert.equal(rowsByRawLine.get("CHIN 451 Introduction to Classical Chinese (5 credits)")?.schedulable, true);
+  for (const courseCode of expectedCourseCodes) {
+    assert.ok(owner.parsedUwCourseCodes.includes(courseCode), courseCode);
+  }
+  assert.deepEqual(owner.structuredOnlyUwCourseCodes, []);
 });
 
 test("Parser groups titled credit sections without core/elective cue words", () => {
@@ -427,6 +671,100 @@ test("Course-code parser keeps real course codes near generic level prose", () =
   assert.deepEqual(
     parser.extractCourseCodesFromLineForTest("MATH 307, 308, 309, and 324 are accepted."),
     ["MATH 307", "MATH 308", "MATH 309", "MATH 324"]
+  );
+});
+
+test("Course-code parser recovers courses after choice prose", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "One course from DRAMA 213, DRAMA 319, DRAMA 414, DRAMA 415, DRAMA 419 (3-4 credits)"
+    ),
+    ["DRAMA 213", "DRAMA 319", "DRAMA 414", "DRAMA 415", "DRAMA 419"]
+  );
+});
+
+test("Requirement parser treats inline Select labels as choose-one groups", () => {
+  const owner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-public-health-global-health",
+    ownerTitle: "Public Health - Global Health",
+    planId: "uw-seattle-public-health-global-health",
+    campusId: "uw-seattle",
+  });
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    ["CHEM 120", "CHEM 142", "CHEM 145"],
+    [
+      "NATURAL SCIENCE [ 10 cr ]",
+      "Select CHEM: CHEM 120, 142, 145",
+    ]
+  );
+  const chemGroup = groups.find((group) => group.label === "Select CHEM");
+
+  assert.ok(chemGroup, "Expected Select CHEM to materialize as a requirement group.");
+  assert.equal(chemGroup.requirementType, "choose_one");
+  assert.equal(chemGroup.minCourses, 1);
+  assert.equal(chemGroup.selectionCount, 1);
+  assert.deepEqual(
+    (chemGroup.options ?? []).flatMap((option) => option.uwCourses ?? []),
+    ["CHEM 120", "CHEM 142", "CHEM 145"]
+  );
+});
+
+test("Requirement parser does not promote competency table fragments as standalone requirements", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-public-health-global-health",
+    ownerTitle: "Public Health - Global Health",
+    planId: "uw-seattle-public-health-global-health",
+    campusId: "uw-seattle",
+    parserType: "pdf-degree-sheet",
+    url:
+      "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
+    label: "UW Public Health-Global Health AUT 2024 curriculum sheet",
+  });
+  const baseResult = buildRecoveryOwnerFixture({
+    ownerId: entry.ownerId,
+    ownerTitle: entry.ownerTitle,
+    planId: entry.planId,
+    campusId: entry.campusId,
+    primaryParserType: entry.parserType,
+    primarySourceUrl: entry.url,
+    primarySourceLabel: entry.label,
+    structuredUwCourseCodes: [],
+    supportLists: [],
+  });
+  const parsed = {
+    courseCodes: ["CHEM 120", "CHEM 142", "CHEM 145", "CHEM 152"],
+    snapshotLines: [
+      "[Page 2] NATURAL SCIENCE [ 10 cr ]",
+      "[Page 2] Select CHEM: CHEM 120, 142, 145",
+      "[Page 2] health systems competency CHEM 142, 152, CHEM 142, 152, CHEM 142,",
+    ],
+    headings: [],
+    requirementCueLines: [
+      "[Page 2] NATURAL SCIENCE [ 10 cr ]",
+      "[Page 2] Select CHEM: CHEM 120, 142, 145",
+      "[Page 2] health systems competency CHEM 142, 152, CHEM 142, 152, CHEM 142,",
+    ],
+    chooseStatements: [],
+    pathwayLabels: [],
+    title: "Public Health - Global Health",
+  };
+
+  const owner = parser.buildManifestParseSuccessForTest(
+    baseResult,
+    [],
+    entry,
+    parsed,
+    "primary-source"
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("CHEM 142"));
+  assert.equal(owner.parsedUwCourseCodes.includes("CHEM 152"), false);
+  assert.equal(
+    owner.parsedRequirementAtomCandidates.some(
+      (candidate) => candidate.uwCourseCode === "CHEM 152"
+    ),
+    false
   );
 });
 
@@ -3449,6 +3787,61 @@ test("Parser recovery treats matched BA pathway child pages as primary sources",
   assert.equal(sourceScope.canCreateScheduleRows, true);
 });
 
+test("Pathway supplemental HTML recovery rejects sibling major pages", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId:
+      "uw-seattle-slavic-languages-and-literatures:pathway:eastern-european-languages-literature-and-culture",
+    ownerTitle:
+      "Slavic Languages & Literatures - Eastern European Languages, Literature, and Culture",
+    sourceLabel: "Eastern European Languages, Literature, and Culture",
+    planId: "uw-seattle-slavic-languages-and-literatures",
+    pathwayId: "eastern-european-languages-literature-and-culture",
+    campusId: "uw-seattle",
+    role: "other",
+    parserType: "generic-html",
+    url: "https://slavic.washington.edu/ba-eastern-european-languages-literature-and-culture",
+    label: "BA Eastern European Languages, Literature, and Culture",
+    isPrimaryDegreeRequirementsLink: true,
+  });
+  const baseParsed = {
+    courseCodes: ["SLAVIC 101"],
+    requirementCueLines: ["Major Requirements"],
+    snapshotLines: [
+      "B.A. in Eastern European Languages, Literature, and Culture",
+      "Major Requirements",
+      "SLAVIC 101, SLAVIC 320, SLAVIC 370, and SLAVIC 425",
+    ],
+  };
+  const globalLiteraryStudiesSupplement = {
+    candidate: {
+      sameProgramRequirementLink: true,
+      label: "Global Literary Studies (GLITS)",
+      url: "https://slavic.washington.edu/ba-global-literary-studies-glits",
+    },
+    entry: {
+      label: "Global Literary Studies (GLITS)",
+      url: "https://slavic.washington.edu/ba-global-literary-studies-glits",
+    },
+    parsed: {
+      title: "BA in Global Literary Studies",
+      headings: ["BA in Global Literary Studies"],
+      pathwayLabels: [],
+      snapshotLines: [
+        "Introduction to Literature (5 credits): one course from GLITS 250, GLITS 251, GLITS 252, or GLITS 253",
+      ],
+    },
+  };
+
+  assert.equal(
+    parser.shouldKeepLinkedSupplementalHtmlSourceForTest(
+      entry,
+      baseParsed,
+      globalLiteraryStudiesSupplement
+    ),
+    false
+  );
+});
+
 test("Parser keeps Tacoma Communications admission and track rows schedulable on primary pages", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-tacoma-communications",
@@ -4028,6 +4421,80 @@ test("Graduate career-planning prose does not suppress undergraduate catalog req
   );
 });
 
+test("Pre-graduate catalog notes do not suppress later undergraduate option requirements", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId:
+      "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:chemistry",
+    ownerTitle: "Atmospheric and Climate Science - B.S. Chemistry option",
+    planId: "uw-seattle-atmospheric-and-climate-science",
+    pathwayId: "bs-option-family:chemistry",
+    campusId: "uw-seattle",
+    parserType: "catalog-page",
+    url: "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+    label: "Atmospheric and Climate Science catalog",
+  });
+  const structuredCourseCodes = [
+    "ATMOS 310",
+    "ATMOS 458",
+    "CEE 480",
+    "CHEM 142",
+    "CHEM 152",
+    "CHEM 162",
+  ];
+  const baseResult = buildRecoveryOwnerFixture({
+    ownerId: entry.ownerId,
+    ownerTitle: entry.ownerTitle,
+    planId: entry.planId,
+    pathwayId: entry.pathwayId,
+    campusId: entry.campusId,
+    primaryParserType: entry.parserType,
+    primarySourceUrl: entry.url,
+    primarySourceLabel: entry.label,
+    sourceUrl: entry.url,
+    sourceLabel: entry.label,
+    sourceRole: "official-catalog",
+    structuredUwCourseCodes: structuredCourseCodes,
+    supportLists: [],
+  });
+  const optionRequirementLine =
+    "Requirements (23-27 credits): ATMOS 458/CHEM 458; CEE 480/ATMOS 480; ATMOS 310 or CSE 160; one of the following: (1) CHEM 142, CHEM 152, CHEM 162";
+  const parsed = {
+    courseCodes: structuredCourseCodes,
+    snapshotLines: [
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry",
+      "Completion Requirements",
+      "Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220, ATMOS 301",
+      "Pre-graduate Program for Physical Science, Mathematics, and Engineering Majors",
+      "The following elective course sequence is suitable preparation for students interested in pursuing graduate study in atmospheric sciences: ATMOS 301, ATMOS 340, ATMOS 441.",
+      "Additional Completion Requirements",
+      "Option specific credits (29-37 credits)",
+      optionRequirementLine,
+    ],
+    headings: [
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry",
+    ],
+    requirementCueLines: [],
+    chooseStatements: [],
+    pathwayLabels: [],
+    title: "Atmospheric and Climate Science",
+  };
+
+  const owner = parser.buildManifestParseSuccessForTest(
+    baseResult,
+    structuredCourseCodes,
+    entry,
+    parsed,
+    "primary-source"
+  );
+  const optionRow = owner.sourceSectionFilterAuditRows.find(
+    (row) => row.rawLine === optionRequirementLine
+  );
+
+  assert.ok(owner.parsedUwCourseCodes.includes("CHEM 142"));
+  assert.equal(optionRow?.detectedSectionRole, "primary-requirement-section");
+  assert.equal(optionRow?.schedulable, true);
+});
+
 test("Parser recovery builds scoped section candidates for broad multi-program pages", () => {
   const entry = buildRecoveryEntryFixture({
     ownerTitle: "Communications",
@@ -4085,6 +4552,44 @@ test("Parser recovery does not section-scope a different pathway on the same pag
 
   assert.equal(candidates.some((candidate) => /NME Option/.test(candidate.label)), false);
   assert.ok(candidates.some((candidate) => /Final project/.test(candidate.label)));
+});
+
+test("Parser recovery does not start pathway catalog sections from shared course rows", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId:
+      "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:chemistry",
+    ownerTitle: "Atmospheric and Climate Science - B.S. Chemistry option",
+    sourceLabel: "Atmospheric and Climate Science catalog",
+    planId: "uw-seattle-atmospheric-and-climate-science",
+    pathwayId: "bs-option-family:chemistry",
+    campusId: "uw-seattle",
+    parserType: "catalog-page",
+    url: "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
+    label: "Atmospheric and Climate Science catalog",
+  });
+  const candidates = parser.buildParserRecoverySectionCandidatesForTest(entry, {
+    title: "Atmospheric and Climate Science",
+    headings: [
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry",
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate",
+    ],
+    lines: [
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry",
+      "Foundation requirements: MATH 124, MATH 125, MATH 126",
+      "Core requirements: STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220, ATMOS 301",
+      "Option specific credits (29-37 credits)",
+      "Requirements (23-27 credits): ATMOS 458/CHEM 458; CEE 480/ATMOS 480; ATMOS 310 or CSE 160; CHEM 142, CHEM 152, CHEM 162",
+      "Back to Top",
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate",
+      "Option specific credits (31-40 credits)",
+      "Requirements (22-25 credits): ATMOS 350; ATMOS 358, ATMOS 380, ATMOS 487; ESS 431 or ESS 433",
+    ],
+  });
+
+  assert.ok(candidates.length > 0);
+  assert.match(candidates[0].sectionLines[0], /Chemistry/);
+  assert.ok(candidates[0].sectionLines.some((line) => /CHEM 142/.test(line)));
+  assert.equal(candidates[0].sectionLines.some((line) => /ATMOS 350/.test(line)), false);
 });
 
 test("Parser recovery can attach support sources without scheduling support-only courses", () => {

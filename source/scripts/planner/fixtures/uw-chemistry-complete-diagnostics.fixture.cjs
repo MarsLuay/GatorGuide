@@ -418,6 +418,7 @@ const chemistryPrograms = [
     campusId: "uw-bothell",
     planId: "uw-bothell-chemistry-bs",
     title: "Chemistry (BS)",
+    publicAdmissionsLabels: ["Chemistry: Biochemistry"],
     officialSources: [
       "https://www.uwb.edu/stem/undergraduate/majors/chemistry",
       "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions",

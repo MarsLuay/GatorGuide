@@ -79,6 +79,7 @@ import {
   getRequirementOptionSelectionCount,
   getRequirementOptionSelectionCountForSuggestedOptions,
   hasExplicitPlannerSelectedRequirementOptionIds,
+  creditBasedOptionGroupRequiresEveryConcreteOption,
   selectedCreditBucketOptionsAreInsufficientForDefault,
 } from "./option-selection";
 import {
@@ -2324,6 +2325,30 @@ function getPlannerDefaultRequirementOptionIdsForScheduling(input: {
     : defaultOptionIds;
 }
 
+function getAllRequiredCreditBucketOptionIdsForScheduling(input: {
+  item: TransferPlannerChecklistItem;
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const group = input.item.requirementGroup;
+  if (
+    !creditBasedOptionGroupRequiresEveryConcreteOption({
+      requirementType: group?.requirementType,
+      requiredCredits: input.item.minCredits ?? group?.minCredits ?? null,
+      options: group?.options ?? [],
+    })
+  ) {
+    return [] as string[];
+  }
+
+  return getSchedulablePlannerRequirementOptionIdsForScheduling({
+    item: input.item,
+    optionIds: getRequirementOptionIds(input.item),
+    campusId: input.campusId ?? input.plan?.campusId,
+    plan: input.plan,
+  });
+}
+
 function getValidPlannerRequirementOptionIdsForScheduling(input: {
   item: TransferPlannerChecklistItem;
   optionIds: string[];
@@ -2558,6 +2583,23 @@ function getPlannerRequirementOptionSelectionResolution(input: {
   const staleOptionIds = requestedOptionIds.filter(
     (optionId) => !acceptedRawOptionIds.has(optionId)
   );
+  const allRequiredOptionIds = getAllRequiredCreditBucketOptionIdsForScheduling({
+    item: input.item,
+    campusId: input.campusId ?? input.plan?.campusId,
+    plan: input.plan,
+  });
+
+  if (allRequiredOptionIds.length) {
+    return {
+      selectedOptionIds: allRequiredOptionIds,
+      requestedOptionIds,
+      defaultOptionIds,
+      userUnselectedOptionIds,
+      staleOptionIds,
+      selectionSource: "default" as const,
+      fellBackToDefault: hasExplicitSelection && requestedOptionIds.length > 0,
+    };
+  }
 
   if (hasExplicitSelection && validRequestedOptionIds.length) {
     return {
@@ -12794,7 +12836,10 @@ export function buildSourceBackedMajorGeneralEducationRequirementSection(
 export function buildSourceBackedGeneralEducationRequirementTargets(
   plan: TransferPlannerMajorPlan | null | undefined
 ): GeneralEducationRequirementTargets {
-  const sourceBackedTargets = buildParsedSourceBackedGeneralEducationRequirementTargets(plan);
+  const sourceBackedTargets = mergeGeneralEducationRequirementTargets(
+    buildParsedSourceBackedGeneralEducationRequirementTargets(plan),
+    buildRequirementGroupGeneralEducationRequirementTargets(plan)
+  );
   const mergedTargets = mergeGeneralEducationRequirementTargets(
     sourceBackedTargets,
     createCampusGeneralEducationRequirementTargets(plan)
@@ -12814,6 +12859,77 @@ function buildParsedSourceBackedGeneralEducationRequirementTargets(
   return buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
     buildParsedSourceBackedGeneralEducationStructure(plan)
   );
+}
+
+function getLeadingSourceBackedGeneralEducationCategory(
+  text: string | null | undefined
+): SourceBackedPlanningGeneralEducationCategoryId | null {
+  const sanitizedText = sanitizeGeneralEducationSourceSignalLine(text);
+  if (!sanitizedText) {
+    return null;
+  }
+
+  for (const category of ["ah", "ssc", "nsc"] as const) {
+    const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
+    if (new RegExp(`^(?:${categoryPatternSource})\\b`, "i").test(sanitizedText)) {
+      return category;
+    }
+  }
+
+  return null;
+}
+
+function buildRequirementGroupGeneralEducationRequirementTargets(
+  plan: TransferPlannerMajorPlan | null | undefined
+): GeneralEducationRequirementTargets {
+  const targets = createEmptyGeneralEducationRequirementTargets();
+  for (const group of plan?.requirementGroups ?? []) {
+    const sourceCategory = getLeadingSourceBackedGeneralEducationCategory(
+      group.sourceHeading ?? group.sourceRowText ?? group.label
+    );
+    if (!sourceCategory) {
+      continue;
+    }
+
+    for (const option of group.options ?? []) {
+      if (
+        !isRequirementCategoryOption(option) ||
+        option.categoryOption?.programSpecific === true
+      ) {
+        continue;
+      }
+
+      const optionCategories = detectSourceBackedGeneralEducationCategories(
+        [
+          option.categoryOption?.category,
+          option.categoryOption?.sourceCategoryCode,
+          option.categoryOption?.title,
+          option.label,
+        ]
+          .filter(Boolean)
+          .join(" ")
+      );
+      if (!hasSameSourceBackedCategorySet(optionCategories, [sourceCategory])) {
+        continue;
+      }
+
+      const creditRange = getRequirementCategoryOptionCreditRange(option);
+      const credits = creditRange.creditMax ?? creditRange.creditMin;
+      if (credits === null || !Number.isFinite(credits) || credits <= 0) {
+        continue;
+      }
+
+      if (sourceCategory === "ah") {
+        targets.ahCredits = Math.max(targets.ahCredits ?? 0, credits);
+      } else if (sourceCategory === "ssc") {
+        targets.sscCredits = Math.max(targets.sscCredits ?? 0, credits);
+      } else if (sourceCategory === "nsc") {
+        targets.nscCredits = Math.max(targets.nscCredits ?? 0, credits);
+      }
+    }
+  }
+
+  return targets;
 }
 
 export function buildGeneralEducationRequirementTargets(

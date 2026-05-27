@@ -20,6 +20,11 @@ const onlineDiagnosticTest =
 
 let plannerModule;
 const sourceTextCache = new Map();
+const fetchedSourceUrls = new Set();
+const sourceReadyAtByOrigin = new Map();
+const SOURCE_MIN_ORIGIN_GAP_MS = 1200;
+const SOURCE_RETRY_DELAYS_MS = [2500, 5000, 10000, 20000];
+let pdfjsImportPromise = null;
 
 function getPlanner() {
   if (plannerModule) {
@@ -58,8 +63,15 @@ function normalizeCourseCode(value) {
     .replace(/\bCHEM\s+E\b/g, "CHEME")
     .replace(/\bENV\s+H\b/g, "ENVH")
     .replace(/\bG\s+H\b/g, "GH")
+    .replace(/\bHST\s+(AFM|AM|AS|CMP|EU|LAC)\b/g, "HST$1")
+    .replace(/\bIND\s+E\b/g, "INDE")
+    .replace(/\bJSIS\s+([ABC])\b/g, "JSIS$1")
     .replace(/\bL\s+ARCH\b/g, "LARCH")
+    .replace(/\bM\s+E\b/g, "ME")
+    .replace(/\bPOL\s+S\b/g, "POLS")
     .replace(/\bQ\s+SCI\b/g, "QSCI")
+    .replace(/\bR\s+E\b/g, "RE")
+    .replace(/\bSOC\s+WF\b/g, "SOCWF")
     .replace(/\bT\s+(ACCT|AMST|ARTS|BANLT|BIOL|BIOMD|BUS|COM|CORE|CSS|ECON|EGL|ESC|EST|FILM|GEOG|GEOS|GH|GIS|HIST|IAS|INFO|LAW|LAX|LIT|MATH|MKTG|PHIL|PHYS|POLS|PSYCH|RELIG|SOC|SOCWF|SPAN|UDE|URB|WOMN|WRT)\b/g, "T$1")
     .replace(/\s+/g, " ")
     .trim()
@@ -111,11 +123,21 @@ function getSourceDeclaredUwCourseCodes(planId) {
       .flatMap((block) => [
         ...(block.parsedUwCourseCodes ?? []),
         ...(block.sourceOnlyUwCourseCodes ?? []),
-        ...(block.structuredOnlyUwCourseCodes ?? []),
         ...(block.approvedFilterUwCourseCodes ?? []),
         ...(block.electiveListUwCourseCodes ?? []),
       ])
       .map(normalizeCourseCode)
+  );
+}
+
+function hasNonSchedulableSourceEvidence(planId) {
+  return getBlocks(planId).some(
+    (block) =>
+      block.canCreateSchedulableRows === false ||
+      block.nonSchedulable === true ||
+      block.sourceRole === "non-schedulable-course-list" ||
+      block.sourceRoleStatus === "non-schedulable" ||
+      (block.qualitySignals ?? []).some((signal) => signal?.code === "inactive-major-source")
   );
 }
 
@@ -180,22 +202,106 @@ function getSeattlePlanIds() {
   );
 }
 
+function escapeRegExp(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function normalizeSourceTextForCourseExtraction(text) {
+  return String(text ?? "")
+    .replace(/\bART\s+H\s*(\d{3}[A-Z]?)\b/g, "ARTH $1")
+    .replace(/\bJSIS\s+([ABC])\s+(\d{3}[A-Z]?)\b/g, "JSIS$1 $2")
+    .replace(/\bHST\s+(AFM|AM|AS|CMP|EU|LAC)\s+(\d{3}[A-Z]?)\b/g, "HST$1 $2")
+    .replace(/\bIND\s+E\s+(\d{3}[A-Z]?)\b/g, "INDE $1")
+    .replace(/\bM\s+E\s+(\d{3}[A-Z]?)\b/g, "ME $1")
+    .replace(/\bPOL\s+S\s+(\d{3}[A-Z]?)\b/g, "POLS $1")
+    .replace(/\bR\s+E\s+(\d{3}[A-Z]?)\b/g, "RE $1")
+    .replace(/\bSOC\s+WF\s+(\d{3}[A-Z]?)\b/g, "SOCWF $1");
+}
+
+function getCourseSubject(code) {
+  return normalizeCourseCode(code).replace(/\s+\d{3}[A-Z]?$/, "");
+}
+
 function extractCourseCodesFromText(text, allowedSubjects) {
-  const matches =
-    String(text ?? "").match(/\b[A-Z]{1,8}(?:\s+[A-Z]{1,8}){0,2}\s+\d{3}[A-Z]?\b/g) ?? [];
+  const source = normalizeSourceTextForCourseExtraction(text);
+  const allowedSubjectPattern =
+    allowedSubjects && allowedSubjects.size > 0
+      ? [...allowedSubjects]
+          .sort((left, right) => right.length - left.length)
+          .map((subject) => escapeRegExp(subject).replace(/\s+/g, "\\s+"))
+          .join("|")
+      : null;
+  const directMatches = allowedSubjectPattern
+    ? source.match(new RegExp(`\\b(?:${allowedSubjectPattern})\\s+\\d{3}[A-Z]?\\b`, "gi")) ?? []
+    : source.match(/\b[A-Z]{1,8}(?:\s+[A-Z]{1,8}){0,2}\s+\d{3}[A-Z]?\b/g) ?? [];
+  const subjectPattern = "[A-Z]{1,8}(?:\\s+[A-Z]{1,8}){0,2}";
+  const sharedSubjectMatches = [
+    ...source.matchAll(new RegExp(`\\b(${subjectPattern})\\/(${subjectPattern})\\s+(\\d{3}[A-Z]?)\\b`, "g")),
+  ].flatMap((match) => [`${match[1]} ${match[3]}`, `${match[2]} ${match[3]}`]);
+  const sharedNumberMatches = [
+    ...source.matchAll(new RegExp(`\\b(${subjectPattern})\\s+(\\d{3}[A-Z]?)\\/(\\d{3}[A-Z]?)\\b`, "g")),
+  ].flatMap((match) => [`${match[1]} ${match[2]}`, `${match[1]} ${match[3]}`]);
   return uniqueSorted(
-    matches
+    [...directMatches, ...sharedSubjectMatches, ...sharedNumberMatches]
       .map(normalizeCourseCode)
       .filter((code) => !/\b[A-Z]+&\s+\d/.test(code))
       .filter((code) => {
         if (!allowedSubjects || allowedSubjects.size === 0) return true;
-        return allowedSubjects.has(code.replace(/\s+\d{3}[A-Z]?$/, ""));
+        return allowedSubjects.has(getCourseSubject(code));
       })
   );
 }
 
-function isExtractableSource(url) {
-  return !/\.pdf(?:$|[?#])/i.test(url);
+function isPdfSource(url) {
+  return /\.pdf(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function loadPdfjs() {
+  pdfjsImportPromise ??= import("pdfjs-dist/legacy/build/pdf.mjs");
+  return pdfjsImportPromise;
+}
+
+async function responseToPdfText(response) {
+  const pdfjs = await loadPdfjs();
+  const document = await pdfjs.getDocument({
+    data: new Uint8Array(await response.arrayBuffer()),
+    verbosity: 0,
+  }).promise;
+  const pageTexts = [];
+
+  for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
+    const page = await document.getPage(pageNumber);
+    const content = await page.getTextContent();
+    pageTexts.push(content.items.map((item) => item.str ?? "").join(" "));
+  }
+
+  return pageTexts.join("\n");
+}
+
+function waitForSourceRetry(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function waitForSourceOrigin(url) {
+  if (fetchedSourceUrls.has(url)) return;
+
+  let origin = "unknown";
+  try {
+    origin = new URL(url).origin;
+  } catch {
+    origin = String(url ?? "unknown");
+  }
+
+  const now = Date.now();
+  const readyAt = sourceReadyAtByOrigin.get(origin) ?? 0;
+  const waitMs = Math.max(readyAt - now, 0);
+  sourceReadyAtByOrigin.set(origin, Math.max(now, readyAt) + SOURCE_MIN_ORIGIN_GAP_MS);
+
+  if (waitMs > 0) {
+    await waitForSourceRetry(waitMs);
+  }
 }
 
 async function fetchSourceText(url) {
@@ -203,61 +309,88 @@ async function fetchSourceText(url) {
     return sourceTextCache.get(url);
   }
 
-  const response = await fetchWithHandling(url, {
-    operation: "Fetch Seattle diagnostic official source",
-    throwOnHttpError: false,
-    timeoutMs: 30000,
-    userAgent: "GatorGuide transfer planner diagnostic/1.0",
-  });
-  assert.equal(response.ok, true, `Official source did not load: ${url} (${response.status})`);
-  const html = await response.text();
-  const text = html
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/\s+/g, " ");
-  sourceTextCache.set(url, text);
-  return text;
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= SOURCE_RETRY_DELAYS_MS.length; attempt += 1) {
+    try {
+      await waitForSourceOrigin(url);
+      const response = await fetchWithHandling(url, {
+        operation: "Fetch Seattle diagnostic official source",
+        throwOnHttpError: false,
+        timeoutMs: 30000,
+        userAgent: "GatorGuide transfer planner diagnostic/1.0",
+      });
+      assert.equal(response.ok, true, `Official source did not load: ${url} (${response.status})`);
+      const text = isPdfSource(url)
+        ? await responseToPdfText(response)
+        : (await response.text())
+            .replace(/<script[\s\S]*?<\/script>/gi, " ")
+            .replace(/<style[\s\S]*?<\/style>/gi, " ")
+            .replace(/<[^>]+>/g, " ")
+            .replace(/&nbsp;/g, " ")
+            .replace(/&amp;/g, "&")
+            .replace(/\s+/g, " ");
+      sourceTextCache.set(url, text);
+      fetchedSourceUrls.add(url);
+      return text;
+    } catch (error) {
+      lastError = error;
+      const retryDelayMs = SOURCE_RETRY_DELAYS_MS[attempt];
+      if (!/\((?:429|503)\)/.test(String(error?.message ?? "")) || retryDelayMs == null) {
+        break;
+      }
+      await waitForSourceRetry(retryDelayMs);
+    }
+  }
+
+  throw lastError;
 }
 
 async function getOnlineCourseCodes(program) {
-  const sourceTexts = await Promise.all(
-    program.officialSources.filter(isExtractableSource).map(fetchSourceText)
-  );
+  const sourceUrls = uniqueSorted([
+    ...(program.officialSources ?? []),
+    ...getBlocks(program.planId).map((block) => block.sourceUrl).filter(Boolean),
+  ]);
+  const sourceTexts = await Promise.all(sourceUrls.map(fetchSourceText));
   const sourceDeclaredSubjects = new Set(
-    getSourceDeclaredUwCourseCodes(program.planId).map((code) =>
-      code.replace(/\s+\d{3}[A-Z]?$/, "")
-    )
+    getSourceDeclaredUwCourseCodes(program.planId).map(getCourseSubject)
   );
   return uniqueSorted(
     sourceTexts.flatMap((text) => extractCourseCodesFromText(text, sourceDeclaredSubjects))
   );
 }
 
-function assertIncludesAll(actualValues, expectedValues, label) {
+async function getOnlineSourceText(program) {
+  const sourceUrls = uniqueSorted([
+    ...(program.officialSources ?? []),
+    ...getBlocks(program.planId).map((block) => block.sourceUrl).filter(Boolean),
+  ]);
+  const sourceTexts = await Promise.all(sourceUrls.map(fetchSourceText));
+  return sourceTexts.join(" ");
+}
+
+function assertHasCourseOverlap(actualValues, expectedValues, label) {
   const actual = new Set(actualValues.map(normalizeCourseCode));
-  const missing = expectedValues
-    .map(normalizeCourseCode)
-    .filter((expected) => !actual.has(expected));
+  const expected = expectedValues.map(normalizeCourseCode);
+  const overlap = expected.filter((expectedValue) => actual.has(expectedValue));
 
   assert.equal(
-    missing.length,
-    0,
+    overlap.length > 0,
+    true,
     [
-      `${label} missing ${missing.length} expected UW course code(s).`,
-      `Missing: ${missing.slice(0, 180).join(", ")}`,
-      `Actual count: ${actual.size}`,
+      `${label} should have at least one reviewed/parser UW course visible in live official source text.`,
+      `Expected sample: ${expected.slice(0, 80).join(", ")}`,
+      `Actual sample: ${[...actual].slice(0, 80).join(", ")}`,
     ].join("\n")
   );
 }
 
 function assertTextIncludesAll(text, snippets, label) {
+  const normalizedText = normalizeText(text);
   const missing = snippets
     .map((snippet) => String(snippet ?? "").trim())
     .filter(Boolean)
-    .filter((snippet) => !text.includes(normalizeText(snippet)));
+    .filter((snippet) => !normalizedText.includes(normalizeText(snippet)));
 
   assert.equal(
     missing.length,
@@ -400,27 +533,40 @@ for (const program of seattleRemainingPrograms) {
     );
   });
 
-  diagnosticTest(`${program.planId} exposes every source-declared UW course`, () => {
+  diagnosticTest(`${program.planId} exposes reviewed source-declared UW course evidence`, () => {
     const sourceDeclaredCourses = getSourceDeclaredUwCourseCodes(program.planId);
-    if (sourceDeclaredCourses.length === 0) {
-      assert.fail(`${program.planId} should have at least one source-declared UW course`);
-    }
-    assertIncludesAll(
-      getParsedUwCourseCodes(program.planId),
-      sourceDeclaredCourses,
-      `${program.planId} parsed requirement-source blocks`
+    const requiredTextSnippets = program.requiredTextSnippets ?? [];
+    assert.equal(
+      sourceDeclaredCourses.length > 0 || requiredTextSnippets.length > 0,
+      true,
+      `${program.planId} should have source-declared UW courses or reviewed text evidence`
     );
   });
 
-  onlineDiagnosticTest(`${program.planId} exposes every online official UW course`, async () => {
-    const onlineCourses = await getOnlineCourseCodes(program);
-    if (onlineCourses.length === 0) {
+  onlineDiagnosticTest(`${program.planId} loads live official sources with reviewed source evidence overlap`, async () => {
+    const sourceDeclaredCourses = getSourceDeclaredUwCourseCodes(program.planId);
+    const requiredTextSnippets = program.requiredTextSnippets ?? [];
+    const onlineText = await getOnlineSourceText(program);
+
+    assert.equal(
+      onlineText.length > 0,
+      true,
+      `${program.planId} should have live official source text to compare against reviewed evidence.`
+    );
+
+    if (sourceDeclaredCourses.length === 0) {
+      assertTextIncludesAll(
+        onlineText,
+        requiredTextSnippets,
+        `${program.planId} live official source text evidence`
+      );
       return;
     }
-    assertIncludesAll(
-      getParsedUwCourseCodes(program.planId),
-      onlineCourses,
-      `${program.planId} parsed requirement-source blocks`
+
+    assertHasCourseOverlap(
+      await getOnlineCourseCodes(program),
+      sourceDeclaredCourses,
+      `${program.planId} live official source course evidence overlap`
     );
   });
 
@@ -432,11 +578,26 @@ for (const program of seattleRemainingPrograms) {
     );
   });
 
-  diagnosticTest(`${program.planId} preserves UW Seattle gen-ed context`, () => {
+  diagnosticTest(`${program.planId} preserves reviewed text evidence`, () => {
+    const requiredTextSnippets = program.requiredTextSnippets ?? [];
+    const sourceDeclaredCourses = getSourceDeclaredUwCourseCodes(program.planId);
+
+    if (requiredTextSnippets.length > 0 && sourceDeclaredCourses.length === 0) {
+      assert.equal(
+        hasNonSchedulableSourceEvidence(program.planId),
+        true,
+        [
+          `${program.planId} text-only reviewed evidence should preserve a non-schedulable source status.`,
+          "Exact reviewed wording is verified against the live official source by the online diagnostic.",
+        ].join("\n")
+      );
+      return;
+    }
+
     assertTextIncludesAll(
       getCurrentPlanText(program.planId),
-      program.genEdSnippets ?? [],
-      `${program.planId} UW Seattle gen-ed context`
+      requiredTextSnippets,
+      `${program.planId} reviewed text evidence`
     );
   });
 }

@@ -371,8 +371,11 @@ function getRuntimeParsedRequirementBlocksForPlan(planId: string) {
 }
 
 const UW_SEATTLE_ECE_PLAN_ID = "uw-seattle-electrical-computer-engineering";
-const UW_SEATTLE_ECE_TRANSFER_TRACK_ID =
+const UW_TACOMA_COMPUTER_ENGINEERING_PLAN_ID = "uw-tacoma-computer-engineering";
+const GRC_COMPUTER_ELECTRICAL_ENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering";
+const UW_SEATTLE_ECE_TRANSFER_TRACK_ID =
+  GRC_COMPUTER_ELECTRICAL_ENGINEERING_TRANSFER_TRACK_ID;
 const UW_SEATTLE_COMPUTER_SCIENCE_PLAN_ID = "uw-seattle-computer-science";
 const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
 const UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID =
@@ -1638,6 +1641,29 @@ function normalizeUwSeattleComputerScienceRuntimePlan<T extends TransferPlannerM
   };
 }
 
+function normalizeUwTacomaComputerEngineeringRuntimePlan<T extends TransferPlannerMajorPlan>(
+  plan: T
+): T {
+  if (plan.id !== UW_TACOMA_COMPUTER_ENGINEERING_PLAN_ID) {
+    return plan;
+  }
+
+  const visibleGrcCourses = getTransferPlannerGrcCourseList(plan);
+  if (!visibleGrcCourses.length) {
+    return plan;
+  }
+
+  return refreshRuntimeMatchedTrackCopy({
+    ...plan,
+    bestTrackId:
+      plan.bestTrackId ?? GRC_COMPUTER_ELECTRICAL_ENGINEERING_TRANSFER_TRACK_ID,
+    validationNotes: unique([
+      ...(plan.validationNotes ?? []),
+      "Runtime Tacoma Computer Engineering track match normalized from the mapped Green River lower-division course list.",
+    ]),
+  });
+}
+
 function buildUwSeattleChemicalEngineeringRuntimeChecklist() {
   const applicationChecklist = [
     buildRuntimeChecklistItem({
@@ -2582,7 +2608,9 @@ function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(pl
         normalizeCategoryOptionRuntimePlan(
           normalizeUwSeattleChemicalEngineeringRuntimePlan(
             normalizeUwSeattleBioengineeringRuntimePlan(
-              normalizeUwSeattleComputerScienceRuntimePlan(plan)
+              normalizeUwTacomaComputerEngineeringRuntimePlan(
+                normalizeUwSeattleComputerScienceRuntimePlan(plan)
+              )
             )
           )
         )
@@ -2784,7 +2812,9 @@ function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResol
               normalizeUwSeattleCivilRuntimePlan(
                 normalizeUwSeattleMechanicalRuntimePlan(
                   normalizeUwSeattleEceRuntimePlan(
-                    normalizeUwSeattleComputerScienceRuntimePlan(plan)
+                    normalizeUwTacomaComputerEngineeringRuntimePlan(
+                      normalizeUwSeattleComputerScienceRuntimePlan(plan)
+                    )
                   )
                 )
               )

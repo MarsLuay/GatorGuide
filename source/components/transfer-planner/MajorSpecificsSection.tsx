@@ -3,6 +3,12 @@ import React, { useMemo, useState } from "react";
 import { Text, View } from "react-native";
 
 import { TouchCard, TouchOptionRow } from "@/components/ui/TouchPrimitives";
+import type {
+  TransferPlannerDemoCourseBucket,
+  TransferPlannerDemoOptionGroup,
+  TransferPlannerDemoPathwayGroup,
+  TransferPlannerDemoReviewProgram,
+} from "@/constants/transfer-planner-source/demo/complete-diagnostics";
 import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   type TransferPlannerResolvedMajorPlan,
@@ -24,6 +30,7 @@ import {
   COPY_ONLY_OPTION_STATUS_TEXT_STYLE,
   openExternalLink,
 } from "./transfer-planner-formatters";
+import type { TransferPlannerDemoReviewState } from "./useTransferPlannerDemoReview";
 
 type DisplayDegreeLink = {
   label: string;
@@ -223,12 +230,467 @@ function getDegreeCourseOptionCreditText(option: DegreeCourseOptionModel) {
   return creditValue != null ? String(creditValue) : "";
 }
 
+const DEMO_REVIEW_PREVIEW_LIMIT = 28;
+
+type Translate = (key: string, params?: Record<string, string | number>) => string;
+
+function getDemoReviewDateLabel(generatedAt: string | null) {
+  const value = String(generatedAt ?? "").trim();
+  return value ? value.slice(0, 10) : "";
+}
+
+function getDemoReviewEvidenceCount(program: TransferPlannerDemoReviewProgram) {
+  return (
+    program.officialSources.length +
+    program.expectedCourseCodes.length +
+    program.requiredCourseCodes.length +
+    program.optionGroups.length +
+    program.courseBuckets.length +
+    program.pathwayGroups.length +
+    program.genEdRequirements.length +
+    program.requirementLabels.length +
+    program.requiredTextSnippets.length +
+    program.genEdSnippets.length
+  );
+}
+
+function getDemoReviewProgramSummary(program: TransferPlannerDemoReviewProgram, t: Translate) {
+  return uniqueNonEmptyStrings([
+    t("transferPlanner.demoReviewExpectedCoursesSummary", {
+      count: program.expectedCourseCodes.length,
+    }),
+    t("transferPlanner.demoReviewRequiredCoursesSummary", {
+      count: program.requiredCourseCodes.length,
+    }),
+    t("transferPlanner.demoReviewOptionGroupsSummary", {
+      count: program.optionGroups.length,
+    }),
+    t("transferPlanner.demoReviewCourseBucketsSummary", {
+      count: program.courseBuckets.length,
+    }),
+    t("transferPlanner.demoReviewSourcesSummary", {
+      count: program.officialSources.length,
+    }),
+  ]).join(" | ");
+}
+
+function DemoReviewValueList({
+  label,
+  values,
+  limit = DEMO_REVIEW_PREVIEW_LIMIT,
+  secondaryTextClass,
+  t,
+}: {
+  label: string;
+  values: string[];
+  limit?: number;
+  secondaryTextClass: string;
+  t: Translate;
+}) {
+  const displayValues = uniqueNonEmptyStrings(values).slice(0, limit);
+  const hiddenCount = Math.max(0, uniqueNonEmptyStrings(values).length - displayValues.length);
+  if (!displayValues.length) return null;
+
+  return (
+    <View>
+      <Text className={`${secondaryTextClass} text-xs font-semibold`}>{label}</Text>
+      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+        {displayValues.join(", ")}
+        {hiddenCount
+          ? `, ${t("transferPlanner.demoReviewMoreValues", { count: hiddenCount })}`
+          : ""}
+      </Text>
+    </View>
+  );
+}
+
+function DemoReviewOptionGroups({
+  groups,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+  t,
+}: {
+  groups: TransferPlannerDemoOptionGroup[];
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+  t: Translate;
+}) {
+  if (!groups.length) return null;
+
+  return (
+    <View>
+      <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+        {t("transferPlanner.demoReviewRequirementOptions")}
+      </Text>
+      <View className="mt-2 gap-2">
+        {groups.slice(0, 12).map((group) => (
+          <View key={group.id || group.label} className={`border ${borderClass} rounded-2xl px-3 py-3`}>
+            <Text className={`${textClass} text-sm font-semibold`}>
+              {group.label || group.id || t("transferPlanner.demoReviewRequirementOptionFallback")}
+            </Text>
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              {t("transferPlanner.demoReviewOptionCount", {
+                count: group.options.length,
+                noun: t(
+                  group.options.length === 1
+                    ? "transferPlanner.demoReviewOptionSingular"
+                    : "transferPlanner.demoReviewOptionPlural"
+                ),
+              })}
+            </Text>
+            <DemoReviewValueList
+              label={t("transferPlanner.demoReviewCoursesLabel")}
+              values={group.options.flat()}
+              limit={18}
+              secondaryTextClass={secondaryTextClass}
+              t={t}
+            />
+          </View>
+        ))}
+        {groups.length > 12 ? (
+          <Text className={`${secondaryTextClass} text-xs`}>
+            {t("transferPlanner.demoReviewMoreRequirementOptionGroups", {
+              count: groups.length - 12,
+            })}
+          </Text>
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+function DemoReviewCourseBuckets({
+  buckets,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+  t,
+}: {
+  buckets: TransferPlannerDemoCourseBucket[];
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+  t: Translate;
+}) {
+  if (!buckets.length) return null;
+
+  return (
+    <View>
+      <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+        {t("transferPlanner.demoReviewCourseBuckets")}
+      </Text>
+      <View className="mt-2 gap-2">
+        {buckets.slice(0, 10).map((bucket) => (
+          <View key={bucket.id || bucket.label} className={`border ${borderClass} rounded-2xl px-3 py-3`}>
+            <Text className={`${textClass} text-sm font-semibold`}>
+              {bucket.label || bucket.id || t("transferPlanner.demoReviewCourseBucketFallback")}
+            </Text>
+            {bucket.minCredits != null ? (
+              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                {t("transferPlanner.demoReviewMinimumCredits", {
+                  count: bucket.minCredits,
+                })}
+              </Text>
+            ) : null}
+            <DemoReviewValueList
+              label={t("transferPlanner.demoReviewCoursesLabel")}
+              values={bucket.courseCodes}
+              limit={18}
+              secondaryTextClass={secondaryTextClass}
+              t={t}
+            />
+          </View>
+        ))}
+        {buckets.length > 10 ? (
+          <Text className={`${secondaryTextClass} text-xs`}>
+            {t("transferPlanner.demoReviewMoreCourseBuckets", { count: buckets.length - 10 })}
+          </Text>
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+function DemoReviewPathwayGroups({
+  groups,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+  t,
+}: {
+  groups: TransferPlannerDemoPathwayGroup[];
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+  t: Translate;
+}) {
+  if (!groups.length) return null;
+
+  return (
+    <View>
+      <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+        {t("transferPlanner.demoReviewPathwayGroups")}
+      </Text>
+      <View className="mt-2 gap-2">
+        {groups.slice(0, 10).map((group) => (
+          <View key={group.id || group.label} className={`border ${borderClass} rounded-2xl px-3 py-3`}>
+            <Text className={`${textClass} text-sm font-semibold`}>
+              {group.label || group.id || t("transferPlanner.demoReviewPathwayGroupFallback")}
+            </Text>
+            <DemoReviewValueList
+              label={t("transferPlanner.demoReviewSuggestedLabel")}
+              values={group.suggestedCourses}
+              limit={18}
+              secondaryTextClass={secondaryTextClass}
+              t={t}
+            />
+            <DemoReviewValueList
+              label={t("transferPlanner.demoReviewCapstoneLabel")}
+              values={group.capstoneCourses}
+              limit={18}
+              secondaryTextClass={secondaryTextClass}
+              t={t}
+            />
+            <DemoReviewValueList
+              label={t("transferPlanner.demoReviewEnrichingLabel")}
+              values={group.enrichingCourses}
+              limit={18}
+              secondaryTextClass={secondaryTextClass}
+              t={t}
+            />
+          </View>
+        ))}
+        {groups.length > 10 ? (
+          <Text className={`${secondaryTextClass} text-xs`}>
+            {t("transferPlanner.demoReviewMorePathwayGroups", { count: groups.length - 10 })}
+          </Text>
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+function DemoReviewProgramCard({
+  program,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+  t,
+}: {
+  program: TransferPlannerDemoReviewProgram;
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+  t: Translate;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const evidenceCount = getDemoReviewEvidenceCount(program);
+  const programSummary = getDemoReviewProgramSummary(program, t);
+
+  return (
+    <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+      <TouchOptionRow
+        onPress={() => setIsOpen((currentValue) => !currentValue)}
+        expanded={isOpen}
+        accessibilityLabel={t("transferPlanner.demoReviewAccessibilityLabel", {
+          title: program.title,
+        })}
+      >
+        <View className="flex-row items-start justify-between gap-3">
+          <View className="flex-1 min-w-0">
+            <Text className={`${textClass} text-sm font-semibold`}>
+              {program.title || t("transferPlanner.demoReviewReviewedMajorFallback")}
+            </Text>
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              {programSummary}
+            </Text>
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              {t("transferPlanner.demoReviewEvidenceCount", {
+                count: evidenceCount,
+                noun: t(
+                  evidenceCount === 1
+                    ? "transferPlanner.demoReviewEvidenceItemSingular"
+                    : "transferPlanner.demoReviewEvidenceItemPlural"
+                ),
+                file: program.fixtureFile,
+              })}
+            </Text>
+          </View>
+          <Ionicons name={isOpen ? "chevron-up" : "chevron-down"} size={18} color="#9CA3AF" />
+        </View>
+      </TouchOptionRow>
+
+      {isOpen ? (
+        <View className="mt-3 gap-3">
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewExpectedUwCourses")}
+            values={program.expectedCourseCodes}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewSourceDeclaredUwCourses")}
+            values={program.sourceDeclaredCourseCodes}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewRequiredUwCourses")}
+            values={program.requiredCourseCodes}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewGenEdRequirements")}
+            values={program.genEdRequirements}
+            limit={16}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewRequirementLabels")}
+            values={program.requirementLabels}
+            limit={18}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          <DemoReviewOptionGroups
+            groups={program.optionGroups}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+            t={t}
+          />
+          <DemoReviewCourseBuckets
+            buckets={program.courseBuckets}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+            t={t}
+          />
+          <DemoReviewPathwayGroups
+            groups={program.pathwayGroups}
+            textClass={textClass}
+            secondaryTextClass={secondaryTextClass}
+            borderClass={borderClass}
+            t={t}
+          />
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewRequiredTextSnippets")}
+            values={program.requiredTextSnippets}
+            limit={8}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          <DemoReviewValueList
+            label={t("transferPlanner.demoReviewGenEdSnippets")}
+            values={program.genEdSnippets}
+            limit={8}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+          />
+          {program.officialSources.length ? (
+            <View>
+              <Text className={`${secondaryTextClass} text-xs font-semibold`}>
+                {t("transferPlanner.demoReviewOfficialSources")}
+              </Text>
+              <View className="mt-2 gap-2">
+                {program.officialSources.map((url) => (
+                  <TouchCard
+                    key={url}
+                    onPress={() => void openExternalLink(url)}
+                    accessibilityRole="link"
+                    accessibilityLabel={t("transferPlanner.demoReviewOpenSource", { url })}
+                    className={`border ${borderClass} rounded-2xl px-3 py-3`}
+                  >
+                    <Text className="text-emerald-500 text-sm">{url}</Text>
+                  </TouchCard>
+                ))}
+              </View>
+            </View>
+          ) : null}
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
+function DemoReviewSection({
+  demoReview,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+  t,
+}: {
+  demoReview: TransferPlannerDemoReviewState;
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+  t: Translate;
+}) {
+  if (!demoReview.isEnabled) return null;
+
+  const generatedAtLabel = getDemoReviewDateLabel(demoReview.generatedAt);
+  const demoReviewSummary = generatedAtLabel
+    ? t("transferPlanner.demoReviewLoadedGeneratedSummary", {
+        count: demoReview.reviewedMajorCount,
+        date: generatedAtLabel,
+      })
+    : t("transferPlanner.demoReviewLoadedSummary", {
+        count: demoReview.reviewedMajorCount,
+      });
+
+  return (
+    <View className={`mt-5 border ${borderClass} rounded-2xl px-4 py-4`}>
+      <View className="flex-row items-start gap-3">
+        <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center">
+          <Ionicons name="school-outline" size={18} color="#008f4e" />
+        </View>
+        <View className="flex-1 min-w-0">
+          <Text className={`${textClass} text-base font-semibold`}>
+            {t("transferPlanner.demoReviewTitle")}
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            {demoReview.isLoading
+              ? t("transferPlanner.demoReviewLoading")
+              : demoReviewSummary}
+          </Text>
+        </View>
+      </View>
+
+      {!demoReview.isLoading ? (
+        <View className="mt-4 gap-3">
+          {demoReview.programs.length ? (
+            demoReview.programs.map((program) => (
+              <DemoReviewProgramCard
+                key={`${program.fixtureFile}:${program.planId}:${program.expectedPathwayIds.join("|")}`}
+                program={program}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+                t={t}
+              />
+            ))
+          ) : (
+            <Text className={`${secondaryTextClass} text-sm`}>
+              {t("transferPlanner.demoReviewEmpty")}
+            </Text>
+          )}
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
 export function MajorSpecificsSection({
   plan,
   track,
   completedCourses,
   transcriptDerivedCompletedCourses,
   hasTranscriptDerivedCreditSource,
+  demoReview,
   textClass,
   secondaryTextClass,
   borderClass,
@@ -239,6 +701,7 @@ export function MajorSpecificsSection({
   transcriptDerivedCompletedCourses: TranscriptCourseEntry[];
   hasTranscriptDerivedCreditSource: boolean;
   selectedPathwayLabel: string | null;
+  demoReview: TransferPlannerDemoReviewState;
   textClass: string;
   secondaryTextClass: string;
   borderClass: string;
@@ -530,6 +993,14 @@ export function MajorSpecificsSection({
               ) : null}
             </View>
           ) : null}
+
+            <DemoReviewSection
+              demoReview={demoReview}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+              t={t}
+            />
 
           <View className="mt-5 gap-4">
             <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>

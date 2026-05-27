@@ -53,6 +53,25 @@ const PROFILE_MAJOR_OPTIONS_OUTPUT_PATH = path.resolve(
   "green-river-major-options.generated.ts"
 );
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
+const SUPPRESS_GENERATED_PATHWAY_CANDIDATE_PLAN_IDS = new Set([
+  "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+]);
+const GENERATED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN = new Map([
+  [
+    "uw-seattle-jewish-studies",
+    [/^(?:south(?:east)? asia|southeast asia|china|japan|korea|general) concentration$/i],
+  ],
+  [
+    "uw-seattle-latin-american-and-caribbean-studies",
+    [/^(?:south(?:east)? asia|southeast asia|china|japan|korea|general) concentration$/i],
+  ],
+  [
+    "uw-seattle-materials-science-engineering",
+    [
+      /^introduction to molecular and nanoscale principles\b.*\bnot eligible elective for nme option students\b/i,
+    ],
+  ],
+]);
 const CAMPUS_TITLE_BY_ID = {
   "uw-seattle": "UW Seattle",
   "uw-bothell": "UW Bothell",
@@ -72,6 +91,14 @@ const GAP_BY_OWNER_KEY = new Map(
     [entry.ownerKey, entry],
     [makeOwnerKey(entry.planId, entry.pathwayId ?? null), entry],
   ])
+);
+const FINGERPRINT_FINAL_URL_BY_URL = new Map(
+  (TRANSFER_PLANNER_FINGERPRINTS ?? [])
+    .map((entry) => [
+      String(entry?.url ?? "").trim(),
+      String(entry?.finalUrl ?? "").trim(),
+    ])
+    .filter(([url, finalUrl]) => url && finalUrl)
 );
 const SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY = new Map([
   [
@@ -727,7 +754,7 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
           createEmptyPathway("general-history-option", "General History option", [
             {
               label: "UW Tacoma General History option requirements",
-              url: "https://www.tacoma.uw.edu/sias-new/socs-new/general-option",
+              url: "https://www.tacoma.uw.edu/sias/socs/general-history-option",
             },
           ]),
           createEmptyPathway("arts-culture-and-society-option", "Arts, Culture and Society option", [
@@ -812,6 +839,7 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
           ]),
         ],
         {
+          "gis-certificate": "gis-option",
           "gis-certificate-option": "gis-option",
         }
       )
@@ -979,9 +1007,25 @@ function chooseFingerprintLinkLabel(entry, ownerId) {
 }
 
 function getFingerprintLinkUrl(entry) {
-  const url = String(entry?.url ?? "").trim();
-  const finalUrl = String(entry?.finalUrl ?? "").trim();
+  const url = canonicalizeOfficialSourceUrl(String(entry?.url ?? "").trim());
+  const finalUrl = canonicalizeOfficialSourceUrl(String(entry?.finalUrl ?? "").trim());
   return url.includes("#") ? url : finalUrl || url;
+}
+
+function canonicalizeOfficialSourceUrl(url) {
+  const normalizedUrl = String(url ?? "").trim();
+  if (!normalizedUrl) {
+    return "";
+  }
+
+  const fingerprintFinalUrl = FINGERPRINT_FINAL_URL_BY_URL.get(normalizedUrl);
+  if (fingerprintFinalUrl) {
+    return fingerprintFinalUrl;
+  }
+
+  return normalizedUrl
+    .replace("https://www.tacoma.uw.edu/sias-new/socs-new/", "https://www.tacoma.uw.edu/sias/socs/")
+    .replace("https://www.tacoma.uw.edu/sias-new/cac-new/", "https://www.tacoma.uw.edu/sias/cac/");
 }
 
 function buildFingerprintLinksForOwner(ownerId) {
@@ -1155,6 +1199,17 @@ function isSimpleSpecializationPathwayCandidate(pathwayCandidate) {
     PATHWAY_KIND_PATTERN.test(label) &&
     !/\b(?:major|minor|degree|program|department|school|college|admission|apply)\b/i.test(label)
   );
+}
+
+function isPlanExcludedGeneratedPathwayCandidate(planId, pathwayCandidate) {
+  const patterns = GENERATED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN.get(planId) ?? [];
+  if (!patterns.length) {
+    return false;
+  }
+
+  const labelText = normalizeTransferPlannerText(pathwayCandidate?.label ?? "");
+  const idText = normalizeTransferPlannerText(pathwayCandidate?.id ?? "").replace(/-/g, " ");
+  return patterns.some((pattern) => pattern.test(labelText) || pattern.test(idText));
 }
 
 function getPathwayCandidateScore(label, sourceKind) {
@@ -1471,7 +1526,8 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
             planId,
             pathwayCandidate.label,
             primaryMajorTitlesByPlanId
-          ))
+          )) ||
+        isPlanExcludedGeneratedPathwayCandidate(planId, pathwayCandidate)
       ) {
         return;
       }
@@ -1502,42 +1558,44 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
       });
     };
 
-    for (const block of planBlocks) {
-      const pathwayId = String(block.pathwayId ?? "").trim();
-      if (!pathwayId || isSuspiciousStructuralPathwayId(pathwayId)) {
-        if (!pathwayId) {
-          for (const value of uniqueStrings(block.pathwayLabels ?? [])) {
-            const label = normalizePathwayLabelCandidate(title, value);
-            if (!label) {
-              continue;
+    if (!SUPPRESS_GENERATED_PATHWAY_CANDIDATE_PLAN_IDS.has(planId)) {
+      for (const block of planBlocks) {
+        const pathwayId = String(block.pathwayId ?? "").trim();
+        if (!pathwayId || isSuspiciousStructuralPathwayId(pathwayId)) {
+          if (!pathwayId) {
+            for (const value of uniqueStrings(block.pathwayLabels ?? [])) {
+              const label = normalizePathwayLabelCandidate(title, value);
+              if (!label) {
+                continue;
+              }
+              const id = toCanonicalPathwayId(label);
+              if (!id || isSuspiciousStructuralPathwayId(id)) {
+                continue;
+              }
+              addPathwayCandidate(
+                {
+                  id,
+                  label,
+                  score: getPathwayCandidateScore(label, "parsed"),
+                },
+                block
+              );
             }
-            const id = toCanonicalPathwayId(label);
-            if (!id || isSuspiciousStructuralPathwayId(id)) {
-              continue;
-            }
-            addPathwayCandidate(
-              {
-                id,
-                label,
-                score: getPathwayCandidateScore(label, "parsed"),
-              },
-              block
-            );
           }
+          continue;
         }
-        continue;
+
+        const pathwayCandidate = buildPathwayCandidateFromBlock(title, block);
+        addPathwayCandidate(pathwayCandidate, block);
       }
 
-      const pathwayCandidate = buildPathwayCandidateFromBlock(title, block);
-      addPathwayCandidate(pathwayCandidate, block);
-    }
-
-    for (const pathwayCandidate of buildFingerprintPathwayCandidatesForPlan(
-      planId,
-      title,
-      primaryMajorTitlesByPlanId
-    )) {
-      addPathwayCandidate(pathwayCandidate, null);
+      for (const pathwayCandidate of buildFingerprintPathwayCandidatesForPlan(
+        planId,
+        title,
+        primaryMajorTitlesByPlanId
+      )) {
+        addPathwayCandidate(pathwayCandidate, null);
+      }
     }
 
     plans.push({
@@ -1680,7 +1738,7 @@ function buildMajorPlansFromParsedRegistries() {
         uniqueLinks([
           ...(Array.isArray(links) ? links : []).map((entry) => ({
             label: String(entry?.label ?? "").trim(),
-            url: String(entry?.url ?? "").trim(),
+            url: canonicalizeOfficialSourceUrl(entry?.url),
             note: String(entry?.note ?? "").trim() || undefined,
             visibility: defaults.visibility,
             status: defaults.status,
@@ -1689,7 +1747,7 @@ function buildMajorPlansFromParsedRegistries() {
           })),
           ...supplementalLinks.map((entry) => ({
             label: String(entry?.label ?? "").trim(),
-            url: String(entry?.url ?? "").trim(),
+            url: canonicalizeOfficialSourceUrl(entry?.url),
             note: String(entry?.note ?? "").trim() || undefined,
             visibility: defaults.visibility,
             status: defaults.status,
@@ -1700,7 +1758,7 @@ function buildMajorPlansFromParsedRegistries() {
             const sourceStatus = buildSourceStatusForParsedBlock(entry);
             return {
               label: entry.sourceLabel,
-              url: entry.sourceUrl,
+              url: canonicalizeOfficialSourceUrl(entry.sourceUrl),
               visibility: sourceStatus.visibility,
               status: sourceStatus.status,
               reason: sourceStatus.reason,

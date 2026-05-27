@@ -69,8 +69,14 @@ const sections = [
   },
   {
     title: "Dev-only diagnostics",
-    notes: ["Set to 1 only while debugging Course Planner render internals."],
-    entries: [["EXPO_PUBLIC_ENABLE_COURSE_PLANNER_RENDER_AUDITS", ""]],
+    notes: [
+      "Set demo mode to 1 only through the launcher prompt or while previewing the human-reviewed Course Planner demo dataset.",
+      "Set render audits to 1 only while debugging Course Planner render internals.",
+    ],
+    entries: [
+      ["EXPO_PUBLIC_GATORGUIDE_DEMO_MODE", ""],
+      ["EXPO_PUBLIC_ENABLE_COURSE_PLANNER_RENDER_AUDITS", ""],
+    ],
   },
 ];
 

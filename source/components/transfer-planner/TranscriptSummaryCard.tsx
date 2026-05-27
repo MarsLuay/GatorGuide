@@ -40,6 +40,7 @@ import type {
   PlannerSelectorKey,
   TranscriptDocument,
 } from "./transfer-planner-storage";
+import type { TransferPlannerDemoReviewState } from "./useTransferPlannerDemoReview";
 
 function PlannerTrackOverviewCard({
   collegeId,
@@ -290,6 +291,7 @@ export function TranscriptSummaryCard({
   pathwayOptions,
   selectedPathwayLabel,
   hasNoDirectMajorEquivalencies,
+  demoReview,
   selectedCollegeId,
   selectedCollegeLabel,
   selectedCampusId,
@@ -341,6 +343,7 @@ export function TranscriptSummaryCard({
   pathwayOptions: TransferPlannerMajorPathway[];
   selectedPathwayLabel: string | null;
   hasNoDirectMajorEquivalencies: boolean;
+  demoReview: TransferPlannerDemoReviewState;
   selectedCollegeId: PlannerCollegeId;
   selectedCollegeLabel: string;
   selectedCampusId: PlannerCampusSelectionId;
@@ -513,6 +516,7 @@ export function TranscriptSummaryCard({
               transcriptDerivedCompletedCourses={transcriptDerivedCompletedCourses}
               hasTranscriptDerivedCreditSource={hasTranscriptDerivedCreditSource}
               selectedPathwayLabel={selectedPathwayLabel}
+              demoReview={demoReview}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
               borderClass={borderClass}
@@ -674,6 +678,7 @@ export function TranscriptSummaryCard({
             transcriptDerivedCompletedCourses={transcriptDerivedCompletedCourses}
             hasTranscriptDerivedCreditSource={hasTranscriptDerivedCreditSource}
             selectedPathwayLabel={selectedPathwayLabel}
+            demoReview={demoReview}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
             borderClass={borderClass}

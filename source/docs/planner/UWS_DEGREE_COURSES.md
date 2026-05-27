@@ -25,28 +25,28 @@ Source-generated from parsed UW requirement-source registries.
 ##### Aeronautics &amp; Astronautics parsed official source requirements
 
 - Undergraduate Degree Requirements | UW William E. Boeing Department of Aeronautics &amp; Astronautics
-- Diversity, equity, inclusion and accessibility (DEIA)
-- Degree requirements
-- Undergraduate Degree Requirements
 - To earn a Bachelor of Science in Aeronautical &amp; Astronautical Engineering, a student must complete the requirements listed below. A minimum of 180 credits is required to complete the degree.
 - Current A&amp;A undergraduate students are able to access detailed information about degree requirements, deadlines, and policies on the A&amp;A Undergraduate Student Resource Canvas.
 - Mathematics (27 credits)
 - MATH 124 Calculus with Analytic Geometry I (5)
 - MATH 125 Calculus with Analytic Geometry II (5)
 - MATH 126 Calculus with Analytic Geometry III (5)
+- MATH 207 (formerly MATH 307) Introduction to Differential Equations (4)
+- MATH 208 (formerly MATH 308) Matrix Algebra with Applications (4)
+- MATH 224 (formerly MATH 324) Advanced Multivariable Calculus (4)
 
 ##### Aeronautics &amp; Astronautics parsed official requirement cues
 
 - Undergraduate Degree Requirements | UW William E. Boeing Department of Aeronautics &amp; Astronautics
-- Diversity, equity, inclusion and accessibility (DEIA)
-- Degree requirements
-- Undergraduate Degree Requirements
 - To earn a Bachelor of Science in Aeronautical &amp; Astronautical Engineering, a student must complete the requirements listed below. A minimum of 180 credits is required to complete the degree.
 - Current A&amp;A undergraduate students are able to access detailed information about degree requirements, deadlines, and policies on the A&amp;A Undergraduate Student Resource Canvas.
 - Mathematics (27 credits)
 - MATH 124 Calculus with Analytic Geometry I (5)
 - MATH 125 Calculus with Analytic Geometry II (5)
 - MATH 126 Calculus with Analytic Geometry III (5)
+- MATH 207 (formerly MATH 307) Introduction to Differential Equations (4)
+- MATH 208 (formerly MATH 308) Matrix Algebra with Applications (4)
+- MATH 224 (formerly MATH 324) Advanced Multivariable Calculus (4)
 
 ##### Aeronautics &amp; Astronautics parsed choices and pathway notes
 
@@ -95,7 +95,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### American Ethnic Studies parsed official source requirements
 
-- Diversity Minor
 - Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pacific Islander Studies, Chicano/a Studies or Comparative AES. Alumni use their cultural competency, communication skills and advanced understanding of complex relationships and institutions to succeed in a variety of careers in the public and private sectors.
 - Degree Requirements
 - A minimum of 60 credits (12 courses total) are required for completion of the AES major:
@@ -105,10 +104,10 @@ Source-generated from parsed UW requirement-source registries.
 - 30 credits (6 courses) must come from the core courses:
 - 5 credits: AAS 101 -- Introduction to Asian American Studies (I&amp;S, DIV)
 - 5 credits: AFRAM 101 -- Introduction to African American Studies (I&amp;S, DIV)
+- 5 credits: CHSTU 101 -- The Chicano/Mexican Ethnic Experience in the United States (I&amp;S, DIV)
 
 ##### American Ethnic Studies parsed official requirement cues
 
-- Diversity Minor
 - Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pacific Islander Studies, Chicano/a Studies or Comparative AES. Alumni use their cultural competency, communication skills and advanced understanding of complex relationships and institutions to succeed in a variety of careers in the public and private sectors.
 - Degree Requirements
 - A minimum of 60 credits (12 courses total) are required for completion of the AES major:
@@ -118,6 +117,7 @@ Source-generated from parsed UW requirement-source registries.
 - 30 credits (6 courses) must come from the core courses:
 - 5 credits: AAS 101 -- Introduction to Asian American Studies (I&amp;S, DIV)
 - 5 credits: AFRAM 101 -- Introduction to African American Studies (I&amp;S, DIV)
+- 5 credits: CHSTU 101 -- The Chicano/Mexican Ethnic Experience in the United States (I&amp;S, DIV)
 
 ##### American Ethnic Studies parsed choices and pathway notes
 
@@ -235,7 +235,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology](https://www.washington.edu/students/gencat/program/S/Anthropology-102.html)
+- [Bachelor of Science degree with a major in Anthropology: Archaeological Sciences major requirements](https://www.washington.edu/students/gencat/program/S/Anthropology-102.html)
 - [UW General Catalog Anthropology page](https://www.washington.edu/students/gencat/program/S/Anthropology-102.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Anthropology parsed official source requirements
@@ -460,6 +460,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Aquatic Conservation &amp; Ecology parsed official source requirements
 
 - (1–2 credits)
+- (10 credits)
 - (10–15 credits)
 - (15 credits)
 - (15 credits) All of these courses will count towards the UW Additional Writing (W) requirement.
@@ -468,11 +469,11 @@ Source-generated from parsed UW requirement-source registries.
 - (4 credits)
 - (5 credits)
 - (min. 5 credits)
-- = 88 credits
 
 ##### Aquatic Conservation &amp; Ecology parsed official requirement cues
 
 - (1–2 credits)
+- (10 credits)
 - (10–15 credits)
 - (15 credits)
 - (15 credits) All of these courses will count towards the UW Additional Writing (W) requirement.
@@ -481,7 +482,6 @@ Source-generated from parsed UW requirement-source registries.
 - (4 credits)
 - (5 credits)
 - (min. 5 credits)
-- = 88 credits
 
 ##### Aquatic Conservation &amp; Ecology parsed choices and pathway notes
 
@@ -758,7 +758,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Asian Languages and Cultures degree requirements](https://asian.washington.edu/ba-asian-languages-cultures)
-- [Scoped section: Degree Requirements](https://asian.washington.edu/ba-asian-languages-cultures) - Source used for parser-backed UW requirement extraction.
+- [UW Asian Languages and Cultures degree requirements](https://asian.washington.edu/ba-asian-languages-cultures) - Source used for parser-backed UW requirement extraction.
 
 ##### Asian Languages &amp; Cultures parsed official source requirements
 
@@ -841,8 +841,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Astronomy parsed official source requirements
 
-- Timeline &amp; Requirements
-- Diversity
 - Major Admissions Requirements
 - Minimum requirements for consideration for standard admission: PHYS 121, PHYS 122, and PHY 123 (or transfer equivalent; may be presently enrolled in PHYS 123), and either \[MATH 124, MATH 125, and MATH 126\] or \[MATH 134 and MATH 135\] (or full transfer equivalent; may be presently enrolled in MATH 126 or MATH 135). Students with greater than 2.0 in most required prerequisites are generally admitted to the major (although meeting the minimum requirements does not guarantee admission).
 - Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and goals in the Astronomy major, and will address strategies for success in the major. In exceptional cases with extenuating circumstances, a personal statement may also include a petition for a waiver of one of the stated minimum requirements in item 1.
@@ -851,11 +849,11 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - 55 credits
 - Physics 121
+- Physics 122
+- Physics 123
 
 ##### Astronomy parsed official requirement cues
 
-- Timeline &amp; Requirements
-- Diversity
 - Major Admissions Requirements
 - Minimum requirements for consideration for standard admission: PHYS 121, PHYS 122, and PHY 123 (or transfer equivalent; may be presently enrolled in PHYS 123), and either \[MATH 124, MATH 125, and MATH 126\] or \[MATH 134 and MATH 135\] (or full transfer equivalent; may be presently enrolled in MATH 126 or MATH 135). Students with greater than 2.0 in most required prerequisites are generally admitted to the major (although meeting the minimum requirements does not guarantee admission).
 - Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and goals in the Astronomy major, and will address strategies for success in the major. In exceptional cases with extenuating circumstances, a personal statement may also include a petition for a waiver of one of the stated minimum requirements in item 1.
@@ -864,6 +862,8 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - 55 credits
 - Physics 121
+- Physics 122
+- Physics 123
 
 #### GRC Equivalent Courses
 
@@ -881,7 +881,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Mathematics Electives -> `MATH 240`, `MATH& 264`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Core Astronomy. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Astronomy Electives. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Physics Electives. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Physics Electives. complete at least 1 course from this set. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Minimum requirements for consideration for standard admission -> `MATH& 151`, `MATH& 152`, `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. complete at least 6 courses from this set. note: Parsed from an inline required course list; embedded alternatives are separate choice groups.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-astronomy:source-degree-map:.
@@ -899,9 +899,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR)
-- [Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR) - Source used for parser-backed UW requirement extraction.
-- [Scoped section: The Data Science Option provides students with a strong foundation in data science skills with specific applications to](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html)
+- [Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html)
+- [Scoped section: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1](https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Atmospheric and Climate Science parsed official source requirements
 
@@ -909,6 +908,12 @@ Source-generated from parsed UW requirement-source registries.
 - Admission Requirements
 - Minimum course requirements: English composition; MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
 - Grade requirements: Minimum 2.0 grade for each course required for admission; minimum 2.50 cumulative GPA in courses required for admission
+- The Chemistry option provides students with a strong background in environmental issues such as evolving atmospheric composition and air quality through coursework that focuses on chemistry and the environment.
+- Completion Requirements
+- Minimum 85-98 credits, depending on credential/option
+- Foundation requirements (30 credits): MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
+- Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1 credit), ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, ATMOS 431.
+- Additional requirements specified below
 
 ##### Atmospheric and Climate Science parsed official requirement cues
 
@@ -916,9 +921,17 @@ Source-generated from parsed UW requirement-source registries.
 - Admission Requirements
 - Minimum course requirements: English composition; MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
 - Grade requirements: Minimum 2.0 grade for each course required for admission; minimum 2.50 cumulative GPA in courses required for admission
+- The Chemistry option provides students with a strong background in environmental issues such as evolving atmospheric composition and air quality through coursework that focuses on chemistry and the environment.
+- Completion Requirements
+- Minimum 85-98 credits, depending on credential/option
+- Foundation requirements (30 credits): MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
+- Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1 credit), ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, ATMOS 431.
+- Additional requirements specified below
 
 ##### Atmospheric and Climate Science parsed choices and pathway notes
 
+- Requirements (23-27 credits): ATMOS 458/CHEM 458; CEE 480/ATMOS 480; ATMOS 310 or CSE 160; one of the following: (1) CHEM 142, CHEM 152, CHEM 162; (2) CHEM 143 and CHEM 153; (3)CHEM 145, CHEM 155, CHEM 165
+- one of the following options: (1) MATH 207, MATH 208, MATH 209; (2) AMATH 351 and AMATH 353
 - Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry
 - Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate
 - Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science
@@ -936,6 +949,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1 credit), ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, ATMOS 431.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: MATH 124, MATH 125, MATH 126 or MATH 134, MATH 135, MATH 136 -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 1 course from this set
 - Required before enrollment: PHYS 121, PHYS 122, PHYS 123 or PHYS 141, PHYS 142, PHYS 143 -> `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. complete at least 1 course from this set
 - note: Parser confidence: high.
@@ -1031,7 +1045,6 @@ Source-generated from parsed UW requirement-source registries.
 ##### Bioengineering parsed official source requirements
 
 - Undergraduate Degree Requirements – UW Bioengineering
-- PHD Data Science Option
 - Undergraduate Degree Requirements
 - Undergraduate Degree Requirements 2023-09-26T11:31:19-07:00
 - TOTAL CREDITS FOR DEGREE = 180
@@ -1040,11 +1053,11 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - MATH 124, 125, 126
 - MATH 207 or AMATH 351
+- MATH 208 or AMATH 352
 
 ##### Bioengineering parsed official requirement cues
 
 - Undergraduate Degree Requirements – UW Bioengineering
-- PHD Data Science Option
 - Undergraduate Degree Requirements
 - Undergraduate Degree Requirements 2023-09-26T11:31:19-07:00
 - TOTAL CREDITS FOR DEGREE = 180
@@ -1053,14 +1066,13 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - MATH 124, 125, 126
 - MATH 207 or AMATH 351
+- MATH 208 or AMATH 352
 
 ##### Bioengineering parsed choices and pathway notes
 
 - Programming – Choose one option (4 credits)
 - Bioengineering Senior Capstone (Choose one track) (10 credits)
 - The capstone project should relate to the chosen senior emphasis. Students may choose a path that includes integrated design and research (BIOEN 401 &amp; 402), or a path that includes a small-group design project (BIOEN 404 &amp; 405) plus additional engineering elective credit as needed. If the group/team design project path is chosen, extracurricular research is encouraged but not required.
-- Data Science Option
-- Nano &amp; Molecular Engineering (NME) Option
 
 ##### Bioengineering general education requirements
 
@@ -1129,7 +1141,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: The Plant Biology option provides students with strong and broad training in plant biology, ranging from the cellular, p](https://www.washington.edu/students/gencat/program/S/Biology-112.html)
+- [Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation major requirements](https://www.washington.edu/students/gencat/program/S/Biology-112.html)
 - [UW General Catalog Biology page](https://www.washington.edu/students/gencat/program/S/Biology-112.html)
 - [Scoped section: The Plant Biology option provides students with strong and broad training in plant biology, ranging from the cellular, p](https://www.washington.edu/students/gencat/program/S/Biology-112.html) - Source used for parser-backed UW requirement extraction.
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
@@ -1202,7 +1214,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: One of the following calculus/statistics sequences (9-10 credits) -> `MATH& 151`, `MATH& 152`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: One of the following general and organic chemistry sequences (12-27 credits) -> `CHEM& 161`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: One of the following two-quarter sequences of mathematics (calculus/statistics) (9-10 credits) -> `MATH& 151`, `MATH& 152`. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Two quarters of physics (8-10 credits): one of the following -> `PHYS& 221`, `PHYS& 222`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Two quarters of physics (8-10 credits): one of the following -> `PHYS& 221`, `PHYS& 222`. complete at least 1 course from this set. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Natural history/biodiversity: one course selected from approved list (3 credits) 300- and 400-level courses, in addition to any 300-/400-level courses taken to fulfill requirements above. See department website for approved courses. (42 credits.). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 300- and 400-level courses, in addition to any 300-/400-level courses taken to fulfill requirements above. See department website for approved courses. (42 credits.). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Natural history/biodiversity (3 credits): one course selected from approved list Breadth (3 credits): one course selected from approved list Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.. note: Credit bucket placeholder extracted from source text.
@@ -1245,9 +1257,8 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Foster business majors and areas of study](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/)
-- [Foster business majors and areas of study](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/) - Primary source used for parser-backed UW requirement extraction.
 - [Scoped section: Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree fro](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/)
-- [Cached source: Curriculum | Foster School of Business](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/) - Alternate official source used for parser-backed UW requirement extraction.
+- [Cached source: Curriculum | Foster School of Business](https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/) - Source used for parser-backed UW requirement extraction.
 
 ##### Business Administration parsed official source requirements
 
@@ -1342,9 +1353,9 @@ Source-generated from parsed UW requirement-source registries.
 - \*Math Electives: MATH 209, MATH 224, IND E 315, MATH/STAT 390, AMATH 353.
 - \*The Honors sections of these courses can be substituted. Additionally, students can take the accelerated CHEM series (CHEM 143 and 153) in lieu of the full general chemistry series and the accelerated organic chemistry series (CHEM 223 and 224) in lieu of CHEM 237 and 238.
 - AMATH 301 (4)
-- Application requirements
 - Arts and Humanities and Social Sciences (24 credits)
 - As both pre-health studies and the bachelor’s degree in ChemE have a lot of requirements, completing both will require extensive planning and hard work, as well as possibly an additional year of post-graduate study. This Plan of Study is designed to help communicate how students might fit all the requirements into the structure of the B.S. ChemE degree. Since students have such a wide variety of starting points and constraints, any student considering an application to a health professional school should see a ChemE academic adviser or the ChemE Faculty Mentor for assistance in planning a personalized plan of study.
+- At least 5 credits must be in Diversity (DIV).
 
 ##### Chemical Engineering parsed official requirement cues
 
@@ -1355,9 +1366,9 @@ Source-generated from parsed UW requirement-source registries.
 - \*Math Electives: MATH 209, MATH 224, IND E 315, MATH/STAT 390, AMATH 353.
 - \*The Honors sections of these courses can be substituted. Additionally, students can take the accelerated CHEM series (CHEM 143 and 153) in lieu of the full general chemistry series and the accelerated organic chemistry series (CHEM 223 and 224) in lieu of CHEM 237 and 238.
 - AMATH 301 (4)
-- Application requirements
 - Arts and Humanities and Social Sciences (24 credits)
 - As both pre-health studies and the bachelor’s degree in ChemE have a lot of requirements, completing both will require extensive planning and hard work, as well as possibly an additional year of post-graduate study. This Plan of Study is designed to help communicate how students might fit all the requirements into the structure of the B.S. ChemE degree. Since students have such a wide variety of starting points and constraints, any student considering an application to a health professional school should see a ChemE academic adviser or the ChemE Faculty Mentor for assistance in planning a personalized plan of study.
+- At least 5 credits must be in Diversity (DIV).
 
 ##### Chemical Engineering parsed choices and pathway notes
 
@@ -1365,9 +1376,7 @@ Source-generated from parsed UW requirement-source registries.
 - Optional focus areas: Students may choose to complete an optional focus area. These focus areas are not listed on the transcript. Many courses that count for the focus areas also count as engineering electives. For a list of focus areas, please see our Optional Focus Areas page.
 - The Undergraduate Four-Year Plan of Study is a resource undergraduates can use to help select the appropriate courses, and is listed with the course number, credit count, and the quarter the course is offered. This is a sample that shows how students might plan courses to ensure meeting all admissions and graduation requirements on time.
 - We have listed sample engineering electives and other credits so it is possible to see just one potential path. We expect most students will adapt this sample plan to account for a different starting placement, different other credits and electives, and different needs. Some students find this plan of study quite challenging and choose to complete some pre-health requirements after graduation, prior to applying to professional schools, in order to manage the courseload more effectively.
-- Why choose UW ChemE?
 - Nanoscience and Molecular Engineering (NME) option
-- NME option
 - Standard option
 
 #### GRC Equivalent Courses
@@ -1394,6 +1403,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Mathematics (24 credits) -> `MATH& 151`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Chemistry (26 credits) -> `CHEM& 161`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Students should plan to take one (1) exploratory course and 6+ credits of relevant engineering electives from the list. Students may also want to review the related Areas of Knowledge, capstone, research and other opportunities on the careers page . While these are helpful for deepening your experience in this area, they do not count toward the 9 credits required. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Other credits may be engineering electives (16 credits are required). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Semiconductor Manufacturing. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Nanomedicine. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
@@ -1406,8 +1416,8 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: 65 credits of Natural World. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Engineering Elective Credit (16 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: Nanoscience and Molecular Engineering Elective Courses (12 credits): Minimum 2 credits of research or other departmental approved alternative. NME approved electives. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: AMATH 351 / MATH 207 -> `MATH 238`. complete at least 1 course from this set
-- Required before enrollment: AMATH 352 / MATH 208 -> `MATH 240`. complete at least 1 course from this set
+- Required before enrollment: AMATH 351 -> `MATH 238`. complete at least 1 course from this set
+- Required before enrollment: AMATH 352 -> `MATH 240`. complete at least 1 course from this set
 - Required before enrollment: \*Math Electives: MATH 209, MATH 224, IND E 315, MATH/STAT 390, AMATH 353. -> `MATH& 264`. complete at least 1 course from this set
 - Required before enrollment: CHEM E 455 (3): Surface and Colloid Lab OR CHEM E 460 (3): Polymers Lab. complete at least 1 course from this set
 - Required before enrollment: Option: CHEM E 436 (3) or CHEM E 455 (3) or. complete at least 1 course from this set
@@ -1505,7 +1515,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus-based physics series. If algebra-based physics is taken, students must take one lab from below choice. complete at least 1 course from this set. note: Parsed from an explicit source choice cue inside a sectioned requirement.
 - Required before enrollment: Nine credits from the following list -> `MATH 240`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus-based physics series -> `PHYS& 114`, `PHYS& 154`. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Science Electives\* (11 credits) -> `MATH 238`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Science Electives\* (11 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Science Elective (2). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Chem Lab (2-3). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Regular -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
@@ -1573,7 +1583,6 @@ Source-generated from parsed UW requirement-source registries.
 ##### Chinese parsed official source requirements
 
 - Pre-Winter 2019 Chinese Major Requirements | Asian Languages &amp; Literature | University of Washington
-- Transferring Credits
 - Pre-Winter 2019 Chinese Major Requirements
 - The Chinese Language &amp; Literature major requires a total of 50-80 credits depending upon the level of Chinese attained before entering the University of Washington. \[ Note : These requirements apply to students who declared their major before Winter 2019.\]
 - 15-45 credits , with a minimum of 15 credits beyond the third year of the language, chosen from among:
@@ -1582,6 +1591,7 @@ Source-generated from parsed UW requirement-source registries.
 - CHIN 482 Advanced Readings in Modern Chinese
 - CHIN 496 Special Studies in Chinese (when the topic is advanced language instruction)
 - Note: Students who have been evaluated and placed beyond fourth-year Chinese may satisfy the modern language requirement by taking 15 additional credits of classical Chinese (see advisor for approved list of classical Chinese courses).
+- 10 credits :
 
 ##### Chinese parsed official requirement cues
 
@@ -1599,7 +1609,6 @@ Source-generated from parsed UW requirement-source registries.
 ##### Chinese parsed official requirement cues
 
 - Pre-Winter 2019 Chinese Major Requirements | Asian Languages &amp; Literature | University of Washington
-- Transferring Credits
 - Pre-Winter 2019 Chinese Major Requirements
 - The Chinese Language &amp; Literature major requires a total of 50-80 credits depending upon the level of Chinese attained before entering the University of Washington. \[ Note : These requirements apply to students who declared their major before Winter 2019.\]
 - 15-45 credits , with a minimum of 15 credits beyond the third year of the language, chosen from among:
@@ -1608,6 +1617,7 @@ Source-generated from parsed UW requirement-source registries.
 - CHIN 482 Advanced Readings in Modern Chinese
 - CHIN 496 Special Studies in Chinese (when the topic is advanced language instruction)
 - Note: Students who have been evaluated and placed beyond fourth-year Chinese may satisfy the modern language requirement by taking 15 additional credits of classical Chinese (see advisor for approved list of classical Chinese courses).
+- 10 credits :
 
 #### GRC Equivalent Courses
 
@@ -1637,12 +1647,9 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped current requirements: Home](https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html)
-- [Scoped current requirements: Home](https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html) - Source used for parser-backed UW requirement extraction.
-- [Scoped current requirements: Home](http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html)
-- [Scoped section: Completion Requirements](http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html) - Source used for parser-backed UW requirement extraction.
-- [Scoped current requirements: Home](http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html) - Source used for parser-backed UW requirement extraction.
+- [Scoped section: Completion Requirements](https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html) - Source used for parser-backed UW requirement extraction.
 
-##### Cinema &amp; Media Studies - B.A. route parsed official source requirements
+##### Cinema &amp; Media Studies parsed official source requirements
 
 - Completion Requirements
 - 60 credits
@@ -1655,59 +1662,7 @@ Source-generated from parsed UW requirement-source registries.
 - one of CMS 320, CMS 321, or CMS 322
 - Approved electives (30 credits): See adviser for approved list
 
-##### Cinema &amp; Media Studies parsed official source requirements
-
-- Admission Requirements
-- One from CMS 270, CMS 271, CMS 272, CMS 273, CMS 274, or CMS 275; minimum 2.00 cumulative GPA; completion of one course fulfilling either College of Arts and Sciences English composition requirement or W (writing) requirement (5 credits).
-- Completion Requirements
-- 60 credits
-- Core courses (10 credits): CMS 301, CMS 480
-- History courses (10 credits):
-- CMS 310 or CMS 311
-- one of CMS 312, CMS 313, CMS 314, or CMS 315
-- Critical concepts courses (10 credits):
-- one of CMS 302, CMS 303, or CMS 304
-
-##### Cinema &amp; Media Studies parsed official source requirements
-
-- Admission Requirements
-- One from CMS 270, CMS 271, CMS 272, CMS 273, CMS 274, or CMS 275; minimum 2.00 cumulative GPA; completion of one course fulfilling either College of Arts and Sciences English composition requirement or W (writing) requirement (5 credits).
-- Completion Requirements
-- 60 credits
-- Core courses (10 credits): CMS 301, CMS 480
-- History courses (10 credits):
-- CMS 310 or CMS 311
-- one of CMS 312, CMS 313, CMS 314, or CMS 315
-- Critical concepts courses (10 credits):
-- one of CMS 302, CMS 303, or CMS 304
-
 ##### Cinema &amp; Media Studies parsed official requirement cues
-
-- Admission Requirements
-- One from CMS 270, CMS 271, CMS 272, CMS 273, CMS 274, or CMS 275; minimum 2.00 cumulative GPA; completion of one course fulfilling either College of Arts and Sciences English composition requirement or W (writing) requirement (5 credits).
-- Completion Requirements
-- 60 credits
-- Core courses (10 credits): CMS 301, CMS 480
-- History courses (10 credits):
-- CMS 310 or CMS 311
-- one of CMS 312, CMS 313, CMS 314, or CMS 315
-- Critical concepts courses (10 credits):
-- one of CMS 302, CMS 303, or CMS 304
-
-##### Cinema &amp; Media Studies parsed official requirement cues
-
-- Admission Requirements
-- One from CMS 270, CMS 271, CMS 272, CMS 273, CMS 274, or CMS 275; minimum 2.00 cumulative GPA; completion of one course fulfilling either College of Arts and Sciences English composition requirement or W (writing) requirement (5 credits).
-- Completion Requirements
-- 60 credits
-- Core courses (10 credits): CMS 301, CMS 480
-- History courses (10 credits):
-- CMS 310 or CMS 311
-- one of CMS 312, CMS 313, CMS 314, or CMS 315
-- Critical concepts courses (10 credits):
-- one of CMS 302, CMS 303, or CMS 304
-
-##### Cinema &amp; Media Studies - B.A. route parsed official requirement cues
 
 - Completion Requirements
 - 60 credits
@@ -1722,17 +1677,17 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-- `CMST 266`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: 300-400 level electives. See adviser for approved list. (15 credits). note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: CMS 271 or CMS 272 or CMS 273 or CMS 274 or CMS 275 -> `CMST 266`. complete at least 1 course from this set
-- Required before enrollment: CLIT 250 or CLIT 251 or CLIT 252. complete at least 1 course from this set
-- Required before enrollment: CLIT 250 or CLIT 251 or CLIT 252 or CLIT 320 or CLIT 321 or CLIT 322 or CLIT 323 or CLIT 400. complete at least 1 course from this set
-- Required before enrollment: CMS course: one of CMS 310, CMS 311, CMS 312, CMS 313, CMS 320, CMS 321 (5 credits). complete at least 1 course from this set
+- Required before enrollment: Core courses (10 credits): CMS 301, CMS 480. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Approved electives (30 credits): See adviser for approved list. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: CMS 310 or CMS 311. complete at least 1 course from this set
+- Required before enrollment: one of CMS 312, CMS 313, CMS 314, or CMS 315. complete at least 1 course from this set
+- Required before enrollment: one of CMS 302, CMS 303, or CMS 304. complete at least 1 course from this set
+- Required before enrollment: one of CMS 320, CMS 321, or CMS 322. complete at least 1 course from this set
 - note: Parser confidence: high.
-- note: Parsed degree-map block candidate: uw-seattle-cinema-and-media-studies:pathway:ba-route:source-degree-map:.
 - note: Parsed degree-map block candidate: uw-seattle-cinema-and-media-studies:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
 
@@ -1812,6 +1767,8 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Mathematics (24 credits) -> `NATRS 210`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: (Transfers. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Technical Elective Credit (4 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
+- Required before enrollment: Science Elective Credit (12 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Basic Science Elective: -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`, `GEOL& 101`. complete at least 1 course from this set
 - Required before enrollment: Computer Programming: -> `CS 121`. complete at least 1 course from this set. alternate path `ENGR 250` or `CS 122` or `CS 123` or `CS& 141`
@@ -1840,9 +1797,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Classical Studies parsed official source requirements
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
 - Degree Requirements
 - The Classical Studies major is especially suited for students not preparing for graduate study in classics but wishing to explore the literature, history, art, archaeology, and philosophy of classical antiquity, primarily through English translation. Those with no previous exposure to ancient Greek or Latin can complete the Classical Studies major in two years.
 - Requirements for the major in Classical Studies (61-67 credits) are:
@@ -1852,9 +1806,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Classical Studies parsed official requirement cues
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
 - Degree Requirements
 - The Classical Studies major is especially suited for students not preparing for graduate study in classics but wishing to explore the literature, history, art, archaeology, and philosophy of classical antiquity, primarily through English translation. Those with no previous exposure to ancient Greek or Latin can complete the Classical Studies major in two years.
 - Requirements for the major in Classical Studies (61-67 credits) are:
@@ -1868,7 +1819,7 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Either Greek or Latin through 307, or the equivalent (25-30 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: major preparation. note: Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - note: Parser confidence: medium.
 - note: Parsed degree-map block candidate: uw-seattle-classical-studies:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -1886,33 +1837,32 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW B.A. in Classics](https://classics.washington.edu/ba-classics)
-- [UW B.A. in Classics](https://classics.washington.edu/ba-classics) - Primary source used for parser-backed UW requirement extraction.
-- [B.A. in Greek](https://classics.washington.edu/ba-greek) - Alternate official source used for parser-backed UW requirement extraction.
+- [UW B.A. in Classics](https://classics.washington.edu/ba-classics) - Source used for parser-backed UW requirement extraction.
 
 ##### Classics parsed official source requirements
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
-- Degree Requirements
-- Requirements for the major in Greek (52-58 credits) are:
-- Either GREEK 101, GREEK 102, GREEK 103; or GREEK 300, GREEK 301 (10-15 credits)
-- 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
-- 15 credits of 400-level GREEK courses
 - 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
+- 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301
+- 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
+- 15 credits of 300-level LATIN courses, excluding LATIN 300 and LATIN 301
+- 15 credits of 300-level Latin, excluding LATIN 300, LATIN 301
+- 15 credits of 400-level GREEK courses
+- 15 credits of 400-level LATIN courses
+- 34 additional credits chosen with department approval from the following courses: Greek and Latin at the 400 level; classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
+- 5 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - CLAS 495, the Senior Essay (2-3 credits)
 
 ##### Classics parsed official requirement cues
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
-- Degree Requirements
-- Requirements for the major in Greek (52-58 credits) are:
-- Either GREEK 101, GREEK 102, GREEK 103; or GREEK 300, GREEK 301 (10-15 credits)
-- 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
-- 15 credits of 400-level GREEK courses
 - 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
+- 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301
+- 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
+- 15 credits of 300-level LATIN courses, excluding LATIN 300 and LATIN 301
+- 15 credits of 300-level Latin, excluding LATIN 300, LATIN 301
+- 15 credits of 400-level GREEK courses
+- 15 credits of 400-level LATIN courses
+- 34 additional credits chosen with department approval from the following courses: Greek and Latin at the 400 level; classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
+- 5 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - CLAS 495, the Senior Essay (2-3 credits)
 
 #### GRC Equivalent Courses
@@ -1921,8 +1871,10 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: 5 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Either GREEK 101, GREEK 102, GREEK 103; or GREEK 300, GREEK 301 (10-15 credits). complete at least 1 course from this set
+- Required before enrollment: Either LATIN 101, LATIN 102, LATIN 103; or LATIN 300, LATIN 301 (10-15 credits). complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-classics:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -2127,8 +2079,8 @@ Source-generated from parsed UW requirement-source registries.
 - Completion of one of C Lit 250, 251 or 252
 - Completion of one of C Lit 250, 251 or 252 (5 credits count toward the 50 credit major requirements)
 - Degree Requirements
-- Departmental Requirements
-- Diversity
+- If you enrolled in the Literature option BEFORE FALL 2009, the major requirements are different. See Requirements for th ose accepted before Fall 2009 .
+- If you enrolled in the Literature option FALL 2009 AND BEYOND, the major requirements are different than below. See Requirements for those accepted Fall 2009 and beyond
 
 ##### Comparative Literature parsed official requirement cues
 
@@ -2140,8 +2092,8 @@ Source-generated from parsed UW requirement-source registries.
 - Completion of one of C Lit 250, 251 or 252
 - Completion of one of C Lit 250, 251 or 252 (5 credits count toward the 50 credit major requirements)
 - Degree Requirements
-- Departmental Requirements
-- Diversity
+- If you enrolled in the Literature option BEFORE FALL 2009, the major requirements are different. See Requirements for th ose accepted before Fall 2009 .
+- If you enrolled in the Literature option FALL 2009 AND BEYOND, the major requirements are different than below. See Requirements for those accepted Fall 2009 and beyond
 
 ##### Comparative Literature parsed choices and pathway notes
 
@@ -2174,6 +2126,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
+- [Bachelor of Arts degree with a major in Comparative Religion](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html)
 - [Bachelor of Arts degree with a major in Comparative Religion](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f)
 - [Bachelor of Arts degree with a major in Comparative Religion](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-b2c253e0-8b94-4e17-bcba-88d081e4384f) - Source used for parser-backed UW requirement extraction.
 
@@ -2298,7 +2251,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Allen School CE-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science) - Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.
+- [Allen School CE-approved Natural Science course list](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/) - Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.
 - [Computer Engineering](https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf)
 - [Computer Engineering](https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf) - Source used for parser-backed UW requirement extraction.
 - [Study Abroad](https://www.cs.washington.edu/academics/undergraduate/degree-requirements/study-abroad/)
@@ -2335,7 +2288,6 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-- `CS 122`
 - `CS 123`
 - `ENGL& 101`
 - `ENGR& 204`
@@ -2344,23 +2296,23 @@ Source-generated from parsed UW requirement-source registries.
 - `MATH& 152`
 - `MATH& 163`
 - `PHYS& 221`
-- `PHYS& 222`
+- `MATH& 153`
+- `MATH& 254`
 - `CS 145`
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
-- `PHYS& 223`
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
-- `MATH 238`
+- `PHYS& 222`
 
 #### Required sequences for specific credits
 
+- Required before application: Calculus I-III sequence -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
 - Required before enrollment: CSE 123 or CSE 143 -> `CS 123`. complete at least 1 course from this set. alternate path `CS 145`. note: Source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Default Green River path is CS 123; CS 145 is preserved as the CSE 143 alternative for students on the legacy path.
 - Required before enrollment: EE 205 or EE 215 -> `ENGR& 204`. complete at least 1 course from this set. note: Source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Default Green River path is ENGR&amp; 204 for EE 215; EE 205 is preserved as the UW-only source option because no current Green River equivalent is mapped. Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Required before enrollment: 10 additional credits approved natural science -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`, `PHYS& 223`, `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Degree sheet source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Approved CE Natural Science list source: <https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science> Concrete Green River options are included only where the UW-GRC equivalency guide proves the mapping; otherwise the category/list bucket remains visible.
-- Required before enrollment: 3-6 additional Math/Science -> `MATH 238`. note: Degree sheet source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Approved CE Natural Science list source: <https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science> MATH 207 is mapped to MATH 238 only because the UW-GRC guide proves that equivalency; the remaining approved list is represented by the placeholder until Green River mappings are available.
+- Required before enrollment: 10 additional credits approved natural science. note: Degree sheet source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Approved CE Natural Science list source: <https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/> Concrete Green River options are included only where the UW-GRC equivalency guide proves the mapping; otherwise the category/list bucket remains visible.
+- Required before enrollment: 3-6 additional Math/Science. note: Degree sheet source: <https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf> Approved CE Natural Science list source: <https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/> MATH 207 is mapped to MATH 238 only because the UW-GRC guide proves that equivalency; the remaining approved list is represented by the placeholder until Green River mappings are available.
+- Required before enrollment: MATH 124, 125, 126 or 134, 135, 136 (15)  1 course from the the CSE Capstone list (5) -> `MATH& 151`, `MATH& 152`, `MATH& 163`. complete at least 1 course from this set
+- Required before enrollment: PHYS 121 -> `PHYS& 221`. complete at least 1 course from this set
+- Required before enrollment: PHYS 122 -> `PHYS& 222`. complete at least 1 course from this set
+- Required before enrollment: PHYS 121 -> `PHYS& 221`
+- Required before enrollment: PHYS 122 -> `PHYS& 222`
 - Required before enrollment: EE 215 -> `ENGR& 204`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-computer-engineering:source-degree-map:.
@@ -2444,9 +2396,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Bachelor of Science in Construction Management degree major requirements](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751)
-- [Bachelor of Science in Construction Management degree](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751) - Source used for parser-backed UW requirement extraction.
 - [Scoped section: Choose thesis, project, or course-only option (0-9 credits):](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html)
+- [Bachelor of Science in Construction Management degree](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751)
+- [Bachelor of Science in Construction Management degree](https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html#credential-67a54f6ddb9f54dbcb074751) - Source used for parser-backed UW requirement extraction.
 
 ##### Construction Management parsed official source requirements
 
@@ -2487,7 +2439,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: 10 credits of Social Sciences -> `BUS& 201`. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 24-25 credits of Natural Sciences -> `MATH& 146`. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Communications (5 credits): CM 220 or COM 220 -> `CMST& 220`. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Communications (5 credits): CM 220 or COM 220. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 9-10 credits of Social Sciences -> `BUS& 201`. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Foundation Courses (78 credits): ARCH 320, ARCH 321, CM 301 (counts toward W requirement), CM 310, CM 312, CM 313, CM 314, CM 320, CM 321, CM 322, CM 323, CM 331, CM 333, CM 335, CM 343, CM 410, CM 412, CM 414, CM 418, CM 420, CM 421, CM 423, CM 424, CM 429, CM 434. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Business and Management (4-5 credits): MGMT 300 or MGMT 305. note: Credit bucket placeholder extracted from source text.
@@ -2728,8 +2680,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Bachelor of Arts degree with a major in Drama: Design major requirements](https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d64142271da38091ab356)
-- [Bachelor of Arts degree with a major in Drama: Performance major requirements](https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d62ac13141c15f1bb6c5a)
 - [Scoped section: Completion Requirements](https://www.washington.edu/students/gencat/program/S/Drama-134.html)
 - [Scoped section: Completion Requirements](https://www.washington.edu/students/gencat/program/S/Drama-134.html) - Source used for parser-backed UW requirement extraction.
 
@@ -2922,7 +2872,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: ESS Required 300-Level Core Courses (15 credits): ESS 311, ESS 312, ESS 316. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: ESS Upper-Division Courses (26 credits): ESS 400 or ESS 401. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: ESS Upper-Division Courses (26 credits): 10 credits from ESS 400-level courses, ESS 313, or ESS 314. May not include independent study or seminar courses numbered ESS 489 through ESS 499.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Quantitative Skills (4-5 credits): MATH 126, ESS 310, STAT 290, STAT 311, STAT 390, or Q SCI 381 -> `MATH& 163`. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Quantitative Skills (4-5 credits): MATH 126, ESS 310, STAT 290, STAT 311, STAT 390, or Q SCI 381. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Supporting Science (8-10 credits): PHYS 115/PHYS 118 or PHYS 122; and one of CHEM 152, AMATH 351, MATH 307, MATH 308, PHYS 116/PHYS 119, or PHYS 123 -> `PHYS& 222`, `PHYS& 115`, `PHYS& 155`, `PHYS& 116`, `PHYS& 156`. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: ESS Upper-Division Courses (34 credits): ESS 400 or ESS 401. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: ESS Upper-Division Courses (34 credits): 18 credits from ESS 400-level courses, from an approved list of courses outside ESS, or any ESS 300-level core course (ESS 311, ESS 312, ESS 313, ESS 314, ESS 316) not taken as a required course, above. May not include independent study or seminar courses numbered ESS 489 through ESS 499. note: Credit bucket placeholder extracted from source text.
@@ -3144,6 +3094,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Electrical &amp; Computer Engineering parsed official source requirements
 
 - (Only EE course credits may apply except where specifically noted)
+- \*Recommended. Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.
 - 1.A. BSECE Major Requirements and Electives (73-80 credits) \*For Students Admitted to Start in ECE in Autumn 2025 and Onward\*
 - 1.B. BSECE Major Requirements and Electives (66-69 credits) \*For Students Admitted Prior to Autumn 2025\*
 - A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses – scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list )
@@ -3152,11 +3103,11 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 credits earned in residence at the UW
 - A student following the Computer Architecture pathway will focus on the fundamentals of computing systems — how they work, how we can best harness their power and how to create new microprocessor-based systems to continue this amazing trajectory. This pathway combines a strong focus on microprocessors and their implementation with software techniques to efficiently use these systems.
 - A&amp;H (10 credits)
-- A&amp;H/SSc courses are designated in the quarterly time schedule and the UW course catalog . A minimum of 5 credits of diversity (DIV) coursework is required. The DIV credits may overlap with A&amp;H or SSc. Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
 
 ##### Electrical &amp; Computer Engineering parsed official requirement cues
 
 - (Only EE course credits may apply except where specifically noted)
+- \*Recommended. Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.
 - 1.A. BSECE Major Requirements and Electives (73-80 credits) \*For Students Admitted to Start in ECE in Autumn 2025 and Onward\*
 - 1.B. BSECE Major Requirements and Electives (66-69 credits) \*For Students Admitted Prior to Autumn 2025\*
 - A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses – scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list )
@@ -3165,7 +3116,6 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 credits earned in residence at the UW
 - A student following the Computer Architecture pathway will focus on the fundamentals of computing systems — how they work, how we can best harness their power and how to create new microprocessor-based systems to continue this amazing trajectory. This pathway combines a strong focus on microprocessors and their implementation with software techniques to efficiently use these systems.
 - A&amp;H (10 credits)
-- A&amp;H/SSc courses are designated in the quarterly time schedule and the UW course catalog . A minimum of 5 credits of diversity (DIV) coursework is required. The DIV credits may overlap with A&amp;H or SSc. Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
 
 ##### Electrical &amp; Computer Engineering parsed choices and pathway notes
 
@@ -3177,8 +3127,8 @@ Source-generated from parsed UW requirement-source registries.
 - Control Systems pathway
 - Control Systems Pathway
 - Control Systems Pathway | UW Department of Electrical &amp; Computer Engineering
-- Digital Systems Design Pathway
 - Embedded Systems pathway
+- Embedded Systems Pathway
 
 #### GRC Equivalent Courses
 
@@ -3332,11 +3282,13 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c)
-- [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#credential-6882bab455e4077cd70e8a9c) - Source used for parser-backed UW requirement extraction.
+- [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
+- [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Environmental Design &amp; Sustainability parsed official source requirements
 
+- Admission Requirements
+- All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website.
 - Completion Requirements
 - General Education Requirements
 - English Composition (C) (5 credits)
@@ -3345,11 +3297,11 @@ Source-generated from parsed UW requirement-source registries.
 - Social Sciences (SSc) (20 credits)
 - Natural Sciences (NSc) (20 credits)
 - Reasoning (RSN) (4 credits)
-- Diversity (DIV) (5 credits). Can be met by general education or major courses.
-- L ARCH courses which are not requirements within the Environmental Design and Sustainability program may count toward A&amp;H/SSc/NSc requirements.
 
 ##### Environmental Design &amp; Sustainability parsed official requirement cues
 
+- Admission Requirements
+- All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website.
 - Completion Requirements
 - General Education Requirements
 - English Composition (C) (5 credits)
@@ -3358,8 +3310,6 @@ Source-generated from parsed UW requirement-source registries.
 - Social Sciences (SSc) (20 credits)
 - Natural Sciences (NSc) (20 credits)
 - Reasoning (RSN) (4 credits)
-- Diversity (DIV) (5 credits). Can be met by general education or major courses.
-- L ARCH courses which are not requirements within the Environmental Design and Sustainability program may count toward A&amp;H/SSc/NSc requirements.
 
 ##### Environmental Design &amp; Sustainability parsed choices and pathway notes
 
@@ -3461,7 +3411,9 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: Mathematics (24-25 credits) -> `NATRS 210`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Technical Elective Credit (15 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Technical Elective Credit (3 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: Earth science elective: -> `NATRS 100`, `NATRS 210`, `GEOL& 101`, `NUTR& 101`. complete at least 1 course from this set
 - Required before enrollment: Computer Programming: -> `CS 121`. complete at least 1 course from this set. alternate path `ENGR 250` or `CS 122` or `CS 123` or `CS& 141`
 - Required before enrollment: \[Page 1\] ᐅ ᐅ Di ff erential Equations (AMATH 351 or MATH 207) 3cr -> `MATH 238`. complete at least 1 course from this set
@@ -3484,7 +3436,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Environmental Public Health degree requirements](https://www.deohs.washington.edu/degree-requirements)
-- [Scoped section: Upon completion of the B.S. in Environmental Public Health, all graduates will be able to demonstrate the competencies d](https://www.deohs.washington.edu/degree-requirements) - Source used for parser-backed UW requirement extraction.
+- [UW Environmental Public Health degree requirements](https://www.deohs.washington.edu/degree-requirements) - Source used for parser-backed UW requirement extraction.
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/)
 - [UW Green River transfer equivalency guide](https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/) - Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide.
 
@@ -3494,36 +3446,36 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Environmental Public Health parsed official source requirements
 
-- The following is a list of courses required for the completion of the Bachelor of Science in Environmental Public Health. All courses must be completed with a minimum grade of 2.0. Prospective students should consult the applying to the major page for information on the admission process. In addition to the School of Public Health’s general education requirements , students complete the courses listed below.
-- One of the following courses :
-- MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
+- (for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
+- 15 Credits from approved elective list . Run a degree audit or contact an adviser to view the full list.
+- Be admitted to the major by meeting minimum requirements .
 - BIOL 180, 200, 220 (15 credits)
-- PHYS 114/117 (5 credits)
-- One of the following general and organic chemistry sequences :
+- BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
+- CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
 - CHEM 142, 152, CHEM 220 (15 credits)
 - CHEM 142, 152, CHEM 223, 224, 241 (21 credits)
-- CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
-- BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
+- Complete a 400-hour internship that prepares you for a career in environmental public health science practice or research.
+- Degree Requirements
 
 ##### Environmental Public Health parsed official requirement cues
 
-- The following is a list of courses required for the completion of the Bachelor of Science in Environmental Public Health. All courses must be completed with a minimum grade of 2.0. Prospective students should consult the applying to the major page for information on the admission process. In addition to the School of Public Health’s general education requirements , students complete the courses listed below.
-- One of the following courses :
-- MATH 111, MATH 120, or department approved math course (5 credits). This course is a graduation requirement, but we recommend that students complete the math requirement before they register for the other supporting science courses. The recommended preparation for PHYS 114 is a previous algebra course covering concepts such as trigonometry and exponential functions. The recommended preparation for CHEM 142 is a good working knowledge of algebra.
+- (for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
+- 15 Credits from approved elective list . Run a degree audit or contact an adviser to view the full list.
+- Be admitted to the major by meeting minimum requirements .
 - BIOL 180, 200, 220 (15 credits)
-- PHYS 114/117 (5 credits)
-- One of the following general and organic chemistry sequences :
+- BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
+- CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
 - CHEM 142, 152, CHEM 220 (15 credits)
 - CHEM 142, 152, CHEM 223, 224, 241 (21 credits)
-- CHEM 142, 152, 162, CHEM 237, 238, 241 (26 credits)
-- BIOST 310 (Recommended), STAT 220, STAT 311, or Q SCI 381, or department approved statistics course (4-5 credits)
+- Complete a 400-hour internship that prepares you for a career in environmental public health science practice or research.
+- Degree Requirements
 
 ##### Environmental Public Health parsed choices and pathway notes
 
+- (for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
+- Environmental Public Health Selectives , choose a minimum of 3 of the following courses. Syllabi for all classes below are on the courses page .
 - One of the following courses :
 - One of the following general and organic chemistry sequences :
-- Environmental Public Health Selectives , choose a minimum of 3 of the following courses. Syllabi for all classes below are on the courses page .
-- (for students who entered the major before Winter 2026: CHOOSE A MINIMUM OF 4 OF THE FOLLOWING COURSES)
 
 #### GRC Equivalent Courses
 
@@ -3641,13 +3593,13 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: 10 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 20 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 15 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300/SBSE 300, ESRM 304. -> `GIS 202`. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300/SBSE 300, ESRM 304.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Electives (45 credits): upper-division courses from within the School of Environmental and Forest Sciences or from a list of approved courses. Refer to department website for list of approved courses. Minimum 25 credits at the 400-level. Maximum 10 credits from ESRM general elective course list. Maximum 10 credits from Q SCI elective course list.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Natural Resource and Environmental Management Courses (29 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 350; ESRM 381, ESRM 400, ESRM 426, ESRM 470 -> `NATRS 293`. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Natural Resource and Environmental Management Courses (29 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 350; ESRM 381, ESRM 400, ESRM 426, ESRM 470. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Electives (11-15 credits): at least one course from each of the categories below. See department website for list of approved courses.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Sustainable Forest Management Courses (39-40 credits): ESRM 323, ESRM 331/BIOL 331, ESRM 368, ESRM 400, either ESRM 426 or FISH 447/ESRM 447, ESRM 428, ESRM 430, SBSE 461/ESRM 461, ESRM 470 -> `NATRS 293`, `NATRS 182`, `NATRS 180`, `NATRS 292`. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Electives (10-15 credits): at least one course from each of the categories below. See department website for list of approved courses.. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300, ESRM 304 -> `GIS 202`. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Core Courses (22 credits): ESRM 200, ESRM 201, ESRM 250, ESRM 300, ESRM 304. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Wildlife Conservation Courses (36 credits): ESRM 350, ESRM 351, ESRM 441, ESRM 450, ESRM 451/Q SCI 451, ESRM 458; Q SCI 482; one of ESRM 452, ESRM 453, or ESRM 459. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: BIOL 161 or BIOL 162 or BIOL 180 or CHEM 120 or CHEM 142 or CHEM 143 or CHEM 145 or CHEM 152 or CHEM 153 or CHEM 155 or CHEM 220 or ENGL 131 or MATH 124 or MATH 125 or MATH 134 or MATH 135 or OCEAN 295 or QSCI 291 or QSCI 292 -> `CHEM& 121`. complete at least 1 course from this set. alternate path `BIOL& 211`, `BIOL& 212`, `BIOL& 213` or `CHEM& 161` or `CHEM& 162`, `CHEM& 163` or `CHEM& 131` or `ENGL& 101` or `MATH& 151` or `MATH& 152`
 - Required before enrollment: Calculus (10 credits) -> `MATH& 151`. complete at least 1 course from this set. alternate path `MATH& 152`
@@ -3737,7 +3689,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Program of Study: Major: International Studies: Europe](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR)
 - [Program of Study: Major: International Studies: Europe](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR) - Source used for parser-backed UW requirement extraction.
 
 ##### European Studies parsed official source requirements
@@ -3793,7 +3744,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [B.A. in Finnish](https://scandinavian.washington.edu/ba-finnish)
-- [Scoped section: B.A. in Finnish](https://scandinavian.washington.edu/ba-finnish) - Source used for parser-backed UW requirement extraction.
+- [B.A. in Finnish](https://scandinavian.washington.edu/ba-finnish) - Source used for parser-backed UW requirement extraction.
 
 ##### Finnish parsed official source requirements
 
@@ -3902,6 +3853,7 @@ Source-generated from parsed UW requirement-source registries.
 - `CS& 141`
 - `ECON& 201`
 - `ECON& 202`
+- `ENGL& 101`
 - `GEOG 123`
 - `MATH& 146`
 - `NATRS 210`
@@ -3961,23 +3913,8 @@ Source-generated from parsed UW requirement-source registries.
 - [UW French Studies major requirements](https://frenchitalian.washington.edu/major-french-studies)
 - [UW French Studies major requirements](https://frenchitalian.washington.edu/major-french-studies) - Source used for parser-backed UW requirement extraction.
 
-##### French - B.A. route parsed official source requirements
-
-- Registration/Credit Policies
-- Diversity, Equity &amp; Inclusion
-- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
-- French Major Requirements
-- 50 credits total
-- FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
-- 5 credits from one course at the FRENCH 370-level (FRENCH 376, 378, 379) or FRENCH 320
-- Electives: 15 credits above FRENCH 203 from the following approved list of electives: FRENCH, 210, FRENCH 211, FRENCH 212, FRENCH 214, FRENCH 222, FRENCH 223, FRENCH 224, FRENCH 225, FRENCH 226, FRENCH 228, FRENCH 229, FRENCH 240, FRENCH 250, FRENCH 313, FRENCH 314, FRENCH 315, FRENCH 320, FRENCH 376, FRENCH 378, FRENCH 379, FRENCH 404, FRENCH 406, FRENCH 415, FRENCH 416, FRENCH 419, FRENCH 420, FRENCH 431, FRENCH 435, FRENCH 441, FRENCH 445, FRENCH 447, FRENCH, 448, FRENCH 450, FRENCH 455, FRENCH 457, FRENCH 458, FRENCH 470, FRENCH 472, FRENCH 474, FRENCH 499
-- Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
-- A minimum 2.00 cumulative GPA is required for courses applied toward the major.
-
 ##### French parsed official source requirements
 
-- Registration/Credit Policies
-- Diversity, Equity &amp; Inclusion
 - To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
 - French Major Requirements
 - 50 credits total
@@ -3986,11 +3923,11 @@ Source-generated from parsed UW requirement-source registries.
 - Electives: 15 credits above FRENCH 203 from the following approved list of electives: FRENCH, 210, FRENCH 211, FRENCH 212, FRENCH 214, FRENCH 222, FRENCH 223, FRENCH 224, FRENCH 225, FRENCH 226, FRENCH 228, FRENCH 229, FRENCH 240, FRENCH 250, FRENCH 313, FRENCH 314, FRENCH 315, FRENCH 320, FRENCH 376, FRENCH 378, FRENCH 379, FRENCH 404, FRENCH 406, FRENCH 415, FRENCH 416, FRENCH 419, FRENCH 420, FRENCH 431, FRENCH 435, FRENCH 441, FRENCH 445, FRENCH 447, FRENCH, 448, FRENCH 450, FRENCH 455, FRENCH 457, FRENCH 458, FRENCH 470, FRENCH 472, FRENCH 474, FRENCH 499
 - Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
 - A minimum 2.00 cumulative GPA is required for courses applied toward the major.
+- FRENCH 203 required for FRENCH 301 or FRENCH 302
+- FRENCH 301 and FRENCH 302 do not have to be taken in sequence. FRENCH 302 can be completed before FRENCH 301.
 
 ##### French parsed official requirement cues
 
-- Registration/Credit Policies
-- Diversity, Equity &amp; Inclusion
 - To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
 - French Major Requirements
 - 50 credits total
@@ -3999,19 +3936,8 @@ Source-generated from parsed UW requirement-source registries.
 - Electives: 15 credits above FRENCH 203 from the following approved list of electives: FRENCH, 210, FRENCH 211, FRENCH 212, FRENCH 214, FRENCH 222, FRENCH 223, FRENCH 224, FRENCH 225, FRENCH 226, FRENCH 228, FRENCH 229, FRENCH 240, FRENCH 250, FRENCH 313, FRENCH 314, FRENCH 315, FRENCH 320, FRENCH 376, FRENCH 378, FRENCH 379, FRENCH 404, FRENCH 406, FRENCH 415, FRENCH 416, FRENCH 419, FRENCH 420, FRENCH 431, FRENCH 435, FRENCH 441, FRENCH 445, FRENCH 447, FRENCH, 448, FRENCH 450, FRENCH 455, FRENCH 457, FRENCH 458, FRENCH 470, FRENCH 472, FRENCH 474, FRENCH 499
 - Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
 - A minimum 2.00 cumulative GPA is required for courses applied toward the major.
-
-##### French - B.A. route parsed official requirement cues
-
-- Registration/Credit Policies
-- Diversity, Equity &amp; Inclusion
-- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
-- French Major Requirements
-- 50 credits total
-- FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
-- 5 credits from one course at the FRENCH 370-level (FRENCH 376, 378, 379) or FRENCH 320
-- Electives: 15 credits above FRENCH 203 from the following approved list of electives: FRENCH, 210, FRENCH 211, FRENCH 212, FRENCH 214, FRENCH 222, FRENCH 223, FRENCH 224, FRENCH 225, FRENCH 226, FRENCH 228, FRENCH 229, FRENCH 240, FRENCH 250, FRENCH 313, FRENCH 314, FRENCH 315, FRENCH 320, FRENCH 376, FRENCH 378, FRENCH 379, FRENCH 404, FRENCH 406, FRENCH 415, FRENCH 416, FRENCH 419, FRENCH 420, FRENCH 431, FRENCH 435, FRENCH 441, FRENCH 445, FRENCH 447, FRENCH, 448, FRENCH 450, FRENCH 455, FRENCH 457, FRENCH 458, FRENCH 470, FRENCH 472, FRENCH 474, FRENCH 499
-- Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
-- A minimum 2.00 cumulative GPA is required for courses applied toward the major.
+- FRENCH 203 required for FRENCH 301 or FRENCH 302
+- FRENCH 301 and FRENCH 302 do not have to be taken in sequence. FRENCH 302 can be completed before FRENCH 301.
 
 #### GRC Equivalent Courses
 
@@ -4026,7 +3952,6 @@ On To Do list.
 - Required before enrollment: Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: FRENCH 211 or FRENCH 212 or FRENCH 214 or FRENCH 222 or FRENCH 223 or FRENCH 224 or FRENCH 225 or FRENCH 226 or FRENCH 228 or FRENCH 229 or FRENCH 240 or FRENCH 250 or FRENCH 313 or FRENCH 314 or FRENCH 315 or FRENCH 320 or FRENCH 376 or FRENCH 378 or FRENCH 379 or FRENCH 404 or FRENCH 406 or FRENCH 415 or FRENCH 416 or FRENCH 419 or FRENCH 420 or FRENCH 431 or FRENCH 435 or FRENCH 441 or FRENCH 445 or FRENCH 447 or FRENCH 448 or FRENCH 450 or FRENCH 455 or FRENCH 457 or FRENCH 458 or FRENCH 470 or FRENCH 472 or FRENCH 474 or FRENCH 499. complete at least 1 course from this set
 - note: Parser confidence: high.
-- note: Parsed degree-map block candidate: uw-seattle-french:pathway:ba-route:source-degree-map:.
 - note: Parsed degree-map block candidate: uw-seattle-french:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
 
@@ -4098,61 +4023,68 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [B.A. in Geography: Data Science Option major requirements](https://geography.washington.edu/ba-geography-data-science-option)
+- [B.A. in Geography: Data Science Option](https://geography.washington.edu/ba-geography-data-science-option) - Alternate official source used for parser-backed UW requirement extraction.
 - [UW Geography B.A. major requirements](https://geography.washington.edu/ba-geography)
-- [UW Geography B.A. major requirements](https://geography.washington.edu/ba-geography) - Source used for parser-backed UW requirement extraction.
+- [UW Geography B.A. major requirements](https://geography.washington.edu/ba-geography) - Primary source used for parser-backed UW requirement extraction.
 - [UW Geography courses by track](https://geography.washington.edu/courses-track) - Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.
 
 ##### Geography parsed official source requirements
 
-- 5 credits from either Environment, Economy and Sustainability; Cities, Citizenship and Migration; or Globalization, Health &amp; Development tracks. R eview the list of Geography courses by track for all eligible course options.
-- A combined total of 5 credits of Internship (GEOG 496) and Independent Study (GEOG 499) may be counted towards the required 60 geography credits.
-- Admission Requirements for Honors in Geography
-- After the stated deadline, applicants will be contacted to schedule and complete an interview with the Geography Undergraduate Advising Office. The interview will pertain to the applicant’s intellectual interests and experiences in independent research and collaborative work.
-- Applicants are highly encouraged to have completed GEOG 315, Explanation and Understanding in Geography, or an alternative course in social science methodology, before entrance into the honors program. Applicants who have not taken GEOG 315 should plan to register for it in the autumn quarter of their senior year.
-- Attend a Geography New Student Orientation from the dates listed in the table below. Students who are unable to attend an orientation session and are concerned about the university's Satisfactory Progress Policy are welcome to complete the Geography New Student Survey linked below and then reach out to a geography adviser for assistance.
-- B.A. in Geography with Data Science Option
 - B.A. in Geography with Data Science Option | Department of Geography | University of Washington
-- B.A. in Geography: Data Science Option
-- B.A. in Geography: Data Science Option Sample Course Plan
+- B.A. in Geography with Data Science Option
+- The B.A. in Geography with Data Science Option builds on geography coursework in data management, data visualization and the societal implications of data science while offering students additional opportunities to engage in coursework in programming, machine learning, and advanced statistics and probability. This series of coursework allows students to graduate with evidence of data science experience on their transcript.
+- Visit Degree Planning for guidance on choosing courses to satisfy the major requirements listed below.
+- Geography Major Data Science Option Requirements
+- The geography major data science option is a minimum-requirements major , which means students must meet the following requirements in order to declare the major:
+- Complete any GEOG-prefix course at the 200-level or higher with a minimum grade of 2.0.
+- Students who meet the minimum requirements listed above may declare the major in any quarter. There is no application required.
+- The requirements for geography majors with the option in data science are as follows:
+- Foundations (23-25 credits):
 
 ##### Geography parsed official requirement cues
 
-- 5 credits from either Environment, Economy and Sustainability; Cities, Citizenship and Migration; or Globalization, Health &amp; Development tracks. R eview the list of Geography courses by track for all eligible course options.
-- A combined total of 5 credits of Internship (GEOG 496) and Independent Study (GEOG 499) may be counted towards the required 60 geography credits.
-- Admission Requirements for Honors in Geography
-- After the stated deadline, applicants will be contacted to schedule and complete an interview with the Geography Undergraduate Advising Office. The interview will pertain to the applicant’s intellectual interests and experiences in independent research and collaborative work.
-- Applicants are highly encouraged to have completed GEOG 315, Explanation and Understanding in Geography, or an alternative course in social science methodology, before entrance into the honors program. Applicants who have not taken GEOG 315 should plan to register for it in the autumn quarter of their senior year.
-- Attend a Geography New Student Orientation from the dates listed in the table below. Students who are unable to attend an orientation session and are concerned about the university's Satisfactory Progress Policy are welcome to complete the Geography New Student Survey linked below and then reach out to a geography adviser for assistance.
-- B.A. in Geography with Data Science Option
 - B.A. in Geography with Data Science Option | Department of Geography | University of Washington
-- B.A. in Geography: Data Science Option
-- B.A. in Geography: Data Science Option Sample Course Plan
+- B.A. in Geography with Data Science Option
+- The B.A. in Geography with Data Science Option builds on geography coursework in data management, data visualization and the societal implications of data science while offering students additional opportunities to engage in coursework in programming, machine learning, and advanced statistics and probability. This series of coursework allows students to graduate with evidence of data science experience on their transcript.
+- Visit Degree Planning for guidance on choosing courses to satisfy the major requirements listed below.
+- Geography Major Data Science Option Requirements
+- The geography major data science option is a minimum-requirements major , which means students must meet the following requirements in order to declare the major:
+- Complete any GEOG-prefix course at the 200-level or higher with a minimum grade of 2.0.
+- Students who meet the minimum requirements listed above may declare the major in any quarter. There is no application required.
+- The requirements for geography majors with the option in data science are as follows:
+- Foundations (23-25 credits):
 
 ##### Geography parsed choices and pathway notes
 
-- Breadth: One course from each of the four tracks: Cities, Citizenship, and Migration; Environment, Economy, and Sustainability; GIS, Mapping, and Society; and Globalization, Health, and Development (20 credits). These "broad track" courses offer a great introduction to the discipline of geography to get you started in the major. Check out the three-quarter planner to find interesting courses you might like to take, then review the list of Geography courses by track to understand how those courses will count in the major.
-- Students majoring in geography select one of four tracks to specialize in:
-- The major is organized into four tracks. Students majoring in geography select one of the four tracks to specialize in by taking four upper-division courses in that track, at least two of which must be at the 400-level.
 - B.A. in Geography with Data Science Option
-- Citizenship and Migration (CCM) track
-- Citizenship and Migration Track
-- Data Science Option
-- Economy and Sustainability (EES) track
-- Economy and Sustainability Track
 - Geography Major Data Science Option
+- The requirements for geography majors with the option in data science are as follows:
 
 #### GRC Equivalent Courses
 
 - `CS 122`
-- `CS 123`
-- `CS 145`
 - `CS& 141`
 - `MATH 256`
 - `MATH& 146`
+- `CS 123`
+- `CS 145`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Methods: One course from among GEOG 317, 326, 425, or 426, or other courses approved by petition to the Geography Advising Office (5 credits).. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Machine Learning. complete at least 4 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: GIS, Mapping, and Society. complete at least 4 courses from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: Science Elective Credit (37-40 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
+- Required before enrollment: Methods: One course from among GEOG 317 or 326, or other courses approved by petition to the Geography Advising Office (5 credits).. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: The requirements for geography majors with the option in data science are as follows -> `MATH& 146`. complete at least 1 course from this set. alternate path `MATH 256`
+- Required before enrollment: CSE 122 or CSE 123 or CSE 142 or CSE 143 or CSE 160 or CSE 163 or INFO 370 or INFO 371 or QSCI 482 or STAT 416 or STAT 435 -> `CS 122`. complete at least 1 course from this set. alternate path `CS 123` or `CS& 141` or `CS 145`
+- Required before enrollment: One from CSE 180, INFO 201, GEOG 245, or GEOG 258. complete at least 1 course from this set
+- Required before enrollment: GEOG 326 or GEOG 426 or QMETH 201 or QSCI 381 or STAT 220 or STAT 221 or STAT 290 or STAT 311 or STAT 390 -> `MATH& 146`. complete at least 1 course from this set. alternate path `MATH 256`
+- Required before enrollment: Programming: 2 courses from CSE 121, CSE 122, CSE 123, CSE 142, CSE 143, CSE 160, CSE 163, or INFO 370 -> `CS 122`. complete at least 1 course from this set. alternate path `CS 123` or `CS& 141` or `CS 145`
+- Required before enrollment: GEOG 258 or GEOG 360 or GEOG 381. complete at least 1 course from this set
+- Required before enrollment: Programming: either CSE 142 or CSE 160; either CSE 143 or CSE 163 -> `CS& 141`. complete at least 1 course from this set. alternate path `CS 145`
+- Required before enrollment: Machine Learning: either STAT 311 or MATH/STAT 390; one of CSE 416/STAT 416, STAT 435, or INFO 371. complete at least 1 course from this set
+- Required before enrollment: Students may substitute QSCI 381 for STAT 311 or STAT 390 if planning to take CSE/STAT 416. complete at least 1 course from this set
+- Required before enrollment: QMETH 201 or QSCI 381 or SOC 221 or STAT 221 or STAT 290 or STAT 390 -> `MATH 256`. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-geography:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -4171,33 +4103,37 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW German Studies requirements](https://german.washington.edu/german-studies)
-- [Scoped section: The B.A. in German Studies: Cultural Studies provides students with intermediate to advanced competency in spoken and wr](https://german.washington.edu/german-studies) - Source used for parser-backed UW requirement extraction.
+- [UW German Studies requirements](https://german.washington.edu/german-studies) - Source used for parser-backed UW requirement extraction.
 
 ##### German parsed official source requirements
 
-- The B.A. in German Studies: Cultural Studies provides students with intermediate to advanced competency in spoken and written German, analytical skills, intercultural competence, and the ability to work across disciplines. This credential emphasizes cultural studies alongside language study and promotes multi-disciplinarity by making it easier for students already pursuing a major in a complimentary field to also complete a degree in German Studies. German 401 is not required for this degree option. Up to 10 credits from a list of approved courses in other departments can be applied towards this degree.
-- Like the B.A. in German Studies, the B.A. in German Studies: Cultural Studies places the artistic and intellectual traditions of German-speaking countries and their people in a revealing interdisciplinary context. Students investigate the language and cultures of these countries using approaches from linguistics, theater and performance studies, film and media studies, philosophy, Jewish studies, gender studies, queer theory, eco-criticism, environmental studies, and more. They can build intermediate to advanced proficiency in the German language through study abroad , internships , and an optional capstone intensive language course, with the option to pursue departmental honors . By drawing on these diverse fields, students investigate the two-way influence that German-speaking countries and the world have had on each other. Graduates use their skills in verbal interpretation and analysis, critical thinking, and solving complex problems to succeed in diverse roles in the public and private sectors.
-- Completion Requirements
-- 50-51 credits
-- GERMAN 203, GERMAN 311, GERMAN 322
-- Two 400-level courses in literature and culture chosen from the following: GERMAN 411, GERMAN 421, GERMAN 422, GERMAN 423, GERMAN 490, GERMAN 493, GERMAN 494, GERMAN 495 (10 credits)
 - 15 additional credits from any combination of the following courses, or additional courses from the list above. No more than 10 credits at the 200-level.
-- Literature and Culture: GERMAN 210, GERMAN 293, GERMAN 295/JEW ST 295, GERMAN 300, GERMAN 322, GERMAN 323, GERMAN 351, GERMAN 352, GERMAN 355, GERMAN 371, GERMAN 398, GERMAN 399, GERMAN 499
-- Linguistics: GERMAN 452/LING 415
-- Other: GERMAN 446 (5 credits max.), GERMAN 447 (5 credits max.)
+- 2 courses from: German 301, 302, 303 (or equivalent)
+- 50-51 credits
+- 51 credits in all
+- Additional Completion Requirements
+- Additional completion requirements specified below
+- Choose from many offerings in:
+- Completion Requirements
+- Degree Requirements
+- Elective Courses (20 credits)
 
 ##### German parsed official requirement cues
 
-- The B.A. in German Studies: Cultural Studies provides students with intermediate to advanced competency in spoken and written German, analytical skills, intercultural competence, and the ability to work across disciplines. This credential emphasizes cultural studies alongside language study and promotes multi-disciplinarity by making it easier for students already pursuing a major in a complimentary field to also complete a degree in German Studies. German 401 is not required for this degree option. Up to 10 credits from a list of approved courses in other departments can be applied towards this degree.
-- Like the B.A. in German Studies, the B.A. in German Studies: Cultural Studies places the artistic and intellectual traditions of German-speaking countries and their people in a revealing interdisciplinary context. Students investigate the language and cultures of these countries using approaches from linguistics, theater and performance studies, film and media studies, philosophy, Jewish studies, gender studies, queer theory, eco-criticism, environmental studies, and more. They can build intermediate to advanced proficiency in the German language through study abroad , internships , and an optional capstone intensive language course, with the option to pursue departmental honors . By drawing on these diverse fields, students investigate the two-way influence that German-speaking countries and the world have had on each other. Graduates use their skills in verbal interpretation and analysis, critical thinking, and solving complex problems to succeed in diverse roles in the public and private sectors.
-- Completion Requirements
-- 50-51 credits
-- GERMAN 203, GERMAN 311, GERMAN 322
-- Two 400-level courses in literature and culture chosen from the following: GERMAN 411, GERMAN 421, GERMAN 422, GERMAN 423, GERMAN 490, GERMAN 493, GERMAN 494, GERMAN 495 (10 credits)
 - 15 additional credits from any combination of the following courses, or additional courses from the list above. No more than 10 credits at the 200-level.
-- Literature and Culture: GERMAN 210, GERMAN 293, GERMAN 295/JEW ST 295, GERMAN 300, GERMAN 322, GERMAN 323, GERMAN 351, GERMAN 352, GERMAN 355, GERMAN 371, GERMAN 398, GERMAN 399, GERMAN 499
-- Linguistics: GERMAN 452/LING 415
-- Other: GERMAN 446 (5 credits max.), GERMAN 447 (5 credits max.)
+- 2 courses from: German 301, 302, 303 (or equivalent)
+- 50-51 credits
+- 51 credits in all
+- Additional Completion Requirements
+- Additional completion requirements specified below
+- Choose from many offerings in:
+- Completion Requirements
+- Degree Requirements
+- Elective Courses (20 credits)
+
+##### German parsed choices and pathway notes
+
+- Choose from many offerings in:
 
 #### GRC Equivalent Courses
 
@@ -4205,13 +4141,16 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Required Courses (31 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Literature and Culture. complete at least 14 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Linguistics. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Other. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Option specific credits: 10 credits from a list of approved courses or additional 300- and 400-level courses from major requirements #2 and #3 shown above. Refer to this link for list of approved courses outside of the department.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 2 courses from: German 301, 302, 303 (or equivalent). complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-german:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Global Literary Studies (BA)
@@ -4230,7 +4169,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Global Literary Studies (BA) parsed official source requirements
 
-- Diversity &amp; Equity
 - Admission Requirements: Students in good academic standing may declare this major at any time.
 - Completion Requirements
 - 53-55 credits
@@ -4243,7 +4181,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Global Literary Studies (BA) parsed official requirement cues
 
-- Diversity &amp; Equity
 - Admission Requirements: Students in good academic standing may declare this major at any time.
 - Completion Requirements
 - 53-55 credits
@@ -4288,9 +4225,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Greek parsed official source requirements
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
 - Degree Requirements
 - Requirements for the major in Greek (52-58 credits) are:
 - Either GREEK 101, GREEK 102, GREEK 103; or GREEK 300, GREEK 301 (10-15 credits)
@@ -4301,9 +4235,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Greek parsed official requirement cues
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
 - Degree Requirements
 - Requirements for the major in Greek (52-58 credits) are:
 - Either GREEK 101, GREEK 102, GREEK 103; or GREEK 300, GREEK 301 (10-15 credits)
@@ -4341,7 +4272,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Guitar, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -4351,10 +4281,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Guitar, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -4364,6 +4294,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 #### GRC Equivalent Courses
 
@@ -4401,10 +4332,10 @@ Source-generated from parsed UW requirement-source registries.
 - 10 credits of approved courses in the Pre-Modern period.
 - 30 credits of upper division history coursework (300-400 level) completed in residence at the University of Washington. Transfer and extension credits are not classified as "in residence." HSTRY 388, HSTRY 494, and HSTRY 498 courses all count as part of upper division history coursework.
 - 5 credits each in four of the following six areas of study:
-- Approved Elective Courses for the Major
 - Civics: 10 credits/2 courses
-- Degree Requirements
-- Diversity
+- Economics: 10 credits/2 courses
+- Geography: 5 credits/1 course
+- History Endorsement Requirements
 
 ##### History parsed official requirement cues
 
@@ -4414,10 +4345,10 @@ Source-generated from parsed UW requirement-source registries.
 - 10 credits of approved courses in the Pre-Modern period.
 - 30 credits of upper division history coursework (300-400 level) completed in residence at the University of Washington. Transfer and extension credits are not classified as "in residence." HSTRY 388, HSTRY 494, and HSTRY 498 courses all count as part of upper division history coursework.
 - 5 credits each in four of the following six areas of study:
-- Approved Elective Courses for the Major
 - Civics: 10 credits/2 courses
-- Degree Requirements
-- Diversity
+- Economics: 10 credits/2 courses
+- Geography: 5 credits/1 course
+- History Endorsement Requirements
 
 ##### History parsed choices and pathway notes
 
@@ -4486,8 +4417,8 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Core Courses (25 credits) -> `PHIL& 120`. complete at least 4 courses from this set. note: Parsed from an inline required course list; embedded alternatives are separate choice groups.
 - Required before enrollment: 10 credits of Natural World. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Core Courses (25 credits): HSTCMP 311, HSTCMP 312, HSTCMP 390; PHIL 160 or PHIL 460; PHIL 120. Minimum 2.0 grade in each course and overall minimum 2.50 GPA. -> `PHIL& 120`. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Electives: 25 credits from the following, of which at least 10 must be PHIL courses and at least 5 must be HIST courses (or others upon petition): ESS 404, HIST 211, HIST 215, HIST 310, HIST 313 (or ASTR 313), HIST 314, HIST 315, HIST 316, HIST 317 (also MHE 422), HIST 318 (also MHE 424), HIST 412; PHIL 243, PHIL 350, PHIL 360, PHIL 406, PHIL 450, PHIL 460 (if PHIL 160 taken), PHIL 464, PHIL 466, PHIL 473, PHIL 481, PHIL 482, PHIL 483. Minimum 2.0 grade in each class.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Core Courses (25 credits): HSTCMP 311, HSTCMP 312, HSTCMP 390; PHIL 160 or PHIL 460; PHIL 120. Minimum 2.0 grade in each course and overall minimum 2.50 GPA.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Program Elective Credit (25 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: 30 credits of Natural World. note: Credit bucket placeholder extracted from source text.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-history-and-philosophy-of-science:source-degree-map:.
@@ -4653,8 +4584,6 @@ Source-generated from parsed UW requirement-source registries.
 ##### Individualized Studies parsed official source requirements
 
 - Individualized Studies is an interdisciplinary major option for students who wish to create a program of study by combining selected courses from two or more departments. Students are required to identify a central organizing theme for their major and design it under the guidance and supervision of a faculty member and an Individualized Studies adviser. The Individualized Studies major also currently supports two faculty-designed majors, Disability Studies and Musical Theater.
-- Program of Study: Minor: Diversity
-- Minor in Diversity
 - The Individualized Studies program is an interdisciplinary major option for highly motivated and self-directed students to pursue intellectual studies not available in current UW programs. Prospective students are required to construct an Individualized Learning Plan articulating the rationale, learning goals, proposed coursework, and a plan for assessing their learning, all under the guidance and supervision of at least two faculty members and Individualized Studies advising.
 - Suggested First- and Second-Year College Courses: Varies, depending on student's area of concentration.
 - Admission Requirements
@@ -4662,12 +4591,12 @@ Source-generated from parsed UW requirement-source registries.
 - For admission requirements for the technical writing option, see an adviser.
 - Completion Requirements
 - 55 to 70 credits, including completion of the approved curriculum and a 5-credit required senior study (minimum grade of 2.7 required for senior study). Awarding of the Bachelor of Arts or Bachelor of Science degree depends on the content of each student's program.
+- Learning Objectives and Expected Outcomes: Varies, depending on student's area of concentration.
+- Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors); With Honors (Completion of Departmental Honors requirements in the major). See adviser for requirements.
 
 ##### Individualized Studies parsed official requirement cues
 
 - Individualized Studies is an interdisciplinary major option for students who wish to create a program of study by combining selected courses from two or more departments. Students are required to identify a central organizing theme for their major and design it under the guidance and supervision of a faculty member and an Individualized Studies adviser. The Individualized Studies major also currently supports two faculty-designed majors, Disability Studies and Musical Theater.
-- Program of Study: Minor: Diversity
-- Minor in Diversity
 - The Individualized Studies program is an interdisciplinary major option for highly motivated and self-directed students to pursue intellectual studies not available in current UW programs. Prospective students are required to construct an Individualized Learning Plan articulating the rationale, learning goals, proposed coursework, and a plan for assessing their learning, all under the guidance and supervision of at least two faculty members and Individualized Studies advising.
 - Suggested First- and Second-Year College Courses: Varies, depending on student's area of concentration.
 - Admission Requirements
@@ -4675,6 +4604,8 @@ Source-generated from parsed UW requirement-source registries.
 - For admission requirements for the technical writing option, see an adviser.
 - Completion Requirements
 - 55 to 70 credits, including completion of the approved curriculum and a 5-credit required senior study (minimum grade of 2.7 required for senior study). Awarding of the Bachelor of Arts or Bachelor of Science degree depends on the content of each student's program.
+- Learning Objectives and Expected Outcomes: Varies, depending on student's area of concentration.
+- Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors); With Honors (Completion of Departmental Honors requirements in the major). See adviser for requirements.
 
 #### GRC Equivalent Courses
 
@@ -4700,7 +4631,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
+Planner coverage: `detailed`. Best Green River base: `AM-DTA`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -4744,23 +4675,16 @@ Source-generated from parsed UW requirement-source registries.
 - `MATH& 151`
 - `MATH& 152`
 - `MATH& 163`
-- `CHEM& 161`
-- `CHEM& 162`
-- `CHEM& 163`
-- `PHYS& 221`
-- `PHYS& 222`
-- `PHYS& 223`
-- `ENGR& 224`
 
 #### Required sequences for specific credits
 
 - Required before enrollment: Mathematics...........................................………………………….........\[24 credits\] Industrial Engineering Required Core Courses...…………….......\[24 credits\] -> `MATH& 151`. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: Physical Sciences...................................……………………...…….....\[25 credits\] Technical Electives.............................…………...…..……..\[minimum 37 credits\] -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`, `PHYS& 221`, `PHYS& 222`, `PHYS& 223`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Physical Sciences...................................……………………...…….....\[25 credits\] Technical Electives.............................…………...…..……..\[minimum 37 credits\]. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: D. Design -> `ENGR 140`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 10 credits of Visual, Literary, and Performing Arts. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 10 credits of Individuals and Societies. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 3 credits of Diversity. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: General Engineering/Computing Courses……………………………\[28 credits\] AA 260 \[4cr\] Thermodynamics \[pr: CHEM 142, MATH 126, PHYS 121\] -> `ENGR& 224`, `CHEM& 161`, `MATH& 163`, `PHYS& 221`. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: General Engineering/Computing Courses……………………………\[28 credits\] AA 260 \[4cr\] Thermodynamics \[pr: CHEM 142, MATH 126, PHYS 121\]. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: includes 4 credits free elective). note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: \[Page 1\]  MATH 124 (or 127)\* \[5cr\] Calculus with Analytic Geometry I -> `MATH& 151`. complete at least 1 course from this set
 - Required before enrollment: \[Page 1\]  MATH 125 (or 128)\* \[5cr\] Calculus with Analytic Geometry II -> `MATH& 152`. complete at least 1 course from this set
@@ -4774,7 +4698,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AM-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -4782,55 +4706,55 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour](https://ischool.uw.edu/programs/informatics/admissions/prerequisites)
-- [Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour](https://ischool.uw.edu/programs/informatics/admissions/current-students/prerequisites)
-- [Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour](https://ischool.uw.edu/programs/informatics/admissions/current-students/prerequisites) - Alternate official source used for parser-backed UW requirement extraction.
 - [UW Informatics curriculum](https://ischool.uw.edu/programs/informatics/curriculum)
-- [UW Informatics curriculum](https://ischool.uw.edu/programs/informatics/curriculum) - Primary source used for parser-backed UW requirement extraction.
+- [UW Informatics curriculum](https://ischool.uw.edu/programs/informatics/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Informatics parsed official source requirements
 
-- In order to be considered for admission, applicants who are current UW students must complete all four prerequisite courses. The courses must be completed by the end of the quarter before submitting your application to the Informatics program.
-- Students applying to transfer to the UW and apply to Informatics are not required to complete INFO 200 before applying. This course will be completed once you are an Informatics student. To ensure you are planning your transfer courses, use the UW Equivalency Guide for Washington state schools or our list of pre-approved transfer courses for schools outside of Washington.
-- Prospective students who have completed all listed prerequisites may focus on completing their general education requirements and preparing for an alternative major.
-- Prerequisite
-- INFO 200
-- One class: STAT 220 ; STAT 221 / SOC 221 / CSSS 221 &amp; STAT 321 / CSSS 321 (all offered jointly); BIOSTAT 310 ; CSE 312 ; EDPSY 490; IND E 315 ; MATH 390 ; MATH 394 / STAT 394 ; PSYCH 315 ; PSYCH 317 ; QMETH 201 ; Q SCI 381 ; STAT 290 ; STAT 311 ; STAT 390 ; STAT 1XX
-- BIS 215 (formerly BIS 315),
-- B MATH 215 or
-- B BUS 215 , STMATH 341
-- TMATH 110
+- 1-5 Credits; Credit/No Credit Grading
+- 4 Credits, Standard Grading
+- 4 Credits; Standard Grading
+- 5 Credits; Standard Grading
+- 8 Credits; Standard Grading
+- 8 Credits: Standard Grading
+- All students enrolled in the Informatics major are eligible to complete Departmental Honors in the program. Learn about the requirements.
+- Before you are able to graduate, you are required to complete the following procedures. If you have any questions concerning this process, please contact Student Services. Learn about the Convocation ceremony .
+- Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
+- Capstone (8-credits): Students complete a culminating experience.
 
 ##### Informatics parsed official requirement cues
 
-- In order to be considered for admission, applicants who are current UW students must complete all four prerequisite courses. The courses must be completed by the end of the quarter before submitting your application to the Informatics program.
-- Students applying to transfer to the UW and apply to Informatics are not required to complete INFO 200 before applying. This course will be completed once you are an Informatics student. To ensure you are planning your transfer courses, use the UW Equivalency Guide for Washington state schools or our list of pre-approved transfer courses for schools outside of Washington.
-- Prospective students who have completed all listed prerequisites may focus on completing their general education requirements and preparing for an alternative major.
-- Prerequisite
-- INFO 200
-- One class: STAT 220 ; STAT 221 / SOC 221 / CSSS 221 &amp; STAT 321 / CSSS 321 (all offered jointly); BIOSTAT 310 ; CSE 312 ; EDPSY 490; IND E 315 ; MATH 390 ; MATH 394 / STAT 394 ; PSYCH 315 ; PSYCH 317 ; QMETH 201 ; Q SCI 381 ; STAT 290 ; STAT 311 ; STAT 390 ; STAT 1XX
-- BIS 215 (formerly BIS 315),
-- B MATH 215 or
-- B BUS 215 , STMATH 341
-- TMATH 110
+- 1-5 Credits; Credit/No Credit Grading
+- 4 Credits, Standard Grading
+- 4 Credits; Standard Grading
+- 5 Credits; Standard Grading
+- 8 Credits; Standard Grading
+- 8 Credits: Standard Grading
+- All students enrolled in the Informatics major are eligible to complete Departmental Honors in the program. Learn about the requirements.
+- Before you are able to graduate, you are required to complete the following procedures. If you have any questions concerning this process, please contact Student Services. Learn about the Convocation ceremony .
+- Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
+- Capstone (8-credits): Students complete a culminating experience.
+
+##### Informatics parsed choices and pathway notes
+
+- Take junior-level core courses: CSE 123, 143 or CSE 163; choose one of CSE 373, INFO 442 or INFO 443; INFO 300; INFO 330; INFO 340; INFO 360; INFO 380; and two INFO 35x courses
+- Biomedical and Health Informatics Option
+- Data Science Option
 
 #### GRC Equivalent Courses
 
-- `CS 121`
-- `MATH 256`
-- `MATH& 146`
-- `CS 122`
-- `CS 123`
-- `CS& 141`
 - `CS 145`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: One class -> `MATH 256`, `MATH& 146`. complete at least 19 courses from this set. note: Parsed from an inline labeled source requirement.
-- Required before enrollment: One class: INFO 180 , or INFO 201. complete at least 1 course from this set
-- Required before enrollment: CSE 121 , CSE 122 , CSE 123 , CSE 142 , CSE 143 , CSE 154 , CSE 160, CSE 163 or CSE 180 -> `CS 121`. complete at least 1 course from this set. alternate path `CS 122` or `CS 123` or `CS& 141` or `CS 145`
+- Required before enrollment: CSE 143 or CSE 163 -> `CS 145`. complete at least 1 course from this set
+- Required before enrollment: INFO 442 or INFO 443. complete at least 1 course from this set
+- Required before enrollment: Data Science Option: INFO 370, INFO 371, INFO 430, INFO 474, or other approved data science elective. complete at least 1 course from this set
+- Required before enrollment: one of CSE 373, INFO 442 or INFO 443; INFO 300; INFO 330; INFO 340; INFO 360; INFO 380; and two INFO 35x courses. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-informatics:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
+- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### International Studies
@@ -4844,10 +4768,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Program of Study: Major: International Studies: Europe](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR)
-- [Program of Study: Major: International Studies: Europe](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR) - Primary source used for parser-backed UW requirement extraction.
 - [Scoped current requirements: Home](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html)
 - [Scoped current requirements: Home](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html) - Source used for parser-backed UW requirement extraction.
+- [Program of Study: Major: International Studies: Europe](https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR) - Primary source used for parser-backed UW requirement extraction.
 
 ##### International Studies parsed official source requirements
 
@@ -5062,7 +4985,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Jazz Studies, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -5072,10 +4994,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Jazz Studies, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -5085,6 +5007,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Jazz Studies, B.M. parsed choices and pathway notes
 
@@ -5122,37 +5045,33 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Jewish Studies parsed official source requirements
 
-- Diversity and Equity
-- Asian Studies – China Concentration
-- Asian Studies – Japan Concentration
-- Asian Studies – Korea Concentration
-- Asian Studies – South Asia Concentration
-- Asian Studies – Southeast Asia Concentration
 - Jewish Studies offers all students from varied backgrounds and disciplines a comprehensive and interdisciplinary perspective on the study of Jews and Judaism. In learning about the geographic, temporal, philosophical, and cultural diversity of the Jewish experience, students gain critical skills that complement any direction of study and can be applied to myriad future aspirations. You can read more about our programs on the Center for Jewish Studies Website .
 - 50 credits , to include the following:
 - 1. Jewish Language. Students must do one of the following:
 - Complete two years of college-level coursework in one Jewish language or demonstrate second year college-level proficiency in one Jewish language through a proficiency exam ;
+- Complete one year each of college-level coursework in two different Jewish languages or d emonstrate first year college-level proficiency in two different Jewish languages through a proficiency exam .
+- 2. Introductory Courses (15 credits total):
+- RELIG 145: Introduction to Judaism (5 Ssc; AUT)
+- JEW ST 250/HSTCMP 250: Jewish Cultural History (5 Ssc; WIN)
+- One of JSIS 200, JSIS 201, or JSIS 202 (5 Ssc; AUT/WIN/SPR)
+- 3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses.
 
 ##### Jewish Studies parsed official requirement cues
 
-- Diversity and Equity
-- Asian Studies – China Concentration
-- Asian Studies – Japan Concentration
-- Asian Studies – Korea Concentration
-- Asian Studies – South Asia Concentration
-- Asian Studies – Southeast Asia Concentration
 - Jewish Studies offers all students from varied backgrounds and disciplines a comprehensive and interdisciplinary perspective on the study of Jews and Judaism. In learning about the geographic, temporal, philosophical, and cultural diversity of the Jewish experience, students gain critical skills that complement any direction of study and can be applied to myriad future aspirations. You can read more about our programs on the Center for Jewish Studies Website .
 - 50 credits , to include the following:
 - 1. Jewish Language. Students must do one of the following:
 - Complete two years of college-level coursework in one Jewish language or demonstrate second year college-level proficiency in one Jewish language through a proficiency exam ;
+- Complete one year each of college-level coursework in two different Jewish languages or d emonstrate first year college-level proficiency in two different Jewish languages through a proficiency exam .
+- 2. Introductory Courses (15 credits total):
+- RELIG 145: Introduction to Judaism (5 Ssc; AUT)
+- JEW ST 250/HSTCMP 250: Jewish Cultural History (5 Ssc; WIN)
+- One of JSIS 200, JSIS 201, or JSIS 202 (5 Ssc; AUT/WIN/SPR)
+- 3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses.
 
 ##### Jewish Studies parsed choices and pathway notes
 
 - 1. Jewish Language. Students must do one of the following:
-- China Concentration
-- Japan Concentration
-- Korea Concentration
-- Southeast Asia Concentration
 
 #### GRC Equivalent Courses
 
@@ -5182,33 +5101,33 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Korean degree requirements](https://asian.washington.edu/ba-korean)
-- [Scoped section: NOTE: The below requirements apply to students who declare the Korean major in Winter Quarter 2019 or later. The previou](https://asian.washington.edu/ba-korean) - Source used for parser-backed UW requirement extraction.
+- [UW Korean degree requirements](https://asian.washington.edu/ba-korean) - Source used for parser-backed UW requirement extraction.
 
 ##### Korean parsed official source requirements
 
-- NOTE: The below requirements apply to students who declare the Korean major in Winter Quarter 2019 or later. The previous requirements will still apply to those who declared the Korean major before Winter Quarter 2019 unless special provision is made. Please contact a departmental advisor if you are interested in this option.
-- The Korean Language &amp; Literature major has a requirement of 50-75 credits . The actual number of credits required depends on the level of Korean language attained upon entering the University of Washington.
+- - Any - Diversity (DIV) English Composition (C) Social Sciences (SSc) Natural Sciences (NSc) Quantitative and Symbolic Reasoning (QSR) Arts and Humanities (A&amp;H) Writing (W)
 - 15-45 credits , with a minimum of 15 credits beyond the second year, drawn from the following courses:
-- KOREAN 101, 102, 103 First-Year Korean
-- KOREAN 201, 202, 203 Second-Year Korean
-- KOREAN 301, 302, 303 Third-Year Korean
-- KOREAN 415, 416, 417 Readings in Korean Literature and Culture
-- II. Area-Related Humanities &amp; Social Science Courses:
+- 30 credits . Suggested courses include:
 - 30-35 credits. Suggested courses include:
-- KOREAN 304 Practical Korean Through Korean Dramas
+- 45 credits , with a minimum of 15 credits beyond the second year:
+- ANTH 448 Modern Korean Society
+- ASIAN 207 Special Topics in the Literature &amp; Culture of Asia (when Korea is the topic)
+- ASIAN 263 Great Works of Asian Literature (when Korea is the topic)
+- ASIAN 401 Introduction to Asian Linguistics
+- ASIAN 404 Writing Systems, 3 credits
 
 ##### Korean parsed official requirement cues
 
-- NOTE: The below requirements apply to students who declare the Korean major in Winter Quarter 2019 or later. The previous requirements will still apply to those who declared the Korean major before Winter Quarter 2019 unless special provision is made. Please contact a departmental advisor if you are interested in this option.
-- The Korean Language &amp; Literature major has a requirement of 50-75 credits . The actual number of credits required depends on the level of Korean language attained upon entering the University of Washington.
+- - Any - Diversity (DIV) English Composition (C) Social Sciences (SSc) Natural Sciences (NSc) Quantitative and Symbolic Reasoning (QSR) Arts and Humanities (A&amp;H) Writing (W)
 - 15-45 credits , with a minimum of 15 credits beyond the second year, drawn from the following courses:
-- KOREAN 101, 102, 103 First-Year Korean
-- KOREAN 201, 202, 203 Second-Year Korean
-- KOREAN 301, 302, 303 Third-Year Korean
-- KOREAN 415, 416, 417 Readings in Korean Literature and Culture
-- II. Area-Related Humanities &amp; Social Science Courses:
+- 30 credits . Suggested courses include:
 - 30-35 credits. Suggested courses include:
-- KOREAN 304 Practical Korean Through Korean Dramas
+- 45 credits , with a minimum of 15 credits beyond the second year:
+- ANTH 448 Modern Korean Society
+- ASIAN 207 Special Topics in the Literature &amp; Culture of Asia (when Korea is the topic)
+- ASIAN 263 Great Works of Asian Literature (when Korea is the topic)
+- ASIAN 401 Introduction to Asian Linguistics
+- ASIAN 404 Writing Systems, 3 credits
 
 #### GRC Equivalent Courses
 
@@ -5218,6 +5137,8 @@ On To Do list.
 
 - Required before enrollment: I. Language Courses. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: II. Area-Related Humanities &amp; Social Science Courses. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: I. LANGUAGE COURSES. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: II. AREA-RELATED HUMANITIES &amp; SOCIAL SCIENCE COURSES. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 15 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-korean:source-degree-map:.
@@ -5235,7 +5156,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Scoped section: Project Option (12 credits): Choose from the following:](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
+- [Bachelor of Arts degree with a major in Environmental Design and Sustainability](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html)
 - [Scoped section: Project Option (12 credits): Choose from the following:](https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html) - Source used for parser-backed UW requirement extraction.
 
 ##### Landscape Architecture parsed official source requirements
@@ -5302,9 +5223,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Latin parsed official source requirements
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
 - Degree Requirements
 - Requirements for the major in Latin (52-58 credits) are:
 - Either LATIN 101, LATIN 102, LATIN 103; or LATIN 300, LATIN 301 (10-15 credits)
@@ -5315,9 +5233,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Latin parsed official requirement cues
 
-- M.A. Requirements
-- Ph.D. Requirements
-- Diversity &amp; Equity
 - Degree Requirements
 - Requirements for the major in Latin (52-58 credits) are:
 - Either LATIN 101, LATIN 102, LATIN 103; or LATIN 300, LATIN 301 (10-15 credits)
@@ -5361,37 +5276,29 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Latin American &amp; Caribbean Studies parsed official source requirements
 
-- Diversity and Equity
 - The Latin American and Caribbean Studies major combines language study in Spanish and Portuguese with work in history, the humanities, and the social sciences. It provides a comprehensive, interdisciplinary understanding of this major world region, emphasizing themes such as economic development, popular movements, critical analysis, and hemispheric relations.
-- Asian Studies – China Concentration
-- Asian Studies – Japan Concentration
-- Asian Studies – Korea Concentration
-- Asian Studies – South Asia Concentration
-- Asian Studies – Southeast Asia Concentration
 - Credit: Fulgencio Lazo "Arcoiris del Yoyo" (2013)
 - Major Requirements 52 Credits
 - The Latin American and Caribbean Studies Major consists of 52 credit hours from the below requirements.
+- Introductory Course 1 Course 5 Credits
+- JSIS 201 The Making of the 21st Century SSc 5
+- Provides a historical understanding for major global issues today. Focuses on interdisciplinary social science theories and methods to develop core analytical and writing skills and engage complex questions of causation and effects of global events and forces.
+- LACS History 2 Courses 10 Credits
+- HSTCMP 247 Global Health Histories: Colonial Medicine, Public Health, And International Health In The Global South DIV, SSc 5
+- HSTLAC 185 Race, Gender, And Class In Latin America And The Caribbean DIV, SSc 5
 
 ##### Latin American &amp; Caribbean Studies parsed official requirement cues
 
-- Diversity and Equity
 - The Latin American and Caribbean Studies major combines language study in Spanish and Portuguese with work in history, the humanities, and the social sciences. It provides a comprehensive, interdisciplinary understanding of this major world region, emphasizing themes such as economic development, popular movements, critical analysis, and hemispheric relations.
-- Asian Studies – China Concentration
-- Asian Studies – Japan Concentration
-- Asian Studies – Korea Concentration
-- Asian Studies – South Asia Concentration
-- Asian Studies – Southeast Asia Concentration
 - Credit: Fulgencio Lazo "Arcoiris del Yoyo" (2013)
 - Major Requirements 52 Credits
 - The Latin American and Caribbean Studies Major consists of 52 credit hours from the below requirements.
-
-##### Latin American &amp; Caribbean Studies parsed choices and pathway notes
-
-- China Concentration
-- Japan Concentration
-- Korea Concentration
-- South Asia Concentration
-- Southeast Asia Concentration
+- Introductory Course 1 Course 5 Credits
+- JSIS 201 The Making of the 21st Century SSc 5
+- Provides a historical understanding for major global issues today. Focuses on interdisciplinary social science theories and methods to develop core analytical and writing skills and engage complex questions of causation and effects of global events and forces.
+- LACS History 2 Courses 10 Credits
+- HSTCMP 247 Global Health Histories: Colonial Medicine, Public Health, And International Health In The Global South DIV, SSc 5
+- HSTLAC 185 Race, Gender, And Class In Latin America And The Caribbean DIV, SSc 5
 
 #### GRC Equivalent Courses
 
@@ -5411,7 +5318,6 @@ Source-generated from parsed UW requirement-source registries.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-latin-american-and-caribbean-studies:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
-- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Law, Societies & Justice
@@ -5431,35 +5337,34 @@ Source-generated from parsed UW requirement-source registries.
 ##### Law, Societies &amp; Justice parsed official source requirements
 
 - LSJ Gold Curriculum Requirements | Law, Societies &amp; Justice | University of Washington
-- Major Requirements
-- Honors Option
-- Requirements &amp; Admissions
-- Diversity Statement
 - LSJ Gold Curriculum Requirements
 - LSJ Gold Curriculum Major Requirements (effective Autumn 2024)
 - Minimum 56-60 credits
 - This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.
 - Core Courses (20 credits)
+- Introduction to Law, Societies &amp; Justice (5 credits)
+- Human Rights OR Law Courses (10 credits): two courses at the 300-level. See departmental approved course list.
+- Capstone Seminar (5 credits) : at least one course at the 400-level. Must be an LSJ 400-level. See departmental approved course list.
+- 300-Level LSJ Courses (min. 20 credits)
 
 ##### Law, Societies &amp; Justice parsed official requirement cues
 
 - LSJ Gold Curriculum Requirements | Law, Societies &amp; Justice | University of Washington
-- Major Requirements
-- Honors Option
-- Requirements &amp; Admissions
-- Diversity Statement
 - LSJ Gold Curriculum Requirements
 - LSJ Gold Curriculum Major Requirements (effective Autumn 2024)
 - Minimum 56-60 credits
 - This information is to be used for planning. Check your Degree Audit Reporting System (DARS) or meet with an adviser to ensure you have met all degree requirements.
 - Core Courses (20 credits)
+- Introduction to Law, Societies &amp; Justice (5 credits)
+- Human Rights OR Law Courses (10 credits): two courses at the 300-level. See departmental approved course list.
+- Capstone Seminar (5 credits) : at least one course at the 400-level. Must be an LSJ 400-level. See departmental approved course list.
+- 300-Level LSJ Courses (min. 20 credits)
 
 ##### Law, Societies &amp; Justice parsed choices and pathway notes
 
 - Some of these courses can alternatively be used for completion of the 300-level or electives sections, but the student will need to choose whether to use as a core, 300-level, or elective. They cannot work towards multiple requirements simultaneously.
 - An LSJ Capstone Seminar course is a small discussion-driven course on a focused topic at the 400-level. Students can expect plenty of reading, writing, discussion, and active participation in the topic. These same courses can alternatively be used for completion of the electives section, but the student will need to choose whether to use as an elective or capstone seminar. They cannot work towards two requirements simultaneously.
 - Some of these courses can alternatively be used for completion of the core or electives section, but the student will need to choose whether to use as a 300-level, core, or elective. They cannot work towards multiple requirements simultaneously.
-- Honors Option
 
 #### GRC Equivalent Courses
 
@@ -5469,6 +5374,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Human Rights OR Law Courses (10 credits): two courses at the 300-level. See departmental approved course list. Capstone Seminar (5 credits) : at least one course at the 400-level. Must be an LSJ 400-level. See departmental approved course list.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Capstone Seminar (5 credits) : at least one course at the 400-level. Must be an LSJ 400-level. See departmental approved course list.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Upper-Division Elective Credit (16-20 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: At least four (4) upper-division courses (each course must be a minimum of 3 credits) to reach 16 credits. Minimum one (1) course must be completed at the 400-level. See departmental approved course list.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 20 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
@@ -5492,10 +5398,11 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Linguistics B.A. requirements](https://linguistics.washington.edu/ba-linguistics)
-- [Scoped section: The following is an outline of the required courses for the Linguistics major:](https://linguistics.washington.edu/ba-linguistics) - Source used for parser-backed UW requirement extraction.
+- [UW Linguistics B.A. requirements](https://linguistics.washington.edu/ba-linguistics) - Source used for parser-backed UW requirement extraction.
 
 ##### Linguistics parsed official source requirements
 
+- Degree Requirements
 - The following is an outline of the required courses for the Linguistics major:
 - Introductory course in linguistics (5 credits):
 - Core courses (25 credits):
@@ -5505,10 +5412,10 @@ Source-generated from parsed UW requirement-source registries.
 - Language courses (30 credits):
 - Elective courses (20 credits):
 - Additional credits in linguistics or related fields. For full details, see the Elective Requirement section below.
-- Total credits: 50, in addition to required language courses
 
 ##### Linguistics parsed official requirement cues
 
+- Degree Requirements
 - The following is an outline of the required courses for the Linguistics major:
 - Introductory course in linguistics (5 credits):
 - Core courses (25 credits):
@@ -5518,7 +5425,6 @@ Source-generated from parsed UW requirement-source registries.
 - Language courses (30 credits):
 - Elective courses (20 credits):
 - Additional credits in linguistics or related fields. For full details, see the Elective Requirement section below.
-- Total credits: 50, in addition to required language courses
 
 #### GRC Equivalent Courses
 
@@ -5526,7 +5432,7 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: major preparation. note: Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: LING 220 or LING 270. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-linguistics:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -5586,11 +5492,13 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: MARINE BIOLOGY MAJOR ELECTIVES (25 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: MAJOR Elective Credit (25 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: OTHER ELECTIVES (Additional courses to a total of 25 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Spring. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: complete the six-credit integrative field experience requirement with the remaining three credits applied to ‘other marine biology elective’. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Introductory Marine Science. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
+- Required before enrollment: major Elective Credit (1 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
+- Required before enrollment: major Elective Credit (3 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: FHL 430 or FHL 440 or FHL 470. complete at least 1 course from this set
 - Required before enrollment: \[Page 5\]  Physiology: FISH/OCEAN/MARBIO 270 or BIOL 220 -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. complete at least 1 course from this set
 - Required before enrollment: \[Page 5\]  Communications: MARBIO 305 or FHL 333. complete at least 1 course from this set
@@ -5622,10 +5530,10 @@ Source-generated from parsed UW requirement-source registries.
 - \[Course Prereq. is AA 210\]
 - \[pr: MATH 125\] or Honors Calculus sequence
 - \[pr: MATH 126\] or Honors Calculus sequence
-- \* ENTRE 370
-- \* ENTRE 440
+- \* The University-required 7 additional writing credits will be met by taking MSE core courses.
 - \*\*Student completing the Nanoscience and Molecular Engineering (NME) degree option must enroll in NME 220 during Spring of sophomore or junior year.
 - \*\*Student completing the Nanoscience and Molecular Engineering (NME) degree option must enroll in NME 220 during Spring sophomore to declare before Autumn of the following academic year.
+- ‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
 - 12 credits of written and oral communication
 - 15 credits of technical elective courses
 
@@ -5635,10 +5543,10 @@ Source-generated from parsed UW requirement-source registries.
 - \[Course Prereq. is AA 210\]
 - \[pr: MATH 125\] or Honors Calculus sequence
 - \[pr: MATH 126\] or Honors Calculus sequence
-- \* ENTRE 370
-- \* ENTRE 440
+- \* The University-required 7 additional writing credits will be met by taking MSE core courses.
 - \*\*Student completing the Nanoscience and Molecular Engineering (NME) degree option must enroll in NME 220 during Spring of sophomore or junior year.
 - \*\*Student completing the Nanoscience and Molecular Engineering (NME) degree option must enroll in NME 220 during Spring sophomore to declare before Autumn of the following academic year.
+- ‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
 - 12 credits of written and oral communication
 - 15 credits of technical elective courses
 
@@ -5647,14 +5555,18 @@ Source-generated from parsed UW requirement-source registries.
 - Diversity-DIV (3cr) – (choose an overlap with A&amp;H/SSc course)
 - Diversity-DIV (5cr) – (choose an overlap with A&amp;H/SSc course)
 - Wondering what technical electives to select? Check out MSE Concentration Areas:
+- Introduction to Molecular and Nanoscale Principles (NOT eligible elective for NME option students)
 - Nanoscience and Molecular Engineering (NME) Option
 
 #### GRC Equivalent Courses
 
 - `CHEM& 161`
-- `CS 122`
+- `CHEM& 261`
+- `CHEM& 262`
+- `CS 123`
 - `ENGL& 101`
 - `ENGR 140`
+- `ENGR& 114`
 - `ENGR& 214`
 - `ENGR& 225`
 - `MATH 238`
@@ -5668,20 +5580,17 @@ Source-generated from parsed UW requirement-source registries.
 - `PHYS& 223`
 - `ENGR 250`
 - `CS& 141`
+- `CS 122`
 - `BIOL& 211`
 - `BIOL& 212`
 - `BIOL& 213`
 - `CHEM& 162`
 - `CHEM& 163`
-- `CHEM& 261`
-- `CHEM& 262`
 - `PHYS 225`
-- `CS 123`
-- `ENGR& 114`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Scientific computing -> `CS 122`. complete at least 1 course from this set. alternate path `ENGR 250` or `CS& 141`
+- Required before enrollment: Scientific computing -> `ENGR 250`, `CS& 141`, `CS 122`. complete at least 1 course from this set
 - Required before enrollment: MATH 207 Differential Equations -> `MATH 238`. complete at least 1 course from this set
 - Required before enrollment: MATH 208 Matrix Algebra -> `MATH 240`. complete at least 1 course from this set
 - Required before enrollment: One (1) Math Elective -> `MATH& 264`. complete at least 1 course from this set
@@ -5753,6 +5662,7 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: MATH 208 or MATH 134 -> `MATH 240`. complete at least 1 course from this set
+- Required before enrollment: Option Elective Credit (28 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: Major Option Electives exclude MATH 300, 382, 397, 398, 399, 497, 498, 499, CR/NC, independent study, research, seminars, internships; can apply credits from. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-mathematics:source-degree-map:.
@@ -5777,32 +5687,28 @@ Source-generated from parsed UW requirement-source registries.
 ##### Mechanical Engineering parsed official source requirements
 
 - BSME degree requirements | UW Department of Mechanical Engineering
-- Diversity, equity and inclusion
-- Diversity, equity &amp; inclusion
-- Why choose Mechanical Engineering?
-- Degree requirements
-- BSME degree requirements
 - A total of 180 credits are required for the BSME degree. Regardless of the number of mechanical engineering courses taken at another institution, a minimum of 45 credits in ME courses must be taken in residence at the University of Washington.
 - MATH 124 , MATH 125 , MATH 126
 - MATH 207 (or MATH 307)‡ or AMATH 351
 - MATH 208 (or MATH 308)‡ or AMATH 352
+- MATH 209 (or MATH 309) or MATH 224 (or MATH 324)‡ or AMATH 353
+- INDE 315 (or STAT 290 or 390)
+- ‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
+- PHYS 121 , PHYS 122 , PHYS 123
+- CHEM 142 , CHEM 152
 
 ##### Mechanical Engineering parsed official requirement cues
 
 - BSME degree requirements | UW Department of Mechanical Engineering
-- Diversity, equity and inclusion
-- Diversity, equity &amp; inclusion
-- Why choose Mechanical Engineering?
-- Degree requirements
-- BSME degree requirements
 - A total of 180 credits are required for the BSME degree. Regardless of the number of mechanical engineering courses taken at another institution, a minimum of 45 credits in ME courses must be taken in residence at the University of Washington.
 - MATH 124 , MATH 125 , MATH 126
 - MATH 207 (or MATH 307)‡ or AMATH 351
 - MATH 208 (or MATH 308)‡ or AMATH 352
-
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Why choose Mechanical Engineering?
+- MATH 209 (or MATH 309) or MATH 224 (or MATH 324)‡ or AMATH 353
+- INDE 315 (or STAT 290 or 390)
+- ‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
+- PHYS 121 , PHYS 122 , PHYS 123
+- CHEM 142 , CHEM 152
 
 #### GRC Equivalent Courses
 
@@ -5842,7 +5748,6 @@ Source-generated from parsed UW requirement-source registries.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-mechanical-engineering:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
-- note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Medical Laboratory Science
@@ -5857,10 +5762,13 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Learn more about these phases and our graduation requirements.](https://dlmp.uw.edu/education/mls-requirements)
-- [Scoped section: During the freshmen and sophomore years, known as the pre-professional phase, students must earn a minimum of 90 quarter](https://dlmp.uw.edu/education/mls-requirements) - Source used for parser-backed UW requirement extraction.
+- [Learn more about these phases and our graduation requirements.](https://dlmp.uw.edu/education/mls-requirements) - Source used for parser-backed UW requirement extraction.
 
 ##### Medical Laboratory Science parsed official source requirements
 
+- MLS Undergraduate Program: Requirements | Education | Dept. of Laboratory Medicine &amp; Pathology | UW Medicine
+- MLS Undergraduate Program: Requirements
+- Graduation Requirements
 - During the freshmen and sophomore years, known as the pre-professional phase, students must earn a minimum of 90 quarter credits, including both prerequisite courses for medical laboratory science and general education courses required for graduation from the University of Washington, as outlined below.
 - Specific Requirements
 - 1. Prerequisite course requirements
@@ -5868,12 +5776,12 @@ Source-generated from parsed UW requirement-source registries.
 - Organic Chemistry 223 or 237: 1 quarter or 1 semester of Organic Chemistry (no lab required)
 - Any Basic 5-credit Statistics course (we do not accept Calculus)
 - 2. Completion of University writing, reasoning, and general education requirements by the time you graduate
-- Below are the General Education Requirements for the School of Medicine, which is a graduation requirement, not an MLS program requirement. Therefore, these do not have to be complete to start the MLS program but must be complete in order to graduate. However, the MLS program curriculum is rigorous and therefore recommended that you have as many general education courses complete (if not all) prior to starting the program.
-- 5 credits of English Composition (C), plus a minimum 7 credits of additional Writing-intensive (W) courses
-- 5 credits of Reasoning (RSN) - the Statistics or Chemistry course that you take to meet the program prerequisite requirement will satisfy this general education requirement
 
 ##### Medical Laboratory Science parsed official requirement cues
 
+- MLS Undergraduate Program: Requirements | Education | Dept. of Laboratory Medicine &amp; Pathology | UW Medicine
+- MLS Undergraduate Program: Requirements
+- Graduation Requirements
 - During the freshmen and sophomore years, known as the pre-professional phase, students must earn a minimum of 90 quarter credits, including both prerequisite courses for medical laboratory science and general education courses required for graduation from the University of Washington, as outlined below.
 - Specific Requirements
 - 1. Prerequisite course requirements
@@ -5881,9 +5789,6 @@ Source-generated from parsed UW requirement-source registries.
 - Organic Chemistry 223 or 237: 1 quarter or 1 semester of Organic Chemistry (no lab required)
 - Any Basic 5-credit Statistics course (we do not accept Calculus)
 - 2. Completion of University writing, reasoning, and general education requirements by the time you graduate
-- Below are the General Education Requirements for the School of Medicine, which is a graduation requirement, not an MLS program requirement. Therefore, these do not have to be complete to start the MLS program but must be complete in order to graduate. However, the MLS program curriculum is rigorous and therefore recommended that you have as many general education courses complete (if not all) prior to starting the program.
-- 5 credits of English Composition (C), plus a minimum 7 credits of additional Writing-intensive (W) courses
-- 5 credits of Reasoning (RSN) - the Statistics or Chemistry course that you take to meet the program prerequisite requirement will satisfy this general education requirement
 
 #### GRC Equivalent Courses
 
@@ -6133,7 +6038,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Music Composition, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in composition within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - Application to the Composition Program occurs during the student's second year of study following successful completion of MUSIC 202/205, 120, 216, 217, and 218. Any student interested in becoming a Composition major is encouraged to meet individually with a Composition Faculty Member .
 - Complete: a) MUSIC 202/205, b) MUSIC 216-217-218, and c) MUSIC 120. Completion of these requirements does not guarantee admission. Transfer students must consult with the Undergraduate Advisor for an evaluation of applicable music transfer courses. During their first and second year students interested in becoming Composition majors are strongly encouraged to attend Composers Lab, the weekly meeting of all Composition majors and composition faculty. This class is a 0‐credit class that meets every Friday in the academic year, 12:30‐2:20 pm. Email Prof. Hodge ( <hhodge@uw.edu> ) for the current meeting location.
@@ -6143,10 +6047,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 120: Survey of Music History ( Aut/Win/Spr ) (5 credits) or proficiency exam
 - MUSIC 201, 202: First-Year Theory I, II ( Winter, Spring ) (3,3) (6 credits)
 - MUSIC 204, 205: First-Year Ear Training I, II ( Winter, Spring ) (1,1) (2 credits)
+- MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 
 ##### Music Composition, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in composition within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - Application to the Composition Program occurs during the student's second year of study following successful completion of MUSIC 202/205, 120, 216, 217, and 218. Any student interested in becoming a Composition major is encouraged to meet individually with a Composition Faculty Member .
 - Complete: a) MUSIC 202/205, b) MUSIC 216-217-218, and c) MUSIC 120. Completion of these requirements does not guarantee admission. Transfer students must consult with the Undergraduate Advisor for an evaluation of applicable music transfer courses. During their first and second year students interested in becoming Composition majors are strongly encouraged to attend Composers Lab, the weekly meeting of all Composition majors and composition faculty. This class is a 0‐credit class that meets every Friday in the academic year, 12:30‐2:20 pm. Email Prof. Hodge ( <hhodge@uw.edu> ) for the current meeting location.
@@ -6156,6 +6060,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 120: Survey of Music History ( Aut/Win/Spr ) (5 credits) or proficiency exam
 - MUSIC 201, 202: First-Year Theory I, II ( Winter, Spring ) (3,3) (6 credits)
 - MUSIC 204, 205: First-Year Ear Training I, II ( Winter, Spring ) (1,1) (2 credits)
+- MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 
 #### GRC Equivalent Courses
 
@@ -6188,7 +6093,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Music Education, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6198,10 +6102,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Music Education, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6211,6 +6115,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 #### GRC Equivalent Courses
 
@@ -6251,6 +6156,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Neuroscience stay-at-Green-River degree support
 
+- CHEM 120
 - PHYS 114
 
 ##### Neuroscience parsed official source requirements
@@ -6291,31 +6197,36 @@ Source-generated from parsed UW requirement-source registries.
 - `BIOL& 212`
 - `BIOL& 213`
 - `CHEM& 121`
-- `CHEM& 131`
 - `CHEM& 161`
 - `CHEM& 162`
 - `CHEM& 163`
-- `CHEM& 261`
-- `CHEM& 262`
-- `CHEM& 263`
 - `MATH& 151`
 - `PHYS& 114`
 - `PHYS& 221`
 - `PHYS& 222`
+- `CHEM& 131`
 - `PHYS& 115`
 - `MATH& 152`
 
 #### Required sequences for specific credits
 
 - Required before application: PHYS 121 -> `PHYS& 221`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for PHYS 121.
+- Required before enrollment: 3) Biology (15 credits minimum) -> `BIOL& 211`, `BIOL& 212`, `BIOL& 213`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: b) Chem 142,152 or 143,153 and Chem 223,224 (General Chemistry with Organic Chemistry Short Program). complete at least 1 course from this set
+- Required before enrollment: CHEM 142 or CHEM 152 or CHEM 162 or CHEM 237 or CHEM 238 or CHEM 239 or CHEM 145 or CHEM 155 or CHEM 165 or CHEM 335 or CHEM 336 or CHEM 337 -> `CHEM& 161`, `CHEM& 162`, `CHEM& 163`. complete at least 1 course from this set
+- Required before enrollment: 1) Chemistry -> `CHEM& 121`. complete at least 1 course from this set. alternate path `CHEM& 131`
 - Required before enrollment: 2) Physics -> `PHYS& 114`, `PHYS& 154`. complete at least 1 course from this set. alternate path `PHYS& 115`, `PHYS& 155`
 - Required before enrollment: a) Math 124,125 (Calculus with Analytic Geometry) (Recommended or required for some medical schools) -> `MATH& 151`. complete at least 1 course from this set. alternate path `MATH& 152`
+- Worth finishing at Green River: CHEM 120 -> `CHEM& 121`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for CHEM 120.
 - Worth finishing at Green River: PHYS 114 -> `PHYS& 114`, `PHYS& 154`. note: Auto-promoted because the official UW Green River equivalency guide maps PHYS 114 through a valid multi-course Green River sequence that the planner was missing.
 - note: Added the Green River course path PHYS&amp; 221 because the current planner rows did not expose it yet.
 - note: Auto-promoted Green River coverage gap on April 12, 2026.
 - note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 121 under uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201. The planner was missing the Green River course path PHYS&amp; 221 for this UW requirement.
 - note: Guide-backed rule: uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201.
 - note: Source parse confidence: high.
+- note: Added the Green River course path CHEM&amp; 121 because the current planner rows did not expose it yet.
+- note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CHEM 120 under uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101. The planner was missing the Green River course path CHEM&amp; 121 for this UW requirement.
+- note: Guide-backed rule: uw-grc-guide:0196:chemistry:chemand-121-5-formerly-chem-101.
 - note: Added the Green River course path PHYS&amp; 114, PHYS&amp; 154 because the current planner rows did not expose it yet.
 - note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes PHYS 114 under uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150. The planner was missing the Green River course path PHYS&amp; 114, PHYS&amp; 154 for this UW requirement.
 - note: Guide-backed rule: uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150.
@@ -6337,7 +6248,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Norwegian degree requirements](https://scandinavian.washington.edu/ba-norwegian)
-- [Scoped section: B.A. in Norwegian](https://scandinavian.washington.edu/ba-norwegian) - Source used for parser-backed UW requirement extraction.
+- [UW Norwegian degree requirements](https://scandinavian.washington.edu/ba-norwegian) - Source used for parser-backed UW requirement extraction.
 
 ##### Norwegian parsed official source requirements
 
@@ -6509,7 +6420,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Orchestral Instruments, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6519,10 +6429,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Orchestral Instruments, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6532,6 +6442,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Orchestral Instruments, B.M. parsed choices and pathway notes
 
@@ -6569,7 +6480,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Organ, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6579,10 +6489,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Organ, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6592,6 +6502,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 #### GRC Equivalent Courses
 
@@ -6625,7 +6536,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Percussion Performance, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6635,10 +6545,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Sedcond-Year Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUHST 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Percussion Performance, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6648,6 +6558,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Sedcond-Year Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUHST 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 #### GRC Equivalent Courses
 
@@ -6714,8 +6625,8 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Core Courses (25 credits) -> `PHIL& 120`. complete at least 4 courses from this set. note: Parsed from an inline required course list; embedded alternatives are separate choice groups.
 - Required before enrollment: 10 credits of Natural World. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Core Courses (25 credits): HSTCMP 311, HSTCMP 312, HSTCMP 390; PHIL 160 or PHIL 460; PHIL 120. Minimum 2.0 grade in each course and overall minimum 2.50 GPA. -> `PHIL& 120`. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: Electives: 25 credits from the following, of which at least 10 must be PHIL courses and at least 5 must be HIST courses (or others upon petition): ESS 404, HIST 211, HIST 215, HIST 310, HIST 313 (or ASTR 313), HIST 314, HIST 315, HIST 316, HIST 317 (also MHE 422), HIST 318 (also MHE 424), HIST 412; PHIL 243, PHIL 350, PHIL 360, PHIL 406, PHIL 450, PHIL 460 (if PHIL 160 taken), PHIL 464, PHIL 466, PHIL 473, PHIL 481, PHIL 482, PHIL 483. Minimum 2.0 grade in each class.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Core Courses (25 credits): HSTCMP 311, HSTCMP 312, HSTCMP 390; PHIL 160 or PHIL 460; PHIL 120. Minimum 2.0 grade in each course and overall minimum 2.50 GPA.. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Program Elective Credit (25 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: 30 credits of Natural World. note: Credit bucket placeholder extracted from source text.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-philosophy:source-degree-map:.
@@ -6850,7 +6761,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Piano, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6860,10 +6770,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Piano, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -6873,6 +6783,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Piano, B.M. parsed choices and pathway notes
 
@@ -6920,28 +6831,28 @@ Source-generated from parsed UW requirement-source registries.
 ##### Political Science parsed official source requirements
 
 - Political Science Major Declaration and Requirements | Department of Political Science | University of Washington
-- Requirements
-- International Security and Political Economy Option Courses
-- Arts &amp; Humanities Courses
-- Natural Sciences Courses
 - Political Science Major Declaration and Requirements
 - Political Science is a minimum requirement major. Students who meet the minimum requirements may declare the major.
 - Minimum Requirements
 - Major Requirements
 - International Security Option
+- Political Economy Option
+- Three political science introductory courses chosen from POL S 101, 201, 202, 203, 204 or approved equivalent. Students may submit the Political Science Major Declaration Request Form when they have completed at least two introductory courses and are enrolled in and attending the third course. If more than one course is in progress, consult with a Political Science adviser about when you are eligible to submit the major declaration request.
+- Week 3: Review of major declaration submissions to verify that minimum requirements have been met.
+- Students must complete at least 50 credits, 15 introductory plus 35 upper-level credits, with minimum grades of 2.0 in each course used to fulfill major requirements.
 
 ##### Political Science parsed official requirement cues
 
 - Political Science Major Declaration and Requirements | Department of Political Science | University of Washington
-- Requirements
-- International Security and Political Economy Option Courses
-- Arts &amp; Humanities Courses
-- Natural Sciences Courses
 - Political Science Major Declaration and Requirements
 - Political Science is a minimum requirement major. Students who meet the minimum requirements may declare the major.
 - Minimum Requirements
 - Major Requirements
 - International Security Option
+- Political Economy Option
+- Three political science introductory courses chosen from POL S 101, 201, 202, 203, 204 or approved equivalent. Students may submit the Political Science Major Declaration Request Form when they have completed at least two introductory courses and are enrolled in and attending the third course. If more than one course is in progress, consult with a Political Science adviser about when you are eligible to submit the major declaration request.
+- Week 3: Review of major declaration submissions to verify that minimum requirements have been met.
+- Students must complete at least 50 credits, 15 introductory plus 35 upper-level credits, with minimum grades of 2.0 in each course used to fulfill major requirements.
 
 ##### Political Science parsed choices and pathway notes
 
@@ -7009,48 +6920,53 @@ Source-generated from parsed UW requirement-source registries.
 ##### Psychology parsed official source requirements
 
 - Graduation Requirements | Department of Psychology
-- Diversity
-- Diversity Steering Committee
-- Diversity Science Specialization
-- Degree Requirements
-- Graduation Requirements
 - To earn a BA or BS degree in Psychology at UW, you’ll complete a combination of major-specific courses and university-wide general education requirements . For students who have 60 or more quarter credits, you may have completed a number of the Social Sciences (SSc), Natural Science (NSc), and Reasoning (R) requirements, but be sure to plan for the following:
 - English Composition (C) – 5 credits
 - Additional Writing (W) – 10 credits
 - Diversity (DIV) – 5 credits
+- Arts &amp; Humanities (A&amp;H) – 20 credits
+- The information below outlines the degree requirements and can help you plan your path to graduation. For course details listed below, see the Psychology course descriptions .
+- Minimum of 53 credits
+- Psych 101 Introduction to Psychology (5 credits)
+- Psych 202 Biopsychology (5 credits)
 
 ##### Psychology parsed official requirement cues
 
 - Graduation Requirements | Department of Psychology
-- Diversity
-- Diversity Steering Committee
-- Diversity Science Specialization
-- Degree Requirements
-- Graduation Requirements
 - To earn a BA or BS degree in Psychology at UW, you’ll complete a combination of major-specific courses and university-wide general education requirements . For students who have 60 or more quarter credits, you may have completed a number of the Social Sciences (SSc), Natural Science (NSc), and Reasoning (R) requirements, but be sure to plan for the following:
 - English Composition (C) – 5 credits
 - Additional Writing (W) – 10 credits
 - Diversity (DIV) – 5 credits
+- Arts &amp; Humanities (A&amp;H) – 20 credits
+- The information below outlines the degree requirements and can help you plan your path to graduation. For course details listed below, see the Psychology course descriptions .
+- Minimum of 53 credits
+- Psych 101 Introduction to Psychology (5 credits)
+- Psych 202 Biopsychology (5 credits)
 
 #### GRC Equivalent Courses
 
-- `BIOL& 211`
-- `BIOL& 212`
-- `BIOL& 213`
 - `BIOL& 241`
 - `BIOL& 242`
+- `ENGL& 101`
 - `MATH 147`
 - `MATH& 142`
 - `MATH& 148`
 - `MATH& 151`
-- `PHIL& 120`
 - `PSYC 209`
 - `PSYC 225`
 - `PSYC& 100`
+- `PHIL& 120`
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Core Courses. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: One biology course (5 credits) -> `BIOL& 241`, `BIOL& 242`. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Laboratory Course. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: One social science course-Anthropology or Sociology (3-5 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 60 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 20 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: 3-5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Worth finishing at Green River: BIOL 118 -> `BIOL& 241`, `BIOL& 242`. note: Auto-promoted because the official UW Green River equivalency guide maps BIOL 118 through a valid multi-course Green River sequence that the planner was missing.
 - Worth finishing at Green River: MATH 111 -> `MATH 147`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for MATH 111.
 - Worth finishing at Green River: MATH 112 -> `MATH& 148`. note: Auto-promoted because the official UW Green River equivalency guide provides a clean direct Green River transfer match for MATH 112.
@@ -7194,7 +7110,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [Bachelor of Arts degree with a major in Public Service and Policy](https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#credential-67d34bb05d7813efef078283)
 - [UW Public Service and Policy degree requirements](https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html)
 - [UW Public Service and Policy degree requirements](https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html) - Source used for parser-backed UW requirement extraction.
 
@@ -7324,34 +7239,36 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Slavic Languages &amp; Literatures parsed official source requirements
 
-- Major Requirements
-- Completion of the second year or higher of ONE of the following East European languages:
+- A minimum of 15 graded credits presented for this major must be completed through the UW.
+- A minimum of 20 credits from the following list of courses (no more than 5 credits may be taken at the 100 level):
+- A minimum of 50% of credits applied to the major must be taken at the 300 or 400 level.
+- BCMS 420: Literature, Film &amp; Culture of the Former Yugoslavia and Yugoslav Successor States
 - Bosnian/Croatian/Montenegrin/Serbian (BCMS 406 or 410)
 - Bulgarian (BULGR 406)
+- Completion of the second year or higher of ONE of the following East European languages:
 - Czech (CZECH 406)
-- Polish (POLSH 406)
-- Slovene (SLVN 406)
-- Ukrainian (UKR 406)
-- SLAVIC 101, SLAVIC 320, SLAVIC 370, and SLAVIC 425 (20 credits)
-- A minimum of 20 credits from the following list of courses (no more than 5 credits may be taken at the 100 level):
+- CZECH 420: Topics in Czech Literature
+- Major Requirements
 
 ##### Slavic Languages &amp; Literatures parsed official requirement cues
 
-- Major Requirements
-- Completion of the second year or higher of ONE of the following East European languages:
+- A minimum of 15 graded credits presented for this major must be completed through the UW.
+- A minimum of 20 credits from the following list of courses (no more than 5 credits may be taken at the 100 level):
+- A minimum of 50% of credits applied to the major must be taken at the 300 or 400 level.
+- BCMS 420: Literature, Film &amp; Culture of the Former Yugoslavia and Yugoslav Successor States
 - Bosnian/Croatian/Montenegrin/Serbian (BCMS 406 or 410)
 - Bulgarian (BULGR 406)
+- Completion of the second year or higher of ONE of the following East European languages:
 - Czech (CZECH 406)
-- Polish (POLSH 406)
-- Slovene (SLVN 406)
-- Ukrainian (UKR 406)
-- SLAVIC 101, SLAVIC 320, SLAVIC 370, and SLAVIC 425 (20 credits)
-- A minimum of 20 credits from the following list of courses (no more than 5 credits may be taken at the 100 level):
+- CZECH 420: Topics in Czech Literature
+- Major Requirements
 
 ##### Slavic Languages &amp; Literatures parsed choices and pathway notes
 
 - Completion of the second year or higher of ONE of the following East European languages:
 - PLEASE NOTE: The University of Washington requires a minimum of 50 credits for all majors. Students who test out of Slavic Department language requirements MUST STILL complete 50 credits appropriate to the Eastern European Languages, Literature, and Culture major , and should select alternate courses with the assistance of an adviser in the Humanities Academic Services Center .
+- B.A.: Eastern European Languages, Literature, and Culture
+- Minor: Russian Language , Slavic Languages , or Russian and Slavic Literatures
 
 #### GRC Equivalent Courses
 
@@ -7494,6 +7411,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### South Asian Languages &amp; Cultures parsed official source requirements
 
+- A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.
+- Admission Requirements
 - Minimum 20 credits of college coursework (or department-approved equivalent) in the intended primary language of concentration. The most recent course completed in the intended primary language of concentration must be taken through the UW, with a minimum 2.5 grade.
 - Note : Students entering the junior year without two years of the appropriate foreign language are not able to complete the degree requirements in two years unless they take accelerated courses through the UW during summer quarter.
 - Degree Requirements
@@ -7502,11 +7421,11 @@ Source-generated from parsed UW requirement-source registries.
 - Bengali: BENG 101, BENG 102, BENG 103, BENG 201, BENG 202, BENG 203, BENG 301, BENG 302, BENG 303, BENG 499
 - Hindi: HINDI 101, HINDI 102, HINDI 103, HINDI 201, HINDI 202, HINDI 203, HINDI 301, HINDI 302, HINDI 303, HINDI 317, HINDI 321, HINDI 323, HINDI 324, HINDI 417, HINDI 421, HINDI 422, HINDI 423, HINDI 424, HINDI 431, HINDI 499
 - Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499
-- Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499
-- Literature (5 credits): one South Asian literature course chosen from the following list of approved courses.
 
 ##### South Asian Languages &amp; Cultures parsed official requirement cues
 
+- A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.
+- Admission Requirements
 - Minimum 20 credits of college coursework (or department-approved equivalent) in the intended primary language of concentration. The most recent course completed in the intended primary language of concentration must be taken through the UW, with a minimum 2.5 grade.
 - Note : Students entering the junior year without two years of the appropriate foreign language are not able to complete the degree requirements in two years unless they take accelerated courses through the UW during summer quarter.
 - Degree Requirements
@@ -7515,8 +7434,6 @@ Source-generated from parsed UW requirement-source registries.
 - Bengali: BENG 101, BENG 102, BENG 103, BENG 201, BENG 202, BENG 203, BENG 301, BENG 302, BENG 303, BENG 499
 - Hindi: HINDI 101, HINDI 102, HINDI 103, HINDI 201, HINDI 202, HINDI 203, HINDI 301, HINDI 302, HINDI 303, HINDI 317, HINDI 321, HINDI 323, HINDI 324, HINDI 417, HINDI 421, HINDI 422, HINDI 423, HINDI 424, HINDI 431, HINDI 499
 - Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499
-- Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499
-- Literature (5 credits): one South Asian literature course chosen from the following list of approved courses.
 
 #### GRC Equivalent Courses
 
@@ -7529,7 +7446,6 @@ On To Do list.
 - Required before enrollment: Hindi. complete at least 20 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Sanskrit. complete at least 13 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Urdu. complete at least 18 courses from this set. note: Parsed from an inline labeled source requirement.
-- Required before enrollment: Minimum 20 credits of college coursework (or department-approved equivalent) in the intended primary language of concentration. The most recent course completed in the intended primary language of concentration must be taken through the UW, with a minimum 2.5 grade.. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 20 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-seattle-south-asian-languages-and-cultures:source-degree-map:.
@@ -7554,27 +7470,27 @@ Source-generated from parsed UW requirement-source registries.
 
 - Spanish Major Requirements | Spanish &amp; Portuguese Studies | University of Washington
 - Spanish Major Requirements
-- Spanish Minor Requirements
-- Portuguese Minor Requirements
-- Diversity Statement
 - A minimum of 50 credits above SPAN 203 are required .
 - Core courses (20 credits)
 - Non-Heritage Language Track Core Courses (20 credits): SPAN 310, 311, 312, and 313
 - SPAN 310 and 311 may be taken at the same time ; you do not need to register for SPAN 310 first.
 - Once you have taken either SPAN 310 or 311, you may register for either 312 or 313.
+- SPAN 312 and 313 may be taken at the same time ; you do not need to register for SPAN 312 first.
+- While you must complete the SPAN 310 - 313 core courses, once you have taken either SPAN 312 or 313, you may begin to take 400-level SPAN courses.
+- Heritage Language Track Core Courses (20 credits): SPAN 314, 315, 316 and either SPAN 312 or SPAN 313
 
 ##### Spanish parsed official requirement cues
 
 - Spanish Major Requirements | Spanish &amp; Portuguese Studies | University of Washington
 - Spanish Major Requirements
-- Spanish Minor Requirements
-- Portuguese Minor Requirements
-- Diversity Statement
 - A minimum of 50 credits above SPAN 203 are required .
 - Core courses (20 credits)
 - Non-Heritage Language Track Core Courses (20 credits): SPAN 310, 311, 312, and 313
 - SPAN 310 and 311 may be taken at the same time ; you do not need to register for SPAN 310 first.
 - Once you have taken either SPAN 310 or 311, you may register for either 312 or 313.
+- SPAN 312 and 313 may be taken at the same time ; you do not need to register for SPAN 312 first.
+- While you must complete the SPAN 310 - 313 core courses, once you have taken either SPAN 312 or 313, you may begin to take 400-level SPAN courses.
+- Heritage Language Track Core Courses (20 credits): SPAN 314, 315, 316 and either SPAN 312 or SPAN 313
 
 #### GRC Equivalent Courses
 
@@ -7717,7 +7633,7 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: MATH 134 -> `MATH& 151`. note: Auto-promoted because the published UW requirement line groups MATH 134 with other options that already resolve to real Green River prep paths.
-- Required before enrollment: Three electives, each at least 3 credits each, chosen from either the general electives list or the computing electives list -> `CS 202`. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Three electives, each at least 3 credits each, chosen from either the general electives list or the computing electives list. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Mathematics -> `MATH 240`, `MATH& 264`. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Statistical theory. complete at least 2 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Statistical and machine learning methodology. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
@@ -7845,12 +7761,12 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: Computation and Data Science elective: choose one approved course -> `ENGR 250`, `CS 121`, `CS 122`, `CS 123`, `CS& 141`, `CS 145`. complete at least 1 course from this set. note: Official UW SBSE source requires one course and accepts AMATH 301, CSE 121/122/123/142/143, CSE 160, INFO/CSE/STAT 180, or Q SCI 256. All accepted options are preserved so a completed Green River equivalent can satisfy the bucket without scheduling another option.
 - Required before enrollment: Business, Policy, and Economics elective: choose one approved course -> `ECON& 201`, `ECON& 202`. complete at least 1 course from this set. note: Official UW SBSE source requires one Business, Policy, and Economics course and accepts ECON 200, ECON 201, ESRM/ECON/ENVIR 235, ESRM 320, ESRM 321, ESRM 400, ESRM 423, or ESRM 465. Only accepted options are exposed as the student-facing elective bucket.
 - Required before enrollment: One course is required from each of the following two SBSE Elective Lists -> `ENGR 250`, `CS 121`, `CS 122`, `CS 123`, `CS& 141`, `CS 145`, `ECON& 201`, `ECON& 202`. complete at least 1 course from this set. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: 5 credits of Diversity. note: Parsed from the official BSE/SBSE comparison table.
 - Required before enrollment: 5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Engineering Elective Credit (12 credits). note: Parsed from the official BSE/SBSE comparison table.
 - Required before enrollment: 10 credits of Social Sciences. note: Parsed from the official BSE/SBSE comparison table.
 - Required before enrollment: QSCI 381, INDE 315, or STAT 390. complete at least 1 course from this set. note: Parsed from the official BSE/SBSE comparison table.
 - Required before enrollment: PHYS 121 and PHYS 122 or PHYS 141 and PHYS 142 -> `PHYS& 221`, `PHYS& 222`. complete at least 1 course from this set. note: Parsed from the official BSE/SBSE comparison table.
-- Required before enrollment: 5 credits of Diversity. note: Parsed from the official BSE/SBSE comparison table.
 - note: Added the Green River course path CS 122 because the current planner rows did not expose it yet.
 - note: Auto-promoted Green River coverage gap on April 12, 2026.
 - note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes CSE 122 under uw-grc-guide:0267:computer-science:cs-122-5. The planner was missing the Green River course path CS 122 for this UW requirement.
@@ -7887,7 +7803,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Swedish requirements](https://scandinavian.washington.edu/ba-swedish)
-- [Scoped section: B.A. in Swedish](https://scandinavian.washington.edu/ba-swedish) - Source used for parser-backed UW requirement extraction.
+- [UW Swedish requirements](https://scandinavian.washington.edu/ba-swedish) - Source used for parser-backed UW requirement extraction.
 
 ##### Swedish parsed official source requirements
 
@@ -7943,7 +7859,6 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Voice, B.M. parsed official source requirements
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -7953,10 +7868,10 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 ##### Voice, B.M. parsed official requirement cues
 
-- Diversity, Equity, &amp; Inclusion
 - Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 - MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
 - MUSIC 119: Theory ( Autumn ) (3 credits)
@@ -7966,6 +7881,7 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III &amp; Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III &amp; Second Year-Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUSIC 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
+- MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 
 #### GRC Equivalent Courses
 

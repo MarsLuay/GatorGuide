@@ -219,7 +219,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "major",
@@ -319,38 +319,38 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-applied-mathematics:pathway:b-s-data-science-option",
-    "ownerKey": "uw-seattle-applied-mathematics:pathway:b-s-data-science-option",
+    "ownerId": "uw-seattle-applied-mathematics:pathway:b-s-to-m-s-pathway",
+    "ownerKey": "uw-seattle-applied-mathematics:pathway:b-s-to-m-s-pathway",
     "planId": "uw-seattle-applied-mathematics",
-    "pathwayId": "b-s-data-science-option",
-    "ownerTitle": "Applied Mathematics - B.S. Data Science Option",
+    "pathwayId": "b-s-to-m-s-pathway",
+    "ownerTitle": "Applied Mathematics - B.S. in Applied Mathematics",
     "campusId": "uw-seattle",
-    "url": "https://amath.washington.edu/applied-mathematics-bs-data-science-option",
-    "label": "BS in Applied Mathematics: Data Science Option",
+    "url": "https://amath.washington.edu/applied-mathematics-data-science-option",
+    "label": "B.S. in Applied Mathematics: Data Science Option",
     "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
     "parserType": "html-degree-page",
     "canCreateSchedulableRows": true,
-    "score": 109,
+    "score": 107,
     "confidence": "high",
     "reasons": [
       "discovered from an official source page",
+      "explicitly names the selected pathway or route",
       "matches major keyword \"applied\"",
-      "matches major keyword \"data\"",
       "matches major keyword \"mathematics\"",
       "matches multiple major keywords",
       "matches the selected degree route",
-      "official source path matches the selected major",
+      "official source text matches the selected pathway",
       "pathway-specific official child page matches the selected pathway",
       "primary degree requirements source role",
       "stays on an official UW domain",
       "stays on the same department or school page"
     ],
-    "generatedAt": "2026-05-25T12:02:34.867Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "major",
@@ -523,35 +523,33 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-cinema-and-media-studies:pathway:ba-route",
-    "ownerKey": "uw-seattle-cinema-and-media-studies:pathway:ba-route",
-    "planId": "uw-seattle-cinema-and-media-studies",
-    "pathwayId": "ba-route",
-    "ownerTitle": "Cinema & Media Studies - B.A. route",
+    "ownerId": "uw-seattle-chemical-engineering:pathway:standard-option",
+    "ownerKey": "uw-seattle-chemical-engineering:pathway:standard-option",
+    "planId": "uw-seattle-chemical-engineering",
+    "pathwayId": "standard-option",
+    "ownerTitle": "Chemical Engineering - Standard Option",
     "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html#credential-5a00ab0ef652f10100b24e07",
-    "label": "Bachelor of Arts degree with a major in Cinema and Media Studies",
-    "sourceRole": "official-catalog",
+    "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html/standard/standard#",
+    "label": "Additional Links",
+    "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
+    "parserType": "html-curriculum-page",
     "canCreateSchedulableRows": true,
-    "score": 105,
+    "score": 123,
     "confidence": "high",
     "reasons": [
+      "curriculum wording",
       "discovered from an official source page",
-      "matches major keyword \"cinema\"",
-      "matches major keyword \"media\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official source text matches the selected major",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
+      "matches major keyword \"standard\"",
+      "official source path matches the selected pathway",
+      "primary degree requirements source role",
+      "same-program option/concentration child source matches the selected pathway",
       "stays on an official UW domain",
       "stays on the current official department host",
       "stays on the same department or school page",
-      "Replaces existing primary http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html after weak-source re-evaluation."
+      "Replaces existing primary https://www.cheme.washington.edu/undergraduate_students/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "major",
@@ -632,15 +630,16 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "ownerTitle": "Education Studies - B.A. Early Childhood Studies option",
     "campusId": "uw-seattle",
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-6529875c06990865c8238b32",
-    "label": "Bachelor of Arts degree with a major in Education Studies: Early Childhood Studies",
+    "label": "Bachelor of Arts degree with a major in Education Studies: Early Childhood Studies major requirements",
     "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
     "parserType": "catalog-page",
     "canCreateSchedulableRows": true,
-    "score": 143,
+    "score": 169,
     "confidence": "high",
     "reasons": [
       "already stored as an official source",
+      "explicit major-requirements wording",
       "matches major keyword \"childhood\"",
       "matches major keyword \"early\"",
       "matches major keyword \"education\"",
@@ -654,7 +653,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -688,7 +687,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -721,7 +720,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -753,7 +752,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -785,7 +784,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -796,15 +795,16 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "ownerTitle": "Education Studies - B.A. Wellness and Social Emotional Learning option",
     "campusId": "uw-seattle",
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-655d38b3a167835aa1be5527",
-    "label": "Bachelor of Arts degree with a major in Education Studies: Wellness and Social Emotional Learning",
+    "label": "Bachelor of Arts degree with a major in Education Studies: Wellness and Social Emotional Learning major requirements",
     "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
     "parserType": "catalog-page",
     "canCreateSchedulableRows": true,
-    "score": 147,
+    "score": 173,
     "confidence": "high",
     "reasons": [
       "already stored as an official source",
+      "explicit major-requirements wording",
       "matches major keyword \"education\"",
       "matches major keyword \"emotional\"",
       "matches major keyword \"learning\"",
@@ -820,7 +820,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -856,40 +856,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-english-creative-writing:pathway:ba-option-family:creative-writing",
-    "ownerKey": "uw-seattle-english-creative-writing:pathway:ba-option-family:creative-writing",
-    "planId": "uw-seattle-english-creative-writing",
-    "pathwayId": "ba-option-family:creative-writing",
-    "ownerTitle": "English - Creative Writing - B.A. Creative Writing option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/English-136.html#credential-60da334718f1462104c572bb",
-    "label": "Bachelor of Arts degree with a major in English: Creative Writing major requirements",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 169,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"creative\"",
-      "matches major keyword \"english\"",
-      "matches major keyword \"writing\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/English-136.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
-  },
-  {
-    "ownerType": "pathway",
     "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option",
     "ownerKey": "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option",
     "planId": "uw-seattle-english-language-literature-and-culture",
@@ -922,104 +888,33 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:natural-resource-and-environmental-management",
-    "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:natural-resource-and-environmental-management",
-    "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-    "pathwayId": "bs-option-family:natural-resource-and-environmental-management",
-    "ownerTitle": "Environmental Science & Terrestrial Resource Management - B.S. Natural Resource and Environmental Management option",
+    "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
+    "ownerKey": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
+    "planId": "uw-seattle-english-language-literature-and-culture",
+    "pathwayId": "language-and-literature-option",
+    "ownerTitle": "English - Language, Literature & Culture - Language and Literature Option",
     "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#credential-67a55df399e12e33bd4d9122",
-    "label": "Bachelor of Science degree with a major in Environmental Science and Terrestrial Resource Management: Natural Resource and Environmental Management major requirements",
-    "sourceRole": "official-catalog",
+    "url": "https://english.washington.edu/language-and-literature-option-requirements-summer-2019-spring-2022#reqs",
+    "label": "Major requirements",
+    "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
+    "parserType": "html-degree-page",
     "canCreateSchedulableRows": true,
-    "score": 173,
+    "score": 121,
     "confidence": "high",
     "reasons": [
       "already stored as an official source",
       "explicit major-requirements wording",
-      "matches major keyword \"environmental\"",
-      "matches major keyword \"management\"",
-      "matches major keyword \"natural\"",
-      "matches major keyword \"resource\"",
-      "matches major keyword \"terrestrial\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"english\"",
+      "official source path matches the selected pathway",
+      "primary degree requirements source role",
       "stays on an official UW domain",
       "stays on the current official department host",
       "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html after weak-source re-evaluation."
+      "Replaces existing primary https://english.washington.edu/english-language-literature-and-culture-option after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:wildlife-conservation",
-    "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:bs-option-family:wildlife-conservation",
-    "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-    "pathwayId": "bs-option-family:wildlife-conservation",
-    "ownerTitle": "Environmental Science & Terrestrial Resource Management - B.S. Wildlife Conservation option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#credential-67a55e3e3cafd1c671693b30",
-    "label": "Bachelor of Science degree with a major in Environmental Science and Terrestrial Resource Management: Wildlife Conservation major requirements",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 175,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"conservation\"",
-      "matches major keyword \"environmental\"",
-      "matches major keyword \"management\"",
-      "matches major keyword \"resource\"",
-      "matches major keyword \"terrestrial\"",
-      "matches major keyword \"wildlife\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
-  },
-  {
-    "ownerType": "major",
-    "ownerId": "uw-seattle-european-studies",
-    "ownerKey": "uw-seattle-european-studies",
-    "planId": "uw-seattle-european-studies",
-    "pathwayId": null,
-    "ownerTitle": "European Studies",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
-    "label": "Program of Study: Major: International Studies: Europe",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 107,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "checklist-style wording",
-      "matches major keyword \"european\"",
-      "official catalog URL includes a major-specific anchor",
-      "official source text matches the selected major",
-      "official UW General Catalog program page",
-      "stays on an official UW domain",
-      "verified against an official source candidate"
-    ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "major",
@@ -1050,6 +945,70 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-05-25T09:09:24.106Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-geography:pathway:geography-major-data-science-option",
+    "ownerKey": "uw-seattle-geography:pathway:geography-major-data-science-option",
+    "planId": "uw-seattle-geography",
+    "pathwayId": "geography-major-data-science-option",
+    "ownerTitle": "Geography - Geography Major Data Science Option",
+    "campusId": "uw-seattle",
+    "url": "https://geography.washington.edu/ba-geography-data-science-option",
+    "label": "B.A. in Geography: Data Science Option",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 113,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "matches major keyword \"data\"",
+      "matches major keyword \"geography\"",
+      "matches multiple major keywords",
+      "official source path matches the selected pathway",
+      "pathway-specific official child page matches the selected pathway",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://geography.washington.edu/ba-geography after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-26T23:01:22.084Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-informatics:pathway:data-science-option",
+    "ownerKey": "uw-seattle-informatics:pathway:data-science-option",
+    "planId": "uw-seattle-informatics",
+    "pathwayId": "data-science-option",
+    "ownerTitle": "Informatics - Data Science Option",
+    "campusId": "uw-seattle",
+    "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/data-science-option?",
+    "label": "Close menu",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-curriculum-page",
+    "canCreateSchedulableRows": true,
+    "score": 127,
+    "confidence": "high",
+    "reasons": [
+      "curriculum wording",
+      "discovered from an official source page",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"data\"",
+      "matches major keyword \"informatics\"",
+      "matches multiple major keywords",
+      "official source text matches the selected pathway",
+      "primary degree requirements source role",
+      "same-program option/concentration child source matches the selected pathway",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://ischool.uw.edu/programs/informatics/curriculum after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "pathway",
@@ -1113,7 +1072,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "major",
@@ -1211,7 +1170,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-25T18:26:29.517Z"
+    "generatedAt": "2026-05-26T23:01:22.084Z"
   },
   {
     "ownerType": "major",

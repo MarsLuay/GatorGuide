@@ -27,6 +27,10 @@ import { useCoursePlannerBugReport } from "./useCoursePlannerBugReport";
 import { usePlannerComputation } from "./usePlannerComputation";
 import { usePlannerSelectionState } from "./usePlannerSelectionState";
 import { useTranscriptPlannerState } from "./useTranscriptPlannerState";
+import {
+  isTransferPlannerDemoMode,
+  useTransferPlannerDemoReview,
+} from "./useTransferPlannerDemoReview";
 
 export function useTransferPlannerController() {
   const handleGoBack = useBack(ROUTES.tabsResources);
@@ -49,6 +53,7 @@ export function useTransferPlannerController() {
 
   const user = state.user;
   const selection = usePlannerSelectionState({
+    includeAllUwMajors: isTransferPlannerDemoMode,
     isHydrated,
     questionnaireAnswers: state.questionnaireAnswers,
     setQuestionnaireAnswers,
@@ -139,6 +144,7 @@ export function useTransferPlannerController() {
     currentPlannedCourseLabels: selection.currentPlannedCourseLabels,
     selectedRequirementOptionIdsByGroup: selection.selectedRequirementOptionIdsByGroup,
   });
+  const demoReview = useTransferPlannerDemoReview(selection.plan?.id ?? null);
 
   const collegeOptions = useMemo(
     () => [
@@ -302,6 +308,7 @@ export function useTransferPlannerController() {
     selectedRequirementOptionIdsByGroup: selection.selectedRequirementOptionIdsByGroup,
     handleSelectRequirementOption: selection.handleSelectRequirementOption,
     handleReportBug,
+    demoReview,
     plannerHeroContent,
     handleToggleOnlyUwEssentialClasses: computation.handleToggleOnlyUwEssentialClasses,
   };

@@ -7345,7 +7345,7 @@ function auditBioengineering(checks) {
       JSON.stringify({
         ahCredits: 10,
         sscCredits: 10,
-        nscCredits: 40,
+        nscCredits: 44,
         breadthCredits: 4,
         electiveCredits: 8,
       }),

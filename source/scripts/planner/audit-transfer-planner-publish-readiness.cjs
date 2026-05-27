@@ -20,6 +20,9 @@ const {
   getRowIssueType,
   hasAuditIssue,
 } = require("./source-backed-coverage-actionability.cjs");
+const {
+  getParseablePrimaryEntries,
+} = require("./parse-transfer-planner-requirement-sources.cjs");
 
 const REPO_ROOT = SOURCE_ROOT;
 ensurePlannerTmpLayout();
@@ -48,6 +51,9 @@ const REQUIRED_RELEASE_REPORT_KEYS = [
 
 const RELEASE_READINESS_COMMAND_TIMEOUT_MS = {
   parseRequirementSources: 180 * 60 * 1000,
+  parseRequirementSourceChunk: 90 * 60 * 1000,
+  generateStudentRuntime: 10 * 60 * 1000,
+  buildSourceFingerprints: 5 * 60 * 1000,
   buildAutoRepairPlan: 5 * 60 * 1000,
   sourceBackedCoverage: 20 * 60 * 1000,
   sourcePipeline: 5 * 60 * 1000,
@@ -55,6 +61,10 @@ const RELEASE_READINESS_COMMAND_TIMEOUT_MS = {
   parserTests: 15 * 60 * 1000,
   typecheck: 5 * 60 * 1000,
 };
+const RELEASE_READINESS_PARSE_CHUNK_PLAN_COUNT = getPositiveIntegerEnv(
+  "GATORGUIDE_RELEASE_READINESS_PARSE_CHUNK_PLAN_COUNT",
+  20
+);
 
 const MODES = {
   "course-source-coverage": {
@@ -98,6 +108,38 @@ function compactText(value, maxLength = 260) {
 function compactTailText(value, maxLength = 1200) {
   const text = String(value ?? "").replace(/\s+/g, " ").trim();
   return text.length > maxLength ? `...${text.slice(text.length - maxLength + 3)}` : text;
+}
+
+function getPositiveIntegerEnv(name, fallbackValue) {
+  const rawValue = process.env[name];
+  if (rawValue === undefined || rawValue === "") {
+    return fallbackValue;
+  }
+
+  const parsedValue = Number.parseInt(rawValue, 10);
+  return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : fallbackValue;
+}
+
+function uniqueInOrder(values) {
+  const seen = new Set();
+  const unique = [];
+  for (const value of values) {
+    const normalized = String(value ?? "").trim();
+    if (!normalized || seen.has(normalized)) {
+      continue;
+    }
+    seen.add(normalized);
+    unique.push(normalized);
+  }
+  return unique;
+}
+
+function chunkValues(values, chunkSize) {
+  const chunks = [];
+  for (let index = 0; index < values.length; index += chunkSize) {
+    chunks.push(values.slice(index, index + chunkSize));
+  }
+  return chunks;
 }
 
 function countBy(values) {
@@ -321,7 +363,7 @@ function runCommand(command, args, options = {}) {
   const displayCommand =
     command === NPM_BIN ? "npm" : command === NPX_BIN ? "npx" : command;
   return {
-    command: [displayCommand, ...args].join(" "),
+    command: options.commandLabel ?? [displayCommand, ...args].join(" "),
     startedAt,
     finishedAt: new Date().toISOString(),
     status: result.status,
@@ -332,44 +374,91 @@ function runCommand(command, args, options = {}) {
   };
 }
 
+function getRequirementSourceParseTargetPlanChunks() {
+  const targetPlanIds = uniqueInOrder(
+    getParseablePrimaryEntries().map((entry) => entry.planId)
+  );
+  return chunkValues(targetPlanIds, RELEASE_READINESS_PARSE_CHUNK_PLAN_COUNT);
+}
+
+function runRequirementSourceParseCommands() {
+  if (!fs.existsSync(REPORTS.parse)) {
+    return [
+      runCommand(NPM_BIN, ["run", "planner:parse-requirement-sources"], {
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parseRequirementSources,
+      }),
+    ];
+  }
+
+  const chunks = getRequirementSourceParseTargetPlanChunks();
+  return chunks.map((chunk, index) =>
+    runCommand(
+      process.execPath,
+      [
+        "--max-old-space-size=8192",
+        "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
+        "--target-plan-ids",
+        chunk.join(","),
+      ],
+      {
+        commandLabel: `planner:parse-requirement-sources chunk ${index + 1}/${chunks.length} (${chunk.length} plan ids)`,
+        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parseRequirementSourceChunk,
+      }
+    )
+  );
+}
+
 function buildReleaseReadiness(inputs, options = {}) {
   const commands = [];
   if (options.runChecks) {
-    commands.push(
-      runCommand(NPM_BIN, ["run", "planner:parse-requirement-sources"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parseRequirementSources,
-      })
+    const parseCommands = runRequirementSourceParseCommands();
+    commands.push(...parseCommands);
+    const parseSucceeded = parseCommands.every(
+      (command) => command.status === 0 && !command.timedOut
     );
-    commands.push(
-      runCommand(NPM_BIN, ["run", "planner:build-auto-repair-plan"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.buildAutoRepairPlan,
-      })
-    );
-    commands.push(
-      runCommand(NPM_BIN, ["run", "planner:audit:source-backed-coverage"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.sourceBackedCoverage,
-      })
-    );
-    commands.push(
-      runCommand(NPM_BIN, ["run", "planner:validate-source-pipeline"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.sourcePipeline,
-      })
-    );
-    commands.push(
-      runCommand(NPM_BIN, ["run", "planner:repair-queue"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.repairQueue,
-      })
-    );
-    commands.push(
-      runCommand(NPM_BIN, ["run", "planner:test:parser"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parserTests,
-      })
-    );
-    commands.push(
-      runCommand(NPX_BIN, ["tsc", "--noEmit"], {
-        timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.typecheck,
-      })
-    );
+
+    if (parseSucceeded) {
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:generate-student-runtime"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.generateStudentRuntime,
+        })
+      );
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:build-source-fingerprints"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.buildSourceFingerprints,
+        })
+      );
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:build-auto-repair-plan"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.buildAutoRepairPlan,
+        })
+      );
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:audit:source-backed-coverage"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.sourceBackedCoverage,
+        })
+      );
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:validate-source-pipeline"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.sourcePipeline,
+        })
+      );
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:repair-queue"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.repairQueue,
+        })
+      );
+      commands.push(
+        runCommand(NPM_BIN, ["run", "planner:test:parser"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.parserTests,
+        })
+      );
+      commands.push(
+        runCommand(NPX_BIN, ["tsc", "--noEmit"], {
+          timeoutMs: RELEASE_READINESS_COMMAND_TIMEOUT_MS.typecheck,
+        })
+      );
+    }
   }
 
   const currentInputs = options.runChecks ? loadInputs() : inputs;

@@ -377,8 +377,8 @@ const economicsPrograms = [
     planId: "uw-tacoma-economics-and-policy-analysis",
     title: "Economics and Policy Analysis",
     officialSources: [
-      "https://www.tacoma.uw.edu/sias/pppa/economics-and-policy-analysis-major-requirements",
       "https://www.tacoma.uw.edu/catalog/sias",
+      "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
     ],
     expectedPathwayIds: ["ba-route", "honors-option"],
     pathwayGroups: [

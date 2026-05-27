@@ -112,6 +112,7 @@ function normalizePromotionEntry(entry) {
 
   const normalizedEntry = {
     ...entry,
+    url: canonicalizePromotionUrl(entry.url),
     reasons: normalizePromotionReasons(entry.reasons),
   };
 
@@ -366,6 +367,32 @@ function isSuspiciousStructuralPathwayPromotionEntry(entry) {
   );
 }
 
+function isTacomaGlobalStudiesLeakedPromotionEntry(entry) {
+  return (
+    entry?.campusId === "uw-tacoma" &&
+    entry?.planId !== "uw-tacoma-global-studies" &&
+    normalizeTransferPlannerPathwayId(entry?.planId, entry?.pathwayId ?? null) ===
+      "global-studies-concentration"
+  );
+}
+
+function isSeattleJsisAsiaConcentrationLeakedPromotionEntry(entry) {
+  const pathwayId = normalizeTransferPlannerPathwayId(entry?.planId, entry?.pathwayId ?? null);
+  if (
+    entry?.campusId !== "uw-seattle" ||
+    entry?.planId === "uw-seattle-asian-studies" ||
+    !/^(?:china|general|japan|korea|south-asia|southeast-asia)-concentration$/i.test(
+      pathwayId ?? ""
+    )
+  ) {
+    return false;
+  }
+
+  const text = `${entry?.label ?? ""} ${entry?.url ?? ""} ${entry?.ownerTitle ?? ""}`;
+  return /\/programs\/undergraduate\/asia-studies\//i.test(text) ||
+    /\bAsian Studies\b/i.test(text);
+}
+
 function isManualOverrideSkippedPromotionEntry(entry) {
   return shouldSkipTransferPlannerAutoPromotedPrimarySource(
     entry?.planId,
@@ -384,6 +411,8 @@ function isUnsafeAutomaticPromotionEntry(entry) {
     isCatalogProgramPagePromotionForDifferentMajor(entry) ||
     isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
     isSuspiciousStructuralPathwayPromotionEntry(entry) ||
+    isTacomaGlobalStudiesLeakedPromotionEntry(entry) ||
+    isSeattleJsisAsiaConcentrationLeakedPromotionEntry(entry) ||
     isSkipNavigationPromotionEntry(entry) ||
     isManualOverrideSkippedPromotionEntry(entry) ||
     hasDocumentUrlWithAppendedPath(entry)
@@ -401,7 +430,7 @@ function buildPromotionEntryCandidateFromOwner(owner) {
     pathwayId,
     ownerTitle: owner?.title,
     campusId: owner?.campusId,
-    url: owner?.suggestedPrimary?.url,
+    url: canonicalizePromotionUrl(owner?.suggestedPrimary?.url),
     label: normalizeLabel(owner),
     sourceRole: owner?.suggestedPrimary?.sourceRole ?? null,
     sourceRoleStatus: owner?.suggestedPrimary?.sourceRoleStatus ?? null,
@@ -576,7 +605,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
         pathwayId,
         ownerTitle: owner.title,
         campusId: owner.campusId,
-        url: owner.suggestedPrimary.url,
+        url: canonicalizePromotionUrl(owner.suggestedPrimary.url),
         label: normalizeLabel(owner),
         sourceRole: owner.suggestedPrimary.sourceRole ?? null,
         sourceRoleStatus: owner.suggestedPrimary.sourceRoleStatus ?? null,
@@ -619,7 +648,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
         pathwayId,
         ownerTitle: owner.title,
         campusId: owner.campusId,
-        url: owner.suggestedPrimary.url,
+        url: canonicalizePromotionUrl(owner.suggestedPrimary.url),
         label: normalizeLabel(owner),
         sourceRole: owner.suggestedPrimary.sourceRole ?? null,
         sourceRoleStatus: owner.suggestedPrimary.sourceRoleStatus ?? null,
@@ -701,6 +730,43 @@ function writeMarkdown(report) {
   }
 
   writePlannerMarkdownReport(OUTPUT_MD_PATH, lines);
+}
+
+function canonicalizePromotionUrl(value) {
+  const url = String(value ?? "").trim();
+  if (!url) {
+    return "";
+  }
+
+  return url
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/socs-new/general-option",
+      "https://www.tacoma.uw.edu/sias/socs/general-history-option"
+    )
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/socs-new/arts-culture-and-society-history-option",
+      "https://www.tacoma.uw.edu/sias/socs/arts-culture-and-society-option"
+    )
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option",
+      "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option"
+    )
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/socs-new/global-history-option",
+      "https://www.tacoma.uw.edu/sias/socs/global-history-option"
+    )
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option",
+      "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option"
+    )
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/socs-new/power-gender-and-identity-option",
+      "https://www.tacoma.uw.edu/sias/socs/power-gender-and-identity-option"
+    )
+    .replace(
+      "https://www.tacoma.uw.edu/sias-new/cac-new/rhetoric-writing-and-social-change-track",
+      "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track"
+    );
 }
 
 function main() {

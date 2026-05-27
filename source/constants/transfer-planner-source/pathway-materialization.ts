@@ -178,8 +178,10 @@ const DERIVED_PATHWAY_ACRONYMS = new Set([
 const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^(?:option|track|route|pathway|certificate|concentration)$/i,
   /^students?\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^classes?\s+in\s+this\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\boffered\b/i,
   /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:provides|emphasizes|requires)\b/i,
   /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:is|prepares)\b/i,
+  /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:will\s+)?(?:thoroughly\s+)?prepare\b/i,
   /^if you enrolled\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^if\s+adding\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^and\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:is|prepares)\b/i,
@@ -360,6 +362,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
 const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^(?:option|track|route|pathway|certificate|concentration)$/i,
   /^students?-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^classes?-in-this-.*-(?:option|track|route|pathway|certificate|concentration)-.*-offered\b/i,
   /^you-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^they-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
   /^.+-can-also-be-taken-as-(?:a|an)-(?:option|track|route|pathway|certificate|concentration)$/i,
@@ -367,6 +370,7 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^and-.*-(?:option|track|route|pathway|certificate|concentration)(?:-|$)/i,
   /^if-you-enrolled-.*-option\b/i,
   /^the-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
+  /^the-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:will-)?(?:thoroughly-)?prepare\b/i,
   /^and-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
   /^extent-and-quality\b/i,
   /^credential-overview-(?:option|track|route|pathway|certificate|concentration)$/i,
@@ -482,6 +486,9 @@ const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "t
   "uw-tacoma-urban-studies": "option",
   "uw-tacoma-writing-studies": "track",
 };
+const SUPPRESS_MATERIALIZED_PATHWAY_PLAN_IDS = new Set([
+  "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+]);
 const CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN: Partial<
   Record<string, TransferPlannerDerivedPathwaySeed[]>
 > = {
@@ -810,8 +817,16 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
     /^gender\s+and\s+identity(?: option)?$/i,
     /^global studies concentration$/i,
   ],
+  "uw-tacoma-urban-studies": [/^gis certificate\b/i],
   "uw-seattle-materials-science-engineering": [
     /^final project and internship\/industrial option$/i,
+    /^introduction to molecular and nanoscale principles\b.*\bnot eligible elective for nme option students\b/i,
+  ],
+  "uw-seattle-jewish-studies": [
+    /^(?:south(?:east)? asia|southeast asia|china|japan|korea|general) concentration$/i,
+  ],
+  "uw-seattle-latin-american-and-caribbean-studies": [
+    /^(?:south(?:east)? asia|southeast asia|china|japan|korea|general) concentration$/i,
   ],
   "uw-seattle-speech-and-hearing-sciences": [
     /^(?:adult|pediatric) track$/i,
@@ -1678,6 +1693,14 @@ function isPlanExcludedDerivedPathwayCandidate(planId: string, value: string | n
   const normalized = normalizeDerivedPathwayText(value);
   if (!normalized) {
     return false;
+  }
+
+  if (
+    planId.startsWith("uw-tacoma-") &&
+    planId !== "uw-tacoma-global-studies" &&
+    /^global studies concentration$/i.test(normalized)
+  ) {
+    return true;
   }
 
   return (DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN[planId] ?? []).some((pattern) =>
@@ -3004,9 +3027,22 @@ function filterDerivedPathwaysToKnownBaseFamilies(
     return derivedPathways;
   }
 
+  const titleSpecializationMatch = normalizeDerivedPathwayText(plan.title).match(
+    /:\s*([^()]+?)(?:\s*\([^)]*\))?\s*$/
+  );
+  const titleSpecializationFamily = titleSpecializationMatch
+    ? getDerivedPathwaySimilarityKey(titleSpecializationMatch[1], plan.title)
+    : "";
+  const hasTitleScopedKnownBase =
+    Boolean(titleSpecializationFamily) &&
+    semanticBasePathways.some(
+      (pathway) => getPathwayMaterializationSupportKey(plan, pathway) === titleSpecializationFamily
+    );
+
   if (
     semanticBasePathways.length <= 2 &&
-    derivedPathways.length > matchingDerivedPathways.length
+    derivedPathways.length > matchingDerivedPathways.length &&
+    !hasTitleScopedKnownBase
   ) {
     return derivedPathways;
   }
@@ -3252,6 +3288,10 @@ export function materializeTransferPlannerPathways(
   basePathways: TransferPlannerMajorPathway[],
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ): TransferPlannerMajorPathway[] {
+  if (SUPPRESS_MATERIALIZED_PATHWAY_PLAN_IDS.has(plan.id)) {
+    return [];
+  }
+
   const keepMaterializedPathway = (pathway: TransferPlannerMajorPathway) =>
     !isPlanExcludedDerivedPathway(plan.id, pathway) &&
     !isMismatchedBachelorCredentialPathway(plan.title, pathway) &&

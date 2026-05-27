@@ -1712,7 +1712,8 @@ test("Bothell Electrical Engineering generated output preserves official curricu
   }
 
   const electiveGroup = plan.requirementGroups?.find((group) =>
-    /Electrical Engineering Electives/i.test(group.label)
+    /(?:Electrical Engineering Electives|Engineering Elective Credit)/i.test(group.label) &&
+    (group.options ?? []).some((option) => (option.uwCourses ?? []).length > 0)
   );
   assert.ok(electiveGroup, "Expected generated runtime to include the B EE elective credit bucket.");
   assert.equal(electiveGroup.requirementType, "choose_credits");
@@ -2389,7 +2390,13 @@ test("UW Anthropology undergraduate source requirements exclude graduate catalog
   const bsHebRequirementText = getPathwayRequirementText(
     "bs-option-family:human-evolutionary-biology"
   );
-  assert.match(bsHebRequirementText, /minimum 35 credits from approved HEB course list/i);
+  const bsHebRuntimeText = JSON.stringify(
+    source.getTransferPlannerStudentRuntimeMajorPlan(
+      "uw-seattle-anthropology",
+      "bs-option-family:human-evolutionary-biology"
+    )?.requirementGroups ?? []
+  );
+  assert.match(bsHebRuntimeText, /minimum 35 credits from approved HEB course list/i);
   assert.doesNotMatch(bsHebRequirementText, /Anthropology of Globalization option/i);
   assert.doesNotMatch(bsHebRequirementText, /Indigenous Archaeology \(IA\) core/i);
 
@@ -2724,8 +2731,12 @@ test("UW Cinema and Media Studies does not expose sibling Comparative Literature
     ),
     []
   );
+  const resolvedPlan = studentRuntime.resolveTransferPlannerStudentRuntimeMajorPlan(
+    plan,
+    "ba-route"
+  );
   assert.ok(
-    (plan.requirementGroups ?? []).some((group) =>
+    (resolvedPlan?.requirementGroups ?? []).some((group) =>
       /^CMS course:.*CMS 310.*CMS 321/i.test(group.label ?? "")
     )
   );
@@ -3012,7 +3023,9 @@ test("UW Bothell Electrical Engineering keeps major-specific source rows and cam
     "Expected campus A&H gen-ed placeholder to be visible."
   );
   assert.ok(
-    plan.requirementGroups?.some((group) => /Electrical Engineering Electives/i.test(group.label)),
+    plan.requirementGroups?.some((group) =>
+      /(?:Electrical Engineering Electives|Engineering Elective Credit)/i.test(group.label)
+    ),
     "Expected official B-EE elective source group to remain present in generated runtime."
   );
   assert.ok(

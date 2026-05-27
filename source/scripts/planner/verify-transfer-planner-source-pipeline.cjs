@@ -143,6 +143,17 @@ const ACTIVE_PATHWAY_OWNER_KEYS = new Set(
     normalizeTransferPlannerOwnerId(entry.id, entry.planId, entry.pathwayId)
   )
 );
+const ACTIVE_PATHWAYS_BY_PLAN_ID = new Map();
+for (const entry of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []) {
+  const planId = String(entry?.planId ?? "").trim();
+  if (!planId) {
+    continue;
+  }
+
+  const existing = ACTIVE_PATHWAYS_BY_PLAN_ID.get(planId) ?? [];
+  existing.push(entry);
+  ACTIVE_PATHWAYS_BY_PLAN_ID.set(planId, existing);
+}
 
 function canParsedRequirementSourceBlockCreateRequiredScheduleRows(block) {
   if (
@@ -213,6 +224,90 @@ function getParserBackedReviewOwnerKeysFromLabels(block) {
   return [...keys];
 }
 
+const PARSER_BACKED_PATHWAY_TEXT_STOPWORDS = new Set([
+  "and",
+  "ba",
+  "bachelor",
+  "bs",
+  "degree",
+  "major",
+  "of",
+  "option",
+  "pathway",
+  "program",
+  "route",
+  "the",
+  "track",
+  "uw",
+  "washington",
+]);
+
+function normalizeParserBackedPathwayToken(token) {
+  const normalized = String(token ?? "").trim().toLowerCase();
+  if (normalized.endsWith("ies") && normalized.length > 4) {
+    return `${normalized.slice(0, -3)}y`;
+  }
+  if (normalized.endsWith("s") && normalized.length > 4) {
+    return normalized.slice(0, -1);
+  }
+  return normalized;
+}
+
+function getParserBackedPathwayTokens(...values) {
+  return [
+    ...new Set(
+      values
+        .flatMap((value) => normalizeAliasMatchText(value).split(/\s+/))
+        .map(normalizeParserBackedPathwayToken)
+        .filter(
+          (token) =>
+            token.length >= 3 && !PARSER_BACKED_PATHWAY_TEXT_STOPWORDS.has(token)
+        )
+    ),
+  ];
+}
+
+function parserBackedBlockMentionsPathway(block, pathway) {
+  const pathwayTokens = getParserBackedPathwayTokens(pathway?.pathwayId);
+  const fallbackTokens = pathwayTokens.length
+    ? pathwayTokens
+    : getParserBackedPathwayTokens(pathway?.label);
+  if (!fallbackTokens.length) {
+    return false;
+  }
+
+  const evidenceTokens = new Set(
+    getParserBackedPathwayTokens(
+      block?.ownerTitle,
+      block?.sourceLabel,
+      block?.primarySourceLabel,
+      block?.sourceUrl,
+      block?.primarySourceUrl,
+      ...(block?.pathwayLabels ?? []),
+      ...(block?.requirementCueLines ?? []),
+      ...(block?.chooseStatements ?? [])
+    )
+  );
+  return fallbackTokens.every((token) => evidenceTokens.has(token));
+}
+
+function getParserBackedReviewOwnerKeysFromSourceText(block) {
+  if (!block?.planId || block?.pathwayId) {
+    return [];
+  }
+
+  return (ACTIVE_PATHWAYS_BY_PLAN_ID.get(block.planId) ?? [])
+    .filter((pathway) => parserBackedBlockMentionsPathway(block, pathway))
+    .map((pathway) =>
+      normalizeTransferPlannerOwnerId(
+        pathway.id,
+        pathway.planId,
+        pathway.pathwayId
+      )
+    )
+    .filter((ownerKey) => ACTIVE_PATHWAY_OWNER_KEYS.has(ownerKey));
+}
+
 function buildParserBackedReviewOwnerKeys() {
   const keys = new Set();
   for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCKS ?? []) {
@@ -231,6 +326,9 @@ function buildParserBackedReviewOwnerKeys() {
       );
     }
     for (const ownerKey of getParserBackedReviewOwnerKeysFromLabels(block)) {
+      keys.add(ownerKey);
+    }
+    for (const ownerKey of getParserBackedReviewOwnerKeysFromSourceText(block)) {
       keys.add(ownerKey);
     }
   }
@@ -390,6 +488,58 @@ function normalizePromotionUrlForComparison(value) {
       .replace(/[?#].*$/u, "")
       .replace(/\/+$/u, "")
       .toLowerCase();
+  }
+}
+
+const TACOMA_LEGACY_SOURCE_URL_REPLACEMENTS = new Map([
+  [
+    "https://www.tacoma.uw.edu/sias-new/socs-new/general-option",
+    "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+  ],
+  [
+    "https://www.tacoma.uw.edu/sias-new/socs-new/arts-culture-and-society-history-option",
+    "https://www.tacoma.uw.edu/sias/socs/arts-culture-and-society-option",
+  ],
+  [
+    "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option",
+    "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
+  ],
+  [
+    "https://www.tacoma.uw.edu/sias-new/socs-new/global-history-option",
+    "https://www.tacoma.uw.edu/sias/socs/global-history-option",
+  ],
+  [
+    "https://www.tacoma.uw.edu/sias-new/socs-new/labor-and-social-movements-option",
+    "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
+  ],
+  [
+    "https://www.tacoma.uw.edu/sias-new/socs-new/power-gender-and-identity-option",
+    "https://www.tacoma.uw.edu/sias/socs/power-gender-and-identity-option",
+  ],
+  [
+    "https://www.tacoma.uw.edu/sias-new/cac-new/rhetoric-writing-and-social-change-track",
+    "https://www.tacoma.uw.edu/sias/cac/rhetoric-writing-and-social-change-track",
+  ],
+]);
+
+function normalizeRequirementSourceUrlForCoverage(value) {
+  try {
+    const url = new URL(String(value ?? ""));
+    if (url.hostname.endsWith("washington.edu")) {
+      url.protocol = "https:";
+    }
+    url.hash = "";
+    url.search = "";
+    url.pathname = url.pathname.replace(/\/+$/u, "");
+    const normalized = url.toString().toLowerCase();
+    return TACOMA_LEGACY_SOURCE_URL_REPLACEMENTS.get(normalized) ?? normalized;
+  } catch {
+    const normalized = String(value ?? "")
+      .trim()
+      .replace(/[?#].*$/u, "")
+      .replace(/\/+$/u, "")
+      .toLowerCase();
+    return TACOMA_LEGACY_SOURCE_URL_REPLACEMENTS.get(normalized) ?? normalized;
   }
 }
 
@@ -615,6 +765,31 @@ function isSuspiciousStructuralPathwayPromotionEntry(entry) {
   );
 }
 
+function isTacomaGlobalStudiesLeakedPromotionEntry(entry) {
+  return (
+    entry?.campusId === "uw-tacoma" &&
+    entry?.planId !== "uw-tacoma-global-studies" &&
+    normalizeTransferPlannerPathwayId(entry?.planId, entry?.pathwayId ?? null) ===
+      "global-studies-concentration"
+  );
+}
+
+function isSeattleJsisAsiaConcentrationLeakedPromotionEntry(entry) {
+  const pathwayId = normalizeTransferPlannerPathwayId(entry?.planId, entry?.pathwayId ?? null);
+  if (
+    entry?.campusId !== "uw-seattle" ||
+    entry?.planId === "uw-seattle-asian-studies" ||
+    !/^(?:china|general|japan|korea|south-asia|southeast-asia)-concentration$/i.test(
+      pathwayId ?? ""
+    )
+  ) {
+    return false;
+  }
+
+  const text = `${entry?.label ?? ""} ${entry?.url ?? ""} ${entry?.ownerTitle ?? ""}`;
+  return /\/programs\/undergraduate\/asia-studies\//i.test(text) || /\bAsian Studies\b/i.test(text);
+}
+
 function isManualOverrideSkippedPromotionEntry(entry) {
   return shouldSkipTransferPlannerAutoPromotedPrimarySource(
     entry?.planId,
@@ -632,6 +807,8 @@ function isUnsafeAutomaticPromotionEntry(entry) {
     isCatalogProgramPagePromotionForDifferentMajor(entry) ||
     isPathwayScopedCatalogCredentialPromotionForBroadMajorOwner(entry) ||
     isSuspiciousStructuralPathwayPromotionEntry(entry) ||
+    isTacomaGlobalStudiesLeakedPromotionEntry(entry) ||
+    isSeattleJsisAsiaConcentrationLeakedPromotionEntry(entry) ||
     isSkipNavigationPromotionEntry(entry) ||
     isManualOverrideSkippedPromotionEntry(entry) ||
     hasDocumentUrlWithAppendedPath(entry);
@@ -796,19 +973,19 @@ function buildParseableRequirementSourceManifestEntries() {
 }
 
 function buildManifestParseKey(entry) {
-  return `${entry.ownerId}::${entry.url}`;
+  return `${entry.ownerId}::${normalizeRequirementSourceUrlForCoverage(entry.url)}`;
 }
 
 function buildReportParseKeys(owner) {
   return uniqueSorted(
     [owner.primarySourceUrl, owner.sourceUrl, ...(owner.coveredSourceUrls ?? [])].map((sourceUrl) =>
-      sourceUrl ? `${owner.ownerId}::${sourceUrl}` : null
+      sourceUrl ? `${owner.ownerId}::${normalizeRequirementSourceUrlForCoverage(sourceUrl)}` : null
     )
   );
 }
 
 function buildManifestPlanSourceKey(entry) {
-  return `${entry.planId ?? entry.ownerId}::${entry.url}`;
+  return `${entry.planId ?? entry.ownerId}::${normalizeRequirementSourceUrlForCoverage(entry.url)}`;
 }
 
 function summarizeParseableRequirementSourceEntry(entry) {
@@ -828,7 +1005,9 @@ function buildReportPlanSourceKeys(owner) {
   const planId = owner.planId ?? owner.ownerId?.split(":pathway:")[0] ?? owner.ownerId;
   return uniqueSorted(
     [owner.primarySourceUrl, owner.sourceUrl, ...(owner.coveredSourceUrls ?? [])].map((sourceUrl) =>
-      planId && sourceUrl ? `${planId}::${sourceUrl}` : null
+      planId && sourceUrl
+        ? `${planId}::${normalizeRequirementSourceUrlForCoverage(sourceUrl)}`
+        : null
     )
   );
 }

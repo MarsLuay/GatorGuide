@@ -135,6 +135,7 @@ const TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS_PARTITION_KEYS = [
   "uw-bothell-health-studies",
   "uw-bothell-interactive-media-design",
   "uw-bothell-interdisciplinary-arts",
+  "uw-bothell-interdisciplinary-studies-individualized-study",
   "uw-bothell-law-economics-and-public-policy",
   "uw-bothell-mathematical-thinking-and-visualization",
   "uw-bothell-mathematics",
@@ -356,6 +357,8 @@ function loadTransferPlannerRuntimeMajorPlansPartition(partitionKey: string) {
       return require("./student-runtime.generated/major-plans-by-plan-id/uw-bothell-interactive-media-design.generated.json") as TransferPlannerMajorPlan[];
     case "uw-bothell-interdisciplinary-arts":
       return require("./student-runtime.generated/major-plans-by-plan-id/uw-bothell-interdisciplinary-arts.generated.json") as TransferPlannerMajorPlan[];
+    case "uw-bothell-interdisciplinary-studies-individualized-study":
+      return require("./student-runtime.generated/major-plans-by-plan-id/uw-bothell-interdisciplinary-studies-individualized-study.generated.json") as TransferPlannerMajorPlan[];
     case "uw-bothell-law-economics-and-public-policy":
       return require("./student-runtime.generated/major-plans-by-plan-id/uw-bothell-law-economics-and-public-policy.generated.json") as TransferPlannerMajorPlan[];
     case "uw-bothell-mathematical-thinking-and-visualization":
@@ -742,6 +745,7 @@ const TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID_PARTITION_KEYS = [
   "uw-bothell-health-studies",
   "uw-bothell-interactive-media-design",
   "uw-bothell-interdisciplinary-arts",
+  "uw-bothell-interdisciplinary-studies-individualized-study",
   "uw-bothell-law-economics-and-public-policy",
   "uw-bothell-mathematical-thinking-and-visualization",
   "uw-bothell-mathematics",
@@ -963,6 +967,8 @@ function loadTransferPlannerRuntimePathwaysByPlanIdPartition(partitionKey: strin
       return require("./student-runtime.generated/pathways-by-plan-id/uw-bothell-interactive-media-design.generated.json") as Record<string, TransferPlannerMajorPathway[]>;
     case "uw-bothell-interdisciplinary-arts":
       return require("./student-runtime.generated/pathways-by-plan-id/uw-bothell-interdisciplinary-arts.generated.json") as Record<string, TransferPlannerMajorPathway[]>;
+    case "uw-bothell-interdisciplinary-studies-individualized-study":
+      return require("./student-runtime.generated/pathways-by-plan-id/uw-bothell-interdisciplinary-studies-individualized-study.generated.json") as Record<string, TransferPlannerMajorPathway[]>;
     case "uw-bothell-law-economics-and-public-policy":
       return require("./student-runtime.generated/pathways-by-plan-id/uw-bothell-law-economics-and-public-policy.generated.json") as Record<string, TransferPlannerMajorPathway[]>;
     case "uw-bothell-mathematical-thinking-and-visualization":
@@ -1331,6 +1337,7 @@ const TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY_PARTITION_KEYS = [
   "uw-bothell-health-studies",
   "uw-bothell-interactive-media-design",
   "uw-bothell-interdisciplinary-arts",
+  "uw-bothell-interdisciplinary-studies-individualized-study",
   "uw-bothell-law-economics-and-public-policy",
   "uw-bothell-mathematical-thinking-and-visualization",
   "uw-bothell-mathematics",
@@ -1552,6 +1559,8 @@ function loadTransferPlannerRuntimeResolvedMajorPlansByKeyPartition(partitionKey
       return require("./student-runtime.generated/resolved-major-plans-by-plan-id/uw-bothell-interactive-media-design.generated.json") as Record<string, TransferPlannerResolvedMajorPlan>;
     case "uw-bothell-interdisciplinary-arts":
       return require("./student-runtime.generated/resolved-major-plans-by-plan-id/uw-bothell-interdisciplinary-arts.generated.json") as Record<string, TransferPlannerResolvedMajorPlan>;
+    case "uw-bothell-interdisciplinary-studies-individualized-study":
+      return require("./student-runtime.generated/resolved-major-plans-by-plan-id/uw-bothell-interdisciplinary-studies-individualized-study.generated.json") as Record<string, TransferPlannerResolvedMajorPlan>;
     case "uw-bothell-law-economics-and-public-policy":
       return require("./student-runtime.generated/resolved-major-plans-by-plan-id/uw-bothell-law-economics-and-public-policy.generated.json") as Record<string, TransferPlannerResolvedMajorPlan>;
     case "uw-bothell-mathematical-thinking-and-visualization":
@@ -1920,6 +1929,7 @@ const TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY_PARTITION_KEYS = [
   "uw-bothell-health-studies",
   "uw-bothell-interactive-media-design",
   "uw-bothell-interdisciplinary-arts",
+  "uw-bothell-interdisciplinary-studies-individualized-study",
   "uw-bothell-law-economics-and-public-policy",
   "uw-bothell-mathematical-thinking-and-visualization",
   "uw-bothell-mathematics",
@@ -1981,7 +1991,6 @@ const TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY_PARTITION_KEYS = [
   "uw-seattle-environmental-public-health",
   "uw-seattle-environmental-science-and-terrestrial-resource-management",
   "uw-seattle-environmental-studies",
-  "uw-seattle-european-studies",
   "uw-seattle-finnish",
   "uw-seattle-food-systems-nutrition-and-health",
   "uw-seattle-french",
@@ -2137,6 +2146,8 @@ function loadTransferPlannerRuntimePrimaryDegreeSourcesByKeyPartition(partitionK
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-interactive-media-design.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-bothell-interdisciplinary-arts":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-interdisciplinary-arts.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
+    case "uw-bothell-interdisciplinary-studies-individualized-study":
+      return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-interdisciplinary-studies-individualized-study.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-bothell-law-economics-and-public-policy":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-law-economics-and-public-policy.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-bothell-mathematical-thinking-and-visualization":
@@ -2259,8 +2270,6 @@ function loadTransferPlannerRuntimePrimaryDegreeSourcesByKeyPartition(partitionK
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-environmental-science-and-terrestrial-resource-management.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-environmental-studies":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-environmental-studies.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
-    case "uw-seattle-european-studies":
-      return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-european-studies.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-finnish":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-seattle-finnish.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-seattle-food-systems-nutrition-and-health":
@@ -2515,6 +2524,7 @@ const TRANSFER_PLANNER_RUNTIME_PARSED_REQUIREMENT_BLOCK_REGISTRY_PARTITION_KEYS 
   "uw-bothell-health-studies",
   "uw-bothell-interactive-media-design",
   "uw-bothell-interdisciplinary-arts",
+  "uw-bothell-interdisciplinary-studies-individualized-study",
   "uw-bothell-law-economics-and-public-policy",
   "uw-bothell-mathematical-thinking-and-visualization",
   "uw-bothell-mathematics",
@@ -2737,6 +2747,8 @@ function loadTransferPlannerRuntimeParsedRequirementBlockRegistryPartition(parti
       return require("./student-runtime.generated/parsed-requirement-blocks-by-plan-id/uw-bothell-interactive-media-design.generated.json") as TransferPlannerRuntimeParsedRequirementSourceBlock[];
     case "uw-bothell-interdisciplinary-arts":
       return require("./student-runtime.generated/parsed-requirement-blocks-by-plan-id/uw-bothell-interdisciplinary-arts.generated.json") as TransferPlannerRuntimeParsedRequirementSourceBlock[];
+    case "uw-bothell-interdisciplinary-studies-individualized-study":
+      return require("./student-runtime.generated/parsed-requirement-blocks-by-plan-id/uw-bothell-interdisciplinary-studies-individualized-study.generated.json") as TransferPlannerRuntimeParsedRequirementSourceBlock[];
     case "uw-bothell-law-economics-and-public-policy":
       return require("./student-runtime.generated/parsed-requirement-blocks-by-plan-id/uw-bothell-law-economics-and-public-policy.generated.json") as TransferPlannerRuntimeParsedRequirementSourceBlock[];
     case "uw-bothell-mathematical-thinking-and-visualization":

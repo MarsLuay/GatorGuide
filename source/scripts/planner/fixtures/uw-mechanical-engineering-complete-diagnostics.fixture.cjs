@@ -372,7 +372,7 @@ const mechanicalEngineeringPrograms = [
     planId: "uw-bothell-mechanical-engineering",
     title: "Mechanical Engineering",
     officialSources: [
-      "https://www.uwb.edu/stem/undergraduate/majors/mechanical-engineering",
+      "https://www.uwb.edu/stem/undergraduate/majors/mechanical/curriculum",
       "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf",
     ],
     expectedPathwayIds: [],

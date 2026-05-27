@@ -224,12 +224,9 @@ const sourceByPlanId = {
   "uw-seattle-asian-studies": [
     "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
     "https://jsis.washington.edu/programs/undergraduate/asia-studies/south-asia-studies",
-    "https://jsis.washington.edu/wordpress/wp-content/uploads/2019/06/Asian-Studies-Courses-Autumn-2019rev.pdf",
   ],
   "uw-seattle-atmospheric-and-climate-science": [
     "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-    "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb4e06c6df17f51df9a3ee",
-    "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb50075e15782e7ae20feb",
     "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
   ],
   "uw-seattle-bioengineering": [
@@ -263,7 +260,6 @@ const sourceByPlanId = {
   ],
   "uw-seattle-dance": [
     "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
-    "https://www.washington.edu/students/gencat/program/S/Dance-133.html#credential-60b927e9bcc770338fb5ecab",
   ],
   "uw-seattle-danish": [
     "https://scandinavian.washington.edu/ba-danish",
@@ -413,14 +409,14 @@ const expectedPathwaysByPlanId = {
     "ba-option-family:human-evolutionary-biology",
     "ba-option-family:indigenous-archaeology",
     "ba-option-family:medical-anthropology-and-global-health",
+    "bs-option-family:archaeological-sciences",
+    "bs-option-family:human-evolutionary-biology",
+    "bs-option-family:medical-anthropology-and-global-health",
   ],
   "uw-seattle-aquatic-conservation-and-ecology": ["practicum-option"],
   "uw-seattle-architectural-studies": ["ba-route"],
   "uw-seattle-asian-studies": [
     "china-concentration",
-    "general-concentration",
-    "japan-concentration",
-    "korea-concentration",
     "south-asia-concentration",
     "southeast-asia-concentration",
   ],
@@ -431,7 +427,7 @@ const expectedPathwaysByPlanId = {
     "bs-option-family:meteorology",
   ],
   "uw-seattle-bioengineering": ["data-science-option", "nme-option"],
-  "uw-seattle-chemical-engineering": ["nme-option"],
+  "uw-seattle-chemical-engineering": ["nme-option", "standard-option"],
   "uw-seattle-comparative-history-of-ideas": [
     "chid-study-abroad-program-option",
     "encounters-across-cultures-option",
@@ -448,17 +444,22 @@ const expectedPathwaysByPlanId = {
     "freshmen-direct-pathway",
     "upper-division-admission-pathway",
   ],
-  "uw-seattle-earth-and-space-sciences": ["bs-option-family:geoscience"],
+  "uw-seattle-computational-finance-and-risk-management": [
+    "bs-option-family:data-science",
+  ],
+  "uw-seattle-drama": ["ba-option-family:design", "ba-option-family:performance"],
+  "uw-seattle-earth-and-space-sciences": [
+    "bs-option-family:biology",
+    "bs-option-family:geology",
+    "bs-option-family:geoscience",
+    "bs-option-family:physics",
+  ],
   "uw-seattle-french": ["ba-route"],
   "uw-seattle-geography": [
-    "ba-option-family:data-science",
-    "ba-option-family:data-science-option-sample-course-plan",
-    "ba-option-family:in-geography-with-data-science",
-    "ccm-track",
-    "citizenship-and-migration-track",
-    "economy-and-sustainability-track",
+    "cities-citizenship-and-migration-track",
+    "environment-economy-and-sustainability-track",
     "geography-major-data-science-option",
-    "mapping-and-society-track",
+    "gis-mapping-and-society-track",
   ],
   "uw-seattle-german": ["ba-option-family:cultural-studies", "ba-route"],
   "uw-seattle-materials-science-engineering": ["nme-option"],
@@ -470,8 +471,13 @@ const expectedPathwaysByPlanId = {
   "uw-seattle-music-b-a": ["music-theory-option", "voice-option"],
   "uw-seattle-slavic-languages-and-literatures": [
     "eastern-european-languages-literature-and-culture",
+    "russian-language-slavic-languages-or-russian-and-slavic-literatures",
   ],
-  "uw-seattle-statistics": ["applied-statistics-track", "mathematical-statistics-track"],
+  "uw-seattle-statistics": [
+    "applied-statistics-track",
+    "data-science-track",
+    "mathematical-statistics-track",
+  ],
 };
 
 const seattleGenEdSnippets = [
@@ -486,10 +492,18 @@ const seattleGenEdSnippets = [
   "Diversity",
 ];
 
+const requiredTextSnippetsByPlanId = {
+  "uw-seattle-italian": [
+    "not able to offer the upper level courses for the Italian major",
+    "not able to accept students into the Italian major",
+  ],
+};
+
 const seattleRemainingPrograms = seattleRemainingPlanIds.map((planId) => ({
   planId,
   officialSources: sourceByPlanId[planId] || [],
   expectedPathwayIds: expectedPathwaysByPlanId[planId] || [],
+  requiredTextSnippets: requiredTextSnippetsByPlanId[planId] || [],
   genEdSnippets: seattleGenEdSnippets,
 }));
 

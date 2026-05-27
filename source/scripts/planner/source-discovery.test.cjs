@@ -122,6 +122,27 @@ test("Primary source promotions store canonical pathway owner ids", () => {
   );
 });
 
+test("Primary source promotions do not attach Asian Studies concentration pages to other JSIS majors", () => {
+  const leakedPromotions = TRANSFER_PLANNER_PRIMARY_PROMOTIONS.filter((entry) => {
+    const pathwayId = normalizeTransferPlannerPathwayId(entry.planId, entry.pathwayId ?? null);
+    return (
+      entry.campusId === "uw-seattle" &&
+      entry.planId !== "uw-seattle-asian-studies" &&
+      /^(?:china|general|japan|korea|south-asia|southeast-asia)-concentration$/i.test(
+        pathwayId ?? ""
+      ) &&
+      (/\/programs\/undergraduate\/asia-studies\//i.test(String(entry.url ?? "")) ||
+        /\bAsian Studies\b/i.test(`${entry.label ?? ""} ${entry.ownerTitle ?? ""}`))
+    );
+  });
+
+  assert.deepEqual(
+    leakedPromotions.map((entry) => entry.ownerId),
+    [],
+    "Expected shared JSIS Asia concentration pages to stay scoped to Asian Studies."
+  );
+});
+
 test("Primary source discovery skips hidden aliases covered by parent pathways", () => {
   const owner = {
     ownerType: "major",

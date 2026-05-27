@@ -375,7 +375,6 @@ const environmentalPrograms = [
     title: "Environmental Science",
     officialSources: [
       "https://www.tacoma.uw.edu/sias/sam/environmental-science",
-      "https://www.tacoma.uw.edu/sias/sam/environmental-science-major-requirements",
     ],
     expectedPathwayIds: [
       "conservation-biology-and-ecology-option",

@@ -69,6 +69,7 @@ import {
   normalizeCourseCode,
   resolveTransferPlannerMajorPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
+  sourceGeneratedPhghPlan,
   test,
   TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY,
@@ -90,6 +91,30 @@ test("Seattle CompE accepts MATH& 163 as the Calc III path without scheduling MA
   const upcomingCourseLabels = getUpcomingCourseLabels(completedCourses);
   assert.equal(upcomingCourseLabels.includes("MATH& 254"), false);
   assert.equal(upcomingCourseLabels.includes("MATH& 163"), false);
+});
+
+test("Seattle Public Health chemistry choice accepts completed CHEM& 161 without scheduling extra chemistry", () => {
+  assert.ok(sourceGeneratedPhghPlan, "Expected source-generated Public Health - Global Health plan.");
+  const plan = resolveTransferPlannerMajorPlan(
+    sourceGeneratedPhghPlan,
+    "health-education-and-promotion-ba-option"
+  );
+  assert.ok(plan, "Expected the Health Education & Promotion BA option.");
+
+  const completedCourses = buildTranscriptCourses("CHEM& 161", "CHEM& 162");
+  const quarterPlan = buildRuntimeSequenceSuggestedPlan(plan, completedCourses);
+  const plannedCourseCodes = getPlannedCourseCodeSet(quarterPlan);
+
+  assert.equal(
+    plannedCourseCodes.has("CHEM& 121"),
+    false,
+    "CHEM& 161 transfers as UW CHEM 142, which satisfies the PH-GH Select CHEM choice without CHEM& 121."
+  );
+  assert.equal(
+    plannedCourseCodes.has("CHEM& 163"),
+    false,
+    "The Health Education & Promotion BA option does not add the CHEM 152 continuation path after the Select CHEM choice is satisfied."
+  );
 });
 
 test("Planner keeps chained series courses in different quarters instead of stacking them together", () => {

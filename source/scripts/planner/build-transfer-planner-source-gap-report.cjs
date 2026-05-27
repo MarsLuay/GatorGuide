@@ -76,6 +76,17 @@ const ACTIVE_PATHWAY_OWNER_KEYS = new Set(
     })
   )
 );
+const ACTIVE_PATHWAYS_BY_PLAN_ID = new Map();
+for (const entry of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY ?? []) {
+  const planId = String(entry?.planId ?? "").trim();
+  if (!planId) {
+    continue;
+  }
+
+  const existing = ACTIVE_PATHWAYS_BY_PLAN_ID.get(planId) ?? [];
+  existing.push(entry);
+  ACTIVE_PATHWAYS_BY_PLAN_ID.set(planId, existing);
+}
 
 function runDiscovery() {
   runNodeScript("scripts/planner/discover-transfer-planner-primary-sources.cjs", [], {
@@ -263,6 +274,9 @@ function buildParserBackedOwnerKeys() {
     for (const ownerKey of getParserBackedPathwayKeysFromLabels(block)) {
       keys.add(ownerKey);
     }
+    for (const ownerKey of getParserBackedPathwayKeysFromSourceText(block)) {
+      keys.add(ownerKey);
+    }
   }
 
   return keys;
@@ -322,6 +336,90 @@ function getParserBackedPathwayKeysFromLabels(block) {
   }
 
   return [...keys];
+}
+
+const PARSER_BACKED_PATHWAY_TEXT_STOPWORDS = new Set([
+  "and",
+  "ba",
+  "bachelor",
+  "bs",
+  "degree",
+  "major",
+  "of",
+  "option",
+  "pathway",
+  "program",
+  "route",
+  "the",
+  "track",
+  "uw",
+  "washington",
+]);
+
+function normalizeParserBackedPathwayToken(token) {
+  const normalized = String(token ?? "").trim().toLowerCase();
+  if (normalized.endsWith("ies") && normalized.length > 4) {
+    return `${normalized.slice(0, -3)}y`;
+  }
+  if (normalized.endsWith("s") && normalized.length > 4) {
+    return normalized.slice(0, -1);
+  }
+  return normalized;
+}
+
+function getParserBackedPathwayTokens(...values) {
+  return [
+    ...new Set(
+      values
+        .flatMap((value) => normalizeAliasMatchText(value).split(/\s+/))
+        .map(normalizeParserBackedPathwayToken)
+        .filter(
+          (token) =>
+            token.length >= 3 && !PARSER_BACKED_PATHWAY_TEXT_STOPWORDS.has(token)
+        )
+    ),
+  ];
+}
+
+function parserBackedBlockMentionsPathway(block, pathway) {
+  const pathwayTokens = getParserBackedPathwayTokens(pathway?.pathwayId);
+  const fallbackTokens = pathwayTokens.length
+    ? pathwayTokens
+    : getParserBackedPathwayTokens(pathway?.label);
+  if (!fallbackTokens.length) {
+    return false;
+  }
+
+  const evidenceTokens = new Set(
+    getParserBackedPathwayTokens(
+      block?.ownerTitle,
+      block?.sourceLabel,
+      block?.primarySourceLabel,
+      block?.sourceUrl,
+      block?.primarySourceUrl,
+      ...(block?.pathwayLabels ?? []),
+      ...(block?.requirementCueLines ?? []),
+      ...(block?.chooseStatements ?? [])
+    )
+  );
+  return fallbackTokens.every((token) => evidenceTokens.has(token));
+}
+
+function getParserBackedPathwayKeysFromSourceText(block) {
+  if (!block?.planId || block?.pathwayId) {
+    return [];
+  }
+
+  return (ACTIVE_PATHWAYS_BY_PLAN_ID.get(block.planId) ?? [])
+    .filter((pathway) => parserBackedBlockMentionsPathway(block, pathway))
+    .map((pathway) =>
+      buildOwnerKey({
+        ownerType: "pathway",
+        ownerKey: pathway.id,
+        planId: pathway.planId,
+        pathwayId: pathway.pathwayId,
+      })
+    );
 }
 
 function normalizeAliasMatchText(value) {

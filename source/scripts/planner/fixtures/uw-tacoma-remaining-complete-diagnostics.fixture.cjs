@@ -32,7 +32,8 @@ const tacomaRemainingPrograms = [
       TESC 433, TESC 435, TGH 494, TGH 496, THLEAD 407, THLEAD 410, THLTH 310, THLTH 325,
       THLTH 355, THLTH 372, THLTH 470, THLTH 485, TMATH 110, TMATH 124, TMATH 125, TMATH 126,
       TMATH 207, TMATH 208, TMATH 210, TPHIL 361, TPHIL 455, TPHYS 121, TPHYS 122, TPHYS 123,
-      TPSYCH 220, TPSYCH 260, TPSYCH 360, TPSYCH 361, TPSYCH 362, TPSYCH 441, TSOCWF 350, TSOCWF 353
+      TPSYCH 220, TPSYCH 260, TPSYCH 360, TPSYCH 361, TPSYCH 362, TPSYCH 441, TSOCWF 350, TSOCWF 353,
+      TSOCWF 355
     `),
     optionGroups: [
       { id: "biomedical-electives-list-a", label: "List A: Biomedical Electives", options: singleOptions(courses("TBIOL 312, TBIOL 320, TBIOL 350, TBIOL 401, TBIOL 412, TBIOL 414, TBIOL 455, TCHEM 271, TCHEM 433, TBIOL 361, TPSYCH 361")) },
@@ -44,9 +45,9 @@ const tacomaRemainingPrograms = [
       { id: "biomedical-core", label: "Core courses", minCredits: 39, courseCodes: courses("TBIOL 331, TBIOL 313, TBIOL 323, TBIOL 314, TBIOL 325, TCHEM 405, TCHEM 406") },
       { id: "biomedical-electives", label: "Biomedical Electives", minCredits: 15, courseCodes: courses("TBIOL 312, TBIOL 320, TBIOL 350, TBIOL 401, TBIOL 412, TBIOL 414, TBIOL 455, TCHEM 271, TCHEM 433, TBIOL 361, TPSYCH 361") },
       { id: "biomedical-bookend", label: "Bookend courses", minCredits: 8, courseCodes: courses("TBIOMD 310, TBIOMD 410") },
-      { id: "biomedical-context", label: "Health and Society", minCredits: 5, courseCodes: courses("TBIOL 252, TBIOL 270, TBIOMD 201, TEGL 202, TEGL 401, TEGL 464, TESC 345, THLEAD 407, THLTH 310, THLTH 372, THLTH 470, THLTH 485, TPSYCH 220, TBIOL 260, TPSYCH 260, TPSYCH 360, TPSYCH 362, TPSYCH 441, TSOCWF 350, TSOCWF 353") },
+      { id: "biomedical-context", label: "Health and Society", minCredits: 5, courseCodes: courses("TBIOL 252, TBIOL 270, TBIOMD 201, TEGL 202, TEGL 401, TEGL 464, TESC 345, THLEAD 407, THLTH 310, THLTH 372, THLTH 470, THLTH 485, TPSYCH 220, TBIOL 260, TPSYCH 260, TPSYCH 360, TPSYCH 362, TPSYCH 441, TSOCWF 350, TSOCWF 353, TSOCWF 355") },
     ],
-    genEdRequirements: ["Bachelor of Science", "Pre-Autumn 2026 Requirements", "minimum grade of 2.0", "Capstone", "Statistics", "Ethics", "Health and Society"],
+    genEdRequirements: ["The BS in Biomedical Sciences", "Pre-Autumn 2026 Requirements", "minimum grade of 2.0", "Capstone", "Statistics", "Ethics", "Health and Society"],
     requirementLabels: ["Biomedical Sciences", "Introductory courses", "Biomedical Electives", "Bookend courses"],
   },
   {
@@ -54,7 +55,12 @@ const tacomaRemainingPrograms = [
     planId: "uw-tacoma-ethnic-gender-and-labor-studies",
     title: "Ethnic, Gender and Labor Studies (BA)",
     family: "ethnic-gender-labor-studies",
-    officialSources: ["https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies"],
+    officialSources: [
+      "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+      "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
+      "https://www.tacoma.uw.edu/sias/socs/gender-studies-option",
+      "https://www.tacoma.uw.edu/sias/socs/labor-studies-option",
+    ],
     expectedPathwayIds: ["ethnic-studies-option", "gender-studies-option", "labor-studies-option"],
     requiredCourseCodes: courses(`
       TAMST 260, TAMST 430, TARTS 360, TARTS 406, TCOM 444, TECON 320, TECON 370, TECON 450,
@@ -77,9 +83,9 @@ const tacomaRemainingPrograms = [
       { id: "egls-options", label: "Ethnic Studies Option, Gender Studies Option, or Labor Studies Option", options: [] },
     ],
     courseBuckets: [
-      { id: "egls-complete-course-set", label: "Ethnic, Gender and Labor Studies course options", courseCodes: courses("TEGL 101, TEGL 201, TEGL 202, TEGL 210, TEGL 401, TEGL 464, TWOMN 101, TWOMN 205, TSOC 265, TSOC 270, TSOC 335, TSOC 365") },
+      { id: "egls-complete-course-set", label: "Ethnic Studies Electives", courseCodes: courses("TEGL 101, TEGL 201, TEGL 202, TEGL 210, TEGL 401, TEGL 464, TWOMN 101, TWOMN 205, TSOC 265, TSOC 270, TSOC 335, TSOC 365") },
     ],
-    genEdRequirements: ["Bachelor of Arts", "Ethnic Studies Option", "Gender Studies Option", "Labor Studies Option"],
+    genEdRequirements: ["Ethnic, Gender and Labor Studies (BA)", "Ethnic Studies Option", "Gender Studies Option", "Labor Studies Option"],
     requirementLabels: ["Ethnic, Gender and Labor Studies", "Ethnic Studies", "Gender Studies", "Labor Studies"],
   },
   {
@@ -96,7 +102,7 @@ const tacomaRemainingPrograms = [
       THIST 322, THIST 336, THIST 341, THIST 350, THIST 365, THIST 375, THIST 376, THIST 377,
       THIST 380, THIST 416, THIST 417, THIST 420, THIST 440, THIST 441, THIST 442, THIST 444,
       THIST 457, THIST 464, THIST 465, THIST 466, THIST 475, THIST 479, THIST 484, THIST 487,
-      THIST 491, THIST 495, THIST 498, TLAX 400, TLAX 441, TLAX 465, TLIT 230, TLIT 433,
+      THIST 491, THIST 495, THIST 498, TLAX 400, TLIT 230, TLIT 433,
       TPOLS 317, TPOLS 329, TPOLS 343, TPOLS 360, TSOC 265, TSOC 270
     `)),
     optionGroups: [
@@ -106,7 +112,7 @@ const tacomaRemainingPrograms = [
       { id: "history-core", label: "Core Requirements", minCredits: 30, courseCodes: courses("THIST 150, THIST 151, THIST 200, THIST 201, THIST 380, THIST 498") },
       { id: "history-electives", label: "Electives with a THIST prefix", minCredits: 30, courseCodes: courses("THIST 101, THIST 111, THIST 112, THIST 220, THIST 221, THIST 222, THIST 251, THIST 260, THIST 270, THIST 271, THIST 290, THIST 322, THIST 336, THIST 341, THIST 350, THIST 365, THIST 375, THIST 376, THIST 377, THIST 416, THIST 417, THIST 420, THIST 440, THIST 441, THIST 442, THIST 444, THIST 457, THIST 464, THIST 465, THIST 466, THIST 475, THIST 479, THIST 484, THIST 487, THIST 491, THIST 495") },
     ],
-    genEdRequirements: ["Bachelor of Arts", "30 credits of Core courses", "30 credits of Electives", "25 credits must be upper-division"],
+    genEdRequirements: ["History (BA)", "30 credits of Core courses", "30 credits of Electives", "25 credits must be upper-division"],
     requirementLabels: ["History", "Core Requirements", "General History option", "Global History option"],
   },
   {
@@ -116,6 +122,7 @@ const tacomaRemainingPrograms = [
     family: "interdisciplinary-individualized-studies",
     officialSources: ["https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences"],
     expectedPathwayIds: ["ba-route"],
+    publicAdmissionsLabels: ["Global Studies"],
     requiredCourseCodes: courses(`
       TARTS 200, TARTS 240, TARTS 280, TARTS 311, TARTS 315, TARTS 367, TARTS 386, TARTS 404,
       TARTS 405, TARTS 406, TARTS 407, TARTS 469, TARTS 471, TBIOL 203, TBIOL 232, TBIOL 234,
@@ -137,14 +144,14 @@ const tacomaRemainingPrograms = [
     `),
     optionGroups: [
       { id: "ias-core-lists", label: "List A, List B, List C, and List D", options: [] },
-      { id: "ias-elective-lists", label: "Scientific Thinking, Humans and Their Environment, Arts and Media, Culture and Ideas, Individual and Society", options: [] },
+      { id: "ias-elective-lists", label: "Scientific Thinking, Humans and Their Environment, History or The Human Past, and Society and Culture", options: [] },
     ],
     courseBuckets: [
       { id: "ias-core", label: "Core courses", minCredits: 22, courseCodes: courses("THIST 150, THIST 151, THIST 200, THIST 201, TESC 102, TESC 201, TARTS 200, TFILM 201, TLIT 101, TECON 101, TPOLS 202, TPSYCH 101, TIAS 305") },
       { id: "ias-electives", label: "45 credits Elective courses", minCredits: 45, courseCodes: [] },
     ],
-    genEdRequirements: ["Bachelor of Arts", "Core courses", "45 credits Elective courses", "minimum of 20 credits at the 400-level"],
-    requirementLabels: ["Interdisciplinary Arts and Sciences", "Scientific Thinking", "Humans and Their Environment", "Arts and Media", "Culture and Ideas", "Individual and Society"],
+    genEdRequirements: ["Interdisciplinary Arts and Sciences (BA)", "Core courses", "45 credits Elective courses", "minimum of 20 credits at the 400-level"],
+    requirementLabels: ["Interdisciplinary Arts and Sciences", "Scientific Thinking", "Humans and Their Environment", "History or The Human Past", "Society and Culture"],
   },
   {
     campusId: "uw-tacoma",
@@ -152,24 +159,22 @@ const tacomaRemainingPrograms = [
     title: "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
     family: "interdisciplinary-individualized-studies",
     officialSources: ["https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html"],
-    expectedPathwayIds: ["the-concentration-coordinator"],
-    requiredCourseCodes: courses("ENGL 131, TIAS 305"),
-    optionGroups: [
-      { id: "ias-individually-designed-concentration", label: "Individually-designed concentration", options: [] },
-      { id: "ias-individually-designed-coordinator", label: "The Concentration Coordinator", options: [] },
-    ],
+    expectedPathwayIds: [],
+    requiredCourseCodes: courses("ENGL 131, TIAS 497"),
+    optionGroups: [],
     courseBuckets: [
-      { id: "ias-individually-designed-core", label: "Interdisciplinary Arts and Sciences Core", courseCodes: courses("ENGL 131, TIAS 305") },
+      { id: "ias-individually-designed-english-composition", label: "English composition", courseCodes: courses("ENGL 131") },
+      { id: "ias-individually-designed-required-course", label: "Required Course", courseCodes: courses("TIAS 497") },
     ],
-    genEdRequirements: ["Individually-designed", "Bachelor of Arts", "Interdisciplinary Arts and Sciences"],
-    requirementLabels: ["Individually-designed concentration", "The Concentration Coordinator"],
+    genEdRequirements: ["Individually Designed", "Bachelor of Arts", "55 credits"],
+    requirementLabels: ["Individually-designed concentration", "Individually-Designed Core", "Required Course"],
   },
   {
     campusId: "uw-tacoma",
     planId: "uw-tacoma-spanish-language-and-cultures",
     title: "Spanish Language and Cultures (BA)",
     family: "spanish-language-cultures",
-    officialSources: ["https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures", "https://www.washington.edu/students/crscatt/tspan.html"],
+    officialSources: ["https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures"],
     expectedPathwayIds: [],
     requiredCourseCodes: courses(`
       TSPAN 299, TSPAN 301, TSPAN 302, TSPAN 303, TSPAN 335, TSPAN 345, TSPAN 348, TSPAN 351,
@@ -177,13 +182,13 @@ const tacomaRemainingPrograms = [
       TSPAN 425, TSPAN 430, TSPAN 451, TSPAN 464, TSPAN 480, TSPAN 496
     `),
     optionGroups: [
-      { id: "spanish-upper-division", label: "Spanish Language and Cultures electives", options: singleOptions(courses("TSPAN 335, TSPAN 345, TSPAN 348, TSPAN 351, TSPAN 352, TSPAN 361, TSPAN 371, TSPAN 374, TSPAN 376, TSPAN 388, TSPAN 393, TSPAN 420, TSPAN 425, TSPAN 430, TSPAN 451, TSPAN 464, TSPAN 480, TSPAN 496")) },
+      { id: "spanish-upper-division", label: "Electives", options: singleOptions(courses("TSPAN 335, TSPAN 345, TSPAN 348, TSPAN 351, TSPAN 352, TSPAN 361, TSPAN 371, TSPAN 374, TSPAN 376, TSPAN 388, TSPAN 393, TSPAN 420, TSPAN 425, TSPAN 430, TSPAN 451, TSPAN 464, TSPAN 480, TSPAN 496")) },
     ],
     courseBuckets: [
       { id: "spanish-core", label: "Core courses", courseCodes: courses("TSPAN 301, TSPAN 302, TSPAN 303") },
-      { id: "spanish-electives", label: "Spanish Language and Cultures electives", courseCodes: courses("TSPAN 335, TSPAN 345, TSPAN 348, TSPAN 351, TSPAN 352, TSPAN 361, TSPAN 371, TSPAN 374, TSPAN 376, TSPAN 388, TSPAN 393, TSPAN 420, TSPAN 425, TSPAN 430, TSPAN 451, TSPAN 464, TSPAN 480, TSPAN 496") },
+      { id: "spanish-electives", label: "Electives", courseCodes: courses("TSPAN 335, TSPAN 345, TSPAN 348, TSPAN 351, TSPAN 352, TSPAN 361, TSPAN 371, TSPAN 374, TSPAN 376, TSPAN 388, TSPAN 393, TSPAN 420, TSPAN 425, TSPAN 430, TSPAN 451, TSPAN 464, TSPAN 480, TSPAN 496") },
     ],
-    genEdRequirements: ["Bachelor of Arts", "Spanish Language and Cultures"],
+    genEdRequirements: ["Spanish Language and Cultures (BA)", "Spanish Language and Cultures"],
     requirementLabels: ["Spanish Language and Cultures", "Core courses", "electives"],
   },
   {
@@ -215,6 +220,7 @@ const tacomaRemainingPrograms = [
     family: "urban-planning-design",
     officialSources: ["https://www.tacoma.uw.edu/urban-studies/ba-urban-studies"],
     expectedPathwayIds: ["community-engagement-option", "gis-option"],
+    publicAdmissionsLabels: ["Community Development & Planning", "GIS & Spatial Planning"],
     requiredCourseCodes: unique(courses(`
       ENGL 131, TGIS 311, TGIS 312, TGIS 313, TGIS 350, TGIS 414, TGIS 415, TGIS 450,
       TGIS 460, TGIS 470, TUDE 310, TUDE 340, TURB 101, TURB 102, TURB 103, TURB 110,
@@ -227,10 +233,10 @@ const tacomaRemainingPrograms = [
     ],
     courseBuckets: [
       { id: "urban-studies-shared", label: "Shared Curriculum Courses", courseCodes: courses("TURB 101, TURB 103, TURB 110, TURB 200, TURB 403") },
-      { id: "urban-studies-core", label: "Urban Studies core courses", courseCodes: courses("TURB 210, TURB 220, TURB 225, TURB 235, TURB 250, TURB 312, TURB 316, TURB 345, TURB 379, TURB 432, TURB 470, TURB 479, TURB 480, TURB 498") },
+      { id: "urban-studies-core", label: "Shared Curriculum", courseCodes: courses("TURB 210, TURB 220, TURB 225, TURB 235, TURB 250, TURB 312, TURB 316, TURB 345, TURB 379, TURB 432, TURB 470, TURB 479, TURB 480, TURB 498") },
     ],
     genEdRequirements: ["Bachelor of Arts", "Urban Studies", "Community Engagement option", "GIS option", "General electives"],
-    requirementLabels: ["BA in Urban Studies", "Urban Studies core courses", "Community Engagement", "GIS"],
+    requirementLabels: ["BA in Urban Studies", "Shared Curriculum", "Community Engagement", "GIS"],
   },
   {
     campusId: "uw-tacoma",
@@ -263,7 +269,7 @@ const tacomaRemainingPrograms = [
       { id: "writing-technical", label: "Technical Communication Track", courseCodes: courses("TWRT 200, TWRT 270, TWRT 280, TWRT 287, TWRT 291, TWRT 320, TWRT 340, TWRT 360, TWRT 372, TWRT 382, TWRT 384, TWRT 391, TWRT 470, TWRT 480") },
       { id: "writing-social-change", label: "Writing and Social Change Track", courseCodes: courses("TWRT 211, TWRT 274, TWRT 287, TWRT 291, TWRT 340, TWRT 388, TWRT 389, TWRT 391, TWRT 470, TWRT 480") },
     ],
-    genEdRequirements: ["Bachelor of Arts", "Writing Studies", "Creative Writing Track", "Technical Communication Track", "Writing and Social Change Track"],
+    genEdRequirements: ["The BA in Writing Studies", "Writing Studies", "Creative Writing Track", "Technical Communication Track", "Writing and Social Change Track"],
     requirementLabels: ["Writing Studies", "Creative Writing", "Technical Communication", "Writing and Social Change"],
   },
 ];

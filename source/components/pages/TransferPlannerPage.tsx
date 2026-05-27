@@ -95,6 +95,7 @@ export default function TransferPlannerPage() {
     selectedRequirementOptionIdsByGroup,
     handleSelectRequirementOption,
     handleReportBug,
+    demoReview,
     plannerHeroContent,
   } = useTransferPlannerController();
 
@@ -193,6 +194,7 @@ export default function TransferPlannerPage() {
             pathwayOptions={pathwayOptions}
             selectedPathwayLabel={plan?.selectedPathwayLabel ?? null}
             hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
+            demoReview={demoReview}
             selectedCollegeId={selectedCollegeId}
             selectedCollegeLabel={selectedCollegeLabel}
             selectedCampusId={effectiveSelectedCampusId}

@@ -16,6 +16,9 @@ import {
   UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS,
   type SuggestedQuarterPlan,
 } from "@/services/planning/transfer-planner.service";
+import {
+  creditBasedOptionGroupRequiresEveryConcreteOption,
+} from "@/services/planning/transfer-planner/option-selection";
 
 import type { PlannerCollegeId } from "./transfer-planner-storage";
 
@@ -829,6 +832,16 @@ export function isSuggestedScheduleCreditBasedOptionGroup(
   );
 }
 
+export function suggestedScheduleCreditOptionGroupRequiresEveryOption(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  return creditBasedOptionGroupRequiresEveryConcreteOption({
+    requirementType: optionGroup.requirementType,
+    requiredCredits: optionGroup.requiredCredits,
+    options: optionGroup.options,
+  });
+}
+
 export function getSuggestedScheduleOptionGroupProgressText(
   optionGroup: SuggestedScheduleOptionGroup
 ) {
@@ -855,6 +868,10 @@ export function getSuggestedScheduleOptionGroupInteractionSelectionCount(
 }
 
 export function getSuggestedScheduleResolvedOptionIds(optionGroup: SuggestedScheduleOptionGroup) {
+  if (suggestedScheduleCreditOptionGroupRequiresEveryOption(optionGroup)) {
+    return getSuggestedScheduleUniqueOptionIds(optionGroup.options.map((option) => option.id));
+  }
+
   if (optionGroup.resolvedSatisfiedOptionIds) {
     return getSuggestedScheduleUniqueOptionIds(optionGroup.resolvedSatisfiedOptionIds);
   }
@@ -966,7 +983,11 @@ export function mergeSuggestedScheduleOptionGroups(
 export function shouldShowSuggestedScheduleOptionGroup(
   optionGroup: SuggestedScheduleOptionGroup | null | undefined
 ): optionGroup is SuggestedScheduleOptionGroup {
-  return Boolean(optionGroup && optionGroup.options.length > 1);
+  return Boolean(
+    optionGroup &&
+      optionGroup.options.length > 1 &&
+      !suggestedScheduleCreditOptionGroupRequiresEveryOption(optionGroup)
+  );
 }
 
 export function addStableSuggestedScheduleOptionGroupId(

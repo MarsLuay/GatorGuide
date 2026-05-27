@@ -7161,6 +7161,43 @@ test("Cross-major navigation pathway noise does not outrank plan-level evidence"
   assert.deepEqual(materialized, []);
 });
 
+test("Seattle JSIS non-Asian majors do not inherit Asian Studies concentrations", () => {
+  const planIds = [
+    "uw-seattle-jewish-studies",
+    "uw-seattle-latin-american-and-caribbean-studies",
+  ];
+
+  for (const planId of planIds) {
+    const plan = getRequiredPlan(planId);
+    const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(planId);
+    const sourcePathwayIds = getTransferPlannerPathwaysForPlan(plan).map(
+      (pathway) => pathway.id
+    );
+    const runtimePathwayIds = runtimePlan
+      ? getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan).map((pathway) => pathway.id)
+      : [];
+
+    assert.deepEqual(sourcePathwayIds, [], `${planId} should have no source pathways.`);
+    assert.deepEqual(runtimePathwayIds, [], `${planId} should have no runtime pathways.`);
+  }
+});
+
+test("Seattle Materials Science keeps only the real NME pathway", () => {
+  const plan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+  assert.ok(runtimePlan, "Expected a Materials Science runtime plan.");
+
+  const sourcePathways = getTransferPlannerPathwaysForPlan(plan)
+    .map((pathway) => [pathway.id, pathway.label] as const)
+    .sort((left, right) => left[0].localeCompare(right[0]));
+  const runtimePathways = getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)
+    .map((pathway) => [pathway.id, pathway.label] as const)
+    .sort((left, right) => left[0].localeCompare(right[0]));
+
+  assert.deepEqual(sourcePathways, [["nme-option", "NME Option"]]);
+  assert.deepEqual(runtimePathways, [["nme-option", "NME Option"]]);
+});
+
 test("Seattle Computer Science Data Science option resolves to one clean canonical pathway", () => {
   const runtimeCsPlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-science");
   assert.ok(runtimeCsPlan, "Expected a Computer Science runtime plan.");

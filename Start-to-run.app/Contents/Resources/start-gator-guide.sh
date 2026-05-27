@@ -306,8 +306,66 @@ organize_tmp() {
   fi
 }
 
+choose_startup_mode() {
+  local requested_mode="${GATORGUIDE_STARTUP_MODE:-}"
+  requested_mode="$(printf '%s' "$requested_mode" | tr '[:upper:]' '[:lower:]')"
+
+  case "$requested_mode" in
+    1|run|normal)
+      requested_mode="normal"
+      ;;
+    2|demo)
+      requested_mode="demo"
+      ;;
+    "")
+      ;;
+    *)
+      fail "Unsupported startup mode \"$GATORGUIDE_STARTUP_MODE\". Use normal or demo."
+      ;;
+  esac
+
+  while [ -z "$requested_mode" ]; do
+    printf '\nChoose startup mode:\n'
+    printf '  1. Run normally\n'
+    printf '  2. Demo mode\n\n'
+    printf 'Enter 1 or 2: '
+
+    if ! IFS= read -r requested_mode; then
+      requested_mode="normal"
+    fi
+
+    requested_mode="$(printf '%s' "$requested_mode" | tr '[:upper:]' '[:lower:]')"
+    case "$requested_mode" in
+      1|run|normal)
+        requested_mode="normal"
+        ;;
+      2|demo)
+        requested_mode="demo"
+        ;;
+      *)
+        log "Please enter 1 or 2."
+        requested_mode=""
+        ;;
+    esac
+  done
+
+  if [ "$requested_mode" = "demo" ]; then
+    export GATORGUIDE_STARTUP_MODE="demo"
+    export GATORGUIDE_DEMO_MODE="1"
+    export EXPO_PUBLIC_GATORGUIDE_DEMO_MODE="1"
+    log "Demo mode selected. Human-reviewed Course Planner demo data will load on demand."
+    return
+  fi
+
+  export GATORGUIDE_STARTUP_MODE="normal"
+  unset GATORGUIDE_DEMO_MODE
+  unset EXPO_PUBLIC_GATORGUIDE_DEMO_MODE
+  log "Normal startup selected."
+}
+
 main() {
   log "Preparing Gator Guide for launch..."
+  choose_startup_mode
   locate_or_clone_repo
   ensure_node_toolchain
   ensure_env_file

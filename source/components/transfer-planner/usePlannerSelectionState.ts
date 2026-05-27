@@ -49,26 +49,31 @@ type UsePlannerSelectionStateInput = {
   questionnaireAnswers: QuestionnaireAnswers;
   setQuestionnaireAnswers: SetQuestionnaireAnswers;
   userMajor?: string | null;
+  includeAllUwMajors?: boolean;
 };
 
-const SELECTABLE_UW_MAJOR_PLANS_BY_CAMPUS_ID = new Map<
-  TransferPlannerCampusId,
-  TransferPlannerMajorPlan[]
->();
+const SELECTABLE_UW_MAJOR_PLANS_BY_CACHE_KEY = new Map<string, TransferPlannerMajorPlan[]>();
 
-function getSelectableUwMajorPlansForCampus(campusId: TransferPlannerCampusId) {
-  const cachedMajors = SELECTABLE_UW_MAJOR_PLANS_BY_CAMPUS_ID.get(campusId);
+function getSelectableUwMajorPlansForCampus(
+  campusId: TransferPlannerCampusId,
+  options: { includeAllUwMajors?: boolean } = {}
+) {
+  const cacheKey = `${campusId}:${options.includeAllUwMajors ? "all" : "matched"}`;
+  const cachedMajors = SELECTABLE_UW_MAJOR_PLANS_BY_CACHE_KEY.get(cacheKey);
   if (cachedMajors) {
     return cachedMajors;
   }
 
-  const majors = getTransferPlannerStudentRuntimeMajorsForCampus(campusId).filter((plan) =>
-    hasAnyDirectMajorEquivalenciesInPlanOrPathways(
-      plan,
-      getTransferPlannerStudentRuntimePathwaysForPlan(plan)
-    )
-  );
-  SELECTABLE_UW_MAJOR_PLANS_BY_CAMPUS_ID.set(campusId, majors);
+  const runtimeMajors = getTransferPlannerStudentRuntimeMajorsForCampus(campusId);
+  const majors = options.includeAllUwMajors
+    ? runtimeMajors
+    : runtimeMajors.filter((plan) =>
+        hasAnyDirectMajorEquivalenciesInPlanOrPathways(
+          plan,
+          getTransferPlannerStudentRuntimePathwaysForPlan(plan)
+        )
+      );
+  SELECTABLE_UW_MAJOR_PLANS_BY_CACHE_KEY.set(cacheKey, majors);
   return majors;
 }
 
@@ -77,12 +82,13 @@ export function usePlannerSelectionState({
   questionnaireAnswers,
   setQuestionnaireAnswers,
   userMajor,
+  includeAllUwMajors = false,
 }: UsePlannerSelectionStateInput) {
   const [selectedCollegeId, setSelectedCollegeId] = useState<PlannerCollegeId>("uw");
   const [selectedCampusId, setSelectedCampusId] =
     useState<PlannerCampusSelectionId>("uw-seattle");
   const [selectedMajorId, setSelectedMajorId] = useState<string>(
-    getSelectableUwMajorPlansForCampus("uw-seattle")[0]?.id ?? ""
+    getSelectableUwMajorPlansForCampus("uw-seattle", { includeAllUwMajors })[0]?.id ?? ""
   );
   const [openSelector, setOpenSelector] = useState<PlannerSelectorKey>(null);
   const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
@@ -114,8 +120,10 @@ export function usePlannerSelectionState({
   );
   const campusMajors = useMemo(
     () =>
-      isUwPlanner ? getSelectableUwMajorPlansForCampus(selectedUwCampusId) : [],
-    [isUwPlanner, selectedUwCampusId]
+      isUwPlanner
+        ? getSelectableUwMajorPlansForCampus(selectedUwCampusId, { includeAllUwMajors })
+        : [],
+    [includeAllUwMajors, isUwPlanner, selectedUwCampusId]
   );
   const selectedBasePlan = useMemo(
     () =>
@@ -230,7 +238,7 @@ export function usePlannerSelectionState({
       const campusId = campusIdsToWarm[campusIndex];
       campusIndex += 1;
       if (campusId) {
-        getSelectableUwMajorPlansForCampus(campusId);
+        getSelectableUwMajorPlansForCampus(campusId, { includeAllUwMajors });
       }
 
       if (campusIndex < campusIdsToWarm.length) {
@@ -256,7 +264,7 @@ export function usePlannerSelectionState({
       cancelScheduledWork();
       task.cancel?.();
     };
-  }, [isUwPlanner, openSelector, selectedUwCampusId]);
+  }, [includeAllUwMajors, isUwPlanner, openSelector, selectedUwCampusId]);
 
   useEffect(() => {
     if (!isHydrated || hydratedLastSelectionRef.current) return;
@@ -282,7 +290,9 @@ export function usePlannerSelectionState({
     );
     if (!matchedCampus) return;
 
-    const nextMajors = getSelectableUwMajorPlansForCampus(matchedCampus.id);
+    const nextMajors = getSelectableUwMajorPlansForCampus(matchedCampus.id, {
+      includeAllUwMajors,
+    });
     const matchedMajor = nextMajors.find((entry) => entry.id === storedLastSelectedPlan.majorId);
     if (!matchedMajor) return;
 
@@ -290,7 +300,7 @@ export function usePlannerSelectionState({
     setSelectedCollegeId("uw");
     setSelectedCampusId(matchedCampus.id);
     setSelectedMajorId(matchedMajor.id);
-  }, [isHydrated, storedLastSelectedPlan]);
+  }, [includeAllUwMajors, isHydrated, storedLastSelectedPlan]);
 
   useEffect(() => {
     const nextCampusId = getDefaultPlannerCampusId(selectedCollegeId);

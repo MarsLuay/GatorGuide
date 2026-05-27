@@ -34,9 +34,13 @@ type PlannerOptionDisplayGroup = {
 };
 
 type PlannerOptionSelectionCreditRange = {
+  optionKind?: string | null;
+  categoryOption?: PlannerOptionDisplay["categoryOption"] | null;
+  credits?: number | null;
   creditAmount?: number | null;
   creditMin?: number | null;
   creditMax?: number | null;
+  maxCredits?: number | null;
 };
 
 function unique<T>(items: T[]) {
@@ -279,8 +283,53 @@ export function getRequirementOptionSelectionCountForSuggestedOptions(
 function getSuggestedQuarterCourseOptionMaximumCreditValue(
   option: PlannerOptionSelectionCreditRange
 ) {
-  const creditValue = Number(option.creditMax ?? option.creditAmount ?? option.creditMin ?? 0);
+  const creditValue = Number(
+    option.creditMax ??
+      option.maxCredits ??
+      option.creditAmount ??
+      option.credits ??
+      option.creditMin ??
+      0
+  );
   return Number.isFinite(creditValue) && creditValue > 0 ? creditValue : 0;
+}
+
+function plannerOptionLooksLikeCategoryOption(
+  option: Pick<PlannerOptionSelectionCreditRange, "optionKind" | "categoryOption"> | null | undefined
+) {
+  return option?.optionKind === "category-option" && !!option.categoryOption;
+}
+
+export function creditBasedOptionGroupRequiresEveryConcreteOption(input: {
+  requirementType?: string | null;
+  requiredCredits?: number | null;
+  options?: PlannerOptionSelectionCreditRange[] | null;
+}) {
+  if (input.requirementType !== "choose_credits") {
+    return false;
+  }
+
+  const requiredCredits = Number(input.requiredCredits ?? 0);
+  if (!Number.isFinite(requiredCredits) || requiredCredits <= 0) {
+    return false;
+  }
+
+  const options = input.options ?? [];
+  if (options.length <= 1 || options.some(plannerOptionLooksLikeCategoryOption)) {
+    return false;
+  }
+
+  const optionCredits = options.map(getSuggestedQuarterCourseOptionMaximumCreditValue);
+  if (optionCredits.some((creditValue) => creditValue <= 0)) {
+    return false;
+  }
+
+  const totalCredits = optionCredits.reduce((total, creditValue) => total + creditValue, 0);
+  if (totalCredits < requiredCredits) {
+    return false;
+  }
+
+  return optionCredits.every((creditValue) => totalCredits - creditValue < requiredCredits);
 }
 
 export function getRequirementOptionIds(item: TransferPlannerChecklistItem) {
@@ -325,7 +374,7 @@ function requirementGroupLooksLikeStudentChoiceCreditBucket(
 function isRequirementCategoryOption(
   option: PlannerOptionDisplay | null | undefined
 ) {
-  return option?.optionKind === "category-option" && !!option.categoryOption;
+  return plannerOptionLooksLikeCategoryOption(option);
 }
 
 function getRequirementCategoryOptionLabel(option: PlannerOptionDisplay) {

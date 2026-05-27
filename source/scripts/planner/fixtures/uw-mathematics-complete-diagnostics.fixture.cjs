@@ -468,7 +468,11 @@ const mathematicsPrograms = [
     campusId: "uw-bothell",
     planId: "uw-bothell-mathematics",
     title: "Mathematics",
-    officialSources: ["https://www.washington.edu/students/gencat/program/B/EngineeringandMathematics-1092.html", "https://www.uwb.edu/stem/undergraduate/majors/mathematics"],
+    officialSources: [
+      "https://www.washington.edu/students/gencat/program/B/EngineeringandMathematics-1092.html",
+      "https://www.uwb.edu/stem/undergraduate/majors/mathematics",
+      "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
+    ],
     expectedPathwayIds: [],
     pathwayGroups: [],
     requiredCourseCodes: unique([...bothellMathCoreCourses, ...bothellMathElectiveCourses]),

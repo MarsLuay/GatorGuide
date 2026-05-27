@@ -9,6 +9,9 @@ set "EXPO_PORT=8081"
 set "EXPO_URL=http://127.0.0.1:%EXPO_PORT%"
 
 echo Preparing Gator Guide for launch...
+call :choose_startup_mode
+if errorlevel 1 exit /b 1
+
 call :locate_or_clone_repo
 if errorlevel 1 exit /b 1
 
@@ -41,6 +44,41 @@ if not "%EXPO_EXIT%"=="0" (
   exit /b 1
 )
 
+exit /b 0
+
+:choose_startup_mode
+set "NORMALIZED_STARTUP_MODE=%GATORGUIDE_STARTUP_MODE%"
+if /I "%NORMALIZED_STARTUP_MODE%"=="1" set "NORMALIZED_STARTUP_MODE=normal"
+if /I "%NORMALIZED_STARTUP_MODE%"=="run" set "NORMALIZED_STARTUP_MODE=normal"
+if /I "%NORMALIZED_STARTUP_MODE%"=="2" set "NORMALIZED_STARTUP_MODE=demo"
+
+if /I "%NORMALIZED_STARTUP_MODE%"=="normal" goto startup_normal
+if /I "%NORMALIZED_STARTUP_MODE%"=="demo" goto startup_demo
+
+echo.
+echo Choose startup mode:
+echo   1. Run normally
+echo   2. Demo mode
+echo.
+choice /C 12 /N /M "Enter 1 or 2: "
+if errorlevel 2 goto startup_demo
+if errorlevel 1 goto startup_normal
+
+echo Could not read startup mode.
+exit /b 1
+
+:startup_demo
+set "GATORGUIDE_STARTUP_MODE=demo"
+set "GATORGUIDE_DEMO_MODE=1"
+set "EXPO_PUBLIC_GATORGUIDE_DEMO_MODE=1"
+echo Demo mode selected. Human-reviewed Course Planner demo data will load on demand.
+exit /b 0
+
+:startup_normal
+set "GATORGUIDE_STARTUP_MODE=normal"
+set "GATORGUIDE_DEMO_MODE="
+set "EXPO_PUBLIC_GATORGUIDE_DEMO_MODE="
+echo Normal startup selected.
 exit /b 0
 
 :open_browser_when_expo_ready

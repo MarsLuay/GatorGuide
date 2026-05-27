@@ -302,7 +302,7 @@ const TACOMA_HISTORY_SUPPLEMENTAL_PATHWAY_SOURCES =
       "general-history-option",
       "General History option",
       "UW Tacoma General History option requirements",
-      "https://www.tacoma.uw.edu/sias-new/socs-new/general-option",
+      "https://www.tacoma.uw.edu/sias/socs/general-history-option",
     ],
     [
       "arts-culture-and-society-option",
@@ -411,6 +411,20 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
     ],
     validationNotes: [
       "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+  {
+    planId: "uw-bothell-interdisciplinary-studies-individualized-study",
+    campusId: "uw-bothell",
+    ownerTitle: "Interdisciplinary Social Sciences (BA)",
+    links: [
+      {
+        label: "UW Bothell Interdisciplinary Social Sciences degree requirements",
+        url: "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-studies",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained because UW Bothell's current public degree listing exposes Interdisciplinary Social Sciences separately from Interdisciplinary Arts.",
     ],
   },
   {
@@ -1409,6 +1423,17 @@ const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
         url: "https://www.tacoma.uw.edu/sias/sam/environmental-science",
         note:
           "Broad official BS page kept as the primary parser source so preparatory, core, capstone, and option requirements are parsed together.",
+      },
+    ],
+  ],
+  [
+    "uw-tacoma-writing-studies",
+    [
+      {
+        label: "UW Tacoma Writing Studies degree requirements",
+        url: "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+        note:
+          "Official overview page carries the shared Writing Studies admission and degree requirements before the dedicated track pages.",
       },
     ],
   ],
