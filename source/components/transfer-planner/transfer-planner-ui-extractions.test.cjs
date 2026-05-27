@@ -265,3 +265,78 @@ test("SuggestedScheduleCourseRow centralizes current-course selection state", ()
 
   unmount(renderer);
 });
+
+test("SuggestedScheduleCourseRow keeps transcript-satisfied gen-ed rows in normal course format", () => {
+  resetReactNativeTestState();
+  applyTransferPlannerTranslations();
+
+  const optionGroup = createOptionGroup({
+    id: "ah-choice",
+    title: "4 credits of Arts and Humanities",
+    selectedOptionIds: [],
+    resolvedSatisfiedOptionIds: ["ah-option"],
+    completedSatisfyingCourseCodesByOptionId: {
+      "ah-option": ["ART 114"],
+    },
+    optionSatisfactionSourcesById: {
+      "ah-option": ["transcript-completed"],
+    },
+    isSelectionPrompt: false,
+    options: [
+      {
+        id: "ah-option",
+        label: "4 credits of Arts and Humanities (A&H)",
+        selectedLabel: "4 credits of Arts and Humanities (A&H)",
+        courseLabels: ["4 credits of Arts and Humanities (A&H)"],
+        courseCodes: [],
+        creditAmount: 4,
+      },
+      {
+        id: "ssc-option",
+        label: "4 credits of Social Sciences (SSc)",
+        selectedLabel: "4 credits of Social Sciences (SSc)",
+        courseLabels: ["4 credits of Social Sciences (SSc)"],
+        courseCodes: [],
+        creditAmount: 4,
+      },
+    ],
+  });
+
+  const renderer = render(
+    React.createElement(SuggestedScheduleCourseRow, {
+      course: {
+        label: "ART 114",
+        status: "completed",
+        type: "elective",
+        guidanceSummary:
+          "This covers 4/4 A&H/SSc credits needed for Aeronautics & Astronautics.",
+        optionGroup,
+      },
+      quarterLabel: "Fall 2024",
+      courseIndex: 0,
+      collegeId: "uw",
+      selectedCampusId: "uw-seattle",
+      selectedMajorId: "aeronautics",
+      selectedPathwayId: null,
+      currentCourseSelections: new Set(),
+      onToggleCurrentCourse: createSpy(),
+      scheduleOptionDisplayTitleById: new Map([["ah-choice", "Requirement Choice 1"]]),
+      plannedCourseContainerClass: "bg-white border border-emerald-200",
+      textClass: "text-slate-950",
+      secondaryTextClass: "text-slate-600",
+    })
+  );
+
+  assert.equal(hasText(renderer, "ART 114"), true);
+  assert.equal(hasText(renderer, "Selected in Requirement Choice 1"), true);
+  assert.equal(
+    hasText(
+      renderer,
+      "This covers 4/4 A&H/SSc credits needed for Aeronautics & Astronautics."
+    ),
+    true
+  );
+  assert.equal(hasText(renderer, "4 credits of Arts and Humanities (A&H)"), false);
+
+  unmount(renderer);
+});

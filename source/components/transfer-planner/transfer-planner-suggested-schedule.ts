@@ -1244,12 +1244,40 @@ export function isSuggestedScheduleUnresolvedOptionPromptCourse(
   return selectedCount < requiredSelectionCount;
 }
 
+export function isSuggestedScheduleTranscriptSatisfiedOptionPromptCourse(
+  course: SuggestedQuarterPlan["courses"][number]
+) {
+  const optionGroup = course.optionGroup ?? null;
+  if (!optionGroup?.isSelectionPrompt || course.status === "completed") {
+    return false;
+  }
+
+  if (getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds).length) {
+    return false;
+  }
+
+  const resolvedOptionIds = getSuggestedScheduleResolvedOptionIds(optionGroup);
+  if (!resolvedOptionIds.length) {
+    return false;
+  }
+
+  return resolvedOptionIds.every((optionId) => {
+    const sources = getSuggestedScheduleOptionSatisfactionSources(optionGroup, optionId);
+    return (
+      sources.includes("transcript-completed") &&
+      getSuggestedScheduleOptionCompletedTranscriptSatisfiers(optionGroup, optionId).length > 0
+    );
+  });
+}
+
 export function buildSuggestedScheduleRenderedQuarters(quarters: SuggestedQuarterPlan[]) {
   return quarters
     .map((quarter) => ({
       ...quarter,
       courses: quarter.courses.filter(
-        (course) => !isSuggestedScheduleUnresolvedOptionPromptCourse(course)
+        (course) =>
+          !isSuggestedScheduleUnresolvedOptionPromptCourse(course) &&
+          !isSuggestedScheduleTranscriptSatisfiedOptionPromptCourse(course)
       ),
     }))
     .filter((quarter) => quarter.phase !== "planned" || quarter.courses.length > 0);
@@ -1259,6 +1287,15 @@ export function buildSuggestedScheduleCreditRangeQuarters(quarters: SuggestedQua
   return quarters.map((quarter) => ({
     ...quarter,
     courses: quarter.courses.map((course) => {
+      if (isSuggestedScheduleTranscriptSatisfiedOptionPromptCourse(course)) {
+        return {
+          ...course,
+          creditAmount: null,
+          creditMin: 0,
+          creditMax: 0,
+        };
+      }
+
       if (!isSuggestedScheduleUnresolvedOptionPromptCourse(course)) {
         return course;
       }

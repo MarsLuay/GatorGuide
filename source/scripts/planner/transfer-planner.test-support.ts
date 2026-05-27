@@ -176,6 +176,7 @@ import {
   hasCourseAndDistributionPlaceholderSignal,
   isMergedCourseDistributionRequirementLabel,
   getUwTransferGenericMilestoneDecision,
+  resolveSuggestedQuarterCourseOptionGroups,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
 
@@ -2085,6 +2086,7 @@ export {
   resolveCompactRuntimeMajorPlan,
   resolveTransferPlannerMajorPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
+  resolveSuggestedQuarterCourseOptionGroups,
   seattleAcePlan,
   seattleAcmsPlan,
   seattleAmericanEthnicStudiesPlan,

@@ -34,6 +34,7 @@ import {
   auditUwBioengineeringSourceBackedRequirements,
   buildSuggestedQuarterCourseOptionGroupsForTrack,
   buildSuggestedQuarterRemainingCreditRange,
+  resolveSuggestedQuarterCourseOptionGroups,
   type SuggestedQuarterPlan,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
@@ -136,7 +137,7 @@ export function SuggestedScheduleCard({
     () => collectSuggestedScheduleOptionGroups(quarters),
     [quarters]
   );
-  const trackOptionGroups = useMemo(
+  const unresolvedTrackOptionGroups = useMemo(
     () =>
       collegeId === "grc" || !onlyUwEssentialClasses
         ? buildSuggestedQuarterCourseOptionGroupsForTrack({
@@ -146,6 +147,16 @@ export function SuggestedScheduleCard({
           })
         : [],
     [collegeId, grcTrack, onlyUwEssentialClasses, selectedRequirementOptionIdsByGroup]
+  );
+  const trackOptionGroups = useMemo(
+    () =>
+      resolveSuggestedQuarterCourseOptionGroups({
+        optionGroups: unresolvedTrackOptionGroups,
+        suggestedPlan: quarters,
+        completedCourses,
+        plan,
+      }),
+    [completedCourses, plan, quarters, unresolvedTrackOptionGroups]
   );
   const stableOptionGroupIds = useMemo(
     () => buildStableSuggestedScheduleOptionGroupIds({ plan, trackOptionGroups }),
@@ -609,4 +620,3 @@ export function SuggestedScheduleCard({
     </View>
   );
 }
-

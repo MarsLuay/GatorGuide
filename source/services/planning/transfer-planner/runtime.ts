@@ -6255,14 +6255,6 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
     maxRemainingCredits = catalogMaximumRemainingCredits ?? maxRemainingCredits;
   } else if (
     creditBucketMode === "combined" &&
-    hasGeneratedGrcTrack &&
-    catalogMaximumRemainingCredits !== null &&
-    maxRemainingCredits > catalogMaximumRemainingCredits
-  ) {
-    minRemainingCredits = catalogMinimumRemainingCredits ?? catalogMaximumRemainingCredits;
-    maxRemainingCredits = catalogMaximumRemainingCredits;
-  } else if (
-    creditBucketMode === "combined" &&
     hasUnresolvedOptions &&
     catalogMaximumRemainingCredits === null &&
     maxRemainingCredits <= minRemainingCredits &&
@@ -6275,31 +6267,6 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
     maxRemainingCredits = minRemainingCredits;
   }
 
-  const returnedMainScheduledMinRemainingCredits =
-    creditBucketMode === "combined" &&
-    hasGeneratedGrcTrack &&
-    catalogMaximumRemainingCredits !== null
-      ? Math.min(mainScheduledMinRemainingCredits, catalogMaximumRemainingCredits)
-      : mainScheduledMinRemainingCredits;
-  const returnedMainScheduledMaxRemainingCredits =
-    creditBucketMode === "combined" &&
-    hasGeneratedGrcTrack &&
-    catalogMaximumRemainingCredits !== null
-      ? Math.min(mainScheduledMaxRemainingCredits, catalogMaximumRemainingCredits)
-      : mainScheduledMaxRemainingCredits;
-  const returnedScheduledMinRemainingCredits =
-    creditBucketMode === "combined" &&
-    hasGeneratedGrcTrack &&
-    catalogMaximumRemainingCredits !== null
-      ? Math.min(scheduledMinRemainingCredits, catalogMaximumRemainingCredits)
-      : scheduledMinRemainingCredits;
-  const returnedScheduledMaxRemainingCredits =
-    creditBucketMode === "combined" &&
-    hasGeneratedGrcTrack &&
-    catalogMaximumRemainingCredits !== null
-      ? Math.min(scheduledMaxRemainingCredits, catalogMaximumRemainingCredits)
-      : scheduledMaxRemainingCredits;
-
   return {
     minRemainingCredits,
     maxRemainingCredits,
@@ -6309,13 +6276,13 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
         : null,
     mainMinRemainingCredits: minRemainingCredits,
     mainMaxRemainingCredits: maxRemainingCredits,
-    mainScheduledMinRemainingCredits: returnedMainScheduledMinRemainingCredits,
-    mainScheduledMaxRemainingCredits: returnedMainScheduledMaxRemainingCredits,
+    mainScheduledMinRemainingCredits,
+    mainScheduledMaxRemainingCredits,
     stemPrepCredits,
     localPrerequisiteCredits,
     hiddenUwOnlyCredits,
-    scheduledMinRemainingCredits: returnedScheduledMinRemainingCredits,
-    scheduledMaxRemainingCredits: returnedScheduledMaxRemainingCredits,
+    scheduledMinRemainingCredits,
+    scheduledMaxRemainingCredits,
     unresolvedOptionCredits,
     placeholderCredits,
     completedCredits,
@@ -15122,6 +15089,42 @@ function attachResolvedOptionGroupSatisfaction(input: {
       optionGroup: resolveGroup(course.optionGroup),
     })),
   }));
+}
+
+export function resolveSuggestedQuarterCourseOptionGroups(input: {
+  optionGroups: SuggestedQuarterCourseOptionGroup[];
+  suggestedPlan?: SuggestedQuarterPlan[] | null;
+  completedCourses?: TranscriptCourseEntry[] | null;
+  plan?: TransferPlannerMajorPlan | null;
+  requirementStatuses?: TransferRequirementStatus[];
+}) {
+  if (!input.optionGroups.length) {
+    return [] as SuggestedQuarterCourseOptionGroup[];
+  }
+
+  const completedCourses = input.completedCourses ?? [];
+  const completedCourseCodes = new Set(
+    completedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
+  );
+  const scheduledCourseCodes = input.suggestedPlan
+    ? getScheduledPlannerCountedCourseCodeSet(input.suggestedPlan)
+    : new Set<string>();
+  const { allocatedGroupsByFingerprint } = buildAllocatedOptionGroupResolutionMap({
+    optionGroups: input.optionGroups,
+    completedCourseCodes,
+    scheduledCourseCodes,
+    plan: input.plan,
+    completedCourses,
+    campusId: input.plan?.campusId,
+    consumedCompletedCourseCodesByGroupId: buildConsumedCompletedCourseCodesByOptionGroupId({
+      statuses: input.requirementStatuses,
+    }),
+  });
+
+  return input.optionGroups.map(
+    (optionGroup) =>
+      allocatedGroupsByFingerprint.get(getOptionGroupFingerprint(optionGroup)) ?? optionGroup
+  );
 }
 
 function attachSelectedCategoryTranscriptSatisfaction(input: {

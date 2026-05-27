@@ -10,6 +10,7 @@ export {
   getResolvedTrackTermsForStudentProgress,
   getSuggestedQuarterCourseCreditBucket,
   hasConcreteSuggestedQuarterCourse,
+  resolveSuggestedQuarterCourseOptionGroups,
 } from "./runtime";
 export { buildTransferPlannerCoursePlanningGraph } from "./course-planning-graph";
 

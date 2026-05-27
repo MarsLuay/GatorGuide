@@ -70,6 +70,7 @@ import {
   readFileSync,
   resolveCompactRuntimeMajorPlan,
   resolveTransferPlannerMajorPlan,
+  resolveSuggestedQuarterCourseOptionGroups,
   resolveTransferPlannerStudentRuntimeMajorPlan,
   seattleAtmosphericClimateSciencePlan,
   sourceGeneratedGeographyPlan,
@@ -92,6 +93,8 @@ import {
   hasDirectMajorEquivalencyInCourseLabels,
 } from "@/components/transfer-planner/transfer-planner-major-specifics-formatters";
 import {
+  buildSuggestedScheduleCreditRangeQuarters,
+  buildSuggestedScheduleRenderedQuarters,
   collectSuggestedScheduleOptionGroups,
   getNextSuggestedScheduleToggleSelectionIds,
   getSchedulePlaceholderRequirementLinkData,
@@ -3075,6 +3078,178 @@ test("Green River branch renders official runtime track choice slots as selectab
   assert.deepEqual(stableEconElectiveGroup?.selectedOptionIds, [
     selectedEconElectiveOption.id,
   ]);
+});
+
+test("Green River stable track option groups show completed transcript satisfiers", () => {
+  const accountingTrack = getTransferPlannerTrack(
+    "grc-associate-business-entrepreneurship-accounting-aaa"
+  );
+  assert.ok(accountingTrack, "Expected the runtime Green River Accounting track.");
+
+  const completedCourses = buildTranscriptCourses("CMST& 230", "PHIL& 115");
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    plannerCollegeId: "grc",
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses,
+    track: accountingTrack,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const stableOptionGroups = buildSuggestedQuarterCourseOptionGroupsForTrack({
+    track: accountingTrack,
+    selectedRequirementOptionIdsByGroup: {},
+    includeParsedTrackChoiceSlots: true,
+  });
+  const unresolvedCommunicationGroup = stableOptionGroups.find(
+    (optionGroup) => optionGroup.title === "Select one"
+  );
+  assert.ok(unresolvedCommunicationGroup, "Expected the Accounting communication choice.");
+  assert.deepEqual(getSuggestedScheduleResolvedOptionIds(unresolvedCommunicationGroup), []);
+
+  const resolvedOptionGroups = resolveSuggestedQuarterCourseOptionGroups({
+    optionGroups: stableOptionGroups,
+    suggestedPlan: quarterPlan,
+    completedCourses,
+    plan: null,
+  });
+  const communicationGroup = resolvedOptionGroups.find(
+    (optionGroup) => optionGroup.title === "Select one"
+  );
+  const electiveGroup = resolvedOptionGroups.find(
+    (optionGroup) => optionGroup.title === "Elective - select 5 credits"
+  );
+  assert.ok(communicationGroup, "Expected the resolved communication choice.");
+  assert.ok(electiveGroup, "Expected the resolved elective choice.");
+
+  const cmstOption = communicationGroup.options.find((option) => option.label === "CMST& 230");
+  const philOption = electiveGroup.options.find((option) => option.label === "PHIL& 115");
+  assert.ok(cmstOption, "Expected CMST& 230 to be an Accounting communication option.");
+  assert.ok(philOption, "Expected PHIL& 115 to be an Accounting elective option.");
+  assert.deepEqual(getSuggestedScheduleResolvedOptionIds(communicationGroup), [cmstOption.id]);
+  assert.deepEqual(getSuggestedScheduleResolvedOptionIds(electiveGroup), [philOption.id]);
+  assert.deepEqual(communicationGroup.completedSatisfyingCourseCodesByOptionId?.[cmstOption.id], [
+    "CMST& 230",
+  ]);
+  assert.deepEqual(electiveGroup.completedSatisfyingCourseCodesByOptionId?.[philOption.id], [
+    "PHIL& 115",
+  ]);
+  assert.deepEqual(communicationGroup.optionSatisfactionSourcesById?.[cmstOption.id], [
+    "transcript-completed",
+  ]);
+  assert.deepEqual(electiveGroup.optionSatisfactionSourcesById?.[philOption.id], [
+    "transcript-completed",
+  ]);
+});
+
+test("UW transcript-satisfied option prompts do not remain as future schedule rows", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-aeronautics-astronautics"
+  );
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const completedCourses = buildTranscriptCourses(
+    "ENGL& 101",
+    "SOC& 101",
+    "CHEM& 140",
+    "DANCE 101",
+    "MUSC 102",
+    "CMST& 230",
+    "ENGL 126",
+    "MATH& 141",
+    "POLS 207",
+    "ART 114",
+    "CHEM& 161",
+    "HIST 135",
+    "ANTH& 100",
+    "CHEM& 162",
+    "MATH& 142",
+    "PHIL& 115",
+    "ANTH& 206",
+    "JOURN 125",
+    "MATH 256"
+  );
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const renderedOptionPromptRows = buildSuggestedScheduleRenderedQuarters(suggestedPlan)
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.optionGroup?.isSelectionPrompt)
+    .map((course) => course.optionGroup?.title);
+  const creditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: buildSuggestedScheduleCreditRangeQuarters(suggestedPlan),
+    track: null,
+  });
+
+  assert.equal(renderedOptionPromptRows.includes("4 credits of Arts and Humanities"), false);
+  assert.equal(renderedOptionPromptRows.includes("this requirement"), false);
+  assert.equal(creditRange.mainScheduledMinRemainingCredits, 70);
+  assert.equal(creditRange.mainScheduledMaxRemainingCredits, 70);
+  assert.equal(creditRange.minRemainingCredits, 70);
+  assert.equal(creditRange.maxRemainingCredits, 75);
+});
+
+test("Green River remaining credits stay tied to unscheduled degree courses", () => {
+  const accountingTrack = getTransferPlannerTrack(
+    "grc-associate-business-entrepreneurship-accounting-aaa"
+  );
+  assert.ok(accountingTrack, "Expected the runtime Green River Accounting track.");
+
+  const completedCourses = buildTranscriptCourses(
+    "ENGL& 101",
+    "SOC& 101",
+    "CHEM& 140",
+    "DANCE 101",
+    "MUSC 102",
+    "CMST& 230",
+    "ENGL 126",
+    "MATH& 141",
+    "POLS 207",
+    "ART 114",
+    "CHEM& 161",
+    "HIST 135",
+    "ANTH& 100",
+    "CHEM& 162",
+    "MATH& 142",
+    "PHIL& 115",
+    "ANTH& 206",
+    "JOURN 125",
+    "MATH 256"
+  );
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    plannerCollegeId: "grc",
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses,
+    track: accountingTrack,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const remainingCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: quarterPlan,
+    track: accountingTrack,
+    creditBucketMode: "combined",
+  });
+
+  assert.equal(remainingCreditRange.catalogMinimumCredits, 90);
+  assert.equal(remainingCreditRange.completedCredits, 91);
+  assert.equal(remainingCreditRange.mainScheduledMinRemainingCredits, 75);
+  assert.equal(remainingCreditRange.mainScheduledMaxRemainingCredits, 75);
+  assert.equal(remainingCreditRange.minRemainingCredits, 75);
+  assert.equal(remainingCreditRange.maxRemainingCredits, 75);
+  assert.equal(remainingCreditRange.exactRemainingCredits, 75);
 });
 
 test("Transfer planner page still formats GRC course rows with canonical titles when available", () => {

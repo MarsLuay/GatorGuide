@@ -8,13 +8,18 @@ import type { TransferPlannerCampusId } from "@/constants/transfer-planner-sourc
 import { useAppLanguage } from "@/hooks/use-app-language";
 import {
   canMarkSuggestedQuarterCourseCurrent,
+  extractCourseCodes,
+  normalizeCourseCode,
   type SuggestedQuarterPlan,
 } from "@/services/planning/transfer-planner.service";
 
 import {
   getSchedulePlaceholderRequirementLinkData,
   getSuggestedScheduleCourseDisplayLabel,
+  getSuggestedScheduleOptionCompletedTranscriptSatisfiers,
   getSuggestedScheduleOptionGroupSelectionTargetText,
+  getSuggestedScheduleOptionSatisfactionSources,
+  getSuggestedScheduleResolvedOptionIds,
   getSuggestedScheduleSelectedOptionLabels,
   getSuggestedScheduleSelectedOptions,
   isSuggestedScheduleGeneratedOptionSummary,
@@ -24,6 +29,38 @@ import {
 import type { PlannerCollegeId } from "./transfer-planner-storage";
 
 type SuggestedScheduleCourse = SuggestedQuarterPlan["courses"][number];
+
+function isCompletedTranscriptSatisfierForOptionGroup(
+  course: SuggestedScheduleCourse,
+  optionGroup: NonNullable<SuggestedScheduleCourse["optionGroup"]>
+) {
+  if (course.status !== "completed") {
+    return false;
+  }
+
+  const extractedCourseCodes = extractCourseCodes(course.label);
+  const courseCodes = new Set(
+    (extractedCourseCodes.length ? extractedCourseCodes : [course.label])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  if (!courseCodes.size) {
+    return false;
+  }
+
+  return getSuggestedScheduleResolvedOptionIds(optionGroup).some((optionId) => {
+    const sources = getSuggestedScheduleOptionSatisfactionSources(optionGroup, optionId);
+    if (!sources.includes("transcript-completed")) {
+      return false;
+    }
+
+    return getSuggestedScheduleOptionCompletedTranscriptSatisfiers(
+      optionGroup,
+      optionId
+    ).some((courseCode) => courseCodes.has(normalizeCourseCode(courseCode)));
+  });
+}
 
 export function getSuggestedScheduleCourseSelectionState(
   course: SuggestedScheduleCourse,
@@ -80,6 +117,20 @@ export function SuggestedScheduleCourseRow({
   const optionGroup = shouldShowSuggestedScheduleOptionGroup(rawOptionGroup)
     ? rawOptionGroup
     : null;
+  const shouldRenderAsStandardCourse =
+    optionGroup && isCompletedTranscriptSatisfierForOptionGroup(course, optionGroup);
+  const optionGroupReferenceLabel = optionGroup
+    ? scheduleOptionDisplayTitleById.get(optionGroup.id) ?? optionGroup.title
+    : null;
+  const selectedOptionLabels = optionGroup
+    ? getSuggestedScheduleSelectedOptionLabels(optionGroup)
+    : [];
+  const requirementChoiceFlavorText =
+    optionGroup && selectedOptionLabels.length && optionGroupReferenceLabel
+      ? t("suggestedSchedule.selectedInRequirementChoice", {
+          choice: optionGroupReferenceLabel,
+        })
+      : null;
 
   const isCoreVisual =
     course.type === "core" ||
@@ -117,21 +168,17 @@ export function SuggestedScheduleCourseRow({
                 ? "text-emerald-500"
                 : course.status === "current"
                   ? "text-sky-400"
-                  : isCoreVisual
-                    ? "text-emerald-500"
-                    : textClass
+                : isCoreVisual
+                  ? "text-emerald-500"
+                  : textClass
             }`;
-            if (optionGroup) {
+            if (optionGroup && !shouldRenderAsStandardCourse) {
               const selectedOptions = getSuggestedScheduleSelectedOptions(optionGroup);
-              const selectedOptionLabels =
-                getSuggestedScheduleSelectedOptionLabels(optionGroup);
               const optionGroupDisplayLabel =
                 optionGroup.isSelectionPrompt
                   ? scheduleOptionDisplayTitleById.get(optionGroup.id) ??
                     optionGroup.title
                   : courseDisplayLabel;
-              const optionGroupReferenceLabel =
-                scheduleOptionDisplayTitleById.get(optionGroup.id) ?? optionGroup.title;
               const rawOptionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
                 course.guidanceSummary,
                 selectedOptions.map((option) => option.guidanceSummary)
@@ -145,10 +192,8 @@ export function SuggestedScheduleCourseRow({
                 <View className="gap-1">
                   <Text className={courseTextClass}>{optionGroupDisplayLabel}</Text>
                   <Text className={`${secondaryTextClass} text-xs`}>
-                    {selectedOptionLabels.length
-                      ? t("suggestedSchedule.selectedInRequirementChoice", {
-                          choice: optionGroupReferenceLabel,
-                        })
+                    {requirementChoiceFlavorText
+                      ? requirementChoiceFlavorText
                       : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup, t)}
                   </Text>
                   {grcProgramRequirementFlavorText ? (
@@ -204,12 +249,17 @@ export function SuggestedScheduleCourseRow({
               </Text>
             );
           })()}
-          {!optionGroup && grcProgramRequirementFlavorText ? (
+          {shouldRenderAsStandardCourse && requirementChoiceFlavorText ? (
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              {requirementChoiceFlavorText}
+            </Text>
+          ) : null}
+          {(!optionGroup || shouldRenderAsStandardCourse) && grcProgramRequirementFlavorText ? (
             <Text className={`${secondaryTextClass} text-xs mt-1`}>
               {grcProgramRequirementFlavorText}
             </Text>
           ) : null}
-          {!optionGroup && course.guidanceSummary ? (
+          {(!optionGroup || shouldRenderAsStandardCourse) && course.guidanceSummary ? (
             <Text className={`${secondaryTextClass} text-xs mt-1`}>
               {course.guidanceSummary}
             </Text>
