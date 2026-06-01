@@ -744,6 +744,24 @@ function isBaBsRoutePromotionForBroadMajorOwner(entry) {
   );
 }
 
+function textHasAcsCertifiedRoute(value) {
+  return /\bacs(?:[-_\s]?(?:certified|\d{2,4}))?\b|\bamerican chemical society\b/i.test(String(value ?? ""));
+}
+
+function isUnscopedAcsRoutePromotionForBroadMajorOwner(entry) {
+  if (entry?.ownerType !== "major" || entry?.pathwayId) {
+    return false;
+  }
+
+  const sourceText = `${entry?.label ?? ""} ${entry?.url ?? ""}`;
+  if (!textHasAcsCertifiedRoute(sourceText)) {
+    return false;
+  }
+
+  const ownerText = `${entry?.ownerId ?? ""} ${entry?.planId ?? ""} ${entry?.ownerTitle ?? ""}`;
+  return !textHasAcsCertifiedRoute(ownerText);
+}
+
 function isSkipNavigationPromotionEntry(entry) {
   const text = `${entry?.label ?? ""} ${entry?.url ?? ""}`.toLowerCase();
   return /\bskip\s+to\s+(?:main\s+)?content\b/.test(text) || /#content(?:$|[?&])/i.test(String(entry?.url ?? ""));
@@ -802,6 +820,7 @@ function isUnsafeAutomaticPromotionEntry(entry) {
   return isClearlySupportOnlyPromotionEntry(entry) ||
     isMinorCredentialPromotionForMajorOwner(entry) ||
     isBaBsRoutePromotionForBroadMajorOwner(entry) ||
+    isUnscopedAcsRoutePromotionForBroadMajorOwner(entry) ||
     isCatalogCredentialPromotionForDifferentMajor(entry) ||
     isCatalogProgramPromotionForDifferentMajor(entry) ||
     isCatalogProgramPagePromotionForDifferentMajor(entry) ||

@@ -103,6 +103,32 @@ test("UW Tacoma spot-check list exposes the course-planner audit rows", () => {
   assert.ok(byId.has("uw-tacoma-urban-studies"));
 });
 
+test("UW Tacoma Education endorsement sources stay scoped to their own route", () => {
+  const bootstrapSource = fs.readFileSync(BOOTSTRAP_PATH, "utf8");
+  const specialEducationStart = bootstrapSource.indexOf(
+    '"id": "special-education-dual-endorsement"'
+  );
+  const englishLanguageLearnersStart = bootstrapSource.indexOf(
+    '"id": "english-language-learners-dual-endorsement"'
+  );
+  assert.notEqual(specialEducationStart, -1);
+  assert.notEqual(englishLanguageLearnersStart, -1);
+
+  const specialEducationSection = bootstrapSource.slice(
+    specialEducationStart,
+    englishLanguageLearnersStart
+  );
+  const englishLanguageLearnersSection = bootstrapSource.slice(
+    englishLanguageLearnersStart,
+    bootstrapSource.indexOf('"id":', englishLanguageLearnersStart + 10)
+  );
+
+  assert.match(specialEducationSection, /dual-endorsement-sped\.pdf/u);
+  assert.doesNotMatch(specialEducationSection, /dual-endorsement-ell\.pdf/u);
+  assert.match(englishLanguageLearnersSection, /dual-endorsement-ell\.pdf/u);
+  assert.doesNotMatch(englishLanguageLearnersSection, /dual-endorsement-sped\.pdf/u);
+});
+
 test("UW Tacoma audited fixtures avoid known false course requirements", () => {
   const { programs } = loadCompleteDiagnosticPrograms();
   const byId = new Map(programs.map((program) => [program.planId, program]));

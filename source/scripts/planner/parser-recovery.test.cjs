@@ -2455,6 +2455,78 @@ test("Supplemental linked document recovery rejects conflicting degree-route PDF
   assert.ok(candidates.some((candidate) => /ba-chemistry-checklist\.pdf$/i.test(candidate.url)));
 });
 
+test("Supplemental linked document recovery keeps current TELL worksheets scoped away from SPED siblings", () => {
+  const entry = buildRecoveryEntryFixture({
+    id: "uw-tacoma-education:pathway:english-language-learners-dual-endorsement:source:1",
+    ownerId: "uw-tacoma-education:pathway:english-language-learners-dual-endorsement",
+    ownerTitle: "Education (BA) - English Language Learners (ELL) Dual Endorsement Option",
+    sourceLabel: "UW Tacoma B.A. in Education overview major requirements",
+    planId: "uw-tacoma-education",
+    pathwayId: "english-language-learners-dual-endorsement",
+    campusId: "uw-tacoma",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+    label: "UW Tacoma B.A. in Education overview major requirements",
+  });
+  const html = `
+    <main>
+      <a href="/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf">
+        BA in Education - K-8 Elementary Education w/TELL (2026-2027)
+      </a>
+      <a href="/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-sped.pdf">
+        BA in Education - K-8 Elementary Education w/SPED (2026-2027)
+      </a>
+    </main>
+  `;
+  const candidates = parser.extractSupplementalDocumentLinkCandidatesForTest(entry, html);
+  const ellWorksheet = candidates.find((candidate) => /dual-endorsement-ell\.pdf$/i.test(candidate.url));
+  const recoveryCandidates = parser.extractParserRecoveryLinkCandidatesForTest(entry, html);
+  const spedEntry = {
+    ...entry,
+    id: "uw-tacoma-education:pathway:special-education-dual-endorsement:source:1",
+    ownerId: "uw-tacoma-education:pathway:special-education-dual-endorsement",
+    ownerTitle: "Education (BA) - Special Education Dual Endorsement",
+    pathwayId: "special-education-dual-endorsement",
+  };
+  const spedDocumentCandidates = parser.extractSupplementalDocumentLinkCandidatesForTest(spedEntry, html);
+  const spedRecoveryCandidates = parser.extractParserRecoveryLinkCandidatesForTest(spedEntry, html);
+
+  assert.deepEqual(parser.getOwnerProgramAcronymTokensForTest(entry), ["ell", "tell"]);
+  assert.ok(ellWorksheet);
+  assert.equal(ellWorksheet.historical, false);
+  assert.equal(candidates.some((candidate) => /dual-endorsement-sped\.pdf$/i.test(candidate.url)), false);
+  assert.ok(
+    recoveryCandidates.some((candidate) => /dual-endorsement-ell\.pdf$/i.test(candidate.url))
+  );
+  assert.equal(
+    recoveryCandidates.some((candidate) => /dual-endorsement-sped\.pdf$/i.test(candidate.url)),
+    false
+  );
+  assert.ok(
+    spedDocumentCandidates.some((candidate) => /dual-endorsement-sped\.pdf$/i.test(candidate.url))
+  );
+  assert.equal(
+    spedDocumentCandidates.some((candidate) => /dual-endorsement-ell\.pdf$/i.test(candidate.url)),
+    false
+  );
+  assert.ok(
+    spedRecoveryCandidates.some((candidate) => /dual-endorsement-sped\.pdf$/i.test(candidate.url))
+  );
+  assert.equal(
+    spedRecoveryCandidates.some((candidate) => /dual-endorsement-ell\.pdf$/i.test(candidate.url)),
+    false
+  );
+  assert.equal(
+    parser.parserRecoverySnapshotIsActiveForOwnerForTest(spedEntry, {
+      sourceUrl:
+        "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
+      title: "Bachelor of Arts in Education with Dual Endorsement (ELL)",
+      snapshotLines: ["Education Core Courses"],
+    }),
+    false
+  );
+});
+
 test("Unscoped ACS-certified supplemental sources cannot create schedulable rows", () => {
   const unscopedAcsSource = buildRecoveryEntryFixture({
     id: "uw-seattle-chemistry:source:acs",

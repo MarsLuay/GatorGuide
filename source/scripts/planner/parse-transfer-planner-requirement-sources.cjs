@@ -1307,6 +1307,9 @@ function shouldAllowAlternateManifestEntryForParse(entry, alternateEntry) {
   if (sourceStatus !== "primary" && alternateStatus === "primary") {
     return false;
   }
+  if (sourceStatus === "primary" && alternateStatus === "non-schedulable") {
+    return false;
+  }
   if (sourceRole === "approved-course-list") {
     return alternateRole === "approved-course-list";
   }
@@ -10909,8 +10912,8 @@ const EXCLUDED_PROGRAM_ACRONYM_TOKENS = new Set([
   "ms",
 ]);
 
-function getOwnerProgramAcronymTokens(entry) {
-  const rawTitle = normalizeWhitespace(getPrimaryMajorTitle(entry) || entry?.ownerTitle || "");
+function getProgramAcronymTokensFromTitle(value, { includeTitleAcronym = false } = {}) {
+  const rawTitle = normalizeWhitespace(value);
   if (!rawTitle) {
     return [];
   }
@@ -10934,13 +10937,44 @@ function getOwnerProgramAcronymTokens(entry) {
   const titleAcronym = titleWords.map((token) => token[0]).join("");
 
   return uniqueSorted(
-    [...explicitAcronyms, titleAcronym].filter(
+    [...explicitAcronyms, ...(includeTitleAcronym ? [titleAcronym] : [])].filter(
       (token) =>
         token.length >= 2 &&
         token.length <= 8 &&
         !EXCLUDED_PROGRAM_ACRONYM_TOKENS.has(token)
     )
   );
+}
+
+function getOwnerProgramRouteAliasAcronymTokens(entry) {
+  const text = normalizeMatcherText(
+    `${entry?.ownerId ?? ""} ${entry?.pathwayId ?? ""} ${entry?.ownerTitle ?? ""} ${
+      entry?.sourceLabel ?? ""
+    } ${entry?.label ?? ""}`
+  );
+  const tokens = [];
+
+  if (
+    /\b(?:ell|english language learners?)\b/.test(text) ||
+    /\bteaching english language learners?\b/.test(text)
+  ) {
+    tokens.push("ell", "tell");
+  }
+  if (/\b(?:sped|special education)\b/.test(text)) {
+    tokens.push("sped");
+  }
+
+  return uniqueSorted(tokens);
+}
+
+function getOwnerProgramAcronymTokens(entry) {
+  const primaryTitle = getPrimaryMajorTitle(entry);
+  return uniqueSorted([
+    ...getProgramAcronymTokensFromTitle(primaryTitle, { includeTitleAcronym: true }),
+    ...getProgramAcronymTokensFromTitle(entry?.ownerTitle),
+    ...getProgramAcronymTokensFromTitle(entry?.sourceLabel),
+    ...getOwnerProgramRouteAliasAcronymTokens(entry),
+  ]);
 }
 
 function getNormalizedTokenMatches(normalizedText, tokens) {
@@ -12811,6 +12845,21 @@ function shouldKeepLegacyCatalogProgramLeadIn(sectionLines, baseCredentialSectio
     return false;
   }
 
+  const credentialIndex = getLegacyCatalogProgramLeadInEndIndex(
+    sectionLines,
+    baseCredentialSection
+  );
+  if (credentialIndex <= 0) {
+    return false;
+  }
+
+  const leadInText = normalizeMatcherText(sectionLines.slice(0, credentialIndex).join(" "));
+  return /\b(?:admission requirements?|prerequisites?|pre[-\s]?requisite|how to apply to the major|transfer(?:ring)? from a community college|associate of science transfer|recommended preparation)\b/i.test(
+    leadInText
+  );
+}
+
+function getLegacyCatalogProgramLeadInEndIndex(sectionLines, baseCredentialSection) {
   const credentialHeading = normalizeMatcherText(baseCredentialSection.sectionHeading ?? "");
   let credentialIndex = sectionLines.findIndex((line) =>
     /^Completion Requirements\b/i.test(normalizeWhitespace(line))
@@ -12823,14 +12872,17 @@ function shouldKeepLegacyCatalogProgramLeadIn(sectionLines, baseCredentialSectio
       credentialIndex = headingIndex;
     }
   }
-  if (credentialIndex <= 0) {
-    return false;
-  }
 
-  const leadInText = normalizeMatcherText(sectionLines.slice(0, credentialIndex).join(" "));
-  return /\b(?:admission requirements?|prerequisites?|pre[-\s]?requisite|how to apply to the major|transfer(?:ring)? from a community college|associate of science transfer|recommended preparation)\b/i.test(
-    leadInText
+  return credentialIndex;
+}
+
+function buildLegacyCatalogProgramCredentialScopeLines(sectionLines, baseCredentialSection) {
+  const credentialIndex = getLegacyCatalogProgramLeadInEndIndex(
+    sectionLines,
+    baseCredentialSection
   );
+  const leadInLines = credentialIndex > 0 ? sectionLines.slice(0, credentialIndex) : [];
+  return uniqueInOrder([...leadInLines, ...(baseCredentialSection?.lines ?? [])]);
 }
 
 function scopeLegacyCatalogHtmlByOwnerProgram(entry, html) {
@@ -13103,10 +13155,68 @@ function scopeCatalogHtmlByAnchor(entry, html) {
   }
 
   const peerStopBoundary = findNextCatalogPeerBoundary(html, anchorMatch.endIndex, requestedAnchor);
-  const credentialStopBoundary = shouldStopMajorCatalogScopeBeforeCredentialSections(
+  const shouldStopBeforeCredentialSections = shouldStopMajorCatalogScopeBeforeCredentialSections(
     entry,
     requestedAnchor
-  )
+  );
+  if (shouldStopBeforeCredentialSections) {
+    const programSectionHtml = html.slice(anchorMatch.index, peerStopBoundary.index);
+    const programSectionLines = buildHtmlLines(programSectionHtml);
+    const programSectionHeadings = extractHeadings(programSectionHtml);
+    const programSectionHeading = programSectionHeadings[0] || anchorMatch.heading || null;
+    const baseCredentialSection = findBaseCatalogCredentialSection(
+      entry,
+      html,
+      anchorMatch.endIndex,
+      peerStopBoundary.index
+    );
+
+    if (baseCredentialSection?.lines?.length) {
+      const keepLeadIn = shouldKeepLegacyCatalogProgramLeadIn(
+        programSectionLines,
+        baseCredentialSection
+      );
+      const sectionLines = keepLeadIn
+        ? buildLegacyCatalogProgramCredentialScopeLines(
+            programSectionLines,
+            baseCredentialSection
+          )
+        : baseCredentialSection.lines;
+      const sectionHeadings = keepLeadIn
+        ? uniqueInOrder([...programSectionHeadings, ...(baseCredentialSection.headings ?? [])])
+        : baseCredentialSection.headings;
+      const sectionHeading = keepLeadIn
+        ? programSectionHeading
+        : baseCredentialSection.sectionHeading;
+      const ignoredNeighboringSections = collectIgnoredCatalogNeighboringSections(
+        html,
+        peerStopBoundary.index,
+        keepLeadIn ? requestedAnchor : "credential-derived"
+      );
+
+      return {
+        scoped: true,
+        lines: sectionLines,
+        headings: sectionHeadings,
+        sectionAudit: buildSourceSectionAudit({
+          majorId: entry.planId,
+          sourceUrl: entry.url,
+          sourceRole,
+          requestedAnchor,
+          anchorFound: true,
+          sectionHeading,
+          sectionMatchedSelectedMajor: catalogSectionMatchesSelectedMajor(
+            entry,
+            sectionHeading,
+            sectionLines
+          ),
+          stopBoundary: baseCredentialSection.stopBoundary,
+          ignoredNeighboringSections,
+        }),
+      };
+    }
+  }
+  const credentialStopBoundary = shouldStopBeforeCredentialSections
     ? findNextCatalogCredentialBoundary(html, anchorMatch.endIndex, peerStopBoundary.index)
     : null;
   const stopBoundary = credentialStopBoundary ?? peerStopBoundary;
@@ -16276,9 +16386,8 @@ function isHistoricalSupplementalPdfLabel(label) {
   }
 
   return (
-    /\bprior years?\b/i.test(normalizedLabel) ||
-    /\b(?:autumn|winter|spring|summer)\b/i.test(normalizedLabel) ||
-    /\b(?:19|20)\d{2}\b/.test(normalizedLabel)
+    /\b(?:prior years?|pre-|before|through|archived?|historical|old)\b/i.test(normalizedLabel) ||
+    /\b(?:autumn|winter|spring|summer)\s+(?:19|20)\d{2}\b/i.test(normalizedLabel)
   );
 }
 
@@ -16291,9 +16400,19 @@ function getDegreeRouteTokens(value) {
   if (/\b(?:bs|b s|bachelor of science)\b/.test(text)) {
     tokens.add("bs");
   }
-  if (/\bacs certified\b|\bacs\b/.test(text)) {
+  if (/\bacs(?:[-_\s]?(?:certified|\d{2,4}))?\b|\bamerican chemical society\b/.test(text)) {
     tokens.add("acs");
     tokens.add("bs");
+  }
+  if (
+    /\b(?:ell|tell)\b/.test(text) ||
+    /\benglish language learners?\b/.test(text) ||
+    /\bteaching english language learners?\b/.test(text)
+  ) {
+    tokens.add("ell");
+  }
+  if (/\b(?:sped|special education)\b/.test(text)) {
+    tokens.add("sped");
   }
   return tokens;
 }
@@ -16310,7 +16429,9 @@ function hasConflictingSupplementalDegreeRoute(entry, label, url) {
 
   return (
     (entryTokens.has("ba") && candidateTokens.has("bs")) ||
-    (entryTokens.has("bs") && candidateTokens.has("ba"))
+    (entryTokens.has("bs") && candidateTokens.has("ba")) ||
+    (entryTokens.has("ell") && candidateTokens.has("sped")) ||
+    (entryTokens.has("sped") && candidateTokens.has("ell"))
   );
 }
 
@@ -17354,6 +17475,13 @@ function shouldMergeSupplementalAlternateSource(
     return false;
   }
 
+  if (
+    !canRequirementSourceCreateSchedulableRows(baseEntry) &&
+    canRequirementSourceCreateSchedulableRows(alternateEntry)
+  ) {
+    return false;
+  }
+
   if (!canRequirementSourceCreateSchedulableRows(alternateEntry)) {
     return false;
   }
@@ -17886,9 +18014,11 @@ function parserRecoveryCandidateContainsSelectedPathwayPhrase(entry, label, url)
   const linkText = normalizeMatcherText(`${label ?? ""} ${url ?? ""}`);
   const compactPathwayId = normalizeMatcherText(entry.pathwayId ?? "").replace(/\s+/g, "");
   const compactLinkText = linkText.replace(/\s+/g, "");
+  const ownerAcronymMatches = getOwnerProgramAcronymMatches(entry, linkText);
   return (
     linkText.includes(pathwayPhrase) ||
-    (!!compactPathwayId && compactLinkText.includes(compactPathwayId))
+    (!!compactPathwayId && compactLinkText.includes(compactPathwayId)) ||
+    ownerAcronymMatches.some((token) => token.length >= 3)
   );
 }
 
@@ -17994,6 +18124,9 @@ function extractParserRecoveryLinkCandidates(entry, html) {
       continue;
     }
     if (parserRecoveryCandidateConflictsWithPathway(entry, label, resolvedUrl)) {
+      continue;
+    }
+    if (signals.documentSignal && hasConflictingSupplementalDegreeRoute(entry, label, resolvedUrl)) {
       continue;
     }
     if (
@@ -18339,6 +18472,7 @@ function getActiveParserRecoverySourceUrlSetForOwner(entry) {
       candidate.campusId !== entry.campusId ||
       !PARSEABLE_PARSER_TYPES.has(candidate.parserType) ||
       !manifestEntryMatchesSpecializedPlanTitle(candidate) ||
+      hasConflictingSupplementalDegreeRoute(entry, candidate.label, candidate.url) ||
       parserRecoveryCandidateConflictsWithPathway(entry, candidate.label, candidate.url)
     ) {
       continue;
@@ -18354,6 +18488,16 @@ function parserRecoverySnapshotIsActiveForOwner(entry, snapshot) {
   const normalizedSnapshotUrl = normalizeUrlForComparison(snapshot?.sourceUrl);
   if (!normalizedSnapshotUrl) {
     return true;
+  }
+
+  if (
+    hasConflictingSupplementalDegreeRoute(
+      entry,
+      `${snapshot?.sourceLabel ?? ""} ${snapshot?.title ?? ""}`,
+      normalizedSnapshotUrl
+    )
+  ) {
+    return false;
   }
 
   return getActiveParserRecoverySourceUrlSetForOwner(entry).has(normalizedSnapshotUrl);
@@ -18381,6 +18525,7 @@ function buildParserRecoveryOwnerSnapshotCandidates(entry, currentArtifacts = nu
     const candidateLabel = snapshot.title || entry.label || "Cached owner source snapshot";
     if (
       parserRecoveryCandidateConflictsWithPathway(entry, candidateLabel, candidateUrl) ||
+      hasConflictingSupplementalDegreeRoute(entry, candidateLabel, candidateUrl) ||
       parserRecoveryCandidateConflictsWithProgramSibling(entry, candidateLabel, candidateUrl) ||
       parserRecoverySnapshotConflictsWithBaseOwnerScope(entry, snapshot.snapshotLines)
     ) {
@@ -20016,6 +20161,13 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
   } catch (error) {
     for (const alternateEntry of getAlternateParseableManifestEntries(entry)) {
       try {
+        if (
+          canRequirementSourceCreateSchedulableRows(entry) &&
+          !canRequirementSourceCreateSchedulableRows(alternateEntry)
+        ) {
+          continue;
+        }
+
         const alternateAdapter = selectRequirementSourceAdapter(alternateEntry);
         const parsed = await alternateAdapter.parse(alternateEntry, timeoutMs);
         if (!hasMeaningfulParsedContent(parsed)) {
@@ -20262,6 +20414,10 @@ function manifestEntryCandidateMatchesOwnPathwayIdentity(entry, candidate) {
 
 function manifestEntryMatchesSpecializedPlanTitle(entry) {
   if (manifestEntryMentionsDifferentMajor(entry)) {
+    return false;
+  }
+
+  if (hasConflictingSupplementalDegreeRoute(entry, entry?.label, entry?.url)) {
     return false;
   }
 

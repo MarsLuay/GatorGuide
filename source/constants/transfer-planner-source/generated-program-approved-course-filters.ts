@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
@@ -594,7 +594,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "2e383cde66411b4030415491d8d967e3d6bae3e6bd4267673ffe74ccc6fad63f"
   },
   {
@@ -652,7 +652,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "2d7ec69a49989c2825b93e5614c61f185b425d245a4564c68047054a8cb799e2"
   },
   {
@@ -710,7 +710,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "be6d60b338d0cb84c4be12f8a892e597d658cd849a07f126d3890f21162ccb1e"
   },
   {
@@ -775,7 +775,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "B PHYS 484 Physics, Society and Industry",
       "B PHYS 494 Physics Seminar (1 credit)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "b6a87e4efd0101274c5163e3b1158cbc205af862b681c85534e39e75de653f42"
   },
   {
@@ -839,7 +839,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "B PHYS 484 Physics, Society and Industry",
       "B PHYS 494 Physics Seminar (1 credit)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "c7cd2e9f801ce5589b015e0f5ec02e394a789acb159d59b4f7f7bf7872c8c558"
   },
   {
@@ -909,7 +909,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -976,7 +976,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -1061,7 +1061,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "The ID course of undergraduate study is an intensive program emphasizing the development of form that is derived from patterns of use, requirements for function, constraints imposed by industrial manufacturing and aesthetics driven by social context. Key aspects in this view on design are understanding the interactions between people and technology. Students are trained to identify design challenges and to envision promising strategies for design responses, communication, documentation, and organizational skills to conduct the design process from project brief to design implementation.",
       "84-86 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 211, DESIGN 316, DESIGN 317, DESIGN 318, DESIGN 319, DESIGN 320, DESIGN 322, DESIGN 324, DESIGN 326, DESIGN 445, DESIGN 446, DESIGN 485, DESIGN 486"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "71b4f8441d632dc417ca5aa08f546f24202783740a5cc74e680ac00cdba6f06a"
   },
   {
@@ -1162,7 +1162,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
       "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "ab5a3bdbd3ecb6a9e4265639aa2802d747e54b583ad54875fdfd8c0c826bb8a6"
   },
   {
@@ -1207,7 +1207,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "b796bff1c947ee1e8c17eaf0cabd71d0e52477359316c922a3edf92a58c103db"
   },
   {
@@ -1250,7 +1250,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "8052cd60be31a0d7c1f90870cb7965a4d018504e625390b9fa5d57e8dfa8b869"
   },
   {
@@ -1294,7 +1294,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "13368d668be877b8aabce818814730eb98668174e6d8c3f3c4d51f67b1731945"
   },
   {
@@ -1337,7 +1337,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "9fa8516b572accc863c9b574884c45829a33af75162ebe23dab339f893a2de51"
   },
   {
@@ -1380,7 +1380,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "419be7d0848983a8083d146e66d2d905038c6c5271780bf1c2249a094f65cdda"
   },
   {
@@ -1462,7 +1462,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "a930a507f8b1331b1138c1ea0e5ae63506ab5574214296d508f0c719a62b9d61"
   },
   {
@@ -1517,7 +1517,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "9ee569ee5abd5ff695c3e0e39bb2e1c64cec2cd7647b03bb24d7c570e0bee22d"
   },
   {
@@ -1578,7 +1578,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "6bb968f996d1aa2ff85fdb62838474a16b0ae9919d60c11dc94481a4f4224b6d"
   },
   {
@@ -1623,376 +1623,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "German 401 (or equivalent)",
       "German 311 (Introduction to Literary Studies)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "f9ed3656f96ae4fefeca65791df659bc0795d0dbfab9fef8b1afab95f161beb5"
-  },
-  {
-    "filterId": "UW_SEATTLE_JEWISH_STUDIES_APPROVED_ELECTIVES",
-    "filterKey": "uw-seattle-jewish-studies-approved-electives",
-    "label": "Uw Seattle Jewish Studies Approved Electives",
-    "ownerIds": [
-      "uw-seattle-jewish-studies"
-    ],
-    "campusId": "uw-seattle",
-    "officialSourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-    "sourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-    "sourceRole": "primary-degree-requirements",
-    "approvedUwCourseCodes": [
-      "BH 339",
-      "CHID 206",
-      "CLAS 405",
-      "CLIT 396A",
-      "CLIT 496",
-      "ENGL 311",
-      "ENGL 312",
-      "ENGL 357",
-      "GEOG 373",
-      "GERMAN 195",
-      "GERMAN 295",
-      "GWSS 334",
-      "GWSS 438",
-      "HSTAA 336",
-      "HSTAA 337",
-      "HSTAM 367",
-      "HSTCMP 269",
-      "HSTCMP 270",
-      "HSTCMP 368",
-      "HSTCMP 369",
-      "HSTCMP 469",
-      "HSTEU 234",
-      "HSTEU 252",
-      "HSTEU 361",
-      "HSTEU 368",
-      "HSTEU 464",
-      "HSTEU 465",
-      "JEWST 175",
-      "JEWST 206",
-      "JEWST 210",
-      "JEWST 215",
-      "JEWST 269",
-      "JEWST 270",
-      "JEWST 289",
-      "JEWST 294",
-      "JEWST 295",
-      "JEWST 312",
-      "JEWST 317",
-      "JEWST 318",
-      "JEWST 320A",
-      "JEWST 325",
-      "JEWST 328",
-      "JEWST 330",
-      "JEWST 336",
-      "JEWST 337",
-      "JEWST 339",
-      "JEWST 357",
-      "JEWST 358",
-      "JEWST 360",
-      "JEWST 362",
-      "JEWST 367",
-      "JEWST 368",
-      "JEWST 369",
-      "JEWST 372",
-      "JEWST 373",
-      "JEWST 377",
-      "JEWST 378",
-      "JEWST 379",
-      "JEWST 396A",
-      "JEWST 418",
-      "JEWST 427",
-      "JEWST 438",
-      "JEWST 459",
-      "JEWST 460",
-      "JEWST 462",
-      "JEWST 463",
-      "JEWST 464",
-      "JEWST 465",
-      "JEWST 466",
-      "JEWST 468",
-      "JEWST 469",
-      "JEWST 490",
-      "JEWST 491",
-      "JEWST 495",
-      "JEWST 496",
-      "JSISA 252",
-      "JSISA 314",
-      "JSISA 458",
-      "LING 372",
-      "MELC 202",
-      "MELC 287",
-      "MELC 302",
-      "MELC 305",
-      "MELC 306",
-      "MELC 311",
-      "MELC 317",
-      "MELC 318",
-      "MELC 320",
-      "MELC 328",
-      "MELC 333",
-      "MELC 336",
-      "MODHEB 100",
-      "MODHEB 101",
-      "MODHEB 102",
-      "MODHEB 103",
-      "MODHEB 105",
-      "MODHEB 200",
-      "MODHEB 201",
-      "MODHEB 202",
-      "MODHEB 203",
-      "MODHEB 401",
-      "MODHEB 402",
-      "MODHEB 403",
-      "MODHEB 404",
-      "MODHEB 405",
-      "MODHEB 406",
-      "MODHEB 407",
-      "MODHEB 408",
-      "MODHEB 490",
-      "MODHEB 496",
-      "PHIL 418",
-      "POLS 325",
-      "RELIG 145",
-      "RELIG 201",
-      "RELIG 202",
-      "RELIG 240",
-      "RELIG 305",
-      "RELIG 306",
-      "RELIG 315",
-      "RELIG 334",
-      "RELIG 440",
-      "RUSS 320A",
-      "RUSS 427",
-      "SOC 377",
-      "SOC 378",
-      "SPAN 294",
-      "SPAN 360",
-      "SPAN 362"
-    ],
-    "approvedUwCourseGroups": [
-      [
-        "MELC 202",
-        "RELIG 202",
-        "RELIG 240"
-      ],
-      [
-        "HSTEU 252",
-        "JSISA 252"
-      ],
-      [
-        "CHID 206",
-        "JEWST 206"
-      ],
-      [
-        "HSTCMP 269",
-        "JEWST 269"
-      ],
-      [
-        "HSTCMP 270",
-        "JEWST 270"
-      ],
-      [
-        "MELC 306",
-        "RELIG 306"
-      ],
-      [
-        "ENGL 312",
-        "JEWST 312"
-      ],
-      [
-        "MELC 305",
-        "RELIG 305",
-        "RELIG 315"
-      ],
-      [
-        "JEWST 317",
-        "JEWST 318",
-        "MELC 317"
-      ],
-      [
-        "GWSS 334",
-        "RELIG 334"
-      ],
-      [
-        "HSTAA 336",
-        "JEWST 336"
-      ],
-      [
-        "HSTAA 337",
-        "JEWST 337"
-      ],
-      [
-        "BH 339",
-        "JEWST 328",
-        "JEWST 339",
-        "MELC 328"
-      ],
-      [
-        "HSTCMP 368",
-        "JEWST 358",
-        "JEWST 368"
-      ],
-      [
-        "GEOG 373",
-        "JEWST 362",
-        "JEWST 373",
-        "SPAN 362"
-      ],
-      [
-        "HSTAM 367",
-        "JEWST 367"
-      ],
-      [
-        "HSTEU 368",
-        "JEWST 368"
-      ],
-      [
-        "HSTCMP 369",
-        "JEWST 369"
-      ],
-      [
-        "JEWST 377",
-        "SOC 377"
-      ],
-      [
-        "JEWST 378",
-        "SOC 378"
-      ],
-      [
-        "JEWST 378",
-        "JEWST 379",
-        "SOC 378"
-      ],
-      [
-        "JEWST 418",
-        "PHIL 418"
-      ],
-      [
-        "CLIT 496",
-        "JEWST 427",
-        "JEWST 496",
-        "RUSS 427"
-      ],
-      [
-        "GWSS 438",
-        "JEWST 438"
-      ],
-      [
-        "JEWST 360",
-        "JEWST 460",
-        "SPAN 360"
-      ],
-      [
-        "HSTEU 465",
-        "JEWST 465"
-      ],
-      [
-        "HSTCMP 469",
-        "JEWST 466",
-        "JEWST 469"
-      ],
-      [
-        "HSTEU 464",
-        "JEWST 464",
-        "JEWST 468"
-      ]
-    ],
-    "petitionOnlyNotes": [
-      "To major in Jewish Studies, please schedule an appointment with a Jackson School Undergraduate Adviser for Jewish Studies majors.",
-      "Contact an adviser with questions or for clarification.",
-      "For any course prefix when topic is appropriate; check with adviser for approval",
-      "Students can meet with an adviser to discuss courses, majors, minors, study abroad, or fellowship and scholarship opportunities.",
-      "Meet an Adviser"
-    ],
-    "aliases": [
-      "uw-seattle-jewish-studies-approved-electives"
-    ],
-    "generatedFromOfficialSupportSource": true,
-    "sourceEvidenceHeadings": [
-      "3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses."
-    ],
-    "sourceEvidenceLines": [
-      "3. Minimum 35 credits of Jewish Studies courses from an approved list of electives , to include a minimum of 25 credits completed at the 300-400 level. May include a maximum of 10 credits from the second year of Jewish language courses.",
-      "To major in Jewish Studies, please schedule an appointment with a Jackson School Undergraduate Adviser for Jewish Studies majors.",
-      "Contact an adviser with questions or for clarification.",
-      "MODHEB 100",
-      "RELIG 145",
-      "JEW ST 175/",
-      "GERMAN 195",
-      "MODHEB 200 *",
-      "RELIG 201",
-      "MODHEB 201 *",
-      "MODHEB 202 *",
-      "MODHEB 203 *",
-      "JEW ST 210",
-      "JEW ST 215/ SPAN 294/ LING 372",
-      "HSTEU 234",
-      "RELIG 240/ MELC 202",
-      "HSTEU 252/ JSIS A 252",
-      "CHID 206/ JEW ST 206",
-      "JEW ST 269/ HSTCMP 269",
-      "JEW ST 270/ HSTCMP 270",
-      "MELC 287",
-      "JEW ST 289",
-      "JEW ST 295/",
-      "GERMAN 295",
-      "MELC 302",
-      "RELIG 306/ MELC 306",
-      "ENGL 311",
-      "MELC 311",
-      "JEW ST 312/ ENGL 312",
-      "JSIS A 314/ HSTAFM 314",
-      "RELIG 315/ MELC 305",
-      "JEW ST 318/ MELC 317",
-      "MELC 318",
-      "MELC 320",
-      "JEW ST 325",
-      "POL S 325",
-      "JEW ST 330",
-      "MELC 333",
-      "RELIG 334/ GWSS 334",
-      "JEW ST 336/ HSTAA 336",
-      "MELC 336",
-      "JEW ST 337/ HSTAA 337",
-      "JEW ST 339/ B H 339 / MELC 328",
-      "JEW ST 357/ ENGL 357 / RUSS 320A / C LIT 396A",
-      "JEW ST 358/ HSTCMP 368",
-      "HSTEU 361",
-      "JEW ST 362/ SPAN 362/ GEOG 373",
-      "JEW ST 367/ HSTAM 367",
-      "JEW ST 368/ HSTEU 368",
-      "JEW ST 369/ HSTCMP 369",
-      "JEW ST 377/ SOC 377",
-      "JEW ST 378/ SOC 378",
-      "JEW ST 379/ SOC 378",
-      "MODHEB 401",
-      "MODHEB 402",
-      "MODHEB 403",
-      "MODHEB 404",
-      "MODHEB 405",
-      "MODHEB 406",
-      "MODHEB 407",
-      "MODHEB 408",
-      "CLAS 405",
-      "JEW ST 418/ PHIL 418",
-      "JEW ST 427/ RUSS 427 / C LIT 496",
-      "JEW ST 438/ GWSS 438",
-      "RELIG 440",
-      "JSIS A 458",
-      "JEW ST 459/HSTAFM 459",
-      "JEW ST 460/ SPAN 360",
-      "JEW ST 462",
-      "JEW ST 463",
-      "JEW ST 465/ HSTEU 465",
-      "JEW ST 466/ HSTCMP 469",
-      "JEW ST 468/ HSTEU 464",
-      "JEW ST 490",
-      "MODHEB 490",
-      "JEW ST 491",
-      "JEW ST 495",
-      "MODHEB 496",
-      "For any course prefix when topic is appropriate; check with adviser for approval"
-    ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
-    "sourceFingerprint": "a32f491969241a8de20c08858f412bc60829e19de4e57caeea607c59f53b8c8a"
   },
   {
     "filterId": "UW_SEATTLE_LAW_SOCIETIES_AND_JUSTICE_LSJ_CORE_300_LEVEL_HUMAN_RIGHTS_OR_LAW_COURSES",
@@ -2047,7 +1679,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "bc8f36498318613dad36deb42c191bbd862b45c9f06b6929255599cac36a405d"
   },
   {
@@ -2086,7 +1718,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "3a117e5600eca94700360eec40ddd2171198449da65d19633b29d96761b9c0f1"
   },
   {
@@ -2154,7 +1786,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "a3afe2d5dc60086d6fabed1c4c5b30f3ee9516736b8232973e99a8432be5ccbe"
   },
   {
@@ -2349,7 +1981,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "f2a223542303eb962769c93fb84b22ae06ffaddabb94440e6b8fa8e4cdef6375"
   },
   {
@@ -2405,7 +2037,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
       "Biology"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "a24e30e8ca410cbff2587a66e8395eb15fd4e2ede43aaba24e5171733bc4c990"
   },
   {
@@ -2503,7 +2135,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
       "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
@@ -2639,7 +2271,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ASIAN 301 Songs of the Saints of India",
       "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-06-01T17:44:07.296Z",
+    "generatedAt": "2026-06-01T21:45:44.510Z",
     "sourceFingerprint": "dbcaa7b45d3c26fda3446f650a3321e9d7f055d07d1d2d33a55c8b178d3cf6a7"
   }
 ] as const;

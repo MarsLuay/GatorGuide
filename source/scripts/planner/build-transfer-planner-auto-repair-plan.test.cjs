@@ -381,6 +381,166 @@ test("auto-repair ignores no-code parent owners covered by parsed child pathways
   assert.equal(caseMap.size, 0);
 });
 
+test("auto-repair ignores no-code duplicate owner blocks covered by another parsed source", () => {
+  const parsedSource = {
+    ownerId: "uw-tacoma-history:pathway:global-history-option",
+    ownerTitle: "History - Global History Option",
+    planId: "uw-tacoma-history",
+    pathwayId: "global-history-option",
+    campusId: "uw-tacoma",
+    ok: true,
+    sourceUrl: "https://www.tacoma.uw.edu/history/global-history",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parsedUwCourseCodes: ["THIST 201", "THIST 301"],
+    structuredUwCourseCodes: ["THIST 201", "THIST 301"],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [],
+    requirementCueLines: ["Global History option requirements"],
+    qualitySignals: [],
+  };
+  const overviewSource = {
+    ...parsedSource,
+    sourceUrl: "https://www.tacoma.uw.edu/history",
+    parsedUwCourseCodes: [],
+    structuredUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: ["THIST 201", "THIST 301"],
+    requirementCueLines: [],
+  };
+  const parseReport = { owners: [parsedSource, overviewSource] };
+  const indexes = buildIndexes({ ownerAudit: null, parseReport, discoveryReport: null });
+  const caseMap = new Map();
+
+  collectParseReportCases(caseMap, parseReport, indexes);
+
+  assert.equal(caseMap.size, 0);
+});
+
+test("auto-repair ignores no-code duplicate owner blocks mostly covered by another parsed source", () => {
+  const parsedSource = {
+    ownerId: "uw-seattle-statistics:pathway:applied-statistics-track",
+    ownerTitle: "Statistics - Applied Statistics Track",
+    planId: "uw-seattle-statistics",
+    pathwayId: "applied-statistics-track",
+    campusId: "uw-seattle",
+    ok: true,
+    sourceUrl: "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parsedUwCourseCodes: ["STAT 311", "STAT 390", "STAT 491", "MATH 124"],
+    structuredUwCourseCodes: ["STAT 311", "STAT 390", "STAT 491", "MATH 124"],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [],
+    requirementCueLines: ["Applied Statistics track requirements"],
+    qualitySignals: [],
+  };
+  const overviewSource = {
+    ...parsedSource,
+    sourceUrl: "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
+    parsedUwCourseCodes: [],
+    structuredUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: ["STAT 311", "STAT 390", "STAT 491", "MATH 124", "MATH 134"],
+    requirementCueLines: [],
+  };
+  const parseReport = { owners: [parsedSource, overviewSource] };
+  const indexes = buildIndexes({ ownerAudit: null, parseReport, discoveryReport: null });
+  const caseMap = new Map();
+
+  collectParseReportCases(caseMap, parseReport, indexes);
+
+  assert.equal(caseMap.size, 0);
+});
+
+test("auto-repair ignores low-coverage duplicate owner blocks covered by another parsed source", () => {
+  const parsedSource = {
+    ownerId: "uw-seattle-statistics:pathway:applied-statistics-track",
+    ownerTitle: "Statistics - Applied Statistics Track",
+    planId: "uw-seattle-statistics",
+    pathwayId: "applied-statistics-track",
+    campusId: "uw-seattle",
+    ok: true,
+    sourceUrl: "https://stat.uw.edu/academics/undergraduate/major/statistics-major",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parsedUwCourseCodes: ["STAT 311", "STAT 390", "STAT 491"],
+    structuredUwCourseCodes: ["STAT 311", "STAT 390", "STAT 491"],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [],
+    requirementCueLines: ["Applied Statistics track requirements"],
+    qualitySignals: [],
+  };
+  const overviewSource = {
+    ...parsedSource,
+    sourceUrl: "https://stat.uw.edu/academics/undergraduate/tracks",
+    parsedUwCourseCodes: ["STAT 311"],
+    structuredUwCourseCodes: ["STAT 311"],
+    structuredOnlyUwCourseCodes: ["STAT 390", "STAT 491"],
+    qualitySignals: [
+      {
+        severity: "warning",
+        code: "large-structured-only-course-gap",
+        message: "Most structured courses were not recovered from this source block.",
+      },
+    ],
+  };
+  const parseReport = { owners: [parsedSource, overviewSource] };
+  const indexes = buildIndexes({ ownerAudit: null, parseReport, discoveryReport: null });
+  const caseMap = new Map();
+
+  collectParseReportCases(caseMap, parseReport, indexes);
+
+  assert.equal(caseMap.size, 0);
+});
+
+test("auto-repair ignores stale discovery no-code signals when current parse has courses", () => {
+  const parseOwner = {
+    ownerId: "uw-tacoma-education:pathway:english-language-learners-dual-endorsement",
+    ownerTitle: "Education (BA) - English Language Learners (ELL) Dual Endorsement Option",
+    planId: "uw-tacoma-education",
+    pathwayId: "english-language-learners-dual-endorsement",
+    campusId: "uw-tacoma",
+    ok: true,
+    sourceUrl:
+      "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parsedUwCourseCodes: ["TEDUC 290", "TEDUC 464"],
+    structuredUwCourseCodes: ["TEDUC 290", "TEDUC 464"],
+    sourceOnlyUwCourseCodes: [],
+    structuredOnlyUwCourseCodes: [],
+    requirementCueLines: ["Education Core Courses"],
+    qualitySignals: [],
+  };
+  const discoveryReport = {
+    owners: [],
+    weakExistingOwners: [
+      {
+        ownerKey: parseOwner.ownerId,
+        planId: parseOwner.planId,
+        pathwayId: parseOwner.pathwayId,
+        title: parseOwner.ownerTitle,
+        campusId: parseOwner.campusId,
+        existingPrimaryUrl: "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+        suggestedPrimary: null,
+        candidateCount: 2,
+        reevaluationSignals: [
+          {
+            code: "no-parsed-uw-course-codes",
+            reason: "Earlier primary source block produced zero UW course codes.",
+          },
+        ],
+      },
+    ],
+  };
+  const parseReport = { owners: [parseOwner] };
+  const indexes = buildIndexes({ ownerAudit: null, parseReport, discoveryReport });
+  const caseMap = new Map();
+
+  collectDiscoveryCases(caseMap, discoveryReport, indexes);
+
+  assert.equal(caseMap.size, 0);
+});
+
 test("auto-repair owner-audit cases prefer root causes over raw symptoms", () => {
   const ownerAudit = {
     owners: [

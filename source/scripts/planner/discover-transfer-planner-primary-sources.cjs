@@ -1048,6 +1048,37 @@ function hasConflictingAutoPromotionProgramTitle(candidate) {
   return false;
 }
 
+function textHasAcsCertifiedRoute(value) {
+  return /\bacs(?:[-_\s]?(?:certified|\d{2,4}))?\b|\bamerican chemical society\b/i.test(String(value ?? ""));
+}
+
+function isUnscopedAcsPrimaryCandidate(candidate) {
+  const sourceText = [
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  if (!textHasAcsCertifiedRoute(sourceText)) {
+    return false;
+  }
+
+  const ownerText = [
+    candidate?.ownerId,
+    candidate?.ownerKey,
+    candidate?.planId,
+    candidate?.pathwayId,
+    candidate?.ownerTitle,
+    candidate?.title,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return !textHasAcsCertifiedRoute(ownerText);
+}
+
 function isAutoPromotablePrimaryCandidate(candidate) {
   const normalizedCandidate = normalizeDiscoveryCandidateForPromotion(candidate);
   if (!normalizedCandidate) {
@@ -1066,6 +1097,10 @@ function isAutoPromotablePrimaryCandidate(candidate) {
   }
 
   if (hasConflictingAutoPromotionProgramTitle(normalizedCandidate)) {
+    return false;
+  }
+
+  if (isUnscopedAcsPrimaryCandidate(normalizedCandidate)) {
     return false;
   }
 
@@ -1164,6 +1199,10 @@ function isSafeWeakExistingReplacementCandidate(candidate, target = null) {
   }
 
   if (hasConflictingAutoPromotionProgramTitle(normalizedCandidate)) {
+    return false;
+  }
+
+  if (isUnscopedAcsPrimaryCandidate(normalizedCandidate)) {
     return false;
   }
 

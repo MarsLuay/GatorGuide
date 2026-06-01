@@ -1278,6 +1278,13 @@ function getSourceLinkBaBsDegreeKind(...values: Array<string | null | undefined>
   return null;
 }
 
+function sourceLinkHasAcsCertifiedRoute(...values: Array<string | null | undefined>) {
+  const searchable = normalizeTransferPlannerText(values.filter(Boolean).join(" "))
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  return /\bacs(?:\d{2,4})?\b/.test(searchable) || /\bamerican chemical society\b/.test(searchable);
+}
+
 function pathwayHasExplicitBaBsDegreeRoute(pathway: TransferPlannerMajorPathway) {
   const pathwayText = normalizeTransferPlannerText(`${pathway.id} ${pathway.label}`)
     .toLowerCase()
@@ -1297,6 +1304,14 @@ function sourceLinkMatchesPathwayIdentity(
     : null;
   const linkDegreeKind = getSourceLinkBaBsDegreeKind(link.label, link.url, link.note);
   if (pathwayDegreeKind && linkDegreeKind) {
+    if (
+      pathwayDegreeKind === "bs" &&
+      linkDegreeKind === "bs" &&
+      sourceLinkHasAcsCertifiedRoute(pathway.id, pathway.label) !==
+        sourceLinkHasAcsCertifiedRoute(link.label, link.url, link.note)
+    ) {
+      return false;
+    }
     return pathwayDegreeKind === linkDegreeKind;
   }
 

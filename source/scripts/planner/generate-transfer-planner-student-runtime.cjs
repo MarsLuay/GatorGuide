@@ -155,6 +155,7 @@ const STRICT_PATHWAY_COURSE_BUCKET_PLAN_IDS = new Set([
 ]);
 
 const RUNTIME_PATHWAY_SCOPED_SOURCE_PLAN_IDS = new Set([
+  "uw-seattle-chemistry",
   "uw-seattle-psychology",
   "uw-seattle-public-health-global-health",
   "uw-seattle-slavic-languages-and-literatures",

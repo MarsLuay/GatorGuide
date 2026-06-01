@@ -499,8 +499,13 @@ function buildIndexes({ ownerAudit, parseReport, discoveryReport }) {
   }
 
   const parseOwnerByOwnerId = new Map();
+  const parseOwnersByOwnerId = new Map();
   for (const owner of parseReport?.owners ?? []) {
     parseOwnerByOwnerId.set(owner.ownerId, owner);
+    if (!parseOwnersByOwnerId.has(owner.ownerId)) {
+      parseOwnersByOwnerId.set(owner.ownerId, []);
+    }
+    parseOwnersByOwnerId.get(owner.ownerId).push(owner);
   }
 
   const discoveryOwnerByOwnerId = new Map();
@@ -519,6 +524,7 @@ function buildIndexes({ ownerAudit, parseReport, discoveryReport }) {
   return {
     ownerAuditByOwnerId,
     parseOwnerByOwnerId,
+    parseOwnersByOwnerId,
     discoveryOwnerByOwnerId,
   };
 }
@@ -667,10 +673,61 @@ function parseOwnerHasParsedChildCoverage(parseOwner, indexes) {
   return false;
 }
 
-function shouldSkipNoParsedOwner(parseOwner, indexes = { parseOwnerByOwnerId: new Map() }) {
+function parseOwnerHasParsedCourses(parseOwner) {
+  return (parseOwner?.parsedUwCourseCodes?.length ?? 0) > 0;
+}
+
+function parseOwnerHasSameOwnerParsedCoverage(parseOwner, indexes, { allowPartial = false } = {}) {
+  if (!parseOwner?.ownerId) {
+    return false;
+  }
+
+  const sameOwnerEntries = indexes.parseOwnersByOwnerId?.get(parseOwner.ownerId) ?? [];
+  const parsedCodes = new Set();
+  for (const candidate of sameOwnerEntries) {
+    if (
+      candidate === parseOwner ||
+      !candidate?.ok ||
+      SUPPORT_OR_NON_SCHEDULABLE_ROLE_STATUSES.has(candidate.sourceRoleStatus) ||
+      candidate.sourceRoleStatus === "ignored" ||
+      candidate.canCreateSchedulableRows === false
+    ) {
+      continue;
+    }
+    for (const code of candidate.parsedUwCourseCodes ?? []) {
+      parsedCodes.add(code);
+    }
+  }
+
+  if (!parsedCodes.size) {
+    return false;
+  }
+
+  const expectedCodes = uniqueSorted([
+    ...(parseOwner.structuredOnlyUwCourseCodes ?? []),
+    ...(parseOwner.structuredUwCourseCodes ?? []),
+  ]);
+  if (!expectedCodes.length) {
+    return true;
+  }
+
+  const coveredCount = expectedCodes.filter((code) => parsedCodes.has(code)).length;
+  if (allowPartial) {
+    return coveredCount >= Math.max(1, Math.floor(expectedCodes.length * 0.8));
+  }
+
+  return coveredCount === expectedCodes.length;
+}
+
+function shouldSkipNoParsedOwner(
+  parseOwner,
+  indexes = { parseOwnerByOwnerId: new Map(), parseOwnersByOwnerId: new Map() }
+) {
   return (
+    parseOwnerHasParsedCourses(parseOwner) ||
     parseOwnerIsInactiveMajor(parseOwner) ||
-    parseOwnerHasParsedChildCoverage(parseOwner, indexes)
+    parseOwnerHasParsedChildCoverage(parseOwner, indexes) ||
+    parseOwnerHasSameOwnerParsedCoverage(parseOwner, indexes, { allowPartial: true })
   );
 }
 
@@ -752,7 +809,10 @@ function collectParseReportCases(caseMap, parseReport, indexes) {
     }
 
     for (const signal of qualitySignals) {
-      if (LOW_COVERAGE_SIGNAL_CODES.has(signal.code)) {
+      if (
+        LOW_COVERAGE_SIGNAL_CODES.has(signal.code) &&
+        !parseOwnerHasSameOwnerParsedCoverage(owner, indexes)
+      ) {
         addRepairCase(caseMap, identity, "parser-low-coverage", signal.severity ?? "warning", {
           report: "requirement-source-parse",
           code: signal.code,

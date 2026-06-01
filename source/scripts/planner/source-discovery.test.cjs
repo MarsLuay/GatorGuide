@@ -143,6 +143,20 @@ test("Primary source promotions do not attach Asian Studies concentration pages 
   );
 });
 
+test("Primary source promotions do not attach ACS-only Chemistry pages to the broad Chemistry major", () => {
+  const leakedPromotions = TRANSFER_PLANNER_PRIMARY_PROMOTIONS.filter(
+    (entry) =>
+      entry.ownerId === "uw-seattle-chemistry" &&
+      /\bacs\b/i.test(`${entry.label ?? ""} ${entry.url ?? ""}`)
+  );
+
+  assert.deepEqual(
+    leakedPromotions.map((entry) => entry.url),
+    [],
+    "Expected ACS Certified Chemistry pages to stay out of the broad Chemistry primary source."
+  );
+});
+
 test("Primary source discovery skips hidden aliases covered by parent pathways", () => {
   const owner = {
     ownerType: "major",
@@ -1642,6 +1656,33 @@ test("Auto-promotion rejects explicit different-major catalog anchors", () => {
   );
 });
 
+test("Auto-promotion rejects ACS-only Chemistry sources for the broad Chemistry owner", () => {
+  assert.equal(
+    discovery.isAutoPromotablePrimaryCandidate({
+      ownerType: "major",
+      ownerId: "uw-seattle-chemistry",
+      ownerKey: "uw-seattle-chemistry",
+      planId: "uw-seattle-chemistry",
+      pathwayId: null,
+      ownerTitle: "Chemistry",
+      url: "https://chem.washington.edu/bs-chemistry-acs-certified",
+      label: "Bachelor of Science (Chemistry, ACS Certified)",
+      score: 152,
+      confidence: "high",
+      sourceRole: "primary-degree-requirements",
+      sourceRoleStatus: "primary",
+      parserType: "html-degree-page",
+      canCreateSchedulableRows: true,
+      reasons: [
+        "official source path matches the selected major",
+        "explicit degree-requirements wording",
+        "explicitly names the selected major",
+      ],
+    }),
+    false
+  );
+});
+
 test("Auto-promotion rejects study-abroad support pages under degree-requirement paths", () => {
   const target = discovery.buildOwnerTargetRecord({
     ownerType: "major",
@@ -2457,6 +2498,63 @@ test("UW catalog scoping recognizes European Studies as International Studies Eu
   assert.doesNotMatch(scopedText, /JSIS A 241/);
   assert.doesNotMatch(scopedText, /International Studies: Japan/);
   assert.match(scope?.sectionAudit?.stopBoundary ?? "", /program-UG-JAPAN/);
+});
+
+test("Anchored UW catalog major scoping includes the matching credential requirements", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="undergradPrograms|program-UG-EURO-MAJOR">
+      <h3 class="expanded" id="program-UG-EURO-MAJOR">Program of Study: Major: International Studies: Europe</h3>
+    </div>
+    <div id="program-UG-EURO-MAJOR-block" class="inner-block">
+      <p>Program Overview</p>
+      <p>The European Studies major prepares students to study Europe.</p>
+      <p>This program of study leads to the following credential:</p>
+      <p>Bachelor of Arts degree with a major in International Studies: Europe</p>
+      <p>Recommended Preparation</p>
+      <p>Progress toward two years of a modern European language.</p>
+      <div class="expandableGroup" data-expand="credential-euro">
+        <h4 class="expanded" id="credential-euro">Bachelor of Arts degree with a major in International Studies: Europe</h4>
+      </div>
+      <div id="credential-euro-block" class="inner-block">
+        <p>Completion Requirements</p>
+        <p>Core: JSIS 201 and JSIS A 301.</p>
+        <p>European Studies senior capstone: JSIS A 494 or JSIS A 495.</p>
+      </div>
+    </div>
+    <div class="expandableGroup" data-expand="program-UG-JAPAN-MAJOR">
+      <h3 class="expanded" id="program-UG-JAPAN-MAJOR">Program of Study: Major: International Studies: Japan</h3>
+    </div>
+    <div id="program-UG-JAPAN-MAJOR-block" class="inner-block">
+      <h4 class="expanded" id="credential-japan">Bachelor of Arts degree with a major in International Studies: Japan</h4>
+      <div class="credentialCompletionRequirements">
+        <p>Core: JSIS A 241/HSTAS 241 or JSIS A 242.</p>
+      </div>
+    </div>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    {
+      campusId: "uw-seattle",
+      ownerType: "major",
+      planId: "uw-seattle-european-studies",
+      ownerId: "uw-seattle-european-studies",
+      ownerTitle: "European Studies",
+      label: "UW General Catalog International Studies: Europe major requirements",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      isPrimaryDegreeRequirementsLink: true,
+      url: "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
+    },
+    html
+  );
+  const scopedText = parsed.snapshotLines.join(" ");
+
+  assert.ok(parsed.courseCodes.includes("JSIS 201"));
+  assert.ok(parsed.courseCodes.includes("JSISA 301"));
+  assert.ok(parsed.courseCodes.includes("JSISA 494"));
+  assert.ok(parsed.courseCodes.includes("JSISA 495"));
+  assert.match(scopedText, /Completion Requirements/);
+  assert.doesNotMatch(scopedText, /JSIS A 241/);
+  assert.match(parsed.sourceSectionAudit?.stopBoundary ?? "", /program-UG-JAPAN/);
 });
 
 test("UW catalog discovery scores European Studies against the matching Europe section anchor", () => {

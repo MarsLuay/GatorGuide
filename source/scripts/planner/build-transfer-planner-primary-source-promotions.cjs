@@ -220,6 +220,24 @@ function isBaBsRoutePromotionForBroadMajorOwner(entry) {
   );
 }
 
+function textHasAcsCertifiedRoute(value) {
+  return /\bacs(?:[-_\s]?(?:certified|\d{2,4}))?\b|\bamerican chemical society\b/i.test(String(value ?? ""));
+}
+
+function isUnscopedAcsRoutePromotionForBroadMajorOwner(entry) {
+  if (entry?.ownerType !== "major" || entry?.pathwayId) {
+    return false;
+  }
+
+  const sourceText = `${entry?.label ?? ""} ${entry?.url ?? ""}`;
+  if (!textHasAcsCertifiedRoute(sourceText)) {
+    return false;
+  }
+
+  const ownerText = `${entry?.ownerId ?? ""} ${entry?.planId ?? ""} ${entry?.ownerTitle ?? ""}`;
+  return !textHasAcsCertifiedRoute(ownerText);
+}
+
 function normalizeCatalogCredentialMajorName(value) {
   return String(value ?? "")
     .replace(/\([^)]*\)/g, " ")
@@ -406,6 +424,7 @@ function isUnsafeAutomaticPromotionEntry(entry) {
     isClearlySupportOnlyPromotionEntry(entry) ||
     isMinorCredentialPromotionForMajorOwner(entry) ||
     isBaBsRoutePromotionForBroadMajorOwner(entry) ||
+    isUnscopedAcsRoutePromotionForBroadMajorOwner(entry) ||
     isCatalogCredentialPromotionForDifferentMajor(entry) ||
     isCatalogProgramPromotionForDifferentMajor(entry) ||
     isCatalogProgramPagePromotionForDifferentMajor(entry) ||

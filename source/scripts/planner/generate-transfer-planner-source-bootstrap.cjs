@@ -303,6 +303,52 @@ function uniqueStrings(values) {
   );
 }
 
+function normalizeRouteMatcherText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getOfficialLinkRouteTokens(value) {
+  const text = normalizeRouteMatcherText(value);
+  const tokens = new Set();
+
+  if (/\b(?:ba|b a|bachelor of arts)\b/.test(text)) {
+    tokens.add("ba");
+  }
+  if (/\b(?:bs|b s|bachelor of science)\b/.test(text)) {
+    tokens.add("bs");
+  }
+  if (/\bacs(?:\d{2,4})?\b/.test(text) || /\bamerican chemical society\b/.test(text)) {
+    tokens.add("acs");
+  }
+  if (
+    /\b(?:ell|tell)\b/.test(text) ||
+    /\benglish language learners?\b/.test(text) ||
+    /\bteaching english language learners?\b/.test(text)
+  ) {
+    tokens.add("ell");
+  }
+  if (/\b(?:sped|special education)\b/.test(text)) {
+    tokens.add("sped");
+  }
+
+  return tokens;
+}
+
+function routeTokensConflict(ownerTokens, linkTokens) {
+  return (
+    (ownerTokens.has("ba") && linkTokens.has("bs")) ||
+    (ownerTokens.has("bs") && linkTokens.has("ba")) ||
+    (ownerTokens.has("bs") && !ownerTokens.has("acs") && linkTokens.has("acs")) ||
+    (ownerTokens.has("acs") && linkTokens.has("bs") && !linkTokens.has("acs")) ||
+    (ownerTokens.has("ell") && linkTokens.has("sped")) ||
+    (ownerTokens.has("sped") && linkTokens.has("ell"))
+  );
+}
+
 function uniqueLinks(values) {
   const STATUS_RANK = {
     verified: 5,
@@ -967,6 +1013,37 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
 
 function applySeattleCoursePlannerAuditModeling(plans) {
   const plansById = new Map(plans.map((plan) => [plan.id, plan]));
+
+  const chemistryPlan = plansById.get("uw-seattle-chemistry");
+  if (chemistryPlan) {
+    plansById.set(
+      chemistryPlan.id,
+      replacePlanPathwaysWithCanonicalSet({ ...chemistryPlan, pathways: [] }, [
+        createEmptyPathway("ba-route", "B.A. route", [
+          {
+            label: "UW BA in Chemistry requirements",
+            url: "https://chem.washington.edu/ba-chemistry",
+          },
+        ]),
+        createEmptyPathway("bs-route", "B.S. route", [
+          {
+            label: "UW BS in Chemistry requirements",
+            url: "https://chem.washington.edu/bs-chemistry",
+          },
+        ]),
+        createEmptyPathway("acs-certified-bs-route", "ACS-certified B.S. route", [
+          {
+            label: "UW BS in Chemistry - ACS Certified requirements",
+            url: "https://chem.washington.edu/bs-chemistry-acs-certified",
+          },
+          {
+            label: "UW BS Chemistry ACS Certified checklist",
+            url: "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
+          },
+        ]),
+      ])
+    );
+  }
 
   const psychologyPlan = plansById.get("uw-seattle-psychology");
   if (psychologyPlan) {
@@ -1944,6 +2021,17 @@ function buildMajorPlansFromParsedRegistries() {
     const supplementalLinks =
       SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY.get(makePlanPathwayKey(planId, pathwayId ?? null)) ??
       [];
+    const ownerRouteTokens = getOfficialLinkRouteTokens(
+      uniqueStrings([
+        planId,
+        pathwayId,
+      ]).join(" ")
+    );
+    const keepLinkForOwnerRoute = (entry) =>
+      !routeTokensConflict(
+        ownerRouteTokens,
+        getOfficialLinkRouteTokens(`${entry?.label ?? ""} ${entry?.url ?? ""}`)
+      );
 
     return uniqueLinks(
       applyTransferPlannerManualSourceLinkOverride(
@@ -1979,7 +2067,7 @@ function buildMajorPlansFromParsedRegistries() {
               sourceConfidence: sourceStatus.sourceConfidence,
             };
           }),
-        ])
+        ]).filter(keepLinkForOwnerRoute)
       )
     );
   };

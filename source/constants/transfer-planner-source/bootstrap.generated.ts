@@ -17297,15 +17297,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -17873,13 +17865,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
     "officialLinks": [
-      {
-        "label": "Data Visualization (BA)",
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
       {
         "label": "UW Bothell major planning worksheet - Data Visualization (BS)",
         "url": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
@@ -19239,8 +19224,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Arts degree with a major in Anthropology: Archaeological Sciences major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+            "label": "Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-5c4793d80c55252400b11b49",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19265,8 +19250,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Arts degree with a major in Anthropology: Archaeological Sciences major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+            "label": "Bachelor of Arts degree with a major in Anthropology: Indigenous Archaeology major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-607f222af69503804f6d92fc",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19616,8 +19601,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "BS in Applied Mathematics: Data Science Option major requirements",
-            "url": "https://amath.washington.edu/applied-mathematics-data-science-option",
+            "label": "B.S. in Applied Mathematics",
+            "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20458,8 +20443,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+            "label": "Bachelor of Science degree with a major in Biology: Physiology major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670408fef8793734586f7ec1",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20759,7 +20744,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "sourceConfidence": "high"
       },
       {
-        "label": "BS Chemistry Checklist - ACS Certified (PDF)",
+        "label": "BS Chemistry Checklist - ACS Certified (PDF) major requirements",
         "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
         "visibility": "visible",
         "status": "verified",
@@ -20773,7 +20758,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "sourceConfidence": "high"
       },
       {
-        "label": "UW BA in Chemistry requirements",
+        "label": "UW BA in Chemistry requirements major requirements",
         "url": "https://chem.washington.edu/ba-chemistry",
         "visibility": "visible",
         "status": "verified",
@@ -20794,7 +20779,93 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "B.A. route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW BA in Chemistry requirements",
+            "url": "https://chem.washington.edu/ba-chemistry",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "bs-route",
+        "label": "B.S. route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW BS in Chemistry requirements",
+            "url": "https://chem.washington.edu/bs-chemistry",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "acs-certified-bs-route",
+        "label": "ACS-certified B.S. route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW BS Chemistry ACS Certified checklist",
+            "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW BS in Chemistry - ACS Certified requirements",
+            "url": "https://chem.washington.edu/bs-chemistry-acs-certified",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-chinese",
@@ -23318,7 +23389,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "low"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -24415,8 +24486,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW Jewish Studies major requirements",
         "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "fetch failed",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -27296,15 +27366,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Cached source: Bachelor of Arts in Education with Dual Endorsement (SPED)",
+            "label": "BA in Education - K-8 Elementary Education w/SPED (2026-2027)",
             "url": "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-sped.pdf",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "Scoped section: [Page 1] Education Core Courses",
-            "url": "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -27362,11 +27425,18 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "BA in Education - K-8 Elementary Education w/TELL (2026-2027)",
+            "url": "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
             "label": "UW Tacoma B.A. in Education overview major requirements",
             "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "medium"
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
