@@ -72,6 +72,16 @@ const GENERATED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN = new Map([
       /^introduction to molecular and nanoscale principles\b.*\bnot eligible elective for nme option students\b/i,
     ],
   ],
+  [
+    "uw-tacoma-politics-philosophy-and-economics",
+    [
+      /^B\.?\s*A\.?\s+route$/i,
+      /^global studies concentration$/i,
+      /^social science research methods minor$/i,
+    ],
+  ],
+  ["uw-tacoma-social-welfare", [/^B\.?\s*A\.?\s+route$/i]],
+  ["uw-tacoma-sustainable-urban-development", [/^gis certificate\b/i]],
 ]);
 const CAMPUS_TITLE_BY_ID = {
   "uw-seattle": "UW Seattle",
@@ -602,6 +612,100 @@ const TACOMA_CSS_PARENT_LINKS = [
   },
 ];
 
+function applyBothellCoursePlannerAuditModeling(plans) {
+  const plansById = new Map(plans.map((plan) => [plan.id, plan]));
+  const bbaPlan = plansById.get("uw-bothell-business-administration");
+
+  if (bbaPlan) {
+    const makeBothellBbaLink = (label, slug) => ({
+      label,
+      url: `https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/${slug}`,
+    });
+
+    plansById.set(bbaPlan.id, {
+      ...bbaPlan,
+      officialLinks: uniqueLinks([
+        {
+          label: "UW Bothell BBA overview and areas of study",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
+        },
+        {
+          label: "UW Bothell BBA prerequisite courses",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+        },
+        {
+          label: "UW Bothell BBA curriculum",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+        },
+        ...(bbaPlan.officialLinks ?? []),
+      ]),
+      validationNotes: uniqueStrings([
+        ...(bbaPlan.validationNotes ?? []),
+        "Canonical Bothell BBA pathways follow the current School of Business option and concentration pages.",
+      ]),
+    });
+    plansById.set(
+      bbaPlan.id,
+      replacePlanPathwaysWithCanonicalSet(plansById.get(bbaPlan.id), [
+        createEmptyPathway("accounting-option", "Accounting Option", [
+          makeBothellBbaLink("UW Bothell Accounting option requirements", "accounting"),
+        ]),
+        createEmptyPathway(
+          "business-analytics-and-ai-concentration",
+          "Business Analytics & AI Concentration",
+          [
+            makeBothellBbaLink(
+              "UW Bothell Business Analytics and AI concentration requirements",
+              "business-analytics-artificial-intelligence"
+            ),
+          ]
+        ),
+        createEmptyPathway(
+          "leadership-and-strategic-innovation-option",
+          "Leadership & Strategic Innovation Option",
+          [
+            makeBothellBbaLink(
+              "UW Bothell Leadership and Strategic Innovation option requirements",
+              "leadership"
+            ),
+          ]
+        ),
+        createEmptyPathway("marketing-option-and-concentration", "Marketing Option and Concentration", [
+          makeBothellBbaLink("UW Bothell Marketing option and concentration requirements", "marketing"),
+        ]),
+        createEmptyPathway("supply-chain-management-option", "Supply Chain Management Option", [
+          makeBothellBbaLink("UW Bothell Supply Chain Management option requirements", "supply-chain"),
+        ]),
+        createEmptyPathway("entrepreneurship-concentration", "Entrepreneurship Concentration", [
+          makeBothellBbaLink("UW Bothell Entrepreneurship concentration requirements", "entrepreneurship"),
+        ]),
+        createEmptyPathway("finance-option-and-concentration", "Finance Option and Concentration", [
+          makeBothellBbaLink("UW Bothell Finance option and concentration requirements", "finance-option"),
+        ]),
+        createEmptyPathway("management-concentration", "Management Concentration", [
+          makeBothellBbaLink("UW Bothell Management concentration requirements", "management"),
+        ]),
+        createEmptyPathway("mis-concentration", "Management Information Systems (MIS) Concentration", [
+          makeBothellBbaLink("UW Bothell MIS concentration requirements", "mis"),
+        ]),
+        createEmptyPathway("retail-management-concentration", "Retail Management Concentration", [
+          makeBothellBbaLink("UW Bothell Retail Management concentration requirements", "retail"),
+        ]),
+        createEmptyPathway(
+          "tim-concentration",
+          "Technology & Innovation Management (TIM) Concentration",
+          [makeBothellBbaLink("UW Bothell TIM concentration requirements", "tim")]
+        ),
+        createEmptyPathway("self-directed-concentration", "Self-Directed Concentration", [
+          makeBothellBbaLink("UW Bothell self-directed concentration requirements", "self-directed"),
+        ]),
+      ])
+    );
+  }
+
+  return [...plansById.values()];
+}
+
 function applyTacomaCoursePlannerAuditModeling(plans) {
   const plansById = new Map(plans.map((plan) => [plan.id, plan]));
 
@@ -664,23 +768,8 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
     );
   }
 
-  const cssBaPlan = plansById.get("uw-tacoma-computer-science-and-systems-ba");
-  if (cssBaPlan) {
-    plansById.set(cssBaPlan.id, {
-      ...cssBaPlan,
-      title: "Computer Science and Systems: Bachelor of Arts (BA)",
-      shortTitle: "CSS: BA",
-    });
-  }
-
-  const cssBsPlan = plansById.get("uw-tacoma-computer-science-and-systems-bs");
-  if (cssBsPlan) {
-    plansById.set(cssBsPlan.id, {
-      ...cssBsPlan,
-      title: "Computer Science and Systems: Bachelor of Science (BS)",
-      shortTitle: "CSS: BS",
-    });
-  }
+  plansById.delete("uw-tacoma-computer-science-and-systems-ba");
+  plansById.delete("uw-tacoma-computer-science-and-systems-bs");
 
   const cssParentPlan = upsertPlan(
     plansById,
@@ -1895,7 +1984,9 @@ function buildMajorPlansFromParsedRegistries() {
     );
   };
 
-  return applySeattleCoursePlannerAuditModeling(applyTacomaCoursePlannerAuditModeling(basePlans))
+  return applySeattleCoursePlannerAuditModeling(
+    applyTacomaCoursePlannerAuditModeling(applyBothellCoursePlannerAuditModeling(basePlans))
+  )
     .map((plan) => ({
       ...plan,
       officialLinks: enrichOfficialLinks(plan.officialLinks ?? [], plan.id, null),

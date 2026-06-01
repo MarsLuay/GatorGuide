@@ -583,6 +583,31 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "ESOL Concentration",
     },
   ],
+  "uw-bothell-business-administration": [
+    {
+      pattern:
+        /^business\s+analytics\s+(?:&|and)\s+(?:ai|artificial intelligence)(?:\s+concentration)?$/i,
+      id: "business-analytics-and-ai-concentration",
+      label: "Business Analytics & AI Concentration",
+    },
+    {
+      pattern:
+        /^management\s+information\s+systems(?:\s+\(?mis\)?)?(?:\s+concentration)?$/i,
+      id: "mis-concentration",
+      label: "Management Information Systems (MIS) Concentration",
+    },
+    {
+      pattern:
+        /^technology\s+(?:&|and)\s+innovation\s+management(?:\s+\(?tim\)?)?(?:\s+concentration)?$/i,
+      id: "tim-concentration",
+      label: "Technology & Innovation Management (TIM) Concentration",
+    },
+    {
+      pattern: /^self[-\s]?directed(?:\s+concentration)?$/i,
+      id: "self-directed-concentration",
+      label: "Self-Directed Concentration",
+    },
+  ],
   "uw-seattle-english-creative-writing": [
     {
       pattern: /^creative writing$/i,
@@ -738,6 +763,23 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "Writing and Social Change Track",
     },
   ],
+  "uw-tacoma-politics-philosophy-and-economics": [
+    {
+      pattern: /^politics\s+and\s+philosophy(?: specialization)?$/i,
+      id: "politics-and-philosophy-specialization",
+      label: "Politics and Philosophy Specialization",
+    },
+    {
+      pattern: /^economics(?: specialization)?$/i,
+      id: "economics-specialization",
+      label: "Economics Specialization",
+    },
+    {
+      pattern: /^international studies(?: specialization)?$/i,
+      id: "international-studies-specialization",
+      label: "International Studies Specialization",
+    },
+  ],
   "uw-tacoma-sustainable-urban-development": [
     {
       pattern: /^(?:community engagement)(?: option)?$/i,
@@ -797,6 +839,7 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
   "uw-bothell-economics": [
     /^(?:accounting|entrepreneurship|finance|leadership\s*&\s*strategic innovation|lsi|management|marketing|management information systems(?:\s*\(mis\))?|mis|retail management|supply chain management|technology\s*&\s*innovation management(?:\s*\(tim\))?|tim)(?:\s+option(?:\s+and\s+concentration)?|\s+concentration)$/i,
   ],
+  "uw-bothell-csse": [/^with this option$/i],
   "uw-bothell-educational-studies-elementary-education": [/^elementary education option$/i],
   "uw-tacoma-arts-media-culture": [/^B\.?\s*A\.?\s+route$/i],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [/^B\.?\s*A\.?\s+route$/i],
@@ -811,6 +854,13 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
     /^gender\s+and\s+identity(?: option)?$/i,
     /^global studies concentration$/i,
   ],
+  "uw-tacoma-politics-philosophy-and-economics": [
+    /^B\.?\s*A\.?\s+route$/i,
+    /^global studies concentration$/i,
+    /^social science research methods minor$/i,
+  ],
+  "uw-tacoma-social-welfare": [/^B\.?\s*A\.?\s+route$/i],
+  "uw-tacoma-sustainable-urban-development": [/^gis certificate\b/i],
   "uw-tacoma-urban-studies": [/^gis certificate\b/i],
   "uw-seattle-materials-science-engineering": [
     /^final project and internship\/industrial option$/i,
@@ -844,6 +894,25 @@ const LINE_DIFFERENT_MAJOR_CACHE = new Map<string, boolean>();
 const AUTO_PROMOTED_PRIMARY_OWNER_IDS = new Set(
   (TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? []).map((entry) => entry.ownerId)
 );
+const SOURCE_DECLARED_PATHWAY_IDS_TO_KEEP_BY_PLAN_ID = new Map<string, Set<string>>([
+  [
+    "uw-bothell-business-administration",
+    new Set([
+      "accounting-option",
+      "business-analytics-and-ai-concentration",
+      "leadership-and-strategic-innovation-option",
+      "marketing-option-and-concentration",
+      "supply-chain-management-option",
+      "entrepreneurship-concentration",
+      "finance-option-and-concentration",
+      "management-concentration",
+      "mis-concentration",
+      "retail-management-concentration",
+      "tim-concentration",
+      "self-directed-concentration",
+    ]),
+  ],
+]);
 
 type AutoPromotedPathwaySupportEntry = {
   pathwayId: string;
@@ -993,6 +1062,10 @@ function resolveAutoPromotedPathwaySupportEntry(
   }
 
   return null;
+}
+
+function isSourceDeclaredPathwayToKeep(planId: string, pathwayId: string) {
+  return SOURCE_DECLARED_PATHWAY_IDS_TO_KEEP_BY_PLAN_ID.get(planId)?.has(pathwayId) === true;
 }
 
 function canonicalizeBasePathwayAgainstAutoPromotions(
@@ -2801,6 +2874,9 @@ function filterUnsupportedBasePathways(
     if (AUTO_PROMOTED_PRIMARY_OWNER_IDS.has(ownerId)) {
       return true;
     }
+    if (isSourceDeclaredPathwayToKeep(plan.id, pathway.id)) {
+      return true;
+    }
 
     if (
       hasPlanLevelChoicePathwayEvidence &&
@@ -3254,7 +3330,8 @@ function mergeDerivedAndSourceBackedBasePathways(
       isSuspiciousStructuralPathwayLabel(pathway.label) ||
       isPlanExcludedDerivedPathway(plan.id, pathway) ||
       materializedPathwaysById.has(pathway.id) ||
-      !hasDedicatedSourceBackedPathwayBlock(plan, pathway, parsedSourceBlocks)
+      (!isSourceDeclaredPathwayToKeep(plan.id, pathway.id) &&
+        !hasDedicatedSourceBackedPathwayBlock(plan, pathway, parsedSourceBlocks))
     ) {
       continue;
     }

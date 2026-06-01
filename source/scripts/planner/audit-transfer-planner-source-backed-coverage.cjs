@@ -4323,15 +4323,18 @@ function buildRequirementShapeRowsForSourceBlocks(owner) {
         const hasListCodes =
           (block.approvedFilterUwCourseCodes ?? []).length ||
           (block.electiveListUwCourseCodes ?? []).length;
-        return (
+        const isSupportLikeSourceBlock =
           block.supportOnly === true ||
           block.canCreateScheduleRows === false ||
-          (block.supportOnlyUwCourseCodes ?? []).length ||
+          sourceRole === "approved-course-list" ||
+          sourceRole === "elective-list" ||
+          sourceRole === "support-source";
+        return (
+          isSupportLikeSourceBlock ||
+          ((block.supportOnlyUwCourseCodes ?? []).length > 0 && !hasParsedSchedulableSurface) ||
           (hasListCodes &&
             (!hasParsedSchedulableSurface ||
-              sourceRole === "approved-course-list" ||
-              sourceRole === "elective-list" ||
-              sourceRole === "support-source"))
+              isSupportLikeSourceBlock))
         );
       }
     )

@@ -177,11 +177,9 @@ const tacomaEnvironmentalSustainabilityCourses = courses(`
 `);
 
 const tacomaSustainableUrbanDevelopmentCourses = courses(`
-  TESC 201, TEST 332, TGEOG 101, TGEOG 210, TGEOG 321, TGEOG 349,
   TGIS 311, TGIS 312, TGIS 313, TGIS 414, TGIS 415, TSUD 222,
-  TSUD 240, TSUD 444, TSUD 445, TSUD 475, TUDE 210, TUDE 260,
-  TUDE 340, TURB 101, TURB 102, TURB 103, TURB 110, TURB 200,
-  TURB 220, TURB 225, TURB 235, TURB 314, TURB 322, TURB 379,
+  TSUD 240, TSUD 444, TSUD 445, TUDE 340, TURB 101, TURB 103,
+  TURB 110, TURB 200, TURB 220, TURB 235, TURB 314, TURB 322, TURB 379,
   TURB 403, TURB 410, TURB 470, TURB 479, TURB 498
 `);
 
@@ -451,7 +449,7 @@ const environmentalPrograms = [
       { id: "tacoma-sud-foundation", label: "Foundation courses", minCredits: 25, maxCredits: 26, courseCodes: ["TURB 220", "TSUD 222", "TSUD 240", "TGIS 311", "TURB 314", "TURB 322", "TURB 410", "TSUD 444", "TSUD 445"] },
       { id: "tacoma-sud-options", label: "Formal options", minCredits: 25, courseCodes: tacomaSustainableUrbanDevelopmentCourses },
     ],
-    genEdRequirements: ["70-71 credits", "general university requirements", "total number of credits to 180", "minimum 2.0 cumulative", "Major GPA: minimum 2.0 in each course required for the major"],
+    genEdRequirements: ["70-71 credits", "general university requirements", "total number of credits to 180"],
     requirementLabels: ["Sustainable Urban Development", "Community Engagement", "Geographic Information Systems", "Shared Curriculum", "Foundation Courses", "Formal Options"],
   },
 ];

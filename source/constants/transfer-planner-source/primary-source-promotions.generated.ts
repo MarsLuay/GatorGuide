@@ -4,6 +4,38 @@ import type { TransferPlannerPrimarySourcePromotionEntry } from "./schema";
 export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePromotionEntry[] = [
   {
     "ownerType": "major",
+    "ownerId": "uw-bothell-biology",
+    "ownerKey": "uw-bothell-biology",
+    "planId": "uw-bothell-biology",
+    "pathwayId": null,
+    "ownerTitle": "Biology (BS)",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/stem/undergraduate/minors/biology",
+    "label": "Biology",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 108,
+    "confidence": "high",
+    "reasons": [
+      "advising wording",
+      "already stored as an official source",
+      "matches major keyword \"biology\"",
+      "official source path matches the selected major",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "program-requirements wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "undergraduate path segment",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
+  },
+  {
+    "ownerType": "major",
     "ownerId": "uw-bothell-business-administration-accounting",
     "ownerKey": "uw-bothell-business-administration-accounting",
     "planId": "uw-bothell-business-administration-accounting",
@@ -193,6 +225,232 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
+    "ownerId": "uw-bothell-mathematical-thinking-and-visualization:pathway:ba-route",
+    "ownerKey": "uw-bothell-mathematical-thinking-and-visualization:pathway:ba-route",
+    "planId": "uw-bothell-mathematical-thinking-and-visualization",
+    "pathwayId": "ba-route",
+    "ownerTitle": "Mathematical Thinking & Visualization (BA) - B.A. route",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization#requirements",
+    "label": "Requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 115,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "matches major keyword \"mathematical\"",
+      "matches major keyword \"thinking\"",
+      "matches major keyword \"visualization\"",
+      "matches multiple major keywords",
+      "official source text matches the selected major",
+      "primary degree requirements source role",
+      "requirements path segment",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "undergraduate path segment",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-bothell-media-and-communications-studies",
+    "ownerKey": "uw-bothell-media-and-communications-studies",
+    "planId": "uw-bothell-media-and-communications-studies",
+    "pathwayId": null,
+    "ownerTitle": "Media & Communication Studies (BA)",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication#requirements",
+    "label": "Degree Planning",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 120,
+    "confidence": "high",
+    "reasons": [
+      "admissions wording",
+      "curriculum wording",
+      "discovered from an official source page",
+      "explicit degree-requirements wording",
+      "explicit major-requirements wording",
+      "graduate-program wording",
+      "matches major keyword \"communication\"",
+      "matches major keyword \"media\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "non-degree content wording",
+      "official source text matches the selected major",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "requirements path segment",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the same department or school page",
+      "undergraduate path segment"
+    ],
+    "generatedAt": "2026-06-01T09:25:47.580Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-bothell-nursing-first-year-rn-to-bsn",
+    "ownerKey": "uw-bothell-nursing-first-year-rn-to-bsn",
+    "planId": "uw-bothell-nursing-first-year-rn-to-bsn",
+    "pathwayId": null,
+    "ownerTitle": "Nursing (BS), First Year RN to BSN (Direct Entry)",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+    "label": "Student Requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 91,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "matches major keyword \"bsn\"",
+      "matches the selected degree route",
+      "primary degree requirements source role",
+      "requirements path segment",
+      "stays on an official UW domain",
+      "stays on the same department or school page",
+      "student-requirements wording",
+      "undergraduate path segment"
+    ],
+    "generatedAt": "2026-06-01T09:25:47.580Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-bothell-nursing-rn-to-bsn",
+    "ownerKey": "uw-bothell-nursing-rn-to-bsn",
+    "planId": "uw-bothell-nursing-rn-to-bsn",
+    "pathwayId": null,
+    "ownerTitle": "Nursing (BS), RN to BSN",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+    "label": "Student Requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 91,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "matches major keyword \"bsn\"",
+      "matches the selected degree route",
+      "primary degree requirements source role",
+      "requirements path segment",
+      "stays on an official UW domain",
+      "stays on the same department or school page",
+      "student-requirements wording",
+      "undergraduate path segment"
+    ],
+    "generatedAt": "2026-06-01T09:25:47.580Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-bothell-physics-ba",
+    "ownerKey": "uw-bothell-physics-ba",
+    "planId": "uw-bothell-physics-ba",
+    "pathwayId": null,
+    "ownerTitle": "Physics (BA)",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
+    "label": "Physics",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 108,
+    "confidence": "high",
+    "reasons": [
+      "advising wording",
+      "already stored as an official source",
+      "matches major keyword \"physics\"",
+      "official source path matches the selected major",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "program-requirements wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "undergraduate path segment",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-bothell-physics-ba:pathway:ba-route",
+    "ownerKey": "uw-bothell-physics-ba:pathway:ba-route",
+    "planId": "uw-bothell-physics-ba",
+    "pathwayId": "ba-route",
+    "ownerTitle": "Physics (BA) - B.A. route",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
+    "label": "Physics",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 108,
+    "confidence": "high",
+    "reasons": [
+      "advising wording",
+      "already stored as an official source",
+      "matches major keyword \"physics\"",
+      "official source path matches the selected major",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "program-requirements wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "undergraduate path segment",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-bothell-physics-bs",
+    "ownerKey": "uw-bothell-physics-bs",
+    "planId": "uw-bothell-physics-bs",
+    "pathwayId": null,
+    "ownerTitle": "Physics (BS)",
+    "campusId": "uw-bothell",
+    "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
+    "label": "Physics",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 108,
+    "confidence": "high",
+    "reasons": [
+      "advising wording",
+      "already stored as an official source",
+      "matches major keyword \"physics\"",
+      "official source path matches the selected major",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "program-requirements wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "undergraduate path segment",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
+  },
+  {
+    "ownerType": "pathway",
     "ownerId": "uw-bothell-psychology:pathway:ba-route",
     "ownerKey": "uw-bothell-psychology:pathway:ba-route",
     "planId": "uw-bothell-psychology",
@@ -219,7 +477,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -319,7 +577,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -352,7 +610,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -516,7 +774,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -584,7 +842,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Biology-112.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -618,6 +876,41 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page"
     ],
     "generatedAt": "2026-05-25T04:13:26.660Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-seattle-chemistry",
+    "ownerKey": "uw-seattle-chemistry",
+    "planId": "uw-seattle-chemistry",
+    "pathwayId": null,
+    "ownerTitle": "Chemistry",
+    "campusId": "uw-seattle",
+    "url": "https://chem.washington.edu/bs-chemistry-acs-certified",
+    "label": "Bachelor of Science (Chemistry, ACS Certified)",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 152,
+    "confidence": "high",
+    "reasons": [
+      "admissions wording",
+      "already stored as an official source",
+      "checklist-style wording",
+      "explicit degree-requirements wording",
+      "explicit major-requirements wording",
+      "explicitly names the selected major",
+      "matches major keyword \"chemistry\"",
+      "official source path matches the selected major",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -691,70 +984,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-drama:pathway:ba-option-family:design",
-    "ownerKey": "uw-seattle-drama:pathway:ba-option-family:design",
-    "planId": "uw-seattle-drama",
-    "pathwayId": "ba-option-family:design",
-    "ownerTitle": "Drama - B.A. Design option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d64142271da38091ab356",
-    "label": "Bachelor of Arts degree with a major in Drama: Design",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 137,
-    "confidence": "high",
-    "reasons": [
-      "discovered from an official source page",
-      "matches major keyword \"design\"",
-      "matches major keyword \"drama\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "stays on the same department or school page",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Drama-134.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-drama:pathway:ba-option-family:performance",
-    "ownerKey": "uw-seattle-drama:pathway:ba-option-family:performance",
-    "planId": "uw-seattle-drama",
-    "pathwayId": "ba-option-family:performance",
-    "ownerTitle": "Drama - B.A. Performance option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d62ac13141c15f1bb6c5a",
-    "label": "Bachelor of Arts degree with a major in Drama: Performance",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 137,
-    "confidence": "high",
-    "reasons": [
-      "discovered from an official source page",
-      "matches major keyword \"drama\"",
-      "matches major keyword \"performance\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "stays on the same department or school page",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Drama-134.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
-  },
-  {
-    "ownerType": "pathway",
     "ownerId": "uw-seattle-education-studies:pathway:ba-option-family:education-research-and-policy",
     "ownerKey": "uw-seattle-education-studies:pathway:ba-option-family:education-research-and-policy",
     "planId": "uw-seattle-education-studies",
@@ -785,7 +1014,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -818,7 +1047,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -850,7 +1079,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -882,7 +1111,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -918,7 +1147,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -985,36 +1214,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-05-24T03:27:22.033Z"
   },
   {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
-    "ownerKey": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
-    "planId": "uw-seattle-english-language-literature-and-culture",
-    "pathwayId": "language-and-literature-option",
-    "ownerTitle": "English - Language, Literature & Culture - Language and Literature Option",
-    "campusId": "uw-seattle",
-    "url": "https://english.washington.edu/language-and-literature-option-requirements-summer-2019-spring-2022",
-    "label": "Major requirements",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 121,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "explicitly names the selected pathway or route",
-      "matches major keyword \"english\"",
-      "official source path matches the selected pathway",
-      "primary degree requirements source role",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://english.washington.edu/english-language-literature-and-culture-option after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
-  },
-  {
     "ownerType": "major",
     "ownerId": "uw-seattle-geography",
     "ownerKey": "uw-seattle-geography",
@@ -1046,68 +1245,38 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-geography:pathway:geography-major-data-science-option",
-    "ownerKey": "uw-seattle-geography:pathway:geography-major-data-science-option",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "geography-major-data-science-option",
-    "ownerTitle": "Geography - Geography Major Data Science Option",
+    "ownerId": "uw-seattle-informatics:pathway:biomedical-and-health-informatics-option",
+    "ownerKey": "uw-seattle-informatics:pathway:biomedical-and-health-informatics-option",
+    "planId": "uw-seattle-informatics",
+    "pathwayId": "biomedical-and-health-informatics-option",
+    "ownerTitle": "Informatics - Biomedical and Health Informatics Option",
     "campusId": "uw-seattle",
-    "url": "https://geography.washington.edu/ba-geography-data-science-option",
-    "label": "B.A. in Geography: Data Science Option",
+    "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/biomedical-and-health-informatics/biomedical-and-health-informatics-option?",
+    "label": "Close menu",
     "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
+    "parserType": "html-curriculum-page",
     "canCreateSchedulableRows": true,
-    "score": 114,
+    "score": 139,
     "confidence": "high",
     "reasons": [
-      "already stored as an official source",
-      "matches major keyword \"data\"",
-      "matches major keyword \"geography\"",
+      "curriculum wording",
+      "discovered from an official source page",
+      "explicitly names the selected major",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"biomedical\"",
+      "matches major keyword \"health\"",
+      "matches major keyword \"informatics\"",
       "matches multiple major keywords",
-      "official source path matches the selected pathway",
-      "page title fetched successfully",
-      "pathway-specific official child page matches the selected pathway",
+      "official source text matches the selected pathway",
       "primary degree requirements source role",
+      "same-program option/concentration child source matches the selected pathway",
       "stays on an official UW domain",
       "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://geography.washington.edu/ba-geography after weak-source re-evaluation."
+      "stays on the same department or school page",
+      "Replaces existing primary https://ischool.uw.edu/programs/informatics/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-international-studies:pathway:ba-option-family:asia",
-    "ownerKey": "uw-seattle-international-studies:pathway:ba-option-family:asia",
-    "planId": "uw-seattle-international-studies",
-    "pathwayId": "ba-option-family:asia",
-    "ownerTitle": "International Studies - B.A. Asia option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-3de9e354-feff-4386-b164-15ad1dc4664d",
-    "label": "Bachelor of Arts degree with a major in International Studies: Asia major requirements",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 167,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"asia\"",
-      "matches major keyword \"international\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "pathway",
@@ -1143,72 +1312,69 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-05-25T07:32:36.399Z"
   },
   {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-international-studies:pathway:ba-option-family:europe",
-    "ownerKey": "uw-seattle-international-studies:pathway:ba-option-family:europe",
-    "planId": "uw-seattle-international-studies",
-    "pathwayId": "ba-option-family:europe",
-    "ownerTitle": "International Studies - B.A. Europe option",
+    "ownerType": "major",
+    "ownerId": "uw-seattle-landscape-architecture",
+    "ownerKey": "uw-seattle-landscape-architecture",
+    "planId": "uw-seattle-landscape-architecture",
+    "pathwayId": null,
+    "ownerTitle": "Landscape Architecture",
     "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-5fd3bfc3e9f12600287fc73b",
-    "label": "Bachelor of Arts degree with a major in International Studies: Europe major requirements",
+    "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html#program-UG-L%20ARCH-MAJOR",
+    "label": "Program of Study: Major: Landscape Architecture",
     "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
     "parserType": "catalog-page",
     "canCreateSchedulableRows": true,
-    "score": 167,
+    "score": 119,
     "confidence": "high",
     "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"europe\"",
-      "matches major keyword \"international\"",
+      "checklist-style wording",
+      "discovered from an official source page",
+      "explicitly names the selected major",
+      "matches major keyword \"architecture\"",
+      "matches major keyword \"landscape\"",
       "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
+      "official catalog URL includes a major-specific anchor",
+      "official source text matches the selected major",
       "official UW General Catalog program page",
-      "specific bachelor route wording",
       "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
+      "stays on the same department or school page"
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T09:25:47.580Z"
   },
   {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-international-studies:pathway:ba-option-family:latin-america-and-caribbean",
-    "ownerKey": "uw-seattle-international-studies:pathway:ba-option-family:latin-america-and-caribbean",
-    "planId": "uw-seattle-international-studies",
-    "pathwayId": "ba-option-family:latin-america-and-caribbean",
-    "ownerTitle": "International Studies - B.A. Latin America and Caribbean option",
+    "ownerType": "major",
+    "ownerId": "uw-seattle-latin-american-and-caribbean-studies",
+    "ownerKey": "uw-seattle-latin-american-and-caribbean-studies",
+    "planId": "uw-seattle-latin-american-and-caribbean-studies",
+    "pathwayId": null,
+    "ownerTitle": "Latin American & Caribbean Studies",
     "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-de5ae307-66fe-4109-baa1-8df5deecc0cf",
-    "label": "Bachelor of Arts degree with a major in International Studies: Latin America and Caribbean major requirements",
-    "sourceRole": "official-catalog",
+    "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/#requirements",
+    "label": "Major requirements",
+    "sourceRole": "primary-degree-requirements",
     "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
+    "parserType": "html-degree-page",
     "canCreateSchedulableRows": true,
-    "score": 171,
+    "score": 141,
     "confidence": "high",
     "reasons": [
       "already stored as an official source",
       "explicit major-requirements wording",
-      "matches major keyword \"america\"",
+      "matches major keyword \"american\"",
       "matches major keyword \"caribbean\"",
-      "matches major keyword \"international\"",
       "matches major keyword \"latin\"",
       "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
+      "official source text matches the selected major",
+      "primary degree requirements source role",
+      "requirements path segment",
       "stays on an official UW domain",
       "stays on the current official department host",
+      "undergraduate path segment",
       "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
+      "Replaces existing primary https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -1239,7 +1405,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -1270,6 +1436,72 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-05-25T07:32:36.399Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-physics:pathway:comprehensive-track",
+    "ownerKey": "uw-seattle-physics:pathway:comprehensive-track",
+    "planId": "uw-seattle-physics",
+    "pathwayId": "comprehensive-track",
+    "ownerTitle": "Physics - Comprehensive track",
+    "campusId": "uw-seattle",
+    "url": "https://phys.washington.edu/physics-bs-degree-requirements#comprehensive",
+    "label": "Comprehensive track",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 114,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"comprehensive\"",
+      "matches major keyword \"physics\"",
+      "matches multiple major keywords",
+      "official source text matches the selected major",
+      "page title fetched successfully",
+      "pathway-specific official child page matches the selected pathway",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://phys.washington.edu/physics-bs-degree-requirements after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-physics:pathway:teaching-physics-track",
+    "ownerKey": "uw-seattle-physics:pathway:teaching-physics-track",
+    "planId": "uw-seattle-physics",
+    "pathwayId": "teaching-physics-track",
+    "ownerTitle": "Physics - Teaching Physics track",
+    "campusId": "uw-seattle",
+    "url": "https://phys.washington.edu/physics-bs-degree-requirements#teaching",
+    "label": "Teaching physics track",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 108,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"physics\"",
+      "matches major keyword \"teaching\"",
+      "matches multiple major keywords",
+      "official source text matches the selected pathway",
+      "page title fetched successfully",
+      "pathway-specific official child page matches the selected pathway",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://phys.washington.edu/physics-bs-degree-requirements after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -1307,7 +1539,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",
@@ -1364,7 +1596,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on an official UW domain",
       "verified against an official source candidate"
     ],
-    "generatedAt": "2026-05-27T17:59:17.886Z"
+    "generatedAt": "2026-06-01T17:01:38.708Z"
   },
   {
     "ownerType": "major",

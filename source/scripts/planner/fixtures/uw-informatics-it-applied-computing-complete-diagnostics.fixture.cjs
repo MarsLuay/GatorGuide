@@ -62,28 +62,6 @@ const bothellAppliedComputingCoreCourses = courses(`
   CSS 301, CSS 340, CSS 342, CSS 350, BBUS 300, CSS 360, CSS 421, CSS 496
 `);
 
-const bothellAppliedComputingUndergraduateCssCourses = courses(`
-  CSS 100, CSS 101, CSS 107, CSS 110, CSS 112, CSS 123, CSS 130, CSS 132,
-  CSS 133, CSS 142, CSS 143, CSS 161, CSS 162, CSS 173, CSS 198, CSS 199,
-  CSS 205, CSS 211, CSS 225, CSS 250, CSS 290, CSS 295, CSS 301, CSS 305,
-  CSS 310, CSS 315, CSS 320, CSS 330, CSS 337, CSS 340, CSS 342, CSS 343,
-  CSS 350, CSS 360, CSS 370, CSS 371, CSS 382, CSS 383, CSS 385, CSS 390,
-  CSS 397, CSS 405, CSS 411, CSS 415, CSS 416, CSS 421, CSS 422, CSS 427,
-  CSS 430, CSS 431, CSS 432, CSS 434, CSS 436, CSS 444, CSS 448, CSS 449,
-  CSS 450, CSS 451, CSS 452, CSS 455, CSS 457, CSS 458, CSS 461, CSS 473,
-  CSS 474, CSS 475, CSS 477, CSS 478, CSS 480, CSS 481, CSS 482, CSS 483,
-  CSS 484, CSS 485, CSS 486, CSS 487, CSS 488, CSS 490, CSS 495, CSS 496,
-  CSS 497, CSS 498, CSS 499
-`);
-
-const bothellAppliedComputingVariableCreditCourses = courses(`
-  CSS 397, CSS 495, CSS 498, CSS 499
-`);
-
-const bothellAppliedComputingSpecialTopicsCourses = courses(`
-  CSS 290, CSS 390, CSS 490
-`);
-
 const tacomaInformationTechnologyPrerequisiteCourses = courses(`
   TCSS 141, TCSS 142, TMATH 115, TMATH 116, TMATH 120
 `);
@@ -183,48 +161,28 @@ const informationComputingPrograms = [
       "https://www.uwb.edu/stem/undergraduate/majors/applied-computing",
       "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/admissions",
       "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
-      "https://www.washington.edu/students/crscatb/css.html",
     ],
     expectedPathwayIds: [],
     pathwayGroups: [],
     requiredCourseCodes: unique([
       ...bothellAppliedComputingPrerequisiteCourses,
       ...bothellAppliedComputingCoreCourses,
-      ...bothellAppliedComputingUndergraduateCssCourses,
-      ...bothellAppliedComputingVariableCreditCourses,
-      ...bothellAppliedComputingSpecialTopicsCourses,
     ]),
     optionGroups: [
-      { id: "bothell-ac-composition", label: "English Composition I and II", options: [["BWRIT 134"], ["BWRIT 135"]] },
-      { id: "bothell-ac-calculus", label: "Calculus I", options: [["STMATH 124"]] },
-      { id: "bothell-ac-programming", label: "Computer Programming I and II", options: [["CSS 142", "CSS 143"], ["CSS 132", "CSS 133"]] },
-      { id: "bothell-ac-data-structures", label: "Data Structures and Algorithms course", options: [["CSS 340"], ["CSS 342"], ["CSS 340", "CSS 342"]] },
-      { id: "bothell-ac-business-management", label: "Business management course", options: [["CSS 350"], ["BBUS 300"]] },
-      { id: "bothell-ac-variable-credit", label: "Variable Credit Courses", options: singleOptions(bothellAppliedComputingVariableCreditCourses) },
-      { id: "bothell-ac-special-topics", label: "Special Topics Courses", options: singleOptions(bothellAppliedComputingSpecialTopicsCourses) },
+      { id: "bothell-ac-composition", label: "", options: [["BWRIT 134"], ["BWRIT 135"]] },
+      { id: "bothell-ac-calculus", label: "", options: [["STMATH 124"]] },
+      { id: "bothell-ac-programming", label: "", options: [["CSS 142", "CSS 143"], ["CSS 132", "CSS 133"]] },
+      { id: "bothell-ac-data-structures", label: "", options: [["CSS 340"], ["CSS 342"], ["CSS 340", "CSS 342"]] },
+      { id: "bothell-ac-business-management", label: "", options: [["CSS 350"], ["BBUS 300"]] },
     ],
     courseBuckets: [
-      { id: "bothell-ac-prerequisites", label: "Prerequisite courses", courseCodes: bothellAppliedComputingPrerequisiteCourses, openEndedRules: ["Minimum grade of 2.0 or higher in all prerequisites"] },
-      { id: "bothell-ac-core", label: "CSS courses", courseCodes: bothellAppliedComputingCoreCourses, openEndedRules: ["Statistics course", "CSS 301", "CSS 360", "CSS 421", "CSS 496"] },
-      { id: "bothell-ac-second-discipline", label: "Second discipline of study courses", minCredits: 25, courseCodes: [], openEndedRules: ["A second undergraduate major or a minor offered by UW Bothell", "A minor offered by a different UW campus", "An approved custom cluster of interrelated courses in a non-computing discipline", "15 credits at 300-level or higher", "10 credits at 100-level or higher"] },
-      { id: "bothell-ac-css-electives", label: "CSS Electives", minCredits: 25, courseCodes: bothellAppliedComputingUndergraduateCssCourses, openEndedRules: ["10 credits at 400-level", "5 credits at 300-level or higher", "10 credits at 200-level or higher", "Maximum of 15 total credits of CSS 397/495/498/499", "Maximum of 10 total credits of CSS 290/390/490"] },
-      { id: "bothell-ac-upper-general-electives", label: "Upper Level General Electives", minCredits: 10, courseCodes: [], openEndedRules: ["10 credits at 300-level or higher in any subject area"] },
+      { id: "bothell-ac-prerequisites", label: "", courseCodes: bothellAppliedComputingPrerequisiteCourses },
+      { id: "bothell-ac-core", label: "", courseCodes: bothellAppliedComputingCoreCourses },
+      { id: "bothell-ac-second-discipline", label: "", courseCodes: [] },
+      { id: "bothell-ac-css-electives", label: "", courseCodes: [] },
+      { id: "bothell-ac-upper-general-electives", label: "", courseCodes: [] },
     ],
-    genEdRequirements: [
-      "Bachelor of Arts in Applied Computing",
-      "English Composition",
-      "Additional Writing",
-      "Natural Science",
-      "Reasoning",
-      "Diversity",
-      "Arts and Humanities",
-      "Social Sciences",
-      "Computer science core courses",
-      "Computer science electives",
-      "Second Discipline courses",
-      "General electives and Areas of Inquiry",
-      "Capacity constrained",
-    ],
+    genEdRequirements: [],
   },
   {
     campusId: "uw-tacoma",

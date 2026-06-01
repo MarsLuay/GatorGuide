@@ -111,6 +111,61 @@ function parsedSourceBlockCanCreateSchedulableRows(block) {
   );
 }
 
+function getParsedSourceBlockAuditScore(block) {
+  if (!block) {
+    return -1;
+  }
+
+  const parsedCourseCount = Array.isArray(block.parsedUwCourseCodes)
+    ? block.parsedUwCourseCodes.length
+    : 0;
+  const parsedGroupCount = Array.isArray(block.parsedRequirementGroups)
+    ? block.parsedRequirementGroups.length
+    : 0;
+  const parsedRequirementCourseCount = Array.isArray(block.parsedRequirementCourses)
+    ? block.parsedRequirementCourses.length
+    : 0;
+  const qualityWarningCount = Array.isArray(block.qualitySignals)
+    ? block.qualitySignals.filter((signal) => signal?.severity === "warning").length
+    : 0;
+
+  let score = 0;
+  if (block.ok) {
+    score += 1000;
+  }
+  if (parsedSourceBlockCanCreateSchedulableRows(block)) {
+    score += 300;
+  }
+  if (block.isPrimaryDegreeRequirementsLink) {
+    score += 200;
+  }
+  if (block.primarySourceUrl && block.sourceUrl && block.primarySourceUrl === block.sourceUrl) {
+    score += 100;
+  }
+  score += Math.min(500, parsedCourseCount * 4);
+  score += Math.min(200, parsedGroupCount * 8);
+  score += Math.min(200, parsedRequirementCourseCount * 2);
+  score -= qualityWarningCount * 25;
+  return score;
+}
+
+function buildBestParsedBlocksByOwnerId(blocks) {
+  const parsedBlocksByOwnerId = new Map();
+  for (const block of blocks ?? []) {
+    const ownerId = block?.ownerId;
+    if (!ownerId) {
+      continue;
+    }
+
+    const current = parsedBlocksByOwnerId.get(ownerId);
+    if (!current || getParsedSourceBlockAuditScore(block) > getParsedSourceBlockAuditScore(current)) {
+      parsedBlocksByOwnerId.set(ownerId, block);
+    }
+  }
+
+  return parsedBlocksByOwnerId;
+}
+
 function parsedSourceBlockIsNonSchedulable(block) {
   const sourceRoleStatus = String(block?.sourceRoleStatus ?? "").trim();
   return (
@@ -793,8 +848,8 @@ function main() {
   ensureTmpDir();
   const targetPlanId = getArgValue("--target-plan-id");
 
-  const parsedBlocksByOwnerId = new Map(
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.map((block) => [block.ownerId, block])
+  const parsedBlocksByOwnerId = buildBestParsedBlocksByOwnerId(
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY
   );
   const parsedBlocksByPlanSourceKey = new Map(
     TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.map((block) => [

@@ -644,6 +644,14 @@ if (!globalThis.__GATOR_GUIDE_REACT_NATIVE_TEST_MOCKS__) {
     }
 
     if (request === "@/services/planning/transfer-planner.service") {
+      const normalizeCourseCode = (value) => {
+        const normalized = String(value ?? "")
+          .toUpperCase()
+          .replace(/\s+/g, " ")
+          .trim();
+        return normalized === "MATH& 254" ? "MATH& 264" : normalized;
+      };
+
       return {
         auditOptionTitleFallback: () => [],
         buildEligibleTransferCategorySourceCourseCodesForPlan: () => [],
@@ -657,7 +665,7 @@ if (!globalThis.__GATOR_GUIDE_REACT_NATIVE_TEST_MOCKS__) {
         extractCourseCodes: (value) => {
           const text = String(value ?? "").toUpperCase();
           const matches = text.match(/[A-Z& ]{2,}\s*\d{3}[A-Z]?/g) ?? [];
-          return matches.map((match) => match.replace(/\s+/g, " ").trim());
+          return matches.map(normalizeCourseCode);
         },
         getComputerEngineeringApprovedNaturalScienceTransferEntries: () => [],
         hasConcreteSuggestedQuarterCourse: () => false,
@@ -674,6 +682,7 @@ if (!globalThis.__GATOR_GUIDE_REACT_NATIVE_TEST_MOCKS__) {
             .map((entry) => entry.slice("__unselected__:".length).trim())
             .filter(Boolean);
         },
+        normalizeCourseCode,
         parseCompletedTranscriptCourses: () => [],
         UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS: 45,
       };

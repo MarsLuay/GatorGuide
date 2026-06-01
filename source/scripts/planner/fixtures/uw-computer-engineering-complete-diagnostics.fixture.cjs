@@ -296,29 +296,10 @@ const computerEngineeringPrograms = [
       "https://www.uwb.edu/stem/undergraduate/majors/bscompe/admissions",
       "https://www.uwb.edu/advising/general-education-requirements",
     ],
-    genEdRequirements: [
-      "At least 180 college quarter credits",
-      "At least 15 credits in each Area of Inquiry",
-      "Additional Writing: 5 credits",
-      "BWRIT 135 Research Writing or similar recommended",
-      "Diversity: 5 credits",
-      "Arts & Humanities: 15 credits",
-      "Social Sciences: 15 credits",
-      "Natural Science and Reasoning are normally covered by the major plan",
-    ],
-    requirementLabels: [
-      "Entry prerequisites",
-      "Math and Chemistry: 26 credits",
-      "Computer Science: 30 credits",
-      "Electrical Engineering: 30 credits",
-      "Computer Engineering Capstone: 10 credits",
-      "Elective requirements: 10 credits of CSS or BEE elective coursework",
-      "At least 5 elective credits must be 400-level",
-      "The remaining 5 elective credits must be 300-level or higher",
-    ],
+    genEdRequirements: [],
+    requirementLabels: [],
     requiredCourseCodes: [
       "BWRIT 134",
-      "BWRIT 135",
       "STMATH 124",
       "STMATH 125",
       "STMATH 126",
@@ -348,12 +329,12 @@ const computerEngineeringPrograms = [
     optionGroups: [
       {
         id: "bothell-composition",
-        label: "BWRIT 134 or BWRIT 132 and BWRIT 133",
-        options: [["BWRIT 134"], ["BWRIT 132", "BWRIT 133"]],
+        label: "",
+        options: [["BWRIT 134"]],
       },
       {
         id: "bothell-programming-prerequisite",
-        label: "CSS 142 and CSS 143 or CSS 132 and CSS 133",
+        label: "",
         options: [
           ["CSS 142", "CSS 143"],
           ["CSS 132", "CSS 133"],
@@ -361,26 +342,20 @@ const computerEngineeringPrograms = [
       },
       {
         id: "bothell-programming-skills-labs",
-        label: "CSSSKL 142 and CSSSKL 143 skills labs",
+        label: "",
         options: [["CSSSKL 142", "CSSSKL 143"]],
       },
       {
         id: "bothell-ee-core-choice",
-        label: "BEE 425 or CSS 422",
+        label: "",
         options: [["BEE 425"], ["CSS 422"]],
       },
     ],
     courseBuckets: [
       {
         id: "bothell-css-bee-electives",
-        label: "CSS or BEE elective coursework",
-        minCredits: 10,
+        label: "",
         openEndedRules: [
-          "Elective courses must have either the CSS or BEE prefix",
-          "At least 5 elective credits must be 400-level",
-          "The remaining 5 elective credits must be 300-level or higher",
-          "Maximum of 5 credits combined can be CSS or BEE Special Topics courses",
-          "Maximum of 5 credits combined can be CSS or BEE Independent Study or Undergraduate Research",
         ],
       },
     ],

@@ -4,6 +4,9 @@ const test = require("node:test");
 const {
   computerSciencePrograms,
 } = require("./fixtures/uw-computer-science-complete-diagnostics.fixture.cjs");
+const {
+  collectRequirementSourceUwCourseCodes,
+} = require("./lib/complete-diagnostics-course-evidence.cjs");
 
 const RUN_DIAGNOSTICS =
   process.env.TRANSFER_PLANNER_RUN_UW_COMPUTER_SCIENCE_DIAGNOSTICS === "1";
@@ -83,10 +86,14 @@ function flattenExpectedCourseCodes(program) {
 
 function getParsedUwCourseCodes(program) {
   const planner = getPlanner();
-  const blocks = planner.getTransferPlannerParsedRequirementSourceBlocks(program.planId) ?? [];
-  return uniqueSorted(
-    blocks.flatMap((block) => block.parsedUwCourseCodes ?? []).map(normalizeCourseCode)
-  );
+  const blocks = [
+    ...(planner.getTransferPlannerParsedRequirementSourceBlocks(program.planId) ?? []),
+    ...(program.expectedPathwayIds ?? []).flatMap(
+      (pathwayId) =>
+        planner.getTransferPlannerParsedRequirementSourceBlocks(program.planId, pathwayId) ?? []
+    ),
+  ];
+  return uniqueSorted(collectRequirementSourceUwCourseCodes(blocks, normalizeCourseCode));
 }
 
 function getCurrentPlanText(program) {
@@ -130,7 +137,7 @@ function getDirectComputerSciencePlanIds() {
   return uniqueSorted(
     ["uw-seattle", "uw-bothell", "uw-tacoma"].flatMap((campusId) =>
       planner
-        .getTransferPlannerMajorsForCampus(campusId)
+        .getTransferPlannerStudentVisibleMajorsForCampus(campusId)
         .filter((plan) => {
           const title = String(plan.title ?? "").trim();
           const shortTitle = String(plan.shortTitle ?? "").trim();
@@ -184,8 +191,6 @@ test("UW computer science complete diagnostic fixture is source scoped and UW-co
       "uw-bothell-csse",
       "uw-bothell-csse-information-assurance-and-cybersecurity",
       "uw-tacoma-computer-science-and-systems",
-      "uw-tacoma-computer-science-and-systems-ba",
-      "uw-tacoma-computer-science-and-systems-bs",
     ]
   );
 
@@ -212,7 +217,7 @@ diagnosticTest("UW computer science target roster matches direct official CS maj
     [
       "Direct Computer Science roster should include Seattle CS, Bothell CSSE, Bothell IAC, and Tacoma CSS only.",
       "Computer Engineering, Informatics, Applied Computing, and Information Technology are adjacent but separate majors.",
-      "Bothell IAC and Tacoma CSS BA/BS are separate planner rows and should stay explicit.",
+      "Bothell IAC is a separate planner row; Tacoma CSS BA/BS are visible as pathways under the canonical Tacoma CSS row.",
       `Expected: ${expectedPlanIds.join(", ")}`,
       `Actual: ${actualPlanIds.join(", ")}`,
     ].join("\n")

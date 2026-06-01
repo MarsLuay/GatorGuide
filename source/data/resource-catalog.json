@@ -18,14 +18,18 @@
         ]
       },
       {
-        "titleKey": "resources.collegeSearchTool",
-        "descriptionKey": "resources.collegeSearchToolDesc",
-        "url": "app://college-search",
+        "title": "BigFuture College Quiz",
+        "description": "Use College Board BigFuture's quiz to explore college-fit preferences and start a college search.",
+        "url": "https://bigfuture.collegeboard.org/college-search/college-quiz",
         "tags": [
           "search",
           "college search",
-          "recommendations",
-          "advanced search",
+          "college quiz",
+          "college match",
+          "college fit",
+          "bigfuture",
+          "college board",
+          "collegeboard",
           "tools"
         ]
       },

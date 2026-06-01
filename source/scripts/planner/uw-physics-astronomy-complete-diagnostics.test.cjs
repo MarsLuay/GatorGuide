@@ -25,6 +25,9 @@ const planner = require("../../constants/transfer-planner-source");
 const {
   physicsAstronomyPrograms,
 } = require("./fixtures/uw-physics-astronomy-complete-diagnostics.fixture.cjs");
+const {
+  collectRequirementSourceUwCourseCodes,
+} = require("./lib/complete-diagnostics-course-evidence.cjs");
 
 function unique(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((a, b) =>
@@ -71,9 +74,7 @@ function getSourcePlan(planId) {
 
 function getParsedCourseCodes(planId) {
   return unique(
-    getSourceBlocks(planId).flatMap((block) =>
-      (block.parsedUwCourseCodes || []).map(normalizeCourseCode)
-    )
+    collectRequirementSourceUwCourseCodes(getSourceBlocks(planId), normalizeCourseCode)
   );
 }
 

@@ -7983,6 +7983,10 @@ const ALL_BASE_MAJOR_PLANS = uniqueById([
   ...HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS,
   ...PARSER_ONLY_BASE_MAJOR_PLANS,
 ]);
+const STUDENT_RUNTIME_HIDDEN_PARSER_ONLY_PLAN_IDS = new Set([
+  "uw-tacoma-computer-science-and-systems-ba",
+  "uw-tacoma-computer-science-and-systems-bs",
+]);
 
 const ALIAS_CHILD_PLAN_TOKEN_STOPWORDS = new Set([
   "and",
@@ -10181,7 +10185,9 @@ function formatAvailabilityStatusSummary(
 export const TRANSFER_PLANNER_GENERATED_MAJOR_PLANS: TransferPlannerMajorPlan[] =
   ALL_BASE_MAJOR_PLANS.map(buildSourceGeneratedPlan);
 export const TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS: TransferPlannerMajorPlan[] =
-  ALL_BASE_MAJOR_PLANS.map((plan) => normalizeCategoryOptionRuntimePlan(buildStudentRuntimePlan(plan)));
+  ALL_BASE_MAJOR_PLANS.filter(
+    (plan) => !STUDENT_RUNTIME_HIDDEN_PARSER_ONLY_PLAN_IDS.has(plan.id)
+  ).map((plan) => normalizeCategoryOptionRuntimePlan(buildStudentRuntimePlan(plan)));
 
 export const TRANSFER_PLANNER_CAMPUSES: TransferPlannerCampus[] = TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES;
 export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = TRANSFER_PLANNER_BOOTSTRAP_TRACKS;
@@ -10199,6 +10205,7 @@ export function getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus(
 ) {
   return getTransferPlannerSourceGeneratedMajorsForCampus(campusId).filter(
     (plan) =>
+      !STUDENT_RUNTIME_HIDDEN_PARSER_ONLY_PLAN_IDS.has(plan.id) &&
       !isTransferPlannerStudentHiddenSourceGap(plan.id) && hasStudentRuntimePlannerContent(plan)
   );
 }

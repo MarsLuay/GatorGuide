@@ -93,7 +93,13 @@ const tacomaRemainingPrograms = [
     planId: "uw-tacoma-history",
     title: "History (BA)",
     family: "history",
-    officialSources: ["https://www.tacoma.uw.edu/sias/socs/general-history-option"],
+    officialSources: [
+      "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+      "https://www.tacoma.uw.edu/sias/socs/arts-culture-and-society-option",
+      "https://www.tacoma.uw.edu/sias/socs/global-history-option",
+      "https://www.tacoma.uw.edu/sias/socs/labor-and-social-movements-option",
+      "https://www.tacoma.uw.edu/sias/socs/power-gender-and-identity-option",
+    ],
     expectedPathwayIds: ["arts-culture-and-society-option", "general-history-option", "global-history-option", "labor-and-social-movements-option", "power-gender-and-identity-option"],
     requiredCourseCodes: unique(courses(`
       TARTS 335, TARTS 360, TARTS 480, TEGL 271, TEGL 303, TEGL 305, TEGL 340, TEGL 380,
@@ -102,8 +108,8 @@ const tacomaRemainingPrograms = [
       THIST 322, THIST 336, THIST 341, THIST 350, THIST 365, THIST 375, THIST 376, THIST 377,
       THIST 380, THIST 416, THIST 417, THIST 420, THIST 440, THIST 441, THIST 442, THIST 444,
       THIST 457, THIST 464, THIST 465, THIST 466, THIST 475, THIST 479, THIST 484, THIST 487,
-      THIST 491, THIST 495, THIST 498, TLAX 400, TLIT 230, TLIT 433,
-      TPOLS 317, TPOLS 329, TPOLS 343, TPOLS 360, TSOC 265, TSOC 270
+      THIST 491, THIST 495, THIST 498, TLAX 238, TLAX 400, TLIT 230, TLIT 433,
+      TPOLS 317, TPOLS 329, TPOLS 343, TPOLS 360, TSOC 265, TSOC 270, TWOMN 347
     `)),
     optionGroups: [
       { id: "history-options", label: "General History option, Arts, Culture and Society option, Global History option, Labor and Social Movements option, or Power, Gender and Identity option", options: [] },

@@ -333,8 +333,81 @@ function getBootstrapMajorPlansById() {
   return bootstrapMajorPlansById;
 }
 
+function inferTransferPlannerCampusIdFromPlanId(planId: string) {
+  if (planId.startsWith("uw-seattle-")) return "uw-seattle" as TransferPlannerCampusId;
+  if (planId.startsWith("uw-bothell-")) return "uw-bothell" as TransferPlannerCampusId;
+  if (planId.startsWith("uw-tacoma-")) return "uw-tacoma" as TransferPlannerCampusId;
+  return null;
+}
+
+function buildSourceMajorPlanFromParsedRequirementBlocks(
+  planId: string
+): TransferPlannerMajorPlan | null {
+  const blocks = getRuntimeParsedRequirementBlocksForPlan(planId);
+  const block = blocks[0] ?? null;
+  if (!block) {
+    return null;
+  }
+  const campusId = inferTransferPlannerCampusIdFromPlanId(planId);
+  if (!campusId) {
+    return null;
+  }
+  const title = block.ownerTitle ?? planId;
+
+  const officialLinks = unique(
+    blocks
+      .flatMap((candidate) => [
+        {
+          label:
+            candidate.sourceLabel ??
+            candidate.primarySourceLabel ??
+            candidate.ownerTitle ??
+            candidate.ownerId,
+          url: candidate.sourceUrl ?? candidate.primarySourceUrl,
+        },
+      ])
+      .filter((link) => link.label && link.url)
+      .map((link) => `${link.label}\u0000${link.url}`)
+  ).map((entry) => {
+    const [label, url] = entry.split("\u0000");
+    return { label, url };
+  });
+
+  return {
+    id: planId,
+    campusId,
+    title,
+    shortTitle: title,
+    coverage: "partial" as const,
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks,
+    degreeMapSections: [],
+    validationNotes: [
+      "Derived from parsed requirement-source blocks for student-runtime alias resolution.",
+    ],
+    grcCourseList: [],
+    bankIds: [],
+    sourceType: "master-generated" as const,
+    requirementGroups: [],
+    requirementReplacements: [],
+    supportLists: [],
+    pathways: [],
+  };
+}
+
 function getSourceMajorPlanById(planId: string) {
-  return getRuntimeMajorPlanById(planId) ?? getBootstrapMajorPlansById()?.get(planId) ?? null;
+  return (
+    getRuntimeMajorPlanById(planId) ??
+    getBootstrapMajorPlansById()?.get(planId) ??
+    buildSourceMajorPlanFromParsedRequirementBlocks(planId)
+  );
 }
 
 function getRuntimePathwaysForPlan(plan: TransferPlannerMajorPlan | null | undefined) {
@@ -360,6 +433,84 @@ function getRuntimePrimaryDegreeSourceByPathwayKey(key: string) {
       ? getTransferPlannerRuntimePrimaryDegreeSourceByKey(key)
       : TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY[key] ?? null
   ) as TransferPlannerSourceManifestEntry | null;
+}
+
+function mapRuntimeParsedBlockRoleToManifestRole(
+  sourceRole: string | null | undefined
+): TransferPlannerSourceManifestEntry["role"] {
+  switch (sourceRole) {
+    case "official-catalog":
+      return "catalog";
+    case "primary-degree-requirements":
+    case "department-requirements":
+    case "degree-requirements":
+      return "degree-requirements";
+    case "pathway-degree-sheet":
+      return "pathway-degree-sheet";
+    case "approved-course-list":
+      return "approved-course-list";
+    case "elective-list":
+      return "elective-list";
+    case "admission-prerequisite-source":
+      return "admission-prerequisite-source";
+    default:
+      return "degree-requirements";
+  }
+}
+
+function buildRuntimePrimaryDegreeSourceFromParsedRequirementBlocks(
+  planId: string,
+  pathwayId: string | null | undefined
+): TransferPlannerSourceManifestEntry | null {
+  const blocks = getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId ?? null);
+  const block =
+    blocks.find((candidate) =>
+      isRuntimePathwayScopedPrimarySourceRole(candidate.sourceRole)
+    ) ??
+    blocks.find((candidate) => candidate.primarySourceUrl || candidate.sourceUrl) ??
+    null;
+  const url = block?.sourceUrl ?? block?.primarySourceUrl ?? null;
+  if (!block || !url) {
+    return null;
+  }
+
+  const blockMetadata = block as {
+    campusId?: TransferPlannerSourceSchoolId | null;
+    parserType?: TransferPlannerSourceManifestEntry["parserType"] | null;
+    primaryParserType?: TransferPlannerSourceManifestEntry["parserType"] | null;
+    parseConfidence?: TransferPlannerSourceManifestEntry["confidence"] | null;
+  };
+  const normalizedPathwayId = normalizeTransferPlannerPathwayId(planId, pathwayId ?? null);
+  const ownerType = normalizedPathwayId ? "pathway" : "major";
+  const ownerId =
+    block.ownerId ??
+    (normalizedPathwayId ? `${planId}:pathway:${normalizedPathwayId}` : planId);
+  const label =
+    block.sourceLabel ??
+    block.primarySourceLabel ??
+    block.ownerTitle ??
+    "Official degree requirements";
+
+  return {
+    id: `${ownerId}:source:parsed-primary`,
+    ownerType,
+    ownerId,
+    ownerTitle: block.ownerTitle ?? label,
+    planId,
+    pathwayId: normalizedPathwayId,
+    trackId: null,
+    campusId: blockMetadata.campusId ?? inferTransferPlannerCampusIdFromPlanId(planId),
+    label,
+    url,
+    role: mapRuntimeParsedBlockRoleToManifestRole(block.sourceRole),
+    parserType: blockMetadata.parserType ?? blockMetadata.primaryParserType ?? "unknown",
+    confidence: blockMetadata.parseConfidence ?? "medium",
+    isPrimaryDegreeRequirementsLink: true,
+    lastValidatedOn: null,
+    validationNotes: [
+      "Derived from parsed requirement-source blocks when generated runtime source registry has no primary entry.",
+    ],
+  };
 }
 
 function getRuntimeParsedRequirementBlocksForPlan(planId: string) {
@@ -3703,7 +3854,10 @@ function getEquivalentCourseCodes(schoolId: TransferPlannerSourceSchoolId, code:
   return unique([normalizedCode, ...equivalentCourseCodes].filter(Boolean));
 }
 
-function getStudentRuntimeAliasTitleParts(plan: TransferPlannerMajorPlan) {
+function getStudentRuntimeAliasTitleParts(
+  plan: TransferPlannerMajorPlan,
+  options: { allowParentheticalDegreeAlias?: boolean } = {}
+) {
   for (const title of [plan.title, plan.shortTitle]) {
     const match = String(title ?? "").match(/^(.+?):\s*(.+?)(?:\s+\(([^)]+)\))?$/);
     if (match?.[1] && match[2]) {
@@ -3713,12 +3867,33 @@ function getStudentRuntimeAliasTitleParts(plan: TransferPlannerMajorPlan) {
         degreeLabel: match[3] ?? null,
       };
     }
+
+    const parentheticalDegreeMatch = options.allowParentheticalDegreeAlias
+      ? String(title ?? "").match(/^(.+?)\s+\((b\.?\s*a\.?|b\.?\s*s\.?)\)$/i)
+      : null;
+    if (parentheticalDegreeMatch?.[1] && parentheticalDegreeMatch[2]) {
+      const normalizedDegreeLabel = normalizeStudentRuntimeAliasDegreeLabel(
+        parentheticalDegreeMatch[2]
+      );
+      return {
+        parentTitle: parentheticalDegreeMatch[1],
+        optionTitle:
+          normalizedDegreeLabel === "ba"
+            ? "Bachelor of Arts"
+            : normalizedDegreeLabel === "bs"
+              ? "Bachelor of Science"
+              : parentheticalDegreeMatch[2],
+        degreeLabel: parentheticalDegreeMatch[2],
+      };
+    }
   }
   return null;
 }
 
 function getStudentRuntimeAliasParentPlan(plan: TransferPlannerMajorPlan) {
-  const aliasTitleParts = getStudentRuntimeAliasTitleParts(plan);
+  const aliasTitleParts = getStudentRuntimeAliasTitleParts(plan, {
+    allowParentheticalDegreeAlias: !getRuntimeMajorPlanById(plan.id),
+  });
   if (!aliasTitleParts) return null;
 
   const normalizedParentTitle = normalizeStudentRuntimeAliasText(aliasTitleParts.parentTitle);
@@ -4738,6 +4913,10 @@ export function getTransferPlannerPrimaryDegreeRequirementsSource(
       getPlannerPathwayKey(planId, normalizedPathwayId ?? null)
     ) ??
     getRuntimePrimaryDegreeSourceByPathwayKey(getPlannerPathwayKey(planId, null)) ??
+    buildRuntimePrimaryDegreeSourceFromParsedRequirementBlocks(
+      planId,
+      normalizedPathwayId ?? null
+    ) ??
     null
   ) as TransferPlannerSourceManifestEntry | null;
 }

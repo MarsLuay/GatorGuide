@@ -251,7 +251,7 @@ const tacomaCssDesignElectives = [
   "TCSS 491",
 ];
 
-const tacomaCssSpecialElectives = ["TCSS 390", "TCSS 497", "TCSS 498", "TCSS 499"];
+const tacomaCssSpecialElectives = ["TCSS 497", "TCSS 498", "TCSS 499"];
 
 const computerSciencePrograms = [
   {
@@ -393,90 +393,54 @@ const computerSciencePrograms = [
     optionGroups: [
       {
         id: "bothell-csse-writing",
-        label: "English Composition I and II equivalent to BWRIT 134 and BWRIT 135",
+        label: "",
         options: [["B WRIT 134", "B WRIT 135"]],
       },
       {
         id: "bothell-csse-calculus",
-        label: "Calculus I and II equivalent to STMATH 124 and STMATH 125",
+        label: "",
         options: [["STMATH 124", "STMATH 125"]],
       },
       {
         id: "bothell-csse-programming",
-        label: "Computer Programming I and II equivalent to CSS 142 and CSS 143 or CSS 132 and CSS 133",
+        label: "",
         options: [["CSS 142", "CSS 143"], ["CSS 132", "CSS 133"]],
       },
       {
         id: "bothell-csse-statistics",
-        label: "Statistics choose one course",
+        label: "",
         options: bothellCsseStatisticsOptions,
       },
       {
         id: "bothell-csse-iac-electives",
-        label: "IAC elective coursework from the approved tri-campus lists",
+        label: "",
         options: bothellIacCourses.map((courseCode) => [courseCode]),
       },
     ],
     courseBuckets: [
       {
         id: "bothell-csse-core-requirements",
-        label: "Core requirements",
-        minCredits: 0,
+        label: "",
         courseCodes: bothellCsseCoreCourses,
       },
       {
         id: "bothell-csse-css-electives",
-        label: "CSS Electives",
-        minCredits: 25,
+        label: "",
         courseCodes: bothellCsseOpenElectiveCourseCodes,
-        openEndedRules: [
-          "All CSS electives must be 200-level or higher",
-          "At least 15 credits must be 400-level",
-          "Up to 10 credits may be 200-level",
-          "Up to 10 credits combined of CSS 397, CSS 498, or CSS 499",
-          "Up to 10 credits combined of CSS 290, CSS 390, or CSS 490",
-        ],
       },
       {
         id: "bothell-csse-advanced-electives",
-        label: "300-400 Level Electives",
-        minCredits: 15,
+        label: "",
         courseCodes: [],
-        openEndedRules: [
-          "May be additional CSS electives or electives from other subject areas",
-          "These courses may overlap with General Education requirements",
-        ],
       },
       {
         id: "bothell-csse-capstone",
-        label: "10-credit (400-hour) Capstone project",
-        minCredits: 10,
+        label: "",
         courseCodes: ["CSS 497"],
-        openEndedRules: [
-          "Project options consist of internships, research with faculty, individual projects, or group projects",
-          "You must complete all prerequisite courses before you are eligible to register for CSS 497",
-        ],
       },
     ],
-    genEdRequirements: [
-      "English Composition (C)",
-      "Additional Writing (W)",
-      "Natural Science (NSc)",
-      "Reasoning (R)",
-      "Diversity (DIV) - 5 credits",
-      "Arts and Humanities (A&H) - 15 credits",
-      "Social Sciences (SSc) - 15 credits",
-    ],
-    requirementLabels: [
-      "Bachelor of Science in Computer Science & Software Engineering",
-      "capacity constrained program",
-      "meeting the minimum entry requirements does not guarantee admission",
-      "general option for the major",
-      "Information Assurance and Cybersecurity option",
-      "Only one networking class",
-      "Minimum 15 credits (3 courses) of elective coursework from the lists below",
-      "Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic",
-    ],
+    genEdRequirements: [],
+    requirementLabels: [],
   },
   {
     campusId: "uw-bothell",
@@ -504,84 +468,54 @@ const computerSciencePrograms = [
     optionGroups: [
       {
         id: "bothell-iac-writing",
-        label: "English Composition I and II equivalent to BWRIT 134 and BWRIT 135",
+        label: "",
         options: [["B WRIT 134", "B WRIT 135"]],
       },
       {
         id: "bothell-iac-calculus",
-        label: "Calculus I and II equivalent to STMATH 124 and STMATH 125",
+        label: "",
         options: [["STMATH 124", "STMATH 125"]],
       },
       {
         id: "bothell-iac-programming",
-        label: "Computer Programming I and II equivalent to CSS 142 and CSS 143 or CSS 132 and CSS 133",
+        label: "",
         options: [["CSS 142", "CSS 143"], ["CSS 132", "CSS 133"]],
       },
       {
         id: "bothell-iac-statistics",
-        label: "Statistics choose one course",
+        label: "",
         options: bothellCsseStatisticsOptions,
       },
       {
         id: "bothell-iac-electives",
-        label: "IAC elective coursework from the approved tri-campus lists",
+        label: "",
         options: bothellIacCourses.map((courseCode) => [courseCode]),
       },
       {
         id: "bothell-iac-additional-css-elective",
-        label: "Minimum of 5 additional credits of 200-level or higher CSS Elective coursework in any topic",
+        label: "",
         options: bothellCsseOpenElectiveCourseCodes.map((courseCode) => [courseCode]),
       },
     ],
     courseBuckets: [
       {
         id: "bothell-iac-core-requirements",
-        label: "Core requirements",
-        minCredits: 0,
+        label: "",
         courseCodes: bothellCsseCoreCourses,
       },
       {
         id: "bothell-iac-option-requirements",
-        label: "Information Assurance and Cybersecurity option requirements",
-        minCredits: 25,
+        label: "",
         courseCodes: unique([...bothellIacCourses, ...bothellCsseOpenElectiveCourseCodes]),
-        openEndedRules: [
-          "IAC-option students take the same core courses as those of the general CSSE major",
-          "CSS 310: Information Assurance and Cybersecurity",
-          "Minimum 15 credits (3 courses) of elective coursework from the lists below",
-          "Only one networking class (CSS 432, INFO 314, or T INFO 250) may be taken",
-          "Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic",
-        ],
       },
       {
         id: "bothell-iac-capstone",
-        label: "10-credit (400-hour) Capstone project",
-        minCredits: 10,
+        label: "",
         courseCodes: ["CSS 497"],
-        openEndedRules: [
-          "Project options consist of internships, research with faculty, individual projects, or group projects",
-          "You must complete all prerequisite courses before you are eligible to register for CSS 497",
-        ],
       },
     ],
-    genEdRequirements: [
-      "English Composition (C)",
-      "Additional Writing (W)",
-      "Natural Science (NSc)",
-      "Reasoning (R)",
-      "Diversity (DIV) - 5 credits",
-      "Arts and Humanities (A&H) - 15 credits",
-      "Social Sciences (SSc) - 15 credits",
-    ],
-    requirementLabels: [
-      "Bachelor of Science in Computer Science & Software Engineering",
-      "Information Assurance and Cybersecurity (IAC) option",
-      "Declaring the IAC option",
-      "UW Seattle IAC electives",
-      "UW Bothell IAC electives",
-      "UW Tacoma IAC electives",
-      "Only one networking class",
-    ],
+    genEdRequirements: [],
+    requirementLabels: [],
   },
   {
     campusId: "uw-tacoma",
@@ -591,6 +525,8 @@ const computerSciencePrograms = [
       "https://www.tacoma.uw.edu/set/programs/undergrad/css",
       "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
       "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+      "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
     ],
     expectedPathwayIds: ["bachelor-of-arts", "bachelor-of-science"],
     pathwayGroups: [
@@ -639,7 +575,7 @@ const computerSciencePrograms = [
     courseBuckets: [
       {
         id: "tacoma-css-ba-core",
-        label: "BA CSS Core Courses",
+        label: "Core Courses",
         minCredits: 0,
         courseCodes: tacomaCssBaCourses,
       },
@@ -663,15 +599,16 @@ const computerSciencePrograms = [
       },
       {
         id: "tacoma-css-bs-senior-electives",
-        label: "Senior Electives",
+        label:
+          "Students must complete 25 additional graded credits of 300-level or 400-level courses chosen from the Computer Science & Systems program",
         minCredits: 25,
         courseCodes: unique([...tacomaCssDesignElectives, ...tacomaCssSpecialElectives]),
         openEndedRules: [
-          "5 credits from the approved design electives",
+          "5 credits from the following approved design electives",
           "An additional 10 credits of 300- or 400-level TCSS electives",
           "An additional 10 credits of 400-level TCSS electives",
           "No more than 10 credits of TCSS 497, TCSS 498, and TCSS 499 may be used to satisfy the elective requirement",
-          "Up to 5 credits of a 400-level SET course and/or 5 credits of a 500-level TCSS course",
+          "You may also take up to 5 credits of a 400-level SET course",
         ],
       },
     ],
@@ -684,141 +621,13 @@ const computerSciencePrograms = [
       "18 minimum",
     ],
     requirementLabels: [
-      "B.A. in Computer Science & Systems",
       "B.S. in Computer Science & Systems",
       "Bachelor of Arts Option",
-      "Bachelor of Science Option",
       "B.A. majors must minor in a field that is not computer science",
       "B.S. majors have 4 additional class requirements",
       "All courses within the major must be completed with a minimum grade of 2.0",
       "The B.S. in Computer Science & Systems is accredited by the Computing Accreditation Commission",
       "with Honors in Computer Science and Systems",
-    ],
-  },
-  {
-    campusId: "uw-tacoma",
-    planId: "uw-tacoma-computer-science-and-systems-ba",
-    title: "Computer Science and Systems: Bachelor of Arts",
-    officialSources: [
-      "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
-    ],
-    expectedPathwayIds: [],
-    pathwayGroups: [],
-    requiredCourseCodes: unique([
-      ...tacomaCssBaCourses,
-      "TCSS 343",
-      "TCSS 372",
-      "TCSS 380",
-      "TCSS 390",
-      ...tacomaCssSpecialElectives,
-    ]),
-    optionGroups: [
-      {
-        id: "tacoma-css-ba-intro-programming-direct",
-        label: "TCSS 101 or TCSS 141",
-        options: [["TCSS 101"], ["TCSS 141"]],
-      },
-      {
-        id: "tacoma-css-ba-senior-electives-direct",
-        label: "CSS Electives: complete 20 additional credits",
-        options: tacomaCssSpecialElectives.map((courseCode) => [courseCode]),
-      },
-    ],
-    courseBuckets: [
-      {
-        id: "tacoma-css-ba-direct-core",
-        label: "B.A. Core Courses",
-        courseCodes: tacomaCssBaCourses,
-      },
-      {
-        id: "tacoma-css-ba-direct-electives",
-        label: "CSS Electives",
-        minCredits: 20,
-        courseCodes: unique(["TCSS 343", "TCSS 372", "TCSS 380", "TCSS 390", ...tacomaCssSpecialElectives]),
-        openEndedRules: [
-          "Required Minor: Meet the requirements of your selected minor",
-          "B.A. majors must minor in a field that is not computer science",
-        ],
-      },
-    ],
-    genEdRequirements: [
-      "Bachelor of Arts in Computer Science & Systems",
-      "minimum grade of 2.0 in each individual prerequisite course",
-      "Required cumulative prerequisite GPA of at least 2.5",
-      "completed at least 45 college-level credits",
-      "Required Minor",
-    ],
-    requirementLabels: [
-      "B.A. in Computer Science & Systems",
-      "Bachelor of Arts Option",
-      "B.A. Core Courses",
-      "CSS Electives",
-    ],
-  },
-  {
-    campusId: "uw-tacoma",
-    planId: "uw-tacoma-computer-science-and-systems-bs",
-    title: "Computer Science and Systems: Bachelor of Science",
-    officialSources: [
-      "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
-    ],
-    expectedPathwayIds: [],
-    pathwayGroups: [],
-    requiredCourseCodes: unique([
-      ...tacomaCssBsCourses,
-      ...tacomaCssLabScienceCourses,
-      ...tacomaCssDesignElectives,
-      ...tacomaCssSpecialElectives,
-      "TCSS 440",
-      "TMATH 310",
-    ]),
-    optionGroups: [
-      {
-        id: "tacoma-css-bs-lab-science-direct",
-        label: "Any lab-based science except Astronomy",
-        options: tacomaCssLabScienceCourses.map((courseCode) => [courseCode]),
-      },
-      {
-        id: "tacoma-css-bs-additional-science-or-math-direct",
-        label: "An additional lab-based science course or an additional 300 or 400-level math course, except TMATH 310",
-        options: [...tacomaCssLabScienceCourses, "TMATH 390"].map((courseCode) => [courseCode]),
-      },
-      {
-        id: "tacoma-css-bs-design-electives-direct",
-        label: "approved design electives",
-        options: tacomaCssDesignElectives.map((courseCode) => [courseCode]),
-      },
-    ],
-    courseBuckets: [
-      {
-        id: "tacoma-css-bs-direct-core",
-        label: "Computer Science Core Courses",
-        courseCodes: unique([...tacomaCssBsCourses, "TCSS 440"]),
-      },
-      {
-        id: "tacoma-css-bs-direct-senior-electives",
-        label: "Senior Electives",
-        minCredits: 25,
-        courseCodes: unique([...tacomaCssDesignElectives, ...tacomaCssSpecialElectives]),
-        openEndedRules: [
-          "5 credits from the approved design electives",
-          "An additional 10 credits of 300- or 400-level TCSS electives",
-          "An additional 10 credits of 400-level TCSS electives",
-        ],
-      },
-    ],
-    genEdRequirements: [
-      "Bachelor of Science in Computer Science & Systems",
-      "minimum grade of 2.0 in each individual prerequisite course",
-      "Required cumulative prerequisite GPA of at least 2.5",
-      "completed at least 45 college-level credits",
-      "The B.S. in Computer Science & Systems is accredited by the Computing Accreditation Commission",
-    ],
-    requirementLabels: [
-      "B.S. in Computer Science & Systems",
-      "Bachelor of Science Option",
-      "Computer Science Core Courses",
-      "Senior Electives",
     ],
   },
 ];

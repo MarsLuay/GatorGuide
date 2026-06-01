@@ -261,10 +261,19 @@ function uniqueResourceSummaryParts(values: (string | null | undefined)[]) {
 function openExternalUrlOnWeb(url: string) {
   if (typeof window === "undefined") return false;
 
-  const openedWindow = window.open(url, "_blank", "noopener,noreferrer");
-  if (openedWindow) return true;
+  if (typeof document !== "undefined") {
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    return true;
+  }
 
-  window.location.assign(url);
+  window.open(url, "_blank", "noopener,noreferrer");
   return true;
 }
 

@@ -20,8 +20,306 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
         "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
       links: [
         {
+          label: "UW Bothell Bachelor of Economics overview",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Bachelor of Economics prerequisites",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/prerequisites",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
           label: "UW Bothell Bachelor of Economics curriculum",
           url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-applied-computing",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
+      links: [
+        {
+          label: "UW Bothell Applied Computing curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Applied Computing admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-business-administration",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+      links: [
+        {
+          label: "UW Bothell BBA overview and areas of study",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell BBA prerequisite courses",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell BBA curriculum",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-business-administration",
+      pathwayId: "business-analytics-and-ai-concentration",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/business-analytics-artificial-intelligence",
+      links: [
+        {
+          label: "UW Bothell Business Analytics and AI concentration requirements",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/business-analytics-artificial-intelligence",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell BBA prerequisite courses",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-business-administration",
+      pathwayId: "mis-concentration",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
+      links: [
+        {
+          label: "UW Bothell MIS concentration requirements",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell BBA prerequisite courses",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-business-administration",
+      pathwayId: "self-directed-concentration",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/self-directed",
+      links: [
+        {
+          label: "UW Bothell self-directed concentration requirements",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/self-directed",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell BBA prerequisite courses",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-business-administration",
+      pathwayId: "tim-concentration",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+      links: [
+        {
+          label: "UW Bothell TIM concentration requirements",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell BBA prerequisite courses",
+          url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-computer-engineering",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+      links: [
+        {
+          label: "UW Bothell Computer Engineering curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Computer Engineering admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscompe/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell general education requirements",
+          url: "https://www.uwb.edu/advising/general-education-requirements",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-csse",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+      links: [
+        {
+          label: "UW Bothell CSSE curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell CSSE admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell CSSE capstone requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/capstone",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-csse-information-assurance-and-cybersecurity",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+      links: [
+        {
+          label: "UW Bothell CSSE IAC curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell CSSE admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell CSSE capstone requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/capstone",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-nursing-first-year-rn-to-bsn",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+      links: [
+        {
+          label: "UW Bothell RN to BSN student requirements",
+          url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell RN to BSN overview and credit structure",
+          url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell first-year admission requirements",
+          url: "https://www.uwb.edu/catalog/admissions/first-year-student-admission",
+          status: "verified",
+          sourceConfidence: "medium",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-nursing-rn-to-bsn",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+      links: [
+        {
+          label: "UW Bothell RN to BSN student requirements",
+          url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell RN to BSN overview and credit structure",
+          url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell RN to BSN admissions requirements",
+          url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell RN to BSN course schedule PDF",
+          url: "https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2025/06/2025-Fall-Bothell-In-Person-Schedule-Course-Info.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/business/design-courses-baba",
+      links: [
+        {
+          label: "UW Tacoma BABA admissions prerequisites",
+          url: "https://www.tacoma.uw.edu/business/baba-admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma BABA design and courses",
+          url: "https://www.tacoma.uw.edu/business/design-courses-baba",
           status: "verified",
           sourceConfidence: "high",
         },
@@ -57,14 +355,128 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
     },
     {
       planId: "uw-tacoma-computer-science-and-systems",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+      removedUrls: [
+        "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf",
+      ],
+      links: [
+        {
+          label: "UW Tacoma Computer Science and Systems overview",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BA degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BA planning grid",
+          url: "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BS degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BS planning grid",
+          url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-computer-science-and-systems",
+      pathwayId: "bachelor-of-arts",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      links: [
+        {
+          label: "UW Tacoma Computer Science and Systems BA degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BA planning grid",
+          url: "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-computer-science-and-systems",
       pathwayId: "bachelor-of-science",
-      mode: "merge",
+      mode: "replace",
       preferredPrimaryUrl:
         "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      removedUrls: [
+        "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf",
+      ],
       links: [
         {
           label: "UW Tacoma Computer Science and Systems BS degree requirements",
           url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BS planning grid",
+          url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-computer-science-and-systems-ba",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      links: [
+        {
+          label: "UW Tacoma Computer Science and Systems BA degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BA planning grid",
+          url: "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-computer-science-and-systems-bs",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      removedUrls: [
+        "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf",
+      ],
+      links: [
+        {
+          label: "UW Tacoma Computer Science and Systems BS degree requirements",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Tacoma Computer Science and Systems BS planning grid",
+          url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
           status: "verified",
           sourceConfidence: "high",
         },

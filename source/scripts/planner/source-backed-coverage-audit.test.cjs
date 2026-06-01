@@ -23,6 +23,17 @@ const GUIDE_CATEGORY_ALIASES_BY_TAG = {
   IANDS: ["I&S", "Individuals and Societies"],
 };
 
+test("student runtime aliases parenthetical BA child plans to parent pathways", () => {
+  const aliasCoverage = studentRuntime.getTransferPlannerStudentRuntimeAliasCoverage(
+    "uw-tacoma-computer-science-and-systems-ba",
+    null
+  );
+
+  assert.equal(aliasCoverage?.parentPlanId, "uw-tacoma-computer-science-and-systems");
+  assert.equal(aliasCoverage?.parentPathwayId, "bachelor-of-arts");
+  assert.ok(aliasCoverage?.resolvedPlan);
+});
+
 function normalizeGuideCategoryText(value) {
   return String(value ?? "")
     .toLowerCase()
@@ -663,7 +674,7 @@ test("UWB BBA preserves current prerequisite source and materializes available l
       (item) =>
         item.sourceUrl ===
           "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option" &&
-        item.sourceScope === "generated-course-pool"
+        ["generated-course-pool", "primary-schedulable"].includes(item.sourceScope)
     )
   );
   assert.ok(generatedCourseCodes.has("MATH& 148"));
@@ -1961,6 +1972,51 @@ test("Bothell BBA pathways do not inherit sibling option source courses", () => 
       degreeMapCourses.has(siblingCourse),
       false,
       `Expected LSI source requirements not to inherit sibling option course ${siblingCourse}.`
+    );
+  }
+});
+
+test("Bothell BBA TIM pathway stays scoped to the TIM concentration source", () => {
+  const sourceBlocks = source
+    .getTransferPlannerParsedRequirementSourceBlocks("uw-bothell-business-administration")
+    .filter((block) => block.pathwayId === "tim-concentration");
+
+  assert.ok(
+    sourceBlocks.some(
+      (block) =>
+        block.sourceUrl ===
+        "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim"
+    ),
+    "Expected TIM pathway source blocks to include the official TIM page."
+  );
+  assert.equal(
+    sourceBlocks.some((block) => /\/supply-chain\b/i.test(block.sourceUrl ?? "")),
+    false,
+    "Expected TIM pathway source blocks not to point at the sibling supply-chain page."
+  );
+
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-business-administration");
+  assert.ok(plan);
+  const resolvedPlan = studentRuntime.resolveTransferPlannerStudentRuntimeMajorPlan(
+    plan,
+    "tim-concentration"
+  );
+  assert.ok(resolvedPlan);
+  const degreeMapCourses = new Set(
+    (resolvedPlan.degreeMapSections ?? []).flatMap((section) => section.items ?? [])
+  );
+
+  for (const expectedCourse of ["BBUS 475", "BBUS 476", "BBUS 441", "BBUS 491"]) {
+    assert.ok(
+      degreeMapCourses.has(expectedCourse),
+      `Expected TIM source requirements to include ${expectedCourse}.`
+    );
+  }
+  for (const siblingCourse of ["BBUS 482", "ELCBUS 482", "BBUS 485", "ELCBUS 485"]) {
+    assert.equal(
+      degreeMapCourses.has(siblingCourse),
+      false,
+      `Expected TIM source requirements not to inherit supply-chain course ${siblingCourse}.`
     );
   }
 });

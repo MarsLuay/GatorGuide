@@ -158,6 +158,7 @@ const RUNTIME_PATHWAY_SCOPED_SOURCE_PLAN_IDS = new Set([
   "uw-seattle-psychology",
   "uw-seattle-public-health-global-health",
   "uw-seattle-slavic-languages-and-literatures",
+  "uw-tacoma-bachelor-of-arts-in-business-administration",
 ]);
 
 const RUNTIME_PATHWAY_SOURCE_URL_HINTS_BY_PLAN_ID = new Map([
@@ -1440,6 +1441,30 @@ function filterResolvedRuntimePathwayItems(items = [], planId, selectedPathway, 
   );
 }
 
+function isRuntimeSourceBackedDegreeMapSection(section) {
+  return (
+    /^source-backed-/i.test(String(section?.id ?? "")) ||
+    /\bparsed official source requirements\b/i.test(String(section?.title ?? ""))
+  );
+}
+
+function filterResolvedRuntimePathwayDegreeMapSections(
+  sections = [],
+  planId,
+  selectedPathway,
+  pathwaySections = []
+) {
+  if (
+    !selectedPathway ||
+    !RUNTIME_PATHWAY_SCOPED_SOURCE_PLAN_IDS.has(planId) ||
+    !pathwaySections.some(isRuntimeSourceBackedDegreeMapSection)
+  ) {
+    return sections;
+  }
+
+  return sections.filter((section) => !isRuntimeSourceBackedDegreeMapSection(section));
+}
+
 function filterResolvedRuntimePathwayPlan(resolvedPlan, selectedPathway, pathways) {
   if (!selectedPathway) {
     return resolvedPlan;
@@ -1526,7 +1551,12 @@ function mergeResolvedRuntimePathway(resolvedPlan, pathway, pathways) {
       ...(filteredPathway.grcCourseList ?? []),
     ]),
     degreeMapSections: mergeRuntimeDegreeMapSections(
-      filteredResolvedPlan.degreeMapSections,
+      filterResolvedRuntimePathwayDegreeMapSections(
+        filteredResolvedPlan.degreeMapSections,
+        filteredResolvedPlan.id,
+        pathway,
+        filteredPathway.degreeMapSections ?? []
+      ),
       filteredPathway.degreeMapSections ?? []
     ),
     requirementGroups: appendUniqueRuntimeItems(

@@ -12,7 +12,7 @@ const ONBOARDING_DEBUG_LOG_KEY = STORAGE_KEYS.onboardingDebugLog;
 export default function Index() {
   const router = useRouter();
   const { t } = useAppLanguage();
-  const { isHydrated, state } = useAppData();
+  const { isHydrated, state, signInAsGuest } = useAppData();
   const hasNavigated = useRef(false);
 
   useEffect(() => {
@@ -61,13 +61,15 @@ export default function Index() {
           router.replace(ROUTES.profileSetup);
         }
       } else {
-        await appendDebug(`route -> ${ROUTES.login} (no user)`);
-        router.replace(ROUTES.login);
+        await appendDebug("auto guest sign-in (no user)");
+        await signInAsGuest();
+        await appendDebug(`route -> ${ROUTES.tabs} (auto guest)`);
+        setTimeout(() => router.replace(ROUTES.tabs), 50);
       }
     };
 
     performNavigation();
-  }, [isHydrated, state.user, router]);
+  }, [isHydrated, state.user, router, signInAsGuest]);
 
   return <LoadingScreen message={t("startup.preparingData")} />;
 }

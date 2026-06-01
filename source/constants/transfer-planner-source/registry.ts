@@ -455,8 +455,16 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
         url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
       },
       {
+        label: "UW Tacoma Computer Science and Systems BA planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+      },
+      {
         label: "UW Tacoma Computer Science and Systems BS degree requirements",
         url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BS planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
       },
     ],
     validationNotes: [
@@ -471,6 +479,10 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
       {
         label: "UW Tacoma Computer Science and Systems BA degree requirements",
         url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BA planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
       },
     ],
     validationNotes: [
@@ -523,6 +535,54 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
 const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySource[] = [
   ...TACOMA_BABA_SUPPLEMENTAL_PATHWAY_SOURCES,
   ...TACOMA_CRIMINAL_JUSTICE_SUPPLEMENTAL_PATHWAY_SOURCES,
+  {
+    planId: "uw-tacoma-politics-philosophy-and-economics",
+    pathwayId: "politics-and-philosophy-specialization",
+    campusId: "uw-tacoma",
+    majorTitle: "Politics, Philosophy and Economics (BA)",
+    label: "Politics and Philosophy Specialization",
+    links: [
+      {
+        label: "UW Tacoma PPE Politics and Philosophy specialization major requirements",
+        url: "https://www.tacoma.uw.edu/sias/socs/politics-and-philosophy-specialization",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained because the PPE parent page links specialization requirement pages without embedding their full course lists.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-politics-philosophy-and-economics",
+    pathwayId: "economics-specialization",
+    campusId: "uw-tacoma",
+    majorTitle: "Politics, Philosophy and Economics (BA)",
+    label: "Economics Specialization",
+    links: [
+      {
+        label: "UW Tacoma PPE Economics specialization major requirements",
+        url: "https://www.tacoma.uw.edu/sias/socs/economics-specialization",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained because the PPE parent page links specialization requirement pages without embedding their full course lists.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-politics-philosophy-and-economics",
+    pathwayId: "international-studies-specialization",
+    campusId: "uw-tacoma",
+    majorTitle: "Politics, Philosophy and Economics (BA)",
+    label: "International Studies Specialization",
+    links: [
+      {
+        label: "UW Tacoma PPE International Studies specialization major requirements",
+        url: "https://www.tacoma.uw.edu/sias/socs/international-studies-specialization",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained because the PPE parent page links specialization requirement pages without embedding their full course lists.",
+    ],
+  },
   {
     planId: "uw-bothell-chemistry-bs",
     pathwayId: "b-s-in-chemistry-general-option",
@@ -1403,10 +1463,10 @@ const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
           "Canonical Tacoma Business Administration parent source; BABA remains a source/search alias while options are modeled as child pathways.",
       },
       {
-        label: "UW Tacoma BA in Business Administration",
-        url: "https://www.tacoma.uw.edu/business/baba",
+        label: "UW Tacoma BABA admissions prerequisites",
+        url: "https://www.tacoma.uw.edu/business/baba-admissions",
         note:
-          "Supporting admissions/program source for the canonical Business Administration parent.",
+          "Current admissions prerequisite source for lower-division Tacoma Business Administration preparation.",
       },
     ],
   ],
@@ -1424,8 +1484,16 @@ const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
         url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
       },
       {
+        label: "UW Tacoma Computer Science and Systems BA planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf",
+      },
+      {
         label: "UW Tacoma Computer Science and Systems BS degree requirements",
         url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BS planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
       },
     ],
   ],
@@ -1437,6 +1505,10 @@ const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
         url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
         note:
           "Broad official BS page kept as the primary parser source so the full curriculum outranks scoped BA-option snapshot noise.",
+      },
+      {
+        label: "UW Tacoma Computer Science and Systems BS planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
       },
     ],
   ],

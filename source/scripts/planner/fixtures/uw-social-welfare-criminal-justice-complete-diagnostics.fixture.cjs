@@ -120,20 +120,18 @@ const socialWelfareCriminalJusticePrograms = [
       ...tacomaSocialWelfareElectiveCourses,
     ]),
     optionGroups: [
-      { id: "tacoma-social-welfare-core", label: "Social Welfare Core Courses", options: singleOptions(tacomaSocialWelfareCoreCourses) },
+      { id: "tacoma-social-welfare-core", label: "Core courses", options: singleOptions(tacomaSocialWelfareCoreCourses) },
       { id: "tacoma-social-welfare-electives", label: "Social Welfare Electives", options: singleOptions(tacomaSocialWelfareElectiveCourses) },
       { id: "tacoma-social-welfare-statistics", label: "Statistics is a required course for the BASW program", options: singleOptions(["TSOCWF 351"]) },
     ],
     courseBuckets: [
       { id: "tacoma-social-welfare-core", label: "Core courses", minCredits: 58, courseCodes: tacomaSocialWelfareCoreCourses, openEndedRules: ["Foundation courses", "Social work practice courses", "Practicum", "Field experience", "Practicum seminars"] },
       { id: "tacoma-social-welfare-electives", label: "Social Welfare electives", minCredits: 10, courseCodes: tacomaSocialWelfareElectiveCourses, openEndedRules: ["TSOCWF 300- and 400-level non-core courses"] },
-      { id: "tacoma-social-welfare-general-electives", label: "General electives", courseCodes: [], openEndedRules: ["Additional credits needed to bring your total to 180"] },
+      { id: "tacoma-social-welfare-general-electives", label: "general electives", courseCodes: [], openEndedRules: ["The additional credits you need to bring your total to 180 are called \"general electives.\""] },
     ],
     genEdRequirements: [
       "Bachelor of Arts in Social Welfare",
-      "All Social Welfare majors are required to complete each BASW core course with a 2.0 or higher grade",
-      "Maintain a 2.5 GPA in all major coursework",
-      "Reasoning",
+      "Minimum grade of 2.0/C required in each course",
       "Composition",
       "Writing",
       "Diversity",

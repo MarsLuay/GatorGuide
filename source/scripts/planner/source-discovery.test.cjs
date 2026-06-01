@@ -1470,6 +1470,106 @@ test("Tacoma broad overview pages stay out of auto-promotion", () => {
   assert.equal(discovery.isAutoPromotablePrimaryCandidate(overview), false);
 });
 
+test("UW Bothell requirement anchors can auto-promote from overview pages", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-media-and-communications-studies",
+    planId: "uw-bothell-media-and-communications-studies",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Media & Communication Studies (BA)",
+    label: "Media & Communication Studies (BA)",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 0,
+  });
+  const candidateInput = {
+    ownerTitle: "Media & Communication Studies (BA)",
+    url: "https://www.uwb.edu/ias/undergraduate/majors/media-communication#requirements",
+    anchorText: "Media & Communication Studies (B.A.)",
+    linkText: "Media & Communication Studies (B.A.)",
+    pageTitle: "Media & Communication Studies - School of Interdisciplinary Arts & Sciences",
+    pageHeadings: [
+      "A. MCS Core Course (MCS:CORE)",
+      "BACHELOR OF ARTS",
+      "Degree requirements",
+      "Media & Communication Studies",
+      "Plan your degree",
+    ],
+    contentSnippets: [
+      "Major requirements Degree requirements The following degree requirements are required as of Autumn 2024 quarter.",
+      "MCS Core Course (MCS:CORE) BISMCS 333 Media and Communication Studies",
+    ],
+    sourceKind: "campus-major-index",
+  };
+  const candidate = {
+    ...candidateInput,
+    ...discovery.scoreCandidate(target, candidateInput),
+  };
+
+  assert.equal(candidate.sourceRole, "primary-degree-requirements");
+  assert.equal(candidate.parserType, "html-degree-page");
+  assert.equal(candidate.confidence, "high");
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(candidate), true);
+});
+
+test("UW Bothell RN to BSN student requirements pages can auto-promote despite transfer and gen-ed wording", () => {
+  for (const [planId, title] of [
+    ["uw-bothell-nursing-rn-to-bsn", "Nursing (BS), RN to BSN"],
+    [
+      "uw-bothell-nursing-first-year-rn-to-bsn",
+      "Nursing (BS), First Year RN to BSN (Direct Entry)",
+    ],
+  ]) {
+    const target = discovery.buildOwnerTargetRecord({
+      analysisMode: "missing-primary",
+      ownerType: "major",
+      ownerKey: planId,
+      planId,
+      pathwayId: null,
+      campusId: "uw-bothell",
+      title,
+      label: title,
+      officialLinks: [],
+      existingPrimary: null,
+      pathwayCount: 0,
+    });
+    const candidateInput = {
+      ownerTitle: title,
+      url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+      anchorText: "Student Requirements",
+      linkText: "Student Requirements",
+      pageTitle: "Student Requirements - School of Nursing & Health Studies",
+      pageHeadings: [
+        "Course overview",
+        "Credit completion",
+        "Credit structure",
+        "Credits & grade requirements",
+        "General education",
+        "Registered Nurse licensure requirement",
+        "School of Nursing & Health Studies",
+      ],
+      contentSnippets: [
+        "General education deficiencies must be completed before a student may earn a bachelor's degree.",
+        "Requirement Credits Transfer credits 90 NCLEX credits 45 UWB Nursing coursework 45 Total Credits: 180 Credit completion",
+        "BNURS 360 BNURS 420 BNURS 421 BNURS 422 BNURS 423 BNURS 424 BNURS 460",
+      ],
+      sourceKind: "discovered-anchor",
+      sourcePageUrl: "https://www.uwb.edu/nhs/undergraduate/rn-bsn",
+    };
+    const candidate = {
+      ...candidateInput,
+      ...discovery.scoreCandidate(target, candidateInput),
+    };
+
+    assert.equal(candidate.sourceRole, "primary-degree-requirements");
+    assert.equal(candidate.parserType, "html-degree-page");
+    assert.equal(candidate.confidence, "high");
+    assert.equal(discovery.isAutoPromotablePrimaryCandidate(candidate), true);
+  }
+});
+
 test("Pathway-specific primary child pages can auto-promote without requirements slugs", () => {
   assert.equal(
     discovery.isAutoPromotablePrimaryCandidate({
@@ -3027,6 +3127,92 @@ test("Parser ignores prerequisite/application-only section rows as elective opti
   );
 });
 
+test("Parser keeps explicit course-row alternatives despite negative notes elsewhere", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    url: "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    label: "Business Administration Curriculum",
+    planId: "uw-seattle-business-administration",
+    ownerId: "uw-seattle-business-administration",
+    ownerTitle: "Business Administration",
+    courseCodes: ["ACCTG 219", "ACCTG 225"],
+    headings: ["Business Administration Curriculum", "Core Courses", "Business Minor FAQ"],
+    snapshotLines: [
+      "Business Administration Curriculum",
+      "Core Courses:",
+      "ACCTG 219: Essentials of Accounting (4 CR); or ACCTG 225: Fundamentals of Managerial Accounting (5 CR)",
+      "Business Minor FAQ",
+      "ACCTG 219 does not meet the pre-application requirement for the major. It only fulfills requirements for the Business Minor, Entrepreneurship Minor, and Sales Certificate.",
+    ],
+  });
+  const group = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /ACCTG 219.*ACCTG 225/i.test(candidate.sourceRowText ?? candidate.label)
+  );
+  const optionCodes = new Set(
+    (group?.options ?? []).flatMap((option) => option.uwCourses ?? [])
+  );
+  const negativeRow = parsedBlock.sourceSectionFilterAuditRows.find((row) =>
+    /does not meet the pre-application requirement/i.test(row.rawLine)
+  );
+
+  assert.ok(group, "Expected the accounting course row to produce an option group.");
+  assert.equal(optionCodes.has("ACCTG 219"), true);
+  assert.equal(optionCodes.has("ACCTG 225"), true);
+  assert.equal(parsedBlock.parsedUwCourseCodes.includes("ACCTG 219"), true);
+  assert.equal(negativeRow?.schedulable, false);
+});
+
+test("Parser ignores negative substitution FAQ rows as option groups", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    url: "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    label: "Business Administration Curriculum",
+    planId: "uw-seattle-business-administration",
+    ownerId: "uw-seattle-business-administration",
+    ownerTitle: "Business Administration",
+    courseCodes: ["MKTG 301", "MKTG 305"],
+    headings: ["Business Administration Curriculum", "Core Courses", "Business Minor FAQ"],
+    snapshotLines: [
+      "Business Administration Curriculum",
+      "Core Courses:",
+      "MKTG 305: Essentials of Marketing and Sales (5 CR)",
+      "Business Minor FAQ",
+      "Taken Autumn 2021 or later- No, MKTG 301 will NOT substitute for MKTG 305",
+    ],
+  });
+  const negativeGroup = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /will NOT substitute/i.test(candidate.sourceRowText ?? candidate.label)
+  );
+  const negativeRow = parsedBlock.sourceSectionFilterAuditRows.find((row) =>
+    /will NOT substitute/i.test(row.rawLine)
+  );
+
+  assert.equal(negativeGroup, undefined);
+  assert.equal(parsedBlock.parsedUwCourseCodes.includes("MKTG 305"), true);
+  assert.equal(parsedBlock.parsedUwCourseCodes.includes("MKTG 301"), false);
+  assert.equal(negativeRow?.schedulable, false);
+});
+
+test("Parser labels approved course alternative rows with an option cue", () => {
+  const owner = {
+    ownerId: "uw-seattle-marine-biology",
+    planId: "uw-seattle-marine-biology",
+    campusId: "uw-seattle",
+    sourceUrl: "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+  };
+  const sourceLine =
+    "Note: FHL 333: Science Writing for Diverse Audiences is still an approved course alternative to MARBIO 305 to fulfil the Communication requirement, but the course is currently not offered at Friday Harbor Labs.";
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    owner,
+    parser.extractCourseCodesFromRequirementLineForTest(sourceLine),
+    [sourceLine]
+  );
+  const group = groups.find((candidate) => /FHL 333.*MARBIO 305/i.test(candidate.label));
+
+  assert.ok(group, "Expected the approved alternative note to produce an option group.");
+  assert.equal(group.detectedOptionCue, "alternative to");
+});
+
 test("Primary requirement source scope can emit schedulable requirement atoms", () => {
   const parsedBlock = buildParsedSourceScopeFixture({
     sourceRole: "primary-degree-requirements",
@@ -3226,6 +3412,50 @@ test("Parser extracts Biochemistry calculus/algebra physics table as sequence pa
         atom.uwCourseCode
       )
     ),
+    false
+  );
+});
+
+test("Parser infers bare physics lab-note numbers from lab-note subject text", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Chemistry BA Requirements",
+    planId: "uw-seattle-chemistry",
+    courseCodes: [
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123",
+      "PHYS 114",
+      "PHYS 115",
+      "PHYS 116",
+      "PHYS 117",
+      "PHYS 118",
+      "PHYS 119",
+    ],
+    snapshotLines: [
+      "Mathematics ( choose one sequence)",
+      "Regular: MATH 124 (5), 125 (5), 126 (5)",
+      "Physics ( choose one sequence)",
+      "Calculus-based: PHYS 121 (5), 122 (5), 123 (5)",
+      "Algebra-based: PHYS 114 (4), 115 (4), 116 (4)",
+      "The calculus-based series is recommended. If algebra-based physics is taken, students must take one lab from below:",
+      "One quarter of physics laboratory: 117 , 118 , 119 (1)",
+    ],
+  });
+  const group = parsedBlock.parsedRequirementGroups.find(
+    (candidate) =>
+      candidate.requirementType === "sequence_choice" &&
+      (candidate.sequencePaths ?? []).some((path) => path.uwCourses.includes("PHYS 114"))
+  );
+
+  assert.ok(group, "Expected Chemistry physics alternatives to become a sequence_choice group.");
+  const algebraPath = group.sequencePaths.find((path) => /algebra-based/i.test(path.label));
+  assert.deepEqual(algebraPath?.conditionalLabCourses, ["PHYS 117", "PHYS 118", "PHYS 119"]);
+  assert.equal(
+    (algebraPath?.conditionalLabCourses ?? []).some((courseCode) => courseCode.startsWith("MATH ")),
     false
   );
 });
@@ -3895,7 +4125,7 @@ test("Parser extracts shorthand programming parenthetical lists as true options"
     snapshotLines: [
       "Engineering Fundamentals (12 credits)",
       "Technical Electives are CEE 400-level courses that provide",
-      "Computer Programming",
+      "\u1405 \u1405 Computer Programming",
       "4cr",
       "students with in-depth knowledge and design experience.",
       "(AMATH 301, CSE 121, 122, 123, 142 or 160)",
@@ -3911,6 +4141,73 @@ test("Parser extracts shorthand programming parenthetical lists as true options"
   assert.deepEqual(
     new Set(group.options.flatMap((option) => option.uwCourses)),
     new Set(["AMATH 301", "CSE 121", "CSE 122", "CSE 123", "CSE 142", "CSE 160"])
+  );
+});
+
+test("Parser extracts wrapped PDF parenthetical choices under nearby labels", () => {
+  const earthScienceOptions = [
+    "ATMS 101",
+    "ATMS 211",
+    "ATMS 212",
+    "ESRM 100",
+    "ESRM 101",
+    "ESRM 210",
+    "ESS 106",
+    "ESS 201",
+    "ESS 211",
+    "ESS 212",
+    "NUTR 200",
+    "OCEAN 102",
+    "OCEAN 200",
+  ];
+  const programmingOptions = ["AMATH 301", "CSE 121", "CSE 122", "CSE 123", "CSE 142", "CSE 160"];
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Environmental Engineering Degree Sheet",
+    planId: "uw-seattle-environmental-engineering",
+    ownerId: "uw-seattle-environmental-engineering",
+    courseCodes: [...earthScienceOptions, ...programmingOptions, "CEE 440", "CEE 444", "CEE 445"],
+    snapshotLines: [
+      "Earth science elective",
+      "3-5cr",
+      "Capstone Design Course",
+      "5cr",
+      "(Choose from: ATMS 101 (5cr), ATMS 211 (5cr, SSc), ATMS",
+      "CEE 444 or 445, taken SPR qtr of senior year",
+      "212 (5cr, SSc), ESRM 100 (5cr, SSc), ESRM 101 (5cr, SSc), Professional Practice (CEE 440)",
+      "2cr",
+      "ESRM 210 (5cr), ESS 106 (3cr, SSc), ESS 201 (3cr), ESS 211",
+      "CEE 440 taken in junior year.",
+      "(5cr), ESS 212 (5cr), NUTR 200 (4cr), OCEAN 102 (5cr, SSc),",
+      "or OCEAN 200 (3cr))",
+      "Technical Electives (TE) (15 credits)",
+      "Technical Electives are CEE 400-level courses that provide",
+      "\u1405 \u1405 Computer Programming",
+      "4cr",
+      "students with in-depth knowledge and design experience.",
+      "(AMATH 301, CSE 121, 122, 123, 142 or 160)",
+    ],
+  });
+  const earthScienceGroup = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /Earth science elective/i.test(candidate.sourceRowText ?? candidate.sourceHeading ?? "")
+  );
+  const earthScienceGroups = parsedBlock.parsedRequirementGroups.filter((candidate) =>
+    /Earth science elective/i.test(candidate.sourceRowText ?? candidate.sourceHeading ?? "")
+  );
+  const programmingGroup = parsedBlock.parsedRequirementGroups.find((candidate) =>
+    /Computer Programming/i.test(candidate.sourceRowText ?? candidate.sourceHeading ?? "")
+  );
+
+  assert.equal(earthScienceGroups.length, 1);
+  assert.equal(earthScienceGroup?.requirementType, "choose_one");
+  assert.deepEqual(
+    new Set(earthScienceGroup?.options.flatMap((option) => option.uwCourses) ?? []),
+    new Set(earthScienceOptions)
+  );
+  assert.equal(programmingGroup?.requirementType, "choose_one");
+  assert.deepEqual(
+    new Set(programmingGroup?.options.flatMap((option) => option.uwCourses) ?? []),
+    new Set(programmingOptions)
   );
 });
 
@@ -4967,6 +5264,99 @@ test("Parser materializes sectioned technical electives as a credit option group
   assert.equal(technicalElectiveGroup.requirementType, "choose_credits");
   assert.equal(technicalElectiveGroup.minCredits, 15);
   assert.deepEqual(optionCodes, ["AA 402", "AA 405", "AA 499", "ENGR 321"]);
+});
+
+test("Parser keeps adjacent sectioned technical electives separate from prior course groups", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Aeronautics & Astronautics Degree Requirements",
+    planId: "uw-seattle-aeronautics-astronautics",
+    ownerId: "uw-seattle-aeronautics-astronautics",
+    courseCodes: ["AA 410", "AA 411", "AA 420", "AA 421", "AA 516", "AA 532"],
+    headings: [
+      "A&A Capstone Design Courses (8 credits)",
+      "A&A Technical Electives (15 credits)",
+    ],
+    snapshotLines: [
+      "A&A Capstone Design Courses (8 credits)",
+      "Choose from the following:",
+      "A A 410 Aircraft Design I (4)",
+      "A A 411 Aircraft Design II (4)",
+      "OR",
+      "A A 420 Spacecraft and Space Systems Design I (4)",
+      "A A 421 Spacecraft and Space Systems Design II (4)",
+      "A&A Technical Electives (15 credits)",
+      "Choose from the following:",
+      "A A 516 Stability and Control of Flight Vehicles (3)",
+      "A A 532 Mechanics of Composite Materials (3)",
+    ],
+  });
+  const technicalElectiveGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /A&A Technical Electives/i.test(group.label)
+  );
+  const creditsByCourse = new Map(
+    (technicalElectiveGroup?.options ?? []).flatMap((option) =>
+      (option.uwCourses ?? []).map((courseCode) => [courseCode, option.credits])
+    )
+  );
+
+  assert.ok(technicalElectiveGroup, "Expected the adjacent technical elective section to become a group.");
+  assert.equal(technicalElectiveGroup.requirementType, "choose_credits");
+  assert.equal(creditsByCourse.get("AA 516"), 3);
+  assert.equal(creditsByCourse.get("AA 532"), 3);
+});
+
+test("Parser keeps credit-bearing elective sections separate from preceding core rows", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Electrical Engineering Curriculum",
+    planId: "uw-bothell-electrical-engineering",
+    ownerId: "uw-bothell-electrical-engineering",
+    courseCodes: [
+      "BEE 200",
+      "BEE 215",
+      "BENGR 496",
+      "BEE 381",
+      "BEE 490",
+      "CSS 427",
+    ],
+    headings: ["Core Courses (55 credits)", "Electrical Engineering Electives (15 credits)"],
+    snapshotLines: [
+      "Core Courses (55 credits)",
+      "B EE 200 Electric Circuits Lab (2)",
+      "B EE 215 Fundamentals of Electrical Engineering (4)",
+      "B ENGR 496 Capstone Project in Engineering II (4)",
+      "Electrical Engineering Electives (15 credits)",
+      "Choose three additional courses (15 credits) from the following list;",
+      "B EE 381 Introduction to Electric Power Generation (5)",
+      "B EE 490 Special Topics in Electrical Engineering (1-5, max. 10)",
+      "CSS 427 Introduction to Embedded Systems (5)",
+    ],
+  });
+  const coreGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /^Core Courses/i.test(group.label)
+  );
+  const electiveGroup = parsedBlock.parsedRequirementGroups.find((group) => {
+    const codes = new Set((group.options ?? []).flatMap((option) => option.uwCourses ?? []));
+    return (
+      group.requirementType === "choose_credits" &&
+      group.minCredits === 15 &&
+      codes.has("BEE 381") &&
+      codes.has("BEE 490") &&
+      codes.has("CSS 427")
+    );
+  });
+  const coreCodes = new Set((coreGroup?.options ?? []).flatMap((option) => option.uwCourses ?? []));
+  const electiveCodes = new Set(
+    (electiveGroup?.options ?? []).flatMap((option) => option.uwCourses ?? [])
+  );
+
+  assert.ok(coreGroup, "Expected the core section to materialize.");
+  assert.ok(electiveGroup, "Expected the elective section to materialize separately.");
+  assert.equal(coreCodes.has("BEE 381"), false);
+  assert.equal(electiveCodes.has("BEE 381"), true);
+  assert.equal(electiveCodes.has("BEE 490"), true);
+  assert.equal(electiveCodes.has("CSS 427"), true);
 });
 
 test("Parser materializes course-code credit buckets with course options", () => {

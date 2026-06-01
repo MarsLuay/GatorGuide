@@ -124,7 +124,6 @@ Expected feel:
 | `components/pages/HomePage.tsx` | `21` | mixed: `AnimatedCardPressable`, `AnimatedGlassButton`, `AnimatedIconPressable` | Home is a major hotspot. Big navigational cards should use card wrapper; tiny link rows stay subtle. |
 | `components/pages/ResourcesPage.tsx` | `11` | mixed: `AnimatedCardPressable`, `AnimatedChipPressable`, `KeepNativePressable` | Resource cards and major CTAs can animate; done/check controls should not get full glass behavior yet. |
 | `components/pages/ComparePage.tsx` | `8` | mixed: `AnimatedChipPressable`, `AnimatedCardPressable`, `AnimatedIconPressable` | Sort/filter pills as chips, rows as cards, remove/back controls subtle. |
-| `components/pages/CollegeSearchToolPage.tsx` | `7` | mixed: `AnimatedCardPressable`, `AnimatedGlassButton`, `AnimatedIconPressable` | Search result cards can animate lightly; launch/save actions depend on prominence. |
 | `components/pages/CostCalculatorPage.tsx` | `5` | mixed: `AnimatedChipPressable`, `AnimatedCardPressable`, `AnimatedIconPressable` | Option selectors as chips; result blocks or rows as cards. |
 | `components/pages/DeadlineCalendarPage.tsx` | `6` | mixed: `AnimatedIconPressable`, `AnimatedCardPressable`, `KeepNativePressable` | Month arrows/back can animate subtly; date cells should stay near-native for now. |
 | `components/pages/SavedCollegesPage.tsx` | `3` | mixed: `AnimatedCardPressable`, `AnimatedIconPressable` | College rows as cards, remove/back as subtle icons. |
@@ -170,7 +169,6 @@ Expected feel:
 - `components/pages/ResourcesPage.tsx`
 - `components/pages/ProfilePage.tsx`
 - `components/pages/ComparePage.tsx`
-- `components/pages/CollegeSearchToolPage.tsx`
 - `components/pages/SavedCollegesPage.tsx`
 - `components/pages/RoadmapPage.tsx`
 - `components/pages/SettingsPage.tsx`

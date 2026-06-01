@@ -399,9 +399,8 @@ const politicalLawPolicyPrograms = [
     ],
     requiredCourseCodes: tacomaPpeCourses,
     optionGroups: [
-      { id: "tacoma-ppe-economics-core", label: "List A: Economics Core", options: singleOptions(["TECON 200", "TBECON 220", "TECON 201", "TBECON 221"]) },
-      { id: "tacoma-ppe-philosophy-core", label: "List B: Philosophy Core", options: singleOptions(["TPOLS 201", "TPHIL 101", "TPHIL 240", "TRELIG 321"]) },
-      { id: "tacoma-ppe-politics-core", label: "List C: Politics Core", options: singleOptions(["TPOLS 202", "TPOLS 203", "TPOLS 204", "TPOLS 260"]) },
+      { id: "tacoma-ppe-microeconomics-choice", label: "TECON 200 or TBECON 220", options: singleOptions(["TECON 200", "TBECON 220"]) },
+      { id: "tacoma-ppe-macroeconomics-choice", label: "TECON 201 or TBECON 221", options: singleOptions(["TECON 201", "TBECON 221"]) },
       { id: "tacoma-ppe-methods", label: "Methods courses", options: singleOptions(["TPHIL 250", "TPHIL 251"]) },
       { id: "tacoma-ppe-capstone", label: "Capstone", options: singleOptions(tacomaPpeCapstoneCourses) },
     ],
@@ -414,7 +413,7 @@ const politicalLawPolicyPrograms = [
       { id: "tacoma-ppe-capstone", label: "Capstone", minCredits: 5, courseCodes: tacomaPpeCapstoneCourses },
     ],
     genEdRequirements: [
-      "Bachelor of Arts",
+      "For a BA in Politics, Philosophy and Economics",
       "Core courses",
       "Three specializations",
       "Politics and Philosophy Specialization",

@@ -413,7 +413,7 @@ const psychologyPrograms = [
     ],
     expectedPathwayIds: ["ba-route"],
     pathwayGroups: [
-      { id: "ba-route", label: "Bachelor of Arts", suggestedCourses: unique([...tacomaPsychPrerequisiteCourses, ...tacomaPsychClinicalCoreCourses, ...tacomaPsychDevelopmentalCoreCourses, ...tacomaPsychCognitiveCoreCourses, ...tacomaPsychSocialAppliedCoreCourses, ...tacomaPsychGeneralCoreCourses, ...tacomaPsychResearchCourses, ...tacomaPsychAdvancedTopicCourses, ...tacomaPsychIndependentStudyCourses, ...tacomaPsychElectiveCourses]) },
+      { id: "ba-route", label: "B.A. route", suggestedCourses: unique([...tacomaPsychPrerequisiteCourses, ...tacomaPsychClinicalCoreCourses, ...tacomaPsychDevelopmentalCoreCourses, ...tacomaPsychCognitiveCoreCourses, ...tacomaPsychSocialAppliedCoreCourses, ...tacomaPsychGeneralCoreCourses, ...tacomaPsychResearchCourses, ...tacomaPsychAdvancedTopicCourses, ...tacomaPsychIndependentStudyCourses, ...tacomaPsychElectiveCourses]) },
     ],
     requiredCourseCodes: unique([
       ...tacomaPsychPrerequisiteCourses,
@@ -428,9 +428,9 @@ const psychologyPrograms = [
       ...tacomaPsychElectiveCourses,
     ]),
     optionGroups: [
-      { id: "tacoma-psych-foundation", label: "Two psychology foundation courses chosen from more than one area", options: [["TPSYCH 220"], ["TPSYCH 210"], ["TPSYCH 240"], ["TPSYCH 250"], ["TPSYCH 260"]] },
+      { id: "tacoma-psych-foundation", label: "Two psychology foundation courses chosen from more than one of the following areas", options: [["TPSYCH 220"], ["TPSYCH 210"], ["TPSYCH 240"], ["TPSYCH 250"], ["TPSYCH 260"]] },
       { id: "tacoma-psych-statistics", label: "One introductory statistics course", options: [["TMATH 110"], ["TSOCWF 351"], ["TURB 225"]] },
-      { id: "tacoma-psych-clinical-core", label: "Clinical Core Courses", options: tacomaPsychClinicalCoreCourses.map((courseCode) => [courseCode]) },
+      { id: "tacoma-psych-clinical-core", label: "Controversies in Clinical Psychology", options: tacomaPsychClinicalCoreCourses.map((courseCode) => [courseCode]) },
       { id: "tacoma-psych-developmental-core", label: "Developmental Core Courses", options: tacomaPsychDevelopmentalCoreCourses.map((courseCode) => [courseCode]) },
       { id: "tacoma-psych-cognitive-core", label: "Cognitive/Experimental Core Courses", options: tacomaPsychCognitiveCoreCourses.map((courseCode) => [courseCode]) },
       { id: "tacoma-psych-social-applied-core", label: "Social/Applied Core Courses", options: tacomaPsychSocialAppliedCoreCourses.map((courseCode) => [courseCode]) },
@@ -441,9 +441,9 @@ const psychologyPrograms = [
       { id: "tacoma-psych-core", label: "Core courses", minCredits: 15, courseCodes: unique([...tacomaPsychClinicalCoreCourses, ...tacomaPsychDevelopmentalCoreCourses, ...tacomaPsychCognitiveCoreCourses, ...tacomaPsychSocialAppliedCoreCourses, ...tacomaPsychGeneralCoreCourses]), openEndedRules: ["Students must take courses across at least 2 core areas"] },
       { id: "tacoma-psych-research-methods", label: "Research Methods", minCredits: 5, courseCodes: tacomaPsychResearchCourses },
       { id: "tacoma-psych-advanced-topics", label: "Advanced Topics", minCredits: 10, courseCodes: tacomaPsychAdvancedTopicCourses },
-      { id: "tacoma-psych-independent-study", label: "Any 300- or 400-level TPSYCH course OR an independent studies course", minCredits: 5, courseCodes: tacomaPsychIndependentStudyCourses, openEndedRules: ["Any 300- or 400-level PSYCH course", "Independent Study Contracts"] },
-      { id: "tacoma-psych-upper-division-outside", label: "Upper-division coursework outside of the subject of Psychology", minCredits: 15, courseCodes: [], openEndedRules: ["5 credits: Arts and Humanities (A&H)", "5 credits: Social Sciences (SSc)", "5 additional credits from Arts and Humanities (A&H) OR Social Sciences (SSc) OR Natural Sciences (NSc)"] },
-      { id: "tacoma-psych-electives", label: "Electives", courseCodes: tacomaPsychElectiveCourses },
+      { id: "tacoma-psych-independent-study", label: "Any 300- or 400-level TPSYCH course OR an independent studies course", minCredits: 5, courseCodes: tacomaPsychIndependentStudyCourses, openEndedRules: ["Any 300- or 400-level TPSYCH course OR an independent studies course", "Independent Study Contracts"] },
+      { id: "tacoma-psych-upper-division-outside", label: "Upper-division coursework (300- or 400-level outside of the subject of Psychology)", minCredits: 15, courseCodes: [], openEndedRules: ["5 credits: Arts and Humanities (A&H)", "5 credits: Social Sciences (SSc)", "5 additional credits from Arts and Humanities (A&H) OR Social Sciences (SSc) OR Natural Sciences (NSc)"] },
+      { id: "tacoma-psych-electives", label: "TPSYCH 202 Human Sexuality", courseCodes: tacomaPsychElectiveCourses },
     ],
     genEdRequirements: [
       "Completing the prerequisites, with a minimum grade of 2.0",
@@ -453,7 +453,7 @@ const psychologyPrograms = [
       "Prerequisites (25 credits)",
     ],
     requirementLabels: [
-      "Clinical Core Courses",
+      "Controversies in Clinical Psychology",
       "Developmental Core Courses",
       "Cognitive/Experimental Core Courses",
       "Social/Applied Core Courses",

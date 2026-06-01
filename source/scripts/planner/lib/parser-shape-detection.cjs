@@ -129,6 +129,7 @@ function detectOptionCue(value) {
     [new RegExp(`\\bselect\\s+(?:${CHOICE_COUNT_WORDS_PATTERN}|\\d+)\\b`, "i"), "select count"],
     [/\bselect\b/i, "select"],
     [/\beither\b/i, "either"],
+    [/\b(?:approved\s+)?(?:course\s+)?alternatives?\s+to\b/i, "alternative to"],
     [/\bor\b/i, "or"],
     [/\bapproved\s+electives?\b/i, "approved elective"],
     [/\bapproved\s+list\b/i, "approved list"],

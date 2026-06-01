@@ -466,7 +466,7 @@ const mechanicalEngineeringPrograms = [
     optionGroups: [
       {
         id: "tacoma-me-statics",
-        label: "Statics (TME 221 or UWS: AA 210)",
+        label: "Statics (TME 221or UWS: AA 210)",
         options: [["TME 221"], ["AA 210"]],
       },
       {
@@ -499,7 +499,7 @@ const mechanicalEngineeringPrograms = [
       },
       {
         id: "tacoma-me-core",
-        label: "Core Courses",
+        label: "ME required courses",
         minCredits: 0,
         courseCodes: tacomaMeCoreCourses,
       },
@@ -515,15 +515,16 @@ const mechanicalEngineeringPrograms = [
       "At least 45 of the final 60 credits must be taken in residence at UW Tacoma",
       "A minimum of 30 credits of required courses for the BSME must also be taken in residence at the UW Tacoma",
       "At least 84 credits must be taken from the ME required courses below and ME Senior Electives lists",
-      "A minimum 2.0 grade for each course applied to the major",
+      "Cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course",
       "Complete all Mechanical Engineering pre-requisite and required course work with a minimum GPA of 2.5",
     ],
     requirementLabels: [
       "B.S. in Mechanical Engineering",
       "Admission to the major is competitive",
-      "Core Courses",
-      "Senior Electives",
-      "Full Electives List",
+      "Admission Requirements",
+      "GPA Requirements",
+      "TME Senior Electives",
+      "2025 - 2026 Electives",
       "ABET Accreditation",
     ],
   },

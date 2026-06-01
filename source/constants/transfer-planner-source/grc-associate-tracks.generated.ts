@@ -7759,7 +7759,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "notes": [
       "Program type: Associate Degree - Transfer Track 2.",
       "Degree: Associate in Science Degree.",
-      "Published duration: 107 Credits.",
+      "Published duration: 102 Credits.",
       "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -8030,7 +8030,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "notes": [
       "Program type: Associate Degree - Transfer Track 2.",
       "Degree: Associate in Science Degree.",
-      "Published duration: 90 credits.",
+      "Published duration: 107 credits.",
       "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
       "10 credits of Humanities/Fine Arts/English Distribution or Social Science Distribution courses.",
       "Select 2 courses from the following after consultation with a Science/Engineering advisor:",
@@ -8272,7 +8272,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "notes": [
       "Program type: Associate Degree - Transfer Track 2.",
       "Degree: Associate in Science Degree.",
-      "Published duration: 90 credits.",
+      "Published duration: 98 credits.",
       "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -16391,7 +16391,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
 ];
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-05-27T17:46:45.801Z",
+  "generatedAt": "2026-06-01T16:50:14.056Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,

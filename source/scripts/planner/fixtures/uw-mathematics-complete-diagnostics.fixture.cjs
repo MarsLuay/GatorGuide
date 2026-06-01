@@ -262,6 +262,12 @@ const bothellMtvVisualizationCourses = [
 ];
 
 const bothellMathCoreCourses = [
+  "CSS 123",
+  "CSSSKL 123",
+  "CSS 132",
+  "CSSSKL 132",
+  "CSS 142",
+  "CSSSKL 142",
   "STMATH 124",
   "STMATH 125",
   "STMATH 126",
@@ -280,6 +286,9 @@ const bothellMathCoreCourses = [
 ];
 
 const bothellMathElectiveCourses = [
+  "STMATH 310",
+  "STMATH 330",
+  "STMATH 350",
   "STMATH 403",
   "STMATH 406",
   "STMATH 408",
@@ -290,14 +299,15 @@ const bothellMathElectiveCourses = [
   "STMATH 420",
   "STMATH 427",
   "STMATH 444",
+  "STMATH 465",
+  "BEDUC 465",
+  "STMATH 466",
+  "BEDUC 466",
+  "STMATH 467",
+  "BEDUC 467",
+  "STMATH 493",
   "STMATH 498",
   "STMATH 499",
-  "CSS 123",
-  "CSSSKL 123",
-  "CSS 132",
-  "CSSSKL 132",
-  "CSS 142",
-  "CSSSKL 142",
 ];
 
 const tacomaMathCoreCourses = [
@@ -477,17 +487,17 @@ const mathematicsPrograms = [
     pathwayGroups: [],
     requiredCourseCodes: unique([...bothellMathCoreCourses, ...bothellMathElectiveCourses]),
     optionGroups: [
-      { id: "bothell-math-statistics", label: "STMATH 341, STMATH 390, or STMATH 392", options: [["STMATH 341"], ["STMATH 390"], ["STMATH 392"]] },
-      { id: "bothell-math-modeling", label: "STMATH 381 or STMATH 405", options: [["STMATH 381"], ["STMATH 405"]] },
-      { id: "bothell-math-programming", label: "CSS 123 and CSSSKL 123 or CSS 132 and CSSSKL 132 or CSS 142 and CSSSKL 142", options: [["CSS 123", "CSSSKL 123"], ["CSS 132", "CSSSKL 132"], ["CSS 142", "CSSSKL 142"]] },
+      { id: "bothell-math-statistics", label: "", options: [["STMATH 341"], ["STMATH 390"], ["STMATH 392"]] },
+      { id: "bothell-math-modeling", label: "", options: [["STMATH 381"], ["STMATH 405"]] },
+      { id: "bothell-math-programming", label: "", options: [["CSS 123", "CSSSKL 123"], ["CSS 132", "CSSSKL 132"], ["CSS 142", "CSSSKL 142"]] },
     ],
     courseBuckets: [
-      { id: "bothell-math-calculus", label: "Calculus Requirements", minCredits: 15, courseCodes: ["STMATH 124", "STMATH 125", "STMATH 126"] },
-      { id: "bothell-math-core", label: "Core Requirements", minCredits: 45, courseCodes: bothellMathCoreCourses },
-      { id: "bothell-math-electives", label: "Mathematics Electives", minCredits: 25, courseCodes: bothellMathElectiveCourses, openEndedRules: ["Complete five additional STMATH courses at the 300- or 400-level", "No more than five credits of STMATH 498 or STMATH 499 may count toward elective credits"] },
+      { id: "bothell-math-calculus", label: "", courseCodes: ["STMATH 124", "STMATH 125", "STMATH 126"] },
+      { id: "bothell-math-core", label: "", courseCodes: bothellMathCoreCourses },
+      { id: "bothell-math-electives", label: "", courseCodes: bothellMathElectiveCourses },
     ],
-    genEdRequirements: ["Additional Courses - As needed to fulfill University General Education Requirements and to equal 180 credits", "Minimum grade of 2.0 in each course"],
-    requirementLabels: ["Bachelor of Science degree with a major in Mathematics", "Computer Programming Requirement"],
+    genEdRequirements: [],
+    requirementLabels: [],
   },
   {
     campusId: "uw-tacoma",

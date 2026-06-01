@@ -209,7 +209,7 @@ diagnosticTest("complete diagnostics now cover every UW Tacoma planner major", (
   const planner = getPlanner();
   const missingTacomaPlanIds = uniqueSorted(
     planner
-      .getTransferPlannerMajorsForCampus("uw-tacoma")
+      .getTransferPlannerStudentVisibleMajorsForCampus("uw-tacoma")
       .map((plan) => plan.id)
       .filter((planId) => !coveredPlanIds.has(planId))
   );

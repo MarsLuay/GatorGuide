@@ -94,6 +94,52 @@ test("Course extraction expands shared-number slash-prefixed Tacoma course rows"
   );
 });
 
+test("Course extraction handles Tacoma requirement rows with missing connector spacing", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("Statics (TME 221or UWS: AA 210)"),
+    ["AA 210", "TME 221"]
+  );
+});
+
+test("Course extraction handles known Tacoma subjects split after the campus prefix", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "T NURS 420 Person-Centered Care, Coordination & Management 5"
+    ),
+    ["TNURS 420"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("T HLTH 415 ELECTIVE: Health Policy and Ethics in Film"),
+    ["THLTH 415"]
+  );
+});
+
+test("Tacoma RN-BSN sample plan table resets graduate navigation context", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-tacoma-nursing",
+    sourceUrl: "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
+    sourceRole: "primary-degree-requirements",
+    headings: ["RN-BSN Sample Program Plans", "Sample Program Plans for Summer Cohort"],
+    snapshotLines: [
+      "Bachelor of Science in Nursing",
+      "Master of Nursing",
+      "RN-BSN Sample Program Plans",
+      "Sample Program Plans for Summer Cohort",
+      "Summer",
+      "Course Title",
+      "Credits",
+      "T NURS 360",
+      "Critical Analysis & Nursing Scholarship",
+      "5",
+    ],
+  });
+  const courseRow = rows.find((row) => row.rawLine === "T NURS 360");
+  assert.ok(courseRow, "Expected the Tacoma RN-BSN course row to be audited.");
+  assert.deepEqual(courseRow.courseCodesExtracted, ["TNURS 360"]);
+  assert.equal(courseRow.detectedSectionRole, "primary-requirement-section");
+  assert.equal(courseRow.schedulable, true);
+});
+
 test("Parser keeps primary History requirement rows that mention inline prerequisites", () => {
   const parsed = parser.parseHtmlSourceFromArtifactsForTest(
     buildRecoveryEntryFixture({
@@ -826,12 +872,24 @@ test("Course-code parser ignores subject-number level references", () => {
   );
 });
 
-test("Course-code parser keeps real course codes near generic level prose", () => {
+test("Course-code parser drops explicit exclusions near generic level prose", () => {
   assert.deepEqual(
     parser.extractCourseCodesFromRequirementLineForTest(
       "Complete 15 credits of 300-level GREEK courses; GREEK 300 and GREEK 301 are excluded."
     ),
-    ["GREEK 300", "GREEK 301"]
+    []
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromRequirementLineForTest(
+      "An additional lab-based science course or an additional 300 or 400-level math course, except TMATH 310"
+    ),
+    []
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromRequirementLineForTest(
+      "Students must complete 25 additional graded credits of 300-level or 400-level courses chosen from the Computer Science & Systems program (excluding TCSS 390)."
+    ),
+    []
   );
   assert.deepEqual(
     parser.extractCourseCodesFromLineForTest("MATH 307, 308, 309, and 324 are accepted."),
@@ -846,6 +904,139 @@ test("Course-code parser recovers courses after choice prose", () => {
     ),
     ["DRAMA 213", "DRAMA 319", "DRAMA 414", "DRAMA 415", "DRAMA 419"]
   );
+});
+
+test("Admission prerequisite HTML pages keep official prerequisite tables in scope", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+    ownerTitle: "Business Administration (BA)",
+    planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+    campusId: "uw-tacoma",
+    role: "admissions-prerequisites",
+    parserType: "html-admissions-page",
+    url: "https://www.tacoma.uw.edu/business/baba-admissions",
+    label: "UW Tacoma BABA admissions prerequisites",
+  });
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h1>BABA Admissions</h1>
+        <p>Direct Admission (First-year students)</p>
+        <h2>ADMISSION REQUIREMENTS</h2>
+        <p>Applicants must complete business prerequisite courses.</p>
+        <h2>APPLICATION ELIGIBILITY</h2>
+        <table>
+          <tr><th>Course</th><th>Application eligibility</th></tr>
+          <tr><td>Financial Accounting I (TACCT 210)</td><td>Yes</td></tr>
+          <tr><td>Financial Accounting II (TACCT 220)</td><td>May be in progress</td></tr>
+          <tr><td>Managerial Accounting (TACCT 230)</td><td>May be in progress</td></tr>
+          <tr><td>Intro to Statistics (TMATH 110)</td><td>Yes</td></tr>
+          <tr><td>Business Law (TBGEN 218)</td><td>May be in progress</td></tr>
+          <tr><td>Microeconomics (TBECON 220 or TECON 200)</td><td>Yes</td></tr>
+          <tr><td>Macroeconomics (TBECON 221 or TECON 201)</td><td>Yes</td></tr>
+        </table>
+      </main>
+    `
+  );
+
+  for (const courseCode of [
+    "TACCT 210",
+    "TACCT 220",
+    "TACCT 230",
+    "TMATH 110",
+    "TBGEN 218",
+    "TBECON 220",
+    "TECON 200",
+    "TBECON 221",
+    "TECON 201",
+  ]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} to be parsed.`);
+  }
+});
+
+test("Graduate prose inside Tacoma BABA option intro does not suppress undergraduate curriculum rows", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+    ownerTitle: "Business Administration (BA)",
+    planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+    label: "UW Tacoma BABA design your courses",
+  });
+  const graduateNote =
+    "Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.";
+  const block = buildParsedBlockFixture(
+    entry,
+    `
+      <main>
+        <h1>Design Your Courses</h1>
+        <h2>Accounting</h2>
+        <p>Accounting focuses on recording and reporting financial transactions.</p>
+        <p>${graduateNote}</p>
+        <h3>Accounting curriculum</h3>
+        <p>Once accepted into the Business School, accounting students must complete the following courses for graduation.</p>
+        <p>30 credits of core courses:</p>
+        <p>TBUS 300 Managing Organizations</p>
+        <p>35 credits from Accounting:</p>
+        <p>TACCT 301 Intermediate Accounting I</p>
+        <p>TACCT 302 Intermediate Accounting II</p>
+      </main>
+    `
+  );
+  const rowsByLine = new Map(block.sourceSectionFilterAuditRows.map((row) => [row.rawLine, row]));
+
+  assert.equal(block.parsedUwCourseCodes.includes("TBUS 300"), true);
+  assert.equal(block.parsedUwCourseCodes.includes("TACCT 301"), true);
+  assert.equal(block.parsedUwCourseCodes.includes("TACCT 302"), true);
+  assert.equal(rowsByLine.get(graduateNote)?.schedulable, false);
+  assert.equal(
+    rowsByLine.get("TACCT 301 Intermediate Accounting I")?.detectedSectionRole,
+    "primary-requirement-section"
+  );
+});
+
+test("Tacoma BABA pathway sources scope to the selected option section", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:finance-option",
+    ownerTitle: "Business Administration (BA) - Finance option",
+    planId: "uw-tacoma-bachelor-of-arts-in-business-administration",
+    pathwayId: "finance-option",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-curriculum-page",
+    url: "https://www.tacoma.uw.edu/business/design-courses-baba",
+    label: "UW Tacoma BABA Finance curriculum",
+    sourceLabel: "UW Tacoma BABA Finance curriculum",
+  });
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h1>Design Your Courses</h1>
+        <h2>Accounting</h2>
+        <h3>Accounting curriculum</h3>
+        <p>TBUS 300 Managing Organizations</p>
+        <p>TACCT 301 Intermediate Accounting I</p>
+        <h2>Finance</h2>
+        <h3>Finance curriculum</h3>
+        <p>TBUS 300 Managing Organizations</p>
+        <p>TBUS 330 Introduction to Information Technology</p>
+        <p>30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for this option.</p>
+        <p>5 credits TBUS 400 Business Policy and Strategic Management</p>
+        <h2>Marketing</h2>
+        <h3>Marketing curriculum</h3>
+        <p>TMKTG 450 Consumer Behavior</p>
+      </main>
+    `
+  );
+
+  assert.deepEqual(parsed.courseCodes, ["TBANLT 433", "TBUS 300", "TBUS 330", "TBUS 400"]);
+  assert.equal(parsed.snapshotLines.includes("Finance curriculum"), true);
+  assert.equal(parsed.snapshotLines.includes("Accounting curriculum"), false);
+  assert.equal(parsed.snapshotLines.includes("Marketing curriculum"), false);
 });
 
 test("Requirement parser treats inline Select labels as choose-one groups", () => {
@@ -1127,6 +1318,40 @@ test("Course-code parser recovers compact known course subjects from PDF text", 
   assert.deepEqual(
     parser.extractCourseCodesFromLineForTest("B ENGR494, BENGR495, and BENGR496 must be taken in consecutive quarters."),
     ["BENGR 494", "BENGR 495", "BENGR 496"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("CSS 142 + CSSKL 142: Computer Programming I + Skills Lab"),
+    ["CSS 142", "CSSSKL 142"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("BWRIT 134 and 135"),
+    ["BWRIT 134", "BWRIT 135"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "Must cover content equivalent to UW Bothell's BWRIT 134 and 135 (or similar)."
+    ),
+    ["BWRIT 134", "BWRIT 135"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("STMATH 124 and STMATH 125"),
+    ["STMATH 124", "STMATH 125"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "CSS 123 + CSSKL 123, CSS 132 + CSSKL 132, or CSS 142 + CSSKL 142"
+    ),
+    ["CSS 123", "CSS 132", "CSS 142", "CSSSKL 123", "CSSSKL 132", "CSSSKL 142"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "CSS 123 + CSSKL 123: Programming for Data Science + Skills Lab (Note: CSS 112 can be used as the prerequisite for CSS 123)"
+    ),
+    ["CSS 112", "CSS 123", "CSSSKL 123"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("BBUS 451, 452, 453, 454"),
+    ["BBUS 451", "BBUS 452", "BBUS 453", "BBUS 454"]
   );
 });
 
@@ -3539,6 +3764,112 @@ test("Parser recovery rejects cached Tacoma CSS snapshots from other majors or r
   );
 });
 
+test("Parser recovery ignores stale cached Tacoma CSS snapshots removed from the manifest", () => {
+  const bsPathwayEntry = {
+    ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+    ownerTitle: "Computer Science and Systems - Bachelor of Science",
+    planId: "uw-tacoma-computer-science-and-systems",
+    pathwayId: "bachelor-of-science",
+    campusId: "uw-tacoma",
+    parserType: "html-degree-requirements",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+    label: "UW Tacoma Computer Science and Systems BS degree requirements",
+  };
+
+  assert.equal(
+    parser.parserRecoverySnapshotIsActiveForOwnerForTest(bsPathwayEntry, {
+      sourceUrl: "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf",
+    }),
+    false
+  );
+  assert.equal(
+    parser.parserRecoverySnapshotIsActiveForOwnerForTest(bsPathwayEntry, {
+      sourceUrl: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
+    }),
+    true
+  );
+});
+
+test("Linked document recovery ignores stale Tacoma CSS grids when a current manifest grid exists", () => {
+  const bsPathwayEntry = {
+    ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+    ownerTitle: "Computer Science and Systems - Bachelor of Science",
+    planId: "uw-tacoma-computer-science-and-systems",
+    pathwayId: "bachelor-of-science",
+    campusId: "uw-tacoma",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+    label: "UW Tacoma Computer Science and Systems BS degree requirements",
+  };
+  const html = `
+    <a href="/uwt/sites/default/files/2021-07/css_bs_grid.pdf">B.S. CSS Schedule Planning Grid</a>
+    <a href="/sites/default/files/2024-10/css_b.s-grid_2023.pdf">UW Tacoma Computer Science and Systems BS planning grid</a>
+  `;
+
+  const candidates = parser.extractSupplementalDocumentLinkCandidatesForTest(
+    bsPathwayEntry,
+    html
+  );
+  const candidateUrls = candidates.map((candidate) => candidate.url);
+
+  assert.equal(
+    candidateUrls.includes(
+      "https://www.tacoma.uw.edu/uwt/sites/default/files/2021-07/css_bs_grid.pdf"
+    ),
+    false,
+    JSON.stringify(candidateUrls, null, 2)
+  );
+  assert.equal(
+    candidateUrls.includes(
+      "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf"
+    ),
+    true,
+    JSON.stringify(candidateUrls, null, 2)
+  );
+});
+
+test("Linked document recovery backfills title-only calculus prerequisites without optional prep rows", () => {
+  const recoveredSources = parser.buildTitleOnlyCourseBackfillSupplementalSourcesForTest(
+    {
+      courseCodes: ["TCSS 142", "TCSS 143"],
+      requirementCueLines: [],
+      snapshotLines: [
+        "Prerequisites",
+        "Calculus 1",
+        "Calculus 2",
+        "Introduction to Programming (TCSS 142 or equivalent)",
+      ],
+    },
+    [
+      {
+        candidate: {
+          url: "https://www.tacoma.uw.edu/sites/default/files/2024-10/css_b.s-grid_2023.pdf",
+          label: "Download the bscss planning grid",
+          parserType: "pdf-degree-sheet",
+          titleAcronymMatch: true,
+          historical: false,
+        },
+        parsed: {
+          courseCodes: ["TMATH 115", "TMATH 124", "TMATH 125", "TMATH 126", "TCSS 390"],
+          requirementCueLines: [],
+          snapshotLines: [
+            "[Page 1] Calculus I Lab Science Intro to Programming+LAB Calculus II Lab Science Calculus III",
+            "[Page 1] TMATH 124 TCSS 142 TMATH 125 TCSS 143 TMATH 126",
+            "[Page 1] TMATH 115 Pre-Calculus I (if not taking 120) Winter 5",
+            "[Page 1] TCSS 390 TCSS 321 Seminar (Optional) Fall 2",
+          ],
+          resolvedParserType: "pdf-degree-sheet",
+        },
+      },
+    ]
+  );
+
+  const recoveredCourseCodes = recoveredSources.flatMap(
+    (source) => source.parsed.courseCodes
+  );
+  assert.deepEqual(recoveredCourseCodes, ["TMATH 124", "TMATH 125"]);
+});
+
 test("Parser promotes Tacoma acronym primary pages when parsed source-only evidence says ignored", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-tacoma-computer-science-and-systems-ba",
@@ -4290,6 +4621,117 @@ test("Parser does not promote opposite-degree comparison prose into BA requireme
     auditRows.some(
       (row) =>
         row.courseCodesExtracted.includes("TCSS 372") &&
+        row.detectedSectionRole === "support-metadata" &&
+        row.schedulable === false
+    )
+  );
+});
+
+test("Parser keeps Tacoma CSS exclusions and honors-only notes out of source blocks", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-computer-science-and-systems-bs",
+    ownerTitle: "Computer Science and Systems (BS)",
+    planId: "uw-tacoma-computer-science-and-systems-bs",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+    label: "Bachelor of Science in CSS page.",
+  });
+  const html = `
+    <main>
+      <h2>B.S. in CSS Requirements</h2>
+      <h3>Computer Science Core Courses</h3>
+      <p>TCSS 305 Programming Practicum</p>
+      <p>TCSS 321 Discrete Structures I</p>
+      <h3>Additional Required Courses</h3>
+      <p>An additional lab-based science course OR an additional 300 or 400-level math course, except TMATH 310</p>
+      <h3>Senior Electives</h3>
+      <p>Students must complete 25 additional graded credits of 300-level or 400-level courses chosen from the Computer Science & Systems program (excluding TCSS 390).</p>
+      <p>TCSS 390 Undergraduate Seminar in Computer Science & Systems is a workshop style course to help you solve problems.</p>
+      <p>To qualify for CSS honors, you must meet all of the following requirements in addition to completing all degree requirements for the B.S. in CSS:</p>
+      <p>Complete the following as part of your CSS senior elective requirements:</p>
+      <p>TCSS 440 (Formal Models in Computer Science) or another 5 credit senior elective in the research area of your Honors Thesis.</p>
+    </main>
+  `;
+  const block = buildParsedBlockFixture(entry, html);
+
+  assert.ok(block.parsedUwCourseCodes.includes("TCSS 305"));
+  assert.ok(block.parsedUwCourseCodes.includes("TCSS 321"));
+  for (const falseRequiredCode of ["TMATH 310", "TCSS 390", "TCSS 440"]) {
+    assert.equal(
+      block.parsedUwCourseCodes.includes(falseRequiredCode),
+      false,
+      `Expected ${falseRequiredCode} to stay out of parsed CSS requirements.`
+    );
+  }
+  assert.ok(
+    block.sourceSectionFilterAuditRows.some(
+      (row) =>
+        row.courseCodesExtracted.includes("TCSS 440") &&
+        row.detectedSectionRole === "support-metadata" &&
+        row.schedulable === false
+    )
+  );
+});
+
+test("Dedicated Tacoma CSS BS route keeps admission and elective requirement evidence", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+    ownerTitle: "Computer Science and Systems - Bachelor of Science",
+    planId: "uw-tacoma-computer-science-and-systems",
+    pathwayId: "bachelor-of-science",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
+    label: "B.S. in Computer Science & Systems",
+  });
+  const html = `
+    <main>
+      <h2>Bachelor of Arts Option</h2>
+      <p>The Bachelor of Arts in CSS blends a solid foundation with a minor.</p>
+      <h2>How to Apply</h2>
+      <h3>Admission Requirements</h3>
+      <p>Any lab-based science except Astronomy.</p>
+      <p>UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122.</p>
+      <p>You may need one additional approved lab-based science course, TCHEM 142 or TBIOL 120, to meet the total number of lab science credits required.</p>
+      <h2>Curriculum Details</h2>
+      <h3>Computer Science Core Courses</h3>
+      <p>TCSS 305 Programming Practicum</p>
+      <p>TCSS 321 Discrete Structures I</p>
+      <h3>Senior Electives</h3>
+      <p>No more than 10 credits of TCSS 497, TCSS 498, and TCSS 499 may be used to satisfy the elective requirement.</p>
+      <h3>CSS Honors</h3>
+      <p>TCSS 440 or another 5 credit senior elective in the research area of your Honors Thesis.</p>
+    </main>
+  `;
+  const block = buildParsedBlockFixture(entry, html);
+
+  for (const expectedCode of [
+    "TBIOL 110",
+    "TCHEM 105",
+    "TCHEM 131",
+    "TGEOS 117",
+    "TPHYS 121",
+    "TPHYS 122",
+    "TCHEM 142",
+    "TBIOL 120",
+    "TCSS 305",
+    "TCSS 321",
+  ]) {
+    assert.ok(
+      block.parsedUwCourseCodes.includes(expectedCode),
+      `Expected ${expectedCode} to be preserved from the dedicated BS source.`
+    );
+  }
+  assert.equal(block.parsedUwCourseCodes.includes("TCSS 440"), false);
+  assert.ok(
+    block.sourceSectionFilterAuditRows.some(
+      (row) =>
+        row.courseCodesExtracted.includes("TCSS 497") &&
+        row.courseCodesExtracted.includes("TCSS 498") &&
+        row.courseCodesExtracted.includes("TCSS 499") &&
         row.detectedSectionRole === "support-metadata" &&
         row.schedulable === false
     )

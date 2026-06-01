@@ -4,6 +4,9 @@ const test = require("node:test");
 const {
   nursingPrograms,
 } = require("./fixtures/uw-nursing-complete-diagnostics.fixture.cjs");
+const {
+  collectRequirementSourceUwCourseCodes,
+} = require("./lib/complete-diagnostics-course-evidence.cjs");
 
 const RUN_DIAGNOSTICS =
   process.env.TRANSFER_PLANNER_RUN_UW_NURSING_DIAGNOSTICS === "1";
@@ -84,9 +87,7 @@ function flattenExpectedCourseCodes(program) {
 function getParsedUwCourseCodes(program) {
   const planner = getPlanner();
   const blocks = planner.getTransferPlannerParsedRequirementSourceBlocks(program.planId) ?? [];
-  return uniqueSorted(
-    blocks.flatMap((block) => block.parsedUwCourseCodes ?? []).map(normalizeCourseCode)
-  );
+  return uniqueSorted(collectRequirementSourceUwCourseCodes(blocks, normalizeCourseCode));
 }
 
 function getCurrentPlanText(program) {

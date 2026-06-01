@@ -123,7 +123,7 @@ const ADMISSION_PREREQUISITE_CUE_PATTERN =
 const SUPPORT_CUE_PATTERN =
   /\b(advising|adviser|advisor|study abroad|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
-  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\brequired courses?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bstudent requirements?\b|\brequired courses?\b|\bcourse overview\b|\bcredit structure\b|\bcredits?\s*&\s*grade requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
 const AUTO_PROMOTION_STRONG_ROLES = new Set([
   "official-catalog",
   "primary-degree-requirements",
@@ -137,7 +137,7 @@ const AUTO_PROMOTION_STRONG_PARSER_TYPES = new Set([
   "pdf-worksheet",
 ]);
 const AUTO_PROMOTION_AUTHORITY_CUE_PATTERN =
-  /\b(degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|worksheet|checklist|degree sheet|requirement sheet|requirements packet|major planning worksheet|program of study|plan of study|study plan|degreq)\b|\/set\/programs\/undergrad\/|\/(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?:[-/?#]|$)|\.(?:pdf|docx)(?:[?#]|$)/i;
+  /\b(degree requirements?|major requirements?|graduation requirements?|program requirements?|student requirements?|course overview|credit structure|credits?\s*&\s*grade requirements?|curriculum|worksheet|checklist|degree sheet|requirement sheet|requirements packet|major planning worksheet|program of study|plan of study|study plan|degreq)\b|\/set\/programs\/undergrad\/|(?:\/|#)(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?=$|[\s/?#-])|\.(?:pdf|docx)(?:[?#]|$)/i;
 const AUTO_PROMOTION_OVERVIEW_PARSER_TYPES = new Set([
   "generic-html",
   "html-overview-page",
@@ -897,8 +897,49 @@ function hasPathwaySpecificPrimaryChildPromotionCue(candidate) {
   );
 }
 
+function hasExplicitGrcSourceIdentity(candidate) {
+  const sourceIdentityText = [
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle,
+  ]
+    .filter(Boolean)
+    .join(" \n")
+    .toLowerCase();
+  return /\bgreen river\b|\bgrc\b|\bassociate\b|\bast-?2\b|\bmrp\b/.test(sourceIdentityText);
+}
+
+function hasExplicitSupportSourceIdentity(candidate) {
+  const sourceIdentityText = [
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle,
+  ]
+    .filter(Boolean)
+    .join(" \n")
+    .toLowerCase();
+  return SUPPORT_CUE_PATTERN.test(sourceIdentityText);
+}
+
 function hasStrongPromotionIdentity(candidate) {
   const reasons = new Set(candidate?.reasons ?? []);
+  const hasRequirementAuthorityCue = hasDurablePromotionAuthorityCue(candidate);
+  const hasStrongRequirementKeywordIdentity =
+    candidate?.sourceRoleStatus === "primary" &&
+    hasRequirementAuthorityCue &&
+    reasons.has("matches multiple major keywords") &&
+    reasons.has("matches the selected degree route");
+  const hasSameDepartmentRequirementAliasIdentity =
+    candidate?.sourceRoleStatus === "primary" &&
+    hasRequirementAuthorityCue &&
+    reasons.has("requirements path segment") &&
+    reasons.has("stays on the same department or school page") &&
+    reasons.has("matches the selected degree route") &&
+    [...reasons].some((reason) => /^matches major keyword /u.test(reason));
   return (
     reasons.has("official source path matches the selected pathway") ||
     reasons.has("official source path matches the selected major") ||
@@ -913,7 +954,9 @@ function hasStrongPromotionIdentity(candidate) {
     reasons.has("same-program requirement source can replace a zero-course primary") ||
     reasons.has("same-program curriculum child can replace a zero-course overview primary") ||
     reasons.has("same-program option/concentration child source matches the selected pathway") ||
-    reasons.has("pathway-specific official child page matches the selected pathway")
+    reasons.has("pathway-specific official child page matches the selected pathway") ||
+    hasStrongRequirementKeywordIdentity ||
+    hasSameDepartmentRequirementAliasIdentity
   );
 }
 
@@ -1030,11 +1073,15 @@ function isAutoPromotablePrimaryCandidate(candidate) {
     return hasStrongPromotionIdentity(normalizedCandidate);
   }
 
+  const hasRequirementAuthorityCue =
+    hasDurablePromotionAuthorityCue(normalizedCandidate) ||
+    hasVerifiedDiscoveredRequirementAuthorityCue(normalizedCandidate) ||
+    hasPathwayChildPromotionAuthorityCue(normalizedCandidate) ||
+    hasPathwaySpecificPrimaryChildPromotionCue(normalizedCandidate);
+
   if (
     AUTO_PROMOTION_OVERVIEW_PARSER_TYPES.has(normalizedCandidate.parserType) ||
-    (!hasDurablePromotionAuthorityCue(normalizedCandidate) &&
-      !hasPathwayChildPromotionAuthorityCue(normalizedCandidate) &&
-      !hasPathwaySpecificPrimaryChildPromotionCue(normalizedCandidate))
+    !hasRequirementAuthorityCue
   ) {
     return false;
   }
@@ -1045,6 +1092,21 @@ function isAutoPromotablePrimaryCandidate(candidate) {
 function hasVerifiedRequirementHeadingAuthorityCue(candidate) {
   return AUTO_PROMOTION_AUTHORITY_CUE_PATTERN.test(
     (candidate?.pageHeadings ?? []).filter(Boolean).join(" \n")
+  );
+}
+
+function hasVerifiedDiscoveredRequirementAuthorityCue(candidate) {
+  const sourceKinds = new Set([
+    ...(candidate?.sourceKinds ?? []),
+    candidate?.sourceKind,
+  ].filter(Boolean));
+  return (
+    hasVerifiedRequirementHeadingAuthorityCue(candidate) &&
+    (
+      sourceKinds.has("campus-major-index") ||
+      sourceKinds.has("discovered-anchor") ||
+      sourceKinds.has("targeted-official-candidate")
+    )
   );
 }
 
@@ -1184,11 +1246,11 @@ function classifySourceDiscoveryRole(candidate) {
     return "transfer-equivalency";
   }
 
-  if (/\bgreen river\b|\bgrc\b|\bassociate\b|\bast-?2\b|\bmrp\b/.test(searchable)) {
+  if (hasExplicitGrcSourceIdentity(candidate)) {
     return "matched-grc-track";
   }
 
-  if (/\bstudy abroad\b|\/study-abroad(?:[-/?#]|$)/.test(searchable)) {
+  if (hasExplicitSupportSourceIdentity(candidate)) {
     return "support-source";
   }
 
@@ -1224,16 +1286,19 @@ function classifySourceDiscoveryRole(candidate) {
     return "admission-prerequisite-source";
   }
 
-  if (SUPPORT_CUE_PATTERN.test(searchable)) {
-    return "support-source";
-  }
-
   if (
     PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
     PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) ||
-    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable) ||
+    /(?:\/|#)(?:requirements?|degree-requirements?|major-requirements?)(?=$|[\s/?#-])/i.test(
+      String(candidate?.url ?? "")
+    )
   ) {
     return "primary-degree-requirements";
+  }
+
+  if (SUPPORT_CUE_PATTERN.test(searchable)) {
+    return "support-source";
   }
 
   if (/\badmissions?\b|\bapply\b|\bapplication\b|\bpreparation\b|\bprerequisites?\b/.test(searchable)) {
@@ -3593,7 +3658,9 @@ function scoreCandidate(target, candidate) {
     { pattern: /\bmajor requirements?\b/, score: 26, reason: "explicit major-requirements wording" },
     { pattern: /\bgraduation requirements?\b/, score: 24, reason: "graduation requirements wording" },
     { pattern: /\bprogram requirements?\b/, score: 20, reason: "program-requirements wording" },
+    { pattern: /\bstudent requirements?\b/, score: 20, reason: "student-requirements wording" },
     { pattern: /\brequired courses?\b|\blower division courses?\b|\bupper division core\b/, score: 20, reason: "required-courses wording" },
+    { pattern: /\bcourse overview\b|\bcredit structure\b|\bcredits?\s*&\s*grade requirements?\b/, score: 18, reason: "credit-structure wording" },
     { pattern: /\bmajor admissions requirements?\b/, score: 18, reason: "major-admissions-requirements wording" },
     { pattern: /\bundergraduate program\b/, score: 16, reason: "undergraduate-program wording" },
     { pattern: /\bundergraduate major admission\b/, score: 16, reason: "undergraduate-major-admission wording" },
@@ -3602,7 +3669,7 @@ function scoreCandidate(target, candidate) {
     { pattern: /\bprogram of study\b|\bchecklist\b/, score: 16, reason: "checklist-style wording" },
     { pattern: /\bbachelor of arts\b|\bbachelor of science\b|\bb\.a\.\b|\bb\.s\.\b/, score: 10, reason: "specific bachelor route wording" },
     { pattern: /\/undergraduate(?:[-/]|$)/, score: 10, reason: "undergraduate path segment" },
-    { pattern: /\/(?:degree|major)-requirements?(?:[-/]|$)/, score: 10, reason: "requirements path segment" },
+    { pattern: /(?:\/|#)(?:requirements?|degree-requirements?|major-requirements?)(?=$|[\s/?#-])/, score: 10, reason: "requirements path segment" },
     { pattern: /\.(?:pdf|docx)(?:[?#]|$)/, score: 6, reason: "document degree-sheet candidate" },
   ];
 
@@ -3645,7 +3712,11 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, reason);
   }
 
-  if (hasMatchingDegreeRoute(`${target.title} ${target.label}`, candidateScoringText)) {
+  const selectedDegreeRouteMatches = hasMatchingDegreeRoute(
+    `${target.title} ${target.label}`,
+    candidateScoringText
+  );
+  if (selectedDegreeRouteMatches) {
     score += 8;
     addReason(reasons, "matches the selected degree route");
   }
@@ -3795,12 +3866,34 @@ function scoreCandidate(target, candidate) {
 
   const confidence = calibrateDiscoveryConfidence(target, sourceRole, score, {
     broadDepartmentMissesSelectedPathway,
-    hasDurableOwnerIdentity: hasDurableHighConfidenceOwnerIdentity(
-      target,
-      matchedKeywordCount,
-      identityMatch,
-      hasPathwaySpecificEvidence
-    ),
+    hasDurableOwnerIdentity:
+      hasDurableHighConfidenceOwnerIdentity(
+        target,
+        matchedKeywordCount,
+        identityMatch,
+        hasPathwaySpecificEvidence
+      ) ||
+      (
+        sourceRole === "primary-degree-requirements" &&
+        selectedDegreeRouteMatches &&
+        (
+          matchedKeywordCount >= 2 ||
+          (
+            matchedKeywordCount >= 1 &&
+            /(?:\/|#)(?:requirements?|degree-requirements?|major-requirements?)(?=$|[\s/?#-])/i.test(
+              String(candidate?.url ?? "")
+            ) &&
+            isSameDepartmentUrl(candidate?.sourcePageUrl, candidate?.url)
+          )
+        ) &&
+        (
+          AUTO_PROMOTION_AUTHORITY_CUE_PATTERN.test(candidateScoringText) ||
+          hasVerifiedRequirementHeadingAuthorityCue({
+            ...candidate,
+            pageHeadings: candidate.pageHeadings ?? [],
+          })
+        )
+      ),
     hasPathwaySpecificEvidence,
   });
 
@@ -4157,7 +4250,9 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("explicit major-requirements wording") ||
     replacementReasons.has("graduation requirements wording") ||
     replacementReasons.has("program-requirements wording") ||
+    replacementReasons.has("student-requirements wording") ||
     replacementReasons.has("required-courses wording") ||
+    replacementReasons.has("credit-structure wording") ||
     replacementReasons.has("major-admissions-requirements wording") ||
     replacementReasons.has("undergraduate-program wording") ||
     replacementReasons.has("undergraduate-major-admission wording") ||
@@ -4175,7 +4270,9 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("explicit major-requirements wording") ||
     replacementReasons.has("graduation requirements wording") ||
     replacementReasons.has("program-requirements wording") ||
+    replacementReasons.has("student-requirements wording") ||
     replacementReasons.has("required-courses wording") ||
+    replacementReasons.has("credit-structure wording") ||
     replacementReasons.has("specific bachelor route wording") ||
     replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
     replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
@@ -4187,7 +4284,9 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("explicit major-requirements wording") ||
     replacementReasons.has("graduation requirements wording") ||
     replacementReasons.has("program-requirements wording") ||
+    replacementReasons.has("student-requirements wording") ||
     replacementReasons.has("required-courses wording") ||
+    replacementReasons.has("credit-structure wording") ||
     replacementReasons.has("major-admissions-requirements wording") ||
     replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
     replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
@@ -4466,6 +4565,16 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
   }
 
   return TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN.test(searchable);
+}
+
+function isHighValueRequirementVerificationCandidate(candidate) {
+  const searchable = `${candidate?.linkText ?? ""} ${candidate?.anchorText ?? ""} ${
+    candidate?.label ?? ""
+  } ${candidate?.url ?? ""}`;
+  return (
+    candidate?.sourceRole === "primary-degree-requirements" &&
+    AUTO_PROMOTION_AUTHORITY_CUE_PATTERN.test(searchable)
+  );
 }
 
 function compareTargetedOfficialFollowCandidates(left, right) {
@@ -4872,7 +4981,13 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
           !verifiedCandidateUrls.has(candidate.url) &&
           !candidate.pageTitle &&
           !isLinkedDocumentCandidateUrl(candidate.url) &&
-          (candidate.discoveryDepth ?? 0) < 2 &&
+          (
+            (candidate.discoveryDepth ?? 0) < 2 ||
+            (
+              (candidate.discoveryDepth ?? 0) === 2 &&
+              isHighValueRequirementVerificationCandidate(candidate)
+            )
+          ) &&
           candidate.score >= 8
       )
       .slice(0, MAX_DISCOVERED_CANDIDATES_PER_OWNER);

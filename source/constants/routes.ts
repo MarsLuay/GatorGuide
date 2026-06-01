@@ -169,13 +169,6 @@ export const APP_ROUTE_METADATA = {
     hiddenTab: true,
     returnTo: "/(tabs)/resources",
   },
-  collegeSearch: {
-    href: "/college-search",
-    tabScreen: "college-search",
-    primaryTab: TAB_ROUTE_NAMES.resources,
-    hiddenTab: true,
-    returnTo: "/(tabs)/resources",
-  },
   language: {
     href: "/language",
     tabScreen: "language",
@@ -288,7 +281,6 @@ export const ROUTES = {
   compare: APP_ROUTE_METADATA.compare.href,
   costCalculator: APP_ROUTE_METADATA.costCalculator.href,
   savedColleges: APP_ROUTE_METADATA.savedColleges.href,
-  collegeSearch: APP_ROUTE_METADATA.collegeSearch.href,
   language: APP_ROUTE_METADATA.language.href,
   about: APP_ROUTE_METADATA.about.href,
   privacy: APP_ROUTE_METADATA.privacy.href,

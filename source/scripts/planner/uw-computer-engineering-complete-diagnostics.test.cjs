@@ -21,6 +21,9 @@ const {
   computerEngineeringPrograms,
   relatedNonTargetPlanIds,
 } = require("./fixtures/uw-computer-engineering-complete-diagnostics.fixture.cjs");
+const {
+  collectRequirementSourceUwCourseCodes,
+} = require("./lib/complete-diagnostics-course-evidence.cjs");
 
 const RUN_DIAGNOSTICS =
   process.env.TRANSFER_PLANNER_RUN_UW_COMPUTER_ENGINEERING_DIAGNOSTICS === "1";
@@ -61,7 +64,7 @@ function flattenExpectedCourseCodes(program) {
 
 function getParsedUwCourseCodes(program) {
   const blocks = planner.getTransferPlannerParsedRequirementSourceBlocks(program.planId) ?? [];
-  return uniqueSorted(blocks.flatMap((block) => block.parsedUwCourseCodes ?? []).map(normalizeCourseCode));
+  return uniqueSorted(collectRequirementSourceUwCourseCodes(blocks, normalizeCourseCode));
 }
 
 function getCurrentPlanText(program) {

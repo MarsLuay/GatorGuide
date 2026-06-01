@@ -155,7 +155,7 @@ const sourceByPlanId = {
     "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
   ],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [
-    "https://www.tacoma.uw.edu/business/baba",
+    "https://www.tacoma.uw.edu/business/baba-admissions",
     "https://www.tacoma.uw.edu/business/design-courses-baba",
   ],
   "uw-bothell-csse-information-assurance-and-cybersecurity": [
