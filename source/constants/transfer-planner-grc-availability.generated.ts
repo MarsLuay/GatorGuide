@@ -12571,24 +12571,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "GEOL 200": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "GEOL 206": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -19386,6 +19368,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
+  "PHIL 240": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
+    ]
+  },
   "PHIL 243": {
     status: "published-in-latest-schedule",
     years: [
@@ -19410,6 +19430,44 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "summer",
       "fall"
+    ]
+  },
+  "PHIL& 101": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "summer",
+          "fall",
+          "winter",
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "summer",
+      "fall",
+      "winter",
+      "spring"
     ]
   },
   "PHIL& 115": {

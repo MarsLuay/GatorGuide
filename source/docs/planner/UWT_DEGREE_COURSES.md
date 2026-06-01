@@ -60,6 +60,42 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
 - Arts, Media &amp; Culture majors have five tracks to choose from:
 - LITERATURE TRACK
 - FILM AND MEDIA TRACK
@@ -93,6 +129,12 @@ On To Do list.
 - note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-03-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-04-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-05-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-06-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-07-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-08-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-09-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-10-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-11-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-90-requirement-cues.
 - note: Parsed requirement cues extracted from the current official source.
 - note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -144,6 +186,78 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Business Administration (BA) parsed official requirement cues
 
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
+- BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
+- The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+- The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+
+##### Business Administration (BA) parsed official requirement cues
+
 - Sound Credit Union
 - 5 Major Options to Choose
 - The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
@@ -167,6 +281,18 @@ On To Do list.
 - note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-01-business-administration-ba-parsed-official-source-structure.
 - note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-02-business-administration-ba-parsed-official-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-03-business-administration-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-04-business-administration-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-05-business-administration-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-06-business-administration-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-07-business-administration-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-08-business-administration-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-09-business-administration-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-10-business-administration-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-11-business-administration-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-12-business-administration-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-13-business-administration-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-14-business-administration-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-10-parsed-15-business-administration-ba-parsed-choices-and-pathway-notes.
 - note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-90-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-bachelor-of-arts-in-business-administration:source-degree-map:structured:uw-tacoma-bachelor-of-arts-in-business-administration-degree-map-91-planning-notes.
 - note: Parsed requirement cues extracted from the current official source.
@@ -231,8 +357,7 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: TPHYS 123 -> `PHYS& 223`. note: Auto-promoted because TPHYS 123 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
-- Required before enrollment: Biomedical Electives (15 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: TPHYS 121 Physics - Mechanics OR PHYS 114 AND PHYS 117 (5) -> `PHYS& 114`, `PHYS& 154`. complete at least 1 course from this set. alternate path `PHYS& 114`, `PHYS& 154`
+- Required before enrollment: Introductory courses (64 credits) -> `PHYS& 114`, `PHYS& 154`. note: Parsed from a source section heading and the following course rows.
 - note: Added the Green River course path PHYS&amp; 223 because the current planner rows did not expose it yet.
 - note: Auto-promoted Green River coverage gap on April 12, 2026.
 - note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS&amp; 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
@@ -296,7 +421,7 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before enrollment: At least 84 credits must be taken from the CE required courses below and CE Senior Electives list. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: 2025 - 2026 Electives. complete at least 2025 courses from this set. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: technical Elective Credit (16 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - Required before enrollment: Statics (TME 221 or UWS: AA 210) -> `ENGR& 214`. complete at least 1 course from this set
 - Required before enrollment: Mechanics of Materials -> `ENGR& 225`. complete at least 1 course from this set
 - Required before enrollment: Dynamics (TME 223 or UWS: ME 230) -> `ENGR& 215`. complete at least 1 course from this set
@@ -450,60 +575,6 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
-
-
-### Computer Science and Systems: Bachelor of Arts (BA)
-
-#### Summary
-
-Planner coverage: `detailed`. Best Green River base: `custom`.
-Source-generated from parsed UW requirement-source registries.
-
-#### Exact UW Courses Needed for Full Degree at UW
-
-##### Links Used
-
-- [Download the B.A. in CSS Planning Grid major requirements](https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf)
-- [Download the B.A. in CSS Planning Grid](https://www.tacoma.uw.edu/sites/default/files/2022-10/CSS_B.A._Grid_2022.pdf) - Source used for parser-backed UW requirement extraction.
-- [UW Tacoma Computer Science and Systems BA degree requirements](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba)
-- [UW Tacoma Computer Science and Systems BA degree requirements](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba) - Primary source used for parser-backed UW requirement extraction.
-
-##### Computer Science and Systems (BA) parsed official source requirements
-
-- \[Page 1\] TCORE 101 English Composition I Fall
-- \[Page 1\] TMATH 110 Statistics
-- \[Page 1\] Social Sciences (SSc)
-- \[Page 1\] Arts and Humanities (A&amp;H) Fall
-- \[Page 1\] TCSS 101 or 141 Intro to CS or Programming Fall
-- \[Page 1\] TMATH 120 Pre-Calculus
-- \[Page 1\] TCSS 142
-- \[Page 1\] Social Science (SSc) Winter
-- \[Page 1\] Arts and Humanities (A&amp;H) Winter
-- \[Page 1\] Diversity Req. (DIV) Winter
-
-##### Computer Science and Systems (BA) parsed official requirement cues
-
-- \[Page 1\] TCORE 101 English Composition I Fall
-- \[Page 1\] TMATH 110 Statistics
-- \[Page 1\] Social Sciences (SSc)
-- \[Page 1\] Arts and Humanities (A&amp;H) Fall
-- \[Page 1\] TCSS 101 or 141 Intro to CS or Programming Fall
-- \[Page 1\] TMATH 120 Pre-Calculus
-- \[Page 1\] TCSS 142
-- \[Page 1\] Social Science (SSc) Winter
-- \[Page 1\] Arts and Humanities (A&amp;H) Winter
-- \[Page 1\] Diversity Req. (DIV) Winter
-
-#### GRC Equivalent Courses
-
-- `ENGL& 101`
-
-#### Required sequences for specific credits
-
-- Required before enrollment: \[Page 1\] TCSS 101 or 141 Intro to CS or Programming Fall. complete at least 1 course from this set
-- note: Parser confidence: high.
-- note: Parsed degree-map block candidate: uw-tacoma-computer-science-and-systems-ba:source-degree-map:.
-- note: Parsed requirement cues extracted from the current official source.
 
 
 ### Computer Science and Systems: Bachelor of Science (BS)
@@ -660,10 +731,8 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: TECON 200 or TBECON 220. complete at least 1 course from this set
-- Required before enrollment: TECON 201 or TBECON 221. complete at least 1 course from this set
-- Required before enrollment: TMATH 116 or TMATH 120. complete at least 1 course from this set
-- Required before enrollment: Internships are a great way to gain hands-on experience, build your resume, and strengthen ties to local organizations and communities. 5 credits of approved internships can count towards the major’s upper division elective requirement. Contact Anna Lovász to learn more: <plovi@uw.edu> .. note: Credit bucket placeholder extracted from source text.
+- Required before enrollment: Core courses (25 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: EPA upper division (300–400 level) courses (30 credits; at least 20 credits must be 400-level TECON classes.). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: TBECON 422: Econometrics or TMATH 410: Regression Analysis with Applications. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-economics-and-policy-analysis:pathway:ba-route:source-degree-map:.
@@ -815,12 +884,13 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Core courses (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Meet with your faculty advisor to make plans to complete a capstone project. Projects can be completed through the following courses involving internships, research or a combination of both. Your capstone may span more than one quarter and earn 3-10 credits. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: College Biology (with lab) series. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: College Chemistry (with lab) series. complete at least 3 courses from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Physical Geology (with lab). complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: College Physics (with lab). complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Statistics. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
-- Required before enrollment: 5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: Calculus: TMATH 124 AND TMATH 125 OR TMATH 210. complete at least 1 course from this set
 - note: Parser confidence: high.
@@ -881,8 +951,10 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Preparatory courses (37-38 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Core courses (40 credits) required courses. complete at least 7 courses from this set. note: Parsed from course rows before an explicit source choice cue.
+- Required before enrollment: Core courses (40 credits) choice. note: Parsed from an explicit source choice cue inside a sectioned requirement.
 - Required before enrollment: Capstone experience: must select at least a 3-credit option from the following list. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: TWRT 211 or TWRT 291. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-environmental-sustainability:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -911,6 +983,114 @@ Source-generated from parsed UW requirement-source registries.
 - DEGREE REQUIREMENTS
 - Ethnic, Gender and Labor Studies
 - Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
 
@@ -1120,6 +1300,18 @@ On To Do list.
 - note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-15-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
 - note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-16-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-17-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-18-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-19-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-20-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-21-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-22-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-23-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-24-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-25-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-26-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-27-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-28-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-29-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
 - note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-90-requirement-cues.
 - note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-91-planning-notes.
 - note: Parsed requirement cues extracted from the current official source.
@@ -1288,7 +1480,9 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: The internship is taken as a 1- to 10-credit course. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: TEMPORARILY SUSPENDED. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Precalculus (TMATH 115 &amp; 116 or TMATH 120 at UW Tacoma; Precalculus I &amp; II at most community colleges). complete at least 1 course from this set
 - Required before enrollment: TCSS 141 or TCSS 142. complete at least 1 course from this set
 - Required before enrollment: TINFO 452 Windows System Admin or TINFO 457 Unix System Admin. complete at least 1 course from this set
 - note: Parser confidence: high.
@@ -1352,6 +1546,7 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Core courses (22 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Required 2-credit course. note: Parsed from a source section heading and the following course rows.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -1468,7 +1663,6 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Electives (25 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: major Elective Credit (5 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-law-and-policy:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -1521,7 +1715,12 @@ On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Electives (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Core courses (49 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Area: Computing (Required: A minimum of three credits and at least one course.). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Area: Math in Culture (Required: A minimum of three credits and at least one course.). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Area: Modeling (Required: A minimum of three credits and at least one course.). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Area: Probability/Statistics (Required: A minimum of three credits and at least one course.). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Area: Topology/Geometry (Required: A minimum of three credits and at least one course.). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: TMATH 351 or TMATH 450. complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-mathematics:source-degree-map:.
@@ -1585,7 +1784,6 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: EE 215 -> `ENGR& 204`. note: Auto-promoted because the current planner already has a strong exact-title consensus for EE 215.
-- Required before enrollment: At least 84 credits must be taken from the ME required courses below and ME Senior Electives lists. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 2025 - 2026 Electives. complete at least 2025 courses from this set. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Statics (TME 221or UWS -> `ENGR& 214`. complete at least 1 course from this set. note: Parsed from an inline labeled source requirement.
 - Required before enrollment: Multivariable Calculus -> `MATH& 264`. complete at least 1 course from this set
@@ -1659,7 +1857,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -1667,52 +1865,48 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe)
-- [Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe) - Primary source used for parser-backed UW requirement extraction.
+- [Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe) - Source used for parser-backed UW requirement extraction.
 - [Transfer Equivalencies](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe-transfer-credits)
-- [Transfer Equivalencies](https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe-transfer-credits) - Alternate official source used for parser-backed UW requirement extraction.
 
 ##### Politics, Philosophy and Economics (BA) parsed official source requirements
 
+- Politics, Philosophy and Economics (PP&amp;E) | Department of Social Sciences | University of Washington Tacoma
 - Department of Social Sciences
 - Global Studies Concentration
 - Social Science Research Methods Minor
-- POLS 202 American Government
-- TPOL S 202 Introduction to American Politics
-- POLS 203 International Relations
-- TPOL S 203 Introduction to International Relations
-- PHIL 110 Social and Political Philosophy
-- ECON 201 Microeconomics
-- TECON 200 / TBECON 220 Microeconomics
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
+- Admission Requirements
+- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Students accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Washington State Legislative Internship coordinator for more information: <libisun@uw.edu> .
+- Department of Social Sciences (SOCS)
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
+- Degree Requirements
 
 ##### Politics, Philosophy and Economics (BA) parsed official requirement cues
 
+- Politics, Philosophy and Economics (PP&amp;E) | Department of Social Sciences | University of Washington Tacoma
 - Department of Social Sciences
 - Global Studies Concentration
 - Social Science Research Methods Minor
-- POLS 202 American Government
-- TPOL S 202 Introduction to American Politics
-- POLS 203 International Relations
-- TPOL S 203 Introduction to International Relations
-- PHIL 110 Social and Political Philosophy
-- ECON 201 Microeconomics
-- TECON 200 / TBECON 220 Microeconomics
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
+- Admission Requirements
+- The Washington State Legislative Intern Program provides an excellent opportunity for students to learn about the legislative process while gaining professional work experience during the annual legislative session. Students accepted to this program enroll in TPOLS 497 Political Internship in State Government, a graded course that meets the capstone requirement and can also satisfy up to 5 credits of major electives. Contact the Washington State Legislative Internship coordinator for more information: <libisun@uw.edu> .
+- Department of Social Sciences (SOCS)
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
+- Degree Requirements
 
 ##### Politics, Philosophy and Economics (BA) parsed choices and pathway notes
 
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
 - Global Studies Concentration
 
 #### GRC Equivalent Courses
 
-- `ECON& 202`
-- `PHIL 110`
-- `POLS& 101`
-- `POLS& 202`
-- `POLS& 203`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: POLS 101 or POLS 201 -> `POLS& 101`. complete at least 1 course from this set
-- note: Parser confidence: high.
+- Required before enrollment: major preparation. note: Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- note: Parser confidence: medium.
 - note: Parsed degree-map block candidate: uw-tacoma-politics-philosophy-and-economics:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
 - note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1769,6 +1963,7 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Core courses (15 credits) (Students must take courses across at least 2 core areas.). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 5 credits of Arts and Humanities. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Social Sciences. note: Credit bucket placeholder extracted from source text.
 - Required before enrollment: 5 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
@@ -1831,7 +2026,6 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: Ten (10) credits of Social Welfare Electives (TSOCWF 300- and 400-level non-core courses) are required and may be taken any time during the program or during any quarter enrolled as a matriculated student, including summer. The following courses are approved Social Welfare electives. note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: 20 credits of Natural Sciences. note: Credit bucket placeholder extracted from source text.
-- Required before enrollment: 5 credits of Diversity. note: Credit bucket placeholder extracted from source text.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -1884,8 +2078,8 @@ On To Do list.
 
 #### Required sequences for specific credits
 
+- Required before enrollment: Core courses (35 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Electives (25 credits). note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: TSPAN 299 , 393 or 496 foreign study/experiential learning or internship (10 credits). complete at least 1 course from this set
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-spanish-language-and-cultures:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -1944,7 +2138,8 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Shared Curriculum Courses (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Foundation Courses (25 credits, choose 5 courses). note: Parsed from a source section heading and the following course rows.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -2003,8 +2198,8 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: General electives. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: General electives. The additional credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (e.g., a minor or a certificate) or explore the liberal arts. note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Shared Curriculum Courses (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Introductory Courses (16 credits). note: Parsed from a source section heading and the following course rows.
 - Required before enrollment: Major Elective Credit (10 credits). note: Program-specific approved bucket; do not satisfy with generic Area of Inquiry category matching unless an approved filter also backs the course.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-urban-design:source-degree-map:.
@@ -2071,9 +2266,11 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program. note: Parsed from a source section heading and the following course rows.
-- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. The degree planning worksheet can help track your progress through the program required courses. complete at least 10 courses from this set. note: Parsed from course rows before an explicit source choice cue.
-- Required before enrollment: In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. The degree planning worksheet can help track your progress through the program choice. complete at least 1 course from this set. note: Parsed from an explicit source choice cue inside a sectioned requirement.
+- Required before enrollment: Shared Curriculum Courses (20 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Foundation Courses (25 credits, choose 5 courses). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Introductory Courses (11 credits). note: Parsed from a source section heading and the following course rows.
+- Required before enrollment: Foundation Courses (22 credits, all required) required courses. complete at least 7 courses from this set. note: Parsed from course rows before an explicit source choice cue.
+- Required before enrollment: Foundation Courses (22 credits, all required) choice. complete at least 1 course from this set. note: Parsed from an explicit source choice cue inside a sectioned requirement.
 - note: Parser confidence: high.
 - note: Parsed degree-map block candidate: uw-tacoma-urban-studies:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
@@ -2143,3 +2340,27 @@ On To Do list.
 - note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:.
 - note: Parsed requirement cues extracted from the current official source.
 - note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
+### Computer Science and Systems (BA)
+
+#### Summary
+
+Planner coverage: `partial`. Best Green River base: `custom`.
+
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [UW Tacoma Computer Science and Systems BA degree requirements](https://www.tacoma.uw.edu/set/programs/undergrad/css/ba)
+
+On To Do list.
+
+#### GRC Equivalent Courses
+
+- `CS 121`
+
+#### Required sequences for specific credits
+
+- Required before application: Programming foundation -> `CS 121`

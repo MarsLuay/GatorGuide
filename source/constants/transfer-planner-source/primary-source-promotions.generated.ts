@@ -219,7 +219,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "major",
@@ -286,6 +286,73 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-05-25T18:12:47.766Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-anthropology:pathway:ba-option-family:human-evolutionary-biology",
+    "ownerKey": "uw-seattle-anthropology:pathway:ba-option-family:human-evolutionary-biology",
+    "planId": "uw-seattle-anthropology",
+    "pathwayId": "ba-option-family:human-evolutionary-biology",
+    "ownerTitle": "Anthropology - B.A. Human Evolutionary Biology option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-5c4793d80c55252400b11b49",
+    "label": "Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 141,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "matches major keyword \"anthropology\"",
+      "matches major keyword \"biology\"",
+      "matches major keyword \"evolutionary\"",
+      "matches major keyword \"human\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-anthropology:pathway:ba-option-family:indigenous-archaeology",
+    "ownerKey": "uw-seattle-anthropology:pathway:ba-option-family:indigenous-archaeology",
+    "planId": "uw-seattle-anthropology",
+    "pathwayId": "ba-option-family:indigenous-archaeology",
+    "ownerTitle": "Anthropology - B.A. Indigenous Archaeology option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-607f222af69503804f6d92fc",
+    "label": "Bachelor of Arts degree with a major in Anthropology: Indigenous Archaeology",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 139,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "matches major keyword \"anthropology\"",
+      "matches major keyword \"archaeology\"",
+      "matches major keyword \"indigenous\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -419,6 +486,39 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-05-24T18:22:43.941Z"
   },
   {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-bioengineering:pathway:data-science-option",
+    "ownerKey": "uw-seattle-bioengineering:pathway:data-science-option",
+    "planId": "uw-seattle-bioengineering",
+    "pathwayId": "data-science-option",
+    "ownerTitle": "Bioengineering - Data Science Option",
+    "campusId": "uw-seattle",
+    "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
+    "label": "Option in Data Science",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 117,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"bioengineering\"",
+      "matches major keyword \"data\"",
+      "matches multiple major keywords",
+      "official source text matches the selected pathway",
+      "pathway-specific official child page matches the selected pathway",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "undergraduate path segment",
+      "Replaces existing primary https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/ after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
+  },
+  {
     "ownerType": "major",
     "ownerId": "uw-seattle-biology",
     "ownerKey": "uw-seattle-biology",
@@ -456,6 +556,38 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
+    "ownerId": "uw-seattle-biology:pathway:bs-option-family:physiology",
+    "ownerKey": "uw-seattle-biology:pathway:bs-option-family:physiology",
+    "planId": "uw-seattle-biology",
+    "pathwayId": "bs-option-family:physiology",
+    "ownerTitle": "Biology - B.S. Physiology option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670408fef8793734586f7ec1",
+    "label": "Bachelor of Science degree with a major in Biology: Physiology",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 137,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "matches major keyword \"biology\"",
+      "matches major keyword \"physiology\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Biology-112.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
+  },
+  {
+    "ownerType": "pathway",
     "ownerId": "uw-seattle-biology:pathway:bs-option-family:plant-biology",
     "ownerKey": "uw-seattle-biology:pathway:bs-option-family:plant-biology",
     "planId": "uw-seattle-biology",
@@ -486,66 +618,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page"
     ],
     "generatedAt": "2026-05-25T04:13:26.660Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-chemical-engineering:pathway:standard-option",
-    "ownerKey": "uw-seattle-chemical-engineering:pathway:standard-option",
-    "planId": "uw-seattle-chemical-engineering",
-    "pathwayId": "standard-option",
-    "ownerTitle": "Chemical Engineering - Standard Option",
-    "campusId": "uw-seattle",
-    "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html/standard/standard#",
-    "label": "Additional Links",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-curriculum-page",
-    "canCreateSchedulableRows": true,
-    "score": 123,
-    "confidence": "high",
-    "reasons": [
-      "curriculum wording",
-      "discovered from an official source page",
-      "matches major keyword \"standard\"",
-      "official source path matches the selected pathway",
-      "primary degree requirements source role",
-      "same-program option/concentration child source matches the selected pathway",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "stays on the same department or school page",
-      "Replaces existing primary https://www.cheme.washington.edu/undergraduate_students/curriculum after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
-  },
-  {
-    "ownerType": "major",
-    "ownerId": "uw-seattle-chemistry",
-    "ownerKey": "uw-seattle-chemistry",
-    "planId": "uw-seattle-chemistry",
-    "pathwayId": null,
-    "ownerTitle": "Chemistry",
-    "campusId": "uw-seattle",
-    "url": "https://chem.washington.edu/ba-chemistry",
-    "label": "Scoped section: BA Chemistry Checklist (PDF)",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 113,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "checklist-style wording",
-      "explicitly names the selected major",
-      "matches major keyword \"chemistry\"",
-      "official source path matches the selected major",
-      "primary degree requirements source role",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
   },
   {
     "ownerType": "major",
@@ -619,25 +691,24 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-economics:pathway:bs-option-family:data-science",
-    "ownerKey": "uw-seattle-economics:pathway:bs-option-family:data-science",
-    "planId": "uw-seattle-economics",
-    "pathwayId": "bs-option-family:data-science",
-    "ownerTitle": "Economics - B.S. Data Science option",
+    "ownerId": "uw-seattle-drama:pathway:ba-option-family:design",
+    "ownerKey": "uw-seattle-drama:pathway:ba-option-family:design",
+    "planId": "uw-seattle-drama",
+    "pathwayId": "ba-option-family:design",
+    "ownerTitle": "Drama - B.A. Design option",
     "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6737c98ea269d097a4b82313",
-    "label": "Bachelor of Science degree with a major in Economics: Data Science major requirements",
+    "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d64142271da38091ab356",
+    "label": "Bachelor of Arts degree with a major in Drama: Design",
     "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
     "parserType": "catalog-page",
     "canCreateSchedulableRows": true,
-    "score": 167,
+    "score": 137,
     "confidence": "high",
     "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"data\"",
-      "matches major keyword \"economics\"",
+      "discovered from an official source page",
+      "matches major keyword \"design\"",
+      "matches major keyword \"drama\"",
       "matches multiple major keywords",
       "matches the selected degree route",
       "official catalog credential names the selected pathway",
@@ -645,32 +716,31 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "specific bachelor route wording",
       "stays on an official UW domain",
       "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Economics-135.html after weak-source re-evaluation."
+      "stays on the same department or school page",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Drama-134.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-economics:pathway:bs-option-family:strategy",
-    "ownerKey": "uw-seattle-economics:pathway:bs-option-family:strategy",
-    "planId": "uw-seattle-economics",
-    "pathwayId": "bs-option-family:strategy",
-    "ownerTitle": "Economics - B.S. Strategy option",
+    "ownerId": "uw-seattle-drama:pathway:ba-option-family:performance",
+    "ownerKey": "uw-seattle-drama:pathway:ba-option-family:performance",
+    "planId": "uw-seattle-drama",
+    "pathwayId": "ba-option-family:performance",
+    "ownerTitle": "Drama - B.A. Performance option",
     "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html#credential-6751f9663c8b5e6260e40608",
-    "label": "Bachelor of Science degree with a major in Economics: Strategy major requirements",
+    "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html#credential-609d62ac13141c15f1bb6c5a",
+    "label": "Bachelor of Arts degree with a major in Drama: Performance",
     "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
     "parserType": "catalog-page",
     "canCreateSchedulableRows": true,
-    "score": 167,
+    "score": 137,
     "confidence": "high",
     "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"economics\"",
-      "matches major keyword \"strategy\"",
+      "discovered from an official source page",
+      "matches major keyword \"drama\"",
+      "matches major keyword \"performance\"",
       "matches multiple major keywords",
       "matches the selected degree route",
       "official catalog credential names the selected pathway",
@@ -678,44 +748,10 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "specific bachelor route wording",
       "stays on an official UW domain",
       "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Economics-135.html after weak-source re-evaluation."
+      "stays on the same department or school page",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Drama-134.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-education-studies:pathway:ba-option-family:early-childhood-studies",
-    "ownerKey": "uw-seattle-education-studies:pathway:ba-option-family:early-childhood-studies",
-    "planId": "uw-seattle-education-studies",
-    "pathwayId": "ba-option-family:early-childhood-studies",
-    "ownerTitle": "Education Studies - B.A. Early Childhood Studies option",
-    "campusId": "uw-seattle",
-    "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html#credential-6529875c06990865c8238b32",
-    "label": "Bachelor of Arts degree with a major in Education Studies: Early Childhood Studies major requirements",
-    "sourceRole": "official-catalog",
-    "sourceRoleStatus": "primary",
-    "parserType": "catalog-page",
-    "canCreateSchedulableRows": true,
-    "score": 169,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "explicit major-requirements wording",
-      "matches major keyword \"childhood\"",
-      "matches major keyword \"early\"",
-      "matches major keyword \"education\"",
-      "matches multiple major keywords",
-      "matches the selected degree route",
-      "official catalog credential names the selected pathway",
-      "official UW General Catalog program page",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -749,7 +785,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -782,7 +818,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -814,7 +850,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -846,7 +882,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -882,7 +918,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -949,6 +985,36 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-05-24T03:27:22.033Z"
   },
   {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
+    "ownerKey": "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option",
+    "planId": "uw-seattle-english-language-literature-and-culture",
+    "pathwayId": "language-and-literature-option",
+    "ownerTitle": "English - Language, Literature & Culture - Language and Literature Option",
+    "campusId": "uw-seattle",
+    "url": "https://english.washington.edu/language-and-literature-option-requirements-summer-2019-spring-2022",
+    "label": "Major requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 121,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"english\"",
+      "official source path matches the selected pathway",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://english.washington.edu/english-language-literature-and-culture-option after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
+  },
+  {
     "ownerType": "major",
     "ownerId": "uw-seattle-geography",
     "ownerKey": "uw-seattle-geography",
@@ -1008,40 +1074,40 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://geography.washington.edu/ba-geography after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-informatics:pathway:data-science-option",
-    "ownerKey": "uw-seattle-informatics:pathway:data-science-option",
-    "planId": "uw-seattle-informatics",
-    "pathwayId": "data-science-option",
-    "ownerTitle": "Informatics - Data Science Option",
+    "ownerId": "uw-seattle-international-studies:pathway:ba-option-family:asia",
+    "ownerKey": "uw-seattle-international-studies:pathway:ba-option-family:asia",
+    "planId": "uw-seattle-international-studies",
+    "pathwayId": "ba-option-family:asia",
+    "ownerTitle": "International Studies - B.A. Asia option",
     "campusId": "uw-seattle",
-    "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/data-science-option?",
-    "label": "Close menu",
-    "sourceRole": "primary-degree-requirements",
+    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-3de9e354-feff-4386-b164-15ad1dc4664d",
+    "label": "Bachelor of Arts degree with a major in International Studies: Asia major requirements",
+    "sourceRole": "official-catalog",
     "sourceRoleStatus": "primary",
-    "parserType": "html-curriculum-page",
+    "parserType": "catalog-page",
     "canCreateSchedulableRows": true,
-    "score": 127,
+    "score": 167,
     "confidence": "high",
     "reasons": [
-      "curriculum wording",
-      "discovered from an official source page",
-      "explicitly names the selected pathway or route",
-      "matches major keyword \"data\"",
-      "matches major keyword \"informatics\"",
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "matches major keyword \"asia\"",
+      "matches major keyword \"international\"",
       "matches multiple major keywords",
-      "official source text matches the selected pathway",
-      "primary degree requirements source role",
-      "same-program option/concentration child source matches the selected pathway",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
       "stays on an official UW domain",
       "stays on the current official department host",
-      "stays on the same department or school page",
-      "Replaces existing primary https://ischool.uw.edu/programs/informatics/curriculum after weak-source re-evaluation."
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "pathway",
@@ -1077,6 +1143,74 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-05-25T07:32:36.399Z"
   },
   {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-international-studies:pathway:ba-option-family:europe",
+    "ownerKey": "uw-seattle-international-studies:pathway:ba-option-family:europe",
+    "planId": "uw-seattle-international-studies",
+    "pathwayId": "ba-option-family:europe",
+    "ownerTitle": "International Studies - B.A. Europe option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-5fd3bfc3e9f12600287fc73b",
+    "label": "Bachelor of Arts degree with a major in International Studies: Europe major requirements",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 167,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "matches major keyword \"europe\"",
+      "matches major keyword \"international\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-seattle-international-studies:pathway:ba-option-family:latin-america-and-caribbean",
+    "ownerKey": "uw-seattle-international-studies:pathway:ba-option-family:latin-america-and-caribbean",
+    "planId": "uw-seattle-international-studies",
+    "pathwayId": "ba-option-family:latin-america-and-caribbean",
+    "ownerTitle": "International Studies - B.A. Latin America and Caribbean option",
+    "campusId": "uw-seattle",
+    "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#credential-de5ae307-66fe-4109-baa1-8df5deecc0cf",
+    "label": "Bachelor of Arts degree with a major in International Studies: Latin America and Caribbean major requirements",
+    "sourceRole": "official-catalog",
+    "sourceRoleStatus": "primary",
+    "parserType": "catalog-page",
+    "canCreateSchedulableRows": true,
+    "score": 171,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "matches major keyword \"america\"",
+      "matches major keyword \"caribbean\"",
+      "matches major keyword \"international\"",
+      "matches major keyword \"latin\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official catalog credential names the selected pathway",
+      "official UW General Catalog program page",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "verified against an official source candidate",
+      "Replaces existing primary https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
+  },
+  {
     "ownerType": "major",
     "ownerId": "uw-seattle-microbiology",
     "ownerKey": "uw-seattle-microbiology",
@@ -1105,7 +1239,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "major",
@@ -1173,7 +1307,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-27T11:13:28.031Z"
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "major",
@@ -1204,6 +1338,33 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-05-25T07:32:36.399Z"
+  },
+  {
+    "ownerType": "major",
+    "ownerId": "uw-tacoma-history",
+    "ownerKey": "uw-tacoma-history",
+    "planId": "uw-tacoma-history",
+    "pathwayId": null,
+    "ownerTitle": "History (BA)",
+    "campusId": "uw-tacoma",
+    "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+    "label": "General History Option major requirements",
+    "sourceRole": "primary-degree-requirements",
+    "sourceRoleStatus": "primary",
+    "parserType": "html-degree-page",
+    "canCreateSchedulableRows": true,
+    "score": 105,
+    "confidence": "high",
+    "reasons": [
+      "already stored as an official source",
+      "explicit major-requirements wording",
+      "matches major keyword \"history\"",
+      "official source path matches the selected major",
+      "primary degree requirements source role",
+      "stays on an official UW domain",
+      "verified against an official source candidate"
+    ],
+    "generatedAt": "2026-05-27T17:59:17.886Z"
   },
   {
     "ownerType": "major",
