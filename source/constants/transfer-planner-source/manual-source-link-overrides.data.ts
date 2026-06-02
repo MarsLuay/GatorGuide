@@ -60,6 +60,26 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
       ],
     },
     {
+      planId: "uw-bothell-chemistry-ba",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      links: [
+        {
+          label: "UW Bothell Chemistry curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Chemistry admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
       planId: "uw-bothell-chemistry-bs",
       mode: "replace",
       preferredPrimaryUrl:
@@ -68,6 +88,12 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
         {
           label: "UW Bothell Chemistry curriculum",
           url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Chemistry admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions",
           status: "verified",
           sourceConfidence: "high",
         },
@@ -86,6 +112,12 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
           status: "verified",
           sourceConfidence: "high",
         },
+        {
+          label: "UW Bothell Chemistry admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
       ],
     },
     {
@@ -98,6 +130,12 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
         {
           label: "UW Bothell Chemistry B.S. biochemistry option requirements",
           url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Chemistry admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions",
           status: "verified",
           sourceConfidence: "high",
         },

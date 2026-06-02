@@ -1082,7 +1082,7 @@ function shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate: {
     .map((line) => String(line ?? "").replace(/\s+/g, " ").trim())
     .filter(Boolean);
   if (!sourceLineHints.length) {
-    return true;
+    return false;
   }
 
   const nonRequirementCueLines = sourceLineHints.filter((line) =>
@@ -1094,6 +1094,16 @@ function shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate: {
       !REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN.test(line)
   );
   if (nonRequirementCueLines.length && !positiveRequirementCueLines.length) {
+    return false;
+  }
+  if (sourceLineHints.some((line) => /\b(?:or|either|choose|select|one of)\b/i.test(line))) {
+    return false;
+  }
+  if (
+    sourceLineHints.some((line) =>
+      /^(?:\[[^\]]+\]\s*)?[a-z]\.\s+[A-Z& ]+\s*\d{3}/i.test(line)
+    )
+  ) {
     return false;
   }
 
@@ -1300,9 +1310,31 @@ function parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course: {
   category?: string | null;
 }) {
   if (course.optionRole === "required") {
+    if (
+      course.requirementType === "sequence_choice" ||
+      /\b(?:choose|select|one of)\b/i.test(
+        [course.sourceHeading, course.sourceCategory, course.category].join(" ")
+      ) ||
+      /^(?:honors|accelerated|algebra-based|calculus-based)\s*:/i.test(
+        String(course.sourceHeading ?? "").trim()
+      )
+    ) {
+      return false;
+    }
+
     return true;
   }
 
+  return parsedRequirementCourseLooksRequiredCreditBucket(course);
+}
+
+function parsedRequirementCourseLooksRequiredCreditBucket(course: {
+  optionRole?: string | null;
+  requirementType?: string | null;
+  sourceHeading?: string | null;
+  sourceCategory?: string | null;
+  category?: string | null;
+}) {
   if (course.optionRole !== "option" || course.requirementType !== "choose_credits") {
     return false;
   }
@@ -1316,7 +1348,11 @@ function parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course: {
     return false;
   }
 
-  return /\b(?:core courses?|required courses?|will need|must (?:complete|take|enroll))\b/i.test(sourceText);
+  if (/\b(?:core courses?|required courses?|will need|must (?:complete|take|enroll))\b/i.test(sourceText)) {
+    return true;
+  }
+
+  return /\b(?:mathematics|calculus|statistics|chemistry|physics|biology|science|engineering|programming|composition|writing)\s*:?\s*(?:\d+\s*)?(?:credits?|cr)\b/i.test(sourceText);
 }
 
 function getSourceBackedRequiredUwCourseCodeSet(
@@ -1334,13 +1370,13 @@ function getSourceBackedRequiredUwCourseCodeSet(
   }
 
   const trueOptionUwCourseCodes = getTrueOptionUwCourseCodeSet(plan);
-  let sawStructuredRequirementCourses = false;
   for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
     const structuredRequirementCourses = block.parsedRequirementCourses ?? [];
     if (structuredRequirementCourses.length) {
-      sawStructuredRequirementCourses = true;
       for (const course of structuredRequirementCourses) {
-        if (!parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course)) {
+        const looksSourceBackedRequired =
+          parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course);
+        if (!looksSourceBackedRequired) {
           continue;
         }
 
@@ -1350,7 +1386,10 @@ function getSourceBackedRequiredUwCourseCodeSet(
         if (!shouldAllowSourceScopedRequiredUwCourse(plan, normalizedCourseCode)) {
           continue;
         }
-        if (trueOptionUwCourseCodes.has(normalizedCourseCode)) {
+        if (
+          trueOptionUwCourseCodes.has(normalizedCourseCode) &&
+          !parsedRequirementCourseLooksRequiredCreditBucket(course)
+        ) {
           continue;
         }
         if (!shouldIncludeSourceBackedParsedRequiredCourseCandidate({
@@ -1365,10 +1404,6 @@ function getSourceBackedRequiredUwCourseCodeSet(
     }
   }
   addChecklistBackedRequiredUwCourses(plan, requiredUwCourseCodes);
-
-  if (sawStructuredRequirementCourses) {
-    return requiredUwCourseCodes;
-  }
 
   for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
     for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
@@ -20623,6 +20658,12 @@ function getMappedGrcCourseCodesForRequiredUwCourse(
   return getBestGrcEquivalentPathCourseCodesForUwCourse(plan, uwCourseCode);
 }
 
+function requiredMappedCoverageRequirementLooksChoice(value: string | null | undefined) {
+  return /\b(?:choose|select|one of|either|or|options?|electives?)\b/i.test(
+    String(value ?? "")
+  );
+}
+
 function getSourceBackedRequiredUwRequirementLabels(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -20638,13 +20679,13 @@ function getSourceBackedRequiredUwRequirementLabels(
   }
 
   const trueOptionUwCourseCodes = getTrueOptionUwCourseCodeSet(plan);
-  let sawStructuredRequirementCourses = false;
   for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
     const structuredRequirementCourses = block.parsedRequirementCourses ?? [];
     if (structuredRequirementCourses.length) {
-      sawStructuredRequirementCourses = true;
       for (const course of structuredRequirementCourses) {
-        if (course.optionRole !== "required") {
+        const looksSourceBackedRequired =
+          parsedRequirementCourseLooksRequiredForSourceBackedCoverage(course);
+        if (!looksSourceBackedRequired) {
           continue;
         }
 
@@ -20652,8 +20693,11 @@ function getSourceBackedRequiredUwRequirementLabels(
         if (
           !courseCode ||
           labelsByCourseCode.has(courseCode) ||
-          trueOptionUwCourseCodes.has(courseCode) ||
           !shouldAllowSourceScopedRequiredUwCourse(plan, courseCode) ||
+          (
+            trueOptionUwCourseCodes.has(courseCode) &&
+            !parsedRequirementCourseLooksRequiredCreditBucket(course)
+          ) ||
           !shouldIncludeSourceBackedParsedRequiredCourseCandidate({
             uwCourseCode: courseCode,
             sourceLineHints: [course.sourceHeading, course.sourceCategory],
@@ -20668,15 +20712,6 @@ function getSourceBackedRequiredUwRequirementLabels(
         );
       }
     }
-  }
-
-  if (sawStructuredRequirementCourses) {
-    for (const [courseCode, label] of getChecklistBackedRequiredUwRequirementLabels(plan)) {
-      if (!labelsByCourseCode.has(courseCode)) {
-        labelsByCourseCode.set(courseCode, label);
-      }
-    }
-    return labelsByCourseCode;
   }
 
   for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
@@ -21013,8 +21048,14 @@ export function auditRequiredMappedCourseCoverage(input: {
       .map((course) => normalizeCourseCode(course.code))
       .filter(Boolean)
   );
+  const sourceBackedRequiredCourseCodes = new Set(
+    buildSourceBackedRequiredCourseCodes(input.plan)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
 
   return [...auditUwCourseCodes].sort().map((uwCourseCode) => {
+    const uwRequirement = requirementLabels.get(uwCourseCode) ?? uwCourseCode;
     const mappedGrcEquivalentPath = getMappedGrcCourseCodesForRequiredUwCourse(
       input.plan as TransferPlannerMajorPlan,
       uwCourseCode
@@ -21032,19 +21073,38 @@ export function auditRequiredMappedCourseCoverage(input: {
       completedCourseCodes.has(uwCourseCode) ||
       (mappedGrcEquivalentPath.length > 0 &&
         completedMappedComponents.length === mappedGrcEquivalentPath.length);
+    const knownToSourceBackedPlanner =
+      mappedGrcEquivalentPath.length > 0 &&
+      mappedGrcEquivalentPath.every((courseCode) =>
+        sourceBackedRequiredCourseCodes.has(courseCode)
+      );
     const requirementType = mappedGrcEquivalentPath.length
       ? mappedGrcEquivalentPath.length > 1
         ? "compound-path"
         : "single"
       : "hidden-unmapped";
+    const suppressChoiceRequirementIssue =
+      requiredMappedCoverageRequirementLooksChoice(uwRequirement);
     const hiddenReason =
-      visibleInPlan || alreadyCompleted
+      visibleInPlan ||
+      alreadyCompleted ||
+      suppressChoiceRequirementIssue ||
+      knownToSourceBackedPlanner
         ? null
         : mappedGrcEquivalentPath.length
           ? null
           : "UW-only/unmapped: no Green River equivalent is currently mapped.";
     const issue = (() => {
-      if (!mappedGrcEquivalentPath.length || visibleInPlan || alreadyCompleted) {
+      if (suppressChoiceRequirementIssue) {
+        return null;
+      }
+
+      if (
+        !mappedGrcEquivalentPath.length ||
+        visibleInPlan ||
+        alreadyCompleted ||
+        knownToSourceBackedPlanner
+      ) {
         return null;
       }
 
@@ -21057,7 +21117,7 @@ export function auditRequiredMappedCourseCoverage(input: {
 
     return {
       major: input.plan?.title ?? input.plan?.id ?? "unknown",
-      uwRequirement: requirementLabels.get(uwCourseCode) ?? uwCourseCode,
+      uwRequirement,
       uwCourse: uwCourseCode,
       mappedGrcEquivalentPath,
       requirementType,
@@ -21068,7 +21128,7 @@ export function auditRequiredMappedCourseCoverage(input: {
       copyOnlyDebugText: [
         "[copy-only required coverage audit]",
         `Major: ${input.plan?.title ?? input.plan?.id ?? "unknown"}`,
-        `UW requirement: ${requirementLabels.get(uwCourseCode) ?? uwCourseCode}`,
+        `UW requirement: ${uwRequirement}`,
         `UW course: ${uwCourseCode}`,
         `Mapped GRC equivalent/path: ${
           mappedGrcEquivalentPath.length ? mappedGrcEquivalentPath.join(", ") : "none"
@@ -21076,6 +21136,7 @@ export function auditRequiredMappedCourseCoverage(input: {
         `Requirement type: ${requirementType}`,
         `Visible in plan: ${visibleInPlan ? "yes" : "no"}`,
         `Already completed: ${alreadyCompleted ? "yes" : "no"}`,
+        `Known to source-backed planner: ${knownToSourceBackedPlanner ? "yes" : "no"}`,
         `Hidden reason: ${hiddenReason ?? "none"}`,
         `Issue: ${issue ?? "none"}`,
       ].join(" "),

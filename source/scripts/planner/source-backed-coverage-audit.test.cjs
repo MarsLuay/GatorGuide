@@ -1525,7 +1525,7 @@ test("Runtime option audit suppresses options scheduled for other requirements",
   }
 });
 
-test("Environmental Studies optionless credit bucket keeps methods default without scheduling PDF prose", () => {
+test("Environmental Studies optionless credit bucket keeps mapped methods default without scheduling PDF prose", () => {
   const basePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
     "uw-seattle-environmental-studies"
   );
@@ -1573,9 +1573,9 @@ test("Environmental Studies optionless credit bucket keeps methods default witho
   assert.ok(
     suggestedRows.some(
       (course) =>
-        course.label === "MATH& 146" &&
+        course.label === "GIS 202" &&
         course.optionGroup?.selectedOptionIds.includes(
-          "uw-seattle-environmental-studies:requirement-option:stat-220"
+          "uw-seattle-environmental-studies:requirement-option:esrm-250"
         )
     )
   );
@@ -1589,7 +1589,7 @@ test("Environmental Studies optionless credit bucket keeps methods default witho
   }).find((row) => row.groupId.includes("envir-310-or-esrm-250"));
 
   assert.deepEqual(analyticalMethodsRow?.scheduledOptionIds, [
-    "uw-seattle-environmental-studies:requirement-option:stat-220",
+    "uw-seattle-environmental-studies:requirement-option:esrm-250",
   ]);
   assert.equal(analyticalMethodsRow?.issue, "none");
 });
@@ -2079,6 +2079,127 @@ test("Bothell Chemistry BS keeps canonical pathways on the current curriculum so
     ),
     false
   );
+});
+
+test("Bothell Chemistry admissions prep materializes guide-backed transfer rows", () => {
+  const expectedGrcCourses = [
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+  ];
+  const scopes = [
+    ["uw-bothell-chemistry-ba", null],
+    ["uw-bothell-chemistry-bs", "b-s-in-chemistry-general-option"],
+    ["uw-bothell-chemistry-bs", "biochemistry-option"],
+  ];
+
+  for (const [planId, pathwayId] of scopes) {
+    const plan = studentRuntime.getTransferPlannerMajorPlan(planId);
+    assert.ok(plan, `Expected ${planId} in the student runtime.`);
+    const resolvedPlan = studentRuntime.resolveTransferPlannerMajorPlan(plan, pathwayId);
+    assert.ok(resolvedPlan, `Expected resolved runtime plan for ${planId}/${pathwayId ?? "base"}.`);
+
+    const admissionPrepRows = (resolvedPlan.applicationChecklist ?? []).filter(
+      (item) => item.sourceScope === "admission-prep-schedulable"
+    );
+    assert.equal(
+      admissionPrepRows.length,
+      5,
+      `Expected Chemistry admission-prep rows for ${planId}/${pathwayId ?? "base"}.`
+    );
+    assert.equal(
+      admissionPrepRows.every(
+        (item) =>
+          item.sourceRole === "admissions-preparation" &&
+          item.sourceUrl === "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions" &&
+          item.canCreateScheduleRow === true
+      ),
+      true,
+      `Expected admission-prep rows to stay official-source backed for ${planId}/${pathwayId ?? "base"}.`
+    );
+
+    const rowCourseSet = new Set(admissionPrepRows.flatMap((item) => item.grcCourses ?? []));
+    const visibleCourseSet = new Set(resolvedPlan.grcCourseList ?? []);
+    for (const expectedCourse of expectedGrcCourses) {
+      assert.ok(
+        rowCourseSet.has(expectedCourse),
+        `Expected admission-prep rows for ${planId}/${pathwayId ?? "base"} to include ${expectedCourse}.`
+      );
+      assert.ok(
+        visibleCourseSet.has(expectedCourse),
+        `Expected student-visible course list for ${planId}/${pathwayId ?? "base"} to include ${expectedCourse}.`
+      );
+    }
+  }
+});
+
+function getTransferOnlyVisibleCourseCodes(plan) {
+  return new Set(
+    buildTransferOnlySuggestedCourses(plan)
+      .flatMap((course) => planner.extractCourseCodes(course.label))
+      .map((courseCode) => planner.normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function getRequiredMappedCoverageIssues(plan) {
+  return planner
+    .auditRequiredMappedCourseCoverage({
+      plan,
+      suggestedPlan: buildTransferOnlySuggestedPlan(plan),
+    })
+    .filter((row) => row.issue);
+}
+
+test("Bothell Computer Engineering materializes campus-alias requirements from the UW-GRC guide", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-computer-engineering");
+  assert.ok(plan, "Expected Bothell Computer Engineering in the student runtime.");
+
+  const visibleCourseCodes = getTransferOnlyVisibleCourseCodes(plan);
+  for (const expectedCourseCode of [
+    "MATH& 151",
+    "MATH& 152",
+    "CHEM& 161",
+    "PHYS& 221",
+    "PHYS& 222",
+    "CS 121",
+    "MATH 240",
+  ]) {
+    assert.ok(
+      visibleCourseCodes.has(expectedCourseCode),
+      `Expected Bothell Computer Engineering to schedule ${expectedCourseCode}.`
+    );
+  }
+  assert.equal(
+    visibleCourseCodes.has("MATH& 148"),
+    false,
+    "Expected STMATH 124 to map to Calculus I, not the overlapping Business Calculus row."
+  );
+  assert.deepEqual(getRequiredMappedCoverageIssues(plan), []);
+});
+
+test("Required mapped-course coverage ignores unselected choice alternatives", () => {
+  const cases = [
+    ["uw-bothell-business-administration", "accounting-option"],
+    ["uw-seattle-chemistry", "acs-certified-bs-route"],
+    ["uw-seattle-civil-engineering", null],
+  ];
+
+  for (const [planId, pathwayId] of cases) {
+    const basePlan = studentRuntime.getTransferPlannerMajorPlan(planId);
+    assert.ok(basePlan, `Expected ${planId} in the student runtime.`);
+    const plan = studentRuntime.resolveTransferPlannerMajorPlan(basePlan, pathwayId) ?? basePlan;
+    const issues = getRequiredMappedCoverageIssues(plan);
+
+    assert.deepEqual(
+      issues,
+      [],
+      `Expected ${planId}/${pathwayId ?? "base"} not to promote unselected choice alternatives.`
+    );
+  }
 });
 
 test("Student runtime hides empty source-gap aliases without hiding variants", () => {

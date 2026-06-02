@@ -17,6 +17,25 @@ export const GUIDE_BACKED_EQUIVALENCY_RULE_KINDS = new Set([
 const REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
   /\bCourse (?:equivalent to|overlaps with):\s*([^.]*)/gi;
 const REQUIRED_COURSE_SEMANTIC_RELATION_CACHE = new Map<string, string[]>();
+const REQUIRED_COURSE_EQUIVALENT_RELATION_PATTERN =
+  /\bCourse equivalent to:\s*([^.]*)/gi;
+const REQUIRED_COURSE_OVERLAP_RELATION_PATTERN =
+  /\bCourse overlaps with:\s*([^.]*)/gi;
+const REQUIRED_COURSE_SEMANTIC_RELATION_GROUP_CACHE = new Map<
+  string,
+  { equivalent: string[]; overlap: string[] }
+>();
+
+type GrcEquivalentPathCandidate = {
+  pathCourseCodes: string[];
+  rule: TransferPlannerEquivalencyRule;
+  targetCourseCode: string;
+};
+
+const GRC_EQUIVALENT_PATH_INDEX_BY_CAMPUS = new Map<
+  string,
+  Map<string, GrcEquivalentPathCandidate[]>
+>();
 
 function unique<T>(items: T[]) {
   return Array.from(new Set(items));
@@ -301,6 +320,89 @@ export function getTransferGuidanceCandidateRulesForSourceCourse(
   return allCandidateRules.filter((rule) => rule.targetSchoolIds.includes("uw-seattle"));
 }
 
+function ruleCanBackCampusTarget(
+  rule: TransferPlannerEquivalencyRule,
+  campusId: TransferPlannerMajorPlan["campusId"]
+) {
+  return (
+    rule.targetSchoolIds.includes(campusId) ||
+    (campusId !== "uw-seattle" && rule.targetSchoolIds.includes("uw-seattle"))
+  );
+}
+
+function getGrcEquivalentPathIndexForCampus(campusId: TransferPlannerMajorPlan["campusId"]) {
+  const cached = GRC_EQUIVALENT_PATH_INDEX_BY_CAMPUS.get(campusId);
+  if (cached) {
+    return cached;
+  }
+
+  const index = new Map<string, GrcEquivalentPathCandidate[]>();
+  for (const rule of getTransferPlannerAllEquivalencyRules()) {
+    if (
+      rule.sourceSchoolId !== "grc" ||
+      !GUIDE_BACKED_EQUIVALENCY_RULE_KINDS.has(rule.sourceKind ?? "") ||
+      rule.acceptanceCategory === "no-credit" ||
+      rule.type === "no-credit" ||
+      rule.isObsoleteSourceCourse ||
+      !ruleCanBackCampusTarget(rule, campusId)
+    ) {
+      continue;
+    }
+
+    const targetCourseCodes = (rule.targetCourseCodes ?? [])
+      .map((targetCourseCode) => normalizeCourseCode(targetCourseCode))
+      .filter(isSpecificTransferTargetCourseCode);
+    if (!targetCourseCodes.length) {
+      continue;
+    }
+
+    for (const sourceCourseSet of rule.sourceCourseSets ?? []) {
+      const pathCourseCodes = unique(
+        sourceCourseSet
+          .map((courseCode) => normalizeCourseCode(courseCode))
+          .filter((courseCode) => Boolean(courseCode))
+      );
+      if (
+        !pathCourseCodes.length ||
+        pathCourseCodes.length !== sourceCourseSet.length ||
+        !pathCourseCodes.every((courseCode) =>
+          Boolean(getTransferPlannerCanonicalCourse("grc", courseCode))
+        )
+      ) {
+        continue;
+      }
+
+      for (const targetCourseCode of targetCourseCodes) {
+        const candidates = index.get(targetCourseCode) ?? [];
+        candidates.push({
+          pathCourseCodes,
+          rule,
+          targetCourseCode,
+        });
+        index.set(targetCourseCode, candidates);
+      }
+    }
+  }
+
+  for (const [targetCourseCode, candidates] of index) {
+    index.set(
+      targetCourseCode,
+      candidates.sort((left, right) => {
+        const lengthDelta = left.pathCourseCodes.length - right.pathCourseCodes.length;
+        if (lengthDelta !== 0) return lengthDelta;
+
+        const ruleDelta = compareTransferGuidanceRules(left.rule, right.rule);
+        if (ruleDelta !== 0) return ruleDelta;
+
+        return left.pathCourseCodes.join("|").localeCompare(right.pathCourseCodes.join("|"));
+      })
+    );
+  }
+
+  GRC_EQUIVALENT_PATH_INDEX_BY_CAMPUS.set(campusId, index);
+  return index;
+}
+
 export function getCourseLevel(courseCode: string) {
   const match = normalizeCourseCode(courseCode).match(/(\d{3})[A-Z]?$/);
   return match ? Number(match[1]) : null;
@@ -319,15 +421,31 @@ export function getSourceBackedRequiredCourseSemanticRelations(
   courseCode: string,
   schoolId: "grc" | TransferPlannerMajorPlan["campusId"] = "grc"
 ) {
+  const relationGroups = getSourceBackedRequiredCourseSemanticRelationGroups(
+    courseCode,
+    schoolId
+  );
+  return unique([...relationGroups.equivalent, ...relationGroups.overlap]);
+}
+
+function getSourceBackedRequiredCourseSemanticRelationGroups(
+  courseCode: string,
+  schoolId: "grc" | TransferPlannerMajorPlan["campusId"] = "grc"
+) {
   const normalizedCourseCode = normalizeCourseCode(courseCode);
   if (!normalizedCourseCode) {
-    return [] as string[];
+    return { equivalent: [] as string[], overlap: [] as string[] };
   }
 
   const cacheKey = `${schoolId}|${normalizedCourseCode}`;
+  const groupedCached = REQUIRED_COURSE_SEMANTIC_RELATION_GROUP_CACHE.get(cacheKey);
+  if (groupedCached) {
+    return groupedCached;
+  }
+
   const cached = REQUIRED_COURSE_SEMANTIC_RELATION_CACHE.get(cacheKey);
   if (cached) {
-    return cached;
+    return { equivalent: cached, overlap: [] as string[] };
   }
 
   const metadata =
@@ -335,7 +453,23 @@ export function getSourceBackedRequiredCourseSemanticRelations(
     (schoolId === "grc"
       ? null
       : getTransferPlannerCanonicalCourse("uw-seattle", normalizedCourseCode));
-  const subject = getCourseSubject(normalizedCourseCode);
+  const extractRelationCodes = (pattern: RegExp) =>
+    unique(
+      Array.from(String(metadata?.catalogDescription ?? "").matchAll(pattern))
+        .flatMap((match) => extractCourseCodes(match[1] ?? ""))
+        .map((relatedCourseCode) => normalizeCourseCode(relatedCourseCode))
+        .filter(
+          (relatedCourseCode) =>
+            relatedCourseCode &&
+            relatedCourseCode !== normalizedCourseCode &&
+            isLowerDivisionCourseCode(relatedCourseCode) &&
+            isSpecificTransferTargetCourseCode(relatedCourseCode)
+        )
+    );
+  const relationGroups = {
+    equivalent: extractRelationCodes(REQUIRED_COURSE_EQUIVALENT_RELATION_PATTERN),
+    overlap: extractRelationCodes(REQUIRED_COURSE_OVERLAP_RELATION_PATTERN),
+  };
   const relatedCourseCodes = unique(
     Array.from(
       String(metadata?.catalogDescription ?? "").matchAll(
@@ -349,12 +483,49 @@ export function getSourceBackedRequiredCourseSemanticRelations(
           relatedCourseCode &&
           relatedCourseCode !== normalizedCourseCode &&
           isLowerDivisionCourseCode(relatedCourseCode) &&
-          getCourseSubject(relatedCourseCode) === subject
+          isSpecificTransferTargetCourseCode(relatedCourseCode)
       )
   );
 
   REQUIRED_COURSE_SEMANTIC_RELATION_CACHE.set(cacheKey, relatedCourseCodes);
-  return relatedCourseCodes;
+  REQUIRED_COURSE_SEMANTIC_RELATION_GROUP_CACHE.set(cacheKey, relationGroups);
+  return relationGroups;
+}
+
+function getRequiredUwCourseCodeTransferTargetAliases(
+  uwCourseCode: string,
+  campusId: TransferPlannerMajorPlan["campusId"],
+  availableTargetCourseCodes?: Set<string>
+) {
+  const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
+  if (!normalizedUwCourseCode) {
+    return [] as string[];
+  }
+
+  const relationGroups = getSourceBackedRequiredCourseSemanticRelationGroups(
+    normalizedUwCourseCode,
+    campusId
+  );
+  const exactAndEquivalentCourseCodes = unique([
+    normalizedUwCourseCode,
+    ...relationGroups.equivalent,
+  ])
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(isSpecificTransferTargetCourseCode);
+  const hasExactOrEquivalentMapping = availableTargetCourseCodes
+    ? exactAndEquivalentCourseCodes.some((courseCode) =>
+        availableTargetCourseCodes.has(courseCode)
+      )
+    : exactAndEquivalentCourseCodes.length > 1;
+
+  return unique(
+    [
+      ...exactAndEquivalentCourseCodes,
+      ...(hasExactOrEquivalentMapping ? [] : relationGroups.overlap),
+    ]
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(isSpecificTransferTargetCourseCode)
+  );
 }
 
 export function buildBestSingleCourseUwEquivalentCourseCodes(
@@ -421,13 +592,33 @@ export function getCandidateGrcEquivalentPathCourseCodesForUwCourse(
   }
 
   const planGrcCourseCodes = new Set(getPlanGrcCourseCodes(plan));
+  const reverseIndex = getGrcEquivalentPathIndexForCampus(plan.campusId);
+  const reverseIndexTargetCourseCodes = new Set(reverseIndex.keys());
+  const targetAliases = getRequiredUwCourseCodeTransferTargetAliases(
+    normalizedUwCourseCode,
+    plan.campusId,
+    reverseIndexTargetCourseCodes
+  );
   const candidatePathsByKey = new Map<string, string[]>();
+  const registerCandidatePath = (pathCourseCodes: string[]) => {
+    if (
+      !pathCourseCodes.length ||
+      !pathCourseCodes.every((courseCode) =>
+        Boolean(getTransferPlannerCanonicalCourse("grc", courseCode))
+      )
+    ) {
+      return;
+    }
+
+    candidatePathsByKey.set(pathCourseCodes.join("|"), pathCourseCodes);
+  };
+
   for (const sourceCourseCode of planGrcCourseCodes) {
     for (const rule of getTransferGuidanceCandidateRulesForSourceCourse(sourceCourseCode, plan.campusId)) {
       const targetCourseCodes = (rule.targetCourseCodes ?? [])
         .map((targetCourseCode) => normalizeCourseCode(targetCourseCode))
         .filter(Boolean);
-      if (!targetCourseCodes.includes(normalizedUwCourseCode)) {
+      if (!targetCourseCodes.some((targetCourseCode) => targetAliases.includes(targetCourseCode))) {
         continue;
       }
 
@@ -445,16 +636,14 @@ export function getCandidateGrcEquivalentPathCourseCodesForUwCourse(
           continue;
         }
 
-        if (
-          !pathCourseCodes.every((courseCode) =>
-            Boolean(getTransferPlannerCanonicalCourse("grc", courseCode))
-          )
-        ) {
-          continue;
-        }
-
-        candidatePathsByKey.set(pathCourseCodes.join("|"), pathCourseCodes);
+        registerCandidatePath(pathCourseCodes);
       }
+    }
+  }
+
+  for (const targetCourseCode of targetAliases) {
+    for (const candidate of reverseIndex.get(targetCourseCode) ?? []) {
+      registerCandidatePath(candidate.pathCourseCodes);
     }
   }
 

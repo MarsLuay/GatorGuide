@@ -1864,6 +1864,7 @@ const TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY_PARTITION_KEYS = [
   "uw-bothell-business-administration-leadership-and-strategic-innovation",
   "uw-bothell-business-administration-marketing",
   "uw-bothell-business-administration-supply-chain-management",
+  "uw-bothell-chemistry-ba",
   "uw-bothell-chemistry-bs",
   "uw-bothell-computer-engineering",
   "uw-bothell-conservation-and-restoration-science",
@@ -2060,6 +2061,8 @@ function loadTransferPlannerRuntimePrimaryDegreeSourcesByKeyPartition(partitionK
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-business-administration-marketing.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-bothell-business-administration-supply-chain-management":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-business-administration-supply-chain-management.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
+    case "uw-bothell-chemistry-ba":
+      return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-chemistry-ba.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-bothell-chemistry-bs":
       return require("./student-runtime.generated/primary-degree-sources-by-plan-id/uw-bothell-chemistry-bs.generated.json") as Record<string, TransferPlannerSourceManifestEntry>;
     case "uw-bothell-computer-engineering":
