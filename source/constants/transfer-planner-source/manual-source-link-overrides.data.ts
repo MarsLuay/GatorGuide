@@ -60,6 +60,50 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
       ],
     },
     {
+      planId: "uw-bothell-chemistry-bs",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      links: [
+        {
+          label: "UW Bothell Chemistry curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-chemistry-bs",
+      pathwayId: "b-s-in-chemistry-general-option",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      links: [
+        {
+          label: "UW Bothell Chemistry B.S. general option requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-chemistry-bs",
+      pathwayId: "biochemistry-option",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+      links: [
+        {
+          label: "UW Bothell Chemistry B.S. biochemistry option requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
       planId: "uw-bothell-business-administration",
       mode: "merge",
       preferredPrimaryUrl:

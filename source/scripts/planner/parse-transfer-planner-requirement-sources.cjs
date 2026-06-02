@@ -13565,15 +13565,39 @@ function sourceUrlPathMentionsPathwayId(entry) {
   }
 }
 
+function sourceUrlPathMentionsSelectedPathwayIdentity(entry) {
+  if (sourceUrlPathMentionsPathwayId(entry)) {
+    return true;
+  }
+
+  const sourceUrl = String(entry?.url ?? entry?.sourceUrl ?? "").trim();
+  if (!entry?.pathwayId || !sourceUrl) {
+    return false;
+  }
+
+  try {
+    const pathname = decodeURIComponent(new URL(sourceUrl).pathname)
+      .split("/")
+      .filter(Boolean)
+      .slice(-2)
+      .join(" ");
+    return lineMatchesStrictSelectedPathwayIdentity(entry, pathname);
+  } catch {
+    return lineMatchesStrictSelectedPathwayIdentity(entry, sourceUrl);
+  }
+}
+
 function findExactHeadingSectionLines(lines, startPattern, endPattern) {
-  const startIndex = lines.findIndex((line) => startPattern.test(normalizeWhitespace(line)));
+  const normalizeHeadingLine = (line) =>
+    normalizeWhitespace(line).replace(/^#{1,6}\s+/, "").trim();
+  const startIndex = lines.findIndex((line) => startPattern.test(normalizeHeadingLine(line)));
   if (startIndex < 0) {
     return null;
   }
 
   let endIndex = lines.length - 1;
   for (let index = startIndex + 1; index < lines.length; index += 1) {
-    const line = normalizeWhitespace(lines[index]);
+    const line = normalizeHeadingLine(lines[index]);
     if (line && endPattern.test(line)) {
       endIndex = index - 1;
       break;
@@ -13622,6 +13646,26 @@ function scopeBothellChemistryCurriculumLines(entry, lines) {
   return null;
 }
 
+function usesAuthoritativeBothellChemistryCurriculumScope(entry) {
+  if (
+    entry?.campusId !== "uw-bothell" ||
+    !/^uw-bothell-chemistry-(?:ba|bs)$/i.test(String(entry?.planId ?? "")) ||
+    !/\/stem\/undergraduate\/majors\/chemistry\/curriculum(?:$|[#?])/i.test(
+      String(entry?.url ?? entry?.sourceUrl ?? "")
+    )
+  ) {
+    return false;
+  }
+
+  return (
+    (entry.planId === "uw-bothell-chemistry-ba" && !entry.pathwayId) ||
+    (entry.planId === "uw-bothell-chemistry-bs" &&
+      ["b-s-in-chemistry-general-option", "biochemistry-option"].includes(
+        String(entry.pathwayId ?? "")
+      ))
+  );
+}
+
 function shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, lines) {
   if (
     !entry?.pathwayId ||
@@ -13655,7 +13699,7 @@ function shouldUseFullFocusedPathwayDegreeHtmlScope(entry, title, headings, line
   ).length;
 
   return Boolean(
-    sourceUrlPathMentionsPathwayId(entry) &&
+    sourceUrlPathMentionsSelectedPathwayIdentity(entry) &&
       lineMatchesStrictSelectedPathwayIdentity(entry, sourceIdentityText) &&
       /\b(?:degree requirements?|major requirements?|curriculum)\b/.test(sampledText) &&
       fullPageCourseCount >= 8 &&
@@ -15545,6 +15589,13 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   const scopedAlignment = getParsedOwnerAlignmentScore(entry, scopedParsed);
   const fullCourseCount = fullParsed.courseCodes?.length ?? 0;
   const scopedCourseCount = scopedParsed.courseCodes?.length ?? 0;
+  if (
+    scopedCourseCount >= 1 &&
+    usesAuthoritativeBothellChemistryCurriculumScope(entry)
+  ) {
+    return scopedParsed;
+  }
+
   const fullLowerDivisionCount = getParsedLowerDivisionCourseCount(fullParsed);
   const fullSubjects = getParsedCourseSubjects(fullParsed);
   const scopedSubjects = getParsedCourseSubjects(scopedParsed);
@@ -17786,6 +17837,67 @@ function getParserRecoverySelectedPathwayIdentityTokens(entry) {
   );
 }
 
+function getParserRecoveryCandidateUrlPathwayTokens(entry, url) {
+  const genericUrlTokens = new Set([
+    ...PATHWAY_SCOPE_IDENTITY_STOPWORDS,
+    "admission",
+    "admissions",
+    "curriculum",
+    "prereq",
+    "prerequisite",
+    "prerequisites",
+    "requirement",
+    "requirements",
+  ]);
+  const primaryMajorTokens = new Set(
+    normalizeMatcherText(getPrimaryMajorTitle(entry))
+      .split(" ")
+      .filter(Boolean)
+  );
+
+  try {
+    const segments = decodeURIComponent(new URL(String(url ?? "")).pathname)
+      .split("/")
+      .filter(Boolean)
+      .slice(-2)
+      .join(" ");
+    return uniqueSorted(
+      normalizeMatcherText(segments)
+        .split(" ")
+        .filter(
+          (token) =>
+            token.length >= 3 &&
+            !genericUrlTokens.has(token) &&
+            !primaryMajorTokens.has(token)
+        )
+    );
+  } catch {
+    return [];
+  }
+}
+
+function parserRecoveryCandidateHasSiblingPathwayQualifier(entry, candidateTokens, url) {
+  if (!entry?.pathwayId || !candidateTokens.length) {
+    return false;
+  }
+
+  const ownerTokenGroups = getSelectedPathwayScopeTokenGroups(entry);
+  if (
+    !ownerTokenGroups.length ||
+    !ownerTokenGroups.every((tokens) => tokens.length === 1)
+  ) {
+    return false;
+  }
+
+  const ownerTokens = new Set(ownerTokenGroups.flat());
+  const urlPathwayTokens = getParserRecoveryCandidateUrlPathwayTokens(entry, url);
+  if (!urlPathwayTokens.length) {
+    return false;
+  }
+
+  return urlPathwayTokens.some((token) => !ownerTokens.has(token));
+}
+
 function parserRecoveryCandidateConflictsWithOwnerIdentity(entry, label, url) {
   if (pathwayLabelMentionsDifferentMajor(entry, label)) {
     return true;
@@ -17982,6 +18094,10 @@ function parserRecoveryCandidateConflictsWithPathway(entry, label, url) {
   }
 
   if (ownerTokenGroups.length > 0 && candidateTokens.length > 0) {
+    if (parserRecoveryCandidateHasSiblingPathwayQualifier(entry, candidateTokens, url)) {
+      return true;
+    }
+
     const candidateTokenSet = new Set(candidateTokens);
     const hasCompleteOwnerGroup = ownerTokenGroups.some((group) =>
       group.every((token) => candidateTokenSet.has(token))

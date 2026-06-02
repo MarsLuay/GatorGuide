@@ -2041,6 +2041,46 @@ test("Bothell Economics uses the official curriculum page as student-visible sou
   }
 });
 
+test("Bothell Chemistry BS keeps canonical pathways on the current curriculum source", () => {
+  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-bothell-chemistry-bs");
+  assert.ok(plan, "Expected Bothell Chemistry BS in the student runtime.");
+
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(plan);
+  const pathwayIds = pathways.map((pathway) => pathway.id).sort();
+  assert.deepEqual(pathwayIds, ["b-s-in-chemistry-general-option", "biochemistry-option"]);
+
+  const badPathwayIds = new Set([
+    "b-s-in-chemistry-biochemistry-option",
+    "chemistry-series-option",
+    "important-planning-notes-option",
+  ]);
+  for (const pathwayId of pathwayIds) {
+    assert.equal(badPathwayIds.has(pathwayId), false, `Unexpected Chemistry BS pathway ${pathwayId}`);
+  }
+
+  const sourceBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-chemistry-bs"
+  );
+  const primaryBlocks = sourceBlocks.filter(
+    (block) => block.sourceRole === "primary-degree-requirements"
+  );
+  assert.ok(primaryBlocks.length, "Expected Chemistry BS primary requirement source blocks.");
+  assert.equal(
+    primaryBlocks.every(
+      (block) =>
+        block.sourceUrl ===
+        "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum"
+    ),
+    true
+  );
+  assert.equal(
+    sourceBlocks.some(
+      (block) => block.sourceUrl === "https://www.uwb.edu/stem/undergraduate/minors/chemistry"
+    ),
+    false
+  );
+});
+
 test("Student runtime hides empty source-gap aliases without hiding variants", () => {
   const bothellMajorIds = studentRuntime
     .getTransferPlannerStudentRuntimeMajorsForCampus("uw-bothell")

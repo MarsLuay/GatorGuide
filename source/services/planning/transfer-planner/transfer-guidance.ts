@@ -530,6 +530,23 @@ export function hasConcreteGrcCourseCode(courseCode: string) {
   );
 }
 
+function hasGuideBackedGrcSourceCourseCode(courseCode: string) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  if (!normalizedCourseCode) {
+    return false;
+  }
+
+  return getTransferPlannerEquivalencyRulesForSourceCourse(normalizedCourseCode).some(
+    (rule) =>
+      rule.sourceSchoolId === "grc" &&
+      GUIDE_BACKED_EQUIVALENCY_RULE_KINDS.has(rule.sourceKind ?? "") &&
+      rule.type !== "no-credit" &&
+      rule.acceptanceCategory !== "no-credit" &&
+      rule.ruleStatus !== "deprecated" &&
+      !rule.isObsoleteSourceCourse
+  );
+}
+
 export function hasSourceBackedGrcEquivalentForUwCourse(
   uwCourseCode: string,
   plan: TransferPlannerMajorPlan | null | undefined
@@ -554,6 +571,7 @@ export function hasVisibleGrcCourseOrEquivalent(
     const normalizedCourseCode = normalizeCourseCode(courseCode);
     return (
       hasConcreteGrcCourseCode(normalizedCourseCode) ||
+      hasGuideBackedGrcSourceCourseCode(normalizedCourseCode) ||
       getPlanGrcCourseCodes(plan).includes(normalizedCourseCode) ||
       hasSourceBackedGrcEquivalentForUwCourse(normalizedCourseCode, plan)
     );

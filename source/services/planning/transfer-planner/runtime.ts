@@ -2381,21 +2381,6 @@ function getValidPlannerRequirementOptionIdsForScheduling(input: {
   return optionGroup?.selectedOptionIds ?? [];
 }
 
-function isSchedulablePlannerRequirementOption(input: {
-  option: SuggestedQuarterCourseOption;
-  plan?: TransferPlannerMajorPlan | null;
-}) {
-  if (!isUwTransferPlannerPlan(input.plan)) {
-    return true;
-  }
-
-  if (isRequirementCategoryOption(input.option)) {
-    return true;
-  }
-
-  return hasVisibleGrcCourseOrEquivalent(input.option.courseCodes ?? [], input.plan);
-}
-
 function getSchedulablePlannerRequirementOptionIdsForScheduling(input: {
   item: TransferPlannerChecklistItem;
   optionIds: string[];
@@ -2420,17 +2405,7 @@ function getSchedulablePlannerRequirementOptionIdsForScheduling(input: {
     return optionGroup.selectedOptionIds;
   }
 
-  const visibleSelectedOptionIds = new Set(
-    optionGroup.options
-      .filter((option) => optionGroup.selectedOptionIds.includes(option.id))
-      .filter((option) =>
-        isSchedulablePlannerRequirementOption({
-          option,
-          plan: input.plan,
-        })
-      )
-      .map((option) => option.id)
-  );
+  const visibleSelectedOptionIds = new Set(optionGroup.selectedOptionIds);
   if (!visibleSelectedOptionIds.size) {
     return [] as string[];
   }
@@ -3391,18 +3366,7 @@ function buildSuggestedQuarterCourseOptionGroup(input: {
   if (!dedupedOptions.options.length) {
     return null;
   }
-  const categoryOptionIds = new Set(
-    dedupedOptions.options
-      .filter((option) => isRequirementCategoryOption(option))
-      .map((option) => option.id)
-  );
-  const concreteSelectedOptionIds = dedupedOptions.selectedOptionIds.filter(
-    (optionId) => !categoryOptionIds.has(optionId)
-  );
-  const selectedOptionIds =
-    group.requirementType === "choose_credits" && concreteSelectedOptionIds.length
-      ? concreteSelectedOptionIds
-      : dedupedOptions.selectedOptionIds;
+  const selectedOptionIds = dedupedOptions.selectedOptionIds;
   const userUnselectedOptionIds = dedupedOptions.userUnselectedOptionIds;
 
   const selectionCount = getRequirementOptionSelectionCountForSuggestedOptions(
@@ -16156,12 +16120,9 @@ function buildRemainingSuggestedCourses(
           ),
           isSelectionPrompt: false,
         };
-        const getSelectedCourseOptionGroup = (optionId: string) =>
+        const getSelectedCourseOptionGroup = () =>
           isSuggestedQuarterCreditBasedOptionGroup(selectedOptionGroup)
-            ? {
-                ...resolvedOptionGroup,
-                selectedOptionIds: [optionId],
-              }
+            ? resolvedOptionGroup
             : isFirstSelectedOptionCourse
               ? resolvedOptionGroup
               : null;
@@ -16263,7 +16224,7 @@ function buildRemainingSuggestedCourses(
               explicitCourseCodes: [],
               prerequisiteCourseSets: [],
               corequisiteCourseSets: [],
-              optionGroup: getSelectedCourseOptionGroup(selectedEntry.optionId),
+              optionGroup: getSelectedCourseOptionGroup(),
               ...categoryAwareRemainingSelectedOptionCreditRange,
             };
 
@@ -16309,7 +16270,7 @@ function buildRemainingSuggestedCourses(
                   (courseCode) => corequisiteCourseMap.get(courseCode) ?? []
                 )
               ).map((courseSet) => [...courseSet]),
-              optionGroup: getSelectedCourseOptionGroup(selectedEntry.optionId),
+              optionGroup: getSelectedCourseOptionGroup(),
               ...selectedCourseCreditRange,
             };
 

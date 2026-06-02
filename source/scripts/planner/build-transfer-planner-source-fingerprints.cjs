@@ -42,6 +42,26 @@ const {
   labelMentionsDifferentTransferPlannerMajor,
   normalizeTransferPlannerText,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
+let currentPlannerSourceModels = {
+  plans: [],
+  getPathwaysForPlan: () => [],
+  tracks: [],
+};
+try {
+  const sourceModels = require("../../constants/transfer-planner-source");
+  const trackModels = require("../../constants/transfer-planner-source/grc-associate-tracks.generated");
+  currentPlannerSourceModels = {
+    plans: sourceModels.TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? [],
+    getPathwaysForPlan: sourceModels.getTransferPlannerPathwaysForPlan ?? (() => []),
+    tracks: trackModels.TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS ?? [],
+  };
+} catch {
+  currentPlannerSourceModels = {
+    plans: [],
+    getPathwaysForPlan: () => [],
+    tracks: [],
+  };
+}
 
 function stableForHash(value) {
   if (Array.isArray(value)) {
@@ -227,6 +247,47 @@ function normalizeAndFilterSourceOwnerIds(values, source, titlesByPlanId = new M
   );
 }
 
+function addCurrentSourceOwnerUrl(index, url, ownerId) {
+  const normalizedUrl = normalizeSourceUrlKey(url);
+  const normalizedOwnerId = normalizeSourceOwnerId(ownerId);
+  if (!normalizedUrl || !normalizedOwnerId) {
+    return;
+  }
+
+  index.set(
+    normalizedUrl,
+    mergeUniqueStrings(index.get(normalizedUrl) ?? [], [normalizedOwnerId])
+  );
+}
+
+function buildCurrentGeneratedSourceOwnerIdsByUrl() {
+  const index = new Map();
+
+  for (const plan of currentPlannerSourceModels.plans ?? []) {
+    for (const link of plan.officialLinks ?? []) {
+      addCurrentSourceOwnerUrl(index, link?.url, plan.id);
+    }
+
+    for (const pathway of currentPlannerSourceModels.getPathwaysForPlan(plan) ?? []) {
+      for (const link of pathway.officialLinks ?? []) {
+        addCurrentSourceOwnerUrl(index, link?.url, `${plan.id}::${pathway.id}`);
+      }
+    }
+  }
+
+  for (const track of currentPlannerSourceModels.tracks ?? []) {
+    for (const link of track.officialLinks ?? []) {
+      addCurrentSourceOwnerUrl(index, link?.url, track.id);
+    }
+  }
+
+  return index;
+}
+
+function isTransferPlannerUwOwnerId(ownerId) {
+  return /^uw-(?:seattle|bothell|tacoma)-/i.test(String(ownerId ?? ""));
+}
+
 function buildRequirementReportTitlesByPlanId(requirementOwners) {
   const titlesByPlanId = new Map();
 
@@ -338,9 +399,48 @@ function buildRequirementBackedSourceFingerprintEntry(owner, ownerIds = normaliz
   };
 }
 
-function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementOwners, titlesByPlanId = new Map()) {
+function addRequirementBackedSourceFingerprints(
+  sourceFingerprints,
+  requirementOwners,
+  titlesByPlanId = new Map(),
+  currentGeneratedSourceOwnerIdsByUrl = new Map()
+) {
   const entries = [...sourceFingerprints];
   const entryByUrl = new Map();
+  const currentOwnerIdsByUrl = new Map();
+
+  for (const owner of requirementOwners ?? []) {
+    const normalizedSourceUrl = normalizeSourceUrlKey(owner.sourceUrl);
+    if (!normalizedSourceUrl) {
+      continue;
+    }
+
+    const normalizedOwnerIds = normalizeAndFilterSourceOwnerIds(
+      [owner.ownerId],
+      {
+        url: owner.sourceUrl,
+        finalUrl: owner.sourceUrl,
+        labels: [owner.sourceLabel].filter(Boolean),
+        title: owner.extractedTitle,
+      },
+      titlesByPlanId
+    );
+    if (!normalizedOwnerIds.length) {
+      continue;
+    }
+
+    currentOwnerIdsByUrl.set(
+      normalizedSourceUrl,
+      mergeUniqueStrings(currentOwnerIdsByUrl.get(normalizedSourceUrl) ?? [], normalizedOwnerIds)
+    );
+  }
+  const currentSourceOwnerIdsByUrl = new Map(currentGeneratedSourceOwnerIdsByUrl);
+  for (const [url, ownerIds] of currentOwnerIdsByUrl.entries()) {
+    currentSourceOwnerIdsByUrl.set(
+      url,
+      mergeUniqueStrings(currentSourceOwnerIdsByUrl.get(url) ?? [], ownerIds)
+    );
+  }
 
   function addLookup(entry) {
     for (const lookupUrl of [entry.url, entry.finalUrl]) {
@@ -353,6 +453,23 @@ function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementO
 
   for (const entry of entries) {
     addLookup(entry);
+  }
+
+  function removeStaleOwnerIdsForCurrentPlans(entry, normalizedSourceUrl) {
+    const currentOwnerIds = currentSourceOwnerIdsByUrl.get(normalizedSourceUrl) ?? [];
+    if (!currentOwnerIds.length) {
+      return;
+    }
+
+    const currentOwnerIdSet = new Set(currentOwnerIds);
+    const currentPlanIds = new Set(currentOwnerIds.map(getPlanIdFromOwnerId).filter(Boolean));
+    entry.ownerIds = mergeUniqueStrings(
+      (entry.ownerIds ?? []).filter((ownerId) => {
+        const planId = getPlanIdFromOwnerId(ownerId);
+        return !currentPlanIds.has(planId) || currentOwnerIdSet.has(ownerId);
+      }),
+      currentOwnerIds
+    );
   }
 
   for (const owner of requirementOwners ?? []) {
@@ -381,12 +498,41 @@ function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementO
       addLookup(entry);
     }
 
+    removeStaleOwnerIdsForCurrentPlans(entry, normalizedSourceUrl);
     entry.labels = mergeUniqueStrings(entry.labels, [owner.sourceLabel]);
     entry.ownerIds = mergeUniqueStrings(entry.ownerIds, normalizedOwnerIds);
     entry.kinds = mergeUniqueStrings(entry.kinds, [owner.pathwayId ? "pathway" : "major"]);
   }
 
-  return entries.sort((left, right) => left.url.localeCompare(right.url));
+  return entries
+    .map((entry) => {
+      const allowedOwnerIds = mergeUniqueStrings(
+        currentSourceOwnerIdsByUrl.get(normalizeSourceUrlKey(entry.url)) ?? [],
+        currentSourceOwnerIdsByUrl.get(normalizeSourceUrlKey(entry.finalUrl)) ?? []
+      );
+      const allowedOwnerIdSet = new Set(allowedOwnerIds);
+      if (allowedOwnerIdSet.size) {
+        return {
+          ...entry,
+          ownerIds: (entry.ownerIds ?? []).filter(
+            (ownerId) => !isTransferPlannerUwOwnerId(ownerId) || allowedOwnerIdSet.has(ownerId)
+          ),
+        };
+      }
+
+      return {
+        ...entry,
+        ownerIds: (entry.ownerIds ?? []).filter(
+          (ownerId) => !isTransferPlannerUwOwnerId(ownerId)
+        ),
+      };
+    })
+    .filter(
+      (entry) =>
+        (entry.ownerIds ?? []).length > 0 ||
+        !(entry.kinds ?? []).some((kind) => ["major", "pathway"].includes(kind))
+    )
+    .sort((left, right) => left.url.localeCompare(right.url));
 }
 
 function buildRequirementFingerprintEntry(owner) {
@@ -1270,12 +1416,14 @@ function countBy(values, getKey) {
 
 function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
   const titlesByPlanId = buildRequirementReportTitlesByPlanId(requirementReport.owners ?? []);
+  const currentGeneratedSourceOwnerIdsByUrl = buildCurrentGeneratedSourceOwnerIdsByUrl();
   const sourceFingerprints = addRequirementBackedSourceFingerprints(
     (sourceSnapshot.sources ?? []).map((source) =>
       buildSourceFingerprintEntry(source, titlesByPlanId)
     ),
     requirementReport.owners ?? [],
-    titlesByPlanId
+    titlesByPlanId,
+    currentGeneratedSourceOwnerIdsByUrl
   );
   const requirementSourceFingerprints = (requirementReport.owners ?? []).map(
     buildRequirementFingerprintEntry

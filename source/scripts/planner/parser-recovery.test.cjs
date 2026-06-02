@@ -3494,6 +3494,55 @@ test("Parser recovery rejects same-campus sibling requirement pages for differen
   assert.ok(candidates.some((candidate) => /\/bscsse\/degree-requirements$/.test(candidate.url)));
 });
 
+test("Parser scopes Bothell Chemistry BS general option to Markdown heading section", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-chemistry-bs:pathway:b-s-in-chemistry-general-option",
+    ownerTitle: "Chemistry (BS) - B.S. in Chemistry (general option)",
+    planId: "uw-bothell-chemistry-bs",
+    pathwayId: "b-s-in-chemistry-general-option",
+    campusId: "uw-bothell",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+    label: "UW Bothell Chemistry B.S. general option requirements",
+    parserType: "html-curriculum-page",
+  });
+  const lines = [
+    "## B.S. in Chemistry (general option)",
+    "### Chemistry series",
+    "B CHEM 312 Inorganic Chemistry I",
+    "### Upper division Chemistry electives",
+    "B CHEM 350 Atmospheric Chemistry and Air Pollution",
+    "## B.S. in Chemistry (biochemistry option)",
+    "### Biology series",
+    "B BIO 180 Introductory Biology I",
+  ];
+
+  const scopedLines = parser.scopeHtmlLinesForTest(entry, "Chemistry Curriculum", [], lines);
+
+  assert.ok(scopedLines.some((line) => /B CHEM 312/.test(line)));
+  assert.ok(scopedLines.some((line) => /B CHEM 350/.test(line)));
+  assert.equal(scopedLines.some((line) => /B BIO 180/.test(line)), false);
+
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h2>B.S. in Chemistry (general option)</h2>
+        <h3>Chemistry series</h3>
+        <p>B CHEM 312 Inorganic Chemistry I</p>
+        <h3>Upper division Chemistry electives</h3>
+        <p>B CHEM 350 Atmospheric Chemistry and Air Pollution</p>
+        <h2>B.S. in Chemistry (biochemistry option)</h2>
+        <h3>Biology series</h3>
+        <p>B BIO 180 Introductory Biology I</p>
+      </main>
+    `
+  );
+
+  assert.ok(parsed.courseCodes.includes("BCHEM 312"));
+  assert.ok(parsed.courseCodes.includes("BCHEM 350"));
+  assert.equal(parsed.courseCodes.includes("BBIO 180"), false);
+});
+
 test("Parser recovery rejects undergraduate credential sibling pages for other programs", () => {
   const entry = buildRecoveryEntryFixture({
     ownerTitle: "Business Administration",
@@ -3574,6 +3623,41 @@ test("Parser recovery rejects sibling pathway pages without option cue words", (
   );
   assert.equal(candidates.some((candidate) => /\/supply-chain$/.test(candidate.url)), false);
   assert.ok(candidates.some((candidate) => /\/admissions\/prerequisite-courses$/.test(candidate.url)));
+});
+
+test("Parser recovery rejects supply-chain sibling pages for the Management concentration", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-business-administration:pathway:management-concentration",
+    ownerTitle: "Business Administration (BA) - Management Concentration",
+    sourceLabel: "Management Concentration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: "management-concentration",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
+    label: "Management Concentration",
+  });
+  const html = `
+    <main>
+      <a href="/business/undergraduate/bachelor-of-business-administration/supply-chain">
+        Supply Chain Management Option
+      </a>
+      <a href="/business/undergraduate/bachelor-of-business-administration/management/requirements">
+        Management concentration requirements
+      </a>
+    </main>
+  `;
+  const candidates = parser.extractParserRecoveryLinkCandidatesForTest(entry, html);
+
+  assert.equal(
+    parser.parserRecoveryCandidateConflictsWithPathwayForTest(
+      entry,
+      "Supply Chain Management Option",
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain"
+    ),
+    true
+  );
+  assert.equal(candidates.some((candidate) => /\/supply-chain$/.test(candidate.url)), false);
+  assert.ok(candidates.some((candidate) => /\/management\/requirements$/.test(candidate.url)));
 });
 
 test("Parser recovery treats option hubs as same-program child source launchers", () => {
@@ -4907,6 +4991,68 @@ test("Parser scopes nested bare option accordion sections to the selected pathwa
   assert.ok(block.parsedUwCourseCodes.includes("BBUS 451"));
   assert.equal(block.parsedUwCourseCodes.includes("BBUS 320"), false);
   assert.equal(block.parsedUwCourseCodes.includes("BBUS 470"), false);
+});
+
+test("Parser keeps full UWB BBA pathway pages when the public URL is a shortened pathway slug", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-business-administration:pathway:finance-option-and-concentration",
+    ownerTitle: "Business Administration (BA) - Finance Option and Concentration",
+    sourceLabel: "Finance Option and Concentration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: "finance-option-and-concentration",
+    campusId: "uw-bothell",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+    label: "Finance Option and Concentration",
+  });
+  const html = `
+    <main>
+      <h1>Finance Option and Concentration</h1>
+      <h2>Curriculum</h2>
+      <h3>Course Type</h3>
+      <h3>Option Courses</h3>
+      <h3>Concentration Courses</h3>
+      <p>Core Courses (prerequisites in parentheses)</p>
+      <p>BBUS 300 - Organizational Behavior</p>
+      <p>BBUS 307 - Business Writing</p>
+      <p>BBUS 310 - Managerial Economics (BMATH 144, STMATH 124, or MATH 112)</p>
+      <p>BBUS 320 - Marketing Management</p>
+      <p>BBUS 340 - Operations and Project Management</p>
+      <p>BBUS 350 - Business Finance (310)</p>
+      <p>Required Courses (prerequisites in parentheses)</p>
+      <p>BBUS 451 - Financial Policy and Practice (350)</p>
+      <p>BBUS 452 - Financial Modeling (350)</p>
+      <p>BBUS 453 - Financial Institutions and Markets (350)</p>
+      <p>BBUS 454 - Investments (350)</p>
+      <p>Finance Electives (prerequisites in parentheses)</p>
+      <p>B BUS 361 - Intermediate Accounting I</p>
+      <p>B BUS 362 - Intermediate Accounting II (361)</p>
+      <p>B BUS 455 - Financial Risk Management (454)</p>
+      <p>Capstone Courses</p>
+      <p>BBUS 470 - Business Policy and Strategic Management</p>
+      <p>BBUS 480 - Global Environment of Business</p>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  for (const courseCode of [
+    "BBUS 307",
+    "BBUS 310",
+    "BBUS 320",
+    "BBUS 340",
+    "BBUS 350",
+    "BBUS 451",
+    "BBUS 452",
+    "BBUS 453",
+    "BBUS 454",
+    "BMATH 144",
+    "MATH 112",
+    "STMATH 124",
+  ]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), `Expected ${courseCode} to stay in scope.`);
+  }
 });
 
 test("Parser keeps parent option requirements while scoping nested concentration accordions", () => {

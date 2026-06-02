@@ -292,6 +292,179 @@ test("Credit-based requirement choices keep student selections below the credit 
   assert.equal(clearedOptionGroup.displayedCreditProgress, "0/27");
 });
 
+test("Credit-based option groups merge selected options from separate scheduled rows", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-art-history");
+  assert.ok(runtimePlan, "Expected the Art History runtime plan.");
+
+  const artHistoryGroup = runtimePlan.requirementGroups?.find(
+    (group) =>
+      group.requirementType === "choose_credits" &&
+      /10 credits from ART H 200/i.test(group.label)
+  );
+  assert.ok(artHistoryGroup, "Expected the Art History lower-division credit bucket.");
+  const getOptionId = (optionIdEnding: string) => {
+    const option = artHistoryGroup.options.find((candidate) =>
+      String(candidate.id ?? "").endsWith(optionIdEnding)
+    );
+    assert.ok(option?.id, `Expected option ${optionIdEnding}.`);
+    return option.id;
+  };
+  const selectedOptionIds = [
+    getOptionId("credit-bucket-arth-201"),
+    getOptionId("credit-bucket-arth-202"),
+  ];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {
+      [artHistoryGroup.id]: selectedOptionIds,
+    },
+    referenceDate: new Date("2026-06-01T12:00:00.000Z"),
+  });
+  const optionGroup = collectSuggestedScheduleOptionGroups(suggestedPlan).find(
+    (group) => group.id === artHistoryGroup.id
+  );
+  assert.ok(optionGroup, "Expected the displayed Art History option group.");
+
+  assert.deepEqual(optionGroup.selectedOptionIds, selectedOptionIds);
+  assert.deepEqual(getSuggestedScheduleResolvedOptionIds(optionGroup), selectedOptionIds);
+  assert.equal(optionGroup.displayedCreditProgress, "10/10");
+  assert.deepEqual(getSuggestedScheduleSelectedOptionLabels(optionGroup), [
+    "History of Art 1",
+    "History of Art 2",
+  ]);
+});
+
+test("Credit-based option groups preserve student selections when selected rows are already scheduled elsewhere", () => {
+  const basePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-earth-and-space-sciences"
+  );
+  assert.ok(basePlan, "Expected the Earth & Space Sciences runtime plan.");
+  const runtimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    basePlan,
+    "bs-option-family:biology"
+  );
+  assert.ok(runtimePlan, "Expected the Earth & Space Sciences Biology option.");
+
+  const groupId =
+    "uw-seattle-earth-and-space-sciences:requirement-group:credit-bucket-supporting-science-34-37-credits-math-126-math-308-math-324-or-math-136-math-324-phys-122-phys-123-phys-227-phys-228-phys-321-phys-322-34-37";
+  const selectedOptionIds = [
+    "uw-seattle-earth-and-space-sciences:requirement-option:credit-bucket-math-126",
+    "uw-seattle-earth-and-space-sciences:requirement-option:credit-bucket-phys-122",
+    "uw-seattle-earth-and-space-sciences:requirement-option:credit-bucket-phys-123",
+  ];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {
+      [groupId]: selectedOptionIds,
+    },
+    referenceDate: new Date("2026-06-01T12:00:00.000Z"),
+  });
+  const optionGroup = collectSuggestedScheduleOptionGroups(suggestedPlan).find(
+    (group) => group.id === groupId
+  );
+  assert.ok(optionGroup, "Expected the selected ESS supporting science bucket.");
+
+  const sortIds = (ids: string[]) => [...ids].sort();
+  assert.equal(optionGroup.selectionSource, "student");
+  assert.deepEqual(sortIds(optionGroup.selectedOptionIds), sortIds(selectedOptionIds));
+  assert.deepEqual(
+    sortIds(getSuggestedScheduleResolvedOptionIds(optionGroup)),
+    sortIds(selectedOptionIds)
+  );
+});
+
+test("Seattle Philosophy source-backed PHIL 115 option remains visible and selectable", () => {
+  const basePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-philosophy");
+  assert.ok(basePlan, "Expected the Philosophy runtime plan.");
+  const runtimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    basePlan,
+    "ba-option-family:ethics"
+  );
+  assert.ok(runtimePlan, "Expected the Philosophy Ethics option runtime plan.");
+
+  const groupId = "uw-seattle-philosophy:requirement-group:phil-115-or-phil-120";
+  const philosophyGroup = runtimePlan.requirementGroups?.find(
+    (group) => group.id === groupId
+  );
+  assert.ok(philosophyGroup, "Expected the Philosophy logic choice group.");
+  const phil115Option = philosophyGroup.options.find((option) =>
+    String(option?.id ?? "").endsWith(":phil-115")
+  );
+  const phil120Option = philosophyGroup.options.find((option) =>
+    String(option?.id ?? "").endsWith(":phil-120")
+  );
+  assert.ok(phil115Option?.id, "Expected the PHIL 115 option.");
+  assert.ok(phil120Option?.id, "Expected the PHIL 120 option.");
+  const phil115OptionId = phil115Option.id;
+  const phil120OptionId = phil120Option.id;
+
+  const buildPlan = (
+    selectedRequirementOptionIdsByGroup: Record<string, string[]> = {}
+  ) =>
+    buildSuggestedQuarterPlan({
+      plan: runtimePlan,
+      ...buildStatuses(runtimePlan, []),
+      completedCourses: [],
+      track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+      plannerCollegeId: "uw",
+      includeStayAtGrcCourses: false,
+      includeStemPrepCourses: true,
+      includeSummerQuarter: false,
+      selectedRequirementOptionIdsByGroup,
+      referenceDate: new Date("2026-06-01T12:00:00.000Z"),
+    });
+  const getLogicOptionGroup = (
+    selectedRequirementOptionIdsByGroup: Record<string, string[]> = {}
+  ) => {
+    const suggestedPlan = buildPlan(selectedRequirementOptionIdsByGroup);
+    const optionGroup = collectSuggestedScheduleOptionGroups(suggestedPlan).find(
+      (group) => group.id === groupId
+    );
+    const plannedLabels = suggestedPlan
+      .filter((quarter) => quarter.phase === "planned")
+      .flatMap((quarter) => quarter.courses.map((course) => course.label));
+
+    return { optionGroup, plannedLabels };
+  };
+
+  const defaultSelection = getLogicOptionGroup();
+  assert.ok(defaultSelection.optionGroup, "Expected the default PHIL option group.");
+  assert.equal(defaultSelection.optionGroup.selectionSource, "default");
+  assert.deepEqual(defaultSelection.optionGroup.selectedOptionIds, [phil115OptionId]);
+  assert.deepEqual(
+    getSuggestedScheduleResolvedOptionIds(defaultSelection.optionGroup),
+    [phil115OptionId]
+  );
+  assert.equal(defaultSelection.plannedLabels.includes("PHIL 115"), true);
+
+  const explicitSelection = getLogicOptionGroup({
+    [groupId]: [phil120OptionId],
+  });
+  assert.ok(explicitSelection.optionGroup, "Expected the selected PHIL option group.");
+  assert.equal(explicitSelection.optionGroup.selectionSource, "student");
+  assert.deepEqual(explicitSelection.optionGroup.selectedOptionIds, [phil120OptionId]);
+  assert.deepEqual(
+    getSuggestedScheduleResolvedOptionIds(explicitSelection.optionGroup),
+    [phil120OptionId]
+  );
+  assert.equal(explicitSelection.plannedLabels.includes("PHIL& 120"), true);
+  assert.equal(explicitSelection.plannedLabels.includes("PHIL 115"), false);
+});
+
 test("Seattle geography rows reflect the current official track set without introducing an auto-match", () => {
   assert.ok(sourceGeneratedGeographyPlan, "Expected a Seattle Geography source-generated planner row.");
 

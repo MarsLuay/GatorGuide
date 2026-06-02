@@ -957,6 +957,114 @@ export function shouldPreferSuggestedScheduleOptionGroup(
   );
 }
 
+function getSuggestedScheduleOptionGroupRequiredCreditRange(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  const requiredCredits = Number(optionGroup.requiredCredits ?? 0);
+  const maxRequiredCredits = Number(
+    optionGroup.maxRequiredCredits ?? optionGroup.requiredCredits ?? 0
+  );
+
+  return {
+    creditMin:
+      Number.isFinite(requiredCredits) && requiredCredits > 0 ? requiredCredits : 0,
+    creditMax:
+      Number.isFinite(maxRequiredCredits) && maxRequiredCredits > 0
+        ? maxRequiredCredits
+        : Number.isFinite(requiredCredits) && requiredCredits > 0
+          ? requiredCredits
+          : 0,
+  };
+}
+
+function formatSuggestedScheduleCreditProgressValue(creditAmount: number) {
+  return formatSuggestedScheduleCreditNumber(creditAmount);
+}
+
+function formatSuggestedScheduleCreditProgressRange(input: {
+  creditMin: number;
+  creditMax: number;
+}) {
+  if (input.creditMin !== input.creditMax) {
+    return `${formatSuggestedScheduleCreditProgressValue(
+      input.creditMin
+    )}-${formatSuggestedScheduleCreditProgressValue(input.creditMax)}`;
+  }
+
+  return formatSuggestedScheduleCreditProgressValue(input.creditMin);
+}
+
+function getSuggestedScheduleOptionGroupMergedCreditProgress(
+  optionGroup: SuggestedScheduleOptionGroup,
+  resolvedOptionIds: string[]
+) {
+  const resolvedOptionIdSet = new Set(resolvedOptionIds);
+  const resolvedCreditRange = optionGroup.options
+    .filter((option) => resolvedOptionIdSet.has(option.id))
+    .map(getSuggestedScheduleOptionCreditRange)
+    .reduce(
+      (total, range) => ({
+        creditMin: total.creditMin + range.creditMin,
+        creditMax: total.creditMax + range.creditMax,
+      }),
+      { creditMin: 0, creditMax: 0 }
+    );
+  const requiredCreditRange = getSuggestedScheduleOptionGroupRequiredCreditRange(optionGroup);
+
+  return `${formatSuggestedScheduleCreditProgressRange(
+    resolvedCreditRange
+  )}/${formatSuggestedScheduleCreditProgressRange(requiredCreditRange)}`;
+}
+
+function mergeSuggestedScheduleCreditBasedOptionGroup(
+  currentOptionGroup: SuggestedScheduleOptionGroup,
+  nextOptionGroup: SuggestedScheduleOptionGroup
+) {
+  const selectedOptionIds = getSuggestedScheduleUniqueOptionIds([
+    ...currentOptionGroup.selectedOptionIds,
+    ...nextOptionGroup.selectedOptionIds,
+  ]);
+  const resolvedSatisfiedOptionIds =
+    currentOptionGroup.resolvedSatisfiedOptionIds || nextOptionGroup.resolvedSatisfiedOptionIds
+      ? getSuggestedScheduleUniqueOptionIds([
+          ...(currentOptionGroup.resolvedSatisfiedOptionIds ?? []),
+          ...(nextOptionGroup.resolvedSatisfiedOptionIds ?? []),
+        ])
+      : undefined;
+  const resolvedOptionIds = resolvedSatisfiedOptionIds ?? selectedOptionIds;
+
+  return {
+    ...currentOptionGroup,
+    ...nextOptionGroup,
+    selectedOptionIds,
+    resolvedSatisfiedOptionIds,
+    resolvedSatisfiedOptionIdsBeforeCap:
+      currentOptionGroup.resolvedSatisfiedOptionIdsBeforeCap ||
+      nextOptionGroup.resolvedSatisfiedOptionIdsBeforeCap
+        ? getSuggestedScheduleUniqueOptionIds([
+            ...(currentOptionGroup.resolvedSatisfiedOptionIdsBeforeCap ?? []),
+            ...(nextOptionGroup.resolvedSatisfiedOptionIdsBeforeCap ?? []),
+          ])
+        : undefined,
+    userUnselectedOptionIds: getSuggestedScheduleUniqueOptionIds([
+      ...(currentOptionGroup.userUnselectedOptionIds ?? []),
+      ...(nextOptionGroup.userUnselectedOptionIds ?? []),
+    ]),
+    completedSatisfyingCourseCodesByOptionId: {
+      ...(currentOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {}),
+      ...(nextOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {}),
+    },
+    optionSatisfactionSourcesById: {
+      ...(currentOptionGroup.optionSatisfactionSourcesById ?? {}),
+      ...(nextOptionGroup.optionSatisfactionSourcesById ?? {}),
+    },
+    displayedCreditProgress: getSuggestedScheduleOptionGroupMergedCreditProgress(
+      nextOptionGroup,
+      resolvedOptionIds
+    ),
+  } satisfies SuggestedScheduleOptionGroup;
+}
+
 export function mergeSuggestedScheduleOptionGroups(
   existingOptionGroups: SuggestedScheduleOptionGroup[],
   nextOptionGroups: SuggestedScheduleOptionGroup[]
@@ -969,6 +1077,18 @@ export function mergeSuggestedScheduleOptionGroups(
 
   for (const optionGroup of nextOptionGroups) {
     const currentOptionGroup = optionGroupsById.get(optionGroup.id);
+    if (
+      currentOptionGroup &&
+      isSuggestedScheduleCreditBasedOptionGroup(currentOptionGroup) &&
+      isSuggestedScheduleCreditBasedOptionGroup(optionGroup)
+    ) {
+      optionGroupsById.set(
+        optionGroup.id,
+        mergeSuggestedScheduleCreditBasedOptionGroup(currentOptionGroup, optionGroup)
+      );
+      continue;
+    }
+
     if (
       !currentOptionGroup ||
       shouldPreferSuggestedScheduleOptionGroup(currentOptionGroup, optionGroup)

@@ -59,6 +59,16 @@ const SUPPRESS_GENERATED_PATHWAY_CANDIDATE_PLAN_IDS = new Set([
 ]);
 const GENERATED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN = new Map([
   [
+    "uw-bothell-chemistry-bs",
+    [
+      /^b\s*s\s+in chemistry\s+biochemistry option$/i,
+      /^chemistry series option$/i,
+      /^important planning notes option$/i,
+      /^organic chemistry series option$/i,
+      /^upper division chemistry electives option$/i,
+    ],
+  ],
+  [
     "uw-seattle-jewish-studies",
     [/^(?:south(?:east)? asia|southeast asia|china|japan|korea|general) concentration$/i],
   ],
@@ -746,6 +756,51 @@ function applyBothellCoursePlannerAuditModeling(plans) {
           makeBothellBbaLink("UW Bothell self-directed concentration requirements", "self-directed"),
         ]),
       ])
+    );
+  }
+
+  const chemistryBsPlan = plansById.get("uw-bothell-chemistry-bs");
+  if (chemistryBsPlan) {
+    const chemistryCurriculumLink = {
+      label: "UW Bothell Chemistry curriculum",
+      url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+    };
+
+    plansById.set(chemistryBsPlan.id, {
+      ...chemistryBsPlan,
+      officialLinks: uniqueLinks([chemistryCurriculumLink]),
+      validationNotes: uniqueStrings([
+        ...(chemistryBsPlan.validationNotes ?? []),
+        "Canonical Bothell Chemistry BS pathways follow the current curriculum page general and biochemistry option sections.",
+      ]),
+    });
+    plansById.set(
+      chemistryBsPlan.id,
+      replacePlanPathwaysWithCanonicalSet(
+        { ...plansById.get(chemistryBsPlan.id), pathways: [] },
+        [
+          createEmptyPathway(
+            "b-s-in-chemistry-general-option",
+            "B.S. in Chemistry (general option)",
+            [
+              {
+                label: "UW Bothell Chemistry B.S. general option requirements",
+                url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+              },
+            ]
+          ),
+          createEmptyPathway(
+            "biochemistry-option",
+            "B.S. in Chemistry (biochemistry option)",
+            [
+              {
+                label: "UW Bothell Chemistry B.S. biochemistry option requirements",
+                url: "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+              },
+            ]
+          ),
+        ]
+      )
     );
   }
 

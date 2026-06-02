@@ -16547,13 +16547,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Accounting Option major requirements",
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
         "label": "UW Bothell BBA admissions hub",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
         "note": "Supporting admissions context only. Use this alongside the dedicated route pages rather than as a blanket degree-requirements replacement.",
@@ -17323,61 +17316,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Chemistry",
-        "url": "https://www.uwb.edu/stem/undergraduate/minors/chemistry",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
-        "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
+        "label": "UW Bothell Chemistry curriculum",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-        "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
-    "validationNotes": [],
+    "validationNotes": [
+      "Canonical Bothell Chemistry BS pathways follow the current curriculum page general and biochemistry option sections."
+    ],
     "grcCourseList": [],
     "grcCourseListGuidance": "",
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
-      {
-        "id": "b-s-in-chemistry-biochemistry-option",
-        "label": "UW Bothell Chemistry curriculum",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Chemistry",
-            "url": "https://www.uwb.edu/stem/undergraduate/minors/chemistry",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
       {
         "id": "b-s-in-chemistry-general-option",
         "label": "B.S. in Chemistry (general option)",
@@ -17388,16 +17342,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Chemistry",
-            "url": "https://www.uwb.edu/stem/undergraduate/minors/chemistry",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "Scoped section: B.S. in Chemistry (general option) requirements",
+            "label": "UW Bothell Chemistry B.S. general option requirements",
             "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -17413,7 +17359,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "biochemistry-option",
-        "label": "UW Bothell Chemistry curriculum",
+        "label": "B.S. in Chemistry (biochemistry option)",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17421,60 +17367,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
+            "label": "UW Bothell Chemistry B.S. biochemistry option requirements",
             "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "chemistry-series-option",
-        "label": "Chemistry series option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "important-planning-notes-option",
-        "label": "UW Bothell Chemistry curriculum",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Chemistry",
-            "url": "https://www.uwb.edu/stem/undergraduate/minors/chemistry",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "Scoped section: B.S. in Chemistry (general option) requirements major requirements",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -19523,14 +19417,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "B.S. in Applied Mathematics major requirements",
-        "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
-        "visibility": "visible",
-        "status": "partially-verified"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -19567,7 +19454,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "bs-option-family:data-science",
-        "label": "B.S. in Applied Mathematics major requirements",
+        "label": "B.S. in Applied Mathematics",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19619,7 +19506,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "what-is-applied-mathematics-with-a-data-science-option",
-        "label": "B.S. in Applied Mathematics major requirements",
+        "label": "B.S. in Applied Mathematics",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19742,14 +19629,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW BA in Architectural Studies curriculum PDF major requirements",
-        "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
-        "visibility": "visible",
-        "status": "partially-verified"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -20744,13 +20624,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "sourceConfidence": "high"
       },
       {
-        "label": "BS Chemistry Checklist - ACS Certified (PDF) major requirements",
-        "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
         "label": "Major & Minor Requirements",
         "url": "https://chem.washington.edu/major-minor-requirements",
         "visibility": "visible",
@@ -21311,7 +21184,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Bachelor of Arts degree with a major in Comparative Religion",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion major requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
         "visibility": "visible",
         "status": "verified",
@@ -21423,6 +21296,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "Allen School CE-approved Natural Science course list",
         "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "Allen School CE-approved Natural Science course list",
+        "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
         "note": "Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.",
         "visibility": "visible",
         "status": "verified",
@@ -22247,14 +22127,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "Bachelor of Arts degree with a major in Education Studies: Early Childhood Studies major requirements",
-        "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-        "visibility": "visible",
-        "status": "partially-verified"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -22949,14 +22822,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW English LLC option requirements major requirements",
-        "url": "https://english.washington.edu/english-language-literature-and-culture-option",
-        "visibility": "visible",
-        "status": "partially-verified"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -23385,8 +23251,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW General Catalog International Studies: Europe major requirements",
+        "label": "Bachelor of Arts degree with a major in Comparative Religion major requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW General Catalog International Studies: Europe major requirements",
+        "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html#program-UG-EURO-MAJOR",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -24547,7 +24420,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Program of Study: Major: Landscape Architecture",
+        "label": "Bachelor of Arts degree with a major in Environmental Design and Sustainability",
         "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
         "visibility": "visible",
         "status": "verified",
@@ -27201,14 +27074,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW Tacoma Criminal Justice campus curriculum major requirements",
-        "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
-        "visibility": "visible",
-        "status": "partially-verified"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -27340,14 +27206,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW Tacoma B.A. in Education overview major requirements",
-        "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
-        "visibility": "visible",
-        "status": "partially-verified"
-      }
-    ],
+    "officialLinks": [],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -27761,13 +27620,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "must-select-at-least-a-3-credit-option-from-the-following-list",
-        "label": "must select at least a 3-credit option from the following list.",
+        "label": "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Business/Nonprofit Environmental Sustainability Option (20 credits) degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -28567,6 +28433,46 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Tacoma PPE Economics specialization major requirements",
             "url": "https://www.tacoma.uw.edu/sias/socs/economics-specialization",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "international-studies-specialization",
+        "label": "Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped current requirements: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma",
+            "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "Transfer Equivalencies",
+            "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe-transfer-credits",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma PPE International Studies specialization major requirements",
+            "url": "https://www.tacoma.uw.edu/sias/socs/international-studies-specialization",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"

@@ -832,7 +832,9 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
     /^upper division chemistry electives option$/i,
   ],
   "uw-bothell-chemistry-bs": [
+    /^b\.?\s*s\.?\s+in chemistry\s+biochemistry option$/i,
     /^chemistry series option$/i,
+    /^important planning notes option$/i,
     /^organic chemistry series option$/i,
     /^upper division chemistry electives option$/i,
   ],
