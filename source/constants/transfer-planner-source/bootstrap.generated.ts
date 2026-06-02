@@ -17277,6 +17277,43 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ]
   },
   {
+    "id": "uw-bothell-chemistry-ba",
+    "campusId": "uw-bothell",
+    "title": "Chemistry (BA)",
+    "shortTitle": "CB",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Bothell Chemistry admissions requirements",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/admissions",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Bothell Chemistry curriculum",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": []
+  },
+  {
     "id": "uw-bothell-chemistry-bs",
     "campusId": "uw-bothell",
     "title": "Chemistry (BS)",
@@ -18599,16 +18636,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Curriculum",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-        "visibility": "visible",
+        "label": "UW Bothell Physics admissions requirements",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
         "status": "verified",
         "sourceConfidence": "high"
       },
       {
-        "label": "Physics",
-        "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
-        "visibility": "visible",
+        "label": "UW Bothell Physics curriculum",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
         "status": "verified",
         "sourceConfidence": "high"
       }
@@ -18631,9 +18666,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Curriculum",
+            "label": "UW Bothell Physics admissions requirements",
+            "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Bothell Physics B.A. requirements",
             "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -18665,16 +18705,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Curriculum",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-        "visibility": "visible",
+        "label": "UW Bothell Physics admissions requirements",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
         "status": "verified",
         "sourceConfidence": "high"
       },
       {
-        "label": "Physics",
-        "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
-        "visibility": "visible",
+        "label": "UW Bothell Physics curriculum",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
         "status": "verified",
         "sourceConfidence": "high"
       }

@@ -1104,6 +1104,10 @@ function isAutoPromotablePrimaryCandidate(candidate) {
     return false;
   }
 
+  if (isMinorPagePromotionForMajorPlannerOwner(normalizedCandidate)) {
+    return false;
+  }
+
   if (normalizedCandidate.sourceRole === "official-catalog") {
     return hasStrongPromotionIdentity(normalizedCandidate);
   }
@@ -3458,6 +3462,63 @@ function isMinorCatalogCredentialAnchorForMajorTarget(target, candidate) {
   return /\bminor\b/i.test(getCandidateLocalScoringText(candidate));
 }
 
+function getCandidateUrlPathname(value) {
+  const raw = String(value ?? "");
+  if (!raw) {
+    return "";
+  }
+  try {
+    return new URL(raw, "https://example.invalid").pathname;
+  } catch {
+    return raw;
+  }
+}
+
+function isMinorSourceUrlPath(value) {
+  return /(?:^|\/)minors?(?:\/|$)/i.test(getCandidateUrlPathname(value));
+}
+
+function ownerTextNamesMinor(...values) {
+  return /\bminor\b/i.test(values.filter(Boolean).join(" "));
+}
+
+function isMinorPageForMajorTarget(target, candidate) {
+  if (target?.ownerType !== "major" && target?.ownerType !== "pathway") {
+    return false;
+  }
+  if (
+    ownerTextNamesMinor(
+      target?.ownerKey,
+      target?.planId,
+      target?.pathwayId,
+      target?.title,
+      target?.label
+    )
+  ) {
+    return false;
+  }
+  return isMinorSourceUrlPath(candidate?.url);
+}
+
+function isMinorPagePromotionForMajorPlannerOwner(candidate) {
+  if (candidate?.ownerType !== "major" && candidate?.ownerType !== "pathway") {
+    return false;
+  }
+  if (
+    ownerTextNamesMinor(
+      candidate?.ownerId,
+      candidate?.ownerKey,
+      candidate?.planId,
+      candidate?.pathwayId,
+      candidate?.ownerTitle,
+      candidate?.title
+    )
+  ) {
+    return false;
+  }
+  return isMinorSourceUrlPath(candidate?.url);
+}
+
 function isUwTacomaSetProgramRequirementCandidate(target, candidate, combinedText) {
   if (target?.campusId !== "uw-tacoma" || !isUwTacomaSetUndergradProgramUrl(candidate?.url)) {
     return false;
@@ -3541,6 +3602,18 @@ function scoreCandidate(target, candidate) {
       parserType: getDiscoveryParserType(candidate, "ignored"),
       canCreateSchedulableRows: false,
       reasons: ["minor catalog credential does not cover the major-level owner"],
+    };
+  }
+
+  if (isMinorPageForMajorTarget(target, candidate)) {
+    return {
+      score: -100,
+      confidence: "low",
+      sourceRole: "ignored",
+      sourceRoleStatus: "ignored",
+      parserType: getDiscoveryParserType(candidate, "ignored"),
+      canCreateSchedulableRows: false,
+      reasons: ["minor page does not cover the major-level owner"],
     };
   }
 

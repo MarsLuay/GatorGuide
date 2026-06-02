@@ -4,38 +4,6 @@ import type { TransferPlannerPrimarySourcePromotionEntry } from "./schema";
 export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePromotionEntry[] = [
   {
     "ownerType": "major",
-    "ownerId": "uw-bothell-biology",
-    "ownerKey": "uw-bothell-biology",
-    "planId": "uw-bothell-biology",
-    "pathwayId": null,
-    "ownerTitle": "Biology (BS)",
-    "campusId": "uw-bothell",
-    "url": "https://www.uwb.edu/stem/undergraduate/minors/biology",
-    "label": "Biology",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 108,
-    "confidence": "high",
-    "reasons": [
-      "advising wording",
-      "already stored as an official source",
-      "matches major keyword \"biology\"",
-      "official source path matches the selected major",
-      "page title fetched successfully",
-      "primary degree requirements source role",
-      "program-requirements wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "undergraduate path segment",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
-  },
-  {
-    "ownerType": "major",
     "ownerId": "uw-bothell-business-administration-accounting",
     "ownerKey": "uw-bothell-business-administration-accounting",
     "planId": "uw-bothell-business-administration-accounting",
@@ -254,7 +222,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -354,102 +322,6 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
     "generatedAt": "2026-06-01T09:25:47.580Z"
   },
   {
-    "ownerType": "major",
-    "ownerId": "uw-bothell-physics-ba",
-    "ownerKey": "uw-bothell-physics-ba",
-    "planId": "uw-bothell-physics-ba",
-    "pathwayId": null,
-    "ownerTitle": "Physics (BA)",
-    "campusId": "uw-bothell",
-    "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
-    "label": "Physics",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 108,
-    "confidence": "high",
-    "reasons": [
-      "advising wording",
-      "already stored as an official source",
-      "matches major keyword \"physics\"",
-      "official source path matches the selected major",
-      "page title fetched successfully",
-      "primary degree requirements source role",
-      "program-requirements wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "undergraduate path segment",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-bothell-physics-ba:pathway:ba-route",
-    "ownerKey": "uw-bothell-physics-ba:pathway:ba-route",
-    "planId": "uw-bothell-physics-ba",
-    "pathwayId": "ba-route",
-    "ownerTitle": "Physics (BA) - B.A. route",
-    "campusId": "uw-bothell",
-    "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
-    "label": "Physics",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 108,
-    "confidence": "high",
-    "reasons": [
-      "advising wording",
-      "already stored as an official source",
-      "matches major keyword \"physics\"",
-      "official source path matches the selected major",
-      "page title fetched successfully",
-      "primary degree requirements source role",
-      "program-requirements wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "undergraduate path segment",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
-  },
-  {
-    "ownerType": "major",
-    "ownerId": "uw-bothell-physics-bs",
-    "ownerKey": "uw-bothell-physics-bs",
-    "planId": "uw-bothell-physics-bs",
-    "pathwayId": null,
-    "ownerTitle": "Physics (BS)",
-    "campusId": "uw-bothell",
-    "url": "https://www.uwb.edu/stem/undergraduate/minors/physics",
-    "label": "Physics",
-    "sourceRole": "primary-degree-requirements",
-    "sourceRoleStatus": "primary",
-    "parserType": "html-degree-page",
-    "canCreateSchedulableRows": true,
-    "score": 108,
-    "confidence": "high",
-    "reasons": [
-      "advising wording",
-      "already stored as an official source",
-      "matches major keyword \"physics\"",
-      "official source path matches the selected major",
-      "page title fetched successfully",
-      "primary degree requirements source role",
-      "program-requirements wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "undergraduate path segment",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
-  },
-  {
     "ownerType": "pathway",
     "ownerId": "uw-bothell-psychology:pathway:ba-route",
     "ownerKey": "uw-bothell-psychology:pathway:ba-route",
@@ -477,7 +349,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -577,7 +449,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -610,7 +482,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Anthropology-102.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -774,7 +646,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -842,7 +714,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/Biology-112.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -979,7 +851,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1012,7 +884,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1044,7 +916,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1076,7 +948,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1112,7 +984,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1241,7 +1113,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://ischool.uw.edu/programs/informatics/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1339,7 +1211,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -1370,7 +1242,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -1433,7 +1305,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://phys.washington.edu/physics-bs-degree-requirements after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "pathway",
@@ -1466,7 +1338,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://phys.washington.edu/physics-bs-degree-requirements after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -1504,7 +1376,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",
@@ -1561,7 +1433,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on an official UW domain",
       "verified against an official source candidate"
     ],
-    "generatedAt": "2026-06-01T17:01:38.708Z"
+    "generatedAt": "2026-06-02T11:23:15.167Z"
   },
   {
     "ownerType": "major",

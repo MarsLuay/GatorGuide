@@ -180,6 +180,46 @@ function isMinorCredentialPromotionForMajorOwner(entry) {
   return /#(?:credential|program)-/i.test(String(entry?.url ?? "")) && /\bminor\b/i.test(String(entry?.label ?? ""));
 }
 
+function getPromotionUrlPathname(value) {
+  const raw = String(value ?? "");
+  if (!raw) {
+    return "";
+  }
+  try {
+    return new URL(raw, "https://example.invalid").pathname;
+  } catch {
+    return raw;
+  }
+}
+
+function isMinorSourceUrlPath(value) {
+  return /(?:^|\/)minors?(?:\/|$)/i.test(getPromotionUrlPathname(value));
+}
+
+function promotionOwnerTextNamesMinor(entry) {
+  return /\bminor\b/i.test(
+    [
+      entry?.ownerId,
+      entry?.ownerKey,
+      entry?.planId,
+      entry?.pathwayId,
+      entry?.ownerTitle,
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+}
+
+function isMinorPagePromotionForMajorPlannerOwner(entry) {
+  if (entry?.ownerType !== "major" && entry?.ownerType !== "pathway") {
+    return false;
+  }
+  if (promotionOwnerTextNamesMinor(entry)) {
+    return false;
+  }
+  return isMinorSourceUrlPath(entry?.url);
+}
+
 function getBaBsDegreeKind(...values) {
   const searchable = values
     .filter(Boolean)
@@ -423,6 +463,7 @@ function isUnsafeAutomaticPromotionEntry(entry) {
   return (
     isClearlySupportOnlyPromotionEntry(entry) ||
     isMinorCredentialPromotionForMajorOwner(entry) ||
+    isMinorPagePromotionForMajorPlannerOwner(entry) ||
     isBaBsRoutePromotionForBroadMajorOwner(entry) ||
     isUnscopedAcsRoutePromotionForBroadMajorOwner(entry) ||
     isCatalogCredentialPromotionForDifferentMajor(entry) ||

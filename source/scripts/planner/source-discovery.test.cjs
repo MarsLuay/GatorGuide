@@ -157,6 +157,42 @@ test("Primary source promotions do not attach ACS-only Chemistry pages to the br
   );
 });
 
+test("Primary source promotions keep Bothell Physics on the major curriculum page", () => {
+  const curriculumUrl = "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum";
+  const leakedPromotions = TRANSFER_PLANNER_PRIMARY_PROMOTIONS.filter(
+    (entry) =>
+      entry.planId === "uw-bothell-physics-ba" ||
+      entry.planId === "uw-bothell-physics-bs"
+  ).filter((entry) => /\/undergraduate\/minors\/physics\/?$/i.test(String(entry.url ?? "")));
+
+  assert.deepEqual(
+    leakedPromotions.map((entry) => entry.ownerId),
+    [],
+    "Expected Physics minor pages to stay out of Bothell Physics primary promotions."
+  );
+
+  for (const [planId, pathwayId] of [
+    ["uw-bothell-physics-ba", null],
+    ["uw-bothell-physics-ba", "ba-route"],
+    ["uw-bothell-physics-bs", null],
+  ]) {
+    const primary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+      planId,
+      pathwayId
+    );
+    assert.equal(primary?.url, curriculumUrl, `${planId}:${pathwayId ?? "base"} should use the major curriculum page.`);
+
+    const sourceUrls = sourceRegistry
+      .getTransferPlannerSourceManifestEntriesForPlan(planId, pathwayId)
+      .map((entry) => entry.url);
+    assert.equal(
+      sourceUrls.some((url) => /\/undergraduate\/minors\/physics\/?$/i.test(String(url ?? ""))),
+      false,
+      `${planId}:${pathwayId ?? "base"} should not expose the Physics minor page as a source.`
+    );
+  }
+});
+
 test("Primary source discovery skips hidden aliases covered by parent pathways", () => {
   const owner = {
     ownerType: "major",
@@ -1681,6 +1717,73 @@ test("Auto-promotion rejects ACS-only Chemistry sources for the broad Chemistry 
     }),
     false
   );
+});
+
+test("Auto-promotion rejects Bothell Physics minor pages for major and pathway owners", () => {
+  const minorUrl = "https://www.uwb.edu/stem/undergraduate/minors/physics";
+  const cases = [
+    discovery.buildOwnerTargetRecord({
+      analysisMode: "missing-primary",
+      ownerType: "major",
+      ownerKey: "uw-bothell-physics-bs",
+      planId: "uw-bothell-physics-bs",
+      pathwayId: null,
+      campusId: "uw-bothell",
+      title: "Physics (BS)",
+      label: "Physics (BS)",
+      officialLinks: [],
+      existingPrimary: null,
+      pathwayCount: 0,
+    }),
+    discovery.buildOwnerTargetRecord({
+      analysisMode: "missing-primary",
+      ownerType: "pathway",
+      ownerKey: "uw-bothell-physics-ba:pathway:ba-route",
+      planId: "uw-bothell-physics-ba",
+      pathwayId: "ba-route",
+      campusId: "uw-bothell",
+      title: "Physics (BA) - B.A. route",
+      label: "B.A. route",
+      officialLinks: [],
+      existingPrimary: null,
+      pathwayCount: 0,
+    }),
+  ];
+
+  for (const target of cases) {
+    const scored = discovery.scoreCandidate(target, {
+      url: minorUrl,
+      label: "Physics",
+      pageTitle: "Physics minor",
+      sourceKind: "official-link",
+    });
+
+    assert.equal(scored.sourceRole, "ignored");
+    assert.equal(scored.sourceRoleStatus, "ignored");
+    assert.equal(scored.canCreateSchedulableRows, false);
+
+    assert.equal(
+      discovery.isAutoPromotablePrimaryCandidate({
+        ownerType: target.ownerType,
+        ownerId: target.ownerKey,
+        ownerKey: target.ownerKey,
+        planId: target.planId,
+        pathwayId: target.pathwayId,
+        ownerTitle: target.title,
+        url: minorUrl,
+        label: "Physics",
+        score: 108,
+        confidence: "high",
+        sourceRole: "primary-degree-requirements",
+        sourceRoleStatus: "primary",
+        parserType: "html-degree-page",
+        canCreateSchedulableRows: true,
+        reasons: ["primary degree requirements source role"],
+      }),
+      false,
+      `${target.ownerKey} should not auto-promote a minor page.`
+    );
+  }
 });
 
 test("Auto-promotion rejects study-abroad support pages under degree-requirement paths", () => {

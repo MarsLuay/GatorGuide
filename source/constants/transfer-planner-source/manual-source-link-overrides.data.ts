@@ -142,6 +142,70 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
       ],
     },
     {
+      planId: "uw-bothell-physics-ba",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      removedUrls: ["https://www.uwb.edu/stem/undergraduate/minors/physics"],
+      links: [
+        {
+          label: "UW Bothell Physics curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Physics admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-physics-ba",
+      pathwayId: "ba-route",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      removedUrls: ["https://www.uwb.edu/stem/undergraduate/minors/physics"],
+      links: [
+        {
+          label: "UW Bothell Physics B.A. requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Physics admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-physics-bs",
+      mode: "replace",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+      removedUrls: ["https://www.uwb.edu/stem/undergraduate/minors/physics"],
+      links: [
+        {
+          label: "UW Bothell Physics curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Physics admissions requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/physics/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
       planId: "uw-bothell-business-administration",
       mode: "merge",
       preferredPrimaryUrl:

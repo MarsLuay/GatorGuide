@@ -72,12 +72,18 @@ const ADMISSION_PREP_SOURCE_ROLES = new Set([
   "admissions-preparation",
 ]);
 const ADMISSION_PREP_GUIDE_TARGET_COURSE_ALIASES = new Map([
+  ["BBIO 180", ["BIOL 180"]],
+  ["BBIO 200", ["BIOL 200"]],
+  ["BBIO 220", ["BIOL 220"]],
   ["BCHEM 143", ["CHEM 142"]],
   ["BCHEM 144", ["CHEM 142"]],
   ["BCHEM 153", ["CHEM 152"]],
   ["BCHEM 154", ["CHEM 152"]],
   ["BCHEM 163", ["CHEM 162"]],
   ["BCHEM 164", ["CHEM 162"]],
+  ["BPHYS 121", ["PHYS 121"]],
+  ["BPHYS 122", ["PHYS 122"]],
+  ["BPHYS 123", ["PHYS 123"]],
   ["CHEM 143", ["CHEM 142"]],
   ["CHEM 145", ["CHEM 142"]],
   ["CHEM 153", ["CHEM 152"]],
@@ -90,6 +96,88 @@ const ADMISSION_PREP_GUIDE_TARGET_COURSE_ALIASES = new Map([
   ["STMATH 125", ["MATH 125"]],
   ["STMATH 126", ["MATH 126"]],
 ]);
+const BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES = new Map([
+  ...ADMISSION_PREP_GUIDE_TARGET_COURSE_ALIASES,
+  ["BCHEM 237", ["CHEM 237"]],
+  ["BCHEM 238", ["CHEM 238"]],
+  ["BCHEM 239", ["CHEM 239"]],
+  ["BCHEM 241", ["CHEM 241"]],
+  ["BCHEM 242", ["CHEM 242"]],
+  ["BPHYS 114", ["PHYS 114"]],
+  ["BPHYS 115", ["PHYS 115"]],
+  ["BPHYS 116", ["PHYS 116"]],
+  ["BPHYS 117", ["PHYS 117"]],
+  ["BPHYS 118", ["PHYS 118"]],
+  ["BPHYS 119", ["PHYS 119"]],
+  ["BPHYS 121", ["PHYS 121"]],
+  ["BPHYS 122", ["PHYS 122"]],
+  ["BPHYS 123", ["PHYS 123"]],
+  ["STMATH 207", ["MATH 207"]],
+  ["STMATH 208", ["MATH 208"]],
+  ["STMATH 224", ["MATH 224"]],
+]);
+const BOTHELL_SOURCE_BACKED_ALIAS_SEQUENCE_DEFINITIONS = [
+  {
+    id: "organic-chemistry-series",
+    title: "B CHEM 237, B CHEM 238/241, and B CHEM 239/242 Organic Chemistry series",
+    requiredCourseCodes: ["BCHEM 237", "BCHEM 238", "BCHEM 239", "BCHEM 241", "BCHEM 242"],
+    cuePattern: /\bOrganic Chemistry (?:I|II|III)\b/i,
+  },
+  {
+    id: "physics-series-choice",
+    title: "Physics series",
+    requiredCourseCodes: [
+      "BPHYS 114",
+      "BPHYS 115",
+      "BPHYS 116",
+      "BPHYS 117",
+      "BPHYS 118",
+      "BPHYS 119",
+      "BPHYS 121",
+      "BPHYS 122",
+      "BPHYS 123",
+    ],
+    optionCourseCodeGroups: [
+      {
+        label: "B PHYS 121, B PHYS 122, and B PHYS 123 calculus-based Physics series",
+        courseCodes: ["BPHYS 121", "BPHYS 122", "BPHYS 123"],
+      },
+      {
+        label: "B PHYS 114/117, B PHYS 115/118, and B PHYS 116/119 algebra-based Physics series",
+        courseCodes: [
+          "BPHYS 114",
+          "BPHYS 117",
+          "BPHYS 115",
+          "BPHYS 118",
+          "BPHYS 116",
+          "BPHYS 119",
+        ],
+      },
+    ],
+    cuePattern: /\bChoose one of the following three-course series options\b/i,
+  },
+  {
+    id: "mathematics-one-course-choice",
+    title: "STMATH 207, STMATH 208, STMATH 224, or STMATH 341 Mathematics option",
+    requiredCourseCodes: ["STMATH 207", "STMATH 208", "STMATH 224"],
+    unmappedCourseCodes: ["STMATH 341"],
+    optionCourseCodeGroups: [
+      {
+        label: "STMATH 207 Introduction to Differential Equations",
+        courseCodes: ["STMATH 207"],
+      },
+      {
+        label: "STMATH 208 Matrix Algebra with Applications",
+        courseCodes: ["STMATH 208"],
+      },
+      {
+        label: "STMATH 224 Multivariable Calculus",
+        courseCodes: ["STMATH 224"],
+      },
+    ],
+    cuePattern: /\bAny ONE of the following courses to be selected\b/i,
+  },
+];
 
 function normalizeCourseCode(value) {
   return String(value ?? "").toUpperCase().replace(/\s+/g, " ").trim();
@@ -194,6 +282,7 @@ const RUNTIME_PATHWAY_SOURCE_URL_HINTS_BY_PLAN_ID = new Map([
     [
       {
         sourceUrlIncludes: "/ba-geography-data-science-option",
+        pathwayId: "geography-major-data-science-option",
       },
     ],
   ],
@@ -248,14 +337,45 @@ function getRuntimePathwayIdFromOwnerId(planId, ownerId) {
   return pathwayId ? normalizeRuntimePathwayId(normalizedPlanId, pathwayId) : null;
 }
 
+function getRuntimePathwayIdFromSourceUrl(planId, sourceUrl) {
+  const normalizedPlanId = String(planId ?? "").trim();
+  const normalizedSourceUrl = String(sourceUrl ?? "").trim();
+  if (!normalizedPlanId || !normalizedSourceUrl) {
+    return null;
+  }
+
+  const sourceUrlHints = RUNTIME_PATHWAY_SOURCE_URL_HINTS_BY_PLAN_ID.get(normalizedPlanId) ?? [];
+  const matchedHint = sourceUrlHints.find(
+    (hint) => hint.pathwayId && normalizedSourceUrl.includes(hint.sourceUrlIncludes)
+  );
+  return matchedHint?.pathwayId
+    ? normalizeRuntimePathwayId(normalizedPlanId, matchedHint.pathwayId)
+    : null;
+}
+
+function getRuntimePathwayIdFromBlockSourceUrl(block) {
+  return getRuntimePathwayIdFromSourceUrl(
+    block.planId,
+    block.sourceUrl ?? block.primarySourceUrl
+  );
+}
+
 function getRuntimeParsedBlockPathwayId(block) {
   const explicitPathwayId = normalizeRuntimePathwayId(block.planId, block.pathwayId ?? null);
-  return explicitPathwayId ?? getRuntimePathwayIdFromOwnerId(block.planId, block.ownerId);
+  return (
+    explicitPathwayId ??
+    getRuntimePathwayIdFromOwnerId(block.planId, block.ownerId) ??
+    getRuntimePathwayIdFromBlockSourceUrl(block)
+  );
 }
 
 function getRuntimeStoredParsedBlockPathwayId(block) {
   const explicitPathwayId = String(block.pathwayId ?? "").trim();
-  return explicitPathwayId || getRuntimePathwayIdFromOwnerId(block.planId, block.ownerId);
+  return (
+    explicitPathwayId ||
+    getRuntimePathwayIdFromOwnerId(block.planId, block.ownerId) ||
+    getRuntimePathwayIdFromBlockSourceUrl(block)
+  );
 }
 
 function runtimeParsedBlockMatchesScope(block, planId, pathwayId = null) {
@@ -785,6 +905,55 @@ function findBestRuntimeGrcEquivalency(targetCourseCode) {
   };
 }
 
+function compareAdmissionPrepGuideRulesForSingleTarget(targetCourseCode) {
+  const compareRuntimeRules = compareRuntimeGuideRulesForSingleTarget(targetCourseCode);
+  return (left, right) => {
+    const statusScoreDelta =
+      getRuntimeGuideRuleStatusScore(right) - getRuntimeGuideRuleStatusScore(left);
+    if (statusScoreDelta !== 0) return statusScoreDelta;
+
+    const sourceSetLengthDelta =
+      (left.sourceCourseSets?.[0]?.length ?? Number.MAX_SAFE_INTEGER) -
+      (right.sourceCourseSets?.[0]?.length ?? Number.MAX_SAFE_INTEGER);
+    if (sourceSetLengthDelta !== 0) return sourceSetLengthDelta;
+
+    return compareRuntimeRules(left, right);
+  };
+}
+
+function findBestAdmissionPrepRuntimeGrcEquivalency(targetCourseCode) {
+  const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+  const candidates = TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.filter((rule) => {
+    const sourceCourseSets = rule.sourceCourseSets ?? [];
+    if (!sourceCourseSets.some((sourceCourseSet) => (sourceCourseSet ?? []).length > 0)) {
+      return false;
+    }
+    if (rule.sourceSchoolId !== "grc") {
+      return false;
+    }
+    if (rule.acceptanceCategory === "no-credit" || rule.type === "elective-credit") {
+      return false;
+    }
+    if (rule.ruleStatus === "deprecated") {
+      return false;
+    }
+    return uniqueStrings(rule.targetCourseCodes ?? []).includes(normalizedTargetCourseCode);
+  }).sort(compareAdmissionPrepGuideRulesForSingleTarget(normalizedTargetCourseCode));
+
+  const rule = candidates[0] ?? null;
+  const sourceCourseSet = uniqueStrings(rule?.sourceCourseSets?.[0] ?? []);
+  if (!rule || !sourceCourseSet.length) {
+    return null;
+  }
+
+  return {
+    targetCourseCode: normalizedTargetCourseCode,
+    grcCourses: sourceCourseSet,
+    ruleId: rule.id,
+    sourceUrl: rule.sourceLinks?.find((link) => link.url)?.url ?? null,
+  };
+}
+
 function getCanonicalRuntimeCourseEntryForBlock(courseCode, block) {
   const normalizedCourseCode = normalizeCourseCode(courseCode);
   const preferredSchoolIds = uniqueLabels([
@@ -835,6 +1004,13 @@ function getTacomaCampusAliasTargetCourseCodes(courseCode) {
   return [];
 }
 
+function getBothellCampusAliasTargetCourseCodes(courseCode, block) {
+  if (block?.campusId !== "uw-bothell") {
+    return [];
+  }
+  return BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES.get(normalizeCourseCode(courseCode)) ?? [];
+}
+
 function getRuntimeEquivalentTargetCourseCodesForParsedCourse(courseCode, block) {
   const course = getCanonicalRuntimeCourseEntryForBlock(courseCode, block);
   const relatedCourseCodes = [];
@@ -845,6 +1021,7 @@ function getRuntimeEquivalentTargetCourseCodesForParsedCourse(courseCode, block)
 
   return uniqueStrings([
     ...getTacomaCampusAliasTargetCourseCodes(courseCode),
+    ...getBothellCampusAliasTargetCourseCodes(courseCode, block),
     ...relatedCourseCodes,
     courseCode,
   ]);
@@ -902,6 +1079,82 @@ function getAdmissionPrepSourceCourseCodesFromBlock(block) {
   return uniqueStrings(block.parsedUwCourseCodes ?? []);
 }
 
+function isAdmissionPrepRequirementSupportList(supportList) {
+  return ADMISSION_PREP_SOURCE_ROLES.has(String(supportList?.sourceRole ?? ""));
+}
+
+function buildAdmissionPrepRequirementBlockFromSupportList(block, supportList) {
+  const sourceUrl = supportList.officialSourceUrl ?? supportList.sourceUrl ?? block.sourceUrl;
+  const sourceRole = supportList.sourceRole ?? "admissions-preparation";
+  const sourceLabel = supportList.listTitle ?? block.sourceLabel ?? block.primarySourceLabel;
+  const supportOnlyUwCourseCodes = uniqueStrings(supportList.acceptedUwCourseCodes ?? []);
+
+  return {
+    ...block,
+    id: `${block.id}:admission-prep-support-list:${slugifyRuntimeId(
+      supportList.id ?? sourceLabel ?? sourceUrl
+    )}`,
+    sourceUrl,
+    coveredSourceUrls: uniqueLabels([...(block.coveredSourceUrls ?? []), sourceUrl]),
+    sourceLabel,
+    sourceRole,
+    sourceRoleStatus: "support",
+    canCreateAdmissionPrepRows: true,
+    canCreateScheduleRows: true,
+    supportOnly: true,
+    nonSchedulable: false,
+    parsedUwCourseCodes: supportOnlyUwCourseCodes,
+    supportOnlyUwCourseCodes,
+    parsedRequirementAtomCandidates: [],
+    supportLists: [supportList],
+  };
+}
+
+function getAdmissionPrepSupportListBlocksForScope(planId, pathwayId = null) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter((block) =>
+    runtimeParsedBlockMatchesScope(block, planId, pathwayId)
+  ).flatMap((block) =>
+    (block.supportLists ?? [])
+      .filter(isAdmissionPrepRequirementSupportList)
+      .map((supportList) => buildAdmissionPrepRequirementBlockFromSupportList(block, supportList))
+  );
+}
+
+function getAdmissionPrepSupportListBlocksForRuntimeScope(scope, planId, pathwayId = null) {
+  const normalizedPathwayId = normalizeRuntimePathwayId(planId, pathwayId);
+  const scopeId = normalizedPathwayId
+    ? `${planId}:pathway:${normalizedPathwayId}:runtime-support-lists`
+    : `${planId}:runtime-support-lists`;
+
+  return (scope?.supportLists ?? [])
+    .filter(isAdmissionPrepRequirementSupportList)
+    .map((supportList) =>
+      buildAdmissionPrepRequirementBlockFromSupportList(
+        {
+          id: scopeId,
+          ok: true,
+          ownerId: normalizedPathwayId ? `${planId}:pathway:${normalizedPathwayId}` : planId,
+          planId,
+          pathwayId: normalizedPathwayId,
+          primarySourceUrl: supportList.officialSourceUrl ?? supportList.sourceUrl ?? null,
+          primarySourceLabel: supportList.listTitle ?? null,
+          sourceUrl: supportList.officialSourceUrl ?? supportList.sourceUrl ?? null,
+          sourceLabel: supportList.listTitle ?? null,
+          sourceRole: supportList.sourceRole ?? "admissions-preparation",
+          sourceRoleStatus: "support",
+          coveredSourceUrls: nonEmptyArray([
+            supportList.officialSourceUrl ?? supportList.sourceUrl ?? null,
+          ].filter(Boolean)),
+          canCreateAdmissionPrepRows: true,
+          canCreateScheduleRows: true,
+          supportOnly: true,
+          nonSchedulable: false,
+        },
+        supportList
+      )
+    );
+}
+
 function formatAdmissionPrepCourseCodeList(courseCodes) {
   const normalizedCourseCodes = uniqueStrings(courseCodes);
   if (normalizedCourseCodes.length <= 2) {
@@ -936,8 +1189,19 @@ function getAdmissionPrepBlocksForScope(planId, pathwayId = null) {
       runtimeParsedBlockMatchesScope(block, planId, normalizedPathwayId) &&
       isRuntimeAdmissionPrepRequirementSourceBlock(block)
   );
-  if (directBlocks.length) {
-    return directBlocks;
+  const supportListBlocks = getAdmissionPrepSupportListBlocksForScope(planId, normalizedPathwayId);
+  const scopeBlocks = uniqueBy([...directBlocks, ...supportListBlocks], (block) =>
+    [
+      block.id,
+      block.ownerId,
+      block.planId,
+      getRuntimeParsedBlockPathwayId(block),
+      block.sourceUrl,
+      block.primarySourceUrl,
+    ].join("|")
+  );
+  if (scopeBlocks.length) {
+    return scopeBlocks;
   }
 
   const officialSourceUrls = getManualAdmissionPrepSourceUrlsForScope(planId, normalizedPathwayId);
@@ -956,8 +1220,7 @@ function getAdmissionPrepBlocksForScope(planId, pathwayId = null) {
     return [];
   }
 
-  return uniqueBy(
-    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter((block) => {
+  const manualSourceBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter((block) => {
       if (!isRuntimeAdmissionPrepRequirementSourceBlock(block)) {
         return false;
       }
@@ -965,7 +1228,21 @@ function getAdmissionPrepBlocksForScope(planId, pathwayId = null) {
         return false;
       }
       return getRuntimeBlockSourceUrls(block).some((url) => officialSourceUrls.has(url));
-    }),
+    });
+  const manualSupportListBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.flatMap((block) => {
+    if (!scopeCampusIds.has(block.campusId)) {
+      return [];
+    }
+    return (block.supportLists ?? [])
+      .filter(isAdmissionPrepRequirementSupportList)
+      .map((supportList) => buildAdmissionPrepRequirementBlockFromSupportList(block, supportList))
+      .filter((supportBlock) =>
+        getRuntimeBlockSourceUrls(supportBlock).some((url) => officialSourceUrls.has(url))
+      );
+  });
+
+  return uniqueBy(
+    [...manualSourceBlocks, ...manualSupportListBlocks],
     (block) =>
       [
         block.id,
@@ -978,10 +1255,22 @@ function getAdmissionPrepBlocksForScope(planId, pathwayId = null) {
   );
 }
 
-function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null) {
+function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null, extraBlocks = []) {
   const matchesByCourseSet = new Map();
+  const admissionPrepBlocks = uniqueBy(
+    [...getAdmissionPrepBlocksForScope(planId, pathwayId), ...extraBlocks],
+    (block) =>
+      [
+        block.id,
+        block.ownerId,
+        block.planId,
+        getRuntimeParsedBlockPathwayId(block),
+        block.sourceUrl,
+        block.primarySourceUrl,
+      ].join("|")
+  );
 
-  for (const block of getAdmissionPrepBlocksForScope(planId, pathwayId)) {
+  for (const block of admissionPrepBlocks) {
     for (const sourceCourseCode of getAdmissionPrepSourceCourseCodesFromBlock(block)) {
       const sourceCourseLevel = getCourseLevel(sourceCourseCode);
       if (sourceCourseLevel === null || sourceCourseLevel >= 300) {
@@ -994,7 +1283,7 @@ function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null) {
           continue;
         }
 
-        const mapping = findBestRuntimeGrcEquivalency(guideTargetCourseCode);
+        const mapping = findBestAdmissionPrepRuntimeGrcEquivalency(guideTargetCourseCode);
         if (!mapping?.grcCourses?.length) {
           continue;
         }
@@ -1025,8 +1314,8 @@ function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null) {
   }));
 }
 
-function buildAdmissionPrepGuideChecklistItemsForScope(planId, pathwayId = null) {
-  return getAdmissionPrepGuideMatchesForScope(planId, pathwayId).map((match) => {
+function buildAdmissionPrepGuideChecklistItemsForScope(planId, pathwayId = null, extraBlocks = []) {
+  return getAdmissionPrepGuideMatchesForScope(planId, pathwayId, extraBlocks).map((match) => {
     const title = buildAdmissionPrepChecklistItemTitle(
       match.sourceCourseCodes,
       match.guideTargetCourseCodes
@@ -1072,6 +1361,10 @@ function buildRuntimeSourceBackedGrcTitle(group) {
 }
 
 function getSourceBackedGrcChecklistGroupsForBlock(block) {
+  if (isBothellAliasSourceBackedRuntimeBlock(block)) {
+    return getBothellAliasSourceBackedGrcChecklistGroupsForBlock(block);
+  }
+
   if (!isTacomaSetUndergraduateProgramRuntimeBlock(block)) {
     return [];
   }
@@ -1102,42 +1395,146 @@ function getSourceBackedGrcChecklistGroupsForBlock(block) {
   }));
 }
 
+function isBothellAliasSourceBackedRuntimeBlock(block) {
+  return (
+    block?.ok === true &&
+    block.campusId === "uw-bothell" &&
+    canRuntimeSourceBlockCreateSchedulableRows(block) &&
+    !isRuntimeAdmissionPrepRequirementSourceBlock(block) &&
+    (block.parsedRequirementAtomCandidates ?? []).some((candidate) =>
+      BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES.has(
+        normalizeCourseCode(candidate.uwCourseCode)
+      )
+    )
+  );
+}
+
+function blockHasRuntimeCueLine(block, pattern) {
+  return (block.requirementCueLines ?? []).some((line) => pattern.test(String(line ?? "")));
+}
+
+function getRuntimeGroupedRequirementCourseCodes(block) {
+  return new Set(
+    (block.parsedRequirementGroups ?? [])
+      .flatMap((group) => group.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+        ...(option.conditionalLabCourses ?? []),
+        ...(option.displayCourseCodes ?? []).flatMap(extractRuntimeEquivalentCourseCodesFromText),
+      ])
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+}
+
+function getBothellAliasSourceBackedDefinitionCourseCodes(definition) {
+  return uniqueStrings([
+    ...(definition.requiredCourseCodes ?? []),
+    ...(definition.optionCourseCodeGroups ?? []).flatMap((group) => group.courseCodes ?? []),
+  ]);
+}
+
+function getBothellAliasSourceBackedGrcChecklistGroupsForBlock(block) {
+  const groupedRequirementCourseCodes = getRuntimeGroupedRequirementCourseCodes(block);
+  const atomCourseCodes = new Set(
+    (block.parsedRequirementAtomCandidates ?? [])
+      .map((candidate) => normalizeCourseCode(candidate.uwCourseCode))
+      .filter((courseCode) => {
+        if (!courseCode || groupedRequirementCourseCodes.has(courseCode)) {
+          return false;
+        }
+        return BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES.has(courseCode);
+      })
+  );
+
+  return BOTHELL_SOURCE_BACKED_ALIAS_SEQUENCE_DEFINITIONS.filter((definition) => {
+    if (!blockHasRuntimeCueLine(block, definition.cuePattern)) {
+      return false;
+    }
+    return getBothellAliasSourceBackedDefinitionCourseCodes(definition).every((courseCode) =>
+      atomCourseCodes.has(courseCode)
+    );
+  }).map((definition) => ({
+    stableId: definition.id,
+    sourceLineHint: definition.title,
+    uwCourseCodes: getBothellAliasSourceBackedDefinitionCourseCodes(definition),
+    unmappedUwCourseCodes: uniqueStrings(definition.unmappedCourseCodes ?? []),
+    optionCourseCodeGroups: (definition.optionCourseCodeGroups ?? []).map((group) => ({
+      label: group.label ?? definition.title,
+      courseCodes: uniqueStrings(group.courseCodes ?? []),
+    })),
+  }));
+}
+
 function buildSourceBackedGrcChecklistItemsForBlock(block) {
   if (!block.ok || !canRuntimeSourceBlockCreateSchedulableRows(block)) {
     return [];
   }
 
   return getSourceBackedGrcChecklistGroupsForBlock(block).map((group, index) => {
-    const mappedCourses = [];
     const mappedUwCourseCodes = [];
-    const unmappedUwCourseCodes = [];
+    const unmappedUwCourseCodes = uniqueStrings(group.unmappedUwCourseCodes ?? []);
     const ruleIds = [];
-    for (const uwCourseCode of group.uwCourseCodes) {
-      const mapping = getRuntimeGrcMappingForParsedCourse(uwCourseCode, block);
-      if (!mapping) {
-        unmappedUwCourseCodes.push(uwCourseCode);
-        continue;
+    const mapUwCourseCodesToGrcCourses = (uwCourseCodes) => {
+      const mappedCourses = [];
+      const groupMappedUwCourseCodes = [];
+      for (const uwCourseCode of uniqueStrings(uwCourseCodes)) {
+        const mapping = getRuntimeGrcMappingForParsedCourse(uwCourseCode, block);
+        if (!mapping) {
+          unmappedUwCourseCodes.push(uwCourseCode);
+          continue;
+        }
+        mappedCourses.push(...mapping.grcCourses);
+        mappedUwCourseCodes.push(uwCourseCode);
+        groupMappedUwCourseCodes.push(uwCourseCode);
+        if (mapping.ruleId) {
+          ruleIds.push(mapping.ruleId);
+        }
       }
-      mappedCourses.push(...mapping.grcCourses);
-      mappedUwCourseCodes.push(uwCourseCode);
-      if (mapping.ruleId) {
-        ruleIds.push(mapping.ruleId);
-      }
-    }
+      return {
+        grcCourses: uniqueStrings(mappedCourses),
+        uwCourseCodes: uniqueStrings(groupMappedUwCourseCodes),
+      };
+    };
 
-    const grcCourses = uniqueStrings(mappedCourses);
+    const optionCourseCodeGroups = group.optionCourseCodeGroups ?? [];
+    const mappedOptionGroups = optionCourseCodeGroups.length
+      ? optionCourseCodeGroups
+          .map((optionGroup) => ({
+            label: optionGroup.label ?? null,
+            ...mapUwCourseCodesToGrcCourses(optionGroup.courseCodes ?? []),
+          }))
+          .filter((optionGroup) => optionGroup.grcCourses.length > 0)
+      : [];
+    const flatMappedGroup = optionCourseCodeGroups.length
+      ? null
+      : mapUwCourseCodesToGrcCourses(group.uwCourseCodes);
+    const grcCourses =
+      mappedOptionGroups[0]?.grcCourses ?? flatMappedGroup?.grcCourses ?? [];
+    const alternatives = mappedOptionGroups.slice(1).map((optionGroup) => optionGroup.grcCourses);
+    const mappedChoicePaths = [grcCourses, ...alternatives].filter((path) => path.length > 0);
+    const minCompletedCount =
+      mappedOptionGroups.length > 1 && mappedChoicePaths.every((path) => path.length === 1)
+        ? 1
+        : undefined;
     const mappedNote = mappedUwCourseCodes.length
       ? `Mapped through the official UW Green River transfer equivalency guide for ${mappedUwCourseCodes.join(", ")}.`
       : null;
     const unmappedNote = unmappedUwCourseCodes.length
-      ? `No direct Green River equivalent found for ${unmappedUwCourseCodes.join(", ")} in the UW-GRC equivalency guide.`
+      ? `No direct Green River equivalent found for ${uniqueStrings(unmappedUwCourseCodes).join(", ")} in the UW-GRC equivalency guide.`
       : null;
-    const canCreateScheduleRow = grcCourses.length > 0;
+    const canCreateScheduleRow = grcCourses.length > 0 || alternatives.length > 0;
+    const itemIdSeed = group.stableId
+      ? `${block.planId ?? block.ownerId ?? "unknown-plan"}-${group.stableId}`
+      : `${block.ownerId ?? block.planId}-${group.sourceLineHint || index}`;
 
     return {
-      id: `source-backed-grc-${slugifyRuntimeId(`${block.ownerId ?? block.planId}-${group.sourceLineHint || index}`)}`,
+      id: `source-backed-grc-${slugifyRuntimeId(itemIdSeed)}`,
       title: buildRuntimeSourceBackedGrcTitle(group),
       grcCourses,
+      ...(alternatives.length ? { alternatives } : {}),
+      ...(minCompletedCount != null ? { minCompletedCount } : {}),
       note: [
         mappedNote,
         unmappedNote,
@@ -1154,8 +1551,8 @@ function buildSourceBackedGrcChecklistItemsForBlock(block) {
       canCreateScheduleRow,
       requirementShape: canCreateScheduleRow ? "required-row" : "hidden-informational-row",
       reason: canCreateScheduleRow
-        ? "Generated from parser-backed Tacoma SET requirements and UW-GRC equivalency rules."
-        : "Generated from parser-backed Tacoma SET requirements with no direct public Green River equivalent.",
+        ? "Generated from parser-backed scoped requirement atoms and UW-GRC equivalency rules."
+        : "Generated from parser-backed scoped requirement atoms with no direct public Green River equivalent.",
     };
   });
 }
@@ -1443,6 +1840,42 @@ function compactParsedRequirementSourceBlock(block) {
   };
 }
 
+function getRuntimeParsedRequirementBlockDedupeKey(block) {
+  return JSON.stringify({
+    planId: block.planId,
+    pathwayId: block.pathwayId ?? null,
+    sourceUrl: block.sourceUrl ?? null,
+    sourceRole: block.sourceRole ?? null,
+    parsedUwCourseCodes: block.parsedUwCourseCodes ?? [],
+    parsedRequirementCourseCount: (block.parsedRequirementCourses ?? []).length,
+    parsedRequirementGroupCount: (block.parsedRequirementGroups ?? []).length,
+    parsedRequirementGroupLabels: (block.parsedRequirementGroups ?? []).map((group) => [
+      group.label,
+      group.requirementType,
+    ]),
+  });
+}
+
+function runtimeParsedRequirementBlockIsPathwayOwned(block) {
+  return /:pathway:/i.test(String(block.ownerId ?? block.id ?? ""));
+}
+
+function dedupeRuntimeParsedRequirementBlocks(blocks) {
+  const byKey = new Map();
+  for (const block of blocks) {
+    const key = getRuntimeParsedRequirementBlockDedupeKey(block);
+    const existing = byKey.get(key);
+    if (
+      !existing ||
+      (runtimeParsedRequirementBlockIsPathwayOwned(block) &&
+        !runtimeParsedRequirementBlockIsPathwayOwned(existing))
+    ) {
+      byKey.set(key, block);
+    }
+  }
+  return [...byKey.values()];
+}
+
 function getSourceBackedDegreeMapSections(planId, pathwayId = null) {
   const normalizedPathwayId = normalizeRuntimePathwayId(planId, pathwayId);
   return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY
@@ -1490,8 +1923,59 @@ function mergeRuntimeDegreeMapSections(existingSections, sourceBackedSections) {
 function mergeRuntimeGrcCourseList(existingCourses, sourceBackedItems) {
   return uniqueStrings([
     ...(existingCourses ?? []),
-    ...sourceBackedItems.flatMap((item) => item.grcCourses ?? []),
+    ...sourceBackedItems.flatMap((item) => [
+      ...(item.grcCourses ?? []),
+      ...(item.alternatives ?? []).flat(),
+    ]),
   ]);
+}
+
+function getRuntimeChecklistItemSourceKey(item) {
+  return [
+    item?.sourceUrl ?? item?.requirementGroup?.sourceUrl ?? "",
+    item?.sourceRole ?? item?.requirementGroup?.sourceRole ?? "",
+    item?.sourceScope ?? item?.requirementGroup?.sourceScope ?? "",
+  ].join("|");
+}
+
+function shouldSuppressRuntimeItemCoveredBySourceBackedSequence(item, sourceBackedItems) {
+  if (!item?.generatedFromParser || !/^auto-/i.test(String(item.id ?? ""))) {
+    return false;
+  }
+
+  const itemGrcCourses = uniqueStrings(item.grcCourses ?? []);
+  if (!itemGrcCourses.length) {
+    return false;
+  }
+
+  const itemSourceKey = getRuntimeChecklistItemSourceKey(item);
+  return sourceBackedItems.some((sourceBackedItem) => {
+    if (
+      sourceBackedItem?.generatedFromParser !== true ||
+      sourceBackedItem.canCreateScheduleRow === false ||
+      getRuntimeChecklistItemSourceKey(sourceBackedItem) !== itemSourceKey
+    ) {
+      return false;
+    }
+
+    const sourceBackedGrcCourses = new Set(
+      uniqueStrings([
+        ...(sourceBackedItem.grcCourses ?? []),
+        ...(sourceBackedItem.alternatives ?? []).flat(),
+      ])
+    );
+    return (
+      sourceBackedGrcCourses.size > itemGrcCourses.length &&
+      itemGrcCourses.every((courseCode) => sourceBackedGrcCourses.has(courseCode))
+    );
+  });
+}
+
+function appendSourceBackedRuntimeChecklistItems(existingItems = [], sourceBackedItems = []) {
+  const filteredExistingItems = existingItems.filter(
+    (item) => !shouldSuppressRuntimeItemCoveredBySourceBackedSequence(item, sourceBackedItems)
+  );
+  return appendUniqueRuntimeItems(filteredExistingItems, sourceBackedItems);
 }
 
 function hasRuntimeSchedulableChecklistItem(items) {
@@ -1552,7 +2036,7 @@ function attachSourceBackedGrcChecklistItemsToPlan(plan) {
     return {
       ...pathway,
       grcCourseList: mergeRuntimeGrcCourseList(pathway.grcCourseList, pathwaySourceBackedItems),
-      beforeEnrollmentChecklist: appendUniqueRuntimeItems(
+      beforeEnrollmentChecklist: appendSourceBackedRuntimeChecklistItems(
         pathway.beforeEnrollmentChecklist,
         pathwaySourceBackedItems
       ),
@@ -1562,7 +2046,7 @@ function attachSourceBackedGrcChecklistItemsToPlan(plan) {
   return {
     ...plan,
     grcCourseList: mergeRuntimeGrcCourseList(plan.grcCourseList, sourceBackedItems),
-    beforeEnrollmentChecklist: appendUniqueRuntimeItems(
+    beforeEnrollmentChecklist: appendSourceBackedRuntimeChecklistItems(
       plan.beforeEnrollmentChecklist,
       sourceBackedItems
     ),
@@ -1595,12 +2079,14 @@ function applyManualRuntimeSourceLinksToPlan(plan) {
 function attachAdmissionPrepGuideChecklistItemsToPlan(plan, selectedPathwayId = null) {
   const admissionPrepItems = buildAdmissionPrepGuideChecklistItemsForScope(
     plan.id,
-    selectedPathwayId
+    selectedPathwayId,
+    getAdmissionPrepSupportListBlocksForRuntimeScope(plan, plan.id, selectedPathwayId)
   );
   const pathways = (plan.pathways ?? []).map((pathway) => {
     const pathwayAdmissionPrepItems = buildAdmissionPrepGuideChecklistItemsForScope(
       plan.id,
-      pathway.id
+      pathway.id,
+      getAdmissionPrepSupportListBlocksForRuntimeScope(pathway, plan.id, pathway.id)
     );
     return {
       ...pathway,
@@ -1965,7 +2451,9 @@ const runtimePrimaryDegreeSourcesByPlanId = groupRecordByKey(
   (key) => String(key).split("::")[0]
 );
 const runtimeCompactParsedRequirementBlocks =
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.map(compactParsedRequirementSourceBlock);
+  dedupeRuntimeParsedRequirementBlocks(
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.map(compactParsedRequirementSourceBlock)
+  );
 const runtimeParsedRequirementBlocksByPlanId = groupValuesByKey(
   runtimeCompactParsedRequirementBlocks,
   (block) => block.planId

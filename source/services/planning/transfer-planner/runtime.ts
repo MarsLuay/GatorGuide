@@ -1099,6 +1099,9 @@ function shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate: {
   if (sourceLineHints.some((line) => /\b(?:or|either|choose|select|one of)\b/i.test(line))) {
     return false;
   }
+  if (sourceLineHints.some(sourceLineLooksLikeCatalogCourseTitleList)) {
+    return false;
+  }
   if (
     sourceLineHints.some((line) =>
       /^(?:\[[^\]]+\]\s*)?[a-z]\.\s+[A-Z& ]+\s*\d{3}/i.test(line)
@@ -2473,7 +2476,9 @@ function getSoleSchedulablePlannerRequirementOptionIdForScheduling(input: {
   item: TransferPlannerChecklistItem;
   campusId?: TransferPlannerMajorPlan["campusId"] | null;
 }) {
-  if ((input.item.requirementGroup?.options ?? []).length !== 1) {
+  const group = input.item.requirementGroup;
+  const rawOptions = group?.options ?? [];
+  if (!rawOptions.length) {
     return null;
   }
   if (
@@ -2496,7 +2501,19 @@ function getSoleSchedulablePlannerRequirementOptionIdForScheduling(input: {
     return null;
   }
 
-  return optionGroup.options[0]?.id ?? null;
+  const soleOption = optionGroup.options[0] ?? null;
+  if (
+    rawOptions.length > 1 &&
+    group?.requirementType !== "choose_one" &&
+    group?.requirementType !== "sequence_choice"
+  ) {
+    return null;
+  }
+  if (rawOptions.length > 1 && soleOption?.optionKind !== "course") {
+    return null;
+  }
+
+  return soleOption?.id ?? null;
 }
 
 function getSequenceChoiceOptionIdsMatchingStatus(input: {
@@ -2707,7 +2724,17 @@ function getRequirementOptionFinishTitle(item: TransferPlannerChecklistItem) {
     .replace(/\s+/g, " ")
     .trim();
 
-  if (courseCodes.length > 1 && nonCourseText.length < 8) {
+  const preserveSourceBackedChoiceTitle =
+    item.generatedFromParser === true &&
+    String(item.id ?? "").endsWith(":runtime-choice") &&
+    item.requirementGroup?.category === "source-choice" &&
+    (
+      item.requirementGroup.requirementType === "choose_one" ||
+      item.requirementGroup.requirementType === "sequence_choice"
+    ) &&
+    item.requirementGroup.supportOnly !== true;
+
+  if (courseCodes.length > 1 && nonCourseText.length < 8 && !preserveSourceBackedChoiceTitle) {
     return "this requirement";
   }
 
@@ -19558,20 +19585,32 @@ export function auditRuntimeOptionResolution(input: {
       scheduledCourseCodes: scheduledUnselectedCourseCodes,
       statuses,
     });
-    const unsuppressedScheduledUnselectedOptionIds = auditOptionGroup
-      ? scheduledUnselectedOptionIds.filter((optionId) => {
-          const optionCourseCodes = getOptionScheduledCourseCodesForOptionIds({
+    const scheduledCreditSatisfaction =
+      group.requirementType === "choose_credits" && auditOptionGroup
+        ? getSuggestedQuarterOptionGroupCreditSatisfaction({
             optionGroup: auditOptionGroup,
-            optionIds: [optionId],
-            scheduledCourseCodes,
-          });
-          return (
-            !optionCourseCodes.length ||
-            optionCourseCodes.some(
-              (courseCode) => !independentlyScheduledUnselectedCourseCodes.has(courseCode)
-            )
-          );
-        })
+            optionIds: scheduledOptionIds,
+          })
+        : null;
+    const creditBucketSatisfiedByScheduledOptions =
+      group.requirementType === "choose_credits" &&
+      scheduledCreditSatisfaction?.fullySatisfied === true;
+    const unsuppressedScheduledUnselectedOptionIds = auditOptionGroup
+      ? creditBucketSatisfiedByScheduledOptions
+        ? []
+        : scheduledUnselectedOptionIds.filter((optionId) => {
+            const optionCourseCodes = getOptionScheduledCourseCodesForOptionIds({
+              optionGroup: auditOptionGroup,
+              optionIds: [optionId],
+              scheduledCourseCodes,
+            });
+            return (
+              !optionCourseCodes.length ||
+              optionCourseCodes.some(
+                (courseCode) => !independentlyScheduledUnselectedCourseCodes.has(courseCode)
+              )
+            );
+          })
       : scheduledUnselectedOptionIds;
     const falseRequiredSiblingOptionIds =
       expectedOptionIds.length || scheduledOptionIds.length || visibleOptionGroup?.isSelectionPrompt
@@ -19603,13 +19642,6 @@ export function auditRuntimeOptionResolution(input: {
         groupId,
         scheduledCourses,
       });
-    const scheduledCreditSatisfaction =
-      group.requirementType === "choose_credits" && auditOptionGroup
-        ? getSuggestedQuarterOptionGroupCreditSatisfaction({
-            optionGroup: auditOptionGroup,
-            optionIds: scheduledOptionIds,
-          })
-        : null;
     const selectedOptionNotScheduled =
       selectedCourseOptionIds.length > 0 &&
       !selectedCourseOptionIds.every((optionId) => scheduledOptionIds.includes(optionId)) &&
@@ -20662,6 +20694,20 @@ function requiredMappedCoverageRequirementLooksChoice(value: string | null | und
   return /\b(?:choose|select|one of|either|or|options?|electives?)\b/i.test(
     String(value ?? "")
   );
+}
+
+function sourceLineLooksLikeCatalogCourseTitleList(line: string) {
+  const courseCodes = extractCourseCodes(line);
+  if (courseCodes.length < 2) {
+    return false;
+  }
+
+  const titledCourseEntries = Array.from(
+    String(line ?? "").matchAll(
+      /\b[A-Z&]{2,8}(?:\s+[A-Z&]{1,4})?\s+\d{3}(?:\.\d+)?[A-Z]?\s*:\s*[^,;]+/g
+    )
+  );
+  return titledCourseEntries.length >= 2;
 }
 
 function getSourceBackedRequiredUwRequirementLabels(

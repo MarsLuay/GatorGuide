@@ -167,6 +167,52 @@ const GUIDE_TERM_ORDER: Partial<Record<string, number>> = {
   SUM: 3,
   AUT: 4,
 };
+const BOTHELL_CAMPUS_ALIAS_EQUIVALENCY_TARGETS_BY_UW_COURSE: Record<string, string> = {
+  "BBIO 180": "BIOL 180",
+  "BBIO 200": "BIOL 200",
+  "BBIO 220": "BIOL 220",
+  "BCHEM 143": "CHEM 142",
+  "BCHEM 144": "CHEM 142",
+  "BCHEM 153": "CHEM 152",
+  "BCHEM 154": "CHEM 152",
+  "BCHEM 163": "CHEM 162",
+  "BCHEM 164": "CHEM 162",
+  "BCHEM 237": "CHEM 237",
+  "BCHEM 238": "CHEM 238",
+  "BCHEM 239": "CHEM 239",
+  "BCHEM 241": "CHEM 241",
+  "BCHEM 242": "CHEM 242",
+  "BPHYS 114": "PHYS 114",
+  "BPHYS 115": "PHYS 115",
+  "BPHYS 116": "PHYS 116",
+  "BPHYS 117": "PHYS 117",
+  "BPHYS 118": "PHYS 118",
+  "BPHYS 119": "PHYS 119",
+  "BPHYS 121": "PHYS 121",
+  "BPHYS 122": "PHYS 122",
+  "BPHYS 123": "PHYS 123",
+  "STMATH 124": "MATH 124",
+  "STMATH 125": "MATH 125",
+  "STMATH 126": "MATH 126",
+  "STMATH 207": "MATH 207",
+  "STMATH 208": "MATH 208",
+  "STMATH 224": "MATH 224",
+};
+
+type RuntimeGrcEquivalencyMapping = {
+  targetCourseCode: string;
+  grcCourses: string[];
+  ruleId: string;
+};
+
+export function getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode(
+  courseCode: string | null | undefined
+) {
+  return (
+    BOTHELL_CAMPUS_ALIAS_EQUIVALENCY_TARGETS_BY_UW_COURSE[normalizeCourseCode(courseCode)] ??
+    null
+  );
+}
 
 type TransferPlannerRuntimeSourceGapEntry = {
   planId: string;
@@ -2345,8 +2391,318 @@ export function normalizeCategoryOptionRuntimePlan<T extends TransferPlannerMajo
   };
 }
 
+function getRuntimeGuideRuleStatusScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.ruleStatus) {
+    case "active":
+      return 3;
+    case "legacy":
+      return 2;
+    case "deprecated":
+      return 1;
+    default:
+      return 2;
+  }
+}
+
+function getRuntimeGuideRuleAcceptanceScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.acceptanceCategory) {
+    case "preferred":
+      return 4;
+    case "accepted":
+      return 3;
+    case "accepted-with-warning":
+      return 2;
+    case "legacy-accepted":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getRuntimeGuideRuleTypeScore(rule: TransferPlannerEquivalencyRule) {
+  switch (rule.type) {
+    case "direct-course":
+      return 5;
+    case "full-credit-combo":
+      return 4;
+    case "sequence":
+      return 3;
+    case "alternate-path":
+      return 2;
+    default:
+      return 1;
+  }
+}
+
+function getRuntimeGuideRuleFirstSourceSetLength(rule: TransferPlannerEquivalencyRule) {
+  return rule.sourceCourseSets?.[0]?.length ?? Number.MAX_SAFE_INTEGER;
+}
+
+function scoreRuntimeGuideRuleForSingleTarget(
+  rule: TransferPlannerEquivalencyRule,
+  targetCourseCode: string
+) {
+  const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+  const targetCourseCodes = unique(
+    (rule.targetCourseCodes ?? []).map(normalizeCourseCode).filter(Boolean)
+  );
+  const exactSingleTarget =
+    targetCourseCodes.length === 1 && targetCourseCodes[0] === normalizedTargetCourseCode;
+
+  return (
+    getRuntimeGuideRuleStatusScore(rule) * 100 +
+    getRuntimeGuideRuleTypeScore(rule) * 30 +
+    getRuntimeGuideRuleAcceptanceScore(rule) * 20 +
+    (exactSingleTarget ? 25 : 0) -
+    getRuntimeGuideRuleFirstSourceSetLength(rule)
+  );
+}
+
+function compareBothellCampusAliasGuideRulesForSingleTarget(targetCourseCode: string) {
+  return (left: TransferPlannerEquivalencyRule, right: TransferPlannerEquivalencyRule) => {
+    const statusScoreDelta =
+      getRuntimeGuideRuleStatusScore(right) - getRuntimeGuideRuleStatusScore(left);
+    if (statusScoreDelta !== 0) return statusScoreDelta;
+
+    const sourceSetLengthDelta =
+      getRuntimeGuideRuleFirstSourceSetLength(left) - getRuntimeGuideRuleFirstSourceSetLength(right);
+    if (sourceSetLengthDelta !== 0) return sourceSetLengthDelta;
+
+    const scoreDelta =
+      scoreRuntimeGuideRuleForSingleTarget(right, targetCourseCode) -
+      scoreRuntimeGuideRuleForSingleTarget(left, targetCourseCode);
+    if (scoreDelta !== 0) return scoreDelta;
+
+    return String(left.id ?? "").localeCompare(String(right.id ?? ""));
+  };
+}
+
+const bothellCampusAliasGrcEquivalencyByTargetCourseCode = new Map<
+  string,
+  RuntimeGrcEquivalencyMapping | null
+>();
+
+function getBothellCampusAliasGrcEquivalencyForTargetCourse(
+  targetCourseCode: string
+): RuntimeGrcEquivalencyMapping | null {
+  const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+  if (bothellCampusAliasGrcEquivalencyByTargetCourseCode.has(normalizedTargetCourseCode)) {
+    return bothellCampusAliasGrcEquivalencyByTargetCourseCode.get(normalizedTargetCourseCode) ?? null;
+  }
+
+  const rule =
+    TRANSFER_PLANNER_RUNTIME_EQUIVALENCY_RULE_REGISTRY.filter((candidate) => {
+      const sourceCourseSets = candidate.sourceCourseSets ?? [];
+      if (!sourceCourseSets.some((sourceCourseSet) => (sourceCourseSet ?? []).length > 0)) {
+        return false;
+      }
+      if (candidate.sourceSchoolId !== "grc") {
+        return false;
+      }
+      if (candidate.acceptanceCategory === "no-credit" || candidate.type === "elective-credit") {
+        return false;
+      }
+      if (candidate.ruleStatus === "deprecated") {
+        return false;
+      }
+      return unique(
+        (candidate.targetCourseCodes ?? []).map(normalizeCourseCode).filter(Boolean)
+      ).includes(normalizedTargetCourseCode);
+    }).sort(compareBothellCampusAliasGuideRulesForSingleTarget(normalizedTargetCourseCode))[0] ??
+    null;
+  const grcCourses = unique((rule?.sourceCourseSets?.[0] ?? []).map(normalizeCourseCode).filter(Boolean));
+  const mapping =
+    rule && grcCourses.length
+      ? {
+          targetCourseCode: normalizedTargetCourseCode,
+          grcCourses,
+          ruleId: rule.id,
+        }
+      : null;
+
+  bothellCampusAliasGrcEquivalencyByTargetCourseCode.set(normalizedTargetCourseCode, mapping);
+  return mapping;
+}
+
+function getBothellCampusAliasTargetCourseCodesForRequirementOption(
+  option: TransferPlannerRequirementOption
+) {
+  const directCourseCodes = [
+    ...(option.uwCourses ?? []),
+    ...(option.equivalentUwCourseCodes ?? []),
+    ...(option.conditionalLabCourses ?? []),
+  ]
+    .map(normalizeCourseCode)
+    .filter(Boolean);
+  const textCourseCodes = [
+    option.label,
+    option.pathLabel,
+    option.title,
+    option.sourceHeading,
+    ...(option.displayCourseCodes ?? []),
+  ].flatMap((value) => extractTransferPlannerCourseCodes(String(value ?? "")));
+
+  return unique([...directCourseCodes, ...textCourseCodes])
+    .map(getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode)
+    .filter((courseCode): courseCode is string => Boolean(courseCode));
+}
+
+function getRuntimeEquivalencyTargetCourseCodesForRequirementOption(
+  option: TransferPlannerRequirementOption
+) {
+  const directCourseCodes = [
+    ...(option.uwCourses ?? []),
+    ...(option.equivalentUwCourseCodes ?? []),
+    ...(option.conditionalLabCourses ?? []),
+  ]
+    .map(normalizeCourseCode)
+    .filter(Boolean);
+  const displayCourseCodes = [
+    ...(option.displayCourseCodes ?? []),
+    option.label,
+    option.pathLabel,
+    option.title,
+  ].flatMap((value) => extractTransferPlannerCourseCodes(String(value ?? "")));
+  const targetCourseCodes = unique([...directCourseCodes, ...displayCourseCodes]);
+  const aliasTargetCourseCodes = targetCourseCodes
+    .map(getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode)
+    .filter((courseCode): courseCode is string => Boolean(courseCode));
+
+  return unique([...targetCourseCodes, ...aliasTargetCourseCodes]);
+}
+
+const runtimeGrcMatchSupportedByOptionTargetCache = new Map<string, boolean>();
+
+function runtimeGrcMatchIsSupportedByOptionTarget(
+  grcCourseCode: string,
+  targetCourseCodes: string[]
+) {
+  const normalizedGrcCourseCode = normalizeCourseCode(grcCourseCode);
+  const normalizedTargetCourseCodes = unique(targetCourseCodes.map(normalizeCourseCode).filter(Boolean));
+  if (!normalizedGrcCourseCode || !normalizedTargetCourseCodes.length) {
+    return false;
+  }
+
+  const cacheKey = `${normalizedGrcCourseCode}|${normalizedTargetCourseCodes.join("|")}`;
+  const cachedResult = runtimeGrcMatchSupportedByOptionTargetCache.get(cacheKey);
+  if (typeof cachedResult === "boolean") {
+    return cachedResult;
+  }
+
+  const supported = getTransferPlannerEquivalencyRulesForSourceCourse(normalizedGrcCourseCode).some(
+    (rule) => {
+      if (rule.sourceSchoolId !== "grc") {
+        return false;
+      }
+      if (rule.acceptanceCategory === "no-credit" || rule.type === "elective-credit") {
+        return false;
+      }
+      if (rule.ruleStatus === "deprecated") {
+        return false;
+      }
+      const targetMatches = (rule.targetCourseCodes ?? [])
+        .map(normalizeCourseCode)
+        .some((targetCourseCode) => normalizedTargetCourseCodes.includes(targetCourseCode));
+      if (!targetMatches) {
+        return false;
+      }
+      return (rule.sourceCourseSets ?? []).some((sourceCourseSet) =>
+        (sourceCourseSet ?? []).map(normalizeCourseCode).includes(normalizedGrcCourseCode)
+      );
+    }
+  );
+  runtimeGrcMatchSupportedByOptionTargetCache.set(cacheKey, supported);
+  return supported;
+}
+
+function filterUnsupportedRuntimeRequirementOptionGrcMatches(
+  option: TransferPlannerRequirementOption
+) {
+  const grcMatches = unique((option.grcMatches ?? []).map(normalizeCourseCode).filter(Boolean));
+  if (
+    !grcMatches.length ||
+    option.optionKind === "category-option" ||
+    option.categoryOption
+  ) {
+    return option;
+  }
+
+  const targetCourseCodes = getRuntimeEquivalencyTargetCourseCodesForRequirementOption(option);
+  if (!targetCourseCodes.length) {
+    return option;
+  }
+
+  const supportedGrcMatches = grcMatches.filter((grcCourseCode) =>
+    runtimeGrcMatchIsSupportedByOptionTarget(grcCourseCode, targetCourseCodes)
+  );
+  if (
+    supportedGrcMatches.length === grcMatches.length &&
+    supportedGrcMatches.every((courseCode) => grcMatches.includes(courseCode))
+  ) {
+    return option;
+  }
+
+  const supportedGrcCourseSet = new Set(supportedGrcMatches);
+  const compoundComponents = (option.compoundComponents ?? [])
+    .map((component) =>
+      unique(
+        (component ?? [])
+          .map(normalizeCourseCode)
+          .filter((courseCode) => supportedGrcCourseSet.has(courseCode))
+      )
+    )
+    .filter((component) => component.length > 0);
+
+  return {
+    ...option,
+    grcMatches: supportedGrcMatches,
+    compoundComponents,
+  };
+}
+
+function hydrateBothellCampusAliasRequirementOption(
+  option: TransferPlannerRequirementOption
+): TransferPlannerRequirementOption {
+  if ((option.grcMatches ?? []).length > 0 || option.optionKind === "category-option" || option.categoryOption) {
+    return option;
+  }
+
+  const mappedEquivalencies = getBothellCampusAliasTargetCourseCodesForRequirementOption(option)
+    .map(getBothellCampusAliasGrcEquivalencyForTargetCourse)
+    .filter((mapping): mapping is RuntimeGrcEquivalencyMapping => Boolean(mapping));
+  if (!mappedEquivalencies.length) {
+    return option;
+  }
+
+  const grcMatches = unique(mappedEquivalencies.flatMap((mapping) => mapping.grcCourses));
+  if (!grcMatches.length) {
+    return option;
+  }
+
+  const compoundComponents = uniqueBy(
+    [
+      ...(option.compoundComponents ?? [])
+        .map((component) => unique(component.map(normalizeCourseCode).filter(Boolean)))
+        .filter((component) => component.length > 0),
+      ...mappedEquivalencies
+        .map((mapping) => mapping.grcCourses)
+        .filter((component) => component.length > 1),
+    ],
+    (component) => component.join("|")
+  );
+
+  return {
+    ...option,
+    grcMatches,
+    compoundComponents,
+  };
+}
+
 function normalizeRequirementShapeForGroup(group: TransferPlannerRequirementGroup): TransferPlannerRequirementGroup {
-  const normalizedOptions = (group.options ?? []).map((option) => {
+  const normalizedOptions = (group.options ?? []).map((rawOption) => {
+    const option = filterUnsupportedRuntimeRequirementOptionGrcMatches(
+      hydrateBothellCampusAliasRequirementOption(rawOption)
+    );
     const isCategoryOption = option.optionKind === "category-option" || Boolean(option.categoryOption);
     const requirementShape =
       option.requirementShape ??
@@ -2494,6 +2850,111 @@ function requirementOptionContainsCoursePrefix(
   ].some((value) => prefixPattern.test(String(value ?? "")));
 }
 
+const MATH_CREDIT_BUCKET_SOURCE_SUBJECTS = new Set([
+  "AMATH",
+  "BMATH",
+  "INDE",
+  "MATH",
+  "QSCI",
+  "STAT",
+  "STMATH",
+  "TMATH",
+]);
+
+function getRuntimeCourseCodeSubject(courseCode: string | null | undefined) {
+  const match = normalizeCourseCode(courseCode).match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/);
+  return match?.[1] ?? "";
+}
+
+function getCreditBucketPreferredSourceSubjects(
+  group: TransferPlannerRequirementGroup | null | undefined
+) {
+  const labelContext = `${group?.label ?? ""} ${group?.sourceHeading ?? ""} ${group?.category ?? ""}`;
+  if (/\b(?:approved|electives?|choose|select(?:ed|ion)?|from the following)\b/i.test(labelContext)) {
+    return null;
+  }
+  if (/^\s*(?:mathematics|math)\b/i.test(labelContext)) {
+    return MATH_CREDIT_BUCKET_SOURCE_SUBJECTS;
+  }
+  return null;
+}
+
+function requirementOptionMatchesPreferredSourceSubjects(
+  option: TransferPlannerRequirementOption,
+  subjects: Set<string>
+) {
+  const optionSubjects = unique([
+    ...(option.uwCourses ?? []),
+    ...(option.equivalentUwCourseCodes ?? []),
+    ...(option.displayCourseCodes ?? []).flatMap((value) =>
+      extractTransferPlannerCourseCodes(String(value ?? ""))
+    ),
+    ...extractTransferPlannerCourseCodes(String(option.label ?? "")),
+  ])
+    .map(getRuntimeCourseCodeSubject)
+    .filter(Boolean);
+
+  return optionSubjects.some((subject) => subjects.has(subject));
+}
+
+function getPreferredCreditBucketSelectionForChecklistItem(
+  item: TransferPlannerChecklistItem,
+  group: TransferPlannerRequirementGroup | null | undefined
+) {
+  if (group?.requirementType !== "choose_credits" || !group.options?.length) {
+    return null;
+  }
+
+  const preferredSubjects = getCreditBucketPreferredSourceSubjects(group);
+  if (!preferredSubjects) {
+    return null;
+  }
+
+  const selectedOptionIds = unique(item.selectedRequirementOptionIds ?? []);
+  if (!selectedOptionIds.length) {
+    return null;
+  }
+
+  const preferredOptions = group.options.filter(
+    (option) =>
+      option.id &&
+      (option.grcMatches ?? []).length > 0 &&
+      requirementOptionMatchesPreferredSourceSubjects(option, preferredSubjects)
+  );
+  if (!preferredOptions.length) {
+    return null;
+  }
+
+  const preferredOptionIds = preferredOptions
+    .map((option) => option.id)
+    .filter((optionId): optionId is string => Boolean(optionId));
+  const preferredOptionIdSet = new Set(preferredOptionIds);
+  const selectedNonPreferredOptions = group.options.filter(
+    (option) => option.id && selectedOptionIds.includes(option.id) && !preferredOptionIdSet.has(option.id)
+  );
+  const selectedPreferredOptionCount = selectedOptionIds.filter((optionId) =>
+    preferredOptionIdSet.has(optionId)
+  ).length;
+  if (
+    selectedPreferredOptionCount === preferredOptionIds.length &&
+    selectedNonPreferredOptions.length === 0
+  ) {
+    return null;
+  }
+
+  const unselectedOptionIds = group.options
+    .map((option) => option.id)
+    .filter(
+      (optionId): optionId is string =>
+        Boolean(optionId && !preferredOptionIdSet.has(optionId))
+    );
+
+  return {
+    selectedRequirementOptionIds: preferredOptionIds,
+    unselectedRequirementOptionIds: unselectedOptionIds,
+  };
+}
+
 function shouldTreatCreditBucketAsPhysicsSequenceChoice(
   item: TransferPlannerChecklistItem,
   group: TransferPlannerRequirementGroup
@@ -2595,6 +3056,9 @@ function normalizeRequirementShapeForChecklistItem(
     requirementGroup?.requirementShape ??
     (item.canCreateScheduleRow === false ? "hidden-informational-row" : "required-row");
   const isSequenceChoice = requirementGroup?.requirementType === "sequence_choice";
+  const preferredCreditBucketSelection = isSequenceChoice
+    ? null
+    : getPreferredCreditBucketSelectionForChecklistItem(item, requirementGroup);
   const selectedSequenceOption =
     isSequenceChoice
       ? pickDefaultSequenceChoiceOption(
@@ -2618,6 +3082,17 @@ function normalizeRequirementShapeForChecklistItem(
   if (
     requirementGroup === item.requirementGroup &&
     item.requirementShape === requirementShape &&
+    (!preferredCreditBucketSelection ||
+      ((item.selectedRequirementOptionIds ?? []).length ===
+        preferredCreditBucketSelection.selectedRequirementOptionIds.length &&
+        preferredCreditBucketSelection.selectedRequirementOptionIds.every((optionId) =>
+          (item.selectedRequirementOptionIds ?? []).includes(optionId)
+        ) &&
+        (item.unselectedRequirementOptionIds ?? []).length ===
+          preferredCreditBucketSelection.unselectedRequirementOptionIds.length &&
+        preferredCreditBucketSelection.unselectedRequirementOptionIds.every((optionId) =>
+          (item.unselectedRequirementOptionIds ?? []).includes(optionId)
+        ))) &&
     (!isSequenceChoice ||
       ((item.selectedRequirementOptionIds ?? []).length === selectedSequenceOptionIds.length &&
         selectedSequenceOptionIds.every((optionId) =>
@@ -2645,10 +3120,75 @@ function normalizeRequirementShapeForChecklistItem(
           unselectedRequirementOptionIds: unselectedSequenceOptionIds.length
             ? unselectedSequenceOptionIds
             : undefined,
-          minCompletedCount: 1,
+          minCompletedCount: undefined,
         }
-      : {}),
+      : preferredCreditBucketSelection
+        ? {
+            selectedRequirementOptionIds:
+              preferredCreditBucketSelection.selectedRequirementOptionIds.length
+                ? preferredCreditBucketSelection.selectedRequirementOptionIds
+                : undefined,
+            unselectedRequirementOptionIds:
+              preferredCreditBucketSelection.unselectedRequirementOptionIds.length
+                ? preferredCreditBucketSelection.unselectedRequirementOptionIds
+                : undefined,
+          }
+        : {}),
   };
+}
+
+function requirementGroupHasSchedulableGrcOptions(group: TransferPlannerRequirementGroup) {
+  return (group.options ?? []).some((option) => (option.grcMatches ?? []).length > 0);
+}
+
+function getReferencedRuntimeRequirementGroupIds(items: TransferPlannerChecklistItem[]) {
+  return new Set(
+    items
+      .map((item) => item.requirementGroup?.id)
+      .filter((id): id is string => Boolean(id))
+  );
+}
+
+function shouldSynthesizeChecklistItemForRequirementGroup(group: TransferPlannerRequirementGroup) {
+  return (
+    (group.requirementType === "sequence_choice" || group.requirementType === "choose_one") &&
+    group.supportOnly !== true &&
+    requirementGroupHasSchedulableGrcOptions(group)
+  );
+}
+
+function buildChecklistItemForUnreferencedRequirementGroup(
+  group: TransferPlannerRequirementGroup
+): TransferPlannerChecklistItem {
+  return normalizeRequirementShapeForChecklistItem({
+    id: `${group.id}:runtime-choice`,
+    title: group.label,
+    grcCourses: [],
+    requirementGroup: group,
+    sourceUrl: group.sourceUrl ?? null,
+    sourceRole: group.sourceRole ?? null,
+    sourceScope: group.sourceScope ?? "primary-schedulable",
+    generatedFromParser: true,
+    manualOverride: false,
+    canCreateScheduleRow: true,
+    requirementShape:
+      group.requirementType === "sequence_choice" ? "sequence-choice" : "option-group",
+    reason: "Runtime scheduling item synthesized for an unreferenced source-backed choice group.",
+  });
+}
+
+function getUnreferencedChoiceChecklistItems(
+  requirementGroups: TransferPlannerRequirementGroup[],
+  checklistItems: TransferPlannerChecklistItem[]
+) {
+  const referencedGroupIds = getReferencedRuntimeRequirementGroupIds(checklistItems);
+  return requirementGroups
+    .filter(
+      (group) =>
+        !referencedGroupIds.has(group.id) &&
+        shouldSynthesizeChecklistItemForRequirementGroup(group)
+    )
+    .map(buildChecklistItemForUnreferencedRequirementGroup);
 }
 
 function normalizeRequirementShapesRuntimePlan<T extends TransferPlannerMajorPlan>(plan: T): T {
@@ -2663,15 +3203,30 @@ function normalizeRequirementShapesRuntimePlan<T extends TransferPlannerMajorPla
     ].map(normalizeRuntimeRequirementSupportList),
     (supportList) => supportList.id
   );
+  const requirementGroups = (plan.requirementGroups ?? []).map(normalizeRequirementShapeForGroup);
+  const applicationChecklist = (plan.applicationChecklist ?? []).map(
+    normalizeRequirementShapeForChecklistItem
+  );
+  const beforeEnrollmentChecklist = (plan.beforeEnrollmentChecklist ?? []).map(
+    normalizeRequirementShapeForChecklistItem
+  );
+  const stayAtGrcChecklist = (plan.stayAtGrcChecklist ?? []).map(
+    normalizeRequirementShapeForChecklistItem
+  );
+  const synthesizedChoiceChecklistItems = getUnreferencedChoiceChecklistItems(
+    requirementGroups,
+    [...applicationChecklist, ...beforeEnrollmentChecklist, ...stayAtGrcChecklist]
+  );
   return {
     ...plan,
     ...(supportLists.length ? { supportLists } : {}),
-    requirementGroups: (plan.requirementGroups ?? []).map(normalizeRequirementShapeForGroup),
-    applicationChecklist: (plan.applicationChecklist ?? []).map(normalizeRequirementShapeForChecklistItem),
-    beforeEnrollmentChecklist: (plan.beforeEnrollmentChecklist ?? []).map(
-      normalizeRequirementShapeForChecklistItem
-    ),
-    stayAtGrcChecklist: (plan.stayAtGrcChecklist ?? []).map(normalizeRequirementShapeForChecklistItem),
+    requirementGroups,
+    applicationChecklist,
+    beforeEnrollmentChecklist: [
+      ...beforeEnrollmentChecklist,
+      ...synthesizedChoiceChecklistItems,
+    ],
+    stayAtGrcChecklist,
     pathways: (plan.pathways ?? []).map((pathway) => ({
       ...pathway,
       requirementGroups: (pathway.requirementGroups ?? []).map(normalizeRequirementShapeForGroup),

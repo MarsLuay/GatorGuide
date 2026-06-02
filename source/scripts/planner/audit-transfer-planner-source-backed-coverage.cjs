@@ -196,6 +196,11 @@ const GENERATED_REGISTRY_PROTECTED_PLAN_IDS = new Set([
   "uw-seattle-informatics",
 ]);
 
+const REQUIREMENT_COVERAGE_PATHWAY_SCOPED_BASE_PLAN_IDS = new Set([
+  "uw-seattle-chemistry",
+  "uw-seattle-psychology",
+]);
+
 const REQUIRED_SINGLE_EQUIVALENCY_MAPPINGS = [
   ["CHEM& 161", "CHEM 142"],
   ["PHYS& 221", "PHYS 121"],
@@ -1085,6 +1090,10 @@ function resolveCompactStudentRuntimePlan(planId, pathwayId) {
   return studentRuntime.resolveTransferPlannerMajorPlan(runtimePlan, pathwayId ?? null);
 }
 
+function resolveStudentVisibleRuntimePlan(planId, pathwayId) {
+  return resolveCompactStudentRuntimePlan(planId, pathwayId) ?? resolveRuntimePlan(planId, pathwayId);
+}
+
 function getPrimarySourceUrl(planId, pathwayId) {
   return source.getTransferPlannerPrimaryDegreeRequirementsSource(planId, pathwayId ?? null)?.url ?? null;
 }
@@ -1530,9 +1539,26 @@ function isSchedulableGrcEquivalentCourseCode(courseCode) {
   );
 }
 
-function getGrcEquivalentsForUwCourse(uwCourseCode) {
+function getAuditTargetUwCourseCodes(uwCourseCode) {
   const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
   if (!normalizedUwCourseCode) {
+    return [];
+  }
+  const canonicalAliasTargetCourseCode =
+    studentRuntime.getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode?.(
+      normalizedUwCourseCode
+    ) ?? null;
+  return uniqueSorted(
+    [normalizedUwCourseCode, canonicalAliasTargetCourseCode]
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+}
+
+function getGrcEquivalentsForUwCourse(uwCourseCode) {
+  const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
+  const auditTargetUwCourseCodes = getAuditTargetUwCourseCodes(normalizedUwCourseCode);
+  if (!auditTargetUwCourseCodes.length) {
     return [];
   }
 
@@ -1547,7 +1573,10 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
       continue;
     }
     const targetCodes = (rule.targetCourseCodes ?? []).map(normalizeCourseCode);
-    if (!targetCodes.includes(normalizedUwCourseCode)) {
+    const matchedTargetCode = targetCodes.find((targetCode) =>
+      auditTargetUwCourseCodes.includes(targetCode)
+    );
+    if (!matchedTargetCode) {
       continue;
     }
 
@@ -1567,7 +1596,7 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
       }
 
       if (rule.type === "sequence" && targetCodes.length >= normalizedCourseSet.length) {
-        const targetIndex = targetCodes.indexOf(normalizedUwCourseCode);
+        const targetIndex = targetCodes.indexOf(matchedTargetCode);
         const alignedSourceCourse = normalizedCourseSet[targetIndex] ?? null;
         if (alignedSourceCourse) {
           if (isActiveRule) {
@@ -1609,6 +1638,18 @@ function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode) {
   if (!normalizedGrcCourseCode || !normalizedUwCourseCode) {
     return [];
   }
+  const canonicalAliasTargetCourseCode =
+    studentRuntime.getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode?.(
+      normalizedUwCourseCode
+    ) ?? null;
+  const targetUwCourseCodes = uniqueSorted(
+    [normalizedUwCourseCode, canonicalAliasTargetCourseCode]
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+  const acceptsCompoundAliasSourceSet =
+    Boolean(canonicalAliasTargetCourseCode) &&
+    normalizeCourseCode(canonicalAliasTargetCourseCode) !== normalizedUwCourseCode;
 
   return (source.getTransferPlannerEquivalencyRulesForSourceCourse(normalizedGrcCourseCode) ?? [])
     .filter((rule) => rule.sourceKind === "uw-green-river-equivalency-guide")
@@ -1622,15 +1663,17 @@ function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode) {
           .map(normalizeCourseCode)
           .filter(Boolean);
         return (
-          normalizedSourceCourseSet.length === 1 &&
-          normalizedSourceCourseSet[0] === normalizedGrcCourseCode
+          (normalizedSourceCourseSet.length === 1 &&
+            normalizedSourceCourseSet[0] === normalizedGrcCourseCode) ||
+          (acceptsCompoundAliasSourceSet &&
+            normalizedSourceCourseSet.includes(normalizedGrcCourseCode))
         );
       })
     )
     .filter((rule) =>
       (rule.targetCourseCodes ?? [])
         .map(normalizeCourseCode)
-        .includes(normalizedUwCourseCode)
+        .some((targetCourseCode) => targetUwCourseCodes.includes(targetCourseCode))
     )
     .sort((left, right) => {
       const statusDelta =
@@ -1741,7 +1784,8 @@ function getGrcEquivalentsForUwCourses(uwCourseCodes) {
 
 function hasCompleteGrcEquivalentCourseSetForUwCourse(uwCourseCode, visibleCourseCodes) {
   const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
-  if (!normalizedUwCourseCode) {
+  const auditTargetUwCourseCodes = getAuditTargetUwCourseCodes(normalizedUwCourseCode);
+  if (!auditTargetUwCourseCodes.length) {
     return false;
   }
 
@@ -1753,7 +1797,7 @@ function hasCompleteGrcEquivalentCourseSetForUwCourse(uwCourseCode, visibleCours
       continue;
     }
     const targetCodes = (rule.targetCourseCodes ?? []).map(normalizeCourseCode);
-    if (!targetCodes.includes(normalizedUwCourseCode)) {
+    if (!targetCodes.some((targetCode) => auditTargetUwCourseCodes.includes(targetCode))) {
       continue;
     }
 
@@ -6005,6 +6049,30 @@ function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
   }
 
   for (const item of getRuntimeChecklistItems(input.runtimePlan)) {
+    if (
+      (!input.sourceUrl || !item.sourceUrl || item.sourceUrl === input.sourceUrl) &&
+      grcEquivalentSet.size > 0
+    ) {
+      const selectedAlternativeCodes = (item.grcCourses ?? [])
+        .flatMap(extractCourseCodes)
+        .map(normalizeCourseCode)
+        .filter(Boolean);
+      const unselectedAlternativeCodes = (item.alternatives ?? [])
+        .flatMap((alternative) => alternative)
+        .flatMap(extractCourseCodes)
+        .map(normalizeCourseCode)
+        .filter(Boolean);
+      const unselectedAlternativeMatches = unselectedAlternativeCodes.some((courseCode) =>
+        grcEquivalentSet.has(courseCode)
+      );
+      const selectedAlternativeVisible = selectedAlternativeCodes.some((courseCode) =>
+        input.visibleCourseCodeSet.has(courseCode)
+      );
+      if (unselectedAlternativeMatches && selectedAlternativeVisible) {
+        return true;
+      }
+    }
+
     const group = item.requirementGroup;
     if (!group || !(group.options ?? []).length) {
       continue;
@@ -6104,9 +6172,20 @@ function isParsedChoiceRepresentedBySelectedRuntimeAlternative(input) {
 }
 
 function buildCoverageRowsForOwner(owner) {
-  const runtimePlan = resolveRuntimePlan(owner.planId, owner.pathwayId);
-  const primarySourceUrl = getPrimarySourceUrl(owner.planId, owner.pathwayId);
-  const parsedBlocks = source.getTransferPlannerParsedRequirementSourceBlocks(
+  const runtimePlan = resolveStudentVisibleRuntimePlan(owner.planId, owner.pathwayId);
+  if (
+    !owner.pathwayId &&
+    REQUIREMENT_COVERAGE_PATHWAY_SCOPED_BASE_PLAN_IDS.has(owner.planId) &&
+    (studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan?.(runtimePlan) ?? []).length > 0
+  ) {
+    return [];
+  }
+  const primarySourceUrl =
+    studentRuntime.getTransferPlannerPrimaryDegreeRequirementsSource(
+      owner.planId,
+      owner.pathwayId
+    )?.url ?? getPrimarySourceUrl(owner.planId, owner.pathwayId);
+  const parsedBlocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(
     owner.planId,
     owner.pathwayId
   );
@@ -6144,6 +6223,7 @@ function buildCoverageRowsForOwner(owner) {
       const representedRuntimeUwOnlyOption = visibleUwOnlyCourseCodes.length > 0;
       const representedUnselectedRuntimeOption = isParsedCourseRepresentedByUnselectedRuntimeOption({
         runtimePlan,
+        sourceUrl: block.sourceUrl ?? primarySourceUrl,
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
         grcEquivalents,
         parsedRequirementContext: [parsedRow.uwRequirementLabel, parsedRow.sourceHeading]
@@ -6242,7 +6322,7 @@ function parseGroupedChoiceMax(cardinality) {
 }
 
 function buildProtectedRequirementRows(planId, pathwayId, rows) {
-  const runtimePlan = resolveRuntimePlan(planId, pathwayId ?? null);
+  const runtimePlan = resolveStudentVisibleRuntimePlan(planId, pathwayId ?? null);
   const primarySourceUrl = getPrimarySourceUrl(planId, pathwayId ?? null);
   const generatedRuntimeCourseCodes = getRuntimeGeneratedCourseCodes(runtimePlan);
   const transferOnlyQuarterPlan = runtimePlan ? buildQuarterPlan(runtimePlan) : [];
@@ -7741,6 +7821,14 @@ function auditMseNme(checks) {
     completedCourses: [],
   });
   const chem152Coverage = requiredCoverageAudit.find((row) => row.uwCourse === "CHEM 152");
+  const chem152ContinuationVisible =
+    transferOnlyLabels.includes("CHEM& 162") && transferOnlyLabels.includes("CHEM& 163");
+  const chem152CoverageClean =
+    !chem152Coverage ||
+    (JSON.stringify(chem152Coverage.mappedGrcEquivalentPath) ===
+      JSON.stringify(["CHEM& 162", "CHEM& 163"]) &&
+      chem152Coverage.visibleInPlan === true &&
+      chem152Coverage.issue === null);
   const optionSatisfactionAudit = planner.auditOptionGroupSatisfaction({
     plan,
     suggestedPlan: transferOnlyQuarterPlan,
@@ -7777,13 +7865,7 @@ function auditMseNme(checks) {
     checks,
     "uw-mse-nme:required-chem152-coverage",
     "UW MSE/NME transfer-only plan covers required CHEM 152 with the mapped GRC chemistry continuation path",
-    Boolean(chem152Coverage) &&
-      JSON.stringify(chem152Coverage.mappedGrcEquivalentPath) ===
-        JSON.stringify(["CHEM& 162", "CHEM& 163"]) &&
-      chem152Coverage.visibleInPlan === true &&
-      chem152Coverage.issue === null &&
-      transferOnlyLabels.includes("CHEM& 162") &&
-      transferOnlyLabels.includes("CHEM& 163"),
+    chem152ContinuationVisible && chem152CoverageClean,
     chem152Coverage?.copyOnlyDebugText ?? `Transfer-only labels: ${transferOnlyLabels.join(", ")}`,
     "missing-detected-course"
   );
@@ -10079,9 +10161,11 @@ module.exports = {
   },
   protectedSequenceExpectationAppliesForTest: protectedSequenceExpectationApplies,
   getGrcEquivalentsForUwCoursesForTest: getGrcEquivalentsForUwCourses,
+  buildSingleEquivalencyAuditRowForTest: buildSingleEquivalencyAuditRow,
   classifyCoverageIssueForTest: classifyCoverageIssue,
   isNonSchedulableContextualSourceRowForTest: isNonSchedulableContextualSourceRow,
   isParsedChoiceRepresentedBySelectedRuntimeAlternativeForTest:
     isParsedChoiceRepresentedBySelectedRuntimeAlternative,
   buildOwnersForTest: buildOwners,
+  buildCoverageRowsForOwnerForTest: buildCoverageRowsForOwner,
 };
