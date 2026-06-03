@@ -196,11 +196,6 @@ const GENERATED_REGISTRY_PROTECTED_PLAN_IDS = new Set([
   "uw-seattle-informatics",
 ]);
 
-const REQUIREMENT_COVERAGE_PATHWAY_SCOPED_BASE_PLAN_IDS = new Set([
-  "uw-seattle-chemistry",
-  "uw-seattle-psychology",
-]);
-
 const REQUIRED_SINGLE_EQUIVALENCY_MAPPINGS = [
   ["CHEM& 161", "CHEM 142"],
   ["PHYS& 221", "PHYS 121"],
@@ -1124,6 +1119,67 @@ function getRuntimeGeneratedCourseCodes(plan) {
 
 function normalizeSourceAuditUrl(value) {
   return String(value ?? "").trim();
+}
+
+function normalizeCoverageSourceUrl(value) {
+  return normalizeSourceAuditUrl(value).replace(/\/+$/u, "").toLowerCase();
+}
+
+function parsedBlockHasRequirementCoverage(block) {
+  return (
+    (block?.parsedRequirementCourses ?? []).length > 0 ||
+    (block?.parsedRequirementGroups ?? []).length > 0 ||
+    (block?.parsedUwCourseCodes ?? []).length > 0
+  );
+}
+
+function getRuntimePlanPathwayIds(runtimePlan) {
+  return (studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan?.(runtimePlan) ?? [])
+    .map((pathway) => pathway?.id)
+    .filter(Boolean);
+}
+
+function getParsedRequirementBlocksForScope(planId, pathwayId) {
+  return (
+    studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId ?? null) ?? []
+  ).filter(parsedBlockHasRequirementCoverage);
+}
+
+function baseRequirementCoverageShouldDelegateToPathways(owner, runtimePlan) {
+  if (owner.pathwayId) {
+    return false;
+  }
+
+  const pathwayIds = getRuntimePlanPathwayIds(runtimePlan);
+  if (!pathwayIds.length) {
+    return false;
+  }
+
+  const baseBlocks = getParsedRequirementBlocksForScope(owner.planId, null);
+  if (!baseBlocks.length) {
+    return false;
+  }
+
+  const basePrimarySourceUrl = normalizeCoverageSourceUrl(getPrimarySourceUrl(owner.planId, null));
+  const pathwayPrimarySourceUrls = pathwayIds.map((pathwayId) =>
+    normalizeCoverageSourceUrl(getPrimarySourceUrl(owner.planId, pathwayId))
+  );
+  const allPathwaysHavePrimarySource = pathwayPrimarySourceUrls.every(Boolean);
+  const allPathwaysHaveRequirementCoverage = pathwayIds.every(
+    (pathwayId) => getParsedRequirementBlocksForScope(owner.planId, pathwayId).length > 0
+  );
+  if (!allPathwaysHavePrimarySource || !allPathwaysHaveRequirementCoverage) {
+    return false;
+  }
+
+  const sharedBasePrimarySource =
+    Boolean(basePrimarySourceUrl) &&
+    pathwayPrimarySourceUrls.every((sourceUrl) => sourceUrl === basePrimarySourceUrl);
+  const dedicatedPathwayPrimarySources =
+    Boolean(basePrimarySourceUrl) &&
+    pathwayPrimarySourceUrls.every((sourceUrl) => sourceUrl !== basePrimarySourceUrl);
+
+  return sharedBasePrimarySource || dedicatedPathwayPrimarySources;
 }
 
 function getRuntimeGeneratedCourseCodesForSource(plan, sourceUrl) {
@@ -3391,10 +3447,49 @@ function blockHasSupportMetadata(block) {
   return getSupportMetadataCodes(block).length > 0 || (block.supportLists ?? []).length > 0;
 }
 
-function buildGeneratedShapeAuditSupportRow(owner, block, compactBlock, seedRowsForOwner) {
+function getRuntimeSupportListCodes(supportList) {
+  return uniqueSorted(
+    [
+      ...(supportList?.acceptedUwCourseCodes ?? []),
+      ...(supportList?.approvedUwCourseGroups ?? []).flat(),
+    ]
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+}
+
+function findRuntimeSupportListForBlock(runtimePlan, block, parserCodes) {
+  const sourceUrl = normalizeCoverageSourceUrl(block.sourceUrl ?? block.primarySourceUrl);
+  if (!sourceUrl || !parserCodes.length) {
+    return null;
+  }
+
+  return (
+    (runtimePlan?.supportLists ?? []).find((supportList) => {
+      const supportListSourceUrl = normalizeCoverageSourceUrl(
+        supportList.sourceUrl ?? supportList.officialSourceUrl
+      );
+      if (supportListSourceUrl !== sourceUrl) {
+        return false;
+      }
+
+      const supportListCodes = getRuntimeSupportListCodes(supportList);
+      const supportListIsNonSchedulable =
+        supportList.supportOnly === true || supportList.canCreateScheduleRow === false;
+      return (
+        supportListIsNonSchedulable &&
+        (parserCodes.every((courseCode) => supportListCodes.includes(courseCode)) ||
+          (supportList.sourceBackedProgramApproval === true && supportListCodes.length > 0))
+      );
+    }) ?? null
+  );
+}
+
+function buildGeneratedShapeAuditSupportRow(owner, block, compactBlock, runtimePlan, seedRowsForOwner) {
   const parserCodes = getSupportMetadataCodes(block);
   const compactCodes = getSupportMetadataCodes(compactBlock ?? {});
-  const supportShapePreserved =
+  const runtimeSupportList = findRuntimeSupportListForBlock(runtimePlan, block, parserCodes);
+  const compactShapePreserved =
     compactBlock &&
     parserCodes.every((courseCode) => compactCodes.includes(courseCode)) &&
     (compactBlock.canCreateScheduleRows === false ||
@@ -3402,6 +3497,8 @@ function buildGeneratedShapeAuditSupportRow(owner, block, compactBlock, seedRows
       compactBlock.supportOnly === true ||
       compactBlock.nonSchedulable === true ||
       isSupportOrNonSchedulableGeneratedSourceRole(compactBlock.sourceRole));
+  const runtimeSupportListPreserved = Boolean(runtimeSupportList);
+  const supportShapePreserved = compactShapePreserved || runtimeSupportListPreserved;
   const seedIssue = (seedRowsForOwner ?? []).some(
     (row) =>
       row.sourceUrl === block.sourceUrl &&
@@ -3419,6 +3516,12 @@ function buildGeneratedShapeAuditSupportRow(owner, block, compactBlock, seedRows
       }; canCreateScheduleRows=${compactBlock.canCreateScheduleRows === true ? "yes" : "no"}; codes=${joinList(
         compactCodes
       )}`
+    : runtimeSupportList
+      ? `runtime support-list; shape=${runtimeSupportList.shape ?? "unknown"}; supportOnly=${
+          runtimeSupportList.supportOnly === true ? "yes" : "no"
+        }; canCreateScheduleRow=${runtimeSupportList.canCreateScheduleRow === true ? "yes" : "no"}; codes=${joinList(
+          getRuntimeSupportListCodes(runtimeSupportList)
+        )}`
     : "missing";
 
   return {
@@ -3468,6 +3571,7 @@ function buildGeneratedShapeAuditRowsForOwner(owner, seedRowsForOwner = []) {
       owner.pathwayId
     ) ?? []).map((block) => [block.id, block])
   );
+  const runtimePlan = resolveCompactRuntimeGeneratedPlan(owner.planId, owner.pathwayId);
   const parsedBlocks = source.getTransferPlannerParsedRequirementSourceBlocks(
     owner.planId,
     owner.pathwayId
@@ -3504,6 +3608,7 @@ function buildGeneratedShapeAuditRowsForOwner(owner, seedRowsForOwner = []) {
           owner,
           block,
           compactBlocksById.get(block.id) ?? null,
+          runtimePlan,
           seedRowsForOwner
         )
       );
@@ -5935,6 +6040,16 @@ function getRuntimeChecklistItems(plan) {
     ...(plan.applicationChecklist ?? []),
     ...(plan.beforeEnrollmentChecklist ?? []),
     ...(plan.stayAtGrcChecklist ?? []),
+    ...(plan.requirementGroups ?? []).map((group) => ({
+      id: group.id,
+      title: group.label,
+      label: group.label,
+      sourceUrl: group.sourceUrl ?? null,
+      sourceRole: group.sourceRole ?? null,
+      sourceScope: group.sourceScope ?? null,
+      generatedFromRequirementGroup: true,
+      requirementGroup: group,
+    })),
   ];
 }
 
@@ -6037,6 +6152,23 @@ function visiblePromptOptionGroupShowsOption(input) {
   });
 }
 
+function runtimeRequirementGroupRepresentsChoice(group) {
+  if (!group) {
+    return false;
+  }
+  if (["choose_one", "choose_credits", "sequence_choice"].includes(group.requirementType)) {
+    return true;
+  }
+  if (group.minCredits != null || group.maxCredits != null) {
+    return true;
+  }
+  return (
+    group.requiredCount != null &&
+    (group.options ?? []).length > 0 &&
+    group.requiredCount < (group.options ?? []).length
+  );
+}
+
 function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
   const parsedUwCourseCodeSet = new Set(
     (input.parsedUwCourseCodes ?? []).map(normalizeCourseCode).filter(Boolean)
@@ -6093,6 +6225,14 @@ function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
     const matchingOptions = (group.options ?? []).filter(optionMatchesParsedCourse);
     if (!matchingOptions.length) {
       continue;
+    }
+
+    if (
+      item.generatedFromRequirementGroup &&
+      runtimeRequirementGroupRepresentsChoice(group) &&
+      runtimeItemMatchesParsedRequirementContext(item, input.parsedRequirementContext)
+    ) {
+      return true;
     }
 
     const optionIsVisible = (option) =>
@@ -6171,13 +6311,90 @@ function isParsedChoiceRepresentedBySelectedRuntimeAlternative(input) {
   return false;
 }
 
+function normalizeCoverageRequirementLabel(value) {
+  return normalizeAuditText(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9&]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function parsedCoverageRowsMatch(leftRow, rightRow) {
+  const leftCodes = new Set((leftRow.parsedUwCourseCodes ?? []).map(normalizeCourseCode));
+  const rightCodes = new Set((rightRow.parsedUwCourseCodes ?? []).map(normalizeCourseCode));
+  const codeOverlap = [...leftCodes].some((courseCode) => rightCodes.has(courseCode));
+  if (!codeOverlap) {
+    return false;
+  }
+
+  const leftLabel = normalizeCoverageRequirementLabel(
+    [leftRow.uwRequirementLabel, leftRow.sourceHeading].filter(Boolean).join(" ")
+  );
+  const rightLabel = normalizeCoverageRequirementLabel(
+    [rightRow.uwRequirementLabel, rightRow.sourceHeading].filter(Boolean).join(" ")
+  );
+  if (!leftLabel || !rightLabel) {
+    return true;
+  }
+
+  return (
+    leftLabel === rightLabel ||
+    (leftLabel.length >= 12 &&
+      rightLabel.length >= 12 &&
+      (leftLabel.includes(rightLabel) || rightLabel.includes(leftLabel)))
+  );
+}
+
+function getCoverageBlockPathwayId(block) {
+  const explicitPathwayId = String(block?.pathwayId ?? "").trim();
+  if (explicitPathwayId) {
+    return explicitPathwayId;
+  }
+
+  const ownerId = String(block?.ownerId ?? "");
+  const [, ownerPathwayId] = ownerId.split(":pathway:");
+  return ownerPathwayId || null;
+}
+
+function parsedRowIsRepresentedBySiblingPathwaySource({
+  owner,
+  block,
+  parsedRow,
+  runtimePlan,
+}) {
+  if (!owner.pathwayId || getCoverageBlockPathwayId(block) === owner.pathwayId) {
+    return false;
+  }
+
+  const pathwayIds = getRuntimePlanPathwayIds(runtimePlan).filter(
+    (pathwayId) => pathwayId && pathwayId !== owner.pathwayId
+  );
+  if (!pathwayIds.length) {
+    return false;
+  }
+
+  const blockSourceUrl = normalizeCoverageSourceUrl(block.sourceUrl ?? block.primarySourceUrl);
+  for (const pathwayId of pathwayIds) {
+    for (const siblingBlock of getParsedRequirementBlocksForScope(owner.planId, pathwayId)) {
+      const siblingSourceUrl = normalizeCoverageSourceUrl(
+        siblingBlock.sourceUrl ?? siblingBlock.primarySourceUrl
+      );
+      if (blockSourceUrl && siblingSourceUrl && blockSourceUrl !== siblingSourceUrl) {
+        continue;
+      }
+
+      if (buildParsedRequirementRows(siblingBlock).some((row) => parsedCoverageRowsMatch(parsedRow, row))) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 function buildCoverageRowsForOwner(owner) {
   const runtimePlan = resolveStudentVisibleRuntimePlan(owner.planId, owner.pathwayId);
-  if (
-    !owner.pathwayId &&
-    REQUIREMENT_COVERAGE_PATHWAY_SCOPED_BASE_PLAN_IDS.has(owner.planId) &&
-    (studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan?.(runtimePlan) ?? []).length > 0
-  ) {
+  if (baseRequirementCoverageShouldDelegateToPathways(owner, runtimePlan)) {
     return [];
   }
   const primarySourceUrl =
@@ -6221,18 +6438,26 @@ function buildCoverageRowsForOwner(owner) {
           )
         : [];
       const representedRuntimeUwOnlyOption = visibleUwOnlyCourseCodes.length > 0;
-      const representedUnselectedRuntimeOption = isParsedCourseRepresentedByUnselectedRuntimeOption({
+      const representedSiblingPathwaySourceRow = parsedRowIsRepresentedBySiblingPathwaySource({
+        owner,
+        block,
+        parsedRow,
         runtimePlan,
-        sourceUrl: block.sourceUrl ?? primarySourceUrl,
-        parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
-        grcEquivalents,
-        parsedRequirementContext: [parsedRow.uwRequirementLabel, parsedRow.sourceHeading]
-          .filter(Boolean)
-          .join(" "),
-        visibleCourseCodeSet,
-        visibleSelectionPromptOptionGroupIds,
-        visibleSelectionPromptOptionGroups,
       });
+      const representedUnselectedRuntimeOption =
+        representedSiblingPathwaySourceRow ||
+        isParsedCourseRepresentedByUnselectedRuntimeOption({
+          runtimePlan,
+          sourceUrl: block.sourceUrl ?? primarySourceUrl,
+          parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
+          grcEquivalents,
+          parsedRequirementContext: [parsedRow.uwRequirementLabel, parsedRow.sourceHeading]
+            .filter(Boolean)
+            .join(" "),
+          visibleCourseCodeSet,
+          visibleSelectionPromptOptionGroupIds,
+          visibleSelectionPromptOptionGroups,
+        });
       const representedSelectedRuntimeAlternative = isParsedChoiceRepresentedBySelectedRuntimeAlternative({
         runtimePlan,
         sourceUrl: block.sourceUrl ?? primarySourceUrl,
@@ -6288,6 +6513,7 @@ function buildCoverageRowsForOwner(owner) {
         visibleUwOnlyCourseCodes,
         representedRuntimeUwOnlyOption,
         representedUnselectedRuntimeOption,
+        representedSiblingPathwaySourceRow,
         generatedRuntimeRow,
         visibleInTransferOnlyQuarterPlan: visibleInTransferOnlyPlan,
         hiddenInternalReason: hiddenReason,
