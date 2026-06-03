@@ -131,6 +131,19 @@
               "schedule",
               "instructors"
             ]
+          },
+          {
+            "title": "GPTZero",
+            "description": "Check writing for AI-generated text signals and review results as a second opinion before submitting assignments.",
+            "url": "https://gptzero.app/",
+            "tags": [
+              "gptzero",
+              "ai detector",
+              "ai writing",
+              "writing",
+              "academic integrity",
+              "assignments"
+            ]
           }
         ]
       },
