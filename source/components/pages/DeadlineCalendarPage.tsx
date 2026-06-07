@@ -3,6 +3,7 @@ import {
   Pressable,
   ScrollView,
   Text,
+  TextInput,
   View,
   useWindowDimensions,
 } from "react-native";
@@ -33,6 +34,7 @@ import {
   getEntrySubtitle,
   getItemIcon,
   getPrimaryActionLabel,
+  normalizeAgendaText,
 } from "@/components/pages/deadline-calendar/deadline-calendar-view-utils";
 
 export default function DeadlineCalendarPage() {
@@ -42,8 +44,22 @@ export default function DeadlineCalendarPage() {
   const insets = useSafeAreaInsets();
   const tabBarHeight = useBottomTabBarHeight();
   const { width, fontScale } = useWindowDimensions();
-  const { textClass, secondaryTextClass, cardBgClass, borderClass, placeholderColor } =
+  const { textClass, secondaryTextClass, cardBgClass, borderClass, inputBgClass, placeholderColor } =
     styles;
+  const [expandedItemIds, setExpandedItemIds] = React.useState<Set<string>>(
+    () => new Set()
+  );
+  const toggleExpandedItem = React.useCallback((itemId: string) => {
+    setExpandedItemIds((current) => {
+      const next = new Set(current);
+      if (next.has(itemId)) {
+        next.delete(itemId);
+      } else {
+        next.add(itemId);
+      }
+      return next;
+    });
+  }, []);
   const {
     isHydrated,
     areOpportunitiesHydrated,
@@ -55,6 +71,9 @@ export default function DeadlineCalendarPage() {
     todayDateKey,
     selectedDateKey,
     setSelectedDateKey,
+    searchQuery,
+    setSearchQuery,
+    isSearching,
     visibleMonth,
     setVisibleMonth,
     calendarEntries,
@@ -104,30 +123,6 @@ export default function DeadlineCalendarPage() {
             className={`${cardBgClass} border ${borderClass} rounded-[28px] overflow-hidden mb-5`}
             style={{ padding: layout.heroPadding }}
           >
-            <View
-              pointerEvents="none"
-              style={{
-                position: "absolute",
-                top: -32,
-                right: -18,
-                width: 152,
-                height: 152,
-                borderRadius: 999,
-                backgroundColor: "rgba(16,185,129,0.10)",
-              }}
-            />
-            <View
-              pointerEvents="none"
-              style={{
-                position: "absolute",
-                bottom: -28,
-                left: -10,
-                width: 104,
-                height: 104,
-                borderRadius: 999,
-                backgroundColor: "rgba(14,165,233,0.08)",
-              }}
-            />
             <View className="flex-row items-start justify-between">
               <View className="flex-1 pr-4" style={{ minWidth: 0 }}>
                 <Text className={`text-2xl ${textClass} font-semibold`}>
@@ -580,6 +575,35 @@ export default function DeadlineCalendarPage() {
                   </View>
                 </View>
 
+                <View
+                  className={`${inputBgClass} border ${borderClass} rounded-2xl px-4 py-3 flex-row items-center`}
+                  style={{ marginBottom: 16 }}
+                >
+                  <MaterialIcons name="search" size={20} color={placeholderColor} />
+                  <TextInput
+                    value={searchQuery}
+                    onChangeText={setSearchQuery}
+                    placeholder={t("deadlineCalendar.searchPlaceholder")}
+                    placeholderTextColor={placeholderColor}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    returnKeyType="search"
+                    accessibilityLabel={t("deadlineCalendar.searchPlaceholder")}
+                    className={`${textClass} text-sm flex-1 min-w-0 ml-3`}
+                  />
+                  {searchQuery ? (
+                    <AnimatedIconPressable
+                      onPress={() => setSearchQuery("")}
+                      className="ml-2"
+                      hitSlop={8}
+                      accessibilityRole="button"
+                      accessibilityLabel={t("deadlineCalendar.clearSearch")}
+                    >
+                      <MaterialIcons name="close" size={18} color={placeholderColor} />
+                    </AnimatedIconPressable>
+                  ) : null}
+                </View>
+
                 {!isHydrated || !areOpportunitiesHydrated || (isRoadmapLoading && !roadmap) ? (
                   <StateCard
                     variant="loading"
@@ -604,6 +628,17 @@ export default function DeadlineCalendarPage() {
                   />
                 ) : null}
 
+                {isSearching && groups.length > 0 && displayedGroups.length === 0 ? (
+                  <StateCard
+                    variant="empty"
+                    title={t("deadlineCalendar.noSearchResultsTitle")}
+                    message={t("deadlineCalendar.noSearchResultsMessage")}
+                    compact
+                    centered={false}
+                    className="mb-3"
+                  />
+                ) : null}
+
                 {groups.length === 0 ? (
                   <StateCard
                     variant="empty"
@@ -615,7 +650,7 @@ export default function DeadlineCalendarPage() {
                   />
                 ) : null}
 
-                {monthGroups.length === 0 && groups.length > 0 && !selectedDateKey ? (
+                {monthGroups.length === 0 && groups.length > 0 && !selectedDateKey && !isSearching ? (
                   <StateCard
                     variant="info"
                     title={t("deadlineCalendar.noItemsThisMonthTitle")}
@@ -626,7 +661,7 @@ export default function DeadlineCalendarPage() {
                   />
                 ) : null}
 
-                {monthGroups.length > 0 && displayedGroups.length === 0 && !selectedDateKey ? (
+                {monthGroups.length > 0 && displayedGroups.length === 0 && !selectedDateKey && !isSearching ? (
                   <StateCard
                     variant="info"
                     title={t("deadlineCalendar.selectDateToRevealTitle")}
@@ -710,12 +745,27 @@ export default function DeadlineCalendarPage() {
                             (!layout.isDenseAgenda || layout.isDesktop || !subtitlePreview);
                           const actionLabel = getPrimaryActionLabel(item, t);
                           const isRoadmapItem = item.target.type === "roadmap";
+                          const isExpanded = expandedItemIds.has(item.id);
+                          const fullDescription = normalizeAgendaText(item.description);
+                          const effectiveDescription = isExpanded
+                            ? fullDescription
+                            : descriptionPreview;
+                          const showEffectiveDescription =
+                            !!effectiveDescription &&
+                            (isExpanded || showDescription);
+                          const handleActionPress = (
+                            event?: { stopPropagation?: () => void }
+                          ) => {
+                            event?.stopPropagation?.();
+                            if (isRoadmapItem) return;
+                            void handleOpenEntry(item);
+                          };
 
                           return (
                             <AnimatedCardPressable
                               key={item.id}
                               onPress={() => {
-                                void handleOpenEntry(item);
+                                toggleExpandedItem(item.id);
                               }}
                               style={{
                                 paddingHorizontal: layout.agendaCardPadding,
@@ -792,20 +842,26 @@ export default function DeadlineCalendarPage() {
                                       </View>
                                     ) : null}
 
-                                    {showDescription ? (
+                                    {showEffectiveDescription ? (
                                       <View
                                         style={{
-                                          minHeight: layout.agendaDescriptionSlotMinHeight,
+                                          minHeight: isExpanded
+                                            ? 0
+                                            : layout.agendaDescriptionSlotMinHeight,
                                           justifyContent: "flex-start",
                                           marginTop: subtitlePreview ? 6 : 8,
                                         }}
                                       >
                                         <Text
                                           className={`${secondaryTextClass} text-sm`}
-                                          numberOfLines={layout.agendaDescriptionLines}
+                                          numberOfLines={
+                                            isExpanded
+                                              ? undefined
+                                              : layout.agendaDescriptionLines
+                                          }
                                           style={{ lineHeight: layout.agendaDescriptionLineHeight }}
                                         >
-                                          {descriptionPreview}
+                                          {effectiveDescription}
                                         </Text>
                                       </View>
                                     ) : null}
@@ -816,21 +872,24 @@ export default function DeadlineCalendarPage() {
                                       className="items-end justify-between"
                                       style={{ minHeight: layout.agendaActionColumnMinHeight }}
                                     >
-                                      <View
-                                        className={`px-3 py-2 rounded-2xl border ${
-                                          isRoadmapItem
-                                            ? "bg-slate-500/10 border-slate-500/20"
-                                            : "bg-emerald-500/10 border-emerald-500/20"
-                                        }`}
-                                      >
-                                        <Text
-                                          className={`text-xs font-semibold ${
-                                            isRoadmapItem ? secondaryTextClass : "text-emerald-600"
-                                          }`}
+                                      {isRoadmapItem ? (
+                                        <View className="px-3 py-2 rounded-2xl border bg-slate-500/10 border-slate-500/20">
+                                          <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
+                                            {actionLabel}
+                                          </Text>
+                                        </View>
+                                      ) : (
+                                        <AnimatedChipPressable
+                                          onPress={handleActionPress}
+                                          className="px-3 py-2 rounded-2xl border bg-emerald-500/10 border-emerald-500/20"
+                                          accessibilityRole="button"
+                                          accessibilityLabel={`${actionLabel}: ${item.title}`}
                                         >
-                                          {actionLabel}
-                                        </Text>
-                                      </View>
+                                          <Text className="text-emerald-600 text-xs font-semibold">
+                                            {actionLabel}
+                                          </Text>
+                                        </AnimatedChipPressable>
+                                      )}
 
                                       {!isRoadmapItem ? (
                                         <MaterialIcons
@@ -852,22 +911,29 @@ export default function DeadlineCalendarPage() {
                                       gap: 8,
                                     }}
                                   >
-                                    <View
-                                      className={`px-3 py-2 rounded-2xl border ${
-                                        isRoadmapItem
-                                          ? "bg-slate-500/10 border-slate-500/20"
-                                          : "bg-emerald-500/10 border-emerald-500/20"
-                                      }`}
-                                      style={!layout.isTablet ? { alignItems: "center" } : undefined}
-                                    >
-                                      <Text
-                                        className={`text-xs font-semibold ${
-                                          isRoadmapItem ? secondaryTextClass : "text-emerald-600"
-                                        }`}
+                                    {isRoadmapItem ? (
+                                      <View
+                                        className="px-3 py-2 rounded-2xl border bg-slate-500/10 border-slate-500/20"
+                                        style={!layout.isTablet ? { alignItems: "center" } : undefined}
                                       >
-                                        {actionLabel}
-                                      </Text>
-                                    </View>
+                                        <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
+                                          {actionLabel}
+                                        </Text>
+                                      </View>
+                                    ) : (
+                                      <AnimatedChipPressable
+                                        onPress={handleActionPress}
+                                        className="px-3 py-2 rounded-2xl border bg-emerald-500/10 border-emerald-500/20"
+                                        containerStyle={!layout.isTablet ? { width: "100%" } : undefined}
+                                        style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
+                                        accessibilityRole="button"
+                                        accessibilityLabel={`${actionLabel}: ${item.title}`}
+                                      >
+                                        <Text className="text-emerald-600 text-xs font-semibold">
+                                          {actionLabel}
+                                        </Text>
+                                      </AnimatedChipPressable>
+                                    )}
 
                                     {!isRoadmapItem ? (
                                       <MaterialIcons

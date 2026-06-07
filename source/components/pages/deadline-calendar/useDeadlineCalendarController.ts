@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { Alert, Linking } from "react-native";
 import { useRouter } from "expo-router";
 
@@ -19,9 +19,11 @@ import {
 } from "@/services/planning/roadmap.service";
 import {
   clamp,
+  filterDeadlineCalendarGroupsBySearch,
   formatGroupDate,
   formatMonthTitle,
   formatRelativeDate,
+  normalizeDeadlineCalendarSearchValue,
 } from "@/components/pages/deadline-calendar/deadline-calendar-view-utils";
 
 const LANGUAGE_TO_LOCALE: Record<Language, string> = {
@@ -173,6 +175,8 @@ export function useDeadlineCalendarController({
   const [roadmapLoadError, setRoadmapLoadError] = useState<string | null>(null);
   const [roadmapLoadAttempt, setRoadmapLoadAttempt] = useState(0);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const deferredSearchQuery = useDeferredValue(searchQuery);
   const todayDateKey = useMemo(() => getLocalDateKey(), []);
 
   const roadmapSeed = useMemo(
@@ -245,6 +249,22 @@ export function useDeadlineCalendarController({
     [calendarEntries]
   );
 
+  const normalizedSearchQuery = useMemo(
+    () => normalizeDeadlineCalendarSearchValue(deferredSearchQuery),
+    [deferredSearchQuery]
+  );
+  const isSearching = normalizedSearchQuery.length > 0;
+  const searchFilteredGroups = useMemo(
+    () =>
+      filterDeadlineCalendarGroupsBySearch({
+        groups,
+        locale,
+        normalizedSearchQuery,
+        t,
+      }),
+    [groups, locale, normalizedSearchQuery, t]
+  );
+
   const [visibleMonth, setVisibleMonth] = useState<Date>(() => {
     const now = new Date();
     return getMonthStart(now);
@@ -296,9 +316,14 @@ export function useDeadlineCalendarController({
     }
   }, [selectedDateKey, visibleMonth]);
 
+  useEffect(() => {
+    if (isSearching && selectedDateKey) setSelectedDateKey(null);
+  }, [isSearching, selectedDateKey]);
+
+  const monthSourceGroups = isSearching ? searchFilteredGroups : groups;
   const monthGroups = useMemo(
-    () => groups.filter((group) => isSameMonth(group.dueAt, visibleMonth)),
-    [groups, visibleMonth]
+    () => monthSourceGroups.filter((group) => isSameMonth(group.dueAt, visibleMonth)),
+    [monthSourceGroups, visibleMonth]
   );
 
   const monthAgendaGroups = useMemo(
@@ -345,12 +370,21 @@ export function useDeadlineCalendarController({
   );
 
   const displayedGroups = useMemo(() => {
+    if (isSearching) return searchFilteredGroups;
     if (selectedDateKey) {
       return groups.filter((group) => group.dateKey === selectedDateKey);
     }
     if (monthGroups.length) return monthAgendaGroups;
     return fallbackAgendaGroups;
-  }, [fallbackAgendaGroups, groups, monthAgendaGroups, monthGroups.length, selectedDateKey]);
+  }, [
+    fallbackAgendaGroups,
+    groups,
+    isSearching,
+    monthAgendaGroups,
+    monthGroups.length,
+    searchFilteredGroups,
+    selectedDateKey,
+  ]);
 
   const displayedItemCount = useMemo(
     () => countCalendarGroupItems(displayedGroups),
@@ -399,7 +433,9 @@ export function useDeadlineCalendarController({
     () => findUpcomingGroup(monthAgendaGroups),
     [monthAgendaGroups]
   );
-  const focusGroup = selectedGroup ?? monthFocusGroup ?? fallbackAgendaGroups[0] ?? null;
+  const focusGroup = isSearching
+    ? displayedGroups[0] ?? null
+    : selectedGroup ?? monthFocusGroup ?? fallbackAgendaGroups[0] ?? null;
 
   const layout = useMemo(() => {
     const isTablet = width >= 768;
@@ -485,7 +521,9 @@ export function useDeadlineCalendarController({
     };
   }, [displayedGroups.length, displayedItemCount, fontScale, selectedDateKey, width]);
 
-  const agendaTitle = selectedGroup
+  const agendaTitle = isSearching
+    ? t("deadlineCalendar.searchResultsTitle")
+    : selectedGroup
     ? formatGroupDate(selectedGroup.dueAt, locale)
     : monthGroups.length
       ? t("deadlineCalendar.agendaForMonth", {
@@ -514,7 +552,12 @@ export function useDeadlineCalendarController({
       ? t("deadlineCalendar.dateSingular")
       : t("deadlineCalendar.datePlural");
 
-  const agendaSubtitle = selectedGroup
+  const agendaSubtitle = isSearching
+    ? t("deadlineCalendar.searchResultsSummary", {
+        count: displayedItemCount,
+        itemLabel: selectedItemLabel,
+      })
+    : selectedGroup
     ? t("deadlineCalendar.selectedDateSummary", {
         count: displayedItemCount,
         itemLabel: selectedItemLabel,
@@ -536,7 +579,9 @@ export function useDeadlineCalendarController({
 
   const focusPreviewItems = focusGroup?.items.slice(0, layout.focusPreviewCount) ?? [];
   const focusRelativeLabel = focusGroup ? formatRelativeDate(focusGroup.dueAt, locale, t) : "";
-  const focusSummary = focusGroup
+  const focusSummary = isSearching
+    ? agendaSubtitle
+    : focusGroup
     ? selectedGroup
       ? t("deadlineCalendar.selectedDateSummary", {
           count: displayedItemCount,
@@ -574,6 +619,9 @@ export function useDeadlineCalendarController({
     todayDateKey,
     selectedDateKey,
     setSelectedDateKey,
+    searchQuery,
+    setSearchQuery,
+    isSearching,
     visibleMonth,
     setVisibleMonth,
     calendarEntries,

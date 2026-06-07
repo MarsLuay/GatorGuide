@@ -1,4 +1,7 @@
-import type { DeadlineCalendarEntry } from "@/services/deadlines/deadline-calendar.service";
+import type {
+  DeadlineCalendarEntry,
+  DeadlineCalendarGroup,
+} from "@/services/deadlines/deadline-calendar.service";
 
 export type DeadlineCalendarTranslate = (
   key: string,
@@ -83,6 +86,18 @@ export function normalizeAgendaText(value: string | null | undefined) {
   return value.replace(/\s+/g, " ").trim();
 }
 
+export function normalizeDeadlineCalendarSearchValue(
+  value: string | null | undefined
+) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function buildAgendaPreviewText(
   value: string | null | undefined,
   maxChars: number
@@ -146,4 +161,42 @@ export function getPrimaryActionLabel(
   if (item.target.type === "roadmap") return t("deadlineCalendar.actionShownHere");
   if (item.target.type === "resources") return t("deadlineCalendar.actionViewOpportunity");
   return t("deadlineCalendar.actionOpenLink");
+}
+
+export function filterDeadlineCalendarGroupsBySearch({
+  groups,
+  locale,
+  normalizedSearchQuery,
+  t,
+}: {
+  groups: DeadlineCalendarGroup[];
+  locale: string;
+  normalizedSearchQuery: string;
+  t: DeadlineCalendarTranslate;
+}) {
+  if (!normalizedSearchQuery) return groups;
+
+  return groups
+    .map((group) => {
+      const groupDateText = formatGroupDate(group.dueAt, locale);
+      const items = group.items.filter((item) => {
+        const searchableText = [
+          group.dateKey,
+          groupDateText,
+          item.title,
+          item.description,
+          getEntrySubtitle(item, t),
+          getEntrySourceLabel(item, t),
+          formatKindLabel(item, t),
+          item.isDone ? t("deadlineCalendar.done") : "",
+        ].join(" ");
+
+        return normalizeDeadlineCalendarSearchValue(searchableText).includes(
+          normalizedSearchQuery
+        );
+      });
+
+      return items.length ? { ...group, items } : null;
+    })
+    .filter((group): group is DeadlineCalendarGroup => !!group);
 }

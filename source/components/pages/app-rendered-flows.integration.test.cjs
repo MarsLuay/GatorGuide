@@ -60,6 +60,7 @@ function applyFlowTranslations() {
     "deadlineCalendar.actionShownHere": "Shown here",
     "deadlineCalendar.actionViewOpportunity": "View opportunity",
     "deadlineCalendar.activeDatesThisMonth": "{{count}} {{noun}} this month",
+    "deadlineCalendar.clearSearch": "Clear deadline search",
     "deadlineCalendar.datePlural": "dates",
     "deadlineCalendar.dateSingular": "date",
     "deadlineCalendar.done": "Done",
@@ -78,7 +79,12 @@ function applyFlowTranslations() {
     "deadlineCalendar.noDatedItemsTitle": "No deadlines",
     "deadlineCalendar.noItemsThisMonthMessage": "Try another month.",
     "deadlineCalendar.noItemsThisMonthTitle": "No items this month",
+    "deadlineCalendar.noSearchResultsMessage": "Try another search.",
+    "deadlineCalendar.noSearchResultsTitle": "No matching deadlines",
     "deadlineCalendar.roadmapPlanningApplications": "Applications",
+    "deadlineCalendar.searchPlaceholder": "Search deadlines",
+    "deadlineCalendar.searchResultsSummary": "{{count}} matching {{itemLabel}}",
+    "deadlineCalendar.searchResultsTitle": "Search results",
     "deadlineCalendar.selectDateToRevealMessage": "Pick a date.",
     "deadlineCalendar.selectDateToRevealTitle": "Select a date",
     "deadlineCalendar.showAllDates": "Show all dates",
@@ -292,9 +298,22 @@ test("DeadlineCalendarPage renders opportunity deadlines and opens resources", a
         isDone: false,
         opportunityId: "promise-scholarship",
         organizationName: "GatorGuide Foundation",
-        summary: "Apply for the Promise Scholarship.",
+        summary:
+          "Apply for the Promise Scholarship with your essay, recommendation checklist, financial aid notes, campus leadership examples, transfer plan, transcript upload, and final signature checklist tail.",
         title: "Promise Scholarship",
         type: "scholarship",
+      },
+      {
+        college: {},
+        computedDueAt: null,
+        dueAt: "2026-07-15T17:00:00.000Z",
+        externalUrl: "",
+        isDone: false,
+        opportunityId: "summer-bridge-internship",
+        organizationName: "GatorGuide Foundation",
+        summary: "Apply for the summer bridge role.",
+        title: "Summer Bridge Internship",
+        type: "internship",
       },
     ],
   });
@@ -303,7 +322,20 @@ test("DeadlineCalendarPage renders opportunity deadlines and opens resources", a
   await flushAsyncWork();
 
   assert.equal(hasText(renderer, "Promise Scholarship"), true);
+  assert.equal(hasText(renderer, "Summer Bridge Internship"), false);
+
+  changeTextByPlaceholder(renderer, "Search deadlines", "internship");
+  assert.equal(hasText(renderer, "Promise Scholarship"), false);
+  assert.equal(hasText(renderer, "Summer Bridge Internship"), true);
+
+  pressByAccessibilityLabel(renderer, "Clear deadline search");
+  assert.equal(hasText(renderer, "Promise Scholarship"), true);
+
   pressByText(renderer, "Promise Scholarship");
+  assert.equal(getRouter().push.calls.length, 0);
+  assert.equal(hasText(renderer, "final signature checklist tail"), true);
+
+  pressByAccessibilityLabel(renderer, "View opportunity: Promise Scholarship");
   assert.deepEqual(getRouter().push.calls.at(-1), [ROUTES.tabsResources]);
 
   unmount(renderer);

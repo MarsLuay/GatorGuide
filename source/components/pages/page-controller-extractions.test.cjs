@@ -21,8 +21,10 @@ const {
 const {
   buildAgendaPreviewText,
   addMonths,
+  filterDeadlineCalendarGroupsBySearch,
   formatGroupDate,
   getPrimaryActionLabel,
+  normalizeDeadlineCalendarSearchValue,
 } = require("@/components/pages/deadline-calendar/deadline-calendar-view-utils");
 const {
   formatGpaDisplay,
@@ -111,6 +113,49 @@ test("deadline calendar view helpers format dates and action copy without page r
   assert.equal(nextMonth.getDate(), 1);
   assert.match(formatGroupDate("2026-05-25", "en-US"), /May|Mon|25|2026/);
   assert.equal(buildAgendaPreviewText("  Apply   before   midnight  ", 15), "Apply before m...");
+  assert.equal(normalizeDeadlineCalendarSearchValue(" École deadline! "), "ecole deadline");
+  assert.deepEqual(
+    filterDeadlineCalendarGroupsBySearch({
+      groups: [
+        {
+          dateKey: "2026-05-25",
+          dueAt: "2026-05-25T17:00:00.000Z",
+          items: [
+            {
+              dateKey: "2026-05-25",
+              description: "Apply with an essay.",
+              dueAt: "2026-05-25T17:00:00.000Z",
+              id: "opportunity:essay-scholarship",
+              isDone: false,
+              kind: "scholarship",
+              sourceLabel: "Foundation",
+              subtitle: "Campus scholarship",
+              target: { type: "resources", opportunityId: "essay-scholarship" },
+              title: "Essay Scholarship",
+            },
+            {
+              dateKey: "2026-05-25",
+              description: "Submit housing forms.",
+              dueAt: "2026-05-25T17:00:00.000Z",
+              id: "roadmap:applications:housing",
+              isDone: false,
+              kind: "roadmap_task",
+              sourceLabel: "",
+              sourceLabelKey: "deadlineCalendar.sourcePlanner",
+              subtitle: "",
+              subtitleKey: "deadlineCalendar.roadmapPlanningApplications",
+              target: { type: "roadmap", sectionId: "applications", taskId: "housing" },
+              title: "Housing checklist",
+            },
+          ],
+        },
+      ],
+      locale: "en-US",
+      normalizedSearchQuery: "foundation",
+      t,
+    }).map((group) => group.items.map((item) => item.id)),
+    [["opportunity:essay-scholarship"]]
+  );
   assert.equal(
     getPrimaryActionLabel(
       {
