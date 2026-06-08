@@ -959,6 +959,8 @@ export type TransferPlannerMajorPathwayEntry = {
   majorTitle: string;
   label: string;
   summary: string;
+  schoolTitle?: string | null;
+  collegeTitle?: string | null;
   grcCourseList: string[];
   sourceLinks: TransferPlannerSourceLink[];
   validationNotes: string[];

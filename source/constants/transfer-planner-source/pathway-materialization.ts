@@ -533,6 +533,20 @@ const CURATED_DERIVED_PATHWAY_SEEDS_BY_PLAN: Partial<
     { id: "technical-communication-track", label: "Technical Communication Track", summary: "" },
     { id: "writing-and-social-change-track", label: "Writing and Social Change Track", summary: "" },
   ],
+  "uw-tacoma-urban-studies": [
+    { id: "community-engagement-option", label: "Community Engagement option", summary: "" },
+    { id: "gis-option", label: "GIS option", summary: "" },
+    {
+      id: "pre-spring-2026-community-development-planning-option",
+      label: "Community Development & Planning option (pre-Spring 2026)",
+      summary: "",
+    },
+    {
+      id: "pre-spring-2026-gis-spatial-planning-option",
+      label: "GIS & Spatial Planning option (pre-Spring 2026)",
+      summary: "",
+    },
+  ],
 };
 const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
   Record<string, Array<{ pattern: RegExp; id: string; label: string }>>
@@ -804,6 +818,17 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
         /^(?:geographic information systems(?: \(gis\))?|gis(?: certificate)?)(?:\s+(?:classes|track))?(?: option)?$/i,
       id: "gis-option",
       label: "GIS option",
+    },
+    {
+      pattern: /^(?:community development\s*(?:&|and)\s*planning)(?: option)?$/i,
+      id: "pre-spring-2026-community-development-planning-option",
+      label: "Community Development & Planning option (pre-Spring 2026)",
+    },
+    {
+      pattern:
+        /^(?:geographic information systems(?: \(gis\))?|gis)\s*(?:&|and)\s*spatial planning(?: option)?$/i,
+      id: "pre-spring-2026-gis-spatial-planning-option",
+      label: "GIS & Spatial Planning option (pre-Spring 2026)",
     },
   ],
   "uw-tacoma-information-technology": [

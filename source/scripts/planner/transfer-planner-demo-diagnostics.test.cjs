@@ -1803,6 +1803,12 @@ test("generated demo diagnostics include UW Tacoma Computer Engineering courses"
     program.officialSources.some((url) => /tacoma\.uw\.edu\/set\/programs\/undergrad\/cengr/i.test(url)),
     "Expected the UW Tacoma Computer Engineering source page."
   );
+  assert.ok(
+    program.officialSources.includes(
+      "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf"
+    ),
+    "Expected the UW Tacoma Computer Engineering planning grid PDF."
+  );
 });
 
 test("60 Seattle demo majors keep hand-reviewed official source evidence", () => {

@@ -38,6 +38,7 @@ import {
   type TransferPlannerProgramApprovedCourseFilterDefinition,
 } from "@/constants/transfer-planner-source/program-approved-course-filters";
 import {
+  TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS,
   getTransferPlannerCampusGeneralEducationRequirement,
 } from "@/constants/transfer-planner-source/campus-general-education.generated";
 import {
@@ -10184,9 +10185,150 @@ function getCampusGeneralEducationRequirementForPlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
   const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan) ?? plan;
-  return getTransferPlannerCampusGeneralEducationRequirement(sourcePlan?.campusId ?? null, {
+  const planSpecificRequirement = getTransferPlannerCampusGeneralEducationRequirement(sourcePlan?.campusId ?? null, {
     planId: sourcePlan?.id ?? null,
   });
+  return (
+    planSpecificRequirement ??
+    getInferredCampusGeneralEducationRequirementForPlan(sourcePlan)
+  );
+}
+
+function getInferredCampusGeneralEducationRequirementForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan || plan.campusId !== "uw-seattle") {
+    return null;
+  }
+
+  const schoolTitle = inferUwSeattleGeneralEducationSchoolTitle(plan);
+  if (!schoolTitle) {
+    return null;
+  }
+
+  return (
+    TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS.find(
+      (entry) =>
+        entry.campusId === "uw-seattle" &&
+        normalizeGeneralEducationSchoolTitle(entry.schoolTitle) ===
+          normalizeGeneralEducationSchoolTitle(schoolTitle) &&
+        /all majors/i.test(entry.majorTitle ?? "")
+    ) ?? null
+  );
+}
+
+function inferUwSeattleGeneralEducationSchoolTitle(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const metadataSchoolTitle = inferUwSeattleGeneralEducationSchoolTitleFromMetadata(plan);
+  if (metadataSchoolTitle) {
+    return metadataSchoolTitle;
+  }
+
+  const explicitSchoolTitle = inferUwSeattleGeneralEducationSchoolTitleFromSourceLines(plan);
+  if (explicitSchoolTitle) {
+    return explicitSchoolTitle;
+  }
+
+  const verifiedSchoolTitle = UW_SEATTLE_VERIFIED_GENERAL_ED_SCHOOL_TITLE_BY_PLAN_ID.get(
+    plan?.id ?? ""
+  );
+  if (verifiedSchoolTitle) {
+    return verifiedSchoolTitle;
+  }
+
+  return null;
+}
+
+function inferUwSeattleGeneralEducationSchoolTitleFromMetadata(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const sourcePlan = plan ? getGeneralEducationRequirementTargetSourcePlan(plan) ?? plan : null;
+  const candidateTitles = [
+    sourcePlan?.schoolTitle,
+    sourcePlan?.collegeTitle,
+    plan?.schoolTitle,
+    plan?.collegeTitle,
+  ];
+
+  for (const candidateTitle of candidateTitles) {
+    const normalizedCandidateTitle = normalizeGeneralEducationSchoolTitle(candidateTitle);
+    if (!normalizedCandidateTitle) {
+      continue;
+    }
+
+    const matchingRequirement = TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS.find(
+      (entry) =>
+        entry.campusId === "uw-seattle" &&
+        /all majors/i.test(entry.majorTitle ?? "") &&
+        normalizeGeneralEducationSchoolTitle(entry.schoolTitle) === normalizedCandidateTitle
+    );
+    if (matchingRequirement?.schoolTitle) {
+      return matchingRequirement.schoolTitle;
+    }
+  }
+
+  return null;
+}
+
+function inferUwSeattleGeneralEducationSchoolTitleFromSourceLines(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const sourcePlan = plan ? getGeneralEducationRequirementTargetSourcePlan(plan) ?? plan : null;
+  const selectedPathwayId =
+    (sourcePlan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ??
+    null;
+  const sourceLines = sourcePlan
+    ? [
+        ...getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId)
+          .flatMap((block) => block.requirementCueLines ?? []),
+        ...(selectedPathwayId
+          ? getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, null).flatMap(
+              (block) => block.requirementCueLines ?? []
+            )
+          : []),
+        ...(sourcePlan.degreeMapSections ?? []).flatMap((section) => [
+          section.title,
+          section.note ?? "",
+          ...(section.items ?? []),
+        ]),
+        ...(sourcePlan.pathways ?? []).flatMap((pathway) => [
+          pathway.label,
+          pathway.summary ?? "",
+          ...(pathway.degreeMapSections ?? []).flatMap((section) => [
+            section.title,
+            section.note ?? "",
+            ...(section.items ?? []),
+          ]),
+        ]),
+      ]
+    : [];
+  const sourceText = normalizeGeneralEducationSchoolTitle(sourceLines.join(" "));
+
+  for (const entry of TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS) {
+    if (
+      entry.campusId !== "uw-seattle" ||
+      !entry.schoolTitle ||
+      !/all majors/i.test(entry.majorTitle ?? "")
+    ) {
+      continue;
+    }
+
+    const normalizedSchoolTitle = normalizeGeneralEducationSchoolTitle(entry.schoolTitle);
+    if (normalizedSchoolTitle && sourceText.includes(normalizedSchoolTitle)) {
+      return entry.schoolTitle;
+    }
+  }
+
+  return null;
+}
+
+function normalizeGeneralEducationSchoolTitle(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function createCampusGeneralEducationRequirementTargets(
@@ -10211,6 +10353,9 @@ const GENERAL_ED_CATEGORY_LABELS: Record<
   nsc: "Natural Sciences",
   div: "Diversity",
 };
+const UW_SEATTLE_VERIFIED_GENERAL_ED_SCHOOL_TITLE_BY_PLAN_ID = new Map<string, string>([
+  ["uw-seattle-english-language-literature-and-culture", "College of Arts and Sciences"],
+]);
 
 function getTransferableCreditCandidateRulesForSourceCourse(
   sourceCourseCode: string,

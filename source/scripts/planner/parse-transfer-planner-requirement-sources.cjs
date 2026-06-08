@@ -3175,6 +3175,37 @@ function isNonSchedulableCourseListSubheading(text) {
   );
 }
 
+function hasHistoricalRequirementSectionCue(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return (
+    /^for\s+students?\s+admitted\b.{0,80}\b(?:before|prior to|pre[-\s]?)\b.{0,60}\b(?:spring|summer|autumn|fall|winter)\s+\d{4}\b/i.test(
+      normalizedText
+    ) ||
+    /^(?:pre|before|prior to)[-\s]*(?:spring|summer|autumn|fall|winter)\s+\d{4}\b.{0,80}\b(?:degree\s+)?requirements?\b/i.test(
+      normalizedText
+    )
+  );
+}
+
+function hasHistoricalRequirementNoteCue(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return (
+    !hasHistoricalRequirementSectionCue(normalizedText) &&
+    /\bstudents?\s+admitted\b.{0,80}\b(?:before|prior to|pre[-\s]?)\b.{0,60}\b(?:spring|summer|autumn|fall|winter)\s+\d{4}\b/i.test(
+      normalizedText
+    ) &&
+    /\b(?:existing|current|previous|old)\s+(?:degree\s+)?requirements?\b/i.test(normalizedText)
+  );
+}
+
+function isInheritedHistoricalRequirementSection(inheritedRole, inheritedRoleReason, text) {
+  return (
+    inheritedRole === "support-metadata" &&
+    /\bhistorical requirement section\b/i.test(String(inheritedRoleReason ?? "")) &&
+    !isUndergraduateCatalogSectionResetLine(text)
+  );
+}
+
 function classifySourceSectionRoleForLine(line, inheritedRole = null, inheritedRoleReason = null) {
   const text = normalizeSourceSectionLine(line);
   const courseCodes = extractCourseCodesFromLine(text).filter(
@@ -3201,6 +3232,27 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null, inheritedR
     /\(\s*\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:credits?|cr\.?)?(?:\s*;[^)]*)?\)/i.test(
       text
     );
+
+  if (hasHistoricalRequirementSectionCue(text)) {
+    return {
+      sectionRole: "support-metadata",
+      reason: "historical requirement section is not current schedulable evidence",
+    };
+  }
+
+  if (isInheritedHistoricalRequirementSection(inheritedRole, inheritedRoleReason, text)) {
+    return {
+      sectionRole: "support-metadata",
+      reason: "inherits historical requirement section support scope",
+    };
+  }
+
+  if (hasHistoricalRequirementNoteCue(text)) {
+    return {
+      sectionRole: "support-metadata",
+      reason: "historical requirement note is support metadata",
+    };
+  }
 
   if (courseCodes.length === 0 && hasHonorsOnlySupportCue(text)) {
     return {
@@ -3635,8 +3687,10 @@ function buildParserPrerequisiteFilterAuditRows(input) {
       hasUndergraduateRequirementResetCue(normalizedLine) ||
       isTacomaRnBsnSampleProgramPlanResetLine(input.sourceUrl, normalizedLine)
     ) {
-      currentRole = "primary-requirement-section";
-      currentRoleReason = null;
+      if (!isInheritedHistoricalRequirementSection(currentRole, currentRoleReason, normalizedLine)) {
+        currentRole = "primary-requirement-section";
+        currentRoleReason = null;
+      }
     }
 
     const courseCodes = extractCourseCodesFromRequirementLine(normalizedLine);
@@ -3674,6 +3728,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
           isLikelySourceSectionHeadingLine(normalizedLine)) ||
         parserRules.hasOptionReplacementRequirementCue(normalizedLine) ||
         hasPrimaryRequirementSectionCue(normalizedLine) ||
+        hasHistoricalRequirementSectionCue(normalizedLine) ||
         (
           NON_SCHEDULABLE_SECTION_ROLES.has(currentRole) &&
           isNonSchedulableCourseListSubheading(normalizedLine)
@@ -8596,6 +8651,7 @@ function getInlineRequirementSectionClassification(owner, snapshotLines, targetI
         parserRules.hasOptionReplacementRequirementCue(normalizedLine) ||
         hasPrimaryRequirementSectionCue(normalizedLine) ||
         hasUndergraduateRequirementResetCue(normalizedLine) ||
+        hasHistoricalRequirementSectionCue(normalizedLine) ||
         hasAdmissionPrepHeadingCue(normalizedLine) ||
         hasPostAdmissionDegreeCompletionCue(normalizedLine));
     const lineLooksLikeStandaloneRequirementTitle =

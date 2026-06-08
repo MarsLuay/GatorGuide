@@ -35,11 +35,13 @@ import {
   countByValues,
   csPlan,
   escapeRegExp,
+  existsSync,
   EXPECTED_UW_TRANSFER_ADMISSION_REQUIREMENT_LINES,
   extractCourseCodes,
   getAllChecklistItems,
   getCompactRuntimeGrcCourseList,
   getCompactRuntimeMajorPlan,
+  getCompactRuntimeMajorsForCampus,
   getCompactRuntimePathwaysForPlan,
   getCurrentTransferPlannerGrcCatalogYearLabel,
   getDuplicateSortedValues,
@@ -62,6 +64,7 @@ import {
   getTransferPlannerSourceGeneratedMajorsForCampus,
   getTransferPlannerSourceManifestEntriesForPlan,
   getTransferPlannerStudentRuntimeMajorPlan,
+  getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
   getTransferPlannerStudentVisibleMajorsForCampus,
   getTransferPlannerStudentVisiblePathwaysForPlan,
@@ -78,6 +81,7 @@ import {
   parseCompletedTranscriptCourses,
   parseGrcEnrollmentRequirementText,
   readFileSync,
+  resolveCompactRuntimeMajorPlan,
   resolveTransferPlannerMajorPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
   seattleAmericanIndianStudiesPlan,
@@ -140,6 +144,10 @@ import type {
   TransferPlannerMajorPlan,
   TransferPlannerParsedRequirementSourceBlock,
 } from "./transfer-planner.test-support";
+import type { TransferPlannerSourceManifestEntry } from "../../constants/transfer-planner-source/schema";
+import {
+  TRANSFER_PLANNER_STANDALONE_INVENTORY_SUPPRESSED_PLAN_IDS,
+} from "../../constants/transfer-planner-source/source-generated-visibility";
 
 test("Bothell Data Visualization rows keep the shared overview as primary while registering dedicated worksheets for lower-division evidence", () => {
   const worksheetUrlByPlanId = {
@@ -210,6 +218,422 @@ function collectParsedRequirementSourceCoverageUrls(
     ]).filter((url): url is string => Boolean(url))
   );
 }
+
+const EXACT_PROGRAM_PAGE_SOURCE_ROLES = new Set([
+  "admissions",
+  "curriculum",
+  "degree-requirements",
+  "other",
+  "overview",
+]);
+
+function getParsedUrl(url: string) {
+  try {
+    return new URL(url);
+  } catch {
+    return null;
+  }
+}
+
+function isSharedUwProgramCatalogUrl(url: string) {
+  const parsedUrl = getParsedUrl(url);
+
+  return (
+    parsedUrl?.hostname === "www.washington.edu" &&
+    parsedUrl.pathname.startsWith("/students/gencat/program/")
+  );
+}
+
+function isExactCampusProgramPageSource(entry: TransferPlannerSourceManifestEntry) {
+  const parsedUrl = getParsedUrl(entry.url);
+  const hostname = parsedUrl?.hostname ?? "";
+  const pathname = parsedUrl?.pathname ?? "";
+
+  return (
+    Boolean(parsedUrl) &&
+    ["tacoma.uw.edu", "www.tacoma.uw.edu", "uwb.edu", "www.uwb.edu"].includes(hostname) &&
+    !/\.pdf$/i.test(pathname) &&
+    EXACT_PROGRAM_PAGE_SOURCE_ROLES.has(entry.role) &&
+    /(?:\/programs\/undergrad\/|\/undergraduate\/majors\/|\/degree-requirements\b|\/curriculum\b|\/admissions\b|\/ba-|\/bs|concentration|major)/i.test(
+      pathname
+    )
+  );
+}
+
+type ManifestSourceRetentionRule =
+  | "primary"
+  | "worksheet-pdf"
+  | "support-only"
+  | "equivalency"
+  | "catalog";
+
+const SUPPORT_ONLY_MANIFEST_SOURCE_ROLES = new Set([
+  "admissions",
+  "admission-prerequisite-source",
+  "approved-course-list",
+  "elective-list",
+  "non-schedulable-course-list",
+  "support-source",
+  "upper-division-prerequisite-table",
+]);
+
+function getManifestSourceRetentionRule(
+  entry: TransferPlannerSourceManifestEntry
+): ManifestSourceRetentionRule | null {
+  if (!entry.url) {
+    return null;
+  }
+  if (entry.isPrimaryDegreeRequirementsLink) {
+    return "primary";
+  }
+
+  const sourceText = `${entry.label ?? ""} ${entry.url ?? ""} ${entry.note ?? ""}`;
+  if (entry.role === "equivalency" || entry.parserType === "equivalency-guide") {
+    return "equivalency";
+  }
+  if (entry.role === "catalog" || entry.parserType === "catalog-page") {
+    return "catalog";
+  }
+  if (
+    entry.role === "worksheet" ||
+    ["generic-pdf", "pdf-worksheet", "pdf-degree-sheet"].includes(entry.parserType) ||
+    /\b(planning grid|curriculum grid|major planning worksheet|course schedule pdf|worksheet)\b/i.test(
+      sourceText
+    )
+  ) {
+    return "worksheet-pdf";
+  }
+  if (SUPPORT_ONLY_MANIFEST_SOURCE_ROLES.has(entry.role)) {
+    return "support-only";
+  }
+
+  return null;
+}
+
+function manifestSourceEntryRequiresRetentionRule(entry: TransferPlannerSourceManifestEntry) {
+  return (
+    entry.isPrimaryDegreeRequirementsLink ||
+    entry.role === "equivalency" ||
+    entry.role === "catalog" ||
+    entry.role === "worksheet" ||
+    ["generic-pdf", "pdf-worksheet", "pdf-degree-sheet", "equivalency-guide", "catalog-page"].includes(
+      entry.parserType
+    ) ||
+    SUPPORT_ONLY_MANIFEST_SOURCE_ROLES.has(entry.role)
+  );
+}
+
+function getOfficialLinkUrls(plan: { officialLinks?: Array<{ url?: string | null }> } | null) {
+  return (plan?.officialLinks ?? []).map((link) => link.url ?? "");
+}
+
+test("Source-backed plans prefer exact program pages over shared catalog pages when available", () => {
+  const manifestEntriesByPlanId = new Map<string, TransferPlannerSourceManifestEntry[]>();
+
+  for (const entry of TRANSFER_PLANNER_MANIFEST_REGISTRY) {
+    if (entry.ownerType !== "major" || !entry.planId || entry.pathwayId) {
+      continue;
+    }
+
+    manifestEntriesByPlanId.set(entry.planId, [
+      ...(manifestEntriesByPlanId.get(entry.planId) ?? []),
+      entry,
+    ]);
+  }
+
+  const auditedPlanIds: string[] = [];
+  const sharedCatalogPrimaryViolations: string[] = [];
+
+  for (const [planId, manifestEntries] of manifestEntriesByPlanId) {
+    const exactProgramPages = manifestEntries.filter(isExactCampusProgramPageSource);
+    const sharedCatalogPages = manifestEntries.filter((entry) =>
+      isSharedUwProgramCatalogUrl(entry.url)
+    );
+
+    if (exactProgramPages.length === 0 || sharedCatalogPages.length === 0) {
+      continue;
+    }
+
+    auditedPlanIds.push(planId);
+    const primarySource = getTransferPlannerPrimaryDegreeRequirementsSource(planId, null);
+
+    if (!primarySource?.url || isSharedUwProgramCatalogUrl(primarySource.url)) {
+      sharedCatalogPrimaryViolations.push(
+        [
+          planId,
+          `primary=${primarySource?.url ?? "(missing)"}`,
+          `exact=${exactProgramPages.map((entry) => entry.url).join(", ")}`,
+          `shared=${sharedCatalogPages.map((entry) => entry.url).join(", ")}`,
+        ].join(" | ")
+      );
+    }
+  }
+
+  assert.ok(
+    auditedPlanIds.includes("uw-tacoma-computer-engineering"),
+    "Expected the exact-page source audit to cover the Tacoma Computer Engineering CENGR case."
+  );
+  assert.deepEqual(sharedCatalogPrimaryViolations, []);
+});
+
+function getRuntimeScopeSourceUrls(
+  scope:
+    | {
+        officialLinks?: Array<{ url?: string | null }> | null;
+        supportLists?: Array<{
+          sourceUrl?: string | null;
+          officialSourceUrl?: string | null;
+        }> | null;
+        requirementGroups?: Array<{ sourceUrl?: string | null }> | null;
+        applicationChecklist?: Array<{
+          sourceUrl?: string | null;
+          requirementGroup?: { sourceUrl?: string | null } | null;
+        }> | null;
+        beforeEnrollmentChecklist?: Array<{
+          sourceUrl?: string | null;
+          requirementGroup?: { sourceUrl?: string | null } | null;
+        }> | null;
+        stayAtGrcChecklist?: Array<{
+          sourceUrl?: string | null;
+          requirementGroup?: { sourceUrl?: string | null } | null;
+        }> | null;
+      }
+    | null
+    | undefined
+) {
+  return uniqueSorted([
+    ...(scope?.officialLinks ?? []).map((link) => link.url ?? ""),
+    ...(scope?.supportLists ?? []).flatMap((list) => [
+      list.sourceUrl ?? "",
+      list.officialSourceUrl ?? "",
+    ]),
+    ...(scope?.requirementGroups ?? []).map((group) => group.sourceUrl ?? ""),
+    ...(scope?.applicationChecklist ?? []).flatMap((item) => [
+      item.sourceUrl ?? "",
+      item.requirementGroup?.sourceUrl ?? "",
+    ]),
+    ...(scope?.beforeEnrollmentChecklist ?? []).flatMap((item) => [
+      item.sourceUrl ?? "",
+      item.requirementGroup?.sourceUrl ?? "",
+    ]),
+    ...(scope?.stayAtGrcChecklist ?? []).flatMap((item) => [
+      item.sourceUrl ?? "",
+      item.requirementGroup?.sourceUrl ?? "",
+    ]),
+  ].filter(Boolean));
+}
+
+function getParsedBlockSourceUrls(blocks: TransferPlannerParsedRequirementSourceBlock[]) {
+  return uniqueSorted(
+    blocks.flatMap((block) => [
+      block.sourceUrl,
+      block.primarySourceUrl,
+      ...(block.coveredSourceUrls ?? []),
+      ...(block.supportLists ?? []).flatMap((list) => [
+        list.sourceUrl,
+        list.officialSourceUrl,
+      ]),
+      ...(block.parsedRequirementGroups ?? []).map((group) => group.sourceUrl),
+      ...(block.parsedRequirementReplacements ?? []).map((replacement) => replacement.sourceUrl),
+    ]).filter((url): url is string => Boolean(url))
+  );
+}
+
+function getManifestEntryRuntimeScopes(entry: TransferPlannerSourceManifestEntry) {
+  const runtimePlan = getCompactRuntimeMajorPlan(entry.planId ?? "");
+  if (!runtimePlan) {
+    return [] as Array<ReturnType<typeof resolveCompactRuntimeMajorPlan>>;
+  }
+
+  if (entry.pathwayId) {
+    return [resolveCompactRuntimeMajorPlan(runtimePlan, entry.pathwayId)].filter(Boolean);
+  }
+
+  return [
+    runtimePlan,
+    resolveCompactRuntimeMajorPlan(runtimePlan, null),
+    ...getCompactRuntimePathwaysForPlan(runtimePlan).map((pathway) =>
+      resolveCompactRuntimeMajorPlan(runtimePlan, pathway.id)
+    ),
+  ].filter(Boolean);
+}
+
+function manifestEntryHasRuntimeOfficialLink(entry: TransferPlannerSourceManifestEntry) {
+  return getManifestEntryRuntimeScopes(entry).some((scope) =>
+    getOfficialLinkUrls(scope).includes(entry.url)
+  );
+}
+
+function manifestEntryHasAnyRuntimeSourceUrl(entry: TransferPlannerSourceManifestEntry) {
+  return getManifestEntryRuntimeScopes(entry).some((scope) =>
+    getRuntimeScopeSourceUrls(scope).includes(entry.url)
+  );
+}
+
+function manifestEntryHasParsedSourceUrl(entry: TransferPlannerSourceManifestEntry) {
+  if (!entry.planId) {
+    return false;
+  }
+
+  return getParsedBlockSourceUrls(
+    getTransferPlannerParsedRequirementSourceBlocks(entry.planId, entry.pathwayId ?? null)
+  ).includes(entry.url);
+}
+
+function equivalencyManifestEntryHasRuntimeRule(entry: TransferPlannerSourceManifestEntry) {
+  return TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES.some((rule) =>
+    (rule.sourceLinks ?? []).some((link) => link.url === entry.url)
+  );
+}
+
+function manifestEntryIsRetainedByRule(
+  entry: TransferPlannerSourceManifestEntry,
+  rule: ManifestSourceRetentionRule
+) {
+  const primarySource = entry.planId
+    ? getTransferPlannerPrimaryDegreeRequirementsSource(entry.planId, entry.pathwayId ?? null)
+    : null;
+
+  switch (rule) {
+    case "primary":
+      return (
+        primarySource?.url === entry.url ||
+        manifestEntryHasRuntimeOfficialLink(entry) ||
+        manifestEntryHasParsedSourceUrl(entry)
+      );
+    case "worksheet-pdf":
+      return manifestEntryHasRuntimeOfficialLink(entry) || manifestEntryHasParsedSourceUrl(entry);
+    case "support-only":
+      return manifestEntryHasAnyRuntimeSourceUrl(entry) || manifestEntryHasParsedSourceUrl(entry);
+    case "equivalency":
+      return equivalencyManifestEntryHasRuntimeRule(entry);
+    case "catalog":
+      return (
+        primarySource?.url === entry.url ||
+        manifestEntryHasAnyRuntimeSourceUrl(entry) ||
+        manifestEntryHasParsedSourceUrl(entry)
+      );
+    default:
+      return false;
+  }
+}
+
+test("Manifest source roles have explicit bootstrap/runtime retention rules", () => {
+  const bootstrapPlansById = new Map(
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan])
+  );
+  const demoDiagnostics = JSON.parse(
+    readFileSync("constants/transfer-planner-source/demo/complete-diagnostics.generated.json", "utf8")
+  ) as {
+    programsByPlanId?: Record<string, Array<{ officialSources?: string[] }>>;
+  };
+  const scopedManifestEntries = TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
+    (entry) =>
+      (entry.ownerType === "major" || entry.ownerType === "pathway") &&
+      Boolean(entry.planId) &&
+      bootstrapPlansById.has(entry.planId ?? "") &&
+      Boolean(getCompactRuntimeMajorPlan(entry.planId ?? ""))
+  );
+  const entriesRequiringRules = scopedManifestEntries.filter(
+    manifestSourceEntryRequiresRetentionRule
+  );
+  const retainedManifestEntries = entriesRequiringRules.flatMap((entry) => {
+    const rule = getManifestSourceRetentionRule(entry);
+    return rule ? [{ entry, rule }] : [];
+  });
+  const retentionRules = new Set(retainedManifestEntries.map(({ rule }) => rule));
+
+  assert.deepEqual(
+    entriesRequiringRules
+      .filter((entry) => !getManifestSourceRetentionRule(entry))
+      .map((entry) => `${entry.planId}/${entry.pathwayId ?? ""} ${entry.role}/${entry.parserType} ${entry.url}`)
+      .sort(),
+    []
+  );
+  assert.ok(retentionRules.has("primary"), "Expected primary source retention coverage.");
+  assert.ok(retentionRules.has("worksheet-pdf"), "Expected worksheet/PDF retention coverage.");
+  assert.ok(retentionRules.has("support-only"), "Expected support-only retention coverage.");
+  assert.ok(retentionRules.has("equivalency"), "Expected equivalency retention coverage.");
+  assert.ok(retentionRules.has("catalog"), "Expected catalog retention coverage.");
+
+  assert.ok(
+    retainedManifestEntries.some(
+      ({ entry, rule }) =>
+        rule === "worksheet-pdf" &&
+        entry.planId === "uw-tacoma-computer-engineering" &&
+        /cengr_grid_2024\.pdf/i.test(entry.url)
+    ),
+    "Expected the supplemental-link audit to cover the Tacoma CENGR planning grid."
+  );
+  assert.ok(
+    retainedManifestEntries.some(
+      ({ entry, rule }) =>
+        rule === "worksheet-pdf" &&
+        entry.planId === "uw-bothell-data-visualization-ba" &&
+        entry.role === "worksheet"
+    ),
+    "Expected the supplemental-link audit to cover a Bothell major planning worksheet."
+  );
+  assert.ok(
+    retainedManifestEntries.some(
+      ({ entry, rule }) =>
+        rule === "support-only" &&
+        ["support-source", "approved-course-list", "non-schedulable-course-list"].includes(
+          entry.role
+        )
+    ),
+    "Expected the source-retention audit to cover support-only source roles."
+  );
+  assert.ok(
+    retainedManifestEntries.some(({ entry, rule }) => rule === "equivalency" && entry.role === "equivalency"),
+    "Expected the source-retention audit to cover equivalency guide sources."
+  );
+  assert.ok(
+    retainedManifestEntries.some(({ entry, rule }) => rule === "catalog" && entry.role === "catalog"),
+    "Expected the source-retention audit to cover catalog sources."
+  );
+
+  const missingRetainedSources = retainedManifestEntries.flatMap(({ entry, rule }) =>
+    manifestEntryIsRetainedByRule(entry, rule)
+      ? []
+      : [
+          `missing ${rule} runtime retention for ${entry.planId}/${entry.pathwayId ?? ""} ${entry.role}/${entry.parserType} ${entry.url}`,
+        ]
+  );
+  assert.deepEqual(missingRetainedSources, []);
+
+  const officialLinkRules = new Set<ManifestSourceRetentionRule>(["worksheet-pdf"]);
+  const missingLinks = retainedManifestEntries.flatMap(({ entry, rule }) => {
+    if (!officialLinkRules.has(rule) || entry.ownerType !== "major" || entry.pathwayId) {
+      return [];
+    }
+
+    const planId = entry.planId ?? "";
+    const bootstrapPlan = bootstrapPlansById.get(planId) ?? null;
+    const runtimePlan = getCompactRuntimeMajorPlan(planId);
+    const resolvedRuntimePlan = resolveCompactRuntimeMajorPlan(runtimePlan, null);
+    const diagnosticsUrls = demoDiagnostics.programsByPlanId?.[planId]?.[0]?.officialSources ?? [];
+    const expectedUrl = entry.url;
+    const sourceLabel = `${planId} | ${entry.role}/${entry.parserType} | ${entry.label}`;
+
+    return [
+      ...(getOfficialLinkUrls(bootstrapPlan).includes(expectedUrl)
+        ? []
+        : [`bootstrap officialLinks missing ${expectedUrl} (${sourceLabel})`]),
+      ...(getOfficialLinkUrls(runtimePlan).includes(expectedUrl)
+        ? []
+        : [`runtime officialLinks missing ${expectedUrl} (${sourceLabel})`]),
+      ...(getOfficialLinkUrls(resolvedRuntimePlan).includes(expectedUrl)
+        ? []
+        : [`resolved runtime officialLinks missing ${expectedUrl} (${sourceLabel})`]),
+      ...(diagnosticsUrls.includes(expectedUrl)
+        ? []
+        : [`demo diagnostics officialSources missing ${expectedUrl} (${sourceLabel})`]),
+    ];
+  });
+
+  assert.deepEqual(missingLinks, []);
+});
 
 test("Generated parsed-source registry covers parseable primary, worksheet, and recovered document URLs", () => {
   const expectedCoverageByPlanId = {
@@ -1029,6 +1453,327 @@ test("UW majors without parsed breadth targets keep the major-specific bucket em
     ),
     false
   );
+});
+
+test("student-runtime UW majors all expose detected source-backed gen-ed targets", () => {
+  const missingTargets = (["uw-seattle", "uw-bothell", "uw-tacoma"] as const).flatMap((campusId) =>
+    getTransferPlannerStudentRuntimeMajorsForCampus(campusId).flatMap((plan) => {
+      const resolvedPlan = resolveTransferPlannerStudentRuntimeMajorPlan(plan, null) ?? plan;
+      const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(resolvedPlan);
+      return diagnostics.hasSourceBackedTargets
+        ? []
+        : [`${plan.campusId}/${plan.id} (${plan.title})`];
+    })
+  );
+
+  assert.deepEqual(missingTargets, []);
+});
+
+type RuntimeStructureAuditScope = {
+  id?: string | null;
+  title?: string | null;
+  label?: string | null;
+  degreeMapSections?: Array<{ items?: unknown[] | null } | null> | null;
+  requirementGroups?: unknown[] | null;
+  applicationChecklist?: unknown[] | null;
+  beforeEnrollmentChecklist?: unknown[] | null;
+  stayAtGrcChecklist?: unknown[] | null;
+  officialLinks?: unknown[] | null;
+};
+
+function getRuntimeStructureSignals(scope: RuntimeStructureAuditScope | null | undefined) {
+  if (!scope) {
+    return [] as string[];
+  }
+
+  return [
+    ...(scope.degreeMapSections?.some((section) => (section?.items ?? []).length > 0)
+      ? ["degree-map"]
+      : []),
+    ...((scope.requirementGroups ?? []).length > 0 ? ["requirement-groups"] : []),
+    ...([
+      ...(scope.applicationChecklist ?? []),
+      ...(scope.beforeEnrollmentChecklist ?? []),
+      ...(scope.stayAtGrcChecklist ?? []),
+    ].length > 0
+      ? ["checklist-rows"]
+      : []),
+    ...((scope.officialLinks ?? []).length > 0 ? ["official-links"] : []),
+  ];
+}
+
+function buildVisibleRuntimeStructureAuditRows(input: {
+  runtimeLabel: string;
+  getMajorsForCampus: (campusId: "uw-seattle" | "uw-bothell" | "uw-tacoma") => TransferPlannerMajorPlan[];
+  getPathwaysForPlan: (
+    plan: TransferPlannerMajorPlan | null | undefined
+  ) => RuntimeStructureAuditScope[];
+  resolvePlan: (
+    plan: TransferPlannerMajorPlan | null | undefined,
+    pathwayId: string | null | undefined
+  ) => RuntimeStructureAuditScope | null;
+}) {
+  const campusIds = ["uw-seattle", "uw-bothell", "uw-tacoma"] as const;
+
+  return campusIds.flatMap((campusId) =>
+    input.getMajorsForCampus(campusId).flatMap((plan) => {
+      const pathways = input.getPathwaysForPlan(plan);
+      const scopes = [
+        plan,
+        input.resolvePlan(plan, null),
+        ...pathways,
+        ...pathways.map((pathway) => input.resolvePlan(plan, pathway.id ?? null)),
+      ].filter((scope): scope is RuntimeStructureAuditScope => Boolean(scope));
+      const signals = uniqueSorted(scopes.flatMap(getRuntimeStructureSignals));
+
+      return signals.length
+        ? []
+        : [
+            `${input.runtimeLabel}/${campusId}/${plan.id} (${plan.title}) has no degree map, requirement groups, checklist rows, or official links.`,
+          ];
+    })
+  );
+}
+
+test("visible runtime majors are not hollow structure-only rows", () => {
+  const hollowVisibleRows = [
+    ...buildVisibleRuntimeStructureAuditRows({
+      runtimeLabel: "source-runtime",
+      getMajorsForCampus: getTransferPlannerStudentRuntimeMajorsForCampus,
+      getPathwaysForPlan: getTransferPlannerStudentRuntimePathwaysForPlan,
+      resolvePlan: resolveTransferPlannerStudentRuntimeMajorPlan,
+    }),
+    ...buildVisibleRuntimeStructureAuditRows({
+      runtimeLabel: "compact-runtime",
+      getMajorsForCampus: getCompactRuntimeMajorsForCampus,
+      getPathwaysForPlan: getCompactRuntimePathwaysForPlan,
+      resolvePlan: resolveCompactRuntimeMajorPlan,
+    }),
+  ];
+
+  assert.deepEqual(hollowVisibleRows, []);
+});
+
+const STANDALONE_RUNTIME_PARTITION_DIRS = [
+  "major-plans-by-plan-id",
+  "pathways-by-plan-id",
+  "resolved-major-plans-by-plan-id",
+  "primary-degree-sources-by-plan-id",
+] as const;
+const STANDALONE_RUNTIME_METADATA_FILES = [
+  "constants/transfer-planner-source/student-runtime.generated/major-plan-ids-by-campus.generated.json",
+  "constants/transfer-planner-source/student-runtime.generated/major-plan-campus-id-by-plan-id.generated.json",
+] as const;
+
+function getSuppressedSourceGeneratedPlanIds() {
+  const campusIds = ["uw-seattle", "uw-bothell", "uw-tacoma"] as const;
+  const standaloneRuntimePlanIds = new Set(
+    campusIds.flatMap((campusId) =>
+      getTransferPlannerStudentRuntimeMajorsForCampus(campusId).map((plan) => plan.id)
+    )
+  );
+
+  return uniqueSorted(
+    campusIds.flatMap((campusId) =>
+      getTransferPlannerSourceGeneratedMajorsForCampus(campusId)
+        .filter((plan) => !standaloneRuntimePlanIds.has(plan.id))
+        .map((plan) => plan.id)
+    )
+  );
+}
+
+function getStandaloneRuntimePartitionPath(planId: string, partitionDir: string) {
+  return `constants/transfer-planner-source/student-runtime.generated/${partitionDir}/${planId}.generated.json`;
+}
+
+test("hidden/deprecated/pathway-only plans do not leave standalone generated runtime files", () => {
+  const suppressedPlanIds = getSuppressedSourceGeneratedPlanIds();
+  const staleRuntimeFiles = suppressedPlanIds.flatMap((planId) =>
+    STANDALONE_RUNTIME_PARTITION_DIRS.flatMap((partitionDir) => {
+      const filePath = getStandaloneRuntimePartitionPath(planId, partitionDir);
+      return existsSync(filePath) ? [filePath] : [];
+    })
+  );
+  const compactRuntimeRows = suppressedPlanIds.flatMap((planId) =>
+    getCompactRuntimeMajorPlan(planId) ? [planId] : []
+  );
+  const staleRuntimeMetadataEntries = suppressedPlanIds.flatMap((planId) =>
+    STANDALONE_RUNTIME_METADATA_FILES.flatMap((filePath) =>
+      readFileSync(filePath, "utf8").includes(`"${planId}"`) ? [`${filePath}: ${planId}`] : []
+    )
+  );
+
+  assert.ok(
+    suppressedPlanIds.includes(
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
+    ),
+    "Expected the audit to include the hidden IAS individually-designed standalone row."
+  );
+  assert.deepEqual(staleRuntimeFiles, []);
+  assert.deepEqual(staleRuntimeMetadataEntries, []);
+  assert.deepEqual(compactRuntimeRows, []);
+});
+
+test("source-generated standalone suppressions do not count as visible inventory rows", () => {
+  const campusIds = ["uw-seattle", "uw-bothell", "uw-tacoma"] as const;
+  const suppressedPlanIds = getSuppressedSourceGeneratedPlanIds();
+  const registeredSuppressedPlanIds = uniqueSorted([
+    ...TRANSFER_PLANNER_STANDALONE_INVENTORY_SUPPRESSED_PLAN_IDS,
+  ]);
+  const studentVisiblePlanIds = new Set(
+    campusIds.flatMap((campusId) =>
+      getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus(campusId).map(
+        (plan) => plan.id
+      )
+    )
+  );
+  const sourceGeneratedMajorCount = campusIds.reduce(
+    (count, campusId) => count + getTransferPlannerSourceGeneratedMajorsForCampus(campusId).length,
+    0
+  );
+  const studentVisibleMajorCount = campusIds.reduce(
+    (count, campusId) =>
+      count + getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus(campusId).length,
+    0
+  );
+  const leakedVisibleRows = suppressedPlanIds.filter((planId) =>
+    studentVisiblePlanIds.has(planId)
+  );
+  const leakedGeneratedInventoryRows = suppressedPlanIds.filter((planId) =>
+    TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.some((plan) => plan.id === planId)
+  );
+
+  assert.deepEqual(suppressedPlanIds, registeredSuppressedPlanIds);
+  assert.ok(
+    suppressedPlanIds.includes(
+      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
+    ),
+    "Expected the IAS individually-designed alias to stay covered by the source/generated suppression audit."
+  );
+  assert.deepEqual(leakedVisibleRows, []);
+  assert.deepEqual(leakedGeneratedInventoryRows, []);
+  assert.equal(
+    TRANSFER_PLANNER_SUMMARY.sourceGeneratedMajorPlanCount -
+      TRANSFER_PLANNER_SUMMARY.studentVisibleMajorPlanCount,
+    suppressedPlanIds.length
+  );
+  assert.equal(TRANSFER_PLANNER_SUMMARY.sourceGeneratedMajorPlanCount, sourceGeneratedMajorCount);
+  assert.equal(TRANSFER_PLANNER_SUMMARY.studentVisibleMajorPlanCount, studentVisibleMajorCount);
+});
+
+test("student-runtime generated plans expose source ownership metadata", () => {
+  const expectations = [
+    {
+      planId: "uw-seattle-computer-engineering",
+      schoolTitle: "College of Engineering",
+      collegeTitle: "College of Engineering",
+    },
+    {
+      planId: "uw-seattle-business-administration",
+      schoolTitle: "Michael G. Foster School of Business",
+      collegeTitle: null,
+    },
+    {
+      planId: "uw-seattle-english-language-literature-and-culture",
+      schoolTitle: "College of Arts and Sciences",
+      collegeTitle: "College of Arts and Sciences",
+    },
+    {
+      planId: "uw-seattle-geography",
+      schoolTitle: "College of Arts and Sciences",
+      collegeTitle: "College of Arts and Sciences",
+    },
+  ] as const;
+
+  for (const expectation of expectations) {
+    const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(expectation.planId);
+    const resolvedPlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, null);
+
+    assert.ok(runtimePlan, `Expected ${expectation.planId} runtime plan.`);
+    assert.ok(resolvedPlan, `Expected ${expectation.planId} resolved runtime plan.`);
+    assert.equal(runtimePlan.schoolTitle, expectation.schoolTitle);
+    assert.equal(runtimePlan.collegeTitle ?? null, expectation.collegeTitle);
+    assert.equal(resolvedPlan.schoolTitle, expectation.schoolTitle);
+    assert.equal(resolvedPlan.collegeTitle ?? null, expectation.collegeTitle);
+
+    for (const pathway of getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)) {
+      assert.equal(pathway.schoolTitle, expectation.schoolTitle);
+      assert.equal(pathway.collegeTitle ?? null, expectation.collegeTitle);
+    }
+  }
+});
+
+test("Seattle Arts and Sciences fallback recovers gen-ed targets for unmatched department pages", () => {
+  for (const planId of [
+    "uw-seattle-english-language-literature-and-culture",
+    "uw-seattle-geography",
+  ]) {
+    const runtimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+      getTransferPlannerStudentRuntimeMajorPlan(planId),
+      null
+    );
+
+    assert.ok(runtimePlan, `Expected ${planId} runtime plan.`);
+    assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+      ahCredits: 20,
+      sscCredits: 20,
+      nscCredits: 20,
+      breadthCredits: null,
+      electiveCredits: 15,
+    });
+    assert.ok(
+      buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan),
+      `Expected ${planId} to render A&S source-backed gen-ed summary items.`
+    );
+  }
+});
+
+test("Seattle school-level gen-ed fallback does not trust department hosts by themselves", () => {
+  const plan = {
+    id: "test-unverified-uw-seattle-english-host",
+    campusId: "uw-seattle",
+    title: "Unverified English Host Test",
+    shortTitle: "Unverified English Host Test",
+    coverage: "partial",
+    summary: "",
+    icon: "school",
+    colorGradient: ["#000000", "#111111"],
+    themeColor: "#000000",
+    officialLinks: [
+      {
+        label: "Department page",
+        url: "https://english.washington.edu/example",
+      },
+    ],
+    deadlines: [],
+    requirements: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    grcCourseList: [],
+    grcCourseListGuidance: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    advisorFlags: [],
+    guidanceItems: [],
+    degreeMapSections: [],
+    specialNotes: [],
+    tips: [],
+    targetSchools: [],
+    targetSchoolDetails: [],
+    prerequisites: [],
+    pathways: [],
+  } as TransferPlannerMajorPlan;
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(plan), {
+    ahCredits: null,
+    sscCredits: null,
+    nscCredits: null,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.equal(buildSourceBackedMajorGeneralEducationRequirementSection(plan), null);
 });
 
 test("Tacoma Social Welfare keeps stronger breadth targets separate from the official UW transfer section", () => {
@@ -3050,6 +3795,339 @@ test("Phase 5 generated requirement atom and degree-map candidates are internall
   }
 });
 
+type ZeroUseRuntimeRequirementOption = {
+  id?: string | null;
+  label?: string | null;
+  displayCourseCodes?: string[] | null;
+  uwCourses?: string[] | null;
+  equivalentUwCourseCodes?: string[] | null;
+};
+
+type ZeroUseRuntimeRequirementGroup = {
+  id?: string | null;
+  label?: string | null;
+  sourceHeading?: string | null;
+  sourceRowText?: string | null;
+  sourceSection?: string | null;
+  options?: ZeroUseRuntimeRequirementOption[] | null;
+};
+
+type ZeroUseRuntimeChecklistItem = {
+  id?: string | null;
+  title?: string | null;
+  sourceSection?: string | null;
+  requirementGroup?: ZeroUseRuntimeRequirementGroup | null;
+};
+
+type ZeroUseRuntimeScope = {
+  selectedPathwayId?: string | null;
+  requirementGroups?: ZeroUseRuntimeRequirementGroup[] | null;
+  applicationChecklist?: ZeroUseRuntimeChecklistItem[] | null;
+  beforeEnrollmentChecklist?: ZeroUseRuntimeChecklistItem[] | null;
+  stayAtGrcChecklist?: ZeroUseRuntimeChecklistItem[] | null;
+  degreeMapSections?: Array<{
+    id?: string | null;
+    title?: string | null;
+    items?: string[] | null;
+    note?: string | null;
+  }> | null;
+  supportLists?: Array<{
+    id?: string | null;
+    listTitle?: string | null;
+    acceptedUwCourseCodes?: string[] | null;
+    sourceEvidenceLines?: string[] | null;
+    sourceEvidenceHeadings?: string[] | null;
+  }> | null;
+};
+
+function uniqueZeroUseStrings(values: Array<string | null | undefined>) {
+  return [...new Set(values.map((value) => String(value ?? "").trim()).filter(Boolean))];
+}
+
+function normalizeZeroUseComparisonText(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9&\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function zeroUseLabelsOverlap(leftLabels: string[], rightLabels: string[]) {
+  return leftLabels.some((leftLabel) =>
+    rightLabels.some((rightLabel) => {
+      if (!leftLabel || !rightLabel) {
+        return false;
+      }
+      if (leftLabel === rightLabel) {
+        return true;
+      }
+      return (
+        leftLabel.length >= 12 &&
+        rightLabel.length >= 12 &&
+        (leftLabel.includes(rightLabel) || rightLabel.includes(leftLabel))
+      );
+    })
+  );
+}
+
+function extractZeroUseCourseCodesFromText(value: string | null | undefined) {
+  return extractCourseCodes(String(value ?? "")).map((code) => normalizeCourseCode(code));
+}
+
+function normalizeZeroUseCourseCodes(values: Array<string | null | undefined>) {
+  return uniqueZeroUseStrings(values.map((value) => normalizeCourseCode(String(value ?? "")))).filter(
+    (code) => /\d/.test(code)
+  );
+}
+
+function collectZeroUseRuntimeRequirementGroups(scope: ZeroUseRuntimeScope | null | undefined) {
+  const groupsById = new Map<string, ZeroUseRuntimeRequirementGroup>();
+  for (const group of [
+    ...(scope?.requirementGroups ?? []),
+    ...(scope?.applicationChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+    ...(scope?.beforeEnrollmentChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+    ...(scope?.stayAtGrcChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+  ]) {
+    const key =
+      group.id ??
+      [group.label, group.sourceHeading, group.sourceRowText, group.sourceSection]
+        .filter(Boolean)
+        .join("|");
+    if (key && !groupsById.has(key)) {
+      groupsById.set(key, group);
+    }
+  }
+
+  return [...groupsById.values()];
+}
+
+function getZeroUseRuntimeIds(scope: ZeroUseRuntimeScope | null | undefined) {
+  return new Set(
+    uniqueZeroUseStrings(
+      collectZeroUseRuntimeRequirementGroups(scope).flatMap((group) => [
+        group.id,
+        ...(group.options ?? []).map((option) => option.id),
+      ])
+    )
+  );
+}
+
+function getZeroUseRuntimeTexts(scope: ZeroUseRuntimeScope | null | undefined) {
+  return uniqueZeroUseStrings([
+    ...collectZeroUseRuntimeRequirementGroups(scope).flatMap((group) => [
+      group.label,
+      group.sourceHeading,
+      group.sourceRowText,
+      group.sourceSection,
+      ...(group.options ?? []).map((option) => option.label),
+    ]),
+    ...(scope?.applicationChecklist ?? []).flatMap((item) => [item.title, item.sourceSection]),
+    ...(scope?.beforeEnrollmentChecklist ?? []).flatMap((item) => [item.title, item.sourceSection]),
+    ...(scope?.stayAtGrcChecklist ?? []).flatMap((item) => [item.title, item.sourceSection]),
+    ...(scope?.degreeMapSections ?? []).flatMap((section) => [
+      section.title,
+      section.note,
+      ...(section.items ?? []),
+    ]),
+    ...(scope?.supportLists ?? []).flatMap((list) => [
+      list.listTitle,
+      ...(list.sourceEvidenceLines ?? []),
+      ...(list.sourceEvidenceHeadings ?? []),
+    ]),
+  ])
+    .map(normalizeZeroUseComparisonText)
+    .filter(Boolean);
+}
+
+function getZeroUseRuntimeCourseCodes(scope: ZeroUseRuntimeScope | null | undefined) {
+  return new Set(
+    normalizeZeroUseCourseCodes([
+      ...collectZeroUseRuntimeRequirementGroups(scope).flatMap((group) => [
+        group.label,
+        group.sourceHeading,
+        group.sourceRowText,
+        group.sourceSection,
+        ...(group.options ?? []).flatMap((option) => [
+          option.label,
+          ...(option.uwCourses ?? []),
+          ...(option.equivalentUwCourseCodes ?? []),
+          ...(option.displayCourseCodes ?? []),
+        ]),
+      ]),
+      ...(scope?.degreeMapSections ?? []).flatMap((section) => section.items ?? []),
+      ...(scope?.supportLists ?? []).flatMap((list) => list.acceptedUwCourseCodes ?? []),
+    ].flatMap((value) => [value, ...extractZeroUseCourseCodesFromText(value)]))
+  );
+}
+
+function parsedBlockProducedRuntimeUsableContent(
+  block: TransferPlannerParsedRequirementSourceBlock
+) {
+  return (
+    (block.parsedRequirementAtomCandidates ?? []).length > 0 ||
+    (block.parsedRequirementGroups ?? []).length > 0
+  );
+}
+
+function getZeroUseParsedBlockIds(block: TransferPlannerParsedRequirementSourceBlock) {
+  return uniqueZeroUseStrings(
+    (block.parsedRequirementGroups ?? []).flatMap((group) => [
+      group.id,
+      ...(group.options ?? []).map((option) => option.id),
+      ...(group.sequencePaths ?? []).map((sequencePath) => sequencePath.id),
+    ])
+  );
+}
+
+function getZeroUseParsedBlockTexts(block: TransferPlannerParsedRequirementSourceBlock) {
+  return uniqueZeroUseStrings([
+    block.sourceLabel,
+    ...(block.requirementCueLines ?? []),
+    ...(block.parsedRequirementAtomCandidates ?? []).flatMap((candidate) => [
+      candidate.title,
+      ...(candidate.sourceLineHints ?? []),
+    ]),
+    ...(block.parsedRequirementGroups ?? []).flatMap((group) => [
+      group.label,
+      group.sourceHeading,
+      group.sourceRowText,
+      group.sourceSection,
+      ...(group.options ?? []).map((option) => option.label),
+    ]),
+    ...(block.parsedRequirementCourses ?? []).flatMap((course) => [
+      course.courseCode,
+      course.sourceHeading,
+      course.sourceCategory,
+    ]),
+  ])
+    .map(normalizeZeroUseComparisonText)
+    .filter(Boolean);
+}
+
+function getZeroUseParsedBlockCourseCodes(block: TransferPlannerParsedRequirementSourceBlock) {
+  return normalizeZeroUseCourseCodes([
+    ...(block.parsedUwCourseCodes ?? []),
+    ...(block.sourceOnlyUwCourseCodes ?? []),
+    ...(block.structuredOnlyUwCourseCodes ?? []),
+    ...(block.parsedRequirementAtomCandidates ?? []).map((candidate) => candidate.uwCourseCode),
+    ...(block.parsedDegreeMapBlockCandidates ?? []).flatMap((candidate) => candidate.uwCourseCodes),
+    ...(block.parsedRequirementCourses ?? []).flatMap((course) => [
+      course.courseCode,
+      course.normalizedCourseCode,
+    ]),
+    ...(block.parsedRequirementGroups ?? []).flatMap((group) => [
+      group.label,
+      group.sourceHeading,
+      group.sourceRowText,
+      ...(group.options ?? []).flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+        ...(option.displayCourseCodes ?? []),
+      ]),
+    ]),
+  ].flatMap((value) => [value, ...extractZeroUseCourseCodesFromText(value)]));
+}
+
+function getZeroUseRuntimeScopesForParsedBlock(block: TransferPlannerParsedRequirementSourceBlock) {
+  const runtimePlan = getCompactRuntimeMajorPlan(block.planId);
+  if (!runtimePlan) {
+    return [] as ZeroUseRuntimeScope[];
+  }
+
+  if (block.pathwayId) {
+    const resolvedPathwayPlan = resolveCompactRuntimeMajorPlan(runtimePlan, block.pathwayId);
+    return resolvedPathwayPlan ? [resolvedPathwayPlan] : [];
+  }
+
+  const scopesByKey = new Map<string, ZeroUseRuntimeScope>();
+  for (const scope of [
+    resolveCompactRuntimeMajorPlan(runtimePlan, null),
+    ...getCompactRuntimePathwaysForPlan(runtimePlan).map((pathway) =>
+      resolveCompactRuntimeMajorPlan(runtimePlan, pathway.id)
+    ),
+  ]) {
+    if (!scope) {
+      continue;
+    }
+    const key = scope.selectedPathwayId ?? "__base__";
+    if (!scopesByKey.has(key)) {
+      scopesByKey.set(key, scope);
+    }
+  }
+
+  return [...scopesByKey.values()];
+}
+
+function parsedBlockHasAnyRuntimeUse(
+  block: TransferPlannerParsedRequirementSourceBlock,
+  scopes: ZeroUseRuntimeScope[]
+) {
+  const parsedIds = getZeroUseParsedBlockIds(block);
+  if (
+    parsedIds.length &&
+    scopes.some((scope) => {
+      const runtimeIds = getZeroUseRuntimeIds(scope);
+      return parsedIds.some((id) => runtimeIds.has(id));
+    })
+  ) {
+    return true;
+  }
+
+  const parsedCourseCodes = getZeroUseParsedBlockCourseCodes(block);
+  if (
+    parsedCourseCodes.length &&
+    scopes.some((scope) => {
+      const runtimeCourseCodes = getZeroUseRuntimeCourseCodes(scope);
+      return parsedCourseCodes.some((code) => runtimeCourseCodes.has(code));
+    })
+  ) {
+    return true;
+  }
+
+  const parsedTexts = getZeroUseParsedBlockTexts(block);
+  return scopes.some((scope) => zeroUseLabelsOverlap(parsedTexts, getZeroUseRuntimeTexts(scope)));
+}
+
+test("productive parsed requirement blocks survive into compact runtime", () => {
+  const auditedRows: string[] = [];
+  const violations: string[] = [];
+
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY) {
+    if (!block.ok || !parsedBlockProducedRuntimeUsableContent(block)) {
+      continue;
+    }
+
+    const runtimeScopes = getZeroUseRuntimeScopesForParsedBlock(block);
+    if (!runtimeScopes.length) {
+      continue;
+    }
+
+    auditedRows.push(block.ownerId);
+    if (!parsedBlockHasAnyRuntimeUse(block, runtimeScopes)) {
+      violations.push(
+        `${block.ownerId} parsed ${
+          block.parsedRequirementGroups?.length ?? 0
+        } groups and ${
+          block.parsedRequirementAtomCandidates?.length ?? 0
+        } atoms, but none were found in compact runtime.`
+      );
+    }
+  }
+
+  assert.ok(auditedRows.length > 0, "Expected to audit productive parsed source blocks.");
+  assert.ok(
+    auditedRows.some((row) => row.includes("uw-tacoma-computer-engineering")),
+    "Expected the zero-use parsed block audit to cover Tacoma Computer Engineering."
+  );
+  assert.deepEqual(violations, []);
+});
+
 test("Phase 5 blocks cover every promoted primary degree source owner", () => {
   const primaryOwnerKeys = TRANSFER_PLANNER_MANIFEST_REGISTRY.filter(
     (entry) =>
@@ -4365,8 +5443,161 @@ test.skip("Only majors with real supported routes expose planner pathways", () =
   assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaEglsPlan).length, 3);
   assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaSudPlan).length, 2);
   assert.equal(getTransferPlannerPathwaysForPlan(tacomaHistoryPlan).length, 5);
-  assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaUrbanStudiesPlan).length, 2);
+  assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaUrbanStudiesPlan).length, 4);
   assert.equal(getTransferPlannerPathwaysForPlan(tacomaWritingPlan).length, 3);
+});
+
+test("Tacoma admissions-listed standalone majors stay visible in source and runtime inventories", () => {
+  const expectedRows = [
+    ["uw-tacoma-accounting", "Accounting"],
+    ["uw-tacoma-community-development-and-planning", "Community Development & Planning"],
+    ["uw-tacoma-criminal-justice-online", "Criminal Justice - Online"],
+    ["uw-tacoma-finance", "Finance"],
+    ["uw-tacoma-gis-and-spatial-planning", "GIS & Spatial Planning"],
+    ["uw-tacoma-global-studies", "Global Studies"],
+    ["uw-tacoma-management", "Management"],
+    ["uw-tacoma-marketing", "Marketing"],
+  ] as const;
+  const sourceVisiblePlans = new Map(
+    getTransferPlannerStudentVisibleMajorsForCampus("uw-tacoma").map((plan) => [plan.id, plan])
+  );
+  const sourceRuntimePlans = new Map(
+    getTransferPlannerStudentRuntimeMajorsForCampus("uw-tacoma").map((plan) => [plan.id, plan])
+  );
+  const compactRuntimePlans = new Map(
+    getCompactRuntimeMajorsForCampus("uw-tacoma").map((plan) => [plan.id, plan])
+  );
+
+  for (const [planId, expectedTitle] of expectedRows) {
+    const sourceVisiblePlan = sourceVisiblePlans.get(planId);
+    const sourceRuntimePlan = sourceRuntimePlans.get(planId);
+    const compactRuntimePlan = compactRuntimePlans.get(planId);
+    const compactDirectPlan = getCompactRuntimeMajorPlan(planId);
+
+    assert.ok(sourceVisiblePlan, `Expected source-visible Tacoma row ${planId}.`);
+    assert.ok(sourceRuntimePlan, `Expected source-generated runtime Tacoma row ${planId}.`);
+    assert.ok(compactRuntimePlan, `Expected compact runtime Tacoma row ${planId}.`);
+    assert.ok(compactDirectPlan, `Expected direct compact runtime lookup for ${planId}.`);
+    assert.equal(
+      [compactRuntimePlan.title, compactRuntimePlan.shortTitle].some((title) =>
+        String(title).includes(expectedTitle)
+      ),
+      true,
+      `Expected compact runtime row ${planId} to show ${expectedTitle}.`
+    );
+  }
+});
+
+test("Tacoma Global Studies resolves into a structured student runtime plan", () => {
+  const planId = "uw-tacoma-global-studies";
+  const officialUrl = "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration";
+  const sourcePlan = getTransferPlannerMajorPlan(planId);
+  const sourceRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(planId);
+  const compactRuntimePlan = getCompactRuntimeMajorPlan(planId);
+  const resolvedSourceRuntimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    sourceRuntimePlan,
+    null
+  );
+  const resolvedCompactRuntimePlan = resolveCompactRuntimeMajorPlan(compactRuntimePlan, null);
+
+  assert.ok(sourcePlan, "Expected source-generated Tacoma Global Studies plan.");
+  assert.ok(sourceRuntimePlan, "Expected source-generated Tacoma Global Studies runtime plan.");
+  assert.ok(compactRuntimePlan, "Expected compact Tacoma Global Studies runtime plan.");
+  assert.ok(
+    resolvedSourceRuntimePlan,
+    "Expected source-generated Tacoma Global Studies runtime plan to resolve."
+  );
+  assert.ok(
+    resolvedCompactRuntimePlan,
+    "Expected compact Tacoma Global Studies runtime plan to resolve."
+  );
+  assert.equal(getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url, officialUrl);
+
+  const getOfficialUrls = (plan: { officialLinks?: Array<{ url?: string | null }> } | null) =>
+    (plan?.officialLinks ?? []).map((link) => link.url ?? "");
+  const getDegreeSectionIds = (plan: { degreeMapSections?: Array<{ id?: string | null }> } | null) =>
+    (plan?.degreeMapSections ?? []).map((section) => section.id ?? "");
+  const getRequirementGroup = (
+    plan: {
+      requirementGroups?: Array<{
+        id?: string | null;
+        label?: string | null;
+        requirementType?: string | null;
+        options?: Array<{
+          displayCourseCodes?: string[] | null;
+          uwCourses?: string[] | null;
+          grcMatches?: unknown[] | null;
+          constraints?: string[] | null;
+        }> | null;
+      }>;
+    } | null,
+    groupIdSuffix: string
+  ) =>
+    (plan?.requirementGroups ?? []).find((group) =>
+      String(group.id ?? "").endsWith(groupIdSuffix)
+    ) ?? null;
+  const getGroupOptionCodes = (
+    group: {
+      options?: Array<{ displayCourseCodes?: string[] | null; uwCourses?: string[] | null }> | null;
+    } | null
+  ) =>
+    uniqueSorted(
+      (group?.options ?? []).flatMap((option) => [
+        ...(option.displayCourseCodes ?? []),
+        ...(option.uwCourses ?? []),
+      ])
+    );
+
+  assert.ok(getOfficialUrls(sourceRuntimePlan).includes(officialUrl));
+  assert.ok(getOfficialUrls(compactRuntimePlan).includes(officialUrl));
+  for (const sectionId of [
+    "global-studies-core-courses",
+    "global-studies-international-focus",
+    "global-studies-foreign-language",
+    "global-studies-natural-world",
+  ]) {
+    assert.ok(
+      getDegreeSectionIds(resolvedCompactRuntimePlan).includes(sectionId),
+      `Expected Global Studies degree map to include ${sectionId}.`
+    );
+  }
+
+  const checklistItemsById = new Map(
+    (compactRuntimePlan?.beforeEnrollmentChecklist ?? []).map((item) => [item.id, item])
+  );
+  const coreChecklistItem = checklistItemsById.get("global-studies-core");
+  const internationalFocusChecklistItem = checklistItemsById.get(
+    "global-studies-international-focus"
+  );
+  assert.equal(coreChecklistItem?.title, "Core courses");
+  assert.equal(coreChecklistItem?.canCreateScheduleRow, false);
+  assert.equal(coreChecklistItem?.requirementShape, "option-group");
+  assert.deepEqual(coreChecklistItem?.grcCourses, []);
+  assert.equal(internationalFocusChecklistItem?.title, "International Focus");
+  assert.equal(internationalFocusChecklistItem?.canCreateScheduleRow, false);
+  assert.equal(internationalFocusChecklistItem?.requirementShape, "credit-bucket");
+  assert.equal(internationalFocusChecklistItem?.minCredits, 40);
+  assert.deepEqual(internationalFocusChecklistItem?.grcCourses, []);
+
+  const coreGroup = getRequirementGroup(resolvedCompactRuntimePlan, "global-studies-core");
+  const internationalFocusGroup = getRequirementGroup(
+    resolvedCompactRuntimePlan,
+    "global-studies-international-focus"
+  );
+  assert.equal(coreGroup?.requirementType, "choose_one");
+  assert.deepEqual(getGroupOptionCodes(coreGroup), ["TGH 301", "THIST 150", "THIST 151"]);
+  assert.equal(internationalFocusGroup?.requirementType, "choose_credits");
+  assert.ok((internationalFocusGroup?.options ?? []).length >= 90);
+  assert.ok(getGroupOptionCodes(internationalFocusGroup).includes("TPOLS 123"));
+  assert.ok(getGroupOptionCodes(internationalFocusGroup).includes("TURB 430"));
+  assert.ok(
+    (internationalFocusGroup?.options ?? []).every(
+      (option) =>
+        (option.grcMatches ?? []).length === 0 &&
+        (option.constraints ?? []).includes("uw_only_no_current_grc_equivalent")
+    ),
+    "Expected Global Studies International Focus options to stay UW-only until a GRC equivalent is proven."
+  );
 });
 
 test("Tacoma option families remain student-visible after parser support lands", () => {
@@ -4413,6 +5644,16 @@ test("Tacoma option families remain student-visible after parser support lands",
       ],
     ],
     [
+      "uw-tacoma-urban-studies",
+      sourceGeneratedTacomaUrbanStudiesPlan,
+      [
+        "community-engagement-option",
+        "gis-option",
+        "pre-spring-2026-community-development-planning-option",
+        "pre-spring-2026-gis-spatial-planning-option",
+      ],
+    ],
+    [
       "uw-tacoma-writing-studies",
       tacomaWritingPlan,
       [
@@ -4441,6 +5682,934 @@ test("Tacoma option families remain student-visible after parser support lands",
       `Expected runtime pathways for ${planId} to match official Tacoma options.`
     );
   }
+});
+
+test("Tacoma Urban Studies separates current and pre-Spring 2026 requirement versions", () => {
+  assert.ok(
+    sourceGeneratedTacomaUrbanStudiesPlan,
+    "Expected source-generated Tacoma Urban Studies planner row."
+  );
+
+  const sourceCurrentPlan = resolveTransferPlannerMajorPlan(
+    sourceGeneratedTacomaUrbanStudiesPlan,
+    "community-engagement-option"
+  );
+  const sourceLegacyPlan = resolveTransferPlannerMajorPlan(
+    sourceGeneratedTacomaUrbanStudiesPlan,
+    "pre-spring-2026-community-development-planning-option"
+  );
+  const runtimeUrbanStudiesPlan = getCompactRuntimeMajorPlan("uw-tacoma-urban-studies");
+  const runtimeCurrentPlan = resolveCompactRuntimeMajorPlan(
+    runtimeUrbanStudiesPlan,
+    "community-engagement-option"
+  );
+  const runtimeLegacyPlan = resolveCompactRuntimeMajorPlan(
+    runtimeUrbanStudiesPlan,
+    "pre-spring-2026-community-development-planning-option"
+  );
+
+  const getGroupLabels = (plan: { requirementGroups?: Array<{ label?: string | null }> } | null) =>
+    (plan?.requirementGroups ?? []).map((group) => group.label ?? "");
+  const assertCurrentLabels = (labels: string[]) => {
+    assert.ok(labels.includes("Shared Curriculum Courses (20 credits)"));
+    assert.ok(labels.includes("Foundation Courses (25 credits, choose 5 courses)"));
+    assert.ok(!labels.some((label) => /Introductory Courses|22 credits/i.test(label)));
+  };
+  const assertLegacyLabels = (labels: string[]) => {
+    assert.ok(labels.includes("Introductory Courses (11 credits)"));
+    assert.ok(labels.some((label) => /Foundation Courses \(22 credits/i.test(label)));
+    assert.ok(!labels.includes("Shared Curriculum Courses (20 credits)"));
+    assert.ok(!labels.includes("Foundation Courses (25 credits, choose 5 courses)"));
+  };
+
+  assertCurrentLabels(getGroupLabels(sourceCurrentPlan));
+  assertLegacyLabels(getGroupLabels(sourceLegacyPlan));
+  assertCurrentLabels(getGroupLabels(runtimeCurrentPlan));
+  assertLegacyLabels(getGroupLabels(runtimeLegacyPlan));
+});
+
+type TermVersionRequirementGroup = {
+  id?: string | null;
+  label?: string | null;
+  sourceHeading?: string | null;
+  sourceRowText?: string | null;
+  pathwayId?: string | null;
+  routeId?: string | null;
+  notes?: string[] | null;
+};
+
+type TermVersionChecklistItem = {
+  requirementGroup?: TermVersionRequirementGroup | null;
+};
+
+type TermVersionPathway = {
+  id?: string | null;
+  pathwayId?: string | null;
+  label?: string | null;
+  title?: string | null;
+  summary?: string | null;
+  validationNotes?: string[] | null;
+};
+
+type TermVersionScope = {
+  id?: string | null;
+  title?: string | null;
+  label?: string | null;
+  requirementGroups?: TermVersionRequirementGroup[] | null;
+  applicationChecklist?: TermVersionChecklistItem[] | null;
+  beforeEnrollmentChecklist?: TermVersionChecklistItem[] | null;
+  stayAtGrcChecklist?: TermVersionChecklistItem[] | null;
+};
+
+const TERM_VERSION_CURRENT_CUE_PATTERN =
+  /\b(?:effective|beginning|starting|as of|required as of|current|new|revised)\b[^.]{0,120}\b(?:requirements?|curriculum|degree plan|spring|summer|autumn|fall|winter|20\d{2})\b/i;
+const TERM_VERSION_PRIOR_CUE_PATTERN =
+  /\b(?:prior to|before|pre[-\s]?|previous|older|old|existing)\b[^.]{0,120}\b(?:requirements?|curriculum|degree plan|spring|summer|autumn|fall|winter|20\d{2})\b/i;
+const TERM_VERSION_PRIOR_SCOPE_PATTERN =
+  /\b(?:pre[-\s]?|prior to|before|previous|older|old|existing)\b[^|]{0,80}\b(?:requirements?|curriculum|degree plan|spring|summer|autumn|fall|winter|20\d{2})\b/i;
+
+function normalizeTermVersionText(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getTermVersionSourceCueLines(planId: string) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter(
+    (block) => block.planId === planId
+  ).flatMap((block) =>
+    (block.requirementCueLines ?? []).filter(
+      (line) =>
+        TERM_VERSION_CURRENT_CUE_PATTERN.test(line) ||
+        TERM_VERSION_PRIOR_CUE_PATTERN.test(line)
+    )
+  );
+}
+
+function hasTermVersionSourceSplitCues(planId: string) {
+  const cueText = getTermVersionSourceCueLines(planId).join("\n");
+
+  return (
+    TERM_VERSION_CURRENT_CUE_PATTERN.test(cueText) &&
+    TERM_VERSION_PRIOR_CUE_PATTERN.test(cueText)
+  );
+}
+
+function getTermVersionPathwayText(pathway: TermVersionPathway) {
+  return [
+    pathway.id,
+    pathway.pathwayId,
+    pathway.label,
+    pathway.title,
+    pathway.summary,
+    ...(pathway.validationNotes ?? []),
+  ]
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function getTermVersionScopeKind(pathway: TermVersionPathway, planHasPriorVersionScope: boolean) {
+  const pathwayText = getTermVersionPathwayText(pathway);
+
+  if (TERM_VERSION_PRIOR_SCOPE_PATTERN.test(pathwayText)) {
+    return "prior" as const;
+  }
+
+  return planHasPriorVersionScope ? ("current" as const) : null;
+}
+
+function getTermVersionRequirementGroupText(group: TermVersionRequirementGroup) {
+  return [group.id, group.label, group.sourceHeading, group.sourceRowText, ...(group.notes ?? [])]
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function getTermVersionRequirementGroupSignature(group: TermVersionRequirementGroup) {
+  return normalizeTermVersionText(
+    [group.label, group.sourceHeading, group.sourceRowText, group.id].filter(Boolean).join(" | ")
+  );
+}
+
+function getTermVersionRequirementGroupOwnerPathwayId(group: TermVersionRequirementGroup) {
+  const explicitPathwayId = String(group.pathwayId ?? group.routeId ?? "").trim();
+  if (explicitPathwayId) {
+    return explicitPathwayId;
+  }
+
+  const ownerMatch = String(group.id ?? "").match(/:pathway:([^:]+)/);
+  return ownerMatch?.[1] ?? null;
+}
+
+function collectTermVersionRequirementGroups(scope: TermVersionScope | null | undefined) {
+  if (!scope) {
+    return [] as TermVersionRequirementGroup[];
+  }
+
+  const groupsByKey = new Map<string, TermVersionRequirementGroup>();
+  for (const group of [
+    ...(scope.requirementGroups ?? []),
+    ...(scope.applicationChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+    ...(scope.beforeEnrollmentChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+    ...(scope.stayAtGrcChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+  ]) {
+    const key = group.id ?? getTermVersionRequirementGroupSignature(group);
+    if (key && !groupsByKey.has(key)) {
+      groupsByKey.set(key, group);
+    }
+  }
+
+  return [...groupsByKey.values()];
+}
+
+function auditTermVersionSeparation(input: {
+  runtimeLabel: string;
+  getMajorsForCampus: (campusId: "uw-seattle" | "uw-bothell" | "uw-tacoma") => TransferPlannerMajorPlan[];
+  getPathwaysForPlan: (plan: TransferPlannerMajorPlan | null | undefined) => TermVersionPathway[];
+  resolvePlan: (
+    plan: TransferPlannerMajorPlan | null | undefined,
+    pathwayId: string | null | undefined
+  ) => TermVersionScope | null;
+}) {
+  const campusIds = ["uw-seattle", "uw-bothell", "uw-tacoma"] as const;
+  const auditedPlanIds: string[] = [];
+  const violations: string[] = [];
+
+  for (const campusId of campusIds) {
+    for (const plan of input.getMajorsForCampus(campusId)) {
+      if (!hasTermVersionSourceSplitCues(plan.id)) {
+        continue;
+      }
+
+      const pathways = input.getPathwaysForPlan(plan).filter((pathway) => Boolean(pathway.id));
+      const planHasPriorVersionScope = pathways.some((pathway) =>
+        TERM_VERSION_PRIOR_SCOPE_PATTERN.test(getTermVersionPathwayText(pathway))
+      );
+      if (!planHasPriorVersionScope) {
+        continue;
+      }
+
+      const scopedGroups = pathways.flatMap((pathway) => {
+        const pathwayId = String(pathway.id);
+        const scopeKind = getTermVersionScopeKind(pathway, planHasPriorVersionScope);
+        const resolvedPlan = input.resolvePlan(plan, pathwayId);
+
+        return scopeKind
+          ? collectTermVersionRequirementGroups(resolvedPlan).map((group) => ({
+              pathwayId,
+              scopeKind,
+              group,
+              signature: getTermVersionRequirementGroupSignature(group),
+              text: getTermVersionRequirementGroupText(group),
+            }))
+          : [];
+      });
+
+      if (!scopedGroups.length) {
+        continue;
+      }
+
+      auditedPlanIds.push(plan.id);
+      const currentSignatures = new Set(
+        scopedGroups
+          .filter((entry) => entry.scopeKind === "current")
+          .map((entry) => entry.signature)
+          .filter(Boolean)
+      );
+      const priorSignatures = new Set(
+        scopedGroups
+          .filter((entry) => entry.scopeKind === "prior")
+          .map((entry) => entry.signature)
+          .filter(Boolean)
+      );
+      const currentOnlySignatures = new Set(
+        [...currentSignatures].filter((signature) => !priorSignatures.has(signature))
+      );
+      const priorOnlySignatures = new Set(
+        [...priorSignatures].filter((signature) => !currentSignatures.has(signature))
+      );
+
+      for (const entry of scopedGroups) {
+        const ownerPathwayId = getTermVersionRequirementGroupOwnerPathwayId(entry.group);
+        if (ownerPathwayId && ownerPathwayId !== entry.pathwayId) {
+          violations.push(
+            `${input.runtimeLabel}/${plan.id}/${entry.pathwayId} contains ${entry.group.id ?? entry.group.label} owned by ${ownerPathwayId}.`
+          );
+          continue;
+        }
+
+        if (entry.scopeKind === "current" && priorOnlySignatures.has(entry.signature)) {
+          violations.push(
+            `${input.runtimeLabel}/${plan.id}/${entry.pathwayId} mixes prior-only requirement group ${entry.group.label ?? entry.group.id}.`
+          );
+        }
+        if (entry.scopeKind === "prior" && currentOnlySignatures.has(entry.signature)) {
+          violations.push(
+            `${input.runtimeLabel}/${plan.id}/${entry.pathwayId} mixes current-only requirement group ${entry.group.label ?? entry.group.id}.`
+          );
+        }
+        if (
+          entry.scopeKind === "current" &&
+          TERM_VERSION_PRIOR_CUE_PATTERN.test(entry.text)
+        ) {
+          violations.push(
+            `${input.runtimeLabel}/${plan.id}/${entry.pathwayId} has prior-version text in current requirement group ${entry.group.label ?? entry.group.id}.`
+          );
+        }
+        if (
+          entry.scopeKind === "prior" &&
+          TERM_VERSION_CURRENT_CUE_PATTERN.test(entry.text)
+        ) {
+          violations.push(
+            `${input.runtimeLabel}/${plan.id}/${entry.pathwayId} has current-version text in prior requirement group ${entry.group.label ?? entry.group.id}.`
+          );
+        }
+      }
+    }
+  }
+
+  return { auditedPlanIds: uniqueSorted(auditedPlanIds), violations };
+}
+
+test("term-versioned requirement pages keep current and prior requirements in separate scopes", () => {
+  const sourceAudit = auditTermVersionSeparation({
+    runtimeLabel: "source",
+    getMajorsForCampus: getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus,
+    getPathwaysForPlan: getTransferPlannerPathwaysForPlan,
+    resolvePlan: resolveTransferPlannerMajorPlan,
+  });
+  const runtimeAudit = auditTermVersionSeparation({
+    runtimeLabel: "runtime",
+    getMajorsForCampus: getCompactRuntimeMajorsForCampus,
+    getPathwaysForPlan: getCompactRuntimePathwaysForPlan,
+    resolvePlan: resolveCompactRuntimeMajorPlan,
+  });
+
+  assert.ok(
+    [...sourceAudit.auditedPlanIds, ...runtimeAudit.auditedPlanIds].includes(
+      "uw-tacoma-urban-studies"
+    ),
+    "Expected the term-version audit to cover Tacoma Urban Studies Spring 2026/pre-Spring 2026 requirements."
+  );
+  assert.deepEqual([...sourceAudit.violations, ...runtimeAudit.violations], []);
+});
+
+test("Tacoma Information Technology scopes temporary suspension to Digital Mobile Forensics", () => {
+  type SuspensionChecklistItem = {
+    title?: string | null;
+    note?: string | null;
+    sourceSection?: string | null;
+    reason?: string | null;
+    requirementGroup?: {
+      label?: string | null;
+      sourceHeading?: string | null;
+    } | null;
+  };
+  type SuspensionRequirementGroup = {
+    label?: string | null;
+    sourceHeading?: string | null;
+    sourceRowText?: string | null;
+    notes?: string[];
+  };
+  type SuspensionPlan = {
+    beforeEnrollmentChecklist?: SuspensionChecklistItem[];
+    requirementGroups?: SuspensionRequirementGroup[];
+  };
+  const suspensionPattern = /\btemporarily suspended\b/i;
+  const hasSuspensionText = (values: Array<string | null | undefined>) =>
+    suspensionPattern.test(values.filter(Boolean).join(" "));
+  const getSuspensionChecklistTitles = (plan: SuspensionPlan | null) =>
+    (plan?.beforeEnrollmentChecklist ?? [])
+      .filter((item) =>
+        hasSuspensionText([
+          item.title,
+          item.note,
+          item.sourceSection,
+          item.reason,
+          item.requirementGroup?.label,
+          item.requirementGroup?.sourceHeading,
+        ])
+      )
+      .map((item) => item.title ?? "");
+  const getSuspensionGroupLabels = (plan: SuspensionPlan | null) =>
+    (plan?.requirementGroups ?? [])
+      .filter((group) =>
+        hasSuspensionText([
+          group.label,
+          group.sourceHeading,
+          group.sourceRowText,
+          ...(group.notes ?? []),
+        ])
+      )
+      .map((group) => group.label ?? "");
+  const getGroupLabels = (plan: SuspensionPlan | null) =>
+    (plan?.requirementGroups ?? []).map((group) => group.label ?? "");
+  const assertScopedSuspension = (
+    label: string,
+    informationAssurancePlan: SuspensionPlan | null,
+    digitalMobileForensicsPlan: SuspensionPlan | null
+  ) => {
+    assert.deepEqual(
+      getSuspensionChecklistTitles(informationAssurancePlan),
+      [],
+      `${label} IAC pathway should not inherit the Digital Mobile Forensics suspension note.`
+    );
+    assert.deepEqual(
+      getSuspensionGroupLabels(informationAssurancePlan),
+      [],
+      `${label} IAC pathway should not expose TEMPORARILY SUSPENDED as a requirement group.`
+    );
+    assert.ok(
+      getSuspensionChecklistTitles(digitalMobileForensicsPlan).includes(
+        "Digital Mobile Forensics option is temporarily suspended"
+      ),
+      `${label} DMF pathway should retain the suspension note.`
+    );
+    assert.deepEqual(
+      getSuspensionGroupLabels(digitalMobileForensicsPlan),
+      [],
+      `${label} DMF pathway should not expose TEMPORARILY SUSPENDED as a schedulable group.`
+    );
+    assert.ok(
+      getGroupLabels(digitalMobileForensicsPlan).includes("Digital Mobile Forensics"),
+      `${label} DMF pathway should still expose its own course group.`
+    );
+  };
+
+  const sourcePlan = getTransferPlannerMajorPlan("uw-tacoma-information-technology");
+  const runtimePlan = getCompactRuntimeMajorPlan("uw-tacoma-information-technology");
+  assert.ok(sourcePlan, "Expected source-generated Tacoma Information Technology plan.");
+  assert.ok(runtimePlan, "Expected compact runtime Tacoma Information Technology plan.");
+
+  assertScopedSuspension(
+    "source",
+    resolveTransferPlannerMajorPlan(sourcePlan, "information-assurance-cybersecurity-option"),
+    resolveTransferPlannerMajorPlan(sourcePlan, "digital-mobile-forensics-option")
+  );
+  assertScopedSuspension(
+    "runtime",
+    resolveCompactRuntimeMajorPlan(runtimePlan, "information-assurance-cybersecurity-option"),
+    resolveCompactRuntimeMajorPlan(runtimePlan, "digital-mobile-forensics-option")
+  );
+});
+
+type PathwayScopedWarningRequirementGroup = {
+  id?: string | null;
+  label?: string | null;
+  sourceHeading?: string | null;
+  sourceRowText?: string | null;
+  sourceUrl?: string | null;
+  pathwayId?: string | null;
+  routeId?: string | null;
+  notes?: string[] | null;
+};
+
+type PathwayScopedWarningChecklistItem = {
+  id?: string | null;
+  title?: string | null;
+  note?: string | null;
+  sourceSection?: string | null;
+  sourceUrl?: string | null;
+  pathwayId?: string | null;
+  routeId?: string | null;
+  requirementGroup?: PathwayScopedWarningRequirementGroup | null;
+};
+
+type PathwayScopedWarningScope = {
+  id?: string | null;
+  title?: string | null;
+  applicationChecklist?: PathwayScopedWarningChecklistItem[] | null;
+  beforeEnrollmentChecklist?: PathwayScopedWarningChecklistItem[] | null;
+  stayAtGrcChecklist?: PathwayScopedWarningChecklistItem[] | null;
+  requirementGroups?: PathwayScopedWarningRequirementGroup[] | null;
+};
+
+type PathwayScopedWarningPathway = {
+  id?: string | null;
+  pathwayId?: string | null;
+  label?: string | null;
+  title?: string | null;
+};
+
+const PATHWAY_SCOPED_WARNING_PATTERN =
+  /\b(?:temporarily suspended|currently suspended|not currently accepting|no longer accepting|no longer offered)\b/i;
+
+function normalizePathwayScopedWarningText(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getPathwayScopedWarningIdentityVariants(pathway: PathwayScopedWarningPathway) {
+  return uniqueSorted(
+    [pathway.label, pathway.title, pathway.id, pathway.pathwayId]
+      .flatMap((value) => {
+        const normalized = normalizePathwayScopedWarningText(value);
+        const withoutParenthetical = normalizePathwayScopedWarningText(
+          String(value ?? "").replace(/\([^)]*\)/g, " ")
+        );
+        const withoutRoleSuffix = normalizePathwayScopedWarningText(
+          withoutParenthetical.replace(
+            /\b(?:option|track|concentration|pathway|degree|major)\b/g,
+            " "
+          )
+        );
+
+        return [normalized, withoutParenthetical, withoutRoleSuffix];
+      })
+      .filter((value) => value.length >= 8)
+  );
+}
+
+function normalizedTextIncludesIdentity(text: string, variants: string[]) {
+  const normalizedText = ` ${normalizePathwayScopedWarningText(text)} `;
+
+  return variants.some((variant) => normalizedText.includes(` ${variant} `));
+}
+
+function getWarningChecklistItemText(item: PathwayScopedWarningChecklistItem) {
+  return [
+    item.id,
+    item.title,
+    item.note,
+    item.sourceSection,
+    item.requirementGroup?.id,
+    item.requirementGroup?.label,
+    item.requirementGroup?.sourceHeading,
+    item.requirementGroup?.sourceRowText,
+    ...(item.requirementGroup?.notes ?? []),
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function getWarningRequirementGroupText(group: PathwayScopedWarningRequirementGroup) {
+  return [group.id, group.label, group.sourceHeading, group.sourceRowText, ...(group.notes ?? [])]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function getWarningOwnerPathwayId(
+  row: PathwayScopedWarningChecklistItem | PathwayScopedWarningRequirementGroup
+) {
+  if ("requirementGroup" in row) {
+    return (
+      row.pathwayId ??
+      row.routeId ??
+      row.requirementGroup?.pathwayId ??
+      row.requirementGroup?.routeId ??
+      null
+    );
+  }
+
+  return row.pathwayId ?? row.routeId ?? null;
+}
+
+function collectPathwayScopedWarningRows(scope: PathwayScopedWarningScope | null | undefined) {
+  if (!scope) {
+    return [] as Array<{
+      kind: "checklist" | "requirement-group";
+      id: string;
+      text: string;
+      ownerPathwayId: string | null;
+    }>;
+  }
+
+  const checklistItems = [
+    ...(scope.applicationChecklist ?? []),
+    ...(scope.beforeEnrollmentChecklist ?? []),
+    ...(scope.stayAtGrcChecklist ?? []),
+  ].flatMap((item) => {
+    const text = getWarningChecklistItemText(item);
+
+    return PATHWAY_SCOPED_WARNING_PATTERN.test(text)
+      ? [
+          {
+            kind: "checklist" as const,
+            id: item.id ?? item.title ?? "(untitled checklist item)",
+            text,
+            ownerPathwayId: getWarningOwnerPathwayId(item),
+          },
+        ]
+      : [];
+  });
+  const requirementGroups = (scope.requirementGroups ?? []).flatMap((group) => {
+    const text = getWarningRequirementGroupText(group);
+
+    return PATHWAY_SCOPED_WARNING_PATTERN.test(text)
+      ? [
+          {
+            kind: "requirement-group" as const,
+            id: group.id ?? group.label ?? "(untitled requirement group)",
+            text,
+            ownerPathwayId: getWarningOwnerPathwayId(group),
+          },
+        ]
+      : [];
+  });
+
+  return [...checklistItems, ...requirementGroups];
+}
+
+function auditMisScopedPathwayWarnings(input: {
+  runtimeLabel: string;
+  getMajorsForCampus: (campusId: "uw-seattle" | "uw-bothell" | "uw-tacoma") => TransferPlannerMajorPlan[];
+  getPathwaysForPlan: (
+    plan: TransferPlannerMajorPlan | null | undefined
+  ) => PathwayScopedWarningPathway[];
+  resolvePlan: (
+    plan: TransferPlannerMajorPlan | null | undefined,
+    pathwayId: string | null | undefined
+  ) => PathwayScopedWarningScope | null;
+}) {
+  const campusIds = ["uw-seattle", "uw-bothell", "uw-tacoma"] as const;
+  const auditedWarnings: string[] = [];
+  const violations: string[] = [];
+
+  for (const campusId of campusIds) {
+    for (const plan of input.getMajorsForCampus(campusId)) {
+      const pathways = input
+        .getPathwaysForPlan(plan)
+        .filter((pathway) => Boolean(pathway.id));
+
+      if (pathways.length < 2) {
+        continue;
+      }
+
+      const pathwayIds = new Set(pathways.map((pathway) => String(pathway.id)));
+      const identityVariantsByPathwayId = new Map(
+        pathways.map((pathway) => [
+          String(pathway.id),
+          getPathwayScopedWarningIdentityVariants(pathway),
+        ])
+      );
+
+      for (const pathway of pathways) {
+        const selectedPathwayId = String(pathway.id);
+        const selectedPlan = input.resolvePlan(plan, selectedPathwayId);
+
+        for (const row of collectPathwayScopedWarningRows(selectedPlan)) {
+          auditedWarnings.push(
+            `${input.runtimeLabel}/${plan.id}/${selectedPathwayId}/${row.kind}/${row.id}`
+          );
+
+          if (row.ownerPathwayId && row.ownerPathwayId !== selectedPathwayId) {
+            violations.push(
+              `${input.runtimeLabel}/${plan.id}/${selectedPathwayId} contains ${row.kind} ${row.id} owned by ${row.ownerPathwayId}.`
+            );
+            continue;
+          }
+
+          if (row.ownerPathwayId === selectedPathwayId) {
+            continue;
+          }
+
+          const selectedVariants = identityVariantsByPathwayId.get(selectedPathwayId) ?? [];
+          if (normalizedTextIncludesIdentity(row.text, selectedVariants)) {
+            continue;
+          }
+
+          const siblingPathway = pathways.find((candidate) => {
+            const candidateId = String(candidate.id);
+            return (
+              candidateId !== selectedPathwayId &&
+              normalizedTextIncludesIdentity(
+                row.text,
+                identityVariantsByPathwayId.get(candidateId) ?? []
+              )
+            );
+          });
+
+          if (siblingPathway?.id && pathwayIds.has(String(siblingPathway.id))) {
+            violations.push(
+              `${input.runtimeLabel}/${plan.id}/${selectedPathwayId} contains ${row.kind} ${row.id} that names sibling pathway ${siblingPathway.id}.`
+            );
+          }
+        }
+      }
+    }
+  }
+
+  return { auditedWarnings, violations };
+}
+
+test("pathway-scoped warning notes do not leak into sibling pathways", () => {
+  const sourceAudit = auditMisScopedPathwayWarnings({
+    runtimeLabel: "source",
+    getMajorsForCampus: getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus,
+    getPathwaysForPlan: getTransferPlannerPathwaysForPlan,
+    resolvePlan: resolveTransferPlannerMajorPlan,
+  });
+  const runtimeAudit = auditMisScopedPathwayWarnings({
+    runtimeLabel: "runtime",
+    getMajorsForCampus: getCompactRuntimeMajorsForCampus,
+    getPathwaysForPlan: getCompactRuntimePathwaysForPlan,
+    resolvePlan: resolveCompactRuntimeMajorPlan,
+  });
+  const auditedWarnings = [...sourceAudit.auditedWarnings, ...runtimeAudit.auditedWarnings];
+
+  assert.ok(
+    auditedWarnings.some((row) =>
+      /uw-tacoma-information-technology\/digital-mobile-forensics-option\/checklist\/uwt-it-digital-mobile-forensics-temporarily-suspended/.test(
+        row
+      )
+    ),
+    "Expected the generic warning-scope detector to cover the Tacoma IT Digital Mobile Forensics suspension row."
+  );
+  assert.deepEqual([...sourceAudit.violations, ...runtimeAudit.violations], []);
+});
+
+function getSectionBleedRequirementGroupSourceText(group: PathwayScopedWarningRequirementGroup) {
+  return [group.sourceHeading, group.sourceRowText].filter(Boolean).join(" | ");
+}
+
+function getSectionBleedRequirementGroupSourceTexts(group: PathwayScopedWarningRequirementGroup) {
+  return [group.sourceHeading, group.sourceRowText].filter(Boolean) as string[];
+}
+
+function getSectionBleedRequirementGroupKey(group: PathwayScopedWarningRequirementGroup) {
+  return (
+    group.id ??
+    normalizePathwayScopedWarningText(
+      [group.label, group.sourceHeading, group.sourceRowText].filter(Boolean).join(" | ")
+    )
+  );
+}
+
+function collectSectionBleedRequirementGroups(
+  scope: PathwayScopedWarningScope | null | undefined
+) {
+  if (!scope) {
+    return [] as PathwayScopedWarningRequirementGroup[];
+  }
+
+  const groupsByKey = new Map<string, PathwayScopedWarningRequirementGroup>();
+  for (const group of [
+    ...(scope.requirementGroups ?? []),
+    ...(scope.applicationChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+    ...(scope.beforeEnrollmentChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+    ...(scope.stayAtGrcChecklist ?? []).flatMap((item) =>
+      item.requirementGroup ? [item.requirementGroup] : []
+    ),
+  ]) {
+    const key = getSectionBleedRequirementGroupKey(group);
+    if (key && !groupsByKey.has(key)) {
+      groupsByKey.set(key, group);
+    }
+  }
+
+  return [...groupsByKey.values()];
+}
+
+function getSectionBleedOwnerPathwayId(group: PathwayScopedWarningRequirementGroup) {
+  const explicitPathwayId = String(group.pathwayId ?? group.routeId ?? "").trim();
+  if (explicitPathwayId) {
+    return explicitPathwayId;
+  }
+
+  const ownerMatch = String(group.id ?? "").match(/:pathway:([^:]+)/);
+  return ownerMatch?.[1] ?? null;
+}
+
+function isStandaloneSectionBleedPathwayText(text: string, variants: string[]) {
+  const normalizedText = normalizePathwayScopedWarningText(text);
+  if (!normalizedText || CANONICAL_COURSE_CODE_RE.test(text)) {
+    return false;
+  }
+
+  return variants.some((variant) => {
+    if (!normalizedText.includes(variant)) {
+      return false;
+    }
+
+    return normalizedText.length <= variant.length + 32;
+  });
+}
+
+function auditSectionBleedRequirementGroups(input: {
+  runtimeLabel: string;
+  getMajorsForCampus: (campusId: "uw-seattle" | "uw-bothell" | "uw-tacoma") => TransferPlannerMajorPlan[];
+  getPathwaysForPlan: (
+    plan: TransferPlannerMajorPlan | null | undefined
+  ) => PathwayScopedWarningPathway[];
+  resolvePlan: (
+    plan: TransferPlannerMajorPlan | null | undefined,
+    pathwayId: string | null | undefined
+  ) => PathwayScopedWarningScope | null;
+}) {
+  const campusIds = ["uw-seattle", "uw-bothell", "uw-tacoma"] as const;
+  const auditedRows: string[] = [];
+  const auditedPlanIds: string[] = [];
+  const violations: string[] = [];
+
+  for (const campusId of campusIds) {
+    for (const plan of input.getMajorsForCampus(campusId)) {
+      const pathways = input
+        .getPathwaysForPlan(plan)
+        .filter((pathway) => Boolean(pathway.id));
+
+      if (pathways.length < 2) {
+        continue;
+      }
+
+      auditedPlanIds.push(plan.id);
+      const pathwayIds = new Set(pathways.map((pathway) => String(pathway.id)));
+      const identityVariantsByPathwayId = new Map(
+        pathways.map((pathway) => [
+          String(pathway.id),
+          getPathwayScopedWarningIdentityVariants(pathway),
+        ])
+      );
+
+      for (const pathway of pathways) {
+        const selectedPathwayId = String(pathway.id);
+        const selectedPlan = input.resolvePlan(plan, selectedPathwayId);
+
+        for (const group of collectSectionBleedRequirementGroups(selectedPlan)) {
+          const groupKey = group.id ?? group.label ?? "(untitled requirement group)";
+          const sourceText = getSectionBleedRequirementGroupSourceText(group);
+          auditedRows.push(`${input.runtimeLabel}/${plan.id}/${selectedPathwayId}/${groupKey}`);
+
+          const ownerPathwayId = getSectionBleedOwnerPathwayId(group);
+          if (
+            ownerPathwayId &&
+            ownerPathwayId !== selectedPathwayId &&
+            pathwayIds.has(ownerPathwayId)
+          ) {
+            violations.push(
+              `${input.runtimeLabel}/${plan.id}/${selectedPathwayId} contains requirement group ${groupKey} owned by sibling pathway ${ownerPathwayId}.`
+            );
+            continue;
+          }
+
+          if (!sourceText || ownerPathwayId === selectedPathwayId) {
+            continue;
+          }
+
+          const matchingPathwayIds = pathways
+            .map((candidate) => String(candidate.id))
+            .filter((candidateId) =>
+              getSectionBleedRequirementGroupSourceTexts(group).some((text) =>
+                isStandaloneSectionBleedPathwayText(
+                  text,
+                  identityVariantsByPathwayId.get(candidateId) ?? []
+                )
+              )
+            );
+
+          if (matchingPathwayIds.length === 1 && matchingPathwayIds[0] !== selectedPathwayId) {
+            violations.push(
+              `${input.runtimeLabel}/${plan.id}/${selectedPathwayId} contains requirement group ${groupKey} whose source text names sibling pathway ${matchingPathwayIds[0]}.`
+            );
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    auditedPlanIds: uniqueSorted(auditedPlanIds),
+    auditedRows,
+    violations,
+  };
+}
+
+test("pathway requirement groups do not bleed source sections from sibling pathways", () => {
+  const sourceAudit = auditSectionBleedRequirementGroups({
+    runtimeLabel: "source",
+    getMajorsForCampus: getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus,
+    getPathwaysForPlan: getTransferPlannerPathwaysForPlan,
+    resolvePlan: resolveTransferPlannerMajorPlan,
+  });
+  const runtimeAudit = auditSectionBleedRequirementGroups({
+    runtimeLabel: "runtime",
+    getMajorsForCampus: getCompactRuntimeMajorsForCampus,
+    getPathwaysForPlan: getCompactRuntimePathwaysForPlan,
+    resolvePlan: resolveCompactRuntimeMajorPlan,
+  });
+  const auditedRows = [...sourceAudit.auditedRows, ...runtimeAudit.auditedRows];
+
+  assert.ok(
+    [...sourceAudit.auditedPlanIds, ...runtimeAudit.auditedPlanIds].includes(
+      "uw-tacoma-information-technology"
+    ),
+    "Expected the section-bleed detector to audit Tacoma IT pathways."
+  );
+  assert.ok(
+    [...sourceAudit.auditedPlanIds, ...runtimeAudit.auditedPlanIds].includes(
+      "uw-tacoma-urban-studies"
+    ),
+    "Expected the section-bleed detector to audit Tacoma Urban Studies pathways."
+  );
+  assert.ok(
+    auditedRows.some((row) =>
+      /uw-tacoma-information-technology\/digital-mobile-forensics-option\/.*digital-mobile-forensics/i.test(
+        row
+      )
+    ),
+    "Expected the section-bleed detector to inspect the Tacoma IT Digital Mobile Forensics requirement group."
+  );
+  assert.deepEqual([...sourceAudit.violations, ...runtimeAudit.violations], []);
+});
+
+test("Tacoma Computer Engineering generated data retains the planning grid", () => {
+  const planId = "uw-tacoma-computer-engineering";
+  const cengrUrl = "https://www.tacoma.uw.edu/set/programs/undergrad/cengr";
+  const planningGridUrl =
+    "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf";
+  const bootstrapPlan = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.find(
+    (plan) => plan.id === planId
+  );
+  const runtimePlan = getCompactRuntimeMajorPlan(planId);
+  const resolvedRuntimePlan = resolveCompactRuntimeMajorPlan(runtimePlan, null);
+  const demoDiagnostics = JSON.parse(
+    readFileSync("constants/transfer-planner-source/demo/complete-diagnostics.generated.json", "utf8")
+  ) as {
+    programsByPlanId?: Record<string, Array<{ officialSources?: string[] }>>;
+  };
+  const getOfficialLinkUrls = (plan: { officialLinks?: Array<{ url?: string | null }> } | null) =>
+    (plan?.officialLinks ?? []).map((link) => link.url ?? "");
+  const assertIncludes = (urls: string[], expectedUrl: string, label: string) => {
+    assert.ok(urls.includes(expectedUrl), `${label} should include ${expectedUrl}.`);
+  };
+
+  assert.ok(bootstrapPlan, "Expected bootstrap Tacoma Computer Engineering plan.");
+  assert.ok(runtimePlan, "Expected compact runtime Tacoma Computer Engineering plan.");
+  assert.ok(resolvedRuntimePlan, "Expected resolved compact runtime Tacoma Computer Engineering plan.");
+  assert.equal(
+    getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url,
+    cengrUrl,
+    "CENGR live page should remain the primary degree source."
+  );
+  assertIncludes(getOfficialLinkUrls(bootstrapPlan), planningGridUrl, "bootstrap officialLinks");
+  assertIncludes(getOfficialLinkUrls(runtimePlan), cengrUrl, "runtime officialLinks");
+  assertIncludes(getOfficialLinkUrls(runtimePlan), planningGridUrl, "runtime officialLinks");
+  assertIncludes(getOfficialLinkUrls(resolvedRuntimePlan), cengrUrl, "resolved runtime officialLinks");
+  assertIncludes(
+    getOfficialLinkUrls(resolvedRuntimePlan),
+    planningGridUrl,
+    "resolved runtime officialLinks"
+  );
+  assertIncludes(
+    demoDiagnostics.programsByPlanId?.[planId]?.[0]?.officialSources ?? [],
+    planningGridUrl,
+    "demo diagnostics officialSources"
+  );
 });
 
 test("Tacoma Communication keeps the official singular title while preserving track pathways", () => {
@@ -4969,7 +7138,7 @@ test.skip("Source-generated major rows preserve planner counts and now drive mor
   assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaEnvSustainabilityPlan).length, 4);
   assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaEglsPlan).length, 3);
   assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaSudPlan).length, 2);
-  assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaUrbanStudiesPlan).length, 2);
+  assert.equal(getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaUrbanStudiesPlan).length, 4);
 });
 
 test.skip("Source-generated pathway rows can resolve the new route-specific Seattle and Tacoma paths", () => {

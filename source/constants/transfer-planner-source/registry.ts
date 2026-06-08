@@ -52,8 +52,12 @@ import {
   getTransferPlannerManualPreferredPrimaryUrl,
   shouldSkipTransferPlannerAutoPromotedPrimarySource,
 } from "./manual-source-link-overrides";
+import {
+  TRANSFER_PLANNER_STANDALONE_INVENTORY_SUPPRESSED_PLAN_IDS,
+} from "./source-generated-visibility";
 import type {
   TransferPlannerChecklistItem,
+  TransferPlannerCampusId,
   TransferPlannerDegreeMapSection,
   TransferPlannerLink,
   TransferPlannerMajorPlan,
@@ -469,6 +473,20 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
     ],
     validationNotes: [
       "Supplemental parser-backed parent metadata models Tacoma CSS BA/BS degree pages as pathways under one canonical program.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-global-studies",
+    campusId: "uw-tacoma",
+    ownerTitle: "Global Studies (BA)",
+    links: [
+      {
+        label: "UW Tacoma Global Studies Concentration requirements",
+        url: "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata promotes the admissions-listed Tacoma Global Studies concentration to a student-visible planner row.",
     ],
   },
   {
@@ -1482,6 +1500,23 @@ const SUPPLEMENTAL_MANIFEST_LINKS_BY_OWNER_ID = new Map<
         url: "https://www.tacoma.uw.edu/business/baba-admissions",
         note:
           "Current admissions prerequisite source for lower-division Tacoma Business Administration preparation.",
+      },
+    ],
+  ],
+  [
+    "uw-tacoma-computer-engineering",
+    [
+      {
+        label: "UW Tacoma Computer Engineering program",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+        note:
+          "Live Tacoma CENGR page is the preferred primary source for lower-division admission and prerequisite requirements.",
+      },
+      {
+        label: "UW Tacoma Computer Engineering planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf",
+        note:
+          "Official CENGR schedule planning grid; keep it attached as planning-grid support for generated bootstrap and runtime diagnostics.",
       },
     ],
   ],
@@ -4154,13 +4189,152 @@ const HIDDEN_GAP_PATHWAY_KEYS = new Set(
     (entry) => entry.studentVisibility === "hidden" && entry.pathwayId
   ).map((entry) => `${entry.planId}::${entry.pathwayId}`)
 );
+const BOOTSTRAP_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan] as const)
+);
+const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCE_IDS = new Set(
+  SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES.map((entry) => entry.planId)
+);
+
+function addSummaryGeneratedBasePlanId(
+  planIds: Set<string>,
+  planId: string | null | undefined,
+  campusId: TransferPlannerCampusId | "grc" | null | undefined,
+  pathwayId: string | null | undefined
+) {
+  const normalizedPlanId = String(planId ?? "").trim();
+  if (!normalizedPlanId || pathwayId || !campusId || campusId === "grc") {
+    return;
+  }
+
+  planIds.add(normalizedPlanId);
+}
+
+function buildSummaryGeneratedBasePlanIds() {
+  const planIds = new Set(INTERNAL_GENERATED_BASE_PLAN_IDS);
+
+  for (const requirement of TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY) {
+    addSummaryGeneratedBasePlanId(
+      planIds,
+      requirement.planId,
+      requirement.campusId,
+      requirement.pathwayId
+    );
+  }
+
+  for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
+    addSummaryGeneratedBasePlanId(planIds, block.planId, block.campusId, block.pathwayId);
+  }
+
+  for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
+    addSummaryGeneratedBasePlanId(
+      planIds,
+      classification.planId,
+      classification.campusId,
+      classification.pathwayId
+    );
+  }
+
+  for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
+    addSummaryGeneratedBasePlanId(planIds, pathway.planId, pathway.campusId, null);
+  }
+
+  for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY) {
+    addSummaryGeneratedBasePlanId(
+      planIds,
+      parsedSource.planId,
+      parsedSource.campusId,
+      parsedSource.pathwayId
+    );
+  }
+
+  for (const manifestEntry of TRANSFER_PLANNER_MANIFEST_REGISTRY) {
+    if (manifestEntry.ownerType !== "major" || !manifestEntry.isPrimaryDegreeRequirementsLink) {
+      continue;
+    }
+    addSummaryGeneratedBasePlanId(
+      planIds,
+      manifestEntry.planId,
+      manifestEntry.campusId as TransferPlannerCampusId | "grc" | null | undefined,
+      manifestEntry.pathwayId
+    );
+  }
+
+  return planIds;
+}
+
+function hasSummaryStudentSchedulableChecklistItem(
+  items: TransferPlannerChecklistItem[] | null | undefined
+) {
+  return (items ?? []).some(
+    (item) => item.canCreateScheduleRow !== false && (item.grcCourses ?? []).length > 0
+  );
+}
+
+function hasSummaryDegreeMapCourseItems(
+  sections: TransferPlannerDegreeMapSection[] | null | undefined
+) {
+  return (sections ?? []).some((section) => (section.items ?? []).length > 0);
+}
+
+function hasSummaryBootstrapStudentRuntimeContent(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan) return false;
+
+  const hasOwnContent =
+    hasSummaryDegreeMapCourseItems(plan.degreeMapSections) ||
+    (plan.grcCourseList ?? []).length > 0 ||
+    (plan.requirementGroups ?? []).length > 0 ||
+    hasSummaryStudentSchedulableChecklistItem(plan.applicationChecklist) ||
+    hasSummaryStudentSchedulableChecklistItem(plan.beforeEnrollmentChecklist) ||
+    hasSummaryStudentSchedulableChecklistItem(plan.stayAtGrcChecklist);
+  if (hasOwnContent) return true;
+
+  if (/:/.test(plan.title ?? "")) return false;
+
+  return (plan.pathways ?? []).some(
+    (pathway) =>
+      hasSummaryDegreeMapCourseItems(pathway.degreeMapSections) ||
+      (pathway.grcCourseList ?? []).length > 0 ||
+      (pathway.requirementGroups ?? []).length > 0 ||
+      hasSummaryStudentSchedulableChecklistItem(pathway.applicationChecklist) ||
+      hasSummaryStudentSchedulableChecklistItem(pathway.beforeEnrollmentChecklist) ||
+      hasSummaryStudentSchedulableChecklistItem(pathway.stayAtGrcChecklist)
+  );
+}
+
+function hasSummaryStudentVisibleGeneratedBasePlanContent(planId: string) {
+  if (SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCE_IDS.has(planId)) {
+    return true;
+  }
+
+  if (hasSummaryBootstrapStudentRuntimeContent(BOOTSTRAP_PLANS_BY_ID.get(planId))) {
+    return true;
+  }
+
+  return (
+    TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.some(
+      (entry) => entry.planId === planId && !entry.pathwayId
+    ) ||
+    TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.some(
+      (entry) => entry.planId === planId && !entry.pathwayId
+    ) ||
+    TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.some((entry) => entry.planId === planId)
+  );
+}
+
+const SUMMARY_GENERATED_BASE_PLAN_IDS = buildSummaryGeneratedBasePlanIds();
 const ACTIVE_DERIVED_SHARED_PLAN_ALIASES =
   TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.filter((alias) =>
-    INTERNAL_GENERATED_BASE_PLAN_IDS.has(alias.sourcePlanId)
+    SUMMARY_GENERATED_BASE_PLAN_IDS.has(alias.sourcePlanId)
   );
 const VISIBLE_INTERNAL_GENERATED_BASE_PLAN_IDS = new Set(
-  [...INTERNAL_GENERATED_BASE_PLAN_IDS].filter(
-    (planId) => !HIDDEN_GAP_PLAN_IDS.has(planId)
+  [...SUMMARY_GENERATED_BASE_PLAN_IDS].filter(
+    (planId) =>
+      !HIDDEN_GAP_PLAN_IDS.has(planId) &&
+      !TRANSFER_PLANNER_STANDALONE_INVENTORY_SUPPRESSED_PLAN_IDS.has(planId) &&
+      hasSummaryStudentVisibleGeneratedBasePlanContent(planId)
   )
 );
 
@@ -4313,10 +4487,6 @@ function countMaterializedPathwaysForPlan(
   ).length;
 }
 
-const BOOTSTRAP_PLANS_BY_ID = new Map(
-  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan] as const)
-);
-
 function countDerivedSharedSourceAliasPathways(includeHiddenSourceGaps = true) {
   return ACTIVE_DERIVED_SHARED_PLAN_ALIASES.reduce((count, alias) => {
     if (!includeHiddenSourceGaps && HIDDEN_GAP_PLAN_IDS.has(alias.derivedPlanId)) {
@@ -4342,17 +4512,21 @@ const GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduc
 ) + countDerivedSharedSourceAliasPathways();
 
 const STUDENT_VISIBLE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
-  (count, plan) => {
-    if (HIDDEN_GAP_PLAN_IDS.has(plan.id)) return count;
-    return count + countMaterializedPathwaysForPlan(plan, { includeHiddenSourceGaps: false });
-  },
-  countDerivedSharedSourceAliasPathways(false)
+  (count, plan) =>
+    count +
+    TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter(
+      (entry) =>
+        entry.planId === plan.id &&
+        VISIBLE_INTERNAL_GENERATED_BASE_PLAN_IDS.has(entry.planId) &&
+        !HIDDEN_GAP_PATHWAY_KEYS.has(`${entry.planId}::${entry.pathwayId}`)
+    ).length,
+  0
 );
 
 export const TRANSFER_PLANNER_SUMMARY = {
   generatedOn: "2026-04-02",
   sourceGeneratedMajorPlanCount:
-    INTERNAL_GENERATED_BASE_PLAN_IDS.size + ACTIVE_DERIVED_SHARED_PLAN_ALIASES.length,
+    SUMMARY_GENERATED_BASE_PLAN_IDS.size + ACTIVE_DERIVED_SHARED_PLAN_ALIASES.length,
   studentVisibleMajorPlanCount:
     VISIBLE_INTERNAL_GENERATED_BASE_PLAN_IDS.size +
     ACTIVE_DERIVED_SHARED_PLAN_ALIASES.filter(

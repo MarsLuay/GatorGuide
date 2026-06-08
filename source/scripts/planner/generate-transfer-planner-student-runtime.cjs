@@ -40,6 +40,7 @@ const {
   getTransferPlannerProgramApprovedCourseFilterDefinition,
   getTransferPlannerMajorPlan,
   getTransferPlannerPrimaryDegreeRequirementsSource,
+  getTransferPlannerSourceManifestEntriesForPlan,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
   isTransferPlannerStudentHiddenSourceGap,
@@ -2434,7 +2435,10 @@ function applyManualRuntimeSourceLinksToScope(scope, planId, pathwayId = null) {
     officialLinks: applyTransferPlannerManualSourceLinkOverride(
       planId,
       pathwayId,
-      scope.officialLinks ?? []
+      uniqueRuntimeSourceLinks([
+        ...(scope.officialLinks ?? []),
+        ...getRuntimeManifestSourceLinks(planId, pathwayId),
+      ])
     ),
   };
 }
@@ -2490,11 +2494,16 @@ const schedulableParsedSourcePlanIds = new Set(
     .filter(Boolean)
 );
 
+const sourceRuntimeStandaloneMajorPlans = TRANSFER_PLANNER_CAMPUSES.flatMap((campus) =>
+  getTransferPlannerStudentRuntimeMajorsForCampus(campus.id)
+);
+const sourceRuntimeStandalonePlanIds = new Set(
+  sourceRuntimeStandaloneMajorPlans.map((plan) => plan.id)
+);
+
 const runtimeMajorPlans = uniqueBy(
   [
-    ...TRANSFER_PLANNER_CAMPUSES.flatMap((campus) =>
-      getTransferPlannerStudentRuntimeMajorsForCampus(campus.id)
-    ),
+    ...sourceRuntimeStandaloneMajorPlans,
     ...(TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS ?? []).filter((plan) =>
       schedulableParsedSourcePlanIds.has(plan.id)
     ),
@@ -2506,6 +2515,7 @@ const runtimeMajorPlans = uniqueBy(
     .map(attachAdmissionPrepGuideChecklistItemsToPlan)
     .filter(
       (plan) =>
+        sourceRuntimeStandalonePlanIds.has(plan.id) &&
         !isTransferPlannerStudentHiddenSourceGap(plan.id) && hasRuntimePlannerContent(plan)
     ),
   (plan) => plan.id
@@ -2543,6 +2553,83 @@ function getRuntimeItemSourceUrls(item) {
   ])
     .map(normalizeRuntimeSourceUrl)
     .filter(Boolean);
+}
+
+function uniqueRuntimeSourceLinks(links = []) {
+  return uniqueBy(
+    links
+      .map((link) => ({
+        ...link,
+        label: String(link?.label ?? "").replace(/\s+/g, " ").trim(),
+        url: String(link?.url ?? "").trim(),
+        note: String(link?.note ?? "").replace(/\s+/g, " ").trim() || undefined,
+      }))
+      .filter((link) => link.label && link.url),
+    (link) => link.url
+  );
+}
+
+const RUNTIME_SUPPORT_SOURCE_LINK_ROLES = new Set([
+  "admissions",
+  "admission-prerequisite-source",
+  "approved-course-list",
+  "elective-list",
+  "non-schedulable-course-list",
+  "support-source",
+  "upper-division-prerequisite-table",
+]);
+
+function getRuntimeManifestSourceRetentionRule(entry) {
+  if (!entry?.url) {
+    return null;
+  }
+
+  if (entry.isPrimaryDegreeRequirementsLink) {
+    return "primary";
+  }
+
+  const sourceText = `${entry.label ?? ""} ${entry.url ?? ""} ${entry.note ?? ""}`;
+  if (
+    entry.role === "equivalency" ||
+    entry.parserType === "equivalency-guide"
+  ) {
+    return "equivalency";
+  }
+  if (entry.role === "catalog" || entry.parserType === "catalog-page") {
+    return "catalog";
+  }
+  if (
+    entry.role === "worksheet" ||
+    ["generic-pdf", "pdf-worksheet", "pdf-degree-sheet"].includes(entry.parserType) ||
+    /\b(planning grid|curriculum grid|major planning worksheet|course schedule pdf|worksheet)\b/i.test(
+      sourceText
+    )
+  ) {
+    return "worksheet-pdf";
+  }
+  if (RUNTIME_SUPPORT_SOURCE_LINK_ROLES.has(entry.role)) {
+    return "support-only";
+  }
+
+  return null;
+}
+
+function isRuntimeManifestOfficialLinkRetentionRule(rule) {
+  return ["primary", "worksheet-pdf", "support-only", "catalog"].includes(rule);
+}
+
+function getRuntimeManifestSourceLinks(planId, pathwayId = null) {
+  return getTransferPlannerSourceManifestEntriesForPlan(planId, pathwayId)
+    .filter(
+      (entry) => isRuntimeManifestOfficialLinkRetentionRule(
+        getRuntimeManifestSourceRetentionRule(entry)
+      )
+    )
+    .map((entry) => ({
+      label: entry.label,
+      url: entry.url,
+      ...(entry.note ? { note: entry.note } : {}),
+    }));
 }
 
 function runtimeItemIsUnscopedSourceBacked(item) {
@@ -2767,13 +2854,44 @@ function itemLooksLikeUnselectedPathwayCourseBucket(planId, item, selectedPathwa
   });
 }
 
+function itemBelongsToSiblingPathway(planId, item, selectedPathway, pathways) {
+  if (!selectedPathway?.id) {
+    return false;
+  }
+
+  const selectedPathwayId = normalizeRuntimePathwayId(planId, selectedPathway.id);
+  if (!selectedPathwayId) {
+    return false;
+  }
+
+  const pathwayIds = new Set(
+    (pathways ?? [])
+      .map((pathway) => normalizeRuntimePathwayId(planId, pathway?.id))
+      .filter(Boolean)
+  );
+  if (pathwayIds.size < 2) {
+    return false;
+  }
+
+  return [
+    item?.pathwayId,
+    item?.routeId,
+    item?.requirementGroup?.pathwayId,
+    item?.requirementGroup?.routeId,
+  ]
+    .map((pathwayId) => normalizeRuntimePathwayId(planId, pathwayId))
+    .some((pathwayId) => pathwayId && pathwayId !== selectedPathwayId && pathwayIds.has(pathwayId));
+}
+
 function filterResolvedRuntimePathwayItems(items = [], planId, selectedPathway, pathways) {
   if (!selectedPathway) {
     return items;
   }
 
   return items.filter(
-    (item) => !itemLooksLikeUnselectedPathwayCourseBucket(planId, item, selectedPathway, pathways)
+    (item) =>
+      !itemBelongsToSiblingPathway(planId, item, selectedPathway, pathways) &&
+      !itemLooksLikeUnselectedPathwayCourseBucket(planId, item, selectedPathway, pathways)
   );
 }
 

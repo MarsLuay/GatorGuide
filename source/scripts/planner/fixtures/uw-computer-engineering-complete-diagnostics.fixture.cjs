@@ -367,6 +367,7 @@ const computerEngineeringPrograms = [
     expectedPathwayIds: [],
     officialSources: [
       "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+      "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf",
       "https://www.tacoma.uw.edu/advising/general-education-requirements",
     ],
     genEdRequirements: [

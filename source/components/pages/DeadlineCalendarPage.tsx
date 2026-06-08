@@ -873,8 +873,11 @@ export default function DeadlineCalendarPage() {
                                       style={{ minHeight: layout.agendaActionColumnMinHeight }}
                                     >
                                       {isRoadmapItem ? (
-                                        <View className="px-3 py-2 rounded-2xl border bg-slate-500/10 border-slate-500/20">
-                                          <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
+                                        <View
+                                          className="px-3 py-2 rounded-2xl border bg-slate-500/10 border-slate-500/20 items-center justify-center"
+                                          style={{ minHeight: 48 }}
+                                        >
+                                          <Text className={`text-xs font-semibold text-center ${secondaryTextClass}`}>
                                             {actionLabel}
                                           </Text>
                                         </View>
@@ -882,10 +885,11 @@ export default function DeadlineCalendarPage() {
                                         <AnimatedChipPressable
                                           onPress={handleActionPress}
                                           className="px-3 py-2 rounded-2xl border bg-emerald-500/10 border-emerald-500/20"
+                                          style={{ alignItems: "center", justifyContent: "center" }}
                                           accessibilityRole="button"
                                           accessibilityLabel={`${actionLabel}: ${item.title}`}
                                         >
-                                          <Text className="text-emerald-600 text-xs font-semibold">
+                                          <Text className="text-emerald-600 text-xs font-semibold text-center">
                                             {actionLabel}
                                           </Text>
                                         </AnimatedChipPressable>
@@ -905,8 +909,8 @@ export default function DeadlineCalendarPage() {
                                 {layout.isCompactAgendaCard ? (
                                   <View
                                     style={{
-                                      flexDirection: layout.isTablet ? "row" : "column",
-                                      alignItems: layout.isTablet ? "center" : "stretch",
+                                      flexDirection: "row",
+                                      alignItems: "center",
                                       justifyContent: "space-between",
                                       gap: 8,
                                     }}
@@ -914,9 +918,15 @@ export default function DeadlineCalendarPage() {
                                     {isRoadmapItem ? (
                                       <View
                                         className="px-3 py-2 rounded-2xl border bg-slate-500/10 border-slate-500/20"
-                                        style={!layout.isTablet ? { alignItems: "center" } : undefined}
+                                        style={{
+                                          alignItems: "center",
+                                          flex: 1,
+                                          justifyContent: "center",
+                                          minHeight: 48,
+                                          minWidth: 0,
+                                        }}
                                       >
-                                        <Text className={`text-xs font-semibold ${secondaryTextClass}`}>
+                                        <Text className={`text-xs font-semibold text-center ${secondaryTextClass}`}>
                                           {actionLabel}
                                         </Text>
                                       </View>
@@ -924,12 +934,16 @@ export default function DeadlineCalendarPage() {
                                       <AnimatedChipPressable
                                         onPress={handleActionPress}
                                         className="px-3 py-2 rounded-2xl border bg-emerald-500/10 border-emerald-500/20"
-                                        containerStyle={!layout.isTablet ? { width: "100%" } : undefined}
-                                        style={!layout.isTablet ? { width: "100%", alignItems: "center" } : undefined}
+                                        containerStyle={{ flex: 1, minWidth: 0 }}
+                                        style={{
+                                          alignItems: "center",
+                                          flex: 1,
+                                          justifyContent: "center",
+                                        }}
                                         accessibilityRole="button"
                                         accessibilityLabel={`${actionLabel}: ${item.title}`}
                                       >
-                                        <Text className="text-emerald-600 text-xs font-semibold">
+                                        <Text className="text-emerald-600 text-xs font-semibold text-center">
                                           {actionLabel}
                                         </Text>
                                       </AnimatedChipPressable>

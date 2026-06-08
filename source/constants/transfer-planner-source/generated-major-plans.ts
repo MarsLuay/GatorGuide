@@ -4,6 +4,9 @@ import {
   TRANSFER_PLANNER_BOOTSTRAP_TRACKS,
 } from "./bootstrap.generated";
 import {
+  TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS,
+} from "./campus-general-education.generated";
+import {
   TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
   type TransferPlannerGrcCourseAvailabilityEntry,
 } from "../transfer-planner-grc-availability.generated";
@@ -62,6 +65,9 @@ import {
 import {
   getTransferPlannerProgramApprovedCourseFilterDefinition,
 } from "./program-approved-course-filters";
+import {
+  TRANSFER_PLANNER_STANDALONE_INVENTORY_SUPPRESSED_PLAN_IDS,
+} from "./source-generated-visibility";
 import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
@@ -81,7 +87,154 @@ const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
 const UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID = "uw-seattle-computer-engineering";
 const UW_SEATTLE_COMPUTER_SCIENCE_PLAN_ID = "uw-seattle-computer-science";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
+const UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID = "uw-tacoma-information-technology";
+const UW_TACOMA_IT_DIGITAL_MOBILE_FORENSICS_PATHWAY_ID = "digital-mobile-forensics-option";
+const UW_TACOMA_URBAN_STUDIES_PLAN_ID = "uw-tacoma-urban-studies";
+const UW_TACOMA_GLOBAL_STUDIES_PLAN_ID = "uw-tacoma-global-studies";
+const UW_TACOMA_GLOBAL_STUDIES_SOURCE_URL =
+  "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration";
+const UW_TACOMA_URBAN_STUDIES_CURRENT_PATHWAY_IDS = new Set([
+  "community-engagement-option",
+  "gis-option",
+]);
+const UW_TACOMA_URBAN_STUDIES_PRE_SPRING_2026_PATHWAY_IDS = new Set([
+  "pre-spring-2026-community-development-planning-option",
+  "pre-spring-2026-gis-spatial-planning-option",
+]);
 const UW_SEATTLE_SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
+const SOURCE_GENERATED_SUPPLEMENTAL_LINKS_BY_PLAN_ID = new Map<string, TransferPlannerLink[]>([
+  [
+    "uw-tacoma-computer-engineering",
+    [
+      {
+        label: "UW Tacoma Computer Engineering program",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+        note:
+          "Live Tacoma CENGR page is the preferred primary source for lower-division admission and prerequisite requirements.",
+      },
+      {
+        label: "UW Tacoma Computer Engineering planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf",
+        note:
+          "Official CENGR schedule planning grid; keep it attached as planning-grid support for generated bootstrap and runtime diagnostics.",
+      },
+    ],
+  ],
+]);
+const UW_TACOMA_GLOBAL_STUDIES_CORE_COURSES = [
+  "TGH 301",
+  "THIST 150",
+  "THIST 151",
+];
+const UW_TACOMA_GLOBAL_STUDIES_INTERNATIONAL_FOCUS_COURSES = [
+  "TARTS 282",
+  "TARTS 406",
+  "TARTS 480",
+  "TCOM 230",
+  "TCOM 461",
+  "TECON 210",
+  "TECON 320",
+  "TECON 325",
+  "TECON 350",
+  "TECON 360",
+  "TECON 441",
+  "TEGL 201",
+  "TEGL 340",
+  "TFILM 377",
+  "TFILM 386",
+  "TFILM 387",
+  "TFILM 388",
+  "TGEOG 349",
+  "TGEOG 352",
+  "TGEOG 435",
+  "THIST 111",
+  "THIST 112",
+  "THIST 150",
+  "THIST 151",
+  "THIST 203",
+  "THIST 260",
+  "THIST 270",
+  "THIST 271",
+  "THIST 280",
+  "THIST 350",
+  "THIST 365",
+  "THIST 375",
+  "THIST 376",
+  "THIST 457",
+  "THIST 464",
+  "THIST 465",
+  "THIST 466",
+  "THIST 475",
+  "THIST 479",
+  "THIST 484",
+  "THIST 486",
+  "THIST 487",
+  "THIST 488",
+  "TLAW 215",
+  "TLAW 422",
+  "TLAW 424",
+  "TLAX 267",
+  "TLAX 277",
+  "TLAX 355",
+  "TLAX 376",
+  "TLAX 400",
+  "TLAX 410",
+  "TLAX 441",
+  "TLAX 461",
+  "TLAX 462",
+  "TLAX 465",
+  "TLAX 476",
+  "TLIT 251",
+  "TLIT 252",
+  "TLIT 253",
+  "TLIT 332",
+  "TLIT 351",
+  "TLIT 352",
+  "TPHIL 355",
+  "TPHIL 358",
+  "TPHIL 359",
+  "TPHIL 360",
+  "TPHIL 451",
+  "TPHIL 466",
+  "TPOLS 123",
+  "TPOLS 203",
+  "TPOLS 310",
+  "TPOLS 319",
+  "TPOLS 329",
+  "TPOLS 340",
+  "TPOLS 341",
+  "TPOLS 350",
+  "TPOLS 360",
+  "TPOLS 410",
+  "TPOLS 451",
+  "TRELIG 210",
+  "TRELIG 321",
+  "TRELIG 333",
+  "TRELIG 345",
+  "TRELIG 365",
+  "TRELIG 366",
+  "TRELIG 467",
+  "TSPAN 103",
+  "TSPAN 199",
+  "TSPAN 203",
+  "TSPAN 210",
+  "TSPAN 299",
+  "TSPAN 301",
+  "TSPAN 302",
+  "TSPAN 303",
+  "TSPAN 351",
+  "TSPAN 393",
+  "TURB 340",
+  "TURB 430",
+  "TWOMN 420",
+  "TWOMN 434",
+];
+const UW_TACOMA_GLOBAL_STUDIES_FOREIGN_LANGUAGE_OPTIONS = [
+  "Option One: 10 credits of upper-division foreign language at the 300-400 level.",
+  "Option Two: two years of college-level lower-division foreign language in a Western European language.",
+  "Option Three: one year of college-level Asian, Slavic, or non-Western language.",
+  "Option Four: non-native English speakers may be exempt or demonstrate competency through testing.",
+];
 const UW_SEATTLE_SBSE_STALE_BUSINESS_POLICY_ECONOMICS_GRC_CODES = new Set([
   "ACCT& 201",
   "ACCT& 202",
@@ -255,6 +408,10 @@ type ChecklistItemsByPhase = {
   beforeEnrollment: TransferPlannerChecklistItem[];
   stayAtGrc: TransferPlannerChecklistItem[];
 };
+type RuntimeChecklistBucketKey =
+  | "applicationChecklist"
+  | "beforeEnrollmentChecklist"
+  | "stayAtGrcChecklist";
 
 type SupplementalChecklistSeed = {
   id: string;
@@ -604,12 +761,261 @@ const LEGACY_PLAN_ID_ALIASES = new Map<string, string>([
   ],
 ]);
 
+const VERIFIED_SOURCE_OWNERSHIP_SCHOOL_TITLE_BY_PLAN_ID = new Map<string, string>([
+  ["uw-seattle-english-language-literature-and-culture", "College of Arts and Sciences"],
+]);
+
 function resolveTransferPlannerPlanIdAlias(planId: string | null | undefined) {
   const normalizedPlanId = String(planId ?? "").trim();
   if (!normalizedPlanId) {
     return normalizedPlanId;
   }
   return LEGACY_PLAN_ID_ALIASES.get(normalizedPlanId) ?? normalizedPlanId;
+}
+
+type TransferPlannerSourceOwnershipMetadata = {
+  schoolTitle?: string;
+  collegeTitle?: string;
+};
+
+function normalizeSourceOwnershipTitle(value: string | null | undefined) {
+  return sanitizePlannerOwnedText(value)
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function canonicalizeSourceOwnershipSchoolTitle(
+  value: string | null | undefined,
+  campusId?: TransferPlannerCampusId | null
+) {
+  const normalizedValue = normalizeSourceOwnershipTitle(value);
+  if (!normalizedValue) {
+    return "";
+  }
+
+  return (
+    TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS.find(
+      (entry) =>
+        (!campusId || entry.campusId === campusId) &&
+        normalizeSourceOwnershipTitle(entry.schoolTitle) === normalizedValue
+    )?.schoolTitle ?? sanitizePlannerOwnedText(value)
+  );
+}
+
+function getCollegeTitleForSchoolTitle(schoolTitle: string | null | undefined) {
+  const normalizedTitle = sanitizePlannerOwnedText(schoolTitle);
+  return /\bcollege\b/i.test(normalizedTitle) ? normalizedTitle : undefined;
+}
+
+function buildSourceOwnershipMetadataFromSchoolTitle(
+  schoolTitle: string | null | undefined,
+  campusId?: TransferPlannerCampusId | null
+): TransferPlannerSourceOwnershipMetadata {
+  const canonicalSchoolTitle = canonicalizeSourceOwnershipSchoolTitle(schoolTitle, campusId);
+  if (!canonicalSchoolTitle) {
+    return {};
+  }
+
+  const collegeTitle = getCollegeTitleForSchoolTitle(canonicalSchoolTitle);
+  return {
+    schoolTitle: canonicalSchoolTitle,
+    ...(collegeTitle ? { collegeTitle } : {}),
+  };
+}
+
+function findPlanSpecificSourceOwnershipSchoolTitle(
+  planId: string | null | undefined,
+  campusId: TransferPlannerCampusId
+) {
+  const candidatePlanIds = new Set(
+    [String(planId ?? "").trim(), resolveTransferPlannerPlanIdAlias(planId)].filter(Boolean)
+  );
+
+  return (
+    TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS.find(
+      (entry) =>
+        entry.campusId === campusId &&
+        Boolean(entry.schoolTitle) &&
+        (entry.planIds ?? []).some((candidate) => candidatePlanIds.has(candidate))
+    )?.schoolTitle ?? null
+  );
+}
+
+function collectSourceOwnershipSignalLines(
+  planId: string,
+  campusId: TransferPlannerCampusId,
+  scope?: Partial<
+    Pick<
+      TransferPlannerMajorPlan,
+      | "title"
+      | "summary"
+      | "officialLinks"
+      | "degreeMapSections"
+      | "validationNotes"
+      | "pathways"
+    >
+  >
+) {
+  const parsedBlockLines = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter(
+    (block) =>
+      block.ok &&
+      block.campusId === campusId &&
+      parsedRequirementBlockMatchesScope(block, planId)
+  ).flatMap((block) => [
+    block.ownerTitle,
+    block.sourceLabel,
+    block.primarySourceLabel,
+    ...(block.requirementCueLines ?? []),
+    ...(block.chooseStatements ?? []),
+    ...(block.pathwayLabels ?? []),
+    ...(block.sourceScopeAuditLines ?? []),
+    ...(block.sourceSectionFilterAuditLines ?? []),
+    ...(block.parserSequenceChoiceAuditLines ?? []),
+    ...(block.parsedRequirementGroups ?? []).flatMap((group) => [
+      group.label,
+      group.sourceHeading ?? "",
+      group.sourceRowText ?? "",
+      group.sourceSection ?? "",
+      ...(group.notes ?? []),
+    ]),
+  ]);
+
+  const scopeLines = scope
+    ? [
+        scope.title ?? "",
+        scope.summary ?? "",
+        ...(scope.officialLinks ?? []).flatMap((link) => [
+          link.label,
+          link.note ?? "",
+          link.url,
+        ]),
+        ...(scope.degreeMapSections ?? []).flatMap((section) => [
+          section.title,
+          section.note ?? "",
+          ...(section.items ?? []),
+        ]),
+        ...(scope.validationNotes ?? []),
+        ...(scope.pathways ?? []).flatMap((pathway) => [
+          pathway.label,
+          pathway.summary ?? "",
+          ...(pathway.degreeMapSections ?? []).flatMap((section) => [
+            section.title,
+            section.note ?? "",
+            ...(section.items ?? []),
+          ]),
+          ...(pathway.validationNotes ?? []),
+        ]),
+      ]
+    : [];
+
+  return uniquePlannerStrings([...parsedBlockLines, ...scopeLines]);
+}
+
+function inferSourceOwnershipSchoolTitleFromSourceLines(input: {
+  planId: string;
+  campusId: TransferPlannerCampusId;
+  scope?: Partial<
+    Pick<
+      TransferPlannerMajorPlan,
+      | "title"
+      | "summary"
+      | "officialLinks"
+      | "degreeMapSections"
+      | "validationNotes"
+      | "pathways"
+    >
+  >;
+}) {
+  const sourceText = normalizeSourceOwnershipTitle(
+    collectSourceOwnershipSignalLines(
+      input.planId,
+      input.campusId,
+      input.scope
+    ).join(" ")
+  );
+  if (!sourceText) {
+    return null;
+  }
+
+  return (
+    TRANSFER_PLANNER_CAMPUS_GENERAL_EDUCATION_REQUIREMENTS.find((entry) => {
+      if (entry.campusId !== input.campusId || !entry.schoolTitle) {
+        return false;
+      }
+
+      const normalizedSchoolTitle = normalizeSourceOwnershipTitle(entry.schoolTitle);
+      return Boolean(normalizedSchoolTitle && sourceText.includes(normalizedSchoolTitle));
+    })?.schoolTitle ?? null
+  );
+}
+
+function buildSourceOwnershipMetadata(input: {
+  planId: string;
+  campusId: TransferPlannerCampusId;
+  schoolTitle?: string | null;
+  collegeTitle?: string | null;
+  scope?: Partial<
+    Pick<
+      TransferPlannerMajorPlan,
+      | "title"
+      | "summary"
+      | "officialLinks"
+      | "degreeMapSections"
+      | "validationNotes"
+      | "pathways"
+    >
+  >;
+}): TransferPlannerSourceOwnershipMetadata {
+  const schoolTitle =
+    input.schoolTitle ??
+    input.collegeTitle ??
+    findPlanSpecificSourceOwnershipSchoolTitle(input.planId, input.campusId) ??
+    inferSourceOwnershipSchoolTitleFromSourceLines(input) ??
+    VERIFIED_SOURCE_OWNERSHIP_SCHOOL_TITLE_BY_PLAN_ID.get(input.planId) ??
+    null;
+
+  return buildSourceOwnershipMetadataFromSchoolTitle(schoolTitle, input.campusId);
+}
+
+function applySourceOwnershipMetadataToPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
+  const metadata = buildSourceOwnershipMetadata({
+    planId: plan.id,
+    campusId: plan.campusId,
+    schoolTitle: plan.schoolTitle,
+    collegeTitle: plan.collegeTitle,
+    scope: plan,
+  });
+
+  return {
+    ...plan,
+    ...metadata,
+  };
+}
+
+function applySourceOwnershipMetadataToPathway(
+  basePlan: TransferPlannerMajorPlan,
+  pathway: TransferPlannerMajorPathway
+): TransferPlannerMajorPathway {
+  const metadata = buildSourceOwnershipMetadata({
+    planId: basePlan.id,
+    campusId: basePlan.campusId,
+    schoolTitle: pathway.schoolTitle ?? basePlan.schoolTitle,
+    collegeTitle: pathway.collegeTitle ?? basePlan.collegeTitle,
+    scope: {
+      title: pathway.label,
+      summary: pathway.summary,
+      officialLinks: pathway.officialLinks,
+      degreeMapSections: pathway.degreeMapSections,
+      validationNotes: pathway.validationNotes,
+    },
+  });
+
+  return {
+    ...pathway,
+    ...metadata,
+  };
 }
 
 function escapeRegExp(value: string) {
@@ -635,19 +1041,56 @@ function materializeDerivedSharedSourcePlan(
 ) {
   const sourceTitle = sanitizePlannerOwnedText(sourcePlan.title);
   const derivedTitle = sanitizePlannerOwnedText(alias.derivedTitle);
+  const sourcePathwayId = sanitizePlannerOwnedText(alias.sourcePathwayId);
+  const normalizedSourcePathwayId = normalizeTransferPlannerPathwayId(sourcePlan.id, sourcePathwayId);
+  const selectedSourcePathway = sourcePathwayId
+    ? (sourcePlan.pathways ?? []).find(
+        (pathway) =>
+          normalizeTransferPlannerPathwayId(sourcePlan.id, pathway.id) ===
+          normalizedSourcePathwayId
+      ) ?? null
+    : null;
+  const sourcePathways = sourcePathwayId && selectedSourcePathway
+    ? [selectedSourcePathway]
+    : sourcePlan.pathways ?? [];
 
   return {
     ...sourcePlan,
     id: alias.derivedPlanId,
     title: derivedTitle,
     shortTitle: sanitizePlannerOwnedText(alias.derivedShortTitle ?? derivedTitle) || derivedTitle,
-    summary: replaceSourcePlanTitle(sourcePlan.summary, sourceTitle, derivedTitle),
+    summary:
+      replaceSourcePlanTitle(sourcePlan.summary, sourceTitle, derivedTitle) ||
+      replaceSourcePlanTitle(selectedSourcePathway?.summary, sourceTitle, derivedTitle),
+    officialLinks: uniquePlannerLinks([
+      ...(sourcePlan.officialLinks ?? []),
+      ...(selectedSourcePathway?.officialLinks ?? []),
+    ]),
+    validationNotes: sanitizePlannerOwnedStrings([
+      ...(sourcePlan.validationNotes ?? []),
+      ...(selectedSourcePathway?.validationNotes ?? []),
+      ...(sourcePathwayId
+        ? [
+            `Derived student-visible Tacoma row scoped to the ${selectedSourcePathway?.label ?? sourcePathwayId} pathway on the shared source plan.`,
+          ]
+        : []),
+    ]),
+    grcCourseList:
+      selectedSourcePathway?.grcCourseList && selectedSourcePathway.grcCourseList.length
+        ? selectedSourcePathway.grcCourseList
+        : sourcePlan.grcCourseList,
+    grcCourseListGuidance: selectedSourcePathway?.grcCourseListGuidance ?? sourcePlan.grcCourseListGuidance,
+    plannerNote: replaceSourcePlanTitle(
+      selectedSourcePathway?.plannerNote ?? sourcePlan.plannerNote,
+      sourceTitle,
+      derivedTitle
+    ),
     degreeMapSections: (sourcePlan.degreeMapSections ?? []).map((section) => ({
       ...section,
       title: replaceSourcePlanTitle(section.title, sourceTitle, derivedTitle),
       note: replaceSourcePlanTitle(section.note, sourceTitle, derivedTitle) || undefined,
     })),
-    pathways: (sourcePlan.pathways ?? []).map((pathway) => ({
+    pathways: sourcePathways.map((pathway) => ({
       ...pathway,
       summary: replaceSourcePlanTitle(pathway.summary, sourceTitle, derivedTitle),
       degreeMapSections: (pathway.degreeMapSections ?? []).map((section) => ({
@@ -3880,6 +4323,152 @@ function buildRequirementGroup(input: {
   };
 }
 
+function buildTacomaGlobalStudiesCourseOption(
+  groupId: string,
+  courseCode: string,
+  sourceHeading: string,
+  sourceCategory: string
+): TransferPlannerRequirementOption {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const optionId = `${groupId}:requirement-option:${slugifyPlannerId(normalizedCourseCode)}`;
+  return buildRequirementOption({
+    id: optionId,
+    optionKind: "course",
+    displayCourseCodes: [normalizedCourseCode],
+    uwCourses: [normalizedCourseCode],
+    sourceHeading,
+    sourceCategory,
+    grcMatches: [],
+    constraints: ["uw_only_no_current_grc_equivalent"],
+    notes: [
+      "Visible from the official UW Tacoma Global Studies requirements page; no current public Green River equivalency is proven yet.",
+    ],
+    label: normalizedCourseCode,
+  });
+}
+
+function buildTacomaGlobalStudiesRequirementGroups() {
+  const coreGroupId = `${UW_TACOMA_GLOBAL_STUDIES_PLAN_ID}:requirement-group:global-studies-core`;
+  const internationalFocusGroupId = `${UW_TACOMA_GLOBAL_STUDIES_PLAN_ID}:requirement-group:global-studies-international-focus`;
+  const coreHeading = "Core courses: choose one";
+  const internationalFocusHeading =
+    "International Focus (40 credits; at least 30 credits must be at the 300-400 level)";
+
+  return [
+    buildRequirementGroup({
+      id: coreGroupId,
+      label: "Core courses",
+      category: "global_studies_core",
+      requirementType: "choose_one",
+      requirementShape: "option-group",
+      minCourses: 1,
+      maxCourses: 1,
+      selectionCount: 1,
+      requiredCount: 1,
+      minCredits: 5,
+      maxCredits: 5,
+      creditText: "5",
+      satisfactionMode: "selection-count",
+      sourceHeading: coreHeading,
+      sourceRowText: "Choose one: TGH 301, THIST 150, or THIST 151.",
+      sourceSection: "Core courses",
+      sourceSectionRole: "primary-requirement-section",
+      sourceSectionSchedulable: true,
+      detectedOptionCue: "choose one",
+      sourceRole: "department-requirements",
+      sourceUrl: UW_TACOMA_GLOBAL_STUDIES_SOURCE_URL,
+      sourceScope: "primary-schedulable",
+      canCreateScheduleRow: true,
+      options: UW_TACOMA_GLOBAL_STUDIES_CORE_COURSES.map((courseCode) =>
+        buildTacomaGlobalStudiesCourseOption(
+          coreGroupId,
+          courseCode,
+          coreHeading,
+          "global_studies_core"
+        )
+      ),
+    }),
+    buildRequirementGroup({
+      id: internationalFocusGroupId,
+      label: "International Focus",
+      category: "global_studies_international_focus",
+      requirementType: "choose_credits",
+      requirementShape: "credit-bucket",
+      minCredits: 40,
+      maxCredits: null,
+      creditText: "40",
+      satisfactionMode: "credit-based",
+      sourceHeading: internationalFocusHeading,
+      sourceRowText:
+        "Complete 40 International Focus credits, with at least 30 credits at the 300-400 level.",
+      sourceSection: "International Focus",
+      sourceSectionRole: "primary-requirement-section",
+      sourceSectionSchedulable: true,
+      sourceRole: "department-requirements",
+      sourceUrl: UW_TACOMA_GLOBAL_STUDIES_SOURCE_URL,
+      sourceScope: "primary-schedulable",
+      canCreateScheduleRow: true,
+      notes: [
+        "The official source says at least 30 credits in International Focus must be at the 300-400 level.",
+      ],
+      options: UW_TACOMA_GLOBAL_STUDIES_INTERNATIONAL_FOCUS_COURSES.map((courseCode) =>
+        buildTacomaGlobalStudiesCourseOption(
+          internationalFocusGroupId,
+          courseCode,
+          internationalFocusHeading,
+          "global_studies_international_focus"
+        )
+      ),
+    }),
+  ];
+}
+
+function buildTacomaGlobalStudiesDegreeMapSections(
+  title: string
+): TransferPlannerDegreeMapSection[] {
+  return [
+    sanitizeDegreeMapSection({
+      id: "global-studies-core-courses",
+      title: `${title} core courses`,
+      items: [`Choose one: ${UW_TACOMA_GLOBAL_STUDIES_CORE_COURSES.join(", ")}.`],
+      note: "Parsed from the current official UW Tacoma Global Studies Concentration requirements page.",
+    }),
+    sanitizeDegreeMapSection({
+      id: "global-studies-international-focus",
+      title: `${title} International Focus`,
+      items: UW_TACOMA_GLOBAL_STUDIES_INTERNATIONAL_FOCUS_COURSES,
+      note:
+        "Complete 40 International Focus credits; the official source requires at least 30 credits at the 300-400 level.",
+    }),
+    sanitizeDegreeMapSection({
+      id: "global-studies-foreign-language",
+      title: `${title} Foreign Language`,
+      items: UW_TACOMA_GLOBAL_STUDIES_FOREIGN_LANGUAGE_OPTIONS,
+      note: "Students demonstrate 0-10 credits of foreign language competency.",
+    }),
+    sanitizeDegreeMapSection({
+      id: "global-studies-natural-world",
+      title: `${title} Natural World`,
+      items: [
+        "One TESC course or an Environmental Science transfer course; students should see an advisor for applicable courses.",
+      ],
+      note: "The official source lists this as a 5-credit Natural World requirement.",
+    }),
+  ];
+}
+
+function getSupplementalRequirementGroupsForScope(planId: string, pathwayId?: string | null) {
+  if (pathwayId) {
+    return [] as TransferPlannerRequirementGroup[];
+  }
+
+  if (planId === UW_TACOMA_GLOBAL_STUDIES_PLAN_ID) {
+    return buildTacomaGlobalStudiesRequirementGroups();
+  }
+
+  return [] as TransferPlannerRequirementGroup[];
+}
+
 const UW_MSE_NME_OPTION_URL =
   "https://mse.washington.edu/current/undergrad/nmeoption";
 const UW_MSE_NME_REPLACEMENT_REASON =
@@ -5462,19 +6051,191 @@ function applyRequirementGroupPathwayRestrictions(
   };
 }
 
+type TacomaUrbanStudiesRequirementVersion = "spring-2026" | "pre-spring-2026";
+
+function getTacomaUrbanStudiesPathwayRequirementVersion(
+  pathwayId?: string | null
+): TacomaUrbanStudiesRequirementVersion | null {
+  const normalizedPathwayId = normalizeTransferPlannerPathwayId(
+    UW_TACOMA_URBAN_STUDIES_PLAN_ID,
+    pathwayId ?? null
+  );
+  if (!normalizedPathwayId) {
+    return null;
+  }
+
+  if (UW_TACOMA_URBAN_STUDIES_PRE_SPRING_2026_PATHWAY_IDS.has(normalizedPathwayId)) {
+    return "pre-spring-2026";
+  }
+
+  if (UW_TACOMA_URBAN_STUDIES_CURRENT_PATHWAY_IDS.has(normalizedPathwayId)) {
+    return "spring-2026";
+  }
+
+  return null;
+}
+
+function getTacomaUrbanStudiesRequirementGroupText(group: TransferPlannerRequirementGroup) {
+  return normalizeRequirementGroupSemanticText(
+    [
+      group.id,
+      group.label,
+      group.sourceHeading,
+      group.sourceSection,
+      group.sourceRowText,
+      group.category,
+      group.subcategory,
+      ...(group.notes ?? []),
+      ...(group.sequencePaths ?? []).flatMap((sequencePath) => [
+        sequencePath.id,
+        sequencePath.label,
+        sequencePath.sourceText,
+        ...(sequencePath.displayCourseCodes ?? []),
+        ...(sequencePath.uwCourses ?? []),
+      ]),
+      ...(group.options ?? []).flatMap((option) => [
+        option.id,
+        option.label,
+        option.title,
+        option.sourceHeading,
+        option.sourceCategory,
+        option.category,
+        ...(option.displayCourseCodes ?? []),
+        ...(option.uwCourses ?? []),
+      ]),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  )
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getTacomaUrbanStudiesRequirementGroupVersion(
+  group: TransferPlannerRequirementGroup
+): TacomaUrbanStudiesRequirementVersion | null {
+  const text = getTacomaUrbanStudiesRequirementGroupText(group);
+
+  if (
+    /\b(?:introductory courses|foundation courses 22 credits|methods requirement|city in world development|advanced gis courses no longer offered|community development and planning|gis and spatial planning|social production of space|community and economy)\b/.test(
+      text
+    ) ||
+    /\b(?:tgis 350|tgis 450|tgis 460|tgis 470|turb 102|tude 310|tsud 475)\b/.test(text)
+  ) {
+    return "pre-spring-2026";
+  }
+
+  if (
+    /\b(?:shared curriculum courses|foundation courses 25 credits|community engagement|urban society and culture|immigration race and american cities)\b/.test(
+      text
+    ) ||
+    /\b(?:turb 210|turb 250|turb 379|turb 470|turb 479|turb 498|tude 340)\b/.test(text)
+  ) {
+    return "spring-2026";
+  }
+
+  return null;
+}
+
+function remapRequirementScopedIdToPathway(
+  planId: string,
+  pathwayId: string,
+  value: string | null | undefined
+) {
+  if (!value) {
+    return value;
+  }
+
+  const planPrefix = `${planId}:`;
+  const pathwayPrefix = `${planId}:pathway:${pathwayId}:`;
+  if (value.startsWith(pathwayPrefix)) {
+    return value;
+  }
+
+  return value.startsWith(planPrefix)
+    ? `${pathwayPrefix}${value.slice(planPrefix.length)}`
+    : value;
+}
+
+function scopeRequirementGroupToPathway(
+  planId: string,
+  pathwayId: string,
+  group: TransferPlannerRequirementGroup
+): TransferPlannerRequirementGroup {
+  return {
+    ...group,
+    id: remapRequirementScopedIdToPathway(planId, pathwayId, group.id) ?? group.id,
+    sourceScope: group.sourceScope ?? "pathway-schedulable",
+    pathwayId,
+    routeId: pathwayId,
+    sequencePaths: (group.sequencePaths ?? []).map((sequencePath) => ({
+      ...sequencePath,
+      id: remapRequirementScopedIdToPathway(planId, pathwayId, sequencePath.id) ?? sequencePath.id,
+    })),
+    options: (group.options ?? []).map((option) => ({
+      ...option,
+      id: remapRequirementScopedIdToPathway(planId, pathwayId, option.id) ?? option.id,
+      sequencePathId:
+        remapRequirementScopedIdToPathway(planId, pathwayId, option.sequencePathId) ??
+        option.sequencePathId,
+    })),
+  };
+}
+
+function normalizeTacomaUrbanStudiesRequirementGroupScope(
+  planId: string,
+  pathwayId: string | null | undefined,
+  group: TransferPlannerRequirementGroup
+) {
+  if (planId !== UW_TACOMA_URBAN_STUDIES_PLAN_ID) {
+    return group;
+  }
+
+  const groupVersion = getTacomaUrbanStudiesRequirementGroupVersion(group);
+  if (!groupVersion) {
+    return group;
+  }
+
+  const pathwayVersion = getTacomaUrbanStudiesPathwayRequirementVersion(pathwayId);
+  if (!pathwayVersion) {
+    return groupVersion === "spring-2026" ? group : null;
+  }
+
+  if (pathwayVersion !== groupVersion) {
+    return null;
+  }
+
+  const normalizedPathwayId = normalizeTransferPlannerPathwayId(planId, pathwayId ?? null);
+  if (!normalizedPathwayId || group.pathwayId === normalizedPathwayId) {
+    return group;
+  }
+
+  return scopeRequirementGroupToPathway(planId, normalizedPathwayId, group);
+}
+
 function getRequirementGroupsForScope(planId: string, pathwayId?: string | null) {
-  return uniqueRequirementGroupsForPathwayScope(
-    getAutomaticScopeKeys(planId, pathwayId)
-      .flatMap((scopeKey) => {
-        const [scopePlanId, scopePathwayId = ""] = scopeKey.split("::");
-        return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter(
-          (entry) => parsedRequirementBlockMatchesScope(entry, scopePlanId, scopePathwayId || null)
-        );
-      })
-      .flatMap(getParsedRequirementGroupsFromBlock)
-      .map((group) => applyRequirementGroupPathwayRestrictions(group, pathwayId))
-      .filter((group) => shouldRetainRequirementGroupForRuntime(group)),
-    pathwayId
+  return normalizeTacomaItSuspensionRequirementGroups(
+    planId,
+    uniqueRequirementGroupsForPathwayScope(
+      [
+        ...getAutomaticScopeKeys(planId, pathwayId)
+          .flatMap((scopeKey) => {
+            const [scopePlanId, scopePathwayId = ""] = scopeKey.split("::");
+            return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter(
+              (entry) => parsedRequirementBlockMatchesScope(entry, scopePlanId, scopePathwayId || null)
+            );
+          })
+          .flatMap(getParsedRequirementGroupsFromBlock),
+        ...getSupplementalRequirementGroupsForScope(planId, pathwayId),
+      ]
+          .map((group) => normalizeTacomaUrbanStudiesRequirementGroupScope(planId, pathwayId, group))
+          .filter((group): group is TransferPlannerRequirementGroup => Boolean(group))
+          .map((group) => applyRequirementGroupPathwayRestrictions(group, pathwayId))
+          .filter((group) => shouldRetainRequirementGroupForRuntime(group)),
+      pathwayId
+    )
   );
 }
 
@@ -7711,6 +8472,8 @@ const STRUCTURED_PLAN_METADATA_BY_ID = new Map<string, StructuredPlanMetadata>()
 const CANONICAL_GENERATED_MAJOR_TITLES_BY_ID = new Map<string, string>([
   ["uw-bothell-media-and-communications-studies", "Media & Communication Studies (BA)"],
   ["uw-tacoma-communications", "Communication (BA)"],
+  ["uw-tacoma-nursing", "Nursing (RN to BSN)"],
+  ["uw-tacoma-politics-philosophy-and-economics", "Politics, Philosophy & Economics (BA)"],
 ]);
 
 function getCanonicalSourceGeneratedMajorTitle(planId: string, title: string) {
@@ -7841,7 +8604,7 @@ function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
   if ((plan.pathways ?? []).length > 0) {
     const enrichedBootstrapPathways = (plan.pathways ?? []).map((pathway) => {
       const registryPathway = getRegistryPathwayEntry(plan.id, pathway.id);
-      return {
+      return applySourceOwnershipMetadataToPathway(plan, {
         ...pathway,
         label: resolveStructuredPathwayLabel(
           plan.id,
@@ -7864,7 +8627,7 @@ function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
           ...(pathway.validationNotes ?? []),
           ...(registryPathway?.validationNotes ?? []),
         ]),
-      };
+      });
     });
     const bootstrapPathwayIds = new Set(
       enrichedBootstrapPathways.map((pathway) => pathway.id)
@@ -7873,10 +8636,15 @@ function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
       (pathway) => !bootstrapPathwayIds.has(pathway.id)
     );
 
-    return uniqueById([...enrichedBootstrapPathways, ...supplementalRegistryPathways]);
+    return uniqueById([
+      ...enrichedBootstrapPathways,
+      ...supplementalRegistryPathways,
+    ]).map((pathway) => applySourceOwnershipMetadataToPathway(plan, pathway));
   }
 
-  return buildRegistryBackedBasePathways(plan.id);
+  return buildRegistryBackedBasePathways(plan.id).map((pathway) =>
+    applySourceOwnershipMetadataToPathway(plan, pathway)
+  );
 }
 
 function buildParserOnlyPrimarySourceLink(planId: string): TransferPlannerLink | null {
@@ -7909,6 +8677,11 @@ function buildParserOnlyFallbackDegreeMapSections(
   ).slice(0, 12);
 
   if (!items.length) {
+    const primarySource = getTransferPlannerPrimaryDegreeRequirementsSource(planId);
+    if (planId === UW_TACOMA_GLOBAL_STUDIES_PLAN_ID && primarySource?.url) {
+      return buildTacomaGlobalStudiesDegreeMapSections(title);
+    }
+
     return [];
   }
 
@@ -7930,7 +8703,7 @@ function buildParserOnlyBasePlan(metadata: StructuredPlanMetadata): TransferPlan
     metadata.title
   );
 
-  return {
+  const basePlan = applySourceOwnershipMetadataToPlan({
     id: metadata.id,
     campusId: metadata.campusId,
     title: metadata.title,
@@ -7958,6 +8731,13 @@ function buildParserOnlyBasePlan(metadata: StructuredPlanMetadata): TransferPlan
       basePathways.flatMap((pathway) => pathway.grcCourseList ?? [])
     ),
     pathways: basePathways,
+  });
+
+  return {
+    ...basePlan,
+    pathways: (basePlan.pathways ?? []).map((pathway) =>
+      applySourceOwnershipMetadataToPathway(basePlan, pathway)
+    ),
   };
 }
 
@@ -7973,20 +8753,25 @@ const PARSER_ONLY_BASE_MAJOR_PLANS = Array.from(STRUCTURED_PLAN_METADATA_BY_ID.v
     return left.title.localeCompare(right.title);
   })
   .map((metadata) => buildParserOnlyBasePlan(metadata));
-const HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => ({
-  ...plan,
-  title: getCanonicalSourceGeneratedMajorTitle(plan.id, plan.title),
-  shortTitle: buildFallbackShortTitle(getCanonicalSourceGeneratedMajorTitle(plan.id, plan.title)),
-  pathways: buildBootstrapBasePathways(plan),
-}));
+const HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => {
+  const title = getCanonicalSourceGeneratedMajorTitle(plan.id, plan.title);
+  const planWithOwnership = applySourceOwnershipMetadataToPlan({
+    ...plan,
+    title,
+    shortTitle: buildFallbackShortTitle(title),
+  });
+
+  return {
+    ...planWithOwnership,
+    pathways: buildBootstrapBasePathways(planWithOwnership),
+  };
+});
 const ALL_BASE_MAJOR_PLANS = uniqueById([
   ...HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS,
   ...PARSER_ONLY_BASE_MAJOR_PLANS,
 ]);
-const STUDENT_RUNTIME_HIDDEN_PARSER_ONLY_PLAN_IDS = new Set([
-  "uw-tacoma-computer-science-and-systems-ba",
-  "uw-tacoma-computer-science-and-systems-bs",
-]);
+const STUDENT_RUNTIME_HIDDEN_PARSER_ONLY_PLAN_IDS =
+  TRANSFER_PLANNER_STANDALONE_INVENTORY_SUPPRESSED_PLAN_IDS;
 
 const ALIAS_CHILD_PLAN_TOKEN_STOPWORDS = new Set([
   "and",
@@ -8254,6 +9039,7 @@ function collectStructuredLinks(
   const links = uniquePlannerLinks(
     compact([
       ...baseLinks,
+      ...(!pathwayId ? SOURCE_GENERATED_SUPPLEMENTAL_LINKS_BY_PLAN_ID.get(planId) ?? [] : []),
       ...(POLICIES_BY_KEY.get(key)?.sourceLinks ?? []).map(toPlannerLink),
       ...(REQUIREMENTS_BY_KEY.get(key) ?? []).flatMap((entry) => entry.sourceLinks.map(toPlannerLink)),
       ...(DEGREE_MAPS_BY_KEY.get(key) ?? []).flatMap((entry) => entry.sourceLinks.map(toPlannerLink)),
@@ -8370,6 +9156,30 @@ function buildTrackMatchCourseList(scope: {
   );
 }
 
+function buildStudentRuntimeOfficialLinksForPlan(basePlan: TransferPlannerMajorPlan) {
+  if (basePlan.id === UW_TACOMA_GLOBAL_STUDIES_PLAN_ID) {
+    return collectStructuredLinks(basePlan.id, basePlan.officialLinks);
+  }
+
+  return [] as TransferPlannerLink[];
+}
+
+function buildStudentRuntimeDegreeMapSectionsForPlan(basePlan: TransferPlannerMajorPlan) {
+  if (basePlan.id === UW_TACOMA_GLOBAL_STUDIES_PLAN_ID) {
+    return buildDegreeMapSections(basePlan.id, basePlan.degreeMapSections);
+  }
+
+  return [] as TransferPlannerDegreeMapSection[];
+}
+
+function buildStudentRuntimeValidationNotesForPlan(basePlan: TransferPlannerMajorPlan) {
+  if (basePlan.id === UW_TACOMA_GLOBAL_STUDIES_PLAN_ID) {
+    return collectStructuredValidationNotes(basePlan.id, basePlan.validationNotes ?? []);
+  }
+
+  return [] as string[];
+}
+
 function buildPathway(
   basePlan: TransferPlannerMajorPlan,
   basePathway: TransferPlannerMajorPathway,
@@ -8425,6 +9235,19 @@ function buildPathway(
       registryPathway?.label ?? basePathway.label
     ),
     summary: sanitizePlannerOwnedText(registryPathway?.summary ?? basePathway.summary),
+    ...buildSourceOwnershipMetadata({
+      planId: basePlan.id,
+      campusId: basePlan.campusId,
+      schoolTitle: basePathway.schoolTitle ?? basePlan.schoolTitle,
+      collegeTitle: basePathway.collegeTitle ?? basePlan.collegeTitle,
+      scope: {
+        title: registryPathway?.label ?? basePathway.label,
+        summary: registryPathway?.summary ?? basePathway.summary,
+        officialLinks: basePathway.officialLinks,
+        degreeMapSections: basePathway.degreeMapSections,
+        validationNotes: basePathway.validationNotes,
+      },
+    }),
     applicationChecklist,
     beforeEnrollmentChecklist: buildChecklistForPhase(
       basePlan.id,
@@ -9365,6 +10188,19 @@ function buildStudentRuntimePathway(
           basePathway.label
         ),
         summary: sanitizePlannerOwnedText(basePathway.summary),
+        ...buildSourceOwnershipMetadata({
+          planId: basePlan.id,
+          campusId: basePlan.campusId,
+          schoolTitle: basePathway.schoolTitle ?? basePlan.schoolTitle,
+          collegeTitle: basePathway.collegeTitle ?? basePlan.collegeTitle,
+          scope: {
+            title: basePathway.label,
+            summary: basePathway.summary,
+            officialLinks: basePathway.officialLinks,
+            degreeMapSections: basePathway.degreeMapSections,
+            validationNotes: basePathway.validationNotes,
+          },
+        }),
         applicationChecklist: applicationChecklistWithSynthesis,
         beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
         stayAtGrcChecklist: prunedStayAtGrcChecklist,
@@ -9714,9 +10550,9 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
         beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
         stayAtGrcChecklist: prunedStayAtGrcChecklist,
         advisorFlags: [],
-        officialLinks: [],
-        degreeMapSections: [],
-        validationNotes: [],
+        officialLinks: buildStudentRuntimeOfficialLinksForPlan(basePlan),
+        degreeMapSections: buildStudentRuntimeDegreeMapSectionsForPlan(basePlan),
+        validationNotes: buildStudentRuntimeValidationNotesForPlan(basePlan),
         grcCourseList: studentVisibleTrackMatchCourseList,
         grcCourseListGuidance: undefined,
         plannerNote: undefined,
@@ -9982,6 +10818,89 @@ function mergePathwayDegreeMapSections(
   );
 }
 
+function isTacomaItTemporarySuspensionChecklistItem(item: TransferPlannerChecklistItem) {
+  return /\btemporarily suspended\b/i.test(
+    [
+      item.title,
+      item.note,
+      item.sourceSection,
+      item.reason,
+      item.requirementGroup?.label,
+    ].join(" ")
+  );
+}
+
+function isTacomaItTemporarySuspensionRequirementGroup(group: TransferPlannerRequirementGroup) {
+  return /\btemporarily suspended\b/i.test(
+    [
+      group.label,
+      group.sourceHeading,
+      group.sourceRowText,
+      group.sourceSection,
+      group.category,
+      group.subcategory,
+      ...(group.notes ?? []),
+    ].join(" ")
+  );
+}
+
+function normalizeTacomaItSuspensionRequirementGroups(
+  planId: string,
+  groups: TransferPlannerRequirementGroup[]
+) {
+  if (planId !== UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID) {
+    return groups;
+  }
+
+  return groups.filter((group) => !isTacomaItTemporarySuspensionRequirementGroup(group));
+}
+
+function buildTacomaItDigitalMobileForensicsSuspensionItem(): TransferPlannerChecklistItem {
+  return {
+    id: "uwt-it-digital-mobile-forensics-temporarily-suspended",
+    title: "Digital Mobile Forensics option is temporarily suspended",
+    grcCourses: [],
+    note:
+      "UW Tacoma currently marks Digital Mobile Forensics as temporarily suspended; this note is scoped only to that IT option.",
+    sourceUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+    sourceRole: "primary-degree-requirements",
+    sourceScope: "pathway-support-metadata",
+    sourceSection: "Digital Mobile Forensics option",
+    generatedFromParser: false,
+    manualOverride: true,
+    canCreateScheduleRow: false,
+    requirementShape: "hidden-informational-row",
+    pathwayId: UW_TACOMA_IT_DIGITAL_MOBILE_FORENSICS_PATHWAY_ID,
+    reason:
+      "Runtime normalization keeps the temporary suspension notice attached to Digital Mobile Forensics, not the sibling Information Assurance and Cybersecurity option.",
+  };
+}
+
+function normalizeTacomaItSuspensionChecklistItems(
+  planId: string,
+  pathwayId: string,
+  bucket: RuntimeChecklistBucketKey,
+  items: TransferPlannerChecklistItem[]
+) {
+  if (planId !== UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID) {
+    return items;
+  }
+
+  const filteredItems = items.filter((item) => !isTacomaItTemporarySuspensionChecklistItem(item));
+  if (
+    normalizeTransferPlannerPathwayId(planId, pathwayId) !==
+    UW_TACOMA_IT_DIGITAL_MOBILE_FORENSICS_PATHWAY_ID
+  ) {
+    return filteredItems;
+  }
+
+  if (bucket !== "beforeEnrollmentChecklist") {
+    return filteredItems;
+  }
+
+  return uniqueById([buildTacomaItDigitalMobileForensicsSuspensionItem(), ...filteredItems]);
+}
+
 function mergePlannerPathwayWithPlan(
   plan: TransferPlannerMajorPlan,
   pathway: TransferPlannerMajorPathway,
@@ -10004,34 +10923,58 @@ function mergePlannerPathwayWithPlan(
   const baseRequirementGroups = pathwayOwnsIndependentCatalogCredential
     ? []
     : plan.requirementGroups ?? [];
-  const mergedRequirementGroups = uniqueRequirementGroupsForPathwayScope(
-    [
-      ...baseRequirementGroups.map((group) =>
-        applyRequirementGroupPathwayRestrictions(group, pathway.id)
-      ).filter((group) => group.options.length > 0),
-      ...(pathway.requirementGroups ?? []),
-    ],
-    pathway.id
+  const mergedRequirementGroupCandidates = [
+    ...baseRequirementGroups
+      .map((group) => applyRequirementGroupPathwayRestrictions(group, pathway.id))
+      .filter((group) => group.options.length > 0),
+    ...(pathway.requirementGroups ?? []),
+  ];
+  const mergedRequirementGroups = normalizeTacomaItSuspensionRequirementGroups(
+    plan.id,
+    uniqueRequirementGroupsForPathwayScope(
+      mergedRequirementGroupCandidates
+        .map((group) => normalizeTacomaUrbanStudiesRequirementGroupScope(plan.id, pathway.id, group))
+        .filter((group): group is TransferPlannerRequirementGroup => Boolean(group)),
+      pathway.id
+    )
   );
   const nmeSourceIncompleteWarnings = buildMaterialsScienceNmeSourceIncompleteWarnings(
     plan.id,
     pathway.id,
     mergedRequirementGroups
   );
-  const applicationChecklist = mergeChecklistItemsForPathwayScope(
+  let applicationChecklist = mergeChecklistItemsForPathwayScope(
     pathwayOwnsIndependentCatalogCredential ? [] : plan.applicationChecklist ?? [],
     pathway.applicationChecklist,
     pathway.id
   );
-  const beforeEnrollmentChecklist = mergeChecklistItemsForPathwayScope(
+  let beforeEnrollmentChecklist = mergeChecklistItemsForPathwayScope(
     pathwayOwnsIndependentCatalogCredential ? [] : plan.beforeEnrollmentChecklist ?? [],
     pathway.beforeEnrollmentChecklist,
     pathway.id
   );
-  const stayAtGrcChecklist = mergeChecklistItemsForPathwayScope(
+  let stayAtGrcChecklist = mergeChecklistItemsForPathwayScope(
     pathwayOwnsIndependentCatalogCredential ? [] : plan.stayAtGrcChecklist ?? [],
     pathway.stayAtGrcChecklist,
     pathway.id
+  );
+  applicationChecklist = normalizeTacomaItSuspensionChecklistItems(
+    plan.id,
+    pathway.id,
+    "applicationChecklist",
+    applicationChecklist
+  );
+  beforeEnrollmentChecklist = normalizeTacomaItSuspensionChecklistItems(
+    plan.id,
+    pathway.id,
+    "beforeEnrollmentChecklist",
+    beforeEnrollmentChecklist
+  );
+  stayAtGrcChecklist = normalizeTacomaItSuspensionChecklistItems(
+    plan.id,
+    pathway.id,
+    "stayAtGrcChecklist",
+    stayAtGrcChecklist
   );
   const selectionScopedChecklistItems = [
     ...applicationChecklist,
@@ -10095,9 +11038,23 @@ function mergePlannerPathwayWithPlan(
       ...getRequirementSupportListsForScope(plan.id, pathway.id),
     ]),
   });
+  const ownershipMetadata = buildSourceOwnershipMetadata({
+    planId: plan.id,
+    campusId: plan.campusId,
+    schoolTitle: pathway.schoolTitle ?? plan.schoolTitle,
+    collegeTitle: pathway.collegeTitle ?? plan.collegeTitle,
+    scope: {
+      title: pathway.label,
+      summary: pathway.summary,
+      officialLinks: pathway.officialLinks,
+      degreeMapSections: pathway.degreeMapSections,
+      validationNotes: pathway.validationNotes,
+    },
+  });
 
   return {
     ...mergedPlan,
+    ...ownershipMetadata,
     pathways: visiblePathways,
     selectedPathwayId: pathway.id,
     selectedPathwayLabel: pathway.label,
@@ -10217,7 +11174,7 @@ export function getTransferPlannerStudentVisibleMajorsForCampus(campusId: Transf
 export function getTransferPlannerStudentRuntimeMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {
-  return appendDerivedSharedSourcePlans(
+  const runtimePlans = appendDerivedSharedSourcePlans(
     TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.filter(
       (plan) =>
         plan.campusId === campusId &&
@@ -10225,6 +11182,20 @@ export function getTransferPlannerStudentRuntimeMajorsForCampus(
         hasStudentRuntimePlannerContent(plan)
     )
   );
+  const runtimePlanIds = new Set(runtimePlans.map((plan) => plan.id));
+  const directRuntimePlanIds = new Set(
+    TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.map((plan) => plan.id)
+  );
+  const sourceVisibleFallbackPlans = getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus(
+    campusId
+  ).filter(
+    (plan) =>
+      directRuntimePlanIds.has(plan.id) &&
+      !runtimePlanIds.has(plan.id) &&
+      !isTransferPlannerStudentHiddenSourceGap(plan.id)
+  );
+
+  return appendDerivedSharedSourcePlans([...runtimePlans, ...sourceVisibleFallbackPlans]);
 }
 
 export function getTransferPlannerSourceGeneratedMajorPlan(planId: string) {
@@ -10377,14 +11348,28 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
   if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
   if (COMPACT_NORMALIZED_RUNTIME_PLAN_IDS.has(plan.id)) {
     const normalizedPlan = resolveCompactStudentRuntimeMajorPlan(plan, pathwayId);
-    const pathways = materializePlanPathways(
-      getTransferPlannerSourceGeneratedMajorPlan(plan.id) ?? plan,
-      false
-    );
+    const sourceGeneratedPlan = getTransferPlannerSourceGeneratedMajorPlan(plan.id) ?? plan;
+    const pathways = materializePlanPathways(sourceGeneratedPlan, false);
     const selectedPathway = pickResolvedPlannerPathway(pathways, pathwayId);
+    const ownershipMetadata = buildSourceOwnershipMetadata({
+      planId: sourceGeneratedPlan.id,
+      campusId: sourceGeneratedPlan.campusId,
+      schoolTitle: selectedPathway?.schoolTitle ?? sourceGeneratedPlan.schoolTitle,
+      collegeTitle: selectedPathway?.collegeTitle ?? sourceGeneratedPlan.collegeTitle,
+      scope: selectedPathway
+        ? {
+            title: selectedPathway.label,
+            summary: selectedPathway.summary,
+            officialLinks: selectedPathway.officialLinks,
+            degreeMapSections: selectedPathway.degreeMapSections,
+            validationNotes: selectedPathway.validationNotes,
+          }
+        : sourceGeneratedPlan,
+    });
     return normalizedPlan
       ? {
           ...normalizedPlan,
+          ...ownershipMetadata,
           pathways,
           selectedPathwayId: selectedPathway?.id ?? normalizedPlan.selectedPathwayId,
           selectedPathwayLabel: selectedPathway?.label ?? normalizedPlan.selectedPathwayLabel,

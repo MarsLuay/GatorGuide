@@ -321,6 +321,8 @@ export type TransferPlannerMajorPathway = {
   id: string;
   label: string;
   summary: string;
+  schoolTitle?: string;
+  collegeTitle?: string;
   applicationChecklist?: TransferPlannerChecklistItem[];
   beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
   stayAtGrcChecklist?: TransferPlannerChecklistItem[];
@@ -456,6 +458,8 @@ export type TransferPlannerMajorPlan = {
   campusId: TransferPlannerCampusId;
   title: string;
   shortTitle: string;
+  schoolTitle?: string;
+  collegeTitle?: string;
   coverage: TransferPlannerCoverage;
   summary: string;
   bestTrackId: string | null;

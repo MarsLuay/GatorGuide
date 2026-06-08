@@ -42,6 +42,10 @@ import {
   getTransferPlannerProgramApprovedCourseFilterDefinition,
 } from "./program-approved-course-filters";
 import { normalizeTransferPlannerPathwayId } from "./pathway-id-normalization";
+import {
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
+  type TransferPlannerDerivedSharedSourcePlanAlias,
+} from "./derived-shared-source-plans";
 
 export type {
   TransferPlannerCampus,
@@ -123,6 +127,83 @@ const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
   "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE_PATTERN =
   /\bnot part of the minimum transfer-admission classes\b[\s\S]*\bneeded to complete the degree either way\b/i;
+const UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID = "uw-tacoma-information-technology";
+const UW_TACOMA_IT_DIGITAL_MOBILE_FORENSICS_PATHWAY_ID = "digital-mobile-forensics-option";
+const STUDENT_RUNTIME_SOURCE_BACKED_STANDALONE_PLANS: TransferPlannerMajorPlan[] = [
+  {
+    id: "uw-tacoma-global-studies",
+    campusId: "uw-tacoma",
+    title: "Global Studies (BA)",
+    shortTitle: "Global Studies",
+    coverage: "detailed",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [
+      {
+        id: "auto-uw-tacoma-global-studies-guidance",
+        title: "major preparation",
+        grcCourses: [],
+        note:
+          "Current official requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.",
+        sourceUrl: "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration",
+        sourceRole: "other",
+        sourceScope: "generated-fallback",
+        sourceSection: null,
+        pathwayId: null,
+        routeId: null,
+        generatedFromParser: false,
+        manualOverride: false,
+        canCreateScheduleRow: false,
+        requirementShape: "hidden-informational-row",
+        reason: "Generated fallback checklist row retained only when source-generated data had no checklist rows.",
+      },
+    ],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [
+      {
+        label: "UW Tacoma Global Studies Concentration requirements",
+        url: "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration",
+      },
+    ],
+    degreeMapSections: [
+      {
+        id: "global-studies-official-requirements-source",
+        title: "Global Studies (BA) official requirements source",
+        items: [
+          "UW Tacoma lists Global Studies as a student-facing concentration with Bachelor of Arts requirements on the linked official source.",
+        ],
+        note:
+          "Built from the current parser-backed official requirement source while lower-division Green River course extraction is still filling in.",
+      },
+    ],
+    validationNotes: [
+      "Supplemental compact-runtime metadata promotes the admissions-listed Tacoma Global Studies concentration to a student-visible planner row.",
+    ],
+    grcCourseList: [],
+    grcCourseListGuidance: "",
+    plannerNote: "",
+    bankIds: [],
+    sourceType: "master-generated",
+    pathways: [],
+    requirementGroups: [],
+    requirementReplacements: [],
+    supportLists: [],
+  },
+];
+const STUDENT_RUNTIME_SOURCE_BACKED_STANDALONE_PLANS_BY_ID = new Map(
+  STUDENT_RUNTIME_SOURCE_BACKED_STANDALONE_PLANS.map((plan) => [plan.id, plan] as const)
+);
+const STUDENT_RUNTIME_DERIVED_SHARED_PLAN_ALIASES_BY_DERIVED_ID = new Map(
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.map((alias) => [alias.derivedPlanId, alias] as const)
+);
+const STUDENT_RUNTIME_DERIVED_SHARED_PLANS_BY_ID = new Map<
+  string,
+  TransferPlannerMajorPlan | null
+>();
 type RuntimeChecklistBucketKey =
   | "applicationChecklist"
   | "beforeEnrollmentChecklist"
@@ -452,6 +533,7 @@ function getSourceMajorPlanById(planId: string) {
   return (
     getRuntimeMajorPlanById(planId) ??
     getBootstrapMajorPlansById()?.get(planId) ??
+    getStudentRuntimeSourceBackedStandalonePlanById(planId) ??
     buildSourceMajorPlanFromParsedRequirementBlocks(planId)
   );
 }
@@ -471,6 +553,168 @@ function getRuntimeResolvedMajorPlanByPathwayKey(key: string) {
       ? getTransferPlannerRuntimeResolvedMajorPlanByKey(key)
       : TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[key] ?? null
   ) as TransferPlannerResolvedMajorPlan | null;
+}
+
+function escapeRegExp(value: string) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function replaceStudentRuntimePlanTitle(
+  value: string | null | undefined,
+  sourceTitle: string,
+  derivedTitle: string
+) {
+  const text = String(value ?? "").trim();
+  if (!text || !sourceTitle || !derivedTitle) {
+    return text;
+  }
+  return text.replace(new RegExp(`\\b${escapeRegExp(sourceTitle)}\\b`, "g"), derivedTitle);
+}
+
+function rewriteStudentRuntimeDegreeMapSectionsForDerivedPlan(
+  sections: TransferPlannerMajorPlan["degreeMapSections"],
+  sourceTitle: string,
+  derivedTitle: string
+) {
+  return (sections ?? []).map((section) => ({
+    ...section,
+    title: replaceStudentRuntimePlanTitle(section.title, sourceTitle, derivedTitle),
+    note: replaceStudentRuntimePlanTitle(section.note, sourceTitle, derivedTitle) || undefined,
+  }));
+}
+
+function getStudentRuntimeSourceBackedStandalonePlanById(planId: string) {
+  return STUDENT_RUNTIME_SOURCE_BACKED_STANDALONE_PLANS_BY_ID.get(planId) ?? null;
+}
+
+function getStudentRuntimeSourceBackedStandalonePlansForCampus(campusId: TransferPlannerCampusId) {
+  return STUDENT_RUNTIME_SOURCE_BACKED_STANDALONE_PLANS.filter(
+    (plan) => plan.campusId === campusId
+  ).map((plan) => normalizeStudentRuntimeMajorPlan(plan));
+}
+
+function getStudentRuntimeDerivedSharedAliasByPlanId(planId: string) {
+  return STUDENT_RUNTIME_DERIVED_SHARED_PLAN_ALIASES_BY_DERIVED_ID.get(planId) ?? null;
+}
+
+function getSelectedStudentRuntimeDerivedSharedSourcePathway(
+  sourcePlan: TransferPlannerMajorPlan,
+  alias: TransferPlannerDerivedSharedSourcePlanAlias
+) {
+  const sourcePathwayId = String(alias.sourcePathwayId ?? "").trim();
+  if (!sourcePathwayId) {
+    return null;
+  }
+
+  const normalizedSourcePathwayId = normalizeTransferPlannerPathwayId(
+    sourcePlan.id,
+    sourcePathwayId
+  );
+  return (
+    getRuntimePathwaysForPlan(sourcePlan).find(
+      (pathway) =>
+        normalizeTransferPlannerPathwayId(sourcePlan.id, pathway.id) ===
+        normalizedSourcePathwayId
+    ) ?? null
+  );
+}
+
+function materializeStudentRuntimeDerivedSharedPlan(
+  alias: TransferPlannerDerivedSharedSourcePlanAlias
+) {
+  const sourcePlan =
+    getRuntimeMajorPlanById(alias.sourcePlanId) ??
+    getStudentRuntimeSourceBackedStandalonePlanById(alias.sourcePlanId);
+  if (!sourcePlan) {
+    return null;
+  }
+
+  const sourcePathwayId = String(alias.sourcePathwayId ?? "").trim();
+  const selectedSourcePathway = getSelectedStudentRuntimeDerivedSharedSourcePathway(
+    sourcePlan,
+    alias
+  );
+  if (sourcePathwayId && !selectedSourcePathway) {
+    return null;
+  }
+
+  const scopedPlan = selectedSourcePathway
+    ? resolveTransferPlannerStudentRuntimeMajorPlan(sourcePlan, selectedSourcePathway.id)
+    : normalizeStudentRuntimeMajorPlan(sourcePlan);
+  const {
+    selectedPathwayId: _selectedPathwayId,
+    selectedPathwayLabel: _selectedPathwayLabel,
+    selectedPathwaySummary: _selectedPathwaySummary,
+    pathways: _pathways,
+    ...scopedBasePlan
+  } = scopedPlan as TransferPlannerResolvedMajorPlan;
+
+  const sourceTitle = String(sourcePlan.title ?? "").trim();
+  const derivedTitle = String(alias.derivedTitle ?? "").trim();
+  const derivedPlan = {
+    ...scopedBasePlan,
+    id: alias.derivedPlanId,
+    campusId: sourcePlan.campusId,
+    title: derivedTitle,
+    shortTitle: String(alias.derivedShortTitle ?? derivedTitle).trim() || derivedTitle,
+    summary:
+      replaceStudentRuntimePlanTitle(scopedBasePlan.summary, sourceTitle, derivedTitle) ||
+      replaceStudentRuntimePlanTitle(selectedSourcePathway?.summary, sourceTitle, derivedTitle),
+    officialLinks: uniqueBy(
+      [
+        ...(scopedBasePlan.officialLinks ?? []),
+        ...(selectedSourcePathway?.officialLinks ?? []),
+      ],
+      (link) => `${link.label}|${link.url}`
+    ),
+    validationNotes: unique([
+      ...(scopedBasePlan.validationNotes ?? []),
+      ...(selectedSourcePathway?.validationNotes ?? []),
+      ...(sourcePathwayId
+        ? [
+            `Derived student-visible Tacoma row scoped to the ${selectedSourcePathway?.label ?? sourcePathwayId} pathway on the shared compact runtime plan.`,
+          ]
+        : []),
+    ]),
+    grcCourseList:
+      selectedSourcePathway?.grcCourseList && selectedSourcePathway.grcCourseList.length
+        ? selectedSourcePathway.grcCourseList
+        : scopedBasePlan.grcCourseList ?? [],
+    grcCourseListGuidance:
+      selectedSourcePathway?.grcCourseListGuidance ?? scopedBasePlan.grcCourseListGuidance ?? "",
+    plannerNote: replaceStudentRuntimePlanTitle(
+      selectedSourcePathway?.plannerNote ?? scopedBasePlan.plannerNote,
+      sourceTitle,
+      derivedTitle
+    ),
+    degreeMapSections: rewriteStudentRuntimeDegreeMapSectionsForDerivedPlan(
+      scopedBasePlan.degreeMapSections,
+      sourceTitle,
+      derivedTitle
+    ),
+    pathways: [],
+  } satisfies TransferPlannerMajorPlan;
+
+  return normalizeStudentRuntimeMajorPlan(derivedPlan);
+}
+
+function getStudentRuntimeDerivedSharedPlanById(planId: string) {
+  if (STUDENT_RUNTIME_DERIVED_SHARED_PLANS_BY_ID.has(planId)) {
+    return STUDENT_RUNTIME_DERIVED_SHARED_PLANS_BY_ID.get(planId) ?? null;
+  }
+
+  const alias = getStudentRuntimeDerivedSharedAliasByPlanId(planId);
+  const plan = alias ? materializeStudentRuntimeDerivedSharedPlan(alias) : null;
+  STUDENT_RUNTIME_DERIVED_SHARED_PLANS_BY_ID.set(planId, plan);
+  return plan;
+}
+
+function getStudentRuntimeDerivedSharedPlansForCampus(campusId: TransferPlannerCampusId) {
+  return TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.map((alias) =>
+    getStudentRuntimeDerivedSharedPlanById(alias.derivedPlanId)
+  ).filter(
+    (plan): plan is TransferPlannerMajorPlan => Boolean(plan && plan.campusId === campusId)
+  );
 }
 
 function getRuntimePrimaryDegreeSourceByPathwayKey(key: string) {
@@ -3454,14 +3698,16 @@ function promoteSharedPathwayRequirementGroupsToPlan<T extends TransferPlannerMa
 }
 
 function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
-  return normalizeRequiredForDegreeEitherWayRuntimeChecklistNotes(
-    normalizeRequirementShapesRuntimePlan(
-      promoteSharedPathwayRequirementGroupsToPlan(
-        normalizeCategoryOptionRuntimePlan(
-          normalizeUwSeattleChemicalEngineeringRuntimePlan(
-            normalizeUwSeattleBioengineeringRuntimePlan(
-              normalizeUwTacomaComputerEngineeringRuntimePlan(
-                normalizeUwSeattleComputerScienceRuntimePlan(plan)
+  return normalizeTacomaItSuspensionRuntimeMajorPlan(
+    normalizeRequiredForDegreeEitherWayRuntimeChecklistNotes(
+      normalizeRequirementShapesRuntimePlan(
+        promoteSharedPathwayRequirementGroupsToPlan(
+          normalizeCategoryOptionRuntimePlan(
+            normalizeUwSeattleChemicalEngineeringRuntimePlan(
+              normalizeUwSeattleBioengineeringRuntimePlan(
+                normalizeUwTacomaComputerEngineeringRuntimePlan(
+                  normalizeUwSeattleComputerScienceRuntimePlan(plan)
+                )
               )
             )
           )
@@ -3614,6 +3860,71 @@ function remapRuntimeRequirementGroupToSelectedPathway(
   } satisfies TransferPlannerRequirementGroup;
 }
 
+type RuntimePathwayOwnedEntry = {
+  pathwayId?: string | null;
+  routeId?: string | null;
+  requirementGroup?: Pick<TransferPlannerRequirementGroup, "pathwayId" | "routeId"> | null;
+};
+
+function entryBelongsToSiblingRuntimePathway(
+  planId: string,
+  selectedPathwayId: string | null | undefined,
+  pathwayIds: Set<string>,
+  entry: RuntimePathwayOwnedEntry
+) {
+  const normalizedSelectedPathwayId = normalizeTransferPlannerPathwayId(
+    planId,
+    selectedPathwayId
+  );
+  if (!normalizedSelectedPathwayId || pathwayIds.size < 2) {
+    return false;
+  }
+
+  return [
+    entry.pathwayId,
+    entry.routeId,
+    entry.requirementGroup?.pathwayId,
+    entry.requirementGroup?.routeId,
+  ]
+    .map((pathwayId) => normalizeTransferPlannerPathwayId(planId, pathwayId))
+    .some(
+      (pathwayId) =>
+        pathwayId &&
+        pathwayId !== normalizedSelectedPathwayId &&
+        pathwayIds.has(pathwayId)
+    );
+}
+
+function filterSiblingOwnedRuntimePathwayContent<T extends TransferPlannerResolvedMajorPlan>(
+  plan: T
+): T {
+  if (!plan.selectedPathwayId) {
+    return plan;
+  }
+
+  const pathwayIds = new Set(
+    (plan.pathways ?? [])
+      .map((pathway) => normalizeTransferPlannerPathwayId(plan.id, pathway.id))
+      .filter((pathwayId): pathwayId is string => Boolean(pathwayId))
+  );
+  if (pathwayIds.size < 2) {
+    return plan;
+  }
+
+  const entryIsSelectedOrShared = (entry: RuntimePathwayOwnedEntry) =>
+    !entryBelongsToSiblingRuntimePathway(plan.id, plan.selectedPathwayId, pathwayIds, entry);
+
+  return {
+    ...plan,
+    applicationChecklist: (plan.applicationChecklist ?? []).filter(entryIsSelectedOrShared),
+    beforeEnrollmentChecklist: (plan.beforeEnrollmentChecklist ?? []).filter(
+      entryIsSelectedOrShared
+    ),
+    stayAtGrcChecklist: (plan.stayAtGrcChecklist ?? []).filter(entryIsSelectedOrShared),
+    requirementGroups: (plan.requirementGroups ?? []).filter(entryIsSelectedOrShared),
+  };
+}
+
 function scopeIndependentRuntimePathwayContent<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
@@ -3652,21 +3963,178 @@ function scopeIndependentRuntimePathwayContent<T extends TransferPlannerResolved
   };
 }
 
+function isTacomaItTemporarySuspensionChecklistItem(item: TransferPlannerChecklistItem) {
+  return /\btemporarily suspended\b/i.test(
+    [
+      item.title,
+      item.note,
+      item.sourceSection,
+      item.reason,
+      item.requirementGroup?.label,
+    ].join(" ")
+  );
+}
+
+function isTacomaItTemporarySuspensionRequirementGroup(group: TransferPlannerRequirementGroup) {
+  return /\btemporarily suspended\b/i.test(
+    [
+      group.label,
+      group.sourceHeading,
+      group.sourceRowText,
+      group.sourceSection,
+      group.category,
+      group.subcategory,
+      ...(group.notes ?? []),
+    ].join(" ")
+  );
+}
+
+function normalizeTacomaItSuspensionRuntimeRequirementGroups(
+  groups: TransferPlannerRequirementGroup[] | null | undefined
+) {
+  return (groups ?? []).filter((group) => !isTacomaItTemporarySuspensionRequirementGroup(group));
+}
+
+function buildTacomaItDigitalMobileForensicsSuspensionItem(): TransferPlannerChecklistItem {
+  return {
+    id: "uwt-it-digital-mobile-forensics-temporarily-suspended",
+    title: "Digital Mobile Forensics option is temporarily suspended",
+    grcCourses: [],
+    note:
+      "UW Tacoma currently marks Digital Mobile Forensics as temporarily suspended; this note is scoped only to that IT option.",
+    sourceUrl: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+    sourceRole: "primary-degree-requirements",
+    sourceScope: "pathway-support-metadata",
+    sourceSection: "Digital Mobile Forensics option",
+    generatedFromParser: false,
+    manualOverride: true,
+    canCreateScheduleRow: false,
+    requirementShape: "hidden-informational-row",
+    pathwayId: UW_TACOMA_IT_DIGITAL_MOBILE_FORENSICS_PATHWAY_ID,
+    reason:
+      "Runtime normalization keeps the temporary suspension notice attached to Digital Mobile Forensics, not the sibling Information Assurance and Cybersecurity option.",
+  };
+}
+
+function normalizeTacomaItSuspensionRuntimeChecklist(
+  selectedPathwayId: string | null,
+  bucket: RuntimeChecklistBucketKey,
+  items: TransferPlannerChecklistItem[]
+) {
+  const filteredItems = items.filter((item) => !isTacomaItTemporarySuspensionChecklistItem(item));
+  if (
+    normalizeTransferPlannerPathwayId(
+      UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID,
+      selectedPathwayId
+    ) !== UW_TACOMA_IT_DIGITAL_MOBILE_FORENSICS_PATHWAY_ID
+  ) {
+    return filteredItems;
+  }
+
+  if (bucket !== "beforeEnrollmentChecklist") {
+    return filteredItems;
+  }
+
+  return uniqueBy(
+    [buildTacomaItDigitalMobileForensicsSuspensionItem(), ...filteredItems],
+    (item) => item.id
+  );
+}
+
+function normalizeTacomaItSuspensionRuntimePlan<T extends TransferPlannerResolvedMajorPlan>(
+  plan: T
+): T {
+  if (plan.id !== UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID) {
+    return plan;
+  }
+
+  return {
+    ...plan,
+    requirementGroups: normalizeTacomaItSuspensionRuntimeRequirementGroups(plan.requirementGroups),
+    applicationChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+      plan.selectedPathwayId,
+      "applicationChecklist",
+      plan.applicationChecklist ?? []
+    ),
+    beforeEnrollmentChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+      plan.selectedPathwayId,
+      "beforeEnrollmentChecklist",
+      plan.beforeEnrollmentChecklist ?? []
+    ),
+    stayAtGrcChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+      plan.selectedPathwayId,
+      "stayAtGrcChecklist",
+      plan.stayAtGrcChecklist ?? []
+    ),
+  };
+}
+
+function normalizeTacomaItSuspensionRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
+  if (plan.id !== UW_TACOMA_INFORMATION_TECHNOLOGY_PLAN_ID) {
+    return plan;
+  }
+
+  return {
+    ...plan,
+    requirementGroups: normalizeTacomaItSuspensionRuntimeRequirementGroups(plan.requirementGroups),
+    applicationChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+      null,
+      "applicationChecklist",
+      plan.applicationChecklist ?? []
+    ),
+    beforeEnrollmentChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+      null,
+      "beforeEnrollmentChecklist",
+      plan.beforeEnrollmentChecklist ?? []
+    ),
+    stayAtGrcChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+      null,
+      "stayAtGrcChecklist",
+      plan.stayAtGrcChecklist ?? []
+    ),
+    pathways: (plan.pathways ?? []).map((pathway) => ({
+      ...pathway,
+      requirementGroups: normalizeTacomaItSuspensionRuntimeRequirementGroups(
+        pathway.requirementGroups
+      ),
+      applicationChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+        pathway.id,
+        "applicationChecklist",
+        pathway.applicationChecklist ?? []
+      ),
+      beforeEnrollmentChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+        pathway.id,
+        "beforeEnrollmentChecklist",
+        pathway.beforeEnrollmentChecklist ?? []
+      ),
+      stayAtGrcChecklist: normalizeTacomaItSuspensionRuntimeChecklist(
+        pathway.id,
+        "stayAtGrcChecklist",
+        pathway.stayAtGrcChecklist ?? []
+      ),
+    })),
+  };
+}
+
 function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
-  return normalizeRuntimeAdmissionPrerequisiteOptions(
-    scopeIndependentRuntimePathwayContent(
-      normalizeRequiredForDegreeEitherWayRuntimeChecklistNotes(
-        normalizeRequirementShapesRuntimePlan(
-          normalizeCategoryOptionRuntimePlan(
-            normalizeUwSeattleChemicalEngineeringRuntimePlan(
-              normalizeUwSeattleBioengineeringRuntimePlan(
-                normalizeUwSeattleCivilRuntimePlan(
-                  normalizeUwSeattleMechanicalRuntimePlan(
-                    normalizeUwSeattleEceRuntimePlan(
-                      normalizeUwTacomaComputerEngineeringRuntimePlan(
-                        normalizeUwSeattleComputerScienceRuntimePlan(plan)
+  return normalizeTacomaItSuspensionRuntimePlan(
+    normalizeRuntimeAdmissionPrerequisiteOptions(
+      filterSiblingOwnedRuntimePathwayContent(
+        scopeIndependentRuntimePathwayContent(
+          normalizeRequiredForDegreeEitherWayRuntimeChecklistNotes(
+            normalizeRequirementShapesRuntimePlan(
+              normalizeCategoryOptionRuntimePlan(
+                normalizeUwSeattleChemicalEngineeringRuntimePlan(
+                  normalizeUwSeattleBioengineeringRuntimePlan(
+                    normalizeUwSeattleCivilRuntimePlan(
+                      normalizeUwSeattleMechanicalRuntimePlan(
+                        normalizeUwSeattleEceRuntimePlan(
+                          normalizeUwTacomaComputerEngineeringRuntimePlan(
+                            normalizeUwSeattleComputerScienceRuntimePlan(plan)
+                          )
+                        )
                       )
                     )
                   )
@@ -5337,8 +5805,16 @@ export function getTransferPlannerStudentRuntimeMajorsForCampus(
   const majors = getRuntimeMajorPlansForCampus(campusId)
     .filter((plan) => !isHiddenStudentRuntimeAliasPlan(plan))
     .map((plan) => normalizeStudentRuntimeMajorPlan(plan));
-  STUDENT_RUNTIME_MAJORS_BY_CAMPUS_ID.set(campusId, majors);
-  return majors;
+  const studentVisibleMajors = uniqueBy(
+    [
+      ...majors,
+      ...getStudentRuntimeSourceBackedStandalonePlansForCampus(campusId),
+      ...getStudentRuntimeDerivedSharedPlansForCampus(campusId),
+    ],
+    (plan) => plan.id
+  );
+  STUDENT_RUNTIME_MAJORS_BY_CAMPUS_ID.set(campusId, studentVisibleMajors);
+  return studentVisibleMajors;
 }
 
 export function getTransferPlannerStudentRuntimePathwaysForPlan(
@@ -5430,9 +5906,18 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
 
 export function getTransferPlannerMajorPlan(planId: string) {
   const plan = getRuntimeMajorPlanById(planId) ?? null;
-  return plan && !isHiddenStudentRuntimeAliasPlan(plan)
-    ? normalizeStudentRuntimeMajorPlan(plan)
-    : null;
+  if (plan) {
+    return !isHiddenStudentRuntimeAliasPlan(plan)
+      ? normalizeStudentRuntimeMajorPlan(plan)
+      : null;
+  }
+
+  const standalonePlan = getStudentRuntimeSourceBackedStandalonePlanById(planId);
+  if (standalonePlan) {
+    return normalizeStudentRuntimeMajorPlan(standalonePlan);
+  }
+
+  return getStudentRuntimeDerivedSharedPlanById(planId);
 }
 
 export function resolveTransferPlannerMajorPlan(

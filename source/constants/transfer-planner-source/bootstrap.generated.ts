@@ -26949,6 +26949,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "sourceConfidence": "high"
       },
       {
+        "label": "UW Tacoma Computer Engineering planning grid",
+        "url": "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf",
+        "note": "Official CENGR schedule planning grid; keep it attached as planning-grid support for generated bootstrap and runtime diagnostics.",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
         "label": "UW Green River transfer equivalency guide",
         "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
         "visibility": "visible",
@@ -28874,6 +28882,62 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
+      },
+      {
+        "id": "pre-spring-2026-community-development-planning-option",
+        "label": "Community Development & Planning option (pre-Spring 2026)",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [
+          "For students admitted to the Urban Studies major before spring 2026."
+        ],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Urban Studies degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "pre-spring-2026-gis-spatial-planning-option",
+        "label": "GIS & Spatial Planning option (pre-Spring 2026)",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [
+          "For students admitted to the Urban Studies major before spring 2026."
+        ],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Urban Studies degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
       }
     ]
   },
@@ -29061,4 +29125,3 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ]
   }
 ];
-

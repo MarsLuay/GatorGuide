@@ -96,6 +96,7 @@ import {
 import {
   getTransferPlannerMajorPlan as getCompactRuntimeMajorPlan,
   getTransferPlannerGrcCourseList as getCompactRuntimeGrcCourseList,
+  getTransferPlannerStudentRuntimeMajorsForCampus as getCompactRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan as getCompactRuntimePathwaysForPlan,
   getTransferPlannerTrack as getCompactRuntimeTrack,
   resolveTransferPlannerStudentRuntimeMajorPlan as resolveCompactRuntimeMajorPlan,
@@ -2036,6 +2037,7 @@ export {
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseListGuidance,
   getTransferPlannerMajorPlan,
+  getCompactRuntimeMajorsForCampus,
   getTransferPlannerMajorsForCampus,
   getTransferPlannerNormalizedCourseMetadataEntry,
   getTransferPlannerParsedRequirementSourceBlocks,

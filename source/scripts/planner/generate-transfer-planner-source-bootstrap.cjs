@@ -36,6 +36,9 @@ const {
 const {
   applyTransferPlannerManualSourceLinkOverride,
 } = require("../../constants/transfer-planner-source/manual-source-link-overrides");
+const {
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
+} = require("../../constants/transfer-planner-source/derived-shared-source-plans");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -130,6 +133,23 @@ const SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY = new Map([
         url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
         note:
           "Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-tacoma-computer-engineering", null),
+    [
+      {
+        label: "UW Tacoma Computer Engineering program",
+        url: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+        note:
+          "Live Tacoma CENGR page is the preferred primary source for lower-division admission and prerequisite requirements.",
+      },
+      {
+        label: "UW Tacoma Computer Engineering planning grid",
+        url: "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf",
+        note:
+          "Official CENGR schedule planning grid; keep it attached as planning-grid support for generated bootstrap and runtime diagnostics.",
       },
     ],
   ],
@@ -652,6 +672,93 @@ function upsertPlan(plansById, plan) {
   return merged;
 }
 
+function replaceBootstrapPlanTitle(value, sourceTitle, derivedTitle) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (!text || !sourceTitle || !derivedTitle) {
+    return text;
+  }
+
+  return text.replace(
+    new RegExp(`\\b${sourceTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g"),
+    derivedTitle
+  );
+}
+
+function materializeDerivedSharedBootstrapPlan(sourcePlan, alias) {
+  const sourceTitle = String(sourcePlan.title ?? "").trim();
+  const derivedTitle = String(alias.derivedTitle ?? "").trim();
+  const sourcePathwayId = String(alias.sourcePathwayId ?? "").trim();
+  const selectedSourcePathway = sourcePathwayId
+    ? (sourcePlan.pathways ?? []).find((pathway) => pathway.id === sourcePathwayId) ?? null
+    : null;
+  const sourcePathways = sourcePathwayId && selectedSourcePathway
+    ? [selectedSourcePathway]
+    : sourcePlan.pathways ?? [];
+
+  return {
+    ...sourcePlan,
+    id: alias.derivedPlanId,
+    title: derivedTitle,
+    shortTitle: String(alias.derivedShortTitle ?? derivedTitle).trim() || derivedTitle,
+    summary:
+      replaceBootstrapPlanTitle(sourcePlan.summary, sourceTitle, derivedTitle) ||
+      replaceBootstrapPlanTitle(selectedSourcePathway?.summary, sourceTitle, derivedTitle),
+    officialLinks: uniqueLinks([
+      ...(sourcePlan.officialLinks ?? []),
+      ...(selectedSourcePathway?.officialLinks ?? []),
+    ]),
+    validationNotes: uniqueStrings([
+      ...(sourcePlan.validationNotes ?? []),
+      ...(selectedSourcePathway?.validationNotes ?? []),
+      ...(sourcePathwayId
+        ? [
+            `Derived student-visible Tacoma row scoped to the ${selectedSourcePathway?.label ?? sourcePathwayId} pathway on the shared source plan.`,
+          ]
+        : []),
+    ]),
+    grcCourseList:
+      selectedSourcePathway?.grcCourseList && selectedSourcePathway.grcCourseList.length
+        ? selectedSourcePathway.grcCourseList
+        : sourcePlan.grcCourseList,
+    grcCourseListGuidance:
+      selectedSourcePathway?.grcCourseListGuidance ?? sourcePlan.grcCourseListGuidance,
+    plannerNote: replaceBootstrapPlanTitle(
+      selectedSourcePathway?.plannerNote ?? sourcePlan.plannerNote,
+      sourceTitle,
+      derivedTitle
+    ),
+    degreeMapSections: (sourcePlan.degreeMapSections ?? []).map((section) => ({
+      ...section,
+      title: replaceBootstrapPlanTitle(section.title, sourceTitle, derivedTitle),
+      note: replaceBootstrapPlanTitle(section.note, sourceTitle, derivedTitle) || undefined,
+    })),
+    pathways: sourcePathways.map((pathway) => ({
+      ...pathway,
+      summary: replaceBootstrapPlanTitle(pathway.summary, sourceTitle, derivedTitle),
+      degreeMapSections: (pathway.degreeMapSections ?? []).map((section) => ({
+        ...section,
+        title: replaceBootstrapPlanTitle(section.title, sourceTitle, derivedTitle),
+        note: replaceBootstrapPlanTitle(section.note, sourceTitle, derivedTitle) || undefined,
+      })),
+    })),
+  };
+}
+
+function appendDerivedSharedBootstrapAliases(plansById) {
+  for (const alias of TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES) {
+    if (plansById.has(alias.derivedPlanId)) {
+      continue;
+    }
+
+    const sourcePlan = plansById.get(alias.sourcePlanId);
+    if (!sourcePlan) {
+      continue;
+    }
+
+    plansById.set(alias.derivedPlanId, materializeDerivedSharedBootstrapPlan(sourcePlan, alias));
+  }
+}
+
 const TACOMA_CSS_PARENT_PLAN_ID = "uw-tacoma-computer-science-and-systems";
 const TACOMA_CSS_PARENT_LINKS = [
   {
@@ -871,6 +978,7 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
 
   plansById.delete("uw-tacoma-computer-science-and-systems-ba");
   plansById.delete("uw-tacoma-computer-science-and-systems-bs");
+  plansById.delete("uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed");
 
   const cssParentPlan = upsertPlan(
     plansById,
@@ -1011,27 +1119,45 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
 
   const urbanStudiesPlan = plansById.get("uw-tacoma-urban-studies");
   if (urbanStudiesPlan) {
+    const urbanStudiesSource = [
+      {
+        label: "UW Tacoma Urban Studies degree requirements",
+        url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+      },
+    ];
     plansById.set(
       urbanStudiesPlan.id,
       replacePlanPathwaysWithCanonicalSet(
         urbanStudiesPlan,
         [
-          createEmptyPathway("community-engagement-option", "Community Engagement option", [
-            {
-              label: "UW Tacoma Urban Studies degree requirements",
-              url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
-            },
-          ]),
-          createEmptyPathway("gis-option", "GIS option", [
-            {
-              label: "UW Tacoma Urban Studies degree requirements",
-              url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
-            },
-          ]),
+          createEmptyPathway(
+            "community-engagement-option",
+            "Community Engagement option",
+            urbanStudiesSource
+          ),
+          createEmptyPathway("gis-option", "GIS option", urbanStudiesSource),
+          createEmptyPathway(
+            "pre-spring-2026-community-development-planning-option",
+            "Community Development & Planning option (pre-Spring 2026)",
+            urbanStudiesSource,
+            ["For students admitted to the Urban Studies major before spring 2026."]
+          ),
+          createEmptyPathway(
+            "pre-spring-2026-gis-spatial-planning-option",
+            "GIS & Spatial Planning option (pre-Spring 2026)",
+            urbanStudiesSource,
+            ["For students admitted to the Urban Studies major before spring 2026."]
+          ),
         ],
         {
           "gis-certificate": "gis-option",
           "gis-certificate-option": "gis-option",
+          "community-development-planning-option":
+            "pre-spring-2026-community-development-planning-option",
+          "community-development-and-planning-option":
+            "pre-spring-2026-community-development-planning-option",
+          "gis-spatial-planning-option": "pre-spring-2026-gis-spatial-planning-option",
+          "gis-and-spatial-planning-option": "pre-spring-2026-gis-spatial-planning-option",
         }
       )
     );
@@ -1062,6 +1188,8 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
       ])
     );
   }
+
+  appendDerivedSharedBootstrapAliases(plansById);
 
   return [...plansById.values()];
 }
