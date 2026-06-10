@@ -474,7 +474,7 @@ const DERIVED_PATHWAY_DOCUMENT_SUFFIX_PATTERN =
 const DERIVED_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN =
   /\s+(?:degree\s+program\s+sheet|program\s+sheet|degree\s+sheet|worksheet|check\s*list|checklist)\b.*$/i;
 const DERIVED_PATHWAY_REQUIREMENTS_SUFFIX_PATTERN =
-  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s*[:\-]\s*|\s+)(?:older\s+|prior\s+|current\s+|academic\s+|course\s+|program\s+|degree\s+|major\s+|graduation\s+)*requirements?\b.*$/i;
+  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s*[:-]\s*|\s+)(?:older\s+|prior\s+|current\s+|academic\s+|course\s+|program\s+|degree\s+|major\s+|graduation\s+)*requirements?\b.*$/i;
 const DERIVED_PATHWAY_DATE_SUFFIX_PATTERN =
   /\b(option|track|route|pathway|certificate|concentration)\b(?:\s+(?:autumn|winter|spring|summer|fall)\s+\d{4})+(?:\s*[-\u2013\u2014]\s*(?:autumn|winter|spring|summer|fall)\s+\d{4})?\s*$/i;
 const DERIVED_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN =
@@ -1346,7 +1346,7 @@ export function isSuspiciousStructuralPathwayLabel(value: string | null | undefi
     return true;
   }
 
-  if (/^>/.test(normalized) || hasUnmatchedTrailingParenthesis(normalized)) {
+  if (normalized.startsWith('>') || hasUnmatchedTrailingParenthesis(normalized)) {
     return true;
   }
 
@@ -2882,20 +2882,11 @@ function filterUnsupportedBasePathways(
         normalizeDerivedPathwayText(line)
       )
     );
-  const hasPlanLevelForeignMajorPathwayEvidence = planLevelLines.some(
-    (line) =>
-      sourceLineMentionsDifferentMajor(plan.id, plan.title, line) &&
-      /(?:\s[-\u2013\u2014:]\s|\|)/.test(normalizeDerivedPathwayText(line)) &&
-      DERIVED_PATHWAY_LABEL_PATTERN.test(normalizeDerivedPathwayText(line))
-  );
-
   const derivedFamilies = new Set(
     derivedPathways
       .map((pathway) => getPathwayMaterializationSupportKey(plan, pathway))
       .filter(Boolean)
   );
-  const hasPlanLevelDerivedFamilies = derivedFamilies.size > 0;
-
   return basePathways.filter((pathway) => {
     const ownerId = `${plan.id}:pathway:${pathway.id}`;
     if (AUTO_PROMOTED_PRIMARY_OWNER_IDS.has(ownerId)) {

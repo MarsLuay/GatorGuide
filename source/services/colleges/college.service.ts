@@ -714,7 +714,7 @@ class CollegeService {
       }
 
       return { lat, lon };
-    } catch (err) {
+    } catch {
       return null;
     }
   }
@@ -730,7 +730,7 @@ class CollegeService {
     try {
       // Use matches which returns a reasonable set (stub mode returns nearby stubs with lat/lon)
       candidates = await this.getMatches({});
-    } catch (err) {
+    } catch {
       candidates = [];
     }
 

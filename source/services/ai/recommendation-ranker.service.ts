@@ -1,5 +1,5 @@
 import { CollegeScoringService } from '@/services/ai/college-scoring.service';
-import type { DisabledInfluenceKey, DisabledInfluences, MajorEvidenceLevel, RecommendCollegesOptions, RecommendDebug, RecommendResponse, RecommendResult } from '@/services/ai/ai.types';
+import type { DisabledInfluenceKey, RecommendCollegesOptions, RecommendDebug, RecommendResponse, RecommendResult } from '@/services/ai/ai.types';
 import { collegeService } from '@/services/colleges/college.service';
 import { errorLoggingService } from '@/services/logging/error-logging.service';
 
@@ -73,7 +73,7 @@ export class CollegeRecommendationRanker extends CollegeScoringService {
 
     const normalizedQuestionnaire = this.normalizeQuestionnaire(questionnaire);
     const inferredMajor = !String(userProfile?.major ?? '').trim() ? this.inferMajorFromQuery(trimmedQuery) : null;
-    const scoringUserProfile = inferredMajor ? { ...(userProfile ?? {}), major: inferredMajor } : userProfile;
+    const scoringUserProfile = inferredMajor ? { ...userProfile, major: inferredMajor } : userProfile;
     const { gpa, valid: hasValidGpa } = this.parseGpa(userProfile);
     const weight = this.rankImportanceAdjustments(normalizedQuestionnaire);
     const continueEducation = String(normalizedQuestionnaire.continueEducation ?? 'maybe');

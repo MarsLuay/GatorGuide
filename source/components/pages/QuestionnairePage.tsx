@@ -77,7 +77,7 @@ export default function QuestionnairePage() {
 
   useEffect(() => {
     if (!isHydrated) return;
-    setAnswers({ ...blankAnswers, ...(state.questionnaireAnswers ?? {}) });
+    setAnswers({ ...blankAnswers, ...state.questionnaireAnswers });
   }, [isHydrated, blankAnswers, state.questionnaireAnswers]);
 
   useEffect(() => {

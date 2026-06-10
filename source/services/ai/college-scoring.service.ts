@@ -695,7 +695,7 @@ export class CollegeScoringService {
   }
 
   protected normalizeQuestionnaire(questionnaire?: Questionnaire | null): Questionnaire {
-    const q: Questionnaire = { ...(questionnaire ?? {}) };
+    const q: Questionnaire = { ...questionnaire };
     const normalizeKey = (v: unknown) =>
       String(v ?? '')
         .trim()
@@ -1283,8 +1283,8 @@ export class CollegeScoringService {
   protected sanitizeQueryText(query: string): string {
     return String(query ?? '')
       .trim()
-      .replace(/^[`'"“”‘’.,!?;:()\[\]{}<>\\\/|_-]+/, '')
-      .replace(/[`'"“”‘’.,!?;:()\[\]{}<>\\\/|_-]+$/, '')
+      .replace(/^[`'"“”‘’.,!?;:()[\]{}<>\\/|_-]+/, '')
+      .replace(/[`'"“”‘’.,!?;:()[\]{}<>\\/|_-]+$/, '')
       .trim();
   }
 

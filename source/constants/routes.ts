@@ -58,7 +58,7 @@ export function routeWithReturnTo(
 ): Href {
   const normalizedReturnTo = String(returnTo ?? "").trim();
   return hrefWithParams(pathname, {
-    ...(params ?? {}),
+    ...params,
     ...(normalizedReturnTo ? { returnTo: normalizedReturnTo } : {}),
   });
 }
@@ -274,7 +274,7 @@ export const ROUTES = {
       college,
       campus,
       major,
-      ...(params ?? {}),
+      ...params,
     });
   },
   transferEquivalencies: APP_ROUTE_METADATA.transferEquivalencies.href,
@@ -290,7 +290,7 @@ export const ROUTES = {
     collegeId: string,
     params?: Record<string, string | number | boolean | null | undefined>
   ): Href {
-    return hrefWithParams("/college/[collegeId]", { collegeId, ...(params ?? {}) });
+    return hrefWithParams("/college/[collegeId]", { collegeId, ...params });
   },
   loginWithQuery(query: string): Href {
     return `${ROUTES.login}?${query}` as Href;

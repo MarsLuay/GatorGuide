@@ -1,4 +1,4 @@
-import { QUESTIONNAIRE_FIELD_IDS, type QuestionnaireFieldId } from '@/constants/schema';
+import { QUESTIONNAIRE_FIELD_IDS } from '@/constants/schema';
 import type { Language } from './translations';
 import { translations } from './translations';
 

@@ -53,7 +53,7 @@ const CREDIT_PATTERN = /^\d+\.\d{3}$/;
 const BASE64_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const COURSE_LINE_PATTERN =
-  /^([A-Z]{2,6}&?)\s+(\d{3}[A-Z]?)\s+(.+?)\s+(\d+\.\d{3})\s+(\d+\.\d{3})\s+(\d+(?:\.\d+)?|[A-Z][A-Z+\-]*)\s+(\d+\.\d{3})$/;
+  /^([A-Z]{2,6}&?)\s+(\d{3}[A-Z]?)\s+(.+?)\s+(\d+\.\d{3})\s+(\d+\.\d{3})\s+(\d+(?:\.\d+)?|[A-Z][A-Z+-]*)\s+(\d+\.\d{3})$/;
 const TERM_HEADING_PATTERN =
   /^(FALL|WINTER|SPRING|SUMMER)\s+(\d{4})\s+\((\d{2}\/\d{2}\/\d{4})\s*-\s*(\d{2}\/\d{2}\/\d{4})\)$/i;
 
@@ -413,9 +413,9 @@ function parseTranscriptCourseLines(lines: string[]) {
 
 export function extractCumulativeGpaFromTranscriptLines(lines: string[]) {
   const patterns = [
-    /\bCum(?:ulative)?\s+GPA\b\s*[:\-]?\s*(\d(?:\.\d{1,4})?)/i,
-    /\bOverall\s+GPA\b\s*[:\-]?\s*(\d(?:\.\d{1,4})?)/i,
-    /\b(?:Cumulative|Overall)\s+Grade\s+Point\s+Average\b\s*[:\-]?\s*(\d(?:\.\d{1,4})?)/i,
+    /\bCum(?:ulative)?\s+GPA\b\s*[:-]?\s*(\d(?:\.\d{1,4})?)/i,
+    /\bOverall\s+GPA\b\s*[:-]?\s*(\d(?:\.\d{1,4})?)/i,
+    /\b(?:Cumulative|Overall)\s+Grade\s+Point\s+Average\b\s*[:-]?\s*(\d(?:\.\d{1,4})?)/i,
   ];
 
   for (let index = lines.length - 1; index >= 0; index -= 1) {

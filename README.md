@@ -2,6 +2,10 @@
 
 Gator Guide is a student-focused project designed to help transfer applicants find their best-fit college. It consolidates scholarship/internship links, provides useful tools, and gives direct schedule guidance so students can explore schools and get support in a way that feels personal and practical.
 
+![Gator Guide home screen](docs/ui.png)
+
+This is the home screen students land on: upcoming deadlines, the course planner, and quick access to everything in one place.
+
 ## License
 
 This repository is source-available under the [PolyForm Strict License 1.0.0](LICENSE). It is not open source.

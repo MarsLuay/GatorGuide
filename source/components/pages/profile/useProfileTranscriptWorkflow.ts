@@ -83,11 +83,9 @@ export function useProfileTranscriptWorkflow({
 
         if (cancelled) return;
 
-        setUploadedDocumentMeta({
-          ...(transcriptDocument
+        setUploadedDocumentMeta((transcriptDocument
             ? { transcript: { name: transcriptDocument.name, url: transcriptDocument.url } }
-            : {}),
-        });
+            : {}));
       } catch {
         if (!cancelled) {
           setUploadedDocumentMeta({});

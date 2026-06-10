@@ -149,7 +149,7 @@ class OpportunityStatusService {
     primary: OpportunityStatusMap,
     secondary: OpportunityStatusMap
   ): OpportunityStatusMap {
-    const merged: OpportunityStatusMap = { ...(primary ?? {}) };
+    const merged: OpportunityStatusMap = { ...primary };
     for (const [opportunityId, status] of Object.entries(secondary ?? {})) {
       const existing = merged[opportunityId];
       if (!existing || compareClientUpdatedAt(existing, status) <= 0) {
@@ -218,7 +218,7 @@ class OpportunityStatusService {
 
     return normalizeUserOpportunityStatus(
       {
-        ...(existing ?? {}),
+        ...existing,
         progress,
         progressUpdatedAt: nowIso,
         isDone,

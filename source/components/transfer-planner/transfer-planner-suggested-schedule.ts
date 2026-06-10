@@ -1051,12 +1051,12 @@ function mergeSuggestedScheduleCreditBasedOptionGroup(
       ...(nextOptionGroup.userUnselectedOptionIds ?? []),
     ]),
     completedSatisfyingCourseCodesByOptionId: {
-      ...(currentOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {}),
-      ...(nextOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {}),
+      ...currentOptionGroup.completedSatisfyingCourseCodesByOptionId,
+      ...nextOptionGroup.completedSatisfyingCourseCodesByOptionId,
     },
     optionSatisfactionSourcesById: {
-      ...(currentOptionGroup.optionSatisfactionSourcesById ?? {}),
-      ...(nextOptionGroup.optionSatisfactionSourcesById ?? {}),
+      ...currentOptionGroup.optionSatisfactionSourcesById,
+      ...nextOptionGroup.optionSatisfactionSourcesById,
     },
     displayedCreditProgress: getSuggestedScheduleOptionGroupMergedCreditProgress(
       nextOptionGroup,

@@ -441,18 +441,20 @@ export function normalizeOpportunityRecurrence(
 export function normalizeOpportunityEligibility(
   value: Partial<OpportunityEligibility> | null | undefined
 ): OpportunityEligibility {
+  const residencyTypes = value?.residencyTypes;
+  const communityTags = value?.communityTags;
   return {
     gpaMin: clampNumber(value?.gpaMin, 0, 5),
     residencyTypes: Array.from(
       new Set(
-        (Array.isArray(value?.residencyTypes) ? value?.residencyTypes : [])
+        (Array.isArray(residencyTypes) ? residencyTypes : [])
           .map(normalizeResidencyTag)
           .filter(Boolean)
       )
     ),
     communityTags: Array.from(
       new Set(
-        (Array.isArray(value?.communityTags) ? value?.communityTags : [])
+        (Array.isArray(communityTags) ? communityTags : [])
           .map(normalizeCommunityTag)
           .filter((tag) =>
             (Object.values(OPPORTUNITY_COMMUNITY_TAGS) as string[]).includes(tag)

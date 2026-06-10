@@ -1,8 +1,4 @@
-import {
-  TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES,
-  type TransferPlannerManualSourceLinkOverride,
-  type TransferPlannerManualSourceLinkOverrideMode,
-} from "./manual-source-link-overrides.data";
+import { TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES } from "./manual-source-link-overrides.data";
 import type { TransferPlannerSourceLink } from "./schema";
 
 export {

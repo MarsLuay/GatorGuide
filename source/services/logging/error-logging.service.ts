@@ -325,7 +325,7 @@ class ErrorLoggingService {
     const webhookUrl = API_CONFIG.logging.errorWebhookUrl;
     if (!webhookUrl) return false;
 
-    const response = await fetchWithHandling(webhookUrl, {
+    await fetchWithHandling(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

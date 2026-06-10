@@ -78,7 +78,7 @@ function parseDeadlineDate(deadline: unknown): Date | null {
     return buildLocalDeadlineDate(Number(rawYear), Number(rawMonth), Number(rawDay));
   }
 
-  const slashDateMatch = rawValue.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})$/);
+  const slashDateMatch = rawValue.match(/^(\d{1,2})[/.-](\d{1,2})[/.-](\d{2,4})$/);
   if (slashDateMatch) {
     const [, rawMonth, rawDay, rawYear] = slashDateMatch;
     const normalizedYear = rawYear.length === 2 ? Number(`20${rawYear}`) : Number(rawYear);

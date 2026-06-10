@@ -77,9 +77,7 @@ export default function HomePage() {
         gpa: user?.gpa,
         questionnaireAnswers: state.questionnaireAnswers,
         targetSchools: state.savedColleges.map((college) => college.name),
-        documents: {
-          ...(user?.transcript ? { transcripts: { fileUrl: user.transcript } } : {}),
-        },
+        documents: (user?.transcript ? { transcripts: { fileUrl: user.transcript } } : {}),
       }),
     [state.questionnaireAnswers, state.savedColleges, user?.gpa, user?.major, user?.transcript]
   );

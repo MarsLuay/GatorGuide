@@ -211,11 +211,6 @@ const UW_GRC_EQUIVALENCY_LINK: TransferPlannerSourceLink = {
   label: "UW Green River transfer equivalency guide",
   url: "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
 };
-const ALL_UW_CAMPUSES: Exclude<TransferPlannerSourceSchoolId, "grc">[] = [
-  "uw-seattle",
-  "uw-bothell",
-  "uw-tacoma",
-];
 type SupplementalParserOnlyMajorSource = {
   planId: string;
   campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
@@ -2105,24 +2100,6 @@ function stripPathwayTitleSuffix(value: string) {
 
 function stripPlanTitlePrefix(planTitle: string, value: string) {
   return stripTransferPlannerPlanTitlePrefix(planTitle, value);
-
-  const normalizedPlanTitle = normalizePathwayLabel(planTitle);
-  const normalizedValue = normalizePathwayLabel(value);
-  if (!normalizedPlanTitle) {
-    return normalizedValue;
-  }
-  if (normalizedValue === normalizedPlanTitle) {
-    return "";
-  }
-
-  for (const separator of [" - ", ": ", " â€“ "]) {
-    const prefix = `${normalizedPlanTitle}${separator}`;
-    if (normalizedValue.startsWith(prefix)) {
-      return normalizedValue.slice(prefix.length).trim();
-    }
-  }
-
-  return normalizedValue;
 }
 
 function isLikelyStructuredPathwayLabel(label: string) {
@@ -2681,7 +2658,7 @@ function addPlanChecklistCourses(
   phase: TransferPlannerRequirementPhase,
   item: TransferPlannerChecklistItem
 ) {
-  const { sourceLinks, validationNotes, lastValidatedOn } = getChecklistSources(plan);
+  const { sourceLinks, lastValidatedOn } = getChecklistSources(plan);
   const codes = unique([
     ...item.grcCourses.map((code) => normalizeCourseCode(code)),
     ...(item.alternatives ?? []).flatMap((group) => group.map((code) => normalizeCourseCode(code))),
@@ -2705,7 +2682,7 @@ function addPlanCourseListCourses(
   registry: Map<string, MutableCourseRegistryEntry>,
   plan: TransferPlannerMajorPlan
 ) {
-  const { sourceLinks, validationNotes, lastValidatedOn } = getChecklistSources(plan);
+  const { sourceLinks, lastValidatedOn } = getChecklistSources(plan);
   for (const code of plan.grcCourseList ?? []) {
     addCourseReference(registry, {
       schoolId: "grc",
@@ -2725,7 +2702,7 @@ function addPlanDegreeMapCourses(
   plan: TransferPlannerMajorPlan,
   section: TransferPlannerDegreeMapSection
 ) {
-  const { sourceLinks, validationNotes, lastValidatedOn } = getChecklistSources(plan);
+  const { sourceLinks, lastValidatedOn } = getChecklistSources(plan);
   const codes = extractCourseCodesFromList(section.items);
   for (const code of codes) {
     addCourseReference(registry, {

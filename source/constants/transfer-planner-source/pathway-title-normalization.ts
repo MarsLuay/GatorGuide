@@ -47,7 +47,7 @@ const SEMANTIC_PATHWAY_DOCUMENT_SUFFIX_PATTERN =
 const SEMANTIC_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN =
   /\s+(?:degree\s+program\s+sheet|program\s+sheet|degree\s+sheet|worksheet|check\s*list|checklist)\b.*$/i;
 const SEMANTIC_PATHWAY_REQUIREMENTS_SUFFIX_PATTERN =
-  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s*[:\-]\s*|\s+)(?:older\s+|prior\s+|current\s+|academic\s+|course\s+|program\s+|degree\s+|major\s+|graduation\s+)*requirements?\b.*$/i;
+  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s*[:-]\s*|\s+)(?:older\s+|prior\s+|current\s+|academic\s+|course\s+|program\s+|degree\s+|major\s+|graduation\s+)*requirements?\b.*$/i;
 const SEMANTIC_PATHWAY_DATE_SUFFIX_PATTERN =
   /\b(option|track|route|pathway|certificate|concentration)\b(?:\s+(?:autumn|winter|spring|summer|fall)\s+\d{4})+(?:\s*[-\u2013\u2014]\s*(?:autumn|winter|spring|summer|fall)\s+\d{4})?\s*$/i;
 const SEMANTIC_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN =

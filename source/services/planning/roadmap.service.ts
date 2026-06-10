@@ -248,7 +248,7 @@ function normalizeTaskType(value: unknown, fallback: RoadmapTaskType): RoadmapTa
   return VALID_TASK_TYPES.includes(value as RoadmapTaskType) ? (value as RoadmapTaskType) : fallback;
 }
 
-function defaultDocuments(now: string): Record<RoadmapDocumentKey, RoadmapDocumentItem> {
+function defaultDocuments(_now: string): Record<RoadmapDocumentKey, RoadmapDocumentItem> {
   return ROADMAP_DOCUMENT_KEYS.reduce((acc, key) => {
     acc[key] = {
       key,
@@ -563,7 +563,7 @@ function buildTaskListsFromSeed(seed: RoadmapSeedInput, createdAt: string) {
     );
   }
 
-  currentCourses.forEach((courseName, index) => {
+  currentCourses.forEach((courseName) => {
     courseTasks.push(
       createTask({
         id: `course-${courseName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,

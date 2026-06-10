@@ -96,7 +96,6 @@ import {
   getCoursePlanningGraphRequirementMap,
   mergeCourseRequirementMaps,
   requirementPathsAreSatisfied,
-  type TransferPlannerCoursePlanningGraph,
 } from "./course-planning-graph";
 import {
   buildQuarterSlotsAfterCurrent,
@@ -143,7 +142,6 @@ import {
   getEvaluationTargetRequirementTags,
   getGuideBackedTransferCategoryOptionDescriptor,
   getPlanGrcCourseCodes,
-  getSourceBackedRequiredCourseSemanticRelations,
   getSubsetMatchCompanionCourseCodes,
   getTransferGuidanceCandidateRulesForSourceCourse,
   hasConcreteGrcCourseCode,
@@ -2000,9 +1998,6 @@ export function buildSourceBackedRequiredCourseCodes(
         plan,
         requiredUwCourseCodes
       );
-      const mapsToSourceBackedRequiredUwCourse = requiredEquivalentUwCourseCodes.some((targetCourseCode) =>
-        requiredUwCourseCodes.has(targetCourseCode)
-      );
       if (choiceOnlyCourseCodes.has(normalizedCourseCode)) {
         continue;
       }
@@ -3787,17 +3782,6 @@ export function getProgramApprovedCourseFilterTransferEntries(
     return [];
   }
   return buildProgramApprovedCourseFilterTransferEntries(definition);
-}
-
-function getComputerEngineeringApprovedNaturalScienceRuleReason(
-  rule: TransferPlannerEquivalencyRule
-): ComputerEngineeringApprovedNaturalScienceTransferEntry["inclusionReason"] | null {
-  const definition = getTransferPlannerProgramApprovedCourseFilterDefinition(
-    COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_PARAM
-  );
-  return definition
-    ? getProgramApprovedCourseFilterRuleReason({ definition, rule })
-    : null;
 }
 
 export function getComputerEngineeringApprovedNaturalScienceTransferEntries(): ComputerEngineeringApprovedNaturalScienceTransferEntry[] {
@@ -7079,7 +7063,6 @@ export function buildSourceBackedRequiredCourseSummaryEntries(
   const entries: SourceBackedRequiredCourseSummaryEntry[] = [];
   const seenCourseCodes = new Set<string>();
   const choiceOnlyCourseCodes = getChoiceOnlyChecklistCourseCodeSet(plan);
-  const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(plan);
 
   for (const descriptor of descriptors) {
     if (descriptor.kind === "choice-bucket") {
@@ -11081,25 +11064,6 @@ function buildGeneralEducationPlaceholders(args: {
   return [...sourceBackedMajorPlaceholders, ...reconciledPlannerGuidancePlaceholders];
 }
 
-function findGeneralEducationCreditValue(text: string, patterns: RegExp[]) {
-  let detectedValue: number | null = null;
-
-  for (const pattern of patterns) {
-    const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
-    const globalPattern = new RegExp(pattern.source, flags);
-    let match: RegExpExecArray | null = null;
-
-    while ((match = globalPattern.exec(text)) !== null) {
-      const value = Number.parseInt(match[1] ?? "", 10);
-      if (Number.isFinite(value)) {
-        detectedValue = detectedValue === null ? value : Math.max(detectedValue, value);
-      }
-    }
-  }
-
-  return detectedValue;
-}
-
 function normalizeGeneralEducationSignalText(value: string | null | undefined) {
   return String(value ?? "")
     .toLowerCase()
@@ -11109,7 +11073,7 @@ function normalizeGeneralEducationSignalText(value: string | null | undefined) {
 
 function isCourseLedRequirementLine(text: string | null | undefined) {
   const trimmed = sanitizeGeneralEducationSourceSignalLine(text).replace(
-    /^(?:\d+\s*[\).:-]\s*)+/,
+    /^(?:\d+\s*[).:-]\s*)+/,
     ""
   );
   const leadingCourseCode = extractCourseCodes(trimmed)[0];
@@ -14093,15 +14057,6 @@ function getRequirementOptionAllCourseCodes(option: RequirementGroupOption | Sug
   );
 }
 
-function getRequirementOptionMatchedCourseCodes(
-  option: RequirementGroupOption | SuggestedQuarterCourseOption,
-  courseCodes: Set<string>
-) {
-  return getRequirementOptionAllCourseCodes(option).filter((courseCode) =>
-    courseCodes.has(courseCode)
-  );
-}
-
 function shouldTreatRequirementOptionAsAtomicCoursePath(
   option: RequirementGroupOption | SuggestedQuarterCourseOption
 ) {
@@ -14178,11 +14133,6 @@ function getCategoryOptionIds(optionGroup: SuggestedQuarterCourseOptionGroup) {
   return optionGroup.options
     .filter((option) => isRequirementCategoryOption(option))
     .map((option) => option.id);
-}
-
-function getConcreteOptionIds(optionGroup: SuggestedQuarterCourseOptionGroup, optionIds: string[]) {
-  const categoryOptionIds = new Set(getCategoryOptionIds(optionGroup));
-  return optionIds.filter((optionId) => !categoryOptionIds.has(optionId));
 }
 
 function getCompletedCourseCodesSatisfyingCategoryOption(input: {
@@ -15115,47 +15065,6 @@ function buildAllocatedOptionGroupResolutionMap(input: {
   return {
     allocatedGroupsByFingerprint,
     contextsByFingerprint: new Map(contexts.map((context) => [context.fingerprint, context])),
-  };
-}
-
-function resolveSuggestedQuarterOptionGroupSatisfaction(input: {
-  optionGroup: SuggestedQuarterCourseOptionGroup;
-  completedCourseCodes: Set<string>;
-  scheduledCourseCodes: Set<string>;
-  plan?: TransferPlannerMajorPlan | null;
-  completedCourses?: TranscriptCourseEntry[];
-  campusId?: TransferPlannerMajorPlan["campusId"] | null;
-}) {
-  const allocation = buildAllocatedOptionGroupResolutionMap({
-    optionGroups: [input.optionGroup],
-    completedCourseCodes: input.completedCourseCodes,
-    scheduledCourseCodes: input.scheduledCourseCodes,
-    plan: input.plan,
-    completedCourses: input.completedCourses,
-    campusId: input.campusId,
-  });
-  const resolvedOptionGroup =
-    allocation.allocatedGroupsByFingerprint.get(getOptionGroupFingerprint(input.optionGroup)) ??
-    input.optionGroup;
-
-  return {
-    candidateSatisfiedOptionIds: resolvedOptionGroup.candidateSatisfiedOptionIds ?? [],
-    resolvedSatisfiedOptionIds: resolvedOptionGroup.resolvedSatisfiedOptionIds ?? [],
-    resolvedSatisfiedOptionIdsBeforeCap:
-      resolvedOptionGroup.resolvedSatisfiedOptionIdsBeforeCap ?? [],
-    droppedSatisfiedOptionIds: resolvedOptionGroup.droppedSatisfiedOptionIds ?? [],
-    completedSatisfyingCourseCodes: resolvedOptionGroup.completedSatisfyingCourseCodes ?? [],
-    completedSatisfyingCourseCodesByOptionId:
-      resolvedOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {},
-    scheduledSatisfyingCourseCodes: resolvedOptionGroup.scheduledSatisfyingCourseCodes ?? [],
-    countedSatisfyingCourseCodes: resolvedOptionGroup.countedSatisfyingCourseCodes ?? [],
-    resolvedSatisfyingCreditMin: resolvedOptionGroup.resolvedSatisfyingCreditMin ?? null,
-    resolvedSatisfyingCreditMax: resolvedOptionGroup.resolvedSatisfyingCreditMax ?? null,
-    displayedCreditProgress: resolvedOptionGroup.displayedCreditProgress ?? null,
-    fullySatisfied: resolvedOptionGroup.fullySatisfied ?? null,
-    candidateOptionSatisfactionSourcesById:
-      resolvedOptionGroup.candidateOptionSatisfactionSourcesById ?? {},
-    optionSatisfactionSourcesById: resolvedOptionGroup.optionSatisfactionSourcesById ?? {},
   };
 }
 
@@ -16637,7 +16546,7 @@ function buildRemainingSuggestedCourses(
           courseRole: isOptionlessCreditBucketPlaceholder
             ? "unresolved-credit-bucket-remainder"
             : undefined,
-          ...(promptCreditRange ?? optionlessCreditBucketRange ?? {}),
+          ...promptCreditRange ?? optionlessCreditBucketRange,
         };
 
         addRemainingCourse(nextCourse);
@@ -17117,7 +17026,6 @@ export function buildSuggestedQuarterPlan(input: {
       : []),
   ]);
   const trackSupplementalCoveredCourseCodes = new Set([
-    ...[
       ...applicationStatuses,
       ...beforeEnrollmentStatuses,
       ...stayAtGrcStatuses,
@@ -17133,8 +17041,7 @@ export function buildSuggestedQuarterPlan(input: {
             }),
           ])
         : status.explicitCourseCodes
-    ),
-  ]);
+    ));
   const includeFlexibleGrcTrackSlots = !input.plan;
   const resolvedTrackSupplementalCourseSlots = getResolvedTrackSupplementalCourseLabels({
     track: input.track,
@@ -18502,11 +18409,9 @@ function classifySbseTransferOnlyCourse(input: {
     courseCodes.some((courseCode) =>
       input.validationContext.completedCourseCodes.has(courseCode)
     );
-  const isCurrentRequiredCourse =
-    courseCodes.length > 0 &&
-    courseCodes.some((courseCode) =>
-      input.validationContext.currentRequiredCourseCodes.has(courseCode)
-    );
+  const isCurrentRequiredCourse = courseCodes.some((courseCode) =>
+    input.validationContext.currentRequiredCourseCodes.has(courseCode)
+  );
   const isTrueOptionGroup = isCurrentSbseTrueOptionSuggestedGroup(input.course.optionGroup);
   const isCurrentSelectedTrueOption =
     isTrueOptionGroup &&

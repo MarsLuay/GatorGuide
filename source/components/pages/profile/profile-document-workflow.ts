@@ -190,14 +190,12 @@ export async function ensureProfileSetupRoadmap({
     gpa,
     questionnaireAnswers,
     targetSchools: savedCollegeNames,
-    documents: {
-      ...(transcriptFileName
+    documents: (transcriptFileName
         ? {
             transcripts: {
               fileName: transcriptFileName,
             },
           }
         : {}),
-    },
   });
 }

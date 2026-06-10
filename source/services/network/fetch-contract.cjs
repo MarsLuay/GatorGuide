@@ -77,7 +77,7 @@ function withUserAgentHeader(headers, userAgent) {
 
   return {
     "user-agent": userAgent,
-    ...(headers ?? {}),
+    ...headers,
   };
 }
 
