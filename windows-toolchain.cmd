@@ -141,6 +141,7 @@ call :bootstrap_windows_path
 set "TOOLCHAIN_DIR=%~dp0"
 if "%TOOLCHAIN_DIR:~-1%"=="\" set "TOOLCHAIN_DIR=%TOOLCHAIN_DIR:~0,-1%"
 if not defined POWERSHELL_EXE call :resolve_powershell
+call :ensure_node_ps1_scripts
 
 where curl >nul 2>nul
 if not errorlevel 1 (
@@ -162,22 +163,42 @@ if not defined POWERSHELL_EXE (
   exit /b 1
 )
 
-if exist "!TOOLCHAIN_DIR!\install-node-lts.ps1" (
-  "%POWERSHELL_EXE%" -NoProfile -ExecutionPolicy Bypass -File "!TOOLCHAIN_DIR!\install-node-lts.ps1"
-  exit /b %ERRORLEVEL%
-)
-
-echo install-node-lts.ps1 was not found next to windows-toolchain.cmd.
-exit /b 1
+"%POWERSHELL_EXE%" -NoProfile -ExecutionPolicy Bypass -File "!NODE_INSTALL_PS1!"
+exit /b %ERRORLEVEL%
 
 :resolve_node_lts_version
 set "NODE_VERSION="
 if not defined POWERSHELL_EXE exit /b 1
-if exist "!TOOLCHAIN_DIR!\resolve-node-lts.ps1" (
-  for /f "delims=" %%V in ('"%POWERSHELL_EXE%" -NoProfile -ExecutionPolicy Bypass -File "!TOOLCHAIN_DIR!\resolve-node-lts.ps1"') do set "NODE_VERSION=%%V"
+if not defined NODE_RESOLVE_PS1 call :ensure_node_ps1_scripts
+for /f "delims=" %%V in ('"%POWERSHELL_EXE%" -NoProfile -ExecutionPolicy Bypass -File "!NODE_RESOLVE_PS1!"') do set "NODE_VERSION=%%V"
+exit /b 0
+
+:ensure_node_ps1_scripts
+if not defined NODE_SIDECAR_DIR (
+  if defined LAUNCHER_DIR set "NODE_SIDECAR_DIR=!LAUNCHER_DIR!"
+  if defined TOOLCHAIN_DIR set "NODE_SIDECAR_DIR=!TOOLCHAIN_DIR!"
+)
+if exist "!NODE_SIDECAR_DIR!\install-node-lts.ps1" if exist "!NODE_SIDECAR_DIR!\resolve-node-lts.ps1" (
+  set "NODE_INSTALL_PS1=!NODE_SIDECAR_DIR!\install-node-lts.ps1"
+  set "NODE_RESOLVE_PS1=!NODE_SIDECAR_DIR!\resolve-node-lts.ps1"
   exit /b 0
 )
-for /f "delims=" %%V in ('"%POWERSHELL_EXE%" -NoProfile -Command "$e=@(Invoke-RestMethod -Uri ''https://nodejs.org/dist/index.json'' -UserAgent ''SetupLauncher/1.0''); ($e | Where-Object { $_.lts } | Select-Object -First 1).version"') do set "NODE_VERSION=%%V"
+set "NODE_SCRIPT_DIR=%TEMP%\setup-launcher-node"
+if not exist "!NODE_SCRIPT_DIR!" mkdir "!NODE_SCRIPT_DIR!"
+set "NODE_INSTALL_PS1=!NODE_SCRIPT_DIR!\install-node-lts.ps1"
+set "NODE_RESOLVE_PS1=!NODE_SCRIPT_DIR!\resolve-node-lts.ps1"
+call :write_embedded_node_install_ps1 "!NODE_INSTALL_PS1!"
+call :write_embedded_node_resolve_ps1 "!NODE_RESOLVE_PS1!"
+exit /b 0
+
+:write_embedded_node_install_ps1
+if not defined POWERSHELL_EXE call :resolve_powershell
+"%POWERSHELL_EXE%" -NoProfile -Command "$b='JEVycm9yQWN0aW9uUHJlZmVyZW5jZSA9ICdTdG9wJwpbTmV0LlNlcnZpY2VQb2ludE1hbmFnZXJdOjpTZWN1cml0eVByb3RvY29sID0gW05ldC5TZWN1cml0eVByb3RvY29sVHlwZV06OlRsczEyCiR1c2VyQWdlbnQgPSAnTW96aWxsYS81LjAgKGNvbXBhdGlibGU7IFNldHVwTGF1bmNoZXIvMS4wKScKCiRlbnRyaWVzID0gQChJbnZva2UtUmVzdE1ldGhvZCAtVXJpICdodHRwczovL25vZGVqcy5vcmcvZGlzdC9pbmRleC5qc29uJyAtVXNlckFnZW50ICR1c2VyQWdlbnQpCiRsdHMgPSAkZW50cmllcyB8IFdoZXJlLU9iamVjdCB7ICRfLmx0cyAtbmUgJGZhbHNlIC1hbmQgJF8ubHRzIH0gfCBTZWxlY3QtT2JqZWN0IC1GaXJzdCAxCmlmICgtbm90ICRsdHMpIHsKICB0aHJvdyAnQ291bGQgbm90IHJlc29sdmUgTm9kZS5qcyBMVFMgdmVyc2lvbi4nCn0KCiR2ZXJzaW9uID0gJGx0cy52ZXJzaW9uCiRtc2lOYW1lID0gIm5vZGUtJHZlcnNpb24teDY0Lm1zaSIKJHVybCA9ICJodHRwczovL25vZGVqcy5vcmcvZGlzdC8kdmVyc2lvbi8kbXNpTmFtZSIKJGluc3RhbGxlciA9IEpvaW4tUGF0aCAkZW52OlRFTVAgJG1zaU5hbWUKCldyaXRlLUhvc3QgIkRvd25sb2FkaW5nICR1cmwiCkludm9rZS1XZWJSZXF1ZXN0IC1VcmkgJHVybCAtT3V0RmlsZSAkaW5zdGFsbGVyIC1Vc2VCYXNpY1BhcnNpbmcgLVVzZXJBZ2VudCAkdXNlckFnZW50CgokcHJvYyA9IFN0YXJ0LVByb2Nlc3MgLUZpbGVQYXRoICdtc2lleGVjLmV4ZScgLUFyZ3VtZW50TGlzdCBAKCcvaScsICRpbnN0YWxsZXIsICcvcXVpZXQnLCAnL25vcmVzdGFydCcpIC1XYWl0IC1QYXNzVGhydQppZiAoJHByb2MuRXhpdENvZGUgLW5lIDAgLWFuZCAkcHJvYy5FeGl0Q29kZSAtbmUgMzAxMCkgewogIGV4aXQgMQp9Cg=='; [IO.File]::WriteAllText('%~1', [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($b)))"
+exit /b 0
+
+:write_embedded_node_resolve_ps1
+if not defined POWERSHELL_EXE call :resolve_powershell
+"%POWERSHELL_EXE%" -NoProfile -Command "$b='JEVycm9yQWN0aW9uUHJlZmVyZW5jZSA9ICdTdG9wJwpbTmV0LlNlcnZpY2VQb2ludE1hbmFnZXJdOjpTZWN1cml0eVByb3RvY29sID0gW05ldC5TZWN1cml0eVByb3RvY29sVHlwZV06OlRsczEyCiRlbnRyaWVzID0gQChJbnZva2UtUmVzdE1ldGhvZCAtVXJpICdodHRwczovL25vZGVqcy5vcmcvZGlzdC9pbmRleC5qc29uJyAtVXNlckFnZW50ICdTZXR1cExhdW5jaGVyLzEuMCcpCiRsdHMgPSAkZW50cmllcyB8IFdoZXJlLU9iamVjdCB7ICRfLmx0cyAtbmUgJGZhbHNlIC1hbmQgJF8ubHRzIH0gfCBTZWxlY3QtT2JqZWN0IC1GaXJzdCAxCmlmICgtbm90ICRsdHMpIHsKICBleGl0IDEKfQpXcml0ZS1PdXRwdXQgJGx0cy52ZXJzaW9uCg=='; [IO.File]::WriteAllText('%~1', [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($b)))"
 exit /b 0
 
 :add_known_tool_paths
