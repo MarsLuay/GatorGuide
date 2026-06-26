@@ -1,8 +1,9 @@
 @echo off
-setlocal EnableExtensions
+setlocal EnableExtensions EnableDelayedExpansion
 
 title GatorGuide Course Planner Updater
 set "REPO_ROOT=%~dp0"
+set "TOOLCHAIN_HELPER=%REPO_ROOT%windows-toolchain.cmd"
 set "APP_ROOT=%REPO_ROOT%source"
 set "SCRIPT_ROOT=%APP_ROOT%\scripts"
 set "REPO_DIR_NAME=GatorGuide"
@@ -10,6 +11,9 @@ set "REPO_URL=https://github.com/MarsLuay/GatorGuide.git"
 set "BACK_EXIT_CODE=86"
 set "INTERACTIVE_MENU=0"
 set "HOSTED_BACK_TARGET="
+
+call :call_toolchain :bootstrap
+if errorlevel 1 exit /b 1
 
 call :locate_or_clone_repo
 if errorlevel 1 exit /b 1
@@ -106,48 +110,48 @@ goto refreshModeMenu
 :runMaintenance
 set "ACTION_LABEL=Course planner maintenance"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks
+  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
+  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 
 :runMaintenanceNoDownloads
 set "ACTION_LABEL=Course planner maintenance (skip downloads)"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks
+  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
+  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 
 :runRefresh
 set "ACTION_LABEL=Course planner refresh"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipVerify
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipVerify
 goto finish
 
 :runRefreshNoDownloads
 set "ACTION_LABEL=Course planner refresh (skip downloads)"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipDownloads -SkipVerify
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipDownloads -SkipVerify
 goto finish
 
 :runCacheSummary
 set "ACTION_LABEL=Course planner cache summary"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -ShowCacheSummary -NoPrompt -NoOpenSummary
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -ShowCacheSummary -NoPrompt -NoOpenSummary
 goto finish
 
 :runEditCourseLinks
 set "ACTION_LABEL=Edit course links"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -EditCourseLinks
+  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -EditCourseLinks
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -EditCourseLinks -BackExitCode %BACK_EXIT_CODE%
+  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -EditCourseLinks -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 
 :runLaymansDiagnosis
 set "ACTION_LABEL=Laymans Diagnosis"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -ShowLaymansDiagnosis -NoPrompt
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -ShowLaymansDiagnosis -NoPrompt
 goto finish
 
 :runFactCheckExport
@@ -226,34 +230,14 @@ echo Repo cloned successfully.
 exit /b 0
 
 :ensure_git
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
-where git >nul 2>&1
-if not errorlevel 1 (
-  echo Git is already installed.
-  exit /b 0
-)
+call :call_toolchain :ensure_git
+exit /b %ERRORLEVEL%
 
-where winget >nul 2>&1
-if errorlevel 1 (
-  echo Git is missing and winget is not available on this PC.
-  echo Install Git from https://git-scm.com/downloads and run this file again.
+:call_toolchain
+if not exist "%TOOLCHAIN_HELPER%" (
+  echo windows-toolchain.cmd was not found next to this launcher.
+  echo Download it from the latest GatorGuide release or clone the full repo.
   exit /b 1
 )
-
-echo Git was not found. Installing Git with winget...
-winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements
-if errorlevel 1 (
-  echo Git installation failed.
-  exit /b 1
-)
-
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
-where git >nul 2>&1
-if errorlevel 1 (
-  echo Git was installed, but this terminal cannot find it yet.
-  echo Close this window and run Course-Planner-Updater.bat again.
-  exit /b 1
-)
-
-echo Git finished installing successfully.
-exit /b 0
+call "%TOOLCHAIN_HELPER%" %*
+exit /b %ERRORLEVEL%

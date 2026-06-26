@@ -1,11 +1,14 @@
 @echo off
-setlocal EnableExtensions
+setlocal EnableExtensions EnableDelayedExpansion
 
 set "ROOT_DIR=%~dp0"
+set "TOOLCHAIN_HELPER=%ROOT_DIR%windows-toolchain.cmd"
 set "REPO_DIR_NAME=GatorGuide"
 set "REPO_URL=https://github.com/MarsLuay/GatorGuide.git"
 set "NODE_SCRIPT=%ROOT_DIR%source\scripts\assets\add-catalog-item.cjs"
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
+
+call :call_toolchain :bootstrap
+if errorlevel 1 exit /b 1
 
 call :locate_or_clone_repo
 if errorlevel 1 exit /b 1
@@ -55,34 +58,14 @@ echo Repo cloned successfully.
 exit /b 0
 
 :ensure_git
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
-where git >nul 2>&1
-if not errorlevel 1 (
-  echo Git is already installed.
-  exit /b 0
-)
+call :call_toolchain :ensure_git
+exit /b %ERRORLEVEL%
 
-where winget >nul 2>&1
-if errorlevel 1 (
-  echo Git is missing and winget is not available on this PC.
-  echo Install Git from https://git-scm.com/downloads and run this file again.
+:call_toolchain
+if not exist "%TOOLCHAIN_HELPER%" (
+  echo windows-toolchain.cmd was not found next to this launcher.
+  echo Download it from the latest GatorGuide release or clone the full repo.
   exit /b 1
 )
-
-echo Git was not found. Installing Git with winget...
-winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements
-if errorlevel 1 (
-  echo Git installation failed.
-  exit /b 1
-)
-
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
-where git >nul 2>&1
-if errorlevel 1 (
-  echo Git was installed, but this terminal cannot find it yet.
-  echo Close this window and run add-or-remove-resources.bat again.
-  exit /b 1
-)
-
-echo Git finished installing successfully.
-exit /b 0
+call "%TOOLCHAIN_HELPER%" %*
+exit /b %ERRORLEVEL%

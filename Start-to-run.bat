@@ -2,6 +2,7 @@
 setlocal EnableExtensions EnableDelayedExpansion
 
 set "ROOT_DIR=%~dp0"
+set "TOOLCHAIN_HELPER=%ROOT_DIR%windows-toolchain.cmd"
 set "APP_DIR=%ROOT_DIR%source"
 set "REPO_DIR_NAME=GatorGuide"
 set "REPO_URL=https://github.com/MarsLuay/GatorGuide.git"
@@ -9,6 +10,8 @@ set "EXPO_PORT=8081"
 set "EXPO_URL=http://127.0.0.1:%EXPO_PORT%"
 
 echo Preparing Gator Guide for launch...
+call :call_toolchain :bootstrap
+if errorlevel 1 exit /b 1
 call :choose_startup_mode
 if errorlevel 1 exit /b 1
 
@@ -82,7 +85,7 @@ echo Normal startup selected.
 exit /b 0
 
 :open_browser_when_expo_ready
-start "" powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "$deadline=(Get-Date).AddMinutes(2); while((Get-Date) -lt $deadline){ try { $client = New-Object System.Net.Sockets.TcpClient; $async = $client.BeginConnect('127.0.0.1', %EXPO_PORT%, $null, $null); if($async.AsyncWaitHandle.WaitOne(1000, $false) -and $client.Connected){ $client.EndConnect($async); $client.Close(); Start-Process '%EXPO_URL%'; exit 0 } $client.Close() } catch {} Start-Sleep -Seconds 1 } exit 0" >nul 2>&1
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "$deadline=(Get-Date).AddMinutes(2); while((Get-Date) -lt $deadline){ try { $client = New-Object System.Net.Sockets.TcpClient; $async = $client.BeginConnect('127.0.0.1', %EXPO_PORT%, $null, $null); if($async.AsyncWaitHandle.WaitOne(1000, $false) -and $client.Connected){ $client.EndConnect($async); $client.Close(); Start-Process '%EXPO_URL%'; exit 0 } $client.Close() } catch {} Start-Sleep -Seconds 1 } exit 0" >nul 2>&1
 exit /b 0
 
 :locate_or_clone_repo
@@ -121,88 +124,21 @@ echo Repo cloned successfully.
 exit /b 0
 
 :ensure_git
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
-where git >nul 2>&1
-if not errorlevel 1 (
-  echo Git is already installed.
-  exit /b 0
-)
-
-where winget >nul 2>&1
-if errorlevel 1 (
-  echo Git is missing and winget is not available on this PC.
-  echo Install Git from https://git-scm.com/downloads and run this file again.
-  exit /b 1
-)
-
-echo Git was not found. Installing Git with winget...
-winget install --id Git.Git -e --accept-package-agreements --accept-source-agreements
-if errorlevel 1 (
-  echo Git installation failed.
-  exit /b 1
-)
-
-set "PATH=%ProgramFiles%\Git\cmd;%ProgramFiles(x86)%\Git\cmd;%LocalAppData%\Programs\Git\cmd;%PATH%"
-where git >nul 2>&1
-if errorlevel 1 (
-  echo Git was installed, but this terminal cannot find it yet.
-  echo Close this window and run Start-to-run.bat again.
-  exit /b 1
-)
-
-echo Git finished installing successfully.
-exit /b 0
+call :call_toolchain :ensure_git
+exit /b %ERRORLEVEL%
 
 :ensure_node_toolchain
-set "PATH=%ProgramFiles%\nodejs;%LocalAppData%\Programs\nodejs;%PATH%"
-where node >nul 2>&1
-if errorlevel 1 goto install_node
-where npm >nul 2>&1
-if errorlevel 1 goto install_node
-where npx >nul 2>&1
-if errorlevel 1 goto install_node
-echo Node.js is already installed.
-exit /b 0
+call :call_toolchain :ensure_node
+exit /b %ERRORLEVEL%
 
-:install_node
-where winget >nul 2>&1
-if errorlevel 1 (
-  echo Node.js is missing and winget is not available on this PC.
-  echo Install Node.js LTS from https://nodejs.org/ and run this file again.
+:call_toolchain
+if not exist "%TOOLCHAIN_HELPER%" (
+  echo windows-toolchain.cmd was not found next to this launcher.
+  echo Download it from the latest GatorGuide release or clone the full repo.
   exit /b 1
 )
-
-echo Node.js was not found. Installing Node.js LTS with winget...
-winget install --id OpenJS.NodeJS.LTS -e --accept-package-agreements --accept-source-agreements
-if errorlevel 1 (
-  echo Node.js installation failed.
-  exit /b 1
-)
-
-set "PATH=%ProgramFiles%\nodejs;%LocalAppData%\Programs\nodejs;%PATH%"
-where node >nul 2>&1
-if errorlevel 1 (
-  echo Node.js was installed, but this terminal cannot find it yet.
-  echo Close this window and run Start-to-run.bat again.
-  exit /b 1
-)
-
-where npm >nul 2>&1
-if errorlevel 1 (
-  echo npm is still unavailable after installing Node.js.
-  echo Close this window and run Start-to-run.bat again.
-  exit /b 1
-)
-
-where npx >nul 2>&1
-if errorlevel 1 (
-  echo npx is still unavailable after installing Node.js.
-  echo Close this window and run Start-to-run.bat again.
-  exit /b 1
-)
-
-echo Node.js finished installing successfully.
-exit /b 0
+call "%TOOLCHAIN_HELPER%" %*
+exit /b %ERRORLEVEL%
 
 :ensure_env_file
 if exist "%APP_DIR%\.env" (

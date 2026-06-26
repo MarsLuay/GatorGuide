@@ -19,6 +19,35 @@ APP_DIR="$ROOT_DIR/source"
 PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
 export PATH
 
+tool_available() {
+  if command -v "$1" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  case "$1" in
+    git)
+      for candidate in /usr/bin/git /usr/local/bin/git /opt/homebrew/bin/git; do
+        if [ -x "$candidate" ]; then
+          PATH="$(dirname "$candidate"):$PATH"
+          export PATH
+          return 0
+        fi
+      done
+      ;;
+    node|npm|npx)
+      for candidate in "/usr/bin/$1" "/usr/local/bin/$1" "/opt/homebrew/bin/$1"; do
+        if [ -x "$candidate" ]; then
+          PATH="$(dirname "$candidate"):$PATH"
+          export PATH
+          return 0
+        fi
+      done
+      ;;
+  esac
+
+  return 1
+}
+
 log() {
   printf '%s %s\n' "$LOG_PREFIX" "$*"
 }
@@ -169,7 +198,7 @@ locate_or_clone_repo() {
 }
 
 ensure_git() {
-  if command_exists git; then
+  if tool_available git; then
     log "Git is already installed."
     return
   fi
@@ -178,7 +207,7 @@ ensure_git() {
 }
 
 ensure_node_toolchain() {
-  if command_exists node && command_exists npm && command_exists npx; then
+  if tool_available node && tool_available npm && tool_available npx; then
     log "Node.js is already installed."
     return
   fi
