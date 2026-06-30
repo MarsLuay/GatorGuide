@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "gatorguide",
+    "privacy": "https://gatorguide.firebaseapp.com/privacy",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

@@ -111,7 +111,7 @@
           {
             "title": "Unofficial Transcript",
             "description": "Open the ctcLink unofficial transcript request page to view or download your unofficial academic transcript.",
-            "url": "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL",
+            "url": "https://csprd.ctclink.us/psc/csprd/EMPLOYEE/SA/c/PORTAL_ADMIN.PTSF_GBLSRCH_FLUID.GBL?SEARCH_GROUP=PTPORTALREGISTRY&SEARCH_TEXT=unofficial%20transcript&SEARCH_TYPE=BASIC",
             "tags": [
               "transcript",
               "unofficial transcript",

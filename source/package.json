@@ -116,11 +116,11 @@
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-google-signin/google-signin": "^16.1.2",
-    "@react-navigation/bottom-tabs": "^7.4.0",
-    "@react-navigation/elements": "^2.6.3",
-    "@react-navigation/native": "^7.1.8",
+    "@react-navigation/bottom-tabs": "^7.18.3",
+    "@react-navigation/elements": "^2.9.26",
+    "@react-navigation/native": "^7.3.4",
     "@vercel/analytics": "^2.0.1",
-    "expo": "~54.0.34",
+    "expo": "~54.0.35",
     "expo-asset": "~12.0.12",
     "expo-audio": "^1.1.1",
     "expo-auth-session": "~7.0.11",
@@ -128,19 +128,19 @@
     "expo-clipboard": "~8.0.8",
     "expo-constants": "~18.0.13",
     "expo-document-picker": "^14.0.8",
-    "expo-file-system": "^19.0.21",
-    "expo-font": "~14.0.11",
+    "expo-file-system": "~19.0.23",
+    "expo-font": "~14.0.12",
     "expo-haptics": "~15.0.8",
     "expo-image-picker": "~17.0.11",
     "expo-linear-gradient": "~15.0.8",
     "expo-linking": "~8.0.12",
     "expo-mail-composer": "~15.0.8",
     "expo-notifications": "~0.32.17",
-    "expo-router": "~6.0.22",
+    "expo-router": "~6.0.24",
     "expo-sharing": "^14.0.8",
     "expo-splash-screen": "~31.0.13",
     "expo-system-ui": "~6.0.9",
-    "expo-updates": "~29.0.17",
+    "expo-updates": "~29.0.18",
     "expo-web-browser": "~15.0.11",
     "firebase": "^12.9.0",
     "nativewind": "^4.2.1",
@@ -176,6 +176,12 @@
   },
   "overrides": {
     "basic-ftp": "5.3.1",
+    "@google-cloud/pubsub": {
+      "@opentelemetry/core": "2.8.0"
+    },
+    "@istanbuljs/load-nyc-config": {
+      "js-yaml": "4.3.0"
+    },
     "@expo/cli": {
       "picomatch": "3.0.2"
     },
@@ -185,10 +191,11 @@
     "fast-uri": "3.1.2",
     "hono": "4.12.25",
     "ip-address": "10.1.1",
+    "js-yaml": "4.3.0",
     "lodash": "4.18.1",
     "node-forge": "1.4.0",
     "postcss": "8.5.10",
-    "protobufjs": "7.5.8",
+    "protobufjs": "7.6.4",
     "qs": "6.15.2",
     "uuid": "14.0.0",
     "chokidar": {
@@ -227,5 +234,6 @@
     },
     "yaml": "2.8.3"
   },
-  "private": true
+  "private": true,
+  "description": "This folder holds the app source: pages, settings, translations, services, planner tooling, and platform setup."
 }

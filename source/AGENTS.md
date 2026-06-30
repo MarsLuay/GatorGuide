@@ -147,3 +147,7 @@ When touching app behavior:
 - Keep theme behavior consistent across `light`, `dark`, `green`, and `system`.
 - Use `SUPPORT_EMAIL`, `SUPPORT_MAILTO`, and `APP_VERSION` instead of duplicating values.
 - Run `npm run lint` and `npx tsc --noEmit` for broad app changes.
+
+## Code analysis — wont-fix
+
+- **Security-scan** react-native, babel-jest, @jest/transform, babel-plugin-istanbul, @istanbuljs/load-nyc-config, js-yaml; Expo SDK 54 currently pins React Native 0.81.x, and the remaining advisories live in React Native's published Jest/Istanbul toolchain rather than first-party app/runtime code. Gator Guide already applied the in-SDK patch updates plus transitive overrides that clear the Firebase/OpenTelemetry audit chain; removing these last findings requires a coordinated Expo/React Native major upgrade.

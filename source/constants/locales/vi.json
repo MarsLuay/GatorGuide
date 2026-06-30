@@ -1147,6 +1147,8 @@
   },
   "terms": {
     "description": "Sử dụng Gator Guide một cách có trách nhiệm, bảo vệ tài khoản của bạn và xác minh các quyết định quan trọng của trường bằng các nguồn chính thức.",
+    "governingLawBody": "These Terms are governed by the laws of the State of Washington, USA. Disputes should first be raised through in-app support; unresolved disputes may be brought in courts located in King County, Washington, unless applicable law requires otherwise.",
+    "governingLawTitle": "Governing law",
     "note": "Tiếp tục sử dụng Gator Guide có nghĩa là bạn chấp nhận Điều khoản hiện tại.",
     "planningOnlyBody": "Gator Guide giúp tổ chức lập kế hoạch chuyển tiếp nhưng không đảm bảo việc tuyển sinh, học bổng, thời hạn hoặc yêu cầu.",
     "planningOnlyTitle": "Chỉ lập kế hoạch",

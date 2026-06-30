@@ -2,6 +2,7 @@ import { httpsCallable } from "firebase/functions";
 import { API_CONFIG } from "@/services/app/config";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { functionsClient } from "@/services/firebase/firebase";
+import { withPromiseTimeout } from "@/services/network/promise-timeout";
 
 type OpportunityGatewayBaseResponse = {
   ok: boolean;
@@ -110,24 +111,6 @@ function getErrorString(value: unknown, fallback: string) {
 }
 
 class OpportunityGatewayService {
-  private withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      const timeoutId = setTimeout(() => {
-        reject(new OpportunityGatewayError("Opportunity gateway request timed out."));
-      }, timeoutMs);
-
-      promise
-        .then((value) => {
-          clearTimeout(timeoutId);
-          resolve(value);
-        })
-        .catch((error) => {
-          clearTimeout(timeoutId);
-          reject(error);
-        });
-    });
-  }
-
   private normalizeError(error: unknown): OpportunityGatewayError {
     if (error instanceof OpportunityGatewayError) return error;
     const record = isOpportunityGatewayErrorRecord(error) ? error : null;
@@ -153,9 +136,10 @@ class OpportunityGatewayService {
         functionsClient,
         API_CONFIG.opportunities.gatewayFunctionName
       );
-      return await this.withTimeout(
+      return await withPromiseTimeout(
         callable(payload).then((response) => response.data),
-        API_CONFIG.opportunities.timeoutMs
+        API_CONFIG.opportunities.timeoutMs,
+        () => new OpportunityGatewayError("Opportunity gateway request timed out.")
       );
     } catch (error) {
       const normalized = this.normalizeError(error);

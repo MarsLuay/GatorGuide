@@ -48,7 +48,7 @@ function WebAppStartupScreen() {
           </g>
         </svg>
 
-        <p className="gg-app-loading__text">{t("startup.loadingGatorGuide")}</p>
+        <h1 className="gg-app-loading__text">{t("startup.loadingGatorGuide")}</h1>
       </div>
     </div>
   );

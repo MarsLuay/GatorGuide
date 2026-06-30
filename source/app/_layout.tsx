@@ -144,6 +144,11 @@ function RootLayoutContent() {
   const [DevModeComponent, setDevModeComponent] = useState<ComponentType | null>(null);
 
   useEffect(() => {
+    if (Platform.OS !== "web" || typeof document === "undefined") return;
+    document.title = "Gator Guide";
+  }, []);
+
+  useEffect(() => {
     async function prepare() {
       try {
         const hasSeenStartup = await localStorageService.getItem(HAS_SEEN_STARTUP_KEY);

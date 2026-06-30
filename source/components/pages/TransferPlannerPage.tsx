@@ -194,7 +194,7 @@ export default function TransferPlannerPage({
             collegeId={selectedCollegeId}
             transcriptDocument={activeTranscriptDocument}
             isAnalyzing={isAnalyzingTranscript}
-            errorMessage={transcriptError}
+            transcriptIssueDetail={transcriptError}
             studentEvaluationReport={studentEvaluationReport}
             studentCourseEvaluations={studentCourseEvaluations}
             plan={plan}

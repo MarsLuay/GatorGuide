@@ -284,7 +284,7 @@ export function TranscriptSummaryCard({
   collegeId,
   transcriptDocument,
   isAnalyzing,
-  errorMessage,
+  transcriptIssueDetail,
   studentEvaluationReport,
   studentCourseEvaluations,
   plan,
@@ -336,7 +336,7 @@ export function TranscriptSummaryCard({
   collegeId: PlannerCollegeId;
   transcriptDocument: TranscriptDocument | null;
   isAnalyzing: boolean;
-  errorMessage: string | null;
+  transcriptIssueDetail: string | null;
   studentEvaluationReport: TransferPlannerStudentEvaluationReport | null;
   studentCourseEvaluations: TransferPlannerStudentCourseEvaluation[];
   plan: TransferPlannerResolvedMajorPlan | null;
@@ -608,12 +608,21 @@ export function TranscriptSummaryCard({
         </View>
       ) : null}
 
-      {errorMessage ? (
-        <View className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+      {transcriptIssueDetail ? (
+        <View
+          className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20"
+          accessibilityRole="alert"
+          accessibilityLiveRegion="polite"
+        >
           <Text className="text-amber-500 font-semibold">
             {t("transferPlanner.transcriptNeedsAnotherTry")}
           </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>{errorMessage}</Text>
+          <Text
+            className={`${secondaryTextClass} text-sm mt-1`}
+            accessibilityLabel={transcriptIssueDetail}
+          >
+            {transcriptIssueDetail}
+          </Text>
           <TouchIconButton
             onPress={() => void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL)}
             accessibilityRole="link"

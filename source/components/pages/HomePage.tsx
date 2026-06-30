@@ -14,6 +14,7 @@ import {
   AnimatedCardPressable,
   AnimatedChipPressable,
 } from "@/components/ui/AnimatedPressables";
+import { PageHeading } from "@/components/ui/PageHeading";
 import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import {
   deadlineCalendarService,
@@ -807,9 +808,9 @@ export default function HomePage() {
           }}
         >
           <View className="mb-6" style={isDesktopHome ? { maxWidth: 720 } : undefined}>
-            <Text className={`text-2xl ${textClass} mb-1`}>
+            <PageHeading className={`text-2xl ${textClass} mb-1`}>
               {t("home.welcomeBack").replace("{name}", capitalizedName)}
-            </Text>
+            </PageHeading>
             <Text className={secondaryTextClass}>{t("home.trackApplicationJourney")}</Text>
           </View>
 
@@ -905,4 +906,3 @@ export default function HomePage() {
     </ScreenBackground>
   );
 }
-

@@ -1,0 +1,5 @@
+{
+  "clone": {
+    "excludeGlobs": ["functions/fetch-contract.cjs"]
+  }
+}

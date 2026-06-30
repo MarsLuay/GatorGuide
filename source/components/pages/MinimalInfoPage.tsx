@@ -85,7 +85,11 @@ export function MinimalInfoPage({
             <View className="items-center" style={{ gap: 14 }}>
               <GatorGuideMark size={isTablet ? 92 : 78} darkMode={isDark} />
               <View style={{ gap: 8 }}>
-                <Text className={`${theme.textClass} text-center font-semibold`} style={{ fontSize: isTablet ? 28 : 24, lineHeight: isTablet ? 34 : 30 }}>
+                <Text
+                  accessibilityRole="header"
+                  className={`${theme.textClass} text-center font-semibold`}
+                  style={{ fontSize: isTablet ? 28 : 24, lineHeight: isTablet ? 34 : 30 }}
+                >
                   {title}
                 </Text>
                 <Text className={`${theme.secondaryTextClass} text-center`} style={{ lineHeight: 22 }}>

@@ -3,6 +3,7 @@ import { httpsCallable } from "firebase/functions";
 import { API_CONFIG } from "@/services/app/config";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { functionsClient } from "@/services/firebase/firebase";
+import { withPromiseTimeout } from "@/services/network/promise-timeout";
 import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
 
 type AiGatewayQuota = {
@@ -108,24 +109,6 @@ class AiGatewayService {
     return this.clientIdPromise;
   }
 
-  private withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      const timeoutId = setTimeout(() => {
-        reject(new AiGatewayError("timeout", "AI gateway request timed out."));
-      }, timeoutMs);
-
-      promise
-        .then((value) => {
-          clearTimeout(timeoutId);
-          resolve(value);
-        })
-        .catch((error) => {
-          clearTimeout(timeoutId);
-          reject(error);
-        });
-    });
-  }
-
   private normalizeError(error: unknown): AiGatewayError {
     if (error instanceof AiGatewayError) return error;
 
@@ -162,12 +145,13 @@ class AiGatewayService {
         functionsClient,
         API_CONFIG.ai.gatewayFunctionName
       );
-      const result = await this.withTimeout(
+      const result = await withPromiseTimeout(
         callable({
           clientInstanceId,
           ...payload,
         }).then((response) => response.data),
-        API_CONFIG.ai.timeoutMs
+        API_CONFIG.ai.timeoutMs,
+        () => new AiGatewayError("timeout", "AI gateway request timed out.")
       );
       return result;
     } catch (error) {

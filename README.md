@@ -120,3 +120,8 @@ To update all course information in course planner, double-click the course plan
 - Linux: `Course-Planner-Updater.desktop`
 
 There will be a few options that will walk you through on what to update and how it should do it. After waiting around 20 minutes (hopefully), you are free to commit and push the updates so the new information is added to the repo.
+
+## Code analysis — wont-fix
+
+- **Admin MFA (static scan):** Opportunity-admin access is gated in Firebase; MFA enrollment is configured in Firebase Console / Identity Platform, not in app source.
+- **Security-scan** react-native, babel-jest, @jest/transform, babel-plugin-istanbul, @istanbuljs/load-nyc-config, js-yaml; Expo SDK 54 currently pins React Native 0.81.x, and the remaining advisories live in React Native's published Jest/Istanbul toolchain rather than first-party app/runtime code. Gator Guide already applied the in-SDK patch updates plus transitive overrides that clear the Firebase/OpenTelemetry audit chain; removing these last findings requires a coordinated Expo/React Native major upgrade.

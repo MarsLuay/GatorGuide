@@ -1,12 +1,10 @@
 import type { Opportunity } from "@/constants/opportunities";
-
-type RawOpportunityCatalog = Opportunity[] | { default?: Opportunity[] };
+import { unwrapJsonArrayModule } from "@/constants/json-array-module";
 
 function loadStarterOpportunityData() {
-  const rawCatalog = require("../data/starter-opportunities.json") as RawOpportunityCatalog;
-  if (Array.isArray(rawCatalog)) return rawCatalog;
-  if (Array.isArray(rawCatalog?.default)) return rawCatalog.default;
-  return [];
+  return unwrapJsonArrayModule(
+    require("../data/starter-opportunities.json") as Opportunity[]
+  );
 }
 
 export const STARTER_OPPORTUNITIES: Opportunity[] = loadStarterOpportunityData();

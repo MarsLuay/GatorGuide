@@ -1,4 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { unwrapJsonArrayModule } from "@/constants/json-array-module";
 
 export type ResourceCatalogItem = {
   title?: string;
@@ -26,13 +27,10 @@ export type ResourceCatalogSection = {
   subsections?: ResourceCatalogSubsection[];
 };
 
-type RawResourceCatalog = ResourceCatalogSection[] | { default?: ResourceCatalogSection[] };
-
 function loadResourceCatalog() {
-  const rawCatalog = require("../data/resource-catalog.json") as RawResourceCatalog;
-  if (Array.isArray(rawCatalog)) return rawCatalog;
-  if (Array.isArray(rawCatalog?.default)) return rawCatalog.default;
-  return [];
+  return unwrapJsonArrayModule(
+    require("../data/resource-catalog.json") as ResourceCatalogSection[]
+  );
 }
 
 export const RESOURCE_CATALOG: ResourceCatalogSection[] = loadResourceCatalog();

@@ -19,6 +19,11 @@ export default function TermsOfServicePage() {
       title: t("terms.yourAccountTitle"),
       body: t("terms.yourAccountBody"),
     },
+    {
+      icon: "gavel" as const,
+      title: t("terms.governingLawTitle"),
+      body: t("terms.governingLawBody"),
+    },
   ];
 
   return (

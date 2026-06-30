@@ -293,7 +293,7 @@ test("DeadlineCalendarPage renders opportunity deadlines and opens resources", a
       {
         college: {},
         computedDueAt: null,
-        dueAt: "2026-06-10T17:00:00.000Z",
+        dueAt: "2026-07-05T17:00:00.000Z",
         externalUrl: "",
         isDone: false,
         opportunityId: "promise-scholarship",
@@ -306,7 +306,7 @@ test("DeadlineCalendarPage renders opportunity deadlines and opens resources", a
       {
         college: {},
         computedDueAt: null,
-        dueAt: "2026-07-15T17:00:00.000Z",
+        dueAt: "2026-08-15T17:00:00.000Z",
         externalUrl: "",
         isDone: false,
         opportunityId: "summer-bridge-internship",

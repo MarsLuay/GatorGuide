@@ -600,11 +600,8 @@ export function useTranscriptPlannerState({
         source: "TransferPlannerPage",
       });
 
-      if (Platform.OS === "web" && typeof window !== "undefined" && typeof window.alert === "function") {
-        window.alert(t("transferPlanner.removeFailedBody"));
-      } else {
-        Alert.alert(t("transferPlanner.removeFailedTitle"), t("transferPlanner.removeFailedBody"));
-      }
+      setTranscriptError(t("transferPlanner.removeFailedBody"));
+      Alert.alert(t("transferPlanner.removeFailedTitle"), t("transferPlanner.removeFailedBody"));
     }
   }, [patchUserLocally, setQuestionnaireAnswers, t, updateUser, user?.uid]);
 

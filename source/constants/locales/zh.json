@@ -1147,6 +1147,8 @@
   },
   "terms": {
     "description": "负责任地使用 Gator Guide，保护您的帐户，并通过官方来源验证重要的学校决定。",
+    "governingLawBody": "These Terms are governed by the laws of the State of Washington, USA. Disputes should first be raised through in-app support; unresolved disputes may be brought in courts located in King County, Washington, unless applicable law requires otherwise.",
+    "governingLawTitle": "Governing law",
     "note": "继续使用 Gator Guide 表示您接受当前条款。",
     "planningOnlyBody": "Gator Guide 帮助组织转学计划，但不保证录取、奖学金、截止日期或要求。",
     "planningOnlyTitle": "仅规划",

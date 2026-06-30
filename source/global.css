@@ -147,3 +147,19 @@ body {
   font-weight: 600;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
+@media (max-width: 640px) {
+  .gg-app-loading__content {
+    gap: 12px;
+    padding: 32px 18px;
+  }
+
+  .gg-app-loading__mark {
+    width: 80px;
+    height: 80px;
+  }
+
+  .gg-app-loading__text {
+    font-size: 15px;
+  }
+}

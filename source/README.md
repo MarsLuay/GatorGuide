@@ -112,3 +112,7 @@ The Green River discovery pass also writes the current public-material snapshot 
 ```text
 source\.tmp\transfer-planner-grc-public-materials.md
 ```
+
+## Code analysis — wont-fix
+
+- **Graph-analysis:** `constants/transfer-planner-source/course-metadata.generated.ts` intentionally references `course-metadata.ts` for shared runtime/types in the generated planner metadata loader. The analyzer reports that generated import cycle, but the planner contract is verified by the source-backed maintenance checks above and this cycle is an accepted artifact of the codegen boundary.

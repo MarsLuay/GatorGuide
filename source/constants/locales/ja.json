@@ -1147,6 +1147,8 @@
   },
   "terms": {
     "description": "Gator Guide を責任を持って使用し、アカウントを保護し、学校の重要な決定を公式情報源で確認してください。",
+    "governingLawBody": "These Terms are governed by the laws of the State of Washington, USA. Disputes should first be raised through in-app support; unresolved disputes may be brought in courts located in King County, Washington, unless applicable law requires otherwise.",
+    "governingLawTitle": "Governing law",
     "note": "Gator Guide を引き続き使用すると、現在の規約に同意したことになります。",
     "planningOnlyBody": "Gator Guide は転校計画を立てるのに役立ちますが、入学、奨学金、締め切り、要件を保証するものではありません。",
     "planningOnlyTitle": "計画のみ",

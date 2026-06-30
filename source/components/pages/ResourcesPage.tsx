@@ -21,6 +21,7 @@ import {
 } from "@/components/pages/resources/useResourcesPageModel";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedCardPressable, AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { PageHeading } from "@/components/ui/PageHeading";
 import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
@@ -453,9 +454,9 @@ export default function ResourcesPage() {
           }}
         >
           <View style={isDesktop ? { maxWidth: 720 } : undefined}>
-            <Text className={`text-2xl ${textClass} mb-1`}>
+            <PageHeading className={`text-2xl ${textClass} mb-1`}>
               {t("resources.resources")}
-            </Text>
+            </PageHeading>
             <Text className={`${secondaryTextClass} mb-6`}>
               {t("resources.resourcesDescription")}
             </Text>

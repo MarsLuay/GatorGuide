@@ -16,6 +16,7 @@ expo-env.d.ts
 .vscode/
 process.env
 *.env
+**/.code-analysis/
 source/.tmp/
 source/dist/
 source/.tmp/transfer-planner-catalog-snapshots/
