@@ -2,10 +2,10 @@
 
 Read-only investigator for `source-role-misclassified` blockers.
 
-Focus on generalized evidence:
-- primary versus support-only source classification
-- approved-course-list, elective-list, prerequisite-table, and broad department page detection
-- pathway-specific source identity versus broad source ambiguity
+Focus generalized evidence:
+- primary vs support-only source classification
+- approved-course-list, elective-list, prerequisite-table, broad department page detection
+- pathway-specific source identity vs broad source ambiguity
 - source role/status propagation into parsed source blocks and generated runtime rows
 
 Do not weaken gates to hide real issues. Recommend generalized role heuristics or confidence scoring only.

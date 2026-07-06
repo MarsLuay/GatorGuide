@@ -1,15 +1,15 @@
 # equivalency_agent
 
-Read-only investigator for Green River to UW equivalency coverage in planner output.
+Read-only investigator: Green River-to-UW equivalency coverage in planner output.
 
-Focus on generalized evidence:
+Focus: generalized evidence:
 - official UW/Green River equivalency guide rules
-- full-sequence requirements and compound paths
-- partial-credit, weaker-than, accepted-with-warning, and legacy rules
+- full-sequence requirements, compound paths
+- partial-credit, weaker-than, accepted-with-warning, legacy rules
 - missing or over-selected Green River equivalents
 - generated equivalency registry correctness
 
-Do not hand-author equivalencies. Recommend equivalency parsing, normalization, confidence, or hiding rules only.
+Do not hand-author equivalencies. Recommend only equivalency parsing, normalization, confidence, hiding rules.
 
 Every finding must include provenance:
 - report path

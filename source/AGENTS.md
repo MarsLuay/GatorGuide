@@ -1,16 +1,16 @@
 # Source App AI Maintainer Guide
 
-This folder contains the Expo/React Native app, Firebase Functions, planner runtime, generated planner data, and planner maintenance scripts.
+This folder has Expo/React Native app, Firebase Functions, planner runtime, generated planner data, planner maintenance scripts.
 
 ## Mental Model
 
-- `app/` contains Expo Router route files. Most route files delegate to page components.
-- `components/pages/` contains page-level experiences.
-- `components/ui/` contains reusable primitives.
-- `hooks/use-app-data.tsx` owns local app state, persisted app data, profile updates, questionnaire answers, saved colleges, and account/session reconciliation.
-- `services/` contains integration and domain logic.
-- `constants/` contains app constants, generated planner data, theme tokens, routes, schema keys, and locale resources.
-- `scripts/planner/` owns planner ingestion, parsing, code generation, audits, and verification.
+- `app/` has Expo Router route files. Most route files delegate to page components.
+- `components/pages/` has page-level experiences.
+- `components/ui/` has reusable primitives.
+- `hooks/use-app-data.tsx` owns local app state, persisted app data, profile updates, questionnaire answers, saved colleges, account/session reconciliation.
+- `services/` has integration and domain logic.
+- `constants/` has app constants, generated planner data, theme tokens, routes, schema keys, locale resources.
+- `scripts/planner/` owns planner ingestion, parsing, code generation, audits, verification.
 
 ## Command Cwd
 
@@ -24,11 +24,11 @@ npm run planner:verify
 npm run planner:full:verify
 ```
 
-Do not tell users to run these from the repository root unless the command explicitly references `source`.
+Do not tell users to run these from repository root unless command explicitly references `source`.
 
 ## Generated Planner Artifacts
 
-Treat generated planner artifacts as outputs, not source of truth. Avoid opening the largest generated files unless absolutely necessary; they can swamp AI context and search results.
+Treat generated planner artifacts as outputs, not source of truth. Avoid largest generated files unless needed; they swamp AI context and search.
 
 Do not hand-edit:
 
@@ -49,7 +49,7 @@ Do not hand-edit:
 - `constants/green-river-major-options.generated.ts`
 - planner docs under `docs/planner/UW*_DEGREE_COURSES.md`
 
-Prefer editing source inputs and scripts, then regenerating:
+Edit source inputs/scripts, then regenerate:
 
 ```powershell
 npm run planner:refresh
@@ -57,7 +57,7 @@ npm run planner:verify
 npm run planner:full:verify
 ```
 
-Useful planner reports are written under `.tmp/reports/`, especially:
+Useful planner reports under `.tmp/reports/`, especially:
 
 - `.tmp/reports/transfer-planner-maintenance-summary.md`
 - `.tmp/reports/transfer-planner-hardening-report.md`
@@ -108,7 +108,7 @@ Useful planner reports are written under `.tmp/reports/`, especially:
 
 ## Large-File Warning
 
-These files are human-maintained but large enough that AI agents should inspect targeted symbols with `rg` before opening broad chunks:
+These files human-maintained but large. Inspect targeted symbols with `rg` before broad chunks:
 
 - `services/planning/transfer-planner/runtime.ts`
 - `services/ai/ai.service.ts`
@@ -127,27 +127,27 @@ rg -n "^test\\(" scripts/planner/transfer-planner.service.test.ts
 
 ## Planner Change Checklist
 
-When touching planner logic or source data:
+When touching planner logic/source data:
 
-- Identify whether the real source is a script, a manual override file, or generated output.
-- Avoid editing generated output directly.
-- Run the narrowest relevant planner test first.
-- Run `npm run planner:verify` before considering the change complete.
-- If generated files changed, summarize which script produced them and which report confirms the result.
+- Identify real source: script, manual override file, or generated output.
+- Do not edit generated output directly.
+- Run narrowest relevant planner test first.
+- Run `npm run planner:verify` before done.
+- If generated files changed, summarize producing script and confirming report.
 
 ## App Change Checklist
 
 When touching app behavior:
 
-- Keep route constants and tab aliases in sync.
+- Keep route constants and tab aliases synced.
 - Keep storage keys centralized where possible.
-- For planner questionnaire state, add or rename keys only in `constants/planner-storage.ts` and import them elsewhere.
+- For planner questionnaire state, add/rename keys only in `constants/planner-storage.ts`; import elsewhere.
 - Guard persisted state with `isHydrated`.
-- Preserve guest-mode and signed-in behavior unless the request changes account behavior.
+- Preserve guest-mode and signed-in behavior unless request changes account behavior.
 - Keep theme behavior consistent across `light`, `dark`, `green`, and `system`.
 - Use `SUPPORT_EMAIL`, `SUPPORT_MAILTO`, and `APP_VERSION` instead of duplicating values.
 - Run `npm run lint` and `npx tsc --noEmit` for broad app changes.
 
 ## Code analysis — wont-fix
 
-- **Security-scan** react-native, babel-jest, @jest/transform, babel-plugin-istanbul, @istanbuljs/load-nyc-config, js-yaml; Expo SDK 54 currently pins React Native 0.81.x, and the remaining advisories live in React Native's published Jest/Istanbul toolchain rather than first-party app/runtime code. Gator Guide already applied the in-SDK patch updates plus transitive overrides that clear the Firebase/OpenTelemetry audit chain; removing these last findings requires a coordinated Expo/React Native major upgrade.
+- **Security-scan** react-native, babel-jest, @jest/transform, babel-plugin-istanbul, @istanbuljs/load-nyc-config, js-yaml; Expo SDK 54 pins React Native 0.81.x, and remaining advisories live in React Native published Jest/Istanbul toolchain, not first-party app/runtime code. Gator Guide applied in-SDK patch updates plus transitive overrides that clear Firebase/OpenTelemetry audit chain; clearing last findings needs coordinated Expo/React Native major upgrade.

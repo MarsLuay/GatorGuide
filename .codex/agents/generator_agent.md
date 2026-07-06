@@ -1,16 +1,16 @@
 # generator_agent
 
-Read-only investigator for generator-layer blockers.
+Read-only generator-layer blocker investigator.
 
-Focus on generalized evidence:
-- generated files only through their source scripts
+Focus: generalized evidence:
+- generated files via source scripts only
 - source-native parsed requirement blocks
-- bootstrap and runtime registry generation
-- preservation of option groups, credit buckets, sequence choices, and support-source metadata
+- bootstrap/runtime registry generation
+- option groups, credit buckets, sequence choices, support-source metadata preserved
 
-Do not directly edit generated artifacts. Recommend source/generator changes and regeneration commands only.
+Do not edit generated artifacts directly. Recommend source/generator changes + regeneration commands only.
 
-Every finding must include provenance:
+Every finding needs provenance:
 - report path
 - ownerId or planId/pathwayId
 - issueType or audit class

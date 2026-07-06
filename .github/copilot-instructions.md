@@ -1,20 +1,20 @@
 # GatorGuide - AI Coding Guide
 
-Purpose: help an AI coding agent become productive quickly in this React Native + Expo repo and avoid behavior regressions while making small product changes.
+Purpose: make AI coding agent productive fast in this React Native + Expo repo; avoid regressions during small product changes.
 
-The app lives in `source/`. For deeper agent instructions, read `AGENTS.md` at the repository root and `source/AGENTS.md`.
+App in `source/`. Deeper agent rules: root `AGENTS.md`, `source/AGENTS.md`.
 
 ## Big Picture
 
-- React Native Expo app using file-based routing under [source/app/](../source/app/).
-- Page-level UI lives mostly in [source/components/pages/](../source/components/pages/).
-- Global providers are composed in [source/app/_layout.tsx](../source/app/_layout.tsx) in this order: `SafeAreaProvider`, `AppThemeProvider`, `AppLanguageProvider`, `AppDataProvider`.
-- Services live in [source/services/](../source/services/).
-- Planner ingestion, parsing, generation, audits, and verification live in [source/scripts/planner/](../source/scripts/planner/).
+- React Native Expo app. File routing under [source/app/](../source/app/).
+- Page UI mostly in [source/components/pages/](../source/components/pages/).
+- Global providers in [source/app/_layout.tsx](../source/app/_layout.tsx), order: `SafeAreaProvider`, `AppThemeProvider`, `AppLanguageProvider`, `AppDataProvider`.
+- Services in [source/services/](../source/services/).
+- Planner ingest/parse/generate/audit/verify in [source/scripts/planner/](../source/scripts/planner/).
 
 ## Command Cwd
 
-Run normal app commands from `source/`, because [source/package.json](../source/package.json) is the package root:
+Run app commands from `source/`; [source/package.json](../source/package.json) is package root:
 
 ```powershell
 cd source
@@ -24,29 +24,29 @@ npx tsc --noEmit
 npm run start
 ```
 
-Planner verification also runs from `source/`:
+Planner verify also from `source/`:
 
 ```powershell
 npm run planner:verify
 npm run planner:full:verify
 ```
 
-Repository-root launchers such as `Start-to-run.bat` and `Course-Planner-Updater.bat` are exceptions.
+Repo-root launchers like `Start-to-run.bat` and `Course-Planner-Updater.bat` are exceptions.
 
 ## Core Conventions
 
-- Routing: add route files under `source/app/` and navigate with `expo-router` (`router.push`, `router.replace`).
-- App data: `useAppData()` in [source/hooks/use-app-data.tsx](../source/hooks/use-app-data.tsx) is the source of truth for profile and questionnaire state.
-- Hydration: guard persisted state usage with `isHydrated`.
-- Styling: prefer existing NativeWind classes and shared theme helpers (`useThemeStyles`, `useAppTheme`). Avoid introducing `StyleSheet.create` unless there is already a local pattern that uses it.
-- Services imports: follow nearby file style. Direct service imports such as `@/services/ai/ai.service` are common in this repo.
-- i18n: use `useAppLanguage()` and `t("key")`; translation strings used by the app live in [source/services/app/translations.ts](../source/services/app/translations.ts), with locale references under [source/constants/locales/](../source/constants/locales/).
+- Routing: add route files under `source/app/`; navigate with `expo-router` (`router.push`, `router.replace`).
+- App data: `useAppData()` in [source/hooks/use-app-data.tsx](../source/hooks/use-app-data.tsx) owns profile/questionnaire state.
+- Hydration: guard persisted state use with `isHydrated`.
+- Styling: prefer existing NativeWind classes and theme helpers (`useThemeStyles`, `useAppTheme`). Avoid new `StyleSheet.create` unless local pattern exists.
+- Service imports: follow nearby style. Direct imports like `@/services/ai/ai.service` common.
+- i18n: use `useAppLanguage()` and `t("key")`; app strings in [source/services/app/translations.ts](../source/services/app/translations.ts), locale refs in [source/constants/locales/](../source/constants/locales/).
 
 ## Generated Planner Guardrails
 
-Do not hand-edit generated planner artifacts unless the user explicitly asks for an emergency surgical patch. Regenerate them through planner scripts.
+Do not hand-edit generated planner artifacts unless user asks emergency surgical patch. Regenerate via planner scripts.
 
-Generated or generated-like outputs include:
+Generated/generated-like outputs:
 
 - `source/constants/transfer-planner-source/*.generated.ts`
 - `source/constants/transfer-planner-source/generated-major-plans.ts`
@@ -57,7 +57,7 @@ Generated or generated-like outputs include:
 - `source/docs/planner/UWB_DEGREE_COURSES.md`
 - `source/docs/planner/UWT_DEGREE_COURSES.md`
 
-For planner work, inspect reports under `source/.tmp/reports/` and prefer these commands:
+For planner work, inspect `source/.tmp/reports/`; prefer:
 
 ```powershell
 npm run planner:refresh
@@ -67,18 +67,18 @@ npm run planner:full:verify
 
 ## Theme And Visual Guardrails
 
-- Theme values are `light`, `dark`, `green`, and `system` in [source/hooks/use-app-theme.tsx](../source/hooks/use-app-theme.tsx).
-- `resolvedTheme` is the correct branch point for UI styling.
-- Shared surface classes and colors come from [source/constants/theme-tokens.ts](../source/constants/theme-tokens.ts) through [source/hooks/use-theme-styles.ts](../source/hooks/use-theme-styles.ts).
-- Keep visual edits minimal. Do not broadly restyle the app when the request is a small theme or copy tweak.
-- Preserve the existing dark-mode look unless the user explicitly asks to change it.
+- Theme values: `light`, `dark`, `green`, `system` in [source/hooks/use-app-theme.tsx](../source/hooks/use-app-theme.tsx).
+- Use `resolvedTheme` for UI styling branches.
+- Shared surface classes/colors from [source/constants/theme-tokens.ts](../source/constants/theme-tokens.ts) via [source/hooks/use-theme-styles.ts](../source/hooks/use-theme-styles.ts).
+- Keep visual edits minimal. No broad restyle for small theme/copy tweak.
+- Preserve dark mode unless user explicitly asks change.
 
 ## Shared Constants And Sources Of Truth
 
 - Support email: [source/constants/support.ts](../source/constants/support.ts). Use `SUPPORT_EMAIL` / `SUPPORT_MAILTO`.
 - App version: [source/constants/app-version.ts](../source/constants/app-version.ts). Use `APP_VERSION`.
-- Firestore and local storage schema keys: [source/constants/schema.ts](../source/constants/schema.ts).
-- Planner questionnaire storage keys: [source/constants/planner-storage.ts](../source/constants/planner-storage.ts). Import these constants instead of duplicating planner key strings.
+- Firestore/local storage schema keys: [source/constants/schema.ts](../source/constants/schema.ts).
+- Planner questionnaire storage keys: [source/constants/planner-storage.ts](../source/constants/planner-storage.ts). Import constants; do not duplicate strings.
 - Route constants: [source/constants/routes.ts](../source/constants/routes.ts).
 - Theme persistence key: `app-theme`.
 - Language persistence key: `app-language`.
@@ -86,19 +86,19 @@ npm run planner:full:verify
 
 ## Resources Page Conventions
 
-- Curated resources are defined inline in [source/components/pages/ResourcesPage.tsx](../source/components/pages/ResourcesPage.tsx).
-- Many sections use translations, but some curated sections intentionally use plain English titles and descriptions.
-- For new resource entries, prefer official or primary-source links, concise descriptions, useful search tags, and the existing `title` / `description` / `url` / `tags` shape.
+- Curated resources inline in [source/components/pages/ResourcesPage.tsx](../source/components/pages/ResourcesPage.tsx).
+- Many sections use translations; some curated sections intentionally plain English.
+- New resources: prefer official/primary links, concise descriptions, useful tags, existing `title` / `description` / `url` / `tags` shape.
 
 ## Service Refactor Guardrails
 
 When refactoring service logic, especially [source/services/ai/ai.service.ts](../source/services/ai/ai.service.ts):
 
-- Preserve existing external behavior unless explicitly changing product logic.
-- Keep fallback chains intact.
-- Preserve user-visible metadata fields (`reason`, `score`, `breakdown`, `breakdownHuman`, `scoreText`) where currently expected by UI.
-- If consolidating duplicate code, extract helpers while preserving branch-specific nuances.
-- Prefer small focused helpers over broad rewrites of large methods.
+- Preserve external behavior unless changing product logic explicitly.
+- Keep fallback chains.
+- Preserve UI-expected metadata (`reason`, `score`, `breakdown`, `breakdownHuman`, `scoreText`).
+- When consolidating duplicate code, extract helpers while preserving branch-specific nuance.
+- Prefer small focused helpers over broad method rewrites.
 
 ## Verification Checklist
 
@@ -106,7 +106,7 @@ Run from `source/`:
 
 1. `npm run lint`
 2. `npx tsc --noEmit`
-3. If touching recommendation or scoring flow, sanity-check key codepaths in `source/services/ai/ai.service.ts` for stub mode response shape, live mode JSON parsing fallback, and in-state filtering behavior.
+3. If touching recommendation/scoring flow, sanity-check `source/services/ai/ai.service.ts`: stub mode shape, live mode JSON parse fallback, in-state filtering.
 4. If touching planner logic/data, run `npm run planner:verify`.
 
 ## High-Value Files To Inspect First

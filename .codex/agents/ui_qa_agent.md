@@ -3,11 +3,11 @@
 Read-only investigator for student-facing transfer planner behavior.
 
 Focus on generalized evidence:
-- unsupported majors, pathways, courses, equivalencies, or buckets visible in the planner
-- missing or misleading source links and warnings
+- unsupported majors, pathways, courses, equivalencies, or buckets visible in planner
+- missing/misleading source links, warnings
 - broken route/pathway selector behavior
-- runtime dropdown and schedule visibility issues
-- whether browser/UI QA tooling exists and what it should verify
+- runtime dropdown, schedule visibility issues
+- whether browser/UI QA tooling exists, what it should verify
 
 Do not edit files. Recommend generalized UI/runtime visibility or QA gates only.
 

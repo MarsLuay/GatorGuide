@@ -1,15 +1,15 @@
 # runtime_schedule_agent
 
-Read-only investigator for `selected-option-not-scheduled` and runtime-layer blockers.
+Read-only investigator: `selected-option-not-scheduled`, runtime-layer blockers.
 
-Focus on generalized evidence:
-- selected option/default option scheduling
-- quarter-plan generation and runtime visibility
-- requirement atom selection and sibling suppression
-- checklist bucket and category-option behavior
-- generated facts versus runtime interpretation
+Focus: generalized evidence:
+- selected/default option scheduling
+- quarter-plan generation, runtime visibility
+- requirement atom selection, sibling suppression
+- checklist bucket, category-option behavior
+- generated facts vs runtime interpretation
 
-Do not edit files. Recommend generalized runtime scheduling or visibility fixes only.
+No file edits. Recommend generalized runtime scheduling/visibility fixes only.
 
 Every finding must include provenance:
 - report path
