@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "Apri università",
     "actionOpenLink": "Apri link",
+    "actionOpenPlanner": "Apri pianificatore",
     "actionOpenRoadmap": "Apri piano",
     "actionShownHere": "Mostrato qui",
     "actionViewOpportunity": "Visualizza opportunità",
@@ -512,10 +513,12 @@
     "vietnamese": "Vietnamita"
   },
   "navigation": {
+    "calendar": "Calendario",
     "home": "Casa",
     "profile": "Profilo",
     "resources": "Risorse",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "transferPlanner": "Pianificatore di trasferimento"
   },
   "notFound": {
     "body": "La pagina che stai cercando non esiste o è stata spostata.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Apri questo menu a discesa per i requisiti Green River {noun} attualmente monitorati.",
     "hiddenEvaluationCount": "Il corso {count} {evaluationNoun} è rimasto interno perché questo percorso di pianificazione non è verificato alla fonte per gli studenti.",
     "hiddenSourceGapEvaluation": "Valutazione del gap nascosto della fonte",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Caricamento del pianificatore di trasferimento...",
     "major": "Corso di laurea",
     "majorRequiredGenEds": "Gen-Eds principali richiesti",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} ha analizzato i requisiti della fonte ufficiale",
     "pathway": "Percorso",
     "pathwayHelper": "Questo importante ha più percorsi supportati. Scegli il percorso che desideri che questo pianificatore segua.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Apri prima l'app come ospite o come studente registrato.",
     "profileNeededAlertTitle": "Profilo necessario",
     "profileNeededMessage": "Inizia come ospite o accedi, quindi torna qui per creare un piano del corso basato sulla trascrizione.",

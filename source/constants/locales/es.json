@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "universidad abierta",
     "actionOpenLink": "Abrir enlace",
+    "actionOpenPlanner": "Abrir planificador",
     "actionOpenRoadmap": "Plan abierto",
     "actionShownHere": "Se muestra aquí",
     "actionViewOpportunity": "Ver oportunidad",
@@ -512,10 +513,12 @@
     "vietnamese": "Vietnamita"
   },
   "navigation": {
+    "calendar": "Calendario",
     "home": "Inicio",
     "profile": "Perfil",
     "resources": "Recursos",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "transferPlanner": "Planificador de transferencias"
   },
   "notFound": {
     "body": "La página que estás buscando no existe o fue movida.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Abra este menú desplegable para ver los requisitos Green River {noun} actualmente rastreados.",
     "hiddenEvaluationCount": "{count} curso {evaluationNoun} permaneció interno porque el origen de esta ruta del planificador no está verificado para los estudiantes.",
     "hiddenSourceGapEvaluation": "Evaluación de fuentes ocultas",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Cargando planificador de transferencias...",
     "major": "Importante",
     "majorRequiredGenEds": "Principales Gen-Eds requeridos",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} analizó los requisitos de la fuente oficial",
     "pathway": "Camino",
     "pathwayHelper": "Esta especialización tiene múltiples rutas admitidas. Elija la ruta que desea que siga este planificador.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Primero abra la aplicación como invitado o estudiante registrado.",
     "profileNeededAlertTitle": "Perfil necesario",
     "profileNeededMessage": "Comience como invitado o inicie sesión, luego regrese aquí para crear un plan de curso basado en expedientes académicos.",

@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "कॉलेज खोलो",
     "actionOpenLink": "खुला लिंक",
+    "actionOpenPlanner": "प्लानर खोलें",
     "actionOpenRoadmap": "खुली योजना",
     "actionShownHere": "यहाँ दिखाया गया",
     "actionViewOpportunity": "अवसर देखें",
@@ -512,10 +513,12 @@
     "vietnamese": "वियतनामी"
   },
   "navigation": {
+    "calendar": "कैलेंडर",
     "home": "होम",
     "profile": "प्रोफ़ाइल",
     "resources": "संसाधन",
-    "settings": "सेटिंग्स"
+    "settings": "सेटिंग्स",
+    "transferPlanner": "स्थानांतरण योजनाकार"
   },
   "notFound": {
     "body": "आप जिस पृष्ठ को खोज रहे हैं वह मौजूद नहीं है या स्थानांतरित कर दिया गया है।",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "वर्तमान में ट्रैक किए गए Green River {noun} आवश्यकताओं के लिए इस ड्रॉपडाउन को खोलें।",
     "hiddenEvaluationCount": "{count} पाठ्यक्रम {evaluationNoun} आंतरिक रहा क्योंकि यह योजनाकार पथ छात्रों के लिए स्रोत-सत्यापित नहीं है।",
     "hiddenSourceGapEvaluation": "छिपे हुए स्रोत-अंतराल मूल्यांकन",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "स्थानांतरण योजनाकार लोड हो रहा है...",
     "major": "प्रमुख",
     "majorRequiredGenEds": "प्रमुख आवश्यक Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} ने आधिकारिक स्रोत आवश्यकताओं को पार्स किया",
     "pathway": "मार्ग",
     "pathwayHelper": "इस प्रमुख में कई समर्थित मार्ग हैं। वह मार्ग चुनें जिसका आप इस योजनाकार से अनुसरण कराना चाहते हैं।",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "सबसे पहले ऐप को अतिथि या साइन-इन छात्र के रूप में खोलें।",
     "profileNeededAlertTitle": "प्रोफ़ाइल की आवश्यकता है",
     "profileNeededMessage": "अतिथि के रूप में शुरुआत करें या साइन इन करें, फिर ट्रांसक्रिप्ट-आधारित पाठ्यक्रम योजना बनाने के लिए यहां वापस आएं।",

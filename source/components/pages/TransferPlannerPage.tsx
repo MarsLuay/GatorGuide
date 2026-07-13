@@ -4,10 +4,13 @@ import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { PageBackButton } from "@/components/ui/PageBackButton";
+import { PageHeading } from "@/components/ui/PageHeading";
 import { StateCard } from "@/components/ui/StateCard";
 import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import { SuggestedScheduleCard } from "@/components/transfer-planner/SuggestedScheduleCard";
 import { TranscriptSummaryCard } from "@/components/transfer-planner/TranscriptSummaryCard";
+import { PlannerConstraintsCard } from "@/components/transfer-planner/PlannerConstraintsCard";
+import { PlanPlacementCard } from "@/components/transfer-planner/PlanPlacementCard";
 import { useTransferPlannerController } from "@/components/transfer-planner/useTransferPlannerController";
 import {
   getPlannerNoDataMessage,
@@ -104,6 +107,14 @@ export default function TransferPlannerPage({
     handleReportBug,
     demoReview,
     plannerHeroContent,
+    intendedTransferQuarter,
+    preferredLoad,
+    handlePreferredLoadChange,
+    normalizedCourseIds,
+    unavailableQuarters,
+    placementOverrides,
+    activeTargetRuntimeId,
+    handlePlacementOverridesChange,
   } = useTransferPlannerController({ routeSelection });
 
   if (!user) {
@@ -180,15 +191,41 @@ export default function TransferPlannerPage({
                 <Ionicons name="trail-sign-outline" size={22} color="#008f4e" />
               </View>
               <View className="flex-1">
-                <Text className={`${textClass} text-2xl font-semibold`}>
+                <PageHeading className={`${textClass} text-2xl font-semibold`}>
                   {plannerHeroContent.title}
-                </Text>
+                </PageHeading>
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
                   {plannerHeroContent.description}
                 </Text>
               </View>
             </View>
           </View>
+
+          <PlannerConstraintsCard
+            borderClass={borderClass}
+            cardBgClass={cardBgClass}
+            intendedTransferQuarter={intendedTransferQuarter}
+            onPreferredLoadChange={handlePreferredLoadChange}
+            preferredLoad={preferredLoad}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+            textClass={textClass}
+          />
+
+          <PlanPlacementCard
+            activeTargetRuntimeId={activeTargetRuntimeId}
+            borderClass={borderClass}
+            cardBgClass={cardBgClass}
+            intendedTransferQuarter={intendedTransferQuarter}
+            normalizedCourseIds={normalizedCourseIds}
+            onOverridesChange={handlePlacementOverridesChange}
+            overrides={placementOverrides}
+            preferredLoad={preferredLoad}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+            textClass={textClass}
+            unavailableQuarters={unavailableQuarters}
+          />
 
           <TranscriptSummaryCard
             collegeId={selectedCollegeId}

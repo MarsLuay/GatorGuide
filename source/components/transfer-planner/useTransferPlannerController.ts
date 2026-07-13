@@ -28,6 +28,16 @@ import {
   isTransferPlannerPublicPath,
   type TransferPlannerRouteSelection,
 } from "./transfer-planner-routing";
+import { buildPlannerV2PatchFromSelection } from "@/services/planning/contracts/planner-v2-selection";
+import {
+  coerceIntendedTransferQuarter,
+  coercePreferredLoad,
+} from "@/services/planning/contracts/planner-v2-constraints";
+import {
+  buildUnavailableQuartersFromPrefs,
+  courseCodesFromTranscriptCourses,
+} from "@/services/planning/contracts/planner-v2-course-feed";
+import { QUESTIONNAIRE_FIELD_IDS } from "@/constants/schema";
 import { useCoursePlannerBugReport } from "./useCoursePlannerBugReport";
 import { usePlannerComputation } from "./usePlannerComputation";
 import { usePlannerSelectionState } from "./usePlannerSelectionState";
@@ -48,7 +58,7 @@ export function useTransferPlannerController({
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
-  const { isHydrated, state, patchUserLocally, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { isHydrated, state, patchUserLocally, updateUser, setQuestionnaireAnswers, patchPlannerV2 } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
 
   const { textClass, secondaryTextClass, cardBgClass, borderClass, dropdownSurfaceColor } = styles;
@@ -204,6 +214,132 @@ export function useTransferPlannerController({
     window.history.replaceState(window.history.state, "", plannerPublicPath);
     setBrowserPlannerPath(plannerPublicPath);
   }, [isHydrated, plannerPublicPath]);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    const patch = buildPlannerV2PatchFromSelection({
+      isUwPlanner: selection.isUwPlanner,
+      campusId: selection.effectiveSelectedCampusId,
+      campusTitle: selection.campus?.title ?? null,
+      majorId: selection.plan?.id ?? selection.effectiveSelectedMajorId,
+      majorTitle: selection.plan?.title ?? selection.selectedBasePlan?.title ?? null,
+      intendedTransferQuarter: state.plannerV2?.intendedTransferQuarter ?? null,
+      preferredLoad: state.plannerV2?.preferredLoad ?? null,
+    });
+    const current = state.plannerV2?.activeTarget as { runtimeId?: string } | null;
+    if ((current?.runtimeId || null) === (patch.activeTarget?.runtimeId || null)) {
+      return;
+    }
+    void patchPlannerV2(patch);
+  }, [
+    isHydrated,
+    patchPlannerV2,
+    selection.campus?.title,
+    selection.effectiveSelectedCampusId,
+    selection.effectiveSelectedMajorId,
+    selection.isUwPlanner,
+    selection.plan?.id,
+    selection.plan?.title,
+    selection.selectedBasePlan?.title,
+    state.plannerV2?.activeTarget,
+    state.plannerV2?.intendedTransferQuarter,
+    state.plannerV2?.preferredLoad,
+  ]);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    const fromDeadline = coerceIntendedTransferQuarter(
+      state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.deadline]
+    );
+    if (!fromDeadline) return;
+    if (state.plannerV2?.intendedTransferQuarter === fromDeadline) return;
+    void patchPlannerV2({ intendedTransferQuarter: fromDeadline });
+  }, [
+    isHydrated,
+    patchPlannerV2,
+    state.plannerV2?.intendedTransferQuarter,
+    state.questionnaireAnswers,
+  ]);
+
+  const handlePreferredLoadChange = useCallback(
+    (load: number) => {
+      const next = coercePreferredLoad(load);
+      if (next == null) return;
+      void patchPlannerV2({ preferredLoad: next });
+    },
+    [patchPlannerV2]
+  );
+
+  const handlePlacementOverridesChange = useCallback(
+    (overrides: import("@/services/planning/contracts/living-plan-engine-runtime").PlacementOverride[]) => {
+      void patchPlannerV2({ overrides });
+    },
+    [patchPlannerV2]
+  );
+
+  const activeTargetRuntimeId = useMemo(() => {
+    const activeTarget = state.plannerV2?.activeTarget as
+      | { runtimeId?: string; campus?: string; programId?: string }
+      | null
+      | undefined;
+    return (
+      activeTarget?.runtimeId ||
+      (activeTarget?.campus && activeTarget?.programId
+        ? `${activeTarget.campus}:${activeTarget.programId}`
+        : null)
+    );
+  }, [state.plannerV2?.activeTarget]);
+
+  const placementOverrides = useMemo(() => {
+    return Array.isArray(state.plannerV2?.overrides)
+      ? (state.plannerV2.overrides as import("@/services/planning/contracts/living-plan-engine-runtime").PlacementOverride[])
+      : [];
+  }, [state.plannerV2?.overrides]);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    const codes = courseCodesFromTranscriptCourses(transcript.completedCourses);
+    const current = state.plannerV2?.normalizedCourseIds || [];
+    if (
+      codes.length === current.length &&
+      codes.every((code, index) => code === current[index])
+    ) {
+      return;
+    }
+    void patchPlannerV2({
+      normalizedCourseIds: codes,
+      normalizedTranscriptRef: codes.length ? `transcript:${codes.length}` : null,
+    });
+  }, [
+    isHydrated,
+    patchPlannerV2,
+    state.plannerV2?.normalizedCourseIds,
+    transcript.completedCourses,
+  ]);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    const intended = state.plannerV2?.intendedTransferQuarter ?? null;
+    const next = buildUnavailableQuartersFromPrefs({
+      intendedTransferQuarter: intended,
+      allowSummerClasses: computation.allowSummerClasses,
+      existing: state.plannerV2?.unavailableQuarters || [],
+    });
+    const current = state.plannerV2?.unavailableQuarters || [];
+    if (
+      next.length === current.length &&
+      next.every((value, index) => value === current[index])
+    ) {
+      return;
+    }
+    void patchPlannerV2({ unavailableQuarters: next });
+  }, [
+    computation.allowSummerClasses,
+    isHydrated,
+    patchPlannerV2,
+    state.plannerV2?.intendedTransferQuarter,
+    state.plannerV2?.unavailableQuarters,
+  ]);
 
   useEffect(() => {
     if (Platform.OS !== "web" || typeof window === "undefined") return;
@@ -383,5 +519,13 @@ export function useTransferPlannerController({
     demoReview,
     plannerHeroContent,
     handleToggleOnlyUwEssentialClasses: computation.handleToggleOnlyUwEssentialClasses,
+    intendedTransferQuarter: state.plannerV2?.intendedTransferQuarter ?? null,
+    preferredLoad: state.plannerV2?.preferredLoad ?? null,
+    handlePreferredLoadChange,
+    normalizedCourseIds: state.plannerV2?.normalizedCourseIds ?? [],
+    unavailableQuarters: state.plannerV2?.unavailableQuarters ?? [],
+    placementOverrides,
+    activeTargetRuntimeId,
+    handlePlacementOverridesChange,
   };
 }

@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "Offene Hochschule",
     "actionOpenLink": "Link öffnen",
+    "actionOpenPlanner": "Planer öffnen",
     "actionOpenRoadmap": "Offener Grundriss",
     "actionShownHere": "Hier angezeigt",
     "actionViewOpportunity": "Gelegenheit ansehen",
@@ -512,10 +513,12 @@
     "vietnamese": "Vietnamesisch"
   },
   "navigation": {
+    "calendar": "Kalender",
     "home": "Start",
     "profile": "Profil",
     "resources": "Ressourcen",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "transferPlanner": "Transferplaner"
   },
   "notFound": {
     "body": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Öffnen Sie dieses Dropdown-Menü für die aktuell verfolgten Green River {noun}-Anforderungen.",
     "hiddenEvaluationCount": "Der {count}-Kurs {evaluationNoun} blieb intern, da dieser Planerpfad für Studierende nicht quellenverifiziert ist.",
     "hiddenSourceGapEvaluation": "Auswertung versteckter Quellenlücken",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Transferplaner wird geladen...",
     "major": "Wesentlich",
     "majorRequiredGenEds": "Major erforderlich Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} hat die offiziellen Quellanforderungen analysiert",
     "pathway": "Weg",
     "pathwayHelper": "Dieser Hauptzweig verfügt über mehrere unterstützte Routen. Wählen Sie die Route aus, der dieser Planer folgen soll.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Öffnen Sie die App zunächst als Gast oder angemeldeter Student.",
     "profileNeededAlertTitle": "Profil erforderlich",
     "profileNeededMessage": "Beginnen Sie als Gast oder melden Sie sich an und kehren Sie dann hierher zurück, um einen Kursplan auf Transkriptbasis zu erstellen.",

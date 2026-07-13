@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "Mở đại học",
     "actionOpenLink": "Mở liên kết",
+    "actionOpenPlanner": "Mở trình lập kế hoạch",
     "actionOpenRoadmap": "Kế hoạch mở",
     "actionShownHere": "Hiển thị ở đây",
     "actionViewOpportunity": "Xem cơ hội",
@@ -512,10 +513,12 @@
     "vietnamese": "Tiếng Việt"
   },
   "navigation": {
+    "calendar": "Lịch",
     "home": "Trang chủ",
     "profile": "Hồ sơ",
     "resources": "Tài nguyên",
-    "settings": "Cài đặt"
+    "settings": "Cài đặt",
+    "transferPlanner": "Công cụ lập kế hoạch chuyển tiếp"
   },
   "notFound": {
     "body": "Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Mở danh sách thả xuống này để biết các yêu cầu Green River {noun} hiện được theo dõi.",
     "hiddenEvaluationCount": "Khóa học {count} {evaluationNoun} vẫn nằm trong nội bộ vì lộ trình lập kế hoạch này chưa được xác minh nguồn cho sinh viên.",
     "hiddenSourceGapEvaluation": "Đánh giá khoảng cách nguồn ẩn",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Đang tải kế hoạch chuyển...",
     "major": "Lớn lao",
     "majorRequiredGenEds": "Yêu cầu chính Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} đã phân tích các yêu cầu nguồn chính thức",
     "pathway": "Con đường",
     "pathwayHelper": "Chuyên ngành này có nhiều tuyến đường được hỗ trợ. Chọn lộ trình bạn muốn người lập kế hoạch này đi theo.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Trước tiên hãy mở ứng dụng với tư cách là khách hoặc sinh viên đã đăng nhập.",
     "profileNeededAlertTitle": "Cần hồ sơ",
     "profileNeededMessage": "Bắt đầu với tư cách là khách hoặc đăng nhập, sau đó quay lại đây để xây dựng kế hoạch khóa học dựa trên bảng điểm.",

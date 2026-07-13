@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "Buksan ang kolehiyo",
     "actionOpenLink": "Buksan ang link",
+    "actionOpenPlanner": "Buksan ang planner",
     "actionOpenRoadmap": "Buksan ang plano",
     "actionShownHere": "Ipinapakita rito",
     "actionViewOpportunity": "Tingnan ang pagkakataon",
@@ -512,10 +513,12 @@
     "vietnamese": "Biyetnames"
   },
   "navigation": {
+    "calendar": "Kalendaryo",
     "home": "Bahay",
     "profile": "Profile",
     "resources": "Mga mapagkukunan",
-    "settings": "Mga setting"
+    "settings": "Mga setting",
+    "transferPlanner": "Planner ng Paglipat"
   },
   "notFound": {
     "body": "Ang pahina na iyong hinahanap ay wala o inilipat.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Buksan ang dropdown na ito para sa kasalukuyang sinusubaybayang mga kinakailangan sa Green River {noun}.",
     "hiddenEvaluationCount": "Ang kursong {count} {evaluationNoun} ay nanatiling panloob dahil ang landas ng planner na ito ay hindi na-verify ng pinagmulan para sa mga mag-aaral.",
     "hiddenSourceGapEvaluation": "Pagsusuri ng nakatagong source-gap",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Nilo-load ang planner ng paglipat...",
     "major": "Major",
     "majorRequiredGenEds": "Pangunahing Kinakailangan Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "Na-parse ng {title} ang mga opisyal na kinakailangan sa pinagmulan",
     "pathway": "Daan",
     "pathwayHelper": "Ang major na ito ay may maraming sinusuportahang ruta. Piliin ang rutang gusto mong sundan ng tagaplanong ito.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Buksan muna ang app bilang bisita o naka-sign in na mag-aaral.",
     "profileNeededAlertTitle": "Kailangan ang profile",
     "profileNeededMessage": "Magsimula bilang isang bisita o mag-sign in, pagkatapos ay bumalik dito upang bumuo ng isang transcript-based na plano ng kurso.",

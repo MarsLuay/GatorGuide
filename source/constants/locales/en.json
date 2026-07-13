@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "Open college",
     "actionOpenLink": "Open link",
+    "actionOpenPlanner": "Open planner",
     "actionOpenRoadmap": "Open plan",
     "actionShownHere": "Shown here",
     "actionViewOpportunity": "View opportunity",
@@ -512,10 +513,12 @@
     "vietnamese": "Tiếng Việt"
   },
   "navigation": {
+    "calendar": "Calendar",
     "home": "Home",
     "profile": "Profile",
     "resources": "Resources",
-    "settings": "Settings"
+    "settings": "Settings",
+    "transferPlanner": "Transfer Planner"
   },
   "notFound": {
     "body": "The page you're looking for doesn't exist or was moved.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Open this dropdown for the currently tracked Green River {noun} requirements.",
     "hiddenEvaluationCount": "{count} course {evaluationNoun} stayed internal because this planner path is not source-verified for students.",
     "hiddenSourceGapEvaluation": "Hidden source-gap evaluation",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Loading transfer planner...",
     "major": "Major",
     "majorRequiredGenEds": "Major Required Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} parsed official source requirements",
     "pathway": "Pathway",
     "pathwayHelper": "This major has multiple supported routes. Pick the route you want this planner to follow.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Open the app as a guest or signed-in student first.",
     "profileNeededAlertTitle": "Profile needed",
     "profileNeededMessage": "Start as a guest or sign in, then come back here to build a transcript-based course plan.",

@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "Faculdade aberta",
     "actionOpenLink": "Abrir link",
+    "actionOpenPlanner": "Abrir planejador",
     "actionOpenRoadmap": "Plano aberto",
     "actionShownHere": "Mostrado aqui",
     "actionViewOpportunity": "Ver oportunidade",
@@ -512,10 +513,12 @@
     "vietnamese": "Vietnamita"
   },
   "navigation": {
+    "calendar": "Calendário",
     "home": "Início",
     "profile": "Perfil",
     "resources": "Recursos",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "transferPlanner": "Planejador de transferência"
   },
   "notFound": {
     "body": "A página que você procura não existe ou foi movida.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "Abra este menu suspenso para ver os requisitos Green River {noun} atualmente rastreados.",
     "hiddenEvaluationCount": "O curso {count} {evaluationNoun} permaneceu interno porque esse caminho do planejador não é verificado na fonte para os alunos.",
     "hiddenSourceGapEvaluation": "Avaliação de lacuna de fonte oculta",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "Carregando planejador de transferência...",
     "major": "Principal",
     "majorRequiredGenEds": "Principal Requerido Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} analisou os requisitos de origem oficial",
     "pathway": "Caminho",
     "pathwayHelper": "Este curso tem várias rotas suportadas. Escolha a rota que você deseja que este planejador siga.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "Abra o aplicativo primeiro como convidado ou aluno conectado.",
     "profileNeededAlertTitle": "Perfil necessário",
     "profileNeededMessage": "Comece como convidado ou faça login e depois volte aqui para criar um plano de curso baseado em transcrição.",

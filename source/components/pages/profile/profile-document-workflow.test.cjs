@@ -31,7 +31,20 @@ let documentPickerResult = {
 let documentPickerOptions = null;
 let uploadedTranscriptArgs = null;
 let parsedTranscript = {
-  completedCourses: ["ENGL& 101"],
+  completedCourses: [
+    {
+      code: "ENGL& 101",
+      title: "English Composition I",
+      label: "ENGL& 101 English Composition I",
+      credits: 5,
+      grade: "A",
+      gradeValue: 4,
+      termLabel: "Fall 2024",
+      termStartDate: null,
+      termEndDate: null,
+      catalogYearLabel: null,
+    },
+  ],
   earnedCreditsTotal: 5,
   gpa: "3.85",
 };
@@ -92,9 +105,15 @@ Module._load = function loadWithProfileDocumentWorkflowMocks(request, parent, is
   if (request === "@/services/planning/transfer-planner-cache.service") {
     return {
       buildTransferPlannerTranscriptCachePatch: (uploaded, courses, credits) => ({
-        transcriptUrl: uploaded.url,
-        transferPlannerCompletedCourses: courses.join(","),
-        transferPlannerEarnedCredits: credits,
+        transferPlannerCompletedCourses: courses,
+        completedCourses: courses.map((course) =>
+          typeof course === "string" ? course : course.label
+        ),
+        transferPlannerTranscriptSource: uploaded.url,
+        transferPlannerTranscriptParserVersion: 3,
+        transferPlannerTranscriptUploadedAt:
+          uploaded.uploadedAt || "2026-05-25T00:00:00.000Z",
+        transferPlannerTranscriptEarnedCredits: credits,
       }),
     };
   }
@@ -222,11 +241,11 @@ test("uploadProfileTranscriptDocument delegates local transcript persistence", a
   ]);
 });
 
-test("extractProfileTranscriptDocumentReview passes selected document and current profile context", async () => {
+test("extractProfileTranscriptDocumentReview uses deterministic PDF ingest when courses parse", async () => {
   const review = await extractProfileTranscriptDocumentReview({
     currentProfile: {
       major: "Computer Science",
-      gpa: "3.4",
+      gpa: "",
     },
     document: {
       uri: "file:///cache/transcript.pdf",
@@ -240,7 +259,11 @@ test("extractProfileTranscriptDocumentReview passes selected document and curren
   });
 
   assert.equal(review.fileName, "Transcript.pdf");
-  assert.equal(review.userPatch.gpa, "3.7");
+  assert.equal(review.userPatch.gpa, "3.85");
+  assert.match(
+    String(review.questionnairePatch.completedCourses || ""),
+    /ENGL& 101/
+  );
 });
 
 test("syncUploadedTranscriptToPlanner writes planner cache patch and applies transcript GPA", async () => {
@@ -265,18 +288,20 @@ test("syncUploadedTranscriptToPlanner writes planner cache patch and applies tra
   });
 
   assert.equal(count, 1);
-  assert.deepEqual(questionnaireWrites, [
-    {
-      existing: "value",
-      transcriptUrl: "file:///documents/transcript.pdf",
-      transferPlannerCompletedCourses: "ENGL& 101",
-      transferPlannerEarnedCredits: 5,
-    },
-  ]);
+  assert.equal(questionnaireWrites.length, 1);
+  const patch = questionnaireWrites[0];
+  assert.equal(patch.existing, "value");
+  assert.equal(patch.transferPlannerTranscriptSource, "file:///documents/transcript.pdf");
+  assert.equal(patch.transferPlannerTranscriptEarnedCredits, 5);
+  assert.deepEqual(patch.completedCourses, ["ENGL& 101 English Composition I"]);
+  assert.equal(patch.transferPlannerCompletedCourses.length, 1);
+  assert.equal(patch.transferPlannerCompletedCourses[0].code, "ENGL& 101");
+  assert.equal(patch.transferPlannerCompletedCourses[0].label, "ENGL& 101 English Composition I");
   assert.deepEqual(gpaWrites, [["3.85", "auto-apply-transcript-pdf-gpa"]]);
 });
 
-test("ensureProfileSetupRoadmap centralizes post-profile planning request shape", async () => {
+test("ensureProfileSetupRoadmap is soft-P14 no-op (Living Plan owns planning)", async () => {
+  roadmapRequest = null;
   await ensureProfileSetupRoadmap({
     gpa: "3.8",
     major: "Computer Science",
@@ -288,17 +313,6 @@ test("ensureProfileSetupRoadmap centralizes post-profile planning request shape"
     userId: "user-1",
   });
 
-  assert.deepEqual(roadmapRequest, {
-    major: "Computer Science",
-    gpa: "3.8",
-    questionnaireAnswers: {
-      location: "washington_only",
-    },
-    targetSchools: ["UW Tacoma"],
-    documents: {
-      transcripts: {
-        fileName: "Transcript.pdf",
-      },
-    },
-  });
+  // Soft P14: must not call roadmapService.ensureUserRoadmap / createInitialRoadmap.
+  assert.equal(roadmapRequest, null);
 });

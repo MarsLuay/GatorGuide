@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "開放學院",
     "actionOpenLink": "打開連結",
+    "actionOpenPlanner": "開啟規劃器",
     "actionOpenRoadmap": "開放式平面圖",
     "actionShownHere": "顯示於此",
     "actionViewOpportunity": "查看機會",
@@ -512,10 +513,12 @@
     "vietnamese": "越南語"
   },
   "navigation": {
+    "calendar": "行事曆",
     "home": "首頁",
     "profile": "個人資料",
     "resources": "資源",
-    "settings": "設定"
+    "settings": "設定",
+    "transferPlanner": "轉學規劃器"
   },
   "notFound": {
     "body": "您要尋找的頁面不存在或已被移動。",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "開啟此下拉清單以取得目前追蹤的 Green River {noun} 要求。",
     "hiddenEvaluationCount": "{count} 課程 {evaluationNoun} 保留在內部，因為該規劃器路徑未針對學生進行來源驗證。",
     "hiddenSourceGapEvaluation": "隱藏的源缺口評估",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "正在載入傳輸計劃...",
     "major": "主要的",
     "majorRequiredGenEds": "主要所需的Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} 解析官方原始碼要求",
     "pathway": "途徑",
     "pathwayHelper": "該專業有多種支援路線。選擇您希望該規劃師遵循的路線。",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "首先以訪客或登入的學生身分開啟應用程式。",
     "profileNeededAlertTitle": "需要個人資料",
     "profileNeededMessage": "以訪客身份開始或登錄，然後返回此處制定基於成績單的課程計劃。",

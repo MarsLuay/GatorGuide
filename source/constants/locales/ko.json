@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "오픈 칼리지",
     "actionOpenLink": "링크 열기",
+    "actionOpenPlanner": "플래너 열기",
     "actionOpenRoadmap": "오픈플랜",
     "actionShownHere": "여기에 표시됨",
     "actionViewOpportunity": "기회 보기",
@@ -512,10 +513,12 @@
     "vietnamese": "베트남어"
   },
   "navigation": {
+    "calendar": "캘린더",
     "home": "홈",
     "profile": "프로필",
     "resources": "리소스",
-    "settings": "설정"
+    "settings": "설정",
+    "transferPlanner": "편입 플래너"
   },
   "notFound": {
     "body": "찾으시는 페이지가 존재하지 않거나 이동되었습니다.",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "현재 추적 중인 Green River {noun} 요구 사항에 대한 이 드롭다운을 엽니다.",
     "hiddenEvaluationCount": "{count} 과정 {evaluationNoun}는 이 플래너 경로가 학생을 위해 소스 검증되지 않았기 때문에 내부에 남아 있었습니다.",
     "hiddenSourceGapEvaluation": "숨겨진 소스 갭 평가",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "전송 플래너 로드 중...",
     "major": "주요한",
     "majorRequiredGenEds": "전공필수 Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title}는 공식 소스 요구 사항을 구문 분석했습니다.",
     "pathway": "좁은 길",
     "pathwayHelper": "이 전공에는 여러 지원 경로가 있습니다. 이 플래너가 따라갈 경로를 선택하세요.",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "먼저 게스트 또는 로그인한 학생으로 앱을 엽니다.",
     "profileNeededAlertTitle": "프로필이 필요함",
     "profileNeededMessage": "게스트로 시작하거나 로그인한 후 여기로 돌아와 성적표 기반 코스 계획을 수립하세요.",

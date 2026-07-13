@@ -71,17 +71,6 @@ export default function HomePage() {
   const openCalendar = useCallback(() => {
     router.push(routeWithReturnTo(ROUTES.calendar, ROUTES.root));
   }, [router]);
-  const desktopRoadmapSeed = useMemo(
-    () =>
-      roadmapService.buildRoadmapSeedInput({
-        major: user?.major,
-        gpa: user?.gpa,
-        questionnaireAnswers: state.questionnaireAnswers,
-        targetSchools: state.savedColleges.map((college) => college.name),
-        documents: (user?.transcript ? { transcripts: { fileUrl: user.transcript } } : {}),
-      }),
-    [state.questionnaireAnswers, state.savedColleges, user?.gpa, user?.major, user?.transcript]
-  );
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -180,46 +169,18 @@ export default function HomePage() {
       </View>
     </View>
   );
-  useEffect(() => {
-    let cancelled = false;
+  // Soft P14: Home is redirected away; never bootstrap AI roadmap here.
+  // Living Plan / Transfer Planner owns planning state.
+  const preferLivingPlanHome = true;
 
+  useEffect(() => {
     if (!isHydrated || !user?.uid) {
       setDesktopRoadmap(null);
-      return () => {
-        cancelled = true;
-      };
+      return;
     }
 
-    (async () => {
-      try {
-        const roadmap = await roadmapService.getUserRoadmap(user.uid, desktopRoadmapSeed);
-        if (!cancelled) {
-          setDesktopRoadmap(roadmap);
-        }
-      } catch (error) {
-        if (!cancelled) {
-          setDesktopRoadmap(null);
-        }
-        void errorLoggingService.captureException(error, {
-          category: "app",
-          operation: "load-homepage-roadmap",
-          severity: "warn",
-          handled: true,
-          source: "HomePage",
-          screen: "HomePage",
-          route: "/",
-          metadata: {
-            isDesktopHome,
-            userId: user.uid,
-          },
-        });
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [desktopRoadmapSeed, isDesktopHome, isHydrated, user?.uid]);
+    setDesktopRoadmap(null);
+  }, [isHydrated, preferLivingPlanHome, user?.uid]);
 
   const desktopCurrentCourses = useMemo(
     () => desktopRoadmap?.profileSnapshot.currentCourses ?? [],
@@ -277,12 +238,23 @@ export default function HomePage() {
         return;
       }
 
+      if (item.target.type === "planner") {
+        router.push(ROUTES.transferPlanner as never);
+        return;
+      }
+
+      if (item.target.type === "personal") {
+        return;
+      }
+
       if (item.target.type === "resources") {
         router.push(ROUTES.tabsResources);
         return;
       }
 
-      await Linking.openURL(item.target.url);
+      if (item.target.type === "external") {
+        await Linking.openURL(item.target.url);
+      }
     } catch (error) {
       void errorLoggingService.captureException(error, {
         category: "app",

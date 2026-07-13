@@ -205,6 +205,7 @@
   "deadlineCalendar": {
     "actionOpenCollege": "オープンカレッジ",
     "actionOpenLink": "リンクを開く",
+    "actionOpenPlanner": "プランナーを開く",
     "actionOpenRoadmap": "オープンプラン",
     "actionShownHere": "ここに表示",
     "actionViewOpportunity": "機会を見る",
@@ -512,10 +513,12 @@
     "vietnamese": "ベトナム語"
   },
   "navigation": {
+    "calendar": "カレンダー",
     "home": "ホーム",
     "profile": "プロフィール",
     "resources": "リソース",
-    "settings": "設定"
+    "settings": "設定",
+    "transferPlanner": "編入プランナー"
   },
   "notFound": {
     "body": "お探しのページは存在しないか、移動されました。",
@@ -1317,6 +1320,8 @@
     "grcTrackedRequirementsSummary": "現在追跡されている Green River {noun} 要件については、このドロップダウンを開きます。",
     "hiddenEvaluationCount": "{count} コース {evaluationNoun} は、このプランナー パスが学生向けにソース検証されていないため、内部に留まりました。",
     "hiddenSourceGapEvaluation": "隠れたソースギャップの評価",
+    "intendedQuarterMissing": "Set a target deadline (e.g. Fall 2027) in your questionnaire to drive the Living Plan.",
+    "intendedQuarterValue": "Intended transfer quarter: {quarter}",
     "loading": "転送プランナーを読み込み中...",
     "major": "選考科目",
     "majorRequiredGenEds": "主な必須 Gen-Eds",
@@ -1363,6 +1368,14 @@
     "parsedOfficialSourceRequirements": "{title} は公式ソース要件を解析しました",
     "pathway": "経路",
     "pathwayHelper": "このメジャーには複数のルートがサポートされています。このプランナーにたどってもらいたいルートを選択してください。",
+    "placementEmpty": "Add transcript courses and an intended quarter to edit placement.",
+    "placementLock": "Lock",
+    "placementMoveTo": "Move to {quarter}",
+    "placementTitle": "Course placement",
+    "placementUnlock": "Unlock",
+    "planConstraintsTitle": "Plan constraints",
+    "preferredLoadLabel": "Preferred courses per quarter",
+    "preferredLoadOption": "{count} courses",
     "profileNeededAlertBody": "まずゲストまたはサインインした学生としてアプリを開きます。",
     "profileNeededAlertTitle": "プロフィールが必要です",
     "profileNeededMessage": "ゲストとして開始するかサインインしてから、ここに戻って成績証明書ベースのコース プランを作成します。",
