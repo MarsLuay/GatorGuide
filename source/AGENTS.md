@@ -150,4 +150,5 @@ When touching app behavior:
 
 ## Code analysis — wont-fix
 
+- **Graph-analysis:** `constants/transfer-planner-source/course-metadata.generated.ts` intentionally references `course-metadata.ts` for shared runtime/types in the generated planner metadata loader. The analyzer reports that generated import cycle, but the planner contract is verified by the source-backed maintenance checks above and this cycle is an accepted artifact of the codegen boundary.
 - **Security-scan** react-native, babel-jest, @jest/transform, babel-plugin-istanbul, @istanbuljs/load-nyc-config, js-yaml; Expo SDK 54 pins React Native 0.81.x, and remaining advisories live in React Native published Jest/Istanbul toolchain, not first-party app/runtime code. Gator Guide applied in-SDK patch updates plus transitive overrides that clear Firebase/OpenTelemetry audit chain; clearing last findings needs coordinated Expo/React Native major upgrade.
