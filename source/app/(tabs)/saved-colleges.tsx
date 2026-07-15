@@ -1,5 +1,8 @@
-import SavedCollegesPage from "@/components/pages/SavedCollegesPage";
+import { Redirect, type Href } from "expo-router";
 
-export default function SavedColleges() {
-  return <SavedCollegesPage />;
+import { ROUTES } from "@/constants/routes";
+
+/** P14-A: Saved Colleges removed from product shell — redirect to Resources. */
+export default function SavedCollegesRetiredRedirect() {
+  return <Redirect href={ROUTES.tabsResources as Href} />;
 }

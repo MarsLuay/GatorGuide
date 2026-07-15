@@ -61,6 +61,7 @@ import {
 
 export default function TransferEquivalencyCatalogPage() {
   const goBack = useBack(ROUTES.transferPlanner);
+  const canNavigateBack = goBack.canNavigateBack;
   const router = useRouter();
   const { width } = useWindowDimensions();
   const params = useLocalSearchParams<{
@@ -430,8 +431,9 @@ export default function TransferEquivalencyCatalogPage() {
         }}
       >
         <View style={{ width: "100%", maxWidth: shellMaxWidth, alignSelf: "center" }}>
-          <PageBackButton onPress={goBack} label={backLabel} textClassName={secondaryTextClass} />
-
+          {canNavigateBack ? (
+            <PageBackButton onPress={goBack} label={backLabel} textClassName={secondaryTextClass} />
+          ) : null}
           <View className={`${panelClassName} mt-4 px-5 py-5 ${isDesktop ? "flex-row items-center justify-between gap-6" : "gap-4"}`}>
             <View className={`${isDesktop ? "flex-row items-center flex-1" : ""} gap-4`}>
               <View className="h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10">

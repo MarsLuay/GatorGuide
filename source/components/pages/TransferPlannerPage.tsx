@@ -29,6 +29,7 @@ export default function TransferPlannerPage({
   const { t } = useAppLanguage();
   const {
     handleGoBack,
+    canNavigateBack,
     backLabel,
     textClass,
     secondaryTextClass,
@@ -184,7 +185,9 @@ export default function TransferPlannerPage({
           }}
         >
           <View className="gap-4">
-            <PageBackButton onPress={handleGoBack} label={backLabel} textClassName={secondaryTextClass} />
+            {canNavigateBack ? (
+              <PageBackButton onPress={handleGoBack} label={backLabel} textClassName={secondaryTextClass} />
+            ) : null}
 
             <View className="flex-row items-start">
               <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
@@ -204,27 +207,11 @@ export default function TransferPlannerPage({
           <PlannerConstraintsCard
             borderClass={borderClass}
             cardBgClass={cardBgClass}
-            intendedTransferQuarter={intendedTransferQuarter}
             onPreferredLoadChange={handlePreferredLoadChange}
             preferredLoad={preferredLoad}
             secondaryTextClass={secondaryTextClass}
             t={t}
             textClass={textClass}
-          />
-
-          <PlanPlacementCard
-            activeTargetRuntimeId={activeTargetRuntimeId}
-            borderClass={borderClass}
-            cardBgClass={cardBgClass}
-            intendedTransferQuarter={intendedTransferQuarter}
-            normalizedCourseIds={normalizedCourseIds}
-            onOverridesChange={handlePlacementOverridesChange}
-            overrides={placementOverrides}
-            preferredLoad={preferredLoad}
-            secondaryTextClass={secondaryTextClass}
-            t={t}
-            textClass={textClass}
-            unavailableQuarters={unavailableQuarters}
           />
 
           <TranscriptSummaryCard
@@ -359,6 +346,21 @@ export default function TransferPlannerPage({
               )}
             </>
           ) : null}
+
+          <PlanPlacementCard
+            activeTargetRuntimeId={activeTargetRuntimeId}
+            borderClass={borderClass}
+            cardBgClass={cardBgClass}
+            intendedTransferQuarter={intendedTransferQuarter}
+            normalizedCourseIds={normalizedCourseIds}
+            onOverridesChange={handlePlacementOverridesChange}
+            overrides={placementOverrides}
+            preferredLoad={preferredLoad}
+            secondaryTextClass={secondaryTextClass}
+            t={t}
+            textClass={textClass}
+            unavailableQuarters={unavailableQuarters}
+          />
 
           <View className="items-center pb-2">
             <TouchIconButton

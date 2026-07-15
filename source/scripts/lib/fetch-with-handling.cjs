@@ -4,8 +4,12 @@ const {
   createFetchHelper,
   sanitizeFetchBody,
 } = require("../../services/network/fetch-contract.cjs");
+const { createHostRateLimiter } = require("../planner/lib/host-rate-limit.cjs");
 
 const DEFAULT_TIMEOUT_MS = 30000;
+const defaultHostRateLimiter = createHostRateLimiter({
+  scopeMinDelayMs: 1500,
+});
 
 const ScriptFetchError = createFetchErrorClass("ScriptFetchError", "Fetch");
 const runFetchWithHandling = createFetchHelper({
@@ -25,7 +29,12 @@ const runFetchWithHandling = createFetchHelper({
 });
 
 async function fetchWithHandling(url, options = {}) {
-  return runFetchWithHandling(url, options);
+  const { rateLimiter = defaultHostRateLimiter, skipHostRateLimit = false, ...fetchOptions } =
+    options;
+  if (skipHostRateLimit || !rateLimiter?.withThrottle) {
+    return runFetchWithHandling(url, fetchOptions);
+  }
+  return rateLimiter.withThrottle(url, () => runFetchWithHandling(url, fetchOptions));
 }
 
 async function fetchTextWithHandling(url, options = {}) {

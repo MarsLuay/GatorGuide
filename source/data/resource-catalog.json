@@ -43,37 +43,6 @@
           "planning",
           "tools"
         ]
-      },
-      {
-        "titleKey": "resources.savedColleges",
-        "descriptionKey": "resources.savedCollegesDesc",
-        "url": "app://saved-colleges",
-        "tags": [
-          "saved",
-          "bookmarks",
-          "favorites",
-          "colleges"
-        ]
-      },
-      {
-        "titleKey": "resources.compareColleges",
-        "descriptionKey": "resources.compareCollegesDesc",
-        "url": "app://compare",
-        "tags": [
-          "compare",
-          "colleges",
-          "tools"
-        ]
-      },
-      {
-        "titleKey": "resources.costCalculator",
-        "descriptionKey": "resources.costCalculatorDesc",
-        "url": "app://cost-calculator",
-        "tags": [
-          "cost",
-          "calculator",
-          "tools"
-        ]
       }
     ]
   },

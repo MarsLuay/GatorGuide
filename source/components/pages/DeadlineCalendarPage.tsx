@@ -39,6 +39,7 @@ import {
 
 export default function DeadlineCalendarPage() {
   const back = useBack();
+  const canNavigateBack = back.canNavigateBack;
   const { t, language } = useAppLanguage();
   const styles = useThemeStyles();
   const insets = useSafeAreaInsets();
@@ -117,8 +118,9 @@ export default function DeadlineCalendarPage() {
             paddingTop: 24,
           }}
         >
-          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
-
+          {canNavigateBack ? (
+            <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
+          ) : null}
           <View
             className={`${cardBgClass} border ${borderClass} rounded-[28px] overflow-hidden mb-5`}
             style={{ padding: layout.heroPadding }}

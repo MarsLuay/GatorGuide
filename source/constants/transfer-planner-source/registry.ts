@@ -1717,7 +1717,7 @@ const ADMISSION_PREREQUISITE_CUE_PATTERN =
 const SUPPORT_CUE_PATTERN =
   /\b(advising|adviser|advisor|study abroad|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
-  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|degreq/i;
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\b(?:option|track|route|pathway|concentration|specialization) requirements?\b|\bdegree structure\b|\brequirements packet\b|degreq/i;
 
 function isLinkedDocumentSourceUrl(url: unknown) {
   return /\.(?:pdf|docx)(?:$|[?#])/i.test(String(url ?? ""));

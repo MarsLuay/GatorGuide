@@ -43975,9 +43975,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
   {
     "id": "uw-grc-guide:0817:mathematics:mathand-264-5-see-also-mathand-153-combined-entry",
     "type": "sequence",
-    "title": "MATH& 264 (5) see also MATH& 153 combined entry -> MATH 224 (4), 2XX (1)",
-    "acceptanceCategory": "accepted-with-warning",
-    "ruleStatus": "active",
+    "title": "§ MATH& 264 (5) see also MATH& 153 combined entry -> MATH 224 (4), 2XX (1)",
+    "acceptanceCategory": "legacy-accepted",
+    "ruleStatus": "legacy",
     "sourceKind": "uw-green-river-equivalency-guide",
     "sourceSchoolId": "grc",
     "targetSchoolIds": [
@@ -43997,28 +43997,29 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     "effectiveYearRanges": [
       {
         "startLabel": "SUM Qtr. 2025",
-        "endLabel": null,
-        "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+        "endLabel": "SPR Qtr. 2026",
+        "note": "Effective-date range parsed from the official UW Green River equivalency guide."
       }
     ],
-    "effectiveDateLabel": "SUM Qtr. 2025",
+    "effectiveDateLabel": "SUM Qtr. 2025 thru SPR Qtr. 2026",
     "guideDepartment": "Mathematics",
-    "sourceCourseLabel": "MATH& 264 (5) see also MATH& 153 combined entry",
+    "sourceCourseLabel": "§ MATH& 264 (5) see also MATH& 153 combined entry",
     "sourceCourseTitle": "Calculus IV",
     "targetRequirementTags": [
       "NSc"
     ],
-    "isObsoleteSourceCourse": false,
+    "isObsoleteSourceCourse": true,
     "parsedFromOfficialGuide": true,
     "plannerWarnings": [
+      "The official guide marks this Green River course row as no longer offered.",
       "The official guide references a combined-entry or conditional equivalency; preserve the row text until the sequence resolver can evaluate the full student history."
     ],
     "notes": [
       "UW guide department: Mathematics.",
-      "Official Green River row: MATH& 264 (5) see also MATH& 153 combined entry.",
+      "Official Green River row: § MATH& 264 (5) see also MATH& 153 combined entry.",
       "Official UW equivalency row: MATH 224 (4), 2XX (1).",
       "Official UW requirement tags: NSc.",
-      "Official effective date: SUM Qtr. 2025.",
+      "Official effective date: SUM Qtr. 2025 thru SPR Qtr. 2026.",
       "Parsed primary UW target course codes: MATH 224, MATH 2XX."
     ],
     "sourceLinks": [
@@ -44136,7 +44137,62 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0820:mathematics:math-290-1-5",
+    "id": "uw-grc-guide:0820:mathematics:mathand-264-5",
+    "type": "direct-course",
+    "title": "MATH& 264 (5) -> MATH 224 (4), 2XX (1)",
+    "acceptanceCategory": "accepted",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "MATH& 264"
+      ]
+    ],
+    "targetCourseCodes": [
+      "MATH 224",
+      "MATH 2XX"
+    ],
+    "targetOutcome": "MATH 224 (4), 2XX (1)",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2024",
+        "endLabel": null,
+        "note": "Effective-date start parsed from the official UW Green River equivalency guide."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2024",
+    "guideDepartment": "Mathematics",
+    "sourceCourseLabel": "MATH& 264 (5)",
+    "sourceCourseTitle": "Calculus IV",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": true,
+    "plannerWarnings": [],
+    "notes": [
+      "UW guide department: Mathematics.",
+      "Official Green River row: MATH& 264 (5).",
+      "Official UW equivalency row: MATH 224 (4), 2XX (1).",
+      "Official UW requirement tags: NSc.",
+      "Official effective date: SUM Qtr. 2024.",
+      "Parsed primary UW target course codes: MATH 224, MATH 2XX."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "uw-grc-guide:0821:mathematics:math-290-1-5",
     "type": "elective-credit",
     "title": "§ MATH 290 (1-5) -> EDUC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44189,7 +44245,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0821:mathematics:math-297-1-5",
+    "id": "uw-grc-guide:0822:mathematics:math-297-1-5",
     "type": "elective-credit",
     "title": "MATH 297 (1-5) -> MATH 2XX",
     "acceptanceCategory": "accepted",
@@ -44240,7 +44296,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0822:mathematics:math-297-1-5",
+    "id": "uw-grc-guide:0823:mathematics:math-297-1-5",
     "type": "elective-credit",
     "title": "§ MATH 297 (1-5) -> MATH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44293,7 +44349,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0823:meteorology:metr-101-5",
+    "id": "uw-grc-guide:0824:meteorology:metr-101-5",
     "type": "direct-course",
     "title": "§ METR 101 (5) -> ATMOS 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -44349,7 +44405,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0824:music:music-100-5",
+    "id": "uw-grc-guide:0825:music:music-100-5",
     "type": "elective-credit",
     "title": "§ MUSIC 100 (5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44405,7 +44461,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0825:music:musc-101-5-formerly-music-101",
+    "id": "uw-grc-guide:0826:music:musc-101-5-formerly-music-101",
     "type": "elective-credit",
     "title": "MUSC 101 (5) formerly MUSIC 101 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -44459,7 +44515,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0826:music:music-101-5",
+    "id": "uw-grc-guide:0827:music:music-101-5",
     "type": "elective-credit",
     "title": "§ MUSIC 101 (5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44515,7 +44571,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0827:music:music-101-2",
+    "id": "uw-grc-guide:0828:music:music-101-2",
     "type": "elective-credit",
     "title": "§ MUSIC 101 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44571,7 +44627,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0828:music:music-102-3",
+    "id": "uw-grc-guide:0829:music:music-102-3",
     "type": "elective-credit",
     "title": "§ MUSIC 102 (3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44627,7 +44683,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0829:music:musc-103-5-formerly-music-103",
+    "id": "uw-grc-guide:0830:music:musc-103-5-formerly-music-103",
     "type": "elective-credit",
     "title": "MUSC 103 (5) formerly MUSIC 103 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -44681,7 +44737,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0830:music:music-103-5",
+    "id": "uw-grc-guide:0831:music:music-103-5",
     "type": "elective-credit",
     "title": "§ MUSIC 103 (5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44737,7 +44793,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0831:music:musc-104-5-formerly-music-104",
+    "id": "uw-grc-guide:0832:music:musc-104-5-formerly-music-104",
     "type": "elective-credit",
     "title": "MUSC 104 (5) formerly MUSIC 104 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -44791,7 +44847,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0832:music:music-104-5",
+    "id": "uw-grc-guide:0833:music:music-104-5",
     "type": "elective-credit",
     "title": "§ MUSIC 104 (5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44847,7 +44903,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0833:music:muscand-105-5-formerly-music-100",
+    "id": "uw-grc-guide:0834:music:muscand-105-5-formerly-music-100",
     "type": "elective-credit",
     "title": "MUSC& 105 (5) formerly MUSIC 100 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -44901,7 +44957,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0834:music:music-105-5",
+    "id": "uw-grc-guide:0835:music:music-105-5",
     "type": "elective-credit",
     "title": "§ MUSIC 105 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -44957,7 +45013,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0835:music:music-106-5",
+    "id": "uw-grc-guide:0836:music:music-106-5",
     "type": "elective-credit",
     "title": "§ MUSIC 106 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45013,7 +45069,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0836:music:musc-107-5-formerly-music-107",
+    "id": "uw-grc-guide:0837:music:musc-107-5-formerly-music-107",
     "type": "elective-credit",
     "title": "MUSC 107 (5) formerly MUSIC 107 -> UW 1XX",
     "acceptanceCategory": "accepted",
@@ -45067,7 +45123,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0837:music:music-107-5",
+    "id": "uw-grc-guide:0838:music:music-107-5",
     "type": "elective-credit",
     "title": "§ MUSIC 107 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45123,7 +45179,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0838:music:musc-108-5-formerly-music-105",
+    "id": "uw-grc-guide:0839:music:musc-108-5-formerly-music-105",
     "type": "elective-credit",
     "title": "MUSC 108 (5) formerly MUSIC 105 -> UW 1XX",
     "acceptanceCategory": "accepted",
@@ -45177,7 +45233,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0839:music:musc-109-5-formerly-music-106",
+    "id": "uw-grc-guide:0840:music:musc-109-5-formerly-music-106",
     "type": "elective-credit",
     "title": "MUSC 109 (5) formerly MUSIC 106 -> UW 1XX",
     "acceptanceCategory": "accepted",
@@ -45231,7 +45287,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0840:music:musc-110-5",
+    "id": "uw-grc-guide:0841:music:musc-110-5",
     "type": "elective-credit",
     "title": "MUSC 110 (5) -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -45285,7 +45341,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0841:music:music-111-3",
+    "id": "uw-grc-guide:0842:music:music-111-3",
     "type": "elective-credit",
     "title": "§ MUSIC 111 (3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45341,7 +45397,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0842:music:music-112-3",
+    "id": "uw-grc-guide:0843:music:music-112-3",
     "type": "elective-credit",
     "title": "§ MUSIC 112 (3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45397,7 +45453,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0843:music:music-113-3",
+    "id": "uw-grc-guide:0844:music:music-113-3",
     "type": "elective-credit",
     "title": "§ MUSIC 113 (3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45453,7 +45509,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0844:music:music-114-2",
+    "id": "uw-grc-guide:0845:music:music-114-2",
     "type": "elective-credit",
     "title": "§ MUSIC 114 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45509,7 +45565,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0845:music:music-115-2",
+    "id": "uw-grc-guide:0846:music:music-115-2",
     "type": "elective-credit",
     "title": "§ MUSIC 115 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45565,7 +45621,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0846:music:music-116-2",
+    "id": "uw-grc-guide:0847:music:music-116-2",
     "type": "elective-credit",
     "title": "§ MUSIC 116 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45621,7 +45677,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0847:music:musc-118-1-3-formerly-music-118",
+    "id": "uw-grc-guide:0848:music:musc-118-1-3-formerly-music-118",
     "type": "elective-credit",
     "title": "MUSC 118 (1-3) formerly MUSIC 118 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -45675,7 +45731,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0848:music:music-118-1-3",
+    "id": "uw-grc-guide:0849:music:music-118-1-3",
     "type": "elective-credit",
     "title": "§ MUSIC 118 (1-3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45731,7 +45787,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0849:music:musc-119-1-3-formerly-music-119",
+    "id": "uw-grc-guide:0850:music:musc-119-1-3-formerly-music-119",
     "type": "elective-credit",
     "title": "MUSC 119 (1-3) formerly MUSIC 119 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -45785,7 +45841,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0850:music:music-119-1-3",
+    "id": "uw-grc-guide:0851:music:music-119-1-3",
     "type": "elective-credit",
     "title": "§ MUSIC 119 (1-3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45841,7 +45897,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0851:music:musc-120-1-3-formerly-music-120",
+    "id": "uw-grc-guide:0852:music:musc-120-1-3-formerly-music-120",
     "type": "elective-credit",
     "title": "MUSC 120 (1-3) formerly MUSIC 120 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -45895,7 +45951,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0852:music:music-120-1-3",
+    "id": "uw-grc-guide:0853:music:music-120-1-3",
     "type": "elective-credit",
     "title": "§ MUSIC 120 (1-3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -45951,7 +46007,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0853:music:muscand-121-2-formerly-music-114",
+    "id": "uw-grc-guide:0854:music:muscand-121-2-formerly-music-114",
     "type": "elective-credit",
     "title": "MUSC& 121 (2) formerly MUSIC 114 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46005,7 +46061,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0854:music:muscand-122-2-formerly-music-115",
+    "id": "uw-grc-guide:0855:music:muscand-122-2-formerly-music-115",
     "type": "elective-credit",
     "title": "MUSC& 122 (2) formerly MUSIC 115 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46059,7 +46115,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0855:music:music-122-3",
+    "id": "uw-grc-guide:0856:music:music-122-3",
     "type": "elective-credit",
     "title": "§ MUSIC 122 (3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46115,7 +46171,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0856:music:muscand-123-2-formerly-music-116",
+    "id": "uw-grc-guide:0857:music:muscand-123-2-formerly-music-116",
     "type": "elective-credit",
     "title": "MUSC& 123 (2) formerly MUSIC 116 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46169,7 +46225,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0857:music:music-123-3",
+    "id": "uw-grc-guide:0858:music:music-123-3",
     "type": "elective-credit",
     "title": "§ MUSIC 123 (3) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46225,7 +46281,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0858:music:musc-124-5-formerly-music-124",
+    "id": "uw-grc-guide:0859:music:musc-124-5-formerly-music-124",
     "type": "elective-credit",
     "title": "MUSC 124 (5) formerly MUSIC 124 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46279,7 +46335,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0859:music:music-124-5",
+    "id": "uw-grc-guide:0860:music:music-124-5",
     "type": "elective-credit",
     "title": "§ MUSIC 124 (5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46335,7 +46391,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0860:music:musc-125-5",
+    "id": "uw-grc-guide:0861:music:musc-125-5",
     "type": "elective-credit",
     "title": "MUSC 125 (5) -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46389,7 +46445,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0861:music:musc-127-1-5-formerly-music-127",
+    "id": "uw-grc-guide:0862:music:musc-127-1-5-formerly-music-127",
     "type": "elective-credit",
     "title": "MUSC 127 (1-5) formerly MUSIC 127 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46443,7 +46499,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0862:music:music-127-1-5",
+    "id": "uw-grc-guide:0863:music:music-127-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 127 (1-5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46499,7 +46555,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0863:music:musc-128-1-5-formerly-music-128",
+    "id": "uw-grc-guide:0864:music:musc-128-1-5-formerly-music-128",
     "type": "elective-credit",
     "title": "MUSC 128 (1-5) formerly MUSIC 128 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46553,7 +46609,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0864:music:music-128-1-5",
+    "id": "uw-grc-guide:0865:music:music-128-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 128 (1-5) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46609,7 +46665,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0865:music:musc-129-1-5-formerly-music-129",
+    "id": "uw-grc-guide:0866:music:musc-129-1-5-formerly-music-129",
     "type": "elective-credit",
     "title": "MUSC 129 (1-5) formerly MUSIC 129 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46663,7 +46719,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0866:music:music-129",
+    "id": "uw-grc-guide:0867:music:music-129",
     "type": "elective-credit",
     "title": "§ MUSIC 129 -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46719,7 +46775,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0867:music:music-130-1",
+    "id": "uw-grc-guide:0868:music:music-130-1",
     "type": "elective-credit",
     "title": "§ MUSIC 130 (1) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46775,7 +46831,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0868:music:musc-130-1-1-formerly-music-130-1",
+    "id": "uw-grc-guide:0869:music:musc-130-1-1-formerly-music-130-1",
     "type": "elective-credit",
     "title": "MUSC 130.1 (1) formerly MUSIC 130.1 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46829,7 +46885,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0869:music:music-130-1-1",
+    "id": "uw-grc-guide:0870:music:music-130-1-1",
     "type": "elective-credit",
     "title": "§ MUSIC 130.1 (1) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46885,7 +46941,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0870:music:musc-130-2-1-formerly-music-130-2",
+    "id": "uw-grc-guide:0871:music:musc-130-2-1-formerly-music-130-2",
     "type": "elective-credit",
     "title": "MUSC 130.2 (1) formerly MUSIC 130.2 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -46939,7 +46995,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0871:music:music-130-2-1",
+    "id": "uw-grc-guide:0872:music:music-130-2-1",
     "type": "elective-credit",
     "title": "§ MUSIC 130.2 (1) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -46995,7 +47051,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0872:music:musc-130-3-1-formerly-music-130-3",
+    "id": "uw-grc-guide:0873:music:musc-130-3-1-formerly-music-130-3",
     "type": "elective-credit",
     "title": "MUSC 130.3 (1) formerly MUSIC 130.3 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47049,7 +47105,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0873:music:music-130-3-1",
+    "id": "uw-grc-guide:0874:music:music-130-3-1",
     "type": "elective-credit",
     "title": "§ MUSIC 130.3 (1) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47105,7 +47161,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0874:music:muscand-131-3-formerly-music-111",
+    "id": "uw-grc-guide:0875:music:muscand-131-3-formerly-music-111",
     "type": "elective-credit",
     "title": "MUSC& 131 (3) formerly MUSIC 111 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47159,7 +47215,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0875:music:muscand-132-3-formerly-music-112",
+    "id": "uw-grc-guide:0876:music:muscand-132-3-formerly-music-112",
     "type": "elective-credit",
     "title": "MUSC& 132 (3) formerly MUSIC 112 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47213,7 +47269,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0876:music:music-132-2",
+    "id": "uw-grc-guide:0877:music:music-132-2",
     "type": "elective-credit",
     "title": "§ MUSIC 132 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47269,7 +47325,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0877:music:muscand-133-3-formerly-music-113",
+    "id": "uw-grc-guide:0878:music:muscand-133-3-formerly-music-113",
     "type": "elective-credit",
     "title": "MUSC& 133 (3) formerly MUSIC 113 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47323,7 +47379,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0878:music:music-133-2",
+    "id": "uw-grc-guide:0879:music:music-133-2",
     "type": "elective-credit",
     "title": "§ MUSIC 133 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47379,7 +47435,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0879:music:music-134-2",
+    "id": "uw-grc-guide:0880:music:music-134-2",
     "type": "elective-credit",
     "title": "§ MUSIC 134 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47433,9 +47489,12 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
   {
-    "id": "uw-grc-guide:0880:music:music-136-2",
+    "id": "uw-grc-guide:0881:music:music-136-2",
     "type": "elective-credit",
     "title": "§ MUSIC 136 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47482,12 +47541,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_10: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  }
-];
-
-const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
+  },
   {
-    "id": "uw-grc-guide:0881:music:music-137-2",
+    "id": "uw-grc-guide:0882:music:music-137-2",
     "type": "elective-credit",
     "title": "§ MUSIC 137 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47536,7 +47592,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0882:music:music-139-2",
+    "id": "uw-grc-guide:0883:music:music-139-2",
     "type": "elective-credit",
     "title": "§ MUSIC 139 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47585,7 +47641,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0883:music:musc-140-2-formerly-music-132",
+    "id": "uw-grc-guide:0884:music:musc-140-2-formerly-music-132",
     "type": "elective-credit",
     "title": "MUSC 140 (2) formerly MUSIC 132 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47639,7 +47695,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0884:music:music-140-2",
+    "id": "uw-grc-guide:0885:music:music-140-2",
     "type": "elective-credit",
     "title": "§ MUSIC 140 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47688,7 +47744,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0885:music:musc-141-2-formerly-music-133",
+    "id": "uw-grc-guide:0886:music:musc-141-2-formerly-music-133",
     "type": "elective-credit",
     "title": "MUSC 141 (2) formerly MUSIC 133 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47742,7 +47798,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0886:music:music-141-4",
+    "id": "uw-grc-guide:0887:music:music-141-4",
     "type": "elective-credit",
     "title": "§ MUSIC 141 (4) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47798,7 +47854,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0887:music:musc-142-2-formerly-music-134",
+    "id": "uw-grc-guide:0888:music:musc-142-2-formerly-music-134",
     "type": "elective-credit",
     "title": "MUSC 142 (2) formerly MUSIC 134 -> MUSIC 1XX",
     "acceptanceCategory": "accepted",
@@ -47852,7 +47908,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0888:music:music-142-4",
+    "id": "uw-grc-guide:0889:music:music-142-4",
     "type": "elective-credit",
     "title": "§ MUSIC 142 (4) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47908,7 +47964,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0889:music:music-145-2",
+    "id": "uw-grc-guide:0890:music:music-145-2",
     "type": "elective-credit",
     "title": "§ MUSIC 145 (2) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -47957,7 +48013,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0890:music:music-170-1-7",
+    "id": "uw-grc-guide:0891:music:music-170-1-7",
     "type": "elective-credit",
     "title": "§ MUSIC 170 (1-7) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48006,7 +48062,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0891:music:music-171-1-7",
+    "id": "uw-grc-guide:0892:music:music-171-1-7",
     "type": "elective-credit",
     "title": "§ MUSIC 171 (1-7) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48055,7 +48111,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0892:music:music-180-10",
+    "id": "uw-grc-guide:0893:music:music-180-10",
     "type": "elective-credit",
     "title": "§ MUSIC 180 (10) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48104,7 +48160,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0893:music:music-181-10",
+    "id": "uw-grc-guide:0894:music:music-181-10",
     "type": "elective-credit",
     "title": "§ MUSIC 181 (10) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48153,7 +48209,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0894:music:music-182-10",
+    "id": "uw-grc-guide:0895:music:music-182-10",
     "type": "elective-credit",
     "title": "§ MUSIC 182 (10) -> MUSIC 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48202,7 +48258,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0895:music:music-211-3",
+    "id": "uw-grc-guide:0896:music:music-211-3",
     "type": "elective-credit",
     "title": "§ MUSIC 211 (3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48251,7 +48307,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0896:music:music-212-3",
+    "id": "uw-grc-guide:0897:music:music-212-3",
     "type": "elective-credit",
     "title": "§ MUSIC 212 (3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48300,7 +48356,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0897:music:music-213-5",
+    "id": "uw-grc-guide:0898:music:music-213-5",
     "type": "elective-credit",
     "title": "§ MUSIC 213 (5) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48349,7 +48405,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0898:music:musc-218-1-3-formerly-music-218",
+    "id": "uw-grc-guide:0899:music:musc-218-1-3-formerly-music-218",
     "type": "elective-credit",
     "title": "MUSC 218 (1-3) formerly MUSIC 218 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -48403,7 +48459,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0899:music:music-218-1-3",
+    "id": "uw-grc-guide:0900:music:music-218-1-3",
     "type": "elective-credit",
     "title": "§ MUSIC 218 (1-3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48459,7 +48515,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0900:music:musc-219-1-3-formerly-music-219",
+    "id": "uw-grc-guide:0901:music:musc-219-1-3-formerly-music-219",
     "type": "elective-credit",
     "title": "MUSC 219 (1-3) formerly MUSIC 219 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -48513,7 +48569,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0901:music:music-219-1-3",
+    "id": "uw-grc-guide:0902:music:music-219-1-3",
     "type": "elective-credit",
     "title": "§ MUSIC 219 (1-3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48569,7 +48625,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0902:music:musc-220-1-3-music-220",
+    "id": "uw-grc-guide:0903:music:musc-220-1-3-music-220",
     "type": "elective-credit",
     "title": "MUSC 220 (1-3) MUSIC 220 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -48623,7 +48679,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0903:music:music-220-1-3",
+    "id": "uw-grc-guide:0904:music:music-220-1-3",
     "type": "elective-credit",
     "title": "§ MUSIC 220 (1-3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48679,7 +48735,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0904:music:muscand-221-2-formerly-music-254",
+    "id": "uw-grc-guide:0905:music:muscand-221-2-formerly-music-254",
     "type": "elective-credit",
     "title": "MUSC& 221 (2) formerly MUSIC 254 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -48733,7 +48789,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0905:music:muscand-222-2-formerly-music-255",
+    "id": "uw-grc-guide:0906:music:muscand-222-2-formerly-music-255",
     "type": "elective-credit",
     "title": "MUSC& 222 (2) formerly MUSIC 255 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -48787,7 +48843,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0906:music:music-222-3",
+    "id": "uw-grc-guide:0907:music:music-222-3",
     "type": "elective-credit",
     "title": "§ MUSIC 222 (3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48836,7 +48892,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0907:music:music-223-3",
+    "id": "uw-grc-guide:0908:music:music-223-3",
     "type": "elective-credit",
     "title": "§ MUSIC 223 (3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48885,7 +48941,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0908:music:musc-227-1-5-formerly-music-227",
+    "id": "uw-grc-guide:0909:music:musc-227-1-5-formerly-music-227",
     "type": "elective-credit",
     "title": "MUSC 227 (1-5) formerly MUSIC 227 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -48939,7 +48995,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0909:music:music-227-1-5",
+    "id": "uw-grc-guide:0910:music:music-227-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 227 (1-5) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -48995,7 +49051,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0910:music:music-228-1-5-formerly-music-228",
+    "id": "uw-grc-guide:0911:music:music-228-1-5-formerly-music-228",
     "type": "elective-credit",
     "title": "MUSIC 228 (1-5) formerly MUSIC 228 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49049,7 +49105,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0911:music:music-228-1-5",
+    "id": "uw-grc-guide:0912:music:music-228-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 228 (1-5) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49105,7 +49161,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0912:music:music-229-1-5-formerly-music-229",
+    "id": "uw-grc-guide:0913:music:music-229-1-5-formerly-music-229",
     "type": "elective-credit",
     "title": "MUSIC 229 (1-5) formerly MUSIC 229 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49159,7 +49215,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0913:music:music-229-1-5",
+    "id": "uw-grc-guide:0914:music:music-229-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 229 (1-5) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49215,7 +49271,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0914:music:music-230-1",
+    "id": "uw-grc-guide:0915:music:music-230-1",
     "type": "elective-credit",
     "title": "§ MUSIC 230 (1) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49271,7 +49327,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0915:music:musc-230-1-1-formerly-music-230-1",
+    "id": "uw-grc-guide:0916:music:musc-230-1-1-formerly-music-230-1",
     "type": "elective-credit",
     "title": "MUSC 230.1 (1) formerly MUSIC 230.1 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49325,7 +49381,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0916:music:music-230-1-1",
+    "id": "uw-grc-guide:0917:music:music-230-1-1",
     "type": "elective-credit",
     "title": "§ MUSIC 230.1 (1) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49381,7 +49437,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0917:music:musc-230-2-1-formerly-music-230-2",
+    "id": "uw-grc-guide:0918:music:musc-230-2-1-formerly-music-230-2",
     "type": "elective-credit",
     "title": "MUSC 230.2 (1) formerly MUSIC 230.2 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49435,7 +49491,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0918:music:music-230-2-1",
+    "id": "uw-grc-guide:0919:music:music-230-2-1",
     "type": "elective-credit",
     "title": "§ MUSIC 230.2 (1) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49491,7 +49547,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0919:music:musc-230-3-1-formerly-music-230-3",
+    "id": "uw-grc-guide:0920:music:musc-230-3-1-formerly-music-230-3",
     "type": "elective-credit",
     "title": "MUSC 230.3 (1) formerly MUSIC 230.3 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49545,7 +49601,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0920:music:music-230-3-1",
+    "id": "uw-grc-guide:0921:music:music-230-3-1",
     "type": "elective-credit",
     "title": "§ MUSIC 230.3 (1) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49601,7 +49657,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0921:music:muscand-231-3-formerly-music-251",
+    "id": "uw-grc-guide:0922:music:muscand-231-3-formerly-music-251",
     "type": "elective-credit",
     "title": "MUSC& 231 (3) formerly MUSIC 251 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49655,7 +49711,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0922:music:muscand-232-3-formerly-music-252",
+    "id": "uw-grc-guide:0923:music:muscand-232-3-formerly-music-252",
     "type": "elective-credit",
     "title": "MUSC& 232 (3) formerly MUSIC 252 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -49709,7 +49765,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0923:music:music-232-2",
+    "id": "uw-grc-guide:0924:music:music-232-2",
     "type": "elective-credit",
     "title": "§ MUSIC 232 (2) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49765,7 +49821,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0924:music:music-233-2",
+    "id": "uw-grc-guide:0925:music:music-233-2",
     "type": "elective-credit",
     "title": "§ MUSIC 233 (2) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49821,7 +49877,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0925:music:music-234-2",
+    "id": "uw-grc-guide:0926:music:music-234-2",
     "type": "elective-credit",
     "title": "§ MUSIC 234 (2) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49877,7 +49933,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0926:music:music-251-3",
+    "id": "uw-grc-guide:0927:music:music-251-3",
     "type": "elective-credit",
     "title": "§ MUSIC 251 (3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49933,7 +49989,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0927:music:music-252-3",
+    "id": "uw-grc-guide:0928:music:music-252-3",
     "type": "elective-credit",
     "title": "§ MUSIC 252 (3) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -49989,7 +50045,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0928:music:music-254-2",
+    "id": "uw-grc-guide:0929:music:music-254-2",
     "type": "elective-credit",
     "title": "§ MUSIC 254 (2) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50045,7 +50101,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0929:music:music-255-2",
+    "id": "uw-grc-guide:0930:music:music-255-2",
     "type": "elective-credit",
     "title": "§ MUSIC 255 (2) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50101,7 +50157,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0930:music:music-280-10",
+    "id": "uw-grc-guide:0931:music:music-280-10",
     "type": "elective-credit",
     "title": "§ MUSIC 280 (10) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50150,7 +50206,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0931:music:music-281-10",
+    "id": "uw-grc-guide:0932:music:music-281-10",
     "type": "elective-credit",
     "title": "§ MUSIC 281 (10) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50199,7 +50255,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0932:music:music-282-10",
+    "id": "uw-grc-guide:0933:music:music-282-10",
     "type": "elective-credit",
     "title": "§ MUSIC 282 (10) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50248,7 +50304,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0933:music:musc-298-1-5-formerly-music-298",
+    "id": "uw-grc-guide:0934:music:musc-298-1-5-formerly-music-298",
     "type": "elective-credit",
     "title": "MUSC 298 (1-5) formerly MUSIC 298 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -50299,7 +50355,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0934:music:music-298-1-5",
+    "id": "uw-grc-guide:0935:music:music-298-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 298 (1-5) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50352,7 +50408,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0935:music:musc-299-1-5-formerly-music-299",
+    "id": "uw-grc-guide:0936:music:musc-299-1-5-formerly-music-299",
     "type": "elective-credit",
     "title": "MUSC 299 (1-5) formerly MUSIC 299 -> MUSIC 2XX",
     "acceptanceCategory": "accepted",
@@ -50403,7 +50459,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0936:music:music-299-1-5",
+    "id": "uw-grc-guide:0937:music:music-299-1-5",
     "type": "elective-credit",
     "title": "§ MUSIC 299 (1-5) -> MUSIC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -50456,7 +50512,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0937:natural-resources:natrs-100-5-formerly-fores-100",
+    "id": "uw-grc-guide:0938:natural-resources:natrs-100-5-formerly-fores-100",
     "type": "direct-course",
     "title": "NATRS 100 (5) formerly FORES 100 -> ESRM 101",
     "acceptanceCategory": "accepted",
@@ -50511,7 +50567,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0938:natural-resources:natrs-117-2-formerly-fores-117",
+    "id": "uw-grc-guide:0939:natural-resources:natrs-117-2-formerly-fores-117",
     "type": "elective-credit",
     "title": "NATRS 117 (2) formerly FORES 117 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -50565,7 +50621,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0939:natural-resources:natrs-161-5-formerly-fores-161",
+    "id": "uw-grc-guide:0940:natural-resources:natrs-161-5-formerly-fores-161",
     "type": "direct-course",
     "title": "NATRS 161 (5) formerly FORES 161 -> ESRM 150 (5)",
     "acceptanceCategory": "accepted",
@@ -50619,7 +50675,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0940:natural-resources:natrs-162-3",
+    "id": "uw-grc-guide:0941:natural-resources:natrs-162-3",
     "type": "elective-credit",
     "title": "NATRS 162 (3) -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -50673,7 +50729,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0941:natural-resources:natrs-172-3-4-formerly-fores-172",
+    "id": "uw-grc-guide:0942:natural-resources:natrs-172-3-4-formerly-fores-172",
     "type": "elective-credit",
     "title": "NATRS 172 (3-4) formerly FORES 172 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -50724,7 +50780,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0942:natural-resources:natrs-180-natrs-292-5-5",
+    "id": "uw-grc-guide:0943:natural-resources:natrs-180-natrs-292-5-5",
     "type": "sequence",
     "title": "NATRS 180, NATRS 292 (5, 5) -> ESRM 368 (4), ESRM 2XX (9), for ESRM majors only, otherwise see individual entries",
     "acceptanceCategory": "accepted-with-warning",
@@ -50783,7 +50839,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0943:natural-resources:natrs-180-5-7-formerly-fores-180-see-also-natrs-180-combined-entry",
+    "id": "uw-grc-guide:0944:natural-resources:natrs-180-5-7-formerly-fores-180-see-also-natrs-180-combined-entry",
     "type": "sequence",
     "title": "NATRS 180 (5-7) formerly FORES 180, see also NATRS 180 combined entry -> ESRM 1XX (5)",
     "acceptanceCategory": "accepted-with-warning",
@@ -50839,7 +50895,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0944:natural-resources:natrs-181-8-formerly-fores-181",
+    "id": "uw-grc-guide:0945:natural-resources:natrs-181-8-formerly-fores-181",
     "type": "elective-credit",
     "title": "NATRS 181 (8) formerly FORES 181 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -50893,7 +50949,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0945:natural-resources:natrs-182-5-formerly-fores-182",
+    "id": "uw-grc-guide:0946:natural-resources:natrs-182-5-formerly-fores-182",
     "type": "sequence",
     "title": "NATRS 182 (5) formerly FORES 182 -> ESRM 430 (5), for ESRM majors only; otherwise ESRM 1XX (5)",
     "acceptanceCategory": "accepted-with-warning",
@@ -50950,7 +51006,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0946:natural-resources:natrs-183-5-formerly-fores-183",
+    "id": "uw-grc-guide:0947:natural-resources:natrs-183-5-formerly-fores-183",
     "type": "elective-credit",
     "title": "NATRS 183 (5) formerly FORES 183 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -51004,7 +51060,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0947:natural-resources:natrs-184-5-formerly-fores-184",
+    "id": "uw-grc-guide:0948:natural-resources:natrs-184-5-formerly-fores-184",
     "type": "elective-credit",
     "title": "NATRS 184 (5) formerly FORES 184 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -51058,7 +51114,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0948:natural-resources:natrs-195-5-formerly-fores-195",
+    "id": "uw-grc-guide:0949:natural-resources:natrs-195-5-formerly-fores-195",
     "type": "elective-credit",
     "title": "§ NATRS 195 (5) formerly FORES 195 -> ESRM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -51114,7 +51170,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0949:natural-resources:natrs-197-3-formerly-fores-197",
+    "id": "uw-grc-guide:0950:natural-resources:natrs-197-3-formerly-fores-197",
     "type": "sequence",
     "title": "§ NATRS 197 (3) formerly FORES 197 -> ESRM 381 (3), for ESRM majors only; otherwise ESRM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -51172,7 +51228,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0950:natural-resources:natrs-198-1-5-formerly-fores-198",
+    "id": "uw-grc-guide:0951:natural-resources:natrs-198-1-5-formerly-fores-198",
     "type": "elective-credit",
     "title": "NATRS 198 (1-5) formerly FORES 198 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -51226,7 +51282,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0951:natural-resources:natrs-199-1-5-formerly-fores-199",
+    "id": "uw-grc-guide:0952:natural-resources:natrs-199-1-5-formerly-fores-199",
     "type": "elective-credit",
     "title": "NATRS 199 (1-5) formerly FORES 199 -> ESRM 1XX",
     "acceptanceCategory": "accepted",
@@ -51280,7 +51336,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0952:natural-resources:natrs-210-5",
+    "id": "uw-grc-guide:0953:natural-resources:natrs-210-5",
     "type": "direct-course",
     "title": "NATRS 210 (5) -> ESRM 210 (5)",
     "acceptanceCategory": "accepted",
@@ -51334,7 +51390,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0953:natural-resources:natrs-270-5",
+    "id": "uw-grc-guide:0954:natural-resources:natrs-270-5",
     "type": "elective-credit",
     "title": "NATRS 270 (5) -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51388,7 +51444,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0954:natural-resources:natrs-271-5",
+    "id": "uw-grc-guide:0955:natural-resources:natrs-271-5",
     "type": "elective-credit",
     "title": "NATRS 271 (5) -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51442,7 +51498,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0955:natural-resources:natrs-284-6-formerly-fores-284",
+    "id": "uw-grc-guide:0956:natural-resources:natrs-284-6-formerly-fores-284",
     "type": "elective-credit",
     "title": "NATRS 284 (6) formerly FORES 284 -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51496,7 +51552,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0956:natural-resources:natrs-285-5-formerly-fores-285",
+    "id": "uw-grc-guide:0957:natural-resources:natrs-285-5-formerly-fores-285",
     "type": "sequence",
     "title": "NATRS 285 (5) formerly FORES 285 -> ESRM 324 (5), for ESRM majors only; otherwise ESRM 2XX",
     "acceptanceCategory": "accepted-with-warning",
@@ -51553,7 +51609,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0957:natural-resources:natrs-286-5",
+    "id": "uw-grc-guide:0958:natural-resources:natrs-286-5",
     "type": "elective-credit",
     "title": "NATRS 286 (5) -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51608,7 +51664,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0958:natural-resources:natrs-292-8-formerly-fores-292-see-also-natrs-180-combined-entry",
+    "id": "uw-grc-guide:0959:natural-resources:natrs-292-8-formerly-fores-292-see-also-natrs-180-combined-entry",
     "type": "sequence",
     "title": "NATRS 292 (8) formerly FORES 292, see also NATRS 180 combined entry -> UW 2XX (8)",
     "acceptanceCategory": "accepted-with-warning",
@@ -51661,7 +51717,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0959:natural-resources:natrs-293-5-formerly-fores-293",
+    "id": "uw-grc-guide:0960:natural-resources:natrs-293-5-formerly-fores-293",
     "type": "direct-course",
     "title": "NATRS 293 (5) formerly FORES 293 -> ESRM 323 (5)",
     "acceptanceCategory": "accepted",
@@ -51713,9 +51769,12 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
   {
-    "id": "uw-grc-guide:0960:natural-resources:natrs-294-14-formerly-fores-294",
+    "id": "uw-grc-guide:0961:natural-resources:natrs-294-14-formerly-fores-294",
     "type": "sequence",
     "title": "NATRS 294 (14) formerly FORES 294 -> ESRM 399 (5), ESRM 2XX (9), for ESRM majors only; otherwise UW 2XX",
     "acceptanceCategory": "accepted-with-warning",
@@ -51768,12 +51827,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_11: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  }
-];
-
-const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
+  },
   {
-    "id": "uw-grc-guide:0961:natural-resources:natrs-297-1-5-formerly-fores-297",
+    "id": "uw-grc-guide:0962:natural-resources:natrs-297-1-5-formerly-fores-297",
     "type": "elective-credit",
     "title": "NATRS 297 (1-5) formerly FORES 297 -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51827,7 +51883,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0962:natural-resources:natrs-298-1-5-formerly-fores-298",
+    "id": "uw-grc-guide:0963:natural-resources:natrs-298-1-5-formerly-fores-298",
     "type": "elective-credit",
     "title": "NATRS 298 (1-5) formerly FORES 298 -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51881,7 +51937,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0963:natural-resources:natrs-299-1-5-formerly-fores-299",
+    "id": "uw-grc-guide:0964:natural-resources:natrs-299-1-5-formerly-fores-299",
     "type": "elective-credit",
     "title": "NATRS 299 (1-5) formerly FORES 299 -> ESRM 2XX",
     "acceptanceCategory": "accepted",
@@ -51932,7 +51988,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0964:natural-science:n-sci-100-5",
+    "id": "uw-grc-guide:0965:natural-science:n-sci-100-5",
     "type": "direct-course",
     "title": "§ N SCI 100 (5) -> ESS 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -51988,7 +52044,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0965:natural-science:n-sci-101-3",
+    "id": "uw-grc-guide:0966:natural-science:n-sci-101-3",
     "type": "elective-credit",
     "title": "§ N SCI 101 (3) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52044,7 +52100,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0966:natural-science:n-sci-104-5",
+    "id": "uw-grc-guide:0967:natural-science:n-sci-104-5",
     "type": "elective-credit",
     "title": "§ N SCI 104 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52100,7 +52156,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0967:natural-science:n-sci-115-116-117-5-5-5-same-as-human-115-116-117-and-s-sci-115-116-117",
+    "id": "uw-grc-guide:0968:natural-science:n-sci-115-116-117-5-5-5-same-as-human-115-116-117-and-s-sci-115-116-117",
     "type": "sequence",
     "title": "§ N SCI 115, 116, 117 (5, 5, 5) same as HUMAN 115, 116, 117 and S SCI 115, 116, 117 -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52161,7 +52217,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0968:natural-science:n-sci-125-5-same-as-biol-125-and-env-s-125",
+    "id": "uw-grc-guide:0969:natural-science:n-sci-125-5-same-as-biol-125-and-env-s-125",
     "type": "elective-credit",
     "title": "§ N SCI 125 (5) same as BIOL 125 and ENV S 125 -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52214,7 +52270,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0969:natural-science:n-sci-194-1-5",
+    "id": "uw-grc-guide:0970:natural-science:n-sci-194-1-5",
     "type": "elective-credit",
     "title": "N SCI 194 (1-5) -> UW 1XX",
     "acceptanceCategory": "accepted",
@@ -52265,7 +52321,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0970:nursing:nurse-100-3",
+    "id": "uw-grc-guide:0971:nursing:nurse-100-3",
     "type": "limited-credit",
     "title": "§ NURSE 100 (3) -> UW 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -52319,7 +52375,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0971:nutrition:nutrand-100-3-formerly-nurse-100",
+    "id": "uw-grc-guide:0972:nutrition:nutrand-100-3-formerly-nurse-100",
     "type": "elective-credit",
     "title": "§ NUTR& 100 (3) formerly NURSE 100 -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52372,7 +52428,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0972:nutrition:nutrand-101-5",
+    "id": "uw-grc-guide:0973:nutrition:nutrand-101-5",
     "type": "direct-course",
     "title": "NUTR& 101 (5) -> NUTR 200 (5)",
     "acceptanceCategory": "accepted",
@@ -52426,7 +52482,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0973:nutrition:nutrand-101-5",
+    "id": "uw-grc-guide:0974:nutrition:nutrand-101-5",
     "type": "elective-credit",
     "title": "§ NUTR& 101 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52479,7 +52535,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0974:occupational-therapy:o-t-100-3",
+    "id": "uw-grc-guide:0975:occupational-therapy:o-t-100-3",
     "type": "elective-credit",
     "title": "O T 100 (3) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -52523,7 +52579,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0975:occupational-therapy:o-t-101-3",
+    "id": "uw-grc-guide:0976:occupational-therapy:o-t-101-3",
     "type": "elective-credit",
     "title": "§ O T 101(3) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52569,7 +52625,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0976:occupational-therapy:o-t-102-4",
+    "id": "uw-grc-guide:0977:occupational-therapy:o-t-102-4",
     "type": "elective-credit",
     "title": "§ O T 102 (4) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52622,7 +52678,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0977:occupational-therapy:o-t-102-8",
+    "id": "uw-grc-guide:0978:occupational-therapy:o-t-102-8",
     "type": "elective-credit",
     "title": "§ O T 102 (8) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52675,7 +52731,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0978:occupational-therapy:o-t-105-1-2",
+    "id": "uw-grc-guide:0979:occupational-therapy:o-t-105-1-2",
     "type": "elective-credit",
     "title": "O T 105 (1-2) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -52719,7 +52775,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0979:occupational-therapy:o-t-106-1",
+    "id": "uw-grc-guide:0980:occupational-therapy:o-t-106-1",
     "type": "elective-credit",
     "title": "§ O T 106 (1) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52772,7 +52828,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0980:occupational-therapy:o-t-108-5",
+    "id": "uw-grc-guide:0981:occupational-therapy:o-t-108-5",
     "type": "elective-credit",
     "title": "§ O T 108 (5) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52825,7 +52881,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0981:occupational-therapy:o-t-109-4-5",
+    "id": "uw-grc-guide:0982:occupational-therapy:o-t-109-4-5",
     "type": "elective-credit",
     "title": "§ O T 109 (4-5) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -52878,7 +52934,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0982:occupational-therapy:o-t-110-4",
+    "id": "uw-grc-guide:0983:occupational-therapy:o-t-110-4",
     "type": "elective-credit",
     "title": "O T 110 (4) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -52922,7 +52978,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0983:occupational-therapy:o-t-115-3",
+    "id": "uw-grc-guide:0984:occupational-therapy:o-t-115-3",
     "type": "elective-credit",
     "title": "O T 115 (3) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -52966,7 +53022,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0984:occupational-therapy:o-t-116-5",
+    "id": "uw-grc-guide:0985:occupational-therapy:o-t-116-5",
     "type": "elective-credit",
     "title": "O T 116 (5) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -53017,7 +53073,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0985:occupational-therapy:o-t-194-1-2",
+    "id": "uw-grc-guide:0986:occupational-therapy:o-t-194-1-2",
     "type": "elective-credit",
     "title": "O T 194 (1-2) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -53061,7 +53117,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0986:occupational-therapy:o-t-198-1",
+    "id": "uw-grc-guide:0987:occupational-therapy:o-t-198-1",
     "type": "elective-credit",
     "title": "O T 198 (1) -> REHAB 1XX",
     "acceptanceCategory": "accepted",
@@ -53105,7 +53161,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0987:occupational-therapy:o-t-199-1",
+    "id": "uw-grc-guide:0988:occupational-therapy:o-t-199-1",
     "type": "elective-credit",
     "title": "§ O T 199 (1) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53158,7 +53214,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0988:occupational-therapy:o-t-202-3",
+    "id": "uw-grc-guide:0989:occupational-therapy:o-t-202-3",
     "type": "elective-credit",
     "title": "O T 202 (3) -> REHAB 2XX",
     "acceptanceCategory": "accepted",
@@ -53209,7 +53265,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0989:occupational-therapy:o-t-204-5",
+    "id": "uw-grc-guide:0990:occupational-therapy:o-t-204-5",
     "type": "elective-credit",
     "title": "§ O T 204 (5) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53262,7 +53318,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0990:occupational-therapy:o-t-206-2",
+    "id": "uw-grc-guide:0991:occupational-therapy:o-t-206-2",
     "type": "elective-credit",
     "title": "§ O T 206 (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53315,7 +53371,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0991:occupational-therapy:o-t-207-2",
+    "id": "uw-grc-guide:0992:occupational-therapy:o-t-207-2",
     "type": "elective-credit",
     "title": "§ O T 207 (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53368,7 +53424,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0992:occupational-therapy:o-t-209-4",
+    "id": "uw-grc-guide:0993:occupational-therapy:o-t-209-4",
     "type": "elective-credit",
     "title": "§ O T 209 (4) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53421,7 +53477,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0993:occupational-therapy:o-t-210-3-5",
+    "id": "uw-grc-guide:0994:occupational-therapy:o-t-210-3-5",
     "type": "elective-credit",
     "title": "§ O T 210 (3-5) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53474,7 +53530,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0994:occupational-therapy:o-t-211-2",
+    "id": "uw-grc-guide:0995:occupational-therapy:o-t-211-2",
     "type": "elective-credit",
     "title": "§ O T 211 (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53527,7 +53583,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0995:occupational-therapy:o-t-212-3-4",
+    "id": "uw-grc-guide:0996:occupational-therapy:o-t-212-3-4",
     "type": "elective-credit",
     "title": "§ O T 212 (3-4) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53580,7 +53636,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0996:occupational-therapy:o-t-215-1-3",
+    "id": "uw-grc-guide:0997:occupational-therapy:o-t-215-1-3",
     "type": "elective-credit",
     "title": "§ O T 215 (1-3) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53633,7 +53689,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0997:occupational-therapy:o-t-220-2",
+    "id": "uw-grc-guide:0998:occupational-therapy:o-t-220-2",
     "type": "elective-credit",
     "title": "§ O T 220 (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -53686,7 +53742,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0998:occupational-therapy:o-t-250-1-12",
+    "id": "uw-grc-guide:0999:occupational-therapy:o-t-250-1-12",
     "type": "elective-credit",
     "title": "O T 250 (1-12) -> REHAB 2XX",
     "acceptanceCategory": "accepted",
@@ -53730,7 +53786,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:0999:occupational-therapy:o-t-251-1-12",
+    "id": "uw-grc-guide:1000:occupational-therapy:o-t-251-1-12",
     "type": "elective-credit",
     "title": "O T 251 (1-12) -> REHAB 2XX",
     "acceptanceCategory": "accepted",
@@ -53774,7 +53830,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1000:oceanography:oceaand-101-5-formerly-ocean-101",
+    "id": "uw-grc-guide:1001:oceanography:oceaand-101-5-formerly-ocean-101",
     "type": "direct-course",
     "title": "OCEA& 101 (5) formerly OCEAN 101 -> OCEAN 101 (5)",
     "acceptanceCategory": "accepted",
@@ -53828,7 +53884,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1001:oceanography:ocean-101-5",
+    "id": "uw-grc-guide:1002:oceanography:ocean-101-5",
     "type": "direct-course",
     "title": "§ OCEAN 101 (5) -> OCEAN 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -53884,7 +53940,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1002:philosophy:phil-100-5",
+    "id": "uw-grc-guide:1003:philosophy:phil-100-5",
     "type": "direct-course",
     "title": "§ PHIL 100 (5) -> PHIL 100 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -53940,7 +53996,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1003:philosophy:philand-101-5-formerly-phil-100",
+    "id": "uw-grc-guide:1004:philosophy:philand-101-5-formerly-phil-100",
     "type": "direct-course",
     "title": "PHIL& 101 (5) formerly PHIL 100 -> PHIL 100 (5)",
     "acceptanceCategory": "accepted",
@@ -53994,7 +54050,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1004:philosophy:phil-102-5",
+    "id": "uw-grc-guide:1005:philosophy:phil-102-5",
     "type": "direct-course",
     "title": "PHIL 102 (5) -> PHIL 102 (5)",
     "acceptanceCategory": "accepted",
@@ -54042,7 +54098,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1005:philosophy:phil-103-5",
+    "id": "uw-grc-guide:1006:philosophy:phil-103-5",
     "type": "elective-credit",
     "title": "PHIL 103 (5) -> PHIL 1XX",
     "acceptanceCategory": "accepted",
@@ -54089,7 +54145,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1006:philosophy:phil-104-5",
+    "id": "uw-grc-guide:1007:philosophy:phil-104-5",
     "type": "elective-credit",
     "title": "PHIL 104 (5) -> PHIL 1XX",
     "acceptanceCategory": "accepted",
@@ -54136,7 +54192,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1007:philosophy:phil-105-5",
+    "id": "uw-grc-guide:1008:philosophy:phil-105-5",
     "type": "elective-credit",
     "title": "PHIL 105 (5) -> PHIL 1XX",
     "acceptanceCategory": "accepted",
@@ -54183,7 +54239,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1008:philosophy:philand-106-5-formerly-phil-120",
+    "id": "uw-grc-guide:1009:philosophy:philand-106-5-formerly-phil-120",
     "type": "direct-course",
     "title": "§ PHIL& 106 (5) formerly PHIL 120 -> PHIL 120 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -54240,7 +54296,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1009:philosophy:phil-110-5",
+    "id": "uw-grc-guide:1010:philosophy:phil-110-5",
     "type": "direct-course",
     "title": "PHIL 110 (5) -> PHIL 110 (5)",
     "acceptanceCategory": "accepted",
@@ -54287,7 +54343,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1010:philosophy:phil-112-5",
+    "id": "uw-grc-guide:1011:philosophy:phil-112-5",
     "type": "elective-credit",
     "title": "PHIL 112 (5) -> UW 1XX",
     "acceptanceCategory": "accepted",
@@ -54338,7 +54394,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1011:philosophy:phil-114-5",
+    "id": "uw-grc-guide:1012:philosophy:phil-114-5",
     "type": "direct-course",
     "title": "PHIL 114 (5) -> PHIL 114 (5)",
     "acceptanceCategory": "accepted",
@@ -54385,7 +54441,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1012:philosophy:phil-115-5",
+    "id": "uw-grc-guide:1013:philosophy:phil-115-5",
     "type": "direct-course",
     "title": "PHIL 115 (5) -> PHIL 115 (5)",
     "acceptanceCategory": "accepted",
@@ -54432,7 +54488,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1013:philosophy:philand-120-5-formerly-philand-106",
+    "id": "uw-grc-guide:1014:philosophy:philand-120-5-formerly-philand-106",
     "type": "direct-course",
     "title": "PHIL& 120 (5) formerly PHIL& 106 -> PHIL 120 (5)",
     "acceptanceCategory": "accepted",
@@ -54487,7 +54543,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1014:philosophy:phil-120-5",
+    "id": "uw-grc-guide:1015:philosophy:phil-120-5",
     "type": "direct-course",
     "title": "§ PHIL 120 (5) -> PHIL 120 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -54544,7 +54600,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1015:philosophy:phil-135-5",
+    "id": "uw-grc-guide:1016:philosophy:phil-135-5",
     "type": "elective-credit",
     "title": "§ PHIL 135 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54590,7 +54646,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1016:philosophy:phil-160-5",
+    "id": "uw-grc-guide:1017:philosophy:phil-160-5",
     "type": "elective-credit",
     "title": "PHIL 160 (5) -> PHIL 1XX",
     "acceptanceCategory": "accepted",
@@ -54644,7 +54700,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1017:philosophy:phil-160-5",
+    "id": "uw-grc-guide:1018:philosophy:phil-160-5",
     "type": "elective-credit",
     "title": "§ PHIL 160 (5) -> PHIL 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54700,7 +54756,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1018:philosophy:phil-191-1-5",
+    "id": "uw-grc-guide:1019:philosophy:phil-191-1-5",
     "type": "elective-credit",
     "title": "§ PHIL 191 (1-5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54746,7 +54802,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1019:philosophy:phil-192-1-5",
+    "id": "uw-grc-guide:1020:philosophy:phil-192-1-5",
     "type": "elective-credit",
     "title": "§ PHIL 192 (1-5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54792,7 +54848,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1020:philosophy:phil-193-1-5",
+    "id": "uw-grc-guide:1021:philosophy:phil-193-1-5",
     "type": "elective-credit",
     "title": "§ PHIL 193 (1-5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54838,7 +54894,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1021:philosophy:phil-194-1-5",
+    "id": "uw-grc-guide:1022:philosophy:phil-194-1-5",
     "type": "elective-credit",
     "title": "PHIL 194 (1-5) -> PHIL 1XX",
     "acceptanceCategory": "accepted",
@@ -54885,7 +54941,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1022:philosophy:phil-195-1-5",
+    "id": "uw-grc-guide:1023:philosophy:phil-195-1-5",
     "type": "elective-credit",
     "title": "§ PHIL 195 (1-5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54931,7 +54987,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1023:philosophy:phil-196-1-5",
+    "id": "uw-grc-guide:1024:philosophy:phil-196-1-5",
     "type": "elective-credit",
     "title": "§ PHIL 196 (1-5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -54977,7 +55033,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1024:philosophy:phil-200-5",
+    "id": "uw-grc-guide:1025:philosophy:phil-200-5",
     "type": "direct-course",
     "title": "PHIL 200 (5) -> PHIL 267 (5)",
     "acceptanceCategory": "accepted",
@@ -55024,7 +55080,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1025:philosophy:phil-205-1-5",
+    "id": "uw-grc-guide:1026:philosophy:phil-205-1-5",
     "type": "sequence",
     "title": "§ PHIL 205 (1-5) -> PHIL 201 (3-5, max. 10) [credit allowed varies 3-5] if 3-5 credits taken; otherwise, PHIL 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -55082,7 +55138,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1026:philosophy:phil-206-5",
+    "id": "uw-grc-guide:1027:philosophy:phil-206-5",
     "type": "direct-course",
     "title": "PHIL 206 (5) -> PHIL 206 (5) or GWSS 206 (5) or POL S 212 (5)",
     "acceptanceCategory": "accepted",
@@ -55138,7 +55194,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1027:philosophy:phil-210-5",
+    "id": "uw-grc-guide:1028:philosophy:phil-210-5",
     "type": "elective-credit",
     "title": "PHIL 210 (5) -> RELIG 2XX",
     "acceptanceCategory": "accepted",
@@ -55185,7 +55241,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1028:philosophy:phil-215-5",
+    "id": "uw-grc-guide:1029:philosophy:phil-215-5",
     "type": "elective-credit",
     "title": "PHIL 215 (5) -> PHIL 2XX",
     "acceptanceCategory": "accepted",
@@ -55240,7 +55296,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1029:philosophy:phil-220-5",
+    "id": "uw-grc-guide:1030:philosophy:phil-220-5",
     "type": "elective-credit",
     "title": "PHIL 220 (5) -> PHIL 2XX",
     "acceptanceCategory": "accepted",
@@ -55287,7 +55343,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1030:philosophy:phil-224-5",
+    "id": "uw-grc-guide:1031:philosophy:phil-224-5",
     "type": "elective-credit",
     "title": "§ PHIL 224 (5) -> GWSS 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -55343,7 +55399,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1031:philosophy:phil-230-5",
+    "id": "uw-grc-guide:1032:philosophy:phil-230-5",
     "type": "elective-credit",
     "title": "§ PHIL 230 (5) -> PHIL 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -55393,7 +55449,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1032:philosophy:phil-236-5",
+    "id": "uw-grc-guide:1033:philosophy:phil-236-5",
     "type": "elective-credit",
     "title": "PHIL 236 (5) -> PHIL 2XX",
     "acceptanceCategory": "accepted",
@@ -55447,7 +55503,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1033:philosophy:phil-238-5",
+    "id": "uw-grc-guide:1034:philosophy:phil-238-5",
     "type": "elective-credit",
     "title": "PHIL 238 (5) -> PHIL 2XX",
     "acceptanceCategory": "accepted",
@@ -55501,7 +55557,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1034:philosophy:phil-240-5",
+    "id": "uw-grc-guide:1035:philosophy:phil-240-5",
     "type": "direct-course",
     "title": "PHIL 240 (5) -> PHIL 240 (5)",
     "acceptanceCategory": "accepted",
@@ -55549,7 +55605,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1035:philosophy:phil-243-5",
+    "id": "uw-grc-guide:1036:philosophy:phil-243-5",
     "type": "elective-credit",
     "title": "PHIL 243 (5) -> UW 2XX (5)",
     "acceptanceCategory": "accepted",
@@ -55600,7 +55656,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1036:philosophy:phil-299-1-5",
+    "id": "uw-grc-guide:1037:philosophy:phil-299-1-5",
     "type": "elective-credit",
     "title": "PHIL 299 (1-5) -> PHIL 2XX",
     "acceptanceCategory": "accepted",
@@ -55644,7 +55700,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1037:photography:photo-101-5",
+    "id": "uw-grc-guide:1038:photography:photo-101-5",
     "type": "elective-credit",
     "title": "PHOTO 101 (5) -> ART 1XX",
     "acceptanceCategory": "accepted",
@@ -55691,7 +55747,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1038:photography:photo-102-5",
+    "id": "uw-grc-guide:1039:photography:photo-102-5",
     "type": "elective-credit",
     "title": "PHOTO 102 (5) -> ART 1XX",
     "acceptanceCategory": "accepted",
@@ -55738,7 +55794,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1039:photography:photo-103-5",
+    "id": "uw-grc-guide:1040:photography:photo-103-5",
     "type": "elective-credit",
     "title": "PHOTO 103 (5) -> ART 1XX",
     "acceptanceCategory": "accepted",
@@ -55783,9 +55839,12 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
   {
-    "id": "uw-grc-guide:1040:photography:photo-104-5-see-now-photo-111",
+    "id": "uw-grc-guide:1041:photography:photo-104-5-see-now-photo-111",
     "type": "elective-credit",
     "title": "§ PHOTO 104 (5) see now PHOTO 111 -> ART 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -55839,12 +55898,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_12: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  }
-];
-
-const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
+  },
   {
-    "id": "uw-grc-guide:1041:photography:photo-105-5",
+    "id": "uw-grc-guide:1042:photography:photo-105-5",
     "type": "elective-credit",
     "title": "§ PHOTO 105 (5) -> ART 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -55897,7 +55953,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1042:photography:photo-106-5",
+    "id": "uw-grc-guide:1043:photography:photo-106-5",
     "type": "elective-credit",
     "title": "§ PHOTO 106 (5) -> ART 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -55950,7 +56006,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1043:photography:photo-111-5-formerly-photo-104",
+    "id": "uw-grc-guide:1044:photography:photo-111-5-formerly-photo-104",
     "type": "elective-credit",
     "title": "PHOTO 111 (5) formerly PHOTO 104 -> ART 1XX",
     "acceptanceCategory": "accepted",
@@ -56004,7 +56060,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1044:photography:photo-112-5",
+    "id": "uw-grc-guide:1045:photography:photo-112-5",
     "type": "elective-credit",
     "title": "PHOTO 112 (5) -> ART 1XX",
     "acceptanceCategory": "accepted",
@@ -56058,7 +56114,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1045:photography:photo-113-5",
+    "id": "uw-grc-guide:1046:photography:photo-113-5",
     "type": "elective-credit",
     "title": "PHOTO 113 (5) -> ART 1XX",
     "acceptanceCategory": "accepted",
@@ -56112,7 +56168,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1046:photography:photo-201-5",
+    "id": "uw-grc-guide:1047:photography:photo-201-5",
     "type": "elective-credit",
     "title": "§ PHOTO 201 (5) -> ART 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -56168,7 +56224,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1047:photography:photo-202-5",
+    "id": "uw-grc-guide:1048:photography:photo-202-5",
     "type": "elective-credit",
     "title": "§ PHOTO 202 (5) -> ART 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -56224,7 +56280,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1048:photography:photo-203-5",
+    "id": "uw-grc-guide:1049:photography:photo-203-5",
     "type": "elective-credit",
     "title": "§ PHOTO 203 (5) -> ART 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -56280,7 +56336,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1049:photography:photo-204-5",
+    "id": "uw-grc-guide:1050:photography:photo-204-5",
     "type": "elective-credit",
     "title": "§ PHOTO 204 (5) -> ART 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -56336,7 +56392,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1050:physical-education:p-e-100-2",
+    "id": "uw-grc-guide:1051:physical-education:p-e-100-2",
     "type": "limited-credit",
     "title": "§ P E 100 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -56383,7 +56439,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1051:physical-education:p-e-101-2",
+    "id": "uw-grc-guide:1052:physical-education:p-e-101-2",
     "type": "limited-credit",
     "title": "P E 101 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56429,7 +56485,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1052:physical-education:p-e-101-5-2",
+    "id": "uw-grc-guide:1053:physical-education:p-e-101-5-2",
     "type": "limited-credit",
     "title": "§ P E 101.5 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -56476,7 +56532,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1053:physical-education:p-e-102-2",
+    "id": "uw-grc-guide:1054:physical-education:p-e-102-2",
     "type": "limited-credit",
     "title": "P E 102 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56522,7 +56578,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1054:physical-education:p-e-103-3",
+    "id": "uw-grc-guide:1055:physical-education:p-e-103-3",
     "type": "limited-credit",
     "title": "P E 103 (3) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56568,7 +56624,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1055:physical-education:p-e-104-2",
+    "id": "uw-grc-guide:1056:physical-education:p-e-104-2",
     "type": "limited-credit",
     "title": "§ P E 104 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -56622,7 +56678,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1056:physical-education:p-e-105-2",
+    "id": "uw-grc-guide:1057:physical-education:p-e-105-2",
     "type": "limited-credit",
     "title": "§ P E 105 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -56676,7 +56732,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1057:physical-education:p-e-106-1",
+    "id": "uw-grc-guide:1058:physical-education:p-e-106-1",
     "type": "limited-credit",
     "title": "§ P E 106 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -56723,7 +56779,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1058:physical-education:p-e-107-1",
+    "id": "uw-grc-guide:1059:physical-education:p-e-107-1",
     "type": "limited-credit",
     "title": "P E 107 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56769,7 +56825,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1059:physical-education:p-e-108-1",
+    "id": "uw-grc-guide:1060:physical-education:p-e-108-1",
     "type": "limited-credit",
     "title": "P E 108 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56815,7 +56871,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1060:physical-education:p-e-109-3",
+    "id": "uw-grc-guide:1061:physical-education:p-e-109-3",
     "type": "limited-credit",
     "title": "P E 109 (3) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56861,7 +56917,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1061:physical-education:p-e-110-1",
+    "id": "uw-grc-guide:1062:physical-education:p-e-110-1",
     "type": "limited-credit",
     "title": "P E 110 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56907,7 +56963,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1062:physical-education:p-e-111-2",
+    "id": "uw-grc-guide:1063:physical-education:p-e-111-2",
     "type": "limited-credit",
     "title": "P E 111 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -56960,7 +57016,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1063:physical-education:p-e-112-1",
+    "id": "uw-grc-guide:1064:physical-education:p-e-112-1",
     "type": "limited-credit",
     "title": "P E 112 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57006,7 +57062,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1064:physical-education:p-e-113-1",
+    "id": "uw-grc-guide:1065:physical-education:p-e-113-1",
     "type": "limited-credit",
     "title": "P E 113 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57052,7 +57108,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1065:physical-education:p-e-114-1",
+    "id": "uw-grc-guide:1066:physical-education:p-e-114-1",
     "type": "limited-credit",
     "title": "P E 114 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57098,7 +57154,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1066:physical-education:p-e-115-1",
+    "id": "uw-grc-guide:1067:physical-education:p-e-115-1",
     "type": "limited-credit",
     "title": "P E 115 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57144,7 +57200,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1067:physical-education:p-e-116-1",
+    "id": "uw-grc-guide:1068:physical-education:p-e-116-1",
     "type": "limited-credit",
     "title": "§ P E 116 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57198,7 +57254,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1068:physical-education:p-e-117-1",
+    "id": "uw-grc-guide:1069:physical-education:p-e-117-1",
     "type": "limited-credit",
     "title": "P E 117 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57251,7 +57307,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1069:physical-education:p-e-118-1",
+    "id": "uw-grc-guide:1070:physical-education:p-e-118-1",
     "type": "limited-credit",
     "title": "P E 118 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57297,7 +57353,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1070:physical-education:p-e-119-1",
+    "id": "uw-grc-guide:1071:physical-education:p-e-119-1",
     "type": "limited-credit",
     "title": "P E 119 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57343,7 +57399,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1071:physical-education:p-e-120-1",
+    "id": "uw-grc-guide:1072:physical-education:p-e-120-1",
     "type": "limited-credit",
     "title": "§ P E 120 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57390,7 +57446,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1072:physical-education:p-e-121-1",
+    "id": "uw-grc-guide:1073:physical-education:p-e-121-1",
     "type": "limited-credit",
     "title": "P E 121 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57436,7 +57492,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1073:physical-education:p-e-122-1",
+    "id": "uw-grc-guide:1074:physical-education:p-e-122-1",
     "type": "limited-credit",
     "title": "P E 122 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57482,7 +57538,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1074:physical-education:p-e-123-1",
+    "id": "uw-grc-guide:1075:physical-education:p-e-123-1",
     "type": "limited-credit",
     "title": "§ P E 123 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57529,7 +57585,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1075:physical-education:p-e-124-1",
+    "id": "uw-grc-guide:1076:physical-education:p-e-124-1",
     "type": "limited-credit",
     "title": "P E 124 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57575,7 +57631,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1076:physical-education:p-e-125-1",
+    "id": "uw-grc-guide:1077:physical-education:p-e-125-1",
     "type": "limited-credit",
     "title": "P E 125 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57621,7 +57677,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1077:physical-education:p-e-126-1",
+    "id": "uw-grc-guide:1078:physical-education:p-e-126-1",
     "type": "limited-credit",
     "title": "§ P E 126 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57675,7 +57731,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1078:physical-education:p-e-127-1",
+    "id": "uw-grc-guide:1079:physical-education:p-e-127-1",
     "type": "limited-credit",
     "title": "§ P E 127 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57722,7 +57778,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1079:physical-education:p-e-128-1",
+    "id": "uw-grc-guide:1080:physical-education:p-e-128-1",
     "type": "limited-credit",
     "title": "P E 128 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57775,7 +57831,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1080:physical-education:p-e-128-1",
+    "id": "uw-grc-guide:1081:physical-education:p-e-128-1",
     "type": "limited-credit",
     "title": "§ P E 128 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57829,7 +57885,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1081:physical-education:p-e-129-1",
+    "id": "uw-grc-guide:1082:physical-education:p-e-129-1",
     "type": "limited-credit",
     "title": "P E 129 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57875,7 +57931,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1082:physical-education:p-e-130-1",
+    "id": "uw-grc-guide:1083:physical-education:p-e-130-1",
     "type": "limited-credit",
     "title": "§ P E 130 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -57922,7 +57978,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1083:physical-education:p-e-131-2",
+    "id": "uw-grc-guide:1084:physical-education:p-e-131-2",
     "type": "limited-credit",
     "title": "P E 131 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -57968,7 +58024,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1084:physical-education:p-e-132-1",
+    "id": "uw-grc-guide:1085:physical-education:p-e-132-1",
     "type": "limited-credit",
     "title": "P E 132 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58014,7 +58070,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1085:physical-education:p-e-133-2",
+    "id": "uw-grc-guide:1086:physical-education:p-e-133-2",
     "type": "limited-credit",
     "title": "§ P E 133 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58061,7 +58117,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1086:physical-education:p-e-134-1",
+    "id": "uw-grc-guide:1087:physical-education:p-e-134-1",
     "type": "limited-credit",
     "title": "P E 134 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58114,7 +58170,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1087:physical-education:p-e-135-2",
+    "id": "uw-grc-guide:1088:physical-education:p-e-135-2",
     "type": "limited-credit",
     "title": "§ P E 135 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58161,7 +58217,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1088:physical-education:p-e-136-1",
+    "id": "uw-grc-guide:1089:physical-education:p-e-136-1",
     "type": "limited-credit",
     "title": "P E 136 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58207,7 +58263,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1089:physical-education:p-e-137-1",
+    "id": "uw-grc-guide:1090:physical-education:p-e-137-1",
     "type": "limited-credit",
     "title": "P E 137 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58253,7 +58309,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1090:physical-education:p-e-138-1",
+    "id": "uw-grc-guide:1091:physical-education:p-e-138-1",
     "type": "limited-credit",
     "title": "P E 138 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58299,7 +58355,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1091:physical-education:p-e-139-1",
+    "id": "uw-grc-guide:1092:physical-education:p-e-139-1",
     "type": "limited-credit",
     "title": "P E 139 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58345,7 +58401,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1092:physical-education:p-e-140-1",
+    "id": "uw-grc-guide:1093:physical-education:p-e-140-1",
     "type": "limited-credit",
     "title": "P E 140 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58398,7 +58454,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1093:physical-education:p-e-140-1",
+    "id": "uw-grc-guide:1094:physical-education:p-e-140-1",
     "type": "limited-credit",
     "title": "§ P E 140 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58452,7 +58508,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1094:physical-education:p-e-141-1",
+    "id": "uw-grc-guide:1095:physical-education:p-e-141-1",
     "type": "limited-credit",
     "title": "P E 141 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58505,7 +58561,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1095:physical-education:p-e-141-1",
+    "id": "uw-grc-guide:1096:physical-education:p-e-141-1",
     "type": "limited-credit",
     "title": "§ P E 141 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58552,7 +58608,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1096:physical-education:p-e-142-1",
+    "id": "uw-grc-guide:1097:physical-education:p-e-142-1",
     "type": "limited-credit",
     "title": "§ P E 142 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58599,7 +58655,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1097:physical-education:p-e-143-1",
+    "id": "uw-grc-guide:1098:physical-education:p-e-143-1",
     "type": "limited-credit",
     "title": "P E 143 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58652,7 +58708,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1098:physical-education:p-e-143-1",
+    "id": "uw-grc-guide:1099:physical-education:p-e-143-1",
     "type": "limited-credit",
     "title": "§ P E 143 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58706,7 +58762,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1099:physical-education:p-e-144-1",
+    "id": "uw-grc-guide:1100:physical-education:p-e-144-1",
     "type": "limited-credit",
     "title": "P E 144 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58759,7 +58815,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1100:physical-education:p-e-144-1",
+    "id": "uw-grc-guide:1101:physical-education:p-e-144-1",
     "type": "limited-credit",
     "title": "§ P E 144 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58813,7 +58869,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1101:physical-education:p-e-145-1",
+    "id": "uw-grc-guide:1102:physical-education:p-e-145-1",
     "type": "limited-credit",
     "title": "§ P E 145 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58860,7 +58916,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1102:physical-education:p-e-147-1",
+    "id": "uw-grc-guide:1103:physical-education:p-e-147-1",
     "type": "limited-credit",
     "title": "P E 147 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -58913,7 +58969,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1103:physical-education:p-e-147-1",
+    "id": "uw-grc-guide:1104:physical-education:p-e-147-1",
     "type": "limited-credit",
     "title": "§ P E 147 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -58960,7 +59016,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1104:physical-education:p-e-148-1",
+    "id": "uw-grc-guide:1105:physical-education:p-e-148-1",
     "type": "limited-credit",
     "title": "P E 148 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59013,7 +59069,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1105:physical-education:p-e-149-1",
+    "id": "uw-grc-guide:1106:physical-education:p-e-149-1",
     "type": "limited-credit",
     "title": "P E 149 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59066,7 +59122,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1106:physical-education:p-e-150-1",
+    "id": "uw-grc-guide:1107:physical-education:p-e-150-1",
     "type": "limited-credit",
     "title": "P E 150 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59112,7 +59168,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1107:physical-education:p-e-151-2",
+    "id": "uw-grc-guide:1108:physical-education:p-e-151-2",
     "type": "limited-credit",
     "title": "§ P E 151 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59166,7 +59222,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1108:physical-education:p-e-152-2",
+    "id": "uw-grc-guide:1109:physical-education:p-e-152-2",
     "type": "limited-credit",
     "title": "§ P E 152 (2) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59220,7 +59276,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1109:physical-education:pe-156-1",
+    "id": "uw-grc-guide:1110:physical-education:pe-156-1",
     "type": "limited-credit",
     "title": "§ PE 156 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59267,7 +59323,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1110:physical-education:p-e-158-1",
+    "id": "uw-grc-guide:1111:physical-education:p-e-158-1",
     "type": "limited-credit",
     "title": "P E 158 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59320,7 +59376,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1111:physical-education:pe-159-1",
+    "id": "uw-grc-guide:1112:physical-education:pe-159-1",
     "type": "limited-credit",
     "title": "§ PE 159 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59374,7 +59430,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1112:physical-education:p-e-160-1-3",
+    "id": "uw-grc-guide:1113:physical-education:p-e-160-1-3",
     "type": "limited-credit",
     "title": "§ P E 160 (1-3) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59428,7 +59484,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1113:physical-education:p-e-161-1-3",
+    "id": "uw-grc-guide:1114:physical-education:p-e-161-1-3",
     "type": "limited-credit",
     "title": "§ P E 161 (1-3) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59475,7 +59531,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1114:physical-education:p-e-162-1-3",
+    "id": "uw-grc-guide:1115:physical-education:p-e-162-1-3",
     "type": "limited-credit",
     "title": "§ P E 162 (1-3) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59522,7 +59578,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1115:physical-education:p-e-163-2",
+    "id": "uw-grc-guide:1116:physical-education:p-e-163-2",
     "type": "elective-credit",
     "title": "§ P E 163 (2) -> KINPE 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -59568,7 +59624,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1116:physical-education:p-e-164-3",
+    "id": "uw-grc-guide:1117:physical-education:p-e-164-3",
     "type": "elective-credit",
     "title": "§ P E 164 (3) -> KINPE 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -59614,7 +59670,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1117:physical-education:p-e-175-1",
+    "id": "uw-grc-guide:1118:physical-education:p-e-175-1",
     "type": "limited-credit",
     "title": "§ P E 175 (1) -> PE 1XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59661,7 +59717,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1118:physical-education:p-e-190-3",
+    "id": "uw-grc-guide:1119:physical-education:p-e-190-3",
     "type": "elective-credit",
     "title": "§ P E 190 (3) -> KINPE 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -59707,7 +59763,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1119:physical-education:p-e-193-1-2",
+    "id": "uw-grc-guide:1120:physical-education:p-e-193-1-2",
     "type": "limited-credit",
     "title": "P E 193 (1-2) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59758,9 +59814,12 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
   {
-    "id": "uw-grc-guide:1120:physical-education:p-e-198-1-3",
+    "id": "uw-grc-guide:1121:physical-education:p-e-198-1-3",
     "type": "limited-credit",
     "title": "P E 198 (1-3) -> PE 1XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59804,12 +59863,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_13: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  }
-];
-
-const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
+  },
   {
-    "id": "uw-grc-guide:1121:physical-education:p-e-201-2",
+    "id": "uw-grc-guide:1122:physical-education:p-e-201-2",
     "type": "limited-credit",
     "title": "P E 201 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59855,7 +59911,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1122:physical-education:p-e-202-2",
+    "id": "uw-grc-guide:1123:physical-education:p-e-202-2",
     "type": "limited-credit",
     "title": "P E 202 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -59901,7 +59957,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1123:physical-education:p-e-203-2",
+    "id": "uw-grc-guide:1124:physical-education:p-e-203-2",
     "type": "limited-credit",
     "title": "§ P E 203 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -59955,7 +60011,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1124:physical-education:p-e-204-2",
+    "id": "uw-grc-guide:1125:physical-education:p-e-204-2",
     "type": "limited-credit",
     "title": "§ P E 204 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -60002,7 +60058,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1125:physical-education:p-e-205-2",
+    "id": "uw-grc-guide:1126:physical-education:p-e-205-2",
     "type": "limited-credit",
     "title": "§ P E 205 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -60049,7 +60105,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1126:physical-education:p-e-207-1",
+    "id": "uw-grc-guide:1127:physical-education:p-e-207-1",
     "type": "limited-credit",
     "title": "P E 207 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60095,7 +60151,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1127:physical-education:p-e-208-1",
+    "id": "uw-grc-guide:1128:physical-education:p-e-208-1",
     "type": "limited-credit",
     "title": "§ P E 208 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -60142,7 +60198,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1128:physical-education:p-e-210-1",
+    "id": "uw-grc-guide:1129:physical-education:p-e-210-1",
     "type": "limited-credit",
     "title": "P E 210 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60188,7 +60244,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1129:physical-education:p-e-211-1",
+    "id": "uw-grc-guide:1130:physical-education:p-e-211-1",
     "type": "limited-credit",
     "title": "P E 211 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60234,7 +60290,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1130:physical-education:p-e-212-2",
+    "id": "uw-grc-guide:1131:physical-education:p-e-212-2",
     "type": "limited-credit",
     "title": "P E 212 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60280,7 +60336,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1131:physical-education:p-e-215-2",
+    "id": "uw-grc-guide:1132:physical-education:p-e-215-2",
     "type": "limited-credit",
     "title": "P E 215 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60326,7 +60382,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1132:physical-education:p-e-216-1",
+    "id": "uw-grc-guide:1133:physical-education:p-e-216-1",
     "type": "limited-credit",
     "title": "P E 216 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60379,7 +60435,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1133:physical-education:p-e-218-1",
+    "id": "uw-grc-guide:1134:physical-education:p-e-218-1",
     "type": "limited-credit",
     "title": "§ P E 218 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -60426,7 +60482,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1134:physical-education:p-e-224-1",
+    "id": "uw-grc-guide:1135:physical-education:p-e-224-1",
     "type": "limited-credit",
     "title": "P E 224 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60472,7 +60528,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1135:physical-education:p-e-225-1",
+    "id": "uw-grc-guide:1136:physical-education:p-e-225-1",
     "type": "limited-credit",
     "title": "§ P E 225 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -60519,7 +60575,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1136:physical-education:p-e-231-2",
+    "id": "uw-grc-guide:1137:physical-education:p-e-231-2",
     "type": "limited-credit",
     "title": "P E 231 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60565,7 +60621,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1137:physical-education:p-e-234-1",
+    "id": "uw-grc-guide:1138:physical-education:p-e-234-1",
     "type": "limited-credit",
     "title": "P E 234 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60618,7 +60674,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1138:physical-education:p-e-236-1",
+    "id": "uw-grc-guide:1139:physical-education:p-e-236-1",
     "type": "limited-credit",
     "title": "P E 236 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60671,7 +60727,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1139:physical-education:p-e-237-1",
+    "id": "uw-grc-guide:1140:physical-education:p-e-237-1",
     "type": "limited-credit",
     "title": "P E 237 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60724,7 +60780,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1140:physical-education:p-e-248-1",
+    "id": "uw-grc-guide:1141:physical-education:p-e-248-1",
     "type": "limited-credit",
     "title": "P E 248 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60777,7 +60833,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1141:physical-education:p-e-251-2",
+    "id": "uw-grc-guide:1142:physical-education:p-e-251-2",
     "type": "limited-credit",
     "title": "P E 251 (2) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60823,7 +60879,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1142:physical-education:p-e-253-3",
+    "id": "uw-grc-guide:1143:physical-education:p-e-253-3",
     "type": "limited-credit",
     "title": "P E 253 (3) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60869,7 +60925,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1143:physical-education:p-e-258-1",
+    "id": "uw-grc-guide:1144:physical-education:p-e-258-1",
     "type": "limited-credit",
     "title": "P E 258 (1) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -60922,7 +60978,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1144:physical-education:p-e-260-1-3",
+    "id": "uw-grc-guide:1145:physical-education:p-e-260-1-3",
     "type": "limited-credit",
     "title": "§ P E 260 (1-3) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -60969,7 +61025,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1145:physical-education:p-e-261-1-3",
+    "id": "uw-grc-guide:1146:physical-education:p-e-261-1-3",
     "type": "limited-credit",
     "title": "§ P E 261 (1-3) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -61023,7 +61079,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1146:physical-education:p-e-262-1-3",
+    "id": "uw-grc-guide:1147:physical-education:p-e-262-1-3",
     "type": "limited-credit",
     "title": "§ P E 262 (1-3) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -61077,7 +61133,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1147:physical-education:p-e-265-3",
+    "id": "uw-grc-guide:1148:physical-education:p-e-265-3",
     "type": "limited-credit",
     "title": "§ P E 265 (3) -> PE 2XX ( LC )",
     "acceptanceCategory": "legacy-accepted",
@@ -61124,7 +61180,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1148:physical-education:p-e-290-3",
+    "id": "uw-grc-guide:1149:physical-education:p-e-290-3",
     "type": "elective-credit",
     "title": "§ P E 290 (3) -> KINPE 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61170,7 +61226,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1149:physical-education:p-e-298-1-3",
+    "id": "uw-grc-guide:1150:physical-education:p-e-298-1-3",
     "type": "limited-credit",
     "title": "P E 298 (1-3) -> PE 2XX ( LC )",
     "acceptanceCategory": "accepted-with-warning",
@@ -61216,7 +61272,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1150:physical-therapy:p-t-101-3",
+    "id": "uw-grc-guide:1151:physical-therapy:p-t-101-3",
     "type": "elective-credit",
     "title": "§ P T 101 (3) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61269,7 +61325,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1151:physical-therapy:p-t-102-2",
+    "id": "uw-grc-guide:1152:physical-therapy:p-t-102-2",
     "type": "elective-credit",
     "title": "§ P T 102 (2) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61322,7 +61378,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1152:physical-therapy:p-t-105-3",
+    "id": "uw-grc-guide:1153:physical-therapy:p-t-105-3",
     "type": "elective-credit",
     "title": "§ P T 105 (3) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61375,7 +61431,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1153:physical-therapy:p-t-110-2-5",
+    "id": "uw-grc-guide:1154:physical-therapy:p-t-110-2-5",
     "type": "elective-credit",
     "title": "§ P T 110 (2-5) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61428,7 +61484,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1154:physical-therapy:p-t-110l-3",
+    "id": "uw-grc-guide:1155:physical-therapy:p-t-110l-3",
     "type": "elective-credit",
     "title": "§ P T 110L (3) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61481,7 +61537,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1155:physical-therapy:p-t-111-3-6",
+    "id": "uw-grc-guide:1156:physical-therapy:p-t-111-3-6",
     "type": "elective-credit",
     "title": "§ P T 111 (3-6) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61534,7 +61590,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1156:physical-therapy:p-t-111l-3",
+    "id": "uw-grc-guide:1157:physical-therapy:p-t-111l-3",
     "type": "elective-credit",
     "title": "§ P T 111L (3) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61587,7 +61643,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1157:physical-therapy:p-t-112-2",
+    "id": "uw-grc-guide:1158:physical-therapy:p-t-112-2",
     "type": "elective-credit",
     "title": "§ P T 112 (2) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61640,7 +61696,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1158:physical-therapy:p-t-112l-2",
+    "id": "uw-grc-guide:1159:physical-therapy:p-t-112l-2",
     "type": "elective-credit",
     "title": "§ P T 112L (2) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61693,7 +61749,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1159:physical-therapy:p-t-113-3-4",
+    "id": "uw-grc-guide:1160:physical-therapy:p-t-113-3-4",
     "type": "elective-credit",
     "title": "§ P T 113 (3-4) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61746,7 +61802,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1160:physical-therapy:p-t-113l-1",
+    "id": "uw-grc-guide:1161:physical-therapy:p-t-113l-1",
     "type": "elective-credit",
     "title": "§ P T 113L (1) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61799,7 +61855,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1161:physical-therapy:p-t-114-2",
+    "id": "uw-grc-guide:1162:physical-therapy:p-t-114-2",
     "type": "elective-credit",
     "title": "§ P T 114 (2) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61852,7 +61908,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1162:physical-therapy:p-t-151-1",
+    "id": "uw-grc-guide:1163:physical-therapy:p-t-151-1",
     "type": "elective-credit",
     "title": "§ P T 151 (1) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61905,7 +61961,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1163:physical-therapy:p-t-161-1",
+    "id": "uw-grc-guide:1164:physical-therapy:p-t-161-1",
     "type": "elective-credit",
     "title": "§ P T 161 (1) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -61958,7 +62014,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1164:physical-therapy:p-t-199-1-8",
+    "id": "uw-grc-guide:1165:physical-therapy:p-t-199-1-8",
     "type": "elective-credit",
     "title": "§ P T 199 (1-8) -> REHAB 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62011,7 +62067,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1165:physical-therapy:p-t-201-3",
+    "id": "uw-grc-guide:1166:physical-therapy:p-t-201-3",
     "type": "elective-credit",
     "title": "§ P T 201 (3) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62064,7 +62120,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1166:physical-therapy:p-t-210-3-5",
+    "id": "uw-grc-guide:1167:physical-therapy:p-t-210-3-5",
     "type": "elective-credit",
     "title": "§ P T 210 (3-5) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62117,7 +62173,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1167:physical-therapy:p-t-210l-2",
+    "id": "uw-grc-guide:1168:physical-therapy:p-t-210l-2",
     "type": "elective-credit",
     "title": "§ P T 210L (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62170,7 +62226,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1168:physical-therapy:p-t-211-4-6",
+    "id": "uw-grc-guide:1169:physical-therapy:p-t-211-4-6",
     "type": "elective-credit",
     "title": "§ P T 211 (4-6) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62223,7 +62279,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1169:physical-therapy:p-t-211l-2",
+    "id": "uw-grc-guide:1170:physical-therapy:p-t-211l-2",
     "type": "elective-credit",
     "title": "§ P T 211L (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62276,7 +62332,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1170:physical-therapy:p-t-212-1-3",
+    "id": "uw-grc-guide:1171:physical-therapy:p-t-212-1-3",
     "type": "elective-credit",
     "title": "§ P T 212 (1-3) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62329,7 +62385,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1171:physical-therapy:p-t-212l-1",
+    "id": "uw-grc-guide:1172:physical-therapy:p-t-212l-1",
     "type": "elective-credit",
     "title": "§ P T 212L (1) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62382,7 +62438,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1172:physical-therapy:p-t-213-3-5",
+    "id": "uw-grc-guide:1173:physical-therapy:p-t-213-3-5",
     "type": "elective-credit",
     "title": "§ P T 213 (3-5) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62435,7 +62491,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1173:physical-therapy:p-t-213l-2",
+    "id": "uw-grc-guide:1174:physical-therapy:p-t-213l-2",
     "type": "elective-credit",
     "title": "§ P T 213L (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62488,7 +62544,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1174:physical-therapy:p-t-251-1-2",
+    "id": "uw-grc-guide:1175:physical-therapy:p-t-251-1-2",
     "type": "elective-credit",
     "title": "§ P T 251 (1-2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62541,7 +62597,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1175:physical-therapy:p-t-252-1-2",
+    "id": "uw-grc-guide:1176:physical-therapy:p-t-252-1-2",
     "type": "elective-credit",
     "title": "§ P T 252 (1-2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62594,7 +62650,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1176:physical-therapy:p-t-253-12-14",
+    "id": "uw-grc-guide:1177:physical-therapy:p-t-253-12-14",
     "type": "elective-credit",
     "title": "§ P T 253 (12-14) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62647,7 +62703,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1177:physical-therapy:p-t-261-2",
+    "id": "uw-grc-guide:1178:physical-therapy:p-t-261-2",
     "type": "elective-credit",
     "title": "§ P T 261 (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62700,7 +62756,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1178:physical-therapy:p-t-262-2",
+    "id": "uw-grc-guide:1179:physical-therapy:p-t-262-2",
     "type": "elective-credit",
     "title": "§ P T 262 (2) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62753,7 +62809,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1179:physical-therapy:p-t-263-14",
+    "id": "uw-grc-guide:1180:physical-therapy:p-t-263-14",
     "type": "elective-credit",
     "title": "§ P T 263 (14) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62806,7 +62862,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1180:physical-therapy:p-t-270-5",
+    "id": "uw-grc-guide:1181:physical-therapy:p-t-270-5",
     "type": "elective-credit",
     "title": "§ P T 270 (5) -> REHAB 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -62859,7 +62915,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1181:physics:phys-101-5",
+    "id": "uw-grc-guide:1182:physics:phys-101-5",
     "type": "direct-course",
     "title": "§ PHYS 101 (5) -> PHYS 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -62915,7 +62971,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1182:physics:phys-105-5-formerly-phys-101",
+    "id": "uw-grc-guide:1183:physics:phys-105-5-formerly-phys-101",
     "type": "direct-course",
     "title": "§ PHYS 105 (5) formerly PHYS 101 -> PHYS 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -62971,7 +63027,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1183:physics:physand-110-5-formerly-phys-105",
+    "id": "uw-grc-guide:1184:physics:physand-110-5-formerly-phys-105",
     "type": "direct-course",
     "title": "PHYS& 110 (5) formerly PHYS 105 -> PHYS 101 (5)",
     "acceptanceCategory": "accepted",
@@ -63025,7 +63081,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1184:physics:phys-110-150-5-5",
+    "id": "uw-grc-guide:1185:physics:phys-110-150-5-5",
     "type": "sequence",
     "title": "§ PHYS 110, 150 (5, 5) -> PHYS 114, 117 (4, 1) for either course",
     "acceptanceCategory": "legacy-accepted",
@@ -63084,7 +63140,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1185:physics:phys-111-151-5-5",
+    "id": "uw-grc-guide:1186:physics:phys-111-151-5-5",
     "type": "sequence",
     "title": "§ PHYS 111, 151 (5, 5) -> PHYS 115, 118 (4, 1) for either course",
     "acceptanceCategory": "legacy-accepted",
@@ -63143,7 +63199,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1186:physics:phys-112-152-5-5",
+    "id": "uw-grc-guide:1187:physics:phys-112-152-5-5",
     "type": "sequence",
     "title": "§ PHYS 112, 152 (5, 5) -> PHYS 116,119 (4, 1) for either course",
     "acceptanceCategory": "legacy-accepted",
@@ -63202,7 +63258,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1187:physics:physand-114-154-5-5-formerly-phys-110-150",
+    "id": "uw-grc-guide:1188:physics:physand-114-154-5-5-formerly-phys-110-150",
     "type": "sequence",
     "title": "PHYS& 114, 154 (5, 5) formerly PHYS 110, 150 -> PHYS 114, 117 (4, 1) for either course",
     "acceptanceCategory": "accepted-with-warning",
@@ -63260,7 +63316,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1188:physics:physand-115-155-5-5-formerly-phys-111-151",
+    "id": "uw-grc-guide:1189:physics:physand-115-155-5-5-formerly-phys-111-151",
     "type": "sequence",
     "title": "PHYS& 115, 155 (5, 5) formerly PHYS 111, 151 -> PHYS 115, 118 (4, 1) for either course",
     "acceptanceCategory": "accepted-with-warning",
@@ -63318,7 +63374,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1189:physics:physand-116-156-5-5-formerly-phys-112-152",
+    "id": "uw-grc-guide:1190:physics:physand-116-156-5-5-formerly-phys-112-152",
     "type": "sequence",
     "title": "PHYS& 116, 156 (5, 5) formerly PHYS 112, 152 -> PHYS 116,119 (4, 1) for either course",
     "acceptanceCategory": "accepted-with-warning",
@@ -63376,7 +63432,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1190:physics:phys-194-1-5",
+    "id": "uw-grc-guide:1191:physics:phys-194-1-5",
     "type": "elective-credit",
     "title": "§ PHYS 194 (1-5) -> PHYS 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -63422,7 +63478,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1191:physics:phys-201-5",
+    "id": "uw-grc-guide:1192:physics:phys-201-5",
     "type": "direct-course",
     "title": "§ PHYS 201 (5) -> PHYS 121 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -63478,7 +63534,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1192:physics:phys-202-5",
+    "id": "uw-grc-guide:1193:physics:phys-202-5",
     "type": "direct-course",
     "title": "§ PHYS 202 (5) -> PHYS 122 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -63534,7 +63590,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1193:physics:phys-203-5",
+    "id": "uw-grc-guide:1194:physics:phys-203-5",
     "type": "direct-course",
     "title": "§ PHYS 203 (5) -> PHYS 123 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -63590,7 +63646,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1194:physics:phys-208-2",
+    "id": "uw-grc-guide:1195:physics:phys-208-2",
     "type": "elective-credit",
     "title": "§ PHYS 208 (2) -> PHYS 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -63646,7 +63702,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1195:physics:phys-221-3",
+    "id": "uw-grc-guide:1196:physics:phys-221-3",
     "type": "direct-course",
     "title": "§ PHYS 221 (3) -> PHYS 225 (3)",
     "acceptanceCategory": "legacy-accepted",
@@ -63702,7 +63758,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201",
+    "id": "uw-grc-guide:1197:physics:physand-221-5-formerly-phys-201",
     "type": "direct-course",
     "title": "PHYS& 221 (5) formerly PHYS 201 -> PHYS 121 (5)",
     "acceptanceCategory": "accepted",
@@ -63756,7 +63812,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202",
+    "id": "uw-grc-guide:1198:physics:physand-222-5-formerly-phys-202",
     "type": "direct-course",
     "title": "PHYS& 222 (5) formerly PHYS 202 -> PHYS 122 (5)",
     "acceptanceCategory": "accepted",
@@ -63810,7 +63866,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1198:physics:physand-223-5-formerly-phys-203",
+    "id": "uw-grc-guide:1199:physics:physand-223-5-formerly-phys-203",
     "type": "direct-course",
     "title": "PHYS& 223 (5) formerly PHYS 203 -> PHYS 123 (5)",
     "acceptanceCategory": "accepted",
@@ -63864,7 +63920,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1199:physics:phys-225-3-formerly-phys-221",
+    "id": "uw-grc-guide:1200:physics:phys-225-3-formerly-phys-221",
     "type": "direct-course",
     "title": "PHYS 225 (3) formerly PHYS 221 -> PHYS 225 (3)",
     "acceptanceCategory": "accepted",
@@ -63916,9 +63972,12 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
   {
-    "id": "uw-grc-guide:1200:physics:phys-229-2-formerly-phys-208",
+    "id": "uw-grc-guide:1201:physics:phys-229-2-formerly-phys-208",
     "type": "elective-credit",
     "title": "PHYS 229 (2) formerly PHYS 208 -> PHYS 2XX",
     "acceptanceCategory": "accepted",
@@ -63970,12 +64029,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_14: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  }
-];
-
-const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
+  },
   {
-    "id": "uw-grc-guide:1201:physics:phys-280-1-5",
+    "id": "uw-grc-guide:1202:physics:phys-280-1-5",
     "type": "elective-credit",
     "title": "§ PHYS 280 (1-5) -> UW 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64021,7 +64077,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1202:physics:phys-298-1-5",
+    "id": "uw-grc-guide:1203:physics:phys-298-1-5",
     "type": "elective-credit",
     "title": "PHYS 298 (1-5) -> PHYS 2XX",
     "acceptanceCategory": "accepted",
@@ -64065,7 +64121,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1203:physics:phys-299-1-5",
+    "id": "uw-grc-guide:1204:physics:phys-299-1-5",
     "type": "elective-credit",
     "title": "§ PHYS 299 (1-5) -> PHYS 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64118,7 +64174,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1204:political-science:polsand-101-5-formerly-p-sci-100",
+    "id": "uw-grc-guide:1205:political-science:polsand-101-5-formerly-p-sci-100",
     "type": "direct-course",
     "title": "POLS& 101 (5) formerly P SCI 100 -> POL S 101 (5)",
     "acceptanceCategory": "accepted",
@@ -64172,7 +64228,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1205:political-science:p-sci-100-5",
+    "id": "uw-grc-guide:1206:political-science:p-sci-100-5",
     "type": "direct-course",
     "title": "§ P SCI 100 (5) -> POL S 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -64228,7 +64284,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1206:political-science:p-sci-101-2",
+    "id": "uw-grc-guide:1207:political-science:p-sci-101-2",
     "type": "elective-credit",
     "title": "§ P SCI 101 (2) -> POL S 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64284,7 +64340,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1207:political-science:pols-194-5-formerly-p-sci-194",
+    "id": "uw-grc-guide:1208:political-science:pols-194-5-formerly-p-sci-194",
     "type": "elective-credit",
     "title": "POLS 194 (5) formerly P SCI 194 -> POL S 1XX",
     "acceptanceCategory": "accepted",
@@ -64335,7 +64391,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1208:political-science:p-sci-194-1-5",
+    "id": "uw-grc-guide:1209:political-science:p-sci-194-1-5",
     "type": "elective-credit",
     "title": "§ P SCI 194 (1-5) -> POL S 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64388,7 +64444,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1209:political-science:polsand-200-5",
+    "id": "uw-grc-guide:1210:political-science:polsand-200-5",
     "type": "elective-credit",
     "title": "POLS& 200 (5) -> POL S 2XX",
     "acceptanceCategory": "accepted",
@@ -64442,7 +64498,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1210:political-science:polsand-200-5-formerly-b-a-200",
+    "id": "uw-grc-guide:1211:political-science:polsand-200-5-formerly-b-a-200",
     "type": "direct-course",
     "title": "§ POLS& 200 (5) formerly B A 200 -> MGMT 200 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -64498,7 +64554,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1211:political-science:p-sci-201-5",
+    "id": "uw-grc-guide:1212:political-science:p-sci-201-5",
     "type": "direct-course",
     "title": "§ P SCI 201 (5) -> POL S 204 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -64554,7 +64610,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1212:political-science:polsand-202-5-formerly-p-sci-202",
+    "id": "uw-grc-guide:1213:political-science:polsand-202-5-formerly-p-sci-202",
     "type": "direct-course",
     "title": "POLS& 202 (5) formerly P SCI 202 -> POL S 202 (5)",
     "acceptanceCategory": "accepted",
@@ -64608,7 +64664,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1213:political-science:p-sci-202-5",
+    "id": "uw-grc-guide:1214:political-science:p-sci-202-5",
     "type": "direct-course",
     "title": "§ P SCI 202 (5) -> POL S 202 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -64664,7 +64720,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1214:political-science:polsand-203-5-formerly-p-sci-203",
+    "id": "uw-grc-guide:1215:political-science:polsand-203-5-formerly-p-sci-203",
     "type": "direct-course",
     "title": "POLS& 203 (5) formerly P SCI 203 -> POL S 203 (5)",
     "acceptanceCategory": "accepted",
@@ -64718,7 +64774,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1215:political-science:p-sci-203-5",
+    "id": "uw-grc-guide:1216:political-science:p-sci-203-5",
     "type": "direct-course",
     "title": "§ P SCI 203 (5) -> POL S 203 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -64774,7 +64830,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1216:political-science:polsand-204-5-formerly-p-sci-201",
+    "id": "uw-grc-guide:1217:political-science:polsand-204-5-formerly-p-sci-201",
     "type": "direct-course",
     "title": "POLS& 204 (5) formerly P SCI 201 -> POL S 204 (5)",
     "acceptanceCategory": "accepted",
@@ -64828,7 +64884,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1217:political-science:p-sci-204-5",
+    "id": "uw-grc-guide:1218:political-science:p-sci-204-5",
     "type": "elective-credit",
     "title": "§ P SCI 204 (5) -> POL S 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64884,7 +64940,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1218:political-science:p-sci-204-5",
+    "id": "uw-grc-guide:1219:political-science:p-sci-204-5",
     "type": "elective-credit",
     "title": "§ P SCI 204 (5) -> POL S 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64940,7 +64996,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1219:political-science:p-sci-205-5",
+    "id": "uw-grc-guide:1220:political-science:p-sci-205-5",
     "type": "elective-credit",
     "title": "§ P SCI 205 (5) -> POL S 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -64996,7 +65052,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1220:political-science:p-sci-206-5",
+    "id": "uw-grc-guide:1221:political-science:p-sci-206-5",
     "type": "elective-credit",
     "title": "§ P SCI 206 (5) -> POL S 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -65052,7 +65108,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1221:political-science:pols-207-5",
+    "id": "uw-grc-guide:1222:political-science:pols-207-5",
     "type": "direct-course",
     "title": "POLS 207 (5) -> POL S 334",
     "acceptanceCategory": "accepted",
@@ -65106,7 +65162,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1222:political-science:pols-209-5-formerly-p-sci-204",
+    "id": "uw-grc-guide:1223:political-science:pols-209-5-formerly-p-sci-204",
     "type": "elective-credit",
     "title": "POLS 209 (5) formerly P SCI 204 -> POL S 2XX",
     "acceptanceCategory": "accepted",
@@ -65160,7 +65216,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1223:political-science:pols-298-1-5-formerly-p-sci-298",
+    "id": "uw-grc-guide:1224:political-science:pols-298-1-5-formerly-p-sci-298",
     "type": "elective-credit",
     "title": "POLS 298 (1-5) formerly P SCI 298 -> POL S 2XX",
     "acceptanceCategory": "accepted",
@@ -65211,7 +65267,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1224:political-science:p-sci-298-1-5",
+    "id": "uw-grc-guide:1225:political-science:p-sci-298-1-5",
     "type": "elective-credit",
     "title": "§ P SCI 298 (1-5) -> POL S 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -65264,7 +65320,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1225:psychology:psycand-100-5-formerly-psych-100",
+    "id": "uw-grc-guide:1226:psychology:psycand-100-5-formerly-psych-100",
     "type": "direct-course",
     "title": "PSYC& 100 (5) formerly PSYCH 100 -> PSYCH 101 (5)",
     "acceptanceCategory": "accepted",
@@ -65318,7 +65374,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1226:psychology:psych-100-5",
+    "id": "uw-grc-guide:1227:psychology:psych-100-5",
     "type": "direct-course",
     "title": "§ PSYCH 100 (5) -> PSYCH 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -65374,7 +65430,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1227:psychology:psych-105-3",
+    "id": "uw-grc-guide:1228:psychology:psych-105-3",
     "type": "elective-credit",
     "title": "§ PSYCH 105 (3) -> PSYCH 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -65427,7 +65483,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1228:psychology:psych-175-5-formerly-s-sci-175-now-same-as-behsc-175-and-hl-ed-175",
+    "id": "uw-grc-guide:1229:psychology:psych-175-5-formerly-s-sci-175-now-same-as-behsc-175-and-hl-ed-175",
     "type": "direct-course",
     "title": "§ PSYCH 175 (5) formerly S SCI 175; now same as BEHSC 175 and HL ED 175 -> PSYCH 210 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -65483,7 +65539,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1229:psychology:psycand-180-5-formerly-psych-200",
+    "id": "uw-grc-guide:1230:psychology:psycand-180-5-formerly-psych-200",
     "type": "direct-course",
     "title": "PSYC& 180 (5) formerly PSYCH 200 -> PSYCH 210 (5)",
     "acceptanceCategory": "accepted",
@@ -65537,7 +65593,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1230:psychology:psych-180-5",
+    "id": "uw-grc-guide:1231:psychology:psych-180-5",
     "type": "elective-credit",
     "title": "§ PSYCH 180 (5) -> PSYCH 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -65593,7 +65649,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1231:psychology:psych-194-1-5",
+    "id": "uw-grc-guide:1232:psychology:psych-194-1-5",
     "type": "elective-credit",
     "title": "§ PSYCH 194 (1-5) -> PSYCH 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -65646,7 +65702,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1232:psychology:psycand-200-5-formerly-psych-210",
+    "id": "uw-grc-guide:1233:psychology:psycand-200-5-formerly-psych-210",
     "type": "elective-credit",
     "title": "PSYC& 200 (5) formerly PSYCH 210 -> PSYCH 2XX",
     "acceptanceCategory": "accepted",
@@ -65700,7 +65756,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1233:psychology:psych-200-5-formerly-psych-175",
+    "id": "uw-grc-guide:1234:psychology:psych-200-5-formerly-psych-175",
     "type": "direct-course",
     "title": "§ PSYCH 200 (5) formerly PSYCH 175 -> PSYCH 210 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -65756,7 +65812,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1234:psychology:psyc-201-5-formerly-psych-201",
+    "id": "uw-grc-guide:1235:psychology:psyc-201-5-formerly-psych-201",
     "type": "direct-course",
     "title": "PSYC 201 (5) formerly PSYCH 201 -> PSYCH 203 (4), 2XX (1)",
     "acceptanceCategory": "accepted",
@@ -65811,7 +65867,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1235:psychology:psych-201-5",
+    "id": "uw-grc-guide:1236:psychology:psych-201-5",
     "type": "direct-course",
     "title": "§ PSYCH 201 (5) -> PSYCH 203 (4), 2XX (1)",
     "acceptanceCategory": "legacy-accepted",
@@ -65868,7 +65924,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1236:psychology:psych-205-5",
+    "id": "uw-grc-guide:1237:psychology:psych-205-5",
     "type": "elective-credit",
     "title": "§ PSYCH 205 (5) -> PSYCH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -65924,7 +65980,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1237:psychology:psyc-209-5-formerly-psych-209",
+    "id": "uw-grc-guide:1238:psychology:psyc-209-5-formerly-psych-209",
     "type": "direct-course",
     "title": "PSYC 209 (5) formerly PSYCH 209 -> PSYCH 209 (5)",
     "acceptanceCategory": "accepted",
@@ -65975,7 +66031,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1238:psychology:psych-209-5",
+    "id": "uw-grc-guide:1239:psychology:psych-209-5",
     "type": "direct-course",
     "title": "§ PSYCH 209 (5) -> PSYCH 209 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66028,7 +66084,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1239:psychology:psych-210-5",
+    "id": "uw-grc-guide:1240:psychology:psych-210-5",
     "type": "elective-credit",
     "title": "§ PSYCH 210 (5) -> PSYCH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -66084,7 +66140,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1240:psychology:psych-210-5",
+    "id": "uw-grc-guide:1241:psychology:psych-210-5",
     "type": "direct-course",
     "title": "§ PSYCH 210 (5) -> PSYCH 306 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66140,7 +66196,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1241:psychology:psycand-220-5-formerly-psych-250",
+    "id": "uw-grc-guide:1242:psychology:psycand-220-5-formerly-psych-250",
     "type": "elective-credit",
     "title": "PSYC& 220 (5) formerly PSYCH 250 -> PSYCH 2XX",
     "acceptanceCategory": "accepted",
@@ -66194,7 +66250,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1242:psychology:psych-220-5",
+    "id": "uw-grc-guide:1243:psychology:psych-220-5",
     "type": "direct-course",
     "title": "§ PSYCH 220 (5) -> PSYCH 202 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66250,7 +66306,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1243:psychology:psyc-225-5-formerly-psych-220",
+    "id": "uw-grc-guide:1244:psychology:psyc-225-5-formerly-psych-220",
     "type": "direct-course",
     "title": "PSYC 225 (5) formerly PSYCH 220 -> PSYCH 202 (5)",
     "acceptanceCategory": "accepted",
@@ -66304,7 +66360,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1244:psychology:psych-240-5",
+    "id": "uw-grc-guide:1245:psychology:psych-240-5",
     "type": "elective-credit",
     "title": "§ PSYCH 240 (5) -> PSYCH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -66360,7 +66416,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1245:psychology:psych-250-5",
+    "id": "uw-grc-guide:1246:psychology:psych-250-5",
     "type": "elective-credit",
     "title": "§ PSYCH 250 (5) -> PSYCH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -66416,7 +66472,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1246:psychology:psych-250-5",
+    "id": "uw-grc-guide:1247:psychology:psych-250-5",
     "type": "direct-course",
     "title": "§ PSYCH 250 (5) -> PSYCH 305 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66472,7 +66528,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1247:psychology:psyc-298-1-5-formerly-psych-298",
+    "id": "uw-grc-guide:1248:psychology:psyc-298-1-5-formerly-psych-298",
     "type": "elective-credit",
     "title": "PSYC 298 (1-5) formerly PSYCH 298 -> PSYCH 2XX",
     "acceptanceCategory": "accepted",
@@ -66523,7 +66579,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1248:psychology:psych-298-1-5",
+    "id": "uw-grc-guide:1249:psychology:psych-298-1-5",
     "type": "elective-credit",
     "title": "§ PSYCH 298 (1-5) -> PSYCH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -66576,7 +66632,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1249:psychology:psyc-299-1-5-formerly-psych-299",
+    "id": "uw-grc-guide:1250:psychology:psyc-299-1-5-formerly-psych-299",
     "type": "elective-credit",
     "title": "PSYC 299 (1-5) formerly PSYCH 299 -> PSYCH 2XX",
     "acceptanceCategory": "accepted",
@@ -66627,7 +66683,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1250:psychology:psych-299-1-5",
+    "id": "uw-grc-guide:1251:psychology:psych-299-1-5",
     "type": "elective-credit",
     "title": "§ PSYCH 299 (1-5) -> PSYCH 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -66680,7 +66736,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1251:russian:russn-101-5",
+    "id": "uw-grc-guide:1252:russian:russn-101-5",
     "type": "direct-course",
     "title": "§ RUSSN 101 (5) -> RUSS 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66733,7 +66789,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1252:russian:russn-102-5",
+    "id": "uw-grc-guide:1253:russian:russn-102-5",
     "type": "direct-course",
     "title": "§ RUSSN 102 (5) -> RUSS 102 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66786,7 +66842,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1253:russian:russn-103-5",
+    "id": "uw-grc-guide:1254:russian:russn-103-5",
     "type": "direct-course",
     "title": "§ RUSSN 103 (5) -> RUSS 103 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66839,7 +66895,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1254:social-science:s-sci-101-5",
+    "id": "uw-grc-guide:1255:social-science:s-sci-101-5",
     "type": "direct-course",
     "title": "§ S SCI 101 (5) -> HIST 111 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66895,7 +66951,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1255:social-science:s-sci-102-5",
+    "id": "uw-grc-guide:1256:social-science:s-sci-102-5",
     "type": "direct-course",
     "title": "§ S SCI 102 (5) -> HIST 112 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -66951,7 +67007,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1256:social-science:s-sci-103-5",
+    "id": "uw-grc-guide:1257:social-science:s-sci-103-5",
     "type": "direct-course",
     "title": "§ S SCI 103 (5) -> HIST 113 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -67007,7 +67063,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1257:social-science:s-sci-110-5",
+    "id": "uw-grc-guide:1258:social-science:s-sci-110-5",
     "type": "elective-credit",
     "title": "§ S SCI 110 (5) -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -67063,7 +67119,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1258:social-science:s-sci-115-116-117-5-5-5-same-as-human-115-116-117-and-n-sci-115-116-117",
+    "id": "uw-grc-guide:1259:social-science:s-sci-115-116-117-5-5-5-same-as-human-115-116-117-and-n-sci-115-116-117",
     "type": "sequence",
     "title": "§ S SCI 115, 116, 117 (5, 5, 5) same as HUMAN 115, 116, 117 and N SCI 115, 116, 117 -> UW 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -67124,7 +67180,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1259:social-science:s-sci-160-5",
+    "id": "uw-grc-guide:1260:social-science:s-sci-160-5",
     "type": "elective-credit",
     "title": "S SCI 160 (5) -> GWSS 1XX",
     "acceptanceCategory": "accepted",
@@ -67178,7 +67234,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1260:social-science:s-sci-175-5-same-as-behsc-175-and-hl-ed-175",
+    "id": "uw-grc-guide:1261:social-science:s-sci-175-5-same-as-behsc-175-and-hl-ed-175",
     "type": "direct-course",
     "title": "§ S SCI 175 (5) same as BEHSC 175 and HL ED 175 -> PSYCH 210 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -67234,7 +67290,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1261:social-science:s-sci-194-1-5",
+    "id": "uw-grc-guide:1262:social-science:s-sci-194-1-5",
     "type": "elective-credit",
     "title": "S SCI 194 (1-5) -> UW 1XX",
     "acceptanceCategory": "accepted",
@@ -67278,7 +67334,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1262:social-science:s-sci-200-5-same-as-b-a-200",
+    "id": "uw-grc-guide:1263:social-science:s-sci-200-5-same-as-b-a-200",
     "type": "direct-course",
     "title": "§ S SCI 200 (5) same as B A 200 -> MGMT 200 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -67334,7 +67390,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1263:social-science:s-sci-211-5-formerly-s-sci-215-same-as-ames-211-and-anthr-211",
+    "id": "uw-grc-guide:1264:social-science:s-sci-211-5-formerly-s-sci-215-same-as-ames-211-and-anthr-211",
     "type": "elective-credit",
     "title": "S SCI 211 (5) formerly S SCI 215, same as AMES 211, and ANTHR 211 -> AIS 2XX",
     "acceptanceCategory": "accepted",
@@ -67388,7 +67444,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1264:social-science:s-sci-215-5-same-as-ames-215-anthr-215-and-hist-215",
+    "id": "uw-grc-guide:1265:social-science:s-sci-215-5-same-as-ames-215-anthr-215-and-hist-215",
     "type": "elective-credit",
     "title": "§ S SCI 215 (5) same as AMES 215, ANTHR 215, and HIST 215 -> AIS 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -67444,7 +67500,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1265:social-science:s-sci-215-5-same-as-ames-215-anthr-215-and-hist-215",
+    "id": "uw-grc-guide:1266:social-science:s-sci-215-5-same-as-ames-215-anthr-215-and-hist-215",
     "type": "elective-credit",
     "title": "§ S SCI 215 (5) same as AMES 215, ANTHR 215, and HIST 215 -> AIS 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -67500,7 +67556,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1266:social-science:s-sci-233-5",
+    "id": "uw-grc-guide:1267:social-science:s-sci-233-5",
     "type": "direct-course",
     "title": "§ S SCI 233 (5) -> HSTAA 185 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -67556,7 +67612,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1267:social-science:s-sci-234-5",
+    "id": "uw-grc-guide:1268:social-science:s-sci-234-5",
     "type": "elective-credit",
     "title": "§ S SCI 234 (5) -> JSIS A 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -67612,7 +67668,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1268:sociology:socand-101-5-formerly-soc-110",
+    "id": "uw-grc-guide:1269:sociology:socand-101-5-formerly-soc-110",
     "type": "direct-course",
     "title": "SOC& 101 (5) formerly SOC 110 -> SOC 110 (5)",
     "acceptanceCategory": "accepted",
@@ -67666,7 +67722,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1269:sociology:soc-110-5",
+    "id": "uw-grc-guide:1270:sociology:soc-110-5",
     "type": "direct-course",
     "title": "§ SOC 110 (5) -> SOC 110 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -67722,7 +67778,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1270:sociology:soc-120-5",
+    "id": "uw-grc-guide:1271:sociology:soc-120-5",
     "type": "elective-credit",
     "title": "§ SOC 120 (5) -> SOC 1XX or GWSS 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -67779,7 +67835,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1271:sociology:soc-194-1-5",
+    "id": "uw-grc-guide:1272:sociology:soc-194-1-5",
     "type": "elective-credit",
     "title": "SOC 194 (1-5) -> SOC 1XX",
     "acceptanceCategory": "accepted",
@@ -67823,7 +67879,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1272:sociology:socand-201-5-formerly-soc-201",
+    "id": "uw-grc-guide:1273:sociology:socand-201-5-formerly-soc-201",
     "type": "direct-course",
     "title": "SOC& 201 (5) formerly SOC 201 -> SOC 270 (5)",
     "acceptanceCategory": "accepted",
@@ -67877,7 +67933,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1273:sociology:soc-201-5",
+    "id": "uw-grc-guide:1274:sociology:soc-201-5",
     "type": "direct-course",
     "title": "§ SOC 201 (5) -> SOC 270 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -67933,7 +67989,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1274:sociology:soc-215-5-was-same-as-crj-215",
+    "id": "uw-grc-guide:1275:sociology:soc-215-5-was-same-as-crj-215",
     "type": "elective-credit",
     "title": "SOC 215 (5) was same as § CRJ 215 -> SOC 2XX",
     "acceptanceCategory": "accepted",
@@ -67987,7 +68043,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1275:sociology:soc-220-5-formerly-soc-120",
+    "id": "uw-grc-guide:1276:sociology:soc-220-5-formerly-soc-120",
     "type": "elective-credit",
     "title": "SOC 220 (5) formerly SOC 120 -> SOC 2XX or GWSS 1XX",
     "acceptanceCategory": "accepted",
@@ -68042,7 +68098,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1276:sociology:soc-225-5",
+    "id": "uw-grc-guide:1277:sociology:soc-225-5",
     "type": "elective-credit",
     "title": "§ SOC 225 (5) -> SOC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -68098,7 +68154,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1277:sociology:soc-230-5",
+    "id": "uw-grc-guide:1278:sociology:soc-230-5",
     "type": "elective-credit",
     "title": "SOC 230 (5) -> SOC 2XX",
     "acceptanceCategory": "accepted",
@@ -68152,7 +68208,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1278:sociology:soc-240-5",
+    "id": "uw-grc-guide:1279:sociology:soc-240-5",
     "type": "elective-credit",
     "title": "SOC 240 (5) -> SOC 2XX",
     "acceptanceCategory": "accepted",
@@ -68206,7 +68262,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1279:sociology:soc-245-5",
+    "id": "uw-grc-guide:1280:sociology:soc-245-5",
     "type": "elective-credit",
     "title": "SOC 245 (5) -> SOC 2XX",
     "acceptanceCategory": "accepted",
@@ -68258,9 +68314,12 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  },
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
   {
-    "id": "uw-grc-guide:1280:sociology:soc-250-5",
+    "id": "uw-grc-guide:1281:sociology:soc-250-5",
     "type": "elective-credit",
     "title": "§ SOC 250 (5) -> SOC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -68307,12 +68366,9 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_15: unknown[] = [
         "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
       }
     ]
-  }
-];
-
-const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
+  },
   {
-    "id": "uw-grc-guide:1281:sociology:soc-260-5",
+    "id": "uw-grc-guide:1282:sociology:soc-260-5",
     "type": "elective-credit",
     "title": "SOC 260 (5) -> SOC 2XX",
     "acceptanceCategory": "accepted",
@@ -68366,7 +68422,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1282:sociology:soc-271-5",
+    "id": "uw-grc-guide:1283:sociology:soc-271-5",
     "type": "direct-course",
     "title": "§ SOC 271 (5) -> SOC 271 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -68422,7 +68478,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1283:sociology:soc-298-1-5",
+    "id": "uw-grc-guide:1284:sociology:soc-298-1-5",
     "type": "elective-credit",
     "title": "SOC 298 (1-5) -> SOC 2XX",
     "acceptanceCategory": "accepted",
@@ -68466,7 +68522,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1284:sociology:soc-299-1-5",
+    "id": "uw-grc-guide:1285:sociology:soc-299-1-5",
     "type": "elective-credit",
     "title": "§ SOC 299 (1-5) -> SOC 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -68519,7 +68575,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1285:spanish:span-101-5",
+    "id": "uw-grc-guide:1286:spanish:span-101-5",
     "type": "direct-course",
     "title": "§ SPAN 101 (5) -> SPAN 101 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -68572,7 +68628,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1286:spanish:span-102-5",
+    "id": "uw-grc-guide:1287:spanish:span-102-5",
     "type": "direct-course",
     "title": "§ SPAN 102 (5) -> SPAN 102 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -68625,7 +68681,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1287:spanish:span-103-5",
+    "id": "uw-grc-guide:1288:spanish:span-103-5",
     "type": "direct-course",
     "title": "§ SPAN 103 (5) -> SPAN 103 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -68678,7 +68734,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1288:spanish:span-110-2-4",
+    "id": "uw-grc-guide:1289:spanish:span-110-2-4",
     "type": "elective-credit",
     "title": "SPAN 110 (2-4) -> SPAN 1XX",
     "acceptanceCategory": "accepted",
@@ -68722,7 +68778,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1289:spanish:spanand-121-5-formerly-span-101",
+    "id": "uw-grc-guide:1290:spanish:spanand-121-5-formerly-span-101",
     "type": "direct-course",
     "title": "SPAN& 121 (5) formerly SPAN 101 -> SPAN 101 (5)",
     "acceptanceCategory": "accepted",
@@ -68773,7 +68829,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1290:spanish:spanand-122-5-formerly-span-102",
+    "id": "uw-grc-guide:1291:spanish:spanand-122-5-formerly-span-102",
     "type": "direct-course",
     "title": "SPAN& 122 (5) formerly SPAN 102 -> SPAN 102 (5)",
     "acceptanceCategory": "accepted",
@@ -68824,7 +68880,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1291:spanish:spanand-123-5-formerly-span-103",
+    "id": "uw-grc-guide:1292:spanish:spanand-123-5-formerly-span-103",
     "type": "direct-course",
     "title": "SPAN& 123 (5) formerly SPAN 103 -> SPAN 103 (5)",
     "acceptanceCategory": "accepted",
@@ -68875,7 +68931,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1292:spanish:span-194-1-5",
+    "id": "uw-grc-guide:1293:spanish:span-194-1-5",
     "type": "elective-credit",
     "title": "SPAN 194 (1-5) -> SPAN 1XX",
     "acceptanceCategory": "accepted",
@@ -68919,7 +68975,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1293:spanish:span-201-5",
+    "id": "uw-grc-guide:1294:spanish:span-201-5",
     "type": "direct-course",
     "title": "§ SPAN 201 (5) -> SPAN 201 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -68975,7 +69031,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1294:spanish:span-202-5",
+    "id": "uw-grc-guide:1295:spanish:span-202-5",
     "type": "direct-course",
     "title": "§ SPAN 202 (5) -> SPAN 202 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -69031,7 +69087,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1295:spanish:span-203-5",
+    "id": "uw-grc-guide:1296:spanish:span-203-5",
     "type": "direct-course",
     "title": "§ SPAN 203 (5) -> SPAN 203 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -69087,7 +69143,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1296:spanish:spanand-221-5-formerly-span-201",
+    "id": "uw-grc-guide:1297:spanish:spanand-221-5-formerly-span-201",
     "type": "direct-course",
     "title": "SPAN& 221 (5) formerly SPAN 201 -> SPAN 201 (5)",
     "acceptanceCategory": "accepted",
@@ -69141,7 +69197,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1297:spanish:spanand-222-5-formerly-span-202",
+    "id": "uw-grc-guide:1298:spanish:spanand-222-5-formerly-span-202",
     "type": "direct-course",
     "title": "SPAN& 222 (5) formerly SPAN 202 -> SPAN 202 (5)",
     "acceptanceCategory": "accepted",
@@ -69195,7 +69251,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1298:spanish:spanand-223-5-formerly-span-203",
+    "id": "uw-grc-guide:1299:spanish:spanand-223-5-formerly-span-203",
     "type": "direct-course",
     "title": "SPAN& 223 (5) formerly SPAN 203 -> SPAN 203 (5)",
     "acceptanceCategory": "accepted",
@@ -69249,7 +69305,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1299:spanish:span-299-1-5",
+    "id": "uw-grc-guide:1300:spanish:span-299-1-5",
     "type": "elective-credit",
     "title": "SPAN 299 (1-5) -> SPAN 2XX",
     "acceptanceCategory": "accepted",
@@ -69293,7 +69349,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1300:speech:spch-100-5",
+    "id": "uw-grc-guide:1301:speech:spch-100-5",
     "type": "elective-credit",
     "title": "§ SPCH 100 (5) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69350,7 +69406,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1301:speech:spch-110-1-5",
+    "id": "uw-grc-guide:1302:speech:spch-110-1-5",
     "type": "direct-course",
     "title": "§ SPCH 110 (1-5) -> COM 270 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -69407,7 +69463,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1302:speech:spch-140-5",
+    "id": "uw-grc-guide:1303:speech:spch-140-5",
     "type": "elective-credit",
     "title": "§ SPCH 140 (5) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69463,7 +69519,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1303:speech:spch-140-5",
+    "id": "uw-grc-guide:1304:speech:spch-140-5",
     "type": "elective-credit",
     "title": "§ SPCH 140 (5) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69519,7 +69575,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1304:speech:spch-144-1-5",
+    "id": "uw-grc-guide:1305:speech:spch-144-1-5",
     "type": "elective-credit",
     "title": "§ SPCH 144 (1-5) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69576,7 +69632,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1305:speech:spch-145-5",
+    "id": "uw-grc-guide:1306:speech:spch-145-5",
     "type": "elective-credit",
     "title": "§ SPCH 145 (5) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69633,7 +69689,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1306:speech:spch-147-1-3",
+    "id": "uw-grc-guide:1307:speech:spch-147-1-3",
     "type": "elective-credit",
     "title": "§ SPCH 147 (1-3) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69686,7 +69742,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1307:speech:spch-194-1-5",
+    "id": "uw-grc-guide:1308:speech:spch-194-1-5",
     "type": "elective-credit",
     "title": "§ SPCH 194 (1-5) -> COM 1XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69739,7 +69795,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1308:speech:spch-200-5",
+    "id": "uw-grc-guide:1309:speech:spch-200-5",
     "type": "elective-credit",
     "title": "§ SPCH 200 (5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69792,7 +69848,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1309:speech:spch-212-5",
+    "id": "uw-grc-guide:1310:speech:spch-212-5",
     "type": "elective-credit",
     "title": "§ SPCH 212 (5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69849,7 +69905,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1310:speech:spch-215-5",
+    "id": "uw-grc-guide:1311:speech:spch-215-5",
     "type": "elective-credit",
     "title": "§ SPCH 215 (5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -69905,7 +69961,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1311:speech:spch-225-5",
+    "id": "uw-grc-guide:1312:speech:spch-225-5",
     "type": "direct-course",
     "title": "§ SPCH 225 (5) -> COM 220 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -69962,7 +70018,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1312:speech:spch-234-5",
+    "id": "uw-grc-guide:1313:speech:spch-234-5",
     "type": "elective-credit",
     "title": "§ SPCH 234 (5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -70019,7 +70075,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1313:speech:spch-235-5",
+    "id": "uw-grc-guide:1314:speech:spch-235-5",
     "type": "elective-credit",
     "title": "§ SPCH 235 (5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -70076,7 +70132,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1314:speech:spch-238-5",
+    "id": "uw-grc-guide:1315:speech:spch-238-5",
     "type": "elective-credit",
     "title": "§ SPCH 238 (5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -70133,7 +70189,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1315:speech:spch-245-5",
+    "id": "uw-grc-guide:1316:speech:spch-245-5",
     "type": "direct-course",
     "title": "§ SPCH 245 (5) -> COM 334 (5)",
     "acceptanceCategory": "legacy-accepted",
@@ -70190,7 +70246,7 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULE_CHUNK_16: unknown[] = [
     ]
   },
   {
-    "id": "uw-grc-guide:1316:speech:spch-299-1-5",
+    "id": "uw-grc-guide:1317:speech:spch-299-1-5",
     "type": "elective-credit",
     "title": "§ SPCH 299 (1-5) -> COM 2XX",
     "acceptanceCategory": "legacy-accepted",
@@ -70426,12 +70482,12 @@ const TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULE_CHUNK_0: unknown[] = [
     "plannerWarnings": [],
     "notes": [
       "Synthesized from parsed official UW Green River equivalency-guide rows for Calculus-based physics sequence.",
-      "Supporting official guide rule: uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201.",
-      "Supporting official guide rule: uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202.",
-      "Supporting official guide rule: uw-grc-guide:1198:physics:physand-223-5-formerly-phys-203.",
-      "Derived from official guide rule uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201: PHYS& 221 (5) formerly PHYS 201.",
-      "Derived from official guide rule uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202: PHYS& 222 (5) formerly PHYS 202.",
-      "Derived from official guide rule uw-grc-guide:1198:physics:physand-223-5-formerly-phys-203: PHYS& 223 (5) formerly PHYS 203.",
+      "Supporting official guide rule: uw-grc-guide:1197:physics:physand-221-5-formerly-phys-201.",
+      "Supporting official guide rule: uw-grc-guide:1198:physics:physand-222-5-formerly-phys-202.",
+      "Supporting official guide rule: uw-grc-guide:1199:physics:physand-223-5-formerly-phys-203.",
+      "Derived from official guide rule uw-grc-guide:1197:physics:physand-221-5-formerly-phys-201: PHYS& 221 (5) formerly PHYS 201.",
+      "Derived from official guide rule uw-grc-guide:1198:physics:physand-222-5-formerly-phys-202: PHYS& 222 (5) formerly PHYS 202.",
+      "Derived from official guide rule uw-grc-guide:1199:physics:physand-223-5-formerly-phys-203: PHYS& 223 (5) formerly PHYS 203.",
       "The planner keeps this sequence grouped because many engineering majors depend on full completion."
     ],
     "sourceLinks": [
@@ -71055,8 +71111,8 @@ const TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULE_CHUNK_0: unknown[] = [
     ],
     "notes": [
       "Synthesized from parsed official UW Green River equivalency-guide rows for Natural resources ESRM combo.",
-      "Supporting official guide rule: uw-grc-guide:0942:natural-resources:natrs-180-natrs-292-5-5.",
-      "Derived from official guide rule uw-grc-guide:0942:natural-resources:natrs-180-natrs-292-5-5: NATRS 180, NATRS 292 (5, 5)."
+      "Supporting official guide rule: uw-grc-guide:0943:natural-resources:natrs-180-natrs-292-5-5.",
+      "Derived from official guide rule uw-grc-guide:0943:natural-resources:natrs-180-natrs-292-5-5: NATRS 180, NATRS 292 (5, 5)."
     ],
     "sourceLinks": [
       {

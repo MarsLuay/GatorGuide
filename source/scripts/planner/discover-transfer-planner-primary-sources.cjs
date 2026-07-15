@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { fetchWithHandling } = require("../lib/fetch-with-handling.cjs");
+const { createHostRateLimiter } = require("./lib/host-rate-limit.cjs");
 const {
   SOURCE_ROOT,
   ensurePlannerTmpLayout,
@@ -12,6 +13,9 @@ const {
   writePlannerJsonReport,
   writePlannerMarkdownReport,
 } = require("./lib/script-harness.cjs");
+
+// Concurrent owner discovery hits many *.washington.edu vhosts; scope throttle via fetch-with-handling.
+createHostRateLimiter({ scopeMinDelayMs: 1500 });
 
 require("ts-node").register({
   skipProject: true,
@@ -37,11 +41,17 @@ const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require("../../constants/transfer-planner-source/student-runtime");
 const {
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
+} = require("../../constants/transfer-planner-source/derived-shared-source-plans");
+const {
   getTransferPlannerManualSourceLinkOverride,
 } = require("../../constants/transfer-planner-source/manual-source-link-overrides");
 const {
   buildTransferPlannerOwnerId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
+const {
+  isTransferPlannerStandaloneInventorySuppressedPlanId,
+} = require("../../constants/transfer-planner-source/source-generated-visibility");
 
 const REPO_ROOT = SOURCE_ROOT;
 const OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
@@ -79,6 +89,16 @@ const FALLBACK_DISCOVERY_PAGES_BY_CAMPUS = {
 const OFFICIAL_UW_BASE_DOMAINS = uniqueSorted(
   Object.values(FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS).flat()
 );
+const DERIVED_SHARED_SOURCE_PLAN_IDS = new Set(
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.map((alias) => alias.derivedPlanId)
+);
+
+function isCanonicalSourceOwnerPlanId(planId) {
+  return (
+    !isTransferPlannerStandaloneInventorySuppressedPlanId(planId) &&
+    !DERIVED_SHARED_SOURCE_PLAN_IDS.has(planId)
+  );
+}
 const REQUIREMENT_CUE_PATTERN =
   /\b(degree requirements?|major requirements?|graduation requirements?|major admissions requirements?|program requirements?|curriculum|worksheet|checklist|prerequisites?|bachelor(?:\s+of)?|undergraduate major admission|undergraduate program)\b/i;
 const WEAK_PRIMARY_URL_PATTERN =
@@ -563,7 +583,8 @@ function isBlockedPrimarySourceCandidateUrl(url) {
   return (
     lower.includes("/saml/login") ||
     lower.includes("shibboleth.sso/login") ||
-    lower.includes("/wp-login")
+    lower.includes("/wp-login") ||
+    /\/contact\/?(?:[?#].*)?$/.test(lower)
   );
 }
 
@@ -1086,6 +1107,13 @@ function isAutoPromotablePrimaryCandidate(candidate) {
   }
 
   if (
+    !isPrimaryEligibleCandidate(normalizedCandidate) ||
+    isSkipNavigationCandidate(normalizedCandidate)
+  ) {
+    return false;
+  }
+
+  if (
     normalizedCandidate.confidence !== "high" ||
     normalizedCandidate.score < MIN_AUTO_PROMOTION_SCORE ||
     normalizedCandidate.canCreateSchedulableRows === false ||
@@ -1518,6 +1546,22 @@ function getBachelorRouteTokenSetsFromValue(value) {
       if (words[cursor] === "in") {
         cursor += 1;
       }
+    }
+
+    if (words[cursor] === "degree") {
+      cursor += 1;
+    }
+    if (words[cursor] === "with") {
+      cursor += 1;
+    }
+    if (words[cursor] === "a" || words[cursor] === "an") {
+      cursor += 1;
+    }
+    if (words[cursor] === "major") {
+      cursor += 1;
+    }
+    if (words[cursor] === "in") {
+      cursor += 1;
     }
 
     const routeTokens = [];
@@ -2021,6 +2065,13 @@ function buildHubChildCandidateUrls(hubUrl, pathwaySlugVariants) {
   try {
     const parsedUrl = new URL(hubUrl);
     const pathSegments = parsedUrl.pathname.split("/").filter(Boolean);
+    if (
+      pathSegments.some((segment) =>
+        /\.(?:html?|php|aspx?|pdf|docx?)$/i.test(segment)
+      )
+    ) {
+      return [];
+    }
     const lastSegment = pathSegments[pathSegments.length - 1] ?? "";
     const isHubUrl =
       PATHWAY_HUB_STRICT_TERMINAL_SEGMENT_PATTERN.test(lastSegment) ||
@@ -2668,16 +2719,22 @@ function buildWeakExistingPrimarySignals(params) {
   const parsedUwCourseCodeCount = Array.isArray(parsedBlock?.parsedUwCourseCodes)
     ? parsedBlock.parsedUwCourseCodes.length
     : 0;
-  const currentSourceYears = extractDetectedYears(
+  const currentSourceIdentityYears = extractDetectedYears(
     primarySource?.url,
     primarySource?.label,
     parsedBlock?.primarySourceLabel,
     parsedBlock?.sourceLabel,
-    parsedBlock?.extractedTitle,
+    parsedBlock?.extractedTitle
+  );
+  const currentSourceDocumentYears = extractDetectedYears(
+    ...currentSourceIdentityYears,
     parsedBlock?.extractedHeadings ?? [],
     (parsedBlock?.requirementCueLines ?? []).slice(0, 16),
     (parsedBlock?.chooseStatements ?? []).slice(0, 8)
   );
+  const currentSourceYears = isLinkedDocumentCandidateUrl(primarySource?.url)
+    ? currentSourceDocumentYears
+    : currentSourceIdentityYears;
   const currentSourceLatestYear = currentSourceYears[currentSourceYears.length - 1] ?? null;
   const yearSpecificRequirementSource = Boolean(
     currentSourceLatestYear !== null &&
@@ -2810,6 +2867,9 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanIds = null }) {
   const targets = [];
 
   for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
+    if (!isCanonicalSourceOwnerPlanId(plan.id)) {
+      continue;
+    }
     if (campusFilter && plan.campusId !== campusFilter) {
       continue;
     }
@@ -3053,6 +3113,9 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanIds = null
   const targets = [];
 
   for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
+    if (!isCanonicalSourceOwnerPlanId(plan.id)) {
+      continue;
+    }
     if (campusFilter && plan.campusId !== campusFilter) {
       continue;
     }
@@ -3500,6 +3563,34 @@ function isMinorPageForMajorTarget(target, candidate) {
   return isMinorSourceUrlPath(candidate?.url);
 }
 
+function ownerTextNamesHonors(...values) {
+  return /\bhonou?rs?\b/i.test(values.filter(Boolean).join(" "));
+}
+
+function isHonorsPageForNonHonorsTarget(target, candidate) {
+  if (target?.ownerType !== "major" && target?.ownerType !== "pathway") {
+    return false;
+  }
+  if (
+    ownerTextNamesHonors(
+      target?.ownerKey,
+      target?.planId,
+      target?.pathwayId,
+      target?.title,
+      target?.label
+    )
+  ) {
+    return false;
+  }
+  return ownerTextNamesHonors(
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle
+  );
+}
+
 function isMinorPagePromotionForMajorPlannerOwner(candidate) {
   if (candidate?.ownerType !== "major" && candidate?.ownerType !== "pathway") {
     return false;
@@ -3614,6 +3705,18 @@ function scoreCandidate(target, candidate) {
       parserType: getDiscoveryParserType(candidate, "ignored"),
       canCreateSchedulableRows: false,
       reasons: ["minor page does not cover the major-level owner"],
+    };
+  }
+
+  if (isHonorsPageForNonHonorsTarget(target, candidate)) {
+    return {
+      score: -100,
+      confidence: "low",
+      sourceRole: "ignored",
+      sourceRoleStatus: "ignored",
+      parserType: getDiscoveryParserType(candidate, "ignored"),
+      canCreateSchedulableRows: false,
+      reasons: ["honors-only page does not cover the non-honors owner"],
     };
   }
 
@@ -4135,8 +4238,15 @@ function isSkipNavigationCandidate(candidate) {
   const linkText = getCandidateLinkText(candidate).toLowerCase();
   const sectionAnchor = String(getUrlSectionAnchor(candidate?.url) ?? "").toLowerCase();
   return (
-    linkText === "skip to content" ||
-    linkText === "skip to main content" ||
+    new Set([
+      "close menu",
+      "contact us",
+      "search",
+      "site map",
+      "skip to content",
+      "skip to main content",
+      "user account menu",
+    ]).has(linkText) ||
     sectionAnchor === "#content"
   );
 }
@@ -4180,15 +4290,17 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
   }
 
   const scored = scoreCandidate(target, { ...rawCandidate, url: normalizedUrl });
-  const requiresVerification = rawCandidate.requiresVerification === true;
+  const hasPageEvidence = Boolean(
+    rawCandidate.pageTitle ||
+      (rawCandidate.pageHeadings ?? []).length ||
+      (rawCandidate.contentSnippets ?? []).length
+  );
+  const requiresVerification =
+    rawCandidate.requiresVerification === true ||
+    (rawCandidate.sourceKind === "discovered-anchor" && !hasPageEvidence);
   const verified =
     rawCandidate.verified === true ||
-    !requiresVerification ||
-    Boolean(
-      rawCandidate.pageTitle ||
-        (rawCandidate.pageHeadings ?? []).length ||
-        (rawCandidate.contentSnippets ?? []).length
-    );
+    (rawCandidate.verified !== false && hasPageEvidence);
   const metadata = buildCandidateDiscoveryMetadata(target, {
     ...rawCandidate,
     url: normalizedUrl,
@@ -4575,9 +4687,24 @@ function isPrimaryEligibleCandidate(candidate) {
   );
 }
 
+function campusMajorIndexCandidateMatchesTargetIdentity(candidate, target) {
+  const sourceKinds = new Set(candidate?.sourceKinds ?? []);
+  if (!sourceKinds.has("campus-major-index") || sourceKinds.has("official-link")) {
+    return true;
+  }
+
+  const matchesMajor = (candidate.sameMajorIdentityScore ?? 0) > 0;
+  if (target?.ownerType !== "pathway") {
+    return matchesMajor;
+  }
+
+  return matchesMajor && (candidate.pathwayIdentityScore ?? 0) > 0;
+}
+
 function isPrimaryEligibleCandidateForTarget(candidate, target) {
   return (
     isPrimaryEligibleCandidate(candidate) &&
+    campusMajorIndexCandidateMatchesTargetIdentity(candidate, target) &&
     !candidateConflictsWithTargetDegreeRoute(target, candidate)
   );
 }
@@ -4615,7 +4742,7 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
     return false;
   }
 
-  if (candidate.pageTitle || isLinkedDocumentCandidateUrl(candidate.url)) {
+  if (candidate.pageTitle) {
     return false;
   }
 
@@ -4927,6 +5054,8 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       contentSnippets: page.contentSnippets,
       sourceKind: "official-link",
       discoveryDepth: 0,
+      requiresVerification: true,
+      verified: page.ok === true,
     });
 
     for (const inferredCandidate of buildInferredPathwayHubChildSourceCandidates(target, [
@@ -4995,6 +5124,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     .filter(
       (candidate) =>
         !verifiedCandidateUrls.has(candidate.url) &&
+        !isSkipNavigationCandidate(candidate) &&
         shouldFollowTargetedOfficialCandidate(candidate, target)
     )
     .sort(compareTargetedOfficialFollowCandidates)
@@ -5031,7 +5161,8 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
       sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
       discoveryDepth: candidate.discoveryDepth ?? 1,
-      requiresVerification: candidate.requiresVerification === true,
+      requiresVerification: true,
+      verified: page.ok === true,
     });
 
     for (const inferredCandidate of buildInferredPathwayHubChildSourceCandidates(target, [
@@ -5076,6 +5207,38 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         continue;
       }
 
+      if (isLinkedDocumentCandidateUrl(rawAnchorCandidate.url)) {
+        verifiedCandidateUrls.add(rawAnchorCandidate.url);
+        const linkedDocumentPage = await inspectPageImpl(rawAnchorCandidate.url, timeoutMs);
+        sourcePages.push({
+          url: rawAnchorCandidate.url,
+          finalUrl: linkedDocumentPage.finalUrl,
+          ok: linkedDocumentPage.ok,
+          status: linkedDocumentPage.status,
+          contentType: linkedDocumentPage.contentType,
+          title: linkedDocumentPage.title,
+          headingCount: (linkedDocumentPage.headings ?? []).length,
+          contentSnippetCount: (linkedDocumentPage.contentSnippets ?? []).length,
+          error: linkedDocumentPage.error,
+          anchorCount: linkedDocumentPage.anchors.length,
+          sourceKind: "targeted-linked-document-follow",
+          discoveredFromUrl: pageCandidateUrl,
+        });
+        addScoredCandidate(candidateMap, target, {
+          ...rawAnchorCandidate,
+          url: preserveCandidateSectionAnchor(
+            rawAnchorCandidate.url,
+            linkedDocumentPage.finalUrl || rawAnchorCandidate.url
+          ),
+          pageTitle: linkedDocumentPage.title,
+          pageHeadings: linkedDocumentPage.headings,
+          contentSnippets: linkedDocumentPage.contentSnippets,
+          requiresVerification: true,
+          verified: linkedDocumentPage.ok === true,
+        });
+        continue;
+      }
+
       addScoredCandidate(candidateMap, target, rawAnchorCandidate);
     }
   }
@@ -5087,10 +5250,16 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       break;
     }
     const verifyTargets = [...candidateMap.values()]
-      .sort(compareScoredCandidates)
+      .sort((left, right) => {
+        const highValueDelta =
+          Number(isHighValueRequirementVerificationCandidate(right)) -
+          Number(isHighValueRequirementVerificationCandidate(left));
+        return highValueDelta || compareScoredCandidates(left, right);
+      })
       .filter(
         (candidate) =>
           !verifiedCandidateUrls.has(candidate.url) &&
+          !isSkipNavigationCandidate(candidate) &&
           !candidate.pageTitle &&
           !isLinkedDocumentCandidateUrl(candidate.url) &&
           (
@@ -5124,7 +5293,8 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
         sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
         discoveryDepth: candidate.discoveryDepth ?? 1,
-        requiresVerification: candidate.requiresVerification === true,
+        requiresVerification: true,
+        verified: page.ok === true,
       });
 
       for (const inferredCandidate of buildInferredPathwayHubChildSourceCandidates(target, [
@@ -5425,6 +5595,7 @@ module.exports = {
   hasStudentRuntimeAliasCoverageForTest: hasStudentRuntimeAliasCoverage,
   inspectPage,
   isAutoPromotablePrimaryCandidate,
+  buildHubChildCandidateUrlsForTest: buildHubChildCandidateUrls,
   scoreCandidate,
   shouldRunDeeperDiscovery,
 };

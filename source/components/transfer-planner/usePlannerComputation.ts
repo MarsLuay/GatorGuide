@@ -26,6 +26,8 @@ type UsePlannerComputationInput = {
   completedCourses: TranscriptCourseEntry[];
   currentPlannedCourseLabels: string[];
   selectedRequirementOptionIdsByGroup: Record<string, string[]>;
+  preferredCourseLoad?: number | null;
+  intendedTransferQuarterId?: string | null;
 };
 
 export function usePlannerComputation({
@@ -37,6 +39,8 @@ export function usePlannerComputation({
   completedCourses,
   currentPlannedCourseLabels,
   selectedRequirementOptionIdsByGroup,
+  preferredCourseLoad = null,
+  intendedTransferQuarterId = null,
 }: UsePlannerComputationInput) {
   const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(true);
   const [allowSummerClasses, setAllowSummerClasses] = useState(false);
@@ -162,6 +166,8 @@ export function usePlannerComputation({
         includeSummerQuarter: allowSummerClasses,
         includeStemPrepCourses: allowStemPrepClasses,
         selectedRequirementOptionIdsByGroup,
+        preferredCourseLoad,
+        intendedTransferQuarterId,
       });
     },
     [
@@ -171,11 +177,13 @@ export function usePlannerComputation({
       completedCourses,
       hasDirectMajorEquivalencies,
       currentPlannedCourseLabels,
+      intendedTransferQuarterId,
       isPlannerComputationReady,
       isUwPlanner,
       allowSummerClasses,
       onlyUwEssentialClasses,
       plan,
+      preferredCourseLoad,
       selectedCollegeId,
       selectedRequirementOptionIdsByGroup,
       stayAtGrcStatuses,

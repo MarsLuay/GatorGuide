@@ -1003,6 +1003,19 @@ function buildReportParseKeys(owner) {
   );
 }
 
+function findFailedParseableRequirementSources(entries, owners) {
+  const successfulOwners = (owners ?? []).filter((owner) => owner?.ok === true);
+  const successfulSourceKeys = new Set(successfulOwners.flatMap(buildReportParseKeys));
+  const successfulPlanSourceKeys = new Set(
+    successfulOwners.flatMap(buildReportPlanSourceKeys)
+  );
+  return (entries ?? []).filter(
+    (entry) =>
+      !successfulSourceKeys.has(buildManifestParseKey(entry)) &&
+      !successfulPlanSourceKeys.has(buildManifestPlanSourceKey(entry))
+  );
+}
+
 function buildManifestPlanSourceKey(entry) {
   return `${entry.planId ?? entry.ownerId}::${normalizeRequirementSourceUrlForCoverage(entry.url)}`;
 }
@@ -1470,6 +1483,9 @@ async function main() {
   const primaryManifestOwners = buildPrimaryManifestOwnerMap();
   const parseablePrimaryManifestOwners = buildParseablePrimaryManifestOwnerMap();
   const parseableRequirementSourceEntries = buildParseableRequirementSourceManifestEntries();
+  const canonicalParseableRequirementSourceKeys = new Set(
+    parseableRequirementSourceEntries.map(buildManifestParseKey)
+  );
   const parsedOwnerIds = new Set((requirementParseReport.owners ?? []).map((owner) => owner.ownerId));
   const parsedRequirementSourceKeys = new Set(
     (requirementParseReport.owners ?? []).flatMap(buildReportParseKeys)
@@ -1487,6 +1503,20 @@ async function main() {
     (TRANSFER_PLANNER_REQUIREMENT_FINGERPRINTS ?? []).map((entry) => entry.ownerId)
   );
   const promotedSourceEntries = TRANSFER_PLANNER_PRIMARY_PROMOTIONS ?? [];
+  const successfulParsedRequirementSourceKeys = new Set(
+    (requirementParseReport.owners ?? [])
+      .filter((owner) => owner?.ok === true)
+      .flatMap(buildReportParseKeys)
+  );
+  const failedCanonicalParsedSources = findFailedParseableRequirementSources(
+    parseableRequirementSourceEntries,
+    requirementParseReport.owners
+  );
+  const failedPromotedParsedSources = promotedSourceEntries.filter(
+    (entry) =>
+      canonicalParseableRequirementSourceKeys.has(buildManifestParseKey(entry)) &&
+      !successfulParsedRequirementSourceKeys.has(buildManifestParseKey(entry))
+  );
   const missingPromotedParsedOwners = promotedSourceEntries.filter(
     (entry) => !parsedOwnerIds.has(entry.ownerId)
   );
@@ -1720,6 +1750,14 @@ async function main() {
       "Promoted owners appear in parser output and requirement fingerprints",
       () => {
         assert.deepEqual(
+          failedPromotedParsedSources.map(buildManifestParseKey),
+          [],
+          `Promoted primary sources must parse successfully: ${failedPromotedParsedSources
+            .map(buildManifestParseKey)
+            .slice(0, 12)
+            .join(", ")}`
+        );
+        assert.deepEqual(
           missingPromotedParsedOwners.map((entry) => entry.ownerId),
           [],
           `Promoted owners missing parsed blocks: ${missingPromotedParsedOwners
@@ -1736,6 +1774,21 @@ async function main() {
             .join(", ")}`
         );
         return `Promoted owners verified end-to-end: ${TRANSFER_PLANNER_PRIMARY_PROMOTIONS.length}`;
+      }
+    ),
+    runCheck(
+      "canonical-requirement-sources-parse-successfully",
+      "Every canonical parseable requirement source parses successfully",
+      () => {
+        assert.deepEqual(
+          failedCanonicalParsedSources.map(buildManifestParseKey),
+          [],
+          `Canonical requirement sources must parse successfully: ${failedCanonicalParsedSources
+            .map(buildManifestParseKey)
+            .slice(0, 12)
+            .join(", ")}`
+        );
+        return `Canonical parseable sources verified: ${parseableRequirementSourceEntries.length}`;
       }
     ),
     runCheck(
@@ -1886,7 +1939,11 @@ async function main() {
         );
         assert.ok(
           newerPdfCandidate,
-          "Expected discovery to find the newer BS checklist PDF from sibling official pages."
+          `Expected discovery to find the newer BS checklist PDF from sibling official pages. Retained: ${(fixtureResult.topCandidates ?? [])
+            .map((candidate) => candidate.url)
+            .join(", ")}. Inspected: ${(fixtureResult.sourcePages ?? [])
+            .map((page) => `${page.url}=${page.status}`)
+            .join(", ")}`
         );
         return [
           `Suggested replacement: ${fixtureResult.suggestedPrimary?.url}`,
@@ -1906,8 +1963,11 @@ async function main() {
         const currentPdfCandidate = findCandidateByUrl(fixtureResult, BIOCHEM_BA_PDF_URL);
         const newerPdfCandidate = findCandidateByUrl(fixtureResult, BIOCHEM_BS_PDF_URL);
 
-        assert.ok(currentPdfCandidate, "Expected the current PDF candidate.");
-        assert.ok(newerPdfCandidate, "Expected the newer sibling PDF candidate.");
+        const retainedCandidateUrls = (fixtureResult.topCandidates ?? [])
+          .map((candidate) => candidate.url)
+          .join(", ");
+        assert.ok(currentPdfCandidate, `Expected the current PDF candidate. Retained: ${retainedCandidateUrls}`);
+        assert.ok(newerPdfCandidate, `Expected the newer sibling PDF candidate. Retained: ${retainedCandidateUrls}`);
         assert.ok(
           newerPdfCandidate.score > currentPdfCandidate.score,
           `Expected newer sibling PDF score ${newerPdfCandidate.score} to exceed current PDF score ${currentPdfCandidate.score}.`
@@ -2258,7 +2318,13 @@ async function main() {
   console.log(`Report: ${OUTPUT_MD_PATH}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+module.exports = {
+  findFailedParseableRequirementSources,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

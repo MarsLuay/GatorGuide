@@ -53,6 +53,7 @@ function getCollegeLocation(college: College) {
 export default function ComparePage() {
   const router = useRouter();
   const back = useBack(ROUTES.tabsResources);
+  const canNavigateBack = back.canNavigateBack;
   const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
   const styles = useThemeStyles();
@@ -328,8 +329,9 @@ export default function ComparePage() {
             paddingTop: 24,
           }}
         >
-          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
-
+          {canNavigateBack ? (
+            <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
+          ) : null}
           <Text className={`text-2xl ${textClass} mb-1`}>{t("compare.title")}</Text>
           <Text className={`${secondaryTextClass} mb-6`}>{t("compare.subtitle")}</Text>
 

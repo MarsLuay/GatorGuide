@@ -17,7 +17,8 @@ type ResourcesAwareTabBarProps = BottomTabBarProps & {
 };
 
 /**
- * Custom tab bar that highlights the Resources tab while users browse tool screens under Resources.
+ * Custom tab bar that highlights the owning primary tab for nested tool screens.
+ * P15 primary tabs: Transfer Planner, Resources, Calendar, Profile.
  */
 export function ResourcesAwareTabBar({
   variant = "glass",

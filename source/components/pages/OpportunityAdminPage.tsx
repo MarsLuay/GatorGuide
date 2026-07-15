@@ -47,6 +47,7 @@ function formatOpportunityDue(opportunity: Opportunity) {
 export default function OpportunityAdminPage() {
   const router = useRouter();
   const back = useBack(ROUTES.tabsResources);
+  const canNavigateBack = back.canNavigateBack;
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
@@ -186,8 +187,9 @@ export default function OpportunityAdminPage() {
       >
         <View style={{ width: "100%", maxWidth: pageMaxWidth, alignSelf: "center" }}>
           <View className="mb-6">
-            <PageBackButton onPress={back} label="Back" textClassName={secondaryTextClass} />
-
+            {canNavigateBack ? (
+              <PageBackButton onPress={back} label="Back" textClassName={secondaryTextClass} />
+            ) : null}
             <Text className={`${textClass} text-3xl font-bold`}>Opportunity Admin</Text>
             <Text className={`${secondaryTextClass} mt-2`}>
               Add, edit, archive, and review opportunity records from the app instead of touching source files.

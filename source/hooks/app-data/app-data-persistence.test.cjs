@@ -83,6 +83,26 @@ test("schema v1 envelopes hydrate without migration rewrite", () => {
   assert.equal(result.shouldRewrite, false);
   assert.equal(result.state.notificationsEnabled, true);
   assert.equal(result.state.notificationPreferences.internships, false);
+  assert.ok(result.state.plannerV2);
+  assert.ok(result.state.__legacy);
+});
+
+test("v1 envelopes missing plannerV2 request soft rewrite and mirror opaque legacy", () => {
+  const result = parsePersistedAppDataPayload({
+    schemaVersion: APP_DATA_SCHEMA_VERSION,
+    data: {
+      user: null,
+      questionnaireAnswers: { roadmap: "legacy-alias" },
+      notificationsEnabled: false,
+      notificationPreferences: DEFAULT_NOTIFICATION_PREFERENCES,
+      savedColleges: [{ id: "uw-seattle", name: "UW", city: "Seattle", state: "WA" }],
+    },
+  });
+  assert.equal(result.shouldRewrite, true);
+  assert.equal(result.state.savedColleges[0].id, "uw-seattle");
+  assert.equal(result.state.__legacy.savedColleges[0].id, "uw-seattle");
+  assert.equal(result.state.__legacy.questionnaireRoadmap, "legacy-alias");
+  assert.ok(result.state.plannerV2);
 });
 
 test("legacy raw app-data payloads migrate into normalized state", () => {
@@ -140,4 +160,74 @@ test("unrecognized persisted payloads fall back to initial state and rewrite", (
   assert.deepEqual(result.state.questionnaireAnswers, {});
   assert.equal(result.migratedFromLegacy, false);
   assert.equal(result.shouldRewrite, true);
+});
+
+test("P01-D characterization fixture round-trips removal-bound guest payload fields", () => {
+  // Fixtures intentionally include saved-college and questionnaire shapes that
+  // P14 will stop consuming at runtime while persistence must remain non-destructive.
+  const state = buildState({
+    user: {
+      uid: "guest-p01d",
+      name: "Characterization Guest",
+      email: "",
+      isGuest: true,
+      state: "WA",
+      major: "Computer Science",
+      gpa: "3.4",
+      transcript: "local://transcript-p01d",
+      hasSeenOnboarding: true,
+    },
+    questionnaireAnswers: {
+      major: "Computer Science",
+      location: "washington_only",
+      roadmap: "legacy-alias-should-survive",
+    },
+    notificationsEnabled: true,
+    notificationPreferences: {
+      ...DEFAULT_NOTIFICATION_PREFERENCES,
+      collegeDeadlines: true,
+      scholarships: true,
+      internships: false,
+    },
+    savedColleges: [
+      {
+        id: "uw-seattle",
+        name: "University of Washington",
+        city: "Seattle",
+        state: "WA",
+      },
+    ],
+  });
+
+  const envelope = buildPersistedAppDataEnvelope(state);
+  const guestResult = parsePersistedAppDataPayload(envelope);
+  assert.equal(guestResult.shouldRewrite, false);
+  assert.equal(guestResult.state.user?.uid, "guest-p01d");
+  assert.equal(guestResult.state.questionnaireAnswers.major, "Computer Science");
+  assert.equal(guestResult.state.savedColleges.length, 1);
+  assert.equal(guestResult.state.savedColleges[0].id, "uw-seattle");
+
+  const signedIn = buildState({
+    user: {
+      uid: "signed-p01d",
+      name: "Signed Student",
+      email: "student@example.com",
+      isGuest: false,
+      state: "WA",
+      major: "Biology",
+      gpa: "3.1",
+      resume: "local://resume-p01d",
+      transcript: "local://transcript-signed",
+      isProfileComplete: true,
+    },
+    savedColleges: [
+      { id: "uw-bothell", name: "UW Bothell", city: "Bothell", state: "WA" },
+      { id: "uw-tacoma", name: "UW Tacoma", city: "Tacoma", state: "WA" },
+    ],
+  });
+  const signedResult = parsePersistedAppDataPayload(
+    buildPersistedAppDataEnvelope(signedIn)
+  );
+  assert.equal(signedResult.state.user?.uid, "signed-p01d");
+  assert.equal(signedResult.state.savedColleges.length, 2);
 });

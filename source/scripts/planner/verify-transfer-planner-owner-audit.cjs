@@ -40,6 +40,12 @@ const {
 const {
   getTransferPlannerStudentRuntimeAliasCoverage,
 } = require("../../constants/transfer-planner-source/student-runtime");
+const {
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
+} = require("../../constants/transfer-planner-source/derived-shared-source-plans");
+const {
+  isTransferPlannerStandaloneInventorySuppressedPlanId,
+} = require("../../constants/transfer-planner-source/source-generated-visibility");
 
 const REPO_ROOT = SOURCE_ROOT;
 ensurePlannerTmpLayout();
@@ -62,6 +68,16 @@ const NON_ACTIONABLE_NON_SCHEDULABLE_SYMPTOM_CODES = new Set([
   "no-runtime-schedulable-grc-rows",
   "no-parsed-uw-course-codes",
 ]);
+const DERIVED_SHARED_SOURCE_PLAN_IDS = new Set(
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.map((alias) => alias.derivedPlanId)
+);
+
+function isCanonicalSourceOwnerPlanId(planId) {
+  return (
+    !isTransferPlannerStandaloneInventorySuppressedPlanId(planId) &&
+    !DERIVED_SHARED_SOURCE_PLAN_IDS.has(planId)
+  );
+}
 
 function ensureTmpDir() {
   ensurePlannerTmpLayout();
@@ -700,6 +716,9 @@ function buildOwners(targetPlanId = null) {
   const owners = [];
 
   for (const plan of TRANSFER_PLANNER_GENERATED_MAJOR_PLANS) {
+    if (!isCanonicalSourceOwnerPlanId(plan.id)) {
+      continue;
+    }
     if (targetPlanId && plan.id !== targetPlanId) {
       continue;
     }
@@ -1215,4 +1234,11 @@ function main() {
   }
 }
 
-main();
+module.exports = {
+  buildOwnersForTest: buildOwners,
+  isCanonicalSourceOwnerPlanIdForTest: isCanonicalSourceOwnerPlanId,
+};
+
+if (require.main === module) {
+  main();
+}

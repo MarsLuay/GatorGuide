@@ -23,6 +23,7 @@ function getCollegeTuition(college: College): number | null {
 export default function SavedCollegesPage() {
   const router = useRouter();
   const back = useBack(ROUTES.tabsResources);
+  const canNavigateBack = back.canNavigateBack;
   const { width } = useWindowDimensions();
   const { t, language } = useAppLanguage();
   const { getScrollContentPadding } = useResponsiveLayout();
@@ -97,8 +98,9 @@ export default function SavedCollegesPage() {
             paddingTop: 24,
           }}
         >
-          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
-
+          {canNavigateBack ? (
+            <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
+          ) : null}
           <Text className={`text-2xl ${textClass} mb-1`}>
             {t("savedColleges.title")}
           </Text>

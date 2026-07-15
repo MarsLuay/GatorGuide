@@ -159,6 +159,8 @@ export function getPrimaryActionLabel(
 ) {
   if (item.target.type === "college") return t("deadlineCalendar.actionOpenCollege");
   if (item.target.type === "roadmap") return t("deadlineCalendar.actionShownHere");
+  if (item.target.type === "planner") return t("deadlineCalendar.actionOpenPlanner");
+  if (item.target.type === "personal") return t("deadlineCalendar.actionShownHere");
   if (item.target.type === "resources") return t("deadlineCalendar.actionViewOpportunity");
   return t("deadlineCalendar.actionOpenLink");
 }

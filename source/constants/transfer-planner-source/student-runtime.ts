@@ -46,6 +46,7 @@ import {
   TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
   type TransferPlannerDerivedSharedSourcePlanAlias,
 } from "./derived-shared-source-plans";
+import { getTransferPlannerCampusAliasGuideTargetCourseCodes } from "./campus-course-aliases";
 
 export type {
   TransferPlannerCampus,
@@ -248,38 +249,6 @@ const GUIDE_TERM_ORDER: Partial<Record<string, number>> = {
   SUM: 3,
   AUT: 4,
 };
-const BOTHELL_CAMPUS_ALIAS_EQUIVALENCY_TARGETS_BY_UW_COURSE: Record<string, string> = {
-  "BBIO 180": "BIOL 180",
-  "BBIO 200": "BIOL 200",
-  "BBIO 220": "BIOL 220",
-  "BCHEM 143": "CHEM 142",
-  "BCHEM 144": "CHEM 142",
-  "BCHEM 153": "CHEM 152",
-  "BCHEM 154": "CHEM 152",
-  "BCHEM 163": "CHEM 162",
-  "BCHEM 164": "CHEM 162",
-  "BCHEM 237": "CHEM 237",
-  "BCHEM 238": "CHEM 238",
-  "BCHEM 239": "CHEM 239",
-  "BCHEM 241": "CHEM 241",
-  "BCHEM 242": "CHEM 242",
-  "BPHYS 114": "PHYS 114",
-  "BPHYS 115": "PHYS 115",
-  "BPHYS 116": "PHYS 116",
-  "BPHYS 117": "PHYS 117",
-  "BPHYS 118": "PHYS 118",
-  "BPHYS 119": "PHYS 119",
-  "BPHYS 121": "PHYS 121",
-  "BPHYS 122": "PHYS 122",
-  "BPHYS 123": "PHYS 123",
-  "STMATH 124": "MATH 124",
-  "STMATH 125": "MATH 125",
-  "STMATH 126": "MATH 126",
-  "STMATH 207": "MATH 207",
-  "STMATH 208": "MATH 208",
-  "STMATH 224": "MATH 224",
-};
-
 type RuntimeGrcEquivalencyMapping = {
   targetCourseCode: string;
   grcCourses: string[];
@@ -289,8 +258,12 @@ type RuntimeGrcEquivalencyMapping = {
 export function getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode(
   courseCode: string | null | undefined
 ) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  if (!/^(?:BBIO|BCHEM|BPHYS|STMATH)\s/.test(normalizedCourseCode)) {
+    return null;
+  }
   return (
-    BOTHELL_CAMPUS_ALIAS_EQUIVALENCY_TARGETS_BY_UW_COURSE[normalizeCourseCode(courseCode)] ??
+    getTransferPlannerCampusAliasGuideTargetCourseCodes("uw-bothell", normalizedCourseCode)[0] ??
     null
   );
 }
@@ -3079,21 +3052,6 @@ function normalizeRequirementShapeForGroup(group: TransferPlannerRequirementGrou
   };
 }
 
-function requirementOptionContainsCoursePrefix(
-  option: TransferPlannerRequirementOption,
-  prefixPattern: RegExp
-) {
-  return [
-    option.label,
-    option.pathLabel,
-    ...(option.uwCourses ?? []),
-    ...(option.equivalentUwCourseCodes ?? []),
-    ...(option.grcMatches ?? []),
-    ...(option.displayCourseCodes ?? []),
-    ...(option.compoundComponents ?? []).flat(),
-  ].some((value) => prefixPattern.test(String(value ?? "")));
-}
-
 const MATH_CREDIT_BUCKET_SOURCE_SUBJECTS = new Set([
   "AMATH",
   "BMATH",
@@ -3199,59 +3157,6 @@ function getPreferredCreditBucketSelectionForChecklistItem(
   };
 }
 
-function shouldTreatCreditBucketAsPhysicsSequenceChoice(
-  item: TransferPlannerChecklistItem,
-  group: TransferPlannerRequirementGroup
-) {
-  if (group.requirementType !== "choose_credits") {
-    return false;
-  }
-
-  const options = group.options ?? [];
-  if (options.length < 2) {
-    return false;
-  }
-
-  const groupText = `${item.title} ${group.label ?? ""} ${group.sourceHeading ?? ""}`;
-  if (/\blabs?\b|\bone credit lab\b/i.test(groupText)) {
-    return false;
-  }
-  const hasPhysicsContext =
-    /\bphys(?:ics)?\b/i.test(groupText) ||
-    options.some((option) => requirementOptionContainsCoursePrefix(option, /^PHYS(?:&|\s)/i));
-  const hasChoiceContext =
-    /\bone of (?:the )?following\b|\bcalculus-based\b|\balgebra-based\b/i.test(groupText);
-  const allOptionsArePhysics = options.every((option) =>
-    requirementOptionContainsCoursePrefix(option, /^PHYS(?:&|\s)/i)
-  );
-
-  return hasPhysicsContext && allOptionsArePhysics && (hasChoiceContext || options.length >= 2);
-}
-
-function normalizeRuntimeSequenceChoiceGroupForChecklistItem(
-  item: TransferPlannerChecklistItem,
-  group: TransferPlannerRequirementGroup
-) {
-  if (!shouldTreatCreditBucketAsPhysicsSequenceChoice(item, group)) {
-    return group;
-  }
-
-  return {
-    ...group,
-    requirementType: "sequence_choice" as const,
-    requirementShape: "sequence-choice" as const,
-    minCourses: 1,
-    maxCourses: 1,
-    selectionCount: 1,
-    requiredCount: 1,
-    minCredits: null,
-    maxCredits: null,
-    creditText: null,
-    satisfactionMode: "selection-count" as TransferPlannerRequirementSatisfactionMode,
-    canCreatePlaceholder: false,
-  };
-}
-
 function pickDefaultSequenceChoiceOption(
   options: TransferPlannerRequirementOption[],
   selectedOptionIds: string[]
@@ -3289,11 +3194,8 @@ function pickDefaultSequenceChoiceOption(
 function normalizeRequirementShapeForChecklistItem(
   item: TransferPlannerChecklistItem
 ): TransferPlannerChecklistItem {
-  const preNormalizedRequirementGroup = item.requirementGroup
-    ? normalizeRuntimeSequenceChoiceGroupForChecklistItem(item, item.requirementGroup)
-    : undefined;
-  const requirementGroup = preNormalizedRequirementGroup
-    ? normalizeRequirementShapeForGroup(preNormalizedRequirementGroup)
+  const requirementGroup = item.requirementGroup
+    ? normalizeRequirementShapeForGroup(item.requirementGroup)
     : undefined;
   const requirementShape =
     item.requirementShape ??
@@ -5802,14 +5704,21 @@ export function getTransferPlannerStudentRuntimeMajorsForCampus(
     return cachedMajors;
   }
 
+  const derivedSharedPlans = getStudentRuntimeDerivedSharedPlansForCampus(campusId);
   const majors = getRuntimeMajorPlansForCampus(campusId)
-    .filter((plan) => !isHiddenStudentRuntimeAliasPlan(plan))
+    .filter(
+      (plan) =>
+        !STUDENT_RUNTIME_DERIVED_SHARED_PLAN_ALIASES_BY_DERIVED_ID.has(plan.id) &&
+        !isHiddenStudentRuntimeAliasPlan(plan)
+    )
     .map((plan) => normalizeStudentRuntimeMajorPlan(plan));
   const studentVisibleMajors = uniqueBy(
     [
+      ...derivedSharedPlans,
       ...majors,
-      ...getStudentRuntimeSourceBackedStandalonePlansForCampus(campusId),
-      ...getStudentRuntimeDerivedSharedPlansForCampus(campusId),
+      ...getStudentRuntimeSourceBackedStandalonePlansForCampus(campusId).filter(
+        (plan) => !STUDENT_RUNTIME_DERIVED_SHARED_PLAN_ALIASES_BY_DERIVED_ID.has(plan.id)
+      ),
     ],
     (plan) => plan.id
   );
@@ -5905,6 +5814,11 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
 }
 
 export function getTransferPlannerMajorPlan(planId: string) {
+  const derivedSharedPlan = getStudentRuntimeDerivedSharedPlanById(planId);
+  if (derivedSharedPlan) {
+    return derivedSharedPlan;
+  }
+
   const plan = getRuntimeMajorPlanById(planId) ?? null;
   if (plan) {
     return !isHiddenStudentRuntimeAliasPlan(plan)
@@ -5917,7 +5831,7 @@ export function getTransferPlannerMajorPlan(planId: string) {
     return normalizeStudentRuntimeMajorPlan(standalonePlan);
   }
 
-  return getStudentRuntimeDerivedSharedPlanById(planId);
+  return null;
 }
 
 export function resolveTransferPlannerMajorPlan(

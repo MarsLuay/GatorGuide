@@ -10,6 +10,11 @@ import {
 } from "@/services/app/questionnaire.enums";
 import type { College } from "@/services/colleges/college.service";
 import { savedCollegesService } from "@/services/colleges/saved-colleges.service";
+import type { PlannerV2State } from "@/hooks/app-data/planner-state-v2";
+import {
+  createEmptyPlannerV2,
+  mirrorOpaqueLegacy,
+} from "@/hooks/app-data/planner-state-v2";
 
 export type { QuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 
@@ -53,7 +58,12 @@ export type AppDataState = {
   questionnaireAnswers: QuestionnaireAnswers;
   notificationsEnabled: boolean;
   notificationPreferences: NotificationPreferences;
+  /** Product field until P14 — also mirrored into __legacy. */
   savedColleges: College[];
+  /** P13 planner state v2 fields (soft; schema bump deferred). */
+  plannerV2: PlannerV2State;
+  /** Opaque removal-bound payloads; never deleted on upgrade. */
+  __legacy: Record<string, unknown>;
 };
 
 export const STORAGE_KEY = STORAGE_KEYS.appData;
@@ -64,6 +74,8 @@ export const initialState: AppDataState = {
   notificationsEnabled: false,
   notificationPreferences: { ...DEFAULT_NOTIFICATION_PREFERENCES },
   savedColleges: [],
+  plannerV2: createEmptyPlannerV2(),
+  __legacy: {},
 };
 
 export function withDefaultUserState<T extends Partial<User> | null | undefined>(user: T): T {
@@ -110,14 +122,31 @@ export function normalizeNotificationPreferences(value: unknown): NotificationPr
 }
 
 export function normalizeAppDataState(data: Partial<AppDataState> & { savedColleges?: College[] }): AppDataState {
+  const savedColleges = Array.isArray(data.savedColleges)
+    ? savedCollegesService.mergeSavedCollegeLists([], data.savedColleges)
+    : [];
+  const questionnaireAnswers = normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {});
+  const existingLegacy =
+    data.__legacy && typeof data.__legacy === "object" && !Array.isArray(data.__legacy)
+      ? (data.__legacy as Record<string, unknown>)
+      : {};
+  const plannerV2 =
+    data.plannerV2 && typeof data.plannerV2 === "object"
+      ? { ...createEmptyPlannerV2(), ...data.plannerV2 }
+      : createEmptyPlannerV2();
+
   return {
     user: withDefaultUserState(data.user ?? null),
-    questionnaireAnswers: normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {}),
+    questionnaireAnswers,
     notificationsEnabled: data.notificationsEnabled ?? false,
     notificationPreferences: normalizeNotificationPreferences(data.notificationPreferences),
-    savedColleges: Array.isArray(data.savedColleges)
-      ? savedCollegesService.mergeSavedCollegeLists([], data.savedColleges)
-      : [],
+    savedColleges,
+    plannerV2,
+    __legacy: mirrorOpaqueLegacy({
+      savedColleges,
+      questionnaireAnswers: questionnaireAnswers as Record<string, unknown>,
+      existingLegacy,
+    }),
   };
 }
 

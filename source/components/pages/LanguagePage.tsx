@@ -40,6 +40,7 @@ export default function LanguagePage() {
   const { isDark, isGreen, isLight } = useAppTheme();
   const { language, setLanguage, t } = useAppLanguage();
   const back = useBack("/(tabs)/settings");
+  const canNavigateBack = back.canNavigateBack;
   const { getScrollContentPadding } = useResponsiveLayout();
   const { width } = useWindowDimensions();
 
@@ -91,13 +92,14 @@ export default function LanguagePage() {
           }}
         >
           <View className="pb-6">
-            <PageBackButton
-              onPress={back}
-              label={t("general.back")}
-              textClassName={secondaryTextClass}
-              isRTL={isPageRTL}
-            />
-
+            {canNavigateBack ? (
+              <PageBackButton
+                onPress={back}
+                label={t("general.back")}
+                textClassName={secondaryTextClass}
+                isRTL={isPageRTL}
+              />
+            ) : null}
             <Text className={`text-2xl ${isPageRTL ? "text-right" : ""} ${textClass}`}>{t("settings.language")}</Text>
           </View>
 

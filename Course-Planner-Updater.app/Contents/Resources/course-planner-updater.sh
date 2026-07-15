@@ -30,6 +30,54 @@ fail() {
   exit 1
 }
 
+ensure_node() {
+  if command_exists node && command_exists npm; then
+    log "Node.js is already installed."
+    return
+  fi
+
+  case "$(detect_os)" in
+    Darwin)
+      if command_exists brew; then
+        log "Node.js was not found. Installing Node.js with Homebrew..."
+        brew install node
+      else
+        fail "Node.js is missing and Homebrew is not installed. Install Node from https://nodejs.org and run this launcher again."
+      fi
+      ;;
+    Linux)
+      if command_exists apt-get; then
+        log "Node.js was not found. Installing Node.js with apt..."
+        run_with_privilege apt-get update
+        run_with_privilege apt-get install -y nodejs npm
+      elif command_exists dnf; then
+        log "Node.js was not found. Installing Node.js with dnf..."
+        run_with_privilege dnf install -y nodejs npm
+      elif command_exists yum; then
+        log "Node.js was not found. Installing Node.js with yum..."
+        run_with_privilege yum install -y nodejs npm
+      elif command_exists pacman; then
+        log "Node.js was not found. Installing Node.js with pacman..."
+        run_with_privilege pacman -Sy --noconfirm nodejs npm
+      elif command_exists zypper; then
+        log "Node.js was not found. Installing Node.js with zypper..."
+        run_with_privilege zypper install -y nodejs npm
+      elif command_exists apk; then
+        log "Node.js was not found. Installing Node.js with apk..."
+        run_with_privilege apk add --no-cache nodejs npm
+      else
+        fail "Node.js is missing and no supported package manager was found. Install Node from https://nodejs.org and run this launcher again."
+      fi
+      ;;
+    *)
+      fail "Unsupported OS: $(detect_os)"
+      ;;
+  esac
+
+  command_exists node || fail "Node.js installation finished, but 'node' is still unavailable in this shell."
+  log "Node.js finished installing successfully."
+}
+
 command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
@@ -122,7 +170,7 @@ locate_or_clone_repo() {
   ensure_git
 
   if [ -e "$clone_root" ]; then
-    fail "Cannot clone into \"$clone_root\" because that path already exists."
+    fail "Cannot clone into \"$clone_root\" because that path already exists. Move or remove it, or place this launcher next to a full GatorGuide checkout."
   fi
 
   log "Cloning Gator Guide into \"$clone_root\"..."
@@ -135,23 +183,82 @@ locate_or_clone_repo() {
   log "Repo cloned successfully."
 }
 
+free_memory_mb() {
+  case "$(detect_os)" in
+    Darwin)
+      local page_size
+      page_size="$(pagesize 2>/dev/null || printf '4096')"
+      /usr/bin/vm_stat 2>/dev/null | awk -v ps="$page_size" '
+        /Pages free/ { gsub("\\.","",$3); free=$3 }
+        /Pages speculative/ { gsub("\\.","",$3); spec=$3 }
+        END { print int((free + spec) * ps / 1024 / 1024) }
+      '
+      ;;
+    Linux)
+      awk '/MemAvailable:/ { print int($2 / 1024); found=1 } END { if (!found) print 9999 }' /proc/meminfo 2>/dev/null
+      ;;
+    *)
+      printf '9999\n'
+      ;;
+  esac
+}
+
 find_powershell() {
+  local free_mb
+  free_mb="$(free_memory_mb 2>/dev/null || printf '9999')"
+  if [ "$free_mb" -lt 200 ] 2>/dev/null; then
+    log "Free memory ~${free_mb}MB is critically low; skipping PowerShell/CoreCLR and using Node."
+    return 1
+  fi
+
   if command_exists pwsh; then
-    printf '%s\n' "pwsh"
-    return
+    if pwsh -NoProfile -Command 'exit 0' >/dev/null 2>&1; then
+      printf '%s\n' "pwsh"
+      return 0
+    fi
+    log "pwsh is installed but cannot start (often low memory / CoreCLR). Falling back to Node maintenance."
   fi
 
   if command_exists powershell; then
-    printf '%s\n' "powershell"
-    return
+    if powershell -NoProfile -ExecutionPolicy Bypass -Command 'exit 0' >/dev/null 2>&1; then
+      printf '%s\n' "powershell"
+      return 0
+    fi
+    log "powershell is installed but cannot start. Falling back to Node maintenance."
   fi
 
-  fail "PowerShell was not found. Install PowerShell from https://aka.ms/powershell and run this launcher again."
+  return 1
+}
+
+run_node_maintenance() {
+  ensure_node
+  local skip_downloads="${1:-}"
+  local mode="${2:-}"
+  local skip_verify="${3:-}"
+  local -a node_args=()
+
+  if [ "$skip_downloads" = "skip-downloads" ]; then
+    node_args+=(--skip-downloads)
+  fi
+  if [ "$mode" = "refresh-only" ]; then
+    node_args+=(--refresh-only)
+    if [ "$skip_verify" = "skip-verify" ]; then
+      node_args+=(--skip-verify)
+    fi
+  fi
+
+  if [ "${#node_args[@]}" -eq 0 ]; then
+    node "$SCRIPT_ROOT/run-transfer-planner-maintenance.cjs"
+  else
+    node "$SCRIPT_ROOT/run-transfer-planner-maintenance.cjs" "${node_args[@]}"
+  fi
 }
 
 run_powershell_file() {
   local shell_path
-  shell_path="$(find_powershell)"
+  if ! shell_path="$(find_powershell)"; then
+    return 90
+  fi
   if [ "$(basename "$shell_path")" = "powershell" ]; then
     "$shell_path" -NoProfile -ExecutionPolicy Bypass -File "$@"
   else
@@ -210,6 +317,11 @@ run_maintenance() {
     run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks -BackExitCode "$BACK_EXIT_CODE"
   fi
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Using Node maintenance runner (PowerShell unavailable)."
+    run_node_maintenance
+    exit_code="$?"
+  fi
   set -e
   finish "$exit_code" "$action_label"
 }
@@ -224,6 +336,11 @@ run_maintenance_no_downloads() {
     run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks -BackExitCode "$BACK_EXIT_CODE"
   fi
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Using Node maintenance runner (PowerShell unavailable)."
+    run_node_maintenance skip-downloads
+    exit_code="$?"
+  fi
   set -e
   finish "$exit_code" "$action_label"
 }
@@ -233,6 +350,11 @@ run_refresh() {
   set +e
   run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-refresh.ps1" -SkipVerify
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Using Node refresh runner (PowerShell unavailable)."
+    run_node_maintenance "" refresh-only skip-verify
+    exit_code="$?"
+  fi
   set -e
   finish "$exit_code" "Course planner refresh"
 }
@@ -242,6 +364,11 @@ run_refresh_no_downloads() {
   set +e
   run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-refresh.ps1" -SkipDownloads -SkipVerify
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Using Node refresh runner (PowerShell unavailable)."
+    run_node_maintenance skip-downloads refresh-only skip-verify
+    exit_code="$?"
+  fi
   set -e
   finish "$exit_code" "Course planner refresh (skip downloads)"
 }
@@ -251,6 +378,10 @@ run_cache_summary() {
   set +e
   run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-maintenance.ps1" -ShowCacheSummary -NoPrompt -NoOpenSummary
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Cache summary still requires PowerShell. Free memory or install a working pwsh, then retry."
+    exit_code=1
+  fi
   set -e
   finish "$exit_code" "Course planner cache summary"
 }
@@ -265,6 +396,10 @@ run_edit_course_links() {
     run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-maintenance.ps1" -EditCourseLinks -BackExitCode "$BACK_EXIT_CODE"
   fi
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Edit course links still requires PowerShell. Free memory or install a working pwsh, then retry."
+    exit_code=1
+  fi
   set -e
   finish "$exit_code" "$action_label"
 }
@@ -274,12 +409,17 @@ run_laymans_diagnosis() {
   set +e
   run_powershell_file "$SCRIPT_ROOT/run-transfer-planner-maintenance.ps1" -ShowLaymansDiagnosis -NoPrompt
   exit_code="$?"
+  if [ "$exit_code" = "90" ] || [ "$exit_code" = "137" ]; then
+    log "Laymans Diagnosis still requires PowerShell. Free memory or install a working pwsh, then retry."
+    exit_code=1
+  fi
   set -e
   finish "$exit_code" "Laymans Diagnosis"
 }
 
 run_fact_check_export() {
   local exit_code
+  ensure_node
   set +e
   node "$APP_ROOT/scripts/planner/export-transfer-planner-fact-check.cjs"
   exit_code="$?"

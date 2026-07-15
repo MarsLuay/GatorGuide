@@ -216,7 +216,7 @@ export default function QuestionnairePage() {
               title={t("general.error")}
               message={t("profile.prepareDataError")}
               actionLabel={t("general.close")}
-              onAction={back}
+              onAction={() => { back(); }}
               className="w-full"
             />
           </View>

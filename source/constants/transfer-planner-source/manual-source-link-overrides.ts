@@ -90,6 +90,14 @@ export function shouldSkipTransferPlannerAutoPromotedPrimarySource(
     return true;
   }
 
+  const preferredPrimaryUrl = getTransferPlannerManualPreferredPrimaryUrl(
+    planId,
+    pathwayId ?? null
+  );
+  if (preferredPrimaryUrl && normalizedUrl !== preferredPrimaryUrl) {
+    return true;
+  }
+
   return getTransferPlannerManualRemovedSourceUrls(planId, pathwayId ?? null).has(normalizedUrl);
 }
 

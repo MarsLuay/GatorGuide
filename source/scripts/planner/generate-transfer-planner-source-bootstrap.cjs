@@ -39,6 +39,9 @@ const {
 const {
   TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
 } = require("../../constants/transfer-planner-source/derived-shared-source-plans");
+const {
+  collectCourseCodesFromValue,
+} = require("./lib/course-code-snapshot.cjs");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -55,8 +58,8 @@ const PROFILE_MAJOR_OPTIONS_OUTPUT_PATH = path.resolve(
   "constants",
   "green-river-major-options.generated.ts"
 );
-const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const SUPPRESS_GENERATED_PATHWAY_CANDIDATE_PLAN_IDS = new Set([
+  "uw-bothell-developmental-and-youth-studies",
   "uw-seattle-history-and-philosophy-of-science",
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
 ]);
@@ -978,6 +981,28 @@ function applyTacomaCoursePlannerAuditModeling(plans) {
 
   plansById.delete("uw-tacoma-computer-science-and-systems-ba");
   plansById.delete("uw-tacoma-computer-science-and-systems-bs");
+  const tacomaIasPlan = plansById.get("uw-tacoma-interdisciplinary-arts-and-sciences");
+  if (tacomaIasPlan) {
+    const individuallyDesignedPathwayId = "individually-designed-concentration";
+    plansById.set(
+      tacomaIasPlan.id,
+      replacePlanPathwaysWithCanonicalSet(tacomaIasPlan, [
+        ...(tacomaIasPlan.pathways ?? []).filter(
+          (pathway) => pathway.id !== individuallyDesignedPathwayId
+        ),
+        createEmptyPathway(
+          individuallyDesignedPathwayId,
+          "Individually Designed concentration",
+          [
+            {
+              label: "UW General Catalog individually designed concentration requirements",
+              url: "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html#credential-68d16aa4cad998289e687fe1",
+            },
+          ]
+        ),
+      ])
+    );
+  }
   plansById.delete("uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed");
 
   const cssParentPlan = upsertPlan(
@@ -2323,50 +2348,6 @@ function sanitizeValue(value) {
   return value;
 }
 
-function normalizeCourseCode(value) {
-  const normalized = String(value ?? "")
-    .toUpperCase()
-    .replace(/\s+/g, " ")
-    .trim();
-  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
-  if (!match) {
-    return normalized;
-  }
-
-  const subjectTokens = match[1].split(" ").filter(Boolean);
-  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
-    ? subjectTokens.join("")
-    : subjectTokens.join(" ");
-
-  return `${normalizedSubject} ${match[2]}`;
-}
-
-function collectCourseCodesFromValue(value, targetSet) {
-  if (typeof value === "string") {
-    const matches = value.match(COURSE_CODE_PATTERN) ?? [];
-    for (const match of matches) {
-      const normalized = normalizeCourseCode(match);
-      if (normalized) {
-        targetSet.add(normalized);
-      }
-    }
-    return;
-  }
-
-  if (Array.isArray(value)) {
-    for (const item of value) {
-      collectCourseCodesFromValue(item, targetSet);
-    }
-    return;
-  }
-
-  if (value && typeof value === "object") {
-    for (const entryValue of Object.values(value)) {
-      collectCourseCodesFromValue(entryValue, targetSet);
-    }
-  }
-}
-
 function toIdSet(values) {
   const set = new Set();
   for (const value of values ?? []) {
@@ -2578,7 +2559,7 @@ ${serializeExport(
 
 const previousSnapshot = loadPreviousSnapshot();
 
-fs.writeFileSync(OUTPUT_PATH, fileContents);
+fs.writeFileSync(OUTPUT_PATH, `${fileContents.trimEnd()}\n`);
 console.log(`Wrote ${OUTPUT_PATH}`);
 fs.writeFileSync(
   PROFILE_MAJOR_OPTIONS_OUTPUT_PATH,

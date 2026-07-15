@@ -32,6 +32,7 @@ import { buildPlannerV2PatchFromSelection } from "@/services/planning/contracts/
 import {
   coerceIntendedTransferQuarter,
   coercePreferredLoad,
+  DEFAULT_PREFERRED_LOAD,
 } from "@/services/planning/contracts/planner-v2-constraints";
 import {
   buildUnavailableQuartersFromPrefs,
@@ -55,6 +56,7 @@ export function useTransferPlannerController({
   routeSelection = null,
 }: UseTransferPlannerControllerInput = {}) {
   const handleGoBack = useBack(ROUTES.tabsResources);
+  const canNavigateBack = handleGoBack.canNavigateBack;
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
@@ -185,6 +187,8 @@ export function useTransferPlannerController({
     completedCourses: transcript.completedCourses,
     currentPlannedCourseLabels: selection.currentPlannedCourseLabels,
     selectedRequirementOptionIdsByGroup: selection.selectedRequirementOptionIdsByGroup,
+    preferredCourseLoad: state.plannerV2?.preferredLoad ?? null,
+    intendedTransferQuarterId: state.plannerV2?.intendedTransferQuarter ?? null,
   });
   const demoReview = useTransferPlannerDemoReview(selection.plan?.id ?? null);
   const plannerPublicPath = useMemo(
@@ -248,11 +252,12 @@ export function useTransferPlannerController({
 
   useEffect(() => {
     if (!isHydrated) return;
+    // Seed from questionnaire only once — card edits own the value afterward.
+    if (state.plannerV2?.intendedTransferQuarter) return;
     const fromDeadline = coerceIntendedTransferQuarter(
       state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.deadline]
     );
     if (!fromDeadline) return;
-    if (state.plannerV2?.intendedTransferQuarter === fromDeadline) return;
     void patchPlannerV2({ intendedTransferQuarter: fromDeadline });
   }, [
     isHydrated,
@@ -260,6 +265,12 @@ export function useTransferPlannerController({
     state.plannerV2?.intendedTransferQuarter,
     state.questionnaireAnswers,
   ]);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    if (state.plannerV2?.preferredLoad != null) return;
+    void patchPlannerV2({ preferredLoad: DEFAULT_PREFERRED_LOAD });
+  }, [isHydrated, patchPlannerV2, state.plannerV2?.preferredLoad]);
 
   const handlePreferredLoadChange = useCallback(
     (load: number) => {
@@ -441,6 +452,7 @@ export function useTransferPlannerController({
 
   return {
     handleGoBack,
+    canNavigateBack,
     backLabel,
     textClass,
     secondaryTextClass,

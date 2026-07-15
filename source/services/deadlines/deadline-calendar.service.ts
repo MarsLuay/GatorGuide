@@ -32,6 +32,14 @@ export type DeadlineCalendarEntryTarget =
   | {
       type: "resources";
       opportunityId: string;
+    }
+  | {
+      type: "planner";
+      milestoneId: string;
+    }
+  | {
+      type: "personal";
+      personalId: string;
     };
 
 export type DeadlineCalendarEntry = {
@@ -277,12 +285,24 @@ class DeadlineCalendarService {
   }
 
   buildEntries(input: {
-    roadmap: UserRoadmapDocument | null | undefined;
-    opportunities: MatchedOpportunity[];
+    /** Ignored when `preferLivingPlanTimeline` is true. */
+    roadmap?: UserRoadmapDocument | null;
+    opportunities?: MatchedOpportunity[];
+    personalizedTimelineEntries?: DeadlineCalendarEntry[];
+    /**
+     * P16: Living Plan is the primary calendar timeline. Skip roadmap
+     * document tasks so opportunities + plan entries need no roadmap.
+     */
+    preferLivingPlanTimeline?: boolean;
   }) {
-    return [...this.buildRoadmapEntries(input.roadmap), ...this.buildOpportunityEntries(input.opportunities)].sort(
-      compareEntries
-    );
+    const roadmapEntries = input.preferLivingPlanTimeline
+      ? []
+      : this.buildRoadmapEntries(input.roadmap);
+    return [
+      ...roadmapEntries,
+      ...this.buildOpportunityEntries(input.opportunities ?? []),
+      ...(input.personalizedTimelineEntries ?? []),
+    ].sort(compareEntries);
   }
 
   filterUpcomingEntries(entries: DeadlineCalendarEntry[], days = UPCOMING_DEADLINE_WINDOW_DAYS) {

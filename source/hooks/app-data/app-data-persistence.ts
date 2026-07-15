@@ -1,3 +1,8 @@
+/**
+ * Local AppData envelope (AsyncStorage / localStorage).
+ * P18: persisted plannerV2 is offline-readable; Firestore sync is not a
+ * prerequisite for Living Plan / calendar timeline projection.
+ */
 import { APP_DATA_SCHEMA_VERSION } from "@/constants/schema";
 import type { College } from "@/services/colleges/college.service";
 import {
@@ -62,11 +67,13 @@ export function parsePersistedAppDataPayload(value: unknown): ParsedPersistedApp
       parsedVersion === APP_DATA_SCHEMA_VERSION &&
       isRecord(value.data)
     ) {
+      const missingPlannerV2 = !Object.prototype.hasOwnProperty.call(value.data, "plannerV2");
       return {
         state: normalizeEnvelopeData(value.data),
         schemaVersion: parsedVersion,
         migratedFromLegacy: false,
-        shouldRewrite: false,
+        // Soft P13: rewrite once to persist plannerV2 + opaque __legacy mirror.
+        shouldRewrite: missingPlannerV2,
       };
     }
 

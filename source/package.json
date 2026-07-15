@@ -60,7 +60,7 @@
     "planner:audit:mapping": "node scripts/planner/audit-transfer-planner-source-backed-coverage.cjs --mapping-only",
     "planner:validate:safe": "node scripts/planner/validate-transfer-planner-safe.cjs",
     "planner:release-readiness": "node scripts/planner/audit-transfer-planner-publish-readiness.cjs --mode=release-readiness --run-checks",
-    "planner:test:harness": "node --test scripts/lib/fetch-contract-sync.test.cjs scripts/lib/fetch-with-handling.test.cjs scripts/planner/lib/test-harness.test.cjs scripts/planner/lib/modularization.test.cjs scripts/planner/lib/legacy-service-test-artifacts.test.cjs scripts/planner/official-source-diagnostics-coverage.test.cjs scripts/planner/transfer-planner-demo-diagnostics.test.cjs",
+    "planner:test:harness": "node --test scripts/lib/fetch-contract-sync.test.cjs scripts/lib/fetch-with-handling.test.cjs scripts/planner/lib/test-harness.test.cjs scripts/planner/lib/modularization.test.cjs scripts/planner/lib/legacy-service-test-artifacts.test.cjs scripts/planner/official-source-diagnostics-coverage.test.cjs scripts/planner/transfer-planner-demo-diagnostics.test.cjs scripts/planner/pipeline/pipeline.contract.test.cjs scripts/planner/pipeline/boundary-guards.test.cjs",
     "planner:legacy-test-status": "node scripts/planner/lib/legacy-service-test-artifacts.cjs",
     "planner:test:runtime-breakup": "node --test scripts/planner/transfer-planner.runtime-breakup.test.cjs",
     "planner:test:runtime-partitioning": "node --test scripts/planner/generated-runtime-partitioning.test.cjs",
@@ -110,15 +110,19 @@
     "prebuild:android": "expo prebuild --platform android",
     "prebuild:ios": "expo prebuild --platform ios",
     "eas:ios": "npx eas build --platform ios --profile preview",
-    "eas:android": "npx eas build --platform android --profile preview"
+    "eas:android": "npx eas build --platform android --profile preview",
+    "planner:test:pipeline-contracts": "node --test scripts/planner/pipeline/pipeline.contract.test.cjs scripts/planner/pipeline/boundary-guards.test.cjs services/planning/contracts/contracts.characterization.test.cjs scripts/planner/pipeline/requirement-model/requirement-model.contract.test.cjs scripts/planner/pipeline/acquisition/acquisition.contract.test.cjs scripts/planner/pipeline/adapters/adapter-registry.contract.test.cjs scripts/planner/pipeline/adapters/html-families.contract.test.cjs scripts/planner/pipeline/adapters/p06-families.contract.test.cjs scripts/planner/pipeline/p07-normalization.contract.test.cjs scripts/planner/pipeline/p08-p09-publication.contract.test.cjs scripts/planner/pipeline/p10-coverage.contract.test.cjs scripts/planner/pipeline/p10-p11-runtime.contract.test.cjs scripts/planner/pipeline/p12-p14-product.contract.test.cjs services/planning/contracts/p11-p12-runtime.characterization.test.cjs scripts/planner/pipeline/p13-p16-product.contract.test.cjs scripts/planner/pipeline/p17-p20-enablement.contract.test.cjs scripts/planner/pipeline/p13-ts-strangler.contract.test.cjs scripts/planner/pipeline/p16-timeline-calendar.contract.test.cjs scripts/planner/pipeline/p15-shell.contract.test.cjs scripts/planner/pipeline/p11-planner-v2-bridge.contract.test.cjs scripts/planner/pipeline/p13-constraints.contract.test.cjs scripts/planner/pipeline/p13-course-feed.contract.test.cjs scripts/planner/pipeline/p12-move-lock-ui.contract.test.cjs scripts/planner/pipeline/p14-a-surface-redirects.contract.test.cjs scripts/planner/pipeline/p14-home-living-plan.contract.test.cjs scripts/planner/pipeline/p16-calendar-living-plan.contract.test.cjs scripts/planner/pipeline/p15-p20-product.contract.test.cjs",
+    "test:app-data:characterization": "node --test hooks/app-data/app-data-persistence.test.cjs",
+    "planner:test:characterization": "node --test scripts/planner/p01-a-planner-behavior.characterization.test.cjs scripts/planner/p01-b-parser-contracts.characterization.test.cjs",
+    "planner:test:requirement-model": "node --test scripts/planner/pipeline/requirement-model/requirement-model.contract.test.cjs"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-google-signin/google-signin": "^16.1.2",
-    "@react-navigation/bottom-tabs": "^7.18.3",
+    "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.9.26",
-    "@react-navigation/native": "^7.3.4",
+    "@react-navigation/native": "^7.1.8",
     "@vercel/analytics": "^2.0.1",
     "expo": "~54.0.35",
     "expo-asset": "~12.0.12",
@@ -232,7 +236,8 @@
     "tinyglobby": {
       "picomatch": "4.0.4"
     },
-    "yaml": "2.8.3"
+    "yaml": "2.8.3",
+    "morgan": "1.11.0"
   },
   "private": true,
   "description": "This folder holds the app source: pages, settings, translations, services, planner tooling, and platform setup."

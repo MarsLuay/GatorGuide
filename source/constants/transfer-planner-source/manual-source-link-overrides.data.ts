@@ -14,6 +14,97 @@ export type TransferPlannerManualSourceLinkOverride = {
 export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSourceLinkOverride[] =
   [
     {
+      planId: "uw-seattle-business-administration",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+      removedUrls: [
+        "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
+      ],
+      links: [
+        {
+          label: "UW Seattle Business Administration degree requirements",
+          url: "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-business-administration",
+      pathwayId: "ba-route",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+      removedUrls: [
+        "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
+      ],
+      links: [
+        {
+          label: "UW Seattle Business Administration BA requirements",
+          url: "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-bothell-biology",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+      links: [
+        {
+          label: "UW Bothell Biology overview",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/biology",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Biology admissions prerequisites",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/biology/admissions",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Biology degree requirements curriculum",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+        {
+          label: "UW Bothell Investigative Biology option requirements",
+          url: "https://www.uwb.edu/stem/undergraduate/majors/biology/investigative-biology",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    ...["uw-bothell-data-visualization-ba", "uw-bothell-data-visualization-bs"].map(
+      (planId) => ({
+        planId,
+        mode: "merge" as const,
+        preferredPrimaryUrl:
+          "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+        links: [
+          {
+            label: "UW Bothell Data Visualization degree requirements",
+            url: "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+            status: "verified" as const,
+            sourceConfidence: "high" as const,
+          },
+        ],
+      })
+    ),
+    {
+      planId: "uw-seattle-chemical-engineering",
+      pathwayId: "standard-option",
+      mode: "merge",
+      removedUrls: [
+        "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html/standard/standard#",
+      ],
+    },
+    {
       planId: "uw-bothell-economics",
       mode: "replace",
       preferredPrimaryUrl:
@@ -950,6 +1041,91 @@ export const TRANSFER_PLANNER_MANUAL_LINK_OVERRIDES: TransferPlannerManualSource
         {
           label: "UW General Catalog Speech and Hearing Sciences requirements",
           url: "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      // Trailing-? URL 404s; option page removed — use degree-planning hub (HTTP 200).
+      planId: "uw-seattle-informatics",
+      pathwayId: "biomedical-and-health-informatics-option",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
+      removedUrls: [
+        "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/biomedical-and-health-informatics/biomedical-and-health-informatics-option?",
+        "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/biomedical-and-health-informatics/biomedical-and-health-informatics-option",
+      ],
+      links: [
+        {
+          label: "UW Informatics degree planning",
+          url: "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-seattle-geography",
+      pathwayId: "data-science-option-sample-course-plan",
+      mode: "merge",
+      removedUrls: [
+        "https://geography.washington.edu/degree-options/data-science-option-sample-course-plan/contact",
+      ],
+      links: [],
+    },
+    {
+      planId: "uw-seattle-geography",
+      pathwayId: "methods-track",
+      mode: "merge",
+      removedUrls: [
+        "https://geography.washington.edu/degree-options/methods-track/contact",
+      ],
+      links: [],
+    },
+    {
+      planId: "uw-seattle-informatics",
+      pathwayId: "data-science-option",
+      mode: "merge",
+      removedUrls: [
+        "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/data-science-option?",
+        "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning/data-science-option",
+      ],
+      links: [],
+    },
+    {
+      planId: "uw-seattle-law-societies-and-justice",
+      pathwayId: "honors-option",
+      mode: "merge",
+      removedUrls: [
+        "https://lsj.washington.edu/lsj-gold-curriculum-requirements/honors-option/contact",
+      ],
+      links: [],
+    },
+    {
+      planId: "uw-seattle-physics",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://phys.washington.edu/physics-bs-degree-requirements",
+      links: [
+        {
+          label: "Physics B.S. Degree Requirements",
+          url: "https://phys.washington.edu/physics-bs-degree-requirements",
+          status: "verified",
+          sourceConfidence: "high",
+        },
+      ],
+    },
+    {
+      planId: "uw-tacoma-computer-engineering",
+      mode: "merge",
+      preferredPrimaryUrl:
+        "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+      links: [
+        {
+          label: "UW Tacoma Computer Engineering",
+          url: "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
           status: "verified",
           sourceConfidence: "high",
         },

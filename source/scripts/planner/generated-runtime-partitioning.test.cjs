@@ -22,6 +22,9 @@ const generatedRuntime = require("@/constants/transfer-planner-source/student-ru
 const studentRuntime = require("@/constants/transfer-planner-source/student-runtime");
 const courseMetadataGenerated = require("@/constants/transfer-planner-source/course-metadata.generated");
 const requirementSourceAdapters = require("@/constants/transfer-planner-source/requirement-source-adapters.generated");
+const {
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
+} = require("@/constants/transfer-planner-source/derived-shared-source-plans");
 
 const RUNTIME_DIR = path.resolve(
   __dirname,
@@ -230,4 +233,70 @@ test("student runtime uses partitioned accessors for common campus and plan look
   );
   assert.ok(sourceBlocks.length > 0);
   assert.ok(sourceBlocks.every((block) => block.planId === planId));
+});
+
+test("configured derived shared-plan aliases are authoritative in list and direct lookup", () => {
+  const normalizeGroup = (group) => ({
+    label: group.label,
+    requirementType: group.requirementType,
+    options: (group.options ?? [])
+      .map((option) => [...(option.uwCourses ?? [])].sort())
+      .sort((left, right) => left.join("|").localeCompare(right.join("|"))),
+    sequencePaths: (group.sequencePaths ?? [])
+      .map((pathway) => [...(pathway.uwCourses ?? [])].sort())
+      .sort((left, right) => left.join("|").localeCompare(right.join("|"))),
+  });
+  const normalizeDegreeMap = (plan) =>
+    (plan.degreeMapSections ?? []).map((section) => ({
+      items: section.items,
+    }));
+  const tacomaMajors = studentRuntime.getTransferPlannerStudentRuntimeMajorsForCampus(
+    "uw-tacoma"
+  );
+
+  for (const alias of TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES) {
+    const sourcePlan = studentRuntime.getTransferPlannerMajorPlan(alias.sourcePlanId);
+    const canonicalPathway = studentRuntime.resolveTransferPlannerStudentRuntimeMajorPlan(
+      sourcePlan,
+      alias.sourcePathwayId
+    );
+    const directAlias = studentRuntime.getTransferPlannerMajorPlan(alias.derivedPlanId);
+    const listedAlias = tacomaMajors.find((plan) => plan.id === alias.derivedPlanId);
+
+    assert.ok(canonicalPathway, `${alias.derivedPlanId}: canonical pathway`);
+    assert.ok(directAlias, `${alias.derivedPlanId}: direct alias`);
+    assert.deepEqual(listedAlias, directAlias, `${alias.derivedPlanId}: listed alias drift`);
+    assert.deepEqual(
+      normalizeDegreeMap(directAlias),
+      normalizeDegreeMap(canonicalPathway),
+      `${alias.derivedPlanId}: degree-map drift`
+    );
+    assert.deepEqual(
+      (directAlias.requirementGroups ?? []).map(normalizeGroup),
+      (canonicalPathway.requirementGroups ?? []).map(normalizeGroup),
+      `${alias.derivedPlanId}: requirement-group drift`
+    );
+  }
+});
+
+test("prior-admit pathways replace current source-backed degree-map sections", () => {
+  const urbanStudies = studentRuntime.getTransferPlannerMajorPlan("uw-tacoma-urban-studies");
+  const pathways = studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(urbanStudies);
+  const isSourceBacked = (section) =>
+    /^source-backed-/i.test(section.id ?? "") ||
+    /parsed official source requirements/i.test(section.title ?? "");
+  const normalizeSections = (sections) =>
+    sections.filter(isSourceBacked).map((section) => section.items);
+
+  for (const pathway of pathways.filter((candidate) => /^pre-/.test(candidate.id))) {
+    const resolved = studentRuntime.resolveTransferPlannerStudentRuntimeMajorPlan(
+      urbanStudies,
+      pathway.id
+    );
+    assert.deepEqual(
+      normalizeSections(resolved?.degreeMapSections ?? []),
+      normalizeSections(pathway.degreeMapSections ?? []),
+      `${pathway.id}: current-era source-backed degree map leaked into prior-admit pathway`
+    );
+  }
 });

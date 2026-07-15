@@ -2,11 +2,15 @@ import React from "react";
 import { Text, View } from "react-native";
 
 import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { useAppTheme } from "@/hooks/use-app-theme";
+import {
+  clampPreferredLoad,
+  PREFERRED_LOAD_OPTIONS,
+} from "@/services/planning/contracts/planner-v2-constraints";
 
 type PlannerConstraintsCardProps = {
   borderClass: string;
   cardBgClass: string;
-  intendedTransferQuarter: string | null;
   onPreferredLoadChange: (load: number) => void;
   preferredLoad: number | null;
   secondaryTextClass: string;
@@ -14,53 +18,53 @@ type PlannerConstraintsCardProps = {
   textClass: string;
 };
 
-const LOAD_OPTIONS = [2, 3, 4, 5] as const;
-
 export function PlannerConstraintsCard({
   borderClass,
   cardBgClass,
-  intendedTransferQuarter,
   onPreferredLoadChange,
   preferredLoad,
   secondaryTextClass,
   t,
   textClass,
 }: PlannerConstraintsCardProps) {
-  const load = preferredLoad ?? 3;
+  const { isDark } = useAppTheme();
+  const load = clampPreferredLoad(preferredLoad);
+  const unselectedTextClass = isDark ? "text-emerald-300" : "text-emerald-700";
+
   return (
     <View className={`${cardBgClass} border ${borderClass} rounded-2xl p-4 mb-4`}>
       <Text className={`${textClass} text-base font-semibold mb-1`}>
         {t("transferPlanner.planConstraintsTitle")}
       </Text>
-      <Text className={`${secondaryTextClass} text-sm mb-3`}>
-        {intendedTransferQuarter
-          ? t("transferPlanner.intendedQuarterValue", {
-              quarter: intendedTransferQuarter,
-            })
-          : t("transferPlanner.intendedQuarterMissing")}
-      </Text>
       <Text className={`${secondaryTextClass} text-xs mb-2`}>
         {t("transferPlanner.preferredLoadLabel")}
       </Text>
-      <View className="flex-row flex-wrap gap-2">
-        {LOAD_OPTIONS.map((option) => {
+      <View className="flex-row gap-2">
+        {PREFERRED_LOAD_OPTIONS.map((option) => {
           const selected = load === option;
+          const label = t("transferPlanner.preferredLoadOption", { count: option });
           return (
             <AnimatedChipPressable
               key={option}
+              accessibilityLabel={label}
+              accessibilityRole="button"
+              accessibilityState={{ selected }}
               onPress={() => onPreferredLoadChange(option)}
-              className={`rounded-full px-3 py-1.5 border ${
+              containerClassName="flex-1"
+              className={`rounded-xl px-2 py-2.5 border items-center justify-center ${
                 selected
                   ? "bg-emerald-500 border-emerald-500"
                   : "bg-transparent border-emerald-500/30"
               }`}
+              style={{ justifyContent: "center", alignItems: "center", minHeight: 44 }}
             >
               <Text
-                className={`text-xs font-semibold ${
-                  selected ? "text-white" : "text-emerald-600"
+                className={`text-xs font-semibold text-center ${
+                  selected ? "text-white" : unselectedTextClass
                 }`}
+                numberOfLines={1}
               >
-                {t("transferPlanner.preferredLoadOption", { count: option })}
+                {label}
               </Text>
             </AnimatedChipPressable>
           );

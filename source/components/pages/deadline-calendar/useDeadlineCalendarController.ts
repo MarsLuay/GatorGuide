@@ -12,6 +12,7 @@ import {
   type DeadlineCalendarEntry,
   type DeadlineCalendarGroup,
 } from "@/services/deadlines/deadline-calendar.service";
+import { projectPlannerV2OfflineCalendarEntries } from "@/components/pages/deadline-calendar/calendar-offline-timeline";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import {
   roadmapService,
@@ -179,19 +180,47 @@ export function useDeadlineCalendarController({
   const deferredSearchQuery = useDeferredValue(searchQuery);
   const todayDateKey = useMemo(() => getLocalDateKey(), []);
 
-  const roadmapSeed = useMemo(
-    () =>
-      roadmapService.buildRoadmapSeedInput({
-        major: user?.major,
-        gpa: user?.gpa,
-        questionnaireAnswers: state.questionnaireAnswers,
-        targetSchools: (state.savedColleges ?? []).map((college) => college.name),
-      }),
-    [state.questionnaireAnswers, state.savedColleges, user?.gpa, user?.major]
-  );
+  const preferLivingPlanTimeline = useMemo(() => {
+    const intended = state.plannerV2?.intendedTransferQuarter;
+    const activeTarget = state.plannerV2?.activeTarget as
+      | { runtimeId?: string; campus?: string; programId?: string }
+      | null
+      | undefined;
+    const runtimeId =
+      activeTarget?.runtimeId ||
+      (activeTarget?.campus && activeTarget?.programId
+        ? `${activeTarget.campus}:${activeTarget.programId}`
+        : null);
+    return Boolean(runtimeId && typeof intended === "string" && intended.trim());
+  }, [state.plannerV2?.activeTarget, state.plannerV2?.intendedTransferQuarter]);
+
+  // Legacy hybrid only: seed roadmap from profile/saved colleges when Living Plan is absent.
+  const roadmapSeed = useMemo(() => {
+    if (preferLivingPlanTimeline) return null;
+    return roadmapService.buildRoadmapSeedInput({
+      major: user?.major,
+      gpa: user?.gpa,
+      questionnaireAnswers: state.questionnaireAnswers,
+      targetSchools: (state.savedColleges ?? []).map((college) => college.name),
+    });
+  }, [
+    preferLivingPlanTimeline,
+    state.questionnaireAnswers,
+    state.savedColleges,
+    user?.gpa,
+    user?.major,
+  ]);
 
   useEffect(() => {
     if (!isHydrated || !userId) return;
+    // P16 strangler: skip roadmap fetch when Living Plan inputs are present.
+    if (preferLivingPlanTimeline) {
+      setRoadmap(null);
+      setIsRoadmapLoading(false);
+      setRoadmapLoadError(null);
+      return;
+    }
+    if (!roadmapSeed) return;
 
     let cancelled = false;
     void (async () => {
@@ -233,16 +262,49 @@ export function useDeadlineCalendarController({
     return () => {
       cancelled = true;
     };
-  }, [isHydrated, roadmapLoadAttempt, roadmapSeed, t, user?.isGuest, userId]);
+  }, [
+    isHydrated,
+    preferLivingPlanTimeline,
+    roadmapLoadAttempt,
+    roadmapSeed,
+    t,
+    user?.isGuest,
+    userId,
+  ]);
 
-  const calendarEntries = useMemo(
-    () =>
-      deadlineCalendarService.buildEntries({
-        roadmap,
-        opportunities: matchedOpportunities,
-      }),
-    [matchedOpportunities, roadmap]
+  // P18: local plannerV2 → offline timeline; Firestore not required.
+  const personalizedTimelineEntries = useMemo(
+    () => projectPlannerV2OfflineCalendarEntries(state.plannerV2),
+    [
+      state.plannerV2?.activeTarget,
+      state.plannerV2?.intendedTransferQuarter,
+      state.plannerV2?.normalizedCourseIds,
+      state.plannerV2?.overrides,
+      state.plannerV2?.preferredLoad,
+      state.plannerV2?.unavailableQuarters,
+    ]
   );
+
+  const calendarEntries = useMemo(() => {
+    // Living Plan primary: opportunities + personalized timeline only — no roadmap doc.
+    if (preferLivingPlanTimeline) {
+      return deadlineCalendarService.buildEntries({
+        opportunities: matchedOpportunities,
+        personalizedTimelineEntries,
+        preferLivingPlanTimeline: true,
+      });
+    }
+    return deadlineCalendarService.buildEntries({
+      roadmap,
+      opportunities: matchedOpportunities,
+      personalizedTimelineEntries,
+    });
+  }, [
+    matchedOpportunities,
+    personalizedTimelineEntries,
+    preferLivingPlanTimeline,
+    roadmap,
+  ]);
 
   const groups = useMemo(
     () => deadlineCalendarService.groupEntries(calendarEntries),
@@ -414,12 +476,21 @@ export function useDeadlineCalendarController({
 
       if (item.target.type === "roadmap") return;
 
+      if (item.target.type === "planner") {
+        router.push(ROUTES.transferPlanner as never);
+        return;
+      }
+
+      if (item.target.type === "personal") return;
+
       if (item.target.type === "resources") {
         router.push(ROUTES.tabsResources);
         return;
       }
 
-      await Linking.openURL(item.target.url);
+      if (item.target.type === "external") {
+        await Linking.openURL(item.target.url);
+      }
     } catch {
       Alert.alert(
         t("deadlineCalendar.unableToOpenTitle"),

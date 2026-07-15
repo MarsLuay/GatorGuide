@@ -52,6 +52,7 @@ import {
   type TransferPlannerDerivedSharedSourcePlanAlias,
 } from "./derived-shared-source-plans";
 import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
+import { getTransferPlannerCampusAliasGuideTargetCourseCodes } from "./campus-course-aliases";
 import { stripTransferPlannerPlanTitlePrefix } from "./pathway-title-normalization";
 import {
   normalizeCategoryOptionRuntimePlan,
@@ -102,6 +103,24 @@ const UW_TACOMA_URBAN_STUDIES_PRE_SPRING_2026_PATHWAY_IDS = new Set([
   "pre-spring-2026-gis-spatial-planning-option",
 ]);
 const UW_SEATTLE_SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
+const STABLE_DEFAULT_REQUIREMENT_OPTION_COURSES_BY_GROUP_ID = new Map<string, string[]>([
+  [
+    "uw-seattle-materials-science-engineering:requirement-group:science-electives",
+    ["CHEM 237", "CHEM 238"],
+  ],
+  [
+    "uw-seattle-astronomy:requirement-group:mathematics-electives-choose-credits-6-6",
+    ["MATH 208", "MATH 224"],
+  ],
+  [
+    "uw-bothell-physics-bs:requirement-group:physics-core-courses-a-total-of-64-credits-choose-credits-64-64",
+    ["BPHYS 121", "BPHYS 122", "BPHYS 123"],
+  ],
+  [
+    "uw-bothell-earth-system-science:requirement-group:additional-foundation-science-course-15-17-credits-choose-credits-15-17",
+    ["BBIO 180", "BCHEM 153"],
+  ],
+]);
 const SOURCE_GENERATED_SUPPLEMENTAL_LINKS_BY_PLAN_ID = new Map<string, TransferPlannerLink[]>([
   [
     "uw-tacoma-computer-engineering",
@@ -5832,12 +5851,19 @@ function filterStaleSbseBusinessPolicyEconomicsCourseCodes(
 }
 
 function hydrateRequirementOption(
-  option: TransferPlannerRequirementOption
+  option: TransferPlannerRequirementOption,
+  campusId?: TransferPlannerCampusId | null
 ): TransferPlannerRequirementOption {
-  const targetCodes = uniquePlannerStrings([
+  const directTargetCodes = uniquePlannerStrings([
     ...(option.uwCourses ?? []),
     ...(option.equivalentUwCourseCodes ?? []),
   ].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean));
+  const targetCodes = uniquePlannerStrings(
+    directTargetCodes.flatMap((targetCode) => [
+      ...getTransferPlannerCampusAliasGuideTargetCourseCodes(campusId, targetCode),
+      targetCode,
+    ])
+  );
   const guideMatches = targetCodes.flatMap((targetCode) =>
     getBestGuideSourceCourseMatchesForTarget(targetCode)
   );
@@ -5882,9 +5908,12 @@ function hydrateRequirementOption(
 }
 
 function hydrateRequirementGroup(
-  group: TransferPlannerRequirementGroup
+  group: TransferPlannerRequirementGroup,
+  campusId?: TransferPlannerCampusId | null
 ): TransferPlannerRequirementGroup {
-  const hydratedOptions = (group.options ?? []).map(hydrateRequirementOption);
+  const hydratedOptions = (group.options ?? []).map((option) =>
+    hydrateRequirementOption(option, campusId)
+  );
   return {
     ...buildRequirementGroup({
       ...group,
@@ -5981,19 +6010,22 @@ function getParsedRequirementGroupsFromBlock(
   return rawGroups
     .filter((group) => shouldMaterializeParsedRequirementGroup(block, group))
     .map((group) =>
-      hydrateRequirementGroup({
-        ...group,
-        sourceUrl: group.sourceUrl ?? block.sourceUrl ?? block.primarySourceUrl ?? null,
-        sourceRole: group.sourceRole ?? block.sourceRole ?? null,
-        sourceScope:
-          group.sourceScope ??
-          (blockPathwayId ? "pathway-schedulable" : "primary-schedulable"),
-        pathwayId: group.pathwayId ?? blockPathwayId,
-        routeId: group.routeId ?? blockPathwayId,
-        canCreateScheduleRow:
-          group.canCreateScheduleRow ??
-          canParsedRequirementSourceBlockCreateRequiredScheduleRows(block),
-      })
+      hydrateRequirementGroup(
+        {
+          ...group,
+          sourceUrl: group.sourceUrl ?? block.sourceUrl ?? block.primarySourceUrl ?? null,
+          sourceRole: group.sourceRole ?? block.sourceRole ?? null,
+          sourceScope:
+            group.sourceScope ??
+            (blockPathwayId ? "pathway-schedulable" : "primary-schedulable"),
+          pathwayId: group.pathwayId ?? blockPathwayId,
+          routeId: group.routeId ?? blockPathwayId,
+          canCreateScheduleRow:
+            group.canCreateScheduleRow ??
+            canParsedRequirementSourceBlockCreateRequiredScheduleRows(block),
+        },
+        block.campusId
+      )
     )
     .filter((group) => shouldRetainRequirementGroupForRuntime(group));
 }
@@ -6497,7 +6529,37 @@ function shouldKeepCreditBucketUnselectedWhenInsufficient(
   return selectedCredits > 0 && selectedCredits < minCredits;
 }
 
+function getStableDefaultRequirementGroupOptions(
+  group: TransferPlannerRequirementGroup
+): TransferPlannerRequirementOption[] | null {
+  const defaultCourseCodes = STABLE_DEFAULT_REQUIREMENT_OPTION_COURSES_BY_GROUP_ID.get(group.id);
+  if (!defaultCourseCodes?.length) {
+    return null;
+  }
+
+  const selectedOptions: TransferPlannerRequirementOption[] = [];
+  for (const defaultCourseCode of defaultCourseCodes) {
+    const normalizedDefaultCourseCode = normalizeCourseCode(defaultCourseCode);
+    const option = (group.options ?? []).find((candidate) =>
+      [...(candidate.uwCourses ?? []), ...(candidate.equivalentUwCourseCodes ?? [])].some(
+        (courseCode) => normalizeCourseCode(courseCode) === normalizedDefaultCourseCode
+      )
+    );
+    if (!option || selectedOptions.includes(option)) {
+      return null;
+    }
+    selectedOptions.push(option);
+  }
+
+  return selectedOptions;
+}
+
 function getSelectedRequirementGroupOptions(group: TransferPlannerRequirementGroup) {
+  const stableDefaultOptions = getStableDefaultRequirementGroupOptions(group);
+  if (stableDefaultOptions) {
+    return stableDefaultOptions;
+  }
+
   if (group.requirementType === "all_required") {
     return group.options ?? [];
   }
@@ -6542,70 +6604,6 @@ function getSelectedRequirementGroupOptions(group: TransferPlannerRequirementGro
   }
 
   return [];
-}
-
-function requirementOptionContainsCoursePrefix(
-  option: TransferPlannerRequirementOption,
-  prefixPattern: RegExp
-) {
-  return [
-    option.label,
-    option.pathLabel,
-    ...(option.uwCourses ?? []),
-    ...(option.equivalentUwCourseCodes ?? []),
-    ...(option.grcMatches ?? []),
-    ...(option.displayCourseCodes ?? []),
-    ...(option.compoundComponents ?? []).flat(),
-  ].some((value) => prefixPattern.test(String(value ?? "")));
-}
-
-function shouldTreatCreditBucketAsPhysicsSequenceChoice(
-  group: TransferPlannerRequirementGroup
-) {
-  if (group.requirementType !== "choose_credits") {
-    return false;
-  }
-
-  const options = group.options ?? [];
-  if (options.length < 2) {
-    return false;
-  }
-
-  const groupText = `${group.label ?? ""} ${group.sourceHeading ?? ""}`;
-  if (/\blabs?\b|\bone credit lab\b/i.test(groupText)) {
-    return false;
-  }
-  const hasPhysicsContext =
-    /\bphys(?:ics)?\b/i.test(groupText) ||
-    options.some((option) => requirementOptionContainsCoursePrefix(option, /^PHYS(?:&|\s)/i));
-  const allOptionsArePhysics = options.every((option) =>
-    requirementOptionContainsCoursePrefix(option, /^PHYS(?:&|\s)/i)
-  );
-
-  return hasPhysicsContext && allOptionsArePhysics;
-}
-
-function normalizePhysicsSequenceChoiceRequirementGroup(
-  group: TransferPlannerRequirementGroup
-): TransferPlannerRequirementGroup {
-  if (!shouldTreatCreditBucketAsPhysicsSequenceChoice(group)) {
-    return group;
-  }
-
-  return {
-    ...group,
-    requirementType: "sequence_choice",
-    requirementShape: "sequence-choice",
-    minCourses: 1,
-    maxCourses: 1,
-    selectionCount: 1,
-    requiredCount: 1,
-    minCredits: null,
-    maxCredits: null,
-    creditText: null,
-    satisfactionMode: "selection-count",
-    canCreatePlaceholder: false,
-  };
 }
 
 function getRequirementGroupOptionGrcMatches(group: TransferPlannerRequirementGroup) {
@@ -6737,7 +6735,6 @@ function isUwOnlyNoCurrentGrcEquivalentOption(option: TransferPlannerRequirement
 function buildRequirementGroupChecklistItem(
   group: TransferPlannerRequirementGroup
 ): TransferPlannerChecklistItem | null {
-  group = normalizePhysicsSequenceChoiceRequirementGroup(group);
   const requirementShape =
     group.requirementShape ??
     getRequirementStructuralShape({
@@ -9422,11 +9419,17 @@ function isIndependentCatalogCredentialPathwayScope(planId: string, pathwayId?: 
 const INDEPENDENT_CATALOG_CREDENTIAL_PATHWAY_PLAN_IDS = new Set<string>([
   "uw-seattle-international-studies",
 ]);
+const INDEPENDENT_CATALOG_CREDENTIAL_PATHWAY_KEYS = new Set<string>([
+  "uw-tacoma-interdisciplinary-arts-and-sciences::individually-designed-concentration",
+]);
 
 function shouldUseIndependentPathwayScope(planId: string, pathwayId?: string | null) {
   return Boolean(
     pathwayId &&
-      (INDEPENDENT_CATALOG_CREDENTIAL_PATHWAY_PLAN_IDS.has(planId) ||
+      (INDEPENDENT_CATALOG_CREDENTIAL_PATHWAY_KEYS.has(
+        makePathwayPlanKey(planId, pathwayId)
+      ) ||
+        INDEPENDENT_CATALOG_CREDENTIAL_PATHWAY_PLAN_IDS.has(planId) ||
         isIndependentCatalogCredentialPathwayScope(planId, pathwayId))
   );
 }
@@ -9846,6 +9849,23 @@ function requirementTypeHasSuppressibleOptionIds(
   );
 }
 
+function getIndependentlyRequiredChecklistCourseCodes(
+  checklistItems: TransferPlannerChecklistItem[]
+) {
+  return new Set(
+    uniqueReferenceCourseLabels(
+      checklistItems
+        .filter(
+          (item) =>
+            !requirementTypeHasSuppressibleOptionIds(
+              item.requirementGroup?.requirementType
+            )
+        )
+        .flatMap((item) => getChecklistReferenceCoursesFromItems([item]))
+    ).map((courseCode) => normalizeCourseCode(courseCode))
+  );
+}
+
 function buildStudentVisibleAutomaticCourseList(scope: {
   grcCourseList: string[];
   applicationChecklist: TransferPlannerChecklistItem[];
@@ -9859,6 +9879,8 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   ];
   const selectedChoiceCourseCodes = new Set<string>();
   const unselectedChoiceCourseCodes = new Set<string>();
+  const independentlyRequiredCourseCodes =
+    getIndependentlyRequiredChecklistCourseCodes(checklistItems);
 
   for (const item of checklistItems) {
     const group = item.requirementGroup;
@@ -9901,6 +9923,7 @@ function buildStudentVisibleAutomaticCourseList(scope: {
       extractReferenceCourseCodes(label).some((courseCode) => {
         const normalizedCourseCode = normalizeCourseCode(courseCode);
         return (
+          independentlyRequiredCourseCodes.has(normalizedCourseCode) ||
           !unselectedChoiceCourseCodes.has(normalizedCourseCode) ||
           selectedChoiceCourseCodes.has(normalizedCourseCode)
         );
@@ -10591,6 +10614,8 @@ function suppressUnselectedChoiceCourseLabels(
 ) {
   const selectedChoiceCourseCodes = new Set<string>();
   const unselectedChoiceCourseCodes = new Set<string>();
+  const independentlyRequiredCourseCodes =
+    getIndependentlyRequiredChecklistCourseCodes(checklistItems);
 
   for (const item of checklistItems) {
     const group = item.requirementGroup;
@@ -10636,6 +10661,7 @@ function suppressUnselectedChoiceCourseLabels(
     extractReferenceCourseCodes(label).some((courseCode) => {
       const normalizedCourseCode = normalizeCourseCode(courseCode);
       return (
+        independentlyRequiredCourseCodes.has(normalizedCourseCode) ||
         !unselectedChoiceCourseCodes.has(normalizedCourseCode) ||
         selectedChoiceCourseCodes.has(normalizedCourseCode)
       );
@@ -10649,6 +10675,8 @@ function filterChecklistItemsAgainstUnselectedChoices(
 ) {
   const selectedChoiceCourseCodes = new Set<string>();
   const unselectedChoiceCourseCodes = new Set<string>();
+  const independentlyRequiredCourseCodes =
+    getIndependentlyRequiredChecklistCourseCodes(checklistItemsForSelections);
 
   for (const item of checklistItemsForSelections) {
     const group = item.requirementGroup;
@@ -10702,6 +10730,7 @@ function filterChecklistItemsAgainstUnselectedChoices(
       itemCourseCodes.length > 0 &&
       itemCourseCodes.every(
         (courseCode) =>
+          !independentlyRequiredCourseCodes.has(courseCode) &&
           unselectedChoiceCourseCodes.has(courseCode) &&
           !selectedChoiceCourseCodes.has(courseCode)
       )

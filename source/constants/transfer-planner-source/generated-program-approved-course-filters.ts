@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
@@ -503,6 +503,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CSE 394",
       "CSE 492",
       "EE 406",
+      "EE 452",
       "EE 471",
       "EE 472",
       "EE 478",
@@ -522,6 +523,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ESS 466",
       "ESS 467",
       "MUSIC 401",
+      "MUSIC 402",
+      "MUSIC 403",
       "PHYS 116",
       "PHYS 119",
       "PHYS 121",
@@ -594,8 +597,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "2e383cde66411b4030415491d8d967e3d6bae3e6bd4267673ffe74ccc6fad63f"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "f544403da027747b7eac93f77eafafdad012ecd72f1752a74ab986dfaa262892"
   },
   {
     "filterId": "UW_BOTHELL_EDUCATIONAL_STUDIES_ELEMENTARY_EDUCATION_APPLIED_ART",
@@ -652,7 +655,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "2d7ec69a49989c2825b93e5614c61f185b425d245a4564c68047054a8cb799e2"
   },
   {
@@ -710,7 +713,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "be6d60b338d0cb84c4be12f8a892e597d658cd849a07f126d3890f21162ccb1e"
   },
   {
@@ -773,7 +776,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Must cover content equivalent to UW Bothell’s BPHYS 121, 122, 123 series .",
       "If you are a pre-major student or already in a different major at UW Bothell, start by visiting the academic advising website or contacting your current academic advisor directly."
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "a22bfa6cdfb55345d62288226718d2a5bc7e46f852b4954ef008296d6af11c7f"
   },
   {
@@ -835,7 +838,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Must cover content equivalent to UW Bothell’s BPHYS 121, 122, 123 series .",
       "If you are a pre-major student or already in a different major at UW Bothell, start by visiting the academic advising website or contacting your current academic advisor directly."
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "f894c078ea64dfcb3e12a2f53bae9ce86ea0d9d229c0dfee25500b260c4944ba"
   },
   {
@@ -905,7 +908,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -972,7 +975,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -1057,7 +1060,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "The ID course of undergraduate study is an intensive program emphasizing the development of form that is derived from patterns of use, requirements for function, constraints imposed by industrial manufacturing and aesthetics driven by social context. Key aspects in this view on design are understanding the interactions between people and technology. Students are trained to identify design challenges and to envision promising strategies for design responses, communication, documentation, and organizational skills to conduct the design process from project brief to design implementation.",
       "84-86 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 211, DESIGN 316, DESIGN 317, DESIGN 318, DESIGN 319, DESIGN 320, DESIGN 322, DESIGN 324, DESIGN 326, DESIGN 445, DESIGN 446, DESIGN 485, DESIGN 486"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "71b4f8441d632dc417ca5aa08f546f24202783740a5cc74e680ac00cdba6f06a"
   },
   {
@@ -1070,7 +1073,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
     "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
-    "sourceRole": "primary-degree-requirements",
+    "sourceRole": "official-catalog",
     "approvedUwCourseCodes": [
       "ECON 200",
       "ECON 201",
@@ -1158,8 +1161,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
       "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "ab5a3bdbd3ecb6a9e4265639aa2802d747e54b583ad54875fdfd8c0c826bb8a6"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "043f400d588700c771a39374f2faeda850f5afbc82caaa60ee36fe760f3f8001"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_DISTRIBUTION_AREAS",
@@ -1200,11 +1203,11 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     ],
     "sourceEvidenceLines": [
       "Creative Writing BA Courses",
-      "ENGL 202: Introduction to English Language and Literature",
+      "ENGL 202: Introduction to English Language and Literature (minimum 2.0 grade)",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "b796bff1c947ee1e8c17eaf0cabd71d0e52477359316c922a3edf92a58c103db"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "99f15d54adc0b5a378a1014a1175487fd3fbb83baa071e69b853ede2ed567cbe"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_GENRE",
@@ -1216,82 +1219,30 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceRole": "department-requirements",
+    "sourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 202",
-      "ENGL 283",
-      "ENGL 284",
+      "ENGL 201",
       "ENGL 332",
-      "ENGL 383",
-      "ENGL 384"
+      "ENGL 351"
     ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
+    "petitionOnlyNotes": [
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support."
     ],
     "aliases": [
       "uw-seattle-english-language-literature-and-culture-genre"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements."
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers."
     ],
     "sourceEvidenceLines": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements.",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.",
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
+      "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "8052cd60be31a0d7c1f90870cb7965a4d018504e625390b9fa5d57e8dfa8b869"
-  },
-  {
-    "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_GENRE_METHOD_AND_LANGUAGE",
-    "filterKey": "uw-seattle-english-language-literature-and-culture-genre-method-and-language",
-    "label": "Uw Seattle English Language Literature And Culture Genre Method And Language",
-    "ownerIds": [
-      "uw-seattle-english-language-literature-and-culture:pathway:culture-option",
-      "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
-    ],
-    "campusId": "uw-seattle",
-    "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceRole": "department-requirements",
-    "approvedUwCourseCodes": [
-      "ENGL 201",
-      "ENGL 202",
-      "ENGL 283",
-      "ENGL 284",
-      "ENGL 351",
-      "ENGL 383",
-      "ENGL 384"
-    ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
-    ],
-    "aliases": [
-      "uw-seattle-english-language-literature-and-culture-genre-method-and-language"
-    ],
-    "generatedFromOfficialSupportSource": true,
-    "sourceEvidenceHeadings": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements."
-    ],
-    "sourceEvidenceLines": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements.",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
-    ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "13368d668be877b8aabce818814730eb98668174e6d8c3f3c4d51f67b1731945"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "cf78e1fa0e3a683c77af07d4191398ceef005f1b76271977fd08538f0e08d5b1"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_LANGUAGE",
@@ -1303,38 +1254,30 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceRole": "department-requirements",
+    "sourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 202",
-      "ENGL 283",
-      "ENGL 284",
-      "ENGL 383",
-      "ENGL 384",
+      "ENGL 201",
+      "ENGL 351",
       "ENGL 387"
     ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
+    "petitionOnlyNotes": [
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support."
     ],
     "aliases": [
       "uw-seattle-english-language-literature-and-culture-language"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements."
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers."
     ],
     "sourceEvidenceLines": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements.",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.",
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
+      "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "9fa8516b572accc863c9b574884c45829a33af75162ebe23dab339f893a2de51"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "229178134c510b95e83bff4b360bcd96b8c39fca4067740e44957b6bb4f86829"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_METHOD",
@@ -1346,141 +1289,85 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceRole": "department-requirements",
+    "sourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 202",
-      "ENGL 283",
-      "ENGL 284",
-      "ENGL 383",
-      "ENGL 384",
+      "ENGL 201",
+      "ENGL 351",
       "ENGL 390"
     ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
+    "petitionOnlyNotes": [
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support."
     ],
     "aliases": [
       "uw-seattle-english-language-literature-and-culture-method"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements."
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers."
     ],
     "sourceEvidenceLines": [
-      "Students enrolled in the Creative Writing Concentration will complete a major consisting of 65 ENGL credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements.",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.",
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
+      "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "419be7d0848983a8083d146e66d2d905038c6c5271780bf1c2249a094f65cdda"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "7fc9a555f4d654facaf24879e7f596b0101570ecc1e2f85fd71cdc61d9da2370"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_POWER_AND_DIFFERENCE_COURSES",
     "filterKey": "uw-seattle-english-language-literature-and-culture-power-and-difference-courses",
     "label": "Uw Seattle English Language Literature And Culture Power And Difference Courses",
     "ownerIds": [
-      "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option",
       "uw-seattle-english-language-literature-and-culture:pathway:culture-option",
       "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
+    "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "sourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 202",
-      "ENGL 251",
-      "ENGL 256",
-      "ENGL 257",
-      "ENGL 258",
-      "ENGL 259",
-      "ENGL 265",
-      "ENGL 283",
-      "ENGL 284",
-      "ENGL 307",
-      "ENGL 308",
-      "ENGL 311",
-      "ENGL 314",
-      "ENGL 316",
-      "ENGL 317",
-      "ENGL 318",
-      "ENGL 319",
+      "ENGL 201",
       "ENGL 322",
       "ENGL 327",
       "ENGL 331",
-      "ENGL 339",
-      "ENGL 340",
-      "ENGL 349",
-      "ENGL 352",
-      "ENGL 355",
-      "ENGL 357",
-      "ENGL 358",
-      "ENGL 359",
-      "ENGL 361",
-      "ENGL 362",
-      "ENGL 364",
-      "ENGL 365",
-      "ENGL 366",
-      "ENGL 367",
-      "ENGL 368",
-      "ENGL 372",
-      "ENGL 379",
-      "ENGL 383",
-      "ENGL 384",
-      "ENGL 385",
-      "ENGL 386",
-      "ENGL 466",
-      "ENGL 478",
-      "ENGL 479"
+      "ENGL 351"
     ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
+    "petitionOnlyNotes": [
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support."
     ],
     "aliases": [
       "uw-seattle-english-language-literature-and-culture-power-and-difference-courses"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Creative Writing BA Courses"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers."
     ],
     "sourceEvidenceLines": [
-      "Creative Writing BA Courses",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.",
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
+      "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "a930a507f8b1331b1138c1ea0e5ae63506ab5574214296d508f0c719a62b9d61"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "4262274ee808c5021f1de5fbd465c77424f5a12a59fe82031769403bc9c3d665"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_PRE_1700",
     "filterKey": "uw-seattle-english-language-literature-and-culture-pre-1700",
     "label": "Uw Seattle English Language Literature And Culture Pre 1700",
     "ownerIds": [
-      "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option",
       "uw-seattle-english-language-literature-and-culture:pathway:culture-option",
       "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
+    "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "sourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 202",
+      "ENGL 201",
       "ENGL 210",
       "ENGL 211",
       "ENGL 225",
-      "ENGL 283",
-      "ENGL 284",
       "ENGL 310",
       "ENGL 321",
       "ENGL 322",
@@ -1488,56 +1375,44 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 324",
       "ENGL 325",
       "ENGL 326",
-      "ENGL 383",
-      "ENGL 384",
+      "ENGL 351",
       "ENGL 400",
       "ENGL 422"
     ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
+    "petitionOnlyNotes": [
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support."
     ],
     "aliases": [
       "uw-seattle-english-language-literature-and-culture-pre-1700"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Creative Writing BA Courses"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers."
     ],
     "sourceEvidenceLines": [
-      "Creative Writing BA Courses",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.",
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
+      "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "9ee569ee5abd5ff695c3e0e39bb2e1c64cec2cd7647b03bb24d7c570e0bee22d"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "1f8c7ad1d6cb881cc67d70a5b47450a887016346f4bcafa7ea7c93549bb7cedd"
   },
   {
     "filterId": "UW_SEATTLE_ENGLISH_LANGUAGE_LITERATURE_AND_CULTURE_PRE_1945",
     "filterKey": "uw-seattle-english-language-literature-and-culture-pre-1945",
     "label": "Uw Seattle English Language Literature And Culture Pre 1945",
     "ownerIds": [
-      "uw-seattle-english-language-literature-and-culture:pathway:creative-writing-option",
       "uw-seattle-english-language-literature-and-culture:pathway:culture-option",
       "uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
-    "sourceUrl": "https://english.washington.edu/english-major-creative-writing-option",
+    "officialSourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
+    "sourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
     "sourceRole": "primary-degree-requirements",
     "approvedUwCourseCodes": [
-      "ENGL 202",
+      "ENGL 201",
       "ENGL 212",
-      "ENGL 283",
-      "ENGL 284",
-      "ENGL 300",
       "ENGL 303",
-      "ENGL 314",
-      "ENGL 315",
       "ENGL 327",
       "ENGL 328",
       "ENGL 329",
@@ -1546,36 +1421,26 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 333",
       "ENGL 337",
       "ENGL 338",
-      "ENGL 352",
-      "ENGL 361",
-      "ENGL 373",
-      "ENGL 380",
-      "ENGL 383",
-      "ENGL 384",
-      "ENGL 385"
+      "ENGL 351",
+      "ENGL 352"
     ],
-    "approvedUwCourseGroups": [
-      [
-        "ENGL 283",
-        "ENGL 284",
-        "ENGL 383",
-        "ENGL 384"
-      ]
+    "petitionOnlyNotes": [
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support."
     ],
     "aliases": [
       "uw-seattle-english-language-literature-and-culture-pre-1945"
     ],
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "Creative Writing BA Courses"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers."
     ],
     "sourceEvidenceLines": [
-      "Creative Writing BA Courses",
-      "ENGL 202: Introduction to English Language and Literature",
-      "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
+      "The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.",
+      "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
+      "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "6bb968f996d1aa2ff85fdb62838474a16b0ae9919d60c11dc94481a4f4224b6d"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "0e5c6534cfcd15d47e5a88cf472c21fcbf25cc4ee8bc236113e539202af6ff9f"
   },
   {
     "filterId": "UW_SEATTLE_GERMAN_LANGUAGE",
@@ -1619,7 +1484,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "German 401 (or equivalent)",
       "German 311 (Introduction to Literary Studies)"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "f9ed3656f96ae4fefeca65791df659bc0795d0dbfab9fef8b1afab95f161beb5"
   },
   {
@@ -1675,7 +1540,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "bc8f36498318613dad36deb42c191bbd862b45c9f06b6929255599cac36a405d"
   },
   {
@@ -1714,7 +1579,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "3a117e5600eca94700360eec40ddd2171198449da65d19633b29d96761b9c0f1"
   },
   {
@@ -1782,7 +1647,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "a3afe2d5dc60086d6fabed1c4c5b30f3ee9516736b8232973e99a8432be5ccbe"
   },
   {
@@ -1977,8 +1842,63 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "f2a223542303eb962769c93fb84b22ae06ffaddabb94440e6b8fa8e4cdef6375"
+  },
+  {
+    "filterId": "UW_SEATTLE_MARINE_BIOLOGY_APPROVED_BY_INDIVIDUAL_OFFERING_SEE_COURSES_PAGE_FOR_UNIQUE_OFFERINGS",
+    "filterKey": "uw-seattle-marine-biology-approved-by-individual-offering-see-courses-page-for-unique-offerings",
+    "label": "Uw Seattle Marine Biology Approved By Individual Offering See Courses Page For Unique Offerings",
+    "ownerIds": [
+      "uw-seattle-marine-biology"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+    "sourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "CHEM 120",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 220",
+      "CHEM 223",
+      "CHEM 237",
+      "FHL 468",
+      "FHL 472",
+      "FHL 495",
+      "OCEAN 295",
+      "OCEAN 411",
+      "OCEAN 431",
+      "OCEAN 497"
+    ],
+    "aliases": [
+      "uw-seattle-marine-biology-approved-by-individual-offering-see-courses-page-for-unique-offerings"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. \">",
+      "Chemistry",
+      "Biology"
+    ],
+    "sourceEvidenceLines": [
+      "The worksheet and tables are good for broad academic planning, but course offerings vary by quarter and year. \">",
+      "Chemistry",
+      "CHEM 120",
+      "OCEAN 295",
+      "CHEM 220",
+      "CHEM 142",
+      "CHEM 152",
+      "CHEM 223",
+      "CHEM 143, 153 and 145, 155 are pre-approved substitutes for CHEM 142 and 152.",
+      "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
+      "Biology"
+    ],
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "5fb19637c7937ffa40a0e68c83becd4b51cf078771a78a0c8c35c388e9da6c98"
   },
   {
     "filterId": "UW_SEATTLE_MARINE_BIOLOGY_SPECIAL_TOPICS_ARE_APPROVED_BY_INDIVIDUAL_OFFERING_SEE_COURSES_PAGE_FOR_APPROVED_SECTIONS_BY_QUARTER",
@@ -2002,14 +1922,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "CHEM 220",
       "CHEM 223",
       "CHEM 237",
-      "FHL 468",
-      "FHL 472",
-      "FHL 495",
       "FISH 497",
-      "OCEAN 295",
-      "OCEAN 411",
-      "OCEAN 431",
-      "OCEAN 497"
+      "OCEAN 295"
     ],
     "aliases": [
       "uw-seattle-marine-biology-special-topics-are-approved-by-individual-offering-see-courses-page-for-approved-sections-by-quarter"
@@ -2033,8 +1947,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
       "Biology"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
-    "sourceFingerprint": "a24e30e8ca410cbff2587a66e8395eb15fd4e2ede43aaba24e5171733bc4c990"
+    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "sourceFingerprint": "1205438a57420bc12e369fe0b270b7870b0b32539b872eac2b0551f1638c4dc0"
   },
   {
     "filterId": "UW_SEATTLE_SOUTH_ASIAN_LANGUAGES_AND_CULTURES_LIST_OF_APPROVED_COURSES_FOR_2_LITERATURE",
@@ -2131,7 +2045,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
       "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
@@ -2267,7 +2181,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ASIAN 301 Songs of the Saints of India",
       "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-06-02T10:41:00.997Z",
+    "generatedAt": "2026-07-14T17:24:50.057Z",
     "sourceFingerprint": "dbcaa7b45d3c26fda3446f650a3321e9d7f055d07d1d2d33a55c8b178d3cf6a7"
   }
 ] as const;

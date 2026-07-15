@@ -1,17 +1,21 @@
 import type { Href } from "expo-router";
 
 export const TAB_ROUTE_NAMES = {
-  home: "index",
+  transferPlanner: "resources/transfer-planner",
   resources: "resources/index",
+  calendar: "calendar",
   profile: "profile",
+  /** Legacy Home tab screen — hidden; redirects to Transfer Planner. */
+  home: "index",
+  /** Nested under Profile — not a primary tab. */
   settings: "settings",
 } as const;
 
 export const PRIMARY_TAB_ROUTE_NAMES = [
-  TAB_ROUTE_NAMES.home,
+  TAB_ROUTE_NAMES.transferPlanner,
   TAB_ROUTE_NAMES.resources,
+  TAB_ROUTE_NAMES.calendar,
   TAB_ROUTE_NAMES.profile,
-  TAB_ROUTE_NAMES.settings,
 ] as const;
 
 export type PrimaryTabRouteName = (typeof PRIMARY_TAB_ROUTE_NAMES)[number];
@@ -66,12 +70,18 @@ export function routeWithReturnTo(
 export const APP_ROUTE_METADATA = {
   root: {
     href: "/",
-    primaryTab: TAB_ROUTE_NAMES.home,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
   },
   tabs: {
     href: "/(tabs)",
+    tabScreen: TAB_ROUTE_NAMES.transferPlanner,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
+  },
+  legacyHome: {
+    href: "/(tabs)/",
     tabScreen: TAB_ROUTE_NAMES.home,
-    primaryTab: TAB_ROUTE_NAMES.home,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
+    hiddenTab: true,
   },
   tabsResources: {
     href: "/(tabs)/resources",
@@ -82,7 +92,9 @@ export const APP_ROUTE_METADATA = {
   tabsSettings: {
     href: "/(tabs)/settings",
     tabScreen: TAB_ROUTE_NAMES.settings,
-    primaryTab: TAB_ROUTE_NAMES.settings,
+    primaryTab: TAB_ROUTE_NAMES.profile,
+    hiddenTab: true,
+    returnTo: "/(tabs)/profile",
   },
   login: {
     href: "/login",
@@ -101,17 +113,16 @@ export const APP_ROUTE_METADATA = {
   questionnaire: {
     href: "/questionnaire",
     tabScreen: "questionnaire",
-    primaryTab: TAB_ROUTE_NAMES.home,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
     hiddenTab: true,
-    returnTo: "/(tabs)",
+    returnTo: "/(tabs)/resources/transfer-planner",
     aliases: ["roadmap"],
   },
   calendar: {
     href: "/calendar",
-    tabScreen: "calendar",
-    primaryTab: TAB_ROUTE_NAMES.resources,
-    hiddenTab: true,
-    returnTo: "/(tabs)/resources",
+    tabScreen: TAB_ROUTE_NAMES.calendar,
+    primaryTab: TAB_ROUTE_NAMES.calendar,
+    returnTo: "/(tabs)/calendar",
   },
   opportunityAdmin: {
     href: "/opportunity-admin",
@@ -122,24 +133,23 @@ export const APP_ROUTE_METADATA = {
   },
   transferPlanner: {
     href: "/resources/transfer-planner",
-    tabScreen: "resources/transfer-planner",
-    primaryTab: TAB_ROUTE_NAMES.resources,
-    hiddenTab: true,
-    returnTo: "/(tabs)/resources",
+    tabScreen: TAB_ROUTE_NAMES.transferPlanner,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
+    returnTo: "/(tabs)/resources/transfer-planner",
   },
   transferPlannerMajor: {
     href: "/resources/transfer-planner/[college]/[campus]/[major]",
     tabScreen: "resources/transfer-planner/[college]/[campus]/[major]",
-    primaryTab: TAB_ROUTE_NAMES.resources,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
     hiddenTab: true,
-    returnTo: "/(tabs)/resources",
+    returnTo: "/(tabs)/resources/transfer-planner",
   },
   transferPlannerLegacy: {
     href: "/transfer-planner",
     tabScreen: "transfer-planner",
-    primaryTab: TAB_ROUTE_NAMES.resources,
+    primaryTab: TAB_ROUTE_NAMES.transferPlanner,
     hiddenTab: true,
-    returnTo: "/(tabs)/resources",
+    returnTo: "/(tabs)/resources/transfer-planner",
   },
   transferEquivalencies: {
     href: "/transfer-equivalencies",
@@ -172,28 +182,28 @@ export const APP_ROUTE_METADATA = {
   language: {
     href: "/language",
     tabScreen: "language",
-    primaryTab: TAB_ROUTE_NAMES.settings,
+    primaryTab: TAB_ROUTE_NAMES.profile,
     hiddenTab: true,
     returnTo: "/(tabs)/settings",
   },
   about: {
     href: "/about",
     tabScreen: "about",
-    primaryTab: TAB_ROUTE_NAMES.settings,
+    primaryTab: TAB_ROUTE_NAMES.profile,
     hiddenTab: true,
     returnTo: "/(tabs)/settings",
   },
   privacy: {
     href: "/privacy",
     tabScreen: "privacy",
-    primaryTab: TAB_ROUTE_NAMES.settings,
+    primaryTab: TAB_ROUTE_NAMES.profile,
     hiddenTab: true,
     returnTo: "/(tabs)/settings",
   },
   terms: {
     href: "/terms",
     tabScreen: "terms",
-    primaryTab: TAB_ROUTE_NAMES.settings,
+    primaryTab: TAB_ROUTE_NAMES.profile,
     hiddenTab: true,
     returnTo: "/(tabs)/settings",
   },

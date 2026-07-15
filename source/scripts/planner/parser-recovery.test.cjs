@@ -114,6 +114,91 @@ test("Course extraction handles known Tacoma subjects split after the campus pre
   );
 });
 
+test("Course extraction recovers known subjects after leading prose cues", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("The MATH 124 sequence begins here"),
+    ["MATH 124"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "Approved B PHYS 498 Independent Study (1-5 credits, max. 10)"
+    ),
+    ["BPHYS 498"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("Complete MUSIC 216 before applying"),
+    ["MUSIC 216"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("Any STAT 300+ course"),
+    []
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("Choose STAT 300+ courses"),
+    []
+  );
+});
+
+test("Course extraction expands explicit hyphen chains without expanding wide ranges", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("JAPAN 471-472-473 Classical Japanese"),
+    ["JAPAN 471", "JAPAN 472", "JAPAN 473"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("STAT 509 OR STAT 512-513"),
+    ["STAT 509", "STAT 512", "STAT 513"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("MUSIC 216-217-218"),
+    ["MUSIC 216", "MUSIC 217", "MUSIC 218"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("ENGL 200-270"),
+    ["ENGL 200"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("MUSICP 320-339/420-439"),
+    ["MUSICP 320", "MUSICP 420"]
+  );
+});
+
+test("Course extraction normalizes official Bothell subject spellings", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("B GIS 343 Geovisualization"),
+    ["BGIS 343"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("B HTLH 420 Women’s Global Health and Human Rights"),
+    ["BHLTH 420"]
+  );
+});
+
+test("HTML parsing keeps split table cells on one course row", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-mathematics",
+    ownerTitle: "Mathematics",
+    planId: "uw-seattle-mathematics",
+    campusId: "uw-seattle",
+    url: "https://example.edu/mathematics/requirements",
+    label: "Mathematics degree requirements",
+  });
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h1>Degree Requirements</h1>
+        <table>
+          <tr><th>Subject</th><th>Number</th><th>Title</th><th>Credits</th></tr>
+          <tr><td>MATH</td><td>124</td><td>Calculus with Analytic Geometry I</td><td>5</td></tr>
+        </table>
+      </main>
+    `
+  );
+
+  assert.ok(parsed.snapshotLines.includes("MATH 124 Calculus with Analytic Geometry I 5"));
+  assert.ok(parsed.courseCodes.includes("MATH 124"));
+});
+
 test("Tacoma RN-BSN sample plan table resets graduate navigation context", () => {
   const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
     ownerId: "uw-tacoma-nursing",
@@ -894,6 +979,33 @@ test("Course-code parser drops explicit exclusions near generic level prose", ()
   assert.deepEqual(
     parser.extractCourseCodesFromLineForTest("MATH 307, 308, 309, and 324 are accepted."),
     ["MATH 307", "MATH 308", "MATH 309", "MATH 324"]
+  );
+});
+
+test("Requirement extraction excludes historical aliases without hiding current courses", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromRequirementLineForTest(
+      "MATH 207 (formerly MATH 307) is required."
+    ),
+    ["MATH 207"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromRequirementLineForTest(
+      "MATH 208, formerly MATH 308, is required."
+    ),
+    ["MATH 208"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromRequirementLineForTest(
+      "MATH 324 was renumbered to MATH 224."
+    ),
+    ["MATH 224"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromRequirementLineForTest(
+      "MATH 307 and MATH 324 are accepted electives."
+    ),
+    ["MATH 307", "MATH 324"]
   );
 });
 
@@ -2092,6 +2204,230 @@ test("Plan family coverage suppresses cross-owner structured-only parser warning
     []
   );
   assert.equal(report.ownersWithQualityWarningsCount, 0);
+});
+
+test("Plan family coverage includes sibling sources with the same owner id", () => {
+  const overviewOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-statistics",
+    ownerTitle: "Statistics",
+    planId: "uw-seattle-statistics",
+    campusId: "uw-seattle",
+    sourceUrl: "https://stat.uw.edu/academics/undergraduate/overview",
+    parsedUwCourseCodes: ["STAT 311"],
+    structuredOnlyUwCourseCodes: ["STAT 340"],
+    qualitySignals: [
+      {
+        severity: "warning",
+        code: "material-source-structured-drift",
+        message: "The overview omits a course covered by the major source.",
+      },
+    ],
+  });
+  const majorOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-seattle-statistics",
+    ownerTitle: "Statistics",
+    planId: "uw-seattle-statistics",
+    campusId: "uw-seattle",
+    sourceUrl: "https://stat.uw.edu/academics/undergraduate/major",
+    parsedUwCourseCodes: ["STAT 340"],
+    structuredOnlyUwCourseCodes: [],
+    qualitySignals: [],
+  });
+
+  const report = parser.buildParseReport([overviewOwner, majorOwner]);
+  const reportedOverview = report.owners.find(
+    (owner) => owner.sourceUrl === overviewOwner.sourceUrl
+  );
+
+  assert.deepEqual(reportedOverview.qualitySignals, []);
+  assert.equal(report.ownersWithQualityWarningsCount, 0);
+});
+
+test("Zero-course overview is covered by a complete sibling source with the same owner id", () => {
+  const overviewOwner = buildRecoveryOwnerFixture({
+    ownerId: "uw-tacoma-history:pathway:global-history-option",
+    ownerTitle: "History - Global History option",
+    planId: "uw-tacoma-history",
+    pathwayId: "global-history-option",
+    sourceUrl: "https://www.tacoma.uw.edu/sias/socs/history-overview",
+    sourceLabel: "Global History option overview",
+    parsedUwCourseCodes: [],
+    qualitySignals: [
+      {
+        severity: "warning",
+        code: "no-parsed-uw-course-codes",
+        message: "No courses parsed from overview.",
+      },
+    ],
+  });
+  const requirementsOwner = buildRecoveryOwnerFixture({
+    ownerId: overviewOwner.ownerId,
+    ownerTitle: overviewOwner.ownerTitle,
+    planId: overviewOwner.planId,
+    pathwayId: overviewOwner.pathwayId,
+    sourceUrl: "https://www.tacoma.uw.edu/sias/socs/global-history-option",
+    sourceLabel: "Global History option requirements",
+    parsedUwCourseCodes: ["THIST 300"],
+    qualitySignals: [],
+  });
+
+  const report = parser.buildParseReport([overviewOwner, requirementsOwner]);
+  const reportedOverview = report.owners.find(
+    (owner) => owner.sourceUrl === overviewOwner.sourceUrl
+  );
+
+  assert.equal(report.withNoParsedCourseCodesCount, 0);
+  assert.deepEqual(reportedOverview.qualitySignals, []);
+});
+
+test("Sectioned parser keeps adjacent credit headings disjoint", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-computer-engineering",
+    ownerTitle: "Computer Engineering",
+    planId: "uw-bothell-computer-engineering",
+    campusId: "uw-bothell",
+    url: "https://example.edu/computer-engineering/requirements",
+    label: "Computer Engineering degree requirements",
+  });
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h2>Math and Chemistry (26 credits)</h2>
+        <p>B CHEM 143 General Chemistry I</p>
+        <p>B CHEM 144 General Chemistry Lab I</p>
+        <p>ST MATH 207 Differential Equations</p>
+        <p>ST MATH 208 Matrix Algebra</p>
+        <h2>Computer Science (30 credits)</h2>
+        <p>CSS 142 Computer Programming I</p>
+        <p>CSS 143 Computer Programming II</p>
+        <h2>Electrical Engineering (30 credits)</h2>
+        <p>B EE 200 Electrical Circuits</p>
+        <p>B EE 215 Fundamentals of Electrical Engineering</p>
+      </main>
+    `
+  );
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    entry,
+    parsed.courseCodes,
+    parsed.snapshotLines
+  );
+  const groupCodes = (labelPattern) =>
+    groups
+      .find((group) => labelPattern.test(group.label ?? ""))
+      ?.options.flatMap((option) => option.uwCourses ?? []) ?? [];
+
+  assert.deepEqual(groupCodes(/^Math and Chemistry/i), [
+    "BCHEM 143",
+    "BCHEM 144",
+    "STMATH 207",
+    "STMATH 208",
+  ]);
+  assert.deepEqual(groupCodes(/^Computer Science/i), ["CSS 142", "CSS 143"]);
+  assert.deepEqual(groupCodes(/^Electrical Engineering/i), ["BEE 200", "BEE 215"]);
+});
+
+test("Leading free-elective count wins over the 180-credit degree total", () => {
+  const entry = buildRecoveryEntryFixture();
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h2>5 Free Electives to reach 180 credits required for degree</h2>
+        <p>STMATH 126 Calculus III</p>
+        <p>STMATH 300 Mathematical electives</p>
+      </main>
+    `
+  );
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    entry,
+    parsed.courseCodes,
+    parsed.snapshotLines
+  );
+  const freeElectives = groups.find((group) => /Free Electives/i.test(group.label ?? ""));
+
+  assert.equal(freeElectives?.minCredits, 5);
+  assert.equal(freeElectives?.maxCredits, 5);
+});
+
+test("Narrative and group credit totals never become individual course credits", () => {
+  const entry = buildRecoveryEntryFixture();
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <main>
+        <h2>Major electives (20 credits)</h2>
+        <p>ARCHY 495</p>
+        <p>Students must complete a minimum of 50 credits for all majors.</p>
+        <p>ARCHY 496</p>
+        <p>Choose two of AIS 210, AIS 311, or AIS 312 (10 credits total).</p>
+      </main>
+    `
+  );
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    entry,
+    parsed.courseCodes,
+    parsed.snapshotLines
+  );
+  const options = groups.flatMap((group) => group.options ?? []);
+
+  assert.equal(options.some((option) => option.creditMax === 50), false);
+  assert.equal(options.some((option) => option.creditMax === 20), false);
+  assert.equal(options.some((option) => option.creditMax > 10), false);
+  const chooseTwo = groups.find((group) => group.requirementType === "choose_n");
+  assert.equal(chooseTwo?.minCredits, 10);
+});
+
+test("Explicit overview manifest sources remain non-primary support", () => {
+  const overview = buildRecoveryEntryFixture({
+    role: "overview",
+    isPrimaryDegreeRequirementsLink: false,
+    url: "https://stat.uw.edu/academics/undergraduate/overview",
+    label: "Statistics undergraduate overview",
+  });
+  const promotedOverview = {
+    ...overview,
+    isPrimaryDegreeRequirementsLink: true,
+  };
+
+  assert.equal(parser.classifyRequirementSourceRole(overview), "overview");
+  assert.equal(
+    parser.classifyRequirementSourceRole(promotedOverview),
+    "primary-degree-requirements"
+  );
+});
+
+test("Primary overview pages with parsed degree requirements become schedulable", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-astronomy",
+    ownerTitle: "Astronomy",
+    planId: "uw-seattle-astronomy",
+    campusId: "uw-seattle",
+    role: "overview",
+    parserType: "html-overview-page",
+    isPrimaryDegreeRequirementsLink: true,
+    url: "https://astro.washington.edu/undergraduate-program",
+    label: "Scoped section: Personal Statement",
+    sourceLabel: "Scoped section: Personal Statement",
+  });
+  const owner = buildParsedBlockFixture(
+    entry,
+    `
+      <main>
+        <h1>Astronomy</h1>
+        <h2>Degree Requirements</h2>
+        <p>PHYS 121 Mechanics</p>
+        <p>MATH 124 Calculus I</p>
+      </main>
+    `
+  );
+
+  assert.equal(owner.sourceRole, "primary-degree-requirements");
+  assert.equal(owner.sourceRoleStatus, "primary");
+  assert.equal(owner.canCreateSchedulableRows, true);
+  assert.equal(owner.supportOnly, false);
+  assert.ok(owner.parsedUwCourseCodes.includes("PHYS 121"));
+  assert.ok(owner.parsedUwCourseCodes.includes("MATH 124"));
 });
 
 test("Structured-only warnings ignore explicitly excluded or advising-only course mentions", () => {
@@ -4349,6 +4685,295 @@ test("Parser scopes Tacoma formal-option tables whose column headers precede the
   assert.equal(gisParsed.courseCodes.includes("TURB 235"), false);
 });
 
+test("Parser scopes current and pre-Spring 2026 Tacoma Urban Studies curricula independently", () => {
+  const sharedHtml = `
+    <main>
+      <h1>BA in Urban Studies</h1>
+      <h2>Curriculum</h2>
+      <h3>Shared Curriculum Courses (20 credits)</h3>
+      <p>T URB 101 Exploring Cities (5)</p>
+      <h3>Formal Options</h3>
+      <p>Students declare one of the following formal options:</p>
+      <p>A. Community Engagement</p>
+      <p>B. GIS Certificate</p>
+      <p>Complete all of the following:</p>
+      <p>T URB 235 Community Development (5)</p>
+      <p>T UDE 340 Urban Social Change (5)</p>
+      <p>Choose 2 of the following:</p>
+      <p>T URB 379 Urban Field Experience (5)</p>
+      <p>T URB 470 Creating the Urban Narrative (5)</p>
+      <p>T URB 479 Planning &amp; Development in the Puget Sound Region (5)</p>
+      <p>GIS Certificate: Complete all 5 courses listed below:</p>
+      <p>T GIS 312 Intermediate GIS (6)</p>
+      <p>For students admitted to the major before spring 2026.</p>
+      <h3>Major Requirements</h3>
+      <h4>Introductory Courses (11 credits)</h4>
+      <p>T URB 102 City in World Development (5)</p>
+      <h4>Methods Requirement (10-11 credits)</h4>
+      <p>T URB 225 Statistics for Urban Analysis (5) or T GIS 311 Maps &amp; GIS (6)</p>
+      <p>T URB 200 Introduction to Urban Research (5)</p>
+      <h4>Formal Options</h4>
+      <p>Students declare one of the following formal options:</p>
+      <p>A. Community Development &amp; Planning</p>
+      <p>Select 4 courses from the list below:</p>
+      <p>B. GIS &amp; Spatial Planning (9 courses)</p>
+      <p>T URB 235 Community Development (5)</p>
+      <p>T URB 312 Race and Poverty in Urban America (5)</p>
+      <p>T UDE 310 Social Production of Space (5)</p>
+      <p>T URB 480 Housing in the United States (5)</p>
+      <p>T SUD 475 Community and Economy (5)</p>
+      <p>GIS Certificate: Complete all 5 courses listed below:</p>
+      <p>T GIS 312 Intermediate GIS (6)</p>
+      <p>Advanced GIS courses: Select two courses from the list below:</p>
+      <p>T GIS 350 Remote Sensing (5)</p>
+      <p>T GIS 450 Participatory Mapping (5)</p>
+      <p>T GIS 470 GIS Scripting and Automation (5)</p>
+      <h2>Graduation Requirements</h2>
+      <p>Overall GPA: minimum 2.0 cumulative.</p>
+    </main>
+  `;
+  const baseEntry = {
+    planId: "uw-tacoma-urban-studies",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+    label: "UW Tacoma Urban Studies degree requirements",
+    sourceLabel: "UW Tacoma Urban Studies degree requirements",
+    ownerType: "pathway",
+  };
+  const cases = [
+    {
+      ownerId: "uw-tacoma-urban-studies:pathway:community-engagement-option",
+      ownerTitle: "Urban Studies (BA) - Community Engagement option",
+      pathwayId: "community-engagement-option",
+      includes: ["TUDE 340", "TURB 379"],
+      groupedIncludes: ["TURB 379"],
+      excludes: ["TURB 102", "TUDE 310", "TSUD 475", "TGIS 350"],
+    },
+    {
+      ownerId:
+        "uw-tacoma-urban-studies:pathway:pre-spring-2026-community-development-planning-option",
+      ownerTitle:
+        "Urban Studies (BA) - Community Development & Planning option (pre-Spring 2026)",
+      pathwayId: "pre-spring-2026-community-development-planning-option",
+      includes: ["TURB 102", "TUDE 310", "TSUD 475"],
+      groupedIncludes: ["TUDE 310", "TSUD 475"],
+      excludes: ["TGIS 312", "TGIS 350", "TUDE 340"],
+    },
+    {
+      ownerId:
+        "uw-tacoma-urban-studies:pathway:pre-spring-2026-gis-spatial-planning-option",
+      ownerTitle: "Urban Studies (BA) - GIS & Spatial Planning option (pre-Spring 2026)",
+      pathwayId: "pre-spring-2026-gis-spatial-planning-option",
+      includes: ["TURB 102", "TGIS 312", "TGIS 350", "TGIS 470"],
+      groupedIncludes: ["TGIS 350", "TGIS 470"],
+      excludes: ["TUDE 310", "TSUD 475", "TUDE 340"],
+    },
+  ];
+
+  const parentOwner = buildParsedBlockFixture(
+    buildRecoveryEntryFixture({
+      ...baseEntry,
+      ownerId: "uw-tacoma-urban-studies",
+      ownerTitle: "Urban Studies (BA)",
+      pathwayId: null,
+      ownerType: "major",
+    }),
+    `
+      <main>
+        <h1>BA in Urban Studies</h1>
+        <h2>Curriculum</h2>
+        <h3>Foundation Courses (25 credits, choose 5 courses)</h3>
+        <p>T URB 210 Urban Society &amp; Culture (5)</p>
+        <p>T URB 225 Statistics for Urban Analysis (5)</p>
+        <p>T URB 250 Immigration, Race, &amp; American Cities (5)</p>
+        <p>T GIS 311 Maps &amp; GIS (6)</p>
+        <p>T URB 312 Race and Poverty in Urban America (5)</p>
+        <p>T URB 316 Cities and Belonging (5)</p>
+        <p>T URB 480 Housing in the US (5)</p>
+        <h3>Formal Options</h3>
+        <p>Contact the School of Urban Studies Academic Advisor to help track your progress through the program.</p>
+      </main>
+    `
+  );
+  const foundationGroup = parentOwner.parsedRequirementGroups.find((group) =>
+    /Foundation Courses/i.test(group.label)
+  );
+
+  assert.equal(foundationGroup?.requirementType, "choose_n");
+  assert.equal(foundationGroup?.selectionCount, 5);
+  assert.equal(foundationGroup?.minCourses, 5);
+  assert.equal(foundationGroup?.maxCourses, 5);
+  assert.equal(foundationGroup?.minCredits, 25);
+  assert.equal(foundationGroup?.maxCredits, 26);
+  assert.equal(
+    foundationGroup?.options.find((option) => option.uwCourses.includes("TURB 480"))?.title,
+    "Housing in the US"
+  );
+
+  for (const fixture of cases) {
+    const entry = buildRecoveryEntryFixture({ ...baseEntry, ...fixture });
+    const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, sharedHtml);
+    const owner = buildParsedBlockFixture(entry, sharedHtml);
+    const groups = parser.buildParsedRequirementGroupsForTest(
+      entry,
+      parsed.courseCodes,
+      parsed.snapshotLines
+    );
+    const groupedCourseCodes = new Set(
+      groups.flatMap((group) =>
+        (group.options ?? []).flatMap((option) => option.uwCourses ?? [])
+      )
+    );
+    const manifestGroupedCourseCodes = new Set(
+      owner.parsedRequirementGroups.flatMap((group) =>
+        (group.options ?? []).flatMap((option) => option.uwCourses ?? [])
+      )
+    );
+    for (const courseCode of fixture.includes) {
+      assert.equal(parsed.courseCodes.includes(courseCode), true, `${fixture.pathwayId}: ${courseCode}`);
+      assert.equal(
+        owner.parsedUwCourseCodes.includes(courseCode),
+        true,
+        `${fixture.pathwayId} manifest: ${courseCode}`
+      );
+    }
+    for (const courseCode of fixture.groupedIncludes) {
+      assert.equal(
+        groupedCourseCodes.has(courseCode),
+        true,
+        `${fixture.pathwayId} group: ${courseCode}`
+      );
+      assert.equal(
+        manifestGroupedCourseCodes.has(courseCode),
+        true,
+        `${fixture.pathwayId} manifest group: ${courseCode}`
+      );
+    }
+    for (const courseCode of fixture.excludes) {
+      assert.equal(parsed.courseCodes.includes(courseCode), false, `${fixture.pathwayId}: ${courseCode}`);
+      assert.equal(groupedCourseCodes.has(courseCode), false, `${fixture.pathwayId} group: ${courseCode}`);
+      assert.equal(
+        manifestGroupedCourseCodes.has(courseCode),
+        false,
+        `${fixture.pathwayId} manifest group: ${courseCode}`
+      );
+      assert.equal(
+        owner.parsedUwCourseCodes.includes(courseCode),
+        false,
+        `${fixture.pathwayId} manifest: ${courseCode}`
+      );
+    }
+
+    if (fixture.pathwayId.startsWith("pre-spring-2026-")) {
+      const methodsGroups = owner.parsedRequirementGroups.filter((group) =>
+        /Methods Requirement/i.test(group.label)
+      );
+      const methodsSequence = methodsGroups.find(
+        (group) => group.requirementType === "sequence_choice"
+      );
+      const methodPaths = (methodsSequence?.sequencePaths ?? [])
+        .map((path) => [...path.uwCourses].sort().join("|"))
+        .sort();
+
+      assert.equal(
+        methodsGroups.some((group) => group.requirementType === "choose_credits"),
+        false,
+        `${fixture.pathwayId}: Methods must not double-count a credit bucket`
+      );
+      assert.deepEqual(methodPaths, ["TGIS 311|TURB 200", "TURB 200|TURB 225"]);
+    }
+  }
+});
+
+test("Inline course titles stop before an adjacent concatenated course row", () => {
+  assert.equal(
+    parser.getInlineSectionCourseTitleForTest(
+      "T URB 102 City in World Development (5) T URB 110 Urban Data Analysis (5)",
+      "TURB 102"
+    ),
+    "City in World Development"
+  );
+});
+
+test("Historical requirement rows are schedulable only for their prior-admit owner", () => {
+  const snapshotLines = [
+    "For students admitted to the major before spring 2026.",
+    "Major Requirements",
+    "T URB 102 City in World Development (5)",
+  ];
+  const buildCourseRow = (ownerId) =>
+    parser
+      .buildParserPrerequisiteFilterAuditRowsForTest({
+        ownerId,
+        sourceUrl: "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+        sourceRole: "primary-degree-requirements",
+        snapshotLines,
+        headings: [],
+      })
+      .find((row) => row.courseCodesExtracted.includes("TURB 102"));
+
+  const currentCourseRow = buildCourseRow(
+    "uw-tacoma-urban-studies:pathway:community-engagement-option"
+  );
+  const priorAdmitCourseRow = buildCourseRow(
+    "uw-tacoma-urban-studies:pathway:pre-spring-2026-community-development-planning-option"
+  );
+
+  assert.equal(currentCourseRow?.schedulable, false);
+  assert.equal(currentCourseRow?.detectedSectionRole, "support-metadata");
+  assert.equal(priorAdmitCourseRow?.schedulable, true);
+  assert.equal(priorAdmitCourseRow?.detectedSectionRole, "primary-requirement-section");
+});
+
+test("Historical requirement rows must match the prior-admit owner's academic era", () => {
+  const snapshotLines = [
+    "For students admitted to the major before Autumn 2025.",
+    "Major Requirements",
+    "T URB 102 City in World Development (5)",
+  ];
+  const buildCourseRow = (ownerId) =>
+    parser
+      .buildParserPrerequisiteFilterAuditRowsForTest({
+        ownerId,
+        sourceUrl: "https://example.edu/urban-studies",
+        sourceRole: "primary-degree-requirements",
+        snapshotLines,
+        headings: [],
+      })
+      .find((row) => row.courseCodesExtracted.includes("TURB 102"));
+
+  assert.equal(
+    buildCourseRow("uw-example:pathway:pre-autumn-2025-planning-option")?.schedulable,
+    true
+  );
+  assert.equal(
+    buildCourseRow("uw-example:pathway:pre-spring-2026-planning-option")?.schedulable,
+    false
+  );
+  assert.equal(buildCourseRow("uw-example:pathway:planning-option")?.schedulable, false);
+});
+
+test("Current curriculum headings terminate inherited historical support scope", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-example-current-program",
+    sourceUrl: "https://example.edu/current-program",
+    sourceRole: "primary-degree-requirements",
+    snapshotLines: [
+      "For students admitted before Spring 2026",
+      "MATH 301 (5 credits)",
+      "Current Curriculum",
+      "MATH 302 (5 credits)",
+    ],
+    headings: ["For students admitted before Spring 2026", "Current Curriculum"],
+  });
+  const rowsByLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  assert.equal(rowsByLine.get("MATH 301 (5 credits)")?.schedulable, false);
+  assert.equal(rowsByLine.get("MATH 302 (5 credits)")?.schedulable, true);
+});
+
 test("Parser recovery rejects sibling Tacoma major pages with only weak title overlap", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId: "uw-tacoma-sustainable-urban-development",
@@ -4589,6 +5214,60 @@ test("Parser recovery keeps promoted prerequisite pages support-only", () => {
   assert.equal(sourceScope.canCreateScheduleRows, false);
 });
 
+test("Admission source fallback cannot substitute an unrelated overview page", () => {
+  const admissionEntry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-biology",
+    ownerTitle: "Biology (BS)",
+    planId: "uw-bothell-biology",
+    campusId: "uw-bothell",
+    role: "other",
+    parserType: "generic-html",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/biology/admissions",
+    label: "UW Bothell Biology admissions prerequisites",
+  });
+  const minorOverviewEntry = buildRecoveryEntryFixture({
+    ownerId: admissionEntry.ownerId,
+    ownerTitle: admissionEntry.ownerTitle,
+    planId: admissionEntry.planId,
+    campusId: admissionEntry.campusId,
+    role: "overview",
+    parserType: "generic-html",
+    url: "https://www.uwb.edu/stem/undergraduate/minors/biology",
+    label: "Biology minor overview",
+  });
+  const prerequisiteEntry = buildRecoveryEntryFixture({
+    ownerId: admissionEntry.ownerId,
+    ownerTitle: admissionEntry.ownerTitle,
+    planId: admissionEntry.planId,
+    campusId: admissionEntry.campusId,
+    role: "admission-prerequisite-source",
+    parserType: "generic-html",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/biology/prerequisites",
+    label: "Biology admission prerequisite courses",
+  });
+  const manifestClassifiedAdmissionEntry = {
+    ...admissionEntry,
+    role: "admission-prerequisite-source",
+  };
+
+  assert.equal(parser.classifyRequirementSourceRole(admissionEntry), "admissions-preparation");
+  assert.equal(
+    parser.classifyRequirementSourceRole(manifestClassifiedAdmissionEntry),
+    "admissions-preparation"
+  );
+  assert.equal(
+    parser.shouldAllowAlternateManifestEntryForParseForTest(
+      admissionEntry,
+      minorOverviewEntry
+    ),
+    false
+  );
+  assert.equal(
+    parser.shouldAllowAlternateManifestEntryForParseForTest(admissionEntry, prerequisiteEntry),
+    true
+  );
+});
+
 test("Parser recovery treats matched BA pathway child pages as primary sources", () => {
   const entry = buildRecoveryEntryFixture({
     ownerId:
@@ -4781,6 +5460,29 @@ test("Parser does not promote opposite-degree comparison prose into BA requireme
         row.schedulable === false
     )
   );
+});
+
+test("Undergraduate requirement headings terminate degree-route comparison scope", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-tacoma-computer-science-and-systems-ba",
+    sourceUrl: "https://example.edu/css-ba",
+    sourceRole: "primary-degree-requirements",
+    snapshotLines: [
+      "Bachelors of Science or Arts?",
+      "TCSS 372 Machine Organization",
+      "Degree Requirements",
+      "TCSS 321 Discrete Structures I (5 credits)",
+    ],
+    headings: ["Bachelors of Science or Arts?", "Degree Requirements"],
+  });
+  const rowsByCourse = new Map(
+    rows.flatMap((row) =>
+      row.courseCodesExtracted.map((courseCode) => [courseCode, row])
+    )
+  );
+
+  assert.equal(rowsByCourse.get("TCSS 372")?.schedulable, false);
+  assert.equal(rowsByCourse.get("TCSS 321")?.schedulable, true);
 });
 
 test("Parser keeps Tacoma CSS exclusions and honors-only notes out of source blocks", () => {

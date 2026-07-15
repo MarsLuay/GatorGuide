@@ -27,13 +27,11 @@ const RECOVERABLE_LEADING_SUBJECT_TOKENS = new Set([
 ]);
 
 export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
-  "A SIM",
   "AA",
   "AAS",
   "ACCT",
   "ACCT&",
   "ACCTG",
-  "ACOMP",
   "AES",
   "AFRAM",
   "AIS",
@@ -56,8 +54,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "ATECH",
   "ATMOS",
   "AVIA",
-  "B A",
-  "BASIC",
   "BBECN",
   "BBIO",
   "BBUS",
@@ -105,7 +101,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "BUS",
   "BUS&",
   "BWRIT",
-  "CAD",
   "CARDIO",
   "CARP",
   "CEE",
@@ -117,7 +112,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "CHEME",
   "CHID",
   "CHIN",
-  "CHIN&",
   "CHSTU",
   "CJ",
   "CJ&",
@@ -137,8 +131,8 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "CSE",
   "CSS",
   "CSSS",
+  "CSSSKL",
   "CZECH",
-  "D",
   "DANCE",
   "DANISH",
   "DESIGN",
@@ -160,13 +154,11 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "EDUC&",
   "EE",
   "ELCBUS",
-  "ELL",
   "ENGL",
   "ENGL&",
   "ENGR",
   "ENGR&",
   "ENTRE",
-  "ENV S",
   "ENVH",
   "ENVIR",
   "EPI",
@@ -179,7 +171,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "FIN",
   "FINN",
   "FISH",
-  "FLT",
   "FRCH",
   "FRCH&",
   "FRENCH",
@@ -188,7 +179,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "GEOG&",
   "GEOL",
   "GEOL&",
-  "GERM",
   "GERM&",
   "GERMAN",
   "GH",
@@ -196,15 +186,11 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "GRDSCH",
   "GREEK",
   "GWSS",
-  "H",
-  "H SCI",
   "HCDE",
   "HEALTH",
   "HINDI",
   "HIST",
   "HIST&",
-  "HL ED",
-  "HSC",
   "HSERV",
   "HSTAA",
   "HSTAM",
@@ -214,15 +200,12 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "HSTLAC",
   "HSTRY",
   "HUMAN",
-  "IBEST",
   "IBUS",
   "IECMH",
   "INDE",
   "INDIV",
   "INDUS",
   "INFO",
-  "INPNUR",
-  "INRNUR",
   "IPM",
   "IS",
   "IT",
@@ -244,8 +227,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "MARBIO",
   "MATH",
   "MATH&",
-  "MATHJ",
-  "MATHM",
   "ME",
   "MELC",
   "MFG",
@@ -265,24 +246,18 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "MUSEN",
   "MUSIC",
   "MUSICP",
-  "N",
-  "N SCI",
   "NATRS",
-  "NCLEX",
   "NCLIN",
   "NEUSCI",
   "NME",
   "NORW",
-  "NRS A",
   "NURS",
-  "NURSE",
   "NUTR",
   "NUTR&",
   "OCEA&",
   "OCEAN",
   "OPMGT",
   "OTA",
-  "P E",
   "PHG",
   "PHIL",
   "PHIL&",
@@ -290,7 +265,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "PHOTO",
   "PHYS",
   "PHYS&",
-  "PLA",
   "PNURSE",
   "POLS",
   "POLS&",
@@ -307,11 +281,7 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "RE",
   "READ",
   "RELIG",
-  "RFPNUR",
-  "RFRNUR",
   "RUSS",
-  "S",
-  "S SCI",
   "SASIA",
   "SBSE",
   "SCAND",
@@ -330,7 +300,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "SPH",
   "SPHSC",
   "SPLING",
-  "ST SK",
   "STAT",
   "STMATH",
   "SWED",
@@ -387,7 +356,6 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "TPOLS",
   "TPSYCH",
   "TRELIG",
-  "TS",
   "TSOC",
   "TSOCWF",
   "TSPAN",
@@ -403,15 +371,10 @@ export const TRANSFER_PLANNER_GENERATED_COURSE_SUBJECT_CODES = [
   "UYGUR",
   "UZBEK",
   "WELD",
-  "WST",
-  "WTECH",
-  "WWT",
 ] as const;
 
 const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_KEYS = [
-  "grc-a-sim",
   "grc-acct",
-  "grc-acomp",
   "grc-ames",
   "grc-anth",
   "grc-ap",
@@ -420,97 +383,64 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_KEYS = [
   "grc-astr",
   "grc-atech",
   "grc-avia",
-  "grc-ba",
-  "grc-basic",
   "grc-biol",
   "grc-bnurse",
   "grc-btac",
   "grc-bus",
-  "grc-cad",
   "grc-cardio",
   "grc-carp",
   "grc-chem",
-  "grc-chin",
   "grc-cj",
   "grc-cmst",
   "grc-coll",
   "grc-coop",
   "grc-crc",
   "grc-cs",
-  "grc-d",
   "grc-dance",
   "grc-drma",
   "grc-eced",
   "grc-econ",
   "grc-educ",
-  "grc-ell",
   "grc-engl",
   "grc-engr",
-  "grc-env-s",
   "grc-ertech",
   "grc-film",
-  "grc-flt",
   "grc-frch",
   "grc-geog",
   "grc-geol",
   "grc-germ",
-  "grc-h",
-  "grc-h-sci",
   "grc-health",
   "grc-hist",
-  "grc-hl-ed",
-  "grc-hsc",
   "grc-human",
-  "grc-ibest",
   "grc-indus",
   "grc-info",
-  "grc-inpnur",
-  "grc-inrnur",
   "grc-it",
   "grc-japn",
   "grc-journ",
   "grc-las",
   "grc-math",
-  "grc-mathj",
-  "grc-mathm",
   "grc-mfg",
   "grc-mgmt",
   "grc-mnurs",
   "grc-mtx",
   "grc-musc",
-  "grc-n",
-  "grc-n-sci",
   "grc-natrs",
-  "grc-nclex",
-  "grc-nrs-a",
-  "grc-nurse",
   "grc-nutr",
   "grc-ocea",
   "grc-ota",
-  "grc-pe",
   "grc-phil",
   "grc-phleb",
   "grc-photo",
   "grc-phys",
-  "grc-pla",
   "grc-pnurse",
   "grc-pols",
   "grc-psyc",
   "grc-pta",
   "grc-read",
-  "grc-rfpnur",
-  "grc-rfrnur",
-  "grc-s",
-  "grc-s-sci",
   "grc-sdev",
   "grc-soc",
   "grc-span",
-  "grc-st-sk",
-  "grc-ts",
   "grc-weld",
-  "grc-wst",
-  "grc-wtech",
-  "grc-wwt",
   "uw-bothell-bbecn",
   "uw-bothell-bbio",
   "uw-bothell-bbus",
@@ -542,6 +472,7 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_KEYS = [
   "uw-bothell-bst",
   "uw-bothell-bwrit",
   "uw-bothell-css",
+  "uw-bothell-cssskl",
   "uw-bothell-elcbus",
   "uw-bothell-stmath",
   "uw-seattle-aa",
@@ -866,12 +797,8 @@ const TRANSFER_PLANNER_GENERATED_COURSE_METADATA_PARTITION_INDEX =
 
 function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: string) {
   switch (partitionKey) {
-    case "grc-a-sim":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-a-sim.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-acct":
       return require("./course-metadata.generated/entries-by-school-subject/grc-acct.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-acomp":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-acomp.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-ames":
       return require("./course-metadata.generated/entries-by-school-subject/grc-ames.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-anth":
@@ -888,10 +815,6 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-atech.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-avia":
       return require("./course-metadata.generated/entries-by-school-subject/grc-avia.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-ba":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-ba.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-basic":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-basic.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-biol":
       return require("./course-metadata.generated/entries-by-school-subject/grc-biol.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-bnurse":
@@ -900,16 +823,12 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-btac.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-bus":
       return require("./course-metadata.generated/entries-by-school-subject/grc-bus.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-cad":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-cad.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-cardio":
       return require("./course-metadata.generated/entries-by-school-subject/grc-cardio.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-carp":
       return require("./course-metadata.generated/entries-by-school-subject/grc-carp.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-chem":
       return require("./course-metadata.generated/entries-by-school-subject/grc-chem.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-chin":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-chin.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-cj":
       return require("./course-metadata.generated/entries-by-school-subject/grc-cj.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-cmst":
@@ -922,8 +841,6 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-crc.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-cs":
       return require("./course-metadata.generated/entries-by-school-subject/grc-cs.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-d":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-d.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-dance":
       return require("./course-metadata.generated/entries-by-school-subject/grc-dance.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-drma":
@@ -934,20 +851,14 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-econ.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-educ":
       return require("./course-metadata.generated/entries-by-school-subject/grc-educ.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-ell":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-ell.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-engl":
       return require("./course-metadata.generated/entries-by-school-subject/grc-engl.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-engr":
       return require("./course-metadata.generated/entries-by-school-subject/grc-engr.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-env-s":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-env-s.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-ertech":
       return require("./course-metadata.generated/entries-by-school-subject/grc-ertech.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-film":
       return require("./course-metadata.generated/entries-by-school-subject/grc-film.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-flt":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-flt.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-frch":
       return require("./course-metadata.generated/entries-by-school-subject/grc-frch.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-geog":
@@ -956,30 +867,16 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-geol.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-germ":
       return require("./course-metadata.generated/entries-by-school-subject/grc-germ.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-h":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-h.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-h-sci":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-h-sci.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-health":
       return require("./course-metadata.generated/entries-by-school-subject/grc-health.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-hist":
       return require("./course-metadata.generated/entries-by-school-subject/grc-hist.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-hl-ed":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-hl-ed.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-hsc":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-hsc.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-human":
       return require("./course-metadata.generated/entries-by-school-subject/grc-human.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-ibest":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-ibest.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-indus":
       return require("./course-metadata.generated/entries-by-school-subject/grc-indus.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-info":
       return require("./course-metadata.generated/entries-by-school-subject/grc-info.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-inpnur":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-inpnur.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-inrnur":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-inrnur.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-it":
       return require("./course-metadata.generated/entries-by-school-subject/grc-it.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-japn":
@@ -990,10 +887,6 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-las.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-math":
       return require("./course-metadata.generated/entries-by-school-subject/grc-math.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-mathj":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-mathj.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-mathm":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-mathm.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-mfg":
       return require("./course-metadata.generated/entries-by-school-subject/grc-mfg.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-mgmt":
@@ -1004,26 +897,14 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-mtx.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-musc":
       return require("./course-metadata.generated/entries-by-school-subject/grc-musc.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-n":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-n.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-n-sci":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-n-sci.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-natrs":
       return require("./course-metadata.generated/entries-by-school-subject/grc-natrs.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-nclex":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-nclex.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-nrs-a":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-nrs-a.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-nurse":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-nurse.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-nutr":
       return require("./course-metadata.generated/entries-by-school-subject/grc-nutr.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-ocea":
       return require("./course-metadata.generated/entries-by-school-subject/grc-ocea.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-ota":
       return require("./course-metadata.generated/entries-by-school-subject/grc-ota.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-pe":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-pe.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-phil":
       return require("./course-metadata.generated/entries-by-school-subject/grc-phil.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-phleb":
@@ -1032,8 +913,6 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-photo.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-phys":
       return require("./course-metadata.generated/entries-by-school-subject/grc-phys.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-pla":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-pla.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-pnurse":
       return require("./course-metadata.generated/entries-by-school-subject/grc-pnurse.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-pols":
@@ -1044,32 +923,14 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/grc-pta.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-read":
       return require("./course-metadata.generated/entries-by-school-subject/grc-read.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-rfpnur":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-rfpnur.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-rfrnur":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-rfrnur.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-s":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-s.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-s-sci":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-s-sci.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-sdev":
       return require("./course-metadata.generated/entries-by-school-subject/grc-sdev.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-soc":
       return require("./course-metadata.generated/entries-by-school-subject/grc-soc.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-span":
       return require("./course-metadata.generated/entries-by-school-subject/grc-span.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-st-sk":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-st-sk.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-ts":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-ts.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "grc-weld":
       return require("./course-metadata.generated/entries-by-school-subject/grc-weld.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-wst":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-wst.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-wtech":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-wtech.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
-    case "grc-wwt":
-      return require("./course-metadata.generated/entries-by-school-subject/grc-wwt.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "uw-bothell-bbecn":
       return require("./course-metadata.generated/entries-by-school-subject/uw-bothell-bbecn.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "uw-bothell-bbio":
@@ -1132,6 +993,8 @@ function loadTransferPlannerGeneratedCourseMetadataPartition(partitionKey: strin
       return require("./course-metadata.generated/entries-by-school-subject/uw-bothell-bwrit.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "uw-bothell-css":
       return require("./course-metadata.generated/entries-by-school-subject/uw-bothell-css.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
+    case "uw-bothell-cssskl":
+      return require("./course-metadata.generated/entries-by-school-subject/uw-bothell-cssskl.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "uw-bothell-elcbus":
       return require("./course-metadata.generated/entries-by-school-subject/uw-bothell-elcbus.generated.json") as TransferPlannerNormalizedCourseMetadataEntry[];
     case "uw-bothell-stmath":

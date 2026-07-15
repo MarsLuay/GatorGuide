@@ -6,9 +6,13 @@ import type { QuestionnaireAnswers } from "@/hooks/use-app-data";
 import {
   documentReaderService,
   type DocumentExtractionReview,
+  type DocumentExtractionReviewItem,
 } from "@/services/documents/document-reader.service";
-import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
-import { roadmapService } from "@/services/planning/roadmap.service";
+import {
+  assertNoTranscriptSourceLeak,
+  ingestTranscript,
+  type NormalizedTranscriptRecord,
+} from "@/services/documents/transcript-ingestor";
 import {
   buildTransferPlannerTranscriptCachePatch,
 } from "@/services/planning/transfer-planner-cache.service";
@@ -107,15 +111,117 @@ export async function extractProfileTranscriptDocumentReview({
   document: Pick<SelectedProfileDocument, "uri" | "name" | "mimeType" | "size">;
   questionnaireAnswers: QuestionnaireAnswers;
 }) {
+  const fileName = document.name || document.uri.split("/").pop() || "transcript.pdf";
+  const mime = String(document.mimeType || "").toLowerCase();
+  const looksPdf =
+    mime.includes("pdf") || /\.pdf$/i.test(fileName) || /\.pdf($|\?)/i.test(document.uri);
+
+  // P13-B strangler: deterministic PDF path first; AI document-reader remains fallback.
+  if (looksPdf) {
+    const ingested = await ingestTranscript({ kind: "uri", uri: document.uri });
+    if (ingested.ok && ingested.records.length > 0) {
+      const review = buildDeterministicTranscriptReview({
+        fileName,
+        currentProfile,
+        questionnaireAnswers,
+        records: ingested.records,
+        gpa: ingested.gpa,
+        earnedCreditsTotal: ingested.earnedCreditsTotal,
+      });
+      if (!assertNoTranscriptSourceLeak(review)) {
+        throw new Error("transcript review leaked source identity");
+      }
+      return review;
+    }
+  }
+
   return documentReaderService.extractDocumentReview({
     documentType: "transcript",
     fileUri: document.uri,
-    fileName: document.name || document.uri.split("/").pop() || "transcript.pdf",
+    fileName,
     mimeType: document.mimeType,
     size: document.size,
     currentProfile,
     questionnaireAnswers,
   });
+}
+
+function buildDeterministicTranscriptReview({
+  fileName,
+  currentProfile,
+  questionnaireAnswers,
+  records,
+  gpa,
+  earnedCreditsTotal,
+}: {
+  fileName: string;
+  currentProfile: { major: string; gpa: string };
+  questionnaireAnswers: QuestionnaireAnswers;
+  records: NormalizedTranscriptRecord[];
+  gpa: string | null;
+  earnedCreditsTotal: number | null;
+}): DocumentExtractionReview {
+  const items: DocumentExtractionReviewItem[] = [];
+  const userPatch: Record<string, string> = {};
+  const questionnairePatch: Record<string, string> = {};
+  const courseLines = records
+    .map((r) => [r.code, r.title].filter(Boolean).join(" ").trim())
+    .filter(Boolean)
+    .join("\n");
+
+  if (!String(currentProfile.gpa || "").trim() && gpa) {
+    items.push({
+      id: "gpa",
+      labelKey: "profile.gpa",
+      target: "profile",
+      currentValue: null,
+      suggestedValue: gpa,
+      sourceSnippet: null,
+      confidence: 1,
+    });
+    userPatch.gpa = gpa;
+  }
+
+  if (courseLines) {
+    const currentCourses =
+      String(
+        questionnaireAnswers[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD] ?? ""
+      ).trim() || null;
+    items.push({
+      id: TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
+      labelKey: "profile.documentReaderFieldCompletedCourses",
+      target: "questionnaire",
+      currentValue: currentCourses,
+      suggestedValue: courseLines,
+      sourceSnippet: null,
+      confidence: 1,
+    });
+    questionnairePatch[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD] = courseLines;
+  }
+
+  if (earnedCreditsTotal != null && Number.isFinite(earnedCreditsTotal)) {
+    const credits = String(earnedCreditsTotal);
+    items.push({
+      id: "transferCredits",
+      labelKey: "profile.documentReaderFieldTransferCredits",
+      target: "questionnaire",
+      currentValue: String(questionnaireAnswers.transferCredits ?? "").trim() || null,
+      suggestedValue: credits,
+      sourceSnippet: null,
+      confidence: 1,
+    });
+    questionnairePatch.transferCredits = credits;
+  }
+
+  return {
+    documentType: "transcript",
+    fileName,
+    items,
+    userPatch,
+    questionnairePatch,
+    uncertainties: [],
+    confidence: 1,
+  };
 }
 
 export async function uploadProfileTranscriptDocument(
@@ -147,55 +253,52 @@ export async function syncUploadedTranscriptToPlanner({
   ) => Promise<void>;
   uploaded: UploadedFile;
 }) {
-  const parsedTranscript = await transcriptPdfService.extractTranscriptDataFromPdf(
-    uploaded.url
-  );
+  const ingested = await ingestTranscript({ kind: "uri", uri: uploaded.url });
+  if (!ingested.ok) {
+    throw new Error(ingested.error || "transcript ingest failed");
+  }
+  if (!assertNoTranscriptSourceLeak(ingested)) {
+    throw new Error("transcript ingest leaked source identity");
+  }
 
-  if (parsedTranscript.completedCourses.length) {
+  if (ingested.records.length) {
     await setQuestionnaireAnswers((currentAnswers) => ({
       ...currentAnswers,
       ...buildTransferPlannerTranscriptCachePatch(
         uploaded,
-        parsedTranscript.completedCourses,
-        parsedTranscript.earnedCreditsTotal
+        ingested.records.map((record) => ({
+          code: record.code,
+          title: record.title,
+          label: [record.code, record.title].filter(Boolean).join(" ").trim(),
+          credits: record.credits,
+          grade: record.grade,
+          gradeValue: null,
+          termLabel: record.termLabel,
+          termStartDate: record.termStartDate,
+          termEndDate: record.termEndDate,
+          catalogYearLabel: record.catalogYearLabel,
+        })),
+        ingested.earnedCreditsTotal
       ),
     }));
   }
 
-  await applyTranscriptGpa(
-    parsedTranscript.gpa,
-    "auto-apply-transcript-pdf-gpa"
-  );
+  await applyTranscriptGpa(ingested.gpa, "auto-apply-transcript-pdf-gpa");
 
-  return parsedTranscript.completedCourses.length;
+  return ingested.records.length;
 }
 
-export async function ensureProfileSetupRoadmap({
-  gpa,
-  major,
-  questionnaireAnswers,
-  savedCollegeNames,
-  transcriptFileName,
-  userId,
-}: {
+/**
+ * Soft P14: Living Plan + plannerV2 replace AI roadmap bootstrap after profile setup.
+ * Kept as a no-op so callers/tests compile; hard delete lands with roadmap.service retirement.
+ */
+export async function ensureProfileSetupRoadmap(_args: {
   gpa: string;
   major: string;
   questionnaireAnswers: QuestionnaireAnswers;
   savedCollegeNames: string[];
   transcriptFileName?: string | null;
   userId: string;
-}) {
-  await roadmapService.ensureUserRoadmap(userId, {
-    major,
-    gpa,
-    questionnaireAnswers,
-    targetSchools: savedCollegeNames,
-    documents: (transcriptFileName
-        ? {
-            transcripts: {
-              fileName: transcriptFileName,
-            },
-          }
-        : {}),
-  });
+}): Promise<void> {
+  return;
 }

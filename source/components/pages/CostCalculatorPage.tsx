@@ -39,6 +39,7 @@ export default function CostCalculatorPage() {
   const router = useRouter();
   const styles = useThemeStyles();
   const back = useBack(ROUTES.tabsResources);
+  const canNavigateBack = back.canNavigateBack;
   const { t, language } = useAppLanguage();
   const { getScrollContentPadding } = useResponsiveLayout();
   const { width } = useWindowDimensions();
@@ -592,8 +593,9 @@ export default function CostCalculatorPage() {
             paddingHorizontal: shellHorizontalPadding,
           }}
         >
-          <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
-
+          {canNavigateBack ? (
+            <PageBackButton onPress={back} label={t("general.back")} textClassName={secondaryTextClass} />
+          ) : null}
           <Text className={`text-2xl ${textClass} mb-1`}>
             {t("cost.title")}
           </Text>

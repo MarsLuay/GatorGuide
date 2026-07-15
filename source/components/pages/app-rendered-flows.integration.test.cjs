@@ -288,12 +288,19 @@ test("DeadlineCalendarPage renders opportunity deadlines and opens resources", a
       user: null,
     })
   );
+  // Keep both fixtures upcoming and in different months so the calendar
+  // focuses the nearer deadline without depending on calendar wall-clock dates.
+  const nearDueAt = new Date();
+  nearDueAt.setUTCDate(nearDueAt.getUTCDate() + 14);
+  nearDueAt.setUTCHours(17, 0, 0, 0);
+  const laterDueAt = new Date(nearDueAt);
+  laterDueAt.setUTCMonth(laterDueAt.getUTCMonth() + 1);
   setOpportunities({
     matchedOpportunities: [
       {
         college: {},
         computedDueAt: null,
-        dueAt: "2026-07-05T17:00:00.000Z",
+        dueAt: nearDueAt.toISOString(),
         externalUrl: "",
         isDone: false,
         opportunityId: "promise-scholarship",
@@ -306,7 +313,7 @@ test("DeadlineCalendarPage renders opportunity deadlines and opens resources", a
       {
         college: {},
         computedDueAt: null,
-        dueAt: "2026-08-15T17:00:00.000Z",
+        dueAt: laterDueAt.toISOString(),
         externalUrl: "",
         isDone: false,
         opportunityId: "summer-bridge-internship",

@@ -13,13 +13,19 @@ set "INTERACTIVE_MENU=0"
 set "HOSTED_BACK_TARGET="
 
 call :call_toolchain :bootstrap
-if errorlevel 1 exit /b 1
+if errorlevel 1 (
+  call :fail_keep_open "Toolchain bootstrap failed."
+  exit /b 1
+)
 
 call :locate_or_clone_repo
-if errorlevel 1 exit /b 1
+if errorlevel 1 (
+  call :fail_keep_open "Could not locate or clone the Gator Guide repo."
+  exit /b 1
+)
 
 cd /d "%APP_ROOT%" || (
-  echo Could not open "%APP_ROOT%".
+  call :fail_keep_open "Could not open \"%APP_ROOT%\"."
   exit /b 1
 )
 
@@ -110,29 +116,29 @@ goto refreshModeMenu
 :runMaintenance
 set "ACTION_LABEL=Course planner maintenance"
 if "%HOSTED_BACK_TARGET%"=="" (
-  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks
+  call :try_ps_then_node_maintenance "-NoPrompt -RunPostChecks" ""
 ) else (
-  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
+  call :try_ps_then_node_maintenance "-NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%" ""
 )
 goto finish
 
 :runMaintenanceNoDownloads
 set "ACTION_LABEL=Course planner maintenance (skip downloads)"
 if "%HOSTED_BACK_TARGET%"=="" (
-  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks
+  call :try_ps_then_node_maintenance "-SkipDownloads -NoPrompt -RunPostChecks" "--skip-downloads"
 ) else (
-  call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
+  call :try_ps_then_node_maintenance "-SkipDownloads -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%" "--skip-downloads"
 )
 goto finish
 
 :runRefresh
 set "ACTION_LABEL=Course planner refresh"
-call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipVerify
+call :try_ps_then_node_refresh "-SkipVerify" "--refresh-only --skip-verify"
 goto finish
 
 :runRefreshNoDownloads
 set "ACTION_LABEL=Course planner refresh (skip downloads)"
-call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipDownloads -SkipVerify
+call :try_ps_then_node_refresh "-SkipDownloads -SkipVerify" "--skip-downloads --refresh-only --skip-verify"
 goto finish
 
 :runCacheSummary
@@ -156,8 +162,43 @@ goto finish
 
 :runFactCheckExport
 set "ACTION_LABEL=Course planner row document export"
+call :call_toolchain :ensure_node
+if errorlevel 1 (
+  call :fail_keep_open "Node.js is required for course planner row document export."
+  exit /b 1
+)
 node "%APP_ROOT%\scripts\planner\export-transfer-planner-fact-check.cjs"
 goto finish
+
+:try_ps_then_node_maintenance
+set "PS_EXTRA=%~1"
+set "NODE_EXTRA=%~2"
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" %PS_EXTRA%
+set "TRY_EXIT=%ERRORLEVEL%"
+if "%TRY_EXIT%"=="0" exit /b 0
+if "%TRY_EXIT%"=="%BACK_EXIT_CODE%" exit /b %BACK_EXIT_CODE%
+echo PowerShell failed ^(exit %TRY_EXIT%^). Falling back to Node maintenance runner...
+call :run_node_maintenance %NODE_EXTRA%
+exit /b %ERRORLEVEL%
+
+:try_ps_then_node_refresh
+set "PS_EXTRA=%~1"
+set "NODE_EXTRA=%~2"
+call :call_toolchain :run_powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" %PS_EXTRA%
+set "TRY_EXIT=%ERRORLEVEL%"
+if "%TRY_EXIT%"=="0" exit /b 0
+echo PowerShell failed ^(exit %TRY_EXIT%^). Falling back to Node refresh runner...
+call :run_node_maintenance %NODE_EXTRA%
+exit /b %ERRORLEVEL%
+
+:run_node_maintenance
+call :call_toolchain :ensure_node
+if errorlevel 1 (
+  echo Node.js is required when PowerShell cannot run.
+  exit /b 1
+)
+node "%SCRIPT_ROOT%\run-transfer-planner-maintenance.cjs" %*
+exit /b %ERRORLEVEL%
 
 :invalidMode
 echo Unknown mode "%MODE%".
@@ -193,6 +234,13 @@ pause
 if "%INTERACTIVE_MENU%"=="1" goto menu
 exit /b %EXIT_CODE%
 
+:fail_keep_open
+echo.
+echo %~1
+echo Press Enter to close this window...
+pause >nul
+exit /b 1
+
 :locate_or_clone_repo
 if exist "%APP_ROOT%\package.json" (
   exit /b 0
@@ -210,6 +258,12 @@ if exist "%CLONE_ROOT%\source\package.json" (
 echo Gator Guide was not found next to this launcher.
 call :ensure_git
 if errorlevel 1 exit /b 1
+
+if exist "%CLONE_ROOT%" (
+  echo Cannot clone into "%CLONE_ROOT%" because that path already exists.
+  echo Move or remove it, or place this launcher next to a full GatorGuide checkout.
+  exit /b 1
+)
 
 echo Cloning Gator Guide into "%CLONE_ROOT%"...
 git clone "%REPO_URL%" "%CLONE_ROOT%"

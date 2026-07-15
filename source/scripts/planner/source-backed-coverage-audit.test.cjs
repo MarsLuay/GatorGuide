@@ -5,6 +5,9 @@ const sourceBackedCoverageAudit = require("./source-backed-coverage-actionabilit
 const coverageAudit = require("./audit-transfer-planner-source-backed-coverage.cjs");
 const source = require("../../constants/transfer-planner-source");
 const studentRuntime = require("../../constants/transfer-planner-source/student-runtime");
+const generatedStudentRuntime = require(
+  "../../constants/transfer-planner-source/student-runtime.generated"
+);
 const {
   TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES,
 } = require("../../constants/transfer-planner-source/equivalency-guide.generated");
@@ -800,16 +803,19 @@ test("UW Bioengineering runtime normalization preserves parser-backed source row
     ].map((courseCode) => String(courseCode).toUpperCase().replace(/\s+/g, " ").trim())
   );
 
-  assert.ok(
-    checklistItems.some(
-      (item) =>
-        item.title === "CSE 121 or 160 plus BIOEN 217" &&
-        item.sourceUrl ===
-          "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/" &&
-        item.generatedFromParser === true &&
-        (item.grcCourses ?? []).includes("CS 121")
-    )
+  const programmingItem = checklistItems.find(
+    (item) => item.title === "Programming – Choose one option (4 credits)"
   );
+  const cseBioenOption = programmingItem?.requirementGroup?.options.find(
+    (option) => option.label === "CSE 121 or 160 plus BIOEN 217"
+  );
+  assert.equal(
+    programmingItem?.sourceUrl,
+    "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/"
+  );
+  assert.equal(programmingItem?.generatedFromParser, true);
+  assert.equal(programmingItem?.requirementGroup?.requirementType, "choose_credits");
+  assert.ok(cseBioenOption?.grcMatches.includes("CS 121"));
   const approvedEngineeringElectiveBucket = (pathwayPlan.requirementGroups ?? []).find(
     (group) =>
       /Approved Engineering Electives \(9-12 credits\)/.test(group.label) &&
@@ -831,7 +837,8 @@ test("UW Bioengineering runtime normalization preserves parser-backed source row
     ),
     false
   );
-  assert.ok(generatedCourseCodes.has("CS 121"));
+  assert.ok(generatedCourseCodes.has("ENGR 250"));
+  assert.equal(generatedCourseCodes.has("CS 121"), false);
   assert.equal(generatedCourseCodes.has("CS 122"), false);
   assert.equal(generatedCourseCodes.has("ENGR& 214"), false);
 });
@@ -889,6 +896,48 @@ test("Bothell Elementary Education excludes graduate concentration and guidance 
     pathwayLabels.filter((label) => /\b(?:CECL|LEDE|If Adding)\b/i.test(label)),
     [],
     "Expected graduate concentration and guidance-only pathway labels to stay hidden."
+  );
+});
+
+test("Bothell Developmental and Youth Studies excludes graduate navigation pathways", () => {
+  const planId = "uw-bothell-developmental-and-youth-studies";
+  const sourcePlan = source.getTransferPlannerMajorPlan(planId);
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan(planId);
+  assert.ok(sourcePlan);
+  assert.ok(runtimePlan);
+
+  assert.deepEqual(source.getTransferPlannerPathwaysForPlan(sourcePlan), []);
+  assert.deepEqual(
+    studentRuntime.getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan),
+    []
+  );
+});
+
+test("Tacoma Interdisciplinary Arts and Sciences preserves declared concentrations beside its BA route", () => {
+  const planId = "uw-tacoma-interdisciplinary-arts-and-sciences";
+  const sourcePlan = source.getTransferPlannerMajorPlan(planId);
+  const runtimePlan = studentRuntime.getTransferPlannerMajorPlan(planId);
+  const expectedPathwayIds = [
+    "ba-route",
+    "global-studies-concentration",
+    "individually-designed-concentration",
+  ];
+  assert.ok(sourcePlan);
+  assert.ok(runtimePlan);
+
+  assert.deepEqual(
+    source
+      .getTransferPlannerPathwaysForPlan(sourcePlan)
+      .map((pathway) => pathway.id)
+      .sort(),
+    expectedPathwayIds
+  );
+  assert.deepEqual(
+    studentRuntime
+      .getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)
+      .map((pathway) => pathway.id)
+      .sort(),
+    expectedPathwayIds
   );
 });
 
@@ -1304,7 +1353,7 @@ test("Compound sequence audit does not treat normal organic chemistry sequence c
   assert.notEqual(organicAudit?.issue, "standalone-lab-component-scheduled");
 });
 
-test("Runtime option audit ignores local GRC prerequisites when inferring UW option selection", () => {
+test("Runtime option audit ignores local GRC prerequisites for required alternative slots", () => {
   const plan = source.getTransferPlannerMajorPlan("uw-tacoma-electrical-engineering");
   assert.ok(plan);
   const completedCourses = [];
@@ -1338,17 +1387,24 @@ test("Runtime option audit ignores local GRC prerequisites when inferring UW opt
     completedCourses,
     selectedRequirementOptionIdsByGroup: {},
   });
-  const calculus = rows.find((row) => row.requirementTitle === "Calculus I");
-  const physics = rows.find((row) => row.requirementTitle === "Physics I");
+  const calculus = (plan.requirementGroups ?? []).find((group) =>
+    /^Calculus I\b/.test(group.sourceHeading ?? "")
+  );
+  const physics = (plan.requirementGroups ?? []).find((group) =>
+    /^Physics I\b/.test(group.sourceHeading ?? "")
+  );
+  const scheduledLabels = suggestedPlan.flatMap((quarter) =>
+    (quarter.courses ?? []).map((course) => course.label)
+  );
 
-  assert.deepEqual(calculus?.scheduledOptionIds, [
-    "uw-tacoma-electrical-engineering:requirement-option:math-124",
-  ]);
-  assert.equal(calculus?.issue, "none");
-  assert.deepEqual(physics?.scheduledOptionIds, [
-    "uw-tacoma-electrical-engineering:requirement-option:phys-121",
-  ]);
-  assert.equal(physics?.issue, "none");
+  assert.equal(calculus?.requirementType, "all_required");
+  assert.ok(calculus?.options[0]?.grcMatches.includes("MATH& 151"));
+  assert.equal(physics?.requirementType, "all_required");
+  assert.ok(physics?.options[0]?.grcMatches.includes("PHYS& 221"));
+  assert.ok(scheduledLabels.includes("MATH& 151"));
+  assert.ok(scheduledLabels.includes("PHYS& 221"));
+  assert.equal(rows.some((row) => row.requirementGroupId === calculus?.id), false);
+  assert.equal(rows.some((row) => row.requirementGroupId === physics?.id), false);
 });
 
 test("SBSE current-source filter preserves selected physics sequence atoms", () => {
@@ -2151,6 +2207,8 @@ test("Bothell Biology admissions prep materializes recovered support-list transf
       (item) =>
         item.sourceRole === "admissions-preparation" &&
         item.sourceUrl === "https://www.uwb.edu/stem/undergraduate/majors/biology/admissions" &&
+        item.pathwayId == null &&
+        item.routeId == null &&
         item.canCreateScheduleRow === true
     ),
     true
@@ -2485,21 +2543,25 @@ test("Bothell STEM campus aliases are student-visible in transfer-only schedules
   }
 });
 
-test("Single-equivalency audit accepts official Bothell campus aliases through canonical UW targets", () => {
+test("Single-equivalency audit accepts official campus aliases through canonical UW targets", () => {
   const cases = [
-    ["MATH& 151", "STMATH 124"],
-    ["MATH 240", "STMATH 208"],
-    ["CHEM& 161", "BCHEM 143"],
-    ["CHEM& 162", "BCHEM 153"],
-    ["PHYS& 221", "BPHYS 121"],
+    ["MATH& 151", "STMATH 124", "uw-bothell"],
+    ["MATH 240", "STMATH 208", "uw-bothell"],
+    ["CHEM& 161", "BCHEM 143", "uw-bothell"],
+    ["CHEM& 162", "BCHEM 153", "uw-bothell"],
+    ["PHYS& 221", "BPHYS 121", "uw-bothell"],
+    ["MATH& 151", "TMATH 124", "uw-tacoma"],
+    ["MATH 240", "TMATH 208", "uw-tacoma"],
+    ["PHYS& 221", "TPHYS 121", "uw-tacoma"],
   ];
 
-  for (const [grcCourse, uwEquivalent] of cases) {
+  for (const [grcCourse, uwEquivalent, campusId] of cases) {
     const row = coverageAudit.buildSingleEquivalencyAuditRowForTest({
       grcCourse,
       uwEquivalent,
-      usedByOwnerId: "uw-bothell-alias-regression",
-      usedByRequirement: "Bothell campus alias regression",
+      campusId,
+      usedByOwnerId: "uw-campus-alias-regression",
+      usedByRequirement: "Campus alias regression",
       mappedAs: "option",
     });
 
@@ -2663,6 +2725,16 @@ test("UW Seattle Chemistry ACS route schedules source-backed sequence-choice pat
   const plan = studentRuntime.resolveTransferPlannerMajorPlan(basePlan, "acs-certified-bs-route");
   assert.ok(plan, "Expected UW Seattle Chemistry ACS route runtime plan.");
 
+  const laboratoryRequirement = plan.beforeEnrollmentChecklist?.find((item) =>
+    /one credit of laboratory/i.test(item.title)
+  );
+  assert.equal(
+    laboratoryRequirement?.requirementGroup?.requirementType,
+    "choose_credits",
+    "Expected the one-credit laboratory bucket to remain a credit choice, not a physics sequence."
+  );
+  assert.equal(laboratoryRequirement?.requirementGroup?.minCredits, 1);
+
   const visibleCourseCodes = getTransferOnlyVisibleCourseCodes(plan);
   for (const expectedCourseCode of [
     "PHYS& 221",
@@ -2688,6 +2760,102 @@ test("UW Seattle Chemistry ACS route schedules source-backed sequence-choice pat
     .buildCoverageRowsForOwnerForTest(owner)
     .filter((row) => row.issueType);
   assert.deepEqual(issues, []);
+});
+
+test("Physics credit buckets retain credit-based runtime shapes", () => {
+  const expectations = [
+    {
+      planId: "uw-bothell-earth-system-science",
+      title: "Introductory Physics (5 credits)",
+      groupId:
+        "uw-bothell-earth-system-science:requirement-group:introductory-physics-5-credits-choose-credits-5-5",
+      minCredits: 5,
+      maxCredits: 5,
+    },
+    {
+      planId: "uw-seattle-astronomy",
+      title: "Physics Electives",
+      groupId:
+        "uw-seattle-astronomy:requirement-group:physics-electives-choose-credits-6-6",
+      minCredits: 6,
+      maxCredits: 6,
+    },
+    {
+      planId: "uw-seattle-biology",
+      title: "Two quarters of physics (8-10 credits): one of the following",
+      groupId:
+        "uw-seattle-biology:requirement-group:two-quarters-of-physics-8-10-credits-one-of-the-following-choose-credits-8-10",
+      minCredits: 8,
+      maxCredits: 10,
+    },
+    {
+      planId: "uw-seattle-chemical-engineering",
+      resolvedRuntimeKey: "uw-seattle-chemical-engineering::standard-option",
+      title: "Physics (15 credits)",
+      groupId:
+        "uw-seattle-chemical-engineering:requirement-group:physics-15-credits-choose-credits-15-15",
+      minCredits: 15,
+      maxCredits: 15,
+    },
+    {
+      planId: "uw-seattle-chemistry",
+      title: "One credit of laboratory",
+      groupId:
+        "uw-seattle-chemistry:requirement-group:one-credit-of-laboratory-choose-credits-1-1",
+      minCredits: 1,
+      maxCredits: 1,
+    },
+  ];
+
+  for (const expectation of expectations) {
+    const basePlan = studentRuntime.getTransferPlannerMajorPlan(expectation.planId);
+    const plan = expectation.resolvedRuntimeKey
+      ? generatedStudentRuntime.getTransferPlannerRuntimeResolvedMajorPlanByKey(
+          expectation.resolvedRuntimeKey
+        )
+      : basePlan;
+    assert.ok(plan, `Expected runtime plan ${expectation.planId}.`);
+    const checklist = [
+      ...(plan.applicationChecklist ?? []),
+      ...(plan.beforeEnrollmentChecklist ?? []),
+      ...(plan.stayAtGrcChecklist ?? []),
+    ];
+    const item = checklist.find(
+      (candidate) => candidate.requirementGroup?.id === expectation.groupId
+    );
+    assert.ok(item, `Expected ${expectation.planId} to include ${expectation.title}.`);
+    assert.equal(item.requirementGroup?.requirementType, "choose_credits");
+    assert.equal(item.requirementGroup?.requirementShape, "credit-bucket");
+    assert.equal(item.requirementGroup?.minCredits, expectation.minCredits);
+    assert.equal(item.requirementGroup?.maxCredits, expectation.maxCredits);
+    assert.equal(item.requirementGroup?.satisfactionMode, "credit-based");
+    assert.equal(item.requirementGroup?.requiredCount, null);
+    assert.equal(item.requirementGroup?.selectionCount, null);
+  }
+});
+
+test("Runtime sequence choices always preserve explicit source paths", () => {
+  const malformedGroups = [];
+  for (const campusId of ["uw-seattle", "uw-bothell", "uw-tacoma"]) {
+    for (const plan of studentRuntime.getTransferPlannerStudentRuntimeMajorsForCampus(campusId)) {
+      const checklist = [
+        ...(plan.applicationChecklist ?? []),
+        ...(plan.beforeEnrollmentChecklist ?? []),
+        ...(plan.stayAtGrcChecklist ?? []),
+      ];
+      for (const item of checklist) {
+        const group = item.requirementGroup;
+        if (
+          group?.requirementType === "sequence_choice" &&
+          (group.sequencePaths ?? []).length < 2
+        ) {
+          malformedGroups.push(`${plan.id}: ${group.id ?? item.title}`);
+        }
+      }
+    }
+  }
+
+  assert.deepEqual(malformedGroups, []);
 });
 
 test("UW Seattle Psychology route choice groups are represented in transfer-only planning", () => {
@@ -2811,6 +2979,36 @@ test("Student runtime hides empty source-gap aliases without hiding variants", (
     bothellMajorIds.includes("uw-bothell-electrical-engineering"),
     "Expected Bothell Electrical Engineering to remain visible."
   );
+});
+
+test("Source-backed coverage audits canonical source owners instead of duplicate aliases", () => {
+  const ownerIds = new Set(
+    coverageAudit.buildOwnersForTest().map((owner) => owner.ownerId)
+  );
+  const nonCanonicalPlanIds = [
+    "uw-bothell-chemistry-biochemistry",
+    "uw-tacoma-computer-science-and-systems-bs",
+    "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+    "uw-tacoma-community-development-and-planning",
+    "uw-tacoma-gis-and-spatial-planning",
+  ];
+
+  for (const planId of nonCanonicalPlanIds) {
+    assert.equal(
+      [...ownerIds].some((ownerId) => ownerId === planId || ownerId.startsWith(`${planId}:`)),
+      false,
+      planId
+    );
+  }
+
+  for (const canonicalOwnerId of [
+    "uw-tacoma-computer-science-and-systems:pathway:bachelor-of-science",
+    "uw-tacoma-interdisciplinary-arts-and-sciences:pathway:individually-designed-concentration",
+    "uw-tacoma-urban-studies:pathway:pre-spring-2026-community-development-planning-option",
+    "uw-tacoma-urban-studies:pathway:pre-spring-2026-gis-spatial-planning-option",
+  ]) {
+    assert.equal(ownerIds.has(canonicalOwnerId), true, canonicalOwnerId);
+  }
 });
 
 test("Compact runtime hides Bothell option aliases when parent pathway owns the route", () => {
@@ -3959,7 +4157,12 @@ test("UW Anthropology undergraduate source requirements exclude graduate catalog
 });
 
 test("UW Applied Mathematics inline source requirements materialize beyond the calculus sequence", () => {
-  const plan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-applied-mathematics");
+  const basePlan = studentRuntime.getTransferPlannerMajorPlan("uw-seattle-applied-mathematics");
+  assert.ok(basePlan);
+  const plan = studentRuntime.resolveTransferPlannerMajorPlan(
+    basePlan,
+    "bs-option-family:data-science"
+  );
   assert.ok(plan);
 
   const blocks = studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(

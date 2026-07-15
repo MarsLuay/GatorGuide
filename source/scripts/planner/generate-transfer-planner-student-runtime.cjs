@@ -55,6 +55,10 @@ const {
 const {
   applyTransferPlannerManualSourceLinkOverride,
 } = require("../../constants/transfer-planner-source/manual-source-link-overrides");
+const {
+  TRANSFER_PLANNER_BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES,
+  getTransferPlannerCampusAliasGuideTargetCourseCodes,
+} = require("../../constants/transfer-planner-source/campus-course-aliases");
 
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/;
 const RUNTIME_EQUIVALENT_COURSE_CODE_PATTERN =
@@ -73,51 +77,8 @@ const ADMISSION_PREP_SOURCE_ROLES = new Set([
   "admission-prerequisite-source",
   "admissions-preparation",
 ]);
-const ADMISSION_PREP_GUIDE_TARGET_COURSE_ALIASES = new Map([
-  ["BBIO 180", ["BIOL 180"]],
-  ["BBIO 200", ["BIOL 200"]],
-  ["BBIO 220", ["BIOL 220"]],
-  ["BCHEM 143", ["CHEM 142"]],
-  ["BCHEM 144", ["CHEM 142"]],
-  ["BCHEM 153", ["CHEM 152"]],
-  ["BCHEM 154", ["CHEM 152"]],
-  ["BCHEM 163", ["CHEM 162"]],
-  ["BCHEM 164", ["CHEM 162"]],
-  ["BPHYS 121", ["PHYS 121"]],
-  ["BPHYS 122", ["PHYS 122"]],
-  ["BPHYS 123", ["PHYS 123"]],
-  ["CHEM 143", ["CHEM 142"]],
-  ["CHEM 145", ["CHEM 142"]],
-  ["CHEM 153", ["CHEM 152"]],
-  ["CHEM 155", ["CHEM 152"]],
-  ["CHEM 165", ["CHEM 162"]],
-  ["MATH 134", ["MATH 124"]],
-  ["MATH 135", ["MATH 125"]],
-  ["MATH 136", ["MATH 126"]],
-  ["STMATH 124", ["MATH 124"]],
-  ["STMATH 125", ["MATH 125"]],
-  ["STMATH 126", ["MATH 126"]],
-]);
-const BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES = new Map([
-  ...ADMISSION_PREP_GUIDE_TARGET_COURSE_ALIASES,
-  ["BCHEM 237", ["CHEM 237"]],
-  ["BCHEM 238", ["CHEM 238"]],
-  ["BCHEM 239", ["CHEM 239"]],
-  ["BCHEM 241", ["CHEM 241"]],
-  ["BCHEM 242", ["CHEM 242"]],
-  ["BPHYS 114", ["PHYS 114"]],
-  ["BPHYS 115", ["PHYS 115"]],
-  ["BPHYS 116", ["PHYS 116"]],
-  ["BPHYS 117", ["PHYS 117"]],
-  ["BPHYS 118", ["PHYS 118"]],
-  ["BPHYS 119", ["PHYS 119"]],
-  ["BPHYS 121", ["PHYS 121"]],
-  ["BPHYS 122", ["PHYS 122"]],
-  ["BPHYS 123", ["PHYS 123"]],
-  ["STMATH 207", ["MATH 207"]],
-  ["STMATH 208", ["MATH 208"]],
-  ["STMATH 224", ["MATH 224"]],
-]);
+const BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES =
+  TRANSFER_PLANNER_BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES;
 
 function normalizeCourseCode(value) {
   return String(value ?? "").toUpperCase().replace(/\s+/g, " ").trim();
@@ -984,25 +945,11 @@ function extractRuntimeEquivalentCourseCodesFromText(value) {
 }
 
 function getTacomaCampusAliasTargetCourseCodes(courseCode) {
-  const normalizedCourseCode = normalizeCourseCode(courseCode);
-  const mathMatch = normalizedCourseCode.match(/^TMATH\s+(\d{3}(?:\.\d+)?[A-Z]?)$/);
-  if (mathMatch) {
-    return [`MATH ${mathMatch[1]}`];
-  }
-
-  const physicsMatch = normalizedCourseCode.match(/^TPHYS\s+(\d{3}(?:\.\d+)?[A-Z]?)$/);
-  if (physicsMatch) {
-    return [`PHYS ${physicsMatch[1]}`];
-  }
-
-  return [];
+  return getTransferPlannerCampusAliasGuideTargetCourseCodes("uw-tacoma", courseCode);
 }
 
 function getBothellCampusAliasTargetCourseCodes(courseCode, block) {
-  if (block?.campusId !== "uw-bothell") {
-    return [];
-  }
-  return BOTHELL_CAMPUS_ALIAS_GUIDE_TARGET_COURSE_ALIASES.get(normalizeCourseCode(courseCode)) ?? [];
+  return getTransferPlannerCampusAliasGuideTargetCourseCodes(block?.campusId, courseCode);
 }
 
 function getRuntimeEquivalentTargetCourseCodesForParsedCourse(courseCode, block) {
@@ -1045,16 +992,13 @@ function isRuntimeAdmissionPrepRequirementSourceBlock(block) {
   );
 }
 
-function getAdmissionPrepGuideTargetCourseCodes(courseCode) {
+function getAdmissionPrepGuideTargetCourseCodes(courseCode, block) {
   const normalizedCourseCode = normalizeCourseCode(courseCode);
   if (!normalizedCourseCode) {
     return [];
   }
 
-  return uniqueStrings([
-    normalizedCourseCode,
-    ...(ADMISSION_PREP_GUIDE_TARGET_COURSE_ALIASES.get(normalizedCourseCode) ?? []),
-  ]);
+  return getRuntimeEquivalentTargetCourseCodesForParsedCourse(normalizedCourseCode, block);
 }
 
 function getAdmissionPrepSourceCourseCodesFromBlock(block) {
@@ -1271,7 +1215,10 @@ function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null, extraBlo
         continue;
       }
 
-      for (const guideTargetCourseCode of getAdmissionPrepGuideTargetCourseCodes(sourceCourseCode)) {
+      for (const guideTargetCourseCode of getAdmissionPrepGuideTargetCourseCodes(
+        sourceCourseCode,
+        block
+      )) {
         const targetCourseLevel = getCourseLevel(guideTargetCourseCode);
         if (targetCourseLevel === null || targetCourseLevel >= 300) {
           continue;
@@ -1287,7 +1234,7 @@ function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null, extraBlo
         if (existing) {
           existing.sourceCourseCodes.add(normalizeCourseCode(sourceCourseCode));
           existing.guideTargetCourseCodes.add(normalizeCourseCode(guideTargetCourseCode));
-          continue;
+          break;
         }
 
         matchesByCourseSet.set(key, {
@@ -1296,6 +1243,7 @@ function getAdmissionPrepGuideMatchesForScope(planId, pathwayId = null, extraBlo
           guideTargetCourseCodes: new Set([normalizeCourseCode(guideTargetCourseCode)]),
           grcCourses: uniqueLabels(mapping.grcCourses),
         });
+        break;
       }
     }
   }
@@ -1370,7 +1318,10 @@ function buildRuntimeSourceBackedGrcTitle(group) {
   return uniqueLabels(group.uwCourseCodes).join(", ");
 }
 
-function getSourceBackedGrcChecklistGroupsForBlock(block) {
+function getSourceBackedGrcChecklistGroupsForBlock(
+  block,
+  groupedRequirementCourseCodes = new Set()
+) {
   if (isBothellAliasSourceBackedRuntimeBlock(block)) {
     return getBothellAliasSourceBackedGrcChecklistGroupsForBlock(block);
   }
@@ -1383,7 +1334,12 @@ function getSourceBackedGrcChecklistGroupsForBlock(block) {
   for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
     const uwCourseCode = normalizeCourseCode(candidate.uwCourseCode);
     const level = getCourseLevel(uwCourseCode);
-    if (!uwCourseCode || level === null || level >= 300) {
+    if (
+      !uwCourseCode ||
+      level === null ||
+      level >= 300 ||
+      groupedRequirementCourseCodes.has(uwCourseCode)
+    ) {
       continue;
     }
 
@@ -1842,12 +1798,19 @@ function getBothellAliasSourceBackedGrcChecklistGroupsForBlock(block) {
   ]);
 }
 
-function buildSourceBackedGrcChecklistItemsForBlock(block) {
+function buildSourceBackedGrcChecklistItemsForBlock(
+  block,
+  groupedRequirementCourseCodes = new Set()
+) {
   if (!block.ok || !canRuntimeSourceBlockCreateSchedulableRows(block)) {
     return [];
   }
 
-  return getSourceBackedGrcChecklistGroupsForBlock(block).map((group, index) => {
+  const sourceBackedGroups = getSourceBackedGrcChecklistGroupsForBlock(
+    block,
+    groupedRequirementCourseCodes
+  );
+  return sourceBackedGroups.map((group, index) => {
     const mappedUwCourseCodes = [];
     const unmappedUwCourseCodes = uniqueStrings(group.unmappedUwCourseCodes ?? []);
     const ruleIds = [];
@@ -1919,7 +1882,9 @@ function buildSourceBackedGrcChecklistItemsForBlock(block) {
         .join(" "),
       sourceUrl: block.sourceUrl ?? block.primarySourceUrl ?? null,
       sourceRole: block.sourceRole ?? null,
-      sourceScope: canCreateScheduleRow ? "primary-schedulable" : "source-backed-no-public-grc-equivalent",
+      sourceScope: canCreateScheduleRow
+        ? "primary-schedulable"
+        : "source-backed-no-public-grc-equivalent",
       sourceSection: group.sourceLineHint || null,
       generatedFromParser: true,
       manualOverride: false,
@@ -1932,15 +1897,37 @@ function buildSourceBackedGrcChecklistItemsForBlock(block) {
   });
 }
 
-function getSourceBackedGrcChecklistItems(planId, pathwayId = null) {
+const SOURCE_BACKED_ATOM_REPRESENTING_REQUIREMENT_TYPES = new Set([
+  "all_required",
+  "choose_one",
+  "sequence_choice",
+]);
+
+function getSourceBackedGrcChecklistItems(planId, pathwayId = null, existingItems = []) {
   const normalizedPathwayId = normalizeRuntimePathwayId(planId, pathwayId);
-  return TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY
-    .filter(
-      (block) =>
-        block.ok &&
-        runtimeParsedBlockMatchesScope(block, planId, normalizedPathwayId)
-    )
-    .flatMap(buildSourceBackedGrcChecklistItemsForBlock);
+  const scopedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY.filter(
+    (block) =>
+      block.ok &&
+      runtimeParsedBlockMatchesScope(block, planId, normalizedPathwayId)
+  );
+  const groupedRequirementCourseCodes = new Set(
+    existingItems
+      .filter(
+        (item) =>
+          item.canCreateScheduleRow !== false &&
+          (item.requirementGroup?.options ?? []).length > 0 &&
+          SOURCE_BACKED_ATOM_REPRESENTING_REQUIREMENT_TYPES.has(
+            item.requirementGroup?.requirementType
+          )
+      )
+      .flatMap(getRuntimeItemComparisonCourseCodes)
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+
+  return scopedBlocks.flatMap((block) =>
+    buildSourceBackedGrcChecklistItemsForBlock(block, groupedRequirementCourseCodes)
+  );
 }
 
 function getRuntimeSupportListContext(block) {
@@ -2405,9 +2392,21 @@ function attachSourceBackedDegreeMapSectionsToPlan(plan) {
 }
 
 function attachSourceBackedGrcChecklistItemsToPlan(plan) {
-  const sourceBackedItems = getSourceBackedGrcChecklistItems(plan.id, null);
+  const sourceBackedItems = getSourceBackedGrcChecklistItems(plan.id, null, [
+    ...(plan.applicationChecklist ?? []),
+    ...(plan.beforeEnrollmentChecklist ?? []),
+    ...(plan.stayAtGrcChecklist ?? []),
+  ]);
   const pathways = (plan.pathways ?? []).map((pathway) => {
-    const pathwaySourceBackedItems = getSourceBackedGrcChecklistItems(plan.id, pathway.id);
+    const pathwaySourceBackedItems = getSourceBackedGrcChecklistItems(
+      plan.id,
+      pathway.id,
+      [
+        ...(pathway.applicationChecklist ?? []),
+        ...(pathway.beforeEnrollmentChecklist ?? []),
+        ...(pathway.stayAtGrcChecklist ?? []),
+      ]
+    );
     return {
       ...pathway,
       grcCourseList: mergeRuntimeGrcCourseList(pathway.grcCourseList, pathwaySourceBackedItems),
@@ -2487,6 +2486,16 @@ function attachAdmissionPrepGuideChecklistItemsToPlan(plan, selectedPathwayId = 
   };
 }
 
+const RUNTIME_SUPPORT_SOURCE_LINK_ROLES = new Set([
+  "admissions",
+  "admission-prerequisite-source",
+  "approved-course-list",
+  "elective-list",
+  "non-schedulable-course-list",
+  "support-source",
+  "upper-division-prerequisite-table",
+]);
+
 const schedulableParsedSourcePlanIds = new Set(
   TRANSFER_PLANNER_PARSED_REQUIREMENT_BLOCK_REGISTRY
     .filter((block) => block.ok && canRuntimeSourceBlockCreateSchedulableRows(block))
@@ -2512,7 +2521,7 @@ const runtimeMajorPlans = uniqueBy(
     .map(applyManualRuntimeSourceLinksToPlan)
     .map(attachSourceBackedDegreeMapSectionsToPlan)
     .map(attachSourceBackedGrcChecklistItemsToPlan)
-    .map(attachAdmissionPrepGuideChecklistItemsToPlan)
+    .map((plan) => attachAdmissionPrepGuideChecklistItemsToPlan(plan))
     .filter(
       (plan) =>
         sourceRuntimeStandalonePlanIds.has(plan.id) &&
@@ -2568,16 +2577,6 @@ function uniqueRuntimeSourceLinks(links = []) {
     (link) => link.url
   );
 }
-
-const RUNTIME_SUPPORT_SOURCE_LINK_ROLES = new Set([
-  "admissions",
-  "admission-prerequisite-source",
-  "approved-course-list",
-  "elective-list",
-  "non-schedulable-course-list",
-  "support-source",
-  "upper-division-prerequisite-table",
-]);
 
 function getRuntimeManifestSourceRetentionRule(entry) {
   if (!entry?.url) {
@@ -2970,6 +2969,19 @@ function sourceBackedDegreeMapSectionHasPathwayCounterpart(section, pathwaySecti
   return false;
 }
 
+function isPriorAdmitRuntimePathway(pathway) {
+  const pathwayText = uniqueStrings([
+    pathway?.id,
+    pathway?.label,
+    pathway?.summary,
+  ])
+    .join(" ")
+    .replace(/[_:-]+/g, " ");
+  return /\b(?:pre|before|prior\s+to)\s+(?:spring|summer|autumn|fall|winter)\s+\d{4}\b/i.test(
+    pathwayText
+  );
+}
+
 function filterResolvedRuntimePathwayDegreeMapSections(
   sections = [],
   planId,
@@ -2981,6 +2993,10 @@ function filterResolvedRuntimePathwayDegreeMapSections(
     !pathwaySections.some(isRuntimeSourceBackedDegreeMapSection)
   ) {
     return sections;
+  }
+
+  if (isPriorAdmitRuntimePathway(selectedPathway)) {
+    return sections.filter((section) => !isRuntimeSourceBackedDegreeMapSection(section));
   }
 
   return sections.filter(
@@ -3378,5 +3394,5 @@ ${serializeExport(
 `;
 
 writeGeneratedRuntimeValueFiles();
-fs.writeFileSync(OUTPUT_PATH, fileContents, "utf8");
+fs.writeFileSync(OUTPUT_PATH, `${fileContents.trimEnd()}\n`, "utf8");
 console.log(`Wrote ${OUTPUT_PATH}`);

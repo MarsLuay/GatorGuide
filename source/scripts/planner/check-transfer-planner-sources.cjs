@@ -8,6 +8,18 @@ const { ensureTmpLayout, getTmpPath } = require("../lib/tmp-layout.cjs");
 const { execFile } = require("child_process");
 const { promisify } = require("util");
 const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
+const {
+  DEFAULT_HOST_MIN_DELAY_MS,
+  DEFAULT_MAX_RETRY_DELAY_MS,
+  DEFAULT_RETRY_BASE_DELAY_MS,
+  DEFAULT_SCOPE_MIN_DELAY_MS,
+  computeBackoffDelayMs,
+  createHostRateLimiter,
+  getHostKey,
+  getRateLimitScopeKey,
+  parseRetryAfterToMs,
+  sleep,
+} = require("./lib/host-rate-limit.cjs");
 
 require("ts-node").register({
   skipProject: true,
@@ -34,18 +46,22 @@ const TMP_DIR = ensureTmpLayout(REPO_ROOT).root;
 const SNAPSHOT_PATH = getTmpPath(REPO_ROOT, "transfer-planner-source-link-snapshot.json");
 const SUMMARY_PATH = getTmpPath(REPO_ROOT, "transfer-planner-source-link-summary.md");
 const DEFAULT_TIMEOUT_MS = 20000;
-const DEFAULT_CONCURRENCY = 6;
-const HOST_MIN_DELAY_MS = 900;
-const RETRYABLE_STATUS_CODES = new Set([429]);
+const DEFAULT_CONCURRENCY = 3;
+const HOST_MIN_DELAY_MS = DEFAULT_HOST_MIN_DELAY_MS;
+const RETRYABLE_STATUS_CODES = new Set([429, 503]);
 const MAX_RETRY_ATTEMPTS = 3;
-const DEFAULT_RETRY_DELAY_MS = 5000;
-const MAX_RETRY_DELAY_MS = 60000;
+const DEFAULT_RETRY_DELAY_MS = DEFAULT_RETRY_BASE_DELAY_MS;
+const MAX_RETRY_DELAY_MS = DEFAULT_MAX_RETRY_DELAY_MS;
 const USER_AGENT = "GatorGuideTransferPlannerSourceAudit/1.0";
 const CURL_COMMAND = process.platform === "win32" ? "curl.exe" : "curl";
 const CURL_MAX_BUFFER_BYTES = 20 * 1024 * 1024;
 const execFileAsync = promisify(execFile);
-const hostThrottleTails = new Map();
-const hostNextAllowedAt = new Map();
+const hostRateLimiter = createHostRateLimiter({
+  minDelayMs: HOST_MIN_DELAY_MS,
+  scopeMinDelayMs: DEFAULT_SCOPE_MIN_DELAY_MS,
+  maxRetryDelayMs: MAX_RETRY_DELAY_MS,
+  sleep,
+});
 let playwrightModulePromise = null;
 let browserContextPromise = null;
 const PARSED_REQUIREMENT_BLOCK_BY_URL = new Map(
@@ -173,10 +189,6 @@ function sha256(buffer) {
   return crypto.createHash("sha256").update(buffer).digest("hex");
 }
 
-function sleep(delayMs) {
-  return new Promise((resolve) => setTimeout(resolve, delayMs));
-}
-
 function extractTitle(html) {
   const match = String(html ?? "").match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   if (!match) return null;
@@ -228,22 +240,7 @@ function parseHeaderBlock(rawHeaders) {
 }
 
 function parseRetryAfterMs(value) {
-  const raw = String(value ?? "").trim();
-  if (!raw) {
-    return null;
-  }
-
-  const seconds = Number.parseInt(raw, 10);
-  if (Number.isFinite(seconds) && seconds >= 0) {
-    return seconds * 1000;
-  }
-
-  const retryAt = Date.parse(raw);
-  if (Number.isFinite(retryAt)) {
-    return Math.max(0, retryAt - Date.now());
-  }
-
-  return null;
+  return parseRetryAfterToMs(value);
 }
 
 async function inspectSourceWithCurl(entry, timeoutMs) {
@@ -456,11 +453,7 @@ function buildParsedPrimaryVerificationResult(entry) {
 }
 
 function getUrlHost(value) {
-  try {
-    return new URL(value).host.toLowerCase();
-  } catch (_error) {
-    return "unknown-host";
-  }
+  return getHostKey(value);
 }
 
 function shouldRetryInspection(result) {
@@ -476,54 +469,27 @@ function shouldRetryInspection(result) {
 }
 
 function getRetryDelayMs(attemptIndex) {
-  return Math.min(
-    MAX_RETRY_DELAY_MS,
-    Math.max(DEFAULT_RETRY_DELAY_MS * 2 ** attemptIndex, HOST_MIN_DELAY_MS * Math.max(2, attemptIndex + 2))
-  );
+  return computeBackoffDelayMs({
+    attemptIndex,
+    baseDelayMs: DEFAULT_RETRY_DELAY_MS,
+    maxDelayMs: MAX_RETRY_DELAY_MS,
+    minDelayMs: HOST_MIN_DELAY_MS,
+    jitterRatio: 0,
+  });
 }
 
 function getRetryDelayForResultMs(result, attemptIndex) {
-  return Math.min(
-    MAX_RETRY_DELAY_MS,
-    Math.max(getRetryDelayMs(attemptIndex), result?.retryAfterMs ?? 0)
-  );
-}
-
-function extendHostCooldown(host, delayMs) {
-  if (!Number.isFinite(delayMs) || delayMs <= 0) {
-    return;
-  }
-
-  const nextAllowedAt = Date.now() + delayMs;
-  hostNextAllowedAt.set(host, Math.max(hostNextAllowedAt.get(host) ?? 0, nextAllowedAt));
+  return computeBackoffDelayMs({
+    attemptIndex,
+    baseDelayMs: DEFAULT_RETRY_DELAY_MS,
+    maxDelayMs: MAX_RETRY_DELAY_MS,
+    minDelayMs: HOST_MIN_DELAY_MS,
+    retryAfterMs: result?.retryAfterMs ?? 0,
+  });
 }
 
 function runWithHostThrottle(url, task) {
-  const host = getUrlHost(url);
-  const previousTail = hostThrottleTails.get(host) ?? Promise.resolve();
-  const resultPromise = previousTail.catch(() => undefined).then(async () => {
-    const now = Date.now();
-    const waitMs = Math.max(0, (hostNextAllowedAt.get(host) ?? 0) - now);
-    if (waitMs > 0) {
-      await sleep(waitMs);
-    }
-
-    try {
-      return await task(host);
-    } finally {
-      extendHostCooldown(host, HOST_MIN_DELAY_MS);
-    }
-  });
-
-  hostThrottleTails.set(
-    host,
-    resultPromise.then(
-      () => undefined,
-      () => undefined
-    )
-  );
-
-  return resultPromise;
+  return hostRateLimiter.withThrottle(url, task);
 }
 
 async function inspectSourceOnce(entry, timeoutMs) {
@@ -664,12 +630,15 @@ async function inspectSourceOnce(entry, timeoutMs) {
 }
 
 async function inspectSource(entry, timeoutMs) {
-  return runWithHostThrottle(entry.url, async (host) => {
+  return runWithHostThrottle(entry.url, async () => {
     let lastResult = null;
 
     for (let attemptIndex = 0; attemptIndex <= MAX_RETRY_ATTEMPTS; attemptIndex += 1) {
       lastResult = await inspectSourceOnce(entry, timeoutMs);
       if (!shouldRetryInspection(lastResult) || attemptIndex === MAX_RETRY_ATTEMPTS) {
+        if (lastResult?.ok) {
+          hostRateLimiter.clearRateLimitPenalty(entry.url);
+        }
         return lastResult;
       }
 
@@ -679,7 +648,7 @@ async function inspectSource(entry, timeoutMs) {
       console.log(
         `Backing off ${Math.ceil(retryDelayMs / 1000)}s before retry ${attemptIndex + 1}/${MAX_RETRY_ATTEMPTS} for ${entry.url} (${retryReason})`
       );
-      extendHostCooldown(host, retryDelayMs);
+      hostRateLimiter.noteRateLimit(entry.url, retryDelayMs);
       await sleep(retryDelayMs);
     }
 
@@ -810,14 +779,23 @@ async function main() {
     forceRefresh: args.has("--refresh-grc-materials"),
     allowSnapshotFallback: true,
   });
-  const sourceEntries = collectSourceEntries(buildExtraSourceLinks(grcPublicMaterials));
+  const sourceEntries = collectSourceEntries(buildExtraSourceLinks(grcPublicMaterials)).sort(
+    (left, right) => {
+      const scopeCompare = getRateLimitScopeKey(left.url).localeCompare(getRateLimitScopeKey(right.url));
+      if (scopeCompare !== 0) {
+        return scopeCompare;
+      }
+      return left.url.localeCompare(right.url);
+    }
+  );
 
   console.log(`Checking ${sourceEntries.length} tracked planner source URLs...`);
 
+  const concurrency = Number.parseInt(process.env.TRANSFER_PLANNER_SOURCE_CHECK_CONCURRENCY ?? "", 10);
   const currentSources = await mapWithConcurrency(
     sourceEntries,
     (entry) => inspectSource(entry, timeoutMs),
-    DEFAULT_CONCURRENCY,
+    Number.isFinite(concurrency) && concurrency > 0 ? concurrency : DEFAULT_CONCURRENCY,
     {
       progressLabel: "sources checked",
       describeItem: (entry) => entry.url,

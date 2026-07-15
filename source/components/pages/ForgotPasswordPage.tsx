@@ -32,6 +32,7 @@ const isEmailValid = (value: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value.
 export default function ForgotPasswordPage() {
   const router = useRouter();
   const back = useBack(ROUTES.login);
+  const canNavigateBack = back.canNavigateBack;
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { isDark, isGreen } = useAppTheme();
@@ -191,15 +192,17 @@ export default function ForgotPasswordPage() {
               paddingHorizontal: shellHorizontalPadding,
             }}
           >
-            <PageBackButton
-              onPress={() => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                back();
-              }}
-              label={t("auth.backToLogin")}
-              textClassName={styles.secondaryTextClass}
-              containerStyle={{ marginBottom: 28 }}
-            />
+            {canNavigateBack ? (
+              <PageBackButton
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  back();
+                }}
+                label={t("auth.backToLogin")}
+                textClassName={styles.secondaryTextClass}
+                containerStyle={{ marginBottom: 28 }}
+              />
+            ) : null}
 
             <GlassCard borderRadius={28} noPadding>
               <View className="gap-4" style={{ padding: formCardPadding }}>

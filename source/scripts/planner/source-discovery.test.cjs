@@ -4,6 +4,7 @@ const path = require("node:path");
 const test = require("node:test");
 
 const discovery = require("./discover-transfer-planner-primary-sources.cjs");
+const ownerAudit = require("./verify-transfer-planner-owner-audit.cjs");
 const parser = require("./parse-transfer-planner-requirement-sources.cjs");
 require("ts-node").register({
   skipProject: true,
@@ -41,6 +42,12 @@ const {
 const {
   labelMentionsDifferentTransferPlannerMajor,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
+const {
+  findFailedParseableRequirementSources,
+} = require("./verify-transfer-planner-source-pipeline.cjs");
+const {
+  shouldSkipTransferPlannerAutoPromotedPrimarySource,
+} = require("../../constants/transfer-planner-source/manual-source-link-overrides");
 
 const SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
 const SBSE_CATALOG_URL =
@@ -122,6 +129,45 @@ test("Primary source promotions store canonical pathway owner ids", () => {
   );
 });
 
+test("Source pipeline validation rejects canonical requirement sources that failed parsing", () => {
+  const source = {
+    ownerId: "uw-seattle-example:pathway:sample-option",
+    planId: "uw-seattle-example",
+    pathwayId: "sample-option",
+    url: "https://example.edu/sample-option/contact",
+  };
+  const failedOwner = {
+    ownerId: source.ownerId,
+    planId: source.planId,
+    pathwayId: source.pathwayId,
+    primarySourceUrl: source.url,
+    sourceUrl: source.url,
+    ok: false,
+  };
+
+  assert.deepEqual(
+    findFailedParseableRequirementSources([source], [failedOwner]),
+    [source]
+  );
+  assert.deepEqual(
+    findFailedParseableRequirementSources([source], [
+      { ...failedOwner, ok: true },
+    ]),
+    []
+  );
+  assert.deepEqual(
+    findFailedParseableRequirementSources([source], [
+      {
+        ...failedOwner,
+        ownerId: `${source.planId}:pathway:canonical-owner`,
+        ok: true,
+      },
+    ]),
+    [],
+    "A successful canonical block may cover duplicate owner aliases for the same plan/source."
+  );
+});
+
 test("Primary source promotions do not attach Asian Studies concentration pages to other JSIS majors", () => {
   const leakedPromotions = TRANSFER_PLANNER_PRIMARY_PROMOTIONS.filter((entry) => {
     const pathwayId = normalizeTransferPlannerPathwayId(entry.planId, entry.pathwayId ?? null);
@@ -193,6 +239,107 @@ test("Primary source promotions keep Bothell Physics on the major curriculum pag
   }
 });
 
+test("Manual source overrides keep canonical shared degree pages primary", () => {
+  const expectedPrimaries = [
+    [
+      "uw-seattle-business-administration",
+      null,
+      "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    ],
+    [
+      "uw-seattle-business-administration",
+      "ba-route",
+      "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    ],
+    [
+      "uw-bothell-biology",
+      null,
+      "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+    ],
+    [
+      "uw-bothell-data-visualization-ba",
+      null,
+      "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+    ],
+    [
+      "uw-bothell-data-visualization-bs",
+      null,
+      "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+    ],
+  ];
+
+  for (const [planId, pathwayId, url] of expectedPrimaries) {
+    const primary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+      planId,
+      pathwayId
+    );
+    assert.equal(primary?.url, url, `${planId}:${pathwayId ?? "base"}`);
+  }
+
+  const biologyUrls = sourceRegistry
+    .getTransferPlannerSourceManifestEntriesForPlan("uw-bothell-biology", null)
+    .map((entry) => entry.url);
+  assert.equal(biologyUrls.length >= 4, true);
+
+  const malformedChemE = sourceRegistry
+    .getTransferPlannerSourceManifestEntriesForPlan(
+      "uw-seattle-chemical-engineering",
+      "standard-option"
+    )
+    .filter((entry) => /electives\.html\/standard\/standard/i.test(entry.url));
+  assert.deepEqual(malformedChemE, []);
+
+  const blockedPrimaryUrls = [
+    [
+      "uw-seattle-geography",
+      "data-science-option-sample-course-plan",
+      /\/contact(?:[/?#]|$)/i,
+    ],
+    ["uw-seattle-geography", "methods-track", /\/contact(?:[/?#]|$)/i],
+    [
+      "uw-seattle-informatics",
+      "data-science-option",
+      /\/data-science-option\??$/i,
+    ],
+    [
+      "uw-seattle-law-societies-and-justice",
+      "honors-option",
+      /\/contact(?:[/?#]|$)/i,
+    ],
+  ];
+  for (const [planId, pathwayId, blockedUrlPattern] of blockedPrimaryUrls) {
+    const entries = sourceRegistry.getTransferPlannerSourceManifestEntriesForPlan(
+      planId,
+      pathwayId
+    );
+    assert.equal(
+      entries.some(
+        (entry) =>
+          entry.isPrimaryDegreeRequirementsLink && blockedUrlPattern.test(entry.url)
+      ),
+      false,
+      `${planId}:${pathwayId}`
+    );
+  }
+
+  assert.equal(
+    shouldSkipTransferPlannerAutoPromotedPrimarySource(
+      "uw-seattle-physics",
+      null,
+      "https://phys.washington.edu/undergraduate-departmental-honors-physics#gradreq"
+    ),
+    true
+  );
+  assert.equal(
+    shouldSkipTransferPlannerAutoPromotedPrimarySource(
+      "uw-seattle-physics",
+      null,
+      "https://phys.washington.edu/physics-bs-degree-requirements"
+    ),
+    false
+  );
+});
+
 test("Primary source discovery skips hidden aliases covered by parent pathways", () => {
   const owner = {
     ownerType: "major",
@@ -219,6 +366,35 @@ test("Primary source discovery skips hidden aliases covered by parent pathways",
     [],
     "Expected the covered alias to stay out of missing-primary discovery."
   );
+});
+
+test("Source discovery and owner audit skip non-canonical duplicate plan aliases", () => {
+  const nonCanonicalPlanIds = [
+    "uw-bothell-chemistry-biochemistry",
+    "uw-tacoma-computer-science-and-systems-bs",
+    "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+    "uw-tacoma-community-development-and-planning",
+    "uw-tacoma-gis-and-spatial-planning",
+  ];
+
+  for (const planId of nonCanonicalPlanIds) {
+    const targets = discovery.buildOwnerTargetsForTest({
+      includeExisting: true,
+      campusFilter: null,
+      targetPlanIds: [planId],
+    });
+    assert.deepEqual(targets, [], planId);
+    assert.equal(ownerAudit.isCanonicalSourceOwnerPlanIdForTest(planId), false, planId);
+  }
+
+  const auditedPlanIds = new Set(
+    ownerAudit.buildOwnersForTest().map((owner) => owner.planId)
+  );
+  for (const planId of nonCanonicalPlanIds) {
+    assert.equal(auditedPlanIds.has(planId), false, planId);
+  }
+  assert.equal(auditedPlanIds.has("uw-tacoma-urban-studies"), true);
+  assert.equal(auditedPlanIds.has("uw-tacoma-computer-science-and-systems"), true);
 });
 
 test("HTML requirement parsing drops Drupal cache metadata before source-section audit", () => {
@@ -1118,6 +1294,76 @@ test("Catalog credential anchors use local heading text for pathway route confli
   assert.equal(decision.suggestedPrimary?.url, selectedCredential.url);
 });
 
+test("Missing-primary discovery rejects catalog pages for a different named major", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-seattle-applied-mathematics",
+    planId: "uw-seattle-applied-mathematics",
+    pathwayId: null,
+    campusId: "uw-seattle",
+    title: "Applied Mathematics",
+    label: "Applied Mathematics",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 0,
+  });
+  const catalogCandidate = {
+    url: "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
+    anchorText: "Anthropology",
+    linkText: "Anthropology",
+    pageHeadings: ["Bachelor of Arts degree with a major in Anthropology"],
+    sourceRole: "official-catalog",
+    sourceRoleStatus: "primary",
+    parserType: "catalog-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 76,
+    confidence: "medium",
+    reasons: ["official UW General Catalog program page"],
+  };
+
+  const unrelatedDecision = discovery.buildReplacementDecision(target, [catalogCandidate]);
+  assert.equal(unrelatedDecision.action, "no-suggestion");
+  assert.equal(unrelatedDecision.suggestedPrimary, null);
+
+  const unrelatedCampusIndexCandidate = {
+    ...catalogCandidate,
+    url: "https://evans.uw.edu/undergraduate-programs/public-service-and-policy-major/",
+    anchorText: "Public Service and Policy",
+    linkText: "Public Service and Policy",
+    pageTitle: "Public Service and Policy Major",
+    pageHeadings: ["Bachelor of Arts", "Public Service and Policy Major"],
+    sourceKinds: ["campus-major-index", "discovered-anchor"],
+    sourceRole: "primary-degree-requirements",
+    parserType: "html-degree-page",
+    sameMajorIdentityScore: 0,
+    pathwayIdentityScore: 0,
+    score: 31,
+  };
+  const campusIndexDecision = discovery.buildReplacementDecision(target, [
+    unrelatedCampusIndexCandidate,
+  ]);
+  assert.equal(campusIndexDecision.action, "no-suggestion");
+  assert.equal(campusIndexDecision.suggestedPrimary, null);
+
+  const matchingCandidate = {
+    ...catalogCandidate,
+    url: "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-101.html",
+    anchorText: "Applied Mathematics",
+    linkText: "Applied Mathematics",
+    pageHeadings: [
+      "Bachelor of Science degree with a major in Applied Mathematics",
+    ],
+    sourceKinds: ["campus-major-index"],
+    sameMajorIdentityScore: 100,
+    pathwayIdentityScore: 0,
+  };
+  const matchingDecision = discovery.buildReplacementDecision(target, [matchingCandidate]);
+  assert.equal(matchingDecision.action, "add-missing-primary");
+  assert.equal(matchingDecision.suggestedPrimary?.url, matchingCandidate.url);
+});
+
 test("Official support sources are not downgraded to ignored", () => {
   const target = buildSbseTarget({
     ownerKey: "uw-seattle-environmental-engineering",
@@ -1207,6 +1453,42 @@ test("Zero-course requirement primaries are weak even without overview wording",
   assert.ok(signals.signals.some((signal) => signal.code === "no-parsed-uw-course-codes"));
   assert.equal(
     signals.signals.some((signal) => signal.code === "primary-looks-overview-only"),
+    false
+  );
+});
+
+test("Incidental years in live HTML requirements do not make the source year-specific", () => {
+  const signals = discovery.buildWeakExistingPrimarySignals({
+    primarySource: {
+      label: "Physics B.S. Degree Requirements",
+      url: "https://phys.washington.edu/physics-bs-degree-requirements",
+    },
+    parsedBlock: {
+      ok: true,
+      extractedTitle: "Physics B.S. Degree Requirements",
+      extractedHeadings: [
+        "Biological Physics Track (No longer accepting new students as of Spring 2024)",
+      ],
+      requirementCueLines: [
+        "Common requirements for all Physics B.S. tracks (52 credits)",
+      ],
+      chooseStatements: [],
+      parsedUwCourseCodes: ["PHYS 121", "PHYS 122"],
+      qualitySignals: [],
+    },
+    runtimeGrcCourseCount: 12,
+    bestTrackId: "grc-physics",
+    trackRecommendationId: "grc-physics",
+    noPublicClassificationCount: 0,
+    ownerType: "major",
+    campusId: "uw-seattle",
+  });
+
+  assert.equal(signals.triggered, false);
+  assert.equal(
+    signals.signals.some(
+      (signal) => signal.code === "primary-source-appears-year-specific"
+    ),
     false
   );
 });
@@ -1623,8 +1905,8 @@ test("UW Bothell RN to BSN student requirements pages can auto-promote despite t
 test("Pathway-specific primary child pages can auto-promote without requirements slugs", () => {
   assert.equal(
     discovery.isAutoPromotablePrimaryCandidate({
-      url: "https://www.uwb.edu/education/undergraduate/educational-studies/cecl-concentration#content",
-      anchorText: "Skip To Content",
+      url: "https://www.uwb.edu/education/undergraduate/educational-studies/cecl-concentration#requirements",
+      anchorText: "CECL concentration requirements",
       score: 121,
       confidence: "high",
       sourceRole: "primary-degree-requirements",
@@ -1638,6 +1920,37 @@ test("Pathway-specific primary child pages can auto-promote without requirements
       ],
     }),
     true
+  );
+});
+
+test("Navigation chrome and unverified discovered links cannot auto-promote", () => {
+  const candidate = {
+    url: "https://geography.washington.edu/degree-options/methods-track/contact",
+    anchorText: "contact us",
+    linkText: "contact us",
+    score: 129,
+    confidence: "high",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-degree-page",
+    canCreateSchedulableRows: true,
+    reasons: [
+      "explicitly names the selected pathway or route",
+      "pathway-specific official child page matches the selected pathway",
+    ],
+  };
+
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(candidate), false);
+  assert.equal(
+    discovery.isAutoPromotablePrimaryCandidate({
+      ...candidate,
+      url: "https://ischool.uw.edu/programs/informatics/data-science-option",
+      anchorText: "Data Science option",
+      linkText: "Data Science option",
+      requiresVerification: true,
+      verified: false,
+    }),
+    false
   );
 });
 
@@ -1786,6 +2099,39 @@ test("Auto-promotion rejects Bothell Physics minor pages for major and pathway o
   }
 });
 
+test("Discovery rejects honors-only pages for non-honors owners", () => {
+  const baseTarget = buildSbseTarget({
+    ownerKey: "uw-seattle-physics",
+    planId: "uw-seattle-physics",
+    title: "Physics",
+    label: "Physics",
+  });
+  const honorsCandidate = {
+    url: "https://phys.washington.edu/undergraduate-departmental-honors-physics#gradreq",
+    anchorText: "Graduation Requirements",
+    pageTitle: "Undergraduate Departmental Honors in Physics",
+    pageHeadings: ["Graduation Requirements for Departmental Honors in Physics"],
+    sourceKind: "discovered-anchor",
+  };
+
+  const baseScore = discovery.scoreCandidate(baseTarget, honorsCandidate);
+  assert.equal(baseScore.sourceRole, "ignored");
+  assert.equal(baseScore.canCreateSchedulableRows, false);
+
+  const honorsTarget = buildSbseTarget({
+    ownerType: "pathway",
+    ownerKey: "uw-seattle-physics:pathway:departmental-honors",
+    planId: "uw-seattle-physics",
+    pathwayId: "departmental-honors",
+    title: "Physics",
+    label: "Departmental Honors",
+  });
+  assert.notEqual(
+    discovery.scoreCandidate(honorsTarget, honorsCandidate).sourceRole,
+    "ignored"
+  );
+});
+
 test("Auto-promotion rejects study-abroad support pages under degree-requirement paths", () => {
   const target = discovery.buildOwnerTargetRecord({
     ownerType: "major",
@@ -1825,6 +2171,41 @@ test("Source manifest prefers CompE degree PDF over Study Abroad support page", 
   assert.equal(primary?.role, "degree-requirements");
   assert.equal(studyAbroad?.role, "support-source");
   assert.equal(studyAbroad?.isPrimaryDegreeRequirementsLink, false);
+});
+
+test("Pathway requirement links are primary source-manifest entries", () => {
+  for (const pathwayId of ["general-history-option", "global-history-option"]) {
+    const entries = sourceRegistry.getTransferPlannerSourceManifestEntriesForPlan(
+      "uw-tacoma-history",
+      pathwayId
+    );
+    const requirements = entries.find((entry) =>
+      new RegExp(`/${pathwayId.replace(/-option$/, "")}-?option(?:[/?#]|$)`, "i").test(
+        entry.url
+      )
+    );
+
+    assert.equal(requirements?.role, "degree-requirements");
+    assert.equal(requirements?.parserType, "html-degree-page");
+    assert.equal(requirements?.isPrimaryDegreeRequirementsLink, true);
+  }
+});
+
+test("Inferred pathway children never treat file-like URLs as directories", () => {
+  assert.deepEqual(
+    discovery.buildHubChildCandidateUrlsForTest(
+      "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html/standard",
+      ["standard", "standard-option"]
+    ),
+    []
+  );
+  assert.deepEqual(
+    discovery.buildHubChildCandidateUrlsForTest(
+      "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
+      ["standard", "standard-option"]
+    ),
+    []
+  );
 });
 
 test("Requirement parser keeps CompE approved-list support source parseable", () => {
@@ -4063,6 +4444,42 @@ test("Parser extracts option replacement groups from section headings instead of
   );
 });
 
+test("Historical support sections cannot create current option replacements", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Nanoscience and Molecular Engineering Option",
+    planId: "uw-seattle-materials-pattern-fixture",
+    pathwayId: "nme-option",
+    ownerId: "uw-seattle-materials-pattern-fixture:pathway:nme-option",
+    ownerTitle: "Materials Science and Engineering - NME Option",
+    courseCodes: ["MSE 101", "NME 220"],
+    headings: [
+      "Degree Requirements",
+      "For students admitted before Spring 2026",
+      "Nanoscience and Molecular Engineering (NME) Option",
+    ],
+    snapshotLines: [
+      "Degree Requirements",
+      "MSE 101 (5 credits)",
+      "For students admitted before Spring 2026",
+      "Nanoscience and Molecular Engineering (NME) Option",
+      "Students complete all MSE degree requirements except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective requirement, NME Option students complete the 19 credit NME Core and Elective Requirements below.",
+      "NME core (4 credits)",
+      "NME 220 (4 credits)",
+    ],
+  });
+
+  assert.ok(parsedBlock.parsedUwCourseCodes.includes("MSE 101"));
+  assert.equal(parsedBlock.parsedUwCourseCodes.includes("NME 220"), false);
+  assert.equal(parsedBlock.parsedRequirementReplacements.length, 0);
+  assert.equal(
+    parsedBlock.parsedRequirementGroups.some(
+      (group) => group.detectedOptionCue === "option replacement"
+    ),
+    false
+  );
+});
+
 test("Parser prefers focused pathway child HTML over merging a broad parent source", () => {
   const entry = {
     ownerType: "pathway",
@@ -4178,7 +4595,20 @@ test("Parser extracts sectioned course groups from source headings without a pla
   assert.equal(engineeringGroup.requirementType, "choose_credits");
   assert.equal(engineeringGroup.minCredits, 8);
   assert.ok(engineeringGroup.options.some((option) => option.uwCourses.includes("AA 260")));
+  assert.ok(engineeringGroup.options.some((option) => option.uwCourses.includes("BIOEN 215")));
   assert.ok(engineeringGroup.options.some((option) => option.uwCourses.includes("NME 220")));
+  assert.equal(
+    engineeringGroup.options.find((option) => option.uwCourses.includes("AA 260"))?.credits,
+    4
+  );
+  assert.equal(
+    engineeringGroup.options.find((option) => option.uwCourses.includes("BIOEN 215"))?.credits,
+    3
+  );
+  assert.equal(
+    engineeringGroup.options.find((option) => option.uwCourses.includes("NME 220"))?.credits,
+    4
+  );
 
   assert.ok(mseTechnicalGroup, "Expected the MSE 400-level list to become a credit group.");
   assert.equal(mseTechnicalGroup.minCredits, 6);
@@ -4282,6 +4712,177 @@ test("Parser ignores graduate sectioned course lists for undergraduate requireme
   assert.equal(mixedCatalogCodes.has("ANTH 550"), false);
   assert.equal(mixedCatalogCodes.has("ANTH 551"), false);
   assert.equal(mixedCatalogCodes.has("BIOA 525"), false);
+});
+
+test("Parser keeps repeated Tacoma alternative slots required and strips constraint examples", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Tacoma Computer Engineering requirements",
+    planId: "uw-tacoma-computer-engineering",
+    ownerId: "uw-tacoma-computer-engineering",
+    ownerTitle: "Computer Engineering",
+    courseCodes: [
+      "TMATH 124",
+      "MATH 124",
+      "TMATH 125",
+      "MATH 125",
+      "TMATH 126",
+      "MATH 126",
+      "TPHYS 121",
+      "PHYS 121",
+      "TPHYS 122",
+      "PHYS 122",
+      "TCSS 142",
+      "CSE 121",
+      "CSE 122",
+      "CSE 142",
+      "TCSS 143",
+      "CSE 123",
+      "CSE 143",
+    ],
+    snapshotLines: [
+      "Calculus I (TMATH 124 or MATH 124), Calculus II (TMATH 125 or MATH 125), Calculus III (TMATH 126 or MATH 126) (check the equivalency guide to see if calculus IV is needed)",
+      "T PHYS 121 or PHYS 121 and T PHYS 122 or PHYS 122",
+      "TCSS 142 or CSE 121 or CSE 122* or CSE 142 or equivalent (*CSE 122 may be used to satisfy either TCSS 142 or TCSS 143 but not both.)",
+      "TCSS 143 or CSE 122* or CSE 123 or CSE 143 or equivalent (*CSE 122 may be used to satisfy either TCSS 142 or TCSS 143 but not both.)",
+    ],
+  });
+
+  const repeatedSlots = parsedBlock.parsedRequirementGroups.filter(
+    (group) => group.subcategory === "required-alternative-slot"
+  );
+  assert.equal(repeatedSlots.length, 5);
+  assert.deepEqual(
+    repeatedSlots.map((group) => [
+      ...(group.options[0]?.uwCourses ?? []),
+      ...(group.options[0]?.equivalentUwCourseCodes ?? []),
+    ]),
+    [
+      ["TMATH 124", "MATH 124"],
+      ["TMATH 125", "MATH 125"],
+      ["TMATH 126", "MATH 126"],
+      ["TPHYS 121", "PHYS 121"],
+      ["TPHYS 122", "PHYS 122"],
+    ]
+  );
+  assert.equal(repeatedSlots.every((group) => group.requirementType === "all_required"), true);
+
+  const programmingGroups = parsedBlock.parsedRequirementGroups.filter((group) =>
+    /^TCSS 14[23] or/i.test(group.sourceRowText ?? "")
+  );
+  const programmingCourseSets = programmingGroups.map((group) =>
+    new Set(group.options.flatMap((option) => option.uwCourses ?? []))
+  );
+  assert.equal(programmingCourseSets.length, 2);
+  assert.deepEqual(
+    programmingCourseSets[0],
+    new Set(["TCSS 142", "CSE 121", "CSE 122", "CSE 142"])
+  );
+  assert.deepEqual(
+    programmingCourseSets[1],
+    new Set(["TCSS 143", "CSE 122", "CSE 123", "CSE 143"])
+  );
+});
+
+test("Parser keeps Biology three-way chemistry alternatives inside their sequence", () => {
+  const chemistrySequenceLine =
+    "CHEM 142 (or CHEM 143 or CHEM 145), CHEM 152 (or CHEM 153 or CHEM 155), CHEM 223, CHEM 224";
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "UW Biology catalog requirements",
+    planId: "uw-seattle-biology",
+    ownerId: "uw-seattle-biology",
+    ownerTitle: "Biology",
+    courseCodes: [
+      "CHEM 120",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 162",
+      "CHEM 220",
+      "CHEM 221",
+      "CHEM 223",
+      "CHEM 224",
+      "CHEM 237",
+      "CHEM 238",
+      "CHEM 239",
+      "CHEM 257",
+      "CHEM 258",
+      "CHEM 259",
+    ],
+    snapshotLines: [
+      "One of the following general and organic chemistry sequences (12-27 credits):",
+      "CHEM 120, CHEM 220, and CHEM 221",
+      chemistrySequenceLine,
+      "CHEM 142, CHEM 152, CHEM 162, CHEM 237, CHEM 238, CHEM 239",
+      "CHEM 143, CHEM 153, CHEM 237, CHEM 238, CHEM 239",
+      "CHEM 257, CHEM 258, CHEM 259",
+    ],
+  });
+
+  const chemistrySequence = parsedBlock.parsedRequirementGroups.find(
+    (group) =>
+      group.requirementType === "sequence_choice" &&
+      group.sequencePaths.some((path) => path.sourceText === chemistrySequenceLine)
+  );
+  assert.ok(chemistrySequence);
+  assert.deepEqual(
+    chemistrySequence.sequencePaths.find((path) => path.sourceText === chemistrySequenceLine)
+      ?.uwCourses,
+    [
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 223",
+      "CHEM 224",
+    ]
+  );
+  assert.deepEqual(
+    parsedBlock.parsedRequirementGroups.filter(
+      (group) =>
+        group.subcategory === "required-alternative-slot" &&
+        group.sourceRowText === chemistrySequenceLine
+    ),
+    []
+  );
+
+  const standaloneRequiredList = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Required supporting chemistry courses",
+    planId: "uw-seattle-biology-chemistry-fixture",
+    ownerId: "uw-seattle-biology-chemistry-fixture",
+    ownerTitle: "Biology chemistry fixture",
+    courseCodes: [
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "CHEM 152",
+      "CHEM 153",
+      "CHEM 155",
+      "CHEM 223",
+      "CHEM 224",
+    ],
+    snapshotLines: [chemistrySequenceLine],
+  });
+  const standaloneSlots = standaloneRequiredList.parsedRequirementGroups.filter(
+    (group) => group.subcategory === "required-alternative-slot"
+  );
+  assert.deepEqual(
+    standaloneSlots.map((group) => [
+      ...(group.options[0]?.uwCourses ?? []),
+      ...(group.options[0]?.equivalentUwCourseCodes ?? []),
+    ]),
+    [
+      ["CHEM 142", "CHEM 143", "CHEM 145"],
+      ["CHEM 152", "CHEM 153", "CHEM 155"],
+    ]
+  );
 });
 
 test("Parser extracts split either-or course rows as alternatives without a major-specific branch", () => {
@@ -6913,6 +7514,26 @@ test("Tacoma Computer Engineering runtime uses GRC mappings", () => {
     "Expected a programming GRC equivalent."
   );
   assert.ok(
+    checklistItems.some((item) =>
+      (item.requirementGroup?.options ?? []).some(
+        (option) =>
+          [...(option.uwCourses ?? []), ...(option.equivalentUwCourseCodes ?? [])].some(
+            (courseCode) => ["TCSS 143", "CSE 143"].includes(courseCode)
+          ) && (option.grcMatches ?? []).includes("CS 145")
+      )
+    ),
+    "Expected CS 145 to remain available inside the second programming choice group."
+  );
+  assert.equal(
+    checklistItems.some(
+      (item) =>
+        String(item.id ?? "").startsWith("source-backed-grc-") &&
+        /TCSS 142|TCSS 143/i.test(item.title ?? "")
+    ),
+    false,
+    "Expected grouped programming choices not to be duplicated as direct required rows."
+  );
+  assert.ok(
     checklistItems.some(
       (item) =>
         /Electrical Circuits/i.test(item.title) &&
@@ -6992,6 +7613,23 @@ test("Planner verify step plan includes parser, source-discovery, and source-sco
   assert.ok(stepPlan.labels.includes("Audit UW-GRC mapping regressions"));
 });
 
+test("Planner refresh help exits without starting the refresh pipeline", () => {
+  const refreshScriptPath = path.resolve(
+    __dirname,
+    "refresh-transfer-planner-sources.cjs"
+  );
+  const result = spawnSync(process.execPath, [refreshScriptPath, "--help"], {
+    cwd: path.resolve(__dirname, "..", ".."),
+    encoding: "utf8",
+    timeout: 5000,
+  });
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /^Usage:/);
+  assert.match(result.stdout, /--only-section <id>/);
+  assert.doesNotMatch(result.stdout, /Starting transfer planner refresh pipeline/);
+});
+
 test("Full planner refresh reclassifies source gaps after requirement parsing before validation", () => {
   const refreshScriptPath = path.resolve(
     __dirname,
@@ -7016,6 +7654,42 @@ test("Full planner refresh reclassifies source gaps after requirement parsing be
   assert.ok(fingerprintIndex >= 0);
   assert.ok(gapIndex > fingerprintIndex);
   assert.ok(validationIndex > gapIndex);
+});
+
+test("Standalone requirement parsing prepares omitted source-audit validation inputs", () => {
+  const refreshScriptPath = path.resolve(
+    __dirname,
+    "refresh-transfer-planner-sources.cjs"
+  );
+  const result = spawnSync(
+    process.execPath,
+    [
+      refreshScriptPath,
+      "--only-section",
+      "requirement-parsing",
+      "--target-plan-id",
+      "uw-seattle-biology",
+      "--print-step-plan-json",
+    ],
+    {
+      cwd: path.resolve(__dirname, "..", ".."),
+      encoding: "utf8",
+    }
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+
+  const stepPlan = JSON.parse(result.stdout);
+  const prerequisiteIndex = stepPlan.labels.indexOf(
+    "Prepare source-audit validation prerequisites"
+  );
+  const parserIndex = stepPlan.labels.indexOf("Parse UW major requirement sources");
+  const validationIndex = stepPlan.labels.indexOf("Validate source pipeline invariants");
+
+  assert.equal(stepPlan.selectedSectionIds.join(","), "requirement-parsing");
+  assert.ok(prerequisiteIndex >= 0);
+  assert.ok(parserIndex > prerequisiteIndex);
+  assert.ok(validationIndex > parserIndex);
 });
 
 test("Generated registry audit passes protected source-to-runtime owners", () => {

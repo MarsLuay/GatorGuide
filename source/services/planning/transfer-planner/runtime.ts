@@ -15528,6 +15528,7 @@ function allocateQuarterCourses({
   completedCourseCodes,
   preferredQuarterKind,
   includeSummerQuarter,
+  preferredCourseLoad = 3,
 }: {
   seedCourses?: PendingSuggestedCourse[];
   essentialCorePool: PendingSuggestedCourse[];
@@ -15538,9 +15539,15 @@ function allocateQuarterCourses({
   completedCourseCodes: Set<string>;
   preferredQuarterKind?: PlanningQuarterKind | null;
   includeSummerQuarter?: boolean;
+  preferredCourseLoad?: number;
 }) {
   const courses = [...buildSeedCoursesForQuarter(seedCourses, completedCourseCodes)];
-  const quarterCourseCap = preferredQuarterKind === "Summer" ? 1 : 3;
+  const normalizedPreferredLoad = Math.max(1, Math.min(4, Math.round(Number(preferredCourseLoad) || 3)));
+  // Summer stays lighter than the academic-year preferred load.
+  const quarterCourseCap =
+    preferredQuarterKind === "Summer"
+      ? Math.min(2, normalizedPreferredLoad)
+      : normalizedPreferredLoad;
   const isEnglishGeneralEducationCourse = (course: PendingSuggestedCourse) =>
     course.explicitCourseCodes.some((courseCode) => /^ENGL(?:\b|&)/i.test(normalizeCourseCode(courseCode)));
   const isOptionGroupCourse = (course: PendingSuggestedCourse) =>
@@ -15561,7 +15568,9 @@ function allocateQuarterCourses({
   const getGenEdLikeCount = (items: PendingSuggestedCourse[]) =>
     getPlaceholderCount(items) + items.filter((item) => isEnglishGeneralEducationCourse(item)).length;
   const shouldBlendFillerThisQuarter = !seedCourses?.length && fillerPool.length > 0;
-  const mainCourseTarget = shouldBlendFillerThisQuarter ? 2 : 3;
+  const mainCourseTarget = shouldBlendFillerThisQuarter
+    ? Math.max(1, quarterCourseCap - 1)
+    : quarterCourseCap;
   const getMainCourseTarget = () => mainCourseTarget;
   const getNextQuarterKind = (kind: PlanningQuarterKind) => {
     switch (kind) {
@@ -16933,8 +16942,34 @@ export function buildSuggestedQuarterPlan(input: {
   includeSummerQuarter?: boolean;
   includeStemPrepCourses?: boolean;
   selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  preferredCourseLoad?: number | null;
+  intendedTransferQuarterId?: string | null;
 }) {
   const includeSummerQuarter = input.includeSummerQuarter === true;
+  const preferredCourseLoad = Math.max(
+    1,
+    Math.min(4, Math.round(Number(input.preferredCourseLoad) || 3))
+  );
+  const intendedTransferSlot = (() => {
+    const raw = String(input.intendedTransferQuarterId ?? "")
+      .trim()
+      .toLowerCase()
+      .replace(/\bautumn\b/g, "fall");
+    const match =
+      raw.match(/^(20\d{2})[-_ ]?(winter|spring|summer|fall)$/) ||
+      raw.match(/^(winter|spring|summer|fall)[-_ ]?(20\d{2})$/);
+    if (!match) return null;
+    if (match[1].startsWith("20")) {
+      return {
+        year: Number(match[1]),
+        kind: (match[2].charAt(0).toUpperCase() + match[2].slice(1)) as PlanningQuarterKind,
+      };
+    }
+    return {
+      year: Number(match[2]),
+      kind: (match[1].charAt(0).toUpperCase() + match[1].slice(1)) as PlanningQuarterKind,
+    };
+  })();
   const includeStemPrepCourses =
     input.includeStemPrepCourses === true ||
     (input.includeStemPrepCourses !== false && Boolean(input.plan));
@@ -17420,6 +17455,7 @@ export function buildSuggestedQuarterPlan(input: {
           completedCourseCodes: futurePlanningSatisfiedCourseCodes,
           preferredQuarterKind: currentQuarterSlot.kind,
           includeSummerQuarter,
+          preferredCourseLoad,
         })
       : [];
   recordPlannedQuarterCourseCodes(currentQuarterPlanCourses, futurePlanningSatisfiedCourseCodes);
@@ -17450,6 +17486,15 @@ export function buildSuggestedQuarterPlan(input: {
         fillerPool.length > 0
       )
     ) {
+      if (
+        intendedTransferSlot &&
+        slot.year === intendedTransferSlot.year &&
+        slot.kind === intendedTransferSlot.kind
+      ) {
+        // Transfer term itself — stop planning GRC courses here.
+        break;
+      }
+
       const courses = allocateQuarterCourses({
         essentialCorePool,
         essentialElectivePool,
@@ -17459,6 +17504,7 @@ export function buildSuggestedQuarterPlan(input: {
         completedCourseCodes: futurePlanningSatisfiedCourseCodes,
         preferredQuarterKind: slot.kind,
         includeSummerQuarter,
+        preferredCourseLoad,
       });
 
       generatedQuarterCount += 1;

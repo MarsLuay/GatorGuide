@@ -11,6 +11,7 @@ import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/An
 export default function NotFound() {
   const router = useRouter();
   const back = useBack();
+  const canNavigateBack = back.canNavigateBack;
   const { isDark, isGreen, isLight } = useAppTheme();
   const { t } = useAppLanguage();
   const { width } = useWindowDimensions();
@@ -45,9 +46,11 @@ export default function NotFound() {
             <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>{t("notFound.goHome")}</Text>
           </AnimatedChipPressable>
 
-          <AnimatedIconPressable onPress={back} containerClassName="mt-4">
-            <Text className="text-emerald-500">{t("notFound.goBack")}</Text>
-          </AnimatedIconPressable>
+          {canNavigateBack ? (
+            <AnimatedIconPressable onPress={back} containerClassName="mt-4">
+              <Text className="text-emerald-500">{t("notFound.goBack")}</Text>
+            </AnimatedIconPressable>
+          ) : null}
         </View>
       </ScrollView>
     </ScreenBackground>

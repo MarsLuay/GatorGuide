@@ -179,7 +179,7 @@ const CURL_MAX_BUFFER_BYTES = SOURCE_DOWNLOAD_MAX_BUFFER_BYTES;
 const EXPLICIT_COURSE_CODE_PATTERN =
   /\b([A-Z&][A-Za-z&]{0,19}(?:\s+[A-Z&][A-Za-z&]{0,19})?)\s*(\d{3}[A-Za-z]?)\b/g;
 const COURSE_NUMBER_CONTINUATION_PATTERN =
-  /(?:^|[,(;/+&]\s*|\b(?:or|and)\s+)(\d{3}[A-Za-z]?)(?=$|[\s,);:/+&]|(?:\s*(?:or|and)\b))/gi;
+  /(?:^|[,(;/+&]\s*|\b(?:or|and)\s+)(\d{3}[A-Za-z]?)(?=$|[\s,);:/+&\-–—]|(?:\s*(?:or|and)\b))/gi;
 const NOISY_LINE_PATTERN =
   /(?:src=|srcset=|aria-label=|title=|\.jpg\b|\.jpeg\b|\.png\b|\.svg\b|\.gif\b|^\[page\s+\d+\]\s*%pdf-|^\s*%pdf-|^\s*(?:<!--|-->|(?:pre-bubbling\s+)?cache\s+(?:contexts|tags|max-age):?$|(?:\*\s*)?(?:route\.name\.|url\.site$|languages:|user\.permissions$|theme$)))/i;
 const HTML_CONTROL_LINE_PATTERN =
@@ -309,8 +309,11 @@ const LEGACY_GRC_CODE_ALIASES = new Map([
 const LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set(["AND", "AS", "OR"]);
 const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
   "AND",
+  "APPROVED",
   "AS",
   "BOTH",
+  "CHOOSE",
+  "COMPLETE",
   "EITHER",
   "FROM",
   "IN",
@@ -320,12 +323,18 @@ const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
   "OR",
   "PREREQ",
   "PREREQUISITE",
+  "REQUIRED",
+  "SELECT",
+  "TAKE",
+  "THE",
 ]);
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES = {
   "A A": "AA",
   "A MATH": "AMATH",
   "ART H": "ARTH",
+  "B GIS": "BGIS",
+  "B HTLH": "BHLTH",
   ACCOUNTING: "ACCTG",
   ASTRONOMY: "ASTR",
   "APPLIED MATHEMATICS": "AMATH",
@@ -351,6 +360,7 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
 for (const supplementalSubject of [
   "ATMS",
   "B ECON",
+  "BGIS",
   "BCMU",
   "BSE",
   "CSSSKL",
@@ -935,6 +945,39 @@ function hasTacomaParsedPrimaryRequirementEvidence(parsed) {
   );
 }
 
+const PARSED_PRIMARY_REQUIREMENT_HEADING_PATTERN =
+  /\b(?:(?:undergraduate|bachelor(?:'s)?)\s+)?(?:major|degree|program)\s+(?:and\s+minor\s+)?requirements?\b|\b(?:required|core)\s+(?:courses?|coursework)\b/i;
+
+function shouldPromotePrimaryOverviewFromParsedEvidence(
+  entry,
+  parsedSourceRole,
+  metadataSourceRole,
+  parsed
+) {
+  if (entry?.isPrimaryDegreeRequirementsLink !== true) {
+    return false;
+  }
+
+  const resolvedSourceRole = parsedSourceRole ?? metadataSourceRole;
+  if (resolvedSourceRole !== "overview") {
+    return false;
+  }
+
+  const parsedCourseCodes = uniqueSorted(parsed?.courseCodes ?? []);
+  if (!parsedCourseCodes.length) {
+    return false;
+  }
+
+  const requirementEvidenceLines = [
+    ...(parsed?.headings ?? []),
+    ...(parsed?.requirementCueLines ?? []),
+    ...(parsed?.chooseStatements ?? []),
+  ];
+  return requirementEvidenceLines.some((line) =>
+    PARSED_PRIMARY_REQUIREMENT_HEADING_PATTERN.test(normalizeWhitespace(line))
+  );
+}
+
 function shouldUseTacomaMetadataPrimaryRole(entry, parsedSourceRole, metadataSourceRole, parsed) {
   if (entry?.campusId !== "uw-tacoma" || metadataSourceRole !== "primary-degree-requirements") {
     return false;
@@ -1092,6 +1135,14 @@ function classifyRequirementSourceRole(entry) {
 
   const manifestRole = String(entry?.role ?? "");
   const entryUrl = String(entry?.url ?? "");
+  if (manifestRole === "overview") {
+    return "overview";
+  }
+  const isUwbMajorAdmissionsPage =
+    /uwb\.edu\/[^?#]*\/majors\/[^/?#]+\/admissions\/?(?:[?#].*)?$/i.test(entryUrl);
+  if (isUwbMajorAdmissionsPage) {
+    return "admissions-preparation";
+  }
   const isDocumentWorksheetSource =
     entry?.parserType === "pdf-worksheet" || /\.(?:pdf|docx)(?:$|[?#])/i.test(entryUrl);
   const hasMajorPlanningWorksheetCue = /\bmajor planning worksheet\b/i.test(searchable);
@@ -1298,11 +1349,20 @@ function compareManifestFallbackCandidates(left, right) {
   return left.label.localeCompare(right.label);
 }
 
+const ADMISSION_PREPARATION_SOURCE_ROLES = new Set([
+  "admission-prerequisite-source",
+  "admissions-preparation",
+]);
+
 function shouldAllowAlternateManifestEntryForParse(entry, alternateEntry) {
   const sourceRole = classifyRequirementSourceRole(entry);
   const alternateRole = classifyRequirementSourceRole(alternateEntry);
   const sourceStatus = getRequirementSourceRoleStatus(sourceRole);
   const alternateStatus = getRequirementSourceRoleStatus(alternateRole);
+
+  if (ADMISSION_PREPARATION_SOURCE_ROLES.has(sourceRole)) {
+    return ADMISSION_PREPARATION_SOURCE_ROLES.has(alternateRole);
+  }
 
   if (sourceStatus !== "primary" && alternateStatus === "primary") {
     return false;
@@ -1681,6 +1741,10 @@ function extractExplicitCourseCodesFromLine(line) {
         : normalizedLine.length;
     const trailingSegment = normalizedLine.slice(currentMatchEnd, nextMatchStart);
 
+    extractedCourseCodes.push(
+      ...extractHyphenatedCourseChainContinuations(subject, match[2], trailingSegment)
+    );
+
     for (const numberMatch of trailingSegment.matchAll(COURSE_NUMBER_CONTINUATION_PATTERN)) {
       if (isStandaloneParentheticalCourseNumberContinuation(trailingSegment, numberMatch)) {
         continue;
@@ -1741,7 +1805,55 @@ function isCourseCodeMatchImmediatelyFollowedByLevel(line, match) {
   }
 
   const trailingText = String(line ?? "").slice(matchIndex + matchText.length);
-  return /^\s*(?:-\s*)?level\b/i.test(trailingText);
+  return /^\s*(?:(?:-\s*)?level\b|\+(?=\s*(?:(?:level|courses?)\b|$)))/i.test(
+    trailingText
+  );
+}
+
+function extractHyphenatedCourseChainContinuations(subject, firstNumber, trailingSegment) {
+  const numbers = [String(firstNumber ?? "").toUpperCase()];
+  let remaining = String(trailingSegment ?? "");
+
+  while (remaining) {
+    const match = remaining.match(/^\s*[-\u2013\u2014]\s*(\d{3}[A-Za-z]?)/);
+    if (!match) {
+      break;
+    }
+    numbers.push(match[1].toUpperCase());
+    remaining = remaining.slice(match[0].length);
+  }
+
+  if (numbers.length < 2) {
+    return [];
+  }
+
+  let continuationNumbers = [];
+  if (numbers.length >= 3) {
+    continuationNumbers = numbers.slice(1);
+  } else {
+    const [startNumber, endNumber] = numbers;
+    const startNumeric = Number.parseInt(startNumber, 10);
+    const endNumeric = Number.parseInt(endNumber, 10);
+    const hasLetterSuffix = /[A-Z]$/.test(startNumber) || /[A-Z]$/.test(endNumber);
+    const distance = Math.abs(endNumeric - startNumeric);
+
+    if (hasLetterSuffix && startNumeric === endNumeric) {
+      continuationNumbers = [endNumber];
+    } else if (!hasLetterSuffix && distance > 0 && distance <= 2) {
+      const direction = endNumeric > startNumeric ? 1 : -1;
+      for (
+        let numeric = startNumeric + direction;
+        numeric !== endNumeric + direction;
+        numeric += direction
+      ) {
+        continuationNumbers.push(String(numeric).padStart(3, "0"));
+      }
+    }
+  }
+
+  return continuationNumbers
+    .map((number) => normalizeExtractedCourseCode(subject, number))
+    .filter(Boolean);
 }
 
 function normalizeCourseConnectorSpacing(line) {
@@ -2549,7 +2661,7 @@ function lineBelongsToDegreeRouteComparisonSection(lines, hintLineIndex) {
 
   return !previousLines
     .slice(comparisonStartIndex + 1)
-    .some((line) => /\blearn\s+more\s+about\s+b\.?\s*s\.?\s+in\b/i.test(line));
+    .some((line) => isDegreeRouteComparisonSectionTerminator(line));
 }
 
 function isDegreeRouteComparisonSectionHeading(line) {
@@ -2557,7 +2669,13 @@ function isDegreeRouteComparisonSectionHeading(line) {
 }
 
 function isDegreeRouteComparisonSectionTerminator(line) {
-  return /\blearn\s+more\s+about\s+b\.?\s*s\.?\s+in\b/i.test(normalizeWhitespace(line));
+  const normalizedLine = normalizeWhitespace(line);
+  return (
+    /\blearn\s+more\s+about\s+b\.?\s*s\.?\s+in\b/i.test(normalizedLine) ||
+    /^(?:b\.?\s*[as]\.?(?:\s+in\s+.{1,80})?\s+requirements?|(?:degree|major|completion)\s+requirements?)\b/i.test(
+      normalizedLine
+    )
+  );
 }
 
 function isBareCourseCodeSourceHint(hint, courseCode) {
@@ -2911,12 +3029,48 @@ function getGloballyExplicitlyExcludedCourseCodes(lines, auditRows) {
 
 function extractCourseCodesFromRequirementLine(line) {
   const normalizedLine = normalizeWhitespace(line);
+  const historicalAliasCourseCodes = getHistoricalAliasCourseCodes(normalizedLine);
   return uniqueSorted(
     extractCourseCodesFromLine(normalizedLine).filter(
       (courseCode) =>
         !isCourseCodeLevelReference(normalizedLine, courseCode) &&
-        !lineExplicitlyExcludesCourseCode(normalizedLine, courseCode)
+        !lineExplicitlyExcludesCourseCode(normalizedLine, courseCode) &&
+        !historicalAliasCourseCodes.has(normalizeCourseCode(courseCode))
     )
+  );
+}
+
+function getHistoricalAliasCourseCodes(line) {
+  const normalizedLine = normalizeWhitespace(line);
+  const historicalClauses = [];
+
+  for (const match of normalizedLine.matchAll(
+    /\([^)]*\b(?:formerly|previously|renumbered)\b[^)]*\)/gi
+  )) {
+    historicalClauses.push(match[0]);
+  }
+  for (const match of normalizedLine.matchAll(
+    /\b(?:formerly|previously)(?:\s+known\s+as)?\b[^.;)]*/gi
+  )) {
+    historicalClauses.push(match[0]);
+  }
+  for (const match of normalizedLine.matchAll(/\brenumbered\s+from\b[^.;)]*/gi)) {
+    historicalClauses.push(match[0]);
+  }
+
+  const renumberedToIndex = normalizedLine.search(/\b(?:was\s+)?renumbered\s+(?:as|to)\b/i);
+  if (renumberedToIndex > 0) {
+    const priorCodes = extractCourseCodesFromLine(normalizedLine.slice(0, renumberedToIndex));
+    if (priorCodes.length) {
+      historicalClauses.push(priorCodes.at(-1));
+    }
+  }
+
+  return new Set(
+    historicalClauses
+      .flatMap((clause) => extractCourseCodesFromLine(clause))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
   );
 }
 
@@ -3198,15 +3352,67 @@ function hasHistoricalRequirementNoteCue(text) {
   );
 }
 
+function parsePriorAdmitEra(value) {
+  const normalizedText = normalizeWhitespace(String(value ?? ""))
+    .replace(/[_:-]+/g, " ")
+    .toLowerCase();
+  const match = normalizedText.match(
+    /\b(?:pre|before|prior\s+to)\s+(spring|summer|autumn|fall|winter)\s+(\d{4})\b/i
+  );
+  if (!match) {
+    return null;
+  }
+  return {
+    term: match[1].toLowerCase() === "fall" ? "autumn" : match[1].toLowerCase(),
+    year: Number.parseInt(match[2], 10),
+  };
+}
+
+function getPriorAdmitCurriculumOwnerEra(entry) {
+  return parsePriorAdmitEra(
+    `${entry?.ownerId ?? ""} ${entry?.ownerTitle ?? ""} ${entry?.pathwayId ?? ""} ${entry?.label ?? ""}`
+  );
+}
+
+function historicalRequirementSectionMatchesOwner(entry, text) {
+  const ownerEra = getPriorAdmitCurriculumOwnerEra(entry);
+  const sectionEra = parsePriorAdmitEra(text);
+  return (
+    ownerEra !== null &&
+    sectionEra !== null &&
+    ownerEra.term === sectionEra.term &&
+    ownerEra.year === sectionEra.year
+  );
+}
+
+function hasCurrentCurriculumBoundaryCue(text) {
+  const normalizedText = normalizeWhitespace(text);
+  return (
+    /^(?:current|new)\s+(?:degree\s+)?(?:curriculum|requirements?)\b/i.test(normalizedText) ||
+    /^(?:curriculum|requirements?)\s+(?:for\s+)?(?:current|new)\s+students?\b/i.test(
+      normalizedText
+    ) ||
+    /\b(?:beginning|effective)\s+(?:in\s+)?(?:spring|summer|autumn|fall|winter)\s+\d{4}\b/i.test(
+      normalizedText
+    )
+  );
+}
+
 function isInheritedHistoricalRequirementSection(inheritedRole, inheritedRoleReason, text) {
   return (
     inheritedRole === "support-metadata" &&
     /\bhistorical requirement section\b/i.test(String(inheritedRoleReason ?? "")) &&
+    !hasCurrentCurriculumBoundaryCue(text) &&
     !isUndergraduateCatalogSectionResetLine(text)
   );
 }
 
-function classifySourceSectionRoleForLine(line, inheritedRole = null, inheritedRoleReason = null) {
+function classifySourceSectionRoleForLine(
+  line,
+  inheritedRole = null,
+  inheritedRoleReason = null,
+  sourceOwner = null
+) {
   const text = normalizeSourceSectionLine(line);
   const courseCodes = extractCourseCodesFromLine(text).filter(
     (courseCode) => !isCourseCodeLevelReference(text, courseCode)
@@ -3234,6 +3440,12 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null, inheritedR
     );
 
   if (hasHistoricalRequirementSectionCue(text)) {
+    if (historicalRequirementSectionMatchesOwner(sourceOwner, text)) {
+      return {
+        sectionRole: "primary-requirement-section",
+        reason: "historical requirement section matches prior-admit curriculum owner",
+      };
+    }
     return {
       sectionRole: "support-metadata",
       reason: "historical requirement section is not current schedulable evidence",
@@ -3716,7 +3928,12 @@ function buildParserPrerequisiteFilterAuditRows(input) {
               sectionRole: "support-metadata",
               reason: "inherits graduate requirement context from nearby heading",
             }
-          : classifySourceSectionRoleForLine(normalizedLine, currentRole, currentRoleReason);
+          : classifySourceSectionRoleForLine(
+              normalizedLine,
+              currentRole,
+              currentRoleReason,
+              input
+            );
     const lineLooksLikeHeading =
       courseCodes.length === 0 &&
       (normalizedHeadings.has(normalizedLine) ||
@@ -3762,6 +3979,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
     rows.push({
       ownerId: input.ownerId,
       sourceUrl: input.sourceUrl,
+      sourceLineIndex: index,
       sectionTitle: currentSectionTitle,
       rawLine: normalizedLine,
       courseCodesExtracted: courseCodes,
@@ -3783,7 +4001,10 @@ function buildParserPrerequisiteFilterAuditRows(input) {
       ].join(" "),
     });
 
-    if (isDegreeRouteComparisonSectionTerminator(normalizedLine)) {
+    if (
+      inDegreeRouteComparisonSection &&
+      isDegreeRouteComparisonSectionTerminator(normalizedLine)
+    ) {
       inDegreeRouteComparisonSection = false;
       currentRole = "primary-requirement-section";
       currentRoleReason = null;
@@ -3795,15 +4016,12 @@ function buildParserPrerequisiteFilterAuditRows(input) {
 }
 
 function getSchedulableSourceSectionLines(snapshotLines, auditRows) {
-  const schedulableLines = new Set(
+  const decisionBySourceLineIndex = new Map(
     (auditRows ?? [])
-      .filter((row) => row.schedulable)
-      .map((row) => normalizeWhitespace(row.rawLine))
+      .filter((row) => Number.isInteger(row.sourceLineIndex))
+      .map((row) => [row.sourceLineIndex, row.schedulable === true])
   );
-  return (snapshotLines ?? []).filter((line) => {
-    const normalizedLine = normalizeSourceSectionLine(line);
-    return !normalizedLine || schedulableLines.has(normalizedLine);
-  });
+  return (snapshotLines ?? []).filter((_, index) => decisionBySourceLineIndex.get(index) !== false);
 }
 
 function filterParsedCourseCodesBySourceSections(courseCodes, auditRows) {
@@ -3921,6 +4139,14 @@ function findSourceSectionAuditRowForText(text, auditRows) {
 }
 
 function getGroupSourceSectionDecision(group, auditRows) {
+  const row = findSourceSectionAuditRowForText(
+    group.sourceRowText ?? group.sourceHeading ?? group.label,
+    auditRows
+  );
+  if (row) {
+    return row;
+  }
+
   if (group.detectedOptionCue === "option replacement") {
     return {
       detectedSectionRole: "primary-requirement-section",
@@ -3929,12 +4155,12 @@ function getGroupSourceSectionDecision(group, auditRows) {
     };
   }
 
-  const row = findSourceSectionAuditRowForText(
-    group.sourceRowText ?? group.sourceHeading ?? group.label,
-    auditRows
-  );
-  if (row) {
-    return row;
+  if (group.detectedOptionCue === "standalone course-count choice list") {
+    return {
+      detectedSectionRole: "primary-requirement-section",
+      schedulable: true,
+      reason: "standalone explicit course-count choice requirement",
+    };
   }
 
   if (/^(?:sectioned|pathway-scoped)\b/i.test(group.detectedOptionCue ?? "")) {
@@ -4609,6 +4835,10 @@ function stripNonOptionCourseEvidenceFromChoiceLine(value) {
     String(value ?? "")
       .replace(/\[[^\]]*\b(?:pr|pre-?req|prereq(?:uisite)?)[^\]]*\]/gi, "")
       .replace(/\([^)]*\b(?:pr|pre-?req|prereq(?:uisite)?)[^)]*\)/gi, "")
+      .replace(
+        /\([^)]*\b(?:may\s+be\s+used|may\s+satisfy|may\s+count|cannot\s+count|but\s+not\s+both|not\s+both)\b[^)]*\)/gi,
+        ""
+      )
       .replace(/\b(?:pr|pre-?req|prereq(?:uisite)?):\s*[^.;)\]]+/gi, "")
       .replace(/\s+\d{3}\s+or\s+[A-Z&]{2,8}\s+\d{3}[A-Z]?\s+if\s+taken\)?\.?\s*$/i, "")
   );
@@ -6049,6 +6279,17 @@ function looksLikeEnumeratedSectionHeading(line) {
 }
 
 function parseSectionHeadingCreditRange(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  const leadingNamedBucketMatch = normalizedLine.match(
+    /^(\d+(?:\.\d+)?)\s+(?:free\s+)?electives?\b/i
+  );
+  if (leadingNamedBucketMatch) {
+    const credits = Number.parseFloat(leadingNamedBucketMatch[1]);
+    if (Number.isFinite(credits) && credits > 0) {
+      return { minCredits: credits, maxCredits: credits };
+    }
+  }
+
   const creditRange = parseRequirementCreditRange(line);
   if (creditRange) {
     return creditRange;
@@ -6166,7 +6407,11 @@ function getNearbySectionCourseTitle(snapshotLines, courseLineIndex) {
     if (
       sourceLineStartsWithCourseCode(candidate) ||
       isSectionedOptionCourseBoundary(candidate) ||
-      looksLikeSectionedCourseHeadingLine(candidate)
+      looksLikeSectionedCourseHeadingLine(candidate) ||
+      /^(?:formal\s+options?|contact\b|advisor\b)/i.test(candidate) ||
+      /\b(?:academic\s+advisor|track\s+your\s+progress|declare\s+(?:the|your)\s+major)\b/i.test(
+        candidate
+      )
     ) {
       return null;
     }
@@ -6174,6 +6419,37 @@ function getNearbySectionCourseTitle(snapshotLines, courseLineIndex) {
   }
 
   return null;
+}
+
+function getInlineSectionCourseTitle(courseLine, primaryCourseCode) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(courseLine));
+  const courseNumber = normalizeCourseCode(primaryCourseCode).split(" ").at(-1);
+  if (!normalizedLine || !courseNumber) {
+    return null;
+  }
+  const numberMatch = new RegExp(`\\b${courseNumber}\\b`, "i").exec(normalizedLine);
+  if (!numberMatch) {
+    return null;
+  }
+
+  const afterCourseNumber = normalizedLine.slice(
+    (numberMatch.index ?? 0) + numberMatch[0].length
+  );
+  const beforeAlternative = afterCourseNumber.split(/\s+or\s+(?=[A-Z])/i)[0];
+  const nextCourseNumberMatch = /\b\d{3}[A-Za-z]?\b/.exec(beforeAlternative);
+  const beforeNextCourse = nextCourseNumberMatch
+    ? beforeAlternative
+        .slice(0, nextCourseNumberMatch.index)
+        .replace(/\s+(?:[A-Z&]{1,12}\s*){1,3}$/g, "")
+    : beforeAlternative;
+  const title = normalizeWhitespace(beforeNextCourse)
+    .replace(/^\s*[:\-–—]\s*/, "")
+    .replace(
+      /\s*\(\s*\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:credits?|cr\.?)?\s*\)\s*$/i,
+      ""
+    )
+    .trim();
+  return title && /[A-Za-z]/.test(title) ? title : null;
 }
 
 function parseSectionCourseLineCreditRange(courseLine) {
@@ -6270,23 +6546,6 @@ function getNearbySectionCourseCredits(snapshotLines, courseLineIndex, courseCod
       break;
     }
 
-    const inlineRange =
-      /\bcredits?\b/i.test(candidate) &&
-      !/\bmaximum\s+of\b|\bmax(?:imum)?\b.{0,30}\b(?:allowed|towards?\s+degree|toward\s+degree|count)\b/i.test(candidate)
-      ? parseRequirementCreditRange(candidate)
-      : null;
-    if (inlineRange) {
-      const creditText =
-        inlineRange.maxCredits && inlineRange.maxCredits !== inlineRange.minCredits
-          ? `${inlineRange.minCredits}-${inlineRange.maxCredits}`
-          : String(inlineRange.minCredits);
-      return {
-        credits: inlineRange.minCredits,
-        creditMin: inlineRange.minCredits,
-        creditMax: inlineRange.maxCredits ?? inlineRange.minCredits,
-        creditText,
-      };
-    }
     if (sourceLineStartsWithCourseCode(candidate) || isSectionedOptionCourseBoundary(candidate)) {
       break;
     }
@@ -6303,7 +6562,11 @@ function buildSectionedOptionCourseOption(owner, input) {
 
   const primaryCourseCode = courseCodes[0];
   const metadata = getUwCourseMetadata(primaryCourseCode);
-  const title = normalizeWhitespace(input.title ?? "") || metadata?.title || null;
+  const title =
+    getInlineSectionCourseTitle(input.courseLine, primaryCourseCode) ||
+    metadata?.title ||
+    normalizeWhitespace(input.title ?? "") ||
+    null;
   const creditRange = input.creditRange ?? getUwCourseCreditRange(primaryCourseCode);
   const sectionSlug = slugify(input.sectionHeading);
   const optionSlug = slugify(`${sectionSlug}-${courseCodes.join("-")}`);
@@ -6697,6 +6960,103 @@ function buildSectionedOptionRequirementGroups(owner, snapshotLines) {
   return group.options.length ? [group] : [];
 }
 
+function buildStandaloneCourseChoiceRequirementGroups(owner, snapshotLines) {
+  const groups = [];
+  const seenGroupIds = new Set();
+
+  for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
+    const sourceRowText = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    if (
+      !sourceRowText ||
+      extractCourseCodesFromLine(sourceRowText).length > 0 ||
+      !/\b(?:choose|select)\s+(?:one|two|three|four|five|six|\d+)(?:\s+courses?)?\s+(?:of|from)\s+(?:the\s+)?(?:following|list\s+below)\b/i.test(
+        sourceRowText
+      )
+    ) {
+      continue;
+    }
+
+    const requiredCount = parseChoiceRequiredCount(sourceRowText);
+    if (!Number.isFinite(requiredCount) || requiredCount < 1) {
+      continue;
+    }
+
+    const category = buildSectionedCourseCategory(sourceRowText);
+    const options = [];
+    for (
+      let optionIndex = index + 1;
+      optionIndex < Math.min((snapshotLines ?? []).length, index + 42);
+      optionIndex += 1
+    ) {
+      const optionLine = normalizeWhitespace(stripChoiceListLine(snapshotLines[optionIndex]));
+      if (!optionLine) {
+        continue;
+      }
+
+      const option = buildSectionedOptionCourseOption(owner, {
+        courseLine: optionLine,
+        title: getNearbySectionCourseTitle(snapshotLines, optionIndex),
+        creditRange: parseRequirementCreditRange(optionLine),
+        category,
+        sectionHeading: sourceRowText,
+        sourceHeading: sourceRowText,
+      });
+      if (option) {
+        options.push(option);
+        continue;
+      }
+
+      if (
+        options.length > 0 &&
+        (isStandaloneSectionChoiceCueLine(optionLine) ||
+          isSectionedOptionCourseBoundary(optionLine) ||
+          looksLikeSectionedCourseHeadingLine(optionLine) ||
+          isLikelyPeerPathwayHtmlSectionStartLine(optionLine))
+      ) {
+        break;
+      }
+    }
+
+    const dedupedOptions = uniqueBy(options, (option) => option.id);
+    if (dedupedOptions.length <= requiredCount) {
+      continue;
+    }
+
+    const groupId = `${owner.ownerId}:requirement-group:${slugify(
+      `${sourceRowText}-${requiredCount}-${dedupedOptions
+        .flatMap((option) => option.uwCourses ?? [])
+        .join("-")}`
+    )}`;
+    if (seenGroupIds.has(groupId)) {
+      continue;
+    }
+
+    const group = buildParsedRequirementGroup({
+      id: groupId,
+      label: sourceRowText,
+      category,
+      subcategory: category,
+      requirementType: requiredCount === 1 ? "choose_one" : "choose_n",
+      minCourses: requiredCount,
+      maxCourses: requiredCount,
+      selectionCount: requiredCount,
+      requiredCount,
+      sourceHeading: sourceRowText,
+      sourceRowText,
+      detectedOptionCue: "standalone course-count choice list",
+      notes: ["Parsed from an explicit course-count choice cue and its following course rows."],
+      options: dedupedOptions,
+    });
+    if (!group.options.length) {
+      continue;
+    }
+    seenGroupIds.add(group.id);
+    groups.push(group);
+  }
+
+  return groups;
+}
+
 function buildParserRuleRequirementReplacements(owner, snapshotLines) {
   const replacement = parserRules.detectOptionReplacement({
     owner,
@@ -6870,6 +7230,12 @@ function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [],
 
 function parseSectionedCourseRequiredCount(line) {
   const normalizedLine = normalizeWhitespace(line).toLowerCase();
+  if (/\b(?:choose|select)\s+(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\b/i.test(normalizedLine)) {
+    const explicitChoiceCount = parseChoiceRequiredCount(normalizedLine);
+    if (Number.isFinite(explicitChoiceCount) && explicitChoiceCount > 0) {
+      return explicitChoiceCount;
+    }
+  }
   const leadingWordMatch = normalizedLine.match(
     /^(one|two|three|four|five|six|seven|eight|nine|ten)(?:\s*\(\s*(\d+)\s*\))?\s+.+?\b(?:courses?|electives?)\b/
   );
@@ -7245,6 +7611,20 @@ function normalizePdfRequirementHeadingLine(line) {
   return normalizedLine;
 }
 
+function looksLikeTitleAndCreditLineForPreviousCourse(previousLine, line) {
+  const previousCourseCode = extractCourseCodesFromLine(previousLine)[0] ?? null;
+  const courseTitle = normalizeWhitespace(getUwCourseMetadata(previousCourseCode)?.title ?? "");
+  if (!courseTitle) {
+    return false;
+  }
+
+  const lineWithoutTrailingCredits = normalizeWhitespace(line).replace(
+    /\s*\(\s*\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:credits?|cr\.?)\s*\)\s*$/i,
+    ""
+  );
+  return normalizeMatcherText(lineWithoutTrailingCredits) === normalizeMatcherText(courseTitle);
+}
+
 function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input = {}) {
   if (isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines, index)) {
     return null;
@@ -7262,10 +7642,31 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   const looksLikeCourseDescriptionAfterCourseRow =
     previousMeaningfulLine &&
     sourceLineStartsWithCourseCode(previousMeaningfulLine) &&
-    rawLine.length >= 80 &&
-    /[.!?]$/.test(rawLine) &&
-    !hasPrimaryRequirementSectionCue(rawLine) &&
-    !SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(rawLine);
+    (looksLikeTitleAndCreditLineForPreviousCourse(previousMeaningfulLine, rawLine) ||
+      (rawLine.length >= 80 &&
+        /[.!?]$/.test(rawLine) &&
+        !hasPrimaryRequirementSectionCue(rawLine) &&
+        !SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(rawLine)));
+  const matchesExtractedHeading = (owner?.extractedHeadings ?? []).some(
+    (heading) => normalizeWhitespace(heading) === rawLine
+  );
+  const hasStrongAdjacentSectionCue =
+    matchesExtractedHeading ||
+    SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(rawLine) ||
+    /\b(?:requirements?|electives?|core courses?|capstone|concentration|track|option)\b/i.test(
+      rawLine
+    );
+  const hasAdjacentCourseListEvidence =
+    hasStrongAdjacentSectionCue ||
+    hasUpcomingSectionedCourseRows(snapshotLines, index, 2);
+  const looksLikeAdjacentCreditSectionHeading = Boolean(
+    previousMeaningfulLine &&
+      sourceLineStartsWithCourseCode(previousMeaningfulLine) &&
+      parseSectionHeadingCreditRange(rawLine) &&
+      looksLikeShortNamedCourseSectionHeading(rawLine) &&
+      hasAdjacentCourseListEvidence &&
+      hasUpcomingSectionedCourseRows(snapshotLines, index, 1)
+  );
   if (
     !rawLine ||
     looksLikeCourseDescriptionAfterCourseRow ||
@@ -7276,7 +7677,8 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
     sourceLineStartsWithCourseCode(rawLine) ||
     (previousMeaningfulLine &&
       sourceLineStartsWithCourseCode(previousMeaningfulLine) &&
-      /\(\s*\d+(?:\.\d+)?\s*(?:credits?|cr\.?)\s*\)/i.test(rawLine)) ||
+      /\(\s*\d+(?:\.\d+)?\s*(?:credits?|cr\.?)\s*\)/i.test(rawLine) &&
+      !looksLikeAdjacentCreditSectionHeading) ||
     (extractCourseCodesFromLine(rawLine).length && !/\b\d{3}[-\s]*level\b/i.test(rawLine))
   ) {
     return null;
@@ -7378,6 +7780,10 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
   }
 
   const requiredCount = parseSectionedCourseRequiredCount(rawLine);
+  const hasExplicitCourseCountChoiceCue =
+    /\b(?:choose|select)\s+(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+courses?\b/i.test(
+      rawLine
+    );
   const minimumCreditMatch = rawLine.match(/\bminimum\s+of\s+(\d+(?:\.\d+)?)\s+credits?\b/i);
   const maximumCreditMatch = rawLine.match(/\bmaximum\s+of\s+(\d+(?:\.\d+)?)\s+credits?\b/i);
   const exactCreditRange = parseSectionHeadingCreditRange(rawLine);
@@ -7485,7 +7891,10 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
     /\belectives?\b/i.test(rawLine) ||
     /\bfollowing\s+departments\b/i.test(rawLine) ||
     (exactCreditRange && /\bcourses?\b/i.test(rawLine)) ||
-    (exactCreditRange && hasPrimaryRequirementSectionCue(rawLine));
+    (exactCreditRange && hasPrimaryRequirementSectionCue(rawLine)) ||
+    (exactCreditRange &&
+      looksLikeShortNamedCourseSectionHeading(rawLine) &&
+      hasUpcomingSectionedCourseRows(snapshotLines, index, 1));
   if (!hasCourseListCue) {
     return null;
   }
@@ -7525,6 +7934,25 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
       };
     }
   }
+  if (requiredCount && hasExplicitCourseCountChoiceCue) {
+    return {
+      label,
+      category,
+      requirementType: "choose_n",
+      minCourses: requiredCount,
+      maxCourses: requiredCount,
+      selectionCount: requiredCount,
+      requiredCount,
+      minCredits: exactCreditRange?.minCredits ?? null,
+      maxCredits: exactCreditRange?.maxCredits ?? null,
+      creditText: exactCreditRange
+        ? exactCreditRange.maxCredits && exactCreditRange.maxCredits !== exactCreditRange.minCredits
+          ? `${exactCreditRange.minCredits}-${exactCreditRange.maxCredits}`
+          : String(exactCreditRange.minCredits)
+        : null,
+      detectedOptionCue: "sectioned course-count choice list",
+    };
+  }
   if (exactCreditRange && /\bcredits?\b/i.test(rawLine)) {
     return {
       label,
@@ -7551,7 +7979,6 @@ function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input 
       detectedOptionCue: "sectioned choice list",
     };
   }
-
   return null;
 }
 
@@ -7910,8 +8337,56 @@ function buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines
       continue;
     }
 
+    const selectionCount = effectiveDescriptor.selectionCount ?? effectiveDescriptor.requiredCount;
+    const fixedOptionCreditRanges = options
+      .map((option) => {
+        const minCredits = Number(option.creditMin ?? option.credits);
+        const maxCredits = Number(option.creditMax ?? option.credits);
+        return Number.isFinite(minCredits) && Number.isFinite(maxCredits)
+          ? { minCredits, maxCredits }
+          : null;
+      });
+    const selectionCreditRange =
+      effectiveDescriptor.requirementType === "choose_n" &&
+      Number.isInteger(selectionCount) &&
+      selectionCount > 0 &&
+      options.length >= selectionCount &&
+      fixedOptionCreditRanges.every(Boolean)
+        ? {
+            minCredits: fixedOptionCreditRanges
+              .map((range) => range.minCredits)
+              .sort((left, right) => left - right)
+              .slice(0, selectionCount)
+              .reduce((sum, credits) => sum + credits, 0),
+            maxCredits: fixedOptionCreditRanges
+              .map((range) => range.maxCredits)
+              .sort((left, right) => right - left)
+              .slice(0, selectionCount)
+              .reduce((sum, credits) => sum + credits, 0),
+          }
+        : null;
+    const groupDescriptor = selectionCreditRange
+      ? {
+          ...effectiveDescriptor,
+          minCredits: selectionCreditRange.minCredits,
+          maxCredits: selectionCreditRange.maxCredits,
+          creditText:
+            selectionCreditRange.minCredits === selectionCreditRange.maxCredits
+              ? String(selectionCreditRange.minCredits)
+              : `${selectionCreditRange.minCredits}-${selectionCreditRange.maxCredits}`,
+        }
+      : effectiveDescriptor;
+    const descriptorMinimum =
+      groupDescriptor.requirementType === "choose_n"
+        ? groupDescriptor.minCourses
+        : groupDescriptor.minCredits;
+    const descriptorMaximum =
+      groupDescriptor.requirementType === "choose_n"
+        ? groupDescriptor.maxCourses
+        : groupDescriptor.maxCredits;
+
     const groupId = `${owner.ownerId}:requirement-group:${slugify(
-      `${effectiveDescriptor.label}-${effectiveDescriptor.requirementType}-${effectiveDescriptor.minCredits ?? effectiveDescriptor.minCourses ?? "options"}-${effectiveDescriptor.maxCredits ?? effectiveDescriptor.maxCourses ?? "open"}`
+      `${groupDescriptor.label}-${groupDescriptor.requirementType}-${descriptorMinimum ?? "options"}-${descriptorMaximum ?? "open"}`
     )}`;
     if (seenGroupIds.has(groupId)) {
       continue;
@@ -7919,20 +8394,20 @@ function buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines
 
     const group = buildParsedRequirementGroup({
       id: groupId,
-      label: effectiveDescriptor.label,
-      category: effectiveDescriptor.category,
-      subcategory: effectiveDescriptor.category,
-      requirementType: effectiveDescriptor.requirementType,
-      minCourses: effectiveDescriptor.minCourses,
-      maxCourses: effectiveDescriptor.maxCourses,
-      selectionCount: effectiveDescriptor.selectionCount,
-      requiredCount: effectiveDescriptor.requiredCount,
-      minCredits: effectiveDescriptor.minCredits,
-      maxCredits: effectiveDescriptor.maxCredits,
-      creditText: effectiveDescriptor.creditText,
+      label: groupDescriptor.label,
+      category: groupDescriptor.category,
+      subcategory: groupDescriptor.category,
+      requirementType: groupDescriptor.requirementType,
+      minCourses: groupDescriptor.minCourses,
+      maxCourses: groupDescriptor.maxCourses,
+      selectionCount: groupDescriptor.selectionCount,
+      requiredCount: groupDescriptor.requiredCount,
+      minCredits: groupDescriptor.minCredits,
+      maxCredits: groupDescriptor.maxCredits,
+      creditText: groupDescriptor.creditText,
       sourceHeading,
       sourceRowText: sourceHeading,
-      detectedOptionCue: effectiveDescriptor.detectedOptionCue,
+      detectedOptionCue: groupDescriptor.detectedOptionCue,
       notes: [
         "Parsed from a source section heading and the following course rows.",
       ],
@@ -8447,19 +8922,9 @@ function getInlineMinimumCourseListText(value) {
 }
 
 function buildInlineCourseRequirementOptions(owner, groupId, courseCodes, sourceLine, allowTotalCreditFallback = false) {
-  const totalCredits = parseRequirementCreditAmount(sourceLine);
   return courseCodes.map((courseCode) => {
     const metadata = getUwCourseMetadata(courseCode);
     const creditRange = getUwCourseCreditRange(courseCode) ?? {};
-    const fallbackCredits =
-      allowTotalCreditFallback && courseCodes.length === 1 && Number.isFinite(totalCredits)
-        ? {
-            credits: totalCredits,
-            creditMin: totalCredits,
-            creditMax: totalCredits,
-            creditText: String(totalCredits),
-          }
-        : {};
     return {
       id: `${groupId}:option:${slugify(courseCode)}`,
       uwCourses: [courseCode],
@@ -8470,7 +8935,6 @@ function buildInlineCourseRequirementOptions(owner, groupId, courseCodes, source
       sourceHeading: sourceLine,
       sourceCategory: "inline-labeled-requirement",
       ...creditRange,
-      ...fallbackCredits,
     };
   });
 }
@@ -8478,6 +8942,24 @@ function buildInlineCourseRequirementOptions(owner, groupId, courseCodes, source
 function extractInlineRequiredListAlternativeSets(text) {
   const normalizedText = normalizeWhitespace(text);
   const alternativeSets = [];
+  const parentheticalAlternativePattern =
+    /\b([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*(\d{3}[A-Za-z]?)\s*\(\s*or\s+([^)]*)\)/gi;
+
+  for (const match of normalizedText.matchAll(parentheticalAlternativePattern)) {
+    const leadingCourseCode = normalizeExtractedCourseCode(match[1], match[2]);
+    const courseCodes = uniqueInOrder(
+      [
+        leadingCourseCode,
+        ...extractCourseCodesFromLine(`${match[1]} ${match[2]} or ${match[3]}`),
+      ]
+        .filter(Boolean)
+        .map(normalizeCourseCode)
+    );
+    if (courseCodes.length >= 2) {
+      alternativeSets.push(courseCodes);
+    }
+  }
+
   const alternativePattern =
     /\b([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*(\d{3}[A-Za-z]?)(?:\s*\([^)]*\))?\s+or\s+(?:(?:([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s*)?(\d{3}[A-Za-z]?))/gi;
 
@@ -8491,7 +8973,81 @@ function extractInlineRequiredListAlternativeSets(text) {
     }
   }
 
-  return uniqueBy(alternativeSets, (courseCodes) => courseCodes.join("|"));
+  const uniqueAlternativeSets = uniqueBy(alternativeSets, (courseCodes) =>
+    courseCodes.join("|")
+  );
+  return uniqueAlternativeSets.filter(
+    (courseCodes, index) =>
+      !uniqueAlternativeSets.some(
+        (candidate, candidateIndex) =>
+          candidateIndex !== index &&
+          candidate.length > courseCodes.length &&
+          courseCodes.every((courseCode) => candidate.includes(courseCode))
+      )
+  );
+}
+
+function getRepeatedRequiredAlternativeSets(text) {
+  const normalizedText = normalizeWhitespace(text);
+  const inlineParts = getInlineLabeledRequirementParts(normalizedText);
+  if (
+    inlineParts ||
+    /\b(?:choose|select|one\s+of|any\s+of|either)\b/i.test(normalizedText) ||
+    (!/\band\b/i.test(normalizedText) && !/,\s*[^,]{0,80}\bor\b/i.test(normalizedText))
+  ) {
+    return [];
+  }
+
+  const alternativeSets = extractInlineRequiredListAlternativeSets(normalizedText);
+  if (alternativeSets.length < 2) {
+    return [];
+  }
+
+  const flattenedCourseCodes = alternativeSets.flat();
+  if (new Set(flattenedCourseCodes).size !== flattenedCourseCodes.length) {
+    return [];
+  }
+
+  return alternativeSets;
+}
+
+function buildRepeatedRequiredAlternativeGroups(
+  owner,
+  sourceLine,
+  optionExtractionLine,
+  sourceSection
+) {
+  return getRepeatedRequiredAlternativeSets(optionExtractionLine).map(
+    (alternativeSet, index) => {
+      const groupId = `${owner.ownerId}:requirement-group:required-alternative-slot-${
+        index + 1
+      }-${slugify(alternativeSet.join("-or-"))}`;
+      return buildParsedRequirementGroup({
+        id: groupId,
+        label: alternativeSet.join(" / "),
+        category: "course-alias",
+        subcategory: "required-alternative-slot",
+        requirementType: "all_required",
+        minCourses: 1,
+        maxCourses: 1,
+        sourceHeading: sourceLine,
+        sourceRowText: sourceLine,
+        sourceSection,
+        detectedOptionCue: "repeated required alternative slots",
+        notes: [
+          "Each repeated source slot is required; the courses inside this slot are alternatives.",
+        ],
+        options: [
+          {
+            id: `${groupId}:option:${slugify(alternativeSet.join("-or-"))}`,
+            uwCourses: [alternativeSet[0]],
+            equivalentUwCourseCodes: alternativeSet.slice(1),
+            label: alternativeSet.join(" / "),
+          },
+        ],
+      });
+    }
+  );
 }
 
 function getMixedRequiredCourseListParts(parts) {
@@ -8661,7 +9217,10 @@ function getInlineRequirementSectionClassification(owner, snapshotLines, targetI
       currentRoleReason = explicit.reason;
     }
 
-    if (isDegreeRouteComparisonSectionTerminator(normalizedLine)) {
+    if (
+      inDegreeRouteComparisonSection &&
+      isDegreeRouteComparisonSectionTerminator(normalizedLine)
+    ) {
       inDegreeRouteComparisonSection = false;
       currentRole = "primary-requirement-section";
       currentRoleReason = null;
@@ -8987,6 +9546,22 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
     ) {
       continue;
     }
+    const repeatedRequiredAlternativeGroups = buildRepeatedRequiredAlternativeGroups(
+      owner,
+      normalizedLine,
+      optionExtractionLine,
+      choiceSourceLine.nearbyRequirementLabel
+    );
+    if (repeatedRequiredAlternativeGroups.length) {
+      for (const group of repeatedRequiredAlternativeGroups) {
+        if (!group.options.length || seenGroupIds.has(group.id)) {
+          continue;
+        }
+        seenGroupIds.add(group.id);
+        groups.push(group);
+      }
+      continue;
+    }
     const extractedCourseCodes = extractCourseCodesFromRequirementLine(optionExtractionLine);
     const hasExplicitOr = /\bor\b/i.test(optionExtractionLine);
     const hasOwnChoiceContext = hasChoiceRequirementContext(normalizedLine);
@@ -9130,12 +9705,15 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
         maxCourses: requiredCount,
         selectionCount: requiredCount,
         requiredCount,
+        minCredits: Number.isFinite(credits) ? credits : null,
+        maxCredits: Number.isFinite(credits) ? credits : null,
+        creditText: Number.isFinite(credits) ? String(credits) : null,
         options: [
           ...courseCodes.map((courseCode) => ({
             id: `${owner.ownerId}:requirement-option:${slugify(courseCode)}`,
             uwCourses: [courseCode],
-            credits,
             label: courseCode,
+            ...(getUwCourseCreditRange(courseCode) ?? {}),
           })),
           ...categoryOptions,
         ],
@@ -9960,6 +10538,20 @@ function getRequirementOptionCourseCodeSet(option) {
 
 function suppressChoiceGroupsCoveredByCreditBuckets(groups) {
   const creditBucketGroups = (groups ?? []).filter((group) => group.requirementType === "choose_credits");
+  const creditBucketGroupsBySource = creditBucketGroups
+    .map((group) => {
+      const sourceKey = normalizeMatcherText(
+        group.sourceRowText ?? group.sourceHeading ?? group.label ?? ""
+      );
+      const codeSet = new Set(
+        (group.options ?? [])
+          .flatMap((option) => [...getRequirementOptionCourseCodeSet(option)])
+          .map(normalizeCourseCode)
+          .filter(Boolean)
+      );
+      return { sourceKey, codeSet };
+    })
+    .filter((entry) => entry.sourceKey && entry.codeSet.size > 0);
   const creditBucketOptionCodeSets = creditBucketGroups
     .filter((group) => group.requirementType === "choose_credits")
     .flatMap((group) => group.options ?? [])
@@ -10001,6 +10593,33 @@ function suppressChoiceGroupsCoveredByCreditBuckets(groups) {
   }
 
   return (groups ?? []).filter((group) => {
+    if (
+      group.requirementType === "all_required" &&
+      /inline required course list with embedded alternatives/i.test(
+        group.detectedOptionCue ?? ""
+      )
+    ) {
+      const groupSourceKey = normalizeMatcherText(
+        group.sourceRowText ?? group.sourceHeading ?? group.label ?? ""
+      );
+      const groupCodeSet = new Set(
+        (group.options ?? [])
+          .flatMap((option) => [...getRequirementOptionCourseCodeSet(option)])
+          .map(normalizeCourseCode)
+          .filter(Boolean)
+      );
+      if (
+        groupSourceKey &&
+        groupCodeSet.size > 0 &&
+        creditBucketGroupsBySource.some(
+          (bucket) =>
+            bucket.sourceKey === groupSourceKey &&
+            [...groupCodeSet].every((courseCode) => bucket.codeSet.has(courseCode))
+        )
+      ) {
+        return false;
+      }
+    }
     if (!["choose_one", "choose_n"].includes(group.requirementType)) {
       return true;
     }
@@ -10676,6 +11295,29 @@ function suppressInlineRequiredGroupsCoveredByChoiceOptions(groups) {
   });
 }
 
+function suppressRepeatedRequiredAlternativeGroupsCoveredBySequenceChoices(groups) {
+  const sequencePathSourceTexts = new Set(
+    (groups ?? [])
+      .filter((group) => group?.requirementType === "sequence_choice")
+      .flatMap((group) => group.sequencePaths ?? [])
+      .map((path) => normalizeMatcherText(path?.sourceText ?? ""))
+      .filter(Boolean)
+  );
+  if (!sequencePathSourceTexts.size) {
+    return groups;
+  }
+
+  return (groups ?? []).filter((group) => {
+    if (group?.subcategory !== "required-alternative-slot") {
+      return true;
+    }
+    const sourceText = normalizeMatcherText(
+      group?.sourceRowText ?? group?.sourceHeading ?? ""
+    );
+    return !sourceText || !sequencePathSourceTexts.has(sourceText);
+  });
+}
+
 function getChoiceRequirementGroupCourseSetKey(group) {
   const courseCodes = uniqueSorted(
     (group?.options ?? [])
@@ -10840,6 +11482,108 @@ function suppressOwnerSpecificRequirementGroupLeaks(owner, groups) {
   });
 }
 
+function coalesceSectionedCreditBucketsWithInlineChoices(owner, groups) {
+  const replacementsByIndex = new Map();
+  const consumedIndexes = new Set();
+
+  for (let bucketIndex = 0; bucketIndex < (groups ?? []).length; bucketIndex += 1) {
+    const bucket = groups[bucketIndex];
+    if (
+      bucket?.requirementType !== "choose_credits" ||
+      bucket?.detectedOptionCue !== "sectioned credit list"
+    ) {
+      continue;
+    }
+
+    const bucketCourseCodes = uniqueInOrder(
+      (bucket.options ?? [])
+        .flatMap((option) => option.uwCourses ?? [])
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    if (bucketCourseCodes.length < 2) {
+      continue;
+    }
+
+    const choiceIndex = (groups ?? []).findIndex((candidate, candidateIndex) => {
+      if (
+        candidateIndex === bucketIndex ||
+        consumedIndexes.has(candidateIndex) ||
+        candidate?.requirementType !== "choose_one" ||
+        candidate?.category !== "source-choice" ||
+        !/\bor\b/i.test(candidate?.sourceRowText ?? candidate?.sourceHeading ?? "")
+      ) {
+        return false;
+      }
+      const choiceCourseCodes = uniqueInOrder(
+        (candidate.options ?? [])
+          .flatMap((option) => option.uwCourses ?? [])
+          .map((courseCode) => normalizeCourseCode(courseCode))
+          .filter(Boolean)
+      );
+      return (
+        choiceCourseCodes.length >= 2 &&
+        choiceCourseCodes.some((courseCode) => bucketCourseCodes.includes(courseCode))
+      );
+    });
+    if (choiceIndex < 0) {
+      continue;
+    }
+
+    const choice = groups[choiceIndex];
+    const choiceCourseCodes = uniqueInOrder(
+      (choice.options ?? [])
+        .flatMap((option) => option.uwCourses ?? [])
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    const requiredCourseCodes = bucketCourseCodes.filter(
+      (courseCode) => !choiceCourseCodes.includes(courseCode)
+    );
+    if (!requiredCourseCodes.length) {
+      continue;
+    }
+
+    const sequenceGroup = buildSequenceChoiceRequirementGroup(owner, {
+      rawText: normalizeWhitespace(bucket.sourceHeading ?? bucket.label),
+      sourceSection: bucket.sourceSection,
+      detectedOptionCue: "sectioned credit list with inline course alternative",
+      paths: choiceCourseCodes.map((choiceCourseCode) => ({
+        label: [...requiredCourseCodes, choiceCourseCode].join(" + "),
+        uwCourses: [...requiredCourseCodes, choiceCourseCode],
+        sourceText: normalizeWhitespace(choice.sourceRowText ?? choice.sourceHeading),
+      })),
+    });
+    if (!sequenceGroup) {
+      continue;
+    }
+
+    replacementsByIndex.set(bucketIndex, {
+      ...sequenceGroup,
+      label: bucket.label,
+      category: bucket.category,
+      subcategory: bucket.subcategory,
+      minCredits: bucket.minCredits,
+      maxCredits: bucket.maxCredits,
+      creditText: bucket.creditText,
+      sourceHeading: bucket.sourceHeading,
+      sourceRowText: bucket.sourceRowText,
+      notes: uniqueSorted([
+        ...(bucket.notes ?? []),
+        "Combined required section courses with the source's inline course alternative.",
+      ]),
+    });
+    consumedIndexes.add(choiceIndex);
+  }
+
+  return (groups ?? []).flatMap((group, index) => {
+    if (consumedIndexes.has(index)) {
+      return [];
+    }
+    return [replacementsByIndex.get(index) ?? group];
+  });
+}
+
 function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
   return uniqueBy(
     suppressOwnerSpecificRequirementGroupLeaks(
@@ -10848,23 +11592,29 @@ function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
         suppressChoiceGroupsCoveredByCreditBuckets(
           suppressSubsetSourceChoiceGroups(
             suppressGenericChoiceGroupsCoveredByInlineChoices(
-              suppressInlineRequiredGroupsCoveredByChoiceOptions(
-                filterRequirementGroupsBySupplementalPathwayScope(
-                  owner,
-                  [
-                    ...buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines),
-                    ...buildSectionedOptionRequirementGroups(owner, snapshotLines),
-                    ...buildSplitEitherOrRequirementGroups(owner, parsedCourseCodes, snapshotLines),
-                    ...buildInlineLabeledCourseRequirementGroups(owner, snapshotLines),
-                    ...buildGenericCreditBucketRequirementGroups(owner, snapshotLines),
-                    ...buildParallelChooseOneRequirementGroups(owner, snapshotLines),
-                    ...buildSbseComparisonTableRequirementGroups(owner, snapshotLines),
-                    ...buildLetteredChooseOneRequirementGroups(owner, snapshotLines),
-                    ...buildGenericSequenceChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
-                    ...buildForwardLabeledChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
-                    ...buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
-                  ],
-                  snapshotLines
+              suppressRepeatedRequiredAlternativeGroupsCoveredBySequenceChoices(
+                suppressInlineRequiredGroupsCoveredByChoiceOptions(
+                  coalesceSectionedCreditBucketsWithInlineChoices(
+                    owner,
+                    filterRequirementGroupsBySupplementalPathwayScope(
+                      owner,
+                      [
+                        ...buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines),
+                        ...buildSectionedOptionRequirementGroups(owner, snapshotLines),
+                        ...buildStandaloneCourseChoiceRequirementGroups(owner, snapshotLines),
+                        ...buildSplitEitherOrRequirementGroups(owner, parsedCourseCodes, snapshotLines),
+                        ...buildInlineLabeledCourseRequirementGroups(owner, snapshotLines),
+                        ...buildGenericCreditBucketRequirementGroups(owner, snapshotLines),
+                        ...buildParallelChooseOneRequirementGroups(owner, snapshotLines),
+                        ...buildSbseComparisonTableRequirementGroups(owner, snapshotLines),
+                        ...buildLetteredChooseOneRequirementGroups(owner, snapshotLines),
+                        ...buildGenericSequenceChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
+                        ...buildForwardLabeledChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
+                        ...buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
+                      ],
+                      snapshotLines
+                    )
+                  )
                 )
               )
             )
@@ -11616,7 +12366,18 @@ function lineMatchesPathwayHeadingIdentity(headingLine, candidateLine) {
     normalizedLineContainsToken(normalizedCandidate, token)
   ).length;
   const requiredMatches = tokens.length <= 2 ? tokens.length : 2;
-  return tokenMatches >= Math.max(1, requiredMatches);
+  if (tokenMatches >= Math.max(1, requiredMatches)) {
+    return true;
+  }
+
+  const headingAcronyms = new Set(
+    (stripPathwayHeadingPrefix(headingLine).match(/\b[A-Z]{2,6}\b/g) ?? []).filter(
+      (token) => !/^(?:BA|BS|BABA)$/i.test(token)
+    )
+  );
+  const candidateAcronyms =
+    stripPathwayHeadingPrefix(candidateLine).match(/\b[A-Z]{2,6}\b/g) ?? [];
+  return candidateAcronyms.some((token) => headingAcronyms.has(token));
 }
 
 function isLikelyPathwayChoiceContextLine(line) {
@@ -12039,19 +12800,68 @@ const BASE_SCOPE_PATHWAY_SECTION_END_BOUNDARY_PATTERN =
 const PRIOR_ADMIT_CURRICULUM_START_PATTERN =
   /^(?:for students admitted\b.*\b(?:before|prior to)\b|students admitted\b.*\b(?:before|prior to)\b|degree requirements?\b.*\bfor students admitted\b.*\b(?:before|prior to)\b)/i;
 
-function removePriorAdmitCurriculumSectionsFromCurrentScope(lines) {
+function findPriorAdmitCurriculumStartIndex(lines) {
   if (!Array.isArray(lines) || lines.length < 12) {
-    return lines;
+    return null;
   }
 
-  for (let legacyStartIndex = 0; legacyStartIndex < lines.length; legacyStartIndex += 1) {
-    if (!PRIOR_ADMIT_CURRICULUM_START_PATTERN.test(normalizeWhitespace(lines[legacyStartIndex]))) {
+  for (let index = 0; index < lines.length; index += 1) {
+    if (!PRIOR_ADMIT_CURRICULUM_START_PATTERN.test(normalizeWhitespace(lines[index]))) {
       continue;
     }
 
-    const precedingText = normalizeMatcherText(lines.slice(0, legacyStartIndex).join(" "));
-    const hasCurrentCurriculumBeforeLegacy =
-      /\bformal options?\b/.test(precedingText) &&
+    const followingLines = lines.slice(index, Math.min(lines.length, index + 36));
+    const followingText = normalizeMatcherText(followingLines.join(" "));
+    const followingCourseCount = uniqueSorted(
+      followingLines.flatMap((line) => extractCourseCodesFromLine(line))
+    ).length;
+    if (
+      followingCourseCount >= 3 &&
+      /\bmajor requirements?\b/.test(followingText) &&
+      /\b(?:introductory|methods?|formal options?)\b/.test(followingText)
+    ) {
+      return index;
+    }
+  }
+
+  return null;
+}
+
+function isPriorAdmitCurriculumOwner(entry) {
+  return getPriorAdmitCurriculumOwnerEra(entry) !== null;
+}
+
+function scopeCurriculumEraLines(entry, lines) {
+  const legacyStartIndex = findPriorAdmitCurriculumStartIndex(lines);
+  if (legacyStartIndex === null) {
+    return lines;
+  }
+
+  if (!isPriorAdmitCurriculumOwner(entry)) {
+    return removePriorAdmitCurriculumSectionsFromCurrentScope(lines);
+  }
+
+  let legacyEndIndex = lines.length - 1;
+  for (let index = legacyStartIndex + 1; index < lines.length; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (/^(?:graduation requirements?|contact)$/i.test(line)) {
+      legacyEndIndex = Math.max(legacyStartIndex, index - 1);
+      break;
+    }
+  }
+
+  return lines.slice(legacyStartIndex, legacyEndIndex + 1);
+}
+
+function removePriorAdmitCurriculumSectionsFromCurrentScope(lines) {
+  const legacyStartIndex = findPriorAdmitCurriculumStartIndex(lines);
+  if (legacyStartIndex === null) {
+    return lines;
+  }
+
+  const precedingText = normalizeMatcherText(lines.slice(0, legacyStartIndex).join(" "));
+  const hasCurrentCurriculumBeforeLegacy =
+    /\bformal options?\b/.test(precedingText) &&
     (/\bshared curriculum\b/.test(precedingText) ||
       /\bbeginning in spring 2026\b/.test(precedingText) ||
       /\bspring 2026\b/.test(precedingText)) &&
@@ -12060,9 +12870,8 @@ function removePriorAdmitCurriculumSectionsFromCurrentScope(lines) {
       /\bintroductory courses?\b/.test(precedingText) ||
       /\bbeginning in spring 2026\b/.test(precedingText));
 
-    if (hasCurrentCurriculumBeforeLegacy) {
-      return lines.slice(0, legacyStartIndex);
-    }
+  if (hasCurrentCurriculumBeforeLegacy) {
+    return lines.slice(0, legacyStartIndex);
   }
 
   return lines;
@@ -12285,12 +13094,18 @@ function buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes) {
     }
 
     let runStart = selectedCandidate.index;
-    while (peerIndexByLineIndex.has(runStart - 1)) {
+    while (
+      peerIndexByLineIndex.has(runStart - 1) ||
+      isParallelPathwayHeadingBridgeLine(lines[runStart - 1])
+    ) {
       runStart -= 1;
     }
 
     let runEnd = selectedCandidate.index;
-    while (peerIndexByLineIndex.has(runEnd + 1)) {
+    while (
+      peerIndexByLineIndex.has(runEnd + 1) ||
+      isParallelPathwayHeadingBridgeLine(lines[runEnd + 1])
+    ) {
       runEnd += 1;
     }
 
@@ -12336,7 +13151,17 @@ function buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes) {
       nextSiblingContentIndex !== null && nextSiblingContentIndex > startIndex
         ? Math.min(defaultEndIndex, nextSiblingContentIndex - 1)
         : defaultEndIndex;
-    const sectionLines = uniqueInOrder([selectedHeading, ...lines.slice(startIndex, endIndex + 1)]);
+    const selectedHeadingBridgeLines =
+      selectedPosition < runIndexes.length - 1
+        ? lines
+            .slice(selectedCandidate.index + 1, runIndexes[selectedPosition + 1])
+            .filter(isParallelPathwayHeadingBridgeLine)
+        : [];
+    const sectionLines = uniqueInOrder([
+      selectedHeading,
+      ...selectedHeadingBridgeLines,
+      ...lines.slice(startIndex, endIndex + 1),
+    ]);
 
     if (sectionLines.some((line) => extractCourseCodesFromLine(line).length > 0)) {
       return {
@@ -12348,6 +13173,18 @@ function buildParallelPathwayHtmlTableScope(entry, lines, peerStartIndexes) {
   }
 
   return null;
+}
+
+function isParallelPathwayHeadingBridgeLine(line) {
+  const normalizedLine = normalizeWhitespace(stripChoiceListLine(line));
+  return (
+    Boolean(normalizedLine) &&
+    extractCourseCodesFromLine(normalizedLine).length === 0 &&
+    normalizedLine.split(/\s+/).length <= 14 &&
+    /^(?:choose|complete|select)\b.*\b(?:courses?|credits?|following|below)\b/i.test(
+      normalizedLine
+    )
+  );
 }
 
 function findPathwayHtmlSectionRange(entry, lines) {
@@ -12439,6 +13276,35 @@ function findPathwayHtmlSectionRange(entry, lines) {
         right.courseCount - left.courseCount || right.selectedStartIndex - left.selectedStartIndex
     )[0] ?? null
   );
+}
+
+function getPathwayHtmlSectionScopeLines(entry, lines, pathwaySectionRange) {
+  const selectedLines =
+    pathwaySectionRange.lines ??
+    lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+  if (!isPriorAdmitCurriculumOwner(entry)) {
+    return selectedLines;
+  }
+
+  const formalOptionsIndex = lines.findIndex((line) =>
+    /^formal options?\b/i.test(normalizeWhitespace(stripChoiceListLine(line)))
+  );
+  if (formalOptionsIndex < 0) {
+    return selectedLines;
+  }
+
+  const firstPathwayHeadingIndex = lines.findIndex(
+    (line, index) =>
+      index > formalOptionsIndex && isLikelyPeerPathwayHtmlSectionStartLine(line)
+  );
+  if (firstPathwayHeadingIndex < 0) {
+    return selectedLines;
+  }
+
+  return uniqueInOrder([
+    ...lines.slice(0, firstPathwayHeadingIndex),
+    ...selectedLines,
+  ]);
 }
 
 function shouldUseColumnMajorPdfOrdering(segments) {
@@ -14032,7 +14898,7 @@ function shouldUseFullAdmissionPrerequisiteHtmlScope(entry, sourceLines) {
 }
 
 function scopeHtmlLines(entry, title, headings, lines) {
-  const currentCatalogLines = removePriorAdmitCurriculumSectionsFromCurrentScope(lines);
+  const currentCatalogLines = scopeCurriculumEraLines(entry, lines);
   const sourceLines = removeFollowingDifferentOwnerAcronymDepartmentalSections(
     entry,
     currentCatalogLines
@@ -14057,7 +14923,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
 
   const pathwaySectionRange = findPathwayHtmlSectionRange(entry, sourceLines);
   if (pathwaySectionRange) {
-    return pathwaySectionRange.lines ?? sourceLines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+    return getPathwayHtmlSectionScopeLines(entry, sourceLines, pathwaySectionRange);
   }
 
   const specializedLegacyCatalogSectionRange =
@@ -15071,8 +15937,21 @@ function stripHtmlDocumentChrome(html) {
     .replace(HTML_COMMENT_PATTERN, " ");
 }
 
+function collapseHtmlTableRows(html) {
+  return String(html ?? "").replace(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi, (rowHtml, rowBody) => {
+    const cells = [...rowBody.matchAll(/<(td|th)\b[^>]*>([\s\S]*?)<\/\1>/gi)]
+      .map((match) => stripHtml(match[2]))
+      .filter(Boolean);
+    const hasSplitSubjectAndNumber =
+      cells.length >= 2 &&
+      /^[A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?$/.test(cells[0]) &&
+      /^\d{3}[A-Za-z]?\b/.test(cells[1]);
+    return hasSplitSubjectAndNumber ? `\n${cells.join(" ")}\n` : rowHtml;
+  });
+}
+
 function buildHtmlLines(html) {
-  return stripHtmlDocumentChrome(html)
+  return collapseHtmlTableRows(stripHtmlDocumentChrome(html))
     .replace(BLOCK_TAG_PATTERN, "\n")
     .split(/\r?\n/)
     .map((line) => stripHtml(line))
@@ -18403,7 +19282,7 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
   const rawLines = artifacts?.lines ?? [];
   const lines = removeFollowingDifferentOwnerAcronymDepartmentalSections(
     entry,
-    removePriorAdmitCurriculumSectionsFromCurrentScope(rawLines)
+    scopeCurriculumEraLines(entry, rawLines)
   );
   if (GRADUATE_SUPPLEMENTAL_PATTERN.test(`${entry.label ?? ""} ${entry.url ?? ""}`)) {
     return [];
@@ -18435,8 +19314,7 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
 
   const pathwaySectionRange = findPathwayHtmlSectionRange(entry, lines);
   if (pathwaySectionRange) {
-    const sectionLines =
-      pathwaySectionRange.lines ?? lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+    const sectionLines = getPathwayHtmlSectionScopeLines(entry, lines, pathwaySectionRange);
     if (sectionLines.some((sectionLine) => extractCourseCodesFromLine(sectionLine).length > 0)) {
       return [
         {
@@ -19835,7 +20713,14 @@ function buildManifestParseSuccess(
   const sourceInactiveMajor = sourceContentIndicatesInactiveMajor(effectiveEntry, parsed);
   const sourceRole = sourceInactiveMajor
     ? "non-schedulable-course-list"
-    : shouldUseTacomaMetadataPrimaryRole(
+    : shouldPromotePrimaryOverviewFromParsedEvidence(
+        effectiveEntry,
+        parsedSourceRole,
+        metadataSourceRole,
+        parsed
+      )
+      ? "primary-degree-requirements"
+      : shouldUseTacomaMetadataPrimaryRole(
         effectiveEntry,
         parsedSourceRole,
         metadataSourceRole,
@@ -19995,7 +20880,7 @@ function buildManifestParseSuccess(
   const parsedRequirementReplacements = sourceScope.canCreateRequiredRows
     ? buildSourceDerivedRequirementReplacements(
         { ...baseResult, sourceUrl: effectiveSourceUrl },
-        parsed.snapshotLines ?? []
+        schedulableSnapshotLines
       )
     : [];
   const parsedCourseCodes = filterGraduateCrossListedCompanionsForUndergraduateSource(
@@ -21095,19 +21980,22 @@ function parsedOwnerCanCreateSchedulableRows(owner) {
 }
 
 function parsedOwnerIsCoveredByChildPathwayRequirements(owner, owners) {
-  if (!owner?.ok || owner.pathwayId || (owner.parsedUwCourseCodes ?? []).length > 0) {
+  if (!owner?.ok || (owner.parsedUwCourseCodes ?? []).length > 0) {
     return false;
   }
 
-  const childOwners = (owners ?? []).filter(
+  const ownerDedupeKey = getParsedOwnerDedupeKey(owner);
+  const coveringOwners = (owners ?? []).filter(
     (candidate) =>
       candidate?.planId === owner.planId &&
-      candidate?.pathwayId &&
+      candidate !== owner &&
+      (!ownerDedupeKey || getParsedOwnerDedupeKey(candidate) !== ownerDedupeKey) &&
+      (candidate?.ownerId === owner.ownerId || (!owner.pathwayId && candidate?.pathwayId)) &&
       candidate?.ok &&
       parsedOwnerCanCreateSchedulableRows(candidate) &&
       (candidate.parsedUwCourseCodes ?? []).length > 0
   );
-  if (!childOwners.length) {
+  if (!coveringOwners.length) {
     return false;
   }
 
@@ -21182,12 +22070,14 @@ function parsedOwnerStructuredOnlyCodesCoveredBySamePlanSources(owner, owners) {
   if (!owner?.ok || !structuredOnlyCodes.length || !owner.planId) {
     return false;
   }
+  const ownerDedupeKey = getParsedOwnerDedupeKey(owner);
 
   const samePlanParsedCodes = new Set(
     (owners ?? [])
       .filter(
         (candidate) =>
-          candidate?.ownerId !== owner.ownerId &&
+          candidate !== owner &&
+          (!ownerDedupeKey || getParsedOwnerDedupeKey(candidate) !== ownerDedupeKey) &&
           candidate?.planId === owner.planId &&
           candidate?.ok &&
           parsedOwnerCanCreateSchedulableRows(candidate)
@@ -22406,11 +23296,14 @@ module.exports = {
   extractSupplementalDocumentLinkCandidatesForTest: extractSupplementalDocumentLinkCandidates,
   extractSupplementalHtmlLinkCandidatesForTest: extractSupplementalHtmlLinkCandidates,
   getAlternateParseableManifestEntriesForTest: getAlternateParseableManifestEntries,
+  getInlineSectionCourseTitleForTest: getInlineSectionCourseTitle,
   getStructuredUwCourseCodesForTest: getStructuredUwCourseCodes,
   getParseablePrimaryEntries,
   getOwnerProgramAcronymTokensForTest: getOwnerProgramAcronymTokens,
   getParserRuleRegistryForTest: parserRules.getParserRuleRegistry,
   getRequirementSourceRoleStatus,
+  filterParsedCourseCodesByHintsWithSourceRecoveryForTest:
+    filterParsedCourseCodesByHintsWithSourceRecovery,
   mergeRecoveredSupportSourcesForTest: mergeRecoveredSupportSources,
   orderPdfLineSegmentsForTest: orderPdfLineSegments,
   parseHtmlSourceFromArtifactsForTest,
@@ -22428,6 +23321,7 @@ module.exports = {
   shouldParseRequirementSourceEntry,
   shouldPreferSupplementalDocumentSourceForTest: shouldPreferSupplementalDocumentSource,
   shouldPreferSupplementalHtmlSourceForTest: shouldPreferSupplementalHtmlSource,
+  shouldAllowAlternateManifestEntryForParseForTest: shouldAllowAlternateManifestEntryForParse,
   shouldTriggerParserRecoveryForTest: shouldTriggerParserRecovery,
 };
 

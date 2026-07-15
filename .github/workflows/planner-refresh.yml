@@ -1,0 +1,47 @@
+# DRAFT Phase 20-A planner refresh workflow.
+# PR-only: never write directly to main or enable auto-merge from this workflow.
+name: Planner Refresh
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    name: Refresh planner data
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: source/package-lock.json
+
+      - name: Install app dependencies
+        working-directory: source
+        run: npm ci
+
+      - name: Refresh planner data
+        working-directory: source
+        run: node scripts/planner/pipeline/refresh-planner-data.cjs
+
+      - name: Upload planner refresh reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: planner-refresh-reports
+          path: |
+            source/.tmp/reports/**
+            source/logs/**
+          if-no-files-found: warn
+          retention-days: 14

@@ -7493,5 +7493,1265 @@
     },
     "createdAt": "2026-05-05T08:51:29.759Z",
     "updatedAt": "2026-05-05T08:51:29.759Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-priority-enrollment-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Priority Class Enrollment for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Priority enrollment opens at 8:00 AM for students with priority registration status for Spring 2027. Exact appointment access times should be checked in ctcLink/My Green River because dates are subject to change.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-02-04T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Priority enrollment opens"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-current-returning-enrollment-90plus-credits-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "90+ Credits Class Enrollment for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Class enrollment opens at 8:00 AM for current or returning students with 90 or more completed/evaluated credits for Spring 2027. Exact appointment access times should be checked in ctcLink/My Green River because dates are subject to change.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-02-05T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Class enrollment opens"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-current-returning-enrollment-60-89-credits-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "60-89 Credits Class Enrollment for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Class enrollment opens at 8:00 AM for current or returning students with 60 to 89 completed/evaluated credits for Spring 2027. Exact appointment access times should be checked in ctcLink/My Green River because dates are subject to change.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-02-08T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Class enrollment opens"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-current-returning-enrollment-30-59-credits-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "30-59 Credits Class Enrollment for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Class enrollment opens at 8:00 AM for current or returning students with 30 to 59 completed/evaluated credits for Spring 2027. Exact appointment access times should be checked in ctcLink/My Green River because dates are subject to change.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-02-09T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Class enrollment opens"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-current-returning-enrollment-0-29-credits-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "0-29 Credits Class Enrollment for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Class enrollment opens at 8:00 AM for current or returning students with 0 to 29 completed/evaluated credits for Spring 2027. Exact appointment access times should be checked in ctcLink/My Green River because dates are subject to change.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-02-10T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Class enrollment opens"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-new-student-enrollment-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "New Student Class Enrollment for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Class enrollment opens for new students assigned an enrollment appointment for Spring 2027 after completing the required admissions/advising steps. Exact appointment access times should be checked in ctcLink/My Green River because dates are subject to change.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-02-22T17:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "New student enrollment opens"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-tuition-or-first-payment-plan-due-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Tuition or First Payment Plan Due for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists tuition due date for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-03-09T17:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Tuition due date"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-waitlist-closes-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Waitlist Closes for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists waitlist closes for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-02T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Waitlist closes"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-quarter-begins-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Quarter Begins for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists quarter begins for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-05T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Quarter begins"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-instructor-permission-required-to-add-class-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Instructor Permission Required to Add Class for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists instructor permission required for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-08T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Instructor permission required"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-100-percent-refund-deadline-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "100% Refund Deadline for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists 100% refund deadline for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-09T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "100% refund deadline"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-census-date-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Census Date for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists census date for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-16T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Census date"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-last-day-to-withdraw-without-transcript-posting-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Last Day to Withdraw Without Transcript Posting for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists withdraw without transcript posting for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-19T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Withdraw without transcript posting"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-40-percent-refund-deadline-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "40% Refund Deadline for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists 40% refund deadline for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-04-19T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "40% refund deadline"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-residency-reclassification-deadline-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Residency Reclassification Deadline for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists residency reclassification deadline for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-05-05T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Residency reclassification deadline"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-pass-no-credit-request-deadline-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Pass/No-Credit Request Deadline for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists pass/no-credit request deadline for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-05-28T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Pass/no-credit request deadline"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-official-withdrawal-deadline-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Official Withdrawal Deadline for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists official withdrawal deadline for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-05-28T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Official withdrawal deadline"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-study-day-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Study Day for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists study day for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-06-16T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Study day"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-finals-begin-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Finals Begin for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists finals begin for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-06-17T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Finals begin"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-quarter-ends-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Quarter Ends for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists quarter ends for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-06-22T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Quarter ends"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-grades-due-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Grades Due for Spring 2027",
+    "organizationName": "Green River College",
+    "summary": "Green River's registrar calendar lists grades due for Spring 2027. Dates are subject to change; verify the official registrar page and ctcLink/My Green River when planning registration, payment, or course changes.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+    "dueAt": "2027-06-25T14:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Grades due"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "official_page",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/index.html",
+      "sourceLabel": "Green River Office of the Registrar Important Upcoming Dates",
+      "model": null,
+      "fetchedAt": "2026-07-12T04:28:14.506Z",
+      "verifiedAt": "2026-07-12T04:28:14.506Z"
+    },
+    "createdAt": "2026-07-12T04:28:14.506Z",
+    "updatedAt": "2026-07-12T04:28:14.506Z"
   }
 ]

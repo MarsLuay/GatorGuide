@@ -98,6 +98,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "notes": [
       "Degree: Associate in Applied Arts (AAA).",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -192,9 +193,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associates Degree.",
       "Degree: Associate in Applied Arts.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -210,7 +210,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3174,
+        "sourceProgramId": 3526,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-administrative-assistant-aaa:related-instruction-requirements-oral-communication:cmst-and-210",
@@ -360,7 +360,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": null,
-      "sourceText": "Minimum of 90 credits The Associate in Business Direct Transfer Agreement/Major Related Program (AB-DTA/MRP) is generally pursued by students who plan to transfer to a four-year university as a business or accounting major after completing their first two years at Green River. It is designed to meet the distribution requirements at universities in Washington State by fulfilling the general requirements taken by freshman and sophomores. See Articulation Agreements for more details about the colleges who accept this degree. The degree also indicates that a student has completed a two-year business program, which may be of value in career or lifetime goals. To earn this degree, students must complete a minimum of 90 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Business programs are competitive and may require a higher GPA overall, a higher GPA in a selected subset of courses or a specific minimum grade in one or more courses. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Business, AB-DTA/MRP Curriculum Map Program Website: Business | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business/index.html",
+      "sourceText": "Minimum of 90 credits The Associate in Business Direct Transfer Agreement/Major Related Program (AB-DTA/MRP) is generally pursued by students who plan to transfer to a four-year university as a business or accounting major after completing their first two years at Green River. It is designed to meet the distribution requirements at universities in Washington State by fulfilling the general requirements taken by freshman and sophomores. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes The degree also indicates that a student has completed a two-year business program, which may be of value in career or lifetime goals. To earn this degree, students must complete a minimum of 90 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Business programs are competitive and may require a higher GPA overall, a higher GPA in a selected subset of courses or a specific minimum grade in one or more courses. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Business, AB-DTA/MRP Curriculum Map . Program Website: Business | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -416,9 +416,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Transfer Associate.",
-      "Degree: Associate in Business DTA/MRP.",
-      "Published duration: Minimum of 90 credits.",
+      "Degree: Associate in Business DTA/MRP Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -452,7 +451,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits This degree program provides students an opportunity to develop essential business skills in their area of interest, as well as a comprehensive general education. Placement in courses depends on the student's prior education and experience. Students in this program must complete each class with a grade of 2.0 or higher. Students may enter this program at the beginning of any quarter. This program meets the college's related instruction requirements for the Associate in Applied Arts degree. Contacts: Lea Ann Simpson - lsimpson@greenriver.edu , Lori Fishburn - LFishburn@greenriver.edu , Shannon Sharpe - ssharpe@greenriver.edu Program Website: Business Applications Specialist | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/index.html Program Outcomes: Implement calculator/computer technology to solve problems. Successfully integrate Microsoft Office software applications to present information in a meaningful manner.",
+      "sourceText": "90 Credits This degree program provides students an opportunity to develop essential business skills in their area of interest, as well as a comprehensive general education. Placement in courses depends on the student's prior education and experience. Students in this program must complete each class with a grade of 2.0 or higher. Students may enter this program at the beginning of any quarter. This program meets the college's related instruction requirements for the Associate in Applied Arts degree. For a curriculum map or suggested sequence of courses go to Business Applications Specialist, AAA Curriculum Map . Contacts: Lea Ann Simpson - lsimpson@greenriver.edu , Lori Fishburn - LFishburn@greenriver.edu , Shannon Sharpe - ssharpe@greenriver.edu Program Website: Business Applications Specialist | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/index.html Program Outcomes: Implement calculator/computer technology to solve problems. Successfully integrate Microsoft Office software applications to present information in a meaningful manner.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -513,9 +512,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associates Degree.",
       "Degree: Associate in Applied Arts.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -602,7 +600,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "notes": [
       "Degree: Associate of Applied Arts.",
-      "Published duration: 90-95 credits.",
+      "Published duration: 90-95 credits, 6 quarters, 2 years.",
       "Students wishing to obtain an additional specialized certificate should seek advising assistance.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -619,7 +617,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
-        "sourceProgramId": 3198,
+        "sourceProgramId": 3550,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-written-communication:btac-130",
@@ -650,7 +648,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (20 credits) > Oral Communication",
-        "sourceProgramId": 3198,
+        "sourceProgramId": 3550,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-oral-communication:cmst-and-101",
@@ -749,6 +747,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in American Ethnic Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
+    "catalogCreditRange": {
+      "minimumCredits": 90,
+      "maximumCredits": 90,
+      "sourceText": "90 credits, 6 quarters, 2 years",
+      "sourceKind": "program-map-duration",
+      "isExact": true
+    },
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -798,7 +805,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Associate in Arts, Direct Transfer Agreement (DTA).",
+      "Degree: Associate in Arts, Direct Transfer Agreement (DTA) Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Additional credits-Recommended to take additional American Ethnic Studies courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -815,9 +823,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "placeholderCredits": 50,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 90,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -833,7 +841,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -888,9 +896,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree – Transfer.",
       "Degree: Associate Degree - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -1021,9 +1028,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree.",
       "Degree: Associate of Applied Arts Degree.",
-      "Published duration: ---.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -1111,9 +1117,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer.",
-      "Degree: Associate in Applied Science - Transfer.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Applied Science - Transfer Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -1129,7 +1134,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Required Core Classes (45 credits) > Related Instruction Requirements (35 credits) > Oral Communication & Human Relations (5 credits):",
-        "sourceProgramId": 3219,
+        "sourceProgramId": 3571,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-criminal-justice-aas-t:required-core-classes-45-credits-related-instruction-requirements-35-credits-oral-communication-and-human-relations-5-credits:cmst-and-210",
@@ -1220,7 +1225,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits The Criminal Justice- Forensic degree program introduces individuals who wish to gain employment in areas such as police support, crime scene investigations, and fingerprint and trace evidence examination to the field of Forensic Science. Forensics or criminalistics is concerned with the recognition, identification, individualization, and evaluation of physical evidence using the methods of the natural sciences. Some of the major areas of this specialty include forensic medicine, toxicology, serology, anthropology, and odontology, trace evidence (hair, fibers, glass, etc.), documentary evidence, ballistics, explosives, accelerants, and fingerprint processing and examination. Many forensic students continue their academic careers by transferring; some others seek employment with a variety of criminal justice agencies. Forensic students may gain employment in areas such as police support, crime scene investigations, fingerprint technology. Employers include local, state and federal organizations as well as private industry. Students interested in transfer should consult the transfer institution catalog or transfer department. Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Students who successfully complete this program will be able to: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. This degree transfers to Seattle University, see the following page about the Criminal Justice/Forensics AAS-T to Bachelors in Criminal Justice/Forensics at Seattle University and the courses that transfer. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Criminal Justice, AAS-T Curriculum Map",
+      "sourceText": "90 Credits The Criminal Justice- Forensic degree program introduces individuals who wish to gain employment in areas such as police support, crime scene investigations, and fingerprint and trace evidence examination to the field of Forensic Science. Forensics or criminalistics is concerned with the recognition, identification, individualization, and evaluation of physical evidence using the methods of the natural sciences. Some of the major areas of this specialty include forensic medicine, toxicology, serology, anthropology, and odontology, trace evidence (hair, fibers, glass, etc.), documentary evidence, ballistics, explosives, accelerants, and fingerprint processing and examination. Many forensic students continue their academic careers by transferring; some others seek employment with a variety of criminal justice agencies. Forensic students may gain employment in areas such as police support, crime scene investigations, fingerprint technology. Employers include local, state and federal organizations as well as private industry. Students interested in transfer should consult the transfer institution catalog or transfer department. Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Students who successfully complete this program will be able to: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. This degree transfers to Seattle University, see the following page about the Criminal Justice/Forensics AAS-T to Bachelors in Criminal Justice/Forensics at Seattle University and the courses that transfer. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Criminal Justice-Forensic, AAS-T Curriculum Map .",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -1275,9 +1280,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer.",
-      "Degree: Associate in Applied Science - Transfer.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Applied Science - Transfer Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -1423,9 +1427,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -1441,7 +1444,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (17 credits) > Oral Communication",
-        "sourceProgramId": 3230,
+        "sourceProgramId": 3582,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:related-instruction-requirements-17-credits-oral-communication:cmst-and-101",
@@ -1521,7 +1524,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits This Associate in Applied Science-Transfer (AAS-T) is a dual purpose degree built upon the technical courses required for job preparation. It includes college-level general Education courses, enabling the student to transfer to a select number of baccalaureate institutions. Students completing the AAS-T Early Childhood Education and Diversity Studies degree will also earn three separate State ECE Stackable Certificates. The completion of the degree and certificate program prepares graduates to seek employment in child care centers, Head Start, family child care homes, private preschools, children's home, institutions and other programs serving children from birth through 8 years of age. This curriculum provides meaningful instruction for parents, foster parents, and persons working with young children/students as ECE teachers, instructional aides, or Paraeducators. Emphasizes the implications for classroom practices and developing a plan for incorporating anti-bias attitudes and practices into an educational setting. Basic Requirements: All transfer degrees, have basic requirements for graduation: Completion of 90 applicable college level quarter credit hours GRC cumulative GPA must be a minimum of 2.00. Note: A higher admission GPA may be required at the receiving institution Transfer credits with less than a \"D\" grade are not counted to satisfy a graduation requirement At least 24 of the 90 quarter credits for a degree must be completed in residence at Green River College Students must complete all Early Childhood Education (ECED/ECED&) and Education (EDUC/EDUC&) course with a grade of 2.0 or higher. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum maps or suggested sequence of courses go to Early Childhood Education and Diversity Studies, AAS-T Curriculum Map Program Outcomes: Students who successfully complete this program will be able to: Use developmental milestones and observations of children's behavior as a foundation for planning appropriate activities. Advocate for strategies that promote the cultural diversity of children, families and their communities. Demonstrate effective written, verbal and non-verbal communication Discuss current issues and trends in early childhood education. Identify typical and atypical growth and development (cognitive, linguistic, motor, and social). Positively support children's whole development. Display a positive attitude and enthusiasm for the job Develop rapport and contribute to the work environment as a member of the instructional team. Practice ethical and professional standards of conduct Comply with laws (such as IDEA, Section 504, ADA), workplace policies, and procedures in relation to confidentiality, reporting of abuse, discipline, chain of command and delegation and supervision. Design, set up and manage safe, healthy environments, spaces, equipment and materials which invite learning. Discuss the dynamics of family structure. Involve parents and community agencies in early childhood development.",
+      "sourceText": "90 Credits This Associate in Applied Science-Transfer (AAS-T) is a dual purpose degree built upon the technical courses required for job preparation. It includes college-level general Education courses, enabling the student to transfer to a select number of baccalaureate institutions. Students completing the AAS-T Early Childhood Education and Diversity Studies degree will also earn three separate State ECE Stackable Certificates. The completion of the degree and certificate program prepares graduates to seek employment in child care centers, Head Start, family child care homes, private preschools, children's home, institutions and other programs serving children from birth through 8 years of age. This curriculum provides meaningful instruction for parents, foster parents, and persons working with young children/students as ECE teachers, instructional aides, or Paraeducators. Emphasizes the implications for classroom practices and developing a plan for incorporating anti-bias attitudes and practices into an educational setting. Basic Requirements: All transfer degrees, have basic requirements for graduation: Completion of 90 applicable college level quarter credit hours GRC cumulative GPA must be a minimum of 2.00. Note: A higher admission GPA may be required at the receiving institution Transfer credits with less than a \"D\" grade are not counted to satisfy a graduation requirement At least 24 of the 90 quarter credits for a degree must be completed in residence at Green River College Students must complete all Early Childhood Education (ECED/ECED&) and Education (EDUC/EDUC&) course with a grade of 2.0 or higher. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum maps or suggested sequence of courses go to Early Childhood Education and Diversity Studies, AAS-T Curriculum Map",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -1581,9 +1584,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate of Applied Science - Transfer.",
-      "Published duration: 2 years.",
+      "Degree: Associate of Applied Science - Transfer Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -1672,9 +1674,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate of Applied Science - Transfer.",
-      "Published duration: 90 credits.",
+      "Degree: Associate of Applied Science - Transfer Transfer Resources.",
+      "Published duration: 9 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -1690,7 +1691,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Related Instruction Requirements (23 credits) > Oral Communication (5 credits)",
-        "sourceProgramId": 3229,
+        "sourceProgramId": 3581,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits:cmst-and-101",
@@ -1758,6 +1759,90 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     }
   },
   {
+    "id": "grc-associate-education-law-social-science-education-associate-dta-emphasis-elementary-education",
+    "code": "AA-DTA",
+    "title": "Associate in Arts-DTA with Emphasis in Elementary Education",
+    "summary": "Associate in Arts-DTA with Emphasis in Elementary Education curriculum map.",
+    "bestFor": [
+      "Associate in Arts-DTA with Emphasis in Elementary Education"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "H 1 - Humanities/Fine Arts/English",
+          "PSYC& 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "H 2 - Humanities/Fine Arts/English",
+          "MATH& 131",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "EDUC& 205",
+          "N 1 - Natural Science List A (Lab)",
+          "MATH& 132"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "EDUC& 240",
+          "N 2 - Natural Science List A",
+          "S 2 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "EDUC& 204",
+          "H 3 - Humanities/Fine Arts/English",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "S 3 - Social Science",
+          "EDUC& 115",
+          "EDUC& 130",
+          "EDUC& 136",
+          "MATH& 107"
+        ]
+      }
+    ],
+    "notes": [
+      "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Associate in Arts-DTA with Emphasis in Elementary Education curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/education/associate-dta-emphasis-elementary-education.html"
+      }
+    ],
+    "sampleSchedule": {
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
+      "placeholderCredits": 40,
+      "unresolvedOptionCredits": 0,
+      "defaultOptionCredits": 0,
+      "sampleOnlyCredits": 90,
+      "exceedsCatalogMinimum": null,
+      "exceedsCatalogMaximum": null
+    }
+  },
+  {
     "id": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in Geography",
@@ -1765,6 +1850,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Geography"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
+    "catalogCreditRange": {
+      "minimumCredits": 90,
+      "maximumCredits": 90,
+      "sourceText": "90 credits, 6 quarters, 2 years",
+      "sourceKind": "program-map-duration",
+      "isExact": true
+    },
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1813,7 +1907,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Associate in Arts degree, Direct Transfer Agreement (DTA).",
+      "Degree: Associate in Arts degree, Direct Transfer Agreement (DTA) Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -1829,9 +1924,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "placeholderCredits": 50,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 90,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -1847,7 +1942,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -1904,9 +1999,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity. HIST& 214 - Pacific Northwest History is required by law for all teachers in Washington state. History courses that meet diversity requirement",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -2007,9 +2101,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Arts.",
-      "Published duration: 90 credits.",
+      "Published duration: 9 0 credits, 6 quarters, 2 years.",
       "Students may test out of BTAC 101 into BTAC 102.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -2026,7 +2119,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3174,
+        "sourceProgramId": 3526,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-legal-administrative-assistant-aaa:related-instruction-requirements-oral-communication:cmst-and-210",
@@ -2086,7 +2179,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -2138,9 +2231,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -2287,7 +2379,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -2343,9 +2435,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Additional credits-Recommended to take additional Sociology courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -2380,7 +2471,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 130,
       "maximumCredits": 130,
-      "sourceText": "Min 130 credits",
+      "sourceText": "130 credits , 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -2445,9 +2536,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: Min 130 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 130 credits , 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -2506,7 +2596,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 130,
       "maximumCredits": 130,
-      "sourceText": "Min 130 credits",
+      "sourceText": "130 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -2565,9 +2655,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: Min 130 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 130 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -2726,7 +2815,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 103,
       "maximumCredits": null,
-      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
+      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. Campus-wide Learning Outcomes A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -2792,9 +2881,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Fine Arts.",
-      "Published duration: Min 130 credits.",
+      "Degree: Associate in Fine Arts Transfer Resources.",
+      "Published duration: 130 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -2826,7 +2914,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 103,
       "maximumCredits": null,
-      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
+      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. Campus-wide Learning Outcomes A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -2893,9 +2981,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Fine Arts.",
-      "Published duration: Min 130 credits.",
+      "Degree: Associate in Fine Arts Transfer Resources.",
+      "Published duration: 130 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -2927,7 +3014,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 103,
       "maximumCredits": null,
-      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
+      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. Campus-wide Learning Outcomes A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -2990,9 +3077,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Fine Arts.",
-      "Published duration: Min 130 credits.",
+      "Degree: Associate in Fine Arts Transfer Resources.",
+      "Published duration: 130 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -3024,7 +3110,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 103,
       "maximumCredits": null,
-      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
+      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. Campus-wide Learning Outcomes A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -3089,9 +3175,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Fine Arts.",
-      "Published duration: Min 130 credits.",
+      "Degree: Associate in Fine Arts Transfer Resources.",
+      "Published duration: 130 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -3123,7 +3208,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 103,
       "maximumCredits": null,
-      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
+      "sourceText": "Minimum of 103 Credits The Associate in Fine Arts degree is generally pursued by students who plan to transfer to a four-year university. However, completion of this degree does not guarantee admission as an art major. This degree offers students a broad foundation in advanced education or a career in Art. In order to be granted the Washington state Direct Transfer Agreement (DTA), students must apply for the Associate in Arts Degree, AA-DTA as well as the AFA at the time of graduation. Campus-wide Learning Outcomes A portfolio highlighting the student's best work completed at Green River College, emphasizing originality, facility, and exploration is highly recommended. Portfolio presentation is usually the determining factor in acceptance for Fine Arts major, and this degree provides the structure for the preparation of a strong portfolio. To earn this degree, students must complete a minimum of 103 quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Fine Arts, AFA Curriculum Map Program Website: Arts | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/arts/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -3177,9 +3262,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Fine Arts, AFA.",
-      "Published duration: Minimum 103 credits.",
+      "Degree: Associate in Fine Arts, AFA Transfer Resources.",
+      "Published duration: 130 credits, 6 quarters, 2 years.",
       "23 credits should be chosen from the list below.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -3232,6 +3316,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ART 180",
           "ART 199",
           "ART 219",
+          "ART 240",
+          "ART 241",
           "ART 251",
           "ART 252",
           "ART 253",
@@ -3266,6 +3352,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ART 180",
           "ART 199",
           "ART 219",
+          "ART 240",
+          "ART 241",
           "ART 251",
           "ART 252",
           "ART 253",
@@ -3309,7 +3397,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -3363,9 +3451,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -3389,6 +3476,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ENGL 251",
           "FILM 151",
           "JAPN 142",
+          "JAPN 143",
           "MUSC 137",
           "MUSC 138",
           "MUSC 139",
@@ -3403,6 +3491,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ENGL 251",
           "FILM 151",
           "JAPN 142",
+          "JAPN 143",
           "MUSC 137",
           "MUSC 138",
           "MUSC 139",
@@ -3430,6 +3519,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Black Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
+    "catalogCreditRange": {
+      "minimumCredits": 90,
+      "maximumCredits": 90,
+      "sourceText": "90 credits, 6 quarters, 2 years",
+      "sourceKind": "program-map-duration",
+      "isExact": true
+    },
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3485,9 +3583,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: ---.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -3503,9 +3600,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "placeholderCredits": 75,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 90,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -3521,7 +3618,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -3571,9 +3668,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 Credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Select a minimum of 10 additional credits from the following courses:",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -3639,7 +3735,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -3692,9 +3788,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "15 credits of Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -3780,6 +3875,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "CMST& 240",
           "CMST 265",
           "FILM 121",
+          "FILM 130",
           "FILM 151",
           "FILM 162",
           "FILM 191",
@@ -3806,6 +3902,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "CMST& 240",
           "CMST 265",
           "FILM 121",
+          "FILM 130",
           "FILM 151",
           "FILM 162",
           "FILM 191",
@@ -3853,7 +3950,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "SCI 160",
           "SOC 205",
           "SOC 214",
-          "SOC 220"
+          "SOC 220",
+          "AMES 151",
+          "AMES 180",
+          "AMES 222",
+          "AMES 240"
         ],
         "courseCodes": [
           "AMES 100",
@@ -3873,7 +3974,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "SCI 160",
           "SOC 205",
           "SOC 214",
-          "SOC 220"
+          "SOC 220",
+          "AMES 151",
+          "AMES 180",
+          "AMES 222",
+          "AMES 240"
         ]
       },
       {
@@ -3973,8 +4078,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4003,6 +4107,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in English Literature"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
+    "catalogCreditRange": {
+      "minimumCredits": 90,
+      "maximumCredits": 90,
+      "sourceText": "90 credits, 6 quarters, 2 years",
+      "sourceKind": "program-map-duration",
+      "isExact": true
+    },
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -4099,8 +4212,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4193,9 +4306,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "placeholderCredits": 65,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 90,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -4206,6 +4319,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Emphasis in Professional & Technical Communication"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
+    "catalogCreditRange": {
+      "minimumCredits": 90,
+      "maximumCredits": 90,
+      "sourceText": "90 credits, 6 quarters, 2 years",
+      "sourceKind": "program-map-duration",
+      "isExact": true
+    },
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -4259,11 +4381,21 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Natural Science",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (3 credits)",
+        "courses": [
+          "3 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4274,14 +4406,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 87,
-      "scheduledMaxCredits": 87,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 90,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 87,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -4297,7 +4429,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -4351,9 +4483,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4387,7 +4518,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -4465,9 +4596,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4501,7 +4631,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -4556,9 +4686,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4592,7 +4721,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -4640,9 +4769,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Foreign Language or Elective Concentration Elective Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -4749,7 +4877,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "SPAN 292",
           "ANTH 108",
           "ANTH& 206",
-          "HIST 230",
           "POLS& 204",
           "POLS 225",
           "PSYC 240"
@@ -4772,7 +4899,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "SPAN 292",
           "ANTH 108",
           "ANTH& 206",
-          "HIST 230",
           "POLS& 204",
           "POLS 225",
           "PSYC 240"
@@ -4803,7 +4929,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -4857,9 +4983,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -4918,17 +5043,17 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
   {
     "id": "grc-associate-fine-arts-humanities-journalism-aa-dta-concentration-digital-broadcast-media",
     "code": "AA-DTA",
-    "title": "AA-DTA with Concentration in Digital & Broadcast Media",
-    "summary": "AA-DTA with Concentration in Digital & Broadcast Media curriculum map.",
+    "title": "Associate in Arts-DTA with Concentration in Digital Media",
+    "summary": "Associate in Arts-DTA with Concentration in Digital Media curriculum map.",
     "bestFor": [
-      "AA-DTA with Concentration in Digital & Broadcast Media"
+      "Associate in Arts-DTA with Concentration in Digital Media"
     ],
     "minimumCredits": 90,
     "maximumCredits": 90,
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -4944,8 +5069,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 2 (15 credits)",
         "courses": [
-          "CMST& 240",
           "JOURN 101",
+          "JOURN 150",
           "S 1 - Social Science"
         ]
       },
@@ -4960,9 +5085,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "JOURN 150",
           "ENGL 126",
-          "N 2 - Natural Science List A"
+          "N 2 - Natural Science List A",
+          "Select one: JOURN 100, JOURN 103, JOURN 109, JOURN 156, JOURN 157"
         ]
       },
       {
@@ -4970,40 +5095,53 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "JOURN 165",
           "N 3 - Natural Science List A or List B",
-          "S 3 - Social Science",
-          "Choose an elective: JOURN 103, JOURN 107, JOURN 115, JOURN 116, JOURN 125, JOURN 140, JOURN 157"
+          "S 3 - Social Science"
         ]
       },
       {
-        "label": "Quarter 6 (15 credits)",
+        "label": "Quarter 6 (13 credits)",
         "courses": [
-          "ART 123",
-          "Electives; All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity. Choose an elective: JOURN 103, JOURN 107, JOURN 115, JOURN 116, JOURN 125, JOURN 140, JOURN 157"
+          "Select one: ART 120, ART 123, PHOTO 111, ENGL& 236"
+        ]
+      },
+      {
+        "label": "Concentration options:",
+        "courses": [
+          "JOURN 100",
+          "JOURN 103",
+          "JOURN 104",
+          "JOURN 105",
+          "JOURN 106",
+          "JOURN 107",
+          "JOURN 109",
+          "JOURN 125",
+          "JOURN 156",
+          "JOURN 157",
+          "CMST& 240"
         ]
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
       {
-        "label": "AA-DTA with Concentration in Digital & Broadcast Media curriculum map",
+        "label": "Associate in Arts-DTA with Concentration in Digital Media curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/fine-arts-humanities/journalism/aa-dta-concentration-digital-broadcast-media.html"
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
-      "scheduledMaxCredits": 92,
-      "placeholderCredits": 40,
-      "unresolvedOptionCredits": 8,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
+      "placeholderCredits": 30,
+      "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 2,
-      "exceedsCatalogMinimum": true,
-      "exceedsCatalogMaximum": true
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -5019,7 +5157,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -5068,9 +5206,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Courses not used in first quarter may be applied to List B.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -5186,7 +5323,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -5237,9 +5374,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -5324,7 +5460,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -5375,9 +5511,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Choose at least 5 credits, but it is recommended that elective courses also come from this list.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -5458,7 +5593,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 94,
       "maximumCredits": 95,
-      "sourceText": "94-95 Credits This degree program provides students an opportunity to develop essential medical administrative skills in their area of interest, as well as, to offer a comprehensive general education. Placement in courses depends on prior education and experience. Options for this degree include the Front Office or Medical Coding and Reimbursement: Front Office - This degree option provides students an opportunity to develop essential front office medical administrative skills including customer service, patient registration, scheduling, filing and computer skills necessary to obtain employment in a variety of healthcare settings. Medical Coding and Reimbursement Specialist : This degree option provides student an opportunity to develop essential ICD, CPT, HCPCS and reimbursement skills necessary to obtain employment in the medical billing or coding setting. Upon completion of the program, students will be eligible to sit for formal exams offered through national organizations in order to obtain medical coding certification. To earn this degree, the student must complete all core classes. In addition, the student must choose an area of concentration and complete the required courses in that area. Students in this program must complete each class with a grade of 2.0 or higher. Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson- lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
+      "sourceText": "94-95 Credits This degree program provides students an opportunity to develop essential medical administrative skills in their area of interest, as well as, to offer a comprehensive general education. Placement in courses depends on prior education and experience. Options for this degree include the Front Office or Medical Coding and Reimbursement: Front Office - This degree option provides students an opportunity to develop essential front office medical administrative skills including customer service, patient registration, scheduling, filing and computer skills necessary to obtain employment in a variety of healthcare settings. Medical Coding and Reimbursement Specialist : This degree option provides student an opportunity to develop essential ICD, CPT, HCPCS and reimbursement skills necessary to obtain employment in the medical billing or coding setting. Upon completion of the program, students will be eligible to sit for formal exams offered through national organizations in order to obtain medical coding certification. To earn this degree, the student must complete all core classes. In addition, the student must choose an area of concentration and complete the required courses in that area. Students in this program must complete each class with a grade of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Medical Office Administration, AAA with emphasis in Front Office Curriculum Map or Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement Curriculum Map Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson- lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -5522,9 +5657,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Arts.",
-      "Published duration: 90 Credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -5540,7 +5674,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3257,
+        "sourceProgramId": 3609,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office:related-instruction-requirements-oral-communication:cmst-and-210",
@@ -5590,7 +5724,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 94,
       "maximumCredits": 95,
-      "sourceText": "94-95 Credits This degree program provides students an opportunity to develop essential medical administrative skills in their area of interest, as well as, to offer a comprehensive general education. Placement in courses depends on prior education and experience. Options for this degree include the Front Office or Medical Coding and Reimbursement: Front Office - This degree option provides students an opportunity to develop essential front office medical administrative skills including customer service, patient registration, scheduling, filing and computer skills necessary to obtain employment in a variety of healthcare settings. Medical Coding and Reimbursement Specialist : This degree option provides student an opportunity to develop essential ICD, CPT, HCPCS and reimbursement skills necessary to obtain employment in the medical billing or coding setting. Upon completion of the program, students will be eligible to sit for formal exams offered through national organizations in order to obtain medical coding certification. To earn this degree, the student must complete all core classes. In addition, the student must choose an area of concentration and complete the required courses in that area. Students in this program must complete each class with a grade of 2.0 or higher. Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson- lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
+      "sourceText": "94-95 Credits This degree program provides students an opportunity to develop essential medical administrative skills in their area of interest, as well as, to offer a comprehensive general education. Placement in courses depends on prior education and experience. Options for this degree include the Front Office or Medical Coding and Reimbursement: Front Office - This degree option provides students an opportunity to develop essential front office medical administrative skills including customer service, patient registration, scheduling, filing and computer skills necessary to obtain employment in a variety of healthcare settings. Medical Coding and Reimbursement Specialist : This degree option provides student an opportunity to develop essential ICD, CPT, HCPCS and reimbursement skills necessary to obtain employment in the medical billing or coding setting. Upon completion of the program, students will be eligible to sit for formal exams offered through national organizations in order to obtain medical coding certification. To earn this degree, the student must complete all core classes. In addition, the student must choose an area of concentration and complete the required courses in that area. Students in this program must complete each class with a grade of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Medical Office Administration, AAA with emphasis in Front Office Curriculum Map or Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement Curriculum Map Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson- lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -5653,9 +5787,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Arts.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -5671,7 +5804,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3257,
+        "sourceProgramId": 3609,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement:related-instruction-requirements-oral-communication:cmst-and-210",
@@ -5721,7 +5854,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 91,
-      "sourceText": "Minimum of 90-91 Credits The Associate in Pre-Nursing Direct Transfer Agreement/Major Related Program is generally pursued by students who plan to transfer to a four-year college or university at the junior level to a Bachelor of Science in Nursing Program (BSN). This degree is designed to meet the distribution requirements at universities in Washington State, by fulfilling the general requirements taken by freshmen and sophomores. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete a minimum of 90-91-quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Nursing programs are competitive and may require a higher GPA overall, a higher GPA in a selected subset of courses or a specific minimum grade in one or more courses. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. For a curriculum map or suggested sequence of course go to Associate in Pre-Nursing, APreN-DTA/MRP Curriculum Map Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
+      "sourceText": "Minimum of 90-91 Credits The Associate in Pre-Nursing Direct Transfer Agreement/Major Related Program is generally pursued by students who plan to transfer to a four-year college or university at the junior level to a Bachelor of Science in Nursing Program (BSN). This degree is designed to meet the distribution requirements at universities in Washington State, by fulfilling the general requirements taken by freshmen and sophomores. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete a minimum of 90-91-quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Nursing programs are competitive and may require a higher GPA overall, a higher GPA in a selected subset of courses or a specific minimum grade in one or more courses. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. For a curriculum map or suggested sequence of course go to Associate in Pre-Nursing, APreN-DTA/MRP Curriculum Map Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -5778,9 +5911,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate in Arts - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Arts - Direct Transfer Agreement Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -5814,7 +5946,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits This degree program prepares a student to provide safe and efficient nursing care. Health facilities such as hospitals, nursing homes, clinics and public health nursing services employ practical nurses under the supervision of a registered nurse or physician. The Practical Nursing program is a 90-credit program in which students must demonstrate academic proficiency by completing basic curriculum requirements prior to entry into the core sequence of nursing classes. A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required. Evidence of academic proficiency is established by completion of each of the following prerequisite requirements with a 2.5 grade or higher. Courses without an \"&\" may not be transferable. The following courses are required prior to applying into the Practical Nursing program: BIOL& 241 and BIOL& 242 Anatomy & Physiology I & II (10 credits); BIOL& 160 - General Biology with Lab (5 credits) or BIOL& 211 - Majors Cellular 6 cr Communication Studies (5 credits). Choose from CMST& 101 , CMST& 210 , CMST& 220 , CMST& 230 or CMST 240 ENGL& 101 - English Composition I ( 5 credits) MATH& 146 - Introduction to Statistics or MATH 256 - Statistics for Business and Social Science ( 5 credits) NUTR& 101 - Nutrition (5 credits) PSYC& 100 - General Psychology (5 credits) PSYC& 200 - Lifespan Psychology (5 credits) The student is expected to provide his/her own transportation to off-site clinical facilities that at times can be 50 or more miles away. In addition to paying for tuition and books, the student is required to purchase a uniform, pin, white shoes, watch, bandage, scissors, and liability and health insurance. In order to attend clinical rotations, students must also successfully pass both a criminal and a Washington State Department of Social and Health Services background check. For additional information about a required nursing orientation and the application procedure, contact the Nursing Advisor, at ext. 2641. Upon successful completion of the required credits, the student will earn an Associate in Applied Science degree in Practical Nursing. The graduate will be eligible to take the licensing examination and upon passing, practice as a Licensed Practical Nurse. Application for LPN licensure asks for information regarding legal convictions, and drug/alcohol and addiction conditions that may inhibit nursing practice. For additional questions on this issue, contact the Washington State Nursing Care Quality Assurance Commission. The program is fully accredited by the National League for Nursing Commission for Nursing Education Accreditation and Washington State Nursing Care Quality Assurance Commission and the Northwest Commission on Colleges and Universities. Note Regarding Open Enrollment Contacts: Nursing Advisor; 253-833-9111, ext. 2641 or nursing@greenriver.edu or Adam Brown, ext 6042, abrown@greenriver.edu Information Session Sign up: greenriver.edu/info-sessions Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
+      "sourceText": "90 Credits This degree program prepares a student to provide safe and efficient nursing care. Health facilities such as hospitals, nursing homes, clinics and public health nursing services employ practical nurses under the supervision of a registered nurse or physician. The Practical Nursing program is a 90-credit program in which students must demonstrate academic proficiency by completing basic curriculum requirements prior to entry into the core sequence of nursing classes. A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required. Evidence of academic proficiency is established by completion of each of the following prerequisite requirements with a 2.5 grade or higher. Courses without an \"&\" may not be transferable. The following courses are required prior to applying into the Practical Nursing program: BIOL& 241 and BIOL& 242 Anatomy & Physiology I & II (10 credits); BIOL& 160 - General Biology with Lab (5 credits) or BIOL& 211 - Majors Cellular 6 cr Communication Studies (5 credits). Choose from CMST& 101 , CMST& 210 , CMST& 220 , CMST& 230 or CMST 240 ENGL& 101 - English Composition I ( 5 credits) MATH& 146 - Introduction to Statistics or MATH 256 - Statistics for Business and Social Science ( 5 credits) NUTR& 101 - Nutrition (5 credits) PSYC& 100 - General Psychology (5 credits) PSYC& 200 - Lifespan Psychology (5 credits) The student is expected to provide his/her own transportation to off-site clinical facilities that at times can be 50 or more miles away. In addition to paying for tuition and books, the student is required to purchase a uniform, pin, white shoes, watch, bandage, scissors, and liability and health insurance. In order to attend clinical rotations, students must also successfully pass both a criminal and a Washington State Department of Social and Health Services background check. For additional information about a required nursing orientation and the application procedure, contact the Nursing Advisor, at ext. 2641. Upon successful completion of the required credits, the student will earn an Associate in Applied Science degree in Practical Nursing. The graduate will be eligible to take the licensing examination and upon passing, practice as a Licensed Practical Nurse. Application for LPN licensure asks for information regarding legal convictions, and drug/alcohol and addiction conditions that may inhibit nursing practice. For additional questions on this issue, contact the Washington State Nursing Care Quality Assurance Commission. The program is fully accredited by the National League for Nursing Commission for Nursing Education Accreditation and Washington State Nursing Care Quality Assurance Commission and the Northwest Commission on Colleges and Universities. For a curriculum map or suggested sequence of courses go to Practical Nursing, AAS Curriculum Map . Note Regarding Open Enrollment Contacts: Nursing Advisor; 253-833-9111, ext. 2641 or nhs@greenriver.edu or Adam Brown, ext 6042, abrown@greenriver.edu Information Session Sign up: greenriver.edu/info-sessions Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -5861,9 +5993,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Apply to the program- Application Instructions A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -5880,7 +6011,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3267,
+        "sourceProgramId": 3619,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-101",
@@ -5941,7 +6072,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
-        "sourceProgramId": 3267,
+        "sourceProgramId": 3619,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-computation:math-and-146",
@@ -5991,7 +6122,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits This degree program prepares a student to provide safe and efficient nursing care. Health facilities such as hospitals, nursing homes, clinics and public health nursing services employ practical nurses under the supervision of a registered nurse or physician. The Practical Nursing program is a 90-credit program in which students must demonstrate academic proficiency by completing basic curriculum requirements prior to entry into the core sequence of nursing classes. A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required. Evidence of academic proficiency is established by completion of each of the following prerequisite requirements with a 2.5 grade or higher. Courses without an \"&\" may not be transferable. The following courses are required prior to applying into the Practical Nursing program: BIOL& 241 and BIOL& 242 Anatomy & Physiology I & II (10 credits); BIOL& 160 - General Biology with Lab (5 credits) or BIOL& 211 - Majors Cellular 6 cr Communication Studies (5 credits). Choose from CMST& 101 , CMST& 210 , CMST& 220 , CMST& 230 or CMST 240 ENGL& 101 - English Composition I ( 5 credits) MATH& 146 - Introduction to Statistics or MATH 256 - Statistics for Business and Social Science ( 5 credits) NUTR& 101 - Nutrition (5 credits) PSYC& 100 - General Psychology (5 credits) PSYC& 200 - Lifespan Psychology (5 credits) The student is expected to provide his/her own transportation to off-site clinical facilities that at times can be 50 or more miles away. In addition to paying for tuition and books, the student is required to purchase a uniform, pin, white shoes, watch, bandage, scissors, and liability and health insurance. In order to attend clinical rotations, students must also successfully pass both a criminal and a Washington State Department of Social and Health Services background check. For additional information about a required nursing orientation and the application procedure, contact the Nursing Advisor, at ext. 2641. Upon successful completion of the required credits, the student will earn an Associate in Applied Science degree in Practical Nursing. The graduate will be eligible to take the licensing examination and upon passing, practice as a Licensed Practical Nurse. Application for LPN licensure asks for information regarding legal convictions, and drug/alcohol and addiction conditions that may inhibit nursing practice. For additional questions on this issue, contact the Washington State Nursing Care Quality Assurance Commission. The program is fully accredited by the National League for Nursing Commission for Nursing Education Accreditation and Washington State Nursing Care Quality Assurance Commission and the Northwest Commission on Colleges and Universities. Note Regarding Open Enrollment Contacts: Nursing Advisor; 253-833-9111, ext. 2641 or nursing@greenriver.edu or Adam Brown, ext 6042, abrown@greenriver.edu Information Session Sign up: greenriver.edu/info-sessions Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
+      "sourceText": "90 Credits This degree program prepares a student to provide safe and efficient nursing care. Health facilities such as hospitals, nursing homes, clinics and public health nursing services employ practical nurses under the supervision of a registered nurse or physician. The Practical Nursing program is a 90-credit program in which students must demonstrate academic proficiency by completing basic curriculum requirements prior to entry into the core sequence of nursing classes. A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required. Evidence of academic proficiency is established by completion of each of the following prerequisite requirements with a 2.5 grade or higher. Courses without an \"&\" may not be transferable. The following courses are required prior to applying into the Practical Nursing program: BIOL& 241 and BIOL& 242 Anatomy & Physiology I & II (10 credits); BIOL& 160 - General Biology with Lab (5 credits) or BIOL& 211 - Majors Cellular 6 cr Communication Studies (5 credits). Choose from CMST& 101 , CMST& 210 , CMST& 220 , CMST& 230 or CMST 240 ENGL& 101 - English Composition I ( 5 credits) MATH& 146 - Introduction to Statistics or MATH 256 - Statistics for Business and Social Science ( 5 credits) NUTR& 101 - Nutrition (5 credits) PSYC& 100 - General Psychology (5 credits) PSYC& 200 - Lifespan Psychology (5 credits) The student is expected to provide his/her own transportation to off-site clinical facilities that at times can be 50 or more miles away. In addition to paying for tuition and books, the student is required to purchase a uniform, pin, white shoes, watch, bandage, scissors, and liability and health insurance. In order to attend clinical rotations, students must also successfully pass both a criminal and a Washington State Department of Social and Health Services background check. For additional information about a required nursing orientation and the application procedure, contact the Nursing Advisor, at ext. 2641. Upon successful completion of the required credits, the student will earn an Associate in Applied Science degree in Practical Nursing. The graduate will be eligible to take the licensing examination and upon passing, practice as a Licensed Practical Nurse. Application for LPN licensure asks for information regarding legal convictions, and drug/alcohol and addiction conditions that may inhibit nursing practice. For additional questions on this issue, contact the Washington State Nursing Care Quality Assurance Commission. The program is fully accredited by the National League for Nursing Commission for Nursing Education Accreditation and Washington State Nursing Care Quality Assurance Commission and the Northwest Commission on Colleges and Universities. For a curriculum map or suggested sequence of courses go to Practical Nursing, AAS Curriculum Map . Note Regarding Open Enrollment Contacts: Nursing Advisor; 253-833-9111, ext. 2641 or nhs@greenriver.edu or Adam Brown, ext 6042, abrown@greenriver.edu Information Session Sign up: greenriver.edu/info-sessions Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -6053,9 +6184,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Apply to the program- Application Instructions A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6072,7 +6202,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3267,
+        "sourceProgramId": 3619,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-101",
@@ -6133,7 +6263,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
-        "sourceProgramId": 3267,
+        "sourceProgramId": 3619,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-computation:math-and-146",
@@ -6183,7 +6313,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits This degree program prepares a student to provide safe and efficient nursing care. Health facilities such as hospitals, nursing homes, clinics and public health nursing services employ practical nurses under the supervision of a registered nurse or physician. The Practical Nursing program is a 90-credit program in which students must demonstrate academic proficiency by completing basic curriculum requirements prior to entry into the core sequence of nursing classes. A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required. Evidence of academic proficiency is established by completion of each of the following prerequisite requirements with a 2.5 grade or higher. Courses without an \"&\" may not be transferable. The following courses are required prior to applying into the Practical Nursing program: BIOL& 241 and BIOL& 242 Anatomy & Physiology I & II (10 credits); BIOL& 160 - General Biology with Lab (5 credits) or BIOL& 211 - Majors Cellular 6 cr Communication Studies (5 credits). Choose from CMST& 101 , CMST& 210 , CMST& 220 , CMST& 230 or CMST 240 ENGL& 101 - English Composition I ( 5 credits) MATH& 146 - Introduction to Statistics or MATH 256 - Statistics for Business and Social Science ( 5 credits) NUTR& 101 - Nutrition (5 credits) PSYC& 100 - General Psychology (5 credits) PSYC& 200 - Lifespan Psychology (5 credits) The student is expected to provide his/her own transportation to off-site clinical facilities that at times can be 50 or more miles away. In addition to paying for tuition and books, the student is required to purchase a uniform, pin, white shoes, watch, bandage, scissors, and liability and health insurance. In order to attend clinical rotations, students must also successfully pass both a criminal and a Washington State Department of Social and Health Services background check. For additional information about a required nursing orientation and the application procedure, contact the Nursing Advisor, at ext. 2641. Upon successful completion of the required credits, the student will earn an Associate in Applied Science degree in Practical Nursing. The graduate will be eligible to take the licensing examination and upon passing, practice as a Licensed Practical Nurse. Application for LPN licensure asks for information regarding legal convictions, and drug/alcohol and addiction conditions that may inhibit nursing practice. For additional questions on this issue, contact the Washington State Nursing Care Quality Assurance Commission. The program is fully accredited by the National League for Nursing Commission for Nursing Education Accreditation and Washington State Nursing Care Quality Assurance Commission and the Northwest Commission on Colleges and Universities. Note Regarding Open Enrollment Contacts: Nursing Advisor; 253-833-9111, ext. 2641 or nursing@greenriver.edu or Adam Brown, ext 6042, abrown@greenriver.edu Information Session Sign up: greenriver.edu/info-sessions Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
+      "sourceText": "90 Credits This degree program prepares a student to provide safe and efficient nursing care. Health facilities such as hospitals, nursing homes, clinics and public health nursing services employ practical nurses under the supervision of a registered nurse or physician. The Practical Nursing program is a 90-credit program in which students must demonstrate academic proficiency by completing basic curriculum requirements prior to entry into the core sequence of nursing classes. A minimum grade of 2.5 or higher is required in each nursing and supporting course, an overall GPA of 3.0 is required. Evidence of academic proficiency is established by completion of each of the following prerequisite requirements with a 2.5 grade or higher. Courses without an \"&\" may not be transferable. The following courses are required prior to applying into the Practical Nursing program: BIOL& 241 and BIOL& 242 Anatomy & Physiology I & II (10 credits); BIOL& 160 - General Biology with Lab (5 credits) or BIOL& 211 - Majors Cellular 6 cr Communication Studies (5 credits). Choose from CMST& 101 , CMST& 210 , CMST& 220 , CMST& 230 or CMST 240 ENGL& 101 - English Composition I ( 5 credits) MATH& 146 - Introduction to Statistics or MATH 256 - Statistics for Business and Social Science ( 5 credits) NUTR& 101 - Nutrition (5 credits) PSYC& 100 - General Psychology (5 credits) PSYC& 200 - Lifespan Psychology (5 credits) The student is expected to provide his/her own transportation to off-site clinical facilities that at times can be 50 or more miles away. In addition to paying for tuition and books, the student is required to purchase a uniform, pin, white shoes, watch, bandage, scissors, and liability and health insurance. In order to attend clinical rotations, students must also successfully pass both a criminal and a Washington State Department of Social and Health Services background check. For additional information about a required nursing orientation and the application procedure, contact the Nursing Advisor, at ext. 2641. Upon successful completion of the required credits, the student will earn an Associate in Applied Science degree in Practical Nursing. The graduate will be eligible to take the licensing examination and upon passing, practice as a Licensed Practical Nurse. Application for LPN licensure asks for information regarding legal convictions, and drug/alcohol and addiction conditions that may inhibit nursing practice. For additional questions on this issue, contact the Washington State Nursing Care Quality Assurance Commission. The program is fully accredited by the National League for Nursing Commission for Nursing Education Accreditation and Washington State Nursing Care Quality Assurance Commission and the Northwest Commission on Colleges and Universities. For a curriculum map or suggested sequence of courses go to Practical Nursing, AAS Curriculum Map . Note Regarding Open Enrollment Contacts: Nursing Advisor; 253-833-9111, ext. 2641 or nhs@greenriver.edu or Adam Brown, ext 6042, abrown@greenriver.edu Information Session Sign up: greenriver.edu/info-sessions Program Website: Nursing | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -6245,9 +6375,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Apply to the program- Application Instructions The following prerequisite requirements with a 2.5 grade or higher.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6264,7 +6393,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3267,
+        "sourceProgramId": 3619,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-101",
@@ -6325,7 +6454,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
-        "sourceProgramId": 3267,
+        "sourceProgramId": 3619,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-computation:math-and-146",
@@ -6375,7 +6504,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 105,
       "maximumCredits": 105,
-      "sourceText": "105 credits",
+      "sourceText": "105 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -6454,9 +6583,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 105 credits.",
+      "Published duration: 105 credits, 6 quarters, 2 years.",
       "Apply to the program",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6488,7 +6616,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 105,
       "maximumCredits": 105,
-      "sourceText": "105 credits",
+      "sourceText": "105 credits, 9 quarters, 2.5 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -6587,9 +6715,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 105 credits.",
+      "Published duration: 105 credits, 9 quarters, 2.5 years.",
       "Apply to the program",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6694,9 +6821,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 107 credits.",
+      "Published duration: 107 credits, 6 quarters, 2 years.",
       "Apply to the program Complete one of the following 10 credit Human Anatomy and Physiology options:",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6727,7 +6853,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": null,
-      "sourceText": "Minimum 90 Credits Associate in Biology Direct Transfer Agreement/Major Related Program encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in Biology. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation, with an emphasis on data collection and inquiry-based student research. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 90-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0, and earn a minimum of 24 credits at Green River College. Program Website: Biology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/index.html For a curriculum map or suggested sequence of courses go to Associate in Biology, DTA/MRP Curriculum Map Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. Note that admission to specific upper division Biology programs may be competitive; therefore, no particular GPA can guarantee admission to any specific program. Schools accepting the Biology DTA/MRP: Public Four-Year/Research University of Washington Washington State University Public Four-Year/Comprehensive Central Washington University Eastern Washington University The Evergreen State College Western Washington University Independent/Private Four-Year Saint Martin's University Seattle Pacific University Seattle University Whitworth University",
+      "sourceText": "Minimum 90 Credits Associate in Biology Direct Transfer Agreement/Major Related Program encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in Biology. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation, with an emphasis on data collection and inquiry-based student research. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete 90-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0, and earn a minimum of 24 credits at Green River College. Program Website: Biology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/index.html For a curriculum map or suggested sequence of courses go to Associate in Biology, DTA/MRP Curriculum Map Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. Note that admission to specific upper division Biology programs may be competitive; therefore, no particular GPA can guarantee admission to any specific program. Schools accepting the Biology DTA/MRP: Public Four-Year/Research University of Washington Washington State University Public Four-Year/Comprehensive Central Washington University Eastern Washington University The Evergreen State College Western Washington University Independent/Private Four-Year Saint Martin's University Seattle Pacific University Seattle University Whitworth University",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -6782,8 +6908,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Associate in Biology, Direct Transfer Agreement, Major Related Program.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Biology, Direct Transfer Agreement, Major Related Program Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6816,7 +6942,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": null,
-      "sourceText": "Minimum of 90 Credits Associate in Science Transfer degree Track 1 in Biology, Environmental Science, Chemistry, Geology, and Earth Science encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 90-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. Use the Career and Program Explorer page to explore more details about the occupations. For curriculum maps or suggested sequence of courses go to Associate in Science Transfer Track 1-Biology Curriculum Map or Associate in Science Transfer Track 1-Chemistry Curriculum Map Program Websites: Biology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/index.html or Chemistry | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/chemistry/index.html",
+      "sourceText": "Minimum of 90 Credits Associate in Science Transfer degree Track 1 in Biology, Environmental Science, Chemistry, Geology, and Earth Science encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete 90-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. Use the Career and Program Explorer page to explore more details about the occupations. For curriculum maps or suggested sequence of courses go to Associate in Science Transfer Track 1-Biology Curriculum Map or Associate in Science Transfer Track 1-Chemistry Curriculum Map Program Websites: Biology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/biology/index.html or Chemistry | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/chemistry/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -6871,8 +6997,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Associate in Science, Transfer Track.",
-      "Published duration: 90 Credits.",
+      "Degree: Associate in Science, Transfer Track Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Seek consultation with science advisor for 5 additional credits of Natural Sciences N 3 - Natural Science List A or List B Credits: 5",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -6906,7 +7032,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -6975,8 +7101,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Associate in Science, Transfer Track.",
-      "Published duration: 90 Credits.",
+      "Degree: Associate in Science, Transfer Track Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -7010,7 +7136,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits The Associate in Computer Science Direct Transfer Agreement Major Related Program (ACS-DTA/MRP) is designed to provide a pathway for students preparing for computer science and related majors at universities and colleges in the state of Washington. Computer science programs are competitive and this pathway intends to provide students with the needed information and skills to optimize their coursework to meet the Direct Transfer Agreement and prepare for computer science and related majors at a participating baccalaureate institutions. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 90-credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Student must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Computer science programs are competitive and may require a higher GPA overall or a higher GPA in specific courses. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Computer Science, ACS-DTA/MRP Curriculum Map Program Website: Computer Science | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/index.html",
+      "sourceText": "90 Credits The Associate in Computer Science Direct Transfer Agreement Major Related Program (ACS-DTA/MRP) is designed to provide a pathway for students preparing for computer science and related majors at universities and colleges in the state of Washington. Computer science programs are competitive and this pathway intends to provide students with the needed information and skills to optimize their coursework to meet the Direct Transfer Agreement and prepare for computer science and related majors at a participating baccalaureate institutions. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete 90-credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Student must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Computer science programs are competitive and may require a higher GPA overall or a higher GPA in specific courses. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Computer Science, ACS-DTA/MRP Curriculum Map Program Website: Computer Science | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -7066,7 +7192,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "CS 123",
           "PHYS& 222",
-          "Select one: MATH& 254, CS 109, CS& 131, CS 132, CS 202"
+          "Select one: MATH& 264, CS 109, CS& 131, CS 132, CS 202"
         ]
       },
       {
@@ -7078,9 +7204,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Computer Science - Transfer.",
-      "Published duration: 90 credits.",
+      "Degree: Associate in Computer Science - Transfer Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "PHYS& 114 only required if no prior physic experience. Classes to become Calculus ready.",
       "Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 One other elective of your choice See quarter 5 list for suggested options.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
@@ -7098,7 +7223,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "5. Specific Requirements (10-15 credits) > Choose one of the following groups:",
         "requiredCredits": null,
         "sourceHeading": "5. Specific Requirements (10-15 credits) > Choose one of the following groups:",
-        "sourceProgramId": 3291,
+        "sourceProgramId": 3643,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups:group-1",
@@ -7208,9 +7333,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 93 credits.",
+      "Published duration: 93 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -7226,7 +7350,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (25 credits) > Choose one of the following:",
-        "sourceProgramId": 3150,
+        "sourceProgramId": 3502,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-and-235",
@@ -7319,7 +7443,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 3 (15 credits)",
         "courses": [
-          "SDEV 121",
+          "SDEV 120 or SDEV 121",
           "SDEV 201",
           "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235"
         ]
@@ -7350,9 +7474,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 Credits.",
+      "Published duration: 90 Credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -7368,7 +7491,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Written Communication (10 credits) > Choose one of the following:",
-        "sourceProgramId": 3306,
+        "sourceProgramId": 3658,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-126",
@@ -7419,7 +7542,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Human Relations (5 credits)",
-        "sourceProgramId": 3306,
+        "sourceProgramId": 3658,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-human-relations-5-credits:cmst-and-101",
@@ -7522,7 +7645,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 3 (15 credits)",
         "courses": [
-          "SDEV 121",
+          "SDEV 120 or SDEV 121",
           "SDEV 201",
           "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235"
         ]
@@ -7552,7 +7675,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
       "Degree: Associate in Applied Science.",
       "Published duration: 90 Credits.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -7570,7 +7692,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Written Communication (10 credits) > Choose one of the following:",
-        "sourceProgramId": 3306,
+        "sourceProgramId": 3658,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-126",
@@ -7621,7 +7743,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Human Relations (5 credits)",
-        "sourceProgramId": 3306,
+        "sourceProgramId": 3658,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits:cmst-and-101",
@@ -7701,7 +7823,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 102,
       "maximumCredits": 103,
-      "sourceText": "Minimum of 102 Credits The Associate in Science Transfer-Track 2/Major Related Program in Bioengineering and Chemical Engineering degree encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 102-103 quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0, and earn a minimum of 24 credits at Green River College. Students should include some 200-level classes in their course of study. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Science Transfer Track 2/MRP-Bioengineering and Chemical Engineering Curriculum Map Program Website: Engineering | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/index.html",
+      "sourceText": "Minimum of 102 Credits The Associate in Science Transfer-Track 2/Major Related Program in Bioengineering and Chemical Engineering degree encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete 102-103 quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0, and earn a minimum of 24 credits at Green River College. Students should include some 200-level classes in their course of study. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Science Transfer Track 2/MRP-Bioengineering and Chemical Engineering Curriculum Map Program Website: Engineering | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -7749,7 +7871,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "2 C - Humanities/Fine Arts/English or Social Science"
         ]
@@ -7782,9 +7904,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer Track 2.",
-      "Degree: Associate in Science Degree.",
-      "Published duration: 102 Credits.",
+      "Degree: Associate in Science Transfer Track 2/Major Related Program Transfer Resources.",
+      "Published duration: 102 Credits, 6 quarters, 2 years.",
       "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -7802,7 +7923,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 10,
         "selectionCount": 2,
         "sourceHeading": "3. Specific Requirements (57 credits) > E. Select at least 10 credits from the following list",
-        "sourceProgramId": 3168,
+        "sourceProgramId": 3520,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:biol-and-212",
@@ -7953,7 +8074,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 107,
       "maximumCredits": null,
-      "sourceText": "Minimum of 107 Credits The Associate in Science-Transfer Track 2/Major Related Program in Civil and Mechanical Engineering degree also includes Aeronautical, Environmental and Industrial Engineering which encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 109-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Students should include some 200-level classes in their course of study. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Science Transfer Track 2/MRP-Civil and Mechanical Engineering Curriculum Map Program Website: Engineering | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/index.html",
+      "sourceText": "Minimum of 107 Credits The Associate in Science-Transfer Track 2/Major Related Program in Civil and Mechanical Engineering degree also includes Aeronautical, Environmental and Industrial Engineering which encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete 109-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Students should include some 200-level classes in their course of study. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Science Transfer Track 2/MRP-Civil and Mechanical Engineering Curriculum Map Program Website: Engineering | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -8009,7 +8130,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Fall 2 (15 credits)",
         "courses": [
           "ENGR& 214",
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 223"
         ]
       },
@@ -8053,9 +8174,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer Track 2.",
-      "Degree: Associate in Science Degree.",
-      "Published duration: 107 credits.",
+      "Degree: Associate in Science Transfer Track 2/Major Related Program Transfer Resources.",
+      "Published duration: 107 credits, 6 quarters, 2 years.",
       "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
       "10 credits of Humanities/Fine Arts/English Distribution or Social Science Distribution courses.",
       "Select 2 courses from the following after consultation with a Science/Engineering advisor:",
@@ -8070,15 +8190,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "groupedChoices": [
       {
-        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following",
-        "label": "3. Specific Requirements (55 credits) > D. Select 2 courses from the following",
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following",
+        "label": "3. Specific Requirements (57 credits) > D. Select 2 courses from the following",
         "requiredCredits": 10,
         "selectionCount": 2,
-        "sourceHeading": "3. Specific Requirements (55 credits) > D. Select 2 courses from the following",
-        "sourceProgramId": 3167,
+        "sourceHeading": "3. Specific Requirements (57 credits) > D. Select 2 courses from the following",
+        "sourceProgramId": 3519,
         "options": [
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-121",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:cs-121",
             "label": "CS 121: CS 121",
             "courseLabels": [
               "CS 121"
@@ -8088,7 +8208,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-122",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:cs-122",
             "label": "CS 122: CS 122",
             "courseLabels": [
               "CS 122"
@@ -8098,7 +8218,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-and-131",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:cs-and-131",
             "label": "CS& 131: CS& 131",
             "courseLabels": [
               "CS& 131"
@@ -8108,7 +8228,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engl-128",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engl-128",
             "label": "ENGL 128: ENGL 128",
             "courseLabels": [
               "ENGL 128"
@@ -8118,7 +8238,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engl-and-235",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engl-and-235",
             "label": "ENGL& 235: ENGL& 235",
             "courseLabels": [
               "ENGL& 235"
@@ -8128,7 +8248,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-104",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engr-and-104",
             "label": "ENGR& 104: ENGR& 104",
             "courseLabels": [
               "ENGR& 104"
@@ -8138,7 +8258,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-114",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engr-and-114",
             "label": "ENGR& 114: ENGR& 114",
             "courseLabels": [
               "ENGR& 114"
@@ -8148,7 +8268,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-140",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engr-140",
             "label": "ENGR 140: ENGR 140",
             "courseLabels": [
               "ENGR 140"
@@ -8158,7 +8278,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-204",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engr-and-204",
             "label": "ENGR& 204: ENGR& 204",
             "courseLabels": [
               "ENGR& 204"
@@ -8168,7 +8288,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-224",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engr-and-224",
             "label": "ENGR& 224: ENGR& 224",
             "courseLabels": [
               "ENGR& 224"
@@ -8178,7 +8298,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
             ]
           },
           {
-            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-250",
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:engr-250",
             "label": "ENGR 250: ENGR 250",
             "courseLabels": [
               "ENGR 250"
@@ -8189,8 +8309,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           }
         ],
         "defaultOptionIds": [
-          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-121",
-          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-122"
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:cs-121",
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-57-credits-d-select-2-courses-from-the-following:cs-122"
         ]
       }
     ],
@@ -8217,7 +8337,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 98,
       "maximumCredits": null,
-      "sourceText": "Minimum of 98 Credits The Associate in Science Transfer-Track 2 Major Related Program in Computer and Electrical Engineering degree encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 98-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Students should include some 200-level classes in their course of study. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Science Transfer Track 2/MRP-Computer and Electrical Engineering Curriculum Map Program Website: Engineering | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/index.html",
+      "sourceText": "Minimum of 98 Credits The Associate in Science Transfer-Track 2 Major Related Program in Computer and Electrical Engineering degree encompasses some general education courses required of first- and second-year students and is intended to prepare students planning to transfer to a university in the science-related fields. It will give students the broad background needed before beginning more specialized, upper-division courses. The curriculum is not intended to fulfill General Education/University (GER/GUR) requirements, but to prepare prospective transfer science students to enter the state universities with junior standing, not only in credits but also with major/program preparation. See Articulation Agreements for more details about the colleges who accept this degree. Campus-wide Learning Outcomes To earn this degree, students must complete 98-quarter credits in courses numbered 100 or above (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative grade point average of 2.0 , and earn a minimum of 24 credits at Green River College. Students should include some 200-level classes in their course of study. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Science Transfer Track 2/MRP-Computer and Electrical Engineering Curriculum Map Program Website: Engineering | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -8272,7 +8392,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Fall 2 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "CS 123 or 2 C - Humanities/Fine Arts/English or Social Science"
         ]
@@ -8295,9 +8415,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer Track 2.",
-      "Degree: Associate in Science Degree.",
-      "Published duration: 98 credits.",
+      "Degree: Associate in Science Transfer Track 2/Major Related Program Transfer Resources.",
+      "Published duration: 98 credits, 6 quarters, 2 years.",
       "CHEM& 140 is only required if no prior chemistry experience. PHYS& 114 is only required if no prior physics experience.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -8314,7 +8433,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "3. Specific Requirements (48 credits) > C. Computer Programming (10 credits)",
         "requiredCredits": 10,
         "sourceHeading": "3. Specific Requirements (48 credits) > C. Computer Programming (10 credits)",
-        "sourceProgramId": 3169,
+        "sourceProgramId": 3521,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits:group-1",
@@ -8349,7 +8468,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 10,
         "selectionCount": 2,
         "sourceHeading": "3. Specific Requirements (48 credits) > F. Math, Science & Engr Elective (Select 2 courses)",
-        "sourceProgramId": 3169,
+        "sourceProgramId": 3521,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-and-104",
@@ -8452,7 +8571,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -8483,7 +8602,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 221",
           "H 3 - Humanities/Fine Arts/English"
         ]
@@ -8506,9 +8625,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer.",
-      "Degree: Associate Degree - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate Degree - Direct Transfer Agreement (DTA) Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "If transferring to UW, you will need to take both MATH& 153 and 254 in order to earn credit for UW's MATH 126. MATH& 254 must be taken either before, or simultaneously with, MATH 238. MATH 240 can be taken at any time after MATH& 153. If you are planning on majoring in math, take the regular calculus series, rather than the business calculus series (that is, don't take MATH 147/MATH& 148). If you are considering a minor, you might want to think about programming, engineering, physics, data analysis, or statistics (take elective classes that align with the minor that suits your interests)",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -8543,7 +8661,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -8583,7 +8701,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "S 2 - Social Science",
           "N 2 - Natural Science List A"
         ]
@@ -8598,9 +8716,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer.",
-      "Degree: Associate Degree - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associate Degree - Direct Transfer Agreement (DTA) Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -8634,7 +8751,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 91,
-      "sourceText": "Minimum of 90-91 credits The Associate in Math Education Direct Transfer Agreement/Major Related Program (AM-DTA/MRP) degree was created to aid students interested in careers as secondary math teachers. Future secondary teachers must pursue a major in their field, as well as entrance into a school of education. As a result, there is little room for electives. This degree is intended to ensure that graduates of Green River are as well prepared as their counterparts at four-year colleges. The transferability of these degrees is backed by a statewide articulation agreement with teacher-training universities. In addition, this degree is accepted by baccalaureate institutions in the state of Washington under the Direct Transfer Agreement. It will fulfill the general education requirements at Washington state transfer institutions. See Articulation Agreements for more details about the colleges who accept this degree. Apart from the requirements embedded within the degree, students should check specific requirements of their intended transfer schools. This is especially true in the area of field experience, since teacher certification institutions vary in terms of the quality and quantity of experience required. To earn this degree, students must complete a minimum of 90-quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Math Education, AM-DTA/MRP Curriculum Map Program Website: Math | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/index.html",
+      "sourceText": "Minimum of 90-91 credits The Associate in Math Education Direct Transfer Agreement/Major Related Program (AM-DTA/MRP) degree was created to aid students interested in careers as secondary math teachers. Future secondary teachers must pursue a major in their field, as well as entrance into a school of education. As a result, there is little room for electives. This degree is intended to ensure that graduates of Green River are as well prepared as their counterparts at four-year colleges. The transferability of these degrees is backed by a statewide articulation agreement with teacher-training universities. In addition, this degree is accepted by baccalaureate institutions in the state of Washington under the Direct Transfer Agreement. It will fulfill the general education requirements at Washington state transfer institutions. See Articulation Agreement for more details about the colleges who accept this degree. Campus-wide Learning Outcomes Apart from the requirements embedded within the degree, students should check specific requirements of their intended transfer schools. This is especially true in the area of field experience, since teacher certification institutions vary in terms of the quality and quantity of experience required. To earn this degree, students must complete a minimum of 90-quarter credits in courses numbered 100 or higher (from approved distribution list below) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no-credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative GPA of 2.0 and earn a minimum of 24 credits at Green River College. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, and are urged to consult the catalog of the institution for which they plan to transfer. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Associate in Math Education, AM-DTA/MRP Curriculum Map Program Website: Math | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/mathematics/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -8665,7 +8782,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "N 1 - Natural Science List A (Lab)"
         ]
       },
@@ -8688,9 +8805,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate Degree - Transfer.",
-      "Degree: Associate Degree - Direct Transfer Agreement.",
-      "Published duration: 90 credits.",
+      "Degree: Associates, Direct Transfer Agreement (DTA)/Major Related Program (MRP) Transfer Resources.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -8724,7 +8840,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits",
+      "sourceText": "90 Credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -8771,7 +8887,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
-          "MATH& 254",
+          "MATH& 264",
           "PHYS& 223",
           "Natural Science"
         ]
@@ -8794,9 +8910,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
-      "Degree: Associate in Science - Transfer.",
-      "Published duration: 90 Credits.",
+      "Degree: Associate in Science Transfer Track 2 Transfer Resources.",
+      "Published duration: 90 Credits, 6 quarters, 2 years.",
       "Depending on math placement the following courses may be required to be ready for MATH& 151",
       "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -8894,9 +9009,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science Degree.",
-      "Published duration: 96-103 credits.",
+      "Published duration: 96-103 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -8907,12 +9021,43 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "groupedChoices": [
       {
+        "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-written-communication",
+        "label": "Related Instruction Requirements > Written Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Written Communication",
+        "sourceProgramId": 3540,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-written-communication:engl-and-101",
+            "label": "ENGL& 101: ENGL& 101",
+            "courseLabels": [
+              "ENGL& 101"
+            ],
+            "courseCodes": [
+              "ENGL& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-written-communication:engl-109",
+            "label": "ENGL 109: ENGL 109",
+            "courseLabels": [
+              "ENGL 109"
+            ],
+            "courseCodes": [
+              "ENGL 109"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
         "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication",
         "label": "Related Instruction Requirements > Oral Communication",
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Oral Communication",
-        "sourceProgramId": 3188,
+        "sourceProgramId": 3540,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-105",
@@ -8983,7 +9128,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Human Relations",
-        "sourceProgramId": 3188,
+        "sourceProgramId": 3540,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:bus-166",
@@ -9149,9 +9294,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 91 credits.",
+      "Published duration: 91 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9250,9 +9394,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 91 credits.",
+      "Published duration: 91 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9350,9 +9493,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9453,9 +9595,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 97 credits.",
+      "Published duration: 97 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9544,9 +9685,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 92 credits.",
+      "Published duration: 92 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9562,7 +9702,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (20 credits) > Humanities (5 credits)",
-        "sourceProgramId": 3272,
+        "sourceProgramId": 3624,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas:related-instruction-requirements-20-credits-humanities-5-credits:cmst-and-210",
@@ -9632,7 +9772,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 97,
-      "sourceText": "90-97 Credits This degree program prepares individuals to become successfully employed in the field of construction. Students can also apply these skills to a variety of jobs within the residential construction field. Students can choose to earn a variety of certificates related to residential carpentry, or can earn an AAS in Residential and Light Commercial Carpentry. After completion of the certificates or the degree, students can readily find employment as a carpenter helper for either general or specialty contractors. Generally after a period of time, most students find themselves in jobs such as: lead carpenters, general contractors, specialty contractors, supervisors, vendor representatives, designers, retail sales specialists, building inspectors, or in other construction-related employment such as construction management. Students whose primary language is not English must have successfully completed ELL Level 3 prior to enrolling in the Carpentry Technology Program. Contacts: Robert Bean - rbean@greenriver.edu Program Website: Carpentry Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Be employed as a carpenter helper or a union carpentry apprenticeship program. Demonstrate efficiency, safety, and accuracy in the completion of carpentry tasks. Use all basic hand and power tools related to carpentry. Form and pour a typical foundation for a basic home. Frame the wooden structure for a basic single-story home. Install all basic interior trim components for a home. Install all basic exterior trim components for a home. Read and interpret basic architectural residential prints Calculate, layout and install basic stairs and components. Calculate, install and sheath typical stick-framed roof structures. Build a basic kitchen base cabinet to within 1/32\" of all given dimensions Form and pour typical concrete slabs. Estimate materials and supplies to build a basic single story residential home.",
+      "sourceText": "90-97 Credits This degree program prepares individuals to become successfully employed in the field of construction. Students can also apply these skills to a variety of jobs within the residential construction field. Students can choose to earn a variety of certificates related to residential carpentry, or can earn an AAS in Residential and Light Commercial Carpentry. After completion of the certificates or the degree, students can readily find employment as a carpenter helper for either general or specialty contractors. Generally after a period of time, most students find themselves in jobs such as: lead carpenters, general contractors, specialty contractors, supervisors, vendor representatives, designers, retail sales specialists, building inspectors, or in other construction-related employment such as construction management. Students whose primary language is not English must have successfully completed ELL Level 3 prior to enrolling in the Carpentry Technology Program. For a curriculum map or suggested sequence of courses go to Carpentry Technology-Residential and Light Commercial, AAS Curriculum Map . Contacts: Robert Bean - rbean@greenriver.edu or Kyle Boroughs, kborough@greenriver.edu Program Website: Carpentry Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Be employed as a carpenter helper or a union carpentry apprenticeship program. Demonstrate efficiency, safety, and accuracy in the completion of carpentry tasks. Use all basic hand and power tools related to carpentry. Form and pour a typical foundation for a basic home. Frame the wooden structure for a basic single-story home. Install all basic interior trim components for a home. Install all basic exterior trim components for a home. Read and interpret basic architectural residential prints Calculate, layout and install basic stairs and components. Calculate, install and sheath typical stick-framed roof structures. Build a basic kitchen base cabinet to within 1/32\" of all given dimensions Form and pour typical concrete slabs. Estimate materials and supplies to build a basic single story residential home. Use the Career and Program Explorer page to explore more details about occupations.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -9695,9 +9835,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 90-97 credits.",
+      "Published duration: 90-97 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9713,7 +9852,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements (79 credits) > Related Instruction Requirements (11-18 credits) > Written Communication (5 credits)",
-        "sourceProgramId": 3205,
+        "sourceProgramId": 3557,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-residential-and-light-commercial-aas-curriculm-map:requirements-79-credits-related-instruction-requirements-11-18-credits-written-communication-5-credits:engl-and-101",
@@ -9744,7 +9883,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements (79 credits) > Related Instruction Requirements (11-18 credits) > Oral Communications (3-5 credits)",
-        "sourceProgramId": 3205,
+        "sourceProgramId": 3557,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-residential-and-light-commercial-aas-curriculm-map:requirements-79-credits-related-instruction-requirements-11-18-credits-oral-communications-3-5-credits:cmst-105",
@@ -9794,7 +9933,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 96,
       "maximumCredits": 107,
-      "sourceText": "96-107 Credits This degree program is designed for both the new student entering the field of manufacturing and for the current employee who wishes to learn more about the knowledge and skills currently in demand by employers. A graduate of the program will be prepared for entry into the manufacturing industry as a conventional or CNC (Computer Numerical Control) machinist trainee. Instruction covers conventional turning, milling and grinding, as well as basic programming, set up and operation of CNC machine tools. Other subjects include shop safety, reading engineering drawings, shop mathematics, machine tool theory, inspection and surface plate techniques, as well as lean manufacturing and other skills currently required by the manufacturing industry. Credit for hours of training is usually granted to those entering an approved apprenticeship program. Entry into the program at any time is possible on a space-available basis with instructor's permission. Contact: Bradley Chinn, bchinn@greenriver.edu or Joel Perdue, jperdue@greenriver.edu Program Website: Machining and Manufacturing Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate accuracy and safety in the completion of manufacturing tasks. Produce a manually turned workpiece. Produce a manually milled workpiece. Produce a surface-ground workpiece. Produce a CNC machined workpiece. Use hand tools correctly and safely. Use precision measuring instruments correctly. Read blueprints correctly. Produce a correctly sequenced job/build plan. Identify and describe basic tools and project materials.",
+      "sourceText": "96-107 Credits This degree program is designed for both the new student entering the field of manufacturing and for the current employee who wishes to learn more about the knowledge and skills currently in demand by employers. A graduate of the program will be prepared for entry into the manufacturing industry as a conventional or CNC (Computer Numerical Control) machinist trainee. Instruction covers conventional turning, milling and grinding, as well as basic programming, set up and operation of CNC machine tools. Other subjects include shop safety, reading engineering drawings, shop mathematics, machine tool theory, inspection and surface plate techniques, as well as lean manufacturing and other skills currently required by the manufacturing industry. Credit for hours of training is usually granted to those entering an approved apprenticeship program. Entry into the program at any time is possible on a space-available basis with instructor's permission. For a curriculum map or suggested sequence of courses go to Machining and Manufacturing Technology, AAS Curriculum Map . Contact: Bradley Chinn, bchinn@greenriver.edu or Joel Perdue, jperdue@greenriver.edu Program Website: Machining and Manufacturing Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate accuracy and safety in the completion of manufacturing tasks. Produce a manually turned workpiece. Produce a manually milled workpiece. Produce a surface-ground workpiece. Produce a CNC machined workpiece. Use hand tools correctly and safely. Use precision measuring instruments correctly. Read blueprints correctly. Produce a correctly sequenced job/build plan. Identify and describe basic tools and project materials. Use the Career and Program Explorer page to explore more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -9824,7 +9963,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Quarter 4 (18 credits)",
         "courses": [
-          "MFG 104 or; MFG 104 - Conventional and Computer Numerical Control (CNC) Machining Level 2 Credits: 10; and MFG 107 - Fundamentals of Additive Manufacturing Credits:3;",
+          "MFG 104 or; MFG 104 - Conventional and Computer Numerical Control (CNC) Machining Level 2 Credits: 9; and MFG 107 - Fundamentals of Additive Manufacturing Credits:4;",
           "ENGL& 101 or ENGL 109"
         ]
       },
@@ -9832,21 +9971,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Quarter 5 (16 credits)",
         "courses": [
           "INDUS 111",
-          "MFG 105 or; MFG 105 - Intermediate Computer Numerical Control (CNC) Machining Credits: 10; and MFG 108 - Intermediate Additive Manufacturing Credits: 3"
+          "MFG 105 or; MFG 105 - Intermediate Computer Numerical Control (CNC) Machining Credits: 9; and MFG 108 - Intermediate Additive Manufacturing Credits: 4"
         ]
       },
       {
         "label": "Quarter 6 (13-18 credits)",
         "courses": [
-          "MFG 106 or; MFG 106 - Special Machining Practices Credits: 10; and MFG 109 - Advanced Additive Manufacturing Credits: 3;",
+          "MFG 106 or; MFG 106 - Special Machining Practices Credits: 9; and MFG 109 - Advanced Additive Manufacturing Credits: 4;",
           "MATH 70 - Pre-Algebra or Eligible for MATH 72 - Elementary Algebra"
         ]
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 96-107 Credits.",
+      "Published duration: 96-107 Credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -9862,7 +10000,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Related Instruction Requirements (11-20 credits) > Written Communication",
-        "sourceProgramId": 3250,
+        "sourceProgramId": 3602,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-aas:requirements-related-instruction-requirements-11-20-credits-written-communication:engl-and-101",
@@ -9893,7 +10031,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Related Instruction Requirements (11-20 credits) > Oral Communications",
-        "sourceProgramId": 3250,
+        "sourceProgramId": 3602,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-aas:requirements-related-instruction-requirements-11-20-credits-oral-communications:cmst-105",
@@ -9944,7 +10082,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Related Instruction Requirements (11-20 credits) > Human Relations",
-        "sourceProgramId": 3250,
+        "sourceProgramId": 3602,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-aas:requirements-related-instruction-requirements-11-20-credits-human-relations:bus-166",
@@ -10034,7 +10172,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 103,
       "maximumCredits": 109,
-      "sourceText": "103-109 Credits This degree program is designed for both the new student entering the field of machine maintenance and for the current maintenance employee who wishes to learn more about the knowledge and skills currently in demand by employers. A graduate of the program will be prepared for entry into the installation, maintenance, or troubleshooting field as a Mechatronics Technician. Instruction covers the basic energy types that animate and/or control machinery. These energy types are mechanical energy (solids), hydraulics, pneumatics and electrical. The student will become familiar with machinery components that conduct, control and apply the various energy types. Additional areas of study include, mechanical fabrication, industrial and residential wiring, industrial rigging, motor logic control, electric fluid power, PLC (programable logic controller), automation and robotics (optional industry certification, available for MTX 150 only), and an optional forklift certification. Hydraulic, pneumatic, and PLC troubleshooting is also covered. Credit for hours of training is usually granted to those entering an approved apprenticeship program. Entry into the program at any time is possible on a space-available basis with instructor's permission. Contact: William Sciacca, wsciacca@greenriver.edu Program Website: Mechatronics Technician | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/index.html Program Outcomes: Students who successfully complete this program will be able to: Apply electrical and electronic theory to troubleshoot, repair, and optimize industrial control circuits using compliant wiring methods, VFDs, and PLCs. Design, assemble, and maintain hydraulic and pneumatic systems, applying fluid power principles, safety standards, and contamination control practices. Program, integrate, and troubleshoot PLC and HMI systems to control industrial processes using structured programming and networked communication protocols. Perform mechanical alignment, installation, and preventive maintenance of drive systems, bearings, and actuators using precision tools and documentation. Apply OSHA/WISHA and NFPA safety standards to identify, control, and document electrical, mechanical, and fluid power hazards in the workplace. Integrate robotic and automated systems with PLCs and sensors, validating safety zones and optimizing performance in capstone and lab projects. Develop and implement predictive and preventive maintenance (PM/PdM) strategies using condition-based data and reliability-centered methods. Demonstrate effective teamwork, communication, and professional conduct, producing technical documentation, presentations, and project reports.",
+      "sourceText": "103-109 Credits This degree program is designed for both the new student entering the field of machine maintenance and for the current maintenance employee who wishes to learn more about the knowledge and skills currently in demand by employers. A graduate of the program will be prepared for entry into the installation, maintenance, or troubleshooting field as a Mechatronics Technician. Instruction covers the basic energy types that animate and/or control machinery. These energy types are mechanical energy (solids), hydraulics, pneumatics and electrical. The student will become familiar with machinery components that conduct, control and apply the various energy types. Additional areas of study include, mechanical fabrication, industrial and residential wiring, industrial rigging, motor logic control, electric fluid power, PLC (programable logic controller), automation and robotics (optional industry certification, available for MTX 150 only), and an optional forklift certification. Hydraulic, pneumatic, and PLC troubleshooting is also covered. Credit for hours of training is usually granted to those entering an approved apprenticeship program. Entry into the program at any time is possible on a space-available basis with instructor's permission. For a curriculum map or suggested sequence of courses go to Mechatronics Technician, AAS Curriculum Map Contact: William Sciacca, wsciacca@greenriver.edu Program Website: Mechatronics Technician | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/index.html Program Outcomes: Students who successfully complete this program will be able to: Apply electrical and electronic theory to troubleshoot, repair, and optimize industrial control circuits using compliant wiring methods, VFDs, and PLCs. Design, assemble, and maintain hydraulic and pneumatic systems, applying fluid power principles, safety standards, and contamination control practices. Program, integrate, and troubleshoot PLC and HMI systems to control industrial processes using structured programming and networked communication protocols. Perform mechanical alignment, installation, and preventive maintenance of drive systems, bearings, and actuators using precision tools and documentation. Apply OSHA/WISHA and NFPA safety standards to identify, control, and document electrical, mechanical, and fluid power hazards in the workplace. Integrate robotic and automated systems with PLCs and sensors, validating safety zones and optimizing performance in capstone and lab projects. Develop and implement predictive and preventive maintenance (PM/PdM) strategies using condition-based data and reliability-centered methods. Demonstrate effective teamwork, communication, and professional conduct, producing technical documentation, presentations, and project reports. Use the Career and Program Explorer page to explore more details about the occupations.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -10088,7 +10226,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "notes": [
       "Degree: Associate in Applied Science.",
-      "Published duration: 94 credits.",
+      "Published duration: 94 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10104,7 +10242,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (8-15 credits) > Human Relations (3-5 credits)",
-        "sourceProgramId": 3252,
+        "sourceProgramId": 3604,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-and-101",
@@ -10260,9 +10398,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate - Transfer.",
-      "Degree: Associate of Applied Science.",
-      "Published duration: ---.",
+      "Degree: Associate of Applied Science-Transfer Transfer Resources.",
+      "Published duration: 96 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10295,7 +10432,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 111,
       "maximumCredits": 111,
-      "sourceText": "111 Credits This degree program prepares graduates to work in a variety of outdoor careers. The growing awareness of water quality, wetland protection, reforestation, and environmentally sensitive timber harvest requires the services of technicians with a broad knowledge base. People who are trained to measure and sample the forest, its wildlife, streams and wetlands will enhance their employment opportunities. Wildlife biologists and professional foresters need technicians to efficiently produce accurate data. Park managers need knowledgeable personnel to perform maintenance duties and interpret wildland ecology for the public. Wildland firefighters are needed with current certificates of knowledge and skills. Many Natural Resources course are only offered one time each year. Correct course sequencing important! Students should begin this program with eligibility for MATH 72 or higher level math and ENGL& 101 with a grade of 2.0 or higher. Demonstrated college success or complete ST SK 110 - College Success . Students can also earn an Natural Resources, AAS-T . Program Coordinator : Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate the knowledge of ecosystem management techniques to develop forest management objectives related to fire ecology and restoration, riparian and wildlife management including harvest and silvicultural prescriptions. Demonstrate knowledge of biological, abiotic and cultural ecosystems as they apply to natural resource management in today's society. Utilize the latest technology in forest navigation, mapping, planning and implementation of forest management practices. Demonstrate skills to accurately collect, analyze and present a variety of natural resources data collected using the latest field techniques for useful outputs. Demonstrate good verbal and written communications to disseminate information effectively to a variety of audiences.",
+      "sourceText": "111 Credits This degree program prepares graduates to work in a variety of outdoor careers. The growing awareness of water quality, wetland protection, reforestation, and environmentally sensitive timber harvest requires the services of technicians with a broad knowledge base. People who are trained to measure and sample the forest, its wildlife, streams and wetlands will enhance their employment opportunities. Wildlife biologists and professional foresters need technicians to efficiently produce accurate data. Park managers need knowledgeable personnel to perform maintenance duties and interpret wildland ecology for the public. Wildland firefighters are needed with current certificates of knowledge and skills. Many Natural Resources course are only offered one time each year. Correct course sequencing important! Students should begin this program with: Eligibility for MATH 72 or higher level math. ENGL& 101 with a grade of 2.0 or higher. BTAC 100 - Fundamentals of Computers or tested out. Demonstrated college success or complete COLL 110 - College Success . Students can also earn an Natural Resources, AAS-T . For a curriculum map or suggested sequence of courses go to Natural Resources-Forestry, AAS Curriculum Map . Program Coordinator : Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Identify, describe, and apply ecosystem management techniques for diverse forest management objectives including fire resiliency, forest restoration, riparian and wildlife protection, timber production, and silvicultural prescriptions. Identify biological, abiotic, and cultural attributes of ecosystems to facilitate natural resource management. Use mapping tools for navigation, planning, and implementation of forest management. Accurately collect and analyze data from various natural resource tools and field techniques to create industry-appropriate maps, reports and other usable representations. Disseminate information effectively to diverse audiences using verbal and written communication.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -10369,9 +10506,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 111 credits.",
+      "Published duration: 111 credits, 7 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10404,7 +10540,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 119,
       "maximumCredits": 119,
-      "sourceText": "119 Credits The Geographic Information Systems degree option prepares graduates to work outside collecting data using field equipment and field applications such as Global Positioning Systems (GPS), Avenza, and ESRI's field tools. Students will also process their field data and use other entities' data to produce Geographic Information Systems (GIS) generated maps and mapping products. Requirements for field experience with this degree are consistent with the Natural Resources BAS agreement. Many Natural Resources course are only offered one time each year. Correct course sequencing important! Students should begin this program with eligibility for MATH 72 or higher level math and ENGL& 101 with a grade of 2.0 or higher. Demonstrated college success or complete ST SK 110 - College Success . Program Coordinator: Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate the knowledge of ecosystem management techniques to develop forest management objectives related to fire ecology and restoration, riparian and wildlife management including harvest and silvicultural prescriptions. Demonstrate knowledge of biological, abiotic and cultural ecosystems as they apply to natural resource management in today's society. Utilize the latest technology in forest navigation, mapping, planning and implementation of forest management practices. Demonstrate skills to accurately collect, analyze and present a variety of natural resources data collected using the latest field techniques for useful outputs. Demonstrate good verbal and written communications to disseminate information effectively to a variety of audiences. Complete spatial analysis using various techniques and operations. Integrate data collection with spatial analysis to create mapping products. Understand geographic and cartographic principles and apply them to geospatial technology.",
+      "sourceText": "119 Credits The Geographic Information Systems degree option prepares graduates to work outside collecting data using field equipment and field applications such as Global Positioning Systems (GPS), Avenza, and ESRI's field tools. Students will also process their field data and use other entities' data to produce Geographic Information Systems (GIS) generated maps and mapping products. Requirements for field experience with this degree are consistent with the Natural Resources BAS agreement. Many Natural Resources course are only offered one time each year. Correct course sequencing important! For a curriculum map or suggested sequence of courses go to Natural Resources-Geographic Information Systems, AAS Curriculum Map . Students should begin this program with: Eligibility for MATH 72 or higher level math. ENGL& 101 with a grade of 2.0 or higher. BTAC 100 - Fundamentals of Computers or tested out. Demonstrated college success or complete COLL 110 - College Success . Program Coordinator: Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Identify, describe, and apply ecosystem management techniques for diverse forest management objectives including fire resiliency, forest restoration, riparian and wildlife protection, timber production, and silvicultural prescriptions. Identify biological, abiotic, and cultural attributes of ecosystems to facilitate natural resource management. Use mapping tools for navigation, planning, and implementation of forest management. Accurately collect and analyze data from various natural resource tools and field techniques to create industry-appropriate maps, reports and other usable representations. Disseminate information effectively to diverse audiences using verbal and written communication.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -10480,9 +10616,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 119 credits.",
+      "Published duration: 119 credits, 7 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10515,7 +10650,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 121,
       "maximumCredits": 123,
-      "sourceText": "121-123 Credits This degree program prepares graduates to work in state, private, county, municipal, and federal parks as assistant park rangers and in associated positions. Park management includes interpreting plant and animal ecology to the general public. Park rangers are responsible for constructing and maintaining trails, campgrounds, and facilities. They collect fees, explain and enforce park rules, and promote public safety. Many Natural Resources course are only offered one time each year. Correct course sequencing important! Students should begin this program with eligibility for MATH 72 or higher level math and ENGL& 101 with a grade of 2.0 or higher. Demonstrated college success or complete ST SK 110 - College Success . Program Coordinator: Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate the knowledge of ecosystem management techniques to develop forest management objectives related to fire ecology and restoration, riparian and wildlife management including harvest and silvicultural prescriptions. Demonstrate knowledge of biological, abiotic and cultural ecosystems as they apply to natural resource management in today's society. Utilize the latest technology in forest navigation, mapping, planning and implementation of forest management practices. Demonstrate skills to accurately collect, analyze and present a variety of natural resources data collected using the latest field techniques for useful outputs. Demonstrate good verbal and written communications to disseminate information effectively to a variety of audiences. Demonstrate competence in assessing recreational needs in the context of environmental considerations in recreational settings. Demonstrate ability to safely and effectively work in recreational environments.",
+      "sourceText": "121-123 Credits This degree program prepares graduates to work in state, private, county, municipal, and federal parks as assistant park rangers and in associated positions. Park management includes interpreting plant and animal ecology to the general public. Park rangers are responsible for constructing and maintaining trails, campgrounds, and facilities. They collect fees, explain and enforce park rules, and promote public safety. Many Natural Resources course are only offered one time each year. Correct course sequencing important! For a curriculum map or suggested sequence of courses go to Natural Resources-Park Management, AAS Curriculum Map . Students should begin this program with: Eligibility for MATH 72 or higher level math. ENGL& 101 with a grade of 2.0 or higher. BTAC 100 - Fundamentals of Computers or tested out. Demonstrated college success or complete COLL 110 - College Success . Program Coordinator: Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Identify, describe, and apply ecosystem management techniques for diverse forest management objectives including fire resiliency, forest restoration, riparian and wildlife protection, timber production, and silvicultural prescriptions. Identify biological, abiotic, and cultural attributes of ecosystems to facilitate natural resource management. Use mapping tools for navigation, planning, and implementation of forest management. Accurately collect and analyze data from various natural resource tools and field techniques to create industry-appropriate maps, reports and other usable representations. Disseminate information effectively to diverse audiences using verbal and written communication.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -10591,9 +10726,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 121-123 credits.",
+      "Published duration: 121-123 credits, 7 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10626,7 +10760,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 131,
       "maximumCredits": 133,
-      "sourceText": "131-133 Credits This degree program prepares graduates to work in a variety of outdoor careers. Graduates monitor stream, lake, and wetland systems for water quality and functions of physical, biological, and chemical parameters. They identify plants and animals using taxonomic keys. They assist wetlands delineation and GPS/map their location. Graduates also apply and follow environmental regulations regarding stream and wetland protection. Many Natural Resources course are only offered one time each year. Correct course sequencing important! Students should begin this program with eligibility for MATH 72 or higher level math and ENGL& 101 with a grade of 2.0 or higher. Demonstrated college success or complete ST SK 110 - College Success . Program Coordinator : Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate the knowledge of ecosystem management techniques to develop forest management objectives related to fire ecology and restoration, riparian and wildlife management including harvest and silvicultural prescriptions. Demonstrate knowledge of biological, abiotic and cultural ecosystems as they apply to natural resource management in today's society. Utilize the latest technology in forest navigation, mapping, planning and implementation of forest management practices. Demonstrate skills to accurately collect, analyze and present a variety of natural resources data collected using the latest field techniques for useful outputs. Demonstrate good verbal and written communications to disseminate information effectively to a variety of audiences. Use water sampling techniques including water chemistry, profile and cross sectional analysis as well as habitat components of streams Understand keystone salmonid ecology and interactions with PNW ecology and culture. Identify healthy streams and reaches with restoration potential and be able to list the key steps required to restore habitat back to reference reach conditions.",
+      "sourceText": "131-133 Credits This degree program prepares graduates to work in a variety of outdoor careers. Graduates monitor stream, lake, and wetland systems for water quality and functions of physical, biological, and chemical parameters. They identify plants and animals using taxonomic keys. They assist wetlands delineation and GPS/map their location. Graduates also apply and follow environmental regulations regarding stream and wetland protection. Many Natural Resources course are only offered one time each year. Correct course sequencing important! For a curriculum map or suggested sequence of courses go to Natural Resources-Water Quality, AAS Curriculum Map . Students should begin this program with: Eligibility for MATH 72 or higher level math. ENGL& 101 with a grade of 2.0 or higher. BTAC 100 - Fundamentals of Computers or tested out. Demonstrated college success or complete COLL 110 - College Success . Program Coordinator : Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Identify, describe, and apply ecosystem management techniques for diverse forest management objectives including fire resiliency, forest restoration, riparian and wildlife protection, timber production, and silvicultural prescriptions. Identify biological, abiotic, and cultural attributes of ecosystems to facilitate natural resource management. Use mapping tools for navigation, planning, and implementation of forest management. Accurately collect and analyze data from various natural resource tools and field techniques to create industry-appropriate maps, reports and other usable representations. Disseminate information effectively to diverse audiences using verbal and written communication.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -10704,9 +10838,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 121-123 credits.",
+      "Published duration: 121-123 credits, 7 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10739,7 +10872,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 116,
       "maximumCredits": 116,
-      "sourceText": "116 Credits This degree program prepares graduates to perform fire prevention and educational activities. They serve as crew members or leaders of aerial, engine, or ground wildland fire crews. Many Natural Resources course are only offered one time each year. Correct course sequencing important! Students should begin this program with eligibility for MATH 72 or higher level math and ENGL& 101 with a grade of 2.0 or higher. Demonstrated college success or complete ST SK 110 - College Success . Program Coordinator: Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate the knowledge of ecosystem management techniques to develop forest management objectives related to fire ecology and restoration, riparian and wildlife management including harvest and silvicultural prescriptions. Demonstrate knowledge of biological, abiotic and cultural ecosystems as they apply to natural resource management in today's society. Utilize the latest technology in forest navigation, mapping, planning and implementation of forest management practices. Demonstrate skills to accurately collect, analyze and present a variety of natural resources data collected using the latest field techniques for useful outputs. Demonstrate good verbal and written communications to disseminate information effectively to a variety of audiences. Utilize knowledge of Fire Behavior, Fireline Leadership and the concepts of Lookouts, Communication, Escape Routes and Safety Zones (LCES) to assess risk, plan and conduct appropriate actions in incident response and self-management. Demonstrate basic fire suppression tactics in the field, awareness of structure protection in the Urban Interface and the safe use of hand tools, hose lays, pumps and other fire suppression equipment. Understand and explain the function of the Incident Command System, identify the various positions, explain their functions and how they interact with each other.",
+      "sourceText": "116 Credits This degree program prepares graduates to perform fire prevention and educational activities. They serve as crew members or leaders of aerial, engine, or ground wildland fire crews. Many Natural Resources course are only offered one time each year. Correct course sequencing important! For a curriculum map or suggested sequence of courses go to Natural Resources-Wildland Fire, AAS Curriculum Map Students should begin this program with: Eligibility for MATH 72 or higher level math. ENGL& 101 with a grade of 2.0 or higher. BTAC 100 - Fundamentals of Computers or tested out. Demonstrated college success or complete COLL 110 - College Success . Program Coordinator: Jessyka Williams, jrwilliams@greenriver.edu Program Website: Natural Resources | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/index.html Program Outcomes: Students who successfully complete this program will be able to: Identify, describe, and apply ecosystem management techniques for diverse forest management objectives including fire resiliency, forest restoration, riparian and wildlife protection, timber production, and silvicultural prescriptions. Identify biological, abiotic, and cultural attributes of ecosystems to facilitate natural resource management. Use mapping tools for navigation, planning, and implementation of forest management. Accurately collect and analyze data from various natural resource tools and field techniques to create industry-appropriate maps, reports and other usable representations. Disseminate information effectively to diverse audiences using verbal and written communication.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -10814,9 +10947,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate of Applied Science.",
-      "Published duration: 116 credits.",
+      "Published duration: 116 credits, 7 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10918,9 +11050,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 Creduts.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -10936,7 +11067,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (20 credits) > Computation",
-        "sourceProgramId": 3274,
+        "sourceProgramId": 3626,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas:related-instruction-requirements-20-credits-computation:math-and-107",
@@ -10986,7 +11117,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 Credits This degree program prepares graduates for positions in municipal drinking water distribution and treatment facilities. Along with appropriate operating experience, this degree provides a foundation for positions with responsibilities beyond the entry level. The requirements build on those for the Water Distribution Technology Certificate of Proficiency, which should generally be completed first. For more information, please visit the program website https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/index.html Program Outcomes: Identify characteristics of source water used to provide public drinking water through municipal water distribution and water treatment systems. Monitor, evaluate and adjust processes used in municipal water distribution and water treatment systems. Monitor, evaluate, operate and maintain common types of equipment found in municipal water distribution and water treatment systems. Apply appropriate safety procedures to operation of municipal water distribution and water treatment systems. Collect samples for, perform and interpret results of laboratory analyses used to monitor municipal water distribution and water treatment systems. Perform supporting administrative duties for municipal water distribution and water treatment systems.",
+      "sourceText": "90 Credits This degree program prepares graduates for positions in municipal drinking water distribution and treatment facilities. Along with appropriate operating experience, this degree provides a foundation for positions with responsibilities beyond the entry level. The requirements build on those for the Water Distribution Technology Certificate , which should generally be completed first. For more information, please visit the program website https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/index.html Program Outcomes: Identify characteristics of source water used to provide public drinking water through municipal water distribution and water treatment systems. Monitor, evaluate and adjust processes used in municipal water distribution and water treatment systems. Monitor, evaluate, operate and maintain common types of equipment found in municipal water distribution and water treatment systems. Apply appropriate safety procedures to operation of municipal water distribution and water treatment systems. Collect samples for, perform and interpret results of laboratory analyses used to monitor municipal water distribution and water treatment systems. Perform supporting administrative duties for municipal water distribution and water treatment systems.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -11067,9 +11198,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 Credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -11166,9 +11296,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 94 Credits.",
+      "Published duration: 94 Credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -11184,7 +11313,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements > Human Relations",
-        "sourceProgramId": 3278,
+        "sourceProgramId": 3630,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-aas:related-instruction-requirements-human-relations:bus-166",
@@ -11283,7 +11412,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": null,
-      "sourceText": "Minimum of 90 Credits The Associate in Arts degree is a Direct Transfer Agreement (DTA) designed for students who plan to transfer to a university after completing the first two years of study at Green River. The degree is recommended for students who have not yet decided the field they will enter or the university they will attend. It gives students the broad background they need before beginning more specialized, upper-division courses and indicates that a student has completed a two-year liberal arts program. Degree/Program Outcomes Students who have a particular major in mind can focus their distribution choices and elective credits toward meeting their transfer institution plan. An advisor can assist with this process. Students should include some 200 level coursework in their program of study. This degree meets the Intercollege Relations Commission (ICRC) guidelines for direct transfer degrees, an inter-institutional agreement adopted to facilitate student transfer between Washington state community colleges and baccalaureate institutions. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 90-quarter credits in courses numbered 100 or above (from approved distribution list) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative college-level grade point average of 2.0 , and earn a minimum of 24 credits at Green River. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, are urged to consult the catalog of the institution for which they plan to transfer. For a curriculum map or suggested sequence of courses go to Associate in Arts-DTA Curriculum Map",
+      "sourceText": "Minimum of 90 Credits The Associate in Arts degree is a Direct Transfer Agreement (DTA) designed for students who plan to transfer to a university after completing the first two years of study at Green River. The degree is recommended for students who have not yet decided the field they will enter or the university they will attend. It gives students the broad background they need before beginning more specialized, upper-division courses and indicates that a student has completed a two-year liberal arts program. Campus-wide Learning Outcomes Students who have a particular major in mind can focus their distribution choices and elective credits toward meeting their transfer institution plan. An advisor can assist with this process. Students should include some 200 level coursework in their program of study. This degree meets the Intercollege Relations Commission (ICRC) guidelines for direct transfer degrees, an inter-institutional agreement adopted to facilitate student transfer between Washington state community colleges and baccalaureate institutions. See Articulation Agreements for more details about the colleges who accept this degree. To earn this degree, students must complete 90-quarter credits in courses numbered 100 or above (from approved distribution list) and meet specific distribution requirements. No more than 25 percent of credit requirements may be taken on a pass/no credit basis. Students should be aware that courses with \"Pass\" grades may not satisfy the requirements in their major field. Students must attain a cumulative college-level grade point average of 2.0 , and earn a minimum of 24 credits at Green River. Students are responsible for knowing transfer requirements and policies, as well as specific course choices and GPA requirements, are urged to consult the catalog of the institution for which they plan to transfer. For a curriculum map or suggested sequence of courses go to Associate in Arts-DTA Curriculum Map",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -11292,8 +11421,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Quarter 1 (12 credits)",
         "courses": [
           "ENGL& 101",
-          "SK 110",
-          "Select one: MATH& 107, MATH 108, MATH 109, MATH& 141, MATH& 142, MATH& 146, MATH 147, MATH& 148, MATH& 151, MATH& 152, MATH& 163, MATH& 131, MATH& 132, MATH 238, MATH 240, MATH& 254, MATH 256, PHIL& 120"
+          "COLL 110",
+          "Select one: MATH& 107, MATH 108, MATH 109, MATH& 141, MATH& 142, MATH& 146, MATH 147, MATH& 148, MATH& 151, MATH& 152, MATH& 163, MATH& 131, MATH& 132, MATH 238, MATH 240, MATH& 264, MATH 256, PHIL& 120"
         ]
       },
       {
@@ -11460,7 +11589,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Bachelor of Applied Science (BAS) Apply Now.",
+      "Degree: Bachelor of Applied Science (BAS).",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -11476,7 +11606,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Communication Skills (10 credits) > And choose one of the following:",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-accounting-aaa:general-education-requirements-50-credits-communication-skills-10-credits-and-choose-one-of-the-following:engl-126",
@@ -11527,7 +11657,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Quantitative/Symbolic Reasoning Skills (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-accounting-aaa:general-education-requirements-50-credits-quantitative-symbolic-reasoning-skills-5-credits:math-and-146",
@@ -11558,7 +11688,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Humanities (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-accounting-aaa:general-education-requirements-50-credits-humanities-5-credits:cmst-and-101",
@@ -11609,7 +11739,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Social Science (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-accounting-aaa:general-education-requirements-50-credits-social-science-5-credits:bus-and-101",
@@ -11725,7 +11855,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Bachelor of Applied Science (BAS) Apply Now.",
+      "Degree: Bachelor of Applied Science (BAS).",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -11741,7 +11872,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Communication Skills (10 credits) > And choose one of the following:",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-associate-in-business-dta-mrp:general-education-requirements-50-credits-communication-skills-10-credits-and-choose-one-of-the-following:engl-126",
@@ -11792,7 +11923,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Quantitative/Symbolic Reasoning Skills (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-associate-in-business-dta-mrp:general-education-requirements-50-credits-quantitative-symbolic-reasoning-skills-5-credits:math-and-146",
@@ -11823,7 +11954,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Humanities (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-associate-in-business-dta-mrp:general-education-requirements-50-credits-humanities-5-credits:cmst-and-101",
@@ -11874,7 +12005,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Social Science (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-associate-in-business-dta-mrp:general-education-requirements-50-credits-social-science-5-credits:bus-and-101",
@@ -11991,7 +12122,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Bachelor of Applied Science (BAS) Apply Now.",
+      "Degree: Bachelor of Applied Science (BAS).",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -12007,7 +12139,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Communication Skills (10 credits) > And choose one of the following:",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-business-management-aaa:general-education-requirements-50-credits-communication-skills-10-credits-and-choose-one-of-the-following:engl-126",
@@ -12058,7 +12190,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Quantitative/Symbolic Reasoning Skills (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-business-management-aaa:general-education-requirements-50-credits-quantitative-symbolic-reasoning-skills-5-credits:math-and-146",
@@ -12089,7 +12221,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Humanities (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-business-management-aaa:general-education-requirements-50-credits-humanities-5-credits:cmst-and-101",
@@ -12140,7 +12272,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements (50 credits) > Social Science (5 credits)",
-        "sourceProgramId": 3346,
+        "sourceProgramId": 3698,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-business-entrepreneurship-accounting-bas-w-business-management-aaa:general-education-requirements-50-credits-social-science-5-credits:bus-and-101",
@@ -12220,45 +12352,53 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "MGMT 300",
           "MGMT 344",
-          "MGMT 405"
+          "MGMT 361"
         ]
       },
       {
         "label": "Quarter 2 (12 credits)",
         "courses": [
+          "MGMT 340",
           "MGMT 345",
-          "MGMT 395",
-          "MGMT 403"
+          "MGMT 395"
         ]
       },
       {
-        "label": "Quarter 3 (15 credits)",
+        "label": "Quarter 3 (12 credits)",
         "courses": [
           "MGMT 320",
-          "MGMT 360",
-          "MGMT 361"
+          "MGMT 341",
+          "MGMT 410"
         ]
       },
       {
         "label": "Quarter 4 (13 credits)",
         "courses": [
           "MGMT 325",
-          "MGMT 340",
-          "MGMT 420"
+          "MGMT 385",
+          "MGMT 494"
         ]
       },
       {
         "label": "Quarter 5 (13 credits)",
         "courses": [
-          "MGMT 385",
+          "MGMT 405",
+          "MGMT 420",
+          "MGMT 495"
+        ]
+      },
+      {
+        "label": "Quarter 6 (13 credits)",
+        "courses": [
+          "MGMT 360",
           "MGMT 400",
           "MGMT 425"
         ]
       },
       {
-        "label": "Remaining catalog requirements (115 credits)",
+        "label": "Remaining catalog requirements (105 credits)",
         "courses": [
-          "115 credits of remaining catalog requirements"
+          "105 credits of remaining catalog requirements"
         ],
         "requirementRole": "remaining-credits",
         "notes": [
@@ -12267,9 +12407,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelors Degree.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 180 credits.",
+      "Published duration: 180 credits, 6 quarters, 2 years.",
       "These are a combination of entry requirements, degree requirements and electives.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -12303,7 +12442,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 180,
       "maximumCredits": 180,
-      "sourceText": "180 Credits Green River College's Bachelor of Applied Science (BAS) in Marketing and Entrepreneurship will provide graduates with the skills and abilities to perform market research, product development, product management, digital marketing and e-commerce, promotions development and management, sales and business development, and project management. Students will also learn supporting business topics such as accounting, business planning, and operations. In addition, graduates of this degree program will be prepared to start and grow new ventures. This degree is designed to prepare students for employment in a variety of marketing positions, including: market research analyst, marketing specialist, business analyst, product manager, sales representative, and social media manager. The skills learned in this degree can be applied in organizations ranging from small startups to large, well-established businesses. The BAS in Marketing and Entrepreneurship enables individuals with associate's degrees to combine their lower-division technical or transfer preparation with upper-division credits in business, marketing and entrepreneurship. The result is a practical, application-oriented, Bachelor's degree. The BAS in Marketing and Entrepreneurship also combines the breadth and academic rigor required for students who wish to continue their studies at the Master's level. Entry Requirements: The entry requirements for the BAS in Marketing and Entrepreneurship program provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: AAA, AAS or AAS-T degree with a cumulative GPA of 2.5 or better or AA, AB, or AS degree with a cumulative GPA of 2.5 or better Completion of MATH at the MATH 97 level with a grade of 2.5 or higher, OR Completion of a Math 100-level (5 credits) or higher with a grade of 2.0 or better. Completion of ENGL& 101 or ENGL 126 or 127 or 128 (5 credits with a grade of 2.5 or better) Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Marketing & Entrepreneurship | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/marketing-entrepreneurship/index.html Graduation Requirement Completion of an associate degree or higher from a regionally accredited college or university.",
+      "sourceText": "180 Credits Green River College's Bachelor of Applied Science (BAS) in Marketing and Entrepreneurship will provide graduates with the skills and abilities to perform market research, product development, product management, digital marketing and e-commerce, promotions development and management, sales and business development, and project management. Students will also learn supporting business topics such as accounting, business planning, and operations. In addition, graduates of this degree program will be prepared to start and grow new ventures. This degree is designed to prepare students for employment in a variety of marketing positions, including: market research analyst, marketing specialist, business analyst, product manager, sales representative, and social media manager. The skills learned in this degree can be applied in organizations ranging from small startups to large, well-established businesses. The BAS in Marketing and Entrepreneurship enables individuals with associate's degrees to combine their lower-division technical or transfer preparation with upper-division credits in business, marketing and entrepreneurship. The result is a practical, application-oriented, Bachelor's degree. The BAS in Marketing and Entrepreneurship also combines the breadth and academic rigor required for students who wish to continue their studies at the Master's level. Entry Requirements: The entry requirements for the BAS in Marketing and Entrepreneurship program provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: AAA, AAS or AAS-T degree with a cumulative GPA of 2.5 or better or AA, AB, or AS degree with a cumulative GPA of 2.5 or better Completion of MATH at the MATH 97 level with a grade of 2.5 or higher, OR Completion of a Math 100-level (5 credits) or higher with a grade of 2.0 or better. Completion of ENGL& 101 or ENGL 126 or 127 or 128 (5 credits with a grade of 2.5 or better) Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Marketing & Entrepreneurship | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/marketing-entrepreneurship/index.html Graduation Requirement Completion of an associate degree or higher from a regionally accredited college or university. For a curriculum map or suggested sequence of courses go to Marketing and Entrepreneurship, BAS Curriculum Map .",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -12383,9 +12522,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelors Degree.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 180 credits.",
+      "Published duration: 180 credits, 6 quarters, 2 years.",
       "These are a combination of entry requirements, degree requirements and electives.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -12496,9 +12634,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelor Degree.",
       "Degree: Bachelor of Applied Science Degree.",
-      "Published duration: ---.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "These are a combination of entry requirements, degree requirements and electives.",
       "General Education courses",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -12523,17 +12660,17 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
   {
     "id": "grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas",
     "code": "BAS",
-    "title": "Early Childhood Education: Infant and Child Mental Health",
-    "summary": "Early Childhood Education: Infant and Child Mental Health, BAS curriculum map.",
+    "title": "Early Childhood Mental Health and Well-being",
+    "summary": "Early Childhood Mental Health and Well-being, BAS curriculum map.",
     "bestFor": [
-      "Early Childhood Education: Infant and Child Mental Health"
+      "Early Childhood Mental Health and Well-being"
     ],
     "minimumCredits": 180,
     "maximumCredits": 180,
     "catalogCreditRange": {
       "minimumCredits": 180,
       "maximumCredits": 180,
-      "sourceText": "180 Credits Green River College's Bachelor of Applied Science (BAS) in Early Childhood Education: Infant and Child Mental Health (ICMH) will provide graduates with skills and abilities to examine the foundations of development and the importance of relationships to the social and emotional well-being of infants, toddlers, and young children as well as quality relationships and environments that foster growth in all developmental domains-social and emotional, cognitive/linguistic, and physical. It is designed to provide relevant training to those working with vulnerable families and children including early care and education providers, home visitors, child health providers, early interventionists, and other related fields. The specialized training in infant/child mental health will enable these individuals to work better with children and families, responding to the emerging needs of the diverse populations that they serve. The BAS in Early Childhood-ICMH enables individuals with applied associate degrees in Early Childhood Education to combine their lower-division technical or transfer preparation courses with upper-division credits. The result is a unique, specialized, BAS degree. The BAS in Early Childhood-ICMH also combines the breadth and academic rigor required for students who wish to continue their studies at the Master's level. For a curriculum map or suggested sequence of courses go to Early Childhood Education: Infant and Child Mental Health, BAS Curriculum Map . Entry Requirements: The entry requirements for the BAS in Infant Child Mental Health provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: AAA, AAS or AAS-T degree with a cumulative GPA of 2.5 or better AA, AS degree or higher with cumulative GPA of 2.5 or better Completion of 30 credits in ECE with no single class lower than 2.0 to include: EDUC& 115 - Child Development (5 credits) EDUC& 130 - Guiding Behavior (3 credits) EDUC& 204 - Inclusive Education Diversity Course (3-5 credits) 5 credits in practicum/field experience or permission of program director. Completion of these courses will provide the foundation necessary for seamless entry into the BAS in Early Childhood-ICMH and will be included in the 180 credit requirement. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Graduation Requirement Completion of an associate degree or higher from a regionally accredited college or university.",
+      "sourceText": "180 Credits Green River College's Bachelor of Applied Science (BAS) in Early Childhood Mental Health and Well-Being is designed for students who want to make a meaningful difference in the lives of young children and families. The program focuses on how infants, toddlers, and young children grow and develop, with an emphasis on the powerful role of relationships and nurturing environments in supporting social, emotional, cognitive, and physical development. Through specialized coursework in infant and child mental health, students gain practical knowledge and skills to support children's well-being and respond to the needs of diverse and vulnerable families. This program is especially well suited for those working-or planning to work-in early care and education, home visiting, child health, early intervention, and related fields. The BAS in Early Childhood builds on applied associate degrees in Early Childhood Education, allowing students to combine their lower-division coursework with advanced upper-division learning. Graduates earn a distinctive, specialized bachelor's degree that prepares them for leadership roles in the field and provides a strong academic foundation for those interested in pursuing graduate-level studies. For a curriculum map or suggested sequence of courses go to Early Childhood Mental Health and Well-Being, BAS Curriculum Map . Entry Requirements: The entry requirements for the BAS in Child Mental Health provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: AAA, AAS or AAS-T degree with a cumulative GPA of 2.5 or better AA, AS degree or higher with cumulative GPA of 2.5 or better Completion with no single class lower than 2.0 to include: EDUC& 115 - Child Development (5 credits) ECED 141 - Foundations of Early Relational Health (3 credits) 5 credits in practicum/field experience or permission of program director. Completion of these courses will provide the foundation necessary for seamless entry into the BAS in Early Childhood Mental Health and Well-being and will be included in the 180 credit requirement. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Graduation Requirement Completion of an associate degree or higher from a regionally accredited college or university.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -12542,23 +12679,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Quarter 1",
         "courses": [
           "ECED 301",
-          "ECED 305",
-          "ECED 310"
+          "ECED 305"
         ]
       },
       {
         "label": "Quarter 2",
         "courses": [
           "ECED 302",
-          "ECED 315",
-          "ECED 340"
+          "ECED 315"
         ]
       },
       {
         "label": "Quarter 3",
         "courses": [
           "ECED 303",
-          "ECED 350",
           "ECED 370"
         ]
       },
@@ -12574,22 +12708,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Quarter 5",
         "courses": [
           "ECED 402",
-          "ECED 415",
-          "ECED 420"
+          "ECED 415"
         ]
       },
       {
         "label": "Quarter 6",
         "courses": [
           "ECED 425",
-          "ECED 445",
           "ECED 450"
         ]
       },
       {
-        "label": "Remaining catalog requirements (90 credits)",
+        "label": "Remaining catalog requirements (115 credits)",
         "courses": [
-          "90 credits of remaining catalog requirements"
+          "115 credits of remaining catalog requirements"
         ],
         "requirementRole": "remaining-credits",
         "notes": [
@@ -12598,21 +12730,20 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelor's.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 180 credits.",
-      "These are a combination of entry requirements, degree requirements and electives. Completion of an associate degree or higher from a regionally accredited college or university with a cumulative GPA of 2.5 or better. Completion of 30 credits in ECE with no single class lower than 2.0 to include:",
+      "Published duration: 180 credits, 6 quarters, 2 years.",
+      "These are a combination of entry requirements, degree requirements and electives. Completion of an associate degree or higher from a regionally accredited college or university with a cumulative GPA of 2.5 or better. Completion with no single class lower than 2.0 to include:",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
       {
-        "label": "Early Childhood Education: Infant and Child Mental Health, BAS curriculum map",
+        "label": "Early Childhood Mental Health and Well-being, BAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/infant-and-child-mental-health-bas.html"
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 115,
+      "scheduledMaxCredits": 115,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -12634,7 +12765,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 180,
       "maximumCredits": 180,
-      "sourceText": "180 Credits Overview The BAS degree in Cybersecurity and Networking is designed to prepare students for employment in a variety of information technology (IT) positions, such as information security analysts, network and computer systems administrators or computer support specialists. This degree provides students with the opportunity to acquire a deep technical foundation and competency in cybersecurity and networking. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. Students will learn how to plan, implement, administer, secure, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Graduation Requirements: Completion of an associate degree or higher from a regionally accredited college or university. Students must attain a cumulative GPA of at least 2.5 on all college-level courses. Program Outcomes: Students who successfully complete this program will be able to: Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations For a curriculum map or suggested sequence of courses go to Information Technology: Cybersecurity and Networking, BAS Curriculum Map",
+      "sourceText": "180 Credits Overview The BAS degree in Cybersecurity and Networking is designed to prepare students for employment in a variety of information technology (IT) positions, such as information security analysts, network and computer systems administrators or computer support specialists. This degree provides students with the opportunity to acquire a deep technical foundation and competency in cybersecurity and networking. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. Students will learn how to plan, implement, administer, secure, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Graduation Requirements: Completion of an associate degree or higher from a regionally accredited college or university. Students must attain a cumulative GPA of at least 2.5 on all college-level courses. Program Outcomes: Students who successfully complete this program will be able to: Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Information Technology: Cybersecurity and Networking, BAS Curriculum Map",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -12732,9 +12863,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelor.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 180 credits.",
+      "Published duration: 180 creditsm 6 quarters, 2 years.",
       "These are a combination of entry requirements, degree requirements and electives.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -12751,7 +12881,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements > Quantitative/Symbolic Reasoning Skills (5 credits)",
-        "sourceProgramId": 3244,
+        "sourceProgramId": 3596,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas:general-education-requirements-quantitative-symbolic-reasoning-skills-5-credits:math-and-107",
@@ -12789,6 +12919,105 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     }
   },
   {
+    "id": "grc-bas-stem-data-analytics-software-development-software-development-bas",
+    "code": "BAS",
+    "title": "Software Development",
+    "summary": "Software Development, BAS curriculum map.",
+    "bestFor": [
+      "Software Development"
+    ],
+    "minimumCredits": 180,
+    "maximumCredits": 180,
+    "catalogCreditRange": {
+      "minimumCredits": 180,
+      "maximumCredits": 180,
+      "sourceText": "180 Credits The Bachelor of Applied Science in Information Technology-Software Development is designed to prepare students for employment in a variety of software development positions, such as software developer, software tester, systems analyst, quality assurance analyst, mobile application developer, and web developer. Students typically begin their studies in this program at third-year (junior) standing, with credits earned during their first and second year applying towards the total 180 credits. For more information about this degree, please visit www.greenriver.edu/software or contact a Software Development program advisor at software @greenriver.edu . Program Website: Data Analytics & Software Development | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/index.html Laptop Requirement: The BAS Software Development curriculum engages students in a hands-on learning environment to reflect modern software development practices, requiring students to collaborate in team-based workspaces with access to wireless technology. As a result, all incoming students are required to have a wireless laptop computer. Graduation Requirements: Completion of an associate degree or higher from a regionally accredited college or university. Students must attain a cumulative GPA of 2.5. Program Outcomes: Students who successfully complete this program will be able to: Develop stable, robust, secure, and efficient code following best practices in database design and software construction. Communicate with technical and non-technical project stakeholders, and within project teams. Apply Agile practices such as maintaining a product backlog, planning sprints, participating in sprint reviews and retrospectives. Perform software quality assurance activities throughout the entire software lifecycle. Write technical documentation to support software lifecycle activities.",
+      "sourceKind": "catalog-requirement-description",
+      "isExact": true
+    },
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "SDEV 301",
+          "SDEV 305",
+          "Elective or General Education"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "SDEV 328",
+          "SDEV 333",
+          "Elective or General Education"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "SDEV 334",
+          "SDEV 355",
+          "Elective or General Education"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "SDEV 372",
+          "Elective or General Education"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "SDEV 485",
+          "SDEV 494",
+          "Elective or General Education"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "SDEV 494",
+          "SDEV 486",
+          "Elective or General Education"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits, 6 quarters, 2 years.",
+      "These are a combination of entry requirements, degree requirements and electives. Students must complete and submit an entry application and be accepted into the program before registering for any upper-division (300- and 400-level) courses. New students are admitted twice a year in fall and winter. To inquire about admission to the program, visit www.greenriver.edu/software and complete the form to request information.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Software Development, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/software-development-bas.html"
+      }
+    ],
+    "sampleSchedule": {
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
+      "placeholderCredits": 30,
+      "unresolvedOptionCredits": 0,
+      "defaultOptionCredits": 0,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
+    }
+  },
+  {
     "id": "grc-bas-stem-information-technology-cybersecurity-and-networking-bas",
     "code": "BAS",
     "title": "Cybersecurity and Networking",
@@ -12801,7 +13030,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 180,
       "maximumCredits": 180,
-      "sourceText": "180 Credits Overview The BAS degree in Cybersecurity and Networking is designed to prepare students for employment in a variety of information technology (IT) positions, such as information security analysts, network and computer systems administrators or computer support specialists. This degree provides students with the opportunity to acquire a deep technical foundation and competency in cybersecurity and networking. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. Students will learn how to plan, implement, administer, secure, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Graduation Requirements: Completion of an associate degree or higher from a regionally accredited college or university. Students must attain a cumulative GPA of at least 2.5 on all college-level courses. Program Outcomes: Students who successfully complete this program will be able to: Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations For a curriculum map or suggested sequence of courses go to Information Technology: Cybersecurity and Networking, BAS Curriculum Map",
+      "sourceText": "180 Credits Overview The BAS degree in Cybersecurity and Networking is designed to prepare students for employment in a variety of information technology (IT) positions, such as information security analysts, network and computer systems administrators or computer support specialists. This degree provides students with the opportunity to acquire a deep technical foundation and competency in cybersecurity and networking. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. Students will learn how to plan, implement, administer, secure, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Graduation Requirements: Completion of an associate degree or higher from a regionally accredited college or university. Students must attain a cumulative GPA of at least 2.5 on all college-level courses. Program Outcomes: Students who successfully complete this program will be able to: Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. This degree can lead to a large number of career possibilities, some of which may include what you find at the right. The majority of these jobs require a bachelor's degree and this degree can assist you with earning that bachelor's degree. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Information Technology: Cybersecurity and Networking, BAS Curriculum Map",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -12918,7 +13147,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "General Education Requirements > Quantitative/Symbolic Reasoning Skills (5 credits)",
-        "sourceProgramId": 3244,
+        "sourceProgramId": 3596,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-cybersecurity-and-networking-bas:general-education-requirements-quantitative-symbolic-reasoning-skills-5-credits:math-and-107",
@@ -13136,9 +13365,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelors.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 180 credits.",
+      "Published duration: 180 credits, 6 quarters, 2 years.",
       "These are a combination of entry requirements, degree requirements and electives. To enter this program students must already have an associate's degree or higher, in aviation , from a regionally accredited institution with at least a 2.0 cumulative GPA. On a case by case basis, with program director approval, students may start the BAS - Aeronautical Science program when they are within 20 credits of completing their associate's degree.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -13254,9 +13482,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelor.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 186 credits.",
+      "Published duration: 186 credits, 6 quarters, 2 years.",
       "Must have completed a minimum of a two-year associate degree in forestry or related field. Apply to the program Prior completion of these courses is required for entry:",
       "Can be take anytime. All 3 courses are required.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -13369,9 +13596,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelor.",
       "Degree: Bachelor of Applied Science.",
-      "Published duration: 186 credits.",
+      "Published duration: 186 credits, 6 quarters, 2 years.",
       "Must have completed a minimum of a two-year associate degree in forestry or related field. Apply to the program Prior completion of these courses is required for entry:",
       "Can be take anytime. All 3 courses are required.",
       "Generated automatically from Green River's current program-map curriculum data."
@@ -13406,7 +13632,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 35,
       "maximumCredits": 40,
-      "sourceText": "35-40 Credits Focuses on foundational accounting skills for persons seeking entry-level employment in the accounting/bookkeeping industry or those who wish to add specialty credentials to a previously earned degree. Core skills include the ability to perform basic bookkeeping procedures, use QuickBooks and Excel, and perform payroll accounting procedures. Credits earned in this certificate can be applied to the Accounting, AAA degree. Students in this program must complete all required Accounting classes with a grade of 2.0 or higher. Students must earn a cumulative GPA of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Accounting Certificate Curriculum Map Contacts: Pat Carter, pcarter@greenriver.edu , Jeanette Fohn, jfohn@greenriver.edu , Nicole Wetter, nicole.wetter@greenriver.edu Program Website: Accounting | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/ Use the Career and Program Explorer page to explore more details about the occupations. Program Outcomes: Students who successfully complete this program will be able to: Demonstrate knowledge of accounting and business operations and the ability to correctly use common accounting vocabulary. Analyze and record business transactions and activities in accordance with Generally Accepted Accounting Principles. Perform bookkeeping/accounting procedures required in entry- or intermediate-level bookkeeping/accounting positions. Use general ledger computerized software to perform bookkeeping/accounting functions including preparation of financial statements and accounting reports for a small to medium sized business. Perform accounting procedures employed in a typical payroll accounting system including preparation of periodic tax forms and timely remittance of tax payments. Utilize appropriate technology, including word processing and spreadsheet applications, to input, manage, summarize, and interpret business information and to develop forms and reports to assist management in planning operations, identifying potential problems, and controlling business activities. Prepare individual Federal Income tax returns and utilize computerized tax software. Demonstrate critical thinking, analytical and quantitative skills in problem solving, decision making, and responsibility by completing assignments independently and/or as a dependable team member.",
+      "sourceText": "35-40 Credits Focuses on foundational accounting skills for persons seeking entry-level employment in the accounting/bookkeeping industry or those who wish to add specialty credentials to a previously earned degree. Core skills include the ability to perform basic bookkeeping procedures, use QuickBooks and Excel, and perform payroll accounting procedures. Credits earned in this certificate can be applied to the Accounting, AAA degree. Students in this program must complete all required Accounting classes with a grade of 2.0 or higher. Students must earn a cumulative GPA of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Accounting Certificate Curriculum Map . Contacts: Pat Carter, pcarter@greenriver.edu , Jeanette Fohn, jfohn@greenriver.edu , Nicole Wetter, nicole.wetter@greenriver.edu Program Website: Accounting | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/ Use the Career and Program Explorer page to explore more details about the occupations. Program Outcomes: Students who successfully complete this program will be able to: Demonstrate knowledge of accounting and business operations and the ability to correctly use common accounting vocabulary. Analyze and record business transactions and activities in accordance with Generally Accepted Accounting Principles. Perform bookkeeping/accounting procedures required in entry- or intermediate-level bookkeeping/accounting positions. Use general ledger computerized software to perform bookkeeping/accounting functions including preparation of financial statements and accounting reports for a small to medium sized business. Perform accounting procedures employed in a typical payroll accounting system including preparation of periodic tax forms and timely remittance of tax payments. Utilize appropriate technology, including word processing and spreadsheet applications, to input, manage, summarize, and interpret business information and to develop forms and reports to assist management in planning operations, identifying potential problems, and controlling business activities. Prepare individual Federal Income tax returns and utilize computerized tax software. Demonstrate critical thinking, analytical and quantitative skills in problem solving, decision making, and responsibility by completing assignments independently and/or as a dependable team member.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -13466,7 +13692,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 35,
       "maximumCredits": 40,
-      "sourceText": "35-40 Credits Focuses on foundational accounting skills for persons seeking entry-level employment in the accounting/bookkeeping industry or those who wish to add specialty credentials to a previously earned degree. Core skills include the ability to perform basic bookkeeping procedures, use QuickBooks and Excel, and perform payroll accounting procedures. Credits earned in this certificate can be applied to the Accounting, AAA degree. Students in this program must complete all required Accounting classes with a grade of 2.0 or higher. Students must earn a cumulative GPA of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Accounting Certificate Curriculum Map Contacts: Pat Carter, pcarter@greenriver.edu , Jeanette Fohn, jfohn@greenriver.edu , Nicole Wetter, nicole.wetter@greenriver.edu Program Website: Accounting | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/ Use the Career and Program Explorer page to explore more details about the occupations. Program Outcomes: Students who successfully complete this program will be able to: Demonstrate knowledge of accounting and business operations and the ability to correctly use common accounting vocabulary. Analyze and record business transactions and activities in accordance with Generally Accepted Accounting Principles. Perform bookkeeping/accounting procedures required in entry- or intermediate-level bookkeeping/accounting positions. Use general ledger computerized software to perform bookkeeping/accounting functions including preparation of financial statements and accounting reports for a small to medium sized business. Perform accounting procedures employed in a typical payroll accounting system including preparation of periodic tax forms and timely remittance of tax payments. Utilize appropriate technology, including word processing and spreadsheet applications, to input, manage, summarize, and interpret business information and to develop forms and reports to assist management in planning operations, identifying potential problems, and controlling business activities. Prepare individual Federal Income tax returns and utilize computerized tax software. Demonstrate critical thinking, analytical and quantitative skills in problem solving, decision making, and responsibility by completing assignments independently and/or as a dependable team member.",
+      "sourceText": "35-40 Credits Focuses on foundational accounting skills for persons seeking entry-level employment in the accounting/bookkeeping industry or those who wish to add specialty credentials to a previously earned degree. Core skills include the ability to perform basic bookkeeping procedures, use QuickBooks and Excel, and perform payroll accounting procedures. Credits earned in this certificate can be applied to the Accounting, AAA degree. Students in this program must complete all required Accounting classes with a grade of 2.0 or higher. Students must earn a cumulative GPA of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Accounting Certificate Curriculum Map . Contacts: Pat Carter, pcarter@greenriver.edu , Jeanette Fohn, jfohn@greenriver.edu , Nicole Wetter, nicole.wetter@greenriver.edu Program Website: Accounting | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/ Use the Career and Program Explorer page to explore more details about the occupations. Program Outcomes: Students who successfully complete this program will be able to: Demonstrate knowledge of accounting and business operations and the ability to correctly use common accounting vocabulary. Analyze and record business transactions and activities in accordance with Generally Accepted Accounting Principles. Perform bookkeeping/accounting procedures required in entry- or intermediate-level bookkeeping/accounting positions. Use general ledger computerized software to perform bookkeeping/accounting functions including preparation of financial statements and accounting reports for a small to medium sized business. Perform accounting procedures employed in a typical payroll accounting system including preparation of periodic tax forms and timely remittance of tax payments. Utilize appropriate technology, including word processing and spreadsheet applications, to input, manage, summarize, and interpret business information and to develop forms and reports to assist management in planning operations, identifying potential problems, and controlling business activities. Prepare individual Federal Income tax returns and utilize computerized tax software. Demonstrate critical thinking, analytical and quantitative skills in problem solving, decision making, and responsibility by completing assignments independently and/or as a dependable team member.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -13497,6 +13723,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "notes": [
       "Degree: Certificate.",
+      "Published duration: 35-40 credits, 6 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -13529,7 +13756,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 55,
       "maximumCredits": 60,
-      "sourceText": "55-60 Credits This certificate program provides students an opportunity to develop essential business skills. Earning an Administrative Assistant Certificate will prepare the student for employment as an office worker in an entry-level position. These credits can be applied to any Business Technologies and Administrative Careers degree program. Students in this program must complete each class with a grade of 2.0 or higher. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Administrative Assistant Certificate Curriculum Map Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson - lsimpson@greenriver.edu , Lori Fishburn - LFishburn@greenriver.edu Program Website: Administrative Assistant | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/index.html Program Outcomes: Implement calculator/computer technology to solve problems. Successfully integrate Microsoft Office software applications to present information in a meaningful manner.",
+      "sourceText": "55-60 Credits This certificate program provides students an opportunity to develop essential business skills. Earning an Administrative Assistant Certificate will prepare the student for employment as an office worker in an entry-level position. These credits can be applied to any Business Technologies and Administrative Careers degree program. Students in this program must complete each class with a grade of 2.0 or higher. Use the Career and Program Explorer page to explore more details about the occupations. For a curriculum map or suggested sequence of courses go to Administrative Assistant Certificate Curriculum Map . Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson - lsimpson@greenriver.edu , Lori Fishburn - LFishburn@greenriver.edu Program Website: Administrative Assistant | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/index.html Program Outcomes: Implement calculator/computer technology to solve problems. Successfully integrate Microsoft Office software applications to present information in a meaningful manner.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -13568,9 +13795,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Professional/Technical.",
       "Degree: Certificate.",
-      "Published duration: 55-60 credits.",
+      "Published duration: 55-60 credits, 7 quarters, 1.5 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -13662,7 +13888,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 60,
       "maximumCredits": 60,
-      "sourceText": "60 Credits This certificate program provides students an opportunity to develop essential business skills. Earning a Business Applications Specialist certificate provides students with the educational background and skills to help secure employment as an office worker in an entry-level position. These credits can be applied to any Business Technologies and Administrative Careers degree program. Students in this program must complete each class with a grade of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Business Applications Specialist Certificate Curriculum Map Contacts: Lea Ann Simpson - lsimpson@greenriver.edu , Lori Fishburn - LFishburn@greenriver.edu , Shannon Sharpe - ssharpe@greenriver.edu Program Website: Business Applications Specialist | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/index.html Gainful Employment Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/business-applications-specialist/ Program Outcomes: Implement calculator/computer technology to solve problems. Successfully integrate Microsoft Office software applications to present information in a meaningful manner.",
+      "sourceText": "60 Credits This certificate program provides students an opportunity to develop essential business skills. Earning a Business Applications Specialist certificate provides students with the educational background and skills to help secure employment as an office worker in an entry-level position. These credits can be applied to any Business Technologies and Administrative Careers degree program. Students in this program must complete each class with a grade of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Business Applications Specialist, AAA Curriculum Map . Contacts: Lea Ann Simpson - lsimpson@greenriver.edu , Lori Fishburn - LFishburn@greenriver.edu , Shannon Sharpe - ssharpe@greenriver.edu Program Website: Business Applications Specialist | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/index.html Gainful Employment Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/business-applications-specialist/ Program Outcomes: Implement calculator/computer technology to solve problems. Successfully integrate Microsoft Office software applications to present information in a meaningful manner.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -13700,8 +13926,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
-      "Published duration: 60 credits.",
+      "Published duration: 60 credits, 4 quarters, 1.5 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -13838,8 +14063,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
-      "Published duration: 40 credits.",
+      "Published duration: 40 credits, 6 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -13903,8 +14127,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Degree: Certificate.",
-      "Published duration: 45 credits.",
+      "Published duration: 45 credits, 6 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -13937,7 +14160,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 30,
       "maximumCredits": 30,
-      "sourceText": "30-35 Credits The Entrepreneurship Certificate at Green River College is a comprehensive program designed to equip students with the essential knowledge and skills of an entrepreneur. Spanning 30 credits, this certificate provides a solid foundation in key areas of business, including entrepreneurship, marketing, accounting, and technology tools crucial for business operations. Whether you aim to launch a startup, run a small business, or bring innovative ideas to an existing organization, this program will prepare you for success in the dynamic world of entrepreneurship. Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Business Management | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/index.html Program Outcomes Develop Business Plans: Create detailed and viable business plans that outline strategies for product development, marketing, and financial sustainability. Understand Core Business Concepts: Demonstrate a solid understanding of fundamental business principles, including management, marketing, and financial accounting. Implement Marketing Strategies: Apply introductory marketing principles to effectively promote products or services. Manage Financial Records: Utilize accounting software like QuickBooks and perform essential financial accounting tasks to manage business finances. Utilize Business Technologies: Use Microsoft Excel at an introductory or advanced level to analyze data and support business decision-making processes. Navigate the Entrepreneurial Ecosystem: Identify and leverage resources, networks, and support systems available to entrepreneurs.",
+      "sourceText": "30-35 Credits The Entrepreneurship Certificate at Green River College is a comprehensive program designed to equip students with the essential knowledge and skills of an entrepreneur. Spanning 30 credits, this certificate provides a solid foundation in key areas of business, including entrepreneurship, marketing, accounting, and technology tools crucial for business operations. Whether you aim to launch a startup, run a small business, or bring innovative ideas to an existing organization, this program will prepare you for success in the dynamic world of entrepreneurship. For a curriculum map or suggested sequence of courses go to Business Management-Entrepreneurship Certificate Curriculum Map . Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Business Management | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/index.html Program Outcomes Develop Business Plans: Create detailed and viable business plans that outline strategies for product development, marketing, and financial sustainability. Understand Core Business Concepts: Demonstrate a solid understanding of fundamental business principles, including management, marketing, and financial accounting. Implement Marketing Strategies: Apply introductory marketing principles to effectively promote products or services. Manage Financial Records: Utilize accounting software like QuickBooks and perform essential financial accounting tasks to manage business finances. Utilize Business Technologies: Use Microsoft Excel at an introductory or advanced level to analyze data and support business decision-making processes. Navigate the Entrepreneurial Ecosystem: Identify and leverage resources, networks, and support systems available to entrepreneurs. Use the Career and Program Explorer page to explore more details about the occupations.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -13967,7 +14190,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "notes": [
       "Degree: Certificate.",
-      "Published duration: 35 credits.",
+      "Published duration: 35 credits, 6 months, 2 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14000,7 +14223,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 50,
       "maximumCredits": 50,
-      "sourceText": "50 Credits This certificate program prepares individuals to manage a variety of retail sales operations or lines of merchandise. The program serves both entry-level job candidates and current employees. After successful completion of the required coursework, students receive a certificate, which may also show the WAFC (Washington Association of Food Chains) endorsement. Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Business Management | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/index.html Program Outcomes: Demonstrate leadership competencies and teamwork skills necessary to resolve interpersonal and organizational challenges that most often occur in the modern workplace. Communicate clearly, appropriately, and persuasively to business stakeholders, both orally and in writing. Describe the basics of strategic planning and creative problem solving. Explain the methods for organizing and delegating work. Discuss self-management skills related to areas such as goal setting, self-esteem, and problem solving.",
+      "sourceText": "50 Credits This certificate program prepares individuals to manage a variety of retail sales operations or lines of merchandise. The program serves both entry-level job candidates and current employees. After successful completion of the required coursework, students receive a certificate, which may also show the WAFC (Washington Association of Food Chains) endorsement. For a curriculum map or suggested sequence of courses go to Business Management-Retail Management Certificate Curriculum Map . Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Business Management | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/index.html Program Outcomes: Demonstrate leadership competencies and teamwork skills necessary to resolve interpersonal and organizational challenges that most often occur in the modern workplace. Communicate clearly, appropriately, and persuasively to business stakeholders, both orally and in writing. Describe the basics of strategic planning and creative problem solving. Explain the methods for organizing and delegating work. Discuss self-management skills related to areas such as goal setting, self-esteem, and problem solving.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14038,7 +14261,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "notes": [
       "Degree: Certificate.",
-      "Published duration: 50 credits.",
+      "Published duration: 50 credits, 6 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14054,7 +14277,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
-        "sourceProgramId": 3202,
+        "sourceProgramId": 3554,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-written-communication:btac-130",
@@ -14095,7 +14318,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Related Instruction Requirements (20 credits) > Computation",
-        "sourceProgramId": 3202,
+        "sourceProgramId": 3554,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-computation:acct-215",
@@ -14235,7 +14458,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 30,
       "maximumCredits": 30,
-      "sourceText": "30 Credits Terrific career opportunities are available to those seeking employment in federal, state and local correctional facilities. The Seattle area is home to the King County Detention facility SCORE, and other federal correctional facilities. Job potential with local correctional agencies exists for Green River students, though job placement is not guaranteed. Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks.",
+      "sourceText": "30 Credits Terrific career opportunities are available to those seeking employment in federal, state and local correctional facilities. The Seattle area is home to the King County Detention facility SCORE, and other federal correctional facilities. Job potential with local correctional agencies exists for Green River students, though job placement is not guaranteed. For a curriculum map or suggest sequence of courses go to Criminal Justice: Corrections Certificate Curriculum Map . Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks. Use the Career and Program Explorer page to explore more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14258,6 +14481,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
+      "Degree: Certificate.",
+      "Published duration: 30 credits, 6 months, 2 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14290,7 +14515,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 30,
       "maximumCredits": 30,
-      "sourceText": "30 Credits Green River College is one of the few institutions that offer training to become a Fingerprint Technician. This short-term certificate can be completed in two or three quarters and includes training in the new Automatic Fingerprint Identification System (AFIS), classification, evidence presentation, court testimony preparation and basic job skill preparation. Students who earn the certificate are introduced to the field of Criminalistics and Fingerprint Technology. Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks.",
+      "sourceText": "30 Credits Green River College is one of the few institutions that offer training to become a Fingerprint Technician. This short-term certificate can be completed in two or three quarters and includes training in the new Automatic Fingerprint Identification System (AFIS), classification, evidence presentation, court testimony preparation and basic job skill preparation. Students who earn the certificate are introduced to the field of Criminalistics and Fingerprint Technology. For a curriculum map or suggested sequence of courses go to Criminal Justice-Forensic and Fingerprint Certificate Curriculum Map . Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks. Use the Career and Program Explorer page to explore more details about the occupations.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14313,6 +14538,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
+      "Degree: Certificate.",
+      "Published duration: 30 credits, 6 months, 2 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14345,7 +14572,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 30,
       "maximumCredits": 30,
-      "sourceText": "30 Credits This short-term certificate is designed to be completed in two or three quarters and includes an introduction to the criminal justice system and a more focused examination of current trends and practices in policing. Students who earn the certificate may find employment opportunities with local law enforcement agencies. Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: Criminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks.",
+      "sourceText": "30 Credits This short-term certificate is designed to be completed in two or three quarters and includes an introduction to the criminal justice system and a more focused examination of current trends and practices in policing. Students who earn the certificate may find employment opportunities with local law enforcement agencies. For a curriculum map or suggested sequence of courses go to Criminal Justice-Law Enforcement Certificate Curriculum Map . Contact: Jashon Banks Sr - jbanks@greenriver.edu , Michelle Williams - mwilliams@greenriver.edu Program Website: C riminal Justice | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/index.html Program Outcomes: Give reasons for conclusions, assumptions, beliefs and hypotheses. Meet obligations necessary to complete individual and group tasks. Use the Career and Program Explorer page to explore more details about the occupations.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14368,6 +14595,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
+      "Degree: Certificate.",
+      "Published duration: 30 credits, 6 months, 2 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14422,9 +14651,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 20 credits.",
+      "Published duration: 20 credits, 6 months, 2 quarters.",
       "Each one of these specialization course leads to its own certificate. Students should work with their advisor to create an individualized plan.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -14471,6 +14699,152 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     }
   },
   {
+    "id": "grc-certificate-education-law-social-science-early-childhood-education-early-childhood-mental-health-well-being-certificate",
+    "code": "Certificate",
+    "title": "Early Childhood Mental Health and Well-being",
+    "summary": "Early Childhood Mental Health and Well-being Certificate curriculum map.",
+    "bestFor": [
+      "Early Childhood Mental Health and Well-being"
+    ],
+    "minimumCredits": 40,
+    "maximumCredits": 40,
+    "catalogCreditRange": {
+      "minimumCredits": 40,
+      "maximumCredits": 40,
+      "sourceText": "40 Credit The Early Childhood Mental Health and Well-being Certificate provides specialized training for professionals working with young children in early learning and related settings. Focused on children's social-emotional development, trauma-informed practice, and strategies for supporting dysregulation and challenging behaviors, the program offers research-based knowledge and practical tools for working with diverse and vulnerable populations. Students complete 40 upper-division credits in a cohort model that promotes collaboration and professional growth. This certificate is designed for individuals with a two-year degree or those who already hold a bachelor's degree and seek focused preparation in early childhood mental health without pursuing another full degree. For a curriculum map or suggested sequence of courses go to Early Childhood Mental Health and Well-being Certificate Curriculum Map Entry Requirements: The entry requirements for the BAS in Infant Child Mental Health provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: Completion of an associate degree or higher from a regionally accredited college or university with a cumulative GPA of 2.5 or better. Completion of 30 credits in ECE with no single class lower than 2.0 to include: EDUC& 115 - Child Development ( 5 credits) ECED 141 - Foundations of Early Relational Health ( 3 credits) 5 credits in practicum/field experience or permission of program director. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html",
+      "sourceKind": "catalog-requirement-description",
+      "isExact": true
+    },
+    "terms": [
+      {
+        "label": "Fall (7 credits)",
+        "courses": [
+          "ECED 301",
+          "ECED 305"
+        ]
+      },
+      {
+        "label": "Winter (7 credits)",
+        "courses": [
+          "ECED 305",
+          "ECED 315"
+        ]
+      },
+      {
+        "label": "Spring (7 credits)",
+        "courses": [
+          "ECED 303",
+          "ECED 370"
+        ]
+      },
+      {
+        "label": "Fall (8 credits)",
+        "courses": [
+          "ECED 401",
+          "ECED 405",
+          "ECED 410"
+        ]
+      },
+      {
+        "label": "Winter (7 credits)",
+        "courses": [
+          "ECED 402",
+          "ECED 415"
+        ]
+      },
+      {
+        "label": "Spring (4 credits)",
+        "courses": [
+          "ECED 425"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Mental Health and Well-being Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-mental-health-well-being-certificate.html"
+      }
+    ],
+    "sampleSchedule": {
+      "scheduledMinCredits": 40,
+      "scheduledMaxCredits": 40,
+      "placeholderCredits": 0,
+      "unresolvedOptionCredits": 0,
+      "defaultOptionCredits": 0,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
+    }
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-early-childhood-education-early-relational-health-certificate",
+    "code": "Certificate",
+    "title": "Early Childhood Education - Early Relational Health",
+    "summary": "Early Childhood Education - Early Relational Health Certificate curriculum map.",
+    "bestFor": [
+      "Early Childhood Education - Early Relational Health"
+    ],
+    "minimumCredits": 42,
+    "maximumCredits": 42,
+    "catalogCreditRange": {
+      "minimumCredits": 42,
+      "maximumCredits": 42,
+      "sourceText": "42 Credit The Early Childhood Certificate in Early Relational Health provides specialized training for professionals seeking to create trauma-responsive environments and strengthen their effectiveness when working with children who exhibit challenging behaviors. Grounded in research and reflective practice, the certificate emphasizes relationship-based approaches that support children's social and emotional development. Coursework includes focused study in early childhood mental health, along with foundational courses that build essential knowledge in child development and responsive practice. Graduates are prepared to foster safe, supportive learning environments that promote resilience, regulation, and healthy relationships for young children and families. For a curriculum map or suggested sequence of courses go to Early Childhood Education - Early Relational Health Certificate Curriculum Map Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Program Outcomes: Explain foundational principles of early childhood development, with emphasis on social-emotional growth and relational health. Apply trauma-responsive and relationship-based strategies to support children who exhibit challenging behaviors. Explain how inclusive learning environments promote belonging, regulation, and resilience. Demonstrate reflective practice skills, including self-awareness of bias, identity, and the influence of personal and professional experiences on interactions with children and families. Explore ways with families and interdisciplinary professionals to support children's mental health and wellbeing. Use observation and documentation to inform responsive strategies that strengthen early relational health. Use the Career and Program Explorer page to explore more details about the occupations.",
+      "sourceKind": "catalog-requirement-description",
+      "isExact": true
+    },
+    "terms": [
+      {
+        "label": "Fall (13 credits)",
+        "courses": [
+          "ECED& 105",
+          "ECED& 107",
+          "ECED 141"
+        ]
+      },
+      {
+        "label": "Winter (13 credits)",
+        "courses": [
+          "EDUC& 115",
+          "ECED& 120",
+          "EDUC& 130",
+          "ECED 142"
+        ]
+      },
+      {
+        "label": "Spring (16 credits)",
+        "courses": [
+          "EDUC& 204",
+          "EDUC& 240",
+          "EDUC 245",
+          "Select one: ECED 214, EDUC 210"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education - Early Relational Health Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-relational-health-certificate.html"
+      }
+    ],
+    "sampleSchedule": {
+      "scheduledMinCredits": 42,
+      "scheduledMaxCredits": 42,
+      "placeholderCredits": 0,
+      "unresolvedOptionCredits": 5,
+      "defaultOptionCredits": 0,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
+    }
+  },
+  {
     "id": "grc-certificate-education-law-social-science-early-childhood-education-paraeducator-state-certificate",
     "code": "Certificate",
     "title": "Paraeducator State",
@@ -14483,8 +14857,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 47,
       "maximumCredits": 47,
-      "sourceText": "47 Credits The Paraeducator State Certificate is part of the Washington State \"Stackable Certificates\" and is the second step in preparing students for a job as a Paraeducator. This certificate includes college-level General-Education courses in addition to the job-specific courses. Based on the Washington State Paraeducator standards, it is designed to further build upon the technical skills required for employment as a Paraeducator within educational settings. Core competencies covered in this certificate prepare the Paraeducator to effectively support and extend instruction and services, thereby increasing student learning. These core competencies revolve around the areas of instructional strategies, behavior management, and human growth and development. The coursework is offered fully online as well as face-to-face, drawing on the expertise of local professionals and schools. This certificate can transfer directly into the Paraeducator Associate in Applied Science - Transfer degree (AAS-T). Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html",
-      "sourceKind": "catalog-requirement-description",
+      "sourceText": "47 credits",
+      "sourceKind": "program-map-duration",
       "isExact": true
     },
     "terms": [
@@ -14608,9 +14982,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 47 credits.",
+      "Published duration: 47 credits, 4 quarters, 1 year.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14626,7 +14999,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements (35 credits) > Choose one of the following:",
-        "sourceProgramId": 3236,
+        "sourceProgramId": 3588,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:educ-and-130",
@@ -14711,12 +15084,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Cardiac Monitor/Electrocardiography (EKG) Technician"
     ],
-    "minimumCredits": 15,
-    "maximumCredits": 15,
+    "minimumCredits": 5,
+    "maximumCredits": 5,
     "catalogCreditRange": {
-      "minimumCredits": 15,
-      "maximumCredits": 15,
-      "sourceText": "15 Credits The Cardiac Monitor/Electrocardiography (EKG) Technician program prepares students with the knowledge, experience, exposure and confidence to monitor and interpret cardiac telemetry rhythms as well as perform diagnostic testing to assess heart rhythm and rate. Cardiac Monitor/Electrocardiography Technicians play an important role in the management of patients with heart disease or injury by observing, documenting, and reporting normal, abnormal and potentially life-threatening cardiac rhythms to the appropriate medical staff. Electrocardiography Technicians typically work in hospital and outpatient clinic environments while Cardiac Monitor Technicians typically work in the hospital or a centralized monitoring setting. They play a vital role in the lives of cardiac patients and are a critical member of the health care team. This program will include fundamental information on anatomy and physiology of the heart and cardiovascular system, medical disease processes, medical terminology, medical legal ethics, and communication, and intensive EKG monitor strip interpretations. Additionally, you will spend time in the lab setting working with monitoring equipment and observing in the clinical environment working with Cardiac Monitor Technicians. Admission Requirements: 18 years of Valid photo ID (driver's license or any state-issued photo Must pass a National, Washington State Patrol and DSHS Background All required immunizations Liability Insurance For the complete details, please refer to the EKG Technician Application. Contacts: Nursing Advisor nursing@greenriver.edu or Adam Brown abrown@greenriver.edu Program Website: Cardiac Monitor / EKG Technician | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/cardiac-monitor-ekg/index.html To learn more about the career and employment outlook go to Career and Program Explorer .",
+      "minimumCredits": 5,
+      "maximumCredits": 5,
+      "sourceText": "5 Credits The Cardiac Monitor/Electrocardiography (EKG) Technician program prepares students with the knowledge, experience, exposure and confidence to monitor and interpret cardiac telemetry rhythms as well as perform diagnostic testing to assess heart rhythm and rate. Cardiac Monitor/Electrocardiography Technicians play an important role in the management of patients with heart disease or injury by observing, documenting, and reporting normal, abnormal and potentially life-threatening cardiac rhythms to the appropriate medical staff. Electrocardiography Technicians typically work in hospital and outpatient clinic environments while Cardiac Monitor Technicians typically work in the hospital or a centralized monitoring setting. They play a vital role in the lives of cardiac patients and are a critical member of the health care team. This program will include fundamental information on anatomy and physiology of the heart and cardiovascular system, medical disease processes, medical terminology, medical legal ethics, and communication, and intensive EKG monitor strip interpretations. Admission Requirements: 18 years of age Valid photo ID (driver's license or any state-issued photo Must pass a National, Washington State Patrol and DSHS Background All required immunizations Liability Insurance For the complete details, please refer to the Cardiac Rhythm Recognition & Interpretation Application . Contacts: Nursing Advisor nhs@greenriver.edu or Adam Brown abrown@greenriver.edu Program Website: Cardiac Monitor / EKG Technician | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/cardiac-monitor-ekg/index.html To learn more about the career and employment outlook go to Career and Program Explorer .",
       "sourceKind": "curriculum-map-description",
       "isExact": true
     },
@@ -14731,16 +15104,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Program Outcomes > Requirements:",
         "courses": [
           "CARDIO 102",
-          "CARDIO 103",
-          "HEALTH 102",
-          "HEALTH 104",
-          "CARDIO 105"
+          "CARDIO 103"
         ]
       }
     ],
     "notes": [
       "Describe Cardiac Monitoring and EKG services, ethical, legal, and regulatory issues including HIPPA. Describe anatomic structures and function of body systems using correct medical terminology in relation to services performed by Cardiac Monitor/Electrocardiography (EKG) Technicians. Describe standard operating procedures for monitoring and interpreting cardiac rhythms and performing EKGs. Perform infection control techniques and safety, complying with federal, state, and locally mandated regulations regarding safety practices. Perform duties safely and effectively within their scope of practice as a Cardiac Monitor/Electrocardiography Technician. Maintain records, documentation of findings and reporting findings to the appropriate medical staff. Function as a member of the health care team. Communicate appropriately and professionally in the workplace.",
-      "9/1/2024",
+      "7/1/2026",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14771,7 +15141,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 30,
       "maximumCredits": 30,
-      "sourceText": "30 Credits This program consists of two stackable certificates, both the Nursing Assistant and MA-Phlebotomy certificates. Graduates will be eligible for state examination and licensure for both MA-Phlebotomy and Nursing Assistant. Successful licensure will allow the graduate to work as a patient care or emergency room technician. The training provides basic anatomy and physiology, medical terminology, ethical, legal and regulatory issues, safety measures, infection control, special collections, and patient care. This role is similar to the role of first responders in the field but occurs within the Emergency Room Setting. Typical job functions include: Assisting with observation and care of patients Performing care tasks such as taking vitals signs, mobility assistance, specimen collection, EKGs, venipuncture and capillary sticks Responding to critical life-saving emergency situations Gathering and identifying patient care needs Preparation of equipment and supplies for emergency procedures Transporting and transferring patients Department maintenance Assisting with clerical and communication tasks to support patient care Skills and techniques acquired in this program are veni and capillary blood collections, basic patient care, EKG and vital signs. BLS certificate is acquired during the program. A minimum grade of 2.5 or higher is required in each course. This program prepares graduates to develop concepts and knowledge necessary to provide entry level patient care as an emergency room or patient care technician. Admission Requirements Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance For the complete details, please refer to the Emergency Room Technician Application. Students must earn a grade of 2.5 or higher in each class in the program to earn the certificate. Contact: Career and Advising Center-Student Affairs & Success Building, 104; nursing@greenriver.edu Program Website: ER Room and Patient Care Technician Certificate | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/emergency-room-technician/index.html",
+      "sourceText": "30 Credits This program consists of two stackable certificates, both the Nursing Assistant and MA-Phlebotomy certificates. Graduates will be eligible for state examination and licensure for both MA-Phlebotomy and Nursing Assistant. Successful licensure will allow the graduate to work as a patient care or emergency room technician. The training provides basic anatomy and physiology, medical terminology, ethical, legal and regulatory issues, safety measures, infection control, special collections, and patient care. This role is similar to the role of first responders in the field but occurs within the Emergency Room Setting. Typical job functions include: Assisting with observation and care of patients Performing care tasks such as taking vitals signs, mobility assistance, specimen collection, EKGs, venipuncture and capillary sticks Responding to critical life-saving emergency situations Gathering and identifying patient care needs Preparation of equipment and supplies for emergency procedures Transporting and transferring patients Department maintenance Assisting with clerical and communication tasks to support patient care Skills and techniques acquired in this program are veni and capillary blood collections, basic patient care, EKG and vital signs. BLS certificate is acquired during the program. A minimum grade of 2.5 or higher is required in each course. This program prepares graduates to develop concepts and knowledge necessary to provide entry level patient care as an emergency room or patient care technician. Admission Requirements Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance For the complete details, please refer to the Emergency Room Technician Application. Students must earn a grade of 2.5 or higher in each class in the program to earn the certificate. Contact: Career and Advising Center-Student Affairs & Success Building, 104; nhs@greenriver.edu Program Website: ER Room and Patient Care Technician Certificate | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/emergency-room-technician/index.html",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14797,9 +15167,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 30 credits.",
+      "Published duration: 30 credits, 6 months, 2 quarters.",
       "Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -14833,7 +15202,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 75,
       "maximumCredits": 75,
-      "sourceText": "75 Credits This certificate provides students an opportunity to develop ICD, CPT and HCPCS Level II coding skills to prepare them to become entry-level coders and reimbursement specialists. A coder is a health information specialist who is equally at home with computerized and medical reference books and patient records. Students who complete this certificate may find employment in professional billing and coding facilities, including physician practices, emergency rooms, ambulatory facilities, hospitals and skilled nursing facilities, insurance companies and government agencies. Course content includes studies in clinical coding and classification systems, life sciences, reimbursement methodologies, health information and delivery systems, legal and compliance rules with an emphasis on HIPAA. Students obtain either field-based or virtual professional practice experience. Students learn basic computer, math and communication skills. Upon completion of the program, students will be eligible to sit for formal exams offered through national organizations in order to obtain medical coding certification. These classes may be applied toward the two-year Associate in Applied Arts Degree. Students in this program must complete each class with a grade of 2.0 or higher. Contacts: Shannon Sharpe, ssharpe@greenriver.edu , Lea Ann Simpson, lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Utilize a computerized encoder to determine procedure values based on RBRVS (resource based relative value scale), coding guidelines based on LCD (local coverage determination), NCD (national coverage determination) and CCI (correct coding initiative) edits. Define key legal concepts related to healthcare including the impact of ethics, morals, fraud and abuse in a healthcare setting. Apply legal principles, policies, regulations, and standards for the control and use of health information. Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
+      "sourceText": "75 Credits This certificate provides students an opportunity to develop ICD, CPT and HCPCS Level II coding skills to prepare them to become entry-level coders and reimbursement specialists. A coder is a health information specialist who is equally at home with computerized and medical reference books and patient records. Students who complete this certificate may find employment in professional billing and coding facilities, including physician practices, emergency rooms, ambulatory facilities, hospitals and skilled nursing facilities, insurance companies and government agencies. Course content includes studies in clinical coding and classification systems, life sciences, reimbursement methodologies, health information and delivery systems, legal and compliance rules with an emphasis on HIPAA. Students obtain either field-based or virtual professional practice experience. Students learn basic computer, math and communication skills. Upon completion of the program, students will be eligible to sit for formal exams offered through national organizations in order to obtain medical coding certification. These classes may be applied toward the two-year Associate in Applied Arts Degree. Students in this program must complete each class with a grade of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Medical Coding and Reimbursement Specialist Certificate Curriculum Map . Contacts: Shannon Sharpe, ssharpe@greenriver.edu , Lea Ann Simpson, lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Utilize a computerized encoder to determine procedure values based on RBRVS (resource based relative value scale), coding guidelines based on LCD (local coverage determination), NCD (national coverage determination) and CCI (correct coding initiative) edits. Define key legal concepts related to healthcare including the impact of ethics, morals, fraud and abuse in a healthcare setting. Apply legal principles, policies, regulations, and standards for the control and use of health information. Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks. Use the Career and Program Explorer page to explore more details about the occupations.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14881,9 +15250,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 75 credits.",
+      "Published duration: 75 credits, 5 quarters, 1.5 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -14899,7 +15267,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "requiredCredits": 5,
         "selectionCount": 1,
         "sourceHeading": "Requirements > Related Instruction Requirements (20 credits) > Oral Communication",
-        "sourceProgramId": 3289,
+        "sourceProgramId": 3641,
         "options": [
           {
             "id": "official-grc-track-grouped-choice:grc-certificate-healthcare-wellness-medical-office-administration-medical-coding-reimbursement-specialist-certificate:requirements-related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
@@ -14949,7 +15317,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 54,
       "maximumCredits": 54,
-      "sourceText": "54 Credits This certificate program provides students an opportunity to develop essential medical front office/reception skills. After completing the program students will be qualified to secure employment as a medical front office receptionist in an entry level position. Students in this program must complete each class with a grade of 2.0 or higher. Many of these credits may be applied to other Business Technologies and Administrative Careers degree programs. Students may enter this program at the beginning of any quarter. Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson- Lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
+      "sourceText": "54 Credits This certificate program provides students an opportunity to develop essential medical front office/reception skills. After completing the program students will be qualified to secure employment as a medical front office receptionist in an entry level position. Students in this program must complete each class with a grade of 2.0 or higher. Many of these credits may be applied to other Business Technologies and Administrative Careers degree programs. Students may enter this program at the beginning of any quarter. For a curriculum map or suggested sequence of courses go to Medical Front Office Certificate Curriculum Map . Contacts: Shannon Sharpe - ssharpe@greenriver.edu , Lea Ann Simpson- Lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks. Use the Career and Program Explorer page to explore more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -14994,9 +15362,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 54 credits.",
+      "Published duration: 54 credits, 5 quarters, 1.5 years.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15029,7 +15396,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 40,
       "maximumCredits": 40,
-      "sourceText": "40 Credits This certificate program is designed for students who have completed the Medical Office Administration Degree or who have previous medical office experience and will allow them to increase their ability to achieve the goal of medical office manager. Students in this program must complete each class with a grade of 2.0 or higher, and some prerequisites may be needed to enter the required classes. Students may enter this program at the beginning of any quarter. Contacts: Shannon Sharpe, ext. 4378 - ssharpe@greenriver.edu , Lea Ann Simpson, ext. 4393- lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/degrees-programs/program-maps/healthcare-wellness/medical-office-administration/index.html Gainful Employment Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/medical-office-manager/ Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
+      "sourceText": "40 Credits This certificate program is designed for students who have completed the Medical Office Administration Degree or who have previous medical office experience and will allow them to increase their ability to achieve the goal of medical office manager. Students in this program must complete each class with a grade of 2.0 or higher, and some prerequisites may be needed to enter the required classes. Students may enter this program at the beginning of any quarter. For a curriculum map or suggested sequence of courses go to Medical Office Manager Certificate Curriculum Map . Contacts: Shannon Sharpe, ext. 4378 - ssharpe@greenriver.edu , Lea Ann Simpson, ext. 4393- lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/degrees-programs/program-maps/healthcare-wellness/medical-office-administration/index.html Gainful Employment Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/medical-office-manager/ Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15057,9 +15424,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 40 credits.",
+      "Published duration: 40 credits, 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15135,7 +15501,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 30,
       "maximumCredits": 30,
-      "sourceText": "30 Credits The Medical Office Clerk Certificate prepares students for entry-level employment in physician practices, emergency rooms, ambulatory facilities, hospitals and other medical facilities. Students will train to perform medical office duties including patient scheduling, registration, paper and electronic medical record access and data entry. Students will obtain training in medical terminology, general billing, reports, and correspondence. These classes may be applied toward the two-year Associate in Applied Arts Degree. Students in this program must complete each class with a grade of 2.0 or higher. Contacts: Shannon Sharpe, ssharpe@greenriver.edu , Lea Ann Simpson - lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
+      "sourceText": "30 Credits The Medical Office Clerk Certificate prepares students for entry-level employment in physician practices, emergency rooms, ambulatory facilities, hospitals and other medical facilities. Students will train to perform medical office duties including patient scheduling, registration, paper and electronic medical record access and data entry. Students will obtain training in medical terminology, general billing, reports, and correspondence. These classes may be applied toward the two-year Associate in Applied Arts Degree. Students in this program must complete each class with a grade of 2.0 or higher. For a curriculum map or suggested sequence of courses go to Medical Office Support Certificate Curriculum Map . Contacts: Shannon Sharpe, ssharpe@greenriver.edu , Lea Ann Simpson - lsimpson@greenriver.edu Program Website: Medical Office Administration | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/index.html Program Outcomes: Accurately spell, pronounce and define common medical terms related to major disease processes, diagnostic procedures, laboratory tests, abbreviations, drugs, and treatment modalities. Develop an understanding of the structure and function of the healthy human body, diseases and treatment modalities. Identify the different types of healthcare providers, disciplines, common departments and general structure found within healthcare organizations. Analyze and verify medical record and documentation accuracy and validity. Identify and define medical disease, diagnosis, procedural terms and abbreviations. Abstract diagnostic and procedural terminology to accurately assign ICD-10-CM, CPT-4 and HCPCS level II codes. Define key legal concepts related to healthcare Perform mathematical calculations needed to process a claim, determine allowed amounts, deductibles and co-payments, process cash, check and electronic payments, and balance monthly and yearly financial records. Complete all general medical practice management software tasks such as registering and scheduling patients, searching and reviewing medical records online, entering codes, payment and other electronic health record (EHR) tasks.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15163,9 +15529,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 30 credits.",
+      "Published duration: 30 credits, 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15198,7 +15563,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 90,
       "maximumCredits": 90,
-      "sourceText": "90 credits",
+      "sourceText": "90 credits, 6 quarters, 2 years",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -15231,9 +15596,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Associate.",
       "Degree: Associate in Applied Science.",
-      "Published duration: 90 credits.",
+      "Published duration: 90 credits, 6 quarters, 2 years.",
       "9/1/2024",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -15267,7 +15631,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 42,
       "maximumCredits": 42,
-      "sourceText": "42 Credits The IT Advanced Network Administration and Security Technician certificate program is designed to prepare students for employment in a variety of information technology (IT) positions, such as network and computer systems administrators, information security analysts, or computer support specialists. This certificate provides students with the opportunity to acquire a deep technical foundation and competency in network administration and security. Students will learn how to plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. Students must attain a cumulative GPA of at 2.5 or higher. Contact: IT Degrees extension x4600, itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. Prepare for industry certification exams. Gainful Employment: Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/it-advanced-network-administration-security/",
+      "sourceText": "42 Credits The IT Advanced Network Administration and Security Technician certificate program is designed to prepare students for employment in a variety of information technology (IT) positions, such as network and computer systems administrators, information security analysts, or computer support specialists. This certificate provides students with the opportunity to acquire a deep technical foundation and competency in network administration and security. Students will learn how to plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. For a curriculum map or suggested sequence of courses go to Information Technology-Advanced Network Administration and Security Certificate Curriculum Map . Students must attain a cumulative GPA of at 2.5 or higher. Contact: IT Degrees extension x4600, itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. Prepare for industry certification exams. Gainful Employment: Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/it-advanced-network-administration-security/",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15297,9 +15661,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Bachelor Degree.",
       "Degree: Certificate.",
-      "Published duration: 42 credits.",
+      "Published duration: 42 credits, 9 months, 3 quarters.",
       "To enter this program, students must have a technical associate's degree in an IT-related field from a regionally accredited institution, or two years IT work experience. The following IT courses, or work experience in all of these areas, are strongly recommended before entering this program because they contain foundational knowledge upon which the upper-division IT courses are built: For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
@@ -15333,7 +15696,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 12,
       "maximumCredits": 12,
-      "sourceText": "12 credits The Information Technology Cloud Fundamentals certificate is designed to prepare students to enter the IT cloud field by addressing the fundamentals of cloud computing administration and essentials for networking in the cloud environment. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate wide area networking and local area networking skills. Understand and demonstrate cloud infrastructure installation, configuration and administration.",
+      "sourceText": "12 credits The Information Technology Cloud Fundamentals certificate is designed to prepare students to enter the IT cloud field by addressing the fundamentals of cloud computing administration and essentials for networking in the cloud environment. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . For a curriculum map or suggested sequence of courses go to Information Technology-Cloud Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate wide area networking and local area networking skills. Understand and demonstrate cloud infrastructure installation, configuration and administration. Use the Career and Program Explorer page to learn more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15354,9 +15717,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 22 credits.",
+      "Published duration: 22 credits, 6 months, 2 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15389,7 +15751,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 15,
       "maximumCredits": 15,
-      "sourceText": "15 credits The Information Technology Fundamentals certificate is designed to prepare students or career changers for continued studies in information technology by addressing a variety of fundamental technical concepts in server administration, networking, and one other aspect of technology: security, programming, databases, or maintenance. The coursework required for this certificate may also be helpful to individuals whose work requires them to understand technical concepts and terminology, but are not necessarily involved in the same day-to-day work as information technology professionals. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate apply towards the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu, Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate procedures to install, configure, support, and troubleshoot operating systems and networking hardware.",
+      "sourceText": "15 credits The Information Technology Fundamentals certificate is designed to prepare students or career changers for continued studies in information technology by addressing a variety of fundamental technical concepts in server administration, networking, and one other aspect of technology: security, programming, databases, or maintenance. The coursework required for this certificate may also be helpful to individuals whose work requires them to understand technical concepts and terminology, but are not necessarily involved in the same day-to-day work as information technology professionals. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate apply towards the Cybersecurity and Networking, AAS-T . For a curriculum map or suggested sequence courses go to Information Technology-Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu, Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate procedures to install, configure, support, and troubleshoot operating systems and networking hardware.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15404,9 +15766,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 15 credits.",
+      "Published duration: 15 credits, 3 months, 1 quarter.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15439,7 +15800,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 15,
       "maximumCredits": 15,
-      "sourceText": "15 credits The Information Technology Scripting Fundamentals certificate is designed to prepare students to enter the IT field by addressing the fundamentals of computer operating system, application, and database scripting. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills in Linux and Windows. Understand and demonstrate entry-level Windows server automation. Understand and demonstrate basic SQL database fundamentals.",
+      "sourceText": "15 credits The Information Technology Scripting Fundamentals certificate is designed to prepare students to enter the IT field by addressing the fundamentals of computer operating system, application, and database scripting. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . For a curriculum map or suggested sequence of courses go to Information Technology-Scripting Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills in Linux and Windows. Understand and demonstrate entry-level Windows server automation. Understand and demonstrate basic SQL database fundamentals.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15460,9 +15821,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 20 credits.",
+      "Published duration: 20 credits, 6 months, 2 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15495,7 +15855,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 15,
       "maximumCredits": 15,
-      "sourceText": "15 credits The Information Technology Security Fundamentals certificate is designed to prepare students to enter the IT security field by addressing the fundamentals of business infrastructure security administration and essentials for identify and access management. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills. Understand and demonstrate entry-level IT security. Understand and demonstrate basic identity and access management skills.",
+      "sourceText": "15 credits The Information Technology Security Fundamentals certificate is designed to prepare students to enter the IT security field by addressing the fundamentals of business infrastructure security administration and essentials for identify and access management. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . For a curriuclum map or suggested sequence of courses go to Information Technology-Security Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills. Understand and demonstrate entry-level IT security. Understand and demonstrate basic identity and access management skills.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15522,9 +15882,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 25 credits.",
+      "Published duration: 25 credits. 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15557,7 +15916,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 42,
       "maximumCredits": 42,
-      "sourceText": "42 Credits The IT Advanced Network Administration and Security Technician certificate program is designed to prepare students for employment in a variety of information technology (IT) positions, such as network and computer systems administrators, information security analysts, or computer support specialists. This certificate provides students with the opportunity to acquire a deep technical foundation and competency in network administration and security. Students will learn how to plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. Students must attain a cumulative GPA of at 2.5 or higher. Contact: IT Degrees extension x4600, itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. Prepare for industry certification exams. Gainful Employment: Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/it-advanced-network-administration-security/",
+      "sourceText": "42 Credits The IT Advanced Network Administration and Security Technician certificate program is designed to prepare students for employment in a variety of information technology (IT) positions, such as network and computer systems administrators, information security analysts, or computer support specialists. This certificate provides students with the opportunity to acquire a deep technical foundation and competency in network administration and security. Students will learn how to plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Students will learn how to analyze the security vulnerabilities of an organization's IT resources, and how to plan and implement security measures and practices for those resources. For a curriculum map or suggested sequence of courses go to Information Technology-Advanced Network Administration and Security Certificate Curriculum Map . Students must attain a cumulative GPA of at 2.5 or higher. Contact: IT Degrees extension x4600, itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to Plan, implement, administer, and support appropriate information technologies and systems to help an organization achieve its goals and objectives. Information technologies and systems may include: servers, client computers, mobile devices, operating systems, network applications, local area networks, wide area networks, wireless networks, network segments, intranets, and so on. Analyze the security vulnerabilities of an organization's information technology resources. Plan and implement security measures and practices for an organization's information technology resources. Evaluate user needs and use those needs to plan the implementation of information technology systems that meet those needs. Prepare for industry certification exams. Gainful Employment: Find important information about educational debt, earnings, and completion rates of students who attended these programs at https://www.greenriver.edu/consumer-information/gainful-employment-information/it-advanced-network-administration-security/",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15623,7 +15982,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 12,
       "maximumCredits": 12,
-      "sourceText": "12 credits The Information Technology Cloud Fundamentals certificate is designed to prepare students to enter the IT cloud field by addressing the fundamentals of cloud computing administration and essentials for networking in the cloud environment. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate wide area networking and local area networking skills. Understand and demonstrate cloud infrastructure installation, configuration and administration.",
+      "sourceText": "12 credits The Information Technology Cloud Fundamentals certificate is designed to prepare students to enter the IT cloud field by addressing the fundamentals of cloud computing administration and essentials for networking in the cloud environment. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . For a curriculum map or suggested sequence of courses go to Information Technology-Cloud Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate wide area networking and local area networking skills. Understand and demonstrate cloud infrastructure installation, configuration and administration. Use the Career and Program Explorer page to learn more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15679,7 +16038,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 15,
       "maximumCredits": 15,
-      "sourceText": "15 credits The Information Technology Fundamentals certificate is designed to prepare students or career changers for continued studies in information technology by addressing a variety of fundamental technical concepts in server administration, networking, and one other aspect of technology: security, programming, databases, or maintenance. The coursework required for this certificate may also be helpful to individuals whose work requires them to understand technical concepts and terminology, but are not necessarily involved in the same day-to-day work as information technology professionals. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate apply towards the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu, Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate procedures to install, configure, support, and troubleshoot operating systems and networking hardware.",
+      "sourceText": "15 credits The Information Technology Fundamentals certificate is designed to prepare students or career changers for continued studies in information technology by addressing a variety of fundamental technical concepts in server administration, networking, and one other aspect of technology: security, programming, databases, or maintenance. The coursework required for this certificate may also be helpful to individuals whose work requires them to understand technical concepts and terminology, but are not necessarily involved in the same day-to-day work as information technology professionals. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate apply towards the Cybersecurity and Networking, AAS-T . For a curriculum map or suggested sequence courses go to Information Technology-Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu, Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate procedures to install, configure, support, and troubleshoot operating systems and networking hardware.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15729,7 +16088,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 15,
       "maximumCredits": 15,
-      "sourceText": "15 credits The Information Technology Scripting Fundamentals certificate is designed to prepare students to enter the IT field by addressing the fundamentals of computer operating system, application, and database scripting. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills in Linux and Windows. Understand and demonstrate entry-level Windows server automation. Understand and demonstrate basic SQL database fundamentals.",
+      "sourceText": "15 credits The Information Technology Scripting Fundamentals certificate is designed to prepare students to enter the IT field by addressing the fundamentals of computer operating system, application, and database scripting. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . For a curriculum map or suggested sequence of courses go to Information Technology-Scripting Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills in Linux and Windows. Understand and demonstrate entry-level Windows server automation. Understand and demonstrate basic SQL database fundamentals.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15785,7 +16144,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 15,
       "maximumCredits": 15,
-      "sourceText": "15 credits The Information Technology Security Fundamentals certificate is designed to prepare students to enter the IT security field by addressing the fundamentals of business infrastructure security administration and essentials for identify and access management. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills. Understand and demonstrate entry-level IT security. Understand and demonstrate basic identity and access management skills.",
+      "sourceText": "15 credits The Information Technology Security Fundamentals certificate is designed to prepare students to enter the IT security field by addressing the fundamentals of business infrastructure security administration and essentials for identify and access management. Students must earn a grade of 2.5 or higher on all courses in this program. All of the courses required for this certificate are a part of the Cybersecurity and Networking, AAS-T . For a curriuclum map or suggested sequence of courses go to Information Technology-Security Fundamentals Certificate Curriculum Map . Contact: For more information, please contact us at itdegrees@greenriver.edu Program Website: Cybersecurity and Networking | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/index.html Program Outcomes: Students who successfully complete this program will be able to: Understand and demonstrate basic scripting and programming skills. Understand and demonstrate entry-level IT security. Understand and demonstrate basic identity and access management skills.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -15830,6 +16189,64 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 10,
+      "exceedsCatalogMinimum": true,
+      "exceedsCatalogMaximum": true
+    }
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-automotive-technology-automotive-electric-vehicle-certificate",
+    "code": "Certificate",
+    "title": "Automotive Electric Vehicle",
+    "summary": "Automotive Electric Vehicle Certificate curriculum map.",
+    "bestFor": [
+      "Automotive Electric Vehicle"
+    ],
+    "minimumCredits": 34,
+    "maximumCredits": 34,
+    "catalogCreditRange": {
+      "minimumCredits": 34,
+      "maximumCredits": 34,
+      "sourceText": "34 Credits Recipients of the certificate achieve competencies set forth by the National Automotive Technicians Education Foundation (NATEF) and the National Institute for Automotive Service Excellence (ASE). The major objective of this certificate program is to provide students opportunity to develop essential skills necessary for an entry-level position in the field of Automotive Electrical Vehicle repair. Entry into the program is on a space-available basis with instructor's permission. New students must show proof of a valid driver's license. For a curriculum map or suggested sequence of courses go to Automotive Electric Vehicle Certificate Curriculum Map Contact: ATECH@greenriver.edu Program Website: Automotive Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/automotive-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate safe shop practice and hazardous material handling. Diagnose and repair automotive electrical systems to ASE Standards Diagnose and repair automotive emissions and engine performance standards to ASE Standards. Diagnose and repair automotive engines to ASE Standards Diagnose and repair automotive automatic and manual transmission/transaxle systems to ASE Standards. Diagnose and repair automotive steering and suspension systems to ASE Standards. Diagnose and repair automotive brake systems to ASE Standards. Diagnose and repair automotive air condition and heating systems to ASE Standards.",
+      "sourceKind": "catalog-requirement-description",
+      "isExact": true
+    },
+    "terms": [
+      {
+        "label": "Quarter 1 (16 credits)",
+        "courses": [
+          "ATECH 110",
+          "ATECH 111"
+        ]
+      },
+      {
+        "label": "Quarter 2 (14 credits)",
+        "courses": [
+          "ATECH 112"
+        ]
+      },
+      {
+        "label": "Quarter 3 (6 credits)",
+        "courses": [
+          "ATECH 130"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Automotive Electric Vehicle Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/automotive-technology/automotive-electric-vehicle-certificate.html"
+      }
+    ],
+    "sampleSchedule": {
+      "scheduledMinCredits": 36,
+      "scheduledMaxCredits": 36,
+      "placeholderCredits": 0,
+      "unresolvedOptionCredits": 0,
+      "defaultOptionCredits": 0,
+      "sampleOnlyCredits": 2,
       "exceedsCatalogMinimum": true,
       "exceedsCatalogMaximum": true
     }
@@ -15882,9 +16299,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 44 credits.",
+      "Published duration: 44 credits, 4 quarters, 1 year.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15947,9 +16363,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 40 credits.",
+      "Published duration: 40 credits, 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -15982,7 +16397,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 43,
       "maximumCredits": 43,
-      "sourceText": "43 Credits This certificate program prepares students with carpentry skills and knowledge related to the entire spectrum of residential, as well as parts of light commercial construction. Completion can lead to employment with either general or specialty contractors whose focus is on residential or light commercial building. Students develop a wide range of skills and knowledge in the carpentry trade ranging from foundations to interior trim. Contacts: Robert Bean, rbean@greenriver.edu Program Website: Carpentry Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Be employed as a carpenter helper or a union carpentry apprenticeship program. Demonstrate efficiency, safety, and accuracy in the completion of carpentry tasks. Use all basic hand and power tools related to carpentry. Form and pour a typical foundation for a basic home. Frame the wooden structure for a basic single-story home. Install all basic interior trim components for a home. Install all basic exterior trim components for a home. Read and interpret basic architectural residential prints Calculate, layout and install basic stairs and components. Calculate, install and sheath typical stick-framed roof structures. Build a basic kitchen base cabinet to within 1/32\" of all given dimensions Form and pour typical concrete slabs. Estimate materials and supplies to build a basic single story residential home.",
+      "sourceText": "43 Credits This certificate program prepares students with carpentry skills and knowledge related to the entire spectrum of residential, as well as parts of light commercial construction. Completion can lead to employment with either general or specialty contractors whose focus is on residential or light commercial building. Students develop a wide range of skills and knowledge in the carpentry trade ranging from foundations to interior trim. For a curriculum map or suggested sequence of courses go to Carpentry Technology Certificate Curriculum Map . Contacts: Robert Bean, rbean@greenriver.edu Program Website: Carpentry Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Be employed as a carpenter helper or a union carpentry apprenticeship program. Demonstrate efficiency, safety, and accuracy in the completion of carpentry tasks. Use all basic hand and power tools related to carpentry. Form and pour a typical foundation for a basic home. Frame the wooden structure for a basic single-story home. Install all basic interior trim components for a home. Install all basic exterior trim components for a home. Read and interpret basic architectural residential prints Calculate, layout and install basic stairs and components. Calculate, install and sheath typical stick-framed roof structures. Build a basic kitchen base cabinet to within 1/32\" of all given dimensions Form and pour typical concrete slabs. Estimate materials and supplies to build a basic single story residential home. Use the Career and Program Explorer page to explore more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -16018,9 +16433,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 43 credits.",
+      "Published duration: 43 credits, 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -16053,7 +16467,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 43,
       "maximumCredits": 43,
-      "sourceText": "43 Credits This certificate program prepares students with carpentry skills and knowledge related to the entire spectrum of residential, as well as parts of light commercial construction. Completion can lead to employment with either general or specialty contractors whose focus is on residential or light commercial building. Students develop a wide range of skills and knowledge in the carpentry trade ranging from foundations to interior trim. Contacts: Robert Bean, rbean@greenriver.edu Program Website: Carpentry Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Be employed as a carpenter helper or a union carpentry apprenticeship program. Demonstrate efficiency, safety, and accuracy in the completion of carpentry tasks. Use all basic hand and power tools related to carpentry. Form and pour a typical foundation for a basic home. Frame the wooden structure for a basic single-story home. Install all basic interior trim components for a home. Install all basic exterior trim components for a home. Read and interpret basic architectural residential prints Calculate, layout and install basic stairs and components. Calculate, install and sheath typical stick-framed roof structures. Build a basic kitchen base cabinet to within 1/32\" of all given dimensions Form and pour typical concrete slabs. Estimate materials and supplies to build a basic single story residential home.",
+      "sourceText": "43 Credits This certificate program prepares students with carpentry skills and knowledge related to the entire spectrum of residential, as well as parts of light commercial construction. Completion can lead to employment with either general or specialty contractors whose focus is on residential or light commercial building. Students develop a wide range of skills and knowledge in the carpentry trade ranging from foundations to interior trim. For a curriculum map or suggested sequence of courses go to Carpentry Technology Certificate Curriculum Map . Contacts: Robert Bean, rbean@greenriver.edu Program Website: Carpentry Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Be employed as a carpenter helper or a union carpentry apprenticeship program. Demonstrate efficiency, safety, and accuracy in the completion of carpentry tasks. Use all basic hand and power tools related to carpentry. Form and pour a typical foundation for a basic home. Frame the wooden structure for a basic single-story home. Install all basic interior trim components for a home. Install all basic exterior trim components for a home. Read and interpret basic architectural residential prints Calculate, layout and install basic stairs and components. Calculate, install and sheath typical stick-framed roof structures. Build a basic kitchen base cabinet to within 1/32\" of all given dimensions Form and pour typical concrete slabs. Estimate materials and supplies to build a basic single story residential home. Use the Career and Program Explorer page to explore more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": true
     },
@@ -16091,9 +16505,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 44 credits.",
+      "Published duration: 44 credits, 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -16126,7 +16539,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 39,
       "maximumCredits": 44,
-      "sourceText": "39-44 Credits This is a one-year (three quarter) program designed for both the new student entering the field of manufacturing and for the current employee who wishes to learn more about the knowledge and skills currently in demand by employers. Upon completion of this certificate, the students are prepared for entry into the manufacturing industry as a conventional or CNC (Computer Numerical Control) machinist trainee. Instruction covers conventional turning, milling and grinding, as well as basic programming, set up and operation of CNC machine tools. Other subjects include shop safety, reading engineering drawings, shop mathematics, machine tool theory, inspection and surface plate techniques, as well as lean manufacturing and other skills currently required by the manufacturing industry. Credit for hours of training is usually granted to those entering an approved apprenticeship program. Entry into the program at any time is possible on a space-available basis with instructor's permission. Contact: Tom Tagliente - ttagliente@greenriver.edu ; Brad Chinn, bchinn@greenriver.edu or Joel Perdue, jperdue@greenriver.edu Program Website: Machining and Manufacturing Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate accuracy and safety in the completion of manufacturing tasks. Produce a manually turned workpiece. Produce a manually milled workpiece. Produce a surface-ground workpiece. Produce a CNC machined workpiece. Use hand tools correctly and safely. Use precision measuring instruments correctly. Read blueprints correctly. Produce a correctly sequenced job/build plan. Identify and describe basic tools and project materials.",
+      "sourceText": "39-44 Credits This is a one-year (three quarter) program designed for both the new student entering the field of manufacturing and for the current employee who wishes to learn more about the knowledge and skills currently in demand by employers. Upon completion of this certificate, the students are prepared for entry into the manufacturing industry as a conventional or CNC (Computer Numerical Control) machinist trainee. Instruction covers conventional turning, milling and grinding, as well as basic programming, set up and operation of CNC machine tools. Other subjects include shop safety, reading engineering drawings, shop mathematics, machine tool theory, inspection and surface plate techniques, as well as lean manufacturing and other skills currently required by the manufacturing industry. Credit for hours of training is usually granted to those entering an approved apprenticeship program. Entry into the program at any time is possible on a space-available basis with instructor's permission. For a curriculum map or suggested sequence of courses go to Machining and Manufacturing Technology Certificate Curriculum Map . Contact: Tom Tagliente - ttagliente@greenriver.edu ; Brad Chinn, bchinn@greenriver.edu or Joel Perdue, jperdue@greenriver.edu Program Website: Machining and Manufacturing Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/index.html Program Outcomes: Students who successfully complete this program will be able to: Demonstrate accuracy and safety in the completion of manufacturing tasks. Produce a manually turned workpiece. Produce a manually milled workpiece. Produce a surface-ground workpiece. Produce a CNC machined workpiece. Use hand tools correctly and safely. Use precision measuring instruments correctly. Read blueprints correctly. Produce a correctly sequenced job/build plan. Identify and describe basic tools and project materials. Use the Career and Program Explorer page to explore more details about the occupation.",
       "sourceKind": "catalog-requirement-description",
       "isExact": false
     },
@@ -16153,9 +16566,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 39-44 Credits.",
+      "Published duration: 39-44 Credits, 9 months, 3 quarters.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -16173,6 +16585,63 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "sampleOnlyCredits": 7,
       "exceedsCatalogMinimum": true,
       "exceedsCatalogMaximum": true
+    }
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-control-drives-integration-specialist-certificate",
+    "code": "Certificate",
+    "title": "Mechatronics Control & Drives Integration Specialist",
+    "summary": "Mechatronics Control & Drives Integration Specialist Certificate curriculum map.",
+    "bestFor": [
+      "Mechatronics Control & Drives Integration Specialist"
+    ],
+    "minimumCredits": 31,
+    "maximumCredits": 31,
+    "catalogCreditRange": {
+      "minimumCredits": 31,
+      "maximumCredits": 31,
+      "sourceText": "31 Credits This is a 1-year certification program designed for both the new student entering the field of Mechatronics and for the current employee who wishes to learn more about the knowledge and skills currently in demand by employers. The certificate aims to prepare students for in-demand careers in advanced manufacturing, specifically in roles involving industrial automation, mechatronics, and electrical systems integration. Employers need technicians who can wire, configure, and troubleshoot systems that integrate programmable logic controllers (PLCs) with AC motor drives and mechanical drive components. The ability to work across electrical and mechanical domains-specifically PLC-to-VFD communication, motion control, and drive systems. Entry into the program at any time is possible on a space-available basis with instructor's permission. For a curriculum map or suggested sequence of courses go to Mechatronics Control & Drives Integration Specialist Certificate Curriculum Map . Contact: William Sciacca, wsciacca@greenriver.edu Program Website: Maintenance Mechatronics | https://www.greenriver.edu/students/academics/degrees-programs/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics- technician/index.html Program Outcomes: Students who successfully complete this program will be able to: Work as a mechatronics technician. Demonstrate understanding OSHA and WISHA standards for safety in the workplace. Troubleshoot and repair hydraulic, pneumatic, electrical and electronic industrial equipment. Explain the consequences of failure to comply with company and basic safety principles.",
+      "sourceKind": "catalog-requirement-description",
+      "isExact": true
+    },
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "MTX 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits)",
+        "courses": [
+          "MTX 110"
+        ]
+      },
+      {
+        "label": "Quarter 3 (5 credits)",
+        "courses": [
+          "MTX 161"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Mechatronics Control & Drives Integration Specialist Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/control-drives-integration-specialist-certificate.html"
+      }
+    ],
+    "sampleSchedule": {
+      "scheduledMinCredits": 31,
+      "scheduledMaxCredits": 31,
+      "placeholderCredits": 0,
+      "unresolvedOptionCredits": 0,
+      "defaultOptionCredits": 0,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -16225,9 +16694,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 31 credits.",
+      "Published duration: 31 credits, 4 quarters, 1 year.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -16298,9 +16766,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 31 credits.",
+      "Published duration: 31 credits, 4 quarters, 1 year.",
       "Generated automatically from Green River's current program-map curriculum data."
     ],
     "officialLinks": [
@@ -16333,7 +16800,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "catalogCreditRange": {
       "minimumCredits": 26,
       "maximumCredits": 26,
-      "sourceText": "26 credits",
+      "sourceText": "Each certificate is 26 credits, 6 months, 2 quarters",
       "sourceKind": "program-map-duration",
       "isExact": true
     },
@@ -16388,9 +16855,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "notes": [
-      "Program type: Certificate.",
       "Degree: Certificate.",
-      "Published duration: 26 credits.",
+      "Published duration: Each certificate is 26 credits, 6 months, 2 quarters.",
       "You can apply for the Basic Arc and Flame Certificate and/or continue on to Intermediate Arc and Flame.",
       "You can apply for the Intermediate Arc and Flame Certificate and/or continue to Advanced Arc Welding.",
       "You can now apply for Advanced Arc Welding Certificate and/or continue on for the Welding Technology, AAS .",
@@ -16508,16 +16974,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "sourceConfidence": "high"
       },
       {
-        "label": "Cached source: Biology Curriculum - School of Science, Technology, Engineering & Mathematics",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+        "label": "Friday Harbor Laboratories",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/fhl",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       },
       {
-        "label": "Friday Harbor Laboratories",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/fhl",
-        "visibility": "visible",
+        "label": "UW Bothell Biology admissions prerequisites",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/admissions",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Bothell Biology degree requirements curriculum",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Bothell Biology overview",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Bothell Investigative Biology option requirements",
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/investigative-biology",
         "status": "verified",
         "sourceConfidence": "high"
       }
@@ -17752,9 +18235,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Data Visualization (BA)",
+        "label": "UW Bothell Data Visualization degree requirements",
         "url": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
-        "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       },
@@ -17790,6 +18272,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
     "officialLinks": [
+      {
+        "label": "UW Bothell Data Visualization degree requirements",
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
       {
         "label": "UW Bothell major planning worksheet - Data Visualization (BS)",
         "url": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
@@ -17837,86 +18325,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "cecl-concentration",
-        "label": "UW Bothell Developmental and Youth Studies degree requirements",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Developmental and Youth Studies degree requirements",
-            "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "esol-concentration",
-        "label": "UW Bothell Developmental and Youth Studies degree requirements",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Developmental and Youth Studies degree requirements",
-            "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "lede-concentration",
-        "label": "UW Bothell Developmental and Youth Studies degree requirements",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Developmental and Youth Studies degree requirements",
-            "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-bothell-earth-system-science",
@@ -18658,7 +19067,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "ba-route",
-        "label": "Curriculum",
+        "label": "UW Bothell Physics curriculum",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -18769,13 +19178,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "Scoped section: Here are three possible coursework pathways within the major that, along with other elective courses related to particul",
             "url": "https://www.uwb.edu/ias/undergraduate/majors/community-psychology",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "UW Bothell Psychology requirements",
-            "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19151,7 +19553,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "officialLinks": [
           {
             "label": "Bachelor of Arts degree with a major in Anthropology: Human Evolutionary Biology major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-5c4793d80c55252400b11b49",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19177,7 +19579,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "officialLinks": [
           {
             "label": "Bachelor of Arts degree with a major in Anthropology: Indigenous Archaeology major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html#credential-607f222af69503804f6d92fc",
+            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19468,7 +19870,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "BS in Applied Mathematics: Data Science Option major requirements",
+            "label": "B.S. in Applied Mathematics: Data Science Option major requirements",
             "url": "https://amath.washington.edu/applied-mathematics-data-science-option",
             "visibility": "visible",
             "status": "verified",
@@ -19520,34 +19922,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "B.S. in Applied Mathematics",
-            "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "what-is-applied-mathematics-with-a-data-science-option",
-        "label": "B.S. in Applied Mathematics",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "B.S. in Applied Mathematics major requirements",
-            "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
+            "label": "B.S. in Applied Mathematics: Data Science Option major requirements",
+            "url": "https://amath.washington.edu/applied-mathematics-data-science-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19879,8 +20255,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Cached source: Korea",
-            "url": "https://jsis.washington.edu/wordpress/wp-content/uploads/2019/06/Asian-Studies-Courses-Autumn-2019rev.pdf",
+            "label": "Asian Studies - Southeast Asia Concentration major requirements",
+            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/southeast-asia-studies/",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20187,7 +20563,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "medium"
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -20303,7 +20679,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       },
       {
         "id": "bs-option-family:general-biology",
-        "label": "B.S. Ecology, Evolution, and Conservation major requirements option",
+        "label": "B.S. Physiology major requirements option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20355,8 +20731,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Bachelor of Science degree with a major in Biology: Physiology major requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-670408fef8793734586f7ec1",
+            "label": "Bachelor of Science degree with a major in Biology: Ecology, Evolution, and Conservation major requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20433,16 +20809,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Foster business majors and areas of study",
-        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
-        "label": "Scoped section: Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree fro",
+        "label": "UW Seattle Business Administration degree requirements",
         "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
-        "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       }
@@ -20457,7 +20825,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "autumn-2026-track",
-        "label": "Autumn 2026 track",
+        "label": "Minors",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20482,8 +20850,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "note-track",
-        "label": "**Note track",
+        "id": "ba-route",
+        "label": "UW Seattle Business Administration BA requirements",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20491,9 +20859,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree fro",
+            "label": "UW Seattle Business Administration BA requirements",
             "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
-            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -20649,7 +21016,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Bachelor of Science (Chemistry, ACS Certified)",
+        "label": "Bachelor of Science (Chemistry, ACS Certified) major requirements",
         "url": "https://chem.washington.edu/bs-chemistry-acs-certified",
         "visibility": "visible",
         "status": "verified",
@@ -21720,8 +22087,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Bachelor of Arts degree with a major in Drama: Design major requirements",
         "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
         "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
+        "status": "partially-verified"
       }
     ],
     "degreeMapSections": [],
@@ -22801,7 +23167,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.washington.edu/students/gencat/program/S/English-136.html",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "high"
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
@@ -22942,13 +23308,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
-          {
-            "label": "Scoped section: This page describes the English Major Concentration in Creative Writing. For the major's other option, see English Langu",
-            "url": "https://english.washington.edu/english-major-creative-writing-option",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
           {
             "label": "UW English LLC option requirements major requirements",
             "url": "https://english.washington.edu/english-language-literature-and-culture-option",
@@ -23578,6 +23937,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "data-science-option-sample-course-plan",
+        "label": "Data Science Option Sample Course Plan",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "environment-economy-and-sustainability-track",
         "label": "UW Geography B.A. major requirements",
         "summary": "",
@@ -24096,16 +24473,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Degree Planning",
-            "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
+            "label": "Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour",
+            "url": "https://ischool.uw.edu/programs/informatics/admissions/prerequisites",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           },
           {
-            "label": "Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour",
-            "url": "https://ischool.uw.edu/programs/informatics/admissions/prerequisites",
-            "visibility": "visible",
+            "label": "UW Informatics degree planning",
+            "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -24131,6 +24507,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "Degree Planning",
             "url": "https://ischool.uw.edu/programs/informatics/curriculum/degree-planning",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "Scoped section: In order to be considered for admission, applicants who are current UW students must complete all four prerequisite cour",
+            "url": "https://ischool.uw.edu/programs/informatics/admissions/prerequisites",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -25454,9 +25837,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Scoped section: Comprehensive Track (addl. 38-46 credits) major requirements",
+        "label": "Physics B.S. Degree Requirements",
         "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-        "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       }
@@ -25505,7 +25887,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Comprehensive Track (addl. 38-46 credits) major requirements",
+            "label": "Scoped section: Comprehensive Track (addl. 38-46 credits)",
             "url": "https://phys.washington.edu/physics-bs-degree-requirements",
             "visibility": "visible",
             "status": "verified",
@@ -25531,7 +25913,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Teaching physics track major requirements",
+            "label": "Scoped section: Comprehensive Track (addl. 38-46 credits) major requirements",
             "url": "https://phys.washington.edu/physics-bs-degree-requirements",
             "visibility": "visible",
             "status": "verified",
@@ -26295,13 +26677,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Double Majors",
-            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
             "label": "UW Statistics B.S. major requirements",
             "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
             "visibility": "visible",
@@ -26448,6 +26823,176 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": []
+  },
+  {
+    "id": "uw-tacoma-accounting",
+    "campusId": "uw-tacoma",
+    "title": "Accounting",
+    "shortTitle": "Accounting",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma BABA Accounting curriculum",
+        "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma BABA admissions prerequisites",
+        "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": [
+      {
+        "id": "accounting-option",
+        "label": "Accounting option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BABA admissions prerequisites",
+            "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "finance-option",
+        "label": "Finance Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BABA admissions prerequisites",
+            "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "general-business-option",
+        "label": "General Business Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BABA admissions prerequisites",
+            "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "management-option",
+        "label": "Management Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BABA admissions prerequisites",
+            "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "marketing-option",
+        "label": "Marketing Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma BABA admissions prerequisites",
+            "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-arts-media-culture",
@@ -26927,6 +27472,68 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ]
   },
   {
+    "id": "uw-tacoma-community-development-and-planning",
+    "campusId": "uw-tacoma",
+    "title": "Community Development & Planning",
+    "shortTitle": "Community Development & Planning",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma Urban Studies degree requirements",
+        "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+        "visibility": "visible",
+        "status": "partially-verified"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [
+      "For students admitted to the Urban Studies major before spring 2026.",
+      "Derived student-visible Tacoma row scoped to the Community Development & Planning option (pre-Spring 2026) pathway on the shared source plan."
+    ],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": [
+      {
+        "id": "pre-spring-2026-community-development-planning-option",
+        "label": "Community Development & Planning option (pre-Spring 2026)",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Urban Studies degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [
+          "For students admitted to the Urban Studies major before spring 2026."
+        ],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
+  },
+  {
     "id": "uw-tacoma-computer-engineering",
     "campusId": "uw-tacoma",
     "title": "Computer Engineering",
@@ -26942,9 +27549,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Computer Engineering",
-        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
         "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma Computer Engineering",
+        "url": "https://www.tacoma.uw.edu/set/programs/undergrad/cengr",
         "status": "verified",
         "sourceConfidence": "high"
       },
@@ -26952,13 +27565,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW Tacoma Computer Engineering planning grid",
         "url": "https://www.tacoma.uw.edu/sites/default/files/2024-05/cengr_grid_2024.pdf",
         "note": "Official CENGR schedule planning grid; keep it attached as planning-grid support for generated bootstrap and runtime diagnostics.",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "high"
-      },
-      {
-        "label": "UW Green River transfer equivalency guide",
-        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -27114,7 +27720,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [],
+    "officialLinks": [
+      {
+        "label": "Graduation Requirements",
+        "url": "https://www.tacoma.uw.edu/swcj/ba-prep-graduation",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "medium"
+      }
+    ],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -27166,6 +27780,109 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Tacoma Criminal Justice online curriculum",
             "url": "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
+  },
+  {
+    "id": "uw-tacoma-criminal-justice-online",
+    "campusId": "uw-tacoma",
+    "title": "Criminal Justice - Online",
+    "shortTitle": "CJO",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "Graduation Requirements",
+        "url": "https://www.tacoma.uw.edu/swcj/ba-prep-graduation",
+        "visibility": "visible",
+        "status": "partially-verified"
+      },
+      {
+        "label": "UW Tacoma Criminal Justice online admission requirements major requirements",
+        "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-online-admission-requirements-and-how-apply",
+        "visibility": "visible",
+        "status": "partially-verified"
+      },
+      {
+        "label": "UW Tacoma Criminal Justice online curriculum major requirements",
+        "url": "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+        "visibility": "visible",
+        "status": "partially-verified"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": [
+      {
+        "id": "ba-route",
+        "label": "Ba Route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Graduation Requirements",
+            "url": "https://www.tacoma.uw.edu/swcj/ba-prep-graduation",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "online-pathway",
+        "label": "Online Pathway",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Graduation Requirements",
+            "url": "https://www.tacoma.uw.edu/swcj/ba-prep-graduation",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Criminal Justice online curriculum major requirements",
+            "url": "https://www.tacoma.uw.edu/swcj/cj-online-curriculum",
+            "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           }
@@ -27671,7 +28388,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "label": "Scoped section: Business/Nonprofit Environmental Sustainability Option (20 credits) degree requirements",
             "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
             "visibility": "visible",
-            "status": "partially-verified"
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -27858,6 +28576,238 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     ]
   },
   {
+    "id": "uw-tacoma-finance",
+    "campusId": "uw-tacoma",
+    "title": "Finance",
+    "shortTitle": "Finance",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma BABA Accounting curriculum",
+        "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma BABA admissions prerequisites",
+        "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": []
+  },
+  {
+    "id": "uw-tacoma-gis-and-spatial-planning",
+    "campusId": "uw-tacoma",
+    "title": "GIS & Spatial Planning",
+    "shortTitle": "GIS & Spatial Planning",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma Urban Studies degree requirements",
+        "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+        "visibility": "visible",
+        "status": "partially-verified"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [
+      "For students admitted to the Urban Studies major before spring 2026.",
+      "Derived student-visible Tacoma row scoped to the GIS & Spatial Planning option (pre-Spring 2026) pathway on the shared source plan."
+    ],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": [
+      {
+        "id": "pre-spring-2026-gis-spatial-planning-option",
+        "label": "GIS & Spatial Planning option (pre-Spring 2026)",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Urban Studies degree requirements",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "visibility": "visible",
+            "status": "partially-verified"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [
+          "For students admitted to the Urban Studies major before spring 2026."
+        ],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
+  },
+  {
+    "id": "uw-tacoma-global-studies",
+    "campusId": "uw-tacoma",
+    "title": "Global Studies (BA)",
+    "shortTitle": "GSB",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma Global Studies Concentration requirements major requirements",
+        "url": "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": [
+      {
+        "id": "global-studies-concentration",
+        "label": "Global Studies Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Global Studies Concentration requirements major requirements",
+            "url": "https://www.tacoma.uw.edu/sias/socs/global-studies-concentration",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "global-studies-concentration-department-of-social-sciences-university-of-washington-tacoma",
+        "label": "Global Studies Concentration | Department of Social Sciences | University of Washington Tacoma",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "option-one",
+        "label": "Option One",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "option-three",
+        "label": "Option Three",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "option-two",
+        "label": "Option Two",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
+  },
+  {
     "id": "uw-tacoma-healthcare-leadership",
     "campusId": "uw-tacoma",
     "title": "Healthcare Leadership (BA)",
@@ -27935,13 +28885,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
-          },
-          {
-            "label": "UW Tacoma History major options",
-            "url": "https://www.tacoma.uw.edu/sias/socs/history",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
           }
         ],
         "degreeMapSections": [],
@@ -27994,13 +28937,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
-          },
-          {
-            "label": "UW Tacoma History major options",
-            "url": "https://www.tacoma.uw.edu/sias/socs/history",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
           }
         ],
         "degreeMapSections": [],
@@ -28192,7 +29128,41 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Interdisciplinary Arts and Sciences overview",
+            "url": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "individually-designed-concentration",
+        "label": "Individually Designed concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog individually designed concentration requirements",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -28203,38 +29173,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       }
     ]
-  },
-  {
-    "id": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-    "campusId": "uw-tacoma",
-    "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
-    "shortTitle": "IAASIB",
-    "coverage": "partial",
-    "summary": "Source-generated from parsed UW requirement-source registries.",
-    "bestTrackId": null,
-    "recommendedTrackSummary": "",
-    "whyThisTrack": [],
-    "applicationChecklist": [],
-    "beforeEnrollmentChecklist": [],
-    "stayAtGrcChecklist": [],
-    "advisorFlags": [],
-    "officialLinks": [
-      {
-        "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-        "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "medium"
-      }
-    ],
-    "degreeMapSections": [],
-    "validationNotes": [],
-    "grcCourseList": [],
-    "grcCourseListGuidance": "",
-    "bankIds": [],
-    "plannerNote": "",
-    "sourceType": "master-generated",
-    "pathways": []
   },
   {
     "id": "uw-tacoma-law-and-policy",
@@ -28312,6 +29250,84 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       }
     ]
+  },
+  {
+    "id": "uw-tacoma-management",
+    "campusId": "uw-tacoma",
+    "title": "Management",
+    "shortTitle": "Management",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma BABA Accounting curriculum",
+        "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma BABA admissions prerequisites",
+        "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": []
+  },
+  {
+    "id": "uw-tacoma-marketing",
+    "campusId": "uw-tacoma",
+    "title": "Marketing",
+    "shortTitle": "Marketing",
+    "coverage": "partial",
+    "summary": "Source-generated from parsed UW requirement-source registries.",
+    "bestTrackId": null,
+    "recommendedTrackSummary": "",
+    "whyThisTrack": [],
+    "applicationChecklist": [],
+    "beforeEnrollmentChecklist": [],
+    "stayAtGrcChecklist": [],
+    "advisorFlags": [],
+    "officialLinks": [
+      {
+        "label": "UW Tacoma BABA Accounting curriculum",
+        "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Tacoma BABA admissions prerequisites",
+        "url": "https://www.tacoma.uw.edu/business/baba-admissions",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
+    "degreeMapSections": [],
+    "validationNotes": [],
+    "grcCourseList": [],
+    "grcCourseListGuidance": "",
+    "bankIds": [],
+    "plannerNote": "",
+    "sourceType": "master-generated",
+    "pathways": []
   },
   {
     "id": "uw-tacoma-mathematics",
@@ -28890,9 +29906,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
-        "advisorFlags": [
-          "For students admitted to the Urban Studies major before spring 2026."
-        ],
+        "advisorFlags": [],
         "officialLinks": [
           {
             "label": "UW Tacoma Urban Studies degree requirements",
@@ -28903,7 +29917,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           }
         ],
         "degreeMapSections": [],
-        "validationNotes": [],
+        "validationNotes": [
+          "For students admitted to the Urban Studies major before spring 2026."
+        ],
         "grcCourseList": [],
         "grcCourseListGuidance": "",
         "plannerNote": "",
@@ -28918,9 +29934,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
-        "advisorFlags": [
-          "For students admitted to the Urban Studies major before spring 2026."
-        ],
+        "advisorFlags": [],
         "officialLinks": [
           {
             "label": "UW Tacoma Urban Studies degree requirements",
@@ -28931,7 +29945,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           }
         ],
         "degreeMapSections": [],
-        "validationNotes": [],
+        "validationNotes": [
+          "For students admitted to the Urban Studies major before spring 2026."
+        ],
         "grcCourseList": [],
         "grcCourseListGuidance": "",
         "plannerNote": "",

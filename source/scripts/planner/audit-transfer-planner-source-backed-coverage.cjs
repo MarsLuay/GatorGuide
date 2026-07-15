@@ -20,6 +20,15 @@ require("tsconfig-paths/register");
 
 const source = require("../../constants/transfer-planner-source");
 const studentRuntime = require("../../constants/transfer-planner-source/student-runtime");
+const {
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES,
+} = require("../../constants/transfer-planner-source/derived-shared-source-plans");
+const {
+  isTransferPlannerStandaloneInventorySuppressedPlanId,
+} = require("../../constants/transfer-planner-source/source-generated-visibility");
+const {
+  getTransferPlannerCampusAliasGuideTargetCourseCodes,
+} = require("../../constants/transfer-planner-source/campus-course-aliases");
 const planner = require("../../services/planning/transfer-planner.service");
 const sourceBackedActionability = require("./source-backed-coverage-actionability.cjs");
 const {
@@ -69,6 +78,16 @@ const GENERATED_REGISTRY_OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-
 const GENERATED_REGISTRY_OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-generated-registry-audit.md");
 const MAPPING_AUDIT_OUTPUT_JSON_PATH = getPlannerTmpPath("transfer-planner-mapping-audit.json");
 const MAPPING_AUDIT_OUTPUT_MD_PATH = getPlannerTmpPath("transfer-planner-mapping-audit.md");
+const DERIVED_SHARED_SOURCE_PLAN_IDS = new Set(
+  TRANSFER_PLANNER_DERIVED_SHARED_PLAN_ALIASES.map((alias) => alias.derivedPlanId)
+);
+
+function isCanonicalSourceOwnerPlanId(planId) {
+  return (
+    !isTransferPlannerStandaloneInventorySuppressedPlanId(planId) &&
+    !DERIVED_SHARED_SOURCE_PLAN_IDS.has(planId)
+  );
+}
 
 const ISSUE_TYPES = [
   "missing-detected-course",
@@ -1012,6 +1031,9 @@ function buildOwners(targetPlanId = null) {
   const owners = [];
 
   for (const plan of source.TRANSFER_PLANNER_GENERATED_MAJOR_PLANS ?? []) {
+    if (!isCanonicalSourceOwnerPlanId(plan.id)) {
+      continue;
+    }
     if (!UW_CAMPUSES.has(plan.campusId)) {
       continue;
     }
@@ -1688,24 +1710,30 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
   return uniqueSorted(activeFallbackEquivalents).filter(isSchedulableGrcEquivalentCourseCode);
 }
 
-function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode) {
+function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode, campusId = null) {
   const normalizedGrcCourseCode = normalizeCourseCode(grcCourseCode);
   const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
   if (!normalizedGrcCourseCode || !normalizedUwCourseCode) {
     return [];
   }
-  const canonicalAliasTargetCourseCode =
-    studentRuntime.getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode?.(
-      normalizedUwCourseCode
-    ) ?? null;
+  const canonicalAliasTargetCourseCodes = uniqueSorted(
+    campusId
+      ? getTransferPlannerCampusAliasGuideTargetCourseCodes(campusId, normalizedUwCourseCode)
+      : [
+          studentRuntime.getTransferPlannerBothellCampusAliasEquivalentTargetCourseCode?.(
+            normalizedUwCourseCode
+          ) ?? null,
+        ]
+  );
   const targetUwCourseCodes = uniqueSorted(
-    [normalizedUwCourseCode, canonicalAliasTargetCourseCode]
+    [normalizedUwCourseCode, ...canonicalAliasTargetCourseCodes]
       .map(normalizeCourseCode)
       .filter(Boolean)
   );
   const acceptsCompoundAliasSourceSet =
-    Boolean(canonicalAliasTargetCourseCode) &&
-    normalizeCourseCode(canonicalAliasTargetCourseCode) !== normalizedUwCourseCode;
+    canonicalAliasTargetCourseCodes.some(
+      (courseCode) => normalizeCourseCode(courseCode) !== normalizedUwCourseCode
+    );
 
   return (source.getTransferPlannerEquivalencyRulesForSourceCourse(normalizedGrcCourseCode) ?? [])
     .filter((rule) => rule.sourceKind === "uw-green-river-equivalency-guide")
@@ -1781,7 +1809,11 @@ function looksLikeUnsupportedSameSchoolSubstitution(grcCourseCode, uwCourseCode)
 }
 
 function classifySingleEquivalencyIssue(grcCourseCode, uwCourseCode, options = {}) {
-  const rules = getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode);
+  const rules = getOfficialSingleCourseEquivalencyRules(
+    grcCourseCode,
+    uwCourseCode,
+    options.campusId
+  );
   if (!rules.length) {
     if (options.watchlist) {
       return "missing-equivalency";
@@ -1800,10 +1832,15 @@ function classifySingleEquivalencyIssue(grcCourseCode, uwCourseCode, options = {
 function buildSingleEquivalencyAuditRow(input) {
   const grcCourse = normalizeCourseCode(input.grcCourse);
   const uwEquivalent = normalizeCourseCode(input.uwEquivalent);
-  const rules = getOfficialSingleCourseEquivalencyRules(grcCourse, uwEquivalent);
+  const rules = getOfficialSingleCourseEquivalencyRules(
+    grcCourse,
+    uwEquivalent,
+    input.campusId
+  );
   const rule = rules[0] ?? null;
   const issue = classifySingleEquivalencyIssue(grcCourse, uwEquivalent, {
     watchlist: input.watchlist === true,
+    campusId: input.campusId,
   });
   const sourceRow = getSingleEquivalencyRuleSourceRow(rule);
   return {
@@ -4145,6 +4182,7 @@ function buildSingleEquivalencyAuditRowsForPlan(owner, plan, generatedArtifact) 
           usedByOwnerId: owner.ownerId,
           usedByRequirement: `${group.label ?? group.id} (${generatedArtifact})`,
           mappedAs: getMappedAsForSingleEquivalencyGroup(group),
+          campusId: owner.campusId,
         })
       );
     }

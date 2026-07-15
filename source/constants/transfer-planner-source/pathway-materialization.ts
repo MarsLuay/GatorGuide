@@ -487,6 +487,7 @@ const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "t
   "uw-tacoma-writing-studies": "track",
 };
 const SUPPRESS_MATERIALIZED_PATHWAY_PLAN_IDS = new Set([
+  "uw-bothell-developmental-and-youth-studies",
   "uw-seattle-history-and-philosophy-of-science",
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
 ]);
@@ -938,6 +939,10 @@ const SOURCE_DECLARED_PATHWAY_IDS_TO_KEEP_BY_PLAN_ID = new Map<string, Set<strin
       "tim-concentration",
       "self-directed-concentration",
     ]),
+  ],
+  [
+    "uw-tacoma-interdisciplinary-arts-and-sciences",
+    new Set(["individually-designed-concentration"]),
   ],
 ]);
 
@@ -1797,6 +1802,7 @@ function isPlanExcludedDerivedPathwayCandidate(planId: string, value: string | n
   if (
     planId.startsWith("uw-tacoma-") &&
     planId !== "uw-tacoma-global-studies" &&
+    planId !== "uw-tacoma-interdisciplinary-arts-and-sciences" &&
     /^global studies concentration$/i.test(normalized)
   ) {
     return true;
@@ -2816,6 +2822,11 @@ function sourceLineContainsPathwayFamily(
   const pathwayFamily = getPathwayMaterializationSupportKey(plan, pathway);
   if (!pathwayFamily) {
     return false;
+  }
+
+  const lineFamily = getDerivedPathwaySimilarityKey(line ?? "", plan.title);
+  if (lineFamily && lineFamily === pathwayFamily) {
+    return true;
   }
 
   const familyTokens = pathwayFamily.split("|").filter((token) => token.length >= 3);

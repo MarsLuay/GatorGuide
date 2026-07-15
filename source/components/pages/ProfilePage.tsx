@@ -461,6 +461,7 @@ export default function ProfilePage() {
       isDark={isDark}
       isEditing={isEditing}
       isWideLayout={isWideLayout}
+      onOpenSettings={() => router.push(ROUTES.tabsSettings as never)}
       profileContentPadding={profileContentPadding}
       secondaryTextClass={secondaryTextClass}
       t={t}

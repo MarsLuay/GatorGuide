@@ -13,6 +13,7 @@ type ProfileHeroProps = {
   isDark: boolean;
   isEditing: boolean;
   isWideLayout: boolean;
+  onOpenSettings?: () => void;
   profileContentPadding: number;
   secondaryTextClass: string;
   t: (key: string) => string;
@@ -29,6 +30,7 @@ export function ProfileHero({
   isDark,
   isEditing,
   isWideLayout,
+  onOpenSettings,
   profileContentPadding,
   secondaryTextClass,
   t,
@@ -82,6 +84,17 @@ export function ProfileHero({
             </Text>
           )}
         </View>
+
+        {onOpenSettings ? (
+          <AnimatedIconPressable
+            onPress={onOpenSettings}
+            accessibilityRole="button"
+            accessibilityLabel={t("navigation.settings")}
+            className="ml-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 p-2"
+          >
+            <MaterialIcons name="settings" size={22} color={isDark ? "#6EE7B7" : "#047857"} />
+          </AnimatedIconPressable>
+        ) : null}
       </View>
     </View>
   );

@@ -1,8 +1,16 @@
 const { execFile } = require("child_process");
 const { promisify } = require("util");
+const {
+  DEFAULT_HOST_MIN_DELAY_MS,
+  DEFAULT_MAX_RETRY_DELAY_MS,
+  createHostRateLimiter,
+  getHostKey,
+  parseRetryAfterToMs,
+  sleep,
+} = require("./host-rate-limit.cjs");
 
 const DEFAULT_RETRY_ATTEMPTS = 3;
-const DEFAULT_HOST_COOLDOWN_MS = 750;
+const DEFAULT_HOST_COOLDOWN_MS = DEFAULT_HOST_MIN_DELAY_MS;
 const DEFAULT_USER_AGENT = "GatorGuideTransferPlannerRequirementParser/1.0";
 const DEFAULT_CURL_COMMAND = process.platform === "win32" ? "curl.exe" : "curl";
 const SOURCE_DOWNLOAD_MAX_BUFFER_BYTES = 40 * 1024 * 1024;
@@ -17,34 +25,11 @@ function normalizeWhitespace(value) {
     .trim();
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function getHostKey(url) {
-  try {
-    return new URL(url).host.toLowerCase();
-  } catch {
-    return "unknown-host";
-  }
-}
-
-function parseRetryAfterToMs(value, nowMs = Date.now()) {
-  const normalized = normalizeWhitespace(value);
-  if (!normalized) {
-    return null;
-  }
-
-  if (/^\d+$/.test(normalized)) {
-    return Number(normalized) * 1000;
-  }
-
-  const retryAt = Date.parse(normalized);
-  if (Number.isNaN(retryAt)) {
-    return null;
-  }
-
-  return Math.max(0, retryAt - nowMs);
+/** Drop empty trailing `?` that some scrapers leave and that 404 on static hosts. */
+function sanitizeSourceUrl(url) {
+  return String(url ?? "")
+    .trim()
+    .replace(/\?$/u, "");
 }
 
 function isRetryableHttpStatus(status) {
@@ -61,52 +46,40 @@ function buildCurlErrorMessage(error, url) {
 function createSourceDownloader(options = {}) {
   const retryAttempts = options.retryAttempts ?? DEFAULT_RETRY_ATTEMPTS;
   const hostCooldownMs = options.hostCooldownMs ?? DEFAULT_HOST_COOLDOWN_MS;
+  const maxRetryDelayMs = options.maxRetryDelayMs ?? DEFAULT_MAX_RETRY_DELAY_MS;
   const userAgent = options.userAgent ?? DEFAULT_USER_AGENT;
   const curlCommand = options.curlCommand ?? DEFAULT_CURL_COMMAND;
   const curlAcceptHeader = options.curlAcceptHeader ?? DEFAULT_CURL_ACCEPT_HEADER;
   const maxBufferBytes = options.maxBufferBytes ?? SOURCE_DOWNLOAD_MAX_BUFFER_BYTES;
   const execFileAsync = options.execFileAsync ?? defaultExecFileAsync;
   const fetchImpl = options.fetch ?? fetch;
-  const requestChainsByHost = new Map();
-  const nextAllowedAtByHost = new Map();
+  const sleepFn = options.sleep ?? sleep;
   const downloadCache = new Map();
+  const rateLimiter =
+    options.rateLimiter ??
+    createHostRateLimiter({
+      minDelayMs: hostCooldownMs,
+      scopeMinDelayMs: Math.max(hostCooldownMs, options.scopeMinDelayMs ?? 1500),
+      maxRetryDelayMs,
+      sleep: sleepFn,
+    });
 
   function getRetryDelayMs(attempt, retryAfterHeader = null) {
     const retryAfterMs = parseRetryAfterToMs(retryAfterHeader);
+    const exponential = Math.min(
+      maxRetryDelayMs,
+      Math.max(hostCooldownMs, hostCooldownMs * Math.pow(2, Math.max(0, attempt - 1)))
+    );
+
     if (retryAfterMs !== null) {
-      return Math.min(Math.max(retryAfterMs, hostCooldownMs), 8000);
+      return Math.min(maxRetryDelayMs, Math.max(retryAfterMs, exponential, hostCooldownMs));
     }
 
-    return Math.min(hostCooldownMs * Math.pow(2, Math.max(0, attempt - 1)), 8000);
+    return exponential;
   }
 
   async function withHostThrottle(url, work) {
-    const hostKey = getHostKey(url);
-    const previous = requestChainsByHost.get(hostKey) ?? Promise.resolve();
-    const run = previous
-      .catch(() => undefined)
-      .then(async () => {
-        const waitMs = Math.max(0, (nextAllowedAtByHost.get(hostKey) ?? 0) - Date.now());
-        if (waitMs > 0) {
-          await sleep(waitMs);
-        }
-
-        try {
-          return await work();
-        } finally {
-          nextAllowedAtByHost.set(hostKey, Date.now() + hostCooldownMs);
-        }
-      });
-
-    requestChainsByHost.set(
-      hostKey,
-      run.then(
-        () => undefined,
-        () => undefined
-      )
-    );
-
-    return run;
+    return rateLimiter.withThrottle(url, work);
   }
 
   async function fetchWithTimeoutOnce(url, timeoutMs) {
@@ -134,6 +107,7 @@ function createSourceDownloader(options = {}) {
       try {
         const response = await withHostThrottle(url, () => fetchWithTimeoutOnce(url, timeoutMs));
         if (response.ok) {
+          rateLimiter.clearRateLimitPenalty(url);
           return response;
         }
 
@@ -142,14 +116,19 @@ function createSourceDownloader(options = {}) {
           return response;
         }
 
-        await sleep(getRetryDelayMs(attempt, response.headers.get("retry-after")));
+        const delayMs = getRetryDelayMs(attempt, response.headers.get("retry-after"));
+        if (response.status === 429 || response.status === 503) {
+          rateLimiter.noteRateLimit(url, delayMs);
+        }
+        await sleepFn(delayMs);
       } catch (error) {
         lastError = error;
         if (attempt >= retryAttempts) {
           break;
         }
 
-        await sleep(getRetryDelayMs(attempt));
+        const delayMs = getRetryDelayMs(attempt);
+        await sleepFn(delayMs);
       }
     }
 
@@ -184,6 +163,7 @@ function createSourceDownloader(options = {}) {
         })
       );
 
+      rateLimiter.clearRateLimitPenalty(url);
       return {
         body: binary ? Buffer.from(result.stdout) : String(result.stdout ?? ""),
         fetchMode: "curl",
@@ -194,7 +174,8 @@ function createSourceDownloader(options = {}) {
   }
 
   async function downloadSource(url, timeoutMs, { binary = false } = {}) {
-    const cacheKey = `${binary ? "binary" : "text"}::${String(url ?? "")}`;
+    const sanitizedUrl = sanitizeSourceUrl(url);
+    const cacheKey = `${binary ? "binary" : "text"}::${sanitizedUrl}`;
     const cached = downloadCache.get(cacheKey);
     if (cached) {
       return cached;
@@ -205,7 +186,7 @@ function createSourceDownloader(options = {}) {
       let fetchError = null;
 
       try {
-        fetchResponse = await fetchWithRetries(url, timeoutMs);
+        fetchResponse = await fetchWithRetries(sanitizedUrl, timeoutMs);
         if (fetchResponse.ok) {
           return {
             body: binary
@@ -219,7 +200,7 @@ function createSourceDownloader(options = {}) {
       }
 
       try {
-        return await downloadWithCurl(url, timeoutMs, binary);
+        return await downloadWithCurl(sanitizedUrl, timeoutMs, binary);
       } catch (curlError) {
         if (fetchResponse && !fetchResponse.ok) {
           throw new Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`);
@@ -244,6 +225,7 @@ function createSourceDownloader(options = {}) {
   return {
     downloadSource,
     fetchWithRetries,
+    rateLimiter,
     withHostThrottle,
   };
 }
@@ -257,6 +239,7 @@ module.exports = {
   SOURCE_DOWNLOAD_MAX_BUFFER_BYTES,
   buildCurlErrorMessage,
   createSourceDownloader,
+  getHostKey,
   isRetryableHttpStatus,
   parseRetryAfterToMs,
 };

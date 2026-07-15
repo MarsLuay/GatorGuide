@@ -278,7 +278,7 @@ const PRIMARY_TAB_LABELS = [
   { path: "/", label: "Home", primaryTab: "home" },
   { path: "/resources", label: "Resources", primaryTab: "resources" },
   { path: "/profile", label: "Profile", primaryTab: "profile" },
-  { path: "/settings", label: "Settings", primaryTab: "settings" },
+  { path: "/settings", label: "Settings", primaryTab: "profile" },
   { path: "/questionnaire", label: "Questionnaire", primaryTab: "home" },
   { path: "/calendar", label: "Deadline Calendar", primaryTab: "resources" },
   { path: "/resources/transfer-planner", label: "Transfer Planner", primaryTab: "resources" },

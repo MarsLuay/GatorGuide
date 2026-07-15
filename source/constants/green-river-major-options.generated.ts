@@ -22,12 +22,6 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "AA-DTA with Concentration in Communication Studies AA-DTA"
   },
   {
-    "id": "AA-DTA with Concentration in Digital & Broadcast Media",
-    "label": "AA-DTA with Concentration in Digital & Broadcast Media",
-    "description": "AA-DTA",
-    "searchText": "AA-DTA with Concentration in Digital & Broadcast Media AA-DTA"
-  },
-  {
     "id": "AA-DTA with Concentration in Diversity Studies",
     "label": "AA-DTA with Concentration in Diversity Studies",
     "description": "AA-DTA",
@@ -178,6 +172,12 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Associate in Arts-DTA with Concentration in Creative Expression AA-DTA"
   },
   {
+    "id": "Associate in Arts-DTA with Concentration in Digital Media",
+    "label": "Associate in Arts-DTA with Concentration in Digital Media",
+    "description": "AA-DTA",
+    "searchText": "Associate in Arts-DTA with Concentration in Digital Media AA-DTA"
+  },
+  {
     "id": "Associate in Arts-DTA with Concentration in Gender Studies",
     "label": "Associate in Arts-DTA with Concentration in Gender Studies",
     "description": "AA-DTA",
@@ -200,6 +200,12 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "label": "Associate in Arts-DTA with Emphasis in Creative Writing",
     "description": "AA-DTA",
     "searchText": "Associate in Arts-DTA with Emphasis in Creative Writing AA-DTA"
+  },
+  {
+    "id": "Associate in Arts-DTA with Emphasis in Elementary Education",
+    "label": "Associate in Arts-DTA with Emphasis in Elementary Education",
+    "description": "AA-DTA",
+    "searchText": "Associate in Arts-DTA with Emphasis in Elementary Education AA-DTA"
   },
   {
     "id": "Associate in Arts-DTA with Emphasis in English Literature",
@@ -302,6 +308,12 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "label": "Associate in Science Transfer Track 2-Physics",
     "description": "AST-2",
     "searchText": "Associate in Science Transfer Track 2-Physics AST-2"
+  },
+  {
+    "id": "Automotive Electric Vehicle",
+    "label": "Automotive Electric Vehicle",
+    "description": "Certificate",
+    "searchText": "Automotive Electric Vehicle Certificate"
   },
   {
     "id": "Automotive Technology",
@@ -466,6 +478,12 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Early Childhood Education AAS"
   },
   {
+    "id": "Early Childhood Education - Early Relational Health",
+    "label": "Early Childhood Education - Early Relational Health",
+    "description": "Certificate",
+    "searchText": "Early Childhood Education - Early Relational Health Certificate"
+  },
+  {
     "id": "Early Childhood Education (Statewide)",
     "label": "Early Childhood Education (Statewide)",
     "description": "Certificate",
@@ -490,10 +508,16 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Early Childhood Education Paraeducator AAS-T"
   },
   {
-    "id": "Early Childhood Education: Infant and Child Mental Health",
-    "label": "Early Childhood Education: Infant and Child Mental Health",
+    "id": "Early Childhood Mental Health and Well-being Certificate",
+    "label": "Early Childhood Mental Health and Well-being Certificate",
+    "description": "Certificate",
+    "searchText": "Early Childhood Mental Health and Well-being Certificate Certificate"
+  },
+  {
+    "id": "Early Childhood Mental Health and Well-being, BAS",
+    "label": "Early Childhood Mental Health and Well-being, BAS",
     "description": "BAS",
-    "searchText": "Early Childhood Education: Infant and Child Mental Health BAS"
+    "searchText": "Early Childhood Mental Health and Well-being, BAS BAS"
   },
   {
     "id": "Emergency Room and Patient Care Technician",
@@ -596,6 +620,12 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "label": "Math Education, AM-DTA/MRP",
     "description": "AM-DTA/MRP",
     "searchText": "Math Education, AM-DTA/MRP AM-DTA/MRP"
+  },
+  {
+    "id": "Mechatronics Control & Drives Integration Specialist",
+    "label": "Mechatronics Control & Drives Integration Specialist",
+    "description": "Certificate",
+    "searchText": "Mechatronics Control & Drives Integration Specialist Certificate"
   },
   {
     "id": "Mechatronics Technician",

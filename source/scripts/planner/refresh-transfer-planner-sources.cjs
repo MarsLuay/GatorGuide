@@ -20,6 +20,12 @@ const {
 const REPO_ROOT = SOURCE_ROOT;
 ensurePlannerTmpLayout();
 const PRIMARY_DISCOVERY_REPORT_PATH = getPlannerTmpPath("transfer-planner-primary-source-discovery.json");
+const PRIMARY_REVIEW_QUEUE_REPORT_PATH = getPlannerTmpPath(
+  "transfer-planner-primary-source-review-queue.json"
+);
+const PRIMARY_PROMOTION_REPORT_PATH = getPlannerTmpPath(
+  "transfer-planner-primary-source-promotions.json"
+);
 const REQUIREMENT_PARSE_REPORT_PATH = getPlannerTmpPath("transfer-planner-requirement-source-parse-report.json");
 const GRC_ASSOCIATE_TRACKS_GENERATED_PATH = path.resolve(
   REPO_ROOT,
@@ -95,6 +101,12 @@ const REFRESH_SECTION_DEFINITIONS = [
     description:
       "Parse UW major requirement sources, rebuild source and parsed-fact fingerprints, refresh parser-backed source gaps, classify source changes, and validate canonical source-pipeline invariants.",
     steps: [
+      {
+        label: "Prepare source-audit validation prerequisites",
+        include: (options) =>
+          options.onlySection === "requirement-parsing" ||
+          options.startSection === "requirement-parsing",
+      },
       {
         label: "Parse UW major requirement sources",
         include: (options) => !options.skipRequirementParse && !options.skipDownloads,
@@ -318,6 +330,30 @@ function buildPlannedStepLabels(options) {
   );
 }
 
+function printHelp() {
+  console.log(
+    [
+      "Usage: node scripts/planner/refresh-transfer-planner-sources.cjs [options]",
+      "",
+      "Options:",
+      "  --verify-only              Run verification without refreshing sources.",
+      "  --only-section <id>        Run one refresh section.",
+      "  --start-section <id>       Start at one section and run the remainder.",
+      "  --target-plan-id <id>      Limit supported steps to one planner plan.",
+      "  --skip-downloads           Reuse cached source downloads.",
+      "  --skip-source-check        Skip official source-link checks.",
+      "  --skip-requirement-parse   Skip requirement parsing.",
+      "  --skip-verify              Skip the verification suite.",
+      "  --skip-auto-repair         Skip automatic repair planning.",
+      "  --refresh-downloads        Force schedule downloads to refresh.",
+      "  --print-step-plan-json     Print the selected step plan and exit.",
+      "  --help, -h                 Show this help and exit.",
+      "",
+      `Sections: ${REFRESH_SECTION_DEFINITIONS.map((section) => section.id).join(", ")}`,
+    ].join("\n")
+  );
+}
+
 function buildStepPlanFromArgs() {
   const verifyOnly = hasArg("--verify-only");
   const skipSourceCheck = hasArg("--skip-source-check");
@@ -363,6 +399,26 @@ function runLargeNode(scriptPath, args = [], options = {}) {
     ["--max-old-space-size=8192", scriptPath, ...args],
     options
   );
+}
+
+function prepareSourceAuditValidationPrerequisites(options = {}) {
+  if (!fs.existsSync(PRIMARY_DISCOVERY_REPORT_PATH)) {
+    if (options.cacheOnlySources) {
+      reuseCachedArtifact(
+        "primary official-source discovery report",
+        PRIMARY_DISCOVERY_REPORT_PATH
+      );
+    } else {
+      runCommand("node", ["scripts/planner/discover-transfer-planner-primary-sources.cjs"]);
+    }
+  }
+
+  if (!fs.existsSync(PRIMARY_REVIEW_QUEUE_REPORT_PATH)) {
+    runLargeNode("scripts/planner/build-transfer-planner-primary-source-review-queue.cjs");
+  }
+  if (!fs.existsSync(PRIMARY_PROMOTION_REPORT_PATH)) {
+    runLargeNode("scripts/planner/build-transfer-planner-primary-source-promotions.cjs");
+  }
 }
 
 function runTsNode(scriptPath) {
@@ -756,6 +812,11 @@ async function refreshScheduleDownloads(scheduleDownloads, forceRefresh) {
 }
 
 async function main() {
+  if (hasArg("--help") || hasArg("-h")) {
+    printHelp();
+    return;
+  }
+
   const {
     verifyOnly,
     skipSourceCheck,
@@ -960,6 +1021,11 @@ async function main() {
         return;
       }
       case "requirement-parsing": {
+        if (onlySection === "requirement-parsing" || startSection === "requirement-parsing") {
+          runTrackedStep("Prepare source-audit validation prerequisites", () =>
+            prepareSourceAuditValidationPrerequisites({ cacheOnlySources })
+          );
+        }
         if (!skipRequirementParse && !cacheOnlySources) {
           runTrackedStep("Parse UW major requirement sources", () =>
             runLargeNode(

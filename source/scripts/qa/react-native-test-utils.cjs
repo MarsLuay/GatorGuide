@@ -184,7 +184,8 @@ function setOpportunities(opportunityState) {
   };
 }
 
-function setBackHandler(handler) {
+function setBackHandler(handler, canNavigateBack = true) {
+  handler.canNavigateBack = canNavigateBack;
   testState.backHandler = handler;
 }
 

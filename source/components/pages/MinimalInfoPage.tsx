@@ -41,6 +41,7 @@ export function MinimalInfoPage({
   const { t } = useAppLanguage();
   const theme = useThemeStyles();
   const back = useBack(ROUTES.tabsSettings);
+  const canNavigateBack = back.canNavigateBack;
   const { getScrollContentPadding } = useResponsiveLayout();
   const { width } = useWindowDimensions();
 
@@ -75,12 +76,13 @@ export function MinimalInfoPage({
             gap: 16,
           }}
         >
-          <PageBackButton
+          {canNavigateBack ? (
+            <PageBackButton
             onPress={back}
             label={t("general.back")}
             textClassName={theme.secondaryTextClass}
           />
-
+          ) : null}
           <View className={`${theme.cardBgClass} border rounded-3xl`} style={{ padding: cardPadding, gap: 18 }}>
             <View className="items-center" style={{ gap: 14 }}>
               <GatorGuideMark size={isTablet ? 92 : 78} darkMode={isDark} />

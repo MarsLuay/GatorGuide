@@ -10,6 +10,7 @@ import {
   type QuestionnaireAnswers,
   type User,
 } from "./app-data/app-data-state";
+import type { PlannerV2State } from "./app-data/planner-state-v2";
 import { useAppDataAuthActions } from "./app-data/use-app-data-auth-actions";
 import { useAppDataLocalActions } from "./app-data/use-app-data-local-actions";
 import {
@@ -49,6 +50,7 @@ type AppDataContextValue = {
       | QuestionnaireAnswers
       | ((currentAnswers: QuestionnaireAnswers) => QuestionnaireAnswers)
   ) => Promise<void>;
+  patchPlannerV2: (patch: Partial<PlannerV2State>) => Promise<void>;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
   setNotificationPreferences: (patch: Partial<NotificationPreferences>) => Promise<void>;
   addSavedCollege: (college: College) => Promise<void>;
@@ -137,6 +139,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
   const {
     setQuestionnaireAnswers,
+    patchPlannerV2,
     restoreData,
     clearAll,
   } = useAppDataLocalActions({
@@ -172,6 +175,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       patchUserLocally,
       updateUser,
       setQuestionnaireAnswers,
+      patchPlannerV2,
       setNotificationsEnabled,
       setNotificationPreferences,
       addSavedCollege,
@@ -181,7 +185,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       clearAll,
       setOnboardingSeen,
     }),
-    [isHydrated, restoreVersion, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, patchUserLocally, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, setNotificationPreferences, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll, setOnboardingSeen]
+    [isHydrated, restoreVersion, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, patchUserLocally, updateUser, setQuestionnaireAnswers, patchPlannerV2, setNotificationsEnabled, setNotificationPreferences, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll, setOnboardingSeen]
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
