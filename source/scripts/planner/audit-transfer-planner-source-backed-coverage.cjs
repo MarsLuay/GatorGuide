@@ -7086,7 +7086,7 @@ function auditCivilEngineering(checks) {
 }
 
 function findProgrammingAuditRow(rows) {
-  return rows.find((row) => {
+  const exactCse123Or143Row = rows.find((row) => {
     const acceptedUwOptions = new Set((row.acceptedUwOptions ?? []).map(normalizeCourseCode));
     const mappedGrcOptions = new Set((row.mappedGrcOptions ?? []).map(normalizeCourseCode));
     return (
@@ -7094,6 +7094,24 @@ function findProgrammingAuditRow(rows) {
       acceptedUwOptions.has("CSE 143") &&
       mappedGrcOptions.has("CS 123") &&
       mappedGrcOptions.has("CS 145")
+    );
+  });
+
+  if (exactCse123Or143Row) {
+    return exactCse123Or143Row;
+  }
+
+  return rows.find((row) => {
+    const acceptedUwOptions = new Set((row.acceptedUwOptions ?? []).map(normalizeCourseCode));
+    const mappedGrcOptions = new Set((row.mappedGrcOptions ?? []).map(normalizeCourseCode));
+    return (
+      ["CSE 121", "CSE 122", "CSE 123"].every((courseCode) =>
+        acceptedUwOptions.has(courseCode)
+      ) &&
+      ["CS 121", "CS 122", "CS 123"].every((courseCode) =>
+        mappedGrcOptions.has(courseCode)
+      ) &&
+      mappedGrcOptions.has("ENGR 250")
     );
   });
 }

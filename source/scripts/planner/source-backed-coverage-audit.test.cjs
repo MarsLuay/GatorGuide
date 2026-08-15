@@ -807,14 +807,14 @@ test("UW Bioengineering runtime normalization preserves parser-backed source row
     (item) => item.title === "Programming – Choose one option (4 credits)"
   );
   const cseBioenOption = programmingItem?.requirementGroup?.options.find(
-    (option) => option.label === "CSE 121 or 160 plus BIOEN 217"
+    (option) => option.label === "AMATH 301 + CSE 121"
   );
   assert.equal(
     programmingItem?.sourceUrl,
     "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/"
   );
   assert.equal(programmingItem?.generatedFromParser, true);
-  assert.equal(programmingItem?.requirementGroup?.requirementType, "choose_credits");
+  assert.equal(programmingItem?.requirementGroup?.requirementType, "sequence_choice");
   assert.ok(cseBioenOption?.grcMatches.includes("CS 121"));
   const approvedEngineeringElectiveBucket = (pathwayPlan.requirementGroups ?? []).find(
     (group) =>

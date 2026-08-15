@@ -206,7 +206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "24d6b58477cdaf7afae48cd5852efb7a2a2eaf203994d7cd06602db35dbc75ff"
   },
   {
@@ -407,7 +407,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "9cccb66114f28b7fca015388c1216547346a1fcb7afa0dfad1c287a4289835fd"
   },
   {
@@ -597,7 +597,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "f544403da027747b7eac93f77eafafdad012ecd72f1752a74ab986dfaa262892"
   },
   {
@@ -655,7 +655,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "2d7ec69a49989c2825b93e5614c61f185b425d245a4564c68047054a8cb799e2"
   },
   {
@@ -713,7 +713,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL& 101 English Composition I",
       "ENGL 211 Literary Genres and Traditions"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "be6d60b338d0cb84c4be12f8a892e597d658cd849a07f126d3890f21162ccb1e"
   },
   {
@@ -776,7 +776,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Must cover content equivalent to UW Bothell’s BPHYS 121, 122, 123 series .",
       "If you are a pre-major student or already in a different major at UW Bothell, start by visiting the academic advising website or contacting your current academic advisor directly."
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "a22bfa6cdfb55345d62288226718d2a5bc7e46f852b4954ef008296d6af11c7f"
   },
   {
@@ -838,7 +838,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Must cover content equivalent to UW Bothell’s BPHYS 121, 122, 123 series .",
       "If you are a pre-major student or already in a different major at UW Bothell, start by visiting the academic advising website or contacting your current academic advisor directly."
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "f894c078ea64dfcb3e12a2f53bae9ce86ea0d9d229c0dfee25500b260c4944ba"
   },
   {
@@ -908,7 +908,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "15 credits introductory art classes: ART 101, ART 140, ART 190, ART 191, ART 233, ART 240, ART 245, ART 246, ART 253, ART 260, ART 272, ART 280, ART 285, ART 290, ART 292",
       "10 credits from ART 400, ART 440, ART 453, ART 494"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "f5e4636f9e54b2fad8980dec5640546db7d5baa3f70fb4437c3196b734cb331b"
   },
   {
@@ -975,7 +975,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "10 credits of ARTH prefix courses",
       "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
   },
   {
@@ -1060,7 +1060,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "The ID course of undergraduate study is an intensive program emphasizing the development of form that is derived from patterns of use, requirements for function, constraints imposed by industrial manufacturing and aesthetics driven by social context. Key aspects in this view on design are understanding the interactions between people and technology. Students are trained to identify design challenges and to envision promising strategies for design responses, communication, documentation, and organizational skills to conduct the design process from project brief to design implementation.",
       "84-86 credits from DESIGN 206, DESIGN 207, DESIGN 208, DESIGN 209, DESIGN 210, DESIGN 211, DESIGN 316, DESIGN 317, DESIGN 318, DESIGN 319, DESIGN 320, DESIGN 322, DESIGN 324, DESIGN 326, DESIGN 445, DESIGN 446, DESIGN 485, DESIGN 486"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "71b4f8441d632dc417ca5aa08f546f24202783740a5cc74e680ac00cdba6f06a"
   },
   {
@@ -1161,7 +1161,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ECON 300, ECON 301, ECON 382 must be taken in residence as a matriculated student through the UW, Seattle",
       "Upper-Division Economics Courses (25 credits): Five ECON courses at the 400-level (may not include ECON 496, ECON 497, ECON 499)"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "043f400d588700c771a39374f2faeda850f5afbc82caaa60ee36fe760f3f8001"
   },
   {
@@ -1206,7 +1206,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ENGL 202: Introduction to English Language and Literature (minimum 2.0 grade)",
       "A sequence of creative writing workshops: ENGL 283: Beginning Verse Writing, ENGL 284: Beginning Short Story Writing, ENGL 383: The Craft of Verse, and ENGL 384: The Craft of Prose"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "99f15d54adc0b5a378a1014a1175487fd3fbb83baa071e69b853ede2ed567cbe"
   },
   {
@@ -1241,7 +1241,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
       "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "cf78e1fa0e3a683c77af07d4191398ceef005f1b76271977fd08538f0e08d5b1"
   },
   {
@@ -1276,7 +1276,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
       "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "229178134c510b95e83bff4b360bcd96b8c39fca4067740e44957b6bb4f86829"
   },
   {
@@ -1311,7 +1311,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
       "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "7fc9a555f4d654facaf24879e7f596b0101570ecc1e2f85fd71cdc61d9da2370"
   },
   {
@@ -1348,7 +1348,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
       "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "4262274ee808c5021f1de5fbd465c77424f5a12a59fe82031769403bc9c3d665"
   },
   {
@@ -1394,7 +1394,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
       "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "1f8c7ad1d6cb881cc67d70a5b47450a887016346f4bcafa7ea7c93549bb7cedd"
   },
   {
@@ -1439,7 +1439,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.",
       "Classes in the core sequence (202, 302, Capstone) do not fulfill the distribution areas, nor does ENGL 201, \"Introduction to the Study of English in the Humanities.\""
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "0e5c6534cfcd15d47e5a88cf472c21fcbf25cc4ee8bc236113e539202af6ff9f"
   },
   {
@@ -1484,7 +1484,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "German 401 (or equivalent)",
       "German 311 (Introduction to Literary Studies)"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "f9ed3656f96ae4fefeca65791df659bc0795d0dbfab9fef8b1afab95f161beb5"
   },
   {
@@ -1540,7 +1540,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "bc8f36498318613dad36deb42c191bbd862b45c9f06b6929255599cac36a405d"
   },
   {
@@ -1579,7 +1579,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "3a117e5600eca94700360eec40ddd2171198449da65d19633b29d96761b9c0f1"
   },
   {
@@ -1647,7 +1647,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Core Courses (20 credits)",
       "5 credits of English Composition (with a grade of 2.00 or higher)"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "a3afe2d5dc60086d6fabed1c4c5b30f3ee9516736b8232973e99a8432be5ccbe"
   },
   {
@@ -1842,7 +1842,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "LSJ/POL S 367 Comparative Law and Courts (5)",
       "LSJ 375/SOC 372 Crime, Politics, and Justice (5)"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "f2a223542303eb962769c93fb84b22ae06ffaddabb94440e6b8fa8e4cdef6375"
   },
   {
@@ -1897,7 +1897,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
       "Biology"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "5fb19637c7937ffa40a0e68c83becd4b51cf078771a78a0c8c35c388e9da6c98"
   },
   {
@@ -1947,7 +1947,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "⁺ CHEM 237 pre-approved to substitute for CHEM 223",
       "Biology"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "1205438a57420bc12e369fe0b270b7870b0b32539b872eac2b0551f1638c4dc0"
   },
   {
@@ -2045,7 +2045,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
       "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "6f1a0b57d1a6ce4047f72024b197c97bfef5303407a2b0b48736b9418b60a9f4"
   },
   {
@@ -2181,7 +2181,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ASIAN 301 Songs of the Saints of India",
       "ASIAN 494 Ramayana in Comparative Perspective"
     ],
-    "generatedAt": "2026-07-14T17:24:50.057Z",
+    "generatedAt": "2026-08-15T01:51:09.896Z",
     "sourceFingerprint": "dbcaa7b45d3c26fda3446f650a3321e9d7f055d07d1d2d33a55c8b178d3cf6a7"
   }
 ] as const;

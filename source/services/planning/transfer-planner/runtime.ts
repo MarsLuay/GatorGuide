@@ -1691,7 +1691,7 @@ function requirementGroupLooksLikeTrueOption(
       ...(group.notes ?? []),
     ].join(" ");
     const hasChoiceCue =
-      /\b(?:choose|select|one of|option|elective|from|programming|computing)\b/i.test(
+      /\b(?:choose|select|one of|option|elective|from|programming|computing|or)\b/i.test(
         choiceCueText
       );
     const distinctAcceptedOptions = new Set(

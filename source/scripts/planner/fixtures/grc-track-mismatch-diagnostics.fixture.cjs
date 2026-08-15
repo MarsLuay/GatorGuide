@@ -76,10 +76,6 @@ module.exports = {
     },
   ],
   expectedIssueCodesByTrackId: {
-    "grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas": [
-      "program-map-duration-vs-generated-range",
-      "catalog-source-leading-duration-misparsed",
-    ],
     "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering": [
       "program-map-duration-vs-generated-range",
       "choose-n-default-option-count-shortfall",

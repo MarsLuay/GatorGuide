@@ -4,18 +4,29 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Resources/AppIcon.icns</key>
+		<data>
+		WbvCiCcXgVuSL3WtVA56P4uwcus=
+		</data>
 		<key>Resources/course-planner-updater.sh</key>
 		<data>
-		gYh43Fii4UpvzNxLhZWnsyjuFKg=
+		9S1MeKLsPoR7rdJnRepF2qI8Rm0=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Resources/AppIcon.icns</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			J+ln6Fs1+Q9TKsDjxHP2pqMrfAzNhBNb3R0tJaFD8mg=
+			</data>
+		</dict>
 		<key>Resources/course-planner-updater.sh</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mg14fyMi6dn8GBfusgm3qehCn72kNT3Xl9eFEM2PkAM=
+			vTgthA+laHO6kgGxTkhon582n4R9WnC/0copReai0KI=
 			</data>
 		</dict>
 	</dict>

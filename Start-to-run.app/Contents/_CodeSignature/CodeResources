@@ -4,18 +4,29 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Resources/AppIcon.icns</key>
+		<data>
+		WbvCiCcXgVuSL3WtVA56P4uwcus=
+		</data>
 		<key>Resources/start-gator-guide.sh</key>
 		<data>
-		c92/6P8dOj0aSLRU3TymY8h1rTQ=
+		os9VCq4n9J04CmWl2H2yNrkpC2g=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Resources/AppIcon.icns</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			J+ln6Fs1+Q9TKsDjxHP2pqMrfAzNhBNb3R0tJaFD8mg=
+			</data>
+		</dict>
 		<key>Resources/start-gator-guide.sh</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			04FNuMuR4JQdgFVa1qS4/0wbaLnCurZItiCHUM+A+vo=
+			vxUUmvJeKPRmA8yOdzS5hlE8DqahvdPhWT67NmPWGIs=
 			</data>
 		</dict>
 	</dict>

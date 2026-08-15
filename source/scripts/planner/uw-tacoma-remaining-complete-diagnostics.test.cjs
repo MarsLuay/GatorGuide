@@ -182,7 +182,7 @@ test("UW Tacoma remaining diagnostic fixture is source scoped and UW-course only
       "uw-tacoma-ethnic-gender-and-labor-studies",
       "uw-tacoma-history",
       "uw-tacoma-interdisciplinary-arts-and-sciences",
-      "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+      "uw-tacoma-global-studies",
       "uw-tacoma-spanish-language-and-cultures",
       "uw-tacoma-urban-design",
       "uw-tacoma-urban-studies",

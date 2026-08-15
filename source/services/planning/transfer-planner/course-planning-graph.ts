@@ -121,6 +121,12 @@ function buildPlannerChainPrerequisiteMap(
   const normalizedMath151Code = normalizeCourseCode("MATH& 151");
   const normalizedMath238Code = normalizeCourseCode("MATH 238");
   const normalizedMath264Code = normalizeCourseCode("MATH& 264");
+  const normalizedEngr106Code = normalizeCourseCode("ENGR 106");
+  const normalizedEngr214Code = normalizeCourseCode("ENGR& 214");
+  const normalizedEngr215Code = normalizeCourseCode("ENGR& 215");
+  const normalizedEngr225Code = normalizeCourseCode("ENGR& 225");
+  const normalizedPhys222Code = normalizeCourseCode("PHYS& 222");
+  const normalizedPhys223Code = normalizeCourseCode("PHYS& 223");
 
   if (actionableCourseCodes.has(normalizedCs123Code)) {
     addCourseRequirementPath(requirementMap, normalizedCs123Code, [normalizedCs122Code]);
@@ -145,6 +151,26 @@ function buildPlannerChainPrerequisiteMap(
     actionableCourseCodes.has(normalizedMath264Code)
   ) {
     addCourseRequirementPath(requirementMap, normalizedMath238Code, [normalizedMath264Code]);
+  }
+
+  // Green River's engineering transfer maps publish these sequences by term,
+  // but the catalog metadata does not consistently carry prerequisite fields.
+  // Preserve the published order whenever both sides of a sequence are in the
+  // actionable planner set.
+  const curatedChains = [
+    [normalizedEngr214Code, normalizedEngr106Code],
+    [normalizedEngr215Code, normalizedEngr214Code],
+    [normalizedEngr225Code, normalizedEngr214Code],
+    [normalizedMath238Code, normalizedMath264Code],
+    [normalizedPhys223Code, normalizedPhys222Code],
+  ] as const;
+  for (const [courseCode, prerequisiteCode] of curatedChains) {
+    if (
+      actionableCourseCodes.has(courseCode) &&
+      actionableCourseCodes.has(prerequisiteCode)
+    ) {
+      addCourseRequirementPath(requirementMap, courseCode, [prerequisiteCode]);
+    }
   }
 
   return requirementMap;

@@ -26,5 +26,11 @@
 	<true/>
 	<key>NSHighResolutionCapable</key>
 	<true/>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon.icns</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>AppIcon.icns</string>
+	</array>
 </dict>
 </plist>

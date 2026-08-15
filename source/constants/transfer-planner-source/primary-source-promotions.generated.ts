@@ -222,7 +222,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",
@@ -349,7 +349,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://www.uwb.edu/ias/undergraduate/majors/psychology after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",
@@ -612,7 +612,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "undergraduate path segment",
       "Replaces existing primary https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",
@@ -711,7 +711,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/ba-chemistry after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",
@@ -853,7 +853,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "pathway",
@@ -886,7 +886,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "pathway",
@@ -918,7 +918,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "pathway",
@@ -950,7 +950,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on the same department or school page",
       "Replaces existing primary https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "pathway",
@@ -1142,7 +1142,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",
@@ -1173,7 +1173,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",
@@ -1276,7 +1276,7 @@ export const TRANSFER_PLANNER_PRIMARY_PROMOTIONS: TransferPlannerPrimarySourcePr
       "stays on an official UW domain",
       "verified against an official source candidate"
     ],
-    "generatedAt": "2026-07-14T17:18:33.087Z"
+    "generatedAt": "2026-08-15T01:46:51.993Z"
   },
   {
     "ownerType": "major",

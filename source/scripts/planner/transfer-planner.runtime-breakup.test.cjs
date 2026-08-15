@@ -361,6 +361,31 @@ test("course planning graph module keeps curated prerequisite chains isolated fr
   );
 });
 
+test("course planning graph preserves published Green River engineering sequences", () => {
+  const graph = buildTransferPlannerCoursePlanningGraph({
+    actionableCourseCodes: [
+      "ENGR 106",
+      "ENGR& 214",
+      "ENGR& 215",
+      "ENGR& 225",
+      "MATH& 264",
+      "MATH 238",
+      "PHYS& 222",
+      "PHYS& 223",
+    ],
+  });
+  const prerequisiteMap = getCoursePlanningGraphRequirementMap(
+    graph,
+    "prerequisiteCourseSetsByCourseCode"
+  );
+
+  assert.deepEqual(prerequisiteMap.get("ENGR& 214"), [["ENGR 106"]]);
+  assert.deepEqual(prerequisiteMap.get("ENGR& 215"), [["ENGR& 214"]]);
+  assert.deepEqual(prerequisiteMap.get("ENGR& 225"), [["ENGR& 214"]]);
+  assert.deepEqual(prerequisiteMap.get("MATH 238"), [["MATH& 264"]]);
+  assert.deepEqual(prerequisiteMap.get("PHYS& 223"), [["PHYS& 222"]]);
+});
+
 test("quarter slot module returns future planning slots without runtime imports", () => {
   const withoutSummer = buildQuarterSlotsAfterCurrent(new Date(2026, 2, 25), false);
   assert.deepEqual(

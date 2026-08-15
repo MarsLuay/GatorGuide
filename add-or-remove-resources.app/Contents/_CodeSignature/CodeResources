@@ -4,6 +4,10 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Resources/AppIcon.icns</key>
+		<data>
+		WbvCiCcXgVuSL3WtVA56P4uwcus=
+		</data>
 		<key>Resources/add-or-remove-resources.sh</key>
 		<data>
 		7H8P92wp36qTUcWB9v8sk+mJ0Dg=
@@ -11,6 +15,13 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Resources/AppIcon.icns</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			J+ln6Fs1+Q9TKsDjxHP2pqMrfAzNhBNb3R0tJaFD8mg=
+			</data>
+		</dict>
 		<key>Resources/add-or-remove-resources.sh</key>
 		<dict>
 			<key>hash2</key>
