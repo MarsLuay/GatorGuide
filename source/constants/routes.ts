@@ -5,7 +5,7 @@ export const TAB_ROUTE_NAMES = {
   resources: "resources/index",
   calendar: "calendar",
   profile: "profile",
-  /** Legacy Home tab screen — hidden; redirects to Transfer Planner. */
+  /** Previous-version Home deep link — hidden; redirects to Transfer Planner. */
   home: "index",
   /** Nested under Profile — not a primary tab. */
   settings: "settings",

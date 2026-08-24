@@ -19,15 +19,12 @@ import {
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } from "@/constants/transfer-planner-source/student-runtime";
 import { ROUTES } from "@/constants/routes";
-import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import useBack from "@/hooks/use-back";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import {
   TRANSCRIPT_COURSES_FIELD,
-  TRANSCRIPT_PARSER_VERSION,
-  TRANSCRIPT_PARSER_VERSION_FIELD,
   TRANSCRIPT_FIELD,
 } from "@/services/planning/transfer-planner-cache.service";
 import { parseCompletedTranscriptCourses } from "@/services/planning/transfer-planner.service";
@@ -45,12 +42,10 @@ import {
   getEligibleTransferHeading,
   getLatestGrcGeneralEducationCatalogYearLabel,
   getTransferEquivalencyCollegeLabel,
-  hasTranscriptCourseRecords,
   isTransferEquivalencyCampusId,
   isTransferEquivalencyCollegeId,
   normalizeEquivalencySearchValue,
   normalizeSingleSearchParam,
-  normalizeStoredTranscriptParserVersion,
   normalizeTransferEquivalencyCampusId,
   normalizeTransferEquivalencyCatalogFilterId,
   normalizeTransferEquivalencyCollegeId,
@@ -213,15 +208,6 @@ export default function TransferEquivalencyCatalogPage() {
     : equivalencyRules;
   const storedDetailedTranscriptCourses =
     state.questionnaireAnswers?.[TRANSCRIPT_COURSES_FIELD];
-  const hasDetailedTranscriptCourses = hasTranscriptCourseRecords(
-    storedDetailedTranscriptCourses
-  );
-  const storedTranscriptParserVersion = normalizeStoredTranscriptParserVersion(
-    state.questionnaireAnswers?.[TRANSCRIPT_PARSER_VERSION_FIELD]
-  );
-  const shouldUseDetailedCompletedCourses =
-    hasDetailedTranscriptCourses &&
-    storedTranscriptParserVersion === TRANSCRIPT_PARSER_VERSION;
   const hasUnofficialTranscript = useMemo(
     () =>
       Boolean(
@@ -235,17 +221,13 @@ export default function TransferEquivalencyCatalogPage() {
       return [] as string[];
     }
 
-    const rawCompletedCourses = shouldUseDetailedCompletedCourses
-      ? storedDetailedTranscriptCourses
-      : state.questionnaireAnswers?.[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
+    const rawCompletedCourses = storedDetailedTranscriptCourses;
 
     return parseCompletedTranscriptCourses(rawCompletedCourses)
       .map((course) => course.code)
       .filter(Boolean);
   }, [
     hasUnofficialTranscript,
-    shouldUseDetailedCompletedCourses,
-    state.questionnaireAnswers,
     storedDetailedTranscriptCourses,
   ]);
   const sourceCourseCodesByTag = useMemo(

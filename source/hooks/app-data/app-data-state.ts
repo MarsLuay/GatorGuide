@@ -15,6 +15,7 @@ import {
   createEmptyPlannerV2,
   mirrorOpaqueLegacy,
 } from "@/hooks/app-data/planner-state-v2";
+import { migrateTransferPlannerLegacyCompletedCourses } from "@/services/planning/transfer-planner-cache.service";
 
 export type { QuestionnaireAnswers } from "@/services/app/questionnaire.enums";
 
@@ -125,7 +126,9 @@ export function normalizeAppDataState(data: Partial<AppDataState> & { savedColle
   const savedColleges = Array.isArray(data.savedColleges)
     ? savedCollegesService.mergeSavedCollegeLists([], data.savedColleges)
     : [];
-  const questionnaireAnswers = normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {});
+  const questionnaireAnswers = migrateTransferPlannerLegacyCompletedCourses(
+    normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {})
+  );
   const existingLegacy =
     data.__legacy && typeof data.__legacy === "object" && !Array.isArray(data.__legacy)
       ? (data.__legacy as Record<string, unknown>)

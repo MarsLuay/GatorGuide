@@ -130,6 +130,55 @@ test("legacy raw app-data payloads migrate into normalized state", () => {
   assert.deepEqual(result.state.notificationPreferences, DEFAULT_NOTIFICATION_PREFERENCES);
 });
 
+test("legacy completed course lists migrate to the structured planner cache without data loss", () => {
+  const legacyCourses = [
+    "MATH& 151 Calculus I",
+    "ENGL& 101 English Composition I",
+  ];
+  const result = parsePersistedAppDataPayload({
+    schemaVersion: APP_DATA_SCHEMA_VERSION,
+    data: {
+      user: null,
+      questionnaireAnswers: {
+        completedCourses: legacyCourses,
+      },
+    },
+  });
+
+  assert.deepEqual(result.state.questionnaireAnswers.transferPlannerCompletedCourses, [
+    { code: "MATH& 151", label: "MATH& 151 Calculus I" },
+    { code: "ENGL& 101", label: "ENGL& 101 English Composition I" },
+  ]);
+  assert.deepEqual(result.state.questionnaireAnswers.completedCourses, legacyCourses);
+
+  const normalizedAgain = parsePersistedAppDataPayload(
+    buildPersistedAppDataEnvelope(result.state)
+  );
+  assert.deepEqual(
+    normalizedAgain.state.questionnaireAnswers.transferPlannerCompletedCourses,
+    result.state.questionnaireAnswers.transferPlannerCompletedCourses
+  );
+  assert.deepEqual(normalizedAgain.state.questionnaireAnswers.completedCourses, legacyCourses);
+});
+
+test("unparseable legacy completed course values remain available for compatibility", () => {
+  const result = parsePersistedAppDataPayload({
+    schemaVersion: APP_DATA_SCHEMA_VERSION,
+    data: {
+      user: null,
+      questionnaireAnswers: {
+        completedCourses: "course details pending advisor review",
+      },
+    },
+  });
+
+  assert.equal(result.state.questionnaireAnswers.transferPlannerCompletedCourses, undefined);
+  assert.equal(
+    result.state.questionnaireAnswers.completedCourses,
+    "course details pending advisor review"
+  );
+});
+
 test("future or malformed envelopes preserve usable data but request rewrite", () => {
   const result = parsePersistedAppDataPayload({
     schemaVersion: APP_DATA_SCHEMA_VERSION + 1,

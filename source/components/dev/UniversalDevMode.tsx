@@ -20,7 +20,7 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import {
-  TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/constants/planner-storage";
@@ -378,7 +378,15 @@ function getTranscriptUrlKind(value: unknown) {
 function getCompletedCoursePreview(value: unknown) {
   if (!Array.isArray(value)) return [];
   return value
-    .map((entry) => String(entry ?? "").trim())
+    .map((entry) =>
+      entry && typeof entry === "object"
+        ? String(
+            (entry as Record<string, unknown>).label ??
+              (entry as Record<string, unknown>).code ??
+              ""
+          ).trim()
+        : String(entry ?? "").trim()
+    )
     .filter(Boolean)
     .slice(0, 20);
 }
@@ -673,8 +681,8 @@ export function UniversalDevMode() {
       },
       {}
     );
-    const legacyCompletedCourses =
-      state.questionnaireAnswers?.[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
+    const storedTranscriptCourses =
+      state.questionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD];
 
     const notes = [
       "Sensitive route/query values are redacted for safer sharing.",
@@ -908,10 +916,10 @@ export function UniversalDevMode() {
             state.questionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD] ??
               ""
           ).trim() || null,
-        completedCourseCount: Array.isArray(legacyCompletedCourses)
-          ? legacyCompletedCourses.length
+        completedCourseCount: Array.isArray(storedTranscriptCourses)
+          ? storedTranscriptCourses.length
           : 0,
-        completedCoursePreview: getCompletedCoursePreview(legacyCompletedCourses),
+        completedCoursePreview: getCompletedCoursePreview(storedTranscriptCourses),
         lastPlannerDebug: transcriptPlannerDebugService.getLastTranscriptPlannerDebug(),
         recentPlannerEvents: transcriptPlannerDebugService.getRecentTranscriptPlannerEvents(),
       },

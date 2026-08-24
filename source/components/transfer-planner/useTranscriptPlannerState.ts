@@ -3,7 +3,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Alert, Platform } from "react-native";
 
 import { ROUTES } from "@/constants/routes";
-import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import type { QuestionnaireAnswers, User } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
@@ -144,11 +143,7 @@ export function useTranscriptPlannerState({
     user?.transcript,
   ]);
   const activeTranscriptDocument = transcriptDocument ?? cachedTranscriptDocument;
-  const legacyCompletedCourseAnswers =
-    questionnaireAnswers[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
-  const rawCompletedCourses = shouldUseDetailedCompletedCourses
-    ? storedDetailedTranscriptCourses
-    : legacyCompletedCourseAnswers;
+  const rawCompletedCourses = storedDetailedTranscriptCourses;
   const completedCourses = useMemo(
     () => parseCompletedTranscriptCourses(rawCompletedCourses),
     [rawCompletedCourses]
@@ -239,8 +234,8 @@ export function useTranscriptPlannerState({
         transcriptSourceKey: getTranscriptDocumentIdentity(document),
         storedTranscriptSource,
         completedCoursesBeforeCount: completedCourses.length,
-        questionnaireCompletedCourseCount: Array.isArray(legacyCompletedCourseAnswers)
-          ? legacyCompletedCourseAnswers.length
+        questionnaireCompletedCourseCount: Array.isArray(storedDetailedTranscriptCourses)
+          ? storedDetailedTranscriptCourses.length
           : 0,
       };
 
@@ -376,7 +371,7 @@ export function useTranscriptPlannerState({
     },
     [
       completedCourses.length,
-      legacyCompletedCourseAnswers,
+      storedDetailedTranscriptCourses,
       setQuestionnaireAnswers,
       storedTranscriptParserVersion,
       storedTranscriptSource,
@@ -524,8 +519,8 @@ export function useTranscriptPlannerState({
           transcriptSourceKey: "",
           storedTranscriptSource,
           completedCoursesBeforeCount: completedCourses.length,
-          questionnaireCompletedCourseCount: Array.isArray(legacyCompletedCourseAnswers)
-            ? legacyCompletedCourseAnswers.length
+          questionnaireCompletedCourseCount: Array.isArray(storedDetailedTranscriptCourses)
+            ? storedDetailedTranscriptCourses.length
             : 0,
           parsedCourseCount: null,
           parsedCourseCodesPreview: [],
@@ -564,7 +559,7 @@ export function useTranscriptPlannerState({
   }, [
     analyzeTranscript,
     completedCourses.length,
-    legacyCompletedCourseAnswers,
+    storedDetailedTranscriptCourses,
     storedTranscriptParserVersion,
     storedTranscriptSource,
     t,

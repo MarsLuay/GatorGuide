@@ -13,6 +13,7 @@ import {
   TRANSFER_PLANNER_TRANSCRIPT_FIELD,
   TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/constants/planner-storage";
+import { parseCompletedTranscriptCourses } from "./transfer-planner/course-code";
 
 export const TRANSCRIPT_COURSES_FIELD = TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD;
 export const TRANSCRIPT_FIELD = TRANSFER_PLANNER_TRANSCRIPT_FIELD;
@@ -24,6 +25,32 @@ export const TRANSCRIPT_EARNED_CREDITS_FIELD =
   TRANSFER_PLANNER_TRANSCRIPT_EARNED_CREDITS_FIELD;
 export const TRANSCRIPT_PARSER_VERSION = 3;
 export const TRANSCRIPT_ESTIMATED_CREDITS_PER_TERM = 15;
+
+/**
+ * Migrate the pre-cache questionnaire list into the structured transcript
+ * cache. Keep the old value as a rollback/previous-version compatibility
+ * mirror; an existing structured cache always wins.
+ */
+export function migrateTransferPlannerLegacyCompletedCourses(
+  questionnaireAnswers: QuestionnaireAnswers | Record<string, unknown> | null | undefined
+) {
+  const normalized = normalizeQuestionnaireAnswers(questionnaireAnswers);
+  if (parseCompletedTranscriptCourses(normalized[TRANSCRIPT_COURSES_FIELD]).length > 0) {
+    return normalized;
+  }
+
+  const migratedCourses = parseCompletedTranscriptCourses(
+    normalized[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]
+  );
+  if (!migratedCourses.length) {
+    return normalized;
+  }
+
+  return {
+    ...normalized,
+    [TRANSCRIPT_COURSES_FIELD]: migratedCourses,
+  } as QuestionnaireAnswers;
+}
 
 type TranscriptTermName = "winter" | "spring" | "summer" | "fall";
 
@@ -351,6 +378,7 @@ export function buildTransferPlannerTranscriptCachePatch(
 
   return {
     [TRANSCRIPT_COURSES_FIELD]: completedCourses,
+    // Previous app versions read this questionnaire field directly.
     [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: completedCourses.map(
       (course) => course.label
     ),

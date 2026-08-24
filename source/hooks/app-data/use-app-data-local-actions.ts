@@ -1,6 +1,7 @@
 import { localStorageService } from "@/services/storage/local-storage.service";
 import { useCallback, type Dispatch, type SetStateAction } from "react";
 import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
+import { migrateTransferPlannerLegacyCompletedCourses } from "@/services/planning/transfer-planner-cache.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { notificationsService } from "@/services/notifications/notifications.service";
 import {
@@ -34,7 +35,9 @@ export function useAppDataLocalActions({
         typeof answers === "function"
           ? answers(prev.questionnaireAnswers ?? {})
           : answers;
-      const normalized = normalizeQuestionnaireAnswers(nextAnswers);
+      const normalized = migrateTransferPlannerLegacyCompletedCourses(
+        normalizeQuestionnaireAnswers(nextAnswers)
+      );
       return { ...prev, questionnaireAnswers: { ...normalized } };
     });
   }, [setState]);

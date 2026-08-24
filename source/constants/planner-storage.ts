@@ -1,3 +1,4 @@
+/** Previous-version questionnaire field; current planner consumers use the structured cache. */
 export const TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD = "completedCourses";
 
 export const TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD =
