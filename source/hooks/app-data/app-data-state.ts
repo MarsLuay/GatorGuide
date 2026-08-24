@@ -5,7 +5,6 @@ import {
   type FirestoreSyncableProfileFieldKey,
 } from "@/constants/schema";
 import {
-  normalizeQuestionnaireAnswers,
   type QuestionnaireAnswers,
 } from "@/services/app/questionnaire.enums";
 import type { College } from "@/services/colleges/college.service";
@@ -127,7 +126,7 @@ export function normalizeAppDataState(data: Partial<AppDataState> & { savedColle
     ? savedCollegesService.mergeSavedCollegeLists([], data.savedColleges)
     : [];
   const questionnaireAnswers = migrateTransferPlannerLegacyCompletedCourses(
-    normalizeQuestionnaireAnswers(data.questionnaireAnswers ?? {})
+    data.questionnaireAnswers ?? {}
   );
   const existingLegacy =
     data.__legacy && typeof data.__legacy === "object" && !Array.isArray(data.__legacy)

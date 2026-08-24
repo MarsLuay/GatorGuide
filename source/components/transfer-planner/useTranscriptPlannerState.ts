@@ -150,10 +150,10 @@ export function useTranscriptPlannerState({
   );
   const transcriptDerivedCompletedCourses = useMemo(
     () =>
-      shouldUseDetailedCompletedCourses
+      hasDetailedCompletedCourses
         ? parseCompletedTranscriptCourses(storedDetailedTranscriptCourses)
         : [],
-    [shouldUseDetailedCompletedCourses, storedDetailedTranscriptCourses]
+    [hasDetailedCompletedCourses, storedDetailedTranscriptCourses]
   );
   const needsTranscriptCreditReparse =
     shouldUseDetailedCompletedCourses &&

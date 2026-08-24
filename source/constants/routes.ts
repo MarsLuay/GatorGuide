@@ -144,6 +144,7 @@ export const APP_ROUTE_METADATA = {
     hiddenTab: true,
     returnTo: "/(tabs)/resources/transfer-planner",
   },
+  /** Previous-version planner deep link; retain as a hidden redirect surface. */
   transferPlannerLegacy: {
     href: "/transfer-planner",
     tabScreen: "transfer-planner",
