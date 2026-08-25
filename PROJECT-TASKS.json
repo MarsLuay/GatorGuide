@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    {
+      "id": "memory-reconciliation",
+      "title": "Reconcile bounded project memory",
+      "status": "done",
+      "notes": "Canonical memory was created from applicable instructions, project docs, ADRs, and top-level app entry points."
+    }
+  ],
+  "projectId": "gator-guide"
+}

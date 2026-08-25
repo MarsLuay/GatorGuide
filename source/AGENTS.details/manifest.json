@@ -1,0 +1,17 @@
+{
+  "backup": "/Users/mars/.local/share/agents-md/backups/dbe454c3aae1/AGENTS.md.d4729e938b39.bak",
+  "original_sha256": "d4729e938b391bf32d28dc3e71ad9e99c01fbb94992eb84c90b139bf8e3ecada",
+  "references": [
+    {
+      "heading": "## Generated Planner Artifacts",
+      "path": "/Users/mars/ObsidianNotes/.Projects/GatorGuide/source/AGENTS.details/generated-planner-artifacts.md"
+    },
+    {
+      "heading": "## Where To Edit",
+      "path": "/Users/mars/ObsidianNotes/.Projects/GatorGuide/source/AGENTS.details/where-to-edit.md"
+    }
+  ],
+  "result_sha256": "a14bca4d5a08ea2be9dc9cf67a07dfc11703009d51a43f74d5b3bd13fda9d84c",
+  "schema_version": 1,
+  "source": "/Users/mars/ObsidianNotes/.Projects/GatorGuide/source/AGENTS.md"
+}

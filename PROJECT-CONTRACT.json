@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "contractId": "gator-guide-context-v1",
+  "name": "GatorGuide",
+  "instructionFiles": [
+    "AGENTS.md",
+    "source/AGENTS.md"
+  ],
+  "taskLedger": {
+    "path": "PROJECT-TASKS.md",
+    "section": "Project task ledger"
+  },
+  "projectMemory": {
+    "taskPath": "PROJECT-TASKS.json",
+    "candidatePath": "project-memory/candidates.jsonl",
+    "verifiedPath": "project-memory/verified.jsonl",
+    "humanReadablePaths": [
+      "project-memory/architecture.md",
+      "project-memory/decisions.md",
+      "project-memory/quirks.md",
+      "project-memory/known-failures.md"
+    ]
+  },
+  "privacy": {
+    "forbiddenPatterns": [
+      "absolute paths",
+      "credentials",
+      "transcripts",
+      "runtime/provider state",
+      "logs",
+      "generated or bulky data"
+    ]
+  },
+  "routes": [
+    {
+      "id": "project-memory",
+      "path": "context/routes/project-memory.json"
+    }
+  ],
+  "project": {
+    "key": "gator-guide"
+  },
+  "contextBudget": {
+    "maxTokens": 1800,
+    "charsPerToken": 4
+  }
+}

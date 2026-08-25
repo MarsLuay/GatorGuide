@@ -1,0 +1,36 @@
+{
+  "schema": 2,
+  "run_id": "gator-guide-legacy-migration-20260823",
+  "target": ".Projects/GatorGuide",
+  "plan": "planner legacy migration: current routes/storage/cache, safe completedCourses migration, delete proven-unused legacy paths",
+  "evaluator": {
+    "focused": "npm run planner:test:pipeline-contracts",
+    "typecheck": "npm run typecheck:planner",
+    "lint": "npm run lint"
+  },
+  "allowed_write_scope": [
+    ".Projects/GatorGuide/source/constants/routes.ts",
+    ".Projects/GatorGuide/source/constants/planner-storage.ts",
+    ".Projects/GatorGuide/source/services/planning/transfer-planner-cache.service.ts",
+    ".Projects/GatorGuide/source/components/transfer-planner/",
+    ".Projects/GatorGuide/source/components/pages/profile/",
+    ".Projects/GatorGuide/source/components/pages/TransferEquivalencyCatalogPage.tsx",
+    ".Projects/GatorGuide/source/services/documents/document-reader.service.ts",
+    ".Projects/GatorGuide/source/components/dev/UniversalDevMode.tsx",
+    ".Projects/GatorGuide/source/services/planning/transcript-reset.service.ts",
+    ".Projects/GatorGuide/source/scripts/planner/",
+    ".Projects/GatorGuide/source/docs/planner/"
+  ],
+  "guardrails": [
+    "preserve existing user data",
+    "do not touch unrelated worktree changes",
+    "do not edit generated planner artifacts",
+    "do not commit or push",
+    "delete legacy paths only after references are gone"
+  ],
+  "baseline_revision": "ba77cc067",
+  "preexisting_dirty_paths": ["source/AGENTS.details/"],
+  "controller_owner": "Codex",
+  "status": "BASELINE",
+  "started_at": "2026-08-23T00:00:00-04:00"
+}

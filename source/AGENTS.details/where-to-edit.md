@@ -1,0 +1,41 @@
+## Where To Edit
+
+- Routing constants: `constants/routes.ts`
+- Tab shell and hidden tab routes: `app/(tabs)/_layout.tsx`
+- Resources tab highlighting aliases: `components/ResourcesAwareTabBar.tsx`
+- App state and persistence: `hooks/use-app-data.tsx`
+- Firestore/local storage schema keys: `constants/schema.ts`
+- Planner questionnaire storage keys: `constants/planner-storage.ts`
+- Theme values: `constants/theme-tokens.ts`
+- Theme state: `hooks/use-app-theme.tsx`
+- Translation source JSON: `constants/locales/`
+- Translation app adapter: `services/app/translations.ts`
+- AI recommendations and assistant behavior: `services/ai/ai.service.ts`
+- AI gateway client: `services/ai/ai-gateway.service.ts`
+- AI context serialization: `services/ai/ai-context.service.ts`
+- College Scorecard integration: `services/colleges/college.service.ts`, `services/colleges/scorecard.ts`
+- Saved colleges sync: `services/colleges/saved-colleges.service.ts`
+- Opportunity catalog/status/matching: `services/opportunities/`
+- Deadline grouping: `services/deadlines/deadline-calendar.service.ts`
+- Transcript cache behavior and credit estimates: `services/planning/transfer-planner-cache.service.ts`
+- Transcript reset behavior: `services/planning/transcript-reset.service.ts`
+- Transfer planner runtime barrel: `services/planning/transfer-planner.service.ts`
+- Transfer planner runtime implementation for remaining orchestration: `services/planning/transfer-planner/runtime.ts`
+- Transfer planner course parsing/catalog-year logic: `services/planning/transfer-planner/course-code.ts`
+- Transfer planner requirement status and option matching logic: `services/planning/transfer-planner/requirement-status.ts`
+- Transfer planner controller composition hook: `components/transfer-planner/useTransferPlannerController.ts`
+- Transfer planner selection/persistence hook: `components/transfer-planner/usePlannerSelectionState.ts`
+- Transfer planner transcript upload/parsing hook: `components/transfer-planner/useTranscriptPlannerState.ts`
+- Transfer planner computation hook: `components/transfer-planner/usePlannerComputation.ts`
+- Transfer planner bug-report hook: `components/transfer-planner/useCoursePlannerBugReport.ts`
+- Transfer planner helper barrel: `components/transfer-planner/transfer-planner-formatters.ts`
+- Transfer planner transcript debug helpers: `components/transfer-planner/transfer-planner-transcript-debug.ts`
+- Transfer planner bug-report formatting: `components/transfer-planner/transfer-planner-bug-report.ts`
+- Transfer planner copy/link helpers: `components/transfer-planner/transfer-planner-copy.ts`, `components/transfer-planner/transfer-planner-linking.ts`
+- Transfer planner schedule display helpers: `components/transfer-planner/transfer-planner-suggested-schedule.ts`
+- Transfer planner major-specific display helpers: `components/transfer-planner/transfer-planner-major-specifics-formatters.ts`
+- Transfer planner UI components: `components/transfer-planner/`
+- Transfer planner route page shell: `components/pages/TransferPlannerPage.tsx`
+- Transfer equivalency UI: `components/pages/TransferEquivalencyCatalogPage.tsx`
+- Planner parser and refresh tooling: `scripts/planner/`
+

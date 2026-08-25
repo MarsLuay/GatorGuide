@@ -1,0 +1,17 @@
+{
+  "schema": 2,
+  "run_id": "gator-guide-legacy-migration-20260823",
+  "revision": "ba77cc067",
+  "dirty_paths": ["source/AGENTS.details/"],
+  "checks": {
+    "npm run typecheck:planner": {"status": "passed", "exit_code": 0},
+    "npm run planner:test:pipeline-contracts": {"status": "passed", "exit_code": 0, "tests": 83},
+    "npm run lint": {"status": "passed_with_existing_warning", "exit_code": 0, "warning": "useDeadlineCalendarController.ts:278 missing plannerV2 dependency"}
+  },
+  "legacy_evidence": {
+    "legacy_planner_data_module": "absent; only a test guard names transfer-planner-data.ts",
+    "legacy_routes": ["APP_ROUTE_METADATA.legacyHome", "APP_ROUTE_METADATA.transferPlannerLegacy"],
+    "legacy_storage": ["TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD", "completedCourses fallback and mirror write"],
+    "current_storage": ["transferPlannerCompletedCourses", "transferPlannerTranscriptSource", "transferPlannerTranscriptParserVersion"]
+  }
+}
