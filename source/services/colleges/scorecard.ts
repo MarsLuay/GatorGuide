@@ -100,8 +100,16 @@ const getApiKeyErrorMessage = (text: string) => {
     if (parsed?.error?.code === "API_KEY_INVALID") {
       return getScorecardConfigMessage();
     }
-  } catch {
-    // ignore non-JSON bodies
+  } catch (error) {
+    if (!(error instanceof SyntaxError)) {
+      void errorLoggingService.captureException(error, {
+        category: 'api',
+        operation: 'parse-api-key-error-body',
+        severity: 'warn',
+        handled: true,
+        source: 'scorecard.service',
+      });
+    }
   }
 
   if (/API_KEY_INVALID/i.test(raw) || /invalid api[_ ]?key/i.test(raw)) {
