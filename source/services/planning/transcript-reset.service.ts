@@ -1,4 +1,5 @@
 import type { QuestionnaireAnswers, User } from "@/hooks/use-app-data";
+import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { transcriptPlannerDebugService } from "@/services/dev/transcript-planner-debug.service";
 import { clearTransferPlannerTranscriptCache } from "@/services/planning/transfer-planner-cache.service";
 
@@ -42,8 +43,14 @@ export async function resetTranscriptState({
   clearDebugSnapshot();
   try {
     await updateUser({ transcript: "" });
-  } catch {
+  } catch (error) {
     // Transcript persistence is local-only in practice, so a remote legacy-field cleanup
     // failure should not block the local transcript reset flow.
+    errorLoggingService.captureException(error, {
+      category: "api",
+      operation: "legacy-transcript-cleanup",
+      handled: true,
+      severity: "warn",
+    });
   }
 }
