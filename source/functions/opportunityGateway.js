@@ -70,9 +70,10 @@ function getOpportunityAdminDecision(request) {
   const allowedUids = parseConfigList(process.env.OPPORTUNITY_ADMIN_UIDS);
   const uid = truncate(request.auth?.uid, 128);
   const email = truncate(request.auth?.token?.email, 320).toLowerCase() || null;
+  const isEmailVerified = request.auth?.token?.email_verified === true;
   const authorizedBy = allowedUids.includes(uid)
     ? "uid"
-    : email && allowedEmails.includes(email)
+    : email && isEmailVerified && allowedEmails.includes(email)
       ? "email"
       : null;
 

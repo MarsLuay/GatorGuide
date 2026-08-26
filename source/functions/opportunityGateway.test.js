@@ -26,13 +26,25 @@ test("opportunity admin decisions honor configured uid and email allowlists", ()
     );
     assert.equal(
       __test.getOpportunityAdminDecision({
-        auth: { uid: "other", token: { email: "ADMIN@EXAMPLE.COM" } },
+        auth: { uid: "other", token: { email: "ADMIN@EXAMPLE.COM", email_verified: true } },
       }).authorizedBy,
       "email"
     );
     assert.equal(
       __test.getOpportunityAdminDecision({
-        auth: { uid: "other", token: { email: "student@example.com" } },
+        auth: { uid: "other", token: { email: "student@example.com", email_verified: true } },
+      }).authorized,
+      false
+    );
+    assert.equal(
+      __test.getOpportunityAdminDecision({
+        auth: { uid: "other", token: { email: "ADMIN@EXAMPLE.COM", email_verified: false } },
+      }).authorized,
+      false
+    );
+    assert.equal(
+      __test.getOpportunityAdminDecision({
+        auth: { uid: "other", token: { email: "ADMIN@EXAMPLE.COM" } },
       }).authorized,
       false
     );
