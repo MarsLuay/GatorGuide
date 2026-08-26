@@ -414,19 +414,21 @@ class NotificationsService {
   async clearManagedNotifications(namespace?: string) {
     if (namespace) {
       const existing = await this.loadManagedNotifications(namespace);
-      for (const [key, record] of Object.entries(existing)) {
-        await this.cancelScheduledNotification(record.identifier, key);
-      }
+      const cancelPromises = Object.entries(existing).map(([key, record]) =>
+        this.cancelScheduledNotification(record.identifier, key)
+      );
+      await Promise.all(cancelPromises);
       await this.persistManagedNotifications(namespace, {});
       return;
     }
 
     const namespaces = await this.loadManagedNotificationNamespaces();
-    for (const state of Object.values(namespaces)) {
-      for (const [key, record] of Object.entries(state)) {
-        await this.cancelScheduledNotification(record.identifier, key);
-      }
-    }
+    const cancelPromises = Object.values(namespaces).flatMap((state) =>
+      Object.entries(state).map(([key, record]) =>
+        this.cancelScheduledNotification(record.identifier, key)
+      )
+    );
+    await Promise.all(cancelPromises);
 
     await this.persistManagedNotificationNamespaces({});
   }
@@ -504,10 +506,10 @@ class NotificationsService {
     const nextState: ManagedNotificationState = {};
     const nextKeys = new Set(plans.map((plan) => plan.key));
 
-    for (const [key, record] of Object.entries(existing)) {
-      if (nextKeys.has(key)) continue;
-      await this.cancelScheduledNotification(record.identifier, key);
-    }
+    const cancelPromises = Object.entries(existing)
+      .filter(([key]) => !nextKeys.has(key))
+      .map(([key, record]) => this.cancelScheduledNotification(record.identifier, key));
+    await Promise.all(cancelPromises);
 
     for (const plan of plans) {
       const existingRecord = existing[plan.key];
