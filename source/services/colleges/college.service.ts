@@ -121,8 +121,15 @@ const removeLegacyCollegeCaches = async () => {
       LOCAL_STORAGE_KEYS.collegeCacheCleanupVersion,
       LOCAL_STORAGE_CACHE_POLICY.collegeCacheVersion
     );
-  } catch {
+  } catch (error) {
     // Best-effort cleanup only; stale cache keys should never block college data reads.
+    void errorLoggingService.captureException(error, {
+      category: 'storage',
+      operation: 'legacy-cache-cleanup',
+      severity: 'warn',
+      handled: true,
+      source: 'college.service',
+    });
   }
 };
 
