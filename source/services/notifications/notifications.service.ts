@@ -504,10 +504,12 @@ class NotificationsService {
     const nextState: ManagedNotificationState = {};
     const nextKeys = new Set(plans.map((plan) => plan.key));
 
+    const cancelPromises = [];
     for (const [key, record] of Object.entries(existing)) {
       if (nextKeys.has(key)) continue;
-      await this.cancelScheduledNotification(record.identifier, key);
+      cancelPromises.push(this.cancelScheduledNotification(record.identifier, key));
     }
+    await Promise.all(cancelPromises);
 
     for (const plan of plans) {
       const existingRecord = existing[plan.key];
