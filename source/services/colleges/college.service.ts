@@ -686,8 +686,12 @@ class CollegeService {
             return { lat: parsed.lat, lon: parsed.lon };
           }
         }
-      } catch {
-        // ignore cache read errors and continue to fetch
+      } catch (err) {
+        void errorLoggingService.captureException(err, {
+          category: "storage",
+          operation: "ZIP geocode cache read",
+          handled: true,
+        });
       }
 
       const data = await fetchJsonWithHandling<{ places?: Array<{ latitude?: string; longitude?: string }> }>(
@@ -709,12 +713,21 @@ class CollegeService {
       // Best-effort ZIP cache avoids repeated external geocode calls.
       try {
         await localStorageService.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), lat, lon }));
-      } catch {
-        // ignore cache write errors
+      } catch (err) {
+        void errorLoggingService.captureException(err, {
+          category: "storage",
+          operation: "ZIP geocode cache write",
+          handled: true,
+        });
       }
 
       return { lat, lon };
-    } catch {
+    } catch (err) {
+      void errorLoggingService.captureException(err, {
+        category: "api",
+        operation: "ZIP geocode lookup overall",
+        handled: true,
+      });
       return null;
     }
   }
