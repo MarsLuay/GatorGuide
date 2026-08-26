@@ -70,6 +70,7 @@ const {
   buildDataExportPayload,
   normalizeDataImportPayload,
   restoreDataImportSnapshot,
+  stringifyDataExportPayload,
 } = require("@/services/app/data-portability.service");
 const {
   STORAGE_KEYS,
@@ -202,4 +203,22 @@ test("restoreDataImportSnapshot writes embedded files and points the restored us
   } finally {
     Date.now = originalNow;
   }
+});
+
+test("stringifyDataExportPayload formats output correctly", () => {
+  const payload = {
+    schemaVersion: 2,
+    exportedAt: "2023-10-01T12:00:00Z",
+    app: "GatorGuide",
+    version: "1.0.0",
+    data: buildState(),
+    preferences: {},
+    localStorage: { "some-key": "value" },
+    embeddedFiles: {},
+  };
+
+  const expectedString = JSON.stringify(payload, null, 2);
+  const resultString = stringifyDataExportPayload(payload);
+
+  assert.equal(resultString, expectedString);
 });
