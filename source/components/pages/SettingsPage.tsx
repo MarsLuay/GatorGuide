@@ -55,8 +55,6 @@ export default function SettingsPage() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
 
-  // removed currentLanguageName (unused) to satisfy linter
-
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : "text-emerald-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : "text-emerald-700";
   const cardBgClass = isDark
