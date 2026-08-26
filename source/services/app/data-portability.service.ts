@@ -154,15 +154,17 @@ async function getPortableStorageSnapshot(state: AppDataState) {
   const localStorage: Record<string, string> = {};
   const embeddedFiles: Record<string, EmbeddedPortableFile> = {};
 
-  for (const [key, value] of pairs) {
-    if (value == null) continue;
-    localStorage[key] = value;
+  await Promise.all(
+    pairs.map(async ([key, value]) => {
+      if (value == null) return;
+      localStorage[key] = value;
 
-    const embeddedFile = await maybeEmbedLocalDocumentFile(key, value);
-    if (embeddedFile) {
-      embeddedFiles[key] = embeddedFile;
-    }
-  }
+      const embeddedFile = await maybeEmbedLocalDocumentFile(key, value);
+      if (embeddedFile) {
+        embeddedFiles[key] = embeddedFile;
+      }
+    })
+  );
 
   return { localStorage, embeddedFiles };
 }
