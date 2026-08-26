@@ -144,7 +144,7 @@ export function getQuestionnaireAnswerText(
   return '';
 }
 
-const normalizeStateName = (value: unknown): string | null => {
+export const normalizeStateName = (value: unknown): string | null => {
   const raw = String(value ?? '').trim();
   if (!raw) return null;
   if (raw.length === 2) {
