@@ -1,3 +1,4 @@
+import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { localStorageService } from "@/services/storage/local-storage.service";
 
 import { LOCAL_DOCUMENTS_DIR_NAME } from "@/constants/schema";
@@ -25,7 +26,14 @@ class CacheManagerService {
     let childEntries: string[] = [];
     try {
       childEntries = await readDirectory(docsRoot);
-    } catch {
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "storage",
+        operation: "cache-clear-read-dir",
+        severity: "warn",
+        handled: true,
+        source: "cache-manager.service",
+      });
       return 0;
     }
 
@@ -37,8 +45,15 @@ class CacheManagerService {
       try {
         await deleteFileSystemPath(targetPath, { idempotent: true });
         removedCount += 1;
-      } catch {
+      } catch (error) {
         // Ignore individual cleanup failures so cache clear can continue.
+        void errorLoggingService.captureException(error, {
+          category: "storage",
+          operation: "cache-clear-guest-dir",
+          severity: "warn",
+          handled: true,
+          source: "cache-manager.service",
+        });
       }
     }
 
@@ -65,7 +80,14 @@ class CacheManagerService {
       const raw = await localStorageService.getItem(LOCAL_STORAGE_KEYS.cacheAutoClearEnabled);
       if (raw == null) return true;
       return raw === "true";
-    } catch {
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "storage",
+        operation: "cache-get-autoclear",
+        severity: "warn",
+        handled: true,
+        source: "cache-manager.service",
+      });
       return true;
     }
   }
