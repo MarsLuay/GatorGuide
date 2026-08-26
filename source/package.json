@@ -101,7 +101,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "typecheck:planner": "tsc --noEmit -p tsconfig.planner.json",
     "test:app-data": "node --test hooks/app-data/app-data-persistence.test.cjs",
-    "test:fetch-contract": "node --test services/network/fetch-with-handling.test.cjs scripts/lib/fetch-contract-sync.test.cjs scripts/lib/fetch-with-handling.test.cjs functions/fetchWithTimeout.test.js",
+    "test:fetch-contract": "node --test services/network/promise-timeout.test.cjs services/network/fetch-with-handling.test.cjs scripts/lib/fetch-contract-sync.test.cjs scripts/lib/fetch-with-handling.test.cjs functions/fetchWithTimeout.test.js",
     "test:app": "node scripts/qa/run-app-tests.cjs",
     "check": "npm run env:check && npm run typecheck && npm run test:fetch-contract && npm run test:app && npm run lint && npm run i18n:check",
     "lint": "expo lint",
