@@ -152,8 +152,8 @@ export class CollegeScoringService {
             // no change
           }
         }
-      } catch {
-        // ignore
+      } catch (error) {
+        console.warn('Error parsing location preference in buildPreferenceWeights:', error);
       }
 
       // Major importance: if user has a declared major, prioritize academics
