@@ -1,4 +1,5 @@
 import { localStorageService } from "@/services/storage/local-storage.service";
+import { errorLoggingService } from '@/services/logging/error-logging.service';
 
 import { isStubMode } from '@/services/app/config';
 import { getLocationRegionStates, normalizeLocationPreference, parseLocationPreference } from '@/services/app/questionnaire.enums';
@@ -97,8 +98,14 @@ export class CollegeScoringService {
         return;
       }
       await localStorageService.setItem(AI_FACTOR_CACHE_KEY, JSON.stringify(cache));
-    } catch {
-      // best-effort cache
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: 'storage',
+        operation: 'write-ai-factor-cache',
+        severity: 'warn',
+        handled: true,
+        source: 'college-scoring.service',
+      });
     }
   }
 
