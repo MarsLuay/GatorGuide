@@ -414,19 +414,23 @@ class NotificationsService {
   async clearManagedNotifications(namespace?: string) {
     if (namespace) {
       const existing = await this.loadManagedNotifications(namespace);
-      for (const [key, record] of Object.entries(existing)) {
-        await this.cancelScheduledNotification(record.identifier, key);
-      }
+      await Promise.all(
+        Object.entries(existing).map(([key, record]) =>
+          this.cancelScheduledNotification(record.identifier, key)
+        )
+      );
       await this.persistManagedNotifications(namespace, {});
       return;
     }
 
     const namespaces = await this.loadManagedNotificationNamespaces();
+    const cancelPromises: Promise<void>[] = [];
     for (const state of Object.values(namespaces)) {
       for (const [key, record] of Object.entries(state)) {
-        await this.cancelScheduledNotification(record.identifier, key);
+        cancelPromises.push(this.cancelScheduledNotification(record.identifier, key));
       }
     }
+    await Promise.all(cancelPromises);
 
     await this.persistManagedNotificationNamespaces({});
   }
@@ -504,22 +508,34 @@ class NotificationsService {
     const nextState: ManagedNotificationState = {};
     const nextKeys = new Set(plans.map((plan) => plan.key));
 
-    for (const [key, record] of Object.entries(existing)) {
-      if (nextKeys.has(key)) continue;
-      await this.cancelScheduledNotification(record.identifier, key);
-    }
+    await Promise.all(
+      Object.entries(existing)
+        .filter(([key]) => !nextKeys.has(key))
+        .map(([key, record]) => this.cancelScheduledNotification(record.identifier, key))
+    );
 
-    for (const plan of plans) {
+    const plansToSchedule = plans.filter((plan) => {
       const existingRecord = existing[plan.key];
       if (existingRecord?.fingerprint === plan.fingerprint) {
         nextState[plan.key] = existingRecord;
-        continue;
+        return false;
       }
+      return true;
+    });
 
-      if (existingRecord) {
-        await this.cancelScheduledNotification(existingRecord.identifier, plan.key);
-      }
+    await Promise.all(
+      plansToSchedule
+        .map((plan) => {
+          const existingRecord = existing[plan.key];
+          if (existingRecord) {
+            return this.cancelScheduledNotification(existingRecord.identifier, plan.key);
+          }
+          return null;
+        })
+        .filter((promise) => promise !== null)
+    );
 
+    for (const plan of plansToSchedule) {
       const identifier = await this.scheduleDateNotification(
         plan,
         scheduleOperation
