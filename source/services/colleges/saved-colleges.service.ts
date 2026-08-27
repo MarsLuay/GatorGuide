@@ -306,15 +306,20 @@ class SavedCollegesService {
 
   async removeCollege(uid: string, collegeId: string): Promise<void> {
     if (!db || !uid || !collegeId) return;
-    await deleteDoc(
-      doc(
-        db,
-        FIRESTORE_COLLECTIONS.users,
-        uid,
-        FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
-        String(collegeId)
-      )
-    );
+    try {
+      await deleteDoc(
+        doc(
+          db,
+          FIRESTORE_COLLECTIONS.users,
+          uid,
+          FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
+          String(collegeId)
+        )
+      );
+    } catch (error) {
+      console.error('Failed to remove college', error);
+      throw error;
+    }
   }
 
   async queueSaveCollege(uid: string, college: College): Promise<void> {
