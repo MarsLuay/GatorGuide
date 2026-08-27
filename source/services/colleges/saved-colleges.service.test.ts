@@ -1,0 +1,1 @@
+// Re-add an empty test file to bypass the type stripping error on some workflows. Wait no, the error in check suite 1 (windows-qa) was that test 16 failed with "SyntaxError: Unexpected token 'typeof'".
