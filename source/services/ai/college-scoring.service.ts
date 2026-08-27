@@ -29,7 +29,28 @@ type CollegeScorecardExtras = College & {
   };
 };
 
+export type CollegeData = {
+  state?: string;
+  tuition: number;
+  majors: string[];
+};
+
+export type UserPreferences = {
+  state?: string;
+  maxTuition?: number;
+  major?: string;
+};
+
 export class CollegeScoringService {
+
+  calculateScore(college: CollegeData, preferences: UserPreferences): number {
+    let score = 0;
+    if (preferences.state && college.state === preferences.state) score += 20;
+    if (preferences.maxTuition && college.tuition <= preferences.maxTuition) score += 30;
+    if (preferences.major && college.majors && college.majors.includes(preferences.major)) score += 50;
+    return Math.min(score, 100);
+  }
+
   protected stableStringify(input: unknown): string {
     if (input === null || typeof input !== 'object') return JSON.stringify(input);
     if (Array.isArray(input)) {
