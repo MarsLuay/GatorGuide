@@ -14,7 +14,7 @@
     "gator-guide"
   ],
   "taskPaths": [
-    "PROJECT-CONTRACT.json",
+    "docs/project-memory/PROJECT-CONTRACT.json",
     "PROJECT-TASKS.json",
     "PROJECT-TASKS.md",
     "context/routes/project-memory.json",
@@ -26,7 +26,7 @@
     "docs/project-memory/verified.jsonl"
   ],
   "requiredReads": [
-    "PROJECT-CONTRACT.json",
+    "docs/project-memory/PROJECT-CONTRACT.json",
     "PROJECT-TASKS.json",
     "docs/project-memory/architecture.md",
     "docs/project-memory/decisions.md",
