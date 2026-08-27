@@ -88,6 +88,15 @@ export class AiGatewayError extends Error {
   }
 }
 
+export type AIContext = {
+  profile?: {
+    major?: string;
+  };
+  preferences?: {
+    location?: string;
+  };
+};
+
 class AiGatewayService {
   private clientIdPromise: Promise<string> | null = null;
 
@@ -107,6 +116,13 @@ class AiGatewayService {
     }
 
     return this.clientIdPromise;
+  }
+
+  buildSystemPrompt(context: AIContext): string {
+    const base = `You are a helpful college advising assistant.`;
+    const profile = context.profile && context.profile.major ? `\nUser is interested in ${context.profile.major}.` : '';
+    const preferences = context.preferences && context.preferences.location ? `\nUser prefers ${context.preferences.location}.` : '';
+    return `${base}${profile}${preferences}`;
   }
 
   private normalizeError(error: unknown): AiGatewayError {
@@ -191,10 +207,15 @@ class AiGatewayService {
     topRankedColleges?: Record<string, unknown>[];
     outputFormat?: string;
   }): Promise<ChatAssistantGatewayResponse> {
+    let systemPrompt = input.context;
+    if (typeof input.context === 'object' && input.context !== null) {
+      systemPrompt = this.buildSystemPrompt(input.context as AIContext);
+    }
+
     return this.callGateway<ChatAssistantGatewayResponse>({
       action: "chatAssistant",
       query: input.query,
-      context: input.context ?? {},
+      context: systemPrompt ?? {},
       topRankedColleges: input.topRankedColleges ?? [],
       outputFormat: input.outputFormat ?? "text",
     });
