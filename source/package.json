@@ -165,7 +165,7 @@
   },
   "devDependencies": {
     "@expo/image-utils": "^0.8.13",
-    "@firebase/rules-unit-testing": "^5.0.0",
+    "@firebase/rules-unit-testing": "^5.0.1",
     "@types/pako": "^2.0.4",
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
