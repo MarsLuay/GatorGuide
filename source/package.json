@@ -139,7 +139,7 @@
     "expo-linear-gradient": "~15.0.8",
     "expo-linking": "~8.0.12",
     "expo-mail-composer": "~15.0.8",
-    "expo-notifications": "~0.32.17",
+    "expo-notifications": "~57.0.5",
     "expo-router": "~6.0.24",
     "expo-sharing": "^14.0.8",
     "expo-splash-screen": "~31.0.13",
