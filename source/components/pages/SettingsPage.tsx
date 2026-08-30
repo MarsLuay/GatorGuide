@@ -230,6 +230,8 @@ export default function SettingsPage() {
     t,
   });
 
+  // removed hasExportableData (unused) to satisfy linter
+
   const loadAutoClearSetting = useCallback(async () => {
     const enabled = await cacheManagerService.getAutoClearEnabled();
     setAutoClearCacheEnabled(enabled);
