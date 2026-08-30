@@ -7,11 +7,11 @@
     "source/AGENTS.md"
   ],
   "taskLedger": {
-    "path": "docs/project-memory/PROJECT-TASKS.md",
+    "path": "PROJECT-TASKS.md",
     "section": "Project task ledger"
   },
   "projectMemory": {
-    "taskPath": "docs/project-memory/PROJECT-TASKS.json",
+    "taskPath": "PROJECT-TASKS.json",
     "candidatePath": "docs/project-memory/candidates.jsonl",
     "verifiedPath": "docs/project-memory/verified.jsonl",
     "humanReadablePaths": [
