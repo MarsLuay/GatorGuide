@@ -146,7 +146,7 @@
     "expo-system-ui": "~6.0.9",
     "expo-updates": "~29.0.18",
     "expo-web-browser": "~15.0.11",
-    "firebase": "^12.9.0",
+    "firebase": "^12.18.0",
     "nativewind": "^4.2.1",
     "pako": "^2.1.0",
     "pdfjs-dist": "^5.6.205",

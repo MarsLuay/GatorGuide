@@ -1,11 +1,12 @@
 import { localStorageService } from "@/services/storage/local-storage.service";
-import { collection, deleteDoc, deleteField, doc, getDocs, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, deleteField, doc, getDocs, serverTimestamp, setDoc, updateDoc, writeBatch } from "firebase/firestore";
 import {
   FIRESTORE_COLLECTIONS,
   FIRESTORE_USER_SUBCOLLECTIONS,
 } from "@/constants/schema";
 import { collegeService, type College } from "./college.service";
 import { db } from "@/services/firebase/firebase";
+import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { getSavedCollegesPendingStorageKey } from "@/services/storage/local-storage-contracts";
 import { normalizeRateValue } from "@/utils/locale-format";
 
@@ -437,32 +438,61 @@ class SavedCollegesService {
     const uploadedCollegeIds = new Set<string>();
     const deletedCollegeIds = new Set<string>();
 
-    if (toUpload.length > 0) {
-      const uploadResults = await Promise.allSettled(
-        toUpload.map(async (college) => {
-          await this.saveCollege(uid, college);
-          return String(college.id);
-        })
-      );
+    if (toUpload.length > 0 || toDelete.length > 0) {
+      // Group mutations into batches to reduce network roundtrips and avoid the N+1 problem.
+      const FIRESTORE_BATCH_LIMIT = 500;
 
-      for (const result of uploadResults) {
-        if (result.status === "fulfilled") {
-          uploadedCollegeIds.add(result.value);
+      const allOps = [
+        ...toUpload.map((college) => ({ type: "upload" as const, data: college })),
+        ...toDelete.map((collegeId) => ({ type: "delete" as const, data: collegeId })),
+      ];
+
+      for (let i = 0; i < allOps.length; i += FIRESTORE_BATCH_LIMIT) {
+        const chunk = allOps.slice(i, i + FIRESTORE_BATCH_LIMIT);
+        const batch = writeBatch(db);
+
+        for (const op of chunk) {
+          const docRef = doc(
+            db,
+            FIRESTORE_COLLECTIONS.users,
+            uid,
+            FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
+            String(op.type === "upload" ? op.data.id : op.data)
+          );
+
+          if (op.type === "upload") {
+            batch.set(
+              docRef,
+              {
+                ...toSavedCollegeSnapshot(op.data),
+                updatedAt: serverTimestamp(),
+              },
+              { merge: true }
+            );
+          } else {
+            batch.delete(docRef);
+          }
         }
-      }
-    }
 
-    if (toDelete.length > 0) {
-      const deleteResults = await Promise.allSettled(
-        toDelete.map(async (collegeId) => {
-          await this.removeCollege(uid, collegeId);
-          return collegeId;
-        })
-      );
-
-      for (const result of deleteResults) {
-        if (result.status === "fulfilled") {
-          deletedCollegeIds.add(result.value);
+        try {
+          await batch.commit();
+          for (const op of chunk) {
+            if (op.type === "upload") {
+              uploadedCollegeIds.add(String(op.data.id));
+            } else {
+              deletedCollegeIds.add(op.data);
+            }
+          }
+        } catch (error) {
+          // If a batch fails, we log it and continue. The items won't be added to the sets,
+          // meaning they won't be cleared from pending mutations and will be retried later.
+          void errorLoggingService.captureException(error, {
+            category: "app",
+            operation: "syncSavedColleges",
+            severity: "error",
+            handled: true,
+            source: "saved-colleges.service",
+          });
         }
       }
     }
