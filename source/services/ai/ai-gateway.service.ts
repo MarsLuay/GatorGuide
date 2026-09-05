@@ -5,6 +5,7 @@ import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { functionsClient } from "@/services/firebase/firebase";
 import { withPromiseTimeout } from "@/services/network/promise-timeout";
 import { LOCAL_STORAGE_KEYS } from "@/services/storage/local-storage-contracts";
+import * as crypto from "expo-crypto";
 
 type AiGatewayQuota = {
   scope: "user" | "guest";
