@@ -5,6 +5,7 @@ import {
   getDocs,
   serverTimestamp,
   setDoc,
+  writeBatch,
 } from "firebase/firestore";
 import {
   type Opportunity,
@@ -288,18 +289,50 @@ class OpportunityStatusService {
     });
 
     if (uploadCandidates.length) {
-      const results = await Promise.allSettled(
-        uploadCandidates.map(async (status) => {
-          await this.saveRemoteStatus(uid, status);
-          return status.opportunityId;
-        })
-      );
+      const CHUNK_SIZE = 400;
+      const completedIds = new Set<string>();
 
-      const completedIds = new Set(
-        results
-          .filter((result) => result.status === "fulfilled")
-          .map((result) => result.value)
-      );
+      for (let i = 0; i < uploadCandidates.length; i += CHUNK_SIZE) {
+        const chunk = uploadCandidates.slice(i, i + CHUNK_SIZE);
+        const batch = writeBatch(db);
+
+        for (const status of chunk) {
+          const docRef = doc(
+            db,
+            FIRESTORE_COLLECTIONS.users,
+            uid,
+            FIRESTORE_USER_SUBCOLLECTIONS.opportunityStatuses,
+            status.opportunityId
+          );
+
+          batch.set(
+            docRef,
+            {
+              schemaVersion: status.schemaVersion,
+              userId: uid,
+              opportunityId: status.opportunityId,
+              progress: status.progress,
+              progressUpdatedAt: status.progressUpdatedAt,
+              isDone: status.isDone,
+              doneAt: status.doneAt,
+              doneCycleKey: status.doneCycleKey,
+              clientUpdatedAt: status.clientUpdatedAt,
+              updatedAt: serverTimestamp(),
+            },
+            { merge: true }
+          );
+        }
+
+        try {
+          await batch.commit();
+          for (const status of chunk) {
+            completedIds.add(status.opportunityId);
+          }
+        } catch (error) {
+          // If the batch fails, none of these IDs are added to completedIds,
+          // so they remain as pending mutations.
+        }
+      }
 
       await this.writePendingMutations(
         userKey,
