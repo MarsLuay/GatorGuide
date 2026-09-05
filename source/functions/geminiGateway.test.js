@@ -44,6 +44,15 @@ class FakeFirestore {
     };
   }
 
+  batch() {
+    return {
+      update: (ref, data) => {
+        this.directUpdates.push({ type: "batchUpdate", path: ref.path, data });
+      },
+      commit: async () => {},
+    };
+  }
+
   async runTransaction(callback) {
     const transaction = {
       get: async (ref) => new FakeSnapshot(this.docs.get(ref.path)),

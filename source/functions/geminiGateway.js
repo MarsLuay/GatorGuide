@@ -474,10 +474,10 @@ async function finalizeUsage(reservation, outcome, usageDb = db) {
   const clientRef = globalRef.collection("clients").doc(reservation.clientDocId);
   const updates = buildOutcomeUsageUpdate(reservation.action, outcome);
 
-  await Promise.all([
-    globalRef.update(updates),
-    clientRef.update(updates),
-  ]);
+  const batch = usageDb.batch();
+  batch.update(globalRef, updates);
+  batch.update(clientRef, updates);
+  await batch.commit();
 }
 
 function extractGeminiText(json) {
