@@ -185,6 +185,15 @@ test("generated runtime partition accessors return scoped data", () => {
   assert.equal(computerScience?.id, planId);
   assert.equal(computerScience?.campusId, "uw-seattle");
 
+  const nullPlan = generatedRuntime.getTransferPlannerRuntimeMajorPlanById(null);
+  assert.equal(nullPlan, null);
+
+  const undefinedPlan = generatedRuntime.getTransferPlannerRuntimeMajorPlanById(undefined);
+  assert.equal(undefinedPlan, null);
+
+  const missingPlan = generatedRuntime.getTransferPlannerRuntimeMajorPlanById("missing-plan-id");
+  assert.equal(missingPlan, null);
+
   const pathways = generatedRuntime.getTransferPlannerRuntimePathwaysForPlanId(planId);
   assert.ok(pathways.some((pathway) => pathway.id === pathwayId));
 
