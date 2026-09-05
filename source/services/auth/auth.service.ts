@@ -109,7 +109,6 @@ class AuthService {
   async sendPasswordReset(email: string): Promise<void> {
     if (isStubMode()) {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      console.log(`[STUB] Password reset email sent to ${email}`);
       return;
     }
 
