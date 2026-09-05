@@ -92,7 +92,7 @@ class AiGatewayService {
   private clientIdPromise: Promise<string> | null = null;
 
   private makeClientId() {
-    return `client-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    return `client-${Date.now().toString(36)}-${crypto.randomUUID().split('-')[0]}`;
   }
 
   private async getClientInstanceId() {
