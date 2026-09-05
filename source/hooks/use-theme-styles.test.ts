@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
-import ReactTestRenderer from "react-test-renderer";
+import ReactTestRenderer, { ReactTestRenderer as Renderer } from "react-test-renderer";
 import Module from "node:module";
 
 // Mock implementation using CommonJS Module.prototype.require intercept
@@ -44,12 +44,13 @@ function TestComponent({ theme }: { theme: "light" | "dark" }) {
 test("useThemeStyles correctly returns memoized tokens based on light resolvedTheme", () => {
   mockGetThemeTokensCalls = [];
 
-  let root;
+  let root: Renderer | undefined;
   ReactTestRenderer.act(() => {
     root = ReactTestRenderer.create(React.createElement(TestComponent, { theme: "light" }));
   });
 
-  assert.equal(root?.toJSON()?.props.mockTokenKey, "mockTokenValue-light");
+  const tree = root?.toJSON();
+  assert.equal(tree && !Array.isArray(tree) ? tree.props.mockTokenKey : null, "mockTokenValue-light");
   assert.equal(mockGetThemeTokensCalls.length, 1);
   assert.deepEqual(mockGetThemeTokensCalls, ["light"]);
 
@@ -63,12 +64,13 @@ test("useThemeStyles correctly returns memoized tokens based on light resolvedTh
 test("useThemeStyles correctly re-computes tokens on dark resolvedTheme", () => {
   mockGetThemeTokensCalls = [];
 
-  let root;
+  let root: Renderer | undefined;
   ReactTestRenderer.act(() => {
     root = ReactTestRenderer.create(React.createElement(TestComponent, { theme: "dark" }));
   });
 
-  assert.equal(root?.toJSON()?.props.mockTokenKey, "mockTokenValue-dark");
+  let tree = root?.toJSON();
+  assert.equal(tree && !Array.isArray(tree) ? tree.props.mockTokenKey : null, "mockTokenValue-dark");
   assert.equal(mockGetThemeTokensCalls.length, 1);
   assert.deepEqual(mockGetThemeTokensCalls, ["dark"]);
 
@@ -76,7 +78,9 @@ test("useThemeStyles correctly re-computes tokens on dark resolvedTheme", () => 
   ReactTestRenderer.act(() => {
     root?.update(React.createElement(TestComponent, { theme: "light" }));
   });
-  assert.equal(root?.toJSON()?.props.mockTokenKey, "mockTokenValue-light");
+
+  tree = root?.toJSON();
+  assert.equal(tree && !Array.isArray(tree) ? tree.props.mockTokenKey : null, "mockTokenValue-light");
   assert.equal(mockGetThemeTokensCalls.length, 2); // Should compute light tokens
   assert.deepEqual(mockGetThemeTokensCalls, ["dark", "light"]);
 });

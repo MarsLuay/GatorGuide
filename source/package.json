@@ -168,6 +168,7 @@
     "@firebase/rules-unit-testing": "^5.0.0",
     "@types/pako": "^2.0.4",
     "@types/react": "~19.1.0",
+    "@types/react-test-renderer": "^19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "firebase-tools": "^15.15.0",
