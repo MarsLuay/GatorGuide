@@ -56,8 +56,6 @@ async function main() {
       route.pathname
     );
   }
-
-  console.log(`Saved Windows QA screenshots to ${outputDir}`);
 }
 
 main().catch((error) => {
