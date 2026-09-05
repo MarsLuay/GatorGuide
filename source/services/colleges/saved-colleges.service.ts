@@ -1,5 +1,5 @@
 import { localStorageService } from "@/services/storage/local-storage.service";
-import { collection, deleteDoc, deleteField, doc, getDocs, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, deleteField, doc, getDocs, serverTimestamp, setDoc, updateDoc, writeBatch, type WriteBatch } from "firebase/firestore";
 import {
   FIRESTORE_COLLECTIONS,
   FIRESTORE_USER_SUBCOLLECTIONS,
@@ -284,7 +284,7 @@ class SavedCollegesService {
     );
   }
 
-  async saveCollege(uid: string, college: College): Promise<void> {
+  async saveCollege(uid: string, college: College, batch?: WriteBatch): Promise<void> {
     if (!db || !uid) return;
 
     const ref = doc(
@@ -294,27 +294,34 @@ class SavedCollegesService {
       FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
       String(college.id)
     );
-    await setDoc(
-      ref,
-      {
-        ...toSavedCollegeSnapshot(college),
-        updatedAt: serverTimestamp(),
-      },
-      { merge: true }
-    );
+
+    const data = {
+      ...toSavedCollegeSnapshot(college),
+      updatedAt: serverTimestamp(),
+    };
+
+    if (batch) {
+      batch.set(ref, data, { merge: true });
+    } else {
+      await setDoc(ref, data, { merge: true });
+    }
   }
 
-  async removeCollege(uid: string, collegeId: string): Promise<void> {
+  async removeCollege(uid: string, collegeId: string, batch?: WriteBatch): Promise<void> {
     if (!db || !uid || !collegeId) return;
-    await deleteDoc(
-      doc(
-        db,
-        FIRESTORE_COLLECTIONS.users,
-        uid,
-        FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
-        String(collegeId)
-      )
+    const ref = doc(
+      db,
+      FIRESTORE_COLLECTIONS.users,
+      uid,
+      FIRESTORE_USER_SUBCOLLECTIONS.savedColleges,
+      String(collegeId)
     );
+
+    if (batch) {
+      batch.delete(ref);
+    } else {
+      await deleteDoc(ref);
+    }
   }
 
   async queueSaveCollege(uid: string, college: College): Promise<void> {
@@ -438,31 +445,71 @@ class SavedCollegesService {
     const deletedCollegeIds = new Set<string>();
 
     if (toUpload.length > 0) {
-      const uploadResults = await Promise.allSettled(
-        toUpload.map(async (college) => {
-          await this.saveCollege(uid, college);
-          return String(college.id);
-        })
-      );
+      if (!db) {
+        // Fallback for null db so we don't crash when calling writeBatch(db)
+        const uploadResults = await Promise.allSettled(
+          toUpload.map(async (college) => {
+            await this.saveCollege(uid, college);
+            return String(college.id);
+          })
+        );
+        for (const result of uploadResults) {
+          if (result.status === "fulfilled") {
+            uploadedCollegeIds.add(result.value);
+          }
+        }
+      } else {
+        for (let i = 0; i < toUpload.length; i += 500) {
+          const batch = writeBatch(db);
+          const chunk = toUpload.slice(i, i + 500);
 
-      for (const result of uploadResults) {
-        if (result.status === "fulfilled") {
-          uploadedCollegeIds.add(result.value);
+          for (const college of chunk) {
+            await this.saveCollege(uid, college, batch);
+          }
+
+          try {
+            await batch.commit();
+            for (const college of chunk) {
+              uploadedCollegeIds.add(String(college.id));
+            }
+          } catch (error) {
+            console.error("Failed to batch upload saved colleges", error);
+          }
         }
       }
     }
 
     if (toDelete.length > 0) {
-      const deleteResults = await Promise.allSettled(
-        toDelete.map(async (collegeId) => {
-          await this.removeCollege(uid, collegeId);
-          return collegeId;
-        })
-      );
+      if (!db) {
+        // Fallback for null db so we don't crash when calling writeBatch(db)
+        const deleteResults = await Promise.allSettled(
+          toDelete.map(async (collegeId) => {
+            await this.removeCollege(uid, collegeId);
+            return collegeId;
+          })
+        );
+        for (const result of deleteResults) {
+          if (result.status === "fulfilled") {
+            deletedCollegeIds.add(result.value);
+          }
+        }
+      } else {
+        for (let i = 0; i < toDelete.length; i += 500) {
+          const batch = writeBatch(db);
+          const chunk = toDelete.slice(i, i + 500);
 
-      for (const result of deleteResults) {
-        if (result.status === "fulfilled") {
-          deletedCollegeIds.add(result.value);
+          for (const collegeId of chunk) {
+            await this.removeCollege(uid, collegeId, batch);
+          }
+
+          try {
+            await batch.commit();
+            for (const collegeId of chunk) {
+              deletedCollegeIds.add(collegeId);
+            }
+          } catch (error) {
+            console.error("Failed to batch delete saved colleges", error);
+          }
         }
       }
     }
