@@ -67,14 +67,14 @@ export async function deleteAllUserDataFromFirestore(uid: string): Promise<void>
     await Promise.all(
       chatHistorySnapshot.docs.map(async (chatDoc) => {
         const messagesRef = collection(
-          db,
+          db!,
           FIRESTORE_COLLECTIONS.chatHistory,
           chatDoc.id,
           FIRESTORE_CHAT_HISTORY_SUBCOLLECTIONS.messages
         );
         const messagesSnapshot = await getDocs(messagesRef).catch(() => null);
         if (messagesSnapshot?.size) {
-          await commitDeleteBatchInChunks(db, messagesSnapshot.docs);
+          await commitDeleteBatchInChunks(db!, messagesSnapshot.docs);
         }
         await deleteDoc(chatDoc.ref).catch(() => {});
       })
