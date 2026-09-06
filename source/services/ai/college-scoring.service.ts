@@ -3,6 +3,7 @@ import { localStorageService } from "@/services/storage/local-storage.service";
 import { isStubMode } from '@/services/app/config';
 import { getLocationRegionStates, normalizeLocationPreference, parseLocationPreference } from '@/services/app/questionnaire.enums';
 import { aiGatewayService } from '@/services/ai/ai-gateway.service';
+import { errorLoggingService } from '@/services/logging/error-logging.service';
 import { AI_FACTOR_CACHE_KEY, AI_FACTOR_CACHE_MAX_ENTRIES, type AiFactorCacheEntry } from '@/services/ai/ai.constants';
 import type { College } from '@/services/colleges/college.service';
 import type {
@@ -281,7 +282,9 @@ export class CollegeScoringService {
         if (this.stateMatches(college?.location?.state, userState) && isPublic) {
           acad += 15;
         }
-      } catch {}
+      } catch (error) {
+        void errorLoggingService.captureException(error, { category: 'ai', operation: 'college-scoring-articulation', handled: true });
+      }
 
       // Completion rate: always factor in (up to +20)
       try {
@@ -291,8 +294,12 @@ export class CollegeScoringService {
           comp = Math.min(1, Math.max(0, comp));
           acad += Math.round(comp * 20);
         }
-      } catch {}
-    } catch {}
+      } catch (error) {
+        void errorLoggingService.captureException(error, { category: 'ai', operation: 'college-scoring-completion', handled: true });
+      }
+    } catch (error) {
+      void errorLoggingService.captureException(error, { category: 'ai', operation: 'college-scoring-transfer-optimized', handled: true });
+    }
     breakdown.academics = Math.round(Math.max(0, Math.min(100, acad)));
 
     // Reuse preference-fit helpers to avoid duplicated tuition/aid/debt/size/setting logic.
