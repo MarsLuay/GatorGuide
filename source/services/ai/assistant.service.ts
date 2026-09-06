@@ -24,6 +24,9 @@ import type {
 } from '@/services/ai/ai.types';
 
 export class AiAssistantService {
+  private responseMapCache: Record<string, ChatMessage> | null = null;
+  private assistantResponseMapCache: Record<string, ChatAssistantResponse> | null = null;
+
   private parseNullableNumber(value: unknown) {
     if (typeof value === 'number' && Number.isFinite(value)) return value;
     if (typeof value === 'string' && value.trim()) {
@@ -269,18 +272,20 @@ export class AiAssistantService {
       };
 
       try {
-        const raw = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
-        const map = raw ? JSON.parse(raw) as Record<string, ChatAssistantResponse> : {};
-        map[cacheSignature] = payload;
+        if (!this.assistantResponseMapCache) {
+          const raw = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
+          this.assistantResponseMapCache = raw ? JSON.parse(raw) as Record<string, ChatAssistantResponse> : {};
+        }
+        this.assistantResponseMapCache[cacheSignature] = payload;
         const MAX_CACHED_RESPONSES = 50;
-        const entries = Object.entries(map).sort(
+        const entries = Object.entries(this.assistantResponseMapCache).sort(
           (a, b) => new Date(a[1].message.timestamp).getTime() - new Date(b[1].message.timestamp).getTime()
         );
         while (entries.length > MAX_CACHED_RESPONSES) {
           const [oldKey] = entries.shift()!;
-          delete map[oldKey];
+          delete this.assistantResponseMapCache[oldKey];
         }
-        await localStorageService.setItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY, JSON.stringify(map));
+        await localStorageService.setItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY, JSON.stringify(this.assistantResponseMapCache));
       } catch (cacheError) {
         void errorLoggingService.captureException(cacheError, {
           category: 'ai',
@@ -324,9 +329,11 @@ export class AiAssistantService {
       };
 
       try {
-        const raw = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
-        const map = raw ? JSON.parse(raw) as Record<string, ChatAssistantResponse> : {};
-        const cached = map && map[cacheSignature];
+        if (!this.assistantResponseMapCache) {
+          const raw = await localStorageService.getItem(AI_LAST_ASSISTANT_RESPONSE_MAP_KEY);
+          this.assistantResponseMapCache = raw ? JSON.parse(raw) as Record<string, ChatAssistantResponse> : {};
+        }
+        const cached = this.assistantResponseMapCache[cacheSignature];
         if (cached?.message) {
           void errorLoggingService.captureException(error, {
             category: 'ai',
@@ -449,19 +456,21 @@ export class AiAssistantService {
       // Cache by request signature so stale replies from other prompts are not reused.
       const sig = this.makeCacheSignature(message, serializedContext);
       try {
-        const raw = await localStorageService.getItem(AI_LAST_RESPONSE_MAP_KEY);
-        const map = raw ? JSON.parse(raw) as Record<string, ChatMessage> : {};
-        map[sig] = payload;
+        if (!this.responseMapCache) {
+          const raw = await localStorageService.getItem(AI_LAST_RESPONSE_MAP_KEY);
+          this.responseMapCache = raw ? JSON.parse(raw) as Record<string, ChatMessage> : {};
+        }
+        this.responseMapCache[sig] = payload;
         // cap the map size to keep only the most recent N entries
         const MAX_CACHED_RESPONSES = 50;
-        const entries = Object.entries(map).sort(
+        const entries = Object.entries(this.responseMapCache).sort(
           (a, b) => new Date(a[1].timestamp).getTime() - new Date(b[1].timestamp).getTime()
         );
         while (entries.length > MAX_CACHED_RESPONSES) {
           const [oldKey] = entries.shift()!;
-          delete map[oldKey];
+          delete this.responseMapCache[oldKey];
         }
-        await localStorageService.setItem(AI_LAST_RESPONSE_MAP_KEY, JSON.stringify(map));
+        await localStorageService.setItem(AI_LAST_RESPONSE_MAP_KEY, JSON.stringify(this.responseMapCache));
       } catch (cacheError) {
         void errorLoggingService.captureException(cacheError, {
           category: 'ai',
@@ -502,9 +511,11 @@ export class AiAssistantService {
       };
       const sig = this.makeCacheSignature(message, serializedContext);
       try {
-        const raw = await localStorageService.getItem(AI_LAST_RESPONSE_MAP_KEY);
-        const map = raw ? JSON.parse(raw) as Record<string, ChatMessage> : {};
-        const cached = map && map[sig];
+        if (!this.responseMapCache) {
+          const raw = await localStorageService.getItem(AI_LAST_RESPONSE_MAP_KEY);
+          this.responseMapCache = raw ? JSON.parse(raw) as Record<string, ChatMessage> : {};
+        }
+        const cached = this.responseMapCache[sig];
         if (cached) {
           void errorLoggingService.captureException(error, {
             category: 'ai',
