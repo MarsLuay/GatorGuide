@@ -519,7 +519,11 @@ function getBaseDomains(urls) {
       const base =
         parts.length >= 2 ? `${parts[parts.length - 2]}.${parts[parts.length - 1]}` : hostname;
       bases.add(base);
-    } catch {}
+    } catch (error) {
+      if (!(error instanceof TypeError)) {
+        throw error;
+      }
+    }
   }
   return [...bases];
 }
@@ -3472,7 +3476,11 @@ function extractAnchors(html, sourceUrl) {
         text,
         sourceUrl,
       });
-    } catch {}
+    } catch (error) {
+      if (!(error instanceof TypeError)) {
+        throw error;
+      }
+    }
   }
 
   return anchors;
@@ -4868,7 +4876,11 @@ function getTargetedOfficialFollowPriority(candidate) {
     if (!parsed.hash) {
       priority += 8;
     }
-  } catch {}
+  } catch (error) {
+    if (!(error instanceof TypeError)) {
+      throw error;
+    }
+  }
 
   if (/^(?:curriculum|requirements?|degree requirements?|major requirements?)$/i.test(normalizeWhitespace(candidate?.anchorText ?? candidate?.linkText ?? ""))) {
     priority += 12;
