@@ -281,7 +281,9 @@ export class CollegeScoringService {
         if (this.stateMatches(college?.location?.state, userState) && isPublic) {
           acad += 15;
         }
-      } catch {}
+      } catch (_error) {
+        // intentionally unused
+      }
 
       // Completion rate: always factor in (up to +20)
       try {
@@ -291,8 +293,12 @@ export class CollegeScoringService {
           comp = Math.min(1, Math.max(0, comp));
           acad += Math.round(comp * 20);
         }
-      } catch {}
-    } catch {}
+      } catch (_error) {
+        // intentionally unused
+      }
+    } catch (_error) {
+      // intentionally unused
+    }
     breakdown.academics = Math.round(Math.max(0, Math.min(100, acad)));
 
     // Reuse preference-fit helpers to avoid duplicated tuition/aid/debt/size/setting logic.
