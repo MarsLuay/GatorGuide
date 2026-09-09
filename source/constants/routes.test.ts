@@ -1,4 +1,4 @@
-import { describe, test, mock } from "node:test";
+import { describe, test } from "node:test";
 import * as assert from "node:assert";
 import { hrefWithParams } from "./routes";
 
