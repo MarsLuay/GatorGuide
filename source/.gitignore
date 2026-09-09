@@ -22,3 +22,6 @@ firestore-debug.log
 storage-debug.log
 # @end expo-cli
 .vercel
+
+google-services.json
+GoogleService-Info.plist
