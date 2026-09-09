@@ -374,13 +374,12 @@ export async function restoreDataImportSnapshot(
 ): Promise<AppDataState> {
   await clearPortableStorageForState(snapshot.data);
 
-  const restoredStorageEntries: Array<[string, string]> = [];
-  for (const [key, value] of Object.entries(snapshot.localStorage)) {
-    restoredStorageEntries.push([
+  const restoredStorageEntries: Array<[string, string]> = await Promise.all(
+    Object.entries(snapshot.localStorage).map(async ([key, value]) => [
       key,
       await restorePortableStorageEntry(key, value, snapshot.embeddedFiles[key]),
-    ]);
-  }
+    ])
+  );
 
   if (restoredStorageEntries.length) {
     await localStorageService.multiSet(restoredStorageEntries);
