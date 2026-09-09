@@ -275,14 +275,7 @@ export function useDeadlineCalendarController({
   // P18: local plannerV2 → offline timeline; Firestore not required.
   const personalizedTimelineEntries = useMemo(
     () => projectPlannerV2OfflineCalendarEntries(state.plannerV2),
-    [
-      state.plannerV2?.activeTarget,
-      state.plannerV2?.intendedTransferQuarter,
-      state.plannerV2?.normalizedCourseIds,
-      state.plannerV2?.overrides,
-      state.plannerV2?.preferredLoad,
-      state.plannerV2?.unavailableQuarters,
-    ]
+    [state.plannerV2]
   );
 
   const calendarEntries = useMemo(() => {
