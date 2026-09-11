@@ -30,7 +30,7 @@ const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const RESEND_TIMEOUT_MS = 10000;
 const supportRateLimitStore = new FirestoreRateLimitStore(admin.firestore());
 const supportHttpOptions = {
-  cors: true,
+  cors: false,
   timeoutSeconds: 30,
   maxInstances: 5,
 };
